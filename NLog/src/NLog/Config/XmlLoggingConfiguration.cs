@@ -60,9 +60,9 @@ namespace NLog.Config
             set { _autoReload = value; }
         }
 
-        public XmlLoggingConfiguration() { }
         public XmlLoggingConfiguration(string fileName) {
             _originalFileName = fileName;
+            RegisterPlatformSpecificExtensions();
             ConfigureFromFile(fileName);
         }
 
@@ -375,6 +375,32 @@ namespace NLog.Config
                     PropertyHelper.SetPropertyFromString(appender, name, value);
                 }
             }
+        }
+
+        private void RegisterPlatformSpecificExtensions() {
+#if NETCF
+            RegisterPlatformSpecificExtensions("NLog.CompactFramework.dll");
+#else
+            if (Type.GetType("System.MonoType", false) != null) {
+                RegisterPlatformSpecificExtensions("NLog.Mono.dll");
+            } else {
+                RegisterPlatformSpecificExtensions("NLog.DotNet.dll");
+            }
+
+            PlatformID platform = System.Environment.OSVersion.Platform;
+
+            if (platform == PlatformID.Win32NT || platform == PlatformID.Win32Windows) {
+                RegisterPlatformSpecificExtensions("NLog.Win32.dll");
+            }
+
+            if ((int)platform == 128 || (int)platform == 4) {
+                // mono-1.0 used '128' here, net-2.0 and mono-2.0 use '4'
+                RegisterPlatformSpecificExtensions("NLog.Unix.dll");
+            }
+#endif
+        }
+
+        private void RegisterPlatformSpecificExtensions(string fileName) {
         }
     }
 }

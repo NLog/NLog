@@ -34,8 +34,8 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-[assembly: AssemblyTitle("NLog.CompactFramework")]
-[assembly: AssemblyDescription("NLog - .NET Compact Framework logging support")]
+[assembly: AssemblyTitle("NLog.Win32")]
+[assembly: AssemblyDescription("NLog - Unix-specific logging support")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NLog")]
 [assembly: AssemblyProduct("NLog - .NET Logging Library")]

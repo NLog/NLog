@@ -226,8 +226,8 @@
     <la name="asp-application">
         <displayName>Classic ASP Application Item</displayName>
         <description>outputs the value of the specified item in ASP Application collection</description>
-        <assembly>NLog.ASP.dll</assembly>
-        <namespace>NLog.ASP.LayoutAppenders</namespace>
+        <assembly>NLog.Win32.dll</assembly>
+        <namespace>NLog.Win32.LayoutAppenders</namespace>
         <className>ASPApplicationValueLayoutAppender</className>
         <support framework="net-1.0" />
         <support framework="net-1.1" />
@@ -237,8 +237,8 @@
     <la name="asp-request">
         <displayName>Classic ASP Request Item</displayName>
         <description>outputs the value of the specified item in one of the ASP Request collections</description>
-        <assembly>NLog.ASP.dll</assembly>
-        <namespace>NLog.ASP.LayoutAppenders</namespace>
+        <assembly>NLog.Win32.dll</assembly>
+        <namespace>NLog.Win32.LayoutAppenders</namespace>
         <className>ASPRequestValueLayoutAppender</className>
         <support framework="net-1.0" />
         <support framework="net-1.1" />
@@ -252,8 +252,8 @@
     <la name="asp-session">
         <displayName>Classic ASP Session Item</displayName>
         <description>outputs the value of the specified variable in ASP Session collection</description>
-        <assembly>NLog.ASP.dll</assembly>
-        <namespace>NLog.ASP.LayoutAppenders</namespace>
+        <assembly>NLog.Win32.dll</assembly>
+        <namespace>NLog.Win32.LayoutAppenders</namespace>
         <className>ASPSessionValueLayoutAppender</className>
         <support framework="net-1.0" />
         <support framework="net-1.1" />
@@ -263,8 +263,8 @@
     <la name="aspnet-application">
         <displayName>ASP.NET Application Item</displayName>
         <description>outputs the value of the specified item in ASP Application collection</description>
-        <assembly>NLog.ASPNet.dll</assembly>
-        <namespace>NLog.ASPNet.LayoutAppenders</namespace>
+        <assembly>NLog.dll</assembly>
+        <namespace>NLog.LayoutAppenders</namespace>
         <className>ASPNetApplicationValueLayoutAppender</className>
         <support framework="net-1.0" />
         <support framework="net-1.1" />
@@ -276,8 +276,8 @@
     <la name="aspnet-request">
         <displayName>ASP.NET Request Item</displayName>
         <description>outputs the value of the specified item in one of the ASP Request collections</description>
-        <assembly>NLog.ASPNet.dll</assembly>
-        <namespace>NLog.ASPNet.LayoutAppenders</namespace>
+        <assembly>NLog.dll</assembly>
+        <namespace>NLog.LayoutAppenders</namespace>
         <className>ASPNetRequestValueLayoutAppender</className>
         <support framework="net-1.0" />
         <support framework="net-1.1" />
@@ -293,8 +293,8 @@
     <la name="aspnet-session">
         <displayName>ASP.NET Session Item</displayName>
         <description>outputs the value of the specified variable in ASP Session collection</description>
-        <assembly>NLog.ASPNet.dll</assembly>
-        <namespace>NLog.ASPNet.LayoutAppenders</namespace>
+        <assembly>NLog.dll</assembly>
+        <namespace>NLog.LayoutAppenders</namespace>
         <className>ASPNetSessionValueLayoutAppender</className>
         <support framework="net-1.0" />
         <support framework="net-1.1" />

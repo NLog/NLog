@@ -38,20 +38,20 @@ using System.Runtime.InteropServices;
 using NLog.LayoutAppenders;
 using NLog.Config;
 
-namespace NLog.ASP.LayoutAppenders
+namespace NLog.Win32.LayoutAppenders
 {
-    [LayoutAppender("asp-application")]
-    public class ASPApplicationValueLayoutAppender : LayoutAppender
+    [LayoutAppender("asp-session")]
+    public class ASPSessionValueLayoutAppender : LayoutAppender
     {
-        private string _appVariable;
+        private string _sessionVariable = null;
 
         [RequiredParameter]
-        public string Item
+        public string Variable
         {
-            get { return _appVariable; }
-            set { _appVariable = value; }
-
+            get { return _sessionVariable; }
+            set { _sessionVariable = value; }
         }
+
         protected override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 64;
@@ -59,14 +59,14 @@ namespace NLog.ASP.LayoutAppenders
         
         protected override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            ASPHelper.IApplicationObject app = ASPHelper.GetApplicationObject();
-            if (app != null) {
-                if (_appVariable != null) {
+            ASPHelper.ISessionObject session = ASPHelper.GetSessionObject();
+            if (session != null) {
+                if (_sessionVariable != null) {
 
-                    object variableValue = app.GetValue(_appVariable);
+                    object variableValue = session.GetValue(_sessionVariable);
                     builder.Append(Convert.ToString(variableValue));
                 }
-                Marshal.ReleaseComObject(app);
+                Marshal.ReleaseComObject(session);
             }
         }
     }

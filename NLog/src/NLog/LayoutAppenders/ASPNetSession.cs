@@ -30,44 +30,39 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+#if !NETCF
 
 using System;
 using System.Text;
-using System.Runtime.InteropServices;
+using System.Web;
 
-using NLog.LayoutAppenders;
-using NLog.Config;
-
-namespace NLog.ASP.LayoutAppenders
+namespace NLog.LayoutAppenders
 {
-    [LayoutAppender("asp-session")]
-    public class ASPSessionValueLayoutAppender : LayoutAppender
+    [LayoutAppender("aspnet-session")]
+    public class ASPNETSessioValueLayoutAppender : LayoutAppender
     {
-        private string _sessionVariable = null;
+        private string _parameter = null;
 
-        [RequiredParameter]
-        public string Variable
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
-            get { return _sessionVariable; }
-            set { _sessionVariable = value; }
-        }
-
-        protected override int GetEstimatedBufferSize(LogEventInfo ev)
-        {
-            return 64;
+            if (_parameter == null)
+                return 0;
+            else
+                return 64;
         }
         
-        protected override void Append(StringBuilder builder, LogEventInfo ev)
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            ASPHelper.ISessionObject session = ASPHelper.GetSessionObject();
-            if (session != null) {
-                if (_sessionVariable != null) {
+            if (_parameter == null)
+                return;
+            
+            HttpContext context = HttpContext.Current;
+            if (context == null)
+                return;
 
-                    object variableValue = session.GetValue(_sessionVariable);
-                    builder.Append(Convert.ToString(variableValue));
-                }
-                Marshal.ReleaseComObject(session);
-            }
+            builder.Append(context.Session[_parameter]);
         }
     }
 }
+
+#endif

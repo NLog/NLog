@@ -34,7 +34,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace NLog.ASP.LayoutAppenders
+namespace NLog.Win32.LayoutAppenders
 {
     internal class ASPHelper
     {

@@ -31,15 +31,43 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Reflection;
-using System.Runtime.CompilerServices;
+using System;
+using System.Text;
+using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("NLog.CompactFramework")]
-[assembly: AssemblyDescription("NLog - .NET Compact Framework logging support")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("NLog")]
-[assembly: AssemblyProduct("NLog - .NET Logging Library")]
-[assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")]
-[assembly: AssemblyCulture("")]
+using NLog.LayoutAppenders;
+using NLog.Config;
 
-[assembly: AssemblyVersion("0.2.0.0")]
+namespace NLog.Win32.LayoutAppenders
+{
+    [LayoutAppender("asp-application")]
+    public class ASPApplicationValueLayoutAppender : LayoutAppender
+    {
+        private string _appVariable;
+
+        [RequiredParameter]
+        public string Item
+        {
+            get { return _appVariable; }
+            set { _appVariable = value; }
+
+        }
+        protected override int GetEstimatedBufferSize(LogEventInfo ev)
+        {
+            return 64;
+        }
+        
+        protected override void Append(StringBuilder builder, LogEventInfo ev)
+        {
+            ASPHelper.IApplicationObject app = ASPHelper.GetApplicationObject();
+            if (app != null) {
+                if (_appVariable != null) {
+
+                    object variableValue = app.GetValue(_appVariable);
+                    builder.Append(Convert.ToString(variableValue));
+                }
+                Marshal.ReleaseComObject(app);
+            }
+        }
+    }
+}
