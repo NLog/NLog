@@ -208,26 +208,29 @@ namespace NLog.Appenders
 
         protected internal override void Append(LogEventInfo ev)
         {
-            string fileName = _fileNameLayout.GetFormattedMessage(ev);
+            lock (this)
+            {
+                string fileName = _fileNameLayout.GetFormattedMessage(ev);
 
-            if (fileName != _lastFileName && _outputFile != null)
-            {
-                _outputFile.Close();
-                _outputFile = null;
-            }
-            _lastFileName = fileName;
-            if (_outputFile == null)
-            {
-                _outputFile = OpenStreamWriter(fileName);
+                if (fileName != _lastFileName && _outputFile != null)
+                {
+                    _outputFile.Close();
+                    _outputFile = null;
+                }
+                _lastFileName = fileName;
                 if (_outputFile == null)
-                    return ;
-            }
-            _outputFile.WriteLine(CompiledLayout.GetFormattedMessage(ev));
-            _outputFile.Flush();
-            if (!KeepFileOpen || ConcurrentWrites)
-            {
-                _outputFile.Close();
-                _outputFile = null;
+                {
+                    _outputFile = OpenStreamWriter(fileName);
+                    if (_outputFile == null)
+                        return ;
+                }
+                _outputFile.WriteLine(CompiledLayout.GetFormattedMessage(ev));
+                _outputFile.Flush();
+                if (!KeepFileOpen || ConcurrentWrites)
+                {
+                    _outputFile.Close();
+                    _outputFile = null;
+                }
             }
         }
     }
