@@ -166,6 +166,8 @@
             <li><code>appendTo</code> - the list of appenders to be written to when the log event passes the above tests. The <code>appendTo</code> is a sequence of appender names separated by commas.<p/></li>
             <li><code>final</code> - determines whether any of the following appenders will be processed. If this attribute value is "true" and the log event passes all the above tests, no more appenders will be written to.</li>
         </ul>
+        <p>In addition, <code>&lt;logger/&gt;</code> supports <code>&lt;filters/&gt;</code> child element that can be used 
+        to specify filters. See the <a href="filters.html">Filter Reference</a> for more information.</p>
         The following example shows various routing options:
 <xmp class="code-xml">
 <?xml version="1.0" ?>
