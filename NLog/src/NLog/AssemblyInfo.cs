@@ -38,12 +38,21 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 
-[assembly: AssemblyTitle("NLog")][assembly: AssemblyDescription("NLog")][assembly: AssemblyConfiguration("")][assembly: AssemblyCompany("NLog")][assembly: AssemblyProduct("NLog - .NET Logging Library")][assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")][assembly: AssemblyCulture("")]
+[assembly: AssemblyTitle("NLog")]
+[assembly: AssemblyDescription("NLog")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("NLog")]
+[assembly: AssemblyProduct("NLog - .NET Logging Library")]
+[assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")]
+[assembly: AssemblyCulture("")]
 
 [assembly: AssemblyVersion("0.3.0.0")]
 
-[assembly: CLSCompliant(true)][assembly: ComVisible(false)]
+[assembly: CLSCompliant(true)]
+[assembly: ComVisible(false)]
 
 #if !NETCF
-[assembly: ReflectionPermission(SecurityAction.RequestMinimum, MemberAccess = true, TypeInformation = true)][assembly: SecurityPermission(SecurityAction.RequestMinimum, Flags = SecurityPermissionFlag.Execution)][assembly: FileIOPermission(SecurityAction.RequestMinimum, Unrestricted = true)]
+[assembly: ReflectionPermission(SecurityAction.RequestMinimum, MemberAccess = true, TypeInformation = true)]
+[assembly: SecurityPermission(SecurityAction.RequestMinimum, Flags = SecurityPermissionFlag.Execution)]
+[assembly: FileIOPermission(SecurityAction.RequestMinimum, Unrestricted = true)]
 #endif
