@@ -169,6 +169,17 @@ namespace NLog
                     {
                         _watcher.Watch(_config.FileNamesToWatch);
                     }
+#else
+                    if (_config == null)
+                    {
+                        string configFile = System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase + ".nlog";
+                        System.Windows.Forms.MessageBox.Show(configFile);
+                        if (File.Exists(configFile))
+                        {
+                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                            _config = new XmlLoggingConfiguration(configFile);
+                        }
+                    }
 #endif 
                     return _config;
                 }
