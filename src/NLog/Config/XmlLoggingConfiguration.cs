@@ -1,35 +1,35 @@
-// 
+//
 // Copyright (c) 2004 Jaroslaw Kowalski <jaak@polbox.com>
-// 
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of the Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of the Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 using System;
 using System.Collections;
@@ -45,10 +45,8 @@ using NLog.Filters;
 using NLog.LayoutAppenders;
 using NLog.Internal;
 
-namespace NLog.Config
-{
-    public class XmlLoggingConfiguration : LoggingConfiguration
-    {
+namespace NLog.Config {
+    public class XmlLoggingConfiguration : LoggingConfiguration {
         private StringDictionary _visitedFile = new StringDictionary();
 
         private bool _autoReload = false;
@@ -56,8 +54,12 @@ namespace NLog.Config
 
         public bool AutoReload
         {
-            get { return _autoReload; }
-            set { _autoReload = value; }
+            get {
+                return _autoReload;
+            }
+            set {
+                _autoReload = value;
+            }
         }
 
         public XmlLoggingConfiguration(string fileName) {
@@ -75,15 +77,14 @@ namespace NLog.Config
             }
         }
 
-        public override LoggingConfiguration Reload()
-        {
+        public override LoggingConfiguration Reload() {
             return new XmlLoggingConfiguration(_originalFileName);
         }
 
         private void ConfigureFromFile(string fileName) {
             string key = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
             if (_visitedFile.ContainsKey(key))
-                return;
+                return ;
 
             _visitedFile[key] = key;
 
@@ -107,13 +108,13 @@ namespace NLog.Config
 
             if (configElement.HasAttribute("internalLogToConsole")) {
                 switch (configElement.GetAttribute("internalLogToConsole")) {
-                   case "true":
-                        InternalLogger.LogToConsole = true;
-                        break;
-                        
-                   case "false":
-                        InternalLogger.LogToConsole = true;
-                        break;
+                case "true":
+                    InternalLogger.LogToConsole = true;
+                    break;
+
+                case "false":
+                    InternalLogger.LogToConsole = true;
+                    break;
                 }
             }
 
@@ -125,8 +126,7 @@ namespace NLog.Config
                 InternalLogger.LogLevel = Logger.LogLevelFromString(configElement.GetAttribute("internalLogLevel"));
             }
 
-            foreach (XmlElement el in configElement.GetElementsByTagName("include"))
-            {
+            foreach (XmlElement el in configElement.GetElementsByTagName("include")) {
                 Layout layout = new Layout(el.GetAttribute("file"));
 
                 string newFileName = layout.GetFormattedMessage(LogEventInfo.Empty);
@@ -141,18 +141,15 @@ namespace NLog.Config
 
             RegisterPlatformSpecificExtensions();
 
-            foreach (XmlElement el in configElement.GetElementsByTagName("extensions"))
-            {
+            foreach (XmlElement el in configElement.GetElementsByTagName("extensions")) {
                 AddExtensionsFromElement(el, baseDirectory);
             }
 
-            foreach (XmlElement el in configElement.GetElementsByTagName("appenders"))
-            {
+            foreach (XmlElement el in configElement.GetElementsByTagName("appenders")) {
                 ConfigureAppendersFromElement(el);
             }
 
-            foreach (XmlElement el in configElement.GetElementsByTagName("rules"))
-            {
+            foreach (XmlElement el in configElement.GetElementsByTagName("rules")) {
                 ConfigureRulesFromElement(el);
             }
 
@@ -162,8 +159,7 @@ namespace NLog.Config
 #if !NETCF
         public static LoggingConfiguration AppConfig
         {
-            get
-            {
+            get {
                 object o = System.Configuration.ConfigurationSettings.GetConfig("nlog");
                 return o as LoggingConfiguration;
             }
@@ -179,16 +175,14 @@ namespace NLog.Config
 
         private void ConfigureRulesFromElement(XmlElement element) {
             if (element == null)
-                return;
-            foreach (XmlElement ruleElement in element.GetElementsByTagName("logger"))
-            {
+                return ;
+            foreach (XmlElement ruleElement in element.GetElementsByTagName("logger")) {
                 AppenderRule rule = new AppenderRule();
                 string namePattern = ruleElement.GetAttribute("name");
                 string appendTo = ruleElement.GetAttribute("appendTo");
 
                 rule.LoggerNamePattern = namePattern;
-                foreach (string appenderName in appendTo.Split(','))
-                {
+                foreach (string appenderName in appendTo.Split(',')) {
                     rule.AppenderNames.Add(appenderName.Trim());
                 }
                 rule.Final = false;
@@ -226,10 +220,8 @@ namespace NLog.Config
                     }
                 }
 
-                foreach (XmlNode n in ruleElement.ChildNodes)
-                {
-                    if (n is XmlElement)
-                    {
+                foreach (XmlNode n in ruleElement.ChildNodes) {
+                    if (n is XmlElement) {
                         XmlElement el = (XmlElement)n;
 
                         if (el.Name == "filters") {
@@ -244,7 +236,7 @@ namespace NLog.Config
 
         private static void AddExtensionsFromElement(XmlElement element, string baseDirectory) {
             if (element == null)
-                return;
+                return ;
 
             foreach (XmlElement appenderElement in element.GetElementsByTagName("add")) {
                 string assemblyFile = appenderElement.GetAttribute("assemblyFile");
@@ -262,8 +254,7 @@ namespace NLog.Config
                         InternalLogger.Info("Loading assemblyFile: {0}", fullFileName);
                         Assembly asm = Assembly.LoadFrom(fullFileName);
                         LoadExtensionsFromAssembly(asm, prefix);
-                    }
-                    catch (Exception ex) {
+                    } catch (Exception ex) {
                         InternalLogger.Error("Error loading layout-appenders: {0}", ex);
                     }
                     continue;
@@ -276,8 +267,7 @@ namespace NLog.Config
                         InternalLogger.Info("Loading assemblyName: {0}", assemblyName);
                         Assembly asm = Assembly.Load(assemblyName);
                         LoadExtensionsFromAssembly(asm, prefix);
-                    }
-                    catch (Exception ex) {
+                    } catch (Exception ex) {
                         InternalLogger.Error("Error loading layout-appenders: {0}", ex);
                     }
                     continue;
@@ -285,8 +275,7 @@ namespace NLog.Config
             }
         }
 
-        private static void LoadExtensionsFromAssembly(Assembly asm, string prefix)
-        {
+        private static void LoadExtensionsFromAssembly(Assembly asm, string prefix) {
             FilterFactory.AddFiltersFromAssembly(asm, prefix);
             LayoutAppenderFactory.AddLayoutAppendersFromAssembly(asm, prefix);
             AppenderFactory.AddAppendersFromAssembly(asm, prefix);
@@ -294,7 +283,7 @@ namespace NLog.Config
 
         private void ConfigureAppendersFromElement(XmlElement element) {
             if (element == null)
-                return;
+                return ;
 
             foreach (XmlElement appenderElement in element.GetElementsByTagName("appender")) {
                 string type = appenderElement.GetAttribute("type");
@@ -308,12 +297,10 @@ namespace NLog.Config
 
         private void ConfigureRuleFiltersFromXmlElement(AppenderRule rule, XmlElement element) {
             if (element == null)
-                return;
+                return ;
 
-            foreach (XmlNode node in element.ChildNodes)
-            {
-                if (node is XmlElement)
-                {
+            foreach (XmlNode node in element.ChildNodes) {
+                if (node is XmlElement) {
                     string name = node.Name;
 
                     Filter filter = FilterFactory.CreateFilter(name);
@@ -343,10 +330,8 @@ namespace NLog.Config
                 PropertyHelper.SetPropertyFromString(appender, name, value);
             }
 
-            foreach (XmlNode node in element.ChildNodes)
-            {
-                if (node is XmlElement)
-                {
+            foreach (XmlNode node in element.ChildNodes) {
+                if (node is XmlElement) {
                     XmlElement el = (XmlElement)node;
                     string name = el.Name;
 
@@ -364,13 +349,15 @@ namespace NLog.Config
 
         private void RegisterPlatformSpecificExtensions() {
             if (_platformSpecificExtensionsRegistered)
-                return;
+                return ;
             _platformSpecificExtensionsRegistered = true;
-            
+
             InternalLogger.Info("Registering platform specific extensions...");
 #if NETCF
+
             RegisterPlatformSpecificExtensions("NLog.CompactFramework");
 #else
+
             if (Type.GetType("System.MonoType", false) != null) {
                 RegisterPlatformSpecificExtensions("NLog.Mono");
             } else {
@@ -388,10 +375,11 @@ namespace NLog.Config
                 RegisterPlatformSpecificExtensions("NLog.Unix");
             }
 #endif
+
         }
 
         private void RegisterPlatformSpecificExtensions(string name) {
-            
+
             AssemblyName nlogAssemblyName = typeof(LogManager).Assembly.GetName();
             nlogAssemblyName.Name = name;
 
@@ -400,9 +388,7 @@ namespace NLog.Config
                 Assembly asm = Assembly.Load(nlogAssemblyName);
                 LoadExtensionsFromAssembly(asm, String.Empty);
                 InternalLogger.Info("Registered platform specific extensions from assembly '{0}'.", nlogAssemblyName);
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 InternalLogger.Error("Could not load platform specific extensions: {0}", ex);
             }
         }

@@ -3,12 +3,11 @@ using System.Threading;
 using System.Globalization;
 using NLog;
 
-class Bench
-{
+class Bench {
     private const int warmup = 10;
     private static Logger logger = LogManager.GetLogger("Logger1");
     private static Logger logger2 = LogManager.GetLogger("Logger2");
-    
+
     public static void Main(string[] args) {
         int repeat = 1000000;
         Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
@@ -78,7 +77,7 @@ class Bench
             }
         }
         DateTime dt8 = DateTime.Now;
-        
+
         Console.WriteLine("no guard - no parameters:             {0} nanoseconds", 100.0 * (dt1 - dt0).Ticks / (double)repeat);
         Console.WriteLine("no guard - a single paramter:         {0} nanoseconds", 100.0 * (dt2 - dt1).Ticks / (double)repeat);
         Console.WriteLine("no guard - two paramters:             {0} nanoseconds", 100.0 * (dt3 - dt2).Ticks / (double)repeat);
@@ -88,7 +87,7 @@ class Bench
         Console.WriteLine("with a guard - two paramters:         {0} nanoseconds", 100.0 * (dt7 - dt6).Ticks / (double)repeat);
         Console.WriteLine("with a guard - three paramters:       {0} nanoseconds", 100.0 * (dt8 - dt7).Ticks / (double)repeat);
     }
-    
+
     private static void NullLogTest(int repeat) {
         Console.WriteLine("Starting null logging test");
         DateTime dt0 = DateTime.Now;
@@ -132,7 +131,7 @@ class Bench
             }
         }
         DateTime dt8 = DateTime.Now;
-        
+
         Console.WriteLine("no guard - no parameters:             {0} nanoseconds", 100.0 * (dt1 - dt0).Ticks / (double)repeat);
         Console.WriteLine("no guard - a single paramter:         {0} nanoseconds", 100.0 * (dt2 - dt1).Ticks / (double)repeat);
         Console.WriteLine("no guard - two paramters:             {0} nanoseconds", 100.0 * (dt3 - dt2).Ticks / (double)repeat);
