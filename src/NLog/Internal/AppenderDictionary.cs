@@ -67,7 +67,7 @@ namespace NLog.Internal
         {
             get
             {
-                return (Appender) this.Dictionary[key];
+                return (Appender)this.Dictionary[key];
             }
             set
             {

@@ -32,37 +32,37 @@
 // 
 #if !NETCF
 
-using System;
-using System.Text;
-using System.Web;
+    using System;
+    using System.Text;
+    using System.Web;
 
-namespace NLog.LayoutAppenders
-{
-    [LayoutAppender("aspnet-session")]
-    public class ASPNETSessioValueLayoutAppender : LayoutAppender
+    namespace NLog.LayoutAppenders
     {
-        private string _parameter = null;
-
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+        [LayoutAppender("aspnet-session")]
+        public class ASPNETSessioValueLayoutAppender: LayoutAppender
         {
-            if (_parameter == null)
-                return 0;
-            else
-                return 64;
-        }
-        
-        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
-        {
-            if (_parameter == null)
-                return;
-            
-            HttpContext context = HttpContext.Current;
-            if (context == null)
-                return;
+            private string _parameter = null;
 
-            builder.Append(context.Session[_parameter]);
+            protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+            {
+                if (_parameter == null)
+                    return 0;
+                else
+                    return 64;
+            }
+
+            protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+            {
+                if (_parameter == null)
+                    return ;
+
+                HttpContext context = HttpContext.Current;
+                if (context == null)
+                    return ;
+
+                builder.Append(context.Session[_parameter]);
+            }
         }
     }
-}
 
 #endif

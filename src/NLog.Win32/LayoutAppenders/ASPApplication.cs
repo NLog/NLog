@@ -41,28 +41,34 @@ using NLog.Config;
 namespace NLog.Win32.LayoutAppenders
 {
     [LayoutAppender("asp-application")]
-    public class ASPApplicationValueLayoutAppender : LayoutAppender
+    public class ASPApplicationValueLayoutAppender: LayoutAppender
     {
         private string _appVariable;
 
         [RequiredParameter]
         public string Item
         {
-            get { return _appVariable; }
-            set { _appVariable = value; }
+            get
+            {
+                return _appVariable;
+            }
+            set
+            {
+                _appVariable = value;
+            }
 
         }
         protected override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 64;
         }
-        
+
         protected override void Append(StringBuilder builder, LogEventInfo ev)
         {
             ASPHelper.IApplicationObject app = ASPHelper.GetApplicationObject();
-            if (app != null) 
+            if (app != null)
             {
-                if (_appVariable != null) 
+                if (_appVariable != null)
                 {
 
                     object variableValue = app.GetValue(_appVariable);

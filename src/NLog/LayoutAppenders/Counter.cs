@@ -39,7 +39,7 @@ using System.Globalization;
 namespace NLog.LayoutAppenders
 {
     [LayoutAppender("counter")]
-    public class CounterLayoutAppender : LayoutAppender
+    public class CounterLayoutAppender: LayoutAppender
     {
         private int _value = 1;
         private string _sequence = null;
@@ -47,34 +47,55 @@ namespace NLog.LayoutAppenders
 
         public int Value
         {
-            get { return _value; }
-            set { _value = value; }
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                _value = value;
+            }
         }
 
         public int Increment
         {
-            get { return _increment; }
-            set { _increment = value; }
+            get
+            {
+                return _increment;
+            }
+            set
+            {
+                _increment = value;
+            }
         }
 
         public string Sequence
         {
-            get { return _sequence; }
-            set { _sequence = value; }
+            get
+            {
+                return _sequence;
+            }
+            set
+            {
+                _sequence = value;
+            }
         }
-        
+
         protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 32;
         }
-        
+
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             int v;
 
-            if (_sequence != null) {
+            if (_sequence != null)
+            {
                 v = GetNextSequenceValue(Sequence, Value, Increment);
-            } else {
+            }
+            else
+            {
                 v = _value;
                 _value += _increment;
             }
@@ -84,19 +105,24 @@ namespace NLog.LayoutAppenders
 
         private static Hashtable _sequences = new Hashtable();
 
-        private static int GetNextSequenceValue(string sequenceName, int defaultValue, int increment) {
-            lock (_sequences) {
+        private static int GetNextSequenceValue(string sequenceName, int defaultValue, int increment)
+        {
+            lock(_sequences)
+            {
                 object v = _sequences[sequenceName];
                 int val;
 
-                if (v == null) {
+                if (v == null)
+                {
                     val = defaultValue;
-                } else {
+                }
+                else
+                {
                     val = (int)v;
                 }
 
                 int retVal = val;
-                
+
                 val += increment;
                 _sequences[sequenceName] = val;
                 return retVal;

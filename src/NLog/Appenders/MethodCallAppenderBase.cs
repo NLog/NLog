@@ -42,25 +42,30 @@ using NLog.Config;
 
 namespace NLog.Appenders
 {
-    public abstract class MethodCallAppenderBase : Appender
+    public abstract class MethodCallAppenderBase: Appender
     {
         private MethodCallParameterCollection _parameters = new MethodCallParameterCollection();
 
-        protected internal override void Append(LogEventInfo ev) {
-            object[] parameters = new object[Parameters.Count];
-            for (int i = 0; i < parameters.Length; ++i) {
+        protected internal override void Append(LogEventInfo ev)
+        {
+            object[]parameters = new object[Parameters.Count];
+            for (int i = 0; i < parameters.Length; ++i)
+            {
                 parameters[i] = Parameters[i].GetValue(ev);
             }
 
             DoInvoke(parameters);
         }
 
-        protected abstract void DoInvoke(object[] parameters);
+        protected abstract void DoInvoke(object[]parameters);
 
-        [ArrayParameter(typeof(MethodCallParameter),"parameter")]
+        [ArrayParameter(typeof(MethodCallParameter), "parameter")]
         public MethodCallParameterCollection Parameters
         {
-            get { return _parameters; }
+            get
+            {
+                return _parameters;
+            }
         }
 
         public class MethodCallParameter
@@ -72,27 +77,46 @@ namespace NLog.Appenders
             {
                 _type = typeof(string);
             }
-            
+
             public string Type
             {
-                get { return _type.FullName; }
-                set { _type = System.Type.GetType(value); }
+                get
+                {
+                    return _type.FullName;
+                }
+                set
+                {
+                    _type = System.Type.GetType(value);
+                }
             }
 
             [RequiredParameter]
             public string Layout
             {
-                get { return _compiledlayout.Text; }
-                set { _compiledlayout = new Layout(value); }
+                get
+                {
+                    return _compiledlayout.Text;
+                }
+                set
+                {
+                    _compiledlayout = new Layout(value);
+                }
             }
 
             public Layout CompiledLayout
             {
-                get { return _compiledlayout; }
-                set { _compiledlayout = value; }
+                get
+                {
+                    return _compiledlayout;
+                }
+                set
+                {
+                    _compiledlayout = value;
+                }
             }
 
-            internal object GetValue(LogEventInfo ev) {
+            internal object GetValue(LogEventInfo ev)
+            {
                 return Convert.ChangeType(CompiledLayout.GetFormattedMessage(ev), _type, CultureInfo.InvariantCulture);
             }
         }
@@ -117,7 +141,7 @@ namespace NLog.Appenders
             /// <param name="items">
             /// The array whose elements are to be added to the new MethodCallParameterCollection.
             /// </param>
-            public MethodCallParameterCollection(MethodCallParameter[] items)
+            public MethodCallParameterCollection(MethodCallParameter[]items)
             {
                 this.AddRange(items);
             }
@@ -140,7 +164,7 @@ namespace NLog.Appenders
             /// <param name="items">
             /// The array whose elements are to be added to the end of this MethodCallParameterCollection.
             /// </param>
-            public virtual void AddRange(MethodCallParameter[] items)
+            public virtual void AddRange(MethodCallParameter[]items)
             {
                 foreach (MethodCallParameter item in items)
                 {
@@ -225,7 +249,7 @@ namespace NLog.Appenders
             {
                 get
                 {
-                    return (MethodCallParameter) this.List[index];
+                    return (MethodCallParameter)this.List[index];
                 }
                 set
                 {
@@ -260,7 +284,7 @@ namespace NLog.Appenders
                 {
                     get
                     {
-                        return (MethodCallParameter) (this.wrapped.Current);
+                        return (MethodCallParameter)(this.wrapped.Current);
                     }
                 }
 
@@ -268,7 +292,7 @@ namespace NLog.Appenders
                 {
                     get
                     {
-                        return (MethodCallParameter) (this.wrapped.Current);
+                        return (MethodCallParameter)(this.wrapped.Current);
                     }
                 }
 

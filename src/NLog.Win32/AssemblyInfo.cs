@@ -34,12 +34,6 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-[assembly: AssemblyTitle("NLog.Win32")]
-[assembly: AssemblyDescription("NLog - Win32-specific logging support")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("NLog")]
-[assembly: AssemblyProduct("NLog - .NET Logging Library")]
-[assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyTitle("NLog.Win32")][assembly: AssemblyDescription("NLog - Win32-specific logging support")][assembly: AssemblyConfiguration("")][assembly: AssemblyCompany("NLog")][assembly: AssemblyProduct("NLog - .NET Logging Library")][assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")][assembly: AssemblyCulture("")]
 
 [assembly: AssemblyVersion("0.2.0.0")]

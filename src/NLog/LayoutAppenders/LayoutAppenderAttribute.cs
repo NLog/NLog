@@ -36,18 +36,21 @@ using System;
 namespace NLog.LayoutAppenders
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class LayoutAppenderAttribute : Attribute
+    public sealed class LayoutAppenderAttribute: Attribute
     {
         private string _formatString;
 
-        public LayoutAppenderAttribute(string s) 
+        public LayoutAppenderAttribute(string s)
         {
             _formatString = s;
         }
-        
+
         public string FormatString
         {
-            get { return _formatString; }
+            get
+            {
+                return _formatString;
+            }
         }
     }
 }

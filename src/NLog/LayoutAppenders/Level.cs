@@ -37,11 +37,11 @@ using System.Text;
 namespace NLog.LayoutAppenders
 {
     [LayoutAppender("level")]
-    public class LevelLayoutAppender : LayoutAppender
+    public class LevelLayoutAppender: LayoutAppender
     {
-        private static string[] LevelToString;
-        private static string[] UpperCaseLevelToString;
-        private static string[] LowerCaseLevelToString;
+        private static string[]LevelToString;
+        private static string[]UpperCaseLevelToString;
+        private static string[]LowerCaseLevelToString;
         private static int MaxLength;
 
         static LevelLayoutAppender()
@@ -77,13 +77,13 @@ namespace NLog.LayoutAppenders
             Padding = MaxLength;
         }
 
-        private string[] _nameTable = LevelToString;
+        private string[]_nameTable = LevelToString;
 
         public new bool UpperCase
         {
             set
             {
-                if (value) 
+                if (value)
                     _nameTable = UpperCaseLevelToString;
                 else
                     _nameTable = LevelToString;
@@ -98,7 +98,7 @@ namespace NLog.LayoutAppenders
         {
             set
             {
-                if (value) 
+                if (value)
                     _nameTable = LowerCaseLevelToString;
                 else
                     _nameTable = LevelToString;
@@ -113,7 +113,7 @@ namespace NLog.LayoutAppenders
         {
             return MaxLength;
         }
-        
+
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             builder.Append(ApplyPadding(_nameTable[(int)ev.Level]));

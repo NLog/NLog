@@ -61,7 +61,7 @@ namespace NLog.Config
         /// <param name="items">
         /// The array whose elements are to be added to the new AppenderRuleCollection.
         /// </param>
-        public AppenderRuleCollection(AppenderRule[] items)
+        public AppenderRuleCollection(AppenderRule[]items)
         {
             this.AddRange(items);
         }
@@ -84,7 +84,7 @@ namespace NLog.Config
         /// <param name="items">
         /// The array whose elements are to be added to the end of this AppenderRuleCollection.
         /// </param>
-        public virtual void AddRange(AppenderRule[] items)
+        public virtual void AddRange(AppenderRule[]items)
         {
             foreach (AppenderRule item in items)
             {
@@ -169,7 +169,7 @@ namespace NLog.Config
         {
             get
             {
-                return (AppenderRule) this.List[index];
+                return (AppenderRule)this.List[index];
             }
             set
             {
@@ -204,7 +204,7 @@ namespace NLog.Config
             {
                 get
                 {
-                    return (AppenderRule) (this.wrapped.Current);
+                    return (AppenderRule)(this.wrapped.Current);
                 }
             }
 
@@ -212,7 +212,7 @@ namespace NLog.Config
             {
                 get
                 {
-                    return (AppenderRule) (this.wrapped.Current);
+                    return (AppenderRule)(this.wrapped.Current);
                 }
             }
 

@@ -54,20 +54,38 @@ namespace NLog
 
         public Appender Appender
         {
-            get { return _appender; }
-            set { _appender = value; }
+            get
+            {
+                return _appender;
+            }
+            set
+            {
+                _appender = value;
+            }
         }
 
         public FilterCollection FilterChain
         {
-            get { return _filterChain; }
-            set { _filterChain = value; }
+            get
+            {
+                return _filterChain;
+            }
+            set
+            {
+                _filterChain = value;
+            }
         }
 
         public AppenderWithFilterChain Next
         {
-            get { return _next; }
-            set { _next = value; }
+            get
+            {
+                return _next;
+            }
+            set
+            {
+                _next = value;
+            }
         }
     }
 }

@@ -47,7 +47,7 @@ using NLog.Internal;
 
 namespace NLog.Config
 {
-    public class XmlLoggingConfiguration : LoggingConfiguration
+    public class XmlLoggingConfiguration: LoggingConfiguration
     {
         private StringDictionary _visitedFile = new StringDictionary();
 
@@ -56,11 +56,17 @@ namespace NLog.Config
 
         public bool AutoReload
         {
-            get { return _autoReload; }
-            set { _autoReload = value; }
+            get
+            {
+                return _autoReload;
+            }
+            set
+            {
+                _autoReload = value;
+            }
         }
 
-        public XmlLoggingConfiguration(string fileName) 
+        public XmlLoggingConfiguration(string fileName)
         {
             _originalFileName = fileName;
             ConfigureFromFile(fileName);
@@ -68,7 +74,7 @@ namespace NLog.Config
 
         public override ICollection FileNamesToWatch
         {
-            get 
+            get
             {
                 if (_autoReload)
                     return _visitedFile.Keys;
@@ -82,73 +88,73 @@ namespace NLog.Config
             return new XmlLoggingConfiguration(_originalFileName);
         }
 
-        private void ConfigureFromFile(string fileName) 
+        private void ConfigureFromFile(string fileName)
         {
             string key = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
             if (_visitedFile.ContainsKey(key))
-                return;
+                return ;
 
             _visitedFile[key] = key;
 
             XmlDocument doc = new XmlDocument();
             doc.Load(fileName);
-            if (doc.DocumentElement.LocalName == "configuration") 
+            if (doc.DocumentElement.LocalName == "configuration")
             {
-                foreach (XmlElement el in doc.DocumentElement.GetElementsByTagName("nlog")) 
+                foreach (XmlElement el in doc.DocumentElement.GetElementsByTagName("nlog"))
                 {
                     ConfigureFromXmlElement(el, Path.GetDirectoryName(fileName));
                 }
-            } 
-            else 
+            }
+            else
             {
                 ConfigureFromXmlElement(doc.DocumentElement, Path.GetDirectoryName(fileName));
             }
         }
 
-        private void ConfigureFromXmlElement(XmlElement configElement, string baseDirectory) 
+        private void ConfigureFromXmlElement(XmlElement configElement, string baseDirectory)
         {
-            if (configElement.HasAttribute("autoReload")) 
+            if (configElement.HasAttribute("autoReload"))
             {
-                if (configElement.GetAttribute("autoReload") == "true") 
+                if (configElement.GetAttribute("autoReload") == "true")
                 {
                     AutoReload = true;
                 }
             }
 
-            if (configElement.HasAttribute("throwExceptions")) 
+            if (configElement.HasAttribute("throwExceptions"))
             {
-                switch (configElement.GetAttribute("throwExceptions")) 
+                switch (configElement.GetAttribute("throwExceptions"))
                 {
                     case "true":
                         LogManager.ThrowExceptions = true;
                         break;
-                        
+
                     case "false":
                         LogManager.ThrowExceptions = false;
                         break;
                 }
             }
 
-            if (configElement.HasAttribute("internalLogToConsole")) 
+            if (configElement.HasAttribute("internalLogToConsole"))
             {
-                switch (configElement.GetAttribute("internalLogToConsole")) 
+                switch (configElement.GetAttribute("internalLogToConsole"))
                 {
                     case "true":
                         InternalLogger.LogToConsole = true;
                         break;
-                        
+
                     case "false":
                         InternalLogger.LogToConsole = true;
                         break;
                 }
             }
 
-            if (configElement.HasAttribute("internalLogFile")) 
+            if (configElement.HasAttribute("internalLogFile"))
             {
                 InternalLogger.LogFile = configElement.GetAttribute("internalLogFile");
             }
 
-            if (configElement.HasAttribute("internalLogLevel")) 
+            if (configElement.HasAttribute("internalLogLevel"))
             {
                 InternalLogger.LogLevel = Logger.LogLevelFromString(configElement.GetAttribute("internalLogLevel"));
             }
@@ -159,12 +165,12 @@ namespace NLog.Config
 
                 string newFileName = layout.GetFormattedMessage(LogEventInfo.Empty);
                 newFileName = Path.Combine(baseDirectory, newFileName);
-                if (File.Exists(newFileName)) 
+                if (File.Exists(newFileName))
                 {
                     InternalLogger.Debug("Including file '{0}'", newFileName);
                     ConfigureFromFile(newFileName);
-                } 
-                else 
+                }
+                else
                 {
                     throw new FileNotFoundException("Included file not found: " + newFileName);
                 }
@@ -190,29 +196,29 @@ namespace NLog.Config
             ResolveAppenders();
         }
 
-#if !NETCF
-        public static LoggingConfiguration AppConfig
-        {
-            get
+        #if !NETCF
+            public static LoggingConfiguration AppConfig
             {
-                object o = System.Configuration.ConfigurationSettings.GetConfig("nlog");
-                return o as LoggingConfiguration;
+                get
+                {
+                    object o = System.Configuration.ConfigurationSettings.GetConfig("nlog");
+                    return o as LoggingConfiguration;
+                }
             }
-        }
-#endif
+        #endif 
 
         // implementation details
 
-        private static string CleanWhitespace(string s) 
+        private static string CleanWhitespace(string s)
         {
             s = s.Replace(" ", ""); // get rid of the whitespace
             return s;
         }
 
-        private void ConfigureRulesFromElement(XmlElement element) 
+        private void ConfigureRulesFromElement(XmlElement element)
         {
             if (element == null)
-                return;
+                return ;
             foreach (XmlElement ruleElement in element.GetElementsByTagName("logger"))
             {
                 AppenderRule rule = new AppenderRule();
@@ -226,44 +232,44 @@ namespace NLog.Config
                 }
                 rule.Final = false;
 
-                if (ruleElement.HasAttribute("final")) 
+                if (ruleElement.HasAttribute("final"))
                 {
                     rule.Final = true;
                 }
 
-                if (ruleElement.HasAttribute("level")) 
+                if (ruleElement.HasAttribute("level"))
                 {
                     LogLevel level = Logger.LogLevelFromString(ruleElement.GetAttribute("level"));
                     rule.EnableLoggingForLevel(level);
-                } 
-                else if (ruleElement.HasAttribute("levels")) 
+                }
+                else if (ruleElement.HasAttribute("levels"))
                 {
                     string levelsString = ruleElement.GetAttribute("levels");
                     levelsString = CleanWhitespace(levelsString);
 
-                    string[] tokens = levelsString.Split(',');
-                    foreach (string s in tokens) 
+                    string[]tokens = levelsString.Split(',');
+                    foreach (string s in tokens)
                     {
                         LogLevel level = Logger.LogLevelFromString(s);
                         rule.EnableLoggingForLevel(level);
                     }
-                } 
-                else 
+                }
+                else
                 {
                     int minLevel = 0;
                     int maxLevel = (int)LogLevel.MaxLevel;
 
-                    if (ruleElement.HasAttribute("minlevel")) 
+                    if (ruleElement.HasAttribute("minlevel"))
                     {
                         minLevel = (int)Logger.LogLevelFromString(ruleElement.GetAttribute("minlevel"));
                     }
 
-                    if (ruleElement.HasAttribute("maxlevel")) 
+                    if (ruleElement.HasAttribute("maxlevel"))
                     {
                         maxLevel = (int)Logger.LogLevelFromString(ruleElement.GetAttribute("maxlevel"));
                     }
 
-                    for (int i = minLevel; i <= maxLevel; ++i) 
+                    for (int i = minLevel; i <= maxLevel; ++i)
                     {
                         rule.EnableLoggingForLevel((LogLevel)i);
                     }
@@ -275,7 +281,7 @@ namespace NLog.Config
                     {
                         XmlElement el = (XmlElement)n;
 
-                        if (el.Name == "filters") 
+                        if (el.Name == "filters")
                         {
                             ConfigureRuleFiltersFromXmlElement(rule, el);
                         }
@@ -286,58 +292,58 @@ namespace NLog.Config
             }
         }
 
-        private static void AddExtensionsFromElement(XmlElement element, string baseDirectory) 
+        private static void AddExtensionsFromElement(XmlElement element, string baseDirectory)
         {
             if (element == null)
-                return;
+                return ;
 
-            foreach (XmlElement appenderElement in element.GetElementsByTagName("add")) 
+            foreach (XmlElement appenderElement in element.GetElementsByTagName("add"))
             {
                 string assemblyFile = appenderElement.GetAttribute("assemblyFile");
                 string extPrefix = appenderElement.GetAttribute("prefix");
                 string prefix;
-                if (extPrefix != null && extPrefix.Length != 0) 
+                if (extPrefix != null && extPrefix.Length != 0)
                 {
                     prefix = extPrefix + ".";
-                } 
-                else 
+                }
+                else
                 {
                     prefix = String.Empty;
                 }
 
-                if (assemblyFile != null && assemblyFile.Length > 0) 
+                if (assemblyFile != null && assemblyFile.Length > 0)
                 {
-                    try 
+                    try
                     {
                         string fullFileName = Path.Combine(baseDirectory, assemblyFile);
                         InternalLogger.Info("Loading assemblyFile: {0}", fullFileName);
                         Assembly asm = Assembly.LoadFrom(fullFileName);
                         LoadExtensionsFromAssembly(asm, prefix);
                     }
-                    catch (Exception ex) 
+                    catch (Exception ex)
                     {
                         InternalLogger.Error("Error loading extensions: {0}", ex);
-						if (LogManager.ThrowExceptions) 
-							throw;
+                        if (LogManager.ThrowExceptions)
+                            throw;
                     }
                     continue;
                 };
 
                 string assemblyName = appenderElement.GetAttribute("assembly");
 
-                if (assemblyName != null && assemblyName.Length > 0) 
+                if (assemblyName != null && assemblyName.Length > 0)
                 {
-                    try 
+                    try
                     {
                         InternalLogger.Info("Loading assemblyName: {0}", assemblyName);
                         Assembly asm = Assembly.Load(assemblyName);
                         LoadExtensionsFromAssembly(asm, prefix);
                     }
-                    catch (Exception ex) 
+                    catch (Exception ex)
                     {
                         InternalLogger.Error("Error loading extensions: {0}", ex);
-						if (LogManager.ThrowExceptions) 
-							throw;
+                        if (LogManager.ThrowExceptions)
+                            throw;
                     }
                     continue;
                 };
@@ -351,16 +357,16 @@ namespace NLog.Config
             AppenderFactory.AddAppendersFromAssembly(asm, prefix);
         }
 
-        private void ConfigureAppendersFromElement(XmlElement element) 
+        private void ConfigureAppendersFromElement(XmlElement element)
         {
             if (element == null)
-                return;
+                return ;
 
-            foreach (XmlElement appenderElement in element.GetElementsByTagName("appender")) 
+            foreach (XmlElement appenderElement in element.GetElementsByTagName("appender"))
             {
                 string type = appenderElement.GetAttribute("type");
                 Appender newAppender = AppenderFactory.CreateAppender(type);
-                if (newAppender != null) 
+                if (newAppender != null)
                 {
                     ConfigureAppenderFromXmlElement(newAppender, appenderElement);
                     AddAppender(newAppender.Name, newAppender);
@@ -368,10 +374,10 @@ namespace NLog.Config
             }
         }
 
-        private void ConfigureRuleFiltersFromXmlElement(AppenderRule rule, XmlElement element) 
+        private void ConfigureRuleFiltersFromXmlElement(AppenderRule rule, XmlElement element)
         {
             if (element == null)
-                return;
+                return ;
 
             foreach (XmlNode node in element.ChildNodes)
             {
@@ -381,7 +387,7 @@ namespace NLog.Config
 
                     Filter filter = FilterFactory.CreateFilter(name);
 
-                    foreach (XmlAttribute attrib in ((XmlElement)node).Attributes) 
+                    foreach (XmlAttribute attrib in((XmlElement)node).Attributes)
                     {
                         string attribName = attrib.LocalName;
                         string attribValue = attrib.InnerText;
@@ -394,11 +400,11 @@ namespace NLog.Config
             }
         }
 
-        private void ConfigureAppenderFromXmlElement(Appender appender, XmlElement element) 
+        private void ConfigureAppenderFromXmlElement(Appender appender, XmlElement element)
         {
             Type appenderType = appender.GetType();
 
-            foreach (XmlAttribute attrib in element.Attributes) 
+            foreach (XmlAttribute attrib in element.Attributes)
             {
                 string name = attrib.LocalName;
                 string value = attrib.InnerText;
@@ -416,11 +422,11 @@ namespace NLog.Config
                     XmlElement el = (XmlElement)node;
                     string name = el.Name;
 
-                    if (PropertyHelper.IsArrayProperty(appenderType, name)) 
+                    if (PropertyHelper.IsArrayProperty(appenderType, name))
                     {
                         PropertyHelper.AddArrayItemFromElement(appender, el);
-                    } 
-                    else 
+                    }
+                    else
                     {
                         string value = el.InnerXml;
                         PropertyHelper.SetPropertyFromString(appender, name, value);
@@ -431,47 +437,47 @@ namespace NLog.Config
 
         private static bool _platformSpecificExtensionsRegistered = false;
 
-        private void RegisterPlatformSpecificExtensions() 
+        private void RegisterPlatformSpecificExtensions()
         {
             if (_platformSpecificExtensionsRegistered)
-                return;
+                return ;
             _platformSpecificExtensionsRegistered = true;
-            
+
             InternalLogger.Info("Registering platform specific extensions...");
-#if NETCF
-            RegisterPlatformSpecificExtensions("NLog.CompactFramework");
-#else
-            if (Type.GetType("System.MonoType", false) != null) 
-            {
-                RegisterPlatformSpecificExtensions("NLog.Mono");
-            } 
-            else 
-            {
-                RegisterPlatformSpecificExtensions("NLog.DotNet");
-            }
+            #if NETCF
+                RegisterPlatformSpecificExtensions("NLog.CompactFramework");
+            #else 
+                if (Type.GetType("System.MonoType", false) != null)
+                {
+                    RegisterPlatformSpecificExtensions("NLog.Mono");
+                }
+                else
+                {
+                    RegisterPlatformSpecificExtensions("NLog.DotNet");
+                }
 
-            PlatformID platform = System.Environment.OSVersion.Platform;
+                PlatformID platform = System.Environment.OSVersion.Platform;
 
-            if (platform == PlatformID.Win32NT || platform == PlatformID.Win32Windows) 
-            {
-                RegisterPlatformSpecificExtensions("NLog.Win32");
-            }
+                if (platform == PlatformID.Win32NT || platform == PlatformID.Win32Windows)
+                {
+                    RegisterPlatformSpecificExtensions("NLog.Win32");
+                }
 
-            if ((int)platform == 128 || (int)platform == 4) 
-            {
-                // mono-1.0 used '128' here, net-2.0 and mono-2.0 use '4'
-                RegisterPlatformSpecificExtensions("NLog.Unix");
-            }
-#endif
+                if ((int)platform == 128 || (int)platform == 4)
+                {
+                    // mono-1.0 used '128' here, net-2.0 and mono-2.0 use '4'
+                    RegisterPlatformSpecificExtensions("NLog.Unix");
+                }
+            #endif 
         }
 
-        private void RegisterPlatformSpecificExtensions(string name) 
+        private void RegisterPlatformSpecificExtensions(string name)
         {
-            
+
             AssemblyName nlogAssemblyName = typeof(LogManager).Assembly.GetName();
             nlogAssemblyName.Name = name;
 
-            try 
+            try
             {
                 InternalLogger.Info("Registering platform specific extensions from assembly '{0}'", nlogAssemblyName);
                 Assembly asm = Assembly.Load(nlogAssemblyName);
@@ -481,8 +487,8 @@ namespace NLog.Config
             catch (Exception ex)
             {
                 InternalLogger.Error("Could not load platform specific extensions: {0}", ex);
-				if (LogManager.ThrowExceptions)
-                	throw;
+                if (LogManager.ThrowExceptions)
+                    throw;
             }
         }
     }

@@ -46,33 +46,36 @@ namespace NLog.Config
         private AppenderDictionary _appenders = new AppenderDictionary();
         private AppenderRuleCollection _appenderRules = new AppenderRuleCollection();
 
-        public LoggingConfiguration() { }
+        public LoggingConfiguration(){}
 
-        public void AddAppender(string name, Appender appender) 
+        public void AddAppender(string name, Appender appender)
         {
             _appenders[name] = appender;
         }
 
-        public void AddAppenderRule(AppenderRule rule) 
+        public void AddAppenderRule(AppenderRule rule)
         {
             _appenderRules.Add(rule);
         }
 
-        public Appender FindAppenderByName(string name) 
+        public Appender FindAppenderByName(string name)
         {
             return _appenders[name];
         }
 
         public AppenderRuleCollection AppenderRules
         {
-            get { return _appenderRules; }
+            get
+            {
+                return _appenderRules;
+            }
         }
 
         // implementation details
 
         public void ResolveAppenders()
         {
-            foreach (AppenderRule rule in _appenderRules) 
+            foreach (AppenderRule rule in _appenderRules)
             {
                 rule.Resolve(this);
             }
@@ -80,7 +83,10 @@ namespace NLog.Config
 
         public virtual ICollection FileNamesToWatch
         {
-            get { return null; }
+            get
+            {
+                return null;
+            }
         }
 
         public virtual LoggingConfiguration Reload()

@@ -38,14 +38,20 @@ using System.Globalization;
 namespace NLog.LayoutAppenders
 {
     [LayoutAppender("date")]
-    public class DateLayoutAppender : LayoutAppender
+    public class DateLayoutAppender: LayoutAppender
     {
         private string _format = "G";
 
         public string Format
         {
-            get { return _format; }
-            set { _format = value; }
+            get
+            {
+                return _format;
+            }
+            set
+            {
+                _format = value;
+            }
         }
 
         protected internal override int GetEstimatedBufferSize(LogEventInfo ev)

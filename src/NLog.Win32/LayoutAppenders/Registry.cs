@@ -43,7 +43,7 @@ using NLog.Config;
 namespace NLog.Win32.LayoutAppenders
 {
     [LayoutAppender("registry")]
-    public class RegistryLayoutAppender : LayoutAppender
+    public class RegistryLayoutAppender: LayoutAppender
     {
         private string _value = null;
         private string _defaultValue = null;
@@ -53,25 +53,45 @@ namespace NLog.Win32.LayoutAppenders
 
         public string Value
         {
-            get { return _value; }
-            set { _value = value; }
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                _value = value;
+            }
         }
-        
+
         public string DefaultValue
         {
-            get { return _defaultValue; }
-            set { _defaultValue = value; }
+            get
+            {
+                return _defaultValue;
+            }
+            set
+            {
+                _defaultValue = value;
+            }
         }
-        
+
         [RequiredParameter]
         public string Key
         {
-            get { return _key; }
+            get
+            {
+                return _key;
+            }
             set
             {
-                _key = value; 
-                int pos = _key.IndexOfAny(new char[] { '\\','/' });
-                if (pos >= 0) 
+                _key = value;
+                int pos = _key.IndexOfAny(new char[]
+                {
+                    '\\', '/'
+                }
+
+                );
+                if (pos >= 0)
                 {
                     string root = _key.Substring(0, pos);
                     switch (root.ToUpper())
@@ -90,22 +110,22 @@ namespace NLog.Win32.LayoutAppenders
                             throw new ArgumentException("Key name is invalid. Root hive not recognized.");
                     }
                     _subKey = _key.Substring(pos + 1).Replace('/', '\\');
-                } 
-                else 
+                }
+                else
                 {
                     throw new ArgumentException("Key name is invalid");
                 }
             }
         }
-        
+
         protected override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 32;
         }
-        
+
         protected override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            using (RegistryKey key = _rootKey.OpenSubKey(_subKey))
+            using(RegistryKey key = _rootKey.OpenSubKey(_subKey))
             {
                 builder.Append(key.GetValue(Value, DefaultValue));
             }

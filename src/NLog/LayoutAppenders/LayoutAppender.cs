@@ -40,10 +40,13 @@ namespace NLog.LayoutAppenders
 {
     public abstract class LayoutAppender
     {
-        protected LayoutAppender() { }
+        protected LayoutAppender(){}
 
         protected internal abstract int GetEstimatedBufferSize(LogEventInfo ev);
-        protected internal virtual int NeedsStackTrace() { return 0; }
+        protected internal virtual int NeedsStackTrace()
+        {
+            return 0;
+        }
         protected internal abstract void Append(StringBuilder builder, LogEventInfo ev);
 
         private int _padding = 0;
@@ -56,73 +59,119 @@ namespace NLog.LayoutAppenders
 
         public int Padding
         {
-            get { return _padding; }
-            set { _padding = value; _absolutePadding = Math.Abs(_padding); }
+            get
+            {
+                return _padding;
+            }
+            set
+            {
+                _padding = value;
+                _absolutePadding = Math.Abs(_padding);
+            }
         }
 
         public int AbsolutePadding
         {
-            get { return _absolutePadding; }
+            get
+            {
+                return _absolutePadding;
+            }
         }
 
         public char PadCharacter
         {
-            get { return _padCharacter; }
-            set { _padCharacter = value; }
+            get
+            {
+                return _padCharacter;
+            }
+            set
+            {
+                _padCharacter = value;
+            }
         }
 
         public bool FixedLength
         {
-            get { return _fixedLength; }
-            set { _fixedLength = value; }
+            get
+            {
+                return _fixedLength;
+            }
+            set
+            {
+                _fixedLength = value;
+            }
         }
 
         public bool UpperCase
         {
-            get { return _upperCase; }
-            set { _upperCase = value; }
+            get
+            {
+                return _upperCase;
+            }
+            set
+            {
+                _upperCase = value;
+            }
         }
 
         public bool LowerCase
         {
-            get { return _lowerCase; }
-            set { _lowerCase = value; }
+            get
+            {
+                return _lowerCase;
+            }
+            set
+            {
+                _lowerCase = value;
+            }
         }
-        
+
         public string Culture
         {
-            get { return _cultureInfo.Name; }
-            set { _cultureInfo = new CultureInfo(value); }
+            get
+            {
+                return _cultureInfo.Name;
+            }
+            set
+            {
+                _cultureInfo = new CultureInfo(value);
+            }
         }
 
         public CultureInfo CultureInfo
         {
-            get { return _cultureInfo; }
-            set { _cultureInfo = value; }
+            get
+            {
+                return _cultureInfo;
+            }
+            set
+            {
+                _cultureInfo = value;
+            }
         }
 
-        protected string ApplyPadding(string s) 
+        protected string ApplyPadding(string s)
         {
-            if (Padding != 0) 
+            if (Padding != 0)
             {
-                if (Padding > 0) 
+                if (Padding > 0)
                 {
                     s = s.PadLeft(Padding, PadCharacter);
-                } 
-                else 
+                }
+                else
                 {
-                    s = s.PadRight(-Padding, PadCharacter);
+                    s = s.PadRight( - Padding, PadCharacter);
                 }
                 if (FixedLength && s.Length > AbsolutePadding)
                 {
                     s = s.Substring(0, AbsolutePadding);
                 }
             }
-            if (UpperCase) 
+            if (UpperCase)
             {
                 s = s.ToUpper(CultureInfo);
-            } 
-            else if (LowerCase) 
+            }
+            else if (LowerCase)
             {
                 s = s.ToLower(CultureInfo);
             }

@@ -39,24 +39,31 @@ using NLog.Config;
 
 namespace NLog.Filters
 {
-    public abstract class LayoutBasedFilter : Filter
+    public abstract class LayoutBasedFilter: Filter
     {
-        protected LayoutBasedFilter()
-        {
-        }
+        protected LayoutBasedFilter(){}
 
         private Layout _compiledlayout;
 
         [RequiredParameter]
         public string Layout
         {
-            get { return _compiledlayout.Text; }
-            set { _compiledlayout = new Layout(value); }
+            get
+            {
+                return _compiledlayout.Text;
+            }
+            set
+            {
+                _compiledlayout = new Layout(value);
+            }
         }
 
         protected Layout CompiledLayout
         {
-            get { return _compiledlayout; }
+            get
+            {
+                return _compiledlayout;
+            }
         }
 
         public override int NeedsStackTrace()

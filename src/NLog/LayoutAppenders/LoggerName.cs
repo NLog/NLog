@@ -38,13 +38,13 @@ using System.Globalization;
 namespace NLog.LayoutAppenders
 {
     [LayoutAppender("logger")]
-    public class LoggerNameLayoutAppender : LayoutAppender
+    public class LoggerNameLayoutAppender: LayoutAppender
     {
         protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 32;
         }
-        
+
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             builder.Append(ApplyPadding(ev.LoggerName));

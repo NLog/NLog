@@ -50,59 +50,73 @@ namespace NLog.Internal
 
         public static LogLevel LogLevel
         {
-            get { return _logLevel; }
-            set { _logLevel = value; }
+            get
+            {
+                return _logLevel;
+            }
+            set
+            {
+                _logLevel = value;
+            }
         }
 
         public static bool LogToConsole
         {
-            get { return _logToConsole; }
-            set { _logToConsole = value; }
+            get
+            {
+                return _logToConsole;
+            }
+            set
+            {
+                _logToConsole = value;
+            }
         }
 
         public static string LogFile
         {
-            get { return _logFile; }
-            set { _logFile = value; }
+            get
+            {
+                return _logFile;
+            }
+            set
+            {
+                _logFile = value;
+            }
         }
 
         private static string _logFile = null;
 
-#if !NETCF
-        static InternalLogger()
-        {
-            try
+        #if !NETCF
+            static InternalLogger()
             {
-                if (Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_TO_CONSOLE") != null) 
+                try
                 {
-                    LogToConsole = true;
+                    if (Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_TO_CONSOLE") != null)
+                    {
+                        LogToConsole = true;
+                    }
+                    if (Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL") != null)
+                    {
+                        LogLevel = Logger.LogLevelFromString(Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL"));
+                    }
+                    _logFile = Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_FILE");
+                    Info("NLog internal logger initialized.");
                 }
-                if (Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL") != null) 
-                {
-                    LogLevel = Logger.LogLevelFromString(Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL"));
-                }
-                _logFile = Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_FILE");
-                Info("NLog internal logger initialized.");
+                catch {}
             }
-            catch
-            {
-            }
-        }
-#endif
+        #endif 
 
-        private InternalLogger()
-        {
-        }
+        private InternalLogger(){}
 
-        private static void Write(LogLevel level, IFormatProvider formatProvider, string message, object[] args)
+        private static void Write(LogLevel level, IFormatProvider formatProvider, string message, object[]args)
         {
             if (level < _logLevel)
-                return;
+                return ;
 
             if (_logFile == null && !_logToConsole)
-                return;
+                return ;
 
-            try 
+            try
             {
                 string formattedMessage = message;
                 if (args != null)
@@ -116,15 +130,15 @@ namespace NLog.Internal
                 builder.Append(formattedMessage);
                 string msg = builder.ToString();
 
-                if (_logFile != null) 
+                if (_logFile != null)
                 {
-                    using (TextWriter textWriter = File.AppendText(_logFile)) 
+                    using(TextWriter textWriter = File.AppendText(_logFile))
                     {
                         textWriter.WriteLine(msg);
                     }
                 }
 
-                if (_logToConsole) 
+                if (_logToConsole)
                 {
                     Console.WriteLine(msg);
                 }
@@ -135,90 +149,126 @@ namespace NLog.Internal
             }
         }
 
-        internal static bool IsDebugEnabled { get { return LogLevel.Debug >= _logLevel; } }
-        internal static bool IsInfoEnabled  { get { return LogLevel.Info >= _logLevel; } }
-        internal static bool IsWarnEnabled  { get { return LogLevel.Warn >= _logLevel; } }
-        internal static bool IsErrorEnabled { get { return LogLevel.Error >= _logLevel; } }
-        internal static bool IsFatalEnabled { get { return LogLevel.Fatal >= _logLevel; } }
+        internal static bool IsDebugEnabled
+        {
+            get
+            {
+                return LogLevel.Debug >= _logLevel;
+            }
+        }
+        internal static bool IsInfoEnabled
+        {
+            get
+            {
+                return LogLevel.Info >= _logLevel;
+            }
+        }
+        internal static bool IsWarnEnabled
+        {
+            get
+            {
+                return LogLevel.Warn >= _logLevel;
+            }
+        }
+        internal static bool IsErrorEnabled
+        {
+            get
+            {
+                return LogLevel.Error >= _logLevel;
+            }
+        }
+        internal static bool IsFatalEnabled
+        {
+            get
+            {
+                return LogLevel.Fatal >= _logLevel;
+            }
+        }
 
-        internal static void Log(LogLevel level, IFormatProvider formatProvider, string message, params object[] args) 
+        internal static void Log(LogLevel level, IFormatProvider formatProvider, string message, params object[]args)
         {
             Write(level, formatProvider, message, args);
         }
 
-        internal static void Log(LogLevel level, string message, params object[] args) 
+        internal static void Log(LogLevel level, string message, params object[]args)
         {
             Write(level, null, message, args);
         }
 
-        internal static void Log(LogLevel level, string message) 
+        internal static void Log(LogLevel level, string message)
         {
             Write(level, null, message, null);
         }
 
-        internal static void Debug(IFormatProvider formatProvider, string message, params object[] args) { Write(LogLevel.Debug, formatProvider, message, args); }
-        internal static void Debug(string message, params object[] args) { Write(LogLevel.Debug, null, message, args); }
-        internal static void Debug(string message) 
+        internal static void Debug(IFormatProvider formatProvider, string message, params object[]args)
+        {
+            Write(LogLevel.Debug, formatProvider, message, args);
+        }
+        internal static void Debug(string message, params object[]args)
+        {
+            Write(LogLevel.Debug, null, message, args);
+        }
+        internal static void Debug(string message)
         {
             Write(LogLevel.Debug, null, message, null);
         }
 
-        internal static void Info(IFormatProvider formatProvider, string message, params object[] args) 
+        internal static void Info(IFormatProvider formatProvider, string message, params object[]args)
         {
             Write(LogLevel.Info, formatProvider, message, args);
         }
 
-        internal static void Info(string message, params object[] args) 
+        internal static void Info(string message, params object[]args)
         {
             Write(LogLevel.Info, null, message, args);
         }
 
-        internal static void Info(string message) 
+        internal static void Info(string message)
         {
             Write(LogLevel.Info, null, message, null);
         }
 
-        internal static void Warn(IFormatProvider formatProvider, string message, params object[] args) 
+        internal static void Warn(IFormatProvider formatProvider, string message, params object[]args)
         {
             Write(LogLevel.Warn, formatProvider, message, args);
         }
 
-        internal static void Warn(string message, params object[] args) 
+        internal static void Warn(string message, params object[]args)
         {
             Write(LogLevel.Warn, null, message, args);
         }
 
-        internal static void Warn(string message) 
+        internal static void Warn(string message)
         {
             Write(LogLevel.Warn, null, message, null);
         }
 
-        internal static void Error(IFormatProvider formatProvider, string message, params object[] args) 
+        internal static void Error(IFormatProvider formatProvider, string message, params object[]args)
         {
             Write(LogLevel.Error, formatProvider, message, args);
         }
 
-        internal static void Error(string message, params object[] args) 
+        internal static void Error(string message, params object[]args)
         {
             Write(LogLevel.Error, null, message, args);
         }
 
-        internal static void Error(string message) 
+        internal static void Error(string message)
         {
             Write(LogLevel.Error, null, message, null);
         }
 
-        internal static void Fatal(IFormatProvider formatProvider, string message, params object[] args) 
+        internal static void Fatal(IFormatProvider formatProvider, string message, params object[]args)
         {
             Write(LogLevel.Fatal, formatProvider, message, args);
         }
 
-        internal static void Fatal(string message, params object[] args) 
+        internal static void Fatal(string message, params object[]args)
         {
             Write(LogLevel.Fatal, null, message, args);
         }
 
-        internal static void Fatal(string message) 
+        internal static void Fatal(string message)
         {
             Write(LogLevel.Fatal, null, message, null);
         }

@@ -36,20 +36,20 @@ using System.Text;
 
 namespace NLog.LayoutAppenders
 {
-    public class LiteralLayoutAppender : LayoutAppender
+    public class LiteralLayoutAppender: LayoutAppender
     {
         private string _txt;
-        
-        public LiteralLayoutAppender(string txt) 
+
+        public LiteralLayoutAppender(string txt)
         {
             _txt = txt;
         }
-        
+
         protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return _txt.Length;
         }
-        
+
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             builder.Append(_txt);

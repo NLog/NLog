@@ -33,39 +33,45 @@
 
 #if !NETCF
 
-using System;
-using System.Text;
-using System.IO;
+    using System;
+    using System.Text;
+    using System.IO;
 
-using NLog.Config;
+    using NLog.Config;
 
-namespace NLog.LayoutAppenders
-{
-    [LayoutAppender("environment")]
-    public class EnvironmentLayoutAppender : LayoutAppender
+    namespace NLog.LayoutAppenders
     {
-        private string _variable = null;
+        [LayoutAppender("environment")]
+        public class EnvironmentLayoutAppender: LayoutAppender
+        {
+            private string _variable = null;
 
-        [RequiredParameter]
-        public string Variable
-        {
-            get { return _variable; }
-            set { _variable = value; }
-        }
-        
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
-        {
-            return 32;
-        }
-        
-        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
-        {
-            if (_variable != null) 
+            [RequiredParameter]
+            public string Variable
             {
-                builder.Append(ApplyPadding(Environment.GetEnvironmentVariable(_variable)));
+                get
+                {
+                    return _variable;
+                }
+                set
+                {
+                    _variable = value;
+                }
+            }
+
+            protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+            {
+                return 32;
+            }
+
+            protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+            {
+                if (_variable != null)
+                {
+                    builder.Append(ApplyPadding(Environment.GetEnvironmentVariable(_variable)));
+                }
             }
         }
     }
-}
 
 #endif

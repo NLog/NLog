@@ -32,23 +32,23 @@
 // 
 
 #if !NETCF
-using System;
-using System.Text;
+    using System;
+    using System.Text;
 
-namespace NLog.LayoutAppenders
-{
-    [LayoutAppender("threadname")]
-    public class ThreadNameLayoutAppender : LayoutAppender
+    namespace NLog.LayoutAppenders
     {
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+        [LayoutAppender("threadname")]
+        public class ThreadNameLayoutAppender: LayoutAppender
         {
-            return 32;
-        }
-        
-        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
-        {
-            builder.Append(ApplyPadding(System.Threading.Thread.CurrentThread.Name));
+            protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+            {
+                return 32;
+            }
+
+            protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+            {
+                builder.Append(ApplyPadding(System.Threading.Thread.CurrentThread.Name));
+            }
         }
     }
-}
 #endif

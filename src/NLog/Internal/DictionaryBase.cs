@@ -33,28 +33,32 @@
 
 #if NETCF
 
-// a substitute for the missing .NET CF Class
-// implements minimal wrapper around a Hashtable - only the needed
-// member functions are implemented
+    // a substitute for the missing .NET CF Class
+    // implements minimal wrapper around a Hashtable - only the needed
+    // member functions are implemented
 
-using System;
-using System.Collections;
-using System.Text;
+    using System;
+    using System.Collections;
+    using System.Text;
 
-namespace System.Collections
-{
-	internal class DictionaryBase {
-		private Hashtable _hashtable = new Hashtable();
+    namespace System.Collections
+    {
+        internal class DictionaryBase
+        {
+            private Hashtable _hashtable = new Hashtable();
 
-		public IDictionary Dictionary
-		{
-			get { return _hashtable; }
-		}
+            public IDictionary Dictionary
+            {
+                get
+                {
+                    return _hashtable;
+                }
+            }
 
-		public void Clear()
-		{
-			_hashtable.Clear();
-		}
-	}
-}
+            public void Clear()
+            {
+                _hashtable.Clear();
+            }
+        }
+    }
 #endif

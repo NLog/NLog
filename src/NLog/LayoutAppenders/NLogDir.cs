@@ -33,64 +33,79 @@
 
 #if !NETCF
 
-using System;
-using System.Text;
-using System.IO;
+    using System;
+    using System.Text;
+    using System.IO;
 
-namespace NLog.LayoutAppenders
-{
-    [LayoutAppender("nlogdir")]
-    public class NLogDirLayoutAppender : LayoutAppender
+    namespace NLog.LayoutAppenders
     {
-        private string _fileName = null;
-        private string _directoryName = null;
-        private static string _nlogDir;
+        [LayoutAppender("nlogdir")]
+        public class NLogDirLayoutAppender: LayoutAppender
+        {
+            private string _fileName = null;
+            private string _directoryName = null;
+            private static string _nlogDir;
 
-        static NLogDirLayoutAppender()
-        {
-            _nlogDir = Path.GetDirectoryName(typeof(LogManager).Assembly.Location);
-        }
-
-        public string File
-        {
-            get { return _fileName; }
-            set { _fileName = value; }
-        }
-        
-        public string Dir
-        {
-            get { return _directoryName; }
-            set { _directoryName = value; }
-        }
-
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
-        {
-            return 32;
-        }
-
-        protected internal string NLogDir
-        {
-            get { return _nlogDir; }
-        }
-        
-        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
-        {
-            string baseDir = NLogDir;
-
-            if (_fileName != null) 
+            static NLogDirLayoutAppender()
             {
-                builder.Append(ApplyPadding(Path.Combine(baseDir, _fileName)));
-            } 
-            else if (_directoryName != null) 
+                _nlogDir = Path.GetDirectoryName(typeof(LogManager).Assembly.Location);
+            }
+
+            public string File
             {
-                builder.Append(ApplyPadding(Path.Combine(baseDir, _directoryName)));
-            } 
-            else 
+                get
+                {
+                    return _fileName;
+                }
+                set
+                {
+                    _fileName = value;
+                }
+            }
+
+            public string Dir
             {
-                builder.Append(ApplyPadding(baseDir));
+                get
+                {
+                    return _directoryName;
+                }
+                set
+                {
+                    _directoryName = value;
+                }
+            }
+
+            protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+            {
+                return 32;
+            }
+
+            protected internal string NLogDir
+            {
+                get
+                {
+                    return _nlogDir;
+                }
+            }
+
+            protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+            {
+                string baseDir = NLogDir;
+
+                if (_fileName != null)
+                {
+                    builder.Append(ApplyPadding(Path.Combine(baseDir, _fileName)));
+                }
+                else if (_directoryName != null)
+                {
+                    builder.Append(ApplyPadding(Path.Combine(baseDir, _directoryName)));
+                }
+                else
+                {
+                    builder.Append(ApplyPadding(baseDir));
+                }
             }
         }
     }
-}
 
 #endif

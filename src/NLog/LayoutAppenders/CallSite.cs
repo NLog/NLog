@@ -32,86 +32,104 @@
 // 
 
 #if !NETCF
-using System;
-using System.Text;
-using System.Diagnostics;
-using System.Reflection;
+    using System;
+    using System.Text;
+    using System.Diagnostics;
+    using System.Reflection;
 
-namespace NLog.LayoutAppenders
-{
-    [LayoutAppender("callsite")]
-    public class CallSiteLayoutAppender : LayoutAppender
+    namespace NLog.LayoutAppenders
     {
-        private bool _className = true;
-        private bool _methodName = true;
-        private bool _sourceFile = false;
+        [LayoutAppender("callsite")]
+        public class CallSiteLayoutAppender: LayoutAppender
+        {
+            private bool _className = true;
+            private bool _methodName = true;
+            private bool _sourceFile = false;
 
-        public bool ClassName
-        {
-            get { return _className; }
-            set { _className = value; }
-        }
-        
-        public bool MethodName
-        {
-            get { return _methodName; }
-            set { _methodName = value; }
-        }
-        
-        public bool FileName
-        {
-            get { return _sourceFile; }
-            set { _sourceFile = value; }
-        }
-        
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
-        {
-            return 200;
-        }
-        
-        protected internal override int NeedsStackTrace()
-        {
-            return _sourceFile ? 2 : 1;
-        }
-
-        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
-        {
-            StackFrame frame = ev.UserStackFrame;
-            if (frame != null)
+            public bool ClassName
             {
-                StringBuilder sb2 = builder;
-                if (Padding != 0)
-                    sb2 = new StringBuilder();
+                get
+                {
+                    return _className;
+                }
+                set
+                {
+                    _className = value;
+                }
+            }
 
-                MethodBase method = frame.GetMethod();
-                if (_className) 
+            public bool MethodName
+            {
+                get
                 {
-                    sb2.Append(method.DeclaringType.FullName);
+                    return _methodName;
                 }
-                if (_methodName) 
+                set
                 {
-                    if (_className) 
+                    _methodName = value;
+                }
+            }
+
+            public bool FileName
+            {
+                get
+                {
+                    return _sourceFile;
+                }
+                set
+                {
+                    _sourceFile = value;
+                }
+            }
+
+            protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+            {
+                return 200;
+            }
+
+            protected internal override int NeedsStackTrace()
+            {
+                return _sourceFile ? 2 : 1;
+            }
+
+            protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+            {
+                StackFrame frame = ev.UserStackFrame;
+                if (frame != null)
+                {
+                    StringBuilder sb2 = builder;
+                    if (Padding != 0)
+                        sb2 = new StringBuilder();
+
+                    MethodBase method = frame.GetMethod();
+                    if (_className)
                     {
-                        sb2.Append(".");
+                        sb2.Append(method.DeclaringType.FullName);
                     }
-                    sb2.Append(method.Name);
-                }
-                if (_sourceFile) 
-                {
-                    string fileName = frame.GetFileName();
-                    if (fileName != null) 
+                    if (_methodName)
                     {
-                        sb2.Append("(");
-                        sb2.Append(fileName);
-                        sb2.Append(":");
-                        sb2.Append(frame.GetFileLineNumber());
-                        sb2.Append(")");
+                        if (_className)
+                        {
+                            sb2.Append(".");
+                        }
+                        sb2.Append(method.Name);
                     }
+                    if (_sourceFile)
+                    {
+                        string fileName = frame.GetFileName();
+                        if (fileName != null)
+                        {
+                            sb2.Append("(");
+                            sb2.Append(fileName);
+                            sb2.Append(":");
+                            sb2.Append(frame.GetFileLineNumber());
+                            sb2.Append(")");
+                        }
+                    }
+                    if (Padding != 0)
+                        builder.Append(ApplyPadding(sb2.ToString()));
                 }
-                if (Padding != 0)
-                    builder.Append(ApplyPadding(sb2.ToString()));
             }
         }
     }
-}
 #endif

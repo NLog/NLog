@@ -45,10 +45,25 @@ namespace NLog.ComInterop
         void Fatal(string message);
 
         bool IsEnabled(string level);
-        bool IsDebugEnabled { get; }
-        bool IsInfoEnabled { get; }
-        bool IsWarnEnabled { get; }
-        bool IsErrorEnabled { get; }
-        bool IsFatalEnabled { get; }
+        bool IsDebugEnabled
+        {
+            get;
+        }
+        bool IsInfoEnabled
+        {
+            get;
+        }
+        bool IsWarnEnabled
+        {
+            get;
+        }
+        bool IsErrorEnabled
+        {
+            get;
+        }
+        bool IsFatalEnabled
+        {
+            get;
+        }
     }
 }
