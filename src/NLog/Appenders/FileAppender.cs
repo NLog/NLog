@@ -124,14 +124,14 @@ namespace NLog.Appenders
                         retVal = new StreamWriter(fileName, true, _encoding);
                         break;
                     }
-                    catch (IOException)
+                    catch (IOException ex)
                     {
+                        Console.WriteLine("ex: {0}", ex.Message);
                         int actualDelay = _random.Next(currentDelay);
                         currentDelay *= 2;
                         System.Threading.Thread.Sleep(actualDelay);
                     }
                 }
-                return null;
             }
             
             retVal.AutoFlush = _autoFlush;
@@ -152,6 +152,7 @@ namespace NLog.Appenders
                     return;
             }
             _outputFile.WriteLine(CompiledLayout.GetFormattedMessage(ev));
+            _outputFile.Flush();
             if (!KeepFileOpen || ConcurrentWrites) {
                 _outputFile.Close();
                 _outputFile = null;
