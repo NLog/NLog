@@ -42,14 +42,15 @@ namespace NLog
         {
         }
 
-        private FilterResult _filterResult;
-        private string _action = "";
+        private FilterResult _filterResult = FilterResult.Neutral;
+        private string _action = "neutral";
 
         protected FilterResult Result
         {
             get { return _filterResult; }
         }
-            
+
+        [RequiredParameter]
         public string Action
         {
             get { return _action; }
