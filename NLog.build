@@ -3,6 +3,15 @@
     <property name="nlog.debug" value="true" />
     <property name="nlog.define" value="NANT" />
 
+    <property name="scp.program" value="pscp" />
+    <property name="scp.program.args" value="-batch -q" />
+
+    <property name="ssh.program" value="plink" />
+    <property name="ssh.program.args" value="-batch" />
+
+    <property name="sourceforge.addr" value="jkowalski@nlog.sourceforge.net" />
+    <property name="sourceforge.groupdir" value="/home/groups/n/nl/nlog" />
+
     <target name="configure">
         <call target="configure-${framework::get-target-framework()}" />
         <property name="output.dir" value="${nant.project.basedir}/bin/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}" unless="${property::exists('output.dir')}" />
@@ -185,5 +194,18 @@
             </fileset>
         </copy>
         <style style="doc/appenders.xsl" in="doc/appenders.xml" out="doc/website/appenders.html" />
+        <style style="doc/layoutappenders.xsl" in="doc/layoutappenders.xml" out="doc/website/layoutappenders.html" />
+    </target>
+
+    <target name="publish_website">
+        <delete dir="doc/website" if="${directory::exists('doc/website')}" />
+        <call target="website" />
+        <zip zipfile="website.zip">
+            <fileset basedir="doc/website">
+                <include name="**/*" />
+            </fileset>
+        </zip>
+        <exec program="${scp.program}" commandline="${scp.program.args} website.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_website.sh" />
     </target>
 </project>
