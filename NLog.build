@@ -153,11 +153,9 @@
         </copy>
     </target>
 
-    <target name="configure-net-1.0">
-    </target>
-
-    <target name="configure-net-1.1">
-    </target>
+    <target name="configure-net-1.0" />
+    <target name="configure-net-1.1" />
+    <target name="configure-net-2.0" />
 
     <target name="configure-netcf-1.0">
         <property name="nlog.define" value="${nlog.define};NETCF;NETCF_1_0" />
@@ -165,15 +163,18 @@
 
     <target name="build-net-1.0" depends="NLog, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
     <target name="build-net-1.1" depends="NLog, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
+    <target name="build-net-2.0" depends="NLog, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
     <target name="build-netcf-1.0" depends="NLog" />
 
     <target name="dist">
-        <exec program="nant.exe" commandline="-k:net-1.0 release package" if="${framework::exists('net-1.0')}" />
-        <exec program="nant.exe" commandline="-k:net-1.0 debug package" if="${framework::exists('net-1.0')}" />
-        <exec program="nant.exe" commandline="-k:net-1.1 release package" if="${framework::exists('net-1.1')}" />
-        <exec program="nant.exe" commandline="-k:net-1.1 debug package" if="${framework::exists('net-1.1')}" />
-        <exec program="nant.exe" commandline="-k:netcf-1.0 release package" if="${framework::exists('netcf-1.0')}" />
-        <exec program="nant.exe" commandline="-k:netcf-1.0 debug package" if="${framework::exists('netcf-1.0')}" />
+        <exec program="nant.exe" commandline="-t:net-1.0 release package" if="${framework::exists('net-1.0')}" />
+        <exec program="nant.exe" commandline="-t:net-1.0 debug package" if="${framework::exists('net-1.0')}" />
+        <exec program="nant.exe" commandline="-t:net-1.1 release package" if="${framework::exists('net-1.1')}" />
+        <exec program="nant.exe" commandline="-t:net-1.1 debug package" if="${framework::exists('net-1.1')}" />
+        <exec program="nant.exe" commandline="-t:net-2.0 release package" if="${framework::exists('net-1.1')}" />
+        <exec program="nant.exe" commandline="-t:net-2.0 debug package" if="${framework::exists('net-1.1')}" />
+        <exec program="nant.exe" commandline="-t:netcf-1.0 release package" if="${framework::exists('netcf-1.0')}" />
+        <exec program="nant.exe" commandline="-t:netcf-1.0 debug package" if="${framework::exists('netcf-1.0')}" />
     </target>
 
     <target name="updateversion">
