@@ -36,6 +36,7 @@ using System;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Text;
+using System.Globalization;
 
 using NLog;
 using NLog.Appenders;
@@ -64,17 +65,17 @@ namespace NLog.Config
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendFormat("logNamePattern: ({0}:{1})", _loggerNameMatchArgument, _loggerNameMatchMode);
+            sb.AppendFormat(CultureInfo.InvariantCulture, "logNamePattern: ({0}:{1})", _loggerNameMatchArgument, _loggerNameMatchMode);
             sb.Append(" levels: [ ");
             for (int i = 0; i < _logLevels.Length; ++i)
             {
                 if (_logLevels[0])
-                    sb.AppendFormat("{0} ", ((LogLevel)i).ToString());
+                    sb.AppendFormat(CultureInfo.InvariantCulture, "{0} ", ((LogLevel)i).ToString());
             }
             sb.Append("] appendTo: [ ");
             foreach (Appender app in _appenders)
             {
-                sb.AppendFormat("{0} ", app.Name);
+                sb.AppendFormat(CultureInfo.InvariantCulture, "{0} ", app.Name);
             }
             sb.Append("]");
             return sb.ToString();

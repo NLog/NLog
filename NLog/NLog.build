@@ -23,9 +23,9 @@
     <target name="configure">
         <call target="configure-${framework::get-target-framework()}" />
         <property name="nlog.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/bin" unless="${property::exists('nlog.dir')}" />
-        <property name="website.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/doc" unless="${property::exists('website.dir')}" />
+        <property name="web.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/doc" unless="${property::exists('web.dir')}" />
         <mkdir dir="${nlog.dir}" />
-        <mkdir dir="${website.dir}" />
+        <mkdir dir="${web.dir}" />
     </target>
 
     <target name="build" depends="configure">
@@ -58,7 +58,7 @@
 
     <target name="clean" depends="configure">
         <delete dir="${nlog.dir}" />
-        <delete dir="${website.dir}" />
+        <delete dir="${web.dir}" />
     </target>
 
     <target name="NLog" depends="configure">
@@ -261,9 +261,9 @@
     </target>
 
     <target name="build-mono-1.0" depends="NLog, NLog.Mono" />
-    <target name="build-net-1.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLog.Benchmark" />
-    <target name="build-net-1.1" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLog.Benchmark" />
-    <target name="build-net-2.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLog.Benchmark" />
+    <target name="build-net-1.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet" />
+    <target name="build-net-1.1" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet" />
+    <target name="build-net-2.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet" />
     <target name="build-netcf-1.0" depends="NLog, NLog.CompactFramework" />
 
     <target name="dist">
@@ -301,25 +301,6 @@
         </foreach>
     </target>
 
-    <target name="website" depends="configure">
-        <mkdir dir="${website.dir}" />
-        <copy todir="${website.dir}">
-            <fileset basedir="doc">
-                <include name="examples/**/*" />
-                <include name="*.html" />
-                <include name="*.css" />
-                <include name="*.jpg" />
-                <include name="*.gif" />
-                <include name="*.js" />
-                <exclude name="**/_svn" />
-                <exclude name="**/_svn/**" />
-            </fileset>
-        </copy>
-        <style style="doc/appenders.xsl" in="doc/appenders.xml" out="${website.dir}/appenders.html" />
-        <style style="doc/layoutappenders.xsl" in="doc/layoutappenders.xml" out="${website.dir}/layoutappenders.html" />
-        <style style="doc/filters.xsl" in="doc/filters.xml" out="${website.dir}/filters.html" />
-    </target>
-
     <target name="installer">
         <exec program="nant.exe" commandline="-t:net-1.0 release package build doc" />
         <readregistry property="nsis.dir" key="SOFTWARE\NSIS\" />
@@ -334,22 +315,22 @@
     <target name="doc" depends="configure, NLog">
         <uptodate property="help.uptodate">
             <targetfiles>
-                <include name="${website.dir}/help/NLog.chm" />
+                <include name="${web.dir}/help/NLog.chm" />
             </targetfiles>
             <sourcefiles basedir="${nlog.dir}">
                 <include name="**/*.dll" />
             </sourcefiles>
         </uptodate>
         <if test="${not help.uptodate}">
-            <delete dir="${website.dir}/help" if="${directory::exists(website.dir+'/help')}" />
-            <mkdir dir="${website.dir}/help" />
+            <delete dir="${web.dir}/help" if="${directory::exists(web.dir+'/help')}" />
+            <mkdir dir="${web.dir}/help" />
             <ndoc>
                 <assemblies basedir="${nlog.dir}">
                     <include name="NLog.dll" />
                 </assemblies>
                 <documenters>
                     <documenter name="MSDN">
-                        <property name="OutputDirectory" value="${website.dir}/help" />
+                        <property name="OutputDirectory" value="${web.dir}/help" />
                         <!--
                         <property name="SdkDocVersion" value="${link.sdkdoc.version}" />
                         <property name="SdkLinksOnWeb" value="${link.sdkdoc.web}" />
@@ -377,7 +358,7 @@
             </assemblies>
             <documenters>
                 <documenter name="XML">
-                    <property name="OutputDirectory" value="${website.dir}/help" />
+                    <property name="OutputDirectory" value="${web.dir}/help" />
                     <!-- do not filter on namespace -->
                     <property name="NamespaceFilter" value="" />
                     <property name="HtmlHelpName" value="NLog" />
@@ -395,19 +376,6 @@
 
     <target name="publish_website" depends="website">
         <zip zipfile="website.zip">
-            <fileset basedir="${website.dir}">
-                <include name="*" />
-            </fileset>
-        </zip>
-        <echo message="Uploading the zipped website..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} website.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
-        <echo message="Unpacking the zipped website..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_website.sh" />
-        <echo message="Website deployed." />
-    </target>
-
-    <target name="publish_new_web" depends="build-web">
-        <zip zipfile="website.zip">
             <fileset basedir="${web.dir}">
                 <include name="*" />
             </fileset>
@@ -421,7 +389,7 @@
 
     <target name="publish_website_help" depends="doc">
         <zip zipfile="help.zip">
-            <fileset basedir="${website.dir}/help">
+            <fileset basedir="${web.dir}/help">
                 <include name="**/*" />
                 <exclude name="**/NLog.chm" />
             </fileset>
@@ -480,7 +448,7 @@
         <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/fix_group_perm.sh" />
     </target>
 
-    <target name="build-web">
+    <target name="website">
         <property name="web.dir" value="web/build" unless="${property::exists('web.dir')}" />
         <property name="web.sourceforge" value="1" />
         <delete dir="${web.dir}" if="${directory::exists(web.dir)}" failonerror="false" />

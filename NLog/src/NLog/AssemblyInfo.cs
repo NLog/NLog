@@ -46,7 +46,7 @@ using System.Security.Permissions;
 [assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")]
 [assembly: AssemblyCulture("")]
 
-[assembly: AssemblyVersion("0.3.0.0")]
+[assembly: AssemblyVersion("0.5.0.0")]
 
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]

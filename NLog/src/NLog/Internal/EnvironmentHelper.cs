@@ -32,6 +32,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETCF
 using System;
 using System.Security;
 
@@ -55,3 +56,4 @@ namespace NLog.Internal
 
     }
 }
+#endif
