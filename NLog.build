@@ -172,4 +172,18 @@
             <exec workingdir="${nant.project.basedir}" program="tools/ReplaceVersion.exe" commandline=". ${nlog.version}" />
         </foreach>
     </target>
+
+    <target name="website">
+        <mkdir dir="doc/website" />
+        <copy todir="doc/website">
+            <fileset basedir="doc">
+                <include name="*.html" />
+                <include name="*.css" />
+                <include name="*.jpg" />
+                <include name="*.gif" />
+                <include name="*.js" />
+            </fileset>
+        </copy>
+        <style style="doc/appenders.xsl" in="doc/appenders.xml" out="doc/website/appenders.html" />
+    </target>
 </project>

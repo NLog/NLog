@@ -43,7 +43,7 @@ using NLog.Config;
 
 namespace NLog
 {
-    public sealed class InternalLogger
+    internal sealed class InternalLogger
     {
         private static LogLevel _logLevel = LogLevel.Debug;
 
@@ -63,7 +63,7 @@ namespace NLog
                 _logFile = Environment.GetEnvironmentVariable("NLOG_INTERNAL");
                 Info("NLog internal logger initialized.");
             }
-            catch (Exception)
+            catch
             {
             }
         }

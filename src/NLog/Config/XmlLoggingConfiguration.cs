@@ -77,7 +77,7 @@ namespace NLog.Config
         }
         
         private void ConfigureFromFile(string fileName) {
-            string key = Path.GetFullPath(fileName).ToLower();
+            string key = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
             if (_visitedFile.Contains(key))
                 return;
 
@@ -226,10 +226,11 @@ namespace NLog.Config
             foreach (XmlElement appenderElement in element.GetElementsByTagName("add")) {
                 string assemblyFile = appenderElement.GetAttribute("assemblyFile");
                 string extPrefix = appenderElement.GetAttribute("prefix");
+				string prefix;
                 if (extPrefix != null && extPrefix.Length != 0) {
-                    extPrefix = extPrefix + ".";
+                    prefix = extPrefix + ".";
                 } else {
-                    extPrefix = String.Empty;
+                    prefix = String.Empty;
                 }
 
                 if (assemblyFile != null && assemblyFile.Length > 0) {
@@ -237,7 +238,7 @@ namespace NLog.Config
                         string fullFileName = Path.Combine(baseDirectory, assemblyFile);
                         InternalLogger.Info("Loading assemblyFile: {0}", fullFileName);
                         Assembly asm = Assembly.LoadFrom(fullFileName);
-                        LoadExtensionFromAssembly(asm, extPrefix);
+                        LoadExtensionFromAssembly(asm, prefix);
                     }
                     catch (Exception ex) {
                         InternalLogger.Error("Error loading layout-appenders: {0}", ex);
@@ -254,7 +255,7 @@ namespace NLog.Config
                         Assembly asm = Assembly.LoadWithPartialName(assemblyPartialName);
                         if (asm != null) 
                         {
-                            LoadExtensionFromAssembly(asm, extPrefix);
+                            LoadExtensionFromAssembly(asm, prefix);
                         }
                         else
                         {
@@ -274,7 +275,7 @@ namespace NLog.Config
                     try {
                         InternalLogger.Info("Loading assemblyName: {0}", assemblyName);
                         Assembly asm = Assembly.Load(assemblyName);
-                        LoadExtensionFromAssembly(asm, extPrefix);
+                        LoadExtensionFromAssembly(asm, prefix);
                     }
                     catch (Exception ex) {
                         InternalLogger.Error("Error loading layout-appenders: {0}", ex);

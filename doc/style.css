@@ -50,7 +50,7 @@ pre.code
 }
 
 div.table {
-    margin-left: 40px;
+    margin-left: 15px;
     font-family: Verdana, Arial, Helvetica, Geneva, SunSans-Regular, sans-serif;
 }
 
@@ -85,4 +85,7 @@ div.table {
     background-color: #f8f8f8;
 }
 
-
+hr {
+    border-collapse: collapse;
+    color: red;
+}

@@ -33,6 +33,7 @@
 
 using System;
 using System.Text;
+using System.Globalization;
 
 namespace NLog.LayoutAppenders
 {
@@ -46,7 +47,7 @@ namespace NLog.LayoutAppenders
         
         public override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            builder.Append(ApplyPadding(ev.TimeStamp.Ticks.ToString()));
+            builder.Append(ApplyPadding(ev.TimeStamp.Ticks.ToString(CultureInfo.InvariantCulture)));
         }
     }
 }

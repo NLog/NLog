@@ -38,9 +38,6 @@ namespace NLog
 {
     public abstract class Appender
     {
-        const string InternalAppenderNamePrefix = "NLog.Appenders.";
-        const string InternalAppenderNameSuffix = "Appender";
-
         protected Appender()
         {
             Layout = "${longdate}|${level:uppercase=true}|${logger}|${message}";
