@@ -28,11 +28,15 @@ Section "Main"
 
   SetOutPath $INSTDIR\docs
 
-;  File ..\..\docs\ClassRef.chm
+  File /oname=NLog.chm doc\help\Documentation.chm
+  File doc\website\*.*
 
   CreateDirectory "$SMPROGRAMS\NLog"
   CreateShortCut  "$SMPROGRAMS\NLog\Uninstall.lnk" "$INSTDIR\Uninstall.exe" ""
-  CreateShortCut  "$SMPROGRAMS\NLog\View Class Library and Tools License.lnk" "$INSTDIR\License.txt" ""
+  CreateShortCut  "$SMPROGRAMS\NLog\LICENSE.lnk" "$INSTDIR\License.txt" ""
+  CreateShortCut  "$SMPROGRAMS\NLog\Class Library Reference.lnk" "$INSTDIR\docs\NLog.chm" ""
+  CreateShortCut  "$SMPROGRAMS\NLog\NLog Tutorial.lnk" "$INSTDIR\docs\tutorial.html" ""
+  CreateShortCut  "$SMPROGRAMS\NLog\NLog Documentation.lnk" "$INSTDIR\docs\index.html" ""
 
   WriteRegStr HKCU "Software\Microsoft\VisualStudio\7.0\AssemblyFolders\NLog" "" "$INSTDIR\Bin"
   WriteRegStr HKCU "Software\Microsoft\VisualStudio\7.1\AssemblyFolders\NLog" "" "$INSTDIR\Bin"
@@ -57,7 +61,7 @@ Section "Uninstall"
   Delete "$INSTDIR\bin\*.exe.config"
   Delete "$INSTDIR\bin\*.exe.manifest"
   Delete "$INSTDIR\bin\*.exe"
-  Delete "$INSTDIR\docs\*.chm"
+  Delete "$INSTDIR\docs\*.*"
   Delete "$INSTDIR\Uninstall.exe"
 
   RMDir "$INSTDIR\bin"

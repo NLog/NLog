@@ -40,6 +40,8 @@
             character and finally a log message. When you use this layout with a file appender, it will cause the log messages
             to be formatted accordingly. <code>Layout</code>s are also used in many other places (for example to specify 
             file names).</li>
+            <li><b><code>Filter</code></b> - is an object responsible for selective elimination of unneeded log output.
+            It is invoked before the appender and can prevent or force logging.</li>
         </ul>
         </p>
 
@@ -160,6 +162,9 @@ class MyClass {
     </nlog>
 </configuration></xmp>
         <h3>Log output formatting</h3>
-        <p>See the <a href="layoutappenders.html">Layout Appender Reference</a> for more information.</p>
+        <p>See the <a href="layoutappenders.html">Layout Appender Reference</a> for more information. Tutorial will be added here soon.</p>
+        
+        <h3>Log output filtering</h3>
+        <p>See the <a href="filters.html">Filter Reference</a> for more information. Tutorial will be added here soon.</p>
     </body>
 </html>
