@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project default="build">
+    <property name="nlog.debug" value="true" />
+    <property name="nlog.define" value="NANT" />
+
+    <target name="configure">
+        <call target="configure-${framework::get-target-framework()}" />
+        <property name="output.dir" value="${nant.project.basedir}/bin/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}" unless="${property::exists('output.dir')}" />
+        <mkdir dir="${output.dir}" />
+    </target>
+
+    <target name="build" depends="configure">
+        <call target="build-${framework::get-target-framework()}" />
+    </target>
+
+    <target name="debug">
+        <property name="nlog.debug" value="true" />
+    </target>
+
+    <target name="release">
+        <property name="nlog.debug" value="false" />
+    </target>
+
+    <target name="package" depends="build">
+        <mkdir dir="${nant.project.basedir}/dist" />
+        <property name="zip.file" value="${nant.project.basedir}/dist/NLog-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" />
+        <zip zipfile="${zip.file}">
+            <fileset basedir="${output.dir}">
+                <include name="*.dll" />
+                <include name="*.pdb" />
+            </fileset>
+        </zip>
+    </target>
+
+    <target name="clean" depends="configure">
+        <delete>
+            <fileset basedir="${output.dir}">
+                <include name="*.dll" />
+                <include name="*.pdb" />
+                <include name="*.xml" />
+            </fileset>
+        </delete>
+    </target>
+
+    <target name="NLog" depends="configure">
+        <csc target="library" output="${output.dir}/NLog.dll" define="${nlog.define}" debug="${nlog.debug}">
+            <sources basedir="src/NLog">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="mscorlib.dll" />
+                <include name="System.dll" />
+                <include name="System.Xml.dll" />
+            </references>
+        </csc>
+    </target>
+
+    <target name="NLog.ComInterop" depends="NLog">
+        <csc target="library" output="${output.dir}/NLog.ComInterop.dll" define="${nlog.define}" debug="${nlog.debug}">
+            <sources basedir="src/NLog.ComInterop">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${output.dir}/NLog.dll" />
+                <include name="mscorlib.dll" />
+                <include name="System.dll" />
+                <include name="System.Xml.dll" />
+            </references>
+        </csc>
+    </target>
+
+    <target name="NLog.ASPNet" depends="NLog">
+        <csc target="library" output="${output.dir}/NLog.ASPNet.dll" define="${nlog.define}" debug="${nlog.debug}">
+            <sources basedir="src/NLog.ASPNet">
+                <include name="**/*.cs" />
+                <include name="mscorlib.dll" />
+                <include name="System.dll" />
+                <include name="System.Xml.dll" />
+            </sources>
+            <references>
+                <include name="${output.dir}/NLog.dll" />
+                <include name="mscorlib.dll" />
+                <include name="System.dll" />
+                <include name="System.Xml.dll" />
+            </references>
+        </csc>
+    </target>
+
+    <target name="NLog.Win32" depends="NLog">
+        <csc target="library" output="${output.dir}/NLog.Win32.dll" define="${nlog.define}" debug="${nlog.debug}">
+            <sources basedir="src/NLog.Win32">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${output.dir}/NLog.dll" />
+            </references>
+        </csc>
+    </target>
+
+    <target name="NLog.Test" depends="NLog">
+        <csc target="exe" output="${output.dir}/NLog.Test.exe" define="${nlog.define}" debug="${nlog.debug}">
+            <sources basedir="src/NLog.Test">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${output.dir}/NLog.dll" />
+            </references>
+        </csc>
+        <copy file="src/NLog.Test/App.config" tofile="${output.dir}/NLog.Test.exe.config" />
+    </target>
+
+    <target name="register-com" depends="configure">
+        <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'regasm.exe')}"
+              commandline="/tlb ${output.dir}/NLog.ComInterop.dll" />
+    </target>
+
+    <target name="register-com-with-codebase" depends="configure">
+        <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'regasm.exe')}"
+            commandline="/tlb /codebase ${output.dir}/NLog.ComInterop.dll" />
+    </target>
+
+    <target name="test" depends="NLog.Test">
+        <exec program="${output.dir}/NLog.Test.exe" />
+    </target>
+
+    <target name="webtest" depends="build">
+        <copy todir="webtest/bin">
+            <fileset basedir="${output.dir}">
+                <include name="*.dll" />
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="configure-net-1.0">
+    </target>
+
+    <target name="configure-net-1.1">
+    </target>
+
+    <target name="configure-netcf-1.0">
+        <property name="nlog.define" value="${nlog.define};NETCF;NETCF_1_0" />
+    </target>
+
+    <target name="build-net-1.0" depends="NLog, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
+    <target name="build-net-1.1" depends="NLog, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
+    <target name="build-netcf-1.0" depends="NLog, NLog.ComInterop" />
+
+    <target name="dist">
+        <exec program="nant.exe" commandline="-k:net-1.0 release package" if="${framework::exists('net-1.0')}" />
+        <exec program="nant.exe" commandline="-k:net-1.0 debug package" if="${framework::exists('net-1.0')}" />
+        <exec program="nant.exe" commandline="-k:net-1.1 release package" if="${framework::exists('net-1.1')}" />
+        <exec program="nant.exe" commandline="-k:net-1.1 debug package" if="${framework::exists('net-1.1')}" />
+        <exec program="nant.exe" commandline="-k:netcf-1.0 release package" if="${framework::exists('netcf-1.0')}" />
+        <exec program="nant.exe" commandline="-k:netcf-1.0 debug package" if="${framework::exists('netcf-1.0')}" />
+    </target>
+
+    <target name="updateversion">
+        <foreach item="Line" in="Nlog.version" delim=";" property="nlog.version">
+            <exec workingdir="${nant.project.basedir}" program="tools/ReplaceVersion.exe" commandline=". ${nlog.version}" />
+        </foreach>
+    </target>
+</project>
