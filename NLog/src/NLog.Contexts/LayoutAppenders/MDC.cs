@@ -33,49 +33,31 @@
 
 using System;
 using System.Text;
+using NLog.Config;
 
-namespace NLog.LayoutAppenders
+using NLog.LayoutAppenders;
+
+namespace NLog.Contexts.LayoutAppenders
 {
-    [LayoutAppender("ndc")]
-    public class NDCLayoutAppender : LayoutAppender
+    [LayoutAppender("mdc")]
+    public class MDCLayoutAppender : LayoutAppender
     {
-        private int _topFrames = -1;
-        private int _bottomFrames = -1;
-        private string _separator = " ";
+        private string _item;
         
-        public int TopFrames
+        [RequiredParameter]
+        public string Item
         {
-            get { return _topFrames; }
-            set { _topFrames = value; }
+            get { return _item; }
+            set { _item = value; }
         }
 
-        public int BottomFrames
-        {
-            get { return _bottomFrames; }
-            set { _bottomFrames = value; }
+        protected override int GetEstimatedBufferSize(LogEventInfo ev) {
+            return MDC.Get(Item).Length;
         }
 
-        public string Separator
+        protected override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            get { return _separator; }
-            set { _separator = value; }
-        }
-
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev) {
-            return 0;
-        }
-
-        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
-        {
-            string msg;
-
-            if (TopFrames != -1) {
-                msg = NDC.GetTopMessages(TopFrames, Separator);
-            } else if (BottomFrames != -1) {
-                msg = NDC.GetBottomMessages(BottomFrames, Separator);
-            } else {
-                msg = NDC.GetAllMessages(Separator);
-            }
+            string msg = MDC.Get(Item);
             builder.Append(ApplyPadding(msg));
         }
     }

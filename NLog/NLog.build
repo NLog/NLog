@@ -15,7 +15,7 @@
     <property name="sourceforge.groupdir" value="/home/groups/n/nl/nlog" />
 
     <property name="installer.name" value="nlog-${tstamp.date}.exe" />
-    <property name="source_snapshot.name" value="nlog-${tstamp.date}-src" />
+    <property name="source_snapshot.name" value="nlog-${tstamp.date}-src.zip" />
 
     <target name="configure">
         <call target="configure-${framework::get-target-framework()}" />
@@ -78,6 +78,20 @@
     <target name="NLog.ComInterop" depends="NLog">
         <csc target="library" output="${output.dir}/NLog.ComInterop.dll" define="${nlog.define}" debug="${nlog.debug}">
             <sources basedir="src/NLog.ComInterop">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${output.dir}/NLog.dll" />
+                <include name="mscorlib.dll" />
+                <include name="System.dll" />
+                <include name="System.Xml.dll" />
+            </references>
+        </csc>
+    </target>
+
+    <target name="NLog.Contexts" depends="NLog">
+        <csc target="library" output="${output.dir}/NLog.Contexts.dll" define="${nlog.define}" debug="${nlog.debug}">
+            <sources basedir="src/NLog.Contexts">
                 <include name="**/*.cs" />
             </sources>
             <references>
@@ -189,10 +203,10 @@
         <property name="nlog.define" value="${nlog.define};NETCF;NETCF_1_0" />
     </target>
 
-    <target name="build-net-1.0" depends="NLog, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
-    <target name="build-net-1.1" depends="NLog, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
-    <target name="build-net-2.0" depends="NLog, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
-    <target name="build-netcf-1.0" depends="NLog, NLog.CompactFramework" />
+    <target name="build-net-1.0" depends="NLog, NLog.Contexts, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
+    <target name="build-net-1.1" depends="NLog, NLog.Contexts, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
+    <target name="build-net-2.0" depends="NLog, NLog.Contexts, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
+    <target name="build-netcf-1.0" depends="NLog, NLog.Contexts, NLog.CompactFramework" />
 
     <target name="dist">
         <exec program="nant.exe" commandline="-t:net-1.0 release package" if="${framework::exists('net-1.0')}" />
@@ -259,15 +273,15 @@
                 <include name="doc/help/Documentation.chm" />
             </targetfiles>
             <sourcefiles basedir="${output.dir}">
-                <include name="*.dll" />
+                <include name="**/*.cs" />
             </sourcefiles>
         </uptodate>
         <if test="${not help.uptodate}">
             <delete dir="doc/help" if="${directory::exists('doc/help')}" />
             <mkdir dir="doc/help" />
             <ndoc>
-                <assemblies basedir="src">
-                    <include name="**/*.cs" />
+                <assemblies basedir="${output.dir}">
+                    <include name="NLog.dll" />
                 </assemblies>
                 <documenters>
                     <documenter name="MSDN">
@@ -321,11 +335,14 @@
     </target>
 
     <target name="source_snapshot">
-        <delete dir="${source_snapshot.name}" if="${directory::exists(source_snapshot.name)}" />
-        <exec program="svn" commandline="export . ${source_snapshot.name}" />
-        <zip zipfile="${source_snapshot.name}.zip">
-            <fileset basedir=".">
-                <include name="${source_snapshot.name}/**" />
+        <delete dir="tmp/source_snapshot" if="${directory::exists('tmp/source_snapshot')}" />
+        <property name="tmp.dir" value="tmp/source_snapshot/NLog-${tstamp.date}" overwrite="true" />
+        <mkdir dir="tmp/source_snapshot" if="${not directory::exists('tmp/source_snapshot')}" />
+        <exec program="svn" commandline="export . ${tmp.dir}" />
+        <zip zipfile="${source_snapshot.name}">
+            <fileset basedir="tmp/source_snapshot">
+                <include name="**/*" />
+                <exclude name="_svn" />
             </fileset>
         </zip>
     </target>
