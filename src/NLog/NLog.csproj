@@ -179,7 +179,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "MDC.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "MultiFileWatcher.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NDC.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -190,6 +200,11 @@
                 />
                 <File
                     RelPath = "PropertyHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "RequiredParameterAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -314,7 +329,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "LayoutAppenders\MDC.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "LayoutAppenders\Message.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutAppenders\NDC.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
