@@ -32,53 +32,59 @@
 // 
 
 using System;
-using System.Text;
+using System.Collections;
 
-using NLog.LayoutAppenders;
-
-namespace NLog.Contexts.LayoutAppenders
+namespace NLog
 {
-    [LayoutAppender("ndc")]
-    public class NDCLayoutAppender : LayoutAppender
+    public sealed class MDC
     {
-        private int _topFrames = -1;
-        private int _bottomFrames = -1;
-        private string _separator = " ";
+        private MDC() { }
+
+        public static void Set(string item, string value) {
+            IDictionary dict = GetThreadDictionary();
+
+            dict[item] = value;
+        }
         
-        public int TopFrames
-        {
-            get { return _topFrames; }
-            set { _topFrames = value; }
+        public static string Get(string item) {
+            IDictionary dict = GetThreadDictionary();
+
+            string s = (string)dict[item];
+            if (s == null)
+                return String.Empty;
+            else
+                return s;
         }
 
-        public int BottomFrames
-        {
-            get { return _bottomFrames; }
-            set { _bottomFrames = value; }
+        public static bool Contains(string item) {
+            IDictionary dict = GetThreadDictionary();
+
+            return dict.Contains(item);
         }
 
-        public string Separator
-        {
-            get { return _separator; }
-            set { _separator = value; }
+        public static void Remove(string item) {
+            IDictionary dict = GetThreadDictionary();
+
+            dict.Remove(item);
         }
 
-        protected override int GetEstimatedBufferSize(LogEventInfo ev) {
-            return 0;
+        public static void Clear() {
+            IDictionary dict = GetThreadDictionary();
+
+            dict.Clear();
         }
 
-        protected override void Append(StringBuilder builder, LogEventInfo ev)
-        {
-            string msg;
-
-            if (TopFrames != -1) {
-                msg = NDC.GetTopMessages(TopFrames, Separator);
-            } else if (BottomFrames != -1) {
-                msg = NDC.GetBottomMessages(BottomFrames, Separator);
-            } else {
-                msg = NDC.GetAllMessages(Separator);
+        private static IDictionary GetThreadDictionary() {
+            IDictionary threadDictionary = (IDictionary)System.Threading.Thread.GetData(_dataSlot);
+            
+            if (threadDictionary == null) {
+                threadDictionary = new Hashtable();
+                System.Threading.Thread.SetData(_dataSlot, threadDictionary);
             }
-            builder.Append(ApplyPadding(msg));
+
+            return threadDictionary;
         }
+
+		private static LocalDataStoreSlot _dataSlot = System.Threading.Thread.AllocateDataSlot();
     }
 }

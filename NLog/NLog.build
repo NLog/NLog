@@ -185,13 +185,14 @@
         </csc>
     </target>
 
-    <target name="NLog.Test" depends="NLog">
+    <target name="NLog.Test" depends="NLog, NLog.Contexts, NLog.DB">
         <csc target="exe" output="${output.dir}/NLog.Test.exe" define="${nlog.define}" debug="${nlog.debug}">
             <sources basedir="src/NLog.Test">
                 <include name="**/*.cs" />
             </sources>
             <references>
                 <include name="${output.dir}/NLog.dll" />
+                <include name="${output.dir}/NLog.Contexts.dll" />
                 <include name="mscorlib.dll" />
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />

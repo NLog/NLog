@@ -33,29 +33,30 @@
 
 using System;
 using System.Text;
-using System.Web;
+using NLog.Config;
 
 namespace NLog.LayoutAppenders
 {
-    [LayoutAppender("aspnet-rawurl")]
-    public class RawUrlLayoutAppender : LayoutAppender
+    [LayoutAppender("mdc")]
+    public class MDCLayoutAppender : LayoutAppender
     {
-        protected override int GetEstimatedBufferSize(LogEventInfo ev)
-        {
-            HttpContext context = HttpContext.Current;
-            if (context == null)
-                return 0;
-
-            return context.Request.RawUrl.Length;
-        }
+        private string _item;
         
-        protected override void Append(StringBuilder builder, LogEventInfo ev)
+        [RequiredParameter]
+        public string Item
         {
-            HttpContext context = HttpContext.Current;
-            if (context == null)
-                return;
+            get { return _item; }
+            set { _item = value; }
+        }
 
-            builder.Append(context.Request.RawUrl);
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev) {
+            return MDC.Get(Item).Length;
+        }
+
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+        {
+            string msg = MDC.Get(Item);
+            builder.Append(ApplyPadding(msg));
         }
     }
 }

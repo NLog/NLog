@@ -82,7 +82,7 @@ namespace NLog.Filters
         public static Filter CreateFilter(string name) {
             Type t = _filters[name.ToLower(CultureInfo.InvariantCulture)];
             if (t != null) {
-                object o = Activator.CreateInstance(t);
+                object o = FactoryHelper.CreateInstance(t);
                 if (o is Filter) {
                     Filter la = (Filter)o;
                     return la;
