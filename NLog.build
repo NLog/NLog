@@ -156,7 +156,7 @@
 
     <target name="register-com" depends="configure">
         <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'regasm.exe')}"
-              commandline="/tlb ${output.dir}/NLog.ComInterop.dll" />
+            commandline="/tlb ${output.dir}/NLog.ComInterop.dll" />
     </target>
 
     <target name="register-com-with-codebase" depends="configure">
@@ -217,7 +217,7 @@
             </xmlpoke>
 
             <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'al.exe')}"
-                  commandline="/nologo /embed:publisher_policy.config /out:Policy.${nlog.version.major}.${nlog.version.minor}.NLog.dll /keyfile:${path::combine(nant.project.basedir,'src/NLog.snk')}" />
+                commandline="/nologo /embed:publisher_policy.config /out:Policy.${nlog.version.major}.${nlog.version.minor}.NLog.dll /keyfile:${path::combine(nant.project.basedir,'src/NLog.snk')}" />
         </foreach>
     </target>
 
@@ -237,6 +237,45 @@
         <style style="doc/filters.xsl" in="doc/filters.xml" out="doc/website/filters.html" />
     </target>
 
+    <target name="installer">
+        <exec program="nant.exe" commandline="-t:net-1.0 release package doc" />
+        <readregistry property="nsis.dir" key="SOFTWARE\NSIS\" />
+        <property name="makensis.exe" value="${nsis.dir}/makensis.exe" />
+
+        <foreach item="Line" in="nlog.version" delim="." property="nlog.major,nlog.minor,nlog.revision,nlog.build">
+            <exec program="${makensis.exe}" commandline="/DVERSION=${nlog.major}.${nlog.minor}.${nlog.revision}.${nlog.build} tools\SetupNLog.nsi" />
+            <move file="SetupNLog.exe" tofile="nlog-${nlog.major}.${nlog.minor}.${nlog.revision}.${nlog.build}.exe" />
+        </foreach>
+    </target>
+
+    <target name="doc" depends="configure">
+        <delete dir="doc/help" if="${directory::exists('doc/help')}" />
+        <mkdir dir="doc/help" />
+        <ndoc>
+            <assemblies basedir="${output.dir}">
+                <include name="NLog.dll" />
+            </assemblies>
+            <documenters>
+                <documenter name="MSDN">
+                    <property name="OutputDirectory" value="doc/help" />
+                    <!--
+                    <property name="SdkDocVersion" value="${link.sdkdoc.version}" />
+                    <property name="SdkLinksOnWeb" value="${link.sdkdoc.web}" />
+                    -->
+                    <!-- do not filter on namespace -->
+                    <property name="NamespaceFilter" value="" />
+                    <!-- set the name of the application for which docs are generated -->
+                    <property name="ApplicationName" value="NLog" />
+                    <property name="DocumentAttributes" value="True" />
+                    <property name="IncludeAssemblyVersion" value="True" />
+                    <property name="ShowMissingParams" value="True" />
+                    <property name="ShowMissingReturns" value="True" />
+                    <property name="ShowMissingValues" value="True" />
+                </documenter>
+            </documenters>
+        </ndoc>
+    </target>
+
     <target name="publish_website">
         <delete dir="doc/website" if="${directory::exists('doc/website')}" />
         <call target="website" />
@@ -245,7 +284,24 @@
                 <include name="**/*" />
             </fileset>
         </zip>
+        <echo message="Uploading the zipped website..." />
         <exec program="${scp.program}" commandline="${scp.program.args} website.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
+        <echo message="Unpacking the zipped website..." />
         <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_website.sh" />
+        <echo message="Website deployed." />
+    </target>
+
+    <target name="publish_website_help" depends="doc">
+        <zip zipfile="help.zip">
+            <fileset basedir="doc/help">
+                <include name="**/*" />
+                <exclude name="**/Documentation.*" />
+            </fileset>
+        </zip>
+        <echo message="Uploading the zipped help..." />
+        <exec program="${scp.program}" commandline="${scp.program.args} help.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
+        <echo message="Unpacking the zipped help..." />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_help.sh" />
+        <echo message="Help deployed." />
     </target>
 </project>

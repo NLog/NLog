@@ -43,6 +43,9 @@ using NLog.Appenders;
 
 namespace NLog
 {
+	/// <summary>
+	/// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
+	/// </summary>
     public sealed class LogManager 
     {
         private static LoggerDictionary _loggerCache = new LoggerDictionary();
@@ -60,6 +63,11 @@ namespace NLog
         {
         }
 
+		/// <summary>
+		/// Gets the specified named logger.
+		/// </summary>
+		/// <param name="name">name of the logger</param>
+		/// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         public static Logger GetLogger(string name) {
             if (ReloadConfigOnNextLog)
                 ReloadConfig();
@@ -78,6 +86,9 @@ namespace NLog
             }
         }
 
+		/// <summary>
+		/// Gets or sets the current logging configuration.
+		/// </summary>
         public static LoggingConfiguration Configuration
         {
             get { 
@@ -158,9 +169,6 @@ namespace NLog
             ReloadConfigOnNextLog = true;
         }
 #endif
-
-        public static void ClearLoggerCache() {
-        }
 
         internal static void ReloadConfig() {
             lock (typeof(LogManager)) {
