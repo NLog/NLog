@@ -196,6 +196,7 @@
         </copy>
         <style style="doc/appenders.xsl" in="doc/appenders.xml" out="doc/website/appenders.html" />
         <style style="doc/layoutappenders.xsl" in="doc/layoutappenders.xml" out="doc/website/layoutappenders.html" />
+        <style style="doc/filters.xsl" in="doc/filters.xml" out="doc/website/filters.html" />
     </target>
 
     <target name="publish_website">
