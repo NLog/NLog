@@ -79,7 +79,7 @@ namespace NLog.LayoutAppenders
 
         private string[] _nameTable = LevelToString;
 
-        public bool UpperCase
+        public new bool UpperCase
         {
             set
             {
@@ -94,7 +94,7 @@ namespace NLog.LayoutAppenders
             }
         }
 
-        public bool LowerCase
+        public new bool LowerCase
         {
             set
             {

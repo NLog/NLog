@@ -34,6 +34,7 @@
 using System;
 using System.Collections;
 using System.Text;
+using System.Globalization;
 
 using NLog.LayoutAppenders;
 
@@ -50,6 +51,9 @@ namespace NLog
         private int _padding = 0;
         private bool _fixedLength = false;
         private int _absolutePadding = 0;
+        private bool _upperCase = false;
+        private bool _lowerCase = false;
+        private CultureInfo _cultureInfo = CultureInfo.InvariantCulture;
 
         public int Padding
         {
@@ -68,18 +72,46 @@ namespace NLog
             set { _fixedLength = value; }
         }
 
-        protected string ApplyPadding(string s) {
-            if (Padding == 0)
-                return s;
+        public bool UpperCase
+        {
+            get { return _upperCase; }
+            set { _upperCase = value; }
+        }
 
-            if (Padding > 0) {
-                s = s.PadLeft(Padding);
-            } else {
-                s = s.PadRight(-Padding);
+        public bool LowerCase
+        {
+            get { return _lowerCase; }
+            set { _lowerCase = value; }
+        }
+        
+        public string Culture
+        {
+            get { return _cultureInfo.Name; }
+            set { _cultureInfo = new CultureInfo(value); }
+        }
+
+        public CultureInfo CultureInfo
+        {
+            get { return _cultureInfo; }
+            set { _cultureInfo = value; }
+        }
+
+        protected string ApplyPadding(string s) {
+            if (Padding != 0) {
+                if (Padding > 0) {
+                    s = s.PadLeft(Padding);
+                } else {
+                    s = s.PadRight(-Padding);
+                }
+                if (FixedLength && s.Length > AbsolutePadding)
+                {
+                    s = s.Substring(0, AbsolutePadding);
+                }
             }
-            if (FixedLength && s.Length > AbsolutePadding)
-            {
-                s = s.Substring(0, AbsolutePadding);
+            if (UpperCase) {
+                s = s.ToUpper(CultureInfo);
+            } else if (LowerCase) {
+                s = s.ToLower(CultureInfo);
             }
             return s;
         }

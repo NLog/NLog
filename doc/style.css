@@ -89,3 +89,7 @@ hr {
     border-collapse: collapse;
     color: red;
 }
+
+.table tr.notall {
+    background-color: #fff0e0;
+}

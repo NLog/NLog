@@ -41,18 +41,11 @@ namespace NLog.LayoutAppenders
     public class DateLayoutAppender : LayoutAppender
     {
         private string _format = "G";
-        private CultureInfo _cultureInfo = CultureInfo.InvariantCulture;
 
         public string Format
         {
             get { return _format; }
             set { _format = value; }
-        }
-
-        public string Culture
-        {
-            get { return _cultureInfo.Name; }
-            set { _cultureInfo = new CultureInfo(value); }
         }
 
         public override int GetEstimatedBufferSize(LogEventInfo ev)
@@ -62,7 +55,7 @@ namespace NLog.LayoutAppenders
 
         public override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            builder.Append(ApplyPadding(ev.TimeStamp.ToString(_format, _cultureInfo)));
+            builder.Append(ApplyPadding(ev.TimeStamp.ToString(_format, CultureInfo)));
         }
     }
 }
