@@ -1,0 +1,457 @@
+html, body
+{
+    margin-right: 4px;
+    margin-left: 4px;
+    margin-top: 2px;
+    background: white;
+    color: black;
+    font-family: Verdana;
+    font-size: 70%;
+    overflow-y: scroll;
+}
+
+h1
+{
+    font-size: 150%;
+}
+
+h2
+{
+    margin-top: 30px;
+    font-size: 120%;
+}
+
+td.nav
+{
+    font-family: Trebuchet MS, Arial, Helv;
+    font-size: 16px;
+    font-style: italic;
+    padding: 3px;
+}
+
+a:link
+{
+    color: #5b5b0e;
+    background-color: inherit;
+}
+
+a:visited
+{
+    color: #5b5b0e;
+    background-color: inherit;
+}
+
+a:hover
+{
+    color: black;
+    background-color: inherit;
+}
+
+span.path
+{
+    font-family: Courier New;
+    color: #404080;
+    font-size: 100%;
+    font-weight: bold;
+}
+
+span.code
+{
+    font-family: Courier New;
+    color: #404080;
+    font-size: 100%;
+    font-weight: bold;
+}
+
+span.sql
+{
+    font-family: Courier New;
+    color: #0000ff;
+    font-size: 100%;
+    font-weight: bold;
+}
+
+span.class
+{
+    font-family: Courier New;
+    color: #0000c0;
+    font-size: 100%;
+    font-weight: bold;
+}
+
+li
+{
+    /* font-weight: bold; */
+    color: black;
+}
+
+pre.csharp
+{
+    font-family: Courier New;
+    font-size: 11px;
+    padding: 4px;
+    font-color: #606060;
+    background-color: #f0f0f0;
+    border: 1px solid #e0e0e0;
+}
+
+span.keyword
+{
+    color: blue;
+}
+
+span.string
+{
+    color: #c00000;
+}
+
+span.operator
+{
+    color: #404040;
+}
+
+span.number
+{
+    color: #ff00ff;
+}
+
+span.type
+{
+    color: #008000;
+    font-weight: bold;
+}
+
+span.xmlattribute
+{
+    color: #ff0000;
+}
+
+span.xmlattribtext
+{
+    color: #0000ff;
+}
+
+span.xmlbracket
+{
+    color: #0000ff;
+}
+
+span.xmlelement
+{
+    color: #800000;
+}
+
+span.xmlcomment
+{
+    color: #008000;
+    font-style: italic;
+}
+
+a.nav
+{
+    display: block;
+    font-family: Trebuchet MS, Arial, Helv;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 17px;
+    color: #202040;
+    margin: 1px;
+    cursor: pointer; cursor: hand;
+    text-decoration: none;
+    padding-left: 4px;
+    padding-right: 4px;
+    width: 160px;
+}
+
+a.nav:visited
+{
+    color: black;
+}
+
+a.nav:hover
+{
+    color: red;
+}
+
+a.nav_selected
+{
+    display: block;
+    font-family: Trebuchet MS, Arial, Helv;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 17px;
+    color: #805020;
+    background-color: white;
+    border: 1px dotted #c0c0c0;
+    padding-left: 4px;
+    padding-right: 4px;
+    width: 160px;
+    cursor: pointer; cursor: hand;
+    text-decoration: none;
+}
+
+a.nav_selected:visited
+{
+    color: black;
+}
+
+a.nav_selected:hover
+{
+    color: red;
+}
+
+a.subnav
+{
+    display: block;
+    font-family: Trebuchet MS, Arial, Helv;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 17px;
+    color: #202040;
+    margin: 1px;
+    cursor: pointer; cursor: hand;
+    text-decoration: none;
+    padding-left: 16px;
+    padding-right: 4px;
+    width: 160px;
+}
+
+a.subnav:visited
+{
+    color: black;
+}
+
+a.subnav:hover
+{
+    color: red;
+}
+
+a.subnav_selected
+{
+    display: block;
+    font-family: Trebuchet MS, Arial, Helv;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 17px;
+    color: #805020;
+    padding-left: 16px;
+    padding-right: 4px;
+    width: 200px;
+    cursor: pointer; cursor: hand;
+    text-decoration: none;
+}
+
+a.subnav_selected:visited
+{
+    color: black;
+}
+
+a.subnav_selected:hover
+{
+    color: red;
+}
+
+tr.nav_normal
+{
+    background-color: white;
+    color: #202040;
+    cursor: pointer; cursor: hand;
+}
+
+tr.nav_hilite
+{
+    background-color: #f0f0e0;
+    color: #008000;
+    cursor: pointer; cursor: hand;
+}
+
+tr.nav_selected
+{
+    background-color: #000080;
+    color: white;
+    cursor: pointer; cursor: hand;
+}
+
+td.titledesc
+{
+    font-family: Verdana;
+    font-size: 70%;
+    vertical-align: bottom;
+    padding-bottom: 10px;
+    padding-right: 10px;
+}
+
+img.thinborder
+{
+    border: 1px solid #404040;
+}
+
+td.header
+{
+    border-bottom: 1px solid black;
+    margin-bottom: 0px;
+    height: 80px;
+}
+
+td.content
+{
+    font-family: Trebuchet MS, Arial, Helv;
+    font-size: 13px;
+    padding: 4px;
+    width: 590px;
+    text-align: left;
+    background-color: #fff8f8;
+}
+
+td.controls
+{
+    padding: 6px;
+    width: 220px;
+    background-color: #fff8f8;
+}
+
+table.page
+{
+    width: 800px;
+    border: 1px solid #404060;
+}
+
+tr.spacer
+{
+    height: 10px;
+}
+
+
+td.copyright
+{
+    background-color: #fff8f8;
+    padding: 4px;
+    font-size: 11px;
+    text-align: center;
+    font-family: Trebuchet MS, Arial, Helv;
+}
+
+
+td.hostedby
+{
+    background-color: #fff8f8;
+    padding: 4px;
+}
+
+td.newsdate
+{
+    width: 100px;
+    vertical-align: top;
+    text-align: right;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+td.newstext
+{
+    font-family: Trebuchet MS, Arial, Helv;
+    font-size: 13px;
+}
+
+.xml-example
+{
+    background-color: #ffffff; 
+    border: 1px solid #c0c0c0; 
+    overflow-x: auto; 
+    width: 600px;
+    font-size: 12px;
+}
+
+.csharp-example
+{
+    font-family: Courier New;
+    background-color: #ffffff; 
+    border: 1px solid #c0c0c0; 
+    overflow-x: auto; 
+    overflow-y: auto; 
+    width: 600px;
+    font-size: 12px;
+}
+
+.csharp .k
+{
+    color: #0000ff;
+}
+
+.csharp .c
+{
+    color: #008000;
+    font-style: italic;
+}
+
+.csharp .s
+{
+    color: #400000;
+}
+
+.csharp .r
+{
+    color: #400000;
+}
+
+code
+{
+    color: #000080;
+}
+
+.table table {
+    border: 1px solid #c0c0c0;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.table td {
+    border: 1px solid #c0c0c0;
+    margin: 0px;
+    background-color: white;
+}
+
+.table th {
+    border: 1px solid #c0c0c0;
+    background-color: #efe8e8;
+    margin: 0px;
+}
+
+div.summarytable
+{
+    font-family: Verdana, Arial, Helvetica, Geneva, SunSans-Regular, sans-serif;
+}
+
+.summarytable table {
+    font-size: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border: 1px solid #e0e0c0;
+}
+
+.summarytable th {
+    font-weight: bold;
+    width: 25%;
+    vertical-align: top;
+    padding-left: 5px;
+    padding-right: 15px;
+    text-align: left;
+}
+
+.summarytable td {
+    padding: 1px;
+    padding-right: 15px;
+}
+
+.summarytable td.section {
+    border: 1px solid #999999;
+    background-color: #f0f0e0;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.summarytable tr.appender {
+    background-color: #f8f8f8;
+}
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<configuration xml:space="preserve">
+    <configSections>
+        <section name="nlog" type="NLog.Config.ConfigSectionHandler, NLog" />
+    </configSections>
+
+    <nlog>
+        <appenders>
+            <appender name="console" type="Console" />
+            <appender name="file1" type="File" filename="file1.log" />
+            <appender name="file2" type="File" filename="file2.log" />
+            <appender name="file3" type="File" filename="file3.log" />
+        </appenders>
+
+        <rules>
+            <logger name="*" levels="Info,Warn,Error" appendTo="console" />
+            <logger name="*" level="Debug" appendTo="file1" />
+            <logger name="*" minlevel="Error" appendTo="file2" />
+            <logger name="*SQL*" appendTo="file3" />
+        </rules>
+    </nlog>
+</configuration>
+

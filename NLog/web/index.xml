@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="index">
+    <h3>What is NLog?</h3>
+    <p>
+        NLog is a .NET logging library similar in concepts to <a href="http://log4net.sourceforge.net/">log4net</a>, 
+        designed with simplicity and flexibility in mind. NLog project is hosted at <a href="http://sourceforge.net/projects/nlog">sourceforge.net</a>.
+    </p>
+
+    <h3>Features</h3>
+    <ul>
+        <li>.NET, .NET Compact Framework and Mono 1.0 support</li>
+        <li>very easy to configure, both with a config file and programmatically</li>
+        <li>easy to use - interface is identical to <code>Console.WriteLine</code> - there's no need to use <code>String.Format</code> any more</li>
+    </ul>
+
+    <h3>Current Status</h3>
+    <p>
+        NLog 0.5 has been released in source and binary form. It's open source, licensed 
+        under the terms of <a href="http://www.opensource.org/licenses/bsd-license.php">BSD license</a>, 
+        which permits commercial use. Everyone is encouraged to test it and report feedback to the mailing list.
+    </p>
+    <p>
+        The logging API is really minimal and shouldn't change in the future. Configuration API isn't ready yet, but 
+        the configuration file support should be pretty usable. The support for .NET CF is in subversion but no packages
+        are available yet. They will be, when it receives some testing and positive feedback from the community.
+    </p>
+
+    <h3>Documentation</h3>
+    <ul>
+        <li>To see NLog in action, open the <a href="tutorial.html">NLog Tutorial</a>.</li>
+        <li>NLog API documentation generated using <a href="http://ndoc.sourceforge.net/">NDoc</a> is available <a href="help/">here</a>.</li>
+        <li>See the <a href="config.html">Configuration Options</a> document for information on configuring NLog.</li>
+        <li>Appender configuration is described in detail in the <a href="appenders.html">Appender Reference</a>.</li>
+        <li>Layout Appender configuration is described in detail in the <a href="layoutappenders.html">Layout Appender Reference</a>.</li>
+        <li>Filters are described in  the <a href="filters.html">Filter Reference</a>.</li>
+        <li>If you have problems getting NLog to work, see <a href="troubleshoot.html">Troubleshooting NLog</a>.</li>
+        <li>For a list of frequently asked questions and answers, see the <a href="faq.html">FAQ</a> section.</li>
+    </ul>
+</content>

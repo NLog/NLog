@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="appenders" subid="appenders">
+    <h1>Appender Reference</h1>
+    <p>The following appenders are available. Items marked with color may not be supported on all platforms. See particular layout appender documentation for more information. Click on a link to see appender usage and configuration details.</p>
+
+    <appender-list />
+
+    <h3>Loading additional appenders</h3>
+    <p>If you want to use appenders not found in <code>NLog.dll</code> (such as <code>ASPNetTraceAppender</code>), 
+        you need to load them by using the <code>&lt;extensions&gt;</code> element in 
+        your <a href="configfile.html">config file</a>.</p>
+    <p>For example:</p>
+    <xmp class="code-xml" xml:space="preserve">
+        <nlog autoReload="true">
+            <extensions>
+                <add assemblyFile="NLog.ASPNet.dll" />
+            </extensions>
+            ...
+    </nlog></xmp>
+    <a name="common" />
+    <h3>Common Appender Configuration</h3>
+    <p>The following configuration parameters may be used on with all appenders. Note that particular appenders
+        may choose to interpret some parameters differently (for example by ignoring the <code>layout</code> parameter).
+        This is clearly indicated in the appender documentation.</p>
+
+    <div class="table">
+        <table>
+            <tr>
+                <th>Parameter&#160;Name</th>
+                <th>Type</th>
+                <th>Required</th>
+                <th>Description</th>
+                <th>Default</th>
+            </tr>
+            <tr>
+                <td><code>name</code></td>
+                <td>String</td>
+                <td>Yes</td>
+                <td>The name of the appender. This should be a human-readable name. For example: <code>console</code>, <code>masterlogfile</code>.</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>type</code></td>
+                <td>String</td>
+                <td>Yes</td>
+                <td>The type of the appender. This can be a simple type name (for appenders defined in <code>NLog.dll</code>) or a fully qualified type name.</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>layout</code></td>
+                <td>Layout</td>
+                <td>No</td>
+                <td>The format of logged messages. See <a href="layoutappender.html">Layout Appenders</a> for more info.</td>
+                <td><code>${longdate}|${level}|${message}</code></td>
+            </tr>
+        </table>
+    </div>
+
+    <appenders>
+        <appender name="Console">
+            <displayName>Console Appender</displayName>
+            <description>writes log messages to the Console</description>
+            <assembly>NLog.dll</assembly>
+            <namespace>NLog.Appenders</namespace>
+            <className>ConsoleAppender</className>
+            <support framework="netcf-1.0" />
+            <support framework="net-1.0" />
+            <support framework="net-1.1" />
+            <support framework="net-2.0" />
+            <support framework="mono-1.0" />
+            <support framework="mono-2.0" />
+        </appender>
+
+        <appender name="File">
+            <displayName>File Appender</displayName>
+            <description>writes log messages to one or more file(s)</description>
+            <assembly>NLog.dll</assembly>
+            <namespace>NLog.Appenders</namespace>
+            <className>FileAppender</className>
+            <support framework="netcf-1.0" />
+            <support framework="net-1.0" />
+            <support framework="net-1.1" />
+            <support framework="net-2.0" />
+            <support framework="mono-1.0" />
+            <support framework="mono-2.0" />
+            <parameter name="fileName" type="Layout String" required="Yes" description="Name of the file to write to." />
+            <parameter name="createDirs" type="Boolean" required="No" description="Determines if the appender should create output directories that don't exist." default="False" />
+            <parameter name="keepFileOpen" type="Boolean" required="No" description="Determines if the appender should keep the output file open whenever possible." default="False" />
+            <parameter name="autoFlush" type="Boolean" required="No" description="Determines if the appender should automatically flush the contents of file buffers after each write." default="True" />
+            <parameter name="encoding" type="String" required="No" description="The encoding of the output file(s)." default="system encoding" />
+            <parameter name="concurrentWrites" type="Boolean" required="No" description="Determines if the appender should allow for concurrent writes to the file. This overrides keepFileOpen." default="True" />
+            <parameter name="concurrentWriteAttempts" type="Integer" required="No" description="The number of times the write should be retried in case of a failure." default="10" />
+        </appender>
+
+        <appender name="Null">
+            <displayName>Null Appender</displayName>
+            <description>discards all log messages</description>
+            <assembly>NLog.dll</assembly>
+            <namespace>NLog.Appenders</namespace>
+            <className>NullAppender</className>
+            <support framework="netcf-1.0" />
+            <support framework="net-1.0" />
+            <support framework="net-1.1" />
+            <support framework="net-2.0" />
+            <support framework="mono-1.0" />
+            <support framework="mono-2.0" />
+        </appender>
+
+        <appender name="Memory">
+            <displayName>Memory Appender</displayName>
+            <description>stores log messages in memory for programmatic retrieval</description>
+            <assembly>NLog.dll</assembly>
+            <namespace>NLog.Appenders</namespace>
+            <className>MemoryAppender</className>
+            <support framework="netcf-1.0" />
+            <support framework="net-1.0" />
+            <support framework="net-1.1" />
+            <support framework="net-2.0" />
+            <support framework="mono-1.0" />
+            <support framework="mono-2.0" />
+        </appender>
+
+        <appender name="Trace">
+            <displayName>Trace Appender</displayName>
+            <description>outputs log messages using .NET <code>System.Diagnostics.Trace</code> mechanism</description>
+            <assembly>NLog.dll</assembly>
+            <namespace>NLog.Appenders</namespace>
+            <className>TraceAppender</className>
+            <support framework="netcf-1.0" />
+            <support framework="net-1.0" />
+            <support framework="net-1.1" />
+            <support framework="net-2.0" />
+            <support framework="mono-1.0" />
+            <support framework="mono-2.0" />
+        </appender>
+
+        <appender name="ASPNetTrace">
+            <displayName>ASP.NET Trace Appender</displayName>
+            <description>outputs log messages using ASP.NET <code>Trace</code> facility</description>
+            <assembly>NLog.dll</assembly>
+            <namespace>NLog.Appenders</namespace>
+            <className>ASPNetTraceAppender</className>
+            <support framework="net-1.0" />
+            <support framework="net-1.1" />
+            <support framework="net-2.0" />
+            <support framework="mono-1.0" />
+            <support framework="mono-2.0" />
+        </appender>
+
+        <appender name="OutputDebugString">
+            <displayName>OutputDebugString Trace Appender</displayName>
+            <description>outputs log messages using the OutputDebugString Win32 API</description>
+            <assembly>NLog.Win32.dll</assembly>
+            <namespace>NLog.Win32.Appenders</namespace>
+            <className>OutputDebugStringAppender</className>
+            <support framework="net-1.0" />
+            <support framework="net-1.1" />
+            <support framework="net-2.0" />
+            <support framework="mono-1.0" />
+            <support framework="mono-2.0" />
+        </appender>
+
+        <appender name="MessageBox">
+            <displayName>MessageBox Appender</displayName>
+            <description>pops up a message boxes containing log messages</description>
+            <assembly>NLog.dll</assembly>
+            <namespace>NLog.Appenders</namespace>
+            <className>MessageBoxAppender</className>
+            <support framework="netcf-1.0" />
+            <support framework="net-1.0" />
+            <support framework="net-1.1" />
+            <support framework="net-2.0" />
+        </appender>
+
+    </appenders>
+</content>
