@@ -26,8 +26,9 @@ td.nav
 {
     font-family: Trebuchet MS, Arial, Helv;
     font-size: 16px;
-    font-style: italic;
+    font-style: normal;
     padding: 3px;
+    width: 150px;
 }
 
 a:link
@@ -159,7 +160,7 @@ a.nav
 {
     display: block;
     font-family: Trebuchet MS, Arial, Helv;
-    font-style: italic;
+    font-style: normal;
     font-weight: normal;
     font-size: 17px;
     color: #202040;
@@ -184,7 +185,7 @@ a.nav_selected
 {
     display: block;
     font-family: Trebuchet MS, Arial, Helv;
-    font-style: italic;
+    font-style: normal;
     font-weight: normal;
     font-size: 17px;
     color: #805020;
@@ -230,18 +231,19 @@ a.subnav:visited
 a.subnav:hover
 {
     color: red;
+    background-color: #e0e0e0;
 }
 
 a.subnav_selected
 {
     display: block;
     font-family: Trebuchet MS, Arial, Helv;
-    font-style: italic;
+    font-style: normal;
     font-weight: bold;
     font-size: 15px;
     color: #805020;
-    border: 1px dashed #404040;
-    background-color: #fff8f8;
+    /* border: 1px dashed #404040; */
+    background-color: #ffe0e0;
     padding-left: 4px;
     padding-right: 4px;
     cursor: pointer; cursor: hand;
@@ -471,3 +473,6 @@ div.summarytable
     background-color: #f8f8f8;
 }
 
+table.submenu
+{
+}

@@ -2,7 +2,26 @@
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
 <content lang="en" id="api" subid="comapi">
     <h1>COM API</h1>
-    <a href="NLog.chm" />
+    <p>
+        NLog provides an API tha can be used to provide logging for legacy COM applications/components that
+        are deployed as part of a .NET solution. COM support is available with 2 COM classes: <code>NLog.LogManager</code>
+        which lets you perform basic configuration and <code>NLog.Logger</code> which does the actual logging.
+    </p>
+    <p>
+        COM components are supported for many languages, both scripting and compiled. Basic usage is
+        similar to the .NET API, with the following exceptions:
+    </p>
+    <ul>
+        <li>Instances of loggers are created directly, you don't need to use LogManager to get them.</li>
+        <li>Because COM classes don't support passing parameters at construction time, you need to set
+            each logger's name by setting its <code>LoggerName</code></li>
+        <li>Passing variable number of arguments isn't supported</li>
+        <li>Logger levels (arguments to the <code>Log()</code> method) are passed as strings instead of enumeration values - this provides maximum compatibility
+            with scripting environments.</li>
+    </ul>
+    <p>
+        The following example demonstrates the use of NLog COM api for JScript.
+    </p>
 
     <js src="examples/test.js" />
 </content>

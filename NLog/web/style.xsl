@@ -75,7 +75,7 @@ var sc_security="6fe22c9a";
     
     <xsl:template match="nav">
         <xsl:choose>
-            <xsl:when test="$page_id = @href"><tr><td class="nav_selected"><a class="nav_selected"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a><table width="100%"><xsl:apply-templates select="subnav" /></table></td></tr></xsl:when>
+            <xsl:when test="$page_id = @href"><tr><td class="nav_selected"><a class="nav_selected"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a><table class="submenu" width="100%"><xsl:apply-templates select="subnav" /></table></td></tr></xsl:when>
             <xsl:otherwise>
                 <tr><td class="nav"><a class="nav"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a></td></tr>
             </xsl:otherwise>
@@ -84,9 +84,9 @@ var sc_security="6fe22c9a";
 
     <xsl:template match="subnav">
         <xsl:choose>
-            <xsl:when test="$subpage_id = @href"><tr><td class="subnav_spacer"></td><td><a class="subnav_selected"><xsl:value-of select="@label" /></a></td></tr></xsl:when>
+            <xsl:when test="$subpage_id = @href"><tr><td><a class="subnav_selected"><xsl:value-of select="@label" /></a></td></tr></xsl:when>
             <xsl:otherwise>
-                <tr><td class="subnav_spacer"></td><td><a class="subnav"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a></td></tr>
+                <tr><td><a class="subnav"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a></td></tr>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>

@@ -4,5 +4,7 @@
     <h1>How To...</h1>
     <ol>
         <li><link href="howto_write_appender">How to write your own Appender</link></li>
+        <li><link href="howto_write_layout_appender">How to write your own Layout Appender</link></li>
+        <li><link href="howto_write_filter">How to write your own Filter</link></li>
     </ol>
 </content>

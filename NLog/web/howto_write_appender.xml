@@ -46,7 +46,7 @@ you can use integer, string, datetime, boolean parameters.
 <h5>Do I really need to create a separate DLL?</h5>
 
 <p>
-    Not really. You can use AppenderFactory.Appender() to register your appender programmatically. 
+    Not really. You can use AppenderFactory.AddAppender() to register your appender programmatically. 
     Just be sure to to it at the very beginning of your program before any log messages are written.
     It should be possible to reference your EXE using the <x><extensions /></x> clause.
 </p>
