@@ -47,7 +47,42 @@ namespace NLog.LayoutAppenders
 
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            builder.Append(ApplyPadding(ev.Message));
+            if (NeedPadding())
+            {
+                if (ev.Parameters == null || ev.Parameters.Length == 0)
+                {
+                    builder.Append(ApplyPadding(ev.Message));
+                }
+                else
+                {
+                    if (ev.FormatProvider != null)
+                    {
+                        builder.Append(ApplyPadding(String.Format(ev.FormatProvider, ev.Message, ev.Parameters)));
+                    }
+                    else
+                    {
+                        builder.Append(ApplyPadding(String.Format(ev.Message, ev.Parameters)));
+                    }
+                };
+            }
+            else
+            {
+                if (ev.Parameters == null || ev.Parameters.Length == 0)
+                {
+                    builder.Append(ev.Message);
+                }
+                else
+                {
+                    if (ev.FormatProvider != null)
+                    {
+                        builder.AppendFormat(ev.FormatProvider, ev.Message, ev.Parameters);
+                    }
+                    else
+                    {
+                        builder.AppendFormat(ev.Message, ev.Parameters);
+                    }
+                };
+            }
         }
     }
 }

@@ -33,6 +33,7 @@
 // 
 
 using System;
+using System.Globalization;
 using System.Diagnostics;
 
 namespace NLog
@@ -46,15 +47,19 @@ namespace NLog
         private string _loggerName;
         private string _message;
         private Exception _exception;
+        private object[] _parameters;
+        private IFormatProvider _formatProvider;
 
-        public static readonly LogEventInfo Empty = new LogEventInfo(DateTime.Now, LogLevel.Debug, String.Empty, String.Empty, null);
+        public static readonly LogEventInfo Empty = new LogEventInfo(DateTime.Now, LogLevel.Debug, String.Empty, CultureInfo.InvariantCulture, String.Empty, null, null);
 
-        public LogEventInfo(DateTime ts, LogLevel level, string loggerName, string message, Exception exception)
+        public LogEventInfo(DateTime ts, LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters, Exception exception)
         {
             _timeStamp = ts;
             _level = level;
             _loggerName = loggerName;
             _message = message;
+            _parameters = parameters;
+            _formatProvider = formatProvider;
             _exception = exception;
 #if !NETCF
             _stackTrace = null;
@@ -125,6 +130,22 @@ namespace NLog
             get
             {
                 return _message;
+            }
+        }
+
+        public object[] Parameters
+        {
+            get
+            {
+                return _parameters;
+            }
+        }
+
+        public IFormatProvider FormatProvider
+        {
+            get
+            {
+                return _formatProvider;
             }
         }
 
