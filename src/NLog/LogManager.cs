@@ -38,10 +38,8 @@ using System.IO;
 using System.Reflection;
 
 using NLog.Config;
-using NLog.Utils;
-using NLog.Appenders;
-
 using NLog.Internal;
+using NLog.Appenders;
 
 namespace NLog
 {
