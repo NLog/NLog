@@ -101,7 +101,6 @@
         <assembly>NLog.ASPNet.dll</assembly>
         <namespace>NLog.ASPNet.Appenders</namespace>
         <className>ASPNetTraceAppender</className>
-        <support framework="netcf-1.0" />
         <support framework="net-1.0" />
         <support framework="net-1.1" />
         <support framework="net-2.0" />
