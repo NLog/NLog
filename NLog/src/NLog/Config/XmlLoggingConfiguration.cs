@@ -45,7 +45,7 @@ namespace NLog.Config
     public class XmlLoggingConfiguration : LoggingConfiguration
     {
         private Hashtable _visitedFile = new Hashtable();
-        
+
         private bool _autoReload = false;
         private string _originalFileName = null;
 
@@ -54,7 +54,7 @@ namespace NLog.Config
             get { return _autoReload; }
             set { _autoReload = value; }
         }
-            
+
         public XmlLoggingConfiguration() { }
         public XmlLoggingConfiguration(string fileName) {
             _originalFileName = fileName;
@@ -75,7 +75,7 @@ namespace NLog.Config
         {
             return new XmlLoggingConfiguration(_originalFileName);
         }
-        
+
         private void ConfigureFromFile(string fileName) {
             string key = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
             if (_visitedFile.Contains(key))
@@ -111,17 +111,17 @@ namespace NLog.Config
                     throw new FileNotFoundException("Included fine not found: " + newFileName);
                 }
             }
-            
+
             foreach (XmlElement el in configElement.GetElementsByTagName("extensions"))
             {
                 AddExtensionsFromElement(el, baseDirectory);
             }
-            
+
             foreach (XmlElement el in configElement.GetElementsByTagName("appenders"))
             {
                 ConfigureAppendersFromElement(el);
             }
-            
+
             foreach (XmlElement el in configElement.GetElementsByTagName("rules"))
             {
                 ConfigureRulesFromElement(el);
@@ -147,7 +147,7 @@ namespace NLog.Config
             s = s.Replace(" ", ""); // get rid of the whitespace
             return s;
         }
-        
+
         private void ConfigureRulesFromElement(XmlElement element) {
             if (element == null)
                 return;
@@ -178,7 +178,7 @@ namespace NLog.Config
                     string[] tokens = levelsString.Split(',');
                     foreach (string s in tokens) {
                         LogLevel level = Logger.LogLevelFromString(s);
-						rule.EnableLoggingForLevel(level);
+                        rule.EnableLoggingForLevel(level);
                     }
                 } else {
                     int minLevel = 0;
@@ -193,8 +193,8 @@ namespace NLog.Config
                     }
 
                     for (int i = minLevel; i <= maxLevel; ++i) {
-						rule.EnableLoggingForLevel((LogLevel)i);
-					}
+                        rule.EnableLoggingForLevel((LogLevel)i);
+                    }
                 }
 
                 foreach (XmlNode n in ruleElement.ChildNodes)
@@ -220,7 +220,7 @@ namespace NLog.Config
             foreach (XmlElement appenderElement in element.GetElementsByTagName("add")) {
                 string assemblyFile = appenderElement.GetAttribute("assemblyFile");
                 string extPrefix = appenderElement.GetAttribute("prefix");
-				string prefix;
+                string prefix;
                 if (extPrefix != null && extPrefix.Length != 0) {
                     prefix = extPrefix + ".";
                 } else {
@@ -284,7 +284,7 @@ namespace NLog.Config
             LayoutAppenderFactory.AddLayoutAppendersFromAssembly(asm, prefix);
             AppenderFactory.AddAppendersFromAssembly(asm, prefix);
         }
-           
+
         private void ConfigureAppendersFromElement(XmlElement element) {
             if (element == null)
                 return;
@@ -309,7 +309,6 @@ namespace NLog.Config
                 {
                     string name = node.Name;
 
-                    InternalLogger.Debug("filter name: {0}", name);
                     Filter filter = FilterFactory.CreateFilter(name);
 
                     foreach (XmlAttribute attrib in ((XmlElement)node).Attributes) {
@@ -323,7 +322,7 @@ namespace NLog.Config
                 }
             }
         }
-        
+
         private void ConfigureAppenderFromXmlElement(Appender appender, XmlElement element) {
             Type appenderType = appender.GetType();
 
@@ -349,5 +348,5 @@ namespace NLog.Config
                 }
             }
         }
-     }
+    }
 }

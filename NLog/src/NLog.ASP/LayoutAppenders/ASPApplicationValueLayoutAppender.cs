@@ -42,6 +42,7 @@ namespace NLog.ASP.LayoutAppenders
     {
         private string _appVariable;
 
+        [RequiredParameter]
         public string Item
         {
             get { return _appVariable; }
