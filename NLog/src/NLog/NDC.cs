@@ -104,7 +104,7 @@ namespace NLog
                 return String.Empty;
 
             if (count == 1)
-                return GetTopMessage();
+                return ((string)stack[0]);
 
             int totalLength = ((string)stack[0]).Length;
             for (int i = 1; i < count; ++i) {
@@ -124,7 +124,7 @@ namespace NLog
             if (count >= stack.Count)
                 return GetAllMessages(separator);
 
-            int pos0 = stack.Count - 1 - count;
+            int pos0 = stack.Count - count;
             int totalLength = ((string)stack[pos0]).Length;
             for (int i = pos0 + 1; i < stack.Count; ++i) {
                 totalLength += separator.Length;
