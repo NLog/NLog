@@ -9,6 +9,7 @@
 <span class='k'>void</span> NLog_WarnA(<span class='k'>const</span> <span class='k'>char</span> *loggerName, <span class='k'>const</span> <span class='k'>char</span> *logMessage, ...); 
 <span class='k'>void</span> NLog_ErrorA(<span class='k'>const</span> <span class='k'>char</span> *loggerName, <span class='k'>const</span> <span class='k'>char</span> *logMessage, ...); 
 <span class='k'>void</span> NLog_FatalA(<span class='k'>const</span> <span class='k'>char</span> *loggerName, <span class='k'>const</span> <span class='k'>char</span> *logMessage, ...); 
+<span class='k'>void</span> NLog_LogVA(NLogLevel level, <span class='k'>const</span> <span class='k'>char</span> *loggerName, <span class='k'>const</span> <span class='k'>char</span> *logMessage, va_list args);
 
 <span class='c'>// </span>
 <span class='c'>// Unicode functions</span>
@@ -20,7 +21,6 @@
 <span class='k'>void</span> NLog_WarnW(<span class='k'>const</span> wchar_t *loggerName, <span class='k'>const</span> wchar_t *logMessage, ...); 
 <span class='k'>void</span> NLog_ErrorW(<span class='k'>const</span> wchar_t *loggerName, <span class='k'>const</span> wchar_t *logMessage, ...); 
 <span class='k'>void</span> NLog_FatalW(<span class='k'>const</span> wchar_t *loggerName, <span class='k'>const</span> wchar_t *logMessage, ...); 
-<span class='k'>void</span> NLog_LogVA(NLogLevel level, <span class='k'>const</span> <span class='k'>char</span> *loggerName, <span class='k'>const</span> <span class='k'>char</span> *logMessage, va_list args);
 <span class='k'>void</span> NLog_LogVW(NLogLevel level, <span class='k'>const</span> wchar_t *loggerName, <span class='k'>const</span> wchar_t *logMessage, va_list args);
 </span>
 </pre>

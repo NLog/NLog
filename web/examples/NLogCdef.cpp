@@ -4,6 +4,7 @@
 #ifdef UNICODE
 
 #define NLog_Log NLog_LogW
+#define NLog_LogV NLog_LogVW
 #define NLog_Debug NLog_DebugW
 #define NLog_Info NLog_InfoW
 #define NLog_Warn NLog_WarnW
@@ -14,6 +15,7 @@
 #else
 
 #define NLog_Log NLog_LogA
+#define NLog_LogV NLog_LogVA
 #define NLog_Debug NLog_DebugA
 #define NLog_Info NLog_InfoA
 #define NLog_Warn NLog_WarnA

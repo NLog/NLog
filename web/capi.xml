@@ -21,7 +21,7 @@
     <cs src="examples/NLogCdef.cpp" />
 
     <p>
-        Here's the short summary of what these functions do:
+        Here's the short summary of what these functions do (modulo their ANSI/UNICODE variants):
     </p>
 
     <ul>
@@ -31,6 +31,49 @@
             program if you want to specify your own config file. If you don't do this, NLog will attempt to find
             the config file the first time you use any of the logging functions using the logic described <link href="config">here</link>.
         </p>
+        <li><code>NLog_Log(level,logger,logMessage,...)</code></li>
+        <p>
+            Writes the specified <code>logMessage</code> at the specified <code>level</code> to the specified <code>logger</code>.
+            <code>level</code> is a NLogLevel enumeration value an can be one of the following constants:
+            <code>logMessage</code> is a message to be written. It may include <code>printf()</code>-style parameters.
+        </p>
+        <ul>
+            <li>NLOG_DEBUG</li>
+            <li>NLOG_INFO</li>
+            <li>NLOG_WARN</li>
+            <li>NLOG_ERROR</li>
+            <li>NLOG_FATAL</li>
+        </ul>
+        <p/>
+        <li><code>NLog_LogV(level,logger,logMessage,parameters)</code></li>
+        <p>
+            Same as <code>NLog_Log()</code> but lets you pass message parameters as <code>va_list</code> (useful for wrapping 
+            in your own logging layer).
+        </p>
+        <li><code>NLog_Debug(logger,logMessage,...)</code></li>
+        <p>
+            Equivalent to calling <code>NLog_Log(NLOG_DEBUG,logger,logMessage,...)</code>
+        </p>
+        <li><code>NLog_Info(logger,logMessage,...)</code></li>
+        <p>
+            Equivalent to calling <code>NLog_Log(NLOG_INFO,logger,logMessage,...)</code>
+        </p>
+        <li><code>NLog_Warn(logger,logMessage,...)</code></li>
+        <p>
+            Equivalent to calling <code>NLog_Log(NLOG_WARN,logger,logMessage,...)</code>
+        </p>
+        <li><code>NLog_Error(logger,logMessage,...)</code></li>
+        <p>
+            Equivalent to calling <code>NLog_Log(NLOG_ERROR,logger,logMessage,...)</code>
+        </p>
+        <li><code>NLog_Fatal(logger,logMessage,...)</code></li>
+        <p>
+            Equivalent to calling <code>NLog_Log(NLOG_FATAL,logger,logMessage,...)</code>
+        </p>
     </ul>
+    <p>
+        The C/C++ API as-is is meant primarily to be wrapped by your own high-level logging API (every programmer has one, hasn't he?).
+        An example of such an API implemented as C++ class is provided in <code>src/NLogC/NLogger.h</code>.
+    </p>
 </content>
 

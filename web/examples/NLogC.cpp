@@ -9,6 +9,7 @@ void NLog_InfoA(const char *loggerName, const char *logMessage, ...);
 void NLog_WarnA(const char *loggerName, const char *logMessage, ...); 
 void NLog_ErrorA(const char *loggerName, const char *logMessage, ...); 
 void NLog_FatalA(const char *loggerName, const char *logMessage, ...); 
+void NLog_LogVA(NLogLevel level, const char *loggerName, const char *logMessage, va_list args);
 
 // 
 // Unicode functions
@@ -20,5 +21,4 @@ void NLog_InfoW(const wchar_t *loggerName, const wchar_t *logMessage, ...);
 void NLog_WarnW(const wchar_t *loggerName, const wchar_t *logMessage, ...); 
 void NLog_ErrorW(const wchar_t *loggerName, const wchar_t *logMessage, ...); 
 void NLog_FatalW(const wchar_t *loggerName, const wchar_t *logMessage, ...); 
-void NLog_LogVA(NLogLevel level, const char *loggerName, const char *logMessage, va_list args);
 void NLog_LogVW(NLogLevel level, const wchar_t *loggerName, const wchar_t *logMessage, va_list args);

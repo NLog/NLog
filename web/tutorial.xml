@@ -3,6 +3,8 @@
 <content lang="en" id="tutorial">
     <h1>Tutorial</h1>
 
+    <p style="color: red">TODO - this tutorial needs a complete rewrite. It's too complex to be called a tutorial. Patches are welcome.</p>
+
     <h3>Basic concepts</h3>
     <p>NLog is a log routing engine. It processes log messages that are output by the components of your program,
         formats them according to your preference and outputs them to one or more place based on a set of rules.</p>
