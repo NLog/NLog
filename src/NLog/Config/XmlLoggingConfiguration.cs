@@ -108,7 +108,7 @@ namespace NLog.Config
                 if (File.Exists(newFileName)) {
                     ConfigureFromFile(newFileName);
                 } else {
-                    throw new FileNotFoundException("Included fine not found.", newFileName);
+                    throw new FileNotFoundException("Included fine not found: " + newFileName);
                 }
             }
             
