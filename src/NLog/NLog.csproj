@@ -91,7 +91,7 @@
                 />
                 <Reference
                     Name = "system.windows.forms"
-                    AssemblyName = "system.windows.forms"
+                    AssemblyName = "System.Windows.Forms"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\system.windows.forms.dll"
                 />
             </References>
@@ -325,6 +325,7 @@
                 />
                 <File
                     RelPath = "Internal\CompactFrameworkHelper.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
