@@ -94,20 +94,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Collections.xml"
-                    BuildAction = "Content"
-                    Generator = "SBCollectionGenerator"
-                    LastGenOutput = "Collections.cs"
-                />
-                <File
-                    RelPath = "Collections.cs"
-                    DependentUpon = "Collections.xml"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                    DesignTime = "True"
-                    AutoGen = "True"
-                />
-                <File
                     RelPath = "Layout.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -158,6 +144,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Appenders\AppenderCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Appenders\AppenderFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -193,6 +184,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Config\AppenderRuleCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Config\ConfigSectionHandler.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -219,6 +215,11 @@
                 />
                 <File
                     RelPath = "Filters\FilterAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Filters\FilterCollection.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -258,7 +259,27 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Internal\AppenderDictionary.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FilterDictionary.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Internal\InternalLogger.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\LayoutAppenderDictionary.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\LoggerDictionary.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -274,6 +295,11 @@
                 />
                 <File
                     RelPath = "Internal\PropertyHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\TypeDictionary.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -309,6 +335,11 @@
                 />
                 <File
                     RelPath = "LayoutAppenders\LayoutAppenderAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutAppenders\LayoutAppenderCollection.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -382,7 +413,6 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
-                <Folder RelPath = "Utils\" />
             </Include>
         </Files>
     </CSHARP>
