@@ -73,5 +73,15 @@ namespace NLog.Config
                 rule.Resolve(this);
             }
         }
+
+        public virtual ICollection FileNamesToWatch
+        {
+            get { return null; }
+        }
+
+        public virtual LoggingConfiguration Reload()
+        {
+            return null;
+        }
     }
 }

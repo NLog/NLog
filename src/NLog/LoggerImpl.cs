@@ -53,7 +53,20 @@ namespace NLog
             WriteToAppenders(level, _appendersByLevel[(int)level], formatProvider, message, args);
         }
 
+        internal string Name
+        {
+            get { return _loggerName; }
+        }
+
+        internal void Reconfig(ArrayList[] appendersByLevel)
+        {
+            _appendersByLevel = appendersByLevel;
+        }
+
         private void WriteToAppenders(LogLevel level, ArrayList appenders, IFormatProvider formatProvider, string message, object[] args) {
+            if (LogManager.ReloadConfigOnNextLog)
+                LogManager.ReloadConfig();
+
             if (appenders.Count == 0)
                 return;
 

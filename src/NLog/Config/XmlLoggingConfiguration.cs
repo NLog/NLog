@@ -45,36 +45,71 @@ namespace NLog.Config
     public class XmlLoggingConfiguration : LoggingConfiguration
     {
         private Hashtable _visitedFile = new Hashtable();
+        
+        private bool _autoReload = false;
+        private string _originalFileName = null;
+
+        public bool AutoReload
+        {
+            get { return _autoReload; }
+            set { _autoReload = value; }
+        }
             
         public XmlLoggingConfiguration() { }
         public XmlLoggingConfiguration(string fileName) {
+            _originalFileName = fileName;
             ConfigureFromFile(fileName);
         }
-        
-        public XmlLoggingConfiguration(XmlElement configElement, string baseDirectory) {
-            ConfigureFromXmlElement(configElement, baseDirectory);
+
+        public override ICollection FileNamesToWatch
+        {
+            get {
+                if (_autoReload)
+                    return _visitedFile.Keys;
+                else
+                    return null;
+            }
         }
 
+        public override LoggingConfiguration Reload()
+        {
+            return new XmlLoggingConfiguration(_originalFileName);
+        }
+        
         private void ConfigureFromFile(string fileName) {
-            string key = fileName.ToLower();
+            string key = Path.GetFullPath(fileName).ToLower();
             if (_visitedFile.Contains(key))
                 return;
 
             _visitedFile[key] = this;
-            
+
             XmlDocument doc = new XmlDocument();
             doc.Load(fileName);
-            ConfigureFromXmlElement(doc.DocumentElement, Path.GetDirectoryName(fileName));
+            if (doc.DocumentElement.LocalName == "configuration") {
+                foreach (XmlElement el in doc.DocumentElement.GetElementsByTagName("nlog")) {
+                    ConfigureFromXmlElement(el, Path.GetDirectoryName(fileName));
+                }
+            } else {
+                ConfigureFromXmlElement(doc.DocumentElement, Path.GetDirectoryName(fileName));
+            }
         }
 
         private void ConfigureFromXmlElement(XmlElement configElement, string baseDirectory) {
+            if (configElement.HasAttribute("autoReload")) {
+                AutoReload = true;
+            }
+
             foreach (XmlElement el in configElement.GetElementsByTagName("include"))
             {
                 Layout layout = new Layout(el.GetAttribute("file"));
 
                 string newFileName = layout.GetFormattedMessage(LogEventInfo.Empty);
                 newFileName = Path.Combine(baseDirectory, newFileName);
-                ConfigureFromFile(newFileName);
+                if (File.Exists(newFileName)) {
+                    ConfigureFromFile(newFileName);
+                } else {
+                    throw new FileNotFoundException("Included fine not found.", newFileName);
+                }
             }
             
             foreach (XmlElement el in configElement.GetElementsByTagName("layout-appenders"))

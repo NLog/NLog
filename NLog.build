@@ -107,6 +107,8 @@
             </references>
         </csc>
         <copy file="src/NLog.Test/App.config" tofile="${output.dir}/NLog.Test.exe.config" />
+        <copy file="src/NLog.Test/Config1.nlog" tofile="${output.dir}/Config1.nlog" />
+        <copy file="src/NLog.Test/Config2.nlog" tofile="${output.dir}/Config2.nlog" />
     </target>
 
     <target name="register-com" depends="configure">
@@ -120,7 +122,7 @@
     </target>
 
     <target name="test" depends="NLog.Test">
-        <exec program="${output.dir}/NLog.Test.exe" />
+        <exec program="${output.dir}/NLog.Test.exe" workingdir="${output.dir}" />
     </target>
 
     <target name="webtest" depends="build">
