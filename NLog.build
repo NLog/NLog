@@ -21,9 +21,9 @@
 
     <target name="configure">
         <call target="configure-${framework::get-target-framework()}" />
-        <property name="output.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/bin" unless="${property::exists('output.dir')}" />
-        <property name="website.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/doc" unless="${property::exists('website.dir')}" />
-        <mkdir dir="${output.dir}" />
+        <property name="nlog.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/bin" overwrite="false" />
+        <property name="website.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/doc" overwrite="false" />
+        <mkdir dir="${nlog.dir}" />
         <mkdir dir="${website.dir}" />
     </target>
 
@@ -42,10 +42,10 @@
     </target>
 
     <target name="package" depends="build, website, doc">
-        <property name="zip.file" value="${nant.project.basedir}/nlog-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" unless="${property::exists('zip.file')}" />
-        <copy file="LICENSE.txt" tofile="${output.dir}/../LICENSE.txt" />
+        <property name="zip.file" value="${nant.project.basedir}/nlog-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" overwrite="false" />
+        <copy file="LICENSE.txt" tofile="${nlog.dir}/../LICENSE.txt" />
         <zip zipfile="${zip.file}">
-            <fileset basedir="${output.dir}/..">
+            <fileset basedir="${nlog.dir}/..">
                 <include name="bin/*" />
                 <include name="doc/*" />
                 <include name="doc/examples/**/*" />
@@ -56,12 +56,12 @@
     </target>
 
     <target name="clean" depends="configure">
-        <delete dir="${output.dir}" />
+        <delete dir="${nlog.dir}" />
         <delete dir="${website.dir}" />
     </target>
 
     <target name="NLog" depends="configure">
-        <csc target="library" output="${output.dir}/NLog.dll" doc="${output.dir}/NLog.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.dll" doc="${nlog.dir}/NLog.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
             <sources basedir="src/NLog">
                 <include name="**/*.cs" />
             </sources>
@@ -80,12 +80,12 @@
     </target>
 
     <target name="NLog.ComInterop" depends="NLog">
-        <csc target="library" output="${output.dir}/NLog.ComInterop.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.ComInterop.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
             <sources basedir="src/NLog.ComInterop">
                 <include name="**/*.cs" />
             </sources>
             <references>
-                <include name="${output.dir}/NLog.dll" />
+                <include name="${nlog.dir}/NLog.dll" />
                 <include name="mscorlib.dll" />
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
@@ -97,12 +97,12 @@
     </target>
 
     <target name="NLog.CompactFramework" depends="NLog">
-        <csc target="library" output="${output.dir}/NLog.CompactFramework.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.CompactFramework.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
             <sources basedir="src/NLog.CompactFramework">
                 <include name="**/*.cs" />
             </sources>
             <references>
-                <include name="${output.dir}/NLog.dll" />
+                <include name="${nlog.dir}/NLog.dll" />
                 <include name="mscorlib.dll" />
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
@@ -114,12 +114,12 @@
     </target>
 
     <target name="NLog.Win32" depends="NLog">
-        <csc target="library" output="${output.dir}/NLog.Win32.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.Win32.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
             <sources basedir="src/NLog.Win32">
                 <include name="**/*.cs" />
             </sources>
             <references>
-                <include name="${output.dir}/NLog.dll" />
+                <include name="${nlog.dir}/NLog.dll" />
             </references>
             <nowarn>
                 <warning number="1591" />
@@ -129,12 +129,12 @@
 
     <target name="NLog.DotNet" depends="NLog">
         <!-- don't build it yet - we don't have anything .NET-specific -->
-        <csc target="library" output="${output.dir}/NLog.DotNet.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.DotNet.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
             <sources basedir="src/NLog.DotNet">
                 <include name="**/*.cs" />
             </sources>
             <references>
-                <include name="${output.dir}/NLog.dll" />
+                <include name="${nlog.dir}/NLog.dll" />
             </references>
             <nowarn>
                 <warning number="1591" />
@@ -144,12 +144,12 @@
 
     <target name="NLog.Mono" depends="NLog">
         <!-- don't build it yet - we don't have anything Mono-specific -->
-        <csc target="library" output="${output.dir}/NLog.Mono.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.Mono.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
             <sources basedir="src/NLog.Mono">
                 <include name="**/*.cs" />
             </sources>
             <references>
-                <include name="${output.dir}/NLog.dll" />
+                <include name="${nlog.dir}/NLog.dll" />
             </references>
             <nowarn>
                 <warning number="1591" />
@@ -158,12 +158,12 @@
     </target>
 
     <target name="NLog.Unix" depends="NLog">
-        <csc target="library" output="${output.dir}/NLog.Unix.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.Unix.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
             <sources basedir="src/NLog.Unix">
                 <include name="**/*.cs" />
             </sources>
             <references>
-                <include name="${output.dir}/NLog.dll" />
+                <include name="${nlog.dir}/NLog.dll" />
             </references>
             <nowarn>
                 <warning number="1591" />
@@ -172,57 +172,57 @@
     </target>
 
     <target name="NLog.Test" depends="NLog">
-        <csc target="exe" output="${output.dir}/NLog.Test.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="exe" output="${nlog.dir}/NLog.Test.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
             <sources basedir="src/NLog.Test">
                 <include name="**/*.cs" />
             </sources>
             <references>
-                <include name="${output.dir}/NLog.dll" />
+                <include name="${nlog.dir}/NLog.dll" />
                 <include name="mscorlib.dll" />
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
             </references>
         </csc>
-        <copy file="src/NLog.Test/App.config" tofile="${output.dir}/NLog.Test.exe.config" />
-        <copy file="src/NLog.Test/Config1.nlog" tofile="${output.dir}/Config1.nlog" />
-        <copy file="src/NLog.Test/Config2.nlog" tofile="${output.dir}/Config2.nlog" />
+        <copy file="src/NLog.Test/App.config" tofile="${nlog.dir}/NLog.Test.exe.config" />
+        <copy file="src/NLog.Test/Config1.nlog" tofile="${nlog.dir}/Config1.nlog" />
+        <copy file="src/NLog.Test/Config2.nlog" tofile="${nlog.dir}/Config2.nlog" />
     </target>
 
     <target name="NLog.Benchmark" depends="NLog">
-        <csc target="exe" output="${output.dir}/NLog.Benchmark.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="exe" output="${nlog.dir}/NLog.Benchmark.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
             <sources basedir="src/NLog.Benchmark">
                 <include name="**/*.cs" />
             </sources>
             <references>
-                <include name="${output.dir}/NLog.dll" />
+                <include name="${nlog.dir}/NLog.dll" />
                 <include name="mscorlib.dll" />
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
             </references>
         </csc>
-        <copy file="src/NLog.Benchmark/App.config" tofile="${output.dir}/NLog.Benchmark.exe.config" />
+        <copy file="src/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark.exe.config" />
     </target>
 
     <target name="register-com" depends="configure">
         <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'regasm.exe')}"
-            commandline="/tlb ${output.dir}/NLog.ComInterop.dll" />
+            commandline="/tlb ${nlog.dir}/NLog.ComInterop.dll" />
     </target>
 
     <target name="register-com-with-codebase" depends="configure">
         <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'regasm.exe')}"
-            commandline="/tlb /codebase ${output.dir}/NLog.ComInterop.dll" />
+            commandline="/tlb /codebase ${nlog.dir}/NLog.ComInterop.dll" />
     </target>
 
     <target name="test" depends="NLog.Test, build">
-        <exec program="${output.dir}/NLog.Test.exe" workingdir="${output.dir}" />
+        <exec program="${nlog.dir}/NLog.Test.exe" workingdir="${nlog.dir}" />
     </target>
 
     <target name="benchmark" depends="NLog.Benchmark, build">
-        <exec program="${output.dir}/NLog.Benchmark.exe" workingdir="${output.dir}" />
+        <exec program="${nlog.dir}/NLog.Benchmark.exe" workingdir="${nlog.dir}" />
     </target>
 
     <target name="longbenchmark" depends="NLog.Benchmark, build">
-        <exec program="${output.dir}/NLog.Benchmark.exe" commandline="long" workingdir="${output.dir}" />
+        <exec program="${nlog.dir}/NLog.Benchmark.exe" commandline="long" workingdir="${nlog.dir}" />
     </target>
 
     <target name="benchmark-all">
@@ -241,7 +241,7 @@
 
     <target name="webtest" depends="build">
         <copy todir="webtest/bin">
-            <fileset basedir="${output.dir}">
+            <fileset basedir="${nlog.dir}">
                 <include name="*.dll" />
             </fileset>
         </copy>
@@ -334,7 +334,7 @@
             <targetfiles>
                 <include name="${website.dir}/help/NLog.chm" />
             </targetfiles>
-            <sourcefiles basedir="${output.dir}">
+            <sourcefiles basedir="${nlog.dir}">
                 <include name="**/*.dll" />
             </sourcefiles>
         </uptodate>
@@ -342,7 +342,7 @@
             <delete dir="${website.dir}/help" if="${directory::exists(website.dir+'/help')}" />
             <mkdir dir="${website.dir}/help" />
             <ndoc>
-                <assemblies basedir="${output.dir}">
+                <assemblies basedir="${nlog.dir}">
                     <include name="NLog.dll" />
                 </assemblies>
                 <documenters>
