@@ -206,6 +206,11 @@ namespace NLog.Appenders
             }
         }
 
+        protected internal override int NeedsStackTrace()
+        {
+            return Math.Max(base.NeedsStackTrace(), _fileNameLayout.NeedsStackTrace());
+        }
+
         protected internal override void Append(LogEventInfo ev)
         {
             lock (this)
