@@ -16,9 +16,9 @@
  </ProjectOptions>
  <Targets>
   <AssemblyReferenceDirectories>
-   <Directory>D:\Work\NLog\src\NLog.Test\bin\Debug\</Directory>
+   <Directory>D:\Work\NLog\NLog.Test\bin\Debug\</Directory>
   </AssemblyReferenceDirectories>
-  <Target Name="D:\Work\NLog\src\NLog\bin\Debug\NLog.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="src\NLog\bin\Debug\NLog.dll" Analyze="True" AnalyzeAllChildren="True" />
  </Targets>
  <Rules>
   <RuleFiles>
@@ -33,7 +33,7 @@
   <Groups />
   <Settings />
  </Rules>
- <FxCopReport Version="1.3" LastAnalysis="2004-08-14 08:15:15Z">
+ <FxCopReport Version="1.3" LastAnalysis="2004-08-24 06:51:05Z">
   <Namespaces>
    <Namespace Name="NLog.Config">
     <Messages>
@@ -55,12 +55,72 @@
    </Namespace>
   </Namespaces>
   <Targets>
-   <Target Name="D:\Work\NLog\src\NLog\bin\Debug\NLog.dll">
+   <Target Name="src\NLog\bin\Debug\NLog.dll">
     <Modules>
      <Module Name="nlog.dll">
       <Namespaces>
        <Namespace Name="NLog.LayoutAppenders">
         <Classes>
+         <Class Name="TicksLayoutAppender">
+          <Methods>
+           <Method Name="Append(System.Text.StringBuilder,NLog.LogEventInfo):System.Void">
+            <Messages>
+             <Message ID="System.Int64.ToString(System.String)" Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="IFormatProviderShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="D:\Work\NLog\src\NLog\LayoutAppenders" File="Ticks.cs" Line="50" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>Int64.ToString(String format)</Item>
+                   <Item>Int64.ToString(String format, IFormatProvider provider)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+          </Methods>
+         </Class>
+         <Class Name="MDCLayoutAppender">
+          <Messages>
+           <Message Status="Active" Created="2004-08-24 06:49:12Z">
+            <Rule TypeName="TypeNamesHaveOnlyShortAcronymsAllCaps" />
+            <Issues>
+             <Issue Certainty="75" Level="Error">
+              <Resolution>
+               <Data>
+                <Items>
+                 <Item>MDCLayoutAppender</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+            </Issues>
+           </Message>
+          </Messages>
+         </Class>
+         <Class Name="NDCLayoutAppender">
+          <Messages>
+           <Message Status="Active" Created="2004-08-24 06:49:12Z">
+            <Rule TypeName="TypeNamesHaveOnlyShortAcronymsAllCaps" />
+            <Issues>
+             <Issue Certainty="75" Level="Error">
+              <Resolution>
+               <Data>
+                <Items>
+                 <Item>NDCLayoutAppender</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+            </Issues>
+           </Message>
+          </Messages>
+         </Class>
          <Class Name="NLogDirLayoutAppender">
           <Constructors>
            <Constructor Name=".cctor()">
@@ -113,34 +173,13 @@
         <Classes>
          <Class Name="XmlLoggingConfiguration">
           <Methods>
-           <Method Name="LogLevelFromString(System.String):NLog.LogLevel">
-            <Messages>
-             <Message ID="Unknown log level: ___" Status="Active" Created="2004-08-14 08:07:47Z">
-              <Rule TypeName="DoNotPassLiteralsAsLocalizedParameters" />
-              <Issues>
-               <Issue Certainty="95" Level="Error">
-                <SourceCode Path="d:\work\nlog\src\nlog\config" File="xmlloggingconfiguration.cs" Line="165" />
-                <Resolution>
-                 <Data>
-                  <Items>
-                   <Item>1</Item>
-                   <Item>System.ArgumentException..ctor</Item>
-                   <Item>Unknown log level: ___</Item>
-                  </Items>
-                 </Data>
-                </Resolution>
-               </Issue>
-              </Issues>
-             </Message>
-            </Messages>
-           </Method>
            <Method Name="AddExtensionsFromElement(System.Xml.XmlElement,System.String):System.Void">
             <Messages>
              <Message Status="Active" Created="2004-08-14 08:10:02Z">
               <Rule TypeName="ExceptionAndSystemExceptionTypesAreNotCaught" />
               <Issues>
                <Issue Certainty="95" Level="CriticalError">
-                <SourceCode Path="d:\work\nlog\src\nlog\config" File="xmlloggingconfiguration.cs" Line="244" />
+                <SourceCode Path="D:\Work\NLog\src\NLog\Config" File="XmlLoggingConfiguration.cs" Line="238" />
                 <Resolution>
                  <Data>
                   <Items>
@@ -151,7 +190,7 @@
                 </Resolution>
                </Issue>
                <Issue Certainty="95" Level="CriticalError">
-                <SourceCode Path="d:\work\nlog\src\nlog\config" File="xmlloggingconfiguration.cs" Line="266" />
+                <SourceCode Path="D:\Work\NLog\src\NLog\Config" File="XmlLoggingConfiguration.cs" Line="260" />
                 <Resolution>
                  <Data>
                   <Items>
@@ -162,7 +201,7 @@
                 </Resolution>
                </Issue>
                <Issue Certainty="95" Level="CriticalError">
-                <SourceCode Path="d:\work\nlog\src\nlog\config" File="xmlloggingconfiguration.cs" Line="281" />
+                <SourceCode Path="D:\Work\NLog\src\NLog\Config" File="XmlLoggingConfiguration.cs" Line="275" />
                 <Resolution>
                  <Data>
                   <Items>
@@ -206,63 +245,23 @@
            </Method>
           </Methods>
          </Class>
-         <Class Name="AppenderFactory">
-          <Constructors>
-           <Constructor Name=".cctor()">
-            <Messages>
-             <Message Status="Excluded" Created="2004-08-14 08:10:02Z">
-              <Rule TypeName="DoNotDeclareExplicitStaticConstructors" />
-              <Issues>
-               <Issue Certainty="90" Level="CriticalWarning">
-                <SourceCode Path="D:\Work\NLog\src\NLog" File="AppenderFactory.cs" Line="44" />
-                <Resolution>
-                 <Data>
-                  <Items>
-                   <Item>AppenderFactory</Item>
-                  </Items>
-                 </Data>
-                </Resolution>
-               </Issue>
-              </Issues>
-             </Message>
-            </Messages>
-           </Constructor>
-          </Constructors>
-          <Methods>
-           <Method Name="CreateAppender(System.String):NLog.Appender">
-            <Messages>
-             <Message ID="Appender ______ not found." Status="Active" Created="2004-08-14 08:10:02Z">
-              <Rule TypeName="DoNotPassLiteralsAsLocalizedParameters" />
-              <Issues>
-               <Issue Certainty="95" Level="Error">
-                <SourceCode Path="d:\work\nlog\src\nlog" File="appenderfactory.cs" Line="91" />
-                <Resolution>
-                 <Data>
-                  <Items>
-                   <Item>1</Item>
-                   <Item>System.ArgumentException..ctor</Item>
-                   <Item>Appender ______ not found.</Item>
-                  </Items>
-                 </Data>
-                </Resolution>
-               </Issue>
-               <Issue Certainty="95" Level="Error">
-                <SourceCode Path="d:\work\nlog\src\nlog" File="appenderfactory.cs" Line="89" />
-                <Resolution>
-                 <Data>
-                  <Items>
-                   <Item>1</Item>
-                   <Item>System.ArgumentException..ctor</Item>
-                   <Item>Appender ______ not found.</Item>
-                  </Items>
-                 </Data>
-                </Resolution>
-               </Issue>
-              </Issues>
-             </Message>
-            </Messages>
-           </Method>
-          </Methods>
+         <Class Name="MDC">
+          <Messages>
+           <Message Status="Active" Created="2004-08-24 06:49:12Z">
+            <Rule TypeName="TypeNamesHaveOnlyShortAcronymsAllCaps" />
+            <Issues>
+             <Issue Certainty="75" Level="Error">
+              <Resolution>
+               <Data>
+                <Items>
+                 <Item>MDC</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+            </Issues>
+           </Message>
+          </Messages>
          </Class>
          <Class Name="InternalLogger">
           <Constructors>
@@ -272,7 +271,7 @@
               <Rule TypeName="ExceptionAndSystemExceptionTypesAreNotCaught" />
               <Issues>
                <Issue Certainty="95" Level="CriticalError">
-                <SourceCode Path="d:\work\nlog\src\nlog" File="internallogger.cs" Line="66" />
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="85" />
                 <Resolution>
                  <Data>
                   <Items>
@@ -303,17 +302,768 @@
            </Constructor>
           </Constructors>
           <Methods>
+           <Method Name="Fatal(System.String):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="209" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>NLog.InternalLogger.Fatal(System.String)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="Error(System.IFormatProvider,System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="186" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>NLog.InternalLogger.Error(System.IFormatProvider,System.String,System.Object[])</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="Warn(System.String):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="181" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>NLog.InternalLogger.Warn(System.String)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="Warn(System.IFormatProvider,System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="172" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>NLog.InternalLogger.Warn(System.IFormatProvider,System.String,System.Object[])</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="Fatal(System.IFormatProvider,System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="200" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>NLog.InternalLogger.Fatal(System.IFormatProvider,System.String,System.Object[])</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="Fatal(System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="205" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>NLog.InternalLogger.Fatal(System.String,System.Object[])</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="Debug(System.IFormatProvider,System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="150" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>NLog.InternalLogger.Debug(System.IFormatProvider,System.String,System.Object[])</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="Info(System.IFormatProvider,System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="158" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>NLog.InternalLogger.Info(System.IFormatProvider,System.String,System.Object[])</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="Log(NLog.LogLevel,System.IFormatProvider,System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="138" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>NLog.InternalLogger.Log(NLog.LogLevel,System.IFormatProvider,System.String,System.Object[])</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="Log(NLog.LogLevel,System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="143" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>NLog.InternalLogger.Log(NLog.LogLevel,System.String,System.Object[])</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="Warn(System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="177" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>NLog.InternalLogger.Warn(System.String,System.Object[])</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="Log(NLog.LogLevel,System.String):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="147" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>NLog.InternalLogger.Log(NLog.LogLevel,System.String)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
            <Method Name="Write(NLog.LogLevel,System.IFormatProvider,System.String,System.Object[]):System.Void">
             <Messages>
              <Message Status="Active" Created="2004-08-14 08:10:02Z">
               <Rule TypeName="ExceptionAndSystemExceptionTypesAreNotCaught" />
               <Issues>
                <Issue Certainty="95" Level="CriticalError">
-                <SourceCode Path="d:\work\nlog\src\nlog" File="internallogger.cs" Line="95" />
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="126" />
                 <Resolution>
                  <Data>
                   <Items>
                    <Item>Write</Item>
+                   <Item>Exception</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+          </Methods>
+          <Properties>
+           <Property Name="IsErrorEnabled">
+            <Methods>
+             <Method Name="get_IsErrorEnabled():System.Boolean">
+              <Messages>
+               <Message Status="Active" Created="2004-08-24 06:49:12Z">
+                <Rule TypeName="AvoidBuildingNonCallableCode" />
+                <Issues>
+                 <Issue Certainty="75" Level="Warning">
+                  <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="133" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>NLog.InternalLogger.get_IsErrorEnabled</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Method>
+            </Methods>
+           </Property>
+           <Property Name="IsFatalEnabled">
+            <Methods>
+             <Method Name="get_IsFatalEnabled():System.Boolean">
+              <Messages>
+               <Message Status="Active" Created="2004-08-24 06:49:12Z">
+                <Rule TypeName="AvoidBuildingNonCallableCode" />
+                <Issues>
+                 <Issue Certainty="75" Level="Warning">
+                  <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="134" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>NLog.InternalLogger.get_IsFatalEnabled</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Method>
+            </Methods>
+           </Property>
+           <Property Name="LogLevel">
+            <Methods>
+             <Method Name="get_LogLevel():NLog.LogLevel">
+              <Messages>
+               <Message Status="Active" Created="2004-08-24 06:49:12Z">
+                <Rule TypeName="AvoidBuildingNonCallableCode" />
+                <Issues>
+                 <Issue Certainty="75" Level="Warning">
+                  <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="53" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>NLog.InternalLogger.get_LogLevel</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Method>
+            </Methods>
+           </Property>
+           <Property Name="LogToConsole">
+            <Methods>
+             <Method Name="get_LogToConsole():System.Boolean">
+              <Messages>
+               <Message Status="Active" Created="2004-08-24 06:49:12Z">
+                <Rule TypeName="AvoidBuildingNonCallableCode" />
+                <Issues>
+                 <Issue Certainty="75" Level="Warning">
+                  <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="59" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>NLog.InternalLogger.get_LogToConsole</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Method>
+            </Methods>
+           </Property>
+           <Property Name="IsInfoEnabled">
+            <Methods>
+             <Method Name="get_IsInfoEnabled():System.Boolean">
+              <Messages>
+               <Message Status="Active" Created="2004-08-24 06:49:12Z">
+                <Rule TypeName="AvoidBuildingNonCallableCode" />
+                <Issues>
+                 <Issue Certainty="75" Level="Warning">
+                  <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="131" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>NLog.InternalLogger.get_IsInfoEnabled</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Method>
+            </Methods>
+           </Property>
+           <Property Name="IsDebugEnabled">
+            <Methods>
+             <Method Name="get_IsDebugEnabled():System.Boolean">
+              <Messages>
+               <Message Status="Active" Created="2004-08-24 06:49:12Z">
+                <Rule TypeName="AvoidBuildingNonCallableCode" />
+                <Issues>
+                 <Issue Certainty="75" Level="Warning">
+                  <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="130" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>NLog.InternalLogger.get_IsDebugEnabled</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Method>
+            </Methods>
+           </Property>
+           <Property Name="IsWarnEnabled">
+            <Methods>
+             <Method Name="get_IsWarnEnabled():System.Boolean">
+              <Messages>
+               <Message Status="Active" Created="2004-08-24 06:49:12Z">
+                <Rule TypeName="AvoidBuildingNonCallableCode" />
+                <Issues>
+                 <Issue Certainty="75" Level="Warning">
+                  <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="132" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>NLog.InternalLogger.get_IsWarnEnabled</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Method>
+            </Methods>
+           </Property>
+           <Property Name="LogFile">
+            <Methods>
+             <Method Name="set_LogFile(System.String):System.Void">
+              <Messages>
+               <Message Status="Active" Created="2004-08-24 06:49:12Z">
+                <Rule TypeName="AvoidBuildingNonCallableCode" />
+                <Issues>
+                 <Issue Certainty="75" Level="Warning">
+                  <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="66" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>NLog.InternalLogger.set_LogFile(System.String)</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Method>
+             <Method Name="get_LogFile():System.String">
+              <Messages>
+               <Message Status="Active" Created="2004-08-24 06:49:12Z">
+                <Rule TypeName="AvoidBuildingNonCallableCode" />
+                <Issues>
+                 <Issue Certainty="75" Level="Warning">
+                  <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="65" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>NLog.InternalLogger.get_LogFile</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Method>
+            </Methods>
+           </Property>
+          </Properties>
+         </Class>
+         <Class Name="AppenderWithFilterChain">
+          <Properties>
+           <Property Name="FilterChain">
+            <Methods>
+             <Method Name="set_FilterChain(System.Collections.ArrayList):System.Void">
+              <Messages>
+               <Message Status="Active" Created="2004-08-24 06:49:12Z">
+                <Rule TypeName="AvoidBuildingNonCallableCode" />
+                <Issues>
+                 <Issue Certainty="75" Level="Warning">
+                  <SourceCode Path="D:\Work\NLog\src\NLog" File="AppenderWithFilterChain.cs" Line="61" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>NLog.AppenderWithFilterChain.set_FilterChain(System.Collections.ArrayList)</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Method>
+            </Methods>
+           </Property>
+           <Property Name="Appender">
+            <Methods>
+             <Method Name="set_Appender(NLog.Appender):System.Void">
+              <Messages>
+               <Message Status="Active" Created="2004-08-24 06:49:12Z">
+                <Rule TypeName="AvoidBuildingNonCallableCode" />
+                <Issues>
+                 <Issue Certainty="75" Level="Warning">
+                  <SourceCode Path="D:\Work\NLog\src\NLog" File="AppenderWithFilterChain.cs" Line="55" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>NLog.AppenderWithFilterChain.set_Appender(NLog.Appender)</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Method>
+            </Methods>
+           </Property>
+          </Properties>
+         </Class>
+         <Class Name="Filter">
+          <Properties>
+           <Property Name="Action">
+            <Methods>
+             <Method Name="set_Action(System.String):System.Void">
+              <Messages>
+               <Message ID="Invalid value for the 'Action' parameter. Can be log/ignore/neutral" Status="Active" Created="2004-08-24 06:49:12Z">
+                <Rule TypeName="DoNotPassLiteralsAsLocalizedParameters" />
+                <Issues>
+                 <Issue Certainty="95" Level="Error">
+                  <SourceCode Path="D:\Work\NLog\src\NLog" File="Filter.cs" Line="70" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>1</Item>
+                     <Item>System.ArgumentException..ctor</Item>
+                     <Item>Invalid value for the 'Action' parameter. Can be log/ignore/neutral</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Method>
+            </Methods>
+           </Property>
+          </Properties>
+         </Class>
+         <Class Name="AppenderFactory">
+          <Constructors>
+           <Constructor Name=".cctor()">
+            <Messages>
+             <Message Status="Excluded" Created="2004-08-14 08:10:02Z">
+              <Rule TypeName="DoNotDeclareExplicitStaticConstructors" />
+              <Issues>
+               <Issue Certainty="90" Level="CriticalWarning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="AppenderFactory.cs" Line="44" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>AppenderFactory</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Constructor>
+          </Constructors>
+          <Methods>
+           <Method Name="CreateAppender(System.String):NLog.Appender">
+            <Messages>
+             <Message ID="Appender ______ not found." Status="Active" Created="2004-08-14 08:10:02Z">
+              <Rule TypeName="DoNotPassLiteralsAsLocalizedParameters" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="AppenderFactory.cs" Line="91" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>1</Item>
+                   <Item>System.ArgumentException..ctor</Item>
+                   <Item>Appender ______ not found.</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="AppenderFactory.cs" Line="89" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>1</Item>
+                   <Item>System.ArgumentException..ctor</Item>
+                   <Item>Appender ______ not found.</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+          </Methods>
+         </Class>
+         <Class Name="NDC">
+          <Messages>
+           <Message Status="Active" Created="2004-08-24 06:49:12Z">
+            <Rule TypeName="TypeNamesHaveOnlyShortAcronymsAllCaps" />
+            <Issues>
+             <Issue Certainty="75" Level="Error">
+              <Resolution>
+               <Data>
+                <Items>
+                 <Item>NDC</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+            </Issues>
+           </Message>
+          </Messages>
+          <Methods>
+           <Method Name="Push(System.String):System.IDisposable">
+            <Parameters>
+             <Parameter Name="0">
+              <Messages>
+               <Message Status="Active" Created="2004-08-24 06:49:12Z">
+                <Rule TypeName="ParameterNamesDoNotMatchKeywords" />
+                <Issues>
+                 <Issue Certainty="95" Level="Error">
+                  <SourceCode Path="D:\Work\NLog\src\NLog" File="NDC.cs" Line="46" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>text</Item>
+                     <Item>Text</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Parameter>
+            </Parameters>
+           </Method>
+           <Method Name="GetTopMessage():System.String">
+            <Messages>
+             <Message Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="ConsiderReplacingMethodsWithProperties" />
+              <Issues>
+               <Issue Certainty="50" Level="Warning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="NDC.cs" Line="64" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>GetTopMessage</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+          </Methods>
+         </Class>
+         <Class Name="Logger">
+          <Methods>
+           <Method Name="LogLevelFromString(System.String):NLog.LogLevel">
+            <Messages>
+             <Message ID="Unknown log level: ___" Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="DoNotPassLiteralsAsLocalizedParameters" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="Logger.cs" Line="816" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>1</Item>
+                   <Item>System.ArgumentException..ctor</Item>
+                   <Item>Unknown log level: ___</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+          </Methods>
+         </Class>
+         <Class Name="FilterFactory">
+          <Constructors>
+           <Constructor Name=".cctor()">
+            <Messages>
+             <Message Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="DoNotDeclareExplicitStaticConstructors" />
+              <Issues>
+               <Issue Certainty="90" Level="CriticalWarning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="FilterFactory.cs" Line="44" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>FilterFactory</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Constructor>
+          </Constructors>
+          <Methods>
+           <Method Name="CreateFilter(System.String):NLog.Filter">
+            <Messages>
+             <Message ID="Filter ______ not found." Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="DoNotPassLiteralsAsLocalizedParameters" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="FilterFactory.cs" Line="91" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>1</Item>
+                   <Item>System.ArgumentException..ctor</Item>
+                   <Item>Filter ______ not found.</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="FilterFactory.cs" Line="89" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>1</Item>
+                   <Item>System.ArgumentException..ctor</Item>
+                   <Item>Filter ______ not found.</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+          </Methods>
+         </Class>
+         <Class Name="LoggerImpl">
+          <Methods>
+           <Method Name="WriteToAppenders(NLog.LogLevel,NLog.AppenderWithFilterChain,System.IFormatProvider,System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-24 06:49:12Z">
+              <Rule TypeName="ExceptionAndSystemExceptionTypesAreNotCaught" />
+              <Issues>
+               <Issue Certainty="95" Level="CriticalError">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="LoggerImpl.cs" Line="158" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>WriteToAppenders</Item>
+                   <Item>Exception</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+               <Issue Certainty="95" Level="CriticalError">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="LoggerImpl.cs" Line="166" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>WriteToAppenders</Item>
                    <Item>Exception</Item>
                   </Items>
                  </Data>
@@ -373,30 +1123,6 @@
            </Method>
           </Methods>
          </Class>
-         <Class Name="LoggerImpl">
-          <Methods>
-           <Method Name="WriteToAppenders(NLog.LogLevel,System.Collections.ArrayList,System.IFormatProvider,System.String,System.Object[]):System.Void">
-            <Messages>
-             <Message Status="Active" Created="2004-08-14 08:10:02Z">
-              <Rule TypeName="ExceptionAndSystemExceptionTypesAreNotCaught" />
-              <Issues>
-               <Issue Certainty="95" Level="CriticalError">
-                <SourceCode Path="D:\Work\NLog\src\NLog" File="LoggerImpl.cs" Line="124" />
-                <Resolution>
-                 <Data>
-                  <Items>
-                   <Item>WriteToAppenders</Item>
-                   <Item>Exception</Item>
-                  </Items>
-                 </Data>
-                </Resolution>
-               </Issue>
-              </Issues>
-             </Message>
-            </Messages>
-           </Method>
-          </Methods>
-         </Class>
         </Classes>
         <ValueTypes>
          <ValueType Name="LogEventInfo">
@@ -436,6 +1162,17 @@
    </Target>
   </Targets>
   <Rules>
+   <Rule TypeName="AvoidBuildingNonCallableCode">
+    <Name>Avoid building non-callable code into assemblies</Name>
+    <Description>There is code that appears to not be callable from a public or protected code path.</Description>
+    <LongDescription>If this violation fires in error, please send a problem report to the FxCop team.</LongDescription>
+    <GroupOwner>MS FxCopDev</GroupOwner>
+    <DevOwner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/Performance/UncallableCode.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <File Name="PerformanceRules.dll" Version="1.30.0.0" />
+   </Rule>
    <Rule TypeName="AvoidNamespacesWithFewMembers">
     <Name>Avoid having a namespace with a small number of types</Name>
     <Description>A namespace should generally have more than five types.</Description>
@@ -457,6 +1194,17 @@
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="75">Warning</MessageLevel>
     <File Name="PerformanceRules.dll" Version="1.30.0.0" />
+   </Rule>
+   <Rule TypeName="ConsiderReplacingMethodsWithProperties">
+    <Name>Consider replacing methods with properties</Name>
+    <Description>Properties should be used instead of Get/Set methods in most situations.</Description>
+    <LongDescription>Methods are preferable to properties in the following situations: the operation is a conversion, is expensive or has an observable side-effect; the order of execution is important; calling the member twice in succession creates different results; a member is static but returns a mutable value; or the member returns an array.</LongDescription>
+    <GroupOwner>MS FxCopDev</GroupOwner>
+    <DevOwner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/DesignRules/ReplaceMethodsWithProps.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="50-75">Warning</MessageLevel>
+    <File Name="DesignRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="DoNotDeclareExplicitStaticConstructors">
     <Name>Do not declare explicit static constructors</Name>
@@ -491,6 +1239,28 @@
     <MessageLevel Certainty="95">CriticalError</MessageLevel>
     <File Name="DesignRules.dll" Version="1.30.0.0" />
    </Rule>
+   <Rule TypeName="IFormatProviderShouldBePassed">
+    <Name>IFormatProvider should be passed</Name>
+    <Description>If an overload exists that takes an IFormatProvider argument, it should always be called in favor of an overload that does not.</Description>
+    <LongDescription>Some methods in the common language runtime convert a value to or from a string representation and take a string parameter that contains one or more characters, called format specifiers, which indicate how the value is to be converted. If the meaning of the format specifier varies by culture, a formatting object supplies the actual characters used in the string representation. In scenarios where sorting and comparison behavior should never change between cultures, specify CultureInfo.InvariantCulture.</LongDescription>
+    <GroupOwner>MS FxCopDev</GroupOwner>
+    <DevOwner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/Globalization/IFormatProviderPassed.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">Error</MessageLevel>
+    <File Name="GlobalizationRules.dll" Version="1.30.0.0" />
+   </Rule>
+   <Rule TypeName="ParameterNamesDoNotMatchKeywords">
+    <Name>Parameter names do not match reserved keywords</Name>
+    <Description>Identifiers which match reserved keywords should be avoided. Matching is performed case-insensitively.</Description>
+    <LongDescription>Names that describe the purpose or contents of a parameter are preferable to names that describe the data type or format. If a parameter has no descriptive information other than its type, use a generic name such as 'value'.</LongDescription>
+    <GroupOwner>MS FxCopDev</GroupOwner>
+    <DevOwner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/NamingRules/ParameterNamesDoNotMatchKeywords.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">Error</MessageLevel>
+    <File Name="NamingRules.dll" Version="1.30.0.0" />
+   </Rule>
    <Rule TypeName="ParameterNamesShouldNotContainTypeNames">
     <Name>Parameter names should not contain type names</Name>
     <Description>Do not use type names to name parameters; use a generic name instead.</Description>
@@ -498,6 +1268,17 @@
     <GroupOwner>MS FxCopDev</GroupOwner>
     <DevOwner />
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/NamingRules/ParameterNamesTypeNames.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="75">Error</MessageLevel>
+    <File Name="NamingRules.dll" Version="1.30.0.0" />
+   </Rule>
+   <Rule TypeName="TypeNamesHaveOnlyShortAcronymsAllCaps">
+    <Name>Type name acronyms of three or more characters are Pascal-cased</Name>
+    <Description>Acronyms of three or more letters should be Pascal-cased. For example, use XmlWriter rather than XMLWriter.</Description>
+    <LongDescription>A violation of this rule might be required for compatibility with existing, non-managed symbol schemes. In general, however, these symbols should not be visible outside the assembly that uses them.</LongDescription>
+    <GroupOwner>MS FxCopDev</GroupOwner>
+    <DevOwner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/NamingRules/TypeNamesAcryonymsArePascalCased.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="75">Error</MessageLevel>
     <File Name="NamingRules.dll" Version="1.30.0.0" />
