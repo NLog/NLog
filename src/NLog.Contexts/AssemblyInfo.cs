@@ -31,37 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
-using NLog;
-using NLog.Contexts;
-using NLog.Config;
+[assembly: AssemblyTitle("NLog.Contexts")]
+[assembly: AssemblyDescription("NLog Diagnostic Contexts")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("NLog")]
+[assembly: AssemblyProduct("NLog - .NET Logging Library")]
+[assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")]
+[assembly: AssemblyCulture("")]
 
-class Test {
-    static void Main(string[] args) {
-        NLog.LogManager.Configuration = new XmlLoggingConfiguration("NLog.Test.exe.config");
-        NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
-        NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");
-
-        using (NDC.Push("aaa")) {
-            l.Debug("this is a debug");
-            l.Info("this is an info");
-            MDC.Set("username", "jarek");
-
-            l.Warn("this is a warning");
-            using (NDC.Push("bbb")) {
-                l2.Debug("this is a debug");
-                using (NDC.Push("ccc")) {
-                    l2.Info("this is an info");
-                }
-            }
-            MDC.Set("username", "aaa");
-            l2.Warn("this is a warning");
-        }
-        l.Error("this is an error");
-        MDC.Remove("username");
-        l.Fatal("this is a fatal");
-        l2.Error("this is an error");
-        l2.Fatal("this is a fatal");
-    }
-}
+[assembly: AssemblyVersion("0.2.0.0")]

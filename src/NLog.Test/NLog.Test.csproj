@@ -70,13 +70,8 @@
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "NLog.ASPNet"
-                    Project = "{4BF1B19F-B459-4853-A8B6-B051C550D36E}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "NLog.ASP"
-                    Project = "{326F7415-10FE-4AB0-B509-8064077735A8}"
+                    Name = "NLog.Contexts"
+                    Project = "{7A44A198-7C6E-4260-AB47-F096DB97A507}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
             </References>

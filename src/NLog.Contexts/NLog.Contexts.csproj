@@ -3,13 +3,13 @@
         ProjectType = "Local"
         ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
-        ProjectGuid = "{326F7415-10FE-4AB0-B509-8064077735A8}"
+        ProjectGuid = "{7A44A198-7C6E-4260-AB47-F096DB97A507}"
     >
         <Build>
             <Settings
                 ApplicationIcon = ""
                 AssemblyKeyContainerName = ""
-                AssemblyName = "NLog.ASP"
+                AssemblyName = "NLog.Contexts"
                 AssemblyOriginatorKeyFile = ""
                 DefaultClientScript = "JScript"
                 DefaultHTMLPageLayout = "Grid"
@@ -18,7 +18,7 @@
                 OutputType = "Library"
                 PreBuildEvent = ""
                 PostBuildEvent = ""
-                RootNamespace = "NLog.ASP"
+                RootNamespace = "NLog.Contexts"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
             >
@@ -72,7 +72,7 @@
                 <Reference
                     Name = "System"
                     AssemblyName = "System"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.1.4322\System.dll"
                 />
             </References>
         </Build>
@@ -80,31 +80,29 @@
             <Include>
                 <File
                     RelPath = "AssemblyInfo.cs"
-                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "AssemblySign.cs"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MDC.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\ASPApplicationValueLayoutAppender.cs"
+                    RelPath = "NDC.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\ASPHelper.cs"
+                    RelPath = "LayoutAppenders\MDC.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\ASPRequestValueLayoutAppender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "LayoutAppenders\ASPSessionValueLayoutAppender.cs"
+                    RelPath = "LayoutAppenders\NDC.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
