@@ -69,11 +69,6 @@
                     Project = "{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
-                <Reference
-                    Name = "NLog.Contexts"
-                    Project = "{7A44A198-7C6E-4260-AB47-F096DB97A507}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
             </References>
         </Build>
         <Files>

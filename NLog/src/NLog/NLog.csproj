@@ -74,6 +74,16 @@
                     AssemblyName = "System"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
                 />
+                <Reference
+                    Name = "system.data"
+                    AssemblyName = "system.data"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\system.data.dll"
+                />
+                <Reference
+                    Name = "system.web"
+                    AssemblyName = "system.web"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\system.web.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -124,6 +134,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "MDC.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NDC.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Appenders\Appender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -144,7 +164,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Appenders\ASPNetTraceAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Appenders\ConsoleAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Appenders\DatabaseAppender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -174,12 +204,12 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Config\SimpleConfigurator.cs"
+                    RelPath = "Config\AppenderRuleCollection.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Config\AppenderRuleCollection.cs"
+                    RelPath = "Config\ArrayParameterAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -195,6 +225,11 @@
                 />
                 <File
                     RelPath = "Config\RequiredParameterAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Config\SimpleConfigurator.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -264,6 +299,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Internal\FactoryHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Internal\FilterDictionary.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -299,6 +339,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Internal\PropertyInfoDictionary.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Internal\StringCollection.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -310,6 +355,16 @@
                 />
                 <File
                     RelPath = "Internal\TypeDictionary.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\TypeToPropertyInfoDictionaryAssociation.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutAppenders\ASPNetSession.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -384,7 +439,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "LayoutAppenders\MDC.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "LayoutAppenders\Message.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutAppenders\NDC.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
