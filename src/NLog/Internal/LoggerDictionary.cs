@@ -46,7 +46,7 @@ namespace NLog.Internal
 	/// <summary>
 	/// A dictionary with keys of type string and values of type Logger
 	/// </summary>
-	public class LoggerDictionary: System.Collections.DictionaryBase
+	internal class LoggerDictionary: System.Collections.DictionaryBase
 	{
 		/// <summary>
 		/// Initializes a new empty instance of the LoggerDictionary class

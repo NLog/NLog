@@ -47,7 +47,7 @@ namespace NLog.Internal
 	/// <summary>
 	/// A dictionary with keys of type string and values of type Appender
 	/// </summary>
-	public class AppenderDictionary: System.Collections.DictionaryBase
+	internal class AppenderDictionary: System.Collections.DictionaryBase
 	{
 		/// <summary>
 		/// Initializes a new empty instance of the AppenderDictionary class

@@ -31,30 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
-namespace NLog.Appenders
-{
-    [Appender("Null")]
-    public sealed class NullAppender : Appender
-    {
-		private bool _formatMessage = false;
+[assembly: AssemblyTitle("NLog.ASP")]
+[assembly: AssemblyDescription("NLog - .NET Compact Framework logging support")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("NLog")]
+[assembly: AssemblyProduct("NLog - .NET Logging Library")]
+[assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")]
+[assembly: AssemblyCulture("")]
 
-		public bool FormatMessage
-		{
-			get { return _formatMessage; }
-			set { _formatMessage = value; }
-		}
-
-		protected internal override void Append(LogEventInfo ev) 
-		{
-			if (_formatMessage)
-			{
-				CompiledLayout.GetFormattedMessage(ev);
-			}
-		}
-    }
-}
+[assembly: AssemblyVersion("0.2.0.0")]

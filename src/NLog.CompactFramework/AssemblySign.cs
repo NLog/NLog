@@ -31,30 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
+using System.Reflection;
 
-namespace NLog.Appenders
-{
-    [Appender("Null")]
-    public sealed class NullAppender : Appender
-    {
-		private bool _formatMessage = false;
-
-		public bool FormatMessage
-		{
-			get { return _formatMessage; }
-			set { _formatMessage = value; }
-		}
-
-		protected internal override void Append(LogEventInfo ev) 
-		{
-			if (_formatMessage)
-			{
-				CompiledLayout.GetFormattedMessage(ev);
-			}
-		}
-    }
-}
+#if NANT
+[assembly: AssemblyKeyFile("src/NLog.snk")]
+#else
+[assembly: AssemblyKeyFile("../../../NLog.snk")]
+#endif

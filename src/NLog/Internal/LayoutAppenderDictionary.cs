@@ -47,7 +47,7 @@ namespace NLog.Internal
 	/// <summary>
 	/// A dictionary with keys of type string and values of type LayoutAppender
 	/// </summary>
-	public class LayoutAppenderDictionary: System.Collections.DictionaryBase
+	internal class LayoutAppenderDictionary: System.Collections.DictionaryBase
 	{
 		/// <summary>
 		/// Initializes a new empty instance of the LayoutAppenderDictionary class

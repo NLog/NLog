@@ -47,7 +47,7 @@ namespace NLog.Internal
 	/// <summary>
 	/// A dictionary with keys of type string and values of type Filter
 	/// </summary>
-	public class FilterDictionary: System.Collections.DictionaryBase
+	internal class FilterDictionary: System.Collections.DictionaryBase
 	{
 		/// <summary>
 		/// Initializes a new empty instance of the FilterDictionary class

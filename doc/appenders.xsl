@@ -103,9 +103,10 @@
             <h4>Summary</h4>
             <div class="summarytable">
                 <table>
-                    <tr><td>Assembly Name:</td><td><xsl:value-of select="assembly" /></td></tr>
-                    <tr><td>Class Name:</td><td><xsl:value-of select="namespace" />.<xsl:value-of select="className" /></td></tr>
-                    <tr><td>Frameworks supported:</td><td>
+                    <tr><th>Usage:</th><td><code>&lt;appender name="..." type="<xsl:value-of select="@name" />" layout="..." ... /&gt;</code></td></tr>
+                    <tr><th>Assembly Name:</th><td><xsl:value-of select="assembly" /></td></tr>
+                    <tr><th>Class Name:</th><td><xsl:value-of select="namespace" />.<xsl:value-of select="className" /></td></tr>
+                    <tr><th>Frameworks supported:</th><td>
                             <xsl:for-each select="support">
                                 <xsl:if test="position() != 1">, </xsl:if>
                                 <xsl:if test="@framework='net-1.0'">.NET 1.0</xsl:if>

@@ -44,7 +44,7 @@ namespace System.Collections.Specialized
 	/// <summary>
 	/// A collection of elements of type String
 	/// </summary>
-	public class StringCollection: System.Collections.CollectionBase
+	internal class StringCollection: System.Collections.CollectionBase
 	{
 		/// <summary>
 		/// Initializes a new empty instance of the StringCollection class.

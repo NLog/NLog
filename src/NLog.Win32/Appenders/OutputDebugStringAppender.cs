@@ -32,29 +32,24 @@
 // 
 
 using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
+using System.Runtime.InteropServices;
 
-namespace NLog.Appenders
+using NLog.Appenders;
+
+namespace NLog.Win32.Appenders
 {
-    [Appender("Null")]
-    public sealed class NullAppender : Appender
+    [Appender("OutputDebugString")]
+    public sealed class OutputDebugStringAppender : Appender
     {
-		private bool _formatMessage = false;
+        protected override void Append(LogEventInfo ev) {
+            OutputDebugString(CompiledLayout.GetFormattedMessage(ev));
+        }
 
-		public bool FormatMessage
-		{
-			get { return _formatMessage; }
-			set { _formatMessage = value; }
-		}
-
-		protected internal override void Append(LogEventInfo ev) 
-		{
-			if (_formatMessage)
-			{
-				CompiledLayout.GetFormattedMessage(ev);
-			}
-		}
+		/// <summary>
+		/// Stub for OutputDebugString native method
+		/// </summary>
+		/// <param name="message">the string to output</param>
+		[DllImport("Kernel32.dll")]
+		private static extern void OutputDebugString(string message);
     }
 }
