@@ -127,11 +127,11 @@ namespace NLog
             }
         }
 
-        public bool IsDebugEnabled { get { return _logLevel >= LogLevel.Debug; } }
-        public bool IsInfoEnabled  { get { return _logLevel >= LogLevel.Info; } }
-        public bool IsWarnEnabled  { get { return _logLevel >= LogLevel.Warn; } }
-        public bool IsErrorEnabled { get { return _logLevel >= LogLevel.Error; } }
-        public bool IsFatalEnabled { get { return _logLevel >= LogLevel.Fatal; } }
+        public static bool IsDebugEnabled { get { return _logLevel >= LogLevel.Debug; } }
+        public static bool IsInfoEnabled  { get { return _logLevel >= LogLevel.Info; } }
+        public static bool IsWarnEnabled  { get { return _logLevel >= LogLevel.Warn; } }
+        public static bool IsErrorEnabled { get { return _logLevel >= LogLevel.Error; } }
+        public static bool IsFatalEnabled { get { return _logLevel >= LogLevel.Fatal; } }
 
         public static void Log(LogLevel level, IFormatProvider formatProvider, string message, params object[] args) 
         {
