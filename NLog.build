@@ -22,8 +22,8 @@
 
     <target name="configure">
         <call target="configure-${framework::get-target-framework()}" />
-        <property name="nlog.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/bin" overwrite="false" />
-        <property name="website.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/doc" overwrite="false" />
+        <property name="nlog.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/bin" unless="${property::exists('nlog.dir')}" />
+        <property name="website.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/doc" unless="${property::exists('website.dir')}" />
         <mkdir dir="${nlog.dir}" />
         <mkdir dir="${website.dir}" />
     </target>
@@ -43,7 +43,7 @@
     </target>
 
     <target name="package" depends="build, website, doc">
-        <property name="zip.file" value="${nant.project.basedir}/nlog-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" overwrite="false" />
+        <property name="zip.file" value="${nant.project.basedir}/nlog-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" unless="${property::exists('zip.file')}" />
         <copy file="LICENSE.txt" tofile="${nlog.dir}/../LICENSE.txt" />
         <zip zipfile="${zip.file}">
             <fileset basedir="${nlog.dir}/..">
@@ -399,7 +399,7 @@
 
     <target name="source_snapshot">
         <delete dir="tmp/source_snapshot" if="${directory::exists('tmp/source_snapshot')}" />
-        <property name="tmp.dir" value="tmp/source_snapshot/NLog-${tstamp.date}" overwrite="true" />
+        <property name="tmp.dir" value="tmp/source_snapshot/NLog-${tstamp.date}" />
         <mkdir dir="tmp/source_snapshot" if="${not directory::exists('tmp/source_snapshot')}" />
         <exec program="svn" commandline="export . ${tmp.dir}" />
         <zip zipfile="${source_snapshot.name}">
