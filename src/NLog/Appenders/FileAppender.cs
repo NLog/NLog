@@ -38,6 +38,8 @@ using System.IO;
 using NLog;
 using NLog.Config;
 
+using NLog.Internal;
+
 namespace NLog.Appenders
 {
     [Appender("File")]
@@ -105,40 +107,46 @@ namespace NLog.Appenders
         }
 
         private StreamWriter OpenStreamWriter(string fileName) {
-            StreamWriter retVal;
+            try {
+                StreamWriter retVal;
 
-            FileInfo fi = new FileInfo(fileName);
-            if (!fi.Exists)
-            {
-                if (!fi.Directory.Exists)
+                FileInfo fi = new FileInfo(fileName);
+                if (!fi.Exists)
                 {
-                    Directory.CreateDirectory(fi.DirectoryName);
-                }
-            }
-
-            if (!ConcurrentWrites) {
-                retVal = new StreamWriter(fileName, true, _encoding);
-            } else {
-                int currentDelay = _concurrentWriteAttemptDelay;
-                retVal = null;
-
-                for (int i = 0; i < _concurrentWriteAttempts; ++i) {
-                    try {
-                        retVal = new StreamWriter(fileName, true, _encoding);
-                        break;
-                    }
-                    catch (IOException ex)
+                    if (!fi.Directory.Exists)
                     {
-                        Console.WriteLine("ex: {0}", ex.Message);
-                        int actualDelay = _random.Next(currentDelay);
-                        currentDelay *= 2;
-                        System.Threading.Thread.Sleep(actualDelay);
+                        Directory.CreateDirectory(fi.DirectoryName);
                     }
                 }
+
+                if (!ConcurrentWrites) {
+                    retVal = new StreamWriter(fileName, true, _encoding);
+                } else {
+                    int currentDelay = _concurrentWriteAttemptDelay;
+                    retVal = null;
+
+                    for (int i = 0; i < _concurrentWriteAttempts; ++i) {
+                        try {
+                            retVal = new StreamWriter(fileName, true, _encoding);
+                            break;
+                        }
+                        catch (IOException ex)
+                        {
+                            Console.WriteLine("ex: {0}", ex.Message);
+                            int actualDelay = _random.Next(currentDelay);
+                            currentDelay *= 2;
+                            System.Threading.Thread.Sleep(actualDelay);
+                        }
+                    }
+                }
+
+                retVal.AutoFlush = _autoFlush;
+                return retVal;
             }
-            
-            retVal.AutoFlush = _autoFlush;
-            return retVal;
+            catch (Exception ex) {
+                InternalLogger.Error("Unable to create file: '{0}'", fileName);
+                throw;
+            }
         }
 
         protected internal override void Append(LogEventInfo ev) {
