@@ -1,0 +1,44 @@
+<pre xml:space='preserve'><span class='csharp'>Dim logmanager, logger
+
+Set logmanager = CreateObject(<span class='s'>&quot;NLog.LogManager&quot;</span>)
+WScript.Echo <span class='s'>&quot;Loading config from file &apos;config8.nlog&apos; with internal logging to console...&quot;</span>
+logmanager.InternalLogToConsole = <span class='k'>true</span>
+logmanager.InternalLogFile = <span class='s'>&quot;internal_log.txt&quot;</span>
+logmanager.InternalLogLevel = <span class='s'>&quot;Info&quot;</span>
+logmanager.LoadConfigFromFile <span class='s'>&quot;config8.nlog&quot;</span>
+
+Set logger = CreateObject(<span class='s'>&quot;NLog.Logger&quot;</span>)
+logger.LoggerName = <span class='s'>&quot;TestLogger&quot;</span>
+logger.Log <span class='s'>&quot;Debug&quot;</span>, <span class='s'>&quot;This is a debugging message&quot;</span>
+logger.Log <span class='s'>&quot;Info&quot;</span>, <span class='s'>&quot;This is an information message&quot;</span>
+logger.Log <span class='s'>&quot;Warn&quot;</span>, <span class='s'>&quot;This is a warning message&quot;</span>
+logger.Log <span class='s'>&quot;Error&quot;</span>, <span class='s'>&quot;This is an error&quot;</span>
+logger.Log <span class='s'>&quot;Fatal&quot;</span>, <span class='s'>&quot;This is a fatal message&quot;</span>
+
+logger.Debug <span class='s'>&quot;This is a debugging message&quot;</span>
+logger.Info <span class='s'>&quot;This is an information message&quot;</span>
+logger.Warn <span class='s'>&quot;This is a warning message&quot;</span>
+logger.Error <span class='s'>&quot;This is an error&quot;</span>
+logger.Fatal <span class='s'>&quot;This is a fatal message&quot;</span>
+
+WScript.Echo <span class='s'>&quot;Loading config from file &apos;config8a.nlog&apos; without internal logging...&quot;</span>
+logmanager.InternalLogToConsole = <span class='k'>false</span>
+logmanager.InternalLogFile = <span class='s'>&quot;internal_log.txt&quot;</span>
+logmanager.InternalLogLevel = <span class='s'>&quot;Fatal&quot;</span>
+logmanager.LoadConfigFromFile <span class='s'>&quot;config8a.nlog&quot;</span>
+
+logger.Log <span class='s'>&quot;Debug&quot;</span>, <span class='s'>&quot;This is a debugging message&quot;</span>
+logger.Log <span class='s'>&quot;Info&quot;</span>, <span class='s'>&quot;This is an information message&quot;</span>
+logger.Log <span class='s'>&quot;Warn&quot;</span>, <span class='s'>&quot;This is a warning message&quot;</span>
+logger.Log <span class='s'>&quot;Error&quot;</span>, <span class='s'>&quot;This is an error&quot;</span>
+logger.Log <span class='s'>&quot;Fatal&quot;</span>, <span class='s'>&quot;This is a fatal message&quot;</span>
+
+logger.Debug <span class='s'>&quot;This is a debugging message&quot;</span>
+logger.Info <span class='s'>&quot;This is an information message&quot;</span>
+logger.Warn <span class='s'>&quot;This is a warning message&quot;</span>
+logger.Error <span class='s'>&quot;This is an error&quot;</span>
+logger.Fatal <span class='s'>&quot;This is a fatal message&quot;</span>
+
+
+</span>
+</pre>

@@ -334,6 +334,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Internal\EnvironmentHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Internal\FactoryHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

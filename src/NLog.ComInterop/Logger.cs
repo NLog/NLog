@@ -40,7 +40,10 @@ using NLog.Internal;
 
 namespace NLog.ComInterop
 {
-    [ComVisible(true)][ProgId("NLog.Logger")]
+    [ComVisible(true)]
+    [ProgId("NLog.Logger")]
+    [Guid("181f39a8-41a8-4e35-91b6-5f8d96f5e61c")]
+    [ClassInterface(ClassInterfaceType.None)]
     public class Logger: ILogger
     {
         private static NLog.Logger _defaultLogger = new NullLogger();

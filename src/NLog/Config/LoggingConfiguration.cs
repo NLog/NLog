@@ -92,7 +92,7 @@ namespace NLog.Config
 
         public virtual LoggingConfiguration Reload()
         {
-            return null;
+            return this;
         }
     }
 }

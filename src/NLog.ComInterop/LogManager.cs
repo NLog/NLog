@@ -35,44 +35,39 @@
 using System;
 using System.Runtime.InteropServices;
 
+using NLog;
+using NLog.Internal;
+using NLog.Config;
+
 namespace NLog.ComInterop
 {
-    [Guid("757fd55a-cc93-4b53-a7a0-18e85620704a")]
-    [InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface ILogger
+    [ComVisible(true)]
+    [ProgId("NLog.LogManager")]
+    [Guid("9a7e8d84-72e4-478a-9a05-23c7ef0cfca8")]
+    [ClassInterface(ClassInterfaceType.None)]
+    public class LogManager: ILogManager
     {
-        void Log(string level, string message);
-        void Debug(string message);
-        void Info(string message);
-        void Warn(string message);
-        void Error(string message);
-        void Fatal(string message);
-
-        bool IsEnabled(string level);
-        bool IsDebugEnabled
+        public void LoadConfigFromFile(string fileName)
         {
-            get;
-        }
-        bool IsInfoEnabled
-        {
-            get;
-        }
-        bool IsWarnEnabled
-        {
-            get;
-        }
-        bool IsErrorEnabled
-        {
-            get;
-        }
-        bool IsFatalEnabled
-        {
-            get;
+            NLog.LogManager.Configuration = new XmlLoggingConfiguration(fileName);
         }
 
-        string LoggerName
+        public bool InternalLogToConsole
         {
-            get; set;
+            get { return NLog.Internal.InternalLogger.LogToConsole; }
+            set { NLog.Internal.InternalLogger.LogToConsole = value; }
+        }
+
+        public string InternalLogLevel
+        {
+            get { return NLog.Internal.InternalLogger.LogLevel.ToString(); }
+            set { NLog.Internal.InternalLogger.LogLevel = NLog.Logger.LogLevelFromString(value); }
+        }
+
+        public string InternalLogFile
+        {
+            get { return NLog.Internal.InternalLogger.LogFile; }
+            set { NLog.Internal.InternalLogger.LogFile = value; }
         }
     }
 }

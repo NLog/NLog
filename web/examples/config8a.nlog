@@ -1,0 +1,9 @@
+<nlog>
+    <appenders>
+        <appender name="console" type="Console" />
+    </appenders>
+
+    <rules>
+        <logger name="*" minlevel="Warn" appendTo="console" />
+    </rules>
+</nlog>

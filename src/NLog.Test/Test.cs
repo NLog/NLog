@@ -45,8 +45,8 @@ public class Test
     }
     static void Main(string[]args)
     {
-        Console.WriteLine("zzz");
-        NLog.LogManager.Configuration = new XmlLoggingConfiguration("NLog.Test.exe.config");
+        //NLog.LogManager.Configuration = new XmlLoggingConfiguration("NLog.Test.exe.config");
+        Logger l0 = LogManager.GetCurrentClassLogger();
         NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
         NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");
 
@@ -73,5 +73,6 @@ public class Test
         l.Fatal("this is a fatal");
         l2.Error("this is an error");
         l2.Fatal("this is a fatal");
+        l0.Debug("Class logger!");
     }
 }

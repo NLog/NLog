@@ -3,5 +3,7 @@
 <content lang="en" id="api" subid="comapi">
     <h1>COM API</h1>
     <a href="NLog.chm" />
+
+    <js src="examples/test.js" />
 </content>
 

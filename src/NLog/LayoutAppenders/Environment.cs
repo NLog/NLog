@@ -39,6 +39,7 @@ using System.Text;
 using System.IO;
 
 using NLog.Config;
+using NLog.Internal;
 
 namespace NLog.LayoutAppenders
 {
@@ -69,7 +70,7 @@ namespace NLog.LayoutAppenders
         {
             if (_variable != null)
             {
-                builder.Append(ApplyPadding(Environment.GetEnvironmentVariable(_variable)));
+                builder.Append(ApplyPadding(EnvironmentHelper.GetSafeEnvironmentVariable(_variable)));
             }
         }
     }

@@ -18,6 +18,7 @@ enum NLogLevel
 
 extern "C" {
 
+NLOGC_API int NLog_ConfigureFromFileA(const char *fileName);
 NLOGC_API void NLog_LogA(NLogLevel level, const char *loggerName, const char *logMessage, ...); 
 NLOGC_API void NLog_DebugA(const char *loggerName, const char *logMessage, ...); 
 NLOGC_API void NLog_InfoA(const char *loggerName, const char *logMessage, ...); 
@@ -25,6 +26,7 @@ NLOGC_API void NLog_WarnA(const char *loggerName, const char *logMessage, ...);
 NLOGC_API void NLog_ErrorA(const char *loggerName, const char *logMessage, ...); 
 NLOGC_API void NLog_FatalA(const char *loggerName, const char *logMessage, ...); 
 
+NLOGC_API int NLog_ConfigureFromFileW(const wchar_t *fileName);
 NLOGC_API void NLog_LogW(NLogLevel level, const wchar_t *loggerName, const wchar_t *logMessage, ...); 
 NLOGC_API void NLog_DebugW(const wchar_t *loggerName, const wchar_t *logMessage, ...); 
 NLOGC_API void NLog_InfoW(const wchar_t *loggerName, const wchar_t *logMessage, ...); 
@@ -44,6 +46,7 @@ NLOGC_API void NLog_LogVW(NLogLevel level, const wchar_t *loggerName, const wcha
 #define NLog_Warn NLog_WarnW
 #define NLog_Error NLog_ErrorW
 #define NLog_Fatal NLog_FatalW
+#define NLog_ConfigureFromFile NLog_ConfigureFromFileW
 
 #else
 
@@ -53,6 +56,7 @@ NLOGC_API void NLog_LogVW(NLogLevel level, const wchar_t *loggerName, const wcha
 #define NLog_Warn NLog_WarnA
 #define NLog_Error NLog_ErrorA
 #define NLog_Fatal NLog_FatalA
+#define NLog_ConfigureFromFile NLog_ConfigureFromFileA
 
 #endif
 

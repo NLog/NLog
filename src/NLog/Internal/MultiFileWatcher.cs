@@ -68,10 +68,10 @@ namespace NLog.Internal
             {
                 foreach (FileSystemWatcher watcher in _watchers)
                 {
-                    Console.WriteLine("releasing watch path: {0} filter: {1}", watcher.Path, watcher.Filter);
+                    //Console.WriteLine("releasing watch path: {0} filter: {1}", watcher.Path, watcher.Filter);
                     watcher.EnableRaisingEvents = false;
                     watcher.Dispose();
-                    Console.WriteLine("aa");
+                    //Console.WriteLine("aa");
                 }
                 _watchers.Clear();
                 _triggerred = false;
