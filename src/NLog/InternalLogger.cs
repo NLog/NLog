@@ -68,7 +68,7 @@ namespace NLog
             }
         }
 #endif
-        
+
         private static void Write(LogLevel level, IFormatProvider formatProvider, string message, object[] args)
         {
             if (level < _logLevel)
@@ -102,86 +102,78 @@ namespace NLog
         public bool IsErrorEnabled { get { return _logLevel >= LogLevel.Error; } }
         public bool IsFatalEnabled { get { return _logLevel >= LogLevel.Fatal; } }
 
-		public static void Log(LogLevel level, IFormatProvider formatProvider, string message, params object[] args) 
-		{
-			Write(level, formatProvider, message, args);
-		}
-        
-		public static void Log(LogLevel level, string message, params object[] args) 
-		{
+        public static void Log(LogLevel level, IFormatProvider formatProvider, string message, params object[] args) 
+        {
+            Write(level, formatProvider, message, args);
+        }
+
+        public static void Log(LogLevel level, string message, params object[] args) 
+        {
             Write(level, null, message, args);
         }
-        
+
         public static void Log(LogLevel level, string message) {
             Write(level, null, message, null);
         }
-        
-		public static void Debug(IFormatProvider formatProvider, string message, params object[] args) 
-		{
-			Write(LogLevel.Debug, formatProvider, message, args);
-		}
-        
-		public static void Debug(string message, params object[] args) 
-		{
-            Write(LogLevel.Debug, null, message, args);
-        }
-        
+
+        public static void Debug(IFormatProvider formatProvider, string message, params object[] args) { Write(LogLevel.Debug, formatProvider, message, args); }
+        public static void Debug(string message, params object[] args) { Write(LogLevel.Debug, null, message, args); }
         public static void Debug(string message) {
             Write(LogLevel.Debug, null, message, null);
         }
-        
-		public static void Info(IFormatProvider formatProvider, string message, params object[] args) 
-		{
-			Write(LogLevel.Info, formatProvider, message, args);
-		}
-        
-		public static void Info(string message, params object[] args) 
-		{
+
+        public static void Info(IFormatProvider formatProvider, string message, params object[] args) 
+        {
+            Write(LogLevel.Info, formatProvider, message, args);
+        }
+
+        public static void Info(string message, params object[] args) 
+        {
             Write(LogLevel.Info, null, message, args);
         }
-        
+
         public static void Info(string message) {
             Write(LogLevel.Info, null, message, null);
         }
-        
-		public static void Warn(IFormatProvider formatProvider, string message, params object[] args) 
-		{
-			Write(LogLevel.Warn, formatProvider, message, args);
-		}
-        
-		public static void Warn(string message, params object[] args) 
-		{
+
+        public static void Warn(IFormatProvider formatProvider, string message, params object[] args) 
+        {
+            Write(LogLevel.Warn, formatProvider, message, args);
+        }
+
+        public static void Warn(string message, params object[] args) 
+        {
             Write(LogLevel.Warn, null, message, args);
         }
-        
+
         public static void Warn(string message) {
             Write(LogLevel.Warn, null, message, null);
         }
-        
-		public static void Error(IFormatProvider formatProvider, string message, params object[] args) 
-		{
-			Write(LogLevel.Error, formatProvider, message, args);
-		}
-        
-		public static void Error(string message, params object[] args) 
-		{
+
+        public static void Error(IFormatProvider formatProvider, string message, params object[] args) 
+        {
+            Write(LogLevel.Error, formatProvider, message, args);
+        }
+
+        public static void Error(string message, params object[] args) 
+        {
             Write(LogLevel.Error, null, message, args);
         }
-        
+
         public static void Error(string message) {
             Write(LogLevel.Error, null, message, null);
         }
-        
-		public static void Fatal(IFormatProvider formatProvider, string message, params object[] args) 
-		{
-			Write(LogLevel.Fatal, formatProvider, message, args);
-		}
-        
-		public static void Fatal(string message, params object[] args) 
-		{
+
+        public static void Fatal(IFormatProvider formatProvider, string message, params object[] args) 
+        {
+            Write(LogLevel.Fatal, formatProvider, message, args);
+        }
+
+        public static void Fatal(string message, params object[] args) 
+        {
             Write(LogLevel.Fatal, null, message, args);
         }
-        
+
         public static void Fatal(string message) {
             Write(LogLevel.Fatal, null, message, null);
         }
