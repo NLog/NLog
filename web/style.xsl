@@ -8,6 +8,7 @@
     <xsl:variable name="common" select="document($common_file)" />
     <xsl:param name="file_extension">xml</xsl:param>
     <xsl:param name="sourceforge">0</xsl:param>
+    <xsl:param name="log4net_comparison">0</xsl:param>
 
     <xsl:output method="html" indent="no" />
 
@@ -48,7 +49,7 @@ var sc_security="6fe22c9a";
                                 <a href="http://sourceforge.net"><img src="http://sourceforge.net/sflogo.php?group_id=116456&amp;type=1" width="88" height="31" border="0" alt="SourceForge.net Logo" /></a>
                             </xsl:if>
                         </td>
-                        <td class="copyright">Copyright (c) 2003-2004 by Jaros³aw Kowalski</td>
+                        <td class="copyright">Copyright &#169; 2003-2005 by Jaros³aw Kowalski</td>
                     </tr>
                 </table>
             </body>
@@ -363,6 +364,78 @@ var sc_security="6fe22c9a";
                         <td align="center"><xsl:value-of select="@required" /></td>
                         <td align="left"><xsl:value-of select="@description" /></td>
                         <td align="center"><xsl:value-of select="@default" /></td>
+                    </tr>
+                </xsl:for-each>
+            </table>
+        </div>
+    </xsl:template>
+
+    <xsl:template match="benchmark-table">
+        <xsl:variable name="nlog_results" select="document('nlog.results.xml')" />
+        <xsl:variable name="log4net_results" select="document('log4net.results.xml')" />
+
+        <div class="table">
+            <table width="620">
+                <col width="30%" />
+                <col width="30%" />
+                <col width="12%" />
+                <col width="12%" />
+                <xsl:if test="$log4net_comparison = '1'">
+                    <col width="12%" />
+                    <col width="12%" />
+                </xsl:if>
+                <tr>
+                    <th rowspan="2">Appender</th>
+                    <th rowspan="2">Call mode</th>
+                    <th colspan="2">Results</th>
+                    <xsl:if test="$log4net_comparison = '1'">
+                        <th colspan="2">log4net</th>
+                    </xsl:if>
+                </tr>
+                <tr>
+                    <th>nanoseconds per log</th>
+                    <th>logs per second</th>
+                    <xsl:if test="$log4net_comparison = '1'">
+                        <th>nanoseconds per log</th>
+                        <th>logs per second</th>
+                    </xsl:if>
+                </tr>
+                <xsl:for-each select="$nlog_results/results/test/timing">
+                    <xsl:variable name="logger_name" select="../@logger" />
+                    <xsl:variable name="timing_name" select="@name" />
+
+                    <xsl:variable name="log4net_timing"
+                        select="$log4net_results/results/test[@logger=$logger_name]/timing[@name=$timing_name]" />
+
+                    <tr>
+                        <td><xsl:value-of select="$logger_name" /></td>
+                        <td><xsl:value-of select="$timing_name" /></td>
+                        <td>
+                            <xsl:if test="$log4net_comparison = '1'">
+                                <xsl:if test="@nanosecondsPerLog &lt; $log4net_timing/@nanosecondsPerLog">
+                                    <xsl:attribute name="class">benchmark-winner</xsl:attribute>
+                                </xsl:if>
+                            </xsl:if>
+                            <xsl:value-of select="@nanosecondsPerLog" /></td>
+                        <td>
+                            <xsl:if test="$log4net_comparison = '1'">
+                                <xsl:if test="@nanosecondsPerLog &lt; $log4net_timing/@nanosecondsPerLog">
+                                    <xsl:attribute name="class">benchmark-winner</xsl:attribute>
+                                </xsl:if>
+                            </xsl:if>
+                            <xsl:value-of select="@logsPerSecond" /></td>
+                        <xsl:if test="$log4net_comparison = '1'">
+                            <td>
+                                <xsl:if test="@nanosecondsPerLog &gt; $log4net_timing/@nanosecondsPerLog">
+                                    <xsl:attribute name="class">benchmark-winner</xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="$log4net_timing/@nanosecondsPerLog" /></td>
+                            <td>
+                                <xsl:if test="@nanosecondsPerLog &gt; $log4net_timing/@nanosecondsPerLog">
+                                    <xsl:attribute name="class">benchmark-winner</xsl:attribute>
+                                </xsl:if>
+                                <xsl:value-of select="$log4net_timing/@logsPerSecond" /></td>
+                        </xsl:if>
                     </tr>
                 </xsl:for-each>
             </table>
