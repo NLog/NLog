@@ -1,5 +1,6 @@
 // 
-// Copyright (c) 2004 Jaroslaw Kowalski <jaak@polbox.com>
+// Copyright (c) 2004 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// 
 // 
 // All rights reserved.
 // 
@@ -54,9 +55,9 @@ namespace NLog
             _appendersByLevel = appendersByLevel;
         }
 
-        protected override void Write(LogLevel level, IFormatProvider formatProvider, string message, object[]args)
+        protected override void Write(LogLevel level, IFormatProvider formatProvider, string message, object[]args, Exception ex)
         {
-            WriteToAppenders(level, _appendersByLevel[(int)level], formatProvider, message, args);
+            WriteToAppenders(level, _appendersByLevel[(int)level], formatProvider, message, args, ex);
         }
 
         internal string Name
@@ -72,7 +73,7 @@ namespace NLog
             _appendersByLevel = appendersByLevel;
         }
 
-        private void WriteToAppenders(LogLevel level, AppenderWithFilterChain appenders, IFormatProvider formatProvider, string message, object[]args)
+        private void WriteToAppenders(LogLevel level, AppenderWithFilterChain appenders, IFormatProvider formatProvider, string message, object[]args, Exception exception)
         {
             if (appenders == null)
                 return ;
@@ -84,7 +85,7 @@ namespace NLog
             else
                 formattedMessage = String.Format(formatProvider, message, args);
 
-            LogEventInfo logMessage = new LogEventInfo(DateTime.Now, level, _loggerName, formattedMessage);
+            LogEventInfo logMessage = new LogEventInfo(DateTime.Now, level, _loggerName, formattedMessage, exception);
 #if !NETCF            
             bool needTrace = false;
             bool needTraceSources = false;

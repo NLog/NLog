@@ -33,41 +33,76 @@
 // 
 
 using System;
+using System.Collections;
 using System.Text;
 using System.IO;
+
 using NLog.Internal;
+using NLog.Config;
 
 namespace NLog.LayoutAppenders
 {
-    [LayoutAppender("basedir")]
-    public class BaseDirLayoutAppender: LayoutAppender
+    [LayoutAppender("exception")]
+    public class ExceptionLayoutAppender: LayoutAppender
     {
-        private string _fileName = null;
-        private string _directoryName = null;
+        private string _format;
+        delegate void ExceptionDataAppender(StringBuilder sb, Exception ex);
 
-        public string File
+        private ExceptionDataAppender[] _exceptionDataAppenders = null;
+
+        public ExceptionLayoutAppender()
         {
-            get
-            {
-                return _fileName;
-            }
-            set
-            {
-                _fileName = value;
-            }
+            Format = "message";
         }
 
-        public string Dir
+        public string Format
         {
-            get
-            {
-                return _directoryName;
-            }
-            set
-            {
-                _directoryName = value;
-            }
+            get { return _format; }
+            set { _format = value; CompileFormat(value); }
         }
+
+        private void AppendMessage(StringBuilder sb, Exception ex) {
+            sb.Append(ex.Message);
+        }
+
+        private void AppendType(StringBuilder sb, Exception ex) {
+            sb.Append(ex.GetType().FullName);
+        }
+
+        private void AppendShortType(StringBuilder sb, Exception ex) {
+            sb.Append(ex.GetType().Name);
+        }
+
+        private void CompileFormat(string format)
+        {
+            string[] parts = format.Replace(" ","").Split(',');
+            ArrayList dataAppenders = new ArrayList();
+            
+            foreach (string s in parts)
+            {
+                switch (s)
+                {
+                    case "message":
+                        dataAppenders.Add(new ExceptionDataAppender(AppendMessage));
+                        break;
+                        
+                    case "type":
+                        dataAppenders.Add(new ExceptionDataAppender(AppendType));
+                        break;
+                    
+                    case "shorttype":
+                        dataAppenders.Add(new ExceptionDataAppender(AppendShortType));
+                        break;
+
+                    default:
+                        InternalLogger.Warn("Unknown exception data appender: {0}", s);
+                        break;
+                    
+                }
+            }
+            _exceptionDataAppenders = (ExceptionDataAppender[])dataAppenders.ToArray(typeof(ExceptionDataAppender));
+        }
+
         protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 32;
@@ -75,24 +110,10 @@ namespace NLog.LayoutAppenders
 
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-#if !NETCF
-            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-#else
-            string baseDir = CompactFrameworkHelper.GetExeBaseDir();
-#endif
-            if (_fileName != null)
+            if (ev.Exception != null)
             {
-                builder.Append(ApplyPadding(Path.Combine(baseDir, _fileName)));
-            }
-            else if (_directoryName != null)
-            {
-                builder.Append(ApplyPadding(Path.Combine(baseDir, _directoryName)));
-            }
-            else
-            {
-                builder.Append(ApplyPadding(baseDir));
+                StringBuilder sb2 = new StringBuilder(128);
             }
         }
     }
 }
-
