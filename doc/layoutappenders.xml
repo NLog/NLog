@@ -5,6 +5,7 @@
         <parameter name="lowercase" type="Boolean" required="No" description="Output log level in lowercase." default="False" />
         <parameter name="culture" type="String" required="No" description="The culture name to use for output formatting." default="Invariant culture" />
         <parameter name="padding" type="Integer" required="No" description="Number of characters to pad the output to. When positive the output will be right-aligned, when negative it will be left-aligned. Zero means no padding." default="0" />
+        <parameter name="padcharacter" type="Char" required="No" description="The character used to pad the output with. " default="space" />
         <parameter name="fixedlength" type="Boolean" required="No" description="Crop the result to the padding width." default="False" />
     </common-config>
     <la name="level">
@@ -111,6 +112,36 @@
         <support framework="net-2.0" />
         <support framework="mono-1.0" />
         <support framework="mono-2.0" />
+    </la>
+    <la name="guid">
+        <displayName>Guid</displayName>
+        <description>outputs the globally unique identifier (GUID)</description>
+        <assembly>NLog.dll</assembly>
+        <namespace>NLog.LayoutAppenders</namespace>
+        <className>GuidLayoutAppender</className>
+        <support framework="net-1.0" />
+        <support framework="net-1.1" />
+        <support framework="net-2.0" />
+        <support framework="mono-1.0" />
+        <support framework="mono-2.0" />
+        <support framework="netcf-1.0" />
+        <parameter name="format" type="String" required="No" description="The output format. Can be either N,D,B or P as specified in Guid.ToString() function" default="N" />
+    </la>
+    <la name="counter">
+        <displayName>Counter</displayName>
+        <description>outputs the increasing counter value</description>
+        <assembly>NLog.dll</assembly>
+        <namespace>NLog.LayoutAppenders</namespace>
+        <className>CounterLayoutAppender</className>
+        <support framework="net-1.0" />
+        <support framework="net-1.1" />
+        <support framework="net-2.0" />
+        <support framework="mono-1.0" />
+        <support framework="mono-2.0" />
+        <support framework="netcf-1.0" />
+        <parameter name="value" type="Integer" required="No" description="The starting value of a counter." default="1" />
+        <parameter name="increment" type="Integer" required="No" description="The number to be added to the counter value each time the counter is output." default="1" />
+        <parameter name="sequence" type="String" required="No" description="Shared sequence name. Two layout appenders can share the same sequence which will cause them to acquire the values from same sequence of values." default="(don't use shared sequence)" />
     </la>
     <la name="machinename">
         <displayName>Machine Name</displayName>
