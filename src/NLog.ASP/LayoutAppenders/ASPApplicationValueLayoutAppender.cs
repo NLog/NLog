@@ -36,6 +36,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 
 using NLog.LayoutAppenders;
+using NLog.Internal;
 
 namespace NLog.ASP.LayoutAppenders
 {

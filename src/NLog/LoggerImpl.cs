@@ -37,6 +37,7 @@ using System.Diagnostics;
 
 using NLog.Filters;
 using NLog.Appenders;
+using NLog.Internal;
 
 namespace NLog
 {

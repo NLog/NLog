@@ -33,6 +33,7 @@
 
 using System;
 using System.Text;
+using NLog.Internal;
 
 namespace NLog.LayoutAppenders
 {

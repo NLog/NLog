@@ -41,7 +41,7 @@ using System.Text;
 
 using NLog.Config;
 
-namespace NLog
+namespace NLog.Internal
 {
     public sealed class InternalLogger
     {

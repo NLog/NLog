@@ -34,6 +34,8 @@
 using System;
 using System.Text;
 
+using NLog.Internal;
+
 namespace NLog.Filters
 {
     public abstract class Filter
