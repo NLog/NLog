@@ -32,39 +32,54 @@
 // 
 
 using System;
+using System.Collections;
+using System.Collections.Specialized;
+using System.Diagnostics;
+using System.Reflection;
+using System.Globalization;
 
-using NLog;
 using NLog.Config;
 
-public class Test {
-    public static void LogProc(string msg) {
-        Console.WriteLine("logproc: {0}", msg);
-    }
-    static void Main(string[] args) {
-        Console.WriteLine("zzz");
-        NLog.LogManager.Configuration = new XmlLoggingConfiguration("NLog.Test.exe.config");
-        NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
-        NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");
+namespace NLog.Appenders
+{
+    [Appender("MethodCall")]
+    public sealed class MethodCallAppender : MethodCallAppenderBase
+    {
+        private string _className = null;
+        private MethodInfo _methodInfo = null;
+        private string _methodName = null;
 
-        using (NDC.Push("aaa")) {
-            l.Debug("this is a debug");
-            l.Info("this is an info");
-            MDC.Set("username", "jarek");
-
-            l.Warn("this is a warning");
-            using (NDC.Push("bbb")) {
-                l2.Debug("this is a debug");
-                using (NDC.Push("ccc")) {
-                    l2.Info("this is an info");
-                }
-            }
-            MDC.Set("username", "aaa");
-            l2.Warn("this is a warning");
+        public string ClassName
+        {
+            get { return _className; }
+            set { _className = value; UpdateMethodInfo(); }
         }
-        l.Error("this is an error");
-        MDC.Remove("username");
-        l.Fatal("this is a fatal");
-        l2.Error("this is an error");
-        l2.Fatal("this is a fatal");
+
+        public string MethodName
+        {
+            get { return _methodName; }
+            set { _methodName = value; UpdateMethodInfo(); }
+        }
+
+        public MethodInfo Method
+        {
+            get { return _methodInfo; }
+            set { _methodInfo = value; }
+        }
+
+        private void UpdateMethodInfo() {
+            if (ClassName != null && MethodName != null) {
+                Type targetType = Type.GetType(ClassName);
+                Method = targetType.GetMethod(MethodName);
+            } else {
+                Method = null;
+            }
+        }
+
+        protected override void DoInvoke(object[] parameters) {
+            if (Method != null) {
+                Method.Invoke(null, parameters);
+            }
+        }
     }
 }

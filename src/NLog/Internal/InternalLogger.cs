@@ -128,11 +128,11 @@ namespace NLog.Internal
 			}
         }
 
-        internal static bool IsDebugEnabled { get { return _logLevel >= LogLevel.Debug; } }
-        internal static bool IsInfoEnabled  { get { return _logLevel >= LogLevel.Info; } }
-        internal static bool IsWarnEnabled  { get { return _logLevel >= LogLevel.Warn; } }
-        internal static bool IsErrorEnabled { get { return _logLevel >= LogLevel.Error; } }
-        internal static bool IsFatalEnabled { get { return _logLevel >= LogLevel.Fatal; } }
+        internal static bool IsDebugEnabled { get { return LogLevel.Debug >= _logLevel; } }
+        internal static bool IsInfoEnabled  { get { return LogLevel.Info >= _logLevel; } }
+        internal static bool IsWarnEnabled  { get { return LogLevel.Warn >= _logLevel; } }
+        internal static bool IsErrorEnabled { get { return LogLevel.Error >= _logLevel; } }
+        internal static bool IsFatalEnabled { get { return LogLevel.Fatal >= _logLevel; } }
 
         internal static void Log(LogLevel level, IFormatProvider formatProvider, string message, params object[] args) 
         {

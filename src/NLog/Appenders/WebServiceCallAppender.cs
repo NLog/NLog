@@ -32,39 +32,48 @@
 // 
 
 using System;
+using System.Collections;
+using System.Collections.Specialized;
+using System.Diagnostics;
+using System.Reflection;
+using System.Web.Services.Protocols;
 
-using NLog;
 using NLog.Config;
 
-public class Test {
-    public static void LogProc(string msg) {
-        Console.WriteLine("logproc: {0}", msg);
-    }
-    static void Main(string[] args) {
-        Console.WriteLine("zzz");
-        NLog.LogManager.Configuration = new XmlLoggingConfiguration("NLog.Test.exe.config");
-        NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
-        NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");
+namespace NLog.Appenders
+{
+    [Appender("WebServiceCall")]
+    public sealed class WebServiceCallAppender : MethodCallAppenderBase
+    {
+        private GenericSoapHttpClientProtocol _client = new GenericSoapHttpClientProtocol();
+        private string _methodName = null;
 
-        using (NDC.Push("aaa")) {
-            l.Debug("this is a debug");
-            l.Info("this is an info");
-            MDC.Set("username", "jarek");
-
-            l.Warn("this is a warning");
-            using (NDC.Push("bbb")) {
-                l2.Debug("this is a debug");
-                using (NDC.Push("ccc")) {
-                    l2.Info("this is an info");
-                }
-            }
-            MDC.Set("username", "aaa");
-            l2.Warn("this is a warning");
+        public string Url
+        {
+            get { return _client.Url; }
+            set { _client.Url = value; }
         }
-        l.Error("this is an error");
-        MDC.Remove("username");
-        l.Fatal("this is a fatal");
-        l2.Error("this is an error");
-        l2.Fatal("this is a fatal");
+
+        public string MethodName
+        {
+            get { return _methodName; }
+            set { _methodName = value; }
+        }
+
+        protected override void DoInvoke(object[] parameters) {
+            _client.DoInvoke(MethodName, parameters);
+        }
+        
+        [System.Web.Services.WebServiceBindingAttribute(Name="NLogService", Namespace="http://nlog.sourceforge.net/appender/")]
+        class GenericSoapHttpClientProtocol : SoapHttpClientProtocol
+        {
+            public GenericSoapHttpClientProtocol() {
+            }
+
+            public object DoInvoke(string method, object[] parameters)
+            {
+                return Invoke(method, parameters);
+            }
+        }
     }
 }

@@ -36,6 +36,7 @@ using System.Collections;
 using System.Xml;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 
 using NLog.Config;
 using NLog.Internal;
@@ -217,5 +218,34 @@ namespace NLog
             }
             return appendersByLevel;
         }
-    }
+
+        private static int _logsEnabled = 0;
+        
+        class LogEnabler : IDisposable
+        {
+            public static IDisposable TheEnabler = new LogEnabler();
+
+            private LogEnabler()
+            {
+            }
+
+            void IDisposable.Dispose()
+            {
+                LogManager.EnableLogging();
+            } 
+        }
+
+        public static IDisposable DisableLogging() {
+            Interlocked.Decrement(ref _logsEnabled);
+            return LogEnabler.TheEnabler;
+        }
+        
+        public static void EnableLogging() {
+            Interlocked.Increment(ref _logsEnabled);
+        }
+        
+        public static bool IsLoggingEnabled() {
+            return _logsEnabled >= 0;
+        }
+   }
 }

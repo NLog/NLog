@@ -29,7 +29,8 @@ for $level (@levels) {
 		/// </summary>$param0
 		/// <param name="message">A <see langword="string" /> to be written.</param>
         public void $level(${arg0}string message) {
-            Write($level2, null, message, null);
+            if (IsEnabled($level2))
+                Write($level2, null, message, null);
         }
 
 		/// <summary>
@@ -39,7 +40,8 @@ for $level (@levels) {
 		/// <param name="message">A <see langword="string" /> containing format items.</param>
 		/// <param name="args">Arguments to format.</param>
         public void $level(${arg0}IFormatProvider formatProvider, string message, params object[] args) { 
-            Write($level2, formatProvider, message, args); 
+            if (IsEnabled($level2))
+                Write($level2, formatProvider, message, args); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the $level3 level using the specified parameters.
@@ -47,7 +49,31 @@ for $level (@levels) {
 		/// <param name="message">A <see langword="string" /> containing format items.</param>
 		/// <param name="args">Arguments to format.</param>
         public void $level(${arg0}string message, params object[] args) { 
-            Write($level2, null, message, args);
+            if (IsEnabled($level2))
+                Write($level2, null, message, args);
+        }
+        
+		/// <summary>
+		/// Writes the diagnostic message at the $level3 level using the specified parameters.
+		/// </summary>$param0
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="arg1">First argument to format.</param>
+		/// <param name="arg2">Second argument to format.</param>
+        public void $level(${arg0}string message, System.Object arg1, System.Object arg2) { 
+            if (IsEnabled($level2))
+                Write($level2, null, message, new object[] { arg1, arg2 });
+        }
+        
+		/// <summary>
+		/// Writes the diagnostic message at the $level3 level using the specified parameters.
+		/// </summary>$param0
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="arg1">First argument to format.</param>
+		/// <param name="arg2">Second argument to format.</param>
+		/// <param name="arg3">Third argument to format.</param>
+        public void $level(${arg0}string message, System.Object arg1, System.Object arg2, System.Object arg3) { 
+            if (IsEnabled($level2))
+                Write($level2, null, message, new object[] { arg1, arg2, arg3 });
         }
 EOT
     for $t (@clitypes) {

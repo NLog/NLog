@@ -67,6 +67,8 @@
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
                 <include name="System.Data.dll" />
+                <include name="System.Web.dll" />
+                <include name="System.Web.Services.dll" />
             </references>
             <nowarn>
                 <warning number="1591" />
@@ -124,7 +126,7 @@
 
     <target name="NLog.DotNet" depends="NLog">
         <!-- don't build it yet - we don't have anything .NET-specific -->
-        <csc if="false" target="library" output="${output.dir}/NLog.DotNet.dll" define="${nlog.define}" debug="${nlog.debug}">
+        <csc target="library" output="${output.dir}/NLog.DotNet.dll" define="${nlog.define}" debug="${nlog.debug}">
             <sources basedir="src/NLog.DotNet">
                 <include name="**/*.cs" />
             </sources>
@@ -153,7 +155,7 @@
     </target>
 
     <target name="NLog.Unix" depends="NLog">
-        <csc if="false" target="library" output="${output.dir}/NLog.Unix.dll" define="${nlog.define}" debug="${nlog.debug}">
+        <csc target="library" output="${output.dir}/NLog.Unix.dll" define="${nlog.define}" debug="${nlog.debug}">
             <sources basedir="src/NLog.Unix">
                 <include name="**/*.cs" />
             </sources>
@@ -183,6 +185,21 @@
         <copy file="src/NLog.Test/Config2.nlog" tofile="${output.dir}/Config2.nlog" />
     </target>
 
+    <target name="NLog.Benchmark" depends="NLog">
+        <csc target="exe" output="${output.dir}/NLog.Benchmark.exe" define="${nlog.define}" debug="${nlog.debug}">
+            <sources basedir="src/NLog.Benchmark">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${output.dir}/NLog.dll" />
+                <include name="mscorlib.dll" />
+                <include name="System.dll" />
+                <include name="System.Xml.dll" />
+            </references>
+        </csc>
+        <copy file="src/NLog.Benchmark/App.config" tofile="${output.dir}/NLog.Benchmark.exe.config" />
+    </target>
+
     <target name="register-com" depends="configure">
         <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'regasm.exe')}"
             commandline="/tlb ${output.dir}/NLog.ComInterop.dll" />
@@ -193,8 +210,30 @@
             commandline="/tlb /codebase ${output.dir}/NLog.ComInterop.dll" />
     </target>
 
-    <target name="test" depends="NLog.Test">
+    <target name="test" depends="NLog.Test, build">
         <exec program="${output.dir}/NLog.Test.exe" workingdir="${output.dir}" />
+    </target>
+
+    <target name="benchmark" depends="NLog.Benchmark, build">
+        <exec program="${output.dir}/NLog.Benchmark.exe" workingdir="${output.dir}" />
+    </target>
+
+    <target name="longbenchmark" depends="NLog.Benchmark, build">
+        <exec program="${output.dir}/NLog.Benchmark.exe" commandline="long" workingdir="${output.dir}" />
+    </target>
+
+    <target name="benchmark-all">
+        <exec program="nant.exe" commandline="-t:net-1.0 release benchmark" if="${framework::exists('net-1.0')}" />
+        <exec program="nant.exe" commandline="-t:net-1.1 release benchmark" if="${framework::exists('net-1.1')}" />
+        <exec program="nant.exe" commandline="-t:net-2.0 release benchmark" if="${framework::exists('net-2.0')}" />
+        <exec program="nant.exe" commandline="-t:mono-1.0 release benchmark" if="${framework::exists('mono-1.0')}" />
+    </target>
+
+    <target name="longbenchmark-all">
+        <exec program="nant.exe" commandline="-t:net-1.0 release longbenchmark" if="${framework::exists('net-1.0')}" />
+        <exec program="nant.exe" commandline="-t:net-1.1 release longbenchmark" if="${framework::exists('net-1.1')}" />
+        <exec program="nant.exe" commandline="-t:net-2.0 release longbenchmark" if="${framework::exists('net-2.0')}" />
+        <exec program="nant.exe" commandline="-t:mono-1.0 release longbenchmark" if="${framework::exists('mono-1.0')}" />
     </target>
 
     <target name="webtest" depends="build">
@@ -205,7 +244,9 @@
         </copy>
     </target>
 
-    <target name="configure-mono-1.0" />
+    <target name="configure-mono-1.0">
+        <property name="nlog.define" value="${nlog.define};MONO;MONO_1_0" />
+    </target>
     <target name="configure-net-1.0" />
     <target name="configure-net-1.1" />
     <target name="configure-net-2.0" />
@@ -215,9 +256,9 @@
     </target>
 
     <target name="build-mono-1.0" depends="NLog, NLog.Mono" />
-    <target name="build-net-1.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet" />
-    <target name="build-net-1.1" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet" />
-    <target name="build-net-2.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet" />
+    <target name="build-net-1.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLog.Benchmark" />
+    <target name="build-net-1.1" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLog.Benchmark" />
+    <target name="build-net-2.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLog.Benchmark" />
     <target name="build-netcf-1.0" depends="NLog, NLog.CompactFramework" />
 
     <target name="dist">

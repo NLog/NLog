@@ -54,9 +54,6 @@ namespace NLog
         }
 
         protected override void Write(LogLevel level, IFormatProvider formatProvider, string message, object[] args) {
-            if (LogManager.ReloadConfigOnNextLog)
-                LogManager.ReloadConfig();
-
             WriteToAppenders(level, _appendersByLevel[(int)level], formatProvider, message, args);
         }
 
@@ -71,12 +68,8 @@ namespace NLog
         }
 
         private void WriteToAppenders(LogLevel level, AppenderWithFilterChain appenders, IFormatProvider formatProvider, string message, object[] args) {
-            if (appenders == null) {
-                if (InternalLogger.IsDebugEnabled) {
-                    InternalLogger.Debug("No appenders configured for {0}.{1}", Name, level);
-                }
+            if (appenders == null)
                 return;
-            }
 
             string formattedMessage;
             
@@ -181,32 +174,60 @@ namespace NLog
         }
 
         public override bool IsEnabled(LogLevel level) {
-            return _appendersByLevel[(int)level] != null;
+            if (LogManager.ReloadConfigOnNextLog)
+                LogManager.ReloadConfig();
+
+            return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)level] != null;
         }
 
         public override bool IsDebugEnabled
         {
-            get { return _appendersByLevel[(int)LogLevel.Debug] != null; }
+            get { 
+                if (LogManager.ReloadConfigOnNextLog)
+                    LogManager.ReloadConfig();
+
+                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Debug] != null; 
+            }
         }
         
         public override bool IsInfoEnabled
         {
-            get { return _appendersByLevel[(int)LogLevel.Info] != null; }
+            get {
+                if (LogManager.ReloadConfigOnNextLog)
+                    LogManager.ReloadConfig();
+
+                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Info] != null; 
+            }
         }
         
         public override bool IsWarnEnabled
         {
-            get { return _appendersByLevel[(int)LogLevel.Warn] != null; }
+            get { 
+                if (LogManager.ReloadConfigOnNextLog)
+                    LogManager.ReloadConfig();
+
+                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Warn] != null; 
+            }
         }
         
         public override bool IsErrorEnabled
         {
-            get { return _appendersByLevel[(int)LogLevel.Error] != null; }
+            get { 
+                if (LogManager.ReloadConfigOnNextLog)
+                    LogManager.ReloadConfig();
+
+                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Error] != null;
+            }
         }
         
         public override bool IsFatalEnabled
         {
-            get { return _appendersByLevel[(int)LogLevel.Fatal] != null; }
+            get { 
+                if (LogManager.ReloadConfigOnNextLog)
+                    LogManager.ReloadConfig();
+
+                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Fatal] != null; 
+            }
         }
     }
 }

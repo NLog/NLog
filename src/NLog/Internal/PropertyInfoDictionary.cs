@@ -46,7 +46,7 @@ namespace NLog.Internal
     /// <summary>
     /// A dictionary with keys of type string and values of type PropertyInfo
     /// </summary>
-    public class PropertyInfoDictionary: System.Collections.DictionaryBase
+    internal class PropertyInfoDictionary: System.Collections.DictionaryBase
     {
         /// <summary>
         /// Initializes a new empty instance of the PropertyInfoDictionary class
