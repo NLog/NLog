@@ -45,7 +45,7 @@ namespace NLog
 {
     internal sealed class InternalLogger
     {
-        private static LogLevel _logLevel = LogLevel.Debug;
+        private static LogLevel _logLevel = LogLevel.Info;
         private static bool _logToConsole = false;
 
         public static LogLevel LogLevel
