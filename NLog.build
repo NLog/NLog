@@ -257,11 +257,14 @@
         <mkdir dir="${website.dir}" />
         <copy todir="${website.dir}">
             <fileset basedir="doc">
+                <include name="examples/**/*" />
                 <include name="*.html" />
                 <include name="*.css" />
                 <include name="*.jpg" />
                 <include name="*.gif" />
                 <include name="*.js" />
+                <exclude name="**/_svn" />
+                <exclude name="**/_svn/**" />
             </fileset>
         </copy>
         <style style="doc/appenders.xsl" in="doc/appenders.xml" out="${website.dir}/appenders.html" />
