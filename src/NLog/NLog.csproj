@@ -203,6 +203,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Config\RequiredParameterAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Config\XmlLoggingConfiguration.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -269,11 +274,6 @@
                 />
                 <File
                     RelPath = "Internal\PropertyHelper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Internal\RequiredParameterAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

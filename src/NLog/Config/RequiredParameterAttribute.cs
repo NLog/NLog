@@ -33,7 +33,7 @@
 
 using System;
 
-namespace NLog.Internal
+namespace NLog.Config
 {
 	/// <summary>
 	/// Attribute used to mark the required parameters for appenders, 
