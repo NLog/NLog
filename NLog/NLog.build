@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<project default="build">
+<project default="build" xmlns="http://nant.sf.net/NAnt.xsd">
     <property name="nlog.debug" value="true" />
     <property name="nlog.define" value="NANT" />
 

@@ -80,3 +80,9 @@ div.table {
     padding: 5px;
     font-weight: bold;
 }
+
+.table tr.appender {
+    background-color: #f8f8f8;
+}
+
+
