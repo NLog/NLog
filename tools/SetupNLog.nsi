@@ -28,6 +28,9 @@ Section "Main"
   SetOutPath $INSTDIR\doc
   File build\net-1.0\doc\*.*
 
+  SetOutPath $INSTDIR\doc\examples
+  File /r build\net-1.0\doc\examples\*.*
+
   SetOutPath $INSTDIR\doc\help
   File build\net-1.0\doc\help\NLog.chm
 
