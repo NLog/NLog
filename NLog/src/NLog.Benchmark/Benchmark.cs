@@ -36,6 +36,7 @@ using System;
 using System.Threading;
 using System.Globalization;
 using System.IO;
+using System.Xml;
 
 #if LOG4NET
 using log4net;
@@ -73,9 +74,12 @@ class Bench
     private static string _currentTestName;
     private static DateTime _startTime;
     private static DateTime _finishTime;
+    private static XmlTextWriter _output;
 
     public static void BeginTest(string name)
     {
+        _output.WriteStartElement("timing");
+        _output.WriteAttributeString("name", name);
         _currentTestName = name;
         _startTime = DateTime.Now;
     }
@@ -83,7 +87,12 @@ class Bench
     public static void EndTest()
     {
         _finishTime = DateTime.Now;
-        Console.WriteLine("{0}: {1} nanoseconds/log", _currentTestName, 100.0 * (_finishTime - _startTime).Ticks / (double)_repeat);
+        // Console.WriteLine("{0}: {1} nanoseconds/log {2} seconds per {3} logs", _currentTestName, , _finishTime - _startTime, _repeat);
+        _output.WriteAttributeString("totalTime", Convert.ToString(_finishTime - _startTime));
+        _output.WriteAttributeString("repetitions", Convert.ToString(_repeat));
+        _output.WriteAttributeString("logsPerSecond", Convert.ToString(Convert.ToInt64(_repeat / (_finishTime - _startTime).TotalSeconds)));
+        _output.WriteAttributeString("nanosecondsPerLog", Convert.ToString(100.0 * (_finishTime - _startTime).Ticks / (double)_repeat));
+        _output.WriteEndElement();
     }
 
     public static void Main(string[]args)
@@ -98,8 +107,14 @@ class Bench
                 repeat *= 10;
                 repeat2 *= 10;
             }
+            if (args[0] == "verylong")
+            {
+                repeat *= 100;
+                repeat2 *= 10;
+            }
         }
 #if LOG4NET
+        _output = new XmlTextWriter("log4net.results.xml", System.Text.Encoding.UTF8);
         log4net.Config.DOMConfigurator.Configure(new FileInfo("log4net.config"));
 
         ILog logger1 = LogManager.GetLogger("nonlogger");
@@ -107,12 +122,15 @@ class Bench
         ILog logger3 = LogManager.GetLogger("null2");
         ILog logger4 = LogManager.GetLogger("file1");
 #else
+        _output = new XmlTextWriter("nlog.results.xml", System.Text.Encoding.UTF8);
         Logger logger1 = LogManager.GetLogger("nonlogger");
         Logger logger2 = LogManager.GetLogger("null1");
         Logger logger3 = LogManager.GetLogger("null2");
         Logger logger4 = LogManager.GetLogger("file1");
 #endif
-        Console.WriteLine("warming up");
+        // _output = new XmlTextWriter(Console.Out);
+        _output.Formatting = Formatting.Indented;
+        _output.WriteStartElement("results");
         for (int i = 0; i < warmup; ++i)
         {
             logger1.Debug("Warm up");
@@ -122,10 +140,12 @@ class Bench
             logger2.Info("Warm up");
             logger3.Info("Warm up");
         }
-        LogTest(logger1, "Non-logging:", repeat);
-        LogTest(logger4, "File appender:", repeat2);
-        LogTest(logger3, "Null-appender without rendering:", repeat);
-        LogTest(logger2, "Null-appender with layout rendering:", repeat);
+        LogTest(logger1, "Non-logging", repeat);
+        LogTest(logger4, "File appender", repeat2);
+        LogTest(logger3, "Null-appender without layout", repeat);
+        LogTest(logger2, "Null-appender with layout rendering", repeat);
+        _output.WriteEndElement();
+        _output.Close();
     }
 
     private static void LogTest(
@@ -138,33 +158,37 @@ class Bench
     {
         _repeat = repeat;
 
-        BeginTest(loggerDesc + " no parameters");
+        _output.WriteStartElement("test");
+        _output.WriteAttributeString("logger", loggerDesc);
+        _output.WriteAttributeString("repetitions", repeat.ToString());
+
+        BeginTest("No formatting");
         for (int i = 0; i < repeat; ++i)
         {
-            logger.Debug("This is a  no parameters");
+            logger.Debug("This is a message without formatting.");
         }
         EndTest();
-        BeginTest(loggerDesc + " one parameters");
-        for (int i = 0; i < repeat; ++i)
-        {
-#if LOG4NET
-            logger.Debug(String.Format("This is a  {0} parameter", 1));
-#else
-            logger.Debug("This is a  {0} parameter", 1);
-#endif
-        }
-        EndTest();
-        BeginTest(loggerDesc + " two parameters");
+        BeginTest("1 format parameter");
         for (int i = 0; i < repeat; ++i)
         {
 #if LOG4NET
-            logger.Debug(String.Format("This is a  {0}{1} parameters", 2, "o"));
+            logger.Debug(String.Format("This is a message with {0} format parameter", 1));
 #else
-            logger.Debug("This is a  {0}{1} parameters", 2, "o");
+            logger.Debug("This is a message with {0} format parameter", 1);
 #endif
         }
         EndTest();
-        BeginTest(loggerDesc + " three parameters");
+        BeginTest("2 format parameters");
+        for (int i = 0; i < repeat; ++i)
+        {
+#if LOG4NET
+            logger.Debug(String.Format("This is a message with {0}{1} parameters", 2, "o"));
+#else
+            logger.Debug("This is a message with {0}{1} parameters", 2, "o");
+#endif
+        }
+        EndTest();
+        BeginTest("3 format parameters");
         for (int i = 0; i < repeat; ++i)
         {
 #if LOG4NET
@@ -174,7 +198,7 @@ class Bench
 #endif
         }
         EndTest();
-        BeginTest(loggerDesc + " no parameters and a guard.");
+        BeginTest("No formatting, using a guard");
         for (int i = 0; i < repeat; ++i)
         {
             if (logger.IsDebugEnabled)
@@ -183,7 +207,7 @@ class Bench
             }
         }
         EndTest();
-        BeginTest(loggerDesc + " one parameter and a guard.");
+        BeginTest("1 format parameter, using a guard");
         for (int i = 0; i < repeat; ++i)
         {
             if (logger.IsDebugEnabled)
@@ -196,7 +220,7 @@ class Bench
             }
         }
         EndTest();
-        BeginTest(loggerDesc + " two parameters and a guard.");
+        BeginTest("2 format parameters, using a guard");
         for (int i = 0; i < repeat; ++i)
         {
             if (logger.IsDebugEnabled)
@@ -209,7 +233,7 @@ class Bench
             }
         }
         EndTest();
-        BeginTest(loggerDesc + " three parameters and a guard.");
+        BeginTest("3 format parameters, using a guard");
         for (int i = 0; i < repeat; ++i)
         {
             if (logger.IsDebugEnabled)
@@ -222,5 +246,6 @@ class Bench
             }
         }
         EndTest();
+        _output.WriteEndElement();
     }
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="benchmark">
+    <h1>Benchmarking NLog</h1>
+    <p>
+        Speed is very important in logging. Because of its very simple internal structure, NLog is able
+        to achieve great raw speed and good scalability. This page presents the result of running the
+        NLog.Benchmark tool on my Toshiba A-50 (Centrino 1.6GHz) laptop. The results show that NLog is able
+        to accept 100 million non-logging statements per second on a single CPU. Full results <a href="#results">here</a>.
+    </p>
+    <h5>Testing method:</h5>
+    <p>
+        I've decided to measure the time needed to execute the following logging statements:
+    </p>
+    <cs src="examples/benchmark_nlog.cs" />
+    <p>
+        The following logging configurations were examined:
+        <ul>
+            <li><b>Non-logging</b> - emitting a Debug message for a logger configured to accept Fatal messages only.</li>
+            <p>This demonstrates NLog's ability to quickly discard messages that don't need to be logged based on
+                the most common criteria which is log level.</p>
+            <li><b>Null appender without a layout</b> - emitting a Debug message for a logger configured to write to <code>NullAppender</code> which doesn't compute the layout string. </li>
+            <p>
+                This test demonstrates the entire log filtering engine up to but excluding the appender phase.</p>
+            <li><b>Null appender with a layout</b> - emitting a Debug message for a logger configured to write to <code>NullAppender</code> which does compute the layout string but ignores the result. </li>
+            <p>
+                This test demonstrates the entire log filtering engine up to the appender phase including the 
+                layout rendering phase but excluding any actual log emitting (the layout is just discarded).</p>
+            <li><b>File appender</b> - emitting a Debug message for a logger configured to write to <code>FileAppender</code> </li>
+            <p>
+                This test demonstrates the typical use case, where all log messages go to a single file.
+            </p>
+        </ul>
+    </p>
+    <h5><a name="results">Benchmark Results</a></h5>
+    <p>
+        If you want to see how NLog performs in comparison to <a href="http://logging.apache.org/log4net">log4net</a>, download the <link href="download">source code</link>
+        and run:
+    </p>
+    <p>
+        <code>nant comparison-website</code>
+    </p>
+    <p>
+        After that <code>web/build/benchmark.html</code> will contain this page but extended to include 
+        the log4net benchmark results. The results are gathered by running NLog.Benchmark-log4net.exe which you
+        can build and run for yourself. 
+    </p>
+    <benchmark-table />
+</content>
+

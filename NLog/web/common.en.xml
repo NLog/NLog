@@ -4,6 +4,7 @@
         <nav href="index" label="Introduction" />
         <nav href="news" label="News" />
         <nav href="tutorial" label="Tutorial" />
+        <nav href="benchmark" label="Benchmark" />
         <nav href="howto" label="How To...">
             <subnav href="howto_write_appender" label="Write an appender" />
             <subnav href="howto_write_layout_appender" label="Write a layout appender" />

@@ -1,0 +1,31 @@
+<pre xml:space='preserve'><span class='csharp'>Logger logger = LogManager.GetLogger(<span class='s'>&quot;somelogger&quot;</span>);
+
+<span class='c'>// Case 1. No formatting</span>
+logger.Debug(<span class='s'>&quot;This is a message without formatting.&quot;</span>);
+
+<span class='c'>// Case 2. One format parameter</span>
+logger.Debug(<span class='s'>&quot;This is a message with {0} format parameter&quot;</span>, 1);
+
+<span class='c'>// Case 3. Two format parameters</span>
+logger.Debug(<span class='s'>&quot;This is a message with {0}{1} parameters&quot;</span>, 2, <span class='s'>&quot;o&quot;</span>);
+
+<span class='c'>// Case 4. Three format parameters</span>
+logger.Debug(<span class='s'>&quot;This is a message with {0}{1}{2} parameters&quot;</span>, <span class='s'>&quot;thr&quot;</span>, 3, 3);
+
+<span class='c'>// Case 1a. No formatting, using a guard.</span>
+<span class='k'>if</span> (logger.IsDebugEnabled)
+    logger.Debug(<span class='s'>&quot;This is a message without formatting.&quot;</span>);
+
+<span class='c'>// Case 2a. One format parameter, using a guard.</span>
+<span class='k'>if</span> (logger.IsDebugEnabled)
+    logger.Debug(<span class='s'>&quot;This is a message with {0} format parameter&quot;</span>, 1);
+
+<span class='c'>// Case 3a. Two format parameters, using a guard.</span>
+<span class='k'>if</span> (logger.IsDebugEnabled)
+    logger.Debug(<span class='s'>&quot;This is a message with {0}{1} parameters&quot;</span>, 2, <span class='s'>&quot;o&quot;</span>);
+
+<span class='c'>// Case 4a. Three format parameters, using a guard.</span>
+<span class='k'>if</span> (logger.IsDebugEnabled)
+    logger.Debug(<span class='s'>&quot;This is a message with {0}{1}{2} parameters&quot;</span>, <span class='s'>&quot;thr&quot;</span>, 3, 3);
+</span>
+</pre>

@@ -421,18 +421,23 @@ code
     border: 1px solid #c0c0c0;
     border-collapse: collapse;
     font-size: 13px;
+    background-color: white;
 }
 
 .table td {
     border: 1px solid #c0c0c0;
     margin: 0px;
-    background-color: white;
 }
 
 .table th {
     border: 1px solid #c0c0c0;
     background-color: #efe8e8;
     margin: 0px;
+}
+
+.table tr.alternate
+{
+    background-color: #fff0f0;
 }
 
 div.summarytable
@@ -475,4 +480,9 @@ div.summarytable
 
 table.submenu
 {
+}
+
+.benchmark-winner
+{
+    background-color: #ffffb0;
 }
