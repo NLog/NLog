@@ -45,16 +45,45 @@ namespace NLog.Appenders
     [Appender("Database")]
     public sealed class DatabaseAppender : Appender
     {
+        private Assembly _system_data_assembly = typeof(IDbConnection).Assembly;
         private Type _connectionType = typeof(SqlConnection);
         private string _connectionString = null;
         private bool _keepConnection = true;
         private bool _useTransaction = false;
+        private string _dbHost = ".";
+        private string _dbUserName = null;
+        private string _dbPassword = null;
+        private string _dbDatabase = null;
         private IDbConnection _activeConnection = null;
 
-        public string ConnectionType
+        public DatabaseAppender() { }
+
+        public string Provider
         {
             get { return _connectionType.AssemblyQualifiedName; }
-            set { _connectionType = Type.GetType(value); }
+            set { 
+                switch (value)
+                {
+                    case "sqlserver":
+                    case "mssql":
+                    case "microsoft":
+                    case "msde":
+                        _connectionType = _system_data_assembly.GetType("System.Data.SqlClient.SqlConnection");
+                    break;
+
+                    case "oledb":
+                        _connectionType = _system_data_assembly.GetType("System.Data.OleDb.OleDbConnection");
+                    break;
+
+                    case "odbc":
+                        _connectionType = _system_data_assembly.GetType("System.Data.Odbc.OdbcConnection");
+                    break;
+
+                    default:
+                        _connectionType = Type.GetType(value); 
+                        break;
+                }
+            }
                 
         }
 
@@ -75,6 +104,30 @@ namespace NLog.Appenders
         {
             get { return _useTransaction; }
             set { _useTransaction = value; }
+        }
+
+        public string DBHost
+        {
+            get { return _dbHost; }
+            set { _dbHost = value; }
+        }
+
+        public string DBUserName
+        {
+            get { return _dbUserName; }
+            set { _dbUserName = value; }
+        }
+
+        public string DBPassword
+        {
+            get { return _dbPassword; }
+            set { _dbPassword = value; }
+        }
+
+        public string DBDatabase
+        {
+            get { return _dbDatabase; }
+            set { _dbDatabase = value; }
         }
 
         protected override void Append(LogEventInfo ev) {

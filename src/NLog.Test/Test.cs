@@ -39,6 +39,7 @@ using NLog.Config;
 
 class Test {
     static void Main(string[] args) {
+        Console.WriteLine("zzz");
         NLog.LogManager.Configuration = new XmlLoggingConfiguration("NLog.Test.exe.config");
         NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
         NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");

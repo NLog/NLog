@@ -30,16 +30,30 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+#if !NETCF
+using System;
+using System.Web;
 
-using System.Reflection;
-using System.Runtime.CompilerServices;
+using NLog.Appenders;
 
-[assembly: AssemblyTitle("NLog.Contexts")]
-[assembly: AssemblyDescription("NLog Diagnostic Contexts")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("NLog")]
-[assembly: AssemblyProduct("NLog - .NET Logging Library")]
-[assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")]
-[assembly: AssemblyCulture("")]
+namespace NLog.Appenders
+{
+    [Appender("ASPNetTrace")]
+    public class ASPNetTraceAppender : Appender
+    {
+        protected internal override void Append(LogEventInfo ev) {
+            HttpContext context = HttpContext.Current;
 
-[assembly: AssemblyVersion("0.2.0.0")]
+            if (context == null) {
+                return;
+            }
+
+            if (ev.Level >= LogLevel.Warn) {
+                context.Trace.Warn(CompiledLayout.GetFormattedMessage(ev));
+            } else {
+                context.Trace.Write(CompiledLayout.GetFormattedMessage(ev));
+            }
+        }
+    }
+}
+#endif

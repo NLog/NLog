@@ -82,7 +82,7 @@ namespace NLog.Appenders
         public static Appender CreateAppender(string name) {
             Type t = _appenders[name.ToLower(CultureInfo.InvariantCulture)];
             if (t != null) {
-                object o = Activator.CreateInstance(t);
+                object o = FactoryHelper.CreateInstance(t);
                 if (o is Appender) {
                     Appender la = (Appender)o;
                     return la;

@@ -32,59 +32,53 @@
 // 
 
 using System;
-using System.Collections;
+using System.Text;
 
-namespace NLog.Contexts
+using NLog.LayoutAppenders;
+
+namespace NLog.LayoutAppenders
 {
-    public sealed class MDC
+    [LayoutAppender("ndc")]
+    public class NDCLayoutAppender : LayoutAppender
     {
-        private MDC() { }
-
-        public static void Set(string item, string value) {
-            IDictionary dict = GetThreadDictionary();
-
-            dict[item] = value;
-        }
+        private int _topFrames = -1;
+        private int _bottomFrames = -1;
+        private string _separator = " ";
         
-        public static string Get(string item) {
-            IDictionary dict = GetThreadDictionary();
-
-            string s = (string)dict[item];
-            if (s == null)
-                return String.Empty;
-            else
-                return s;
+        public int TopFrames
+        {
+            get { return _topFrames; }
+            set { _topFrames = value; }
         }
 
-        public static bool Contains(string item) {
-            IDictionary dict = GetThreadDictionary();
-
-            return dict.Contains(item);
+        public int BottomFrames
+        {
+            get { return _bottomFrames; }
+            set { _bottomFrames = value; }
         }
 
-        public static void Remove(string item) {
-            IDictionary dict = GetThreadDictionary();
-
-            dict.Remove(item);
+        public string Separator
+        {
+            get { return _separator; }
+            set { _separator = value; }
         }
 
-        public static void Clear() {
-            IDictionary dict = GetThreadDictionary();
-
-            dict.Clear();
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev) {
+            return 0;
         }
 
-        private static IDictionary GetThreadDictionary() {
-            IDictionary threadDictionary = (IDictionary)System.Threading.Thread.GetData(_dataSlot);
-            
-            if (threadDictionary == null) {
-                threadDictionary = new Hashtable();
-                System.Threading.Thread.SetData(_dataSlot, threadDictionary);
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+        {
+            string msg;
+
+            if (TopFrames != -1) {
+                msg = NDC.GetTopMessages(TopFrames, Separator);
+            } else if (BottomFrames != -1) {
+                msg = NDC.GetBottomMessages(BottomFrames, Separator);
+            } else {
+                msg = NDC.GetAllMessages(Separator);
             }
-
-            return threadDictionary;
+            builder.Append(ApplyPadding(msg));
         }
-
-		private static LocalDataStoreSlot _dataSlot = System.Threading.Thread.AllocateDataSlot();
     }
 }

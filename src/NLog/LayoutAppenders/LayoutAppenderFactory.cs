@@ -130,7 +130,7 @@ namespace NLog.LayoutAppenders
         public static LayoutAppender CreateLayoutAppender(string name, string parameters) {
             Type t = _appenders[name];
             if (t != null) {
-                object o = Activator.CreateInstance(t);
+                object o = FactoryHelper.CreateInstance(t);
                 if (o is LayoutAppender) {
                     LayoutAppender la = (LayoutAppender)o;
 

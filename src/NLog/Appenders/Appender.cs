@@ -40,7 +40,7 @@ namespace NLog.Appenders
 {
     public abstract class Appender
     {
-        protected Appender()
+        public Appender()
         {
             Layout = "${longdate}|${level:uppercase=true}|${logger}|${message}";
         }
