@@ -33,24 +33,6 @@
         <parameter name="encoding" type="String" required="No" description="The encoding of the output file(s)." default="system encoding" />
         <parameter name="concurrentWrites" type="Boolean" required="No" description="Determines if the appender should allow for concurrent writes to the file. This overrides keepFileOpen." default="True" />
         <parameter name="concurrentWriteAttempts" type="Integer" required="No" description="The number of times the write should be retried in case of a failure." default="10" />
-        public bool ConcurrentWrites
-        {
-            get { return _concurrentWrites; }
-            set { _concurrentWrites = value; }
-        }
-
-        public int ConcurrentWriteAttempts
-        {
-            get { return _concurrentWriteAttempts; }
-            set { _concurrentWriteAttempts = value; }
-        }
-
-        public int ConcurrentWriteAttemptDelay
-        {
-            get { return _concurrentWriteAttemptDelay; }
-            set { _concurrentWriteAttemptDelay = value; }
-        }
-
     </appender>
     
     <appender name="Null">

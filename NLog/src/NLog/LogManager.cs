@@ -266,12 +266,26 @@ namespace NLog
                         {
                             if (rule.IsLoggingEnabledForLevel((LogLevel)i))
                             {
+                                // first cache the current appender
+                                AppenderWithFilterChain awfcCurrent = appendersByLevel[i];
+
                                 foreach (Appender appender in rule.Appenders)
                                 {
                                     AppenderWithFilterChain awf = new AppenderWithFilterChain(appender, rule.Filters);
-                                    if (appendersByLevel[i] != null)
-                                        appendersByLevel[i].Next = awf;
-                                    appendersByLevel[i] = awf;
+                                    // instead use the local for the current position
+                                    if (awfcCurrent != null)
+                                    {
+                                        // as before, but using the temp
+                                        awfcCurrent.Next = awf;
+                                    }
+                                    else
+                                    {
+                                        // for the null case, set the temp and ensure the appender list is also updated
+                                        appendersByLevel[i] = awfcCurrent = awf;
+                                    }
+
+                                    // now adjust the temp
+                                    awfcCurrent = awf;
                                 }
                             }
                         }
