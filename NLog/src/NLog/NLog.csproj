@@ -264,6 +264,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Internal\DictionaryBase.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Internal\FilterDictionary.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -295,6 +300,16 @@
                 />
                 <File
                     RelPath = "Internal\PropertyHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\StringCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\StringDictionary.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

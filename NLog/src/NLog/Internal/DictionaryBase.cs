@@ -31,36 +31,30 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if NETCF
+
+// a substitute for the missing .NET CF Class
+// implements minimal wrapper around a Hashtable - only the needed
+// member functions are implemented
+
 using System;
+using System.Collections;
+using System.Text;
 
-using NLog;
-using NLog.Config;
+namespace System.Collections
+{
+	public class DictionaryBase {
+		private Hashtable _hashtable = new Hashtable();
 
-class Test {
-    static void Main(string[] args) {
-        NLog.LogManager.Configuration = new XmlLoggingConfiguration("NLog.Test.exe.config");
-        NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
-        NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");
+		public IDictionary Dictionary
+		{
+			get { return _hashtable; }
+		}
 
-        using (NDC.Push("aaa")) {
-            l.Debug("this is a debug");
-            l.Info("this is an info");
-            MDC.Set("username", "jarek");
-
-            l.Warn("this is a warning");
-            using (NDC.Push("bbb")) {
-                l2.Debug("this is a debug");
-                using (NDC.Push("ccc")) {
-                    l2.Info("this is an info");
-                }
-            }
-            MDC.Set("username", "aaa");
-            l2.Warn("this is a warning");
-        }
-        l.Error("this is an error");
-        MDC.Remove("username");
-        l.Fatal("this is a fatal");
-        l2.Error("this is an error");
-        l2.Fatal("this is a fatal");
-    }
+		public void Clear()
+		{
+			_hashtable.Clear();
+		}
+	}
 }
+#endif
