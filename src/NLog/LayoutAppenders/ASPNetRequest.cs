@@ -118,7 +118,9 @@ namespace NLog.LayoutAppenders
             if (context == null)
                 return ;
 
-            if (_queryStringKey != null)
+			if (context.Request == null)
+				return ;
+			if (_queryStringKey != null)
             {
                 builder.Append(context.Request.QueryString[_queryStringKey]);
             }

@@ -66,7 +66,9 @@ namespace NLog.LayoutAppenders
             if (context == null)
                 return ;
 
-            builder.Append(context.Application[_variable]);
+			if (context.Application == null)
+				return ;
+			builder.Append(context.Application[_variable]);
         }
     }
 }
