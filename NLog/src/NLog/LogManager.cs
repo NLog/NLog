@@ -38,12 +38,13 @@ using System.IO;
 using System.Reflection;
 
 using NLog.Config;
+using NLog.Utils;
 
 namespace NLog
 {
     public sealed class LogManager 
     {
-        private static Hashtable _loggerCache = new Hashtable();
+        private static LoggerDictionary _loggerCache = new LoggerDictionary();
         private static LoggingConfiguration _config;
         private static bool _configLoaded = false;
         private static bool _reloadConfigOnNextLog = false;
@@ -64,10 +65,9 @@ namespace NLog
 
             lock (typeof(LogManager))
             {
-                    
-                object l = _loggerCache[name];
+                Logger l = _loggerCache[name];
                 if (l != null)
-                    return (Logger)l;
+                    return l;
 
                 AppenderWithFilterChain[] appendersByLevel = GetAppendersByLevelForLogger(name, Configuration);
 

@@ -41,7 +41,7 @@ namespace NLog
 {
     public sealed class FilterFactory
     {
-        private static Hashtable _filters = new Hashtable();
+        private static TypeDictionary _filters = new TypeDictionary();
 
         static FilterFactory()
         {
@@ -78,7 +78,7 @@ namespace NLog
         }
 
         public static Filter CreateFilter(string name) {
-            Type t = (Type)_filters[name.ToLower(CultureInfo.InvariantCulture)];
+            Type t = _filters[name.ToLower(CultureInfo.InvariantCulture)];
             if (t != null) {
                 object o = Activator.CreateInstance(t);
                 if (o is Filter) {

@@ -1,0 +1,64 @@
+﻿<typeSafeCollections>
+	<typeSafeCollection>
+		<templateKind>Vector</templateKind>
+		<itemType>Appender</itemType>
+		<collectionName>AppenderCollection</collectionName>
+		<collectionNamespace>NLog</collectionNamespace>
+	</typeSafeCollection>
+	<typeSafeCollection>
+		<templateKind>Vector</templateKind>
+		<itemType>Filter</itemType>
+		<collectionName>FilterCollection</collectionName>
+		<collectionNamespace>NLog</collectionNamespace>
+	</typeSafeCollection>
+	<typeSafeCollection>
+		<templateKind>Vector</templateKind>
+		<itemType>LayoutAppender</itemType>
+		<collectionName>LayoutAppenderCollection</collectionName>
+		<collectionNamespace>NLog</collectionNamespace>
+	</typeSafeCollection>
+	
+	<typeSafeCollection>
+		<templateKind>Vector</templateKind>
+		<itemType>NLog.Config.AppenderRule</itemType>
+		<collectionName>AppenderRuleCollection</collectionName>
+		<collectionNamespace>NLog</collectionNamespace>
+	</typeSafeCollection>
+	
+	<typeSafeCollection>
+		<templateKind>HashTable</templateKind>
+		<keyType>string</keyType>
+		<itemType>Logger</itemType>
+		<collectionName>LoggerDictionary</collectionName>
+		<collectionNamespace>NLog</collectionNamespace>
+	</typeSafeCollection>
+	
+	<typeSafeCollection>
+		<templateKind>HashTable</templateKind>
+		<keyType>string</keyType>
+		<itemType>System.Type</itemType>
+		<collectionName>TypeDictionary</collectionName>
+		<collectionNamespace>NLog</collectionNamespace>
+	</typeSafeCollection>
+	<typeSafeCollection>
+		<templateKind>HashTable</templateKind>
+		<keyType>string</keyType>
+		<itemType>Appender</itemType>
+		<collectionName>AppenderDictionary</collectionName>
+		<collectionNamespace>NLog</collectionNamespace>
+	</typeSafeCollection>
+	<typeSafeCollection>
+		<templateKind>HashTable</templateKind>
+		<keyType>string</keyType>
+		<itemType>LayoutAppender</itemType>
+		<collectionName>LayoutAppenderDictionary</collectionName>
+		<collectionNamespace>NLog</collectionNamespace>
+	</typeSafeCollection>
+	<typeSafeCollection>
+		<templateKind>HashTable</templateKind>
+		<keyType>string</keyType>
+		<itemType>Filter</itemType>
+		<collectionName>FilterDictionary</collectionName>
+		<collectionNamespace>NLog</collectionNamespace>
+	</typeSafeCollection>
+</typeSafeCollections>

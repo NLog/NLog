@@ -41,13 +41,13 @@ namespace NLog.Appenders
     [Appender("Memory")]
     public class MemoryAppender : NLog.Appender
     {
-		private ArrayList _logs = new ArrayList();
+		private StringCollection _logs = new StringCollection();
 
         public override void Append(LogEventInfo ev) {
 			_logs.Add(CompiledLayout.GetFormattedMessage(ev));
         }
 
-		public ArrayList Logs
+		public StringCollection Logs
 		{
 			get { return _logs; }
 		}

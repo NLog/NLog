@@ -33,24 +33,25 @@
 
 using System;
 using System.Collections;
+using System.Collections.Specialized;
 using System.Text;
 
 namespace NLog
 {
-    // stack implemented as an ArrayList
+    // stack implemented as an StringCollection
     public sealed class NDC
     {
         private NDC() { }
 
         public static IDisposable Push(string text) {
-            ArrayList stack = GetThreadStack();
+            StringCollection stack = GetThreadStack();
             int previousCount = stack.Count;
             stack.Add(text);
             return new StackPopper(stack, previousCount);
         }
 
         public static string Pop() {
-            ArrayList stack = GetThreadStack();
+            StringCollection stack = GetThreadStack();
             if (stack.Count > 0) {
                 string retVal = (string)stack[stack.Count - 1];
                 stack.RemoveAt(stack.Count - 1);
@@ -61,7 +62,7 @@ namespace NLog
         }
 
         public static string GetTopMessage() {
-            ArrayList stack = GetThreadStack();
+            StringCollection stack = GetThreadStack();
             if (stack.Count > 0) {
                 return (string)stack[stack.Count - 1];
             } else {
@@ -70,13 +71,13 @@ namespace NLog
         }
 
         public static void Clear() {
-            ArrayList stack = GetThreadStack();
+            StringCollection stack = GetThreadStack();
 
             stack.Clear();
         }
 
         public static string GetAllMessages(string separator) {
-            ArrayList stack = GetThreadStack();
+            StringCollection stack = GetThreadStack();
             if (stack.Count == 0)
                 return String.Empty;
 
@@ -97,7 +98,7 @@ namespace NLog
         }
 
         public static string GetBottomMessages(int count, string separator) {
-            ArrayList stack = GetThreadStack();
+            StringCollection stack = GetThreadStack();
             if (count > stack.Count)
                 count = stack.Count;
             if (count == 0)
@@ -120,7 +121,7 @@ namespace NLog
         }
 
         public static string GetTopMessages(int count, string separator) {
-            ArrayList stack = GetThreadStack();
+            StringCollection stack = GetThreadStack();
             if (count >= stack.Count)
                 return GetAllMessages(separator);
 
@@ -138,11 +139,11 @@ namespace NLog
             return sb.ToString();
         }
 
-        private static ArrayList GetThreadStack() {
-            ArrayList threadStack = (ArrayList)System.Threading.Thread.GetData(_dataSlot);
+        private static StringCollection GetThreadStack() {
+            StringCollection threadStack = (StringCollection)System.Threading.Thread.GetData(_dataSlot);
             
             if (threadStack == null) {
-                threadStack = new ArrayList();
+                threadStack = new StringCollection();
                 System.Threading.Thread.SetData(_dataSlot, threadStack);
             }
 
@@ -151,10 +152,10 @@ namespace NLog
 
         private class StackPopper : IDisposable
         {
-            private ArrayList _stack;
+            private StringCollection _stack;
             private int _previousCount;
 
-            public StackPopper(ArrayList stack, int previousCount) {
+            public StackPopper(StringCollection stack, int previousCount) {
                 _stack = stack;
                 _previousCount = previousCount;
             }

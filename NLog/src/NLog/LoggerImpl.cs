@@ -99,10 +99,10 @@ namespace NLog
                     break;
                 }
 
-                ArrayList filterChain = awf.FilterChain;
+                FilterCollection filterChain = awf.FilterChain;
 
                 for (int i = 0; i < filterChain.Count; ++i) {
-                    Filter filter = (Filter)filterChain[i];
+                    Filter filter = filterChain[i];
 
                     nst = filter.NeedsStackTrace();
 
@@ -141,11 +141,11 @@ namespace NLog
                 Appender app = awf.Appender;
                 
                 try {
-                    ArrayList filterChain = awf.FilterChain;
+                    FilterCollection filterChain = awf.FilterChain;
                     FilterResult result = FilterResult.Neutral;
 
                     for (int i = 0; i < filterChain.Count; ++i) {
-                        Filter f = (Filter)filterChain[i];
+                        Filter f = filterChain[i];
                         result = f.Check(logMessage);
                         if (result != FilterResult.Neutral)
                             break;

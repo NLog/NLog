@@ -41,7 +41,7 @@ namespace NLog
 {
     public sealed class AppenderFactory
     {
-        private static Hashtable _appenders = new Hashtable();
+        private static TypeDictionary _appenders = new TypeDictionary();
 
         static AppenderFactory()
         {
@@ -78,7 +78,7 @@ namespace NLog
         }
 
         public static Appender CreateAppender(string name) {
-            Type t = (Type)_appenders[name.ToLower(CultureInfo.InvariantCulture)];
+            Type t = _appenders[name.ToLower(CultureInfo.InvariantCulture)];
             if (t != null) {
                 object o = Activator.CreateInstance(t);
                 if (o is Appender) {

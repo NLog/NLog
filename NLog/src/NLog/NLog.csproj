@@ -109,6 +109,20 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Collections.xml"
+                    BuildAction = "Content"
+                    Generator = "SBCollectionGenerator"
+                    LastGenOutput = "Collections.cs"
+                />
+                <File
+                    RelPath = "Collections.cs"
+                    DependentUpon = "Collections.xml"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                    DesignTime = "True"
+                    AutoGen = "True"
+                />
+                <File
                     RelPath = "Filter.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -184,22 +198,12 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "MultiFileWatcher.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "NDC.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "NullLogger.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PropertyHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -365,6 +369,16 @@
                 />
                 <File
                     RelPath = "LayoutAppenders\Ticks.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Utils\MultiFileWatcher.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Utils\PropertyHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

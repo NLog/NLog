@@ -52,7 +52,7 @@ namespace NLog
         }
 
         private string _layoutText;
-        private LayoutAppender[] _layoutAppenders;
+        private LayoutAppenderCollection _layoutAppenders;
 		private int _needsStackTrace = 0;
 
         public string Text
@@ -81,8 +81,8 @@ namespace NLog
             return builder.ToString();
         }
 
-        private static LayoutAppender[] CompileLayout(string s, out int needsStackTrace) {
-            ArrayList result = new ArrayList();
+        private static LayoutAppenderCollection CompileLayout(string s, out int needsStackTrace) {
+            LayoutAppenderCollection result = new LayoutAppenderCollection();
 			needsStackTrace = 0;
 
             int startingPos = 0;
@@ -119,7 +119,7 @@ namespace NLog
                 result.Add(new LiteralLayoutAppender(s.Substring(startingPos, s.Length - startingPos)));
             }
 
-            return (LayoutAppender[])result.ToArray(typeof(LayoutAppender));
+            return result;
         }
 
         public int NeedsStackTrace()

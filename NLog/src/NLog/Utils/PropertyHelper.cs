@@ -35,7 +35,7 @@ using System;
 using System.Reflection;
 using System.Globalization;
 
-namespace NLog
+namespace NLog.Utils
 {
     internal class PropertyHelper
     {

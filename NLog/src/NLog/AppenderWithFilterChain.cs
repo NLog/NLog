@@ -40,10 +40,10 @@ namespace NLog
     internal class AppenderWithFilterChain
     {
         private Appender _appender;
-        private ArrayList _filterChain;
+        private FilterCollection _filterChain;
         private AppenderWithFilterChain _next;
 
-        public AppenderWithFilterChain(Appender a, ArrayList filterChain)
+        public AppenderWithFilterChain(Appender a, FilterCollection filterChain)
         {
             _appender = a;
             _filterChain = filterChain;
@@ -55,7 +55,7 @@ namespace NLog
             set { _appender = value; }
         }
 
-        public ArrayList FilterChain
+        public FilterCollection FilterChain
         {
             get { return _filterChain; }
             set { _filterChain = value; }
