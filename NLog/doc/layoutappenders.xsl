@@ -10,9 +10,32 @@
             <body onload="paintColors();">
                 <a name="top"></a>
                 <h1>Layout Appender Reference</h1>
+                <h3>Introduction</h3>
+                <p>
+                    Layout appenders are special tags that can be embedded in layout strings 
+                    which cause pieces of logging information to be rendered. Each layout appender
+                    is marked by enclosing it with <code>${...}</code>.
+                    For example, there's a <code>${message}</code> layout appender that renders
+                    the logging message as passed to the one of the logging functions. Another example
+                    can be <code>${logger}</code> and <code>${level}</code> messages
+                    that render the logger name and log level respectively. 
+                </p>
+                <p>
+                    Consider the following very simple example:
+<xmp class="code-xml">
+Logger logger = LogManager.GetLogger("AAA");
+
+logger.Info("This is log message");
+</xmp>
+                </p>
+                <p>
+                    Assuming the layout is "<code>${level} ${logger} ${message}</code>"
+                    the program fragment causes "<code>Info AAA This is log message</code>" to be rendered.
+                </p>
+
                 <h3>Available Layout Appenders</h3>
                 <p>
-                    The following layout appenders are available. Items marked with color may not be supported on all platforms. See particular layout appender documentation for more information. TODO.
+                    The following layout appenders are available. Items marked with color may not be supported on all platforms. See particular layout appender documentation for more information.
                 </p>
                 <div class="table">
                     <table>
@@ -42,22 +65,28 @@
                     </table>
                 </div>
                 <a name="common"></a>
-                <h3>Common Configuration</h3>
+                <h3>Configuring Layout Appenders</h3>
                 <p>
-                    All layout appenders accept the following configuration parameters. 
-                    Note that some layout appenders may ignore some parameters. See the documentation 
-                    for each layout appender for more information.
+                    Layout appenders can take parameters which modify their behaviour. The following parameters
+                    are supported by all layout appenders, particular appenders may support additional parameters - 
+                    see individual appender information for configuration details.
                 </p>
 
                 <xsl:for-each select="/layoutappenders/common-config">
                     <xsl:call-template name="parameters-table" />
                 </xsl:for-each>
-                
-                <h3>Configuration Example</h3>
+
+                <h3>Passing parameters</h3>
+
                 <p>
-                    TODO
+                    To pass parameters to a layout appender, append a colon followed by name=value pair. Multiple parameters can
+                    be passed this way. For example:
+
+                    <code>${level:lowercase=true:padding=10}</code> is a <code>level</code> layout appender
+                    with two custom parameters: <code>lowercase</code> set to false and <code>padding</code> set to 10.
+                    String arguments don't need to be quoted, to pass a colon character prepend it with a backslash.
                 </p>
-                        
+                
                 <xsl:for-each select="/layoutappenders/la">
                     <hr size="1" />
                     <a><xsl:attribute name="name"><xsl:value-of select="@name" /></xsl:attribute></a>
@@ -65,7 +94,9 @@
                     <h4>Summary</h4>
                     <div class="summarytable">
                         <table>
-                            <tr><th>Assembly Name:</th><td><xsl:value-of select="assembly" /></td></tr>
+                            <tr><th>Usage:</th><td><code>${<xsl:value-of select="@name" />}</code></td></tr>
+                            <tr><th>Description:</th><td><xsl:value-of select="description" /></td></tr>
+                            <tr><th>Defined in:</th><td><xsl:value-of select="assembly" /></td></tr>
                             <tr><th>Class Name:</th><td><xsl:value-of select="namespace" />.<xsl:value-of select="className" /></td></tr>
                             <tr><th>Frameworks supported:</th><td>
                                     <xsl:for-each select="support">
@@ -108,7 +139,7 @@
         <div class="table">
             <table>
                 <tr>
-                    <th>Parameter&#160;Name</th>
+                    <th>Parameter Name</th>
                     <th align="center">Type</th>
                     <th align="center">Required</th>
                     <th>Description</th>
