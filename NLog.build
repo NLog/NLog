@@ -171,6 +171,20 @@
         </csc>
     </target>
 
+    <target name="NLog.DB" depends="NLog">
+        <csc target="library" output="${output.dir}/NLog.DB.dll" define="${nlog.define}" debug="${nlog.debug}">
+            <sources basedir="src/NLog.DB">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${output.dir}/NLog.dll" />
+            </references>
+            <nowarn>
+                <warning number="1591" />
+            </nowarn>
+        </csc>
+    </target>
+
     <target name="NLog.Test" depends="NLog">
         <csc target="exe" output="${output.dir}/NLog.Test.exe" define="${nlog.define}" debug="${nlog.debug}">
             <sources basedir="src/NLog.Test">
@@ -219,10 +233,10 @@
         <property name="nlog.define" value="${nlog.define};NETCF;NETCF_1_0" />
     </target>
 
-    <target name="build-mono-1.0" depends="NLog, NLog.Contexts, NLog.ASPNet" />
-    <target name="build-net-1.0" depends="NLog, NLog.Contexts, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
-    <target name="build-net-1.1" depends="NLog, NLog.Contexts, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
-    <target name="build-net-2.0" depends="NLog, NLog.Contexts, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
+    <target name="build-mono-1.0" depends="NLog, NLog.Contexts, NLog.ASPNet, NLog.DB" />
+    <target name="build-net-1.0" depends="NLog, NLog.Contexts, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop, NLog.DB" />
+    <target name="build-net-1.1" depends="NLog, NLog.Contexts, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop, NLog.DB" />
+    <target name="build-net-2.0" depends="NLog, NLog.Contexts, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop, NLog.DB" />
     <target name="build-netcf-1.0" depends="NLog, NLog.Contexts, NLog.CompactFramework" />
 
     <target name="dist">
