@@ -130,6 +130,9 @@
             </sources>
             <references>
                 <include name="${output.dir}/NLog.dll" />
+                <include name="mscorlib.dll" />
+                <include name="System.dll" />
+                <include name="System.Xml.dll" />
             </references>
         </csc>
         <copy file="src/NLog.Test/App.config" tofile="${output.dir}/NLog.Test.exe.config" />
