@@ -86,11 +86,14 @@
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
             </references>
+            <nowarn>
+                <warning number="1591" />
+            </nowarn>
         </csc>
     </target>
 
     <target name="NLog.Contexts" depends="NLog">
-        <csc target="library" output="${output.dir}/NLog.Contexts.dll" define="${nlog.define}" debug="${nlog.debug}">
+        <csc target="library" output="${output.dir}/NLog.Contexts.dll" doc="${output.dir}/NLog.Contexts.xml" define="${nlog.define}" debug="${nlog.debug}">
             <sources basedir="src/NLog.Contexts">
                 <include name="**/*.cs" />
             </sources>
@@ -100,6 +103,9 @@
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
             </references>
+            <nowarn>
+                <warning number="1591" />
+            </nowarn>
         </csc>
     </target>
 
@@ -117,6 +123,9 @@
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
             </references>
+            <nowarn>
+                <warning number="1591" />
+            </nowarn>
         </csc>
     </target>
 
@@ -131,6 +140,9 @@
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
             </references>
+            <nowarn>
+                <warning number="1591" />
+            </nowarn>
         </csc>
     </target>
 
@@ -142,6 +154,9 @@
             <references>
                 <include name="${output.dir}/NLog.dll" />
             </references>
+            <nowarn>
+                <warning number="1591" />
+            </nowarn>
         </csc>
     </target>
 
@@ -153,6 +168,9 @@
             <references>
                 <include name="${output.dir}/NLog.dll" />
             </references>
+            <nowarn>
+                <warning number="1591" />
+            </nowarn>
         </csc>
     </target>
 
@@ -267,13 +285,13 @@
         </foreach>
     </target>
 
-    <target name="doc" depends="configure">
+    <target name="doc" depends="configure, NLog, NLog.Contexts">
         <uptodate property="help.uptodate">
             <targetfiles>
                 <include name="doc/help/Documentation.chm" />
             </targetfiles>
             <sourcefiles basedir="${output.dir}">
-                <include name="**/*.cs" />
+                <include name="**/*.dll" />
             </sourcefiles>
         </uptodate>
         <if test="${not help.uptodate}">
@@ -282,6 +300,7 @@
             <ndoc>
                 <assemblies basedir="${output.dir}">
                     <include name="NLog.dll" />
+                    <include name="NLog.Contexts.dll" />
                 </assemblies>
                 <documenters>
                     <documenter name="MSDN">
@@ -349,6 +368,10 @@
 
     <target name="binary_snapshot">
         <exec program="nant.exe" commandline="-t:net-1.0 release" />
+    </target>
+
+    <target name="sln">
+        <solution configuration="Release" solutionfile="NLog.sln" />
     </target>
 
     <target name="publish_snapshot" depends="installer, source_snapshot, binary_snapshot">

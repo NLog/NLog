@@ -34,7 +34,7 @@
 using System;
 using System.Collections;
 
-namespace NLog
+namespace NLog.Contexts
 {
     public sealed class MDC
     {
