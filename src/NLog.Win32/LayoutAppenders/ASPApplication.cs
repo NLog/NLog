@@ -60,8 +60,10 @@ namespace NLog.Win32.LayoutAppenders
         protected override void Append(StringBuilder builder, LogEventInfo ev)
         {
             ASPHelper.IApplicationObject app = ASPHelper.GetApplicationObject();
-            if (app != null) {
-                if (_appVariable != null) {
+            if (app != null) 
+            {
+                if (_appVariable != null) 
+                {
 
                     object variableValue = app.GetValue(_appVariable);
                     builder.Append(Convert.ToString(variableValue));

@@ -41,34 +41,40 @@ namespace NLog.ComInterop
 {
     [ComVisible(true)]
     [ProgId("NLog.Logger")]
-	public class Logger : ILogger
+    public class Logger : ILogger
     {
         private static NLog.Logger _defaultLogger = new NullLogger();
 
         private NLog.Logger _logger = _defaultLogger;
         private string _loggerName = String.Empty;
 
-        public void Log(string level, string message) {
+        public void Log(string level, string message) 
+        {
             _logger.Log(StringToLevel(level), message);
         }
         
-        public void Debug(string message) {
+        public void Debug(string message) 
+        {
             _logger.Debug(message);
         }
         
-        public void Info(string message) {
+        public void Info(string message) 
+        {
             _logger.Info(message);
         }
         
-        public void Warn(string message) {
+        public void Warn(string message) 
+        {
             _logger.Warn(message);
         }
         
-        public void Error(string message) {
+        public void Error(string message) 
+        {
             _logger.Error(message);
         }
         
-        public void Fatal(string message) {
+        public void Fatal(string message) 
+        {
             _logger.Fatal(message);
         }
 
@@ -105,14 +111,17 @@ namespace NLog.ComInterop
         public string LoggerName
         {
             get { return _loggerName; }
-            set {
+            set 
+            {
                 _loggerName = value;
                 _logger = NLog.LogManager.GetLogger(value); 
             }
         }
 
-        private static LogLevel StringToLevel(string s) {
-            switch (s[0]) {
+        private static LogLevel StringToLevel(string s) 
+        {
+            switch (s[0]) 
+            {
                 case 'D':
                     return LogLevel.Debug;
                 case 'I':

@@ -40,7 +40,8 @@ namespace NLog.Appenders
     {
         private string _name;
 
-        public AppenderAttribute(string s) {
+        public AppenderAttribute(string s) 
+        {
             _name = s;
         }
         

@@ -68,27 +68,28 @@ namespace NLog.Appenders
         public string DBProvider
         {
             get { return _connectionType.FullName; }
-            set { 
+            set 
+            { 
                 switch (value)
                 {
                     case "sqlserver":
-                        case "mssql":
-                        case "microsoft":
-                        case "msde":
+                    case "mssql":
+                    case "microsoft":
+                    case "msde":
                         _connectionType = _system_data_assembly.GetType("System.Data.SqlClient.SqlConnection");
-                    break;
+                        break;
 
                     case "oledb":
                         _connectionType = _system_data_assembly.GetType("System.Data.OleDb.OleDbConnection");
-                    break;
+                        break;
 
                     case "odbc":
                         _connectionType = _system_data_assembly.GetType("System.Data.Odbc.OdbcConnection");
-                    break;
+                        break;
 
                     default:
-                    _connectionType = Type.GetType(value); 
-                    break;
+                        _connectionType = Type.GetType(value); 
+                        break;
                 }
             }
 
@@ -155,20 +156,28 @@ namespace NLog.Appenders
             get { return _parameters; }
         }
 
-        protected internal override void Append(LogEventInfo ev) {
-            if (_keepConnection) {
-                lock (this) {
+        protected internal override void Append(LogEventInfo ev) 
+        {
+            if (_keepConnection) 
+            {
+                lock (this) 
+                {
                     if (_activeConnection == null)
                         _activeConnection = OpenConnection();
                     DoAppend(ev);
                 }
-            } else {
-                try {
+            } 
+            else 
+            {
+                try 
+                {
                     _activeConnection = OpenConnection();
                     DoAppend(ev);
                 }
-                finally {
-                    if (_activeConnection != null) {
+                finally 
+                {
+                    if (_activeConnection != null) 
+                    {
                         _activeConnection.Close();
                         _activeConnection = null;
                     }
@@ -176,10 +185,12 @@ namespace NLog.Appenders
             }
         }
 
-        private void DoAppend(LogEventInfo ev) {
+        private void DoAppend(LogEventInfo ev) 
+        {
             IDbCommand command = _activeConnection.CreateCommand();
             command.CommandText = CommandTextLayout.GetFormattedMessage(ev);
-            foreach (ParameterInfo par in Parameters) {
+            foreach (ParameterInfo par in Parameters) 
+            {
                 IDbDataParameter p = command.CreateParameter();
                 p.Direction = ParameterDirection.Input;
                 if (par.Name != null)
@@ -196,7 +207,8 @@ namespace NLog.Appenders
             command.ExecuteNonQuery();
         }
 
-        private IDbConnection OpenConnection() {
+        private IDbConnection OpenConnection() 
+        {
             ConstructorInfo constructor = _connectionType.GetConstructor(new Type[] { typeof(string) });
             IDbConnection retVal = (IDbConnection)constructor.Invoke(new object[] { BuildConnectionString() });
 
@@ -206,7 +218,8 @@ namespace NLog.Appenders
             return retVal;
         }
 
-        private string BuildConnectionString() {
+        private string BuildConnectionString() 
+        {
             if (_connectionStringCache != null)
                 return _connectionStringCache;
 
@@ -219,7 +232,8 @@ namespace NLog.Appenders
             sb.Append(DBHost);
             if (DBUserName == null)
                 sb.Append("Trusted_Connection=SSPI;");
-            else {
+            else 
+            {
                 sb.Append("User id=");
                 sb.Append(DBUserName);
                 sb.Append(";Password=");
@@ -227,7 +241,8 @@ namespace NLog.Appenders
                 sb.Append(";");
             }
 
-            if (DBDatabase != null) {
+            if (DBDatabase != null) 
+            {
                 sb.Append("Database=");
                 sb.Append(DBDatabase);
             }

@@ -40,7 +40,8 @@ namespace NLog.LayoutAppenders
     {
         private string _formatString;
 
-        public LayoutAppenderAttribute(string s) {
+        public LayoutAppenderAttribute(string s) 
+        {
             _formatString = s;
         }
         

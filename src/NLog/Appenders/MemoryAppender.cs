@@ -41,15 +41,16 @@ namespace NLog.Appenders
     [Appender("Memory")]
     public sealed class MemoryAppender : Appender
     {
-		private ArrayList _logs = new ArrayList();
+        private ArrayList _logs = new ArrayList();
 
-        protected internal override void Append(LogEventInfo ev) {
-			_logs.Add(CompiledLayout.GetFormattedMessage(ev));
+        protected internal override void Append(LogEventInfo ev) 
+        {
+            _logs.Add(CompiledLayout.GetFormattedMessage(ev));
         }
 
-		public ArrayList Logs
-		{
-			get { return _logs; }
-		}
+        public ArrayList Logs
+        {
+            get { return _logs; }
+        }
     }
 }

@@ -33,12 +33,15 @@
 
 using System;
 
-namespace NLog.Config {
+namespace NLog.Config 
+{
     /// <summary>
     /// Attribute used to mark the required parameters for appenders,
     /// layout appenders and filters.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class RequiredParameterAttribute : Attribute {
-        public RequiredParameterAttribute() {}}
+    public sealed class RequiredParameterAttribute : Attribute 
+    {
+        public RequiredParameterAttribute() {}
+    }
 }

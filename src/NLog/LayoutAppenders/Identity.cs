@@ -78,37 +78,48 @@ namespace NLog.LayoutAppenders
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             IPrincipal principal = System.Threading.Thread.CurrentPrincipal;
-            if (principal != null) {
+            if (principal != null) 
+            {
                 IIdentity identity = principal.Identity;
-                if (identity != null) {
+                if (identity != null) 
+                {
                     StringBuilder sb2 = builder;
                     if (Padding != 0)
                         sb2 = new StringBuilder();
 
                     bool first = true;
 
-                    if (_isAuthenticated) {
-                        if (!first) {
+                    if (_isAuthenticated) 
+                    {
+                        if (!first) 
+                        {
                             sb2.Append(_separator);
                         }
-                        if (identity.IsAuthenticated) {
+                        if (identity.IsAuthenticated) 
+                        {
                             sb2.Append("auth");
-                        } else {
+                        } 
+                        else 
+                        {
                             sb2.Append("notauth");
                         }
                         first = false;
                     }
 
-                    if (_authType) {
-                        if (!first) {
+                    if (_authType) 
+                    {
+                        if (!first) 
+                        {
                             sb2.Append(_separator);
                         }
                         sb2.Append(identity.AuthenticationType);
                         first = false;
                     }
 
-                    if (_name) {
-                        if (!first) {
+                    if (_name) 
+                    {
+                        if (!first) 
+                        {
                             sb2.Append(_separator);
                         }
                         sb2.Append(identity.Name);

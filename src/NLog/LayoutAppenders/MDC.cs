@@ -49,7 +49,8 @@ namespace NLog.LayoutAppenders
             set { _item = value; }
         }
 
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev) {
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev) 
+        {
             return MDC.Get(Item).Length;
         }
 

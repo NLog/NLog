@@ -60,5 +60,5 @@ namespace NLog.Filters
             else
                 return FilterResult.Neutral;
         }
-   }
+    }
 }

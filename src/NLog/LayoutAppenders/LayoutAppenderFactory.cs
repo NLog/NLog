@@ -47,52 +47,64 @@ namespace NLog.LayoutAppenders
 
         static LayoutAppenderFactory()
         {
-			Clear();
+            Clear();
             AddDefaultLayoutAppenders();
         }
 
-		private LayoutAppenderFactory()
-		{
-		}
-
-        public static void Clear() {
-			_appenders.Clear();
+        private LayoutAppenderFactory()
+        {
         }
 
-        public static void AddLayoutAppendersFromAssembly(Assembly theAssembly, string prefix) {
+        public static void Clear() 
+        {
+            _appenders.Clear();
+        }
+
+        public static void AddLayoutAppendersFromAssembly(Assembly theAssembly, string prefix) 
+        {
             InternalLogger.Debug("AddLayoutAppendersFromAssembly('{0}')", theAssembly.FullName);
-            foreach (Type t in theAssembly.GetTypes()) {
+            foreach (Type t in theAssembly.GetTypes()) 
+            {
                 LayoutAppenderAttribute[] attributes = (LayoutAppenderAttribute[])t.GetCustomAttributes(typeof(LayoutAppenderAttribute), false);
-                if (attributes != null) {
-                    foreach (LayoutAppenderAttribute attr in attributes) {
+                if (attributes != null) 
+                {
+                    foreach (LayoutAppenderAttribute attr in attributes) 
+                    {
                         AddLayoutAppender(prefix + attr.FormatString, t);
                     }
                 }
             }
         }
-        private static void AddDefaultLayoutAppenders() {
+        private static void AddDefaultLayoutAppenders() 
+        {
             AddLayoutAppendersFromAssembly(typeof(LayoutAppenderFactory).Assembly, String.Empty);
         }
 
-        private static LayoutAppender CreateUnknownLayoutAppender(string name, string parameters) {
+        private static LayoutAppender CreateUnknownLayoutAppender(string name, string parameters) 
+        {
             return new LiteralLayoutAppender("[unknown layout appender:" + name + ":" + parameters + "]");
         }
 
-        public static void AddLayoutAppender(string name, Type t) {
+        public static void AddLayoutAppender(string name, Type t) 
+        {
             InternalLogger.Debug("AddLayoutAppender('{0}','{1}')", name, t.FullName);
             _appenders[name] = t;
         }
 
-        public static void ApplyLayoutAppenderParameters(LayoutAppender appender, string parameterString) {
+        public static void ApplyLayoutAppenderParameters(LayoutAppender appender, string parameterString) 
+        {
             int pos = 0;
             Type appenderType = appender.GetType();
 
-            while (pos < parameterString.Length) {
+            while (pos < parameterString.Length) 
+            {
                 int nameStartPos = pos;
-                while (pos < parameterString.Length && Char.IsWhiteSpace(parameterString[pos])) {
+                while (pos < parameterString.Length && Char.IsWhiteSpace(parameterString[pos])) 
+                {
                     pos++;
                 }
-                while (pos < parameterString.Length && parameterString[pos] != '=') {
+                while (pos < parameterString.Length && parameterString[pos] != '=') 
+                {
                     pos++;
                 }
                 int nameEndPos = pos;
@@ -106,15 +118,20 @@ namespace NLog.LayoutAppenders
 
                 int valueStartPos = pos;
                 StringBuilder valueBuf = new StringBuilder();
-                while (pos < parameterString.Length) {
+                while (pos < parameterString.Length) 
+                {
                     if (parameterString[pos] == '\\')
                     {
                         valueBuf.Append(parameterString[pos + 1]);
                         pos += 2;
-                    } else if (parameterString[pos] == ':') {
+                    } 
+                    else if (parameterString[pos] == ':') 
+                    {
                         pos++;
                         break;
-                    } else {
+                    } 
+                    else 
+                    {
                         valueBuf.Append(parameterString[pos]);
                         pos++;
                     }
@@ -127,11 +144,14 @@ namespace NLog.LayoutAppenders
             }
         }
 
-        public static LayoutAppender CreateLayoutAppender(string name, string parameters) {
+        public static LayoutAppender CreateLayoutAppender(string name, string parameters) 
+        {
             Type t = _appenders[name];
-            if (t != null) {
+            if (t != null) 
+            {
                 object o = FactoryHelper.CreateInstance(t);
-                if (o is LayoutAppender) {
+                if (o is LayoutAppender) 
+                {
                     LayoutAppender la = (LayoutAppender)o;
 
                     if (parameters != null && parameters.Length > 0)
@@ -140,7 +160,9 @@ namespace NLog.LayoutAppenders
                     }
 
                     return la;
-                } else {
+                } 
+                else 
+                {
                     return CreateUnknownLayoutAppender(name, parameters);
                 }
             }

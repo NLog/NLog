@@ -63,7 +63,8 @@ namespace NLog.LayoutAppenders
             set { _separator = value; }
         }
 
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev) {
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev) 
+        {
             return 0;
         }
 
@@ -71,11 +72,16 @@ namespace NLog.LayoutAppenders
         {
             string msg;
 
-            if (TopFrames != -1) {
+            if (TopFrames != -1) 
+            {
                 msg = NDC.GetTopMessages(TopFrames, Separator);
-            } else if (BottomFrames != -1) {
+            } 
+            else if (BottomFrames != -1) 
+            {
                 msg = NDC.GetBottomMessages(BottomFrames, Separator);
-            } else {
+            } 
+            else 
+            {
                 msg = NDC.GetAllMessages(Separator);
             }
             builder.Append(ApplyPadding(msg));

@@ -56,20 +56,22 @@ namespace NLog.Filters
         public string Action
         {
             get { return _action; }
-            set {
+            set 
+            {
                 _action = value; 
-                switch (_action) {
+                switch (_action) 
+                {
                     case "log": 
                         _filterResult = FilterResult.Log; 
-                    break;
+                        break;
                     case "ignore": 
                         _filterResult = FilterResult.Ignore; 
-                    break;
+                        break;
                     case "neutral": 
                         _filterResult = FilterResult.Neutral; 
-                    break;
+                        break;
                     default: 
-                    throw new ArgumentException("Invalid value for the 'Action' parameter. Can be log/ignore/neutral");
+                        throw new ArgumentException("Invalid value for the 'Action' parameter. Can be log/ignore/neutral");
                 }
             }
         }
@@ -79,5 +81,5 @@ namespace NLog.Filters
         {
             return 0;
         }
-   }
+    }
 }

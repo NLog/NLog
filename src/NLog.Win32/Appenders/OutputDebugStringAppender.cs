@@ -41,15 +41,16 @@ namespace NLog.Win32.Appenders
     [Appender("OutputDebugString")]
     public sealed class OutputDebugStringAppender : Appender
     {
-        protected override void Append(LogEventInfo ev) {
+        protected override void Append(LogEventInfo ev) 
+        {
             OutputDebugString(CompiledLayout.GetFormattedMessage(ev));
         }
 
-		/// <summary>
-		/// Stub for OutputDebugString native method
-		/// </summary>
-		/// <param name="message">the string to output</param>
-		[DllImport("Kernel32.dll")]
-		private static extern void OutputDebugString(string message);
+        /// <summary>
+        /// Stub for OutputDebugString native method
+        /// </summary>
+        /// <param name="message">the string to output</param>
+        [DllImport("Kernel32.dll")]
+        private static extern void OutputDebugString(string message);
     }
 }

@@ -38,7 +38,8 @@ namespace NLog.Appenders
     [Appender("Console")]
     public sealed class ConsoleAppender : Appender
     {
-        protected internal override void Append(LogEventInfo ev) {
+        protected internal override void Append(LogEventInfo ev) 
+        {
             Console.WriteLine(CompiledLayout.GetFormattedMessage(ev));
         }
     }

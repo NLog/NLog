@@ -44,132 +44,132 @@ using NLog.LayoutAppenders;
 
 namespace NLog.Internal
 {
-	/// <summary>
-	/// A dictionary with keys of type string and values of type LayoutAppender
-	/// </summary>
-	internal class LayoutAppenderDictionary: System.Collections.DictionaryBase
-	{
-		/// <summary>
-		/// Initializes a new empty instance of the LayoutAppenderDictionary class
-		/// </summary>
-		public LayoutAppenderDictionary()
-		{
-			// empty
-		}
+    /// <summary>
+    /// A dictionary with keys of type string and values of type LayoutAppender
+    /// </summary>
+    internal class LayoutAppenderDictionary: System.Collections.DictionaryBase
+    {
+        /// <summary>
+        /// Initializes a new empty instance of the LayoutAppenderDictionary class
+        /// </summary>
+        public LayoutAppenderDictionary()
+        {
+            // empty
+        }
 
-		/// <summary>
-		/// Gets or sets the LayoutAppender associated with the given string
-		/// </summary>
-		/// <param name="key">
-		/// The string whose value to get or set.
-		/// </param>
-		public virtual LayoutAppender this[string key]
-		{
-			get
-			{
-				return (LayoutAppender) this.Dictionary[key];
-			}
-			set
-			{
-				this.Dictionary[key] = value;
-			}
-		}
+        /// <summary>
+        /// Gets or sets the LayoutAppender associated with the given string
+        /// </summary>
+        /// <param name="key">
+        /// The string whose value to get or set.
+        /// </param>
+        public virtual LayoutAppender this[string key]
+        {
+            get
+            {
+                return (LayoutAppender) this.Dictionary[key];
+            }
+            set
+            {
+                this.Dictionary[key] = value;
+            }
+        }
 
-		/// <summary>
-		/// Adds an element with the specified key and value to this LayoutAppenderDictionary.
-		/// </summary>
-		/// <param name="key">
-		/// The string key of the element to add.
-		/// </param>
-		/// <param name="value">
-		/// The LayoutAppender value of the element to add.
-		/// </param>
-		public virtual void Add(string key, LayoutAppender value)
-		{
-			this.Dictionary.Add(key, value);
-		}
+        /// <summary>
+        /// Adds an element with the specified key and value to this LayoutAppenderDictionary.
+        /// </summary>
+        /// <param name="key">
+        /// The string key of the element to add.
+        /// </param>
+        /// <param name="value">
+        /// The LayoutAppender value of the element to add.
+        /// </param>
+        public virtual void Add(string key, LayoutAppender value)
+        {
+            this.Dictionary.Add(key, value);
+        }
 
-		/// <summary>
-		/// Determines whether this LayoutAppenderDictionary contains a specific key.
-		/// </summary>
-		/// <param name="key">
-		/// The string key to locate in this LayoutAppenderDictionary.
-		/// </param>
-		/// <returns>
-		/// true if this LayoutAppenderDictionary contains an element with the specified key;
-		/// otherwise, false.
-		/// </returns>
-		public virtual bool Contains(string key)
-		{
-			return this.Dictionary.Contains(key);
-		}
+        /// <summary>
+        /// Determines whether this LayoutAppenderDictionary contains a specific key.
+        /// </summary>
+        /// <param name="key">
+        /// The string key to locate in this LayoutAppenderDictionary.
+        /// </param>
+        /// <returns>
+        /// true if this LayoutAppenderDictionary contains an element with the specified key;
+        /// otherwise, false.
+        /// </returns>
+        public virtual bool Contains(string key)
+        {
+            return this.Dictionary.Contains(key);
+        }
 
-		/// <summary>
-		/// Determines whether this LayoutAppenderDictionary contains a specific key.
-		/// </summary>
-		/// <param name="key">
-		/// The string key to locate in this LayoutAppenderDictionary.
-		/// </param>
-		/// <returns>
-		/// true if this LayoutAppenderDictionary contains an element with the specified key;
-		/// otherwise, false.
-		/// </returns>
-		public virtual bool ContainsKey(string key)
-		{
-			return this.Dictionary.Contains(key);
-		}
+        /// <summary>
+        /// Determines whether this LayoutAppenderDictionary contains a specific key.
+        /// </summary>
+        /// <param name="key">
+        /// The string key to locate in this LayoutAppenderDictionary.
+        /// </param>
+        /// <returns>
+        /// true if this LayoutAppenderDictionary contains an element with the specified key;
+        /// otherwise, false.
+        /// </returns>
+        public virtual bool ContainsKey(string key)
+        {
+            return this.Dictionary.Contains(key);
+        }
 
-		/// <summary>
-		/// Determines whether this LayoutAppenderDictionary contains a specific value.
-		/// </summary>
-		/// <param name="value">
-		/// The LayoutAppender value to locate in this LayoutAppenderDictionary.
-		/// </param>
-		/// <returns>
-		/// true if this LayoutAppenderDictionary contains an element with the specified value;
-		/// otherwise, false.
-		/// </returns>
-		public virtual bool ContainsValue(LayoutAppender value)
-		{
-			foreach (LayoutAppender item in this.Dictionary.Values)
-			{
-				if (item == value)
-					return true;
-			}
-			return false;
-		}
+        /// <summary>
+        /// Determines whether this LayoutAppenderDictionary contains a specific value.
+        /// </summary>
+        /// <param name="value">
+        /// The LayoutAppender value to locate in this LayoutAppenderDictionary.
+        /// </param>
+        /// <returns>
+        /// true if this LayoutAppenderDictionary contains an element with the specified value;
+        /// otherwise, false.
+        /// </returns>
+        public virtual bool ContainsValue(LayoutAppender value)
+        {
+            foreach (LayoutAppender item in this.Dictionary.Values)
+            {
+                if (item == value)
+                    return true;
+            }
+            return false;
+        }
 
-		/// <summary>
-		/// Removes the element with the specified key from this LayoutAppenderDictionary.
-		/// </summary>
-		/// <param name="key">
-		/// The string key of the element to remove.
-		/// </param>
-		public virtual void Remove(string key)
-		{
-			this.Dictionary.Remove(key);
-		}
+        /// <summary>
+        /// Removes the element with the specified key from this LayoutAppenderDictionary.
+        /// </summary>
+        /// <param name="key">
+        /// The string key of the element to remove.
+        /// </param>
+        public virtual void Remove(string key)
+        {
+            this.Dictionary.Remove(key);
+        }
 
-		/// <summary>
-		/// Gets a collection containing the keys in this LayoutAppenderDictionary.
-		/// </summary>
-		public virtual System.Collections.ICollection Keys
-		{
-			get
-			{
-				return this.Dictionary.Keys;
-			}
-		}
+        /// <summary>
+        /// Gets a collection containing the keys in this LayoutAppenderDictionary.
+        /// </summary>
+        public virtual System.Collections.ICollection Keys
+        {
+            get
+            {
+                return this.Dictionary.Keys;
+            }
+        }
 
-		/// <summary>
-		/// Gets a collection containing the values in this LayoutAppenderDictionary.
-		/// </summary>
-		public virtual System.Collections.ICollection Values
-		{
-			get
-			{
-				return this.Dictionary.Values;
-			}
-		}
-	}
+        /// <summary>
+        /// Gets a collection containing the values in this LayoutAppenderDictionary.
+        /// </summary>
+        public virtual System.Collections.ICollection Values
+        {
+            get
+            {
+                return this.Dictionary.Values;
+            }
+        }
+    }
 }

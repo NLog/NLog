@@ -41,16 +41,21 @@ namespace NLog.Appenders
     [Appender("ASPNetTrace")]
     public class ASPNetTraceAppender : Appender
     {
-        protected internal override void Append(LogEventInfo ev) {
+        protected internal override void Append(LogEventInfo ev) 
+        {
             HttpContext context = HttpContext.Current;
 
-            if (context == null) {
+            if (context == null) 
+            {
                 return;
             }
 
-            if (ev.Level >= LogLevel.Warn) {
+            if (ev.Level >= LogLevel.Warn) 
+            {
                 context.Trace.Warn(CompiledLayout.GetFormattedMessage(ev));
-            } else {
+            } 
+            else 
+            {
                 context.Trace.Write(CompiledLayout.GetFormattedMessage(ev));
             }
         }

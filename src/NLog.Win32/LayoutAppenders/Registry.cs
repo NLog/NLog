@@ -71,7 +71,8 @@ namespace NLog.Win32.LayoutAppenders
             {
                 _key = value; 
                 int pos = _key.IndexOfAny(new char[] { '\\','/' });
-                if (pos >= 0) {
+                if (pos >= 0) 
+                {
                     string root = _key.Substring(0, pos);
                     switch (root.ToUpper())
                     {
@@ -89,7 +90,9 @@ namespace NLog.Win32.LayoutAppenders
                             throw new ArgumentException("Key name is invalid. Root hive not recognized.");
                     }
                     _subKey = _key.Substring(pos + 1).Replace('/', '\\');
-                } else {
+                } 
+                else 
+                {
                     throw new ArgumentException("Key name is invalid");
                 }
             }

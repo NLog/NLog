@@ -41,19 +41,21 @@ using NLog.Internal;
 
 namespace NLog
 {
-	sealed class LoggerImpl : Logger
+    sealed class LoggerImpl : Logger
     {
         private const int STACK_TRACE_SKIP_METHODS = 3;
         
         private AppenderWithFilterChain[] _appendersByLevel;
         private string _loggerName;
 
-        public LoggerImpl(string name, AppenderWithFilterChain[] appendersByLevel) {
+        public LoggerImpl(string name, AppenderWithFilterChain[] appendersByLevel) 
+        {
             _loggerName = name;
             _appendersByLevel = appendersByLevel;
         }
 
-        protected override void Write(LogLevel level, IFormatProvider formatProvider, string message, object[] args) {
+        protected override void Write(LogLevel level, IFormatProvider formatProvider, string message, object[] args) 
+        {
             WriteToAppenders(level, _appendersByLevel[(int)level], formatProvider, message, args);
         }
 
@@ -67,7 +69,8 @@ namespace NLog
             _appendersByLevel = appendersByLevel;
         }
 
-        private void WriteToAppenders(LogLevel level, AppenderWithFilterChain appenders, IFormatProvider formatProvider, string message, object[] args) {
+        private void WriteToAppenders(LogLevel level, AppenderWithFilterChain appenders, IFormatProvider formatProvider, string message, object[] args) 
+        {
             if (appenders == null)
                 return;
 
@@ -83,7 +86,8 @@ namespace NLog
             bool needTrace = false;
             bool needTraceSources = false;
 
-            for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next) {
+            for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next) 
+            {
                 // once we know we needTraceSources there's nothing more to look for
                 //
                 if (needTraceSources)
@@ -92,32 +96,38 @@ namespace NLog
                 
                 int nst = app.NeedsStackTrace();
                 
-                if (nst > 0) {
+                if (nst > 0) 
+                {
                     needTrace = true;
                 }
-                if (nst > 1) {
+                if (nst > 1) 
+                {
                     needTraceSources = true;
                     break;
                 }
 
                 FilterCollection filterChain = awf.FilterChain;
 
-                for (int i = 0; i < filterChain.Count; ++i) {
+                for (int i = 0; i < filterChain.Count; ++i) 
+                {
                     Filter filter = filterChain[i];
 
                     nst = filter.NeedsStackTrace();
 
-                    if (nst > 0) {
+                    if (nst > 0) 
+                    {
                         needTrace = true;
                     }
-                    if (nst > 1) {
+                    if (nst > 1) 
+                    {
                         needTraceSources = true;
                     }
                 }
             }
 
             StackTrace stackTrace = null;
-            if (needTrace) {
+            if (needTrace) 
+            {
                 int firstUserFrame = 0;
                 stackTrace = new StackTrace(STACK_TRACE_SKIP_METHODS, needTraceSources);
 
@@ -138,42 +148,51 @@ namespace NLog
                 logMessage.SetStackTrace(stackTrace, firstUserFrame);
             }
 #endif            
-            for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next) {
+            for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next) 
+            {
                 Appender app = awf.Appender;
                 
-                try {
+                try 
+                {
                     FilterCollection filterChain = awf.FilterChain;
                     FilterResult result = FilterResult.Neutral;
 
-                    for (int i = 0; i < filterChain.Count; ++i) {
+                    for (int i = 0; i < filterChain.Count; ++i) 
+                    {
                         Filter f = filterChain[i];
                         result = f.Check(logMessage);
                         if (result != FilterResult.Neutral)
                             break;
                     }
-                    if (result == FilterResult.Ignore) {
-                        if (InternalLogger.IsDebugEnabled) {
+                    if (result == FilterResult.Ignore) 
+                    {
+                        if (InternalLogger.IsDebugEnabled) 
+                        {
                             InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", Name, level);
                         }
                         continue;
                     }
                 }
-                catch (Exception ex) {
+                catch (Exception ex) 
+                {
                     InternalLogger.Error("FilterChain exception: {0}", ex);
                     continue;
                 }
 
-                try {
+                try 
+                {
                     app.Append(logMessage);
                 }
-                catch (Exception ex) {
+                catch (Exception ex) 
+                {
                     InternalLogger.Error("Appender exception: {0}", ex);
                     continue;
                 }
             }
         }
 
-        public override bool IsEnabled(LogLevel level) {
+        public override bool IsEnabled(LogLevel level) 
+        {
             if (LogManager.ReloadConfigOnNextLog)
                 LogManager.ReloadConfig();
 
@@ -182,7 +201,8 @@ namespace NLog
 
         public override bool IsDebugEnabled
         {
-            get { 
+            get 
+            { 
                 if (LogManager.ReloadConfigOnNextLog)
                     LogManager.ReloadConfig();
 
@@ -192,7 +212,8 @@ namespace NLog
         
         public override bool IsInfoEnabled
         {
-            get {
+            get 
+            {
                 if (LogManager.ReloadConfigOnNextLog)
                     LogManager.ReloadConfig();
 
@@ -202,7 +223,8 @@ namespace NLog
         
         public override bool IsWarnEnabled
         {
-            get { 
+            get 
+            { 
                 if (LogManager.ReloadConfigOnNextLog)
                     LogManager.ReloadConfig();
 
@@ -212,7 +234,8 @@ namespace NLog
         
         public override bool IsErrorEnabled
         {
-            get { 
+            get 
+            { 
                 if (LogManager.ReloadConfigOnNextLog)
                     LogManager.ReloadConfig();
 
@@ -222,7 +245,8 @@ namespace NLog
         
         public override bool IsFatalEnabled
         {
-            get { 
+            get 
+            { 
                 if (LogManager.ReloadConfigOnNextLog)
                     LogManager.ReloadConfig();
 

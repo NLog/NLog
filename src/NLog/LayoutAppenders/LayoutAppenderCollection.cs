@@ -37,201 +37,201 @@ using System.Text;
 
 namespace NLog.LayoutAppenders
 {
-	/// <summary>
-	/// A collection of elements of type LayoutAppender
-	/// </summary>
-	public class LayoutAppenderCollection: System.Collections.CollectionBase
-	{
-		/// <summary>
-		/// Initializes a new empty instance of the LayoutAppenderCollection class.
-		/// </summary>
-		public LayoutAppenderCollection()
-		{
-			// empty
-		}
+    /// <summary>
+    /// A collection of elements of type LayoutAppender
+    /// </summary>
+    public class LayoutAppenderCollection: System.Collections.CollectionBase
+    {
+        /// <summary>
+        /// Initializes a new empty instance of the LayoutAppenderCollection class.
+        /// </summary>
+        public LayoutAppenderCollection()
+        {
+            // empty
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the LayoutAppenderCollection class, containing elements
-		/// copied from an array.
-		/// </summary>
-		/// <param name="items">
-		/// The array whose elements are to be added to the new LayoutAppenderCollection.
-		/// </param>
-		public LayoutAppenderCollection(LayoutAppender[] items)
-		{
-			this.AddRange(items);
-		}
+        /// <summary>
+        /// Initializes a new instance of the LayoutAppenderCollection class, containing elements
+        /// copied from an array.
+        /// </summary>
+        /// <param name="items">
+        /// The array whose elements are to be added to the new LayoutAppenderCollection.
+        /// </param>
+        public LayoutAppenderCollection(LayoutAppender[] items)
+        {
+            this.AddRange(items);
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the LayoutAppenderCollection class, containing elements
-		/// copied from another instance of LayoutAppenderCollection
-		/// </summary>
-		/// <param name="items">
-		/// The LayoutAppenderCollection whose elements are to be added to the new LayoutAppenderCollection.
-		/// </param>
-		public LayoutAppenderCollection(LayoutAppenderCollection items)
-		{
-			this.AddRange(items);
-		}
+        /// <summary>
+        /// Initializes a new instance of the LayoutAppenderCollection class, containing elements
+        /// copied from another instance of LayoutAppenderCollection
+        /// </summary>
+        /// <param name="items">
+        /// The LayoutAppenderCollection whose elements are to be added to the new LayoutAppenderCollection.
+        /// </param>
+        public LayoutAppenderCollection(LayoutAppenderCollection items)
+        {
+            this.AddRange(items);
+        }
 
-		/// <summary>
-		/// Adds the elements of an array to the end of this LayoutAppenderCollection.
-		/// </summary>
-		/// <param name="items">
-		/// The array whose elements are to be added to the end of this LayoutAppenderCollection.
-		/// </param>
-		public virtual void AddRange(LayoutAppender[] items)
-		{
-			foreach (LayoutAppender item in items)
-			{
-				this.List.Add(item);
-			}
-		}
+        /// <summary>
+        /// Adds the elements of an array to the end of this LayoutAppenderCollection.
+        /// </summary>
+        /// <param name="items">
+        /// The array whose elements are to be added to the end of this LayoutAppenderCollection.
+        /// </param>
+        public virtual void AddRange(LayoutAppender[] items)
+        {
+            foreach (LayoutAppender item in items)
+            {
+                this.List.Add(item);
+            }
+        }
 
-		/// <summary>
-		/// Adds the elements of another LayoutAppenderCollection to the end of this LayoutAppenderCollection.
-		/// </summary>
-		/// <param name="items">
-		/// The LayoutAppenderCollection whose elements are to be added to the end of this LayoutAppenderCollection.
-		/// </param>
-		public virtual void AddRange(LayoutAppenderCollection items)
-		{
-			foreach (LayoutAppender item in items)
-			{
-				this.List.Add(item);
-			}
-		}
+        /// <summary>
+        /// Adds the elements of another LayoutAppenderCollection to the end of this LayoutAppenderCollection.
+        /// </summary>
+        /// <param name="items">
+        /// The LayoutAppenderCollection whose elements are to be added to the end of this LayoutAppenderCollection.
+        /// </param>
+        public virtual void AddRange(LayoutAppenderCollection items)
+        {
+            foreach (LayoutAppender item in items)
+            {
+                this.List.Add(item);
+            }
+        }
 
-		/// <summary>
-		/// Adds an instance of type LayoutAppender to the end of this LayoutAppenderCollection.
-		/// </summary>
-		/// <param name="value">
-		/// The LayoutAppender to be added to the end of this LayoutAppenderCollection.
-		/// </param>
-		public virtual void Add(LayoutAppender value)
-		{
-			this.List.Add(value);
-		}
+        /// <summary>
+        /// Adds an instance of type LayoutAppender to the end of this LayoutAppenderCollection.
+        /// </summary>
+        /// <param name="value">
+        /// The LayoutAppender to be added to the end of this LayoutAppenderCollection.
+        /// </param>
+        public virtual void Add(LayoutAppender value)
+        {
+            this.List.Add(value);
+        }
 
-		/// <summary>
-		/// Determines whether a specfic LayoutAppender value is in this LayoutAppenderCollection.
-		/// </summary>
-		/// <param name="value">
-		/// The LayoutAppender value to locate in this LayoutAppenderCollection.
-		/// </param>
-		/// <returns>
-		/// true if value is found in this LayoutAppenderCollection;
-		/// false otherwise.
-		/// </returns>
-		public virtual bool Contains(LayoutAppender value)
-		{
-			return this.List.Contains(value);
-		}
+        /// <summary>
+        /// Determines whether a specfic LayoutAppender value is in this LayoutAppenderCollection.
+        /// </summary>
+        /// <param name="value">
+        /// The LayoutAppender value to locate in this LayoutAppenderCollection.
+        /// </param>
+        /// <returns>
+        /// true if value is found in this LayoutAppenderCollection;
+        /// false otherwise.
+        /// </returns>
+        public virtual bool Contains(LayoutAppender value)
+        {
+            return this.List.Contains(value);
+        }
 
-		/// <summary>
-		/// Return the zero-based index of the first occurrence of a specific value
-		/// in this LayoutAppenderCollection
-		/// </summary>
-		/// <param name="value">
-		/// The LayoutAppender value to locate in the LayoutAppenderCollection.
-		/// </param>
-		/// <returns>
-		/// The zero-based index of the first occurrence of the _ELEMENT value if found;
-		/// -1 otherwise.
-		/// </returns>
-		public virtual int IndexOf(LayoutAppender value)
-		{
-			return this.List.IndexOf(value);
-		}
+        /// <summary>
+        /// Return the zero-based index of the first occurrence of a specific value
+        /// in this LayoutAppenderCollection
+        /// </summary>
+        /// <param name="value">
+        /// The LayoutAppender value to locate in the LayoutAppenderCollection.
+        /// </param>
+        /// <returns>
+        /// The zero-based index of the first occurrence of the _ELEMENT value if found;
+        /// -1 otherwise.
+        /// </returns>
+        public virtual int IndexOf(LayoutAppender value)
+        {
+            return this.List.IndexOf(value);
+        }
 
-		/// <summary>
-		/// Inserts an element into the LayoutAppenderCollection at the specified index
-		/// </summary>
-		/// <param name="index">
-		/// The index at which the LayoutAppender is to be inserted.
-		/// </param>
-		/// <param name="value">
-		/// The LayoutAppender to insert.
-		/// </param>
-		public virtual void Insert(int index, LayoutAppender value)
-		{
-			this.List.Insert(index, value);
-		}
+        /// <summary>
+        /// Inserts an element into the LayoutAppenderCollection at the specified index
+        /// </summary>
+        /// <param name="index">
+        /// The index at which the LayoutAppender is to be inserted.
+        /// </param>
+        /// <param name="value">
+        /// The LayoutAppender to insert.
+        /// </param>
+        public virtual void Insert(int index, LayoutAppender value)
+        {
+            this.List.Insert(index, value);
+        }
 
-		/// <summary>
-		/// Gets or sets the LayoutAppender at the given index in this LayoutAppenderCollection.
-		/// </summary>
-		public virtual LayoutAppender this[int index]
-		{
-			get
-			{
-				return (LayoutAppender) this.List[index];
-			}
-			set
-			{
-				this.List[index] = value;
-			}
-		}
+        /// <summary>
+        /// Gets or sets the LayoutAppender at the given index in this LayoutAppenderCollection.
+        /// </summary>
+        public virtual LayoutAppender this[int index]
+        {
+            get
+            {
+                return (LayoutAppender) this.List[index];
+            }
+            set
+            {
+                this.List[index] = value;
+            }
+        }
 
-		/// <summary>
-		/// Removes the first occurrence of a specific LayoutAppender from this LayoutAppenderCollection.
-		/// </summary>
-		/// <param name="value">
-		/// The LayoutAppender value to remove from this LayoutAppenderCollection.
-		/// </param>
-		public virtual void Remove(LayoutAppender value)
-		{
-			this.List.Remove(value);
-		}
+        /// <summary>
+        /// Removes the first occurrence of a specific LayoutAppender from this LayoutAppenderCollection.
+        /// </summary>
+        /// <param name="value">
+        /// The LayoutAppender value to remove from this LayoutAppenderCollection.
+        /// </param>
+        public virtual void Remove(LayoutAppender value)
+        {
+            this.List.Remove(value);
+        }
 
-		/// <summary>
-		/// Type-specific enumeration class, used by LayoutAppenderCollection.GetEnumerator.
-		/// </summary>
-		public class Enumerator: System.Collections.IEnumerator
-		{
-			private System.Collections.IEnumerator wrapped;
+        /// <summary>
+        /// Type-specific enumeration class, used by LayoutAppenderCollection.GetEnumerator.
+        /// </summary>
+        public class Enumerator: System.Collections.IEnumerator
+        {
+            private System.Collections.IEnumerator wrapped;
 
-			public Enumerator(LayoutAppenderCollection collection)
-			{
-				this.wrapped = ((System.Collections.CollectionBase)collection).GetEnumerator();
-			}
+            public Enumerator(LayoutAppenderCollection collection)
+            {
+                this.wrapped = ((System.Collections.CollectionBase)collection).GetEnumerator();
+            }
 
-			public LayoutAppender Current
-			{
-				get
-				{
-					return (LayoutAppender) (this.wrapped.Current);
-				}
-			}
+            public LayoutAppender Current
+            {
+                get
+                {
+                    return (LayoutAppender) (this.wrapped.Current);
+                }
+            }
 
-			object System.Collections.IEnumerator.Current
-			{
-				get
-				{
-					return (LayoutAppender) (this.wrapped.Current);
-				}
-			}
+            object System.Collections.IEnumerator.Current
+            {
+                get
+                {
+                    return (LayoutAppender) (this.wrapped.Current);
+                }
+            }
 
-			public bool MoveNext()
-			{
-				return this.wrapped.MoveNext();
-			}
+            public bool MoveNext()
+            {
+                return this.wrapped.MoveNext();
+            }
 
-			public void Reset()
-			{
-				this.wrapped.Reset();
-			}
-		}
+            public void Reset()
+            {
+                this.wrapped.Reset();
+            }
+        }
 
-		/// <summary>
-		/// Returns an enumerator that can iterate through the elements of this LayoutAppenderCollection.
-		/// </summary>
-		/// <returns>
-		/// An object that implements System.Collections.IEnumerator.
-		/// </returns>        
-		public new virtual LayoutAppenderCollection.Enumerator GetEnumerator()
-		{
-			return new LayoutAppenderCollection.Enumerator(this);
-		}
-	}
+        /// <summary>
+        /// Returns an enumerator that can iterate through the elements of this LayoutAppenderCollection.
+        /// </summary>
+        /// <returns>
+        /// An object that implements System.Collections.IEnumerator.
+        /// </returns>        
+        public new virtual LayoutAppenderCollection.Enumerator GetEnumerator()
+        {
+            return new LayoutAppenderCollection.Enumerator(this);
+        }
+    }
 }

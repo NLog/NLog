@@ -101,11 +101,16 @@ namespace NLog.LayoutAppenders
             set { _cultureInfo = value; }
         }
 
-        protected string ApplyPadding(string s) {
-            if (Padding != 0) {
-                if (Padding > 0) {
+        protected string ApplyPadding(string s) 
+        {
+            if (Padding != 0) 
+            {
+                if (Padding > 0) 
+                {
                     s = s.PadLeft(Padding, PadCharacter);
-                } else {
+                } 
+                else 
+                {
                     s = s.PadRight(-Padding, PadCharacter);
                 }
                 if (FixedLength && s.Length > AbsolutePadding)
@@ -113,9 +118,12 @@ namespace NLog.LayoutAppenders
                     s = s.Substring(0, AbsolutePadding);
                 }
             }
-            if (UpperCase) {
+            if (UpperCase) 
+            {
                 s = s.ToUpper(CultureInfo);
-            } else if (LowerCase) {
+            } 
+            else if (LowerCase) 
+            {
                 s = s.ToLower(CultureInfo);
             }
             return s;

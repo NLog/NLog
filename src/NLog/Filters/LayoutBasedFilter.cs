@@ -63,5 +63,5 @@ namespace NLog.Filters
         {
             return CompiledLayout.NeedsStackTrace();
         }
-   }
+    }
 }

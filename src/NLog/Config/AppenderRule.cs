@@ -191,10 +191,12 @@ namespace NLog.Config
 
         public void Resolve(LoggingConfiguration configuration)
         {
-            foreach (string s in AppenderNames) {
+            foreach (string s in AppenderNames) 
+            {
                 Appender app = configuration.FindAppenderByName(s);
 
-                if (app != null) {
+                if (app != null) 
+                {
                     Appenders.Add(app);
                 }
             }

@@ -47,7 +47,8 @@ namespace NLog
 
         public static readonly LogEventInfo Empty = new LogEventInfo(DateTime.Now, LogLevel.Debug, String.Empty, String.Empty);
 
-        public LogEventInfo(DateTime ts, LogLevel level, string loggerName, string message) {
+        public LogEventInfo(DateTime ts, LogLevel level, string loggerName, string message) 
+        {
             _timeStamp = ts;
             _level = level;
             _loggerName = loggerName;
@@ -72,7 +73,8 @@ namespace NLog
         private StackTrace _stackTrace;
         private int _userStackFrame;
 
-        internal void SetStackTrace(StackTrace stackTrace, int userStackFrame) {
+        internal void SetStackTrace(StackTrace stackTrace, int userStackFrame) 
+        {
             _stackTrace = stackTrace;
             _userStackFrame = userStackFrame;
         }

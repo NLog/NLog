@@ -60,7 +60,8 @@ namespace NLog.LayoutAppenders
         
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            if (_variable != null) {
+            if (_variable != null) 
+            {
                 builder.Append(ApplyPadding(Environment.GetEnvironmentVariable(_variable)));
             }
         }
