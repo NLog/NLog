@@ -46,7 +46,7 @@ namespace NLog.Internal
 	/// <summary>
 	/// A dictionary with keys of type string and values of type Type
 	/// </summary>
-	public class TypeDictionary: System.Collections.DictionaryBase
+	internal class TypeDictionary: System.Collections.DictionaryBase
 	{
 		/// <summary>
 		/// Initializes a new empty instance of the TypeDictionary class

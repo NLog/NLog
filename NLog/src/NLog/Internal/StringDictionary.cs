@@ -46,7 +46,7 @@ namespace System.Collections.Specialized
 	/// <summary>
 	/// A dictionary with keys of type string and values of type String
 	/// </summary>
-	public class StringDictionary: System.Collections.DictionaryBase
+	internal class StringDictionary: System.Collections.DictionaryBase
 	{
 		/// <summary>
 		/// Initializes a new empty instance of the StringDictionary class

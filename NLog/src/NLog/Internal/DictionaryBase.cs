@@ -43,7 +43,7 @@ using System.Text;
 
 namespace System.Collections
 {
-	public class DictionaryBase {
+	internal class DictionaryBase {
 		private Hashtable _hashtable = new Hashtable();
 
 		public IDictionary Dictionary

@@ -107,4 +107,17 @@
         <support framework="mono-1.0" />
         <support framework="mono-2.0" />
     </appender>
+    
+    <appender name="OutputDebugString">
+        <displayName>OutputDebugString Trace Appender</displayName>
+        <description>outputs log messages using the OutputDebugString Win32 API</description>
+        <assembly>NLog.Win32.dll</assembly>
+        <namespace>NLog.Win32.Appenders</namespace>
+        <className>OutputDebugStringAppender</className>
+        <support framework="net-1.0" />
+        <support framework="net-1.1" />
+        <support framework="net-2.0" />
+        <support framework="mono-1.0" />
+        <support framework="mono-2.0" />
+    </appender>
 </appenders>

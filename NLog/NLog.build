@@ -101,6 +101,20 @@
         </csc>
     </target>
 
+    <target name="NLog.CompactFramework" depends="NLog">
+        <csc target="library" output="${output.dir}/NLog.CompactFramework.dll" define="${nlog.define}" debug="${nlog.debug}">
+            <sources basedir="src/NLog.CompactFramework">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${output.dir}/NLog.dll" />
+                <include name="mscorlib.dll" />
+                <include name="System.dll" />
+                <include name="System.Xml.dll" />
+            </references>
+        </csc>
+    </target>
+
     <target name="NLog.ASP" depends="NLog">
         <csc target="library" output="${output.dir}/NLog.ASP.dll" define="${nlog.define}" debug="${nlog.debug}">
             <sources basedir="src/NLog.ASP">
@@ -173,7 +187,7 @@
     <target name="build-net-1.0" depends="NLog, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
     <target name="build-net-1.1" depends="NLog, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
     <target name="build-net-2.0" depends="NLog, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
-    <target name="build-netcf-1.0" depends="NLog" />
+    <target name="build-netcf-1.0" depends="NLog, NLog.CompactFramework" />
 
     <target name="dist">
         <exec program="nant.exe" commandline="-t:net-1.0 release package" if="${framework::exists('net-1.0')}" />
