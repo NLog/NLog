@@ -118,67 +118,67 @@ namespace NLog
                         return _config;
 
                     _configLoaded = true;
-                    #if !NETCF
-                        if (_config == null)
+#if !NETCF
+                    if (_config == null)
+                    {
+                        // try to load default configuration
+                        _config = XmlLoggingConfiguration.AppConfig;
+                    }
+                    if (_config == null)
+                    {
+                        string configFile = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+                        configFile = configFile.Replace(".config", ".nlog");
+                        if (File.Exists(configFile))
                         {
-                            // try to load default configuration
-                            _config = XmlLoggingConfiguration.AppConfig;
+                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                            _config = new XmlLoggingConfiguration(configFile);
                         }
-                        if (_config == null)
+                    }
+                    if (_config == null)
+                    {
+                        Assembly nlogAssembly = typeof(LoggingConfiguration).Assembly;
+                        if (!nlogAssembly.GlobalAssemblyCache)
                         {
-                            string configFile = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
-                            configFile = configFile.Replace(".config", ".nlog");
+                            string configFile = nlogAssembly.Location + ".nlog";
                             if (File.Exists(configFile))
                             {
                                 InternalLogger.Debug("Attempting to load config from {0}", configFile);
                                 _config = new XmlLoggingConfiguration(configFile);
                             }
                         }
-                        if (_config == null)
+                    }
+
+                    if (_config == null)
+                    {
+                        if (Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE") != null)
                         {
-                            Assembly nlogAssembly = typeof(LoggingConfiguration).Assembly;
-                            if (!nlogAssembly.GlobalAssemblyCache)
+                            string configFile = Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE");
+                            if (File.Exists(configFile))
                             {
-                                string configFile = nlogAssembly.Location + ".nlog";
-                                if (File.Exists(configFile))
-                                {
-                                    InternalLogger.Debug("Attempting to load config from {0}", configFile);
-                                    _config = new XmlLoggingConfiguration(configFile);
-                                }
+                                InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                                _config = new XmlLoggingConfiguration(configFile);
+                            }
+                            else
+                            {
+                                InternalLogger.Warn("NLog global config file pointed by NLOG_GLOBAL_CONFIG '{0}' doesn't exist.", configFile);
                             }
                         }
+                    }
 
-                        if (_config == null)
-                        {
-                            if (Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE") != null)
-                            {
-                                string configFile = Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE");
-                                if (File.Exists(configFile))
-                                {
-                                    InternalLogger.Debug("Attempting to load config from {0}", configFile);
-                                    _config = new XmlLoggingConfiguration(configFile);
-                                }
-                                else
-                                {
-                                    InternalLogger.Warn("NLog global config file pointed by NLOG_GLOBAL_CONFIG '{0}' doesn't exist.", configFile);
-                                }
-                            }
-                        }
-
-                        if (_config != null)
-                        {
-                            _watcher.Watch(_config.FileNamesToWatch);
-                        }
-                    #endif 
+                    if (_config != null)
+                    {
+                        _watcher.Watch(_config.FileNamesToWatch);
+                    }
+#endif 
                     return _config;
                 }
             }
 
             set
             {
-                #if !NETCF
-                    _watcher.StopWatching();
-                #endif 
+#if !NETCF
+                _watcher.StopWatching();
+#endif 
 
                 lock(typeof(LogManager))
                 {
@@ -188,23 +188,23 @@ namespace NLog
                     if (_config != null)
                     {
                         ReconfigExistingLoggers(_config);
-                        #if !NETCF
-                            _watcher.Watch(_config.FileNamesToWatch);
-                        #endif 
+#if !NETCF
+                        _watcher.Watch(_config.FileNamesToWatch);
+#endif 
                     }
                 }
             }
         }
 
-        #if !NETCF
-            private static MultiFileWatcher _watcher = new MultiFileWatcher(new EventHandler(ConfigFileChanged));
+#if !NETCF
+        private static MultiFileWatcher _watcher = new MultiFileWatcher(new EventHandler(ConfigFileChanged));
 
-            private static void ConfigFileChanged(object sender, EventArgs args)
-            {
-                InternalLogger.Debug("ConfigFileChanged!!!");
-                ReloadConfigOnNextLog = true;
-            }
-        #endif 
+        private static void ConfigFileChanged(object sender, EventArgs args)
+        {
+            InternalLogger.Debug("ConfigFileChanged!!!");
+            ReloadConfigOnNextLog = true;
+        }
+#endif 
 
         internal static void ReloadConfig()
         {

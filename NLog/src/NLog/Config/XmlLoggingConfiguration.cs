@@ -196,16 +196,16 @@ namespace NLog.Config
             ResolveAppenders();
         }
 
-        #if !NETCF
-            public static LoggingConfiguration AppConfig
+#if !NETCF
+        public static LoggingConfiguration AppConfig
+        {
+            get
             {
-                get
-                {
-                    object o = System.Configuration.ConfigurationSettings.GetConfig("nlog");
-                    return o as LoggingConfiguration;
-                }
+                object o = System.Configuration.ConfigurationSettings.GetConfig("nlog");
+                return o as LoggingConfiguration;
             }
-        #endif 
+        }
+#endif 
 
         // implementation details
 
@@ -444,31 +444,31 @@ namespace NLog.Config
             _platformSpecificExtensionsRegistered = true;
 
             InternalLogger.Info("Registering platform specific extensions...");
-            #if NETCF
-                RegisterPlatformSpecificExtensions("NLog.CompactFramework");
-            #else 
-                if (Type.GetType("System.MonoType", false) != null)
-                {
-                    RegisterPlatformSpecificExtensions("NLog.Mono");
-                }
-                else
-                {
-                    RegisterPlatformSpecificExtensions("NLog.DotNet");
-                }
+#if NETCF
+            RegisterPlatformSpecificExtensions("NLog.CompactFramework");
+#else 
+            if (Type.GetType("System.MonoType", false) != null)
+            {
+                RegisterPlatformSpecificExtensions("NLog.Mono");
+            }
+            else
+            {
+                RegisterPlatformSpecificExtensions("NLog.DotNet");
+            }
 
-                PlatformID platform = System.Environment.OSVersion.Platform;
+            PlatformID platform = System.Environment.OSVersion.Platform;
 
-                if (platform == PlatformID.Win32NT || platform == PlatformID.Win32Windows)
-                {
-                    RegisterPlatformSpecificExtensions("NLog.Win32");
-                }
+            if (platform == PlatformID.Win32NT || platform == PlatformID.Win32Windows)
+            {
+                RegisterPlatformSpecificExtensions("NLog.Win32");
+            }
 
-                if ((int)platform == 128 || (int)platform == 4)
-                {
-                    // mono-1.0 used '128' here, net-2.0 and mono-2.0 use '4'
-                    RegisterPlatformSpecificExtensions("NLog.Unix");
-                }
-            #endif 
+            if ((int)platform == 128 || (int)platform == 4)
+            {
+                // mono-1.0 used '128' here, net-2.0 and mono-2.0 use '4'
+                RegisterPlatformSpecificExtensions("NLog.Unix");
+            }
+#endif 
         }
 
         private void RegisterPlatformSpecificExtensions(string name)

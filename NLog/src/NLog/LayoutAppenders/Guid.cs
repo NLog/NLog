@@ -32,38 +32,39 @@
 // 
 
 #if !NETCF
-    using System;
-    using System.Text;
-    using System.Globalization;
+using System;
+using System.Text;
+using System.Globalization;
 
-    namespace NLog.LayoutAppenders
+namespace NLog.LayoutAppenders
+{
+    [LayoutAppender("guid")]
+    public class GuidLayoutAppender: LayoutAppender
     {
-        [LayoutAppender("guid")]
-        public class GuidLayoutAppender: LayoutAppender
+        private string _format = "N";
+
+        public string Format
         {
-            private string _format = "N";
-
-            public string Format
+            get
             {
-                get
-                {
-                    return _format;
-                }
-                set
-                {
-                    _format = value;
-                }
+                return _format;
             }
-
-            protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+            set
             {
-                return 32;
-            }
-
-            protected internal override void Append(StringBuilder builder, LogEventInfo ev)
-            {
-                builder.Append(ApplyPadding(Guid.NewGuid().ToString(Format)));
+                _format = value;
             }
         }
+
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+        {
+            return 32;
+        }
+
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+        {
+            builder.Append(ApplyPadding(Guid.NewGuid().ToString(Format)));
+        }
     }
+}
+
 #endif

@@ -407,7 +407,7 @@ namespace NLog.Appenders
             }
         }
 
-        #region Generated Typesafe Collection Wrapper
+#region Generated Typesafe Collection Wrapper
 
         /// <summary>
         /// A collection of elements of type ParameterInfo
@@ -607,6 +607,6 @@ namespace NLog.Appenders
             }
         }
 
-        #endregion 
+#endregion 
     }
 }

@@ -33,79 +33,79 @@
 
 #if !NETCF
 
-    using System;
-    using System.Text;
-    using System.IO;
+using System;
+using System.Text;
+using System.IO;
 
-    namespace NLog.LayoutAppenders
+namespace NLog.LayoutAppenders
+{
+    [LayoutAppender("nlogdir")]
+    public class NLogDirLayoutAppender: LayoutAppender
     {
-        [LayoutAppender("nlogdir")]
-        public class NLogDirLayoutAppender: LayoutAppender
+        private string _fileName = null;
+        private string _directoryName = null;
+        private static string _nlogDir;
+
+        static NLogDirLayoutAppender()
         {
-            private string _fileName = null;
-            private string _directoryName = null;
-            private static string _nlogDir;
+            _nlogDir = Path.GetDirectoryName(typeof(LogManager).Assembly.Location);
+        }
 
-            static NLogDirLayoutAppender()
+        public string File
+        {
+            get
             {
-                _nlogDir = Path.GetDirectoryName(typeof(LogManager).Assembly.Location);
+                return _fileName;
             }
-
-            public string File
+            set
             {
-                get
-                {
-                    return _fileName;
-                }
-                set
-                {
-                    _fileName = value;
-                }
+                _fileName = value;
             }
+        }
 
-            public string Dir
+        public string Dir
+        {
+            get
             {
-                get
-                {
-                    return _directoryName;
-                }
-                set
-                {
-                    _directoryName = value;
-                }
+                return _directoryName;
             }
-
-            protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+            set
             {
-                return 32;
+                _directoryName = value;
             }
+        }
 
-            protected internal string NLogDir
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+        {
+            return 32;
+        }
+
+        protected internal string NLogDir
+        {
+            get
             {
-                get
-                {
-                    return _nlogDir;
-                }
+                return _nlogDir;
             }
+        }
 
-            protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+        {
+            string baseDir = NLogDir;
+
+            if (_fileName != null)
             {
-                string baseDir = NLogDir;
-
-                if (_fileName != null)
-                {
-                    builder.Append(ApplyPadding(Path.Combine(baseDir, _fileName)));
-                }
-                else if (_directoryName != null)
-                {
-                    builder.Append(ApplyPadding(Path.Combine(baseDir, _directoryName)));
-                }
-                else
-                {
-                    builder.Append(ApplyPadding(baseDir));
-                }
+                builder.Append(ApplyPadding(Path.Combine(baseDir, _fileName)));
+            }
+            else if (_directoryName != null)
+            {
+                builder.Append(ApplyPadding(Path.Combine(baseDir, _directoryName)));
+            }
+            else
+            {
+                builder.Append(ApplyPadding(baseDir));
             }
         }
     }
+}
 
 #endif
