@@ -33,7 +33,27 @@
   <Groups />
   <Settings />
  </Rules>
- <FxCopReport Version="1.3" LastAnalysis="2004-08-08 19:35:40Z">
+ <FxCopReport Version="1.3" LastAnalysis="2004-08-14 08:15:15Z">
+  <Namespaces>
+   <Namespace Name="NLog.Config">
+    <Messages>
+     <Message Status="Active" Created="2004-08-14 08:07:47Z">
+      <Rule TypeName="AvoidNamespacesWithFewMembers" />
+      <Issues>
+       <Issue Certainty="50" Level="Warning">
+        <Resolution>
+         <Data>
+          <Items>
+           <Item>NLog.Config</Item>
+          </Items>
+         </Data>
+        </Resolution>
+       </Issue>
+      </Issues>
+     </Message>
+    </Messages>
+   </Namespace>
+  </Namespaces>
   <Targets>
    <Target Name="D:\Work\NLog\src\NLog\bin\Debug\NLog.dll">
     <Modules>
@@ -41,6 +61,29 @@
       <Namespaces>
        <Namespace Name="NLog.LayoutAppenders">
         <Classes>
+         <Class Name="NLogDirLayoutAppender">
+          <Constructors>
+           <Constructor Name=".cctor()">
+            <Messages>
+             <Message Status="Excluded" Created="2004-08-14 08:07:47Z">
+              <Rule TypeName="DoNotDeclareExplicitStaticConstructors" />
+              <Issues>
+               <Issue Certainty="90" Level="CriticalWarning">
+                <SourceCode Path="D:\Work\NLog\src\NLog\LayoutAppenders" File="NLogDir.cs" Line="51" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>NLogDirLayoutAppender</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Constructor>
+          </Constructors>
+         </Class>
          <Class Name="LevelLayoutAppender">
           <Constructors>
            <Constructor Name=".cctor()">
@@ -66,8 +109,222 @@
          </Class>
         </Classes>
        </Namespace>
+       <Namespace Name="NLog.Config">
+        <Classes>
+         <Class Name="XmlLoggingConfiguration">
+          <Methods>
+           <Method Name="LogLevelFromString(System.String):NLog.LogLevel">
+            <Messages>
+             <Message ID="Unknown log level: ___" Status="Active" Created="2004-08-14 08:07:47Z">
+              <Rule TypeName="DoNotPassLiteralsAsLocalizedParameters" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\work\nlog\src\nlog\config" File="xmlloggingconfiguration.cs" Line="165" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>1</Item>
+                   <Item>System.ArgumentException..ctor</Item>
+                   <Item>Unknown log level: ___</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="AddExtensionsFromElement(System.Xml.XmlElement,System.String):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-14 08:10:02Z">
+              <Rule TypeName="ExceptionAndSystemExceptionTypesAreNotCaught" />
+              <Issues>
+               <Issue Certainty="95" Level="CriticalError">
+                <SourceCode Path="d:\work\nlog\src\nlog\config" File="xmlloggingconfiguration.cs" Line="244" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>AddExtensionsFromElement</Item>
+                   <Item>Exception</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+               <Issue Certainty="95" Level="CriticalError">
+                <SourceCode Path="d:\work\nlog\src\nlog\config" File="xmlloggingconfiguration.cs" Line="266" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>AddExtensionsFromElement</Item>
+                   <Item>Exception</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+               <Issue Certainty="95" Level="CriticalError">
+                <SourceCode Path="d:\work\nlog\src\nlog\config" File="xmlloggingconfiguration.cs" Line="281" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>AddExtensionsFromElement</Item>
+                   <Item>Exception</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+          </Methods>
+         </Class>
+        </Classes>
+       </Namespace>
        <Namespace Name="NLog">
         <Classes>
+         <Class Name="PropertyHelper">
+          <Methods>
+           <Method Name="SetPropertyFromString(System.Object,System.String,System.String):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-14 08:10:02Z">
+              <Rule TypeName="ExceptionAndSystemExceptionTypesAreNotCaught" />
+              <Issues>
+               <Issue Certainty="95" Level="CriticalError">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="PropertyHelper.cs" Line="57" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>SetPropertyFromString</Item>
+                   <Item>Exception</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+          </Methods>
+         </Class>
+         <Class Name="AppenderFactory">
+          <Constructors>
+           <Constructor Name=".cctor()">
+            <Messages>
+             <Message Status="Excluded" Created="2004-08-14 08:10:02Z">
+              <Rule TypeName="DoNotDeclareExplicitStaticConstructors" />
+              <Issues>
+               <Issue Certainty="90" Level="CriticalWarning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="AppenderFactory.cs" Line="44" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>AppenderFactory</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Constructor>
+          </Constructors>
+          <Methods>
+           <Method Name="CreateAppender(System.String):NLog.Appender">
+            <Messages>
+             <Message ID="Appender ______ not found." Status="Active" Created="2004-08-14 08:10:02Z">
+              <Rule TypeName="DoNotPassLiteralsAsLocalizedParameters" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\work\nlog\src\nlog" File="appenderfactory.cs" Line="91" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>1</Item>
+                   <Item>System.ArgumentException..ctor</Item>
+                   <Item>Appender ______ not found.</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\work\nlog\src\nlog" File="appenderfactory.cs" Line="89" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>1</Item>
+                   <Item>System.ArgumentException..ctor</Item>
+                   <Item>Appender ______ not found.</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+          </Methods>
+         </Class>
+         <Class Name="InternalLogger">
+          <Constructors>
+           <Constructor Name=".cctor()">
+            <Messages>
+             <Message Status="Active" Created="2004-08-14 08:10:02Z">
+              <Rule TypeName="ExceptionAndSystemExceptionTypesAreNotCaught" />
+              <Issues>
+               <Issue Certainty="95" Level="CriticalError">
+                <SourceCode Path="d:\work\nlog\src\nlog" File="internallogger.cs" Line="66" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>.cctor</Item>
+                   <Item>Object</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+             <Message Status="Excluded" Created="2004-08-14 08:10:02Z">
+              <Rule TypeName="DoNotDeclareExplicitStaticConstructors" />
+              <Issues>
+               <Issue Certainty="90" Level="CriticalWarning">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="InternalLogger.cs" Line="48" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>InternalLogger</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Constructor>
+          </Constructors>
+          <Methods>
+           <Method Name="Write(NLog.LogLevel,System.IFormatProvider,System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-14 08:10:02Z">
+              <Rule TypeName="ExceptionAndSystemExceptionTypesAreNotCaught" />
+              <Issues>
+               <Issue Certainty="95" Level="CriticalError">
+                <SourceCode Path="d:\work\nlog\src\nlog" File="internallogger.cs" Line="95" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>Write</Item>
+                   <Item>Exception</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+          </Methods>
+         </Class>
          <Class Name="LayoutAppenderFactory">
           <Constructors>
            <Constructor Name=".cctor()">
@@ -90,6 +347,55 @@
             </Messages>
            </Constructor>
           </Constructors>
+          <Methods>
+           <Method Name="ApplyLayoutAppenderParameters(NLog.LayoutAppender,System.String):System.Void">
+            <Parameters>
+             <Parameter Name="1">
+              <Messages>
+               <Message Status="Active" Created="2004-08-14 08:07:47Z">
+                <Rule TypeName="ParameterNamesShouldNotContainTypeNames" />
+                <Issues>
+                 <Issue Certainty="75" Level="Error">
+                  <SourceCode Path="D:\Work\NLog\src\NLog" File="LayoutAppenderFactory.cs" Line="87" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>parameterString</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Parameter>
+            </Parameters>
+           </Method>
+          </Methods>
+         </Class>
+         <Class Name="LoggerImpl">
+          <Methods>
+           <Method Name="WriteToAppenders(NLog.LogLevel,System.Collections.ArrayList,System.IFormatProvider,System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-08-14 08:10:02Z">
+              <Rule TypeName="ExceptionAndSystemExceptionTypesAreNotCaught" />
+              <Issues>
+               <Issue Certainty="95" Level="CriticalError">
+                <SourceCode Path="D:\Work\NLog\src\NLog" File="LoggerImpl.cs" Line="124" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>WriteToAppenders</Item>
+                   <Item>Exception</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+          </Methods>
          </Class>
         </Classes>
         <ValueTypes>
@@ -130,6 +436,17 @@
    </Target>
   </Targets>
   <Rules>
+   <Rule TypeName="AvoidNamespacesWithFewMembers">
+    <Name>Avoid having a namespace with a small number of types</Name>
+    <Description>A namespace should generally have more than five types.</Description>
+    <LongDescription />
+    <GroupOwner>MS FxCopDev</GroupOwner>
+    <DevOwner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/DesignRules/AvoidSmallNamespaces.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="50">Warning</MessageLevel>
+    <File Name="DesignRules.dll" Version="1.30.0.0" />
+   </Rule>
    <Rule TypeName="ConsiderOverridingEqualsAndOperatorEqualsOnValueTypes">
     <Name>Consider overriding Equals and the equality operator on value types</Name>
     <Description>The default System.ValueType implementation might not perform as well as a custom implementation.</Description>
@@ -151,6 +468,39 @@
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="90">CriticalWarning</MessageLevel>
     <File Name="PerformanceRules.dll" Version="1.30.0.0" />
+   </Rule>
+   <Rule TypeName="DoNotPassLiteralsAsLocalizedParameters">
+    <Name>Do not pass literals where a localized string is expected</Name>
+    <Description>String literals that are embedded in source code are difficult to localize. Avoid passing string literals as arguments in circumstances where a localized string is generally expected.</Description>
+    <LongDescription>Most localized applications, for example, should localize string arguments that are passed to exception constructors. When creating an Exception instance, therefore, a string argument retrieved from a string table is more appropriate than a string literal.</LongDescription>
+    <GroupOwner>MS FxCopDev</GroupOwner>
+    <DevOwner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/Globalization/DoNotPassLiterals.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">Error</MessageLevel>
+    <File Name="GlobalizationRules.dll" Version="1.30.0.0" />
+   </Rule>
+   <Rule TypeName="ExceptionAndSystemExceptionTypesAreNotCaught">
+    <Name>System.Exception and System.SystemException are not caught</Name>
+    <Description>You should not catch Exception or SystemException.</Description>
+    <LongDescription>Catching generic exception types can hide run-time problems from the library user, and can complicate debugging. You should catch only those exceptions that you can handle gracefully.</LongDescription>
+    <GroupOwner>MS FxCopDev</GroupOwner>
+    <DevOwner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/DesignRules/ExceptionAndSystemException.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">CriticalError</MessageLevel>
+    <File Name="DesignRules.dll" Version="1.30.0.0" />
+   </Rule>
+   <Rule TypeName="ParameterNamesShouldNotContainTypeNames">
+    <Name>Parameter names should not contain type names</Name>
+    <Description>Do not use type names to name parameters; use a generic name instead.</Description>
+    <LongDescription>Types names might not be intuitive for all developers. It is recommended that you select a generic name. If this is not sufficient, be sure to use the type name as it is defined in the .NET Framework Library. For example, use 'Boolean' instead of 'Bool'.</LongDescription>
+    <GroupOwner>MS FxCopDev</GroupOwner>
+    <DevOwner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/NamingRules/ParameterNamesTypeNames.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="75">Error</MessageLevel>
+    <File Name="NamingRules.dll" Version="1.30.0.0" />
    </Rule>
   </Rules>
  </FxCopReport>

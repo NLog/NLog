@@ -74,11 +74,11 @@ namespace NLog
 
         public static void AddAppender(string name, Type t) {
             InternalLogger.Debug("AddAppender('{0}','{1}')", name, t.FullName);
-            _appenders[name.ToLower()] = t;
+            _appenders[name.ToLower(CultureInfo.InvariantCulture)] = t;
         }
 
         public static Appender CreateAppender(string name) {
-            Type t = (Type)_appenders[name.ToLower()];
+            Type t = (Type)_appenders[name.ToLower(CultureInfo.InvariantCulture)];
             if (t != null) {
                 object o = Activator.CreateInstance(t);
                 if (o is Appender) {
