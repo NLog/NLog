@@ -36,6 +36,7 @@ using System;
 using System.Text;
 using System.Collections;
 
+using NLog.Internal;
 using NLog.LayoutAppenders;
 
 namespace NLog
@@ -75,15 +76,35 @@ namespace NLog
 
             foreach (LayoutAppender app in _layoutAppenders)
             {
-                int ebs = app.GetEstimatedBufferSize(ev);
-                size += ebs;
+                try
+                {
+                    int ebs = app.GetEstimatedBufferSize(ev);
+                    size += ebs;
+                }
+                catch (Exception ex)
+                {
+                    if (InternalLogger.IsWarnEnabled)
+                    {
+                        InternalLogger.Warn("Exception in {0}.GetEstimatedBufferSize(): {1}.", app.GetType().FullName, ex);
+                    }
+                }
             }
 
             StringBuilder builder = new StringBuilder(size);
 
             foreach (LayoutAppender app in _layoutAppenders)
             {
-                app.Append(builder, ev);
+                try
+                {
+                    app.Append(builder, ev);
+                }
+                catch (Exception ex)
+                {
+                    if (InternalLogger.IsWarnEnabled)
+                    {
+                        InternalLogger.Warn("Exception in {0}.Append(): {1}.", app.GetType().FullName, ex);
+                    }
+                }
             }
 
             return builder.ToString();

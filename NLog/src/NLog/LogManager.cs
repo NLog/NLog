@@ -38,6 +38,8 @@ using System.Xml;
 using System.IO;
 using System.Reflection;
 using System.Threading;
+using System.Diagnostics;
+using System.Security;
 
 using NLog.Config;
 using NLog.Internal;
@@ -81,6 +83,14 @@ namespace NLog
         }
 
         private LogManager(){}
+
+        public static Logger GetCurrentClassLogger()
+        {
+            StackTrace st = new StackTrace(false);
+            StackFrame frame = st.GetFrame(1);
+
+            return GetLogger(frame.GetMethod().DeclaringType.FullName);
+        }
 
         /// <summary>
         /// Gets the specified named logger.
@@ -154,7 +164,7 @@ namespace NLog
 
                     if (_config == null)
                     {
-                        if (Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE") != null)
+                        if (EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE") != null)
                         {
                             string configFile = Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE");
                             if (File.Exists(configFile))
@@ -200,7 +210,14 @@ namespace NLog
             set
             {
 #if !NETCF
-                _watcher.StopWatching();
+                try
+                {
+                    _watcher.StopWatching();
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error("Cannot stop file watching: {0}", ex);
+                }
 #endif 
 
                 lock(typeof(LogManager))
@@ -212,7 +229,14 @@ namespace NLog
                     {
                         ReconfigExistingLoggers(_config);
 #if !NETCF
-                        _watcher.Watch(_config.FileNamesToWatch);
+                        try
+                        {
+                            _watcher.Watch(_config.FileNamesToWatch);
+                        }
+                        catch (Exception ex)
+                        {
+                            InternalLogger.Warn("Cannot start file watching: {0}", ex);
+                        }
 #endif 
                     }
                 }

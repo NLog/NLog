@@ -37,7 +37,7 @@
                     NoWarn = ""
                     Optimize = "false"
                     OutputPath = "bin\Debug\"
-                    RegisterForComInterop = "false"
+                    RegisterForComInterop = "true"
                     RemoveIntegerChecks = "false"
                     TreatWarningsAsErrors = "false"
                     WarningLevel = "1"
@@ -57,7 +57,7 @@
                     NoWarn = ""
                     Optimize = "false"
                     OutputPath = "bin\Release\"
-                    RegisterForComInterop = "false"
+                    RegisterForComInterop = "true"
                     RemoveIntegerChecks = "false"
                     TreatWarningsAsErrors = "false"
                     WarningLevel = "1"
@@ -99,7 +99,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ILogManager.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Logger.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LogManager.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

@@ -32,9 +32,20 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("NLog.ComInterop")][assembly: AssemblyDescription("NLog COM Interop")][assembly: AssemblyConfiguration("")][assembly: AssemblyCompany("NLog")][assembly: AssemblyProduct("NLog - .NET Logging Library")][assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")][assembly: AssemblyCulture("")]
+[assembly: AssemblyTitle("NLog.ComInterop")]
+[assembly: AssemblyDescription("NLog COM Interop")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("NLog")]
+[assembly: AssemblyProduct("NLog - .NET Logging Library")]
+[assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")]
+[assembly: AssemblyCulture("")]
 
 [assembly: AssemblyVersion("0.3.0.0")]
+
+[assembly: Guid("fb84adc2-a04b-4ff3-8a20-7c069c3cfa6f")]
+

@@ -33,46 +33,25 @@
 // 
 
 using System;
-using System.Runtime.InteropServices;
+using System.Security;
 
-namespace NLog.ComInterop
+namespace NLog.Internal
 {
-    [Guid("757fd55a-cc93-4b53-a7a0-18e85620704a")]
-    [InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface ILogger
+    internal sealed class EnvironmentHelper
     {
-        void Log(string level, string message);
-        void Debug(string message);
-        void Info(string message);
-        void Warn(string message);
-        void Error(string message);
-        void Fatal(string message);
+        private EnvironmentHelper(){}
 
-        bool IsEnabled(string level);
-        bool IsDebugEnabled
+        public static string GetSafeEnvironmentVariable(string name)
         {
-            get;
-        }
-        bool IsInfoEnabled
-        {
-            get;
-        }
-        bool IsWarnEnabled
-        {
-            get;
-        }
-        bool IsErrorEnabled
-        {
-            get;
-        }
-        bool IsFatalEnabled
-        {
-            get;
+            try
+            {
+                return Environment.GetEnvironmentVariable(name);
+            }
+            catch (SecurityException ex)
+            {
+                return null;
+            }
         }
 
-        string LoggerName
-        {
-            get; set;
-        }
     }
 }

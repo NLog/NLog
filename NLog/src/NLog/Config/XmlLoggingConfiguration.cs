@@ -69,8 +69,19 @@ namespace NLog.Config
 
         public XmlLoggingConfiguration(string fileName)
         {
+            InternalLogger.Info("Configuring from {0}...", fileName);
             _originalFileName = fileName;
             ConfigureFromFile(fileName);
+        }
+
+        public XmlLoggingConfiguration(XmlElement configElement, string fileName)
+        {
+            InternalLogger.Info("Configuring from an XML element in {0}...", fileName);
+            string key = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
+            _visitedFile[key] = key;
+
+            _originalFileName = fileName;
+            ConfigureFromXmlElement(configElement, Path.GetDirectoryName(fileName));
         }
 
         public override ICollection FileNamesToWatch

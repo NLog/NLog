@@ -37,12 +37,15 @@
 using System;
 using System.Text;
 using System.IO;
+using NLog.Internal;
 
 namespace NLog.LayoutAppenders
 {
     [LayoutAppender("machinename")]
     public class MachineNameLayoutAppender: LayoutAppender
     {
+        static string _machineName = GetMachineName();
+
         protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 32;
@@ -50,7 +53,20 @@ namespace NLog.LayoutAppenders
 
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            builder.Append(ApplyPadding(Environment.MachineName));
+            builder.Append(ApplyPadding(_machineName));
+        }
+
+        private static string GetMachineName()
+        {
+            try
+            {
+                return Environment.MachineName;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn("Error getting machine name: {0}", ex);
+                return String.Empty;
+            }
         }
     }
 }

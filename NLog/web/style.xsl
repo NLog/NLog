@@ -88,6 +88,13 @@
         <!-- <a href="{@src}">Download this sample</a><br/> -->
     </xsl:template>
 
+    <xsl:template match="js">
+        <pre class="jscript-example">
+            <xsl:copy-of select="document(concat(@src,'.html'))" />
+        </pre>
+        <!-- <a href="{@src}">Download this sample</a><br/> -->
+    </xsl:template>
+
     <xsl:template match="x">
         <xsl:apply-templates mode="xml-example" />
     </xsl:template>

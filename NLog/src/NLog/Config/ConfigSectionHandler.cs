@@ -37,6 +37,7 @@
 using System;
 using System.Xml;
 using System.Configuration;
+using System.IO;
 
 using NLog.Internal;
 
@@ -50,7 +51,7 @@ namespace NLog.Config
             {
                 string configFileName = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
 
-                return new XmlLoggingConfiguration(configFileName);
+                return new XmlLoggingConfiguration((XmlElement)section, configFileName);
             }
             catch (Exception ex)
             {

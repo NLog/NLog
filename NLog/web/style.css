@@ -3,7 +3,7 @@ html, body
     margin-right: 4px;
     margin-left: 4px;
     margin-top: 2px;
-    background: white;
+    background-color: #fff8f8;
     color: black;
     font-family: Verdana;
     font-size: 70%;
@@ -313,7 +313,7 @@ td.controls
 table.page
 {
     width: 800px;
-    border: 1px solid #404060;
+    /* border: 1px solid #404060; */
 }
 
 tr.spacer
@@ -390,6 +390,27 @@ td.newstext
 }
 
 .csharp .r
+{
+    color: #400000;
+}
+
+.jscript .k
+{
+    color: #0000ff;
+}
+
+.jscript .c
+{
+    color: #008000;
+    font-style: italic;
+}
+
+.jscript .s
+{
+    color: #400000;
+}
+
+.jscript .r
 {
     color: #400000;
 }

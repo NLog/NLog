@@ -37,42 +37,13 @@ using System.Runtime.InteropServices;
 
 namespace NLog.ComInterop
 {
-    [Guid("757fd55a-cc93-4b53-a7a0-18e85620704a")]
+    [Guid("7ee3af3b-ba37-45b6-8f5d-cc23bb46c698")]
     [InterfaceType(ComInterfaceType.InterfaceIsDual)]
-    public interface ILogger
+    public interface ILogManager
     {
-        void Log(string level, string message);
-        void Debug(string message);
-        void Info(string message);
-        void Warn(string message);
-        void Error(string message);
-        void Fatal(string message);
-
-        bool IsEnabled(string level);
-        bool IsDebugEnabled
-        {
-            get;
-        }
-        bool IsInfoEnabled
-        {
-            get;
-        }
-        bool IsWarnEnabled
-        {
-            get;
-        }
-        bool IsErrorEnabled
-        {
-            get;
-        }
-        bool IsFatalEnabled
-        {
-            get;
-        }
-
-        string LoggerName
-        {
-            get; set;
-        }
+        void LoadConfigFromFile(string fileName);
+        bool InternalLogToConsole { get; set; }
+        string InternalLogFile { get; set; }
+        string InternalLogLevel { get; set; }
     }
 }
