@@ -40,7 +40,7 @@ using NLog;
 namespace NLog.Appenders
 {
     [Appender("File")]
-    public class FileAppender : NLog.Appender
+    public class FileAppender : Appender
     {
         private Random _random = new Random();
         private Layout _fileNameLayout;
@@ -140,7 +140,7 @@ namespace NLog.Appenders
             return retVal;
         }
 
-        public override void Append(LogEventInfo ev) {
+        protected internal override void Append(LogEventInfo ev) {
             string fileName = _fileNameLayout.GetFormattedMessage(ev);
 
             if (fileName != _lastFileName && _outputFile != null) {

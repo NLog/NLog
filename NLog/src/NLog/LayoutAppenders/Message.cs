@@ -39,12 +39,12 @@ namespace NLog.LayoutAppenders
     [LayoutAppender("message")]
     public class MessageLayoutAppender : LayoutAppender
     {
-        public override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return ev.Message.Length;
         }
         
-        public override void Append(StringBuilder builder, LogEventInfo ev)
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             builder.Append(ApplyPadding(ev.Message));
         }

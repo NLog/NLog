@@ -40,12 +40,12 @@ namespace NLog.LayoutAppenders
     [LayoutAppender("shortdate")]
     public class ShortDateLayoutAppender : LayoutAppender
     {
-        public override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 10;
         }
         
-        public override void Append(StringBuilder builder, LogEventInfo ev)
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             builder.Append(ApplyPadding(ev.TimeStamp.ToString("yyyy-MM-dd", CultureInfo)));
         }

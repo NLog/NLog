@@ -1,36 +1,36 @@
-﻿<typeSafeCollections>
+<typeSafeCollections>
 	<typeSafeCollection>
 		<templateKind>Vector</templateKind>
-		<itemType>Appender</itemType>
+		<itemType>NLog.Appenders.Appender</itemType>
 		<collectionName>AppenderCollection</collectionName>
-		<collectionNamespace>NLog</collectionNamespace>
+		<collectionNamespace>NLog.Appenders</collectionNamespace>
 	</typeSafeCollection>
 	<typeSafeCollection>
 		<templateKind>Vector</templateKind>
-		<itemType>Filter</itemType>
+		<itemType>NLog.Filters.Filter</itemType>
 		<collectionName>FilterCollection</collectionName>
-		<collectionNamespace>NLog</collectionNamespace>
+		<collectionNamespace>NLog.Filters</collectionNamespace>
 	</typeSafeCollection>
 	<typeSafeCollection>
 		<templateKind>Vector</templateKind>
-		<itemType>LayoutAppender</itemType>
+		<itemType>NLog.LayoutAppenders.LayoutAppender</itemType>
 		<collectionName>LayoutAppenderCollection</collectionName>
-		<collectionNamespace>NLog</collectionNamespace>
+		<collectionNamespace>NLog.LayoutAppenders</collectionNamespace>
 	</typeSafeCollection>
 	
 	<typeSafeCollection>
 		<templateKind>Vector</templateKind>
 		<itemType>NLog.Config.AppenderRule</itemType>
 		<collectionName>AppenderRuleCollection</collectionName>
-		<collectionNamespace>NLog</collectionNamespace>
+		<collectionNamespace>NLog.Config</collectionNamespace>
 	</typeSafeCollection>
 	
 	<typeSafeCollection>
 		<templateKind>HashTable</templateKind>
 		<keyType>string</keyType>
-		<itemType>Logger</itemType>
+		<itemType>NLog.Logger</itemType>
 		<collectionName>LoggerDictionary</collectionName>
-		<collectionNamespace>NLog</collectionNamespace>
+		<collectionNamespace>NLog.Internal</collectionNamespace>
 	</typeSafeCollection>
 	
 	<typeSafeCollection>
@@ -38,27 +38,27 @@
 		<keyType>string</keyType>
 		<itemType>System.Type</itemType>
 		<collectionName>TypeDictionary</collectionName>
-		<collectionNamespace>NLog</collectionNamespace>
+		<collectionNamespace>NLog.Internal</collectionNamespace>
 	</typeSafeCollection>
 	<typeSafeCollection>
 		<templateKind>HashTable</templateKind>
 		<keyType>string</keyType>
-		<itemType>Appender</itemType>
+		<itemType>NLog.Appenders.Appender</itemType>
 		<collectionName>AppenderDictionary</collectionName>
-		<collectionNamespace>NLog</collectionNamespace>
+		<collectionNamespace>NLog.Internal</collectionNamespace>
 	</typeSafeCollection>
 	<typeSafeCollection>
 		<templateKind>HashTable</templateKind>
 		<keyType>string</keyType>
-		<itemType>LayoutAppender</itemType>
+		<itemType>NLog.LayoutAppenders.LayoutAppender</itemType>
 		<collectionName>LayoutAppenderDictionary</collectionName>
-		<collectionNamespace>NLog</collectionNamespace>
+		<collectionNamespace>NLog.Internal</collectionNamespace>
 	</typeSafeCollection>
 	<typeSafeCollection>
 		<templateKind>HashTable</templateKind>
 		<keyType>string</keyType>
-		<itemType>Filter</itemType>
+		<itemType>NLog.Filters.Filter</itemType>
 		<collectionName>FilterDictionary</collectionName>
-		<collectionNamespace>NLog</collectionNamespace>
+		<collectionNamespace>NLog.Internal</collectionNamespace>
 	</typeSafeCollection>
 </typeSafeCollections>

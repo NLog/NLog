@@ -61,11 +61,11 @@ namespace NLog.LayoutAppenders
             set { _separator = value; }
         }
 
-        public override int GetEstimatedBufferSize(LogEventInfo ev) {
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev) {
             return 0;
         }
 
-        public override void Append(StringBuilder builder, LogEventInfo ev)
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             string msg;
 

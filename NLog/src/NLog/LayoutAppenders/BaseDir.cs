@@ -56,12 +56,12 @@ namespace NLog.LayoutAppenders
             get { return _directoryName; }
             set { _directoryName = value; }
         }
-        public override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 32;
         }
 
-        public override void Append(StringBuilder builder, LogEventInfo ev)
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 

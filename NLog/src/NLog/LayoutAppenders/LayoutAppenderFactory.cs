@@ -37,10 +37,10 @@ using System.Collections;
 using System.Reflection;
 using System.Globalization;
 
-using NLog.LayoutAppenders;
 using NLog.Utils;
+using NLog.Internal;
 
-namespace NLog
+namespace NLog.LayoutAppenders
 {
     public sealed class LayoutAppenderFactory
     {

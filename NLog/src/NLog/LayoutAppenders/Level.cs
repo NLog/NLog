@@ -109,12 +109,12 @@ namespace NLog.LayoutAppenders
             }
         }
 
-        public override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return MaxLength;
         }
         
-        public override void Append(StringBuilder builder, LogEventInfo ev)
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             builder.Append(ApplyPadding(_nameTable[(int)ev.Level]));
         }

@@ -64,17 +64,17 @@ namespace NLog.LayoutAppenders
             set { _sourceFile = value; }
         }
         
-        public override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 200;
         }
         
-		public override int NeedsStackTrace()
+		protected internal override int NeedsStackTrace()
 		{
 			return _sourceFile ? 2 : 1;
 		}
 
-        public override void Append(StringBuilder builder, LogEventInfo ev)
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             StackFrame frame = ev.UserStackFrame;
             if (frame != null)

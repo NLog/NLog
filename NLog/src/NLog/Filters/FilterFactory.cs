@@ -37,7 +37,9 @@ using System.Collections;
 using System.Reflection;
 using System.Globalization;
 
-namespace NLog
+using NLog.Internal;
+
+namespace NLog.Filters
 {
     public sealed class FilterFactory
     {

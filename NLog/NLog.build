@@ -55,7 +55,7 @@
     </target>
 
     <target name="NLog" depends="configure">
-        <csc target="library" output="${output.dir}/NLog.dll" define="${nlog.define}" debug="${nlog.debug}">
+        <csc target="library" output="${output.dir}/NLog.dll" doc="${output.dir}/NLog.xml" define="${nlog.define}" debug="${nlog.debug}">
             <sources basedir="src/NLog">
                 <include name="**/*.cs" />
             </sources>
@@ -64,6 +64,9 @@
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
             </references>
+            <nowarn>
+                <warning number="1591" />
+            </nowarn>
         </csc>
     </target>
 

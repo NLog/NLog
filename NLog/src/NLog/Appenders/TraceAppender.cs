@@ -38,9 +38,9 @@ using System.Diagnostics;
 namespace NLog.Appenders
 {
     [Appender("Trace")]
-    public class TraceAppender : NLog.Appender
+    public class TraceAppender : Appender
     {
-        public override void Append(LogEventInfo ev) {
+        protected internal override void Append(LogEventInfo ev) {
             if (ev.Level >= LogLevel.Error) {
                 Trace.Fail(CompiledLayout.GetFormattedMessage(ev));
             } else {

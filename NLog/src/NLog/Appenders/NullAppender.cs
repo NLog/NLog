@@ -39,7 +39,7 @@ using System.Diagnostics;
 namespace NLog.Appenders
 {
     [Appender("Null")]
-    public class NullAppender : NLog.Appender
+    public class NullAppender : Appender
     {
 		private bool _formatMessage = false;
 
@@ -49,7 +49,7 @@ namespace NLog.Appenders
 			set { _formatMessage = value; }
 		}
 
-		public override void Append(LogEventInfo ev) 
+		protected internal override void Append(LogEventInfo ev) 
 		{
 			if (_formatMessage)
 			{

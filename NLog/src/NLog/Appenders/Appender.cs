@@ -32,21 +32,45 @@
 // 
 
 using System;
+using System.Text;
 
-namespace NLog
+namespace NLog.Appenders
 {
-    [AttributeUsage(AttributeTargets.Class)]
-    public sealed class LayoutAppenderAttribute : Attribute
+    public abstract class Appender
     {
-        private string _formatString;
-
-        public LayoutAppenderAttribute(string s) {
-            _formatString = s;
-        }
-        
-        public string FormatString
+        protected Appender()
         {
-            get { return _formatString; }
+            Layout = "${longdate}|${level:uppercase=true}|${logger}|${message}";
+        }
+
+        private Layout _compiledlayout;
+        private string _name;
+
+        [RequiredParameter]
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        [RequiredParameter]
+        public string Layout
+        {
+            get { return _compiledlayout.Text; }
+            set { _compiledlayout = new Layout(value); }
+        }
+
+        public Layout CompiledLayout
+        {
+            get { return _compiledlayout; }
+            set { _compiledlayout = value; }
+        }
+
+        protected internal abstract void Append(LogEventInfo ev);
+
+        protected internal virtual int NeedsStackTrace()
+        {
+            return CompiledLayout.NeedsStackTrace();
         }
     }
 }

@@ -10,12 +10,12 @@
 using System;
 using System.Collections;
 
-namespace NLog
+namespace NLog.Appenders
 {
 	
 
 	/// <summary>
-	///		A strongly-typed collection of <see cref="Appender"/> objects.
+	///		A strongly-typed collection of <see cref="NLog.Appenders.Appender"/> objects.
 	/// </summary>
 	[Serializable]
 public 
@@ -30,7 +30,7 @@ public
 		    /// <summary>
 		    ///		Gets the current element in the collection.
 		    /// </summary>
-            Appender Current {get;}
+            NLog.Appenders.Appender Current {get;}
 
 		    /// <summary>
 		    ///		Advances the enumerator to the next element in the collection.
@@ -54,7 +54,7 @@ public
 		private const int DEFAULT_CAPACITY = 16;
 
 		#region Implementation (data)
-		private Appender[] m_array;
+		private NLog.Appenders.Appender[] m_array;
 		private int m_count = 0;
 		[NonSerialized]
 		private int m_version = 0;
@@ -97,7 +97,7 @@ public
 		/// </summary>
 		public AppenderCollection()
 		{
-			m_array = new Appender[DEFAULT_CAPACITY];
+			m_array = new NLog.Appenders.Appender[DEFAULT_CAPACITY];
 		}
 		
 		/// <summary>
@@ -109,7 +109,7 @@ public
 		///	</param>
 		public AppenderCollection(int capacity)
 		{
-			m_array = new Appender[capacity];
+			m_array = new NLog.Appenders.Appender[capacity];
 		}
 
 		/// <summary>
@@ -119,18 +119,18 @@ public
 		/// <param name="c">The <c>AppenderCollection</c> whose elements are copied to the new collection.</param>
 		public AppenderCollection(AppenderCollection c)
 		{
-			m_array = new Appender[c.Count];
+			m_array = new NLog.Appenders.Appender[c.Count];
 			AddRange(c);
 		}
 
 		/// <summary>
 		///		Initializes a new instance of the <c>AppenderCollection</c> class
-		///		that contains elements copied from the specified <see cref="Appender"/> array.
+		///		that contains elements copied from the specified <see cref="NLog.Appenders.Appender"/> array.
 		/// </summary>
-		/// <param name="a">The <see cref="Appender"/> array whose elements are copied to the new list.</param>
-		public AppenderCollection(Appender[] a)
+		/// <param name="a">The <see cref="NLog.Appenders.Appender"/> array whose elements are copied to the new list.</param>
+		public AppenderCollection(NLog.Appenders.Appender[] a)
 		{
-			m_array = new Appender[a.Length];
+			m_array = new NLog.Appenders.Appender[a.Length];
 			AddRange(a);
 		}
 		
@@ -155,21 +155,21 @@ public
 
 		/// <summary>
 		///		Copies the entire <c>AppenderCollection</c> to a one-dimensional
-		///		<see cref="Appender"/> array.
+		///		<see cref="NLog.Appenders.Appender"/> array.
 		/// </summary>
-		/// <param name="array">The one-dimensional <see cref="Appender"/> array to copy to.</param>
-		public virtual void CopyTo(Appender[] array)
+		/// <param name="array">The one-dimensional <see cref="NLog.Appenders.Appender"/> array to copy to.</param>
+		public virtual void CopyTo(NLog.Appenders.Appender[] array)
 		{
 			this.CopyTo(array, 0);
 		}
 
 		/// <summary>
 		///		Copies the entire <c>AppenderCollection</c> to a one-dimensional
-		///		<see cref="Appender"/> array, starting at the specified index of the target array.
+		///		<see cref="NLog.Appenders.Appender"/> array, starting at the specified index of the target array.
 		/// </summary>
-		/// <param name="array">The one-dimensional <see cref="Appender"/> array to copy to.</param>
+		/// <param name="array">The one-dimensional <see cref="NLog.Appenders.Appender"/> array to copy to.</param>
 		/// <param name="start">The zero-based index in <paramref name="array"/> at which copying begins.</param>
-		public virtual void CopyTo(Appender[] array, int start)
+		public virtual void CopyTo(NLog.Appenders.Appender[] array, int start)
 		{
 			if (m_count > array.GetUpperBound(0) + 1 - start)
 				throw new System.ArgumentException("Destination array was not long enough.");
@@ -197,7 +197,7 @@ public
 		
 		#region Operations (type-safe IList)
 		/// <summary>
-		///		Gets or sets the <see cref="Appender"/> at the specified index.
+		///		Gets or sets the <see cref="NLog.Appenders.Appender"/> at the specified index.
 		/// </summary>
 		/// <param name="index">The zero-based index of the element to get or set.</param>
 		/// <exception cref="ArgumentOutOfRangeException">
@@ -205,7 +205,7 @@ public
 		///		<para>-or-</para>
 		///		<para><paramref name="index"/> is equal to or greater than <see cref="AppenderCollection.Count"/>.</para>
 		/// </exception>
-		public virtual Appender this[int index]
+		public virtual NLog.Appenders.Appender this[int index]
 		{
 			get
 			{
@@ -221,11 +221,11 @@ public
 		}
 
 		/// <summary>
-		///		Adds a <see cref="Appender"/> to the end of the <c>AppenderCollection</c>.
+		///		Adds a <see cref="NLog.Appenders.Appender"/> to the end of the <c>AppenderCollection</c>.
 		/// </summary>
-		/// <param name="item">The <see cref="Appender"/> to be added to the end of the <c>AppenderCollection</c>.</param>
+		/// <param name="item">The <see cref="NLog.Appenders.Appender"/> to be added to the end of the <c>AppenderCollection</c>.</param>
 		/// <returns>The index at which the value has been added.</returns>
-		public virtual int Add(Appender item)
+		public virtual int Add(NLog.Appenders.Appender item)
 		{
 			if (m_count == m_array.Length)
 				EnsureCapacity(m_count + 1);
@@ -242,7 +242,7 @@ public
 		public virtual void Clear()
 		{
 			++m_version;
-			m_array = new Appender[DEFAULT_CAPACITY];
+			m_array = new NLog.Appenders.Appender[DEFAULT_CAPACITY];
 			m_count = 0;
 		}
 		
@@ -260,11 +260,11 @@ public
 		}
 
 		/// <summary>
-		///		Determines whether a given <see cref="Appender"/> is in the <c>AppenderCollection</c>.
+		///		Determines whether a given <see cref="NLog.Appenders.Appender"/> is in the <c>AppenderCollection</c>.
 		/// </summary>
-		/// <param name="item">The <see cref="Appender"/> to check for.</param>
+		/// <param name="item">The <see cref="NLog.Appenders.Appender"/> to check for.</param>
 		/// <returns><c>true</c> if <paramref name="item"/> is found in the <c>AppenderCollection</c>; otherwise, <c>false</c>.</returns>
-		public virtual bool Contains(Appender item)
+		public virtual bool Contains(NLog.Appenders.Appender item)
 		{
 			for (int i=0; i != m_count; ++i)
 				if (m_array[i].Equals(item))
@@ -273,15 +273,15 @@ public
 		}
 
 		/// <summary>
-		///		Returns the zero-based index of the first occurrence of a <see cref="Appender"/>
+		///		Returns the zero-based index of the first occurrence of a <see cref="NLog.Appenders.Appender"/>
 		///		in the <c>AppenderCollection</c>.
 		/// </summary>
-		/// <param name="item">The <see cref="Appender"/> to locate in the <c>AppenderCollection</c>.</param>
+		/// <param name="item">The <see cref="NLog.Appenders.Appender"/> to locate in the <c>AppenderCollection</c>.</param>
 		/// <returns>
 		///		The zero-based index of the first occurrence of <paramref name="item"/> 
 		///		in the entire <c>AppenderCollection</c>, if found; otherwise, -1.
 		///	</returns>
-		public virtual int IndexOf(Appender item)
+		public virtual int IndexOf(NLog.Appenders.Appender item)
 		{
 			for (int i=0; i != m_count; ++i)
 				if (m_array[i].Equals(item))
@@ -293,13 +293,13 @@ public
 		///		Inserts an element into the <c>AppenderCollection</c> at the specified index.
 		/// </summary>
 		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
-		/// <param name="item">The <see cref="Appender"/> to insert.</param>
+		/// <param name="item">The <see cref="NLog.Appenders.Appender"/> to insert.</param>
 		/// <exception cref="ArgumentOutOfRangeException">
 		///		<para><paramref name="index"/> is less than zero</para>
 		///		<para>-or-</para>
 		///		<para><paramref name="index"/> is equal to or greater than <see cref="AppenderCollection.Count"/>.</para>
 		/// </exception>
-		public virtual void Insert(int index, Appender item)
+		public virtual void Insert(int index, NLog.Appenders.Appender item)
 		{
 			ValidateIndex(index, true); // throws
 			
@@ -317,13 +317,13 @@ public
 		}
 
 		/// <summary>
-		///		Removes the first occurrence of a specific <see cref="Appender"/> from the <c>AppenderCollection</c>.
+		///		Removes the first occurrence of a specific <see cref="NLog.Appenders.Appender"/> from the <c>AppenderCollection</c>.
 		/// </summary>
-		/// <param name="item">The <see cref="Appender"/> to remove from the <c>AppenderCollection</c>.</param>
+		/// <param name="item">The <see cref="NLog.Appenders.Appender"/> to remove from the <c>AppenderCollection</c>.</param>
 		/// <exception cref="ArgumentException">
-		///		The specified <see cref="Appender"/> was not found in the <c>AppenderCollection</c>.
+		///		The specified <see cref="NLog.Appenders.Appender"/> was not found in the <c>AppenderCollection</c>.
 		/// </exception>
-		public virtual void Remove(Appender item)
+		public virtual void Remove(NLog.Appenders.Appender item)
 		{		   
 			int i = IndexOf(item);
 			if (i < 0)
@@ -356,7 +356,7 @@ public
 			// We can't set the deleted entry equal to null, because it might be a value type.
 			// Instead, we'll create an empty single-element array of the right type and copy it 
 			// over the entry we want to erase.
-			Appender[] temp = new Appender[1];
+			NLog.Appenders.Appender[] temp = new NLog.Appenders.Appender[1];
 			Array.Copy(temp, 0, m_array, m_count, 1);
 			m_version++;
 		}
@@ -410,13 +410,13 @@ public
 				{
 					if (value > 0)
 					{
-						Appender[] temp = new Appender[value];
+						NLog.Appenders.Appender[] temp = new NLog.Appenders.Appender[value];
 						Array.Copy(m_array, temp, m_count);
 						m_array = temp;
 					}
 					else
 					{
-						m_array = new Appender[DEFAULT_CAPACITY];
+						m_array = new NLog.Appenders.Appender[DEFAULT_CAPACITY];
 					}
 				}
 			}
@@ -440,11 +440,11 @@ public
 		}
 
 		/// <summary>
-		///		Adds the elements of a <see cref="Appender"/> array to the current <c>AppenderCollection</c>.
+		///		Adds the elements of a <see cref="NLog.Appenders.Appender"/> array to the current <c>AppenderCollection</c>.
 		/// </summary>
-		/// <param name="x">The <see cref="Appender"/> array whose elements should be added to the end of the <c>AppenderCollection</c>.</param>
+		/// <param name="x">The <see cref="NLog.Appenders.Appender"/> array whose elements should be added to the end of the <c>AppenderCollection</c>.</param>
 		/// <returns>The new <see cref="AppenderCollection.Count"/> of the <c>AppenderCollection</c>.</returns>
-		public virtual int AddRange(Appender[] x)
+		public virtual int AddRange(NLog.Appenders.Appender[] x)
 		{
 			if (m_count + x.Length >= m_array.Length)
 				EnsureCapacity(m_count + x.Length);
@@ -515,32 +515,32 @@ public
 		object IList.this[int i]
 		{
 			get { return (object)this[i]; }
-			set { this[i] = (Appender)value; }
+			set { this[i] = (NLog.Appenders.Appender)value; }
 		}
 
 		int IList.Add(object x)
 		{
-			return this.Add((Appender)x);
+			return this.Add((NLog.Appenders.Appender)x);
 		}
 
     	bool IList.Contains(object x)
 		{
-			return this.Contains((Appender)x);
+			return this.Contains((NLog.Appenders.Appender)x);
 		}
 
 		int IList.IndexOf(object x)
 		{
-			return this.IndexOf((Appender)x);
+			return this.IndexOf((NLog.Appenders.Appender)x);
 		}
 
 		void IList.Insert(int pos, object x)
 		{
-			this.Insert(pos, (Appender)x);
+			this.Insert(pos, (NLog.Appenders.Appender)x);
 		}
 
 		void IList.Remove(object x)
 		{
-			this.Remove((Appender)x);
+			this.Remove((NLog.Appenders.Appender)x);
 		}
 
 		void IList.RemoveAt(int pos)
@@ -593,7 +593,7 @@ public
 			/// <summary>
 			///		Gets the current element in the collection.
 			/// </summary>
-			public Appender Current
+			public NLog.Appenders.Appender Current
 			{
 				get { return m_collection[m_index]; }
 			}
@@ -654,13 +654,13 @@ public
             #endregion
             
             #region Type-safe ICollection
-            public override void CopyTo(Appender[] array)
+            public override void CopyTo(NLog.Appenders.Appender[] array)
             {
                 lock(this.m_root)
                     m_collection.CopyTo(array);
             }
 
-            public override void CopyTo(Appender[] array, int start)
+            public override void CopyTo(NLog.Appenders.Appender[] array, int start)
             {
                 lock(this.m_root)
                     m_collection.CopyTo(array,start);
@@ -686,7 +686,7 @@ public
             #endregion
             
             #region Type-safe IList
-            public override Appender this[int i]
+            public override NLog.Appenders.Appender this[int i]
             {
                 get
                 {
@@ -700,7 +700,7 @@ public
                 }
             }
 
-            public override int Add(Appender x)
+            public override int Add(NLog.Appenders.Appender x)
             {
                 lock(this.m_root)
                     return m_collection.Add(x);
@@ -712,25 +712,25 @@ public
                     m_collection.Clear();
             }
 
-            public override bool Contains(Appender x)
+            public override bool Contains(NLog.Appenders.Appender x)
             {
                 lock(this.m_root)
                     return m_collection.Contains(x);
             }
 
-            public override int IndexOf(Appender x)
+            public override int IndexOf(NLog.Appenders.Appender x)
             {
                 lock(this.m_root)
                     return m_collection.IndexOf(x);
             }
 
-            public override void Insert(int pos, Appender x)
+            public override void Insert(int pos, NLog.Appenders.Appender x)
             {
                 lock(this.m_root)
                     m_collection.Insert(pos,x);
             }
 
-            public override void Remove(Appender x)
+            public override void Remove(NLog.Appenders.Appender x)
             {           
                 lock(this.m_root)
                     m_collection.Remove(x);
@@ -784,7 +784,7 @@ public
                     return m_collection.AddRange(x);
             }
 
-            public override int AddRange(Appender[] x)
+            public override int AddRange(NLog.Appenders.Appender[] x)
             {
                 lock(this.m_root)
                     return m_collection.AddRange(x);
@@ -808,12 +808,12 @@ public
             #endregion
             
             #region Type-safe ICollection
-            public override void CopyTo(Appender[] array)
+            public override void CopyTo(NLog.Appenders.Appender[] array)
             {
                 m_collection.CopyTo(array);
             }
 
-            public override void CopyTo(Appender[] array, int start)
+            public override void CopyTo(NLog.Appenders.Appender[] array, int start)
             {
                 m_collection.CopyTo(array,start);
             }
@@ -834,13 +834,13 @@ public
             #endregion
             
             #region Type-safe IList
-            public override Appender this[int i]
+            public override NLog.Appenders.Appender this[int i]
             {
                 get { return m_collection[i]; }
                 set { throw new NotSupportedException("This is a Read Only Collection and can not be modified"); }
             }
 
-            public override int Add(Appender x)
+            public override int Add(NLog.Appenders.Appender x)
             {
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
@@ -850,22 +850,22 @@ public
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
 
-            public override bool Contains(Appender x)
+            public override bool Contains(NLog.Appenders.Appender x)
             {
                 return m_collection.Contains(x);
             }
 
-            public override int IndexOf(Appender x)
+            public override int IndexOf(NLog.Appenders.Appender x)
             {
                 return m_collection.IndexOf(x);
             }
 
-            public override void Insert(int pos, Appender x)
+            public override void Insert(int pos, NLog.Appenders.Appender x)
             {
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
 
-            public override void Remove(Appender x)
+            public override void Remove(NLog.Appenders.Appender x)
             {           
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
@@ -907,7 +907,7 @@ public
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
 
-            public override int AddRange(Appender[] x)
+            public override int AddRange(NLog.Appenders.Appender[] x)
             {
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
@@ -918,12 +918,12 @@ public
 
 }
 	
-namespace NLog
+namespace NLog.Filters
 {
 	
 
 	/// <summary>
-	///		A strongly-typed collection of <see cref="Filter"/> objects.
+	///		A strongly-typed collection of <see cref="NLog.Filters.Filter"/> objects.
 	/// </summary>
 	[Serializable]
 public 
@@ -938,7 +938,7 @@ public
 		    /// <summary>
 		    ///		Gets the current element in the collection.
 		    /// </summary>
-            Filter Current {get;}
+            NLog.Filters.Filter Current {get;}
 
 		    /// <summary>
 		    ///		Advances the enumerator to the next element in the collection.
@@ -962,7 +962,7 @@ public
 		private const int DEFAULT_CAPACITY = 16;
 
 		#region Implementation (data)
-		private Filter[] m_array;
+		private NLog.Filters.Filter[] m_array;
 		private int m_count = 0;
 		[NonSerialized]
 		private int m_version = 0;
@@ -1005,7 +1005,7 @@ public
 		/// </summary>
 		public FilterCollection()
 		{
-			m_array = new Filter[DEFAULT_CAPACITY];
+			m_array = new NLog.Filters.Filter[DEFAULT_CAPACITY];
 		}
 		
 		/// <summary>
@@ -1017,7 +1017,7 @@ public
 		///	</param>
 		public FilterCollection(int capacity)
 		{
-			m_array = new Filter[capacity];
+			m_array = new NLog.Filters.Filter[capacity];
 		}
 
 		/// <summary>
@@ -1027,18 +1027,18 @@ public
 		/// <param name="c">The <c>FilterCollection</c> whose elements are copied to the new collection.</param>
 		public FilterCollection(FilterCollection c)
 		{
-			m_array = new Filter[c.Count];
+			m_array = new NLog.Filters.Filter[c.Count];
 			AddRange(c);
 		}
 
 		/// <summary>
 		///		Initializes a new instance of the <c>FilterCollection</c> class
-		///		that contains elements copied from the specified <see cref="Filter"/> array.
+		///		that contains elements copied from the specified <see cref="NLog.Filters.Filter"/> array.
 		/// </summary>
-		/// <param name="a">The <see cref="Filter"/> array whose elements are copied to the new list.</param>
-		public FilterCollection(Filter[] a)
+		/// <param name="a">The <see cref="NLog.Filters.Filter"/> array whose elements are copied to the new list.</param>
+		public FilterCollection(NLog.Filters.Filter[] a)
 		{
-			m_array = new Filter[a.Length];
+			m_array = new NLog.Filters.Filter[a.Length];
 			AddRange(a);
 		}
 		
@@ -1063,21 +1063,21 @@ public
 
 		/// <summary>
 		///		Copies the entire <c>FilterCollection</c> to a one-dimensional
-		///		<see cref="Filter"/> array.
+		///		<see cref="NLog.Filters.Filter"/> array.
 		/// </summary>
-		/// <param name="array">The one-dimensional <see cref="Filter"/> array to copy to.</param>
-		public virtual void CopyTo(Filter[] array)
+		/// <param name="array">The one-dimensional <see cref="NLog.Filters.Filter"/> array to copy to.</param>
+		public virtual void CopyTo(NLog.Filters.Filter[] array)
 		{
 			this.CopyTo(array, 0);
 		}
 
 		/// <summary>
 		///		Copies the entire <c>FilterCollection</c> to a one-dimensional
-		///		<see cref="Filter"/> array, starting at the specified index of the target array.
+		///		<see cref="NLog.Filters.Filter"/> array, starting at the specified index of the target array.
 		/// </summary>
-		/// <param name="array">The one-dimensional <see cref="Filter"/> array to copy to.</param>
+		/// <param name="array">The one-dimensional <see cref="NLog.Filters.Filter"/> array to copy to.</param>
 		/// <param name="start">The zero-based index in <paramref name="array"/> at which copying begins.</param>
-		public virtual void CopyTo(Filter[] array, int start)
+		public virtual void CopyTo(NLog.Filters.Filter[] array, int start)
 		{
 			if (m_count > array.GetUpperBound(0) + 1 - start)
 				throw new System.ArgumentException("Destination array was not long enough.");
@@ -1105,7 +1105,7 @@ public
 		
 		#region Operations (type-safe IList)
 		/// <summary>
-		///		Gets or sets the <see cref="Filter"/> at the specified index.
+		///		Gets or sets the <see cref="NLog.Filters.Filter"/> at the specified index.
 		/// </summary>
 		/// <param name="index">The zero-based index of the element to get or set.</param>
 		/// <exception cref="ArgumentOutOfRangeException">
@@ -1113,7 +1113,7 @@ public
 		///		<para>-or-</para>
 		///		<para><paramref name="index"/> is equal to or greater than <see cref="FilterCollection.Count"/>.</para>
 		/// </exception>
-		public virtual Filter this[int index]
+		public virtual NLog.Filters.Filter this[int index]
 		{
 			get
 			{
@@ -1129,11 +1129,11 @@ public
 		}
 
 		/// <summary>
-		///		Adds a <see cref="Filter"/> to the end of the <c>FilterCollection</c>.
+		///		Adds a <see cref="NLog.Filters.Filter"/> to the end of the <c>FilterCollection</c>.
 		/// </summary>
-		/// <param name="item">The <see cref="Filter"/> to be added to the end of the <c>FilterCollection</c>.</param>
+		/// <param name="item">The <see cref="NLog.Filters.Filter"/> to be added to the end of the <c>FilterCollection</c>.</param>
 		/// <returns>The index at which the value has been added.</returns>
-		public virtual int Add(Filter item)
+		public virtual int Add(NLog.Filters.Filter item)
 		{
 			if (m_count == m_array.Length)
 				EnsureCapacity(m_count + 1);
@@ -1150,7 +1150,7 @@ public
 		public virtual void Clear()
 		{
 			++m_version;
-			m_array = new Filter[DEFAULT_CAPACITY];
+			m_array = new NLog.Filters.Filter[DEFAULT_CAPACITY];
 			m_count = 0;
 		}
 		
@@ -1168,11 +1168,11 @@ public
 		}
 
 		/// <summary>
-		///		Determines whether a given <see cref="Filter"/> is in the <c>FilterCollection</c>.
+		///		Determines whether a given <see cref="NLog.Filters.Filter"/> is in the <c>FilterCollection</c>.
 		/// </summary>
-		/// <param name="item">The <see cref="Filter"/> to check for.</param>
+		/// <param name="item">The <see cref="NLog.Filters.Filter"/> to check for.</param>
 		/// <returns><c>true</c> if <paramref name="item"/> is found in the <c>FilterCollection</c>; otherwise, <c>false</c>.</returns>
-		public virtual bool Contains(Filter item)
+		public virtual bool Contains(NLog.Filters.Filter item)
 		{
 			for (int i=0; i != m_count; ++i)
 				if (m_array[i].Equals(item))
@@ -1181,15 +1181,15 @@ public
 		}
 
 		/// <summary>
-		///		Returns the zero-based index of the first occurrence of a <see cref="Filter"/>
+		///		Returns the zero-based index of the first occurrence of a <see cref="NLog.Filters.Filter"/>
 		///		in the <c>FilterCollection</c>.
 		/// </summary>
-		/// <param name="item">The <see cref="Filter"/> to locate in the <c>FilterCollection</c>.</param>
+		/// <param name="item">The <see cref="NLog.Filters.Filter"/> to locate in the <c>FilterCollection</c>.</param>
 		/// <returns>
 		///		The zero-based index of the first occurrence of <paramref name="item"/> 
 		///		in the entire <c>FilterCollection</c>, if found; otherwise, -1.
 		///	</returns>
-		public virtual int IndexOf(Filter item)
+		public virtual int IndexOf(NLog.Filters.Filter item)
 		{
 			for (int i=0; i != m_count; ++i)
 				if (m_array[i].Equals(item))
@@ -1201,13 +1201,13 @@ public
 		///		Inserts an element into the <c>FilterCollection</c> at the specified index.
 		/// </summary>
 		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
-		/// <param name="item">The <see cref="Filter"/> to insert.</param>
+		/// <param name="item">The <see cref="NLog.Filters.Filter"/> to insert.</param>
 		/// <exception cref="ArgumentOutOfRangeException">
 		///		<para><paramref name="index"/> is less than zero</para>
 		///		<para>-or-</para>
 		///		<para><paramref name="index"/> is equal to or greater than <see cref="FilterCollection.Count"/>.</para>
 		/// </exception>
-		public virtual void Insert(int index, Filter item)
+		public virtual void Insert(int index, NLog.Filters.Filter item)
 		{
 			ValidateIndex(index, true); // throws
 			
@@ -1225,13 +1225,13 @@ public
 		}
 
 		/// <summary>
-		///		Removes the first occurrence of a specific <see cref="Filter"/> from the <c>FilterCollection</c>.
+		///		Removes the first occurrence of a specific <see cref="NLog.Filters.Filter"/> from the <c>FilterCollection</c>.
 		/// </summary>
-		/// <param name="item">The <see cref="Filter"/> to remove from the <c>FilterCollection</c>.</param>
+		/// <param name="item">The <see cref="NLog.Filters.Filter"/> to remove from the <c>FilterCollection</c>.</param>
 		/// <exception cref="ArgumentException">
-		///		The specified <see cref="Filter"/> was not found in the <c>FilterCollection</c>.
+		///		The specified <see cref="NLog.Filters.Filter"/> was not found in the <c>FilterCollection</c>.
 		/// </exception>
-		public virtual void Remove(Filter item)
+		public virtual void Remove(NLog.Filters.Filter item)
 		{		   
 			int i = IndexOf(item);
 			if (i < 0)
@@ -1264,7 +1264,7 @@ public
 			// We can't set the deleted entry equal to null, because it might be a value type.
 			// Instead, we'll create an empty single-element array of the right type and copy it 
 			// over the entry we want to erase.
-			Filter[] temp = new Filter[1];
+			NLog.Filters.Filter[] temp = new NLog.Filters.Filter[1];
 			Array.Copy(temp, 0, m_array, m_count, 1);
 			m_version++;
 		}
@@ -1318,13 +1318,13 @@ public
 				{
 					if (value > 0)
 					{
-						Filter[] temp = new Filter[value];
+						NLog.Filters.Filter[] temp = new NLog.Filters.Filter[value];
 						Array.Copy(m_array, temp, m_count);
 						m_array = temp;
 					}
 					else
 					{
-						m_array = new Filter[DEFAULT_CAPACITY];
+						m_array = new NLog.Filters.Filter[DEFAULT_CAPACITY];
 					}
 				}
 			}
@@ -1348,11 +1348,11 @@ public
 		}
 
 		/// <summary>
-		///		Adds the elements of a <see cref="Filter"/> array to the current <c>FilterCollection</c>.
+		///		Adds the elements of a <see cref="NLog.Filters.Filter"/> array to the current <c>FilterCollection</c>.
 		/// </summary>
-		/// <param name="x">The <see cref="Filter"/> array whose elements should be added to the end of the <c>FilterCollection</c>.</param>
+		/// <param name="x">The <see cref="NLog.Filters.Filter"/> array whose elements should be added to the end of the <c>FilterCollection</c>.</param>
 		/// <returns>The new <see cref="FilterCollection.Count"/> of the <c>FilterCollection</c>.</returns>
-		public virtual int AddRange(Filter[] x)
+		public virtual int AddRange(NLog.Filters.Filter[] x)
 		{
 			if (m_count + x.Length >= m_array.Length)
 				EnsureCapacity(m_count + x.Length);
@@ -1423,32 +1423,32 @@ public
 		object IList.this[int i]
 		{
 			get { return (object)this[i]; }
-			set { this[i] = (Filter)value; }
+			set { this[i] = (NLog.Filters.Filter)value; }
 		}
 
 		int IList.Add(object x)
 		{
-			return this.Add((Filter)x);
+			return this.Add((NLog.Filters.Filter)x);
 		}
 
     	bool IList.Contains(object x)
 		{
-			return this.Contains((Filter)x);
+			return this.Contains((NLog.Filters.Filter)x);
 		}
 
 		int IList.IndexOf(object x)
 		{
-			return this.IndexOf((Filter)x);
+			return this.IndexOf((NLog.Filters.Filter)x);
 		}
 
 		void IList.Insert(int pos, object x)
 		{
-			this.Insert(pos, (Filter)x);
+			this.Insert(pos, (NLog.Filters.Filter)x);
 		}
 
 		void IList.Remove(object x)
 		{
-			this.Remove((Filter)x);
+			this.Remove((NLog.Filters.Filter)x);
 		}
 
 		void IList.RemoveAt(int pos)
@@ -1501,7 +1501,7 @@ public
 			/// <summary>
 			///		Gets the current element in the collection.
 			/// </summary>
-			public Filter Current
+			public NLog.Filters.Filter Current
 			{
 				get { return m_collection[m_index]; }
 			}
@@ -1562,13 +1562,13 @@ public
             #endregion
             
             #region Type-safe ICollection
-            public override void CopyTo(Filter[] array)
+            public override void CopyTo(NLog.Filters.Filter[] array)
             {
                 lock(this.m_root)
                     m_collection.CopyTo(array);
             }
 
-            public override void CopyTo(Filter[] array, int start)
+            public override void CopyTo(NLog.Filters.Filter[] array, int start)
             {
                 lock(this.m_root)
                     m_collection.CopyTo(array,start);
@@ -1594,7 +1594,7 @@ public
             #endregion
             
             #region Type-safe IList
-            public override Filter this[int i]
+            public override NLog.Filters.Filter this[int i]
             {
                 get
                 {
@@ -1608,7 +1608,7 @@ public
                 }
             }
 
-            public override int Add(Filter x)
+            public override int Add(NLog.Filters.Filter x)
             {
                 lock(this.m_root)
                     return m_collection.Add(x);
@@ -1620,25 +1620,25 @@ public
                     m_collection.Clear();
             }
 
-            public override bool Contains(Filter x)
+            public override bool Contains(NLog.Filters.Filter x)
             {
                 lock(this.m_root)
                     return m_collection.Contains(x);
             }
 
-            public override int IndexOf(Filter x)
+            public override int IndexOf(NLog.Filters.Filter x)
             {
                 lock(this.m_root)
                     return m_collection.IndexOf(x);
             }
 
-            public override void Insert(int pos, Filter x)
+            public override void Insert(int pos, NLog.Filters.Filter x)
             {
                 lock(this.m_root)
                     m_collection.Insert(pos,x);
             }
 
-            public override void Remove(Filter x)
+            public override void Remove(NLog.Filters.Filter x)
             {           
                 lock(this.m_root)
                     m_collection.Remove(x);
@@ -1692,7 +1692,7 @@ public
                     return m_collection.AddRange(x);
             }
 
-            public override int AddRange(Filter[] x)
+            public override int AddRange(NLog.Filters.Filter[] x)
             {
                 lock(this.m_root)
                     return m_collection.AddRange(x);
@@ -1716,12 +1716,12 @@ public
             #endregion
             
             #region Type-safe ICollection
-            public override void CopyTo(Filter[] array)
+            public override void CopyTo(NLog.Filters.Filter[] array)
             {
                 m_collection.CopyTo(array);
             }
 
-            public override void CopyTo(Filter[] array, int start)
+            public override void CopyTo(NLog.Filters.Filter[] array, int start)
             {
                 m_collection.CopyTo(array,start);
             }
@@ -1742,13 +1742,13 @@ public
             #endregion
             
             #region Type-safe IList
-            public override Filter this[int i]
+            public override NLog.Filters.Filter this[int i]
             {
                 get { return m_collection[i]; }
                 set { throw new NotSupportedException("This is a Read Only Collection and can not be modified"); }
             }
 
-            public override int Add(Filter x)
+            public override int Add(NLog.Filters.Filter x)
             {
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
@@ -1758,22 +1758,22 @@ public
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
 
-            public override bool Contains(Filter x)
+            public override bool Contains(NLog.Filters.Filter x)
             {
                 return m_collection.Contains(x);
             }
 
-            public override int IndexOf(Filter x)
+            public override int IndexOf(NLog.Filters.Filter x)
             {
                 return m_collection.IndexOf(x);
             }
 
-            public override void Insert(int pos, Filter x)
+            public override void Insert(int pos, NLog.Filters.Filter x)
             {
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
 
-            public override void Remove(Filter x)
+            public override void Remove(NLog.Filters.Filter x)
             {           
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
@@ -1815,7 +1815,7 @@ public
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
 
-            public override int AddRange(Filter[] x)
+            public override int AddRange(NLog.Filters.Filter[] x)
             {
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
@@ -1826,12 +1826,12 @@ public
 
 }
 	
-namespace NLog
+namespace NLog.LayoutAppenders
 {
 	
 
 	/// <summary>
-	///		A strongly-typed collection of <see cref="LayoutAppender"/> objects.
+	///		A strongly-typed collection of <see cref="NLog.LayoutAppenders.LayoutAppender"/> objects.
 	/// </summary>
 	[Serializable]
 public 
@@ -1846,7 +1846,7 @@ public
 		    /// <summary>
 		    ///		Gets the current element in the collection.
 		    /// </summary>
-            LayoutAppender Current {get;}
+            NLog.LayoutAppenders.LayoutAppender Current {get;}
 
 		    /// <summary>
 		    ///		Advances the enumerator to the next element in the collection.
@@ -1870,7 +1870,7 @@ public
 		private const int DEFAULT_CAPACITY = 16;
 
 		#region Implementation (data)
-		private LayoutAppender[] m_array;
+		private NLog.LayoutAppenders.LayoutAppender[] m_array;
 		private int m_count = 0;
 		[NonSerialized]
 		private int m_version = 0;
@@ -1913,7 +1913,7 @@ public
 		/// </summary>
 		public LayoutAppenderCollection()
 		{
-			m_array = new LayoutAppender[DEFAULT_CAPACITY];
+			m_array = new NLog.LayoutAppenders.LayoutAppender[DEFAULT_CAPACITY];
 		}
 		
 		/// <summary>
@@ -1925,7 +1925,7 @@ public
 		///	</param>
 		public LayoutAppenderCollection(int capacity)
 		{
-			m_array = new LayoutAppender[capacity];
+			m_array = new NLog.LayoutAppenders.LayoutAppender[capacity];
 		}
 
 		/// <summary>
@@ -1935,18 +1935,18 @@ public
 		/// <param name="c">The <c>LayoutAppenderCollection</c> whose elements are copied to the new collection.</param>
 		public LayoutAppenderCollection(LayoutAppenderCollection c)
 		{
-			m_array = new LayoutAppender[c.Count];
+			m_array = new NLog.LayoutAppenders.LayoutAppender[c.Count];
 			AddRange(c);
 		}
 
 		/// <summary>
 		///		Initializes a new instance of the <c>LayoutAppenderCollection</c> class
-		///		that contains elements copied from the specified <see cref="LayoutAppender"/> array.
+		///		that contains elements copied from the specified <see cref="NLog.LayoutAppenders.LayoutAppender"/> array.
 		/// </summary>
-		/// <param name="a">The <see cref="LayoutAppender"/> array whose elements are copied to the new list.</param>
-		public LayoutAppenderCollection(LayoutAppender[] a)
+		/// <param name="a">The <see cref="NLog.LayoutAppenders.LayoutAppender"/> array whose elements are copied to the new list.</param>
+		public LayoutAppenderCollection(NLog.LayoutAppenders.LayoutAppender[] a)
 		{
-			m_array = new LayoutAppender[a.Length];
+			m_array = new NLog.LayoutAppenders.LayoutAppender[a.Length];
 			AddRange(a);
 		}
 		
@@ -1971,21 +1971,21 @@ public
 
 		/// <summary>
 		///		Copies the entire <c>LayoutAppenderCollection</c> to a one-dimensional
-		///		<see cref="LayoutAppender"/> array.
+		///		<see cref="NLog.LayoutAppenders.LayoutAppender"/> array.
 		/// </summary>
-		/// <param name="array">The one-dimensional <see cref="LayoutAppender"/> array to copy to.</param>
-		public virtual void CopyTo(LayoutAppender[] array)
+		/// <param name="array">The one-dimensional <see cref="NLog.LayoutAppenders.LayoutAppender"/> array to copy to.</param>
+		public virtual void CopyTo(NLog.LayoutAppenders.LayoutAppender[] array)
 		{
 			this.CopyTo(array, 0);
 		}
 
 		/// <summary>
 		///		Copies the entire <c>LayoutAppenderCollection</c> to a one-dimensional
-		///		<see cref="LayoutAppender"/> array, starting at the specified index of the target array.
+		///		<see cref="NLog.LayoutAppenders.LayoutAppender"/> array, starting at the specified index of the target array.
 		/// </summary>
-		/// <param name="array">The one-dimensional <see cref="LayoutAppender"/> array to copy to.</param>
+		/// <param name="array">The one-dimensional <see cref="NLog.LayoutAppenders.LayoutAppender"/> array to copy to.</param>
 		/// <param name="start">The zero-based index in <paramref name="array"/> at which copying begins.</param>
-		public virtual void CopyTo(LayoutAppender[] array, int start)
+		public virtual void CopyTo(NLog.LayoutAppenders.LayoutAppender[] array, int start)
 		{
 			if (m_count > array.GetUpperBound(0) + 1 - start)
 				throw new System.ArgumentException("Destination array was not long enough.");
@@ -2013,7 +2013,7 @@ public
 		
 		#region Operations (type-safe IList)
 		/// <summary>
-		///		Gets or sets the <see cref="LayoutAppender"/> at the specified index.
+		///		Gets or sets the <see cref="NLog.LayoutAppenders.LayoutAppender"/> at the specified index.
 		/// </summary>
 		/// <param name="index">The zero-based index of the element to get or set.</param>
 		/// <exception cref="ArgumentOutOfRangeException">
@@ -2021,7 +2021,7 @@ public
 		///		<para>-or-</para>
 		///		<para><paramref name="index"/> is equal to or greater than <see cref="LayoutAppenderCollection.Count"/>.</para>
 		/// </exception>
-		public virtual LayoutAppender this[int index]
+		public virtual NLog.LayoutAppenders.LayoutAppender this[int index]
 		{
 			get
 			{
@@ -2037,11 +2037,11 @@ public
 		}
 
 		/// <summary>
-		///		Adds a <see cref="LayoutAppender"/> to the end of the <c>LayoutAppenderCollection</c>.
+		///		Adds a <see cref="NLog.LayoutAppenders.LayoutAppender"/> to the end of the <c>LayoutAppenderCollection</c>.
 		/// </summary>
-		/// <param name="item">The <see cref="LayoutAppender"/> to be added to the end of the <c>LayoutAppenderCollection</c>.</param>
+		/// <param name="item">The <see cref="NLog.LayoutAppenders.LayoutAppender"/> to be added to the end of the <c>LayoutAppenderCollection</c>.</param>
 		/// <returns>The index at which the value has been added.</returns>
-		public virtual int Add(LayoutAppender item)
+		public virtual int Add(NLog.LayoutAppenders.LayoutAppender item)
 		{
 			if (m_count == m_array.Length)
 				EnsureCapacity(m_count + 1);
@@ -2058,7 +2058,7 @@ public
 		public virtual void Clear()
 		{
 			++m_version;
-			m_array = new LayoutAppender[DEFAULT_CAPACITY];
+			m_array = new NLog.LayoutAppenders.LayoutAppender[DEFAULT_CAPACITY];
 			m_count = 0;
 		}
 		
@@ -2076,11 +2076,11 @@ public
 		}
 
 		/// <summary>
-		///		Determines whether a given <see cref="LayoutAppender"/> is in the <c>LayoutAppenderCollection</c>.
+		///		Determines whether a given <see cref="NLog.LayoutAppenders.LayoutAppender"/> is in the <c>LayoutAppenderCollection</c>.
 		/// </summary>
-		/// <param name="item">The <see cref="LayoutAppender"/> to check for.</param>
+		/// <param name="item">The <see cref="NLog.LayoutAppenders.LayoutAppender"/> to check for.</param>
 		/// <returns><c>true</c> if <paramref name="item"/> is found in the <c>LayoutAppenderCollection</c>; otherwise, <c>false</c>.</returns>
-		public virtual bool Contains(LayoutAppender item)
+		public virtual bool Contains(NLog.LayoutAppenders.LayoutAppender item)
 		{
 			for (int i=0; i != m_count; ++i)
 				if (m_array[i].Equals(item))
@@ -2089,15 +2089,15 @@ public
 		}
 
 		/// <summary>
-		///		Returns the zero-based index of the first occurrence of a <see cref="LayoutAppender"/>
+		///		Returns the zero-based index of the first occurrence of a <see cref="NLog.LayoutAppenders.LayoutAppender"/>
 		///		in the <c>LayoutAppenderCollection</c>.
 		/// </summary>
-		/// <param name="item">The <see cref="LayoutAppender"/> to locate in the <c>LayoutAppenderCollection</c>.</param>
+		/// <param name="item">The <see cref="NLog.LayoutAppenders.LayoutAppender"/> to locate in the <c>LayoutAppenderCollection</c>.</param>
 		/// <returns>
 		///		The zero-based index of the first occurrence of <paramref name="item"/> 
 		///		in the entire <c>LayoutAppenderCollection</c>, if found; otherwise, -1.
 		///	</returns>
-		public virtual int IndexOf(LayoutAppender item)
+		public virtual int IndexOf(NLog.LayoutAppenders.LayoutAppender item)
 		{
 			for (int i=0; i != m_count; ++i)
 				if (m_array[i].Equals(item))
@@ -2109,13 +2109,13 @@ public
 		///		Inserts an element into the <c>LayoutAppenderCollection</c> at the specified index.
 		/// </summary>
 		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param>
-		/// <param name="item">The <see cref="LayoutAppender"/> to insert.</param>
+		/// <param name="item">The <see cref="NLog.LayoutAppenders.LayoutAppender"/> to insert.</param>
 		/// <exception cref="ArgumentOutOfRangeException">
 		///		<para><paramref name="index"/> is less than zero</para>
 		///		<para>-or-</para>
 		///		<para><paramref name="index"/> is equal to or greater than <see cref="LayoutAppenderCollection.Count"/>.</para>
 		/// </exception>
-		public virtual void Insert(int index, LayoutAppender item)
+		public virtual void Insert(int index, NLog.LayoutAppenders.LayoutAppender item)
 		{
 			ValidateIndex(index, true); // throws
 			
@@ -2133,13 +2133,13 @@ public
 		}
 
 		/// <summary>
-		///		Removes the first occurrence of a specific <see cref="LayoutAppender"/> from the <c>LayoutAppenderCollection</c>.
+		///		Removes the first occurrence of a specific <see cref="NLog.LayoutAppenders.LayoutAppender"/> from the <c>LayoutAppenderCollection</c>.
 		/// </summary>
-		/// <param name="item">The <see cref="LayoutAppender"/> to remove from the <c>LayoutAppenderCollection</c>.</param>
+		/// <param name="item">The <see cref="NLog.LayoutAppenders.LayoutAppender"/> to remove from the <c>LayoutAppenderCollection</c>.</param>
 		/// <exception cref="ArgumentException">
-		///		The specified <see cref="LayoutAppender"/> was not found in the <c>LayoutAppenderCollection</c>.
+		///		The specified <see cref="NLog.LayoutAppenders.LayoutAppender"/> was not found in the <c>LayoutAppenderCollection</c>.
 		/// </exception>
-		public virtual void Remove(LayoutAppender item)
+		public virtual void Remove(NLog.LayoutAppenders.LayoutAppender item)
 		{		   
 			int i = IndexOf(item);
 			if (i < 0)
@@ -2172,7 +2172,7 @@ public
 			// We can't set the deleted entry equal to null, because it might be a value type.
 			// Instead, we'll create an empty single-element array of the right type and copy it 
 			// over the entry we want to erase.
-			LayoutAppender[] temp = new LayoutAppender[1];
+			NLog.LayoutAppenders.LayoutAppender[] temp = new NLog.LayoutAppenders.LayoutAppender[1];
 			Array.Copy(temp, 0, m_array, m_count, 1);
 			m_version++;
 		}
@@ -2226,13 +2226,13 @@ public
 				{
 					if (value > 0)
 					{
-						LayoutAppender[] temp = new LayoutAppender[value];
+						NLog.LayoutAppenders.LayoutAppender[] temp = new NLog.LayoutAppenders.LayoutAppender[value];
 						Array.Copy(m_array, temp, m_count);
 						m_array = temp;
 					}
 					else
 					{
-						m_array = new LayoutAppender[DEFAULT_CAPACITY];
+						m_array = new NLog.LayoutAppenders.LayoutAppender[DEFAULT_CAPACITY];
 					}
 				}
 			}
@@ -2256,11 +2256,11 @@ public
 		}
 
 		/// <summary>
-		///		Adds the elements of a <see cref="LayoutAppender"/> array to the current <c>LayoutAppenderCollection</c>.
+		///		Adds the elements of a <see cref="NLog.LayoutAppenders.LayoutAppender"/> array to the current <c>LayoutAppenderCollection</c>.
 		/// </summary>
-		/// <param name="x">The <see cref="LayoutAppender"/> array whose elements should be added to the end of the <c>LayoutAppenderCollection</c>.</param>
+		/// <param name="x">The <see cref="NLog.LayoutAppenders.LayoutAppender"/> array whose elements should be added to the end of the <c>LayoutAppenderCollection</c>.</param>
 		/// <returns>The new <see cref="LayoutAppenderCollection.Count"/> of the <c>LayoutAppenderCollection</c>.</returns>
-		public virtual int AddRange(LayoutAppender[] x)
+		public virtual int AddRange(NLog.LayoutAppenders.LayoutAppender[] x)
 		{
 			if (m_count + x.Length >= m_array.Length)
 				EnsureCapacity(m_count + x.Length);
@@ -2331,32 +2331,32 @@ public
 		object IList.this[int i]
 		{
 			get { return (object)this[i]; }
-			set { this[i] = (LayoutAppender)value; }
+			set { this[i] = (NLog.LayoutAppenders.LayoutAppender)value; }
 		}
 
 		int IList.Add(object x)
 		{
-			return this.Add((LayoutAppender)x);
+			return this.Add((NLog.LayoutAppenders.LayoutAppender)x);
 		}
 
     	bool IList.Contains(object x)
 		{
-			return this.Contains((LayoutAppender)x);
+			return this.Contains((NLog.LayoutAppenders.LayoutAppender)x);
 		}
 
 		int IList.IndexOf(object x)
 		{
-			return this.IndexOf((LayoutAppender)x);
+			return this.IndexOf((NLog.LayoutAppenders.LayoutAppender)x);
 		}
 
 		void IList.Insert(int pos, object x)
 		{
-			this.Insert(pos, (LayoutAppender)x);
+			this.Insert(pos, (NLog.LayoutAppenders.LayoutAppender)x);
 		}
 
 		void IList.Remove(object x)
 		{
-			this.Remove((LayoutAppender)x);
+			this.Remove((NLog.LayoutAppenders.LayoutAppender)x);
 		}
 
 		void IList.RemoveAt(int pos)
@@ -2409,7 +2409,7 @@ public
 			/// <summary>
 			///		Gets the current element in the collection.
 			/// </summary>
-			public LayoutAppender Current
+			public NLog.LayoutAppenders.LayoutAppender Current
 			{
 				get { return m_collection[m_index]; }
 			}
@@ -2470,13 +2470,13 @@ public
             #endregion
             
             #region Type-safe ICollection
-            public override void CopyTo(LayoutAppender[] array)
+            public override void CopyTo(NLog.LayoutAppenders.LayoutAppender[] array)
             {
                 lock(this.m_root)
                     m_collection.CopyTo(array);
             }
 
-            public override void CopyTo(LayoutAppender[] array, int start)
+            public override void CopyTo(NLog.LayoutAppenders.LayoutAppender[] array, int start)
             {
                 lock(this.m_root)
                     m_collection.CopyTo(array,start);
@@ -2502,7 +2502,7 @@ public
             #endregion
             
             #region Type-safe IList
-            public override LayoutAppender this[int i]
+            public override NLog.LayoutAppenders.LayoutAppender this[int i]
             {
                 get
                 {
@@ -2516,7 +2516,7 @@ public
                 }
             }
 
-            public override int Add(LayoutAppender x)
+            public override int Add(NLog.LayoutAppenders.LayoutAppender x)
             {
                 lock(this.m_root)
                     return m_collection.Add(x);
@@ -2528,25 +2528,25 @@ public
                     m_collection.Clear();
             }
 
-            public override bool Contains(LayoutAppender x)
+            public override bool Contains(NLog.LayoutAppenders.LayoutAppender x)
             {
                 lock(this.m_root)
                     return m_collection.Contains(x);
             }
 
-            public override int IndexOf(LayoutAppender x)
+            public override int IndexOf(NLog.LayoutAppenders.LayoutAppender x)
             {
                 lock(this.m_root)
                     return m_collection.IndexOf(x);
             }
 
-            public override void Insert(int pos, LayoutAppender x)
+            public override void Insert(int pos, NLog.LayoutAppenders.LayoutAppender x)
             {
                 lock(this.m_root)
                     m_collection.Insert(pos,x);
             }
 
-            public override void Remove(LayoutAppender x)
+            public override void Remove(NLog.LayoutAppenders.LayoutAppender x)
             {           
                 lock(this.m_root)
                     m_collection.Remove(x);
@@ -2600,7 +2600,7 @@ public
                     return m_collection.AddRange(x);
             }
 
-            public override int AddRange(LayoutAppender[] x)
+            public override int AddRange(NLog.LayoutAppenders.LayoutAppender[] x)
             {
                 lock(this.m_root)
                     return m_collection.AddRange(x);
@@ -2624,12 +2624,12 @@ public
             #endregion
             
             #region Type-safe ICollection
-            public override void CopyTo(LayoutAppender[] array)
+            public override void CopyTo(NLog.LayoutAppenders.LayoutAppender[] array)
             {
                 m_collection.CopyTo(array);
             }
 
-            public override void CopyTo(LayoutAppender[] array, int start)
+            public override void CopyTo(NLog.LayoutAppenders.LayoutAppender[] array, int start)
             {
                 m_collection.CopyTo(array,start);
             }
@@ -2650,13 +2650,13 @@ public
             #endregion
             
             #region Type-safe IList
-            public override LayoutAppender this[int i]
+            public override NLog.LayoutAppenders.LayoutAppender this[int i]
             {
                 get { return m_collection[i]; }
                 set { throw new NotSupportedException("This is a Read Only Collection and can not be modified"); }
             }
 
-            public override int Add(LayoutAppender x)
+            public override int Add(NLog.LayoutAppenders.LayoutAppender x)
             {
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
@@ -2666,22 +2666,22 @@ public
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
 
-            public override bool Contains(LayoutAppender x)
+            public override bool Contains(NLog.LayoutAppenders.LayoutAppender x)
             {
                 return m_collection.Contains(x);
             }
 
-            public override int IndexOf(LayoutAppender x)
+            public override int IndexOf(NLog.LayoutAppenders.LayoutAppender x)
             {
                 return m_collection.IndexOf(x);
             }
 
-            public override void Insert(int pos, LayoutAppender x)
+            public override void Insert(int pos, NLog.LayoutAppenders.LayoutAppender x)
             {
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
 
-            public override void Remove(LayoutAppender x)
+            public override void Remove(NLog.LayoutAppenders.LayoutAppender x)
             {           
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
@@ -2723,7 +2723,7 @@ public
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
 
-            public override int AddRange(LayoutAppender[] x)
+            public override int AddRange(NLog.LayoutAppenders.LayoutAppender[] x)
             {
                 throw new NotSupportedException("This is a Read Only Collection and can not be modified");
             }
@@ -2734,7 +2734,7 @@ public
 
 }
 	
-namespace NLog
+namespace NLog.Config
 {
 	
 
@@ -3641,7 +3641,7 @@ public
 	}
 
 }
-namespace NLog
+namespace NLog.Internal
 {
 	public 
 	class LoggerDictionary : IDictionary, ICollection, IEnumerable, ICloneable
@@ -3744,13 +3744,13 @@ namespace NLog
 			innerHash.Clear();		
 		}
 
-		public void Add(string key, Logger value)
+		public void Add(string key, NLog.Logger value)
 		{
 			innerHash.Add (key, value);
 		}
 		void IDictionary.Add(object key, object value)
 		{
-			Add ((string)key, (Logger)value);
+			Add ((string)key, (NLog.Logger)value);
 		}
 
 		public bool IsReadOnly
@@ -3761,11 +3761,11 @@ namespace NLog
 			}
 		}
 
-		public Logger this[string key]
+		public NLog.Logger this[string key]
 		{
 			get
 			{
-				return (Logger) innerHash[key];
+				return (NLog.Logger) innerHash[key];
 			}
 			set
 			{
@@ -3780,7 +3780,7 @@ namespace NLog
 			}
 			set
 			{
-				this[(string)key] = (Logger)value;
+				this[(string)key] = (NLog.Logger)value;
 			}
 		}
         
@@ -3859,7 +3859,7 @@ namespace NLog
 		{
 			return innerHash.ContainsKey(key);
 		}
-		public bool ContainsValue (Logger value)
+		public bool ContainsValue (NLog.Logger value)
 		{
 			return innerHash.ContainsValue(value);
 		}
@@ -3907,11 +3907,11 @@ namespace NLog
 		 }
 
 
-		public Logger Value
+		public NLog.Logger Value
 		{
 			get
 			{
-				return (Logger)innerEnumerator.Value;
+				return (NLog.Logger)innerEnumerator.Value;
 			}
 		}
 		object IDictionaryEnumerator.Value
@@ -3955,7 +3955,7 @@ namespace NLog
 
 }
 	
-namespace NLog
+namespace NLog.Internal
 {
 	public 
 	class TypeDictionary : IDictionary, ICollection, IEnumerable, ICloneable
@@ -4269,7 +4269,7 @@ namespace NLog
 
 }
 	
-namespace NLog
+namespace NLog.Internal
 {
 	public 
 	class AppenderDictionary : IDictionary, ICollection, IEnumerable, ICloneable
@@ -4372,13 +4372,13 @@ namespace NLog
 			innerHash.Clear();		
 		}
 
-		public void Add(string key, Appender value)
+		public void Add(string key, NLog.Appenders.Appender value)
 		{
 			innerHash.Add (key, value);
 		}
 		void IDictionary.Add(object key, object value)
 		{
-			Add ((string)key, (Appender)value);
+			Add ((string)key, (NLog.Appenders.Appender)value);
 		}
 
 		public bool IsReadOnly
@@ -4389,11 +4389,11 @@ namespace NLog
 			}
 		}
 
-		public Appender this[string key]
+		public NLog.Appenders.Appender this[string key]
 		{
 			get
 			{
-				return (Appender) innerHash[key];
+				return (NLog.Appenders.Appender) innerHash[key];
 			}
 			set
 			{
@@ -4408,7 +4408,7 @@ namespace NLog
 			}
 			set
 			{
-				this[(string)key] = (Appender)value;
+				this[(string)key] = (NLog.Appenders.Appender)value;
 			}
 		}
         
@@ -4487,7 +4487,7 @@ namespace NLog
 		{
 			return innerHash.ContainsKey(key);
 		}
-		public bool ContainsValue (Appender value)
+		public bool ContainsValue (NLog.Appenders.Appender value)
 		{
 			return innerHash.ContainsValue(value);
 		}
@@ -4535,11 +4535,11 @@ namespace NLog
 		 }
 
 
-		public Appender Value
+		public NLog.Appenders.Appender Value
 		{
 			get
 			{
-				return (Appender)innerEnumerator.Value;
+				return (NLog.Appenders.Appender)innerEnumerator.Value;
 			}
 		}
 		object IDictionaryEnumerator.Value
@@ -4583,7 +4583,7 @@ namespace NLog
 
 }
 	
-namespace NLog
+namespace NLog.Internal
 {
 	public 
 	class LayoutAppenderDictionary : IDictionary, ICollection, IEnumerable, ICloneable
@@ -4686,13 +4686,13 @@ namespace NLog
 			innerHash.Clear();		
 		}
 
-		public void Add(string key, LayoutAppender value)
+		public void Add(string key, NLog.LayoutAppenders.LayoutAppender value)
 		{
 			innerHash.Add (key, value);
 		}
 		void IDictionary.Add(object key, object value)
 		{
-			Add ((string)key, (LayoutAppender)value);
+			Add ((string)key, (NLog.LayoutAppenders.LayoutAppender)value);
 		}
 
 		public bool IsReadOnly
@@ -4703,11 +4703,11 @@ namespace NLog
 			}
 		}
 
-		public LayoutAppender this[string key]
+		public NLog.LayoutAppenders.LayoutAppender this[string key]
 		{
 			get
 			{
-				return (LayoutAppender) innerHash[key];
+				return (NLog.LayoutAppenders.LayoutAppender) innerHash[key];
 			}
 			set
 			{
@@ -4722,7 +4722,7 @@ namespace NLog
 			}
 			set
 			{
-				this[(string)key] = (LayoutAppender)value;
+				this[(string)key] = (NLog.LayoutAppenders.LayoutAppender)value;
 			}
 		}
         
@@ -4801,7 +4801,7 @@ namespace NLog
 		{
 			return innerHash.ContainsKey(key);
 		}
-		public bool ContainsValue (LayoutAppender value)
+		public bool ContainsValue (NLog.LayoutAppenders.LayoutAppender value)
 		{
 			return innerHash.ContainsValue(value);
 		}
@@ -4849,11 +4849,11 @@ namespace NLog
 		 }
 
 
-		public LayoutAppender Value
+		public NLog.LayoutAppenders.LayoutAppender Value
 		{
 			get
 			{
-				return (LayoutAppender)innerEnumerator.Value;
+				return (NLog.LayoutAppenders.LayoutAppender)innerEnumerator.Value;
 			}
 		}
 		object IDictionaryEnumerator.Value
@@ -4897,7 +4897,7 @@ namespace NLog
 
 }
 	
-namespace NLog
+namespace NLog.Internal
 {
 	public 
 	class FilterDictionary : IDictionary, ICollection, IEnumerable, ICloneable
@@ -5000,13 +5000,13 @@ namespace NLog
 			innerHash.Clear();		
 		}
 
-		public void Add(string key, Filter value)
+		public void Add(string key, NLog.Filters.Filter value)
 		{
 			innerHash.Add (key, value);
 		}
 		void IDictionary.Add(object key, object value)
 		{
-			Add ((string)key, (Filter)value);
+			Add ((string)key, (NLog.Filters.Filter)value);
 		}
 
 		public bool IsReadOnly
@@ -5017,11 +5017,11 @@ namespace NLog
 			}
 		}
 
-		public Filter this[string key]
+		public NLog.Filters.Filter this[string key]
 		{
 			get
 			{
-				return (Filter) innerHash[key];
+				return (NLog.Filters.Filter) innerHash[key];
 			}
 			set
 			{
@@ -5036,7 +5036,7 @@ namespace NLog
 			}
 			set
 			{
-				this[(string)key] = (Filter)value;
+				this[(string)key] = (NLog.Filters.Filter)value;
 			}
 		}
         
@@ -5115,7 +5115,7 @@ namespace NLog
 		{
 			return innerHash.ContainsKey(key);
 		}
-		public bool ContainsValue (Filter value)
+		public bool ContainsValue (NLog.Filters.Filter value)
 		{
 			return innerHash.ContainsValue(value);
 		}
@@ -5163,11 +5163,11 @@ namespace NLog
 		 }
 
 
-		public Filter Value
+		public NLog.Filters.Filter Value
 		{
 			get
 			{
-				return (Filter)innerEnumerator.Value;
+				return (NLog.Filters.Filter)innerEnumerator.Value;
 			}
 		}
 		object IDictionaryEnumerator.Value

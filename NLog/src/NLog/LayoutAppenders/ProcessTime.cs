@@ -39,12 +39,12 @@ namespace NLog.LayoutAppenders
     [LayoutAppender("processtime")]
     public class ProcessTimeLayoutAppender : LayoutAppender
     {
-        public override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 32;
         }
         
-        public override void Append(StringBuilder builder, LogEventInfo ev)
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             TimeSpan ts = ev.TimeStamp - LogEventInfo.ZeroDate;
             if (ts.Hours < 10)

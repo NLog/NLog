@@ -42,7 +42,7 @@ namespace NLog.LayoutAppenders
     {
         private string _parameter = null;
 
-        public override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             if (_parameter == null)
                 return 0;
@@ -50,7 +50,7 @@ namespace NLog.LayoutAppenders
                 return 64;
         }
         
-        public override void Append(StringBuilder builder, LogEventInfo ev)
+        protected override void Append(StringBuilder builder, LogEventInfo ev)
         {
             if (_parameter == null)
                 return;

@@ -36,17 +36,15 @@ using System.Collections;
 using System.Text;
 using System.Globalization;
 
-using NLog.LayoutAppenders;
-
-namespace NLog
+namespace NLog.LayoutAppenders
 {
     public abstract class LayoutAppender
     {
         protected LayoutAppender() { }
 
-        public abstract int GetEstimatedBufferSize(LogEventInfo ev);
-        public virtual int NeedsStackTrace() { return 0; }
-        public abstract void Append(StringBuilder builder, LogEventInfo ev);
+        protected internal abstract int GetEstimatedBufferSize(LogEventInfo ev);
+        protected internal virtual int NeedsStackTrace() { return 0; }
+        protected internal abstract void Append(StringBuilder builder, LogEventInfo ev);
 
         private int _padding = 0;
         private bool _fixedLength = false;

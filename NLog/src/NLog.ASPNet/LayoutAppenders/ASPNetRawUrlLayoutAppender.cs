@@ -40,7 +40,7 @@ namespace NLog.LayoutAppenders
     [LayoutAppender("aspnet-rawurl")]
     public class RawUrlLayoutAppender : LayoutAppender
     {
-        public override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             HttpContext context = HttpContext.Current;
             if (context == null)
@@ -49,7 +49,7 @@ namespace NLog.LayoutAppenders
             return context.Request.RawUrl.Length;
         }
         
-        public override void Append(StringBuilder builder, LogEventInfo ev)
+        protected override void Append(StringBuilder builder, LogEventInfo ev)
         {
             HttpContext context = HttpContext.Current;
             if (context == null)

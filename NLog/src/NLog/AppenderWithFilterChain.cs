@@ -35,6 +35,9 @@ using System;
 using System.Collections;
 using System.Text;
 
+using NLog.Appenders;
+using NLog.Filters;
+
 namespace NLog
 {
     internal class AppenderWithFilterChain

@@ -41,6 +41,9 @@ using System.Collections.Specialized;
 
 using NLog;
 using NLog.Utils;
+using NLog.Appenders;
+using NLog.Filters;
+using NLog.LayoutAppenders;
 
 namespace NLog.Config
 {

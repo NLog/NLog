@@ -36,9 +36,9 @@ using System;
 namespace NLog.Appenders
 {
     [Appender("Console")]
-    public class ConsoleAppender : NLog.Appender
+    public class ConsoleAppender : Appender
     {
-        public override void Append(LogEventInfo ev) {
+        protected internal override void Append(LogEventInfo ev) {
             Console.WriteLine(CompiledLayout.GetFormattedMessage(ev));
         }
     }

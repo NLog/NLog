@@ -35,6 +35,8 @@ using System;
 using System.Text;
 using System.Runtime.InteropServices;
 
+using NLog.LayoutAppenders;
+
 namespace NLog.ASP.LayoutAppenders
 {
     [LayoutAppender("asp-request")]
@@ -76,7 +78,7 @@ namespace NLog.ASP.LayoutAppenders
             set { _serverVariable = value; }
         }
 
-        public override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 64;
         }
@@ -95,7 +97,7 @@ namespace NLog.ASP.LayoutAppenders
             return Convert.ToString(retVal);
         }
         
-        public override void Append(StringBuilder builder, LogEventInfo ev)
+        protected override void Append(StringBuilder builder, LogEventInfo ev)
         {
             ASPHelper.IRequest request = ASPHelper.GetRequestObject();
             if (request != null) {
