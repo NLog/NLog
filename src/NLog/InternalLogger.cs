@@ -46,11 +46,24 @@ namespace NLog
     internal sealed class InternalLogger
     {
         private static LogLevel _logLevel = LogLevel.Debug;
+        private static bool _logToConsole = true;
 
         public static LogLevel LogLevel
         {
             get { return _logLevel; }
             set { _logLevel = value; }
+        }
+
+        public static bool LogToConsole
+        {
+            get { return _logToConsole; }
+            set { _logToConsole = value; }
+        }
+
+        public static string LogFile
+        {
+            get { return _logFile; }
+            set { _logFile = value; }
         }
 
         private static string _logFile = null;
@@ -78,22 +91,30 @@ namespace NLog
             if (level < _logLevel)
                 return;
 
-            if (_logFile == null)
+            if (_logFile == null && !_logToConsole)
                 return;
 
             try {
-                using (TextWriter textWriter = File.AppendText(_logFile)) {
-                    string formattedMessage = message;
-                    if (args != null)
-                        formattedMessage = String.Format(formatProvider, message, args);
+                string formattedMessage = message;
+                if (args != null)
+                    formattedMessage = String.Format(formatProvider, message, args);
 
-                    StringBuilder builder = new StringBuilder(message.Length + 32);
-                    builder.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
-                    builder.Append(" ");
-                    builder.Append(level.ToString());
-                    builder.Append(" ");
-                    builder.Append(formattedMessage);
-                    textWriter.WriteLine(builder.ToString());
+                StringBuilder builder = new StringBuilder(message.Length + 32);
+                builder.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
+                builder.Append(" ");
+                builder.Append(level.ToString());
+                builder.Append(" ");
+                builder.Append(formattedMessage);
+                string msg = builder.ToString();
+
+                if (_logFile != null) {
+                    using (TextWriter textWriter = File.AppendText(_logFile)) {
+                        textWriter.WriteLine(msg);
+                    }
+                }
+
+                if (_logToConsole) {
+                    Console.WriteLine(msg);
                 }
             }
             catch (Exception) {

@@ -34,42 +34,31 @@
 using System;
 using System.Text;
 
-namespace NLog
+using NLog;
+
+namespace NLog.Filters
 {
-    public abstract class Filter
+    [Filter("whenNotContains")]
+    public class WhenNotContainsFilter : LayoutBasedFilter
     {
-        protected Filter()
+        public WhenNotContainsFilter()
         {
         }
 
-        private FilterResult _filterResult;
-        private string _action = "";
+        private string _substring;
+        
+        public string Substring
+        {
+            get { return _substring; }
+            set { _substring = value; }
+        }
 
-        protected FilterResult Result
+        public override FilterResult Check(LogEventInfo logMessage)
         {
-            get { return _filterResult; }
+            if (CompiledLayout.GetFormattedMessage(logMessage).IndexOf(Substring) < 0)
+                return Result;
+            else
+                return FilterResult.Neutral;
         }
-            
-        public string Action
-        {
-            get { return _action; }
-            set {
-                _action = value; 
-                switch (_action) {
-                    case "log": 
-                        _filterResult = FilterResult.Log; 
-                    break;
-                    case "ignore": 
-                        _filterResult = FilterResult.Ignore; 
-                    break;
-                    case "neutral": 
-                        _filterResult = FilterResult.Neutral; 
-                    break;
-                    default: 
-                    throw new ArgumentException("Invalid value for the 'Action' parameter. Can be log/ignore/neutral");
-                }
-            }
-        }
-        public abstract FilterResult Check(LogEventInfo logMessage);
    }
 }

@@ -215,6 +215,18 @@ namespace NLog.Config
 					}
                 }
 
+                foreach (XmlNode n in ruleElement.ChildNodes)
+                {
+                    if (n is XmlElement)
+                    {
+                        XmlElement el = (XmlElement)n;
+
+                        if (el.Name == "filters") {
+                            ConfigureRuleFiltersFromXmlElement(rule, el);
+                        }
+                    }
+                }
+
                 AppenderRules.Add(rule);
             }
         }
@@ -305,6 +317,31 @@ namespace NLog.Config
             }
         }
 
+        private void ConfigureRuleFiltersFromXmlElement(AppenderRule rule, XmlElement element) {
+            if (element == null)
+                return;
+
+            foreach (XmlNode node in element.ChildNodes)
+            {
+                if (node is XmlElement)
+                {
+                    string name = node.Name;
+
+                    InternalLogger.Debug("filter name: {0}", name);
+                    Filter filter = FilterFactory.CreateFilter(name);
+
+                    foreach (XmlAttribute attrib in ((XmlElement)node).Attributes) {
+                        string attribName = attrib.LocalName;
+                        string attribValue = attrib.InnerText;
+
+                        PropertyHelper.SetPropertyFromString(filter, attribName, attribValue);
+                    }
+
+                    rule.Filters.Add(filter);
+                }
+            }
+        }
+        
         private void ConfigureAppenderFromXmlElement(Appender appender, XmlElement element) {
             Type appenderType = appender.GetType();
 

@@ -41,15 +41,18 @@ namespace NLog
     {
         private const int STACK_TRACE_SKIP_METHODS = 3;
         
-        private ArrayList[] _appendersByLevel;
+        private AppenderWithFilterChain[] _appendersByLevel;
         private string _loggerName;
 
-        public LoggerImpl(string name, ArrayList[] appendersByLevel) {
+        public LoggerImpl(string name, AppenderWithFilterChain[] appendersByLevel) {
             _loggerName = name;
             _appendersByLevel = appendersByLevel;
         }
 
         protected override void Write(LogLevel level, IFormatProvider formatProvider, string message, object[] args) {
+            if (LogManager.ReloadConfigOnNextLog)
+                LogManager.ReloadConfig();
+
             WriteToAppenders(level, _appendersByLevel[(int)level], formatProvider, message, args);
         }
 
@@ -58,16 +61,13 @@ namespace NLog
             get { return _loggerName; }
         }
 
-        internal void Reconfig(ArrayList[] appendersByLevel)
+        internal void Reconfig(AppenderWithFilterChain[] appendersByLevel)
         {
             _appendersByLevel = appendersByLevel;
         }
 
-        private void WriteToAppenders(LogLevel level, ArrayList appenders, IFormatProvider formatProvider, string message, object[] args) {
-            if (LogManager.ReloadConfigOnNextLog)
-                LogManager.ReloadConfig();
-
-            if (appenders.Count == 0)
+        private void WriteToAppenders(LogLevel level, AppenderWithFilterChain appenders, IFormatProvider formatProvider, string message, object[] args) {
+            if (appenders == null)
                 return;
 
             string formattedMessage;
@@ -82,8 +82,8 @@ namespace NLog
             bool needTrace = false;
             bool needTraceSources = false;
 
-            for (int i = 0; i < appenders.Count; ++i) {
-                Appender app = (Appender)appenders[i];
+            for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next) {
+                Appender app = awf.Appender;
                 
                 int nst = app.NeedsStackTrace();
                 
@@ -118,45 +118,64 @@ namespace NLog
                 logMessage.SetStackTrace(stackTrace, firstUserFrame);
             }
 #endif            
-            for (int i = 0; i < appenders.Count; ++i) {
-                Appender app = (Appender)appenders[i];
+            for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next) {
+                Appender app = awf.Appender;
                 
+                try {
+                    ArrayList filterChain = awf.FilterChain;
+                    FilterResult result = FilterResult.Neutral;
+
+                    for (int i = 0; i < filterChain.Count; ++i) {
+                        Filter f = (Filter)filterChain[i];
+                        result = f.Check(logMessage);
+                        if (result != FilterResult.Neutral)
+                            break;
+                    }
+                    if (result == FilterResult.Ignore)
+                        continue;
+                }
+                catch (Exception ex) {
+                    InternalLogger.Error("FilterChain exception: {0}", ex);
+                    continue;
+                }
+
                 try {
                     app.Append(logMessage);
                 }
                 catch (Exception ex) {
                     InternalLogger.Error("Appender exception: {0}", ex);
+                    continue;
                 }
             }
         }
 
         public override bool IsEnabled(LogLevel level) {
-            return _appendersByLevel[(int)level].Count > 0;
+            return _appendersByLevel[(int)level] != null;
         }
 
         public override bool IsDebugEnabled
         {
-            get { return _appendersByLevel[(int)LogLevel.Debug].Count > 0; }
+            get { return _appendersByLevel[(int)LogLevel.Debug] != null; }
         }
         
         public override bool IsInfoEnabled
         {
-            get { return _appendersByLevel[(int)LogLevel.Info].Count > 0; }
+            get { return _appendersByLevel[(int)LogLevel.Info] != null; }
         }
         
         public override bool IsWarnEnabled
         {
-            get { return _appendersByLevel[(int)LogLevel.Warn].Count > 0; }
+            get { return _appendersByLevel[(int)LogLevel.Warn] != null; }
         }
         
         public override bool IsErrorEnabled
         {
-            get { return _appendersByLevel[(int)LogLevel.Error].Count > 0; }
+            get { return _appendersByLevel[(int)LogLevel.Error] != null; }
         }
         
         public override bool IsFatalEnabled
         {
-            get { return _appendersByLevel[(int)LogLevel.Fatal].Count > 0; }
+            get { return _appendersByLevel[(int)LogLevel.Fatal] != null; }
         }
     }
 }

@@ -34,42 +34,27 @@
 using System;
 using System.Text;
 
-namespace NLog
+using NLog;
+
+namespace NLog.Filters
 {
-    public abstract class Filter
+    public abstract class LayoutBasedFilter : Filter
     {
-        protected Filter()
+        protected LayoutBasedFilter()
         {
         }
 
-        private FilterResult _filterResult;
-        private string _action = "";
+        private Layout _compiledlayout;
 
-        protected FilterResult Result
+        public string Layout
         {
-            get { return _filterResult; }
+            get { return _compiledlayout.Text; }
+            set { _compiledlayout = new Layout(value); }
         }
-            
-        public string Action
+
+        protected Layout CompiledLayout
         {
-            get { return _action; }
-            set {
-                _action = value; 
-                switch (_action) {
-                    case "log": 
-                        _filterResult = FilterResult.Log; 
-                    break;
-                    case "ignore": 
-                        _filterResult = FilterResult.Ignore; 
-                    break;
-                    case "neutral": 
-                        _filterResult = FilterResult.Neutral; 
-                    break;
-                    default: 
-                    throw new ArgumentException("Invalid value for the 'Action' parameter. Can be log/ignore/neutral");
-                }
-            }
+            get { return _compiledlayout; }
         }
-        public abstract FilterResult Check(LogEventInfo logMessage);
    }
 }

@@ -69,7 +69,7 @@ namespace NLog
                 if (l != null)
                     return (Logger)l;
 
-                ArrayList[] appendersByLevel = GetAppendersByLevelForLogger(name, Configuration);
+                AppenderWithFilterChain[] appendersByLevel = GetAppendersByLevelForLogger(name, Configuration);
 
                 Logger newLogger = new LoggerImpl(name, appendersByLevel);
                 _loggerCache[name] = newLogger;
@@ -169,12 +169,9 @@ namespace NLog
             }
         }
 
-        internal static ArrayList[] GetAppendersByLevelForLogger(string name, LoggingConfiguration config)
+        internal static AppenderWithFilterChain[] GetAppendersByLevelForLogger(string name, LoggingConfiguration config)
         {
-            ArrayList[] appendersByLevel = new ArrayList[(int)LogLevel.MaxLevel + 1];
-            for (int i = 0; i < appendersByLevel.Length; ++i) {
-                appendersByLevel[i] = new ArrayList();
-            }
+            AppenderWithFilterChain[] appendersByLevel = new AppenderWithFilterChain[(int)LogLevel.MaxLevel + 1];
 
             if (config != null) {
                 foreach (AppenderRule rule in config.AppenderRules) {
@@ -185,7 +182,10 @@ namespace NLog
                         for (int i = 0; i <= (int)LogLevel.MaxLevel; ++i) {
                             if (rule.IsLoggingEnabledForLevel((LogLevel)i)) {
                                 foreach (Appender appender in rule.Appenders) {
-                                    appendersByLevel[i].Add(appender);
+                                    AppenderWithFilterChain awf = new AppenderWithFilterChain(appender, rule.Filters);
+                                    if (appendersByLevel[i] != null)
+                                        appendersByLevel[i].Next = awf;
+                                    appendersByLevel[i] = awf;
                                 }
                             }
                         }

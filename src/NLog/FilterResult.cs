@@ -31,45 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-
 namespace NLog
 {
-    public abstract class Filter
+    public enum FilterResult
     {
-        protected Filter()
-        {
-        }
-
-        private FilterResult _filterResult;
-        private string _action = "";
-
-        protected FilterResult Result
-        {
-            get { return _filterResult; }
-        }
-            
-        public string Action
-        {
-            get { return _action; }
-            set {
-                _action = value; 
-                switch (_action) {
-                    case "log": 
-                        _filterResult = FilterResult.Log; 
-                    break;
-                    case "ignore": 
-                        _filterResult = FilterResult.Ignore; 
-                    break;
-                    case "neutral": 
-                        _filterResult = FilterResult.Neutral; 
-                    break;
-                    default: 
-                    throw new ArgumentException("Invalid value for the 'Action' parameter. Can be log/ignore/neutral");
-                }
-            }
-        }
-        public abstract FilterResult Check(LogEventInfo logMessage);
-   }
+        Neutral,
+        Log,
+        Ignore,
+    }
 }
