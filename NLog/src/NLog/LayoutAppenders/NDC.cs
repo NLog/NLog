@@ -32,37 +32,52 @@
 // 
 
 using System;
-using System.IO;
-using System.Security.Principal;
-using System.Runtime.InteropServices;
+using System.Text;
+using System.Web;
 
-using NLog;
-using NLog.Config;
-
-class Test {
-    static void Main(string[] args) {
-        NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
-        NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");
-
-        using (NDC.Push("aaa")) {
-            l.Debug("this is a debug");
-            l.Info("this is an info");
-            MDC.Set("username", "jarek");
-
-            l.Warn("this is a warning");
-            using (NDC.Push("bbb")) {
-                l2.Debug("this is a debug");
-                using (NDC.Push("ccc")) {
-                    l2.Info("this is an info");
-                }
-            }
-            MDC.Set("username", "aaa");
-            l2.Warn("this is a warning");
+namespace NLog.LayoutAppenders
+{
+    [LayoutAppender("ndc")]
+    public class NDCLayoutAppender : LayoutAppender
+    {
+        private int _topFrames = -1;
+        private int _bottomFrames = -1;
+        private string _separator = " ";
+        
+        public int TopFrames
+        {
+            get { return _topFrames; }
+            set { _topFrames = value; }
         }
-        l.Error("this is an error");
-        MDC.Remove("username");
-        l.Fatal("this is a fatal");
-        l2.Error("this is an error");
-        l2.Fatal("this is a fatal");
+
+        public int BottomFrames
+        {
+            get { return _bottomFrames; }
+            set { _bottomFrames = value; }
+        }
+
+        public string Separator
+        {
+            get { return _separator; }
+            set { _separator = value; }
+        }
+
+        public override int GetEstimatedBufferSize(LogEventInfo ev) {
+            return 0;
+        }
+
+        public override void Append(StringBuilder builder, LogEventInfo ev)
+        {
+            string msg;
+
+            if (TopFrames != -1) {
+                msg = NDC.GetTopMessages(TopFrames, Separator);
+            } else if (BottomFrames != -1) {
+                msg = NDC.GetBottomMessages(BottomFrames, Separator);
+            } else {
+                msg = NDC.GetAllMessages(Separator);
+            }
+            builder.Append(ApplyPadding(msg));
+        }
     }
 }

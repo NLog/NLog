@@ -32,37 +32,31 @@
 // 
 
 using System;
-using System.IO;
-using System.Security.Principal;
-using System.Runtime.InteropServices;
+using System.Text;
+using System.Web;
 
-using NLog;
-using NLog.Config;
-
-class Test {
-    static void Main(string[] args) {
-        NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
-        NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");
-
-        using (NDC.Push("aaa")) {
-            l.Debug("this is a debug");
-            l.Info("this is an info");
-            MDC.Set("username", "jarek");
-
-            l.Warn("this is a warning");
-            using (NDC.Push("bbb")) {
-                l2.Debug("this is a debug");
-                using (NDC.Push("ccc")) {
-                    l2.Info("this is an info");
-                }
-            }
-            MDC.Set("username", "aaa");
-            l2.Warn("this is a warning");
+namespace NLog.LayoutAppenders
+{
+    [LayoutAppender("mdc")]
+    public class MDCLayoutAppender : LayoutAppender
+    {
+        private string _item;
+        
+        [RequiredParameter]
+        public string Item
+        {
+            get { return _item; }
+            set { _item = value; }
         }
-        l.Error("this is an error");
-        MDC.Remove("username");
-        l.Fatal("this is a fatal");
-        l2.Error("this is an error");
-        l2.Fatal("this is a fatal");
+
+        public override int GetEstimatedBufferSize(LogEventInfo ev) {
+            return MDC.Get(Item).Length;
+        }
+
+        public override void Append(StringBuilder builder, LogEventInfo ev)
+        {
+            string msg = MDC.Get(Item);
+            builder.Append(ApplyPadding(msg));
+        }
     }
 }
