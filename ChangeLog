@@ -1,3 +1,6 @@
+2005-03-09 Jaroslaw Kowalski <jaak@zd.com.pl>
+	* Implemented the Exception Layout Appender (finally)
+
 2004-10-12 Jaroslaw Kowalski <jaak@zd.com.pl>
 	* Added Managed C++ wrapper for use in C++ projects
 	* Added Exception logging

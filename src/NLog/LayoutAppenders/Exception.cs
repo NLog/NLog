@@ -46,6 +46,8 @@ namespace NLog.LayoutAppenders
     public class ExceptionLayoutAppender: LayoutAppender
     {
         private string _format;
+        private string _separator = " ";
+
         delegate void ExceptionDataAppender(StringBuilder sb, Exception ex);
 
         private ExceptionDataAppender[] _exceptionDataAppenders = null;
@@ -61,15 +63,37 @@ namespace NLog.LayoutAppenders
             set { _format = value; CompileFormat(value); }
         }
 
+        public string Separator
+        {
+            get { return _separator; }
+            set { _separator = value; }
+        }
+
         private void AppendMessage(StringBuilder sb, Exception ex) {
             sb.Append(ex.Message);
         }
 
-        private void AppendType(StringBuilder sb, Exception ex) {
+        private void AppendMethod(StringBuilder sb, Exception ex) {
+            sb.Append(ex.TargetSite.ToString());
+        }
+
+        private void AppendStackTrace(StringBuilder sb, Exception ex) 
+        {
+            sb.Append(ex.StackTrace);
+        }
+
+        private void AppendToString(StringBuilder sb, Exception ex) 
+        {
+            sb.Append(ex.ToString());
+        }
+
+        private void AppendType(StringBuilder sb, Exception ex) 
+        {
             sb.Append(ex.GetType().FullName);
         }
 
-        private void AppendShortType(StringBuilder sb, Exception ex) {
+        private void AppendShortType(StringBuilder sb, Exception ex) 
+        {
             sb.Append(ex.GetType().Name);
         }
 
@@ -80,7 +104,7 @@ namespace NLog.LayoutAppenders
             
             foreach (string s in parts)
             {
-                switch (s)
+                switch (s.ToLower())
                 {
                     case "message":
                         dataAppenders.Add(new ExceptionDataAppender(AppendMessage));
@@ -92,6 +116,18 @@ namespace NLog.LayoutAppenders
                     
                     case "shorttype":
                         dataAppenders.Add(new ExceptionDataAppender(AppendShortType));
+                        break;
+
+                    case "method":
+                        dataAppenders.Add(new ExceptionDataAppender(AppendMethod));
+                        break;
+
+                    case "tostring":
+                        dataAppenders.Add(new ExceptionDataAppender(AppendToString));
+                        break;
+
+                    case "stacktrace":
+                        dataAppenders.Add(new ExceptionDataAppender(AppendStackTrace));
                         break;
 
                     default:
@@ -113,6 +149,14 @@ namespace NLog.LayoutAppenders
             if (ev.Exception != null)
             {
                 StringBuilder sb2 = new StringBuilder(128);
+
+                for (int i = 0; i < _exceptionDataAppenders.Length; ++i)
+                {
+                    if (i != 0)
+                        sb2.Append(Separator);
+                    _exceptionDataAppenders[i](sb2, ev.Exception);
+                }
+                builder.Append(ApplyPadding(sb2.ToString()));
             }
         }
     }

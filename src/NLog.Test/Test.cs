@@ -74,5 +74,16 @@ public class Test
         l2.Error("this is an error");
         l2.Fatal("this is a fatal");
         l0.Debug("Class logger!");
+
+        Logger l3 = LogManager.GetLogger("ExceptionLogger");
+
+        try
+        {
+            throw new ArgumentException("msg", "par");
+        }
+        catch (Exception ex)
+        {
+            l3.ErrorException("Exception occured", ex);
+        }
     }
 }
