@@ -156,7 +156,7 @@
 
     <target name="build-net-1.0" depends="NLog, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
     <target name="build-net-1.1" depends="NLog, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
-    <target name="build-netcf-1.0" depends="NLog, NLog.ComInterop" />
+    <target name="build-netcf-1.0" depends="NLog" />
 
     <target name="dist">
         <exec program="nant.exe" commandline="-k:net-1.0 release package" if="${framework::exists('net-1.0')}" />
