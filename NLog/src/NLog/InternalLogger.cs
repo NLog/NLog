@@ -69,6 +69,10 @@ namespace NLog
         }
 #endif
 
+        private InternalLogger()
+        {
+        }
+
         private static void Write(LogLevel level, IFormatProvider formatProvider, string message, object[] args)
         {
             if (level < _logLevel)
