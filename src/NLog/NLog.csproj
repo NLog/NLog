@@ -144,6 +144,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "PropertyHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Appenders\ConsoleAppender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -175,11 +180,6 @@
                 />
                 <File
                     RelPath = "Config\ConfigSectionHandler.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Config\IXmlConfigurable.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -239,7 +239,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "LayoutAppenders\MachineName.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "LayoutAppenders\Message.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutAppenders\NLogDir.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
