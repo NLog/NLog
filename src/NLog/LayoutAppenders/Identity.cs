@@ -32,129 +32,130 @@
 // 
 
 #if !(NETCF)
-    using System;
-    using System.Text;
-    using System.Security.Principal;
+using System;
+using System.Text;
+using System.Security.Principal;
 
-    namespace NLog.LayoutAppenders
+namespace NLog.LayoutAppenders
+{
+    [LayoutAppender("identity")]
+    public class IdentityLayoutAppender: LayoutAppender
     {
-        [LayoutAppender("identity")]
-        public class IdentityLayoutAppender: LayoutAppender
+        private bool _name = true;
+        private bool _authType = true;
+        private bool _isAuthenticated = true;
+        private string _separator = ":";
+
+        public string Separator
         {
-            private bool _name = true;
-            private bool _authType = true;
-            private bool _isAuthenticated = true;
-            private string _separator = ":";
-
-            public string Separator
+            get
             {
-                get
-                {
-                    return _separator;
-                }
-                set
-                {
-                    _separator = value;
-                }
+                return _separator;
             }
-
-            public bool Name
+            set
             {
-                get
-                {
-                    return _name;
-                }
-                set
-                {
-                    _name = value;
-                }
+                _separator = value;
             }
+        }
 
-            public bool AuthType
+        public bool Name
+        {
+            get
             {
-                get
-                {
-                    return _authType;
-                }
-                set
-                {
-                    _authType = value;
-                }
+                return _name;
             }
-
-            public bool IsAuthenticated
+            set
             {
-                get
-                {
-                    return _isAuthenticated;
-                }
-                set
-                {
-                    _isAuthenticated = value;
-                }
+                _name = value;
             }
+        }
 
-            protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+        public bool AuthType
+        {
+            get
             {
-                return 32;
+                return _authType;
             }
-
-            protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+            set
             {
-                IPrincipal principal = System.Threading.Thread.CurrentPrincipal;
-                if (principal != null)
+                _authType = value;
+            }
+        }
+
+        public bool IsAuthenticated
+        {
+            get
+            {
+                return _isAuthenticated;
+            }
+            set
+            {
+                _isAuthenticated = value;
+            }
+        }
+
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+        {
+            return 32;
+        }
+
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+        {
+            IPrincipal principal = System.Threading.Thread.CurrentPrincipal;
+            if (principal != null)
+            {
+                IIdentity identity = principal.Identity;
+                if (identity != null)
                 {
-                    IIdentity identity = principal.Identity;
-                    if (identity != null)
+                    StringBuilder sb2 = builder;
+                    if (Padding != 0)
+                        sb2 = new StringBuilder();
+
+                    bool first = true;
+
+                    if (_isAuthenticated)
                     {
-                        StringBuilder sb2 = builder;
-                        if (Padding != 0)
-                            sb2 = new StringBuilder();
-
-                        bool first = true;
-
-                        if (_isAuthenticated)
+                        if (!first)
                         {
-                            if (!first)
-                            {
-                                sb2.Append(_separator);
-                            }
-                            if (identity.IsAuthenticated)
-                            {
-                                sb2.Append("auth");
-                            }
-                            else
-                            {
-                                sb2.Append("notauth");
-                            }
-                            first = false;
+                            sb2.Append(_separator);
                         }
-
-                        if (_authType)
+                        if (identity.IsAuthenticated)
                         {
-                            if (!first)
-                            {
-                                sb2.Append(_separator);
-                            }
-                            sb2.Append(identity.AuthenticationType);
-                            first = false;
+                            sb2.Append("auth");
                         }
-
-                        if (_name)
+                        else
                         {
-                            if (!first)
-                            {
-                                sb2.Append(_separator);
-                            }
-                            sb2.Append(identity.Name);
-                            first = false;
+                            sb2.Append("notauth");
                         }
-
-                        if (Padding != 0)
-                            builder.Append(ApplyPadding(sb2.ToString()));
+                        first = false;
                     }
+
+                    if (_authType)
+                    {
+                        if (!first)
+                        {
+                            sb2.Append(_separator);
+                        }
+                        sb2.Append(identity.AuthenticationType);
+                        first = false;
+                    }
+
+                    if (_name)
+                    {
+                        if (!first)
+                        {
+                            sb2.Append(_separator);
+                        }
+                        sb2.Append(identity.Name);
+                        first = false;
+                    }
+
+                    if (Padding != 0)
+                        builder.Append(ApplyPadding(sb2.ToString()));
                 }
             }
         }
     }
+}
+
 #endif

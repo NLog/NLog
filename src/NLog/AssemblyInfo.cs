@@ -44,5 +44,5 @@ using System.Security.Permissions;
 [assembly: CLSCompliant(true)][assembly: ComVisible(false)]
 
 #if !NETCF
-    [assembly: ReflectionPermission(SecurityAction.RequestMinimum, MemberAccess = true, TypeInformation = true)][assembly: SecurityPermission(SecurityAction.RequestMinimum, Flags = SecurityPermissionFlag.Execution)][assembly: FileIOPermission(SecurityAction.RequestMinimum, Unrestricted = true)]
+[assembly: ReflectionPermission(SecurityAction.RequestMinimum, MemberAccess = true, TypeInformation = true)][assembly: SecurityPermission(SecurityAction.RequestMinimum, Flags = SecurityPermissionFlag.Execution)][assembly: FileIOPermission(SecurityAction.RequestMinimum, Unrestricted = true)]
 #endif

@@ -53,10 +53,10 @@ namespace NLog
             _level = level;
             _loggerName = loggerName;
             _message = message;
-            #if !NETCF
-                _stackTrace = null;
-                _userStackFrame = 0;
-            #endif 
+#if !NETCF
+            _stackTrace = null;
+            _userStackFrame = 0;
+#endif 
         } 
 
         public DateTime TimeStamp
@@ -75,32 +75,32 @@ namespace NLog
             }
         }
 
-        #if !NETCF
-            private StackTrace _stackTrace;
-            private int _userStackFrame;
+#if !NETCF
+        private StackTrace _stackTrace;
+        private int _userStackFrame;
 
-            internal void SetStackTrace(StackTrace stackTrace, int userStackFrame)
-            {
-                _stackTrace = stackTrace;
-                _userStackFrame = userStackFrame;
-            }
+        internal void SetStackTrace(StackTrace stackTrace, int userStackFrame)
+        {
+            _stackTrace = stackTrace;
+            _userStackFrame = userStackFrame;
+        }
 
-            public StackFrame UserStackFrame
+        public StackFrame UserStackFrame
+        {
+            get
             {
-                get
-                {
-                    return (_stackTrace != null) ? _stackTrace.GetFrame(_userStackFrame): null;
-                }
+                return (_stackTrace != null) ? _stackTrace.GetFrame(_userStackFrame): null;
             }
+        }
 
-            public StackTrace StackTrace
+        public StackTrace StackTrace
+        {
+            get
             {
-                get
-                {
-                    return _stackTrace;
-                }
+                return _stackTrace;
             }
-        #endif 
+        }
+#endif 
         public string LoggerName
         {
             get

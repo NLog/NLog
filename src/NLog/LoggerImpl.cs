@@ -85,19 +85,37 @@ namespace NLog
                 formattedMessage = String.Format(formatProvider, message, args);
 
             LogEventInfo logMessage = new LogEventInfo(DateTime.Now, level, _loggerName, formattedMessage);
-            #if !NETCF            
-                bool needTrace = false;
-                bool needTraceSources = false;
+#if !NETCF            
+            bool needTrace = false;
+            bool needTraceSources = false;
 
-                for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next)
+            for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next)
+            {
+                // once we know we needTraceSources there's nothing more to look for
+                //
+                if (needTraceSources)
+                    break;
+                Appender app = awf.Appender;
+
+                int nst = app.NeedsStackTrace();
+
+                if (nst > 0)
                 {
-                    // once we know we needTraceSources there's nothing more to look for
-                    //
-                    if (needTraceSources)
-                        break;
-                    Appender app = awf.Appender;
+                    needTrace = true;
+                }
+                if (nst > 1)
+                {
+                    needTraceSources = true;
+                    break;
+                }
 
-                    int nst = app.NeedsStackTrace();
+                FilterCollection filterChain = awf.FilterChain;
+
+                for (int i = 0; i < filterChain.Count; ++i)
+                {
+                    Filter filter = filterChain[i];
+
+                    nst = filter.NeedsStackTrace();
 
                     if (nst > 0)
                     {
@@ -106,51 +124,33 @@ namespace NLog
                     if (nst > 1)
                     {
                         needTraceSources = true;
+                    }
+                }
+            }
+
+            StackTrace stackTrace = null;
+            if (needTrace)
+            {
+                int firstUserFrame = 0;
+                stackTrace = new StackTrace(STACK_TRACE_SKIP_METHODS, needTraceSources);
+
+                for (int i = 0; i < stackTrace.FrameCount; ++i)
+                {
+                    System.Reflection.MethodBase mb = stackTrace.GetFrame(i).GetMethod();
+
+                    if (!mb.DeclaringType.FullName.StartsWith("NLog."))
+                    {
+                        firstUserFrame = i;
                         break;
                     }
-
-                    FilterCollection filterChain = awf.FilterChain;
-
-                    for (int i = 0; i < filterChain.Count; ++i)
+                    else
                     {
-                        Filter filter = filterChain[i];
-
-                        nst = filter.NeedsStackTrace();
-
-                        if (nst > 0)
-                        {
-                            needTrace = true;
-                        }
-                        if (nst > 1)
-                        {
-                            needTraceSources = true;
-                        }
+                        // Console.WriteLine("skipping stack frame: " + mb);
                     }
                 }
-
-                StackTrace stackTrace = null;
-                if (needTrace)
-                {
-                    int firstUserFrame = 0;
-                    stackTrace = new StackTrace(STACK_TRACE_SKIP_METHODS, needTraceSources);
-
-                    for (int i = 0; i < stackTrace.FrameCount; ++i)
-                    {
-                        System.Reflection.MethodBase mb = stackTrace.GetFrame(i).GetMethod();
-
-                        if (!mb.DeclaringType.FullName.StartsWith("NLog."))
-                        {
-                            firstUserFrame = i;
-                            break;
-                        }
-                        else
-                        {
-                            // Console.WriteLine("skipping stack frame: " + mb);
-                        }
-                    }
-                    logMessage.SetStackTrace(stackTrace, firstUserFrame);
-                }
-            #endif 
+                logMessage.SetStackTrace(stackTrace, firstUserFrame);
+            }
+#endif 
             for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next)
             {
                 Appender app = awf.Appender;

@@ -33,64 +33,64 @@
 
 #if !NETCF
 
-    using System;
-    using System.Text;
-    using System.IO;
+using System;
+using System.Text;
+using System.IO;
 
-    namespace NLog.LayoutAppenders
+namespace NLog.LayoutAppenders
+{
+    [LayoutAppender("basedir")]
+    public class BaseDirLayoutAppender: LayoutAppender
     {
-        [LayoutAppender("basedir")]
-        public class BaseDirLayoutAppender: LayoutAppender
+        private string _fileName = null;
+        private string _directoryName = null;
+
+        public string File
         {
-            private string _fileName = null;
-            private string _directoryName = null;
-
-            public string File
+            get
             {
-                get
-                {
-                    return _fileName;
-                }
-                set
-                {
-                    _fileName = value;
-                }
+                return _fileName;
             }
-
-            public string Dir
+            set
             {
-                get
-                {
-                    return _directoryName;
-                }
-                set
-                {
-                    _directoryName = value;
-                }
+                _fileName = value;
             }
-            protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+        }
+
+        public string Dir
+        {
+            get
             {
-                return 32;
+                return _directoryName;
             }
-
-            protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+            set
             {
-                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                _directoryName = value;
+            }
+        }
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+        {
+            return 32;
+        }
 
-                if (_fileName != null)
-                {
-                    builder.Append(ApplyPadding(Path.Combine(baseDir, _fileName)));
-                }
-                else if (_directoryName != null)
-                {
-                    builder.Append(ApplyPadding(Path.Combine(baseDir, _directoryName)));
-                }
-                else
-                {
-                    builder.Append(ApplyPadding(baseDir));
-                }
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+        {
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+            if (_fileName != null)
+            {
+                builder.Append(ApplyPadding(Path.Combine(baseDir, _fileName)));
+            }
+            else if (_directoryName != null)
+            {
+                builder.Append(ApplyPadding(Path.Combine(baseDir, _directoryName)));
+            }
+            else
+            {
+                builder.Append(ApplyPadding(baseDir));
             }
         }
     }
+}
 
 #endif
