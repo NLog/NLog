@@ -1,9 +1,9 @@
 <VisualStudioProject>
-    <CSHARP
+    <ECSHARP
         ProjectType = "Local"
         ProductVersion = "7.10.3077"
-        SchemaVersion = "2.0"
-        ProjectGuid = "{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}"
+        SchemaVersion = "1.0"
+        ProjectGuid = "{4125C120-539F-4C80-B3D2-35FFF271998A}"
     >
         <Build>
             <Settings
@@ -11,52 +11,44 @@
                 AssemblyKeyContainerName = ""
                 AssemblyName = "NLog"
                 AssemblyOriginatorKeyFile = ""
-                DefaultClientScript = "JScript"
-                DefaultHTMLPageLayout = "Grid"
-                DefaultTargetSchema = "IE50"
                 DelaySign = "false"
                 OutputType = "Library"
-                PreBuildEvent = ""
-                PostBuildEvent = ""
+                OutputFileFolder = "\Program Files\NLog"
                 RootNamespace = "NLog"
-                RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
             >
+                <Platform Name = "Windows CE" />
                 <Config
-                    Name = "Debug"
+                    Name = "Debug|Windows CE"
                     AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
+                    BaseAddress = "0"
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
-                    DefineConstants = ""
-                    DocumentationFile = "NLog.xml"
+                    DefineConstants = "DEBUG;TRACE;NETCF"
+                    DocumentationFile = ""
                     DebugSymbols = "true"
                     FileAlignment = "4096"
                     IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = "1591"
                     Optimize = "false"
-                    OutputPath = "bin\Debug\"
+                    OutputPath = "bin\DebugCF\"
                     RegisterForComInterop = "false"
                     RemoveIntegerChecks = "false"
                     TreatWarningsAsErrors = "false"
                     WarningLevel = "4"
                 />
                 <Config
-                    Name = "Release"
+                    Name = "Release|Windows CE"
                     AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
+                    BaseAddress = "0"
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
-                    DefineConstants = ""
-                    DocumentationFile = "NLog.xml"
+                    DefineConstants = "TRACE;NETCF"
+                    DocumentationFile = ""
                     DebugSymbols = "false"
                     FileAlignment = "4096"
                     IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = "1591"
-                    Optimize = "false"
-                    OutputPath = "bin\Release\"
+                    Optimize = "true"
+                    OutputPath = "bin\ReleaseCF\"
                     RegisterForComInterop = "false"
                     RemoveIntegerChecks = "false"
                     TreatWarningsAsErrors = "false"
@@ -65,29 +57,75 @@
             </Settings>
             <References>
                 <Reference
-                    Name = "System.XML"
-                    AssemblyName = "System.Xml"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
+                    Platform = "Windows CE"
+                    Name = "MSCorLib"
+                    AssemblyName = "mscorlib"
+                    Private = "False"
                 />
                 <Reference
+                    Platform = "Windows CE"
                     Name = "System"
                     AssemblyName = "System"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
+                    Private = "False"
                 />
                 <Reference
-                    Name = "system.data"
+                    Platform = "Windows CE"
+                    Name = "System.Drawing"
+                    AssemblyName = "System.Drawing"
+                    Private = "False"
+                />
+                <Reference
+                    Platform = "Windows CE"
+                    Name = "System.Windows.Forms"
+                    AssemblyName = "System.Windows.Forms"
+                    Private = "False"
+                />
+                <Reference
+                    Platform = "Windows CE"
+                    Name = "System.XML"
+                    AssemblyName = "System.Xml"
+                    Private = "False"
+                />
+                <Reference
+                    Platform = "Windows CE"
+                    Name = "System.Data"
                     AssemblyName = "System.Data"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\system.data.dll"
+                    Private = "False"
                 />
                 <Reference
-                    Name = "system.web"
-                    AssemblyName = "System.Web"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\system.web.dll"
+                    Platform = "Windows CE"
+                    Name = "System.Web.Services"
+                    AssemblyName = "System.Web.Services"
                 />
                 <Reference
-                    Name = "system.web.services"
-                    AssemblyName = "system.web.services"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\system.web.services.dll"
+                    Platform = "Windows CE-Designer"
+                    Name = "System.CF.Design"
+                    AssemblyName = "System.CF.Design"
+                    Private = "False"
+                />
+                <Reference
+                    Platform = "Windows CE-Designer"
+                    Name = "System.CF.Design.UI"
+                    AssemblyName = "System.CF.Design.UI"
+                    Private = "False"
+                />
+                <Reference
+                    Platform = "Windows CE-Designer"
+                    Name = "System.CF.Windows.Forms"
+                    AssemblyName = "System.CF.Windows.Forms"
+                    Private = "False"
+                />
+                <Reference
+                    Platform = "Windows CE-Designer"
+                    Name = "System.CF.Drawing"
+                    AssemblyName = "System.CF.Drawing"
+                    Private = "False"
+                />
+                <Reference
+                    Platform = "Windows CE-Designer"
+                    Name = "System"
+                    AssemblyName = "System"
+                    Private = "False"
                 />
             </References>
         </Build>
@@ -105,7 +143,6 @@
                 />
                 <File
                     RelPath = "AssemblySign.cs"
-                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -190,6 +227,11 @@
                 />
                 <File
                     RelPath = "Appenders\MemoryAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Appenders\MessageBoxAppender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -315,7 +357,6 @@
                 />
                 <File
                     RelPath = "Internal\DictionaryBase.cs"
-                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -365,12 +406,10 @@
                 />
                 <File
                     RelPath = "Internal\StringCollection.cs"
-                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Internal\StringDictionary.cs"
-                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -520,6 +559,6 @@
                 />
             </Include>
         </Files>
-    </CSHARP>
+    </ECSHARP>
 </VisualStudioProject>
 

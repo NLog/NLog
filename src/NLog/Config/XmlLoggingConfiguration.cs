@@ -203,9 +203,10 @@ namespace NLog.Config
             {
                 object o = System.Configuration.ConfigurationSettings.GetConfig("nlog");
                 return o as LoggingConfiguration;
+                }
             }
         }
-#endif 
+#endif
 
         // implementation details
 
