@@ -172,6 +172,8 @@ namespace NLog.Internal
 
         public static bool IsArrayProperty(Type t, string name) {
             PropertyInfo propInfo = GetPropertyInfo(t, name);
+            if (propInfo == null)
+                throw new NotSupportedException("Parameter " + name + " not supported on " + t.Name);
 
             if (!propInfo.IsDefined(typeof(ArrayParameterAttribute), false)) {
                 return false;
