@@ -8,6 +8,199 @@
     </head>
     <body onload="paintColors();">
         <h1>NLog Configuration Options</h1>
-        <p>TO BE WRITTEN</p>
+        <p>NLog can be configured in many ways, both <a href="#api">programmatically</a> and using config <a href="#file">files</a>. 
+        This document describes the available configuration options.</p>
+        <a name="file" />
+        <h3>Configuration files</h3>
+        <p>NLog attempts to automatically configure itself on first use by reading one or more configuration files.</p>
+        <p>The files are (in the following order):</p>
+        <ol>
+            <li>standard application config file (<code>applicationname.exe.config</code>).</li>
+            <li><code>applicationname.exe.nlog</code> - application specific config file.</li>
+            <li><code>NLog.dll.nlog</code> - shared config file for all applications that use NLog.dll. This isn't used when NLog.dll is loaded from the GAC.</li>
+        </ol>
+        <p>Each config file can use <code>&lt;include file="filename" /&gt;</code> to include other config files
+        which lets you easily manage logging rules in a central place and reference them instead of copying.
+        <h3>Configuration file syntax</h3>
+        <p>There are two variant of the configuration file syntax: one used in
+        application config file (<code>applicationname.exe.config</code> - let's call it 
+        <code>App.config</code>) and the other used in <code>.nlog</code> config files.
+        <h4>App.config file format</h4>
+        <xmp class="code-xml">
+<?xml version="1.0" ?>
+<configuration>
+    <configSections>
+    <section name="nlog" type="NLog.Config.ConfigSectionHandler, NLog" />
+    
+        <!-- other configSections go here -->
+
+    </configSections>
+    <nlog autoReload="true|false">
+        
+        <!-- configuration parameters go here -->
+
+    </nlog>
+</configuration></xmp>
+        <h4>.nlog file format</h4>
+        <xmp class="code-xml">
+<?xml version="1.0" ?>
+<nlog autoReload="true|false">
+
+    <!-- configuration parameters go here -->
+
+</nlog>
+</xmp>
+        <h4>Configuration parameters</h4>
+        <p>The following configuration parameters can be set in the config file. Click on a parameter to get its description.</p>
+        <ul><li><a href="#autoReload">autoReload</a></li>
+            <li><a href="#include">&lt;include /&gt;</a></li>
+            <li><a href="#extensions">&lt;extensions /&gt;</a></li>
+            <li><a href="#appenders">&lt;appenders /&gt;</a></li>
+            <li><a href="#rules">&lt;rules /&gt;</a></li>
+        </ul>
+
+        <h5>autoReload</h5>
+        <p>
+            The <code>autoReload</code> attribute of the <code>nlog</code> tag determines 
+            whether the NLogManager should watch each config file for changes and reload 
+            them them each time a change is detected. This is a boolean value which can be 
+            either <code>true</code> or <code>false</code>.
+        </p>
+
+        <a name="include" />
+        <h5>&lt;include /&gt;</h5>
+        <p>
+        The <code>&lt;include file="filename" /&gt;</code> element causes NLog configuration file parser
+        to process the contents of another configuration file. The contents of this included file are processed
+        before the of current file and each file is processed only once even if there are multiple 
+        <code>&lt;include file="filename" /&gt;</code> elements pointing at the file.</p>
+
+        <p>This feature can be used to keep a central repository of logging rules and appender definitions which
+        can then be included in all places where they are needed.</p>
+
+        <p>The <code>file</code> parameter may include <a href="layoutappenders.html">layout appenders</a> 
+        which lets you load the  configuration files based on some environment characteristics like machine name,
+        enviroment variables, registry.</p>
+        <p>
+        The following configuration file includes a configuration file that's specific to the machine the 
+        component is running on, e.g. when running on a 
+        <b>FRODO</b> machine this will include frodo.config.nlog, when running on <b>BILBO</b> it 
+        will include bilbo.config.nlog. This technique is very useful in a multi-server environment because you
+        can store each server's configuration file in a version control system and NLog will take care of using
+        the proper one after deployment.</p>
+        <xmp class="code-xml">
+<?xml version="1.0" ?>
+<nlog>
+    <include file="${machinename}.config.log" />
+</nlog>
+</xmp>
+        </p>
+
+        <a name="extensions" />
+        <h5>&lt;extensions /&gt;</h5>
+        <p>
+        The <code>&lt;extensions/&gt;</code> element causes NLog to load additional appenders and layout appenders
+        from an external assembly. This is required for the appenders from anything other than NLog.dll to be available.
+        The following configuration syntax is used to load extensions:
+        </p>
+        <xmp class="code-xml">
+<?xml version="1.0" ?>
+<nlog>
+    <extensions>
+        <!-- load assembly from the specified file -->
+        <add assemblyFile="NLog.ASP.dll" />
+        
+        <!-- load assembly using the specified partial name -->
+        <add assemblyPartialName="NLog.ASP" />
+        
+        <!-- load assembly using the specified full name -->
+        <add assembly="NLog.ASP, Version=0.0.0000.0, Culture=neutral, PublicKeyToken=0123456789abcdef" />
+        
+        <!-- load assembly from the specified file and prefix all appenders and layoutappenders with 'zzz' -->
+        <!-- This can be used to avoid name clashes on extension dlls. -->
+
+        <add prefix="zzz" assemblyFile="NLog.ASP.dll" />
+    </extensions>
+</nlog>
+</xmp>
+        <a name="appenders" />
+        <h5>&lt;appenders /&gt;</h5>
+        <p>
+        The <code>&lt;appenders/&gt;</code> element defines named appenders. Once you've defined the appender
+        you can reference it in the <a href="#rules">&lt;rules/&gt;</a> section.</p>
+        <p>The following syntax is used to define appenders:</p>
+        <xmp class="code-xml">
+<?xml version="1.0" ?>
+<nlog>
+    <appenders>
+        <appender name="name1" type="type1" layout="layout1" parameter1="..." parameterN="..." />
+        <appender name="name2" type="type2" layout="layout2" parameter1="..." parameterN="..." />
+        <appender name="name3" type="type3" layout="layout3" parameter1="..." parameterN="..." />
+        <appender name="name4" type="type4" layout="layout4" parameter1="..." parameterN="..." />
+    </appender>
+</nlog>
+</xmp>
+        <p>The parameter specification depends on the appender type. Click <a href="appenders.html">here</a> for the reference.
+        <a name="rules" />
+        <h5>&lt;rules /&gt;</h5>
+        <p>
+        The <code>&lt;rules/&gt;</code> element defines the log routing policy. It consists of one or more
+        <code>&lt;logger/&gt;</code> elements that determine the action to be taken each time a log message is emitted.
+        </p>
+        <p><code>&lt;logger/&gt;</code> element has the following options:</p>
+        <ul>
+            <li><code>name</code> - the logger name pattern - loggers whose name matches the pattern will be affected by this rule. The name pattern is a string with wildcards.<p/>The following options are accepted:
+            <ul>
+                <li><code>name="*"</code> - matches all loggers - this is the default</li>
+                <li><code>name="abc"</code> - matches the logger named 'abc'</li>
+                <li><code>name="abc*"</code> - matches all loggers whose names start with 'abc'</li>
+                <li><code>name="*abc"</code> - matches all loggers whose names end with 'abc'</li>
+                <li><code>name="*abc*"</code> - matches all loggers whose names contain the 'abc' substring</li>
+                <li><code>name=""</code> - matches nothing - can be used to temporarily disable the rule</li>
+                <p/>
+            </ul></li>
+            <li><code>level</code> - the log level - log events that match this log level will be affected by the rule. The <code>level</code> value can be either of <code>Debug,Info,Warn,Error,Fatal</code>.<p/></li>
+            <li><code>minlevel</code> - the minimum log level - log events that match this or higher log level will be affected by the rule. The <code>minlevel</code> value can be either of <code>Debug,Info,Warn,Error,Fatal</code>.<p/></li>
+            <li><code>maxlevel</code> - the maximum log level - log events that match this or lower log level will be affected by the rule. The <code>maxlevel</code> value can be either of <code>Debug,Info,Warn,Error,Fatal</code>.<p/></li>
+            <li><code>levels</code> - the log levels - log events that match any of specified the log levels will be affected by the rule. The <code>levels</code> value can be a sequence of the valid log levels (<code>Debug,Info,Warn,Error,Fatal</code>) separated by commas.<p/></li>
+            <li><code>appendTo</code> - the list of appenders to be written to when the log event passes the above tests. The <code>appendTo</code> is a sequence of appender names separated by commas.<p/></li>
+            <li><code>final</code> - determines whether any of the following appenders will be processed. If this attribute value is "true" and the log event passes all the above tests, no more appenders will be written to.</li>
+        </ul>
+        The following example shows various routing options:
+<xmp class="code-xml">
+<?xml version="1.0" ?>
+<nlog>
+    <appenders>
+        <appender name="console" type="Console" />
+        <appender name="file1" type="File" filename="file1.log" />
+        <appender name="file2" type="File" filename="file2.log" />
+        <appender name="file3" type="File" filename="file3.log" />
+    </appenders>
+
+    <rules>
+        <!-- log SQL messages to file3.log but nowhere else-->
+        <logger name="*SQL*" appendTo="file3" final="true" />
+        
+        <!-- log Info,Warn and Error messages to the console and file1.log -->
+        <logger levels="Info,Warn,Error" appendTo="console,file1" />
+
+        <!-- log all Debug messages to file1.log -->
+        <logger name="*" level="Debug" appendTo="file1" />
+        
+        <!-- log error and fatal messages to file2.log -->
+        <logger name="*" minlevel="Error" appendTo="file2" />
+    </rules>
+</nlog>
+</xmp>
+        <a name="api" />
+        <h3>Programmatic configuration</h3>
+        <p>
+        The API for programmatic configuration isn't established yet. Future releases of NLog will fix this by creating
+        and documenting a standard set of interfaces to be used for configuration.</p>
+        <p>
+        The entire configuration is kept in an instance of <code>LoggingConfiguration</code> class. 
+        You create a new configuration by creating an instance of this class and assigning it to 
+        <code>LogManager.Configuration</code>. Consult the sources for more information.
+        </p>
     </body>
 </html>
