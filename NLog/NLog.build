@@ -33,10 +33,13 @@
     <target name="package" depends="build">
         <mkdir dir="${nant.project.basedir}/dist" />
         <property name="zip.file" value="${nant.project.basedir}/dist/NLog-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" />
+        <copy file="LICENSE.txt" tofile="${output.dir}/NLog_LICENSE.txt" />
         <zip zipfile="${zip.file}">
             <fileset basedir="${output.dir}">
+                <include name="*.txt" />
                 <include name="*.dll" />
                 <include name="*.pdb" />
+                <exclude name="*Test*" />
             </fileset>
         </zip>
     </target>
@@ -180,6 +183,21 @@
     <target name="updateversion">
         <foreach item="Line" in="Nlog.version" delim=";" property="nlog.version">
             <exec workingdir="${nant.project.basedir}" program="tools/ReplaceVersion.exe" commandline=". ${nlog.version}" />
+        </foreach>
+    </target>
+
+    <target name="publisher_policy">
+        <foreach item="Line" in="Nlog.version" delim="." property="nlog.version.major,nlog.version.minor,nlog.version.build,nlog.version.revision">
+            <copy file="src/publisher_policy.config.template" tofile="publisher_policy.config" />
+            <xmlpoke file="publisher_policy.config" xpath="/configuration/runtime/ms:assemblyBinding/ms:dependentAssembly/ms:bindingRedirect/@newVersion"
+                value="${nlog.version.major}.${nlog.version.minor}.${nlog.version.build}.${nlog.version.revision}">
+                <namespaces>
+                    <namespace prefix="ms" uri="urn:schemas-microsoft-com:asm.v1" />
+                </namespaces>
+            </xmlpoke>
+
+            <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'al.exe')}"
+                  commandline="/nologo /embed:publisher_policy.config /out:Policy.${nlog.version.major}.${nlog.version.minor}.NLog.dll /keyfile:${path::combine(nant.project.basedir,'src/NLog.snk')}" />
         </foreach>
     </target>
 

@@ -46,26 +46,26 @@ namespace NLog.Config
 
         public LoggingConfiguration() { }
 
-		public void AddAppender(string name, Appender appender) 
-		{
-			_appenders[name] = appender;
-		}
+        public void AddAppender(string name, Appender appender) 
+        {
+            _appenders[name] = appender;
+        }
 
-		public void AddAppenderRule(AppenderRule rule) 
-		{
-			_appenderRules.Add(rule);
-		}
+        public void AddAppenderRule(AppenderRule rule) 
+        {
+            _appenderRules.Add(rule);
+        }
 
         public Appender FindAppenderByName(string name) {
             return (Appender)_appenders[name];
         }
 
-		public ArrayList AppenderRules
-		{
-			get { return _appenderRules; }
-		}
+        public ArrayList AppenderRules
+        {
+            get { return _appenderRules; }
+        }
 
-		// implementation details
+        // implementation details
 
         public void ResolveAppenders()
         {
