@@ -69,6 +69,13 @@ namespace NLog.ASP.LayoutAppenders
             // GetContents
         }
 
+        [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A866-11cf-83AE-10A0C90C2BD8")]
+        public interface IApplicationObject
+        {
+            object GetValue(string name);
+            void PutValue(string name, object val);
+            // remaining methods removed
+        }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A85D-11cf-83AE-00A0C90C2BD8")]
         public interface IStringList
@@ -87,10 +94,15 @@ namespace NLog.ASP.LayoutAppenders
             object Key(object varKey);
         }
 
+        [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("00020400-0000-0000-C000-000000000046")]
+        public interface IDispatch
+        {
+        }
+        
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A861-11cf-93AE-00A0C90C2BD8")]
         public interface IRequest
         {
-            object GetItem(string name);
+            IDispatch GetItem(string name);
             IRequestDictionary GetQueryString();
             IRequestDictionary GetForm();
             IRequestDictionary GetBody();
@@ -121,6 +133,22 @@ namespace NLog.ASP.LayoutAppenders
                 Marshal.ReleaseComObject(obj);
             }
             return session;
+        }
+        
+        public static IApplicationObject GetApplicationObject()
+        {
+            IApplicationObject app = null;
+
+            IObjectContext obj;
+            if (0 == CoGetObjectContext(ref IID_IObjectContext, out obj)) {
+                IGetContextProperties prop = (IGetContextProperties)obj;
+                if (prop != null) {
+                    app = (IApplicationObject)prop.GetProperty("Application");
+                    Marshal.ReleaseComObject(prop);
+                }
+                Marshal.ReleaseComObject(obj);
+            }
+            return app;
         }
         
         public static IRequest GetRequestObject()

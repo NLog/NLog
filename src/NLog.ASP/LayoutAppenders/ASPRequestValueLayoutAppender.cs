@@ -43,7 +43,14 @@ namespace NLog.ASP.LayoutAppenders
         private string _queryStringKey;
         private string _formKey;
         private string _cookie;
+        private string _item;
         private string _serverVariable;
+
+        public string Item
+        {
+            get { return _item; }
+            set { _item = value; }
+        }
 
         public string QueryString
         {
@@ -83,7 +90,8 @@ namespace NLog.ASP.LayoutAppenders
                     retVal = sl.GetItem(1);
                 }
                 Marshal.ReleaseComObject(sl);
-            };
+            }
+            else return o.GetType().ToString();
             return Convert.ToString(retVal);
         }
         
@@ -98,7 +106,16 @@ namespace NLog.ASP.LayoutAppenders
                 } else if (_cookie != null) {
                     builder.Append(GetItem(request.GetCookies(), _cookie));
                 } else if (_serverVariable != null) {
-                    builder.Append(GetItem(request.GetServerVariables(), _cookie));
+                    builder.Append(GetItem(request.GetServerVariables(), _serverVariable));
+                } else if (_item != null) {
+                    ASPHelper.IDispatch o = request.GetItem(_item);
+                    ASPHelper.IStringList sl = o as ASPHelper.IStringList;
+                    if (sl != null) {
+                        if (sl.GetCount() > 0) {
+                            builder.Append(sl.GetItem(1));
+                        }
+                        Marshal.ReleaseComObject(sl);
+                    }
                 }
 
                 Marshal.ReleaseComObject(request);
