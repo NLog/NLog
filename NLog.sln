@@ -7,10 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.ComInterop", "src\NLog
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.ASPNet", "src\NLog.ASPNet\NLog.ASPNet.csproj", "{4BF1B19F-B459-4853-A8B6-B051C550D36E}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Test", "src\NLog.Test\NLog.Test.csproj", "{5EC49108-97AE-40EA-B550-8960E4522718}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
@@ -19,15 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Win32", "src\NLog.Win3
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.ASP", "src\NLog.ASP\NLog.ASP.csproj", "{326F7415-10FE-4AB0-B509-8064077735A8}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Contexts", "src\NLog.Contexts\NLog.Contexts.csproj", "{7A44A198-7C6E-4260-AB47-F096DB97A507}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
 Global
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {C4811F53-E779-47F0-8C06-71551FBDB047}
+	EndGlobalSection
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
 		Release = Release
@@ -41,10 +32,6 @@ Global
 		{B3F8E5FB-C9D4-4C12-841F-8009EB60DB3D}.Debug.Build.0 = Debug|.NET
 		{B3F8E5FB-C9D4-4C12-841F-8009EB60DB3D}.Release.ActiveCfg = Release|.NET
 		{B3F8E5FB-C9D4-4C12-841F-8009EB60DB3D}.Release.Build.0 = Release|.NET
-		{4BF1B19F-B459-4853-A8B6-B051C550D36E}.Debug.ActiveCfg = Debug|.NET
-		{4BF1B19F-B459-4853-A8B6-B051C550D36E}.Debug.Build.0 = Debug|.NET
-		{4BF1B19F-B459-4853-A8B6-B051C550D36E}.Release.ActiveCfg = Release|.NET
-		{4BF1B19F-B459-4853-A8B6-B051C550D36E}.Release.Build.0 = Release|.NET
 		{5EC49108-97AE-40EA-B550-8960E4522718}.Debug.ActiveCfg = Debug|.NET
 		{5EC49108-97AE-40EA-B550-8960E4522718}.Debug.Build.0 = Debug|.NET
 		{5EC49108-97AE-40EA-B550-8960E4522718}.Release.ActiveCfg = Release|.NET
@@ -53,14 +40,6 @@ Global
 		{9BC14989-8F2D-48BB-A613-B63BB08492F3}.Debug.Build.0 = Debug|.NET
 		{9BC14989-8F2D-48BB-A613-B63BB08492F3}.Release.ActiveCfg = Release|.NET
 		{9BC14989-8F2D-48BB-A613-B63BB08492F3}.Release.Build.0 = Release|.NET
-		{326F7415-10FE-4AB0-B509-8064077735A8}.Debug.ActiveCfg = Debug|.NET
-		{326F7415-10FE-4AB0-B509-8064077735A8}.Debug.Build.0 = Debug|.NET
-		{326F7415-10FE-4AB0-B509-8064077735A8}.Release.ActiveCfg = Release|.NET
-		{326F7415-10FE-4AB0-B509-8064077735A8}.Release.Build.0 = Release|.NET
-		{7A44A198-7C6E-4260-AB47-F096DB97A507}.Debug.ActiveCfg = Debug|.NET
-		{7A44A198-7C6E-4260-AB47-F096DB97A507}.Debug.Build.0 = Debug|.NET
-		{7A44A198-7C6E-4260-AB47-F096DB97A507}.Release.ActiveCfg = Release|.NET
-		{7A44A198-7C6E-4260-AB47-F096DB97A507}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(SolutionItems) = postSolution
 		NLog.build = NLog.build
@@ -68,8 +47,5 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
 	GlobalSection(ExtensibilityAddIns) = postSolution
-	EndGlobalSection
-	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
-		DPCodeReviewSolutionGUID = {C4811F53-E779-47F0-8C06-71551FBDB047}
 	EndGlobalSection
 EndGlobal
