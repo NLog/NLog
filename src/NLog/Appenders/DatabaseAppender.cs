@@ -51,10 +51,10 @@ namespace NLog.Appenders
         private string _connectionString = null;
         private bool _keepConnection = true;
         private bool _useTransaction = false;
-        private string _dbHost = ".";
-        private string _dbUserName = null;
-        private string _dbPassword = null;
-        private string _dbDatabase = null;
+        private Layout _dbHostLayout = new Layout(".");
+        private Layout _dbUserNameLayout = null;
+        private Layout _dbPasswordLayout = null;
+        private Layout _dbDatabaseLayout = null;
         private Layout _compiledCommandTextLayout = null;
         private ParameterInfoCollection _parameters = new ParameterInfoCollection();
         private IDbConnection _activeConnection = null;
@@ -95,7 +95,6 @@ namespace NLog.Appenders
                         break;
                 }
             }
-
         }
 
         [RequiredParameter]
@@ -128,6 +127,7 @@ namespace NLog.Appenders
             get
             {
                 return _useTransaction;
+            
             }
             set
             {
@@ -139,11 +139,23 @@ namespace NLog.Appenders
         {
             get
             {
-                return _dbHost;
+                return _dbHostLayout.Text;
             }
             set
             {
-                _dbHost = value;
+                _dbHostLayout = new Layout(value);
+            }
+        }
+
+        public Layout DBHostLayout
+        {
+            get
+            {
+                return _dbHostLayout;
+            }
+            set
+            {
+                _dbHostLayout = value;
             }
         }
 
@@ -151,11 +163,23 @@ namespace NLog.Appenders
         {
             get
             {
-                return _dbUserName;
+                return _dbUserNameLayout.Text;
             }
             set
             {
-                _dbUserName = value;
+                _dbUserNameLayout = new Layout(value);
+            }
+        }
+
+        public Layout DBUserNameLayout
+        {
+            get
+            {
+                return _dbUserNameLayout;
+            }
+            set
+            {
+                _dbUserNameLayout = value;
             }
         }
 
@@ -163,11 +187,23 @@ namespace NLog.Appenders
         {
             get
             {
-                return _dbPassword;
+                return _dbPasswordLayout.Text;
             }
             set
             {
-                _dbPassword = value;
+                _dbPasswordLayout = new Layout(value);
+            }
+        }
+
+        public Layout DBPasswordLayout
+        {
+            get
+            {
+                return _dbPasswordLayout;
+            }
+            set
+            {
+                _dbPasswordLayout = value;
             }
         }
 
@@ -175,11 +211,23 @@ namespace NLog.Appenders
         {
             get
             {
-                return _dbDatabase;
+                return _dbDatabaseLayout.Text;
             }
             set
             {
-                _dbDatabase = value;
+                _dbDatabaseLayout = new Layout(value);
+            }
+        }
+
+        public Layout DBDatabaseLayout
+        {
+            get
+            {
+                return _dbDatabaseLayout;
+            }
+            set
+            {
+                _dbDatabaseLayout = value;
             }
         }
 
@@ -223,7 +271,7 @@ namespace NLog.Appenders
                 lock(this)
                 {
                     if (_activeConnection == null)
-                        _activeConnection = OpenConnection();
+                        _activeConnection = OpenConnection(ev);
                     DoAppend(ev);
                 }
             }
@@ -231,7 +279,7 @@ namespace NLog.Appenders
             {
                 try
                 {
-                    _activeConnection = OpenConnection();
+                    _activeConnection = OpenConnection(ev);
                     DoAppend(ev);
                 }
                 finally
@@ -267,7 +315,7 @@ namespace NLog.Appenders
             command.ExecuteNonQuery();
         }
 
-        private IDbConnection OpenConnection()
+        private IDbConnection OpenConnection(LogEventInfo ev)
         {
             ConstructorInfo constructor = _connectionType.GetConstructor(new Type[]
             {
@@ -277,7 +325,7 @@ namespace NLog.Appenders
             );
             IDbConnection retVal = (IDbConnection)constructor.Invoke(new object[]
             {
-                BuildConnectionString()
+                BuildConnectionString(ev)
             }
 
             );
@@ -288,7 +336,7 @@ namespace NLog.Appenders
             return retVal;
         }
 
-        private string BuildConnectionString()
+        private string BuildConnectionString(LogEventInfo ev)
         {
             if (_connectionStringCache != null)
                 return _connectionStringCache;
@@ -299,22 +347,24 @@ namespace NLog.Appenders
             StringBuilder sb = new StringBuilder();
 
             sb.Append("Server=");
-            sb.Append(DBHost);
-            if (DBUserName == null)
+            sb.Append(DBHostLayout.GetFormattedMessage(ev));
+            if (DBDatabaseLayout == null)
+            {
                 sb.Append("Trusted_Connection=SSPI;");
+            }
             else
             {
                 sb.Append("User id=");
-                sb.Append(DBUserName);
+                sb.Append(DBUserNameLayout.GetFormattedMessage(ev));
                 sb.Append(";Password=");
-                sb.Append(DBPassword);
+                sb.Append(DBPasswordLayout.GetFormattedMessage(ev));
                 sb.Append(";");
             }
 
-            if (DBDatabase != null)
+            if (DBDatabaseLayout != null)
             {
                 sb.Append("Database=");
-                sb.Append(DBDatabase);
+                sb.Append(DBDatabaseLayout.GetFormattedMessage(ev));
             }
 
             _connectionStringCache = sb.ToString();
