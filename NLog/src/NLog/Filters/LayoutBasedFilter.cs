@@ -35,7 +35,7 @@ using System;
 using System.Text;
 
 using NLog;
-using NLog.Internal;
+using NLog.Config;
 
 namespace NLog.Filters
 {

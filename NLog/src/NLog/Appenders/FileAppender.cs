@@ -36,7 +36,7 @@ using System.Xml;
 using System.IO;
 
 using NLog;
-using NLog.Internal;
+using NLog.Config;
 
 namespace NLog.Appenders
 {
