@@ -72,6 +72,11 @@ namespace NLog.Config
             }
         }
 
+        internal AppenderDictionary Appenders
+        {
+            get { return _appenders; }
+        }
+
         // implementation details
 
         public void ResolveAppenders()
