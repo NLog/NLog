@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Win32", "src\NLog.Win3
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NLogC", "src\NLogC\NLogC.vcproj", "{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
 		DPCodeReviewSolutionGUID = {C4811F53-E779-47F0-8C06-71551FBDB047}
@@ -40,6 +44,10 @@ Global
 		{9BC14989-8F2D-48BB-A613-B63BB08492F3}.Debug.Build.0 = Debug|.NET
 		{9BC14989-8F2D-48BB-A613-B63BB08492F3}.Release.ActiveCfg = Release|.NET
 		{9BC14989-8F2D-48BB-A613-B63BB08492F3}.Release.Build.0 = Release|.NET
+		{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}.Debug.ActiveCfg = Debug|Win32
+		{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}.Debug.Build.0 = Debug|Win32
+		{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}.Release.ActiveCfg = Release|Win32
+		{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}.Release.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionItems) = postSolution
 		NLog.build = NLog.build
