@@ -387,7 +387,7 @@
         <zip zipfile="help.zip">
             <fileset basedir="${website.dir}/help">
                 <include name="**/*" />
-                <exclude name="**/NLog.*" />
+                <exclude name="**/NLog.chm" />
             </fileset>
         </zip>
         <echo message="Uploading the zipped help..." />
