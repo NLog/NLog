@@ -162,7 +162,7 @@ a.nav
     font-family: Trebuchet MS, Arial, Helv;
     font-style: normal;
     font-weight: normal;
-    font-size: 17px;
+    font-size: 15px;
     color: #202040;
     margin: 1px;
     cursor: pointer; cursor: hand;
@@ -209,7 +209,7 @@ a.subnav
     font-family: Trebuchet MS, Arial, Helv;
     font-style: normal;
     font-weight: normal;
-    font-size: 15px;
+    font-size: 12px;
     color: #202040;
     margin: 1px;
     cursor: pointer; cursor: hand;
@@ -240,7 +240,7 @@ a.subnav_selected
     font-family: Trebuchet MS, Arial, Helv;
     font-style: normal;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 12px;
     color: #805020;
     /* border: 1px dashed #404040; */
     background-color: #ffe0e0;
