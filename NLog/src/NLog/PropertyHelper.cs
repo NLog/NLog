@@ -44,13 +44,18 @@ namespace NLog
         }
 
         public static void SetPropertyFromString(object o, string name, string value) {
-            PropertyInfo propInfo = o.GetType().GetProperty(name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-            if (propInfo == null)
-                throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
+            try {
+                PropertyInfo propInfo = o.GetType().GetProperty(name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                if (propInfo == null)
+                    throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
 
-            object newValue = Convert.ChangeType(value, propInfo.PropertyType, CultureInfo.InvariantCulture);
+                object newValue = Convert.ChangeType(value, propInfo.PropertyType, CultureInfo.InvariantCulture);
 
-            propInfo.SetValue(o, newValue, null);
+                propInfo.SetValue(o, newValue, null);
+            }
+            catch (Exception ex) {
+                InternalLogger.Error(ex.ToString());
+            }
         }
     }
 }

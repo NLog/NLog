@@ -95,7 +95,7 @@ namespace NLog
                         string configFile = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
                         configFile = configFile.Replace(".config", ".nlog");
                         if (File.Exists(configFile)) {
-                            // Console.WriteLine("Attempting to load config from {0}", configFile);
+                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
                             _config = new XmlLoggingConfiguration(configFile);
                         }
                     }
@@ -104,7 +104,7 @@ namespace NLog
                         if (!nlogAssembly.GlobalAssemblyCache) {
                             string configFile = nlogAssembly.Location + ".nlog";
                             if (File.Exists(configFile)) {
-                                // Console.WriteLine("Attempting to load config from {0}", configFile);
+                                InternalLogger.Debug("Attempting to load config from {0}", configFile);
                                 _config = new XmlLoggingConfiguration(configFile);
                             }
                         }
@@ -141,7 +141,7 @@ namespace NLog
         private static MultiFileWatcher _watcher = new MultiFileWatcher(new EventHandler(ConfigFileChanged));
 
         private static void ConfigFileChanged(object sender, EventArgs args) {
-            // Console.WriteLine("ConfigFileChanged!!!");
+            InternalLogger.Debug("ConfigFileChanged!!!");
             ReloadConfigOnNextLog = true;
         }
 #endif
@@ -154,7 +154,7 @@ namespace NLog
                 if (!ReloadConfigOnNextLog)
                     return;
 
-                // Console.WriteLine("ReloadConfig: {0}", ReloadConfigOnNextLog);
+                InternalLogger.Debug("Reloading Config...");
                 LoggingConfiguration newConfig = Configuration.Reload();
                 if (newConfig != null)
                     Configuration = newConfig;

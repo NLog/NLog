@@ -117,7 +117,12 @@ namespace NLog
             }
 #endif            
             foreach (Appender app in appenders) {
-                app.Append(logMessage);
+                try {
+                    app.Append(logMessage);
+                }
+                catch (Exception ex) {
+                    InternalLogger.Error("Appender exception: {0}", ex);
+                }
             }
         }
 
