@@ -32,37 +32,56 @@
 // 
 
 using System;
-using System.IO;
-using System.Security.Principal;
-using System.Runtime.InteropServices;
+using System.Collections;
 
-using NLog;
-using NLog.Config;
+namespace NLog
+{
+    public sealed class MDC
+    {
+        private MDC() { }
 
-class Test {
-    static void Main(string[] args) {
-        NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
-        NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");
+        public static void Set(string item, string value) {
+            IDictionary dict = GetThreadDictionary();
 
-        using (NDC.Push("aaa")) {
-            l.Debug("this is a debug");
-            l.Info("this is an info");
-            MDC.Set("username", "jarek");
-
-            l.Warn("this is a warning");
-            using (NDC.Push("bbb")) {
-                l2.Debug("this is a debug");
-                using (NDC.Push("ccc")) {
-                    l2.Info("this is an info");
-                }
-            }
-            MDC.Set("username", "aaa");
-            l2.Warn("this is a warning");
+            dict[item] = value;
         }
-        l.Error("this is an error");
-        MDC.Remove("username");
-        l.Fatal("this is a fatal");
-        l2.Error("this is an error");
-        l2.Fatal("this is a fatal");
+        
+        public static string Get(string item) {
+            IDictionary dict = GetThreadDictionary();
+
+            string s = (string)dict[item];
+            if (s == null)
+                return String.Empty;
+            else
+                return s;
+        }
+
+        public static bool Contains(string item) {
+            IDictionary dict = GetThreadDictionary();
+
+            return dict.Contains(item);
+        }
+
+        public static void Remove(string item) {
+            IDictionary dict = GetThreadDictionary();
+
+            dict.Remove(item);
+        }
+
+        public static void Clear() {
+            IDictionary dict = GetThreadDictionary();
+
+            dict.Clear();
+        }
+
+        private static IDictionary GetThreadDictionary() {
+            if (_threadDictionary == null)
+                _threadDictionary = new Hashtable();
+
+            return _threadDictionary;
+        }
+
+        [ThreadStatic]
+        private static IDictionary _threadDictionary;
     }
 }
