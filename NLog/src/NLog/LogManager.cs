@@ -52,12 +52,19 @@ namespace NLog
         private static LoggerDictionary _loggerCache = new LoggerDictionary();
         private static LoggingConfiguration _config;
         private static bool _configLoaded = false;
+		private static bool _throwExceptions = false;
         private static bool _reloadConfigOnNextLog = false;
 
         internal static bool ReloadConfigOnNextLog
         {
             get { return _reloadConfigOnNextLog; }
             set { _reloadConfigOnNextLog = value; }
+        }
+
+        public static bool ThrowExceptions
+        {
+            get { return _throwExceptions; }
+            set { _throwExceptions = value; }
         }
 
         private LogManager()

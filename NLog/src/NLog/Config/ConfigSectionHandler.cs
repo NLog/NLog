@@ -54,7 +54,7 @@ namespace NLog.Config
             catch (Exception ex) 
             {
                 InternalLogger.Error("ConfigSectionHandler error: {0}", ex);
-                throw ex;
+                throw;
             }
         }
     }
