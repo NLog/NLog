@@ -46,7 +46,7 @@ namespace NLog.Internal
     /// <summary>
     /// A dictionary with keys of type Type and values of type PropertyInfoDictionary
     /// </summary>
-    public class TypeToPropertyInfoDictionaryAssociation: System.Collections.DictionaryBase
+    internal class TypeToPropertyInfoDictionaryAssociation: System.Collections.DictionaryBase
     {
         /// <summary>
         /// Initializes a new empty instance of the TypeToPropertyInfoDictionaryAssociation class

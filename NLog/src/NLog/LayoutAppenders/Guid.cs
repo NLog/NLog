@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETCF
 using System;
 using System.Text;
 using System.Globalization;
@@ -59,3 +60,4 @@ namespace NLog.LayoutAppenders
         }
     }
 }
+#endif

@@ -215,14 +215,22 @@ namespace NLog.Appenders
             
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendFormat("Server={0};", DBHost);
+            sb.Append("Server=");
+            sb.Append(DBHost);
             if (DBUserName == null)
-                sb.AppendFormat("Trusted_Connection=SSPI;");
-            else
-                sb.AppendFormat("User id={0};Password={1};", DBUserName, DBPassword);
+                sb.Append("Trusted_Connection=SSPI;");
+            else {
+                sb.Append("User id=");
+                sb.Append(DBUserName);
+                sb.Append(";Password=");
+                sb.Append(DBPassword);
+                sb.Append(";");
+            }
 
-            if (DBDatabase != null)
-                sb.AppendFormat("Database=" + DBDatabase);
+            if (DBDatabase != null) {
+                sb.Append("Database=");
+                sb.Append(DBDatabase);
+            }
 
             _connectionStringCache = sb.ToString();
 

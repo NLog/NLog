@@ -62,7 +62,6 @@ namespace NLog.Config
 
         public XmlLoggingConfiguration(string fileName) {
             _originalFileName = fileName;
-            RegisterPlatformSpecificExtensions();
             ConfigureFromFile(fileName);
         }
 
@@ -139,6 +138,8 @@ namespace NLog.Config
                     throw new FileNotFoundException("Included file not found: " + newFileName);
                 }
             }
+
+            RegisterPlatformSpecificExtensions();
 
             foreach (XmlElement el in configElement.GetElementsByTagName("extensions"))
             {
@@ -359,39 +360,50 @@ namespace NLog.Config
             }
         }
 
+        private static bool _platformSpecificExtensionsRegistered = false;
+
         private void RegisterPlatformSpecificExtensions() {
+            if (_platformSpecificExtensionsRegistered)
+                return;
+            _platformSpecificExtensionsRegistered = true;
+            
+            InternalLogger.Info("Registering platform specific extensions...");
 #if NETCF
-            RegisterPlatformSpecificExtensions("NLog.CompactFramework.dll");
+            RegisterPlatformSpecificExtensions("NLog.CompactFramework");
 #else
             if (Type.GetType("System.MonoType", false) != null) {
-                RegisterPlatformSpecificExtensions("NLog.Mono.dll");
+                RegisterPlatformSpecificExtensions("NLog.Mono");
             } else {
-                RegisterPlatformSpecificExtensions("NLog.DotNet.dll");
+                RegisterPlatformSpecificExtensions("NLog.DotNet");
             }
 
             PlatformID platform = System.Environment.OSVersion.Platform;
 
             if (platform == PlatformID.Win32NT || platform == PlatformID.Win32Windows) {
-                RegisterPlatformSpecificExtensions("NLog.Win32.dll");
+                RegisterPlatformSpecificExtensions("NLog.Win32");
             }
 
             if ((int)platform == 128 || (int)platform == 4) {
                 // mono-1.0 used '128' here, net-2.0 and mono-2.0 use '4'
-                RegisterPlatformSpecificExtensions("NLog.Unix.dll");
+                RegisterPlatformSpecificExtensions("NLog.Unix");
             }
 #endif
         }
 
-        private void RegisterPlatformSpecificExtensions(string fileName) {
-            string nlogDir = Path.GetDirectoryName(typeof(LogManager).Assembly.Location);
-            string assemblyFullPath = Path.Combine(nlogDir, fileName);
+        private void RegisterPlatformSpecificExtensions(string name) {
+            
+            AssemblyName nlogAssemblyName = typeof(LogManager).Assembly.GetName();
+            nlogAssemblyName.Name = name;
 
-            if (File.Exists(assemblyFullPath)) {
-                InternalLogger.Debug("Registering platform specific extensions from assembly '{0}'", assemblyFullPath);
-                Assembly asm = Assembly.LoadFrom(assemblyFullPath);
+            try {
+                InternalLogger.Info("Registering platform specific extensions from assembly '{0}'", nlogAssemblyName);
+                Assembly asm = Assembly.Load(nlogAssemblyName);
                 LoadExtensionsFromAssembly(asm, String.Empty);
-            } else {
-                InternalLogger.Debug("Could not load platform specific extensions from assembly '{0}'", assemblyFullPath);
+                InternalLogger.Info("Registered platform specific extensions from assembly '{0}'.", nlogAssemblyName);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error("Could not load platform specific extensions: {0}", ex);
             }
         }
     }
