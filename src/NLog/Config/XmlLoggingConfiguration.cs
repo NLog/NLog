@@ -107,8 +107,14 @@ namespace NLog.Config
             }
 
             if (configElement.HasAttribute("internalLogToConsole")) {
-                if (configElement.GetAttribute("internalLogToConsole") == "true") {
-                    InternalLogger.LogToConsole = true;
+                switch (configElement.GetAttribute("internalLogToConsole")) {
+                   case "true":
+                        InternalLogger.LogToConsole = true;
+                        break;
+                        
+                   case "false":
+                        InternalLogger.LogToConsole = true;
+                        break;
                 }
             }
 
@@ -130,7 +136,7 @@ namespace NLog.Config
                     InternalLogger.Debug("Including file '{0}'", newFileName);
                     ConfigureFromFile(newFileName);
                 } else {
-                    throw new FileNotFoundException("Included fine not found: " + newFileName);
+                    throw new FileNotFoundException("Included file not found: " + newFileName);
                 }
             }
 

@@ -159,6 +159,9 @@ namespace NLog
                             break;
                     }
                     if (result == FilterResult.Ignore) {
+                        if (InternalLogger.IsDebugEnabled) {
+                            InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", Name, level);
+                        }
                         continue;
                     }
                 }
