@@ -73,6 +73,7 @@ namespace NLog.LayoutAppenders
             sb.Append(ex.Message);
         }
 
+#if !NETCF
         private void AppendMethod(StringBuilder sb, Exception ex) {
             sb.Append(ex.TargetSite.ToString());
         }
@@ -81,6 +82,7 @@ namespace NLog.LayoutAppenders
         {
             sb.Append(ex.StackTrace);
         }
+#endif
 
         private void AppendToString(StringBuilder sb, Exception ex) 
         {
@@ -118,18 +120,19 @@ namespace NLog.LayoutAppenders
                         dataAppenders.Add(new ExceptionDataAppender(AppendShortType));
                         break;
 
-                    case "method":
-                        dataAppenders.Add(new ExceptionDataAppender(AppendMethod));
-                        break;
-
                     case "tostring":
                         dataAppenders.Add(new ExceptionDataAppender(AppendToString));
                         break;
 
-                    case "stacktrace":
+#if !NETCF
+                        case "stacktrace":
                         dataAppenders.Add(new ExceptionDataAppender(AppendStackTrace));
                         break;
 
+                    case "method":
+                        dataAppenders.Add(new ExceptionDataAppender(AppendMethod));
+                        break;
+#endif
                     default:
                         InternalLogger.Warn("Unknown exception data appender: {0}", s);
                         break;
