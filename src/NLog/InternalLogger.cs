@@ -53,42 +53,49 @@ namespace NLog
             set { _logLevel = value; }
         }
 
+        private static string _logFile = null;
+
         private static TextWriter _textWriter = null;
 
+#if !NETCF
         static InternalLogger()
         {
             try
             {
-                string logFile = Environment.GetEnvironmentVariable("NLOG_INTERNAL");
-                if (logFile == null)
-                    return;
-                _textWriter = File.AppendText(logFile);
+                _logFile = Environment.GetEnvironmentVariable("NLOG_INTERNAL");
                 Info("NLog internal logger initialized.");
             }
             catch (Exception)
             {
             }
         }
+#endif
         
         private static void Write(LogLevel level, IFormatProvider formatProvider, string message, object[] args)
         {
             if (level < _logLevel)
                 return;
-            if (_textWriter == null)
+
+            if (_logFile == null)
                 return;
 
-            string formattedMessage = message;
-            if (args != null)
-                formattedMessage = String.Format(formatProvider, message, args);
+            try {
+                using (TextWriter textWriter = File.AppendText(_logFile)) {
+                    string formattedMessage = message;
+                    if (args != null)
+                        formattedMessage = String.Format(formatProvider, message, args);
 
-            StringBuilder builder = new StringBuilder(message.Length + 32);
-            builder.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
-            builder.Append(" ");
-            builder.Append(level.ToString());
-            builder.Append(" ");
-            builder.Append(formattedMessage);
-            _textWriter.WriteLine(builder.ToString());
-            _textWriter.Flush();
+                    StringBuilder builder = new StringBuilder(message.Length + 32);
+                    builder.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
+                    builder.Append(" ");
+                    builder.Append(level.ToString());
+                    builder.Append(" ");
+                    builder.Append(formattedMessage);
+                    textWriter.WriteLine(builder.ToString());
+                }
+            }
+            catch (Exception) {
+            }
         }
 
         public bool IsDebugEnabled { get { return _logLevel >= LogLevel.Debug; } }
