@@ -44,9 +44,9 @@
     <target name="clean" depends="configure">
         <delete>
             <fileset basedir="${output.dir}">
-                <include name="*.dll" />
-                <include name="*.pdb" />
-                <include name="*.xml" />
+                <include name="NLog*.dll" />
+                <include name="NLog*.pdb" />
+                <include name="NLog*.xml" />
             </fileset>
         </delete>
     </target>
