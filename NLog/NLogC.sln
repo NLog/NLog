@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NLogC", "src\NLogC\NLogC.vcproj", "{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog", "src\NLog\NLog.csproj", "{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}.Debug.ActiveCfg = Debug|Win32
+		{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}.Debug.Build.0 = Debug|Win32
+		{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}.Release.ActiveCfg = Release|Win32
+		{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}.Release.Build.0 = Release|Win32
+		{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}.Debug.ActiveCfg = Debug|.NET
+		{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}.Debug.Build.0 = Debug|.NET
+		{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}.Release.ActiveCfg = Release|.NET
+		{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
