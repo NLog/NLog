@@ -47,7 +47,7 @@ namespace NLog.LayoutAppenders
         
         public override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            builder.Append(ApplyPadding(ev.TimeStamp.Ticks.ToString(CultureInfo.InvariantCulture)));
+            builder.Append(ApplyPadding(ev.TimeStamp.Ticks.ToString(Culture)));
         }
     }
 }

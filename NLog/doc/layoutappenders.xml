@@ -1,3 +1,122 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <layoutappenders>
+    <common-config>
+        <parameter name="uppercase" type="Boolean" required="No" description="Output log level in uppercase." default="False" />
+        <parameter name="lowercase" type="Boolean" required="No" description="Output log level in lowercase." default="False" />
+        <parameter name="culture" type="String" required="No" description="The culture name to use for output formatting." default="Invariant culture" />
+        <parameter name="padding" type="Integer" required="No" description="Number of characters to pad the output to. When positive the output will be right-aligned, when negative it will be left-aligned. Zero means no padding." default="0" />
+        <parameter name="fixedlength" type="Boolean" required="No" description="Crop the result to the padding width." default="False" />
+    </common-config>
+    <la name="level">
+        <displayName>Level</displayName>
+        <description>outputs log level</description>
+        <assembly>NLog.dll</assembly>
+        <namespace>NLog.LayoutAppenders</namespace>
+        <className>LevelLayoutAppender</className>
+        <support framework="netcf-1.0" />
+        <support framework="net-1.0" />
+        <support framework="net-1.1" />
+        <support framework="net-2.0" />
+        <support framework="mono-1.0" />
+        <support framework="mono-2.0" />
+    </la>
+    <la name="logger">
+        <displayName>Logger Name</displayName>
+        <description>outputs logger name</description>
+        <assembly>NLog.dll</assembly>
+        <namespace>NLog.LayoutAppenders</namespace>
+        <className>LoggerNameLayoutAppender</className>
+        <support framework="netcf-1.0" />
+        <support framework="net-1.0" />
+        <support framework="net-1.1" />
+        <support framework="net-2.0" />
+        <support framework="mono-1.0" />
+        <support framework="mono-2.0" />
+    </la>
+    <la name="date">
+        <support framework="netcf-1.0" />
+        <support framework="net-1.0" />
+        <support framework="net-1.1" />
+        <support framework="net-2.0" />
+        <support framework="mono-1.0" />
+        <support framework="mono-2.0" />
+    </la>
+    <la name="longdate">
+        <support framework="netcf-1.0" />
+        <support framework="net-1.0" />
+        <support framework="net-1.1" />
+        <support framework="net-2.0" />
+        <support framework="mono-1.0" />
+        <support framework="mono-2.0" />
+    </la>
+    <la name="shortdate">
+        <support framework="netcf-1.0" />
+        <support framework="net-1.0" />
+        <support framework="net-1.1" />
+        <support framework="net-2.0" />
+        <support framework="mono-1.0" />
+        <support framework="mono-2.0" />
+    </la>
+    <la name="message">
+        <support framework="netcf-1.0" />
+        <support framework="net-1.0" />
+        <support framework="net-1.1" />
+        <support framework="net-2.0" />
+        <support framework="mono-1.0" />
+        <support framework="mono-2.0" />
+    </la>
+    <la name="processtime">
+        <support framework="netcf-1.0" />
+        <support framework="net-1.0" />
+        <support framework="net-1.1" />
+        <support framework="net-2.0" />
+        <support framework="mono-1.0" />
+        <support framework="mono-2.0" />
+    </la>
+    <la name="ticks">
+        <support framework="netcf-1.0" />
+        <support framework="net-1.0" />
+        <support framework="net-1.1" />
+        <support framework="net-2.0" />
+        <support framework="mono-1.0" />
+        <support framework="mono-2.0" />
+    </la>
+    <la name="machinename">
+        <displayName>Machine Name</displayName>
+        <description>outputs the machine name that the application is running on</description>
+        <assembly>NLog.dll</assembly>
+        <namespace>NLog.LayoutAppenders</namespace>
+        <className>MachineNameLayoutAppender</className>
+        <support framework="net-1.0" />
+        <support framework="net-1.1" />
+        <support framework="net-2.0" />
+        <support framework="mono-1.0" />
+        <support framework="mono-2.0" />
+    </la>
+    <la name="basedir">
+    </la>
+    <la name="callsite">
+    </la>
+    <la name="environment">
+    </la>
+    <la name="registry">
+    </la>
+    <la name="identity">
+    </la>
+    <la name="nlogdir">
+    </la>
+    <la name="threadname">
+    </la>
+    <la name="asp-application">
+    </la>
+    <la name="asp-request">
+    </la>
+    <la name="asp-session">
+    </la>
+    <la name="aspnet-application">
+    </la>
+    <la name="aspnet-request">
+    </la>
+    <la name="aspnet-session">
+    </la>
 </layoutappenders>
