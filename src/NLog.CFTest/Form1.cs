@@ -64,7 +64,7 @@ namespace NLog.CFTest
 
         private void Form1_Load(object sender, System.EventArgs e)
         {
-            MessageBox.Show("loaded: " + System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+            logger.Error("hello!");
             Close();
         }
 	}

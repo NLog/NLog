@@ -31,82 +31,58 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if NETCF
+
 using System;
-using System.Text;
 using System.IO;
+using System.Text;
+using System.Runtime.InteropServices;
 
-namespace NLog.LayoutAppenders
+namespace NLog.Internal
 {
-    [LayoutAppender("nlogdir")]
-    public class NLogDirLayoutAppender: LayoutAppender
+    internal sealed class CompactFrameworkHelper
     {
-        private string _fileName = null;
-        private string _directoryName = null;
-        private static string _nlogDir;
+        private static string _exeName;
+        private static string _exeBaseDir;
 
-        static NLogDirLayoutAppender()
+        public static string GetExeFileName()
         {
-#if !NETCF
-            _nlogDir = Path.GetDirectoryName(typeof(LogManager).Assembly.Location);
-#else
-            _nlogDir = Path.GetDirectoryName(typeof(LogManager).Assembly.GetName().CodeBase);
-#endif
+            if (_exeName == null)
+            {
+                LoadExeInfo();
+            }
+            return _exeName;
         }
 
-        public string File
+        public static string GetExeBaseDir()
         {
-            get
+            if (_exeName == null)
             {
-                return _fileName;
+                LoadExeInfo();
             }
-            set
-            {
-                _fileName = value;
-            }
+            return _exeBaseDir;
         }
 
-        public string Dir
+        private static void LoadExeInfo()
         {
-            get
+            lock (typeof(CompactFrameworkHelper))
             {
-                return _directoryName;
-            }
-            set
-            {
-                _directoryName = value;
-            }
-        }
+                if (_exeName == null)
+                {
+                    StringBuilder sb = new StringBuilder(512);
 
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
-        {
-            return 32;
-        }
+                    // passing 0 as the first parameter gets us the name of the EXE
 
-        protected internal string NLogDir
-        {
-            get
-            {
-                return _nlogDir;
+                    GetModuleFileName(IntPtr.Zero, sb, sb.Capacity);
+                    _exeName = sb.ToString();
+                    _exeBaseDir = Path.GetDirectoryName(_exeName);
+                }
             }
         }
 
-        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
-        {
-            string baseDir = NLogDir;
-
-            if (_fileName != null)
-            {
-                builder.Append(ApplyPadding(Path.Combine(baseDir, _fileName)));
-            }
-            else if (_directoryName != null)
-            {
-                builder.Append(ApplyPadding(Path.Combine(baseDir, _directoryName)));
-            }
-            else
-            {
-                builder.Append(ApplyPadding(baseDir));
-            }
-        }
+        [DllImport("CoreDll.dll", CharSet=CharSet.Unicode)]
+        private static extern int GetModuleFileName(IntPtr hModule, StringBuilder szBuffer, int nCapacity);
     }
 }
 
+#endif

@@ -1,3 +1,7 @@
+2004-09-28 Jaroslaw Kowalski <jaak@zd.com.pl>
+	* Improved support for .NET Compact Framework by adding
+	project files and automated config file loading.
+	
 2004-09-02 Jaroslaw Kowalski <jaak@zd.com.pl>
 	
 	* Added initial support for database appender and array 

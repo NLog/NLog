@@ -127,11 +127,11 @@ namespace NLog.Config
                 {
                     case "true":
                         LogManager.ThrowExceptions = true;
-                        break;
+                    break;
 
                     case "false":
                         LogManager.ThrowExceptions = false;
-                        break;
+                    break;
                 }
             }
 
@@ -141,11 +141,11 @@ namespace NLog.Config
                 {
                     case "true":
                         InternalLogger.LogToConsole = true;
-                        break;
+                    break;
 
                     case "false":
                         InternalLogger.LogToConsole = true;
-                        break;
+                    break;
                 }
             }
 
@@ -203,7 +203,6 @@ namespace NLog.Config
             {
                 object o = System.Configuration.ConfigurationSettings.GetConfig("nlog");
                 return o as LoggingConfiguration;
-                }
             }
         }
 #endif

@@ -156,10 +156,11 @@
     </la>
     <la name="basedir">
         <displayName>Base Directory</displayName>
-        <description>outputs the base directory of the current AppDomain optionally combining it with a specified file or directory name</description>
+        <description>outputs the base directory of the current AppDomain optionally combining it with a specified file or directory name. For the compact framework it uses the directory where the EXE file is found as a base</description>
         <assembly>NLog.dll</assembly>
         <namespace>NLog.LayoutAppenders</namespace>
         <className>BaseDirLayoutAppender</className>
+        <support framework="netcf-1.0" />
         <support framework="net-1.0" />
         <support framework="net-1.1" />
         <support framework="net-2.0" />
@@ -233,6 +234,7 @@
         <assembly>NLog.dll</assembly>
         <namespace>NLog.LayoutAppenders</namespace>
         <className>NLogDirLayoutAppender</className>
+        <support framework="netcf-1.0" />
         <support framework="net-1.0" />
         <support framework="net-1.1" />
         <support framework="net-2.0" />

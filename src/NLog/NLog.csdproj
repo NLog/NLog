@@ -356,6 +356,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Internal\CompactFrameworkHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Internal\DictionaryBase.cs"
                     BuildAction = "Compile"
                 />

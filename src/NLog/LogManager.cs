@@ -172,8 +172,16 @@ namespace NLog
 #else
                     if (_config == null)
                     {
-                        string configFile = System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase + ".nlog";
-                        System.Windows.Forms.MessageBox.Show(configFile);
+                        string configFile = CompactFrameworkHelper.GetExeFileName() + ".nlog";
+                        if (File.Exists(configFile))
+                        {
+                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                            _config = new XmlLoggingConfiguration(configFile);
+                        }
+                    }
+                    if (_config == null)
+                    {
+                        string configFile = typeof(LogManager).Assembly.GetName().CodeBase + ".nlog";
                         if (File.Exists(configFile))
                         {
                             InternalLogger.Debug("Attempting to load config from {0}", configFile);

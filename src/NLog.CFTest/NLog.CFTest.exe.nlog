@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<nlog>
+    <!-- deploy this file to "\Program Files\NLog.CFTest" directory on your device -->
+    <appenders>
+        <appender name="messagebox" type="MessageBox" />
+    </appenders>
+
+    <rules>
+        <logger name="*" minlevel="Error" appendTo="messagebox" />
+    </rules>
+</nlog>
