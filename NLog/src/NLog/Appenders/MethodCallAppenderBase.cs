@@ -1,35 +1,35 @@
-// 
+//
 // Copyright (c) 2004 Jaroslaw Kowalski <jaak@polbox.com>
-// 
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of the Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of the Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 using System;
 using System.Collections;
@@ -40,10 +40,8 @@ using System.Globalization;
 
 using NLog.Config;
 
-namespace NLog.Appenders
-{
-    public abstract class MethodCallAppenderBase : Appender
-    {
+namespace NLog.Appenders {
+    public abstract class MethodCallAppenderBase : Appender {
         private MethodCallParameterCollection _parameters = new MethodCallParameterCollection();
 
         protected internal override void Append(LogEventInfo ev) {
@@ -57,39 +55,51 @@ namespace NLog.Appenders
 
         protected abstract void DoInvoke(object[] parameters);
 
-        [ArrayParameter(typeof(MethodCallParameter),"parameter")]
+        [ArrayParameter(typeof(MethodCallParameter), "parameter")]
         public MethodCallParameterCollection Parameters
         {
-            get { return _parameters; }
+            get {
+                return _parameters;
+            }
         }
 
-        public class MethodCallParameter
-        {
+        public class MethodCallParameter {
             private Type _type;
             private Layout _compiledlayout;
 
-            public MethodCallParameter()
-            {
+            public MethodCallParameter() {
                 _type = typeof(string);
             }
-            
+
             public string Type
             {
-                get { return _type.FullName; }
-                set { _type = System.Type.GetType(value); }
+                get {
+                    return _type.FullName;
+                }
+                set {
+                    _type = System.Type.GetType(value);
+                }
             }
 
             [RequiredParameter]
             public string Layout
             {
-                get { return _compiledlayout.Text; }
-                set { _compiledlayout = new Layout(value); }
+                get {
+                    return _compiledlayout.Text;
+                }
+                set {
+                    _compiledlayout = new Layout(value);
+                }
             }
 
             public Layout CompiledLayout
             {
-                get { return _compiledlayout; }
-                set { _compiledlayout = value; }
+                get {
+                    return _compiledlayout;
+                }
+                set {
+                    _compiledlayout = value;
+                }
             }
 
             internal object GetValue(LogEventInfo ev) {
@@ -100,13 +110,11 @@ namespace NLog.Appenders
         /// <summary>
         /// A collection of elements of type MethodCallParameter
         /// </summary>
-        public class MethodCallParameterCollection: System.Collections.CollectionBase
-        {
+    public class MethodCallParameterCollection: System.Collections.CollectionBase {
             /// <summary>
             /// Initializes a new empty instance of the MethodCallParameterCollection class.
             /// </summary>
-            public MethodCallParameterCollection()
-            {
+            public MethodCallParameterCollection() {
                 // empty
             }
 
@@ -117,8 +125,7 @@ namespace NLog.Appenders
             /// <param name="items">
             /// The array whose elements are to be added to the new MethodCallParameterCollection.
             /// </param>
-            public MethodCallParameterCollection(MethodCallParameter[] items)
-            {
+            public MethodCallParameterCollection(MethodCallParameter[] items) {
                 this.AddRange(items);
             }
 
@@ -129,8 +136,7 @@ namespace NLog.Appenders
             /// <param name="items">
             /// The MethodCallParameterCollection whose elements are to be added to the new MethodCallParameterCollection.
             /// </param>
-            public MethodCallParameterCollection(MethodCallParameterCollection items)
-            {
+            public MethodCallParameterCollection(MethodCallParameterCollection items) {
                 this.AddRange(items);
             }
 
@@ -140,10 +146,8 @@ namespace NLog.Appenders
             /// <param name="items">
             /// The array whose elements are to be added to the end of this MethodCallParameterCollection.
             /// </param>
-            public virtual void AddRange(MethodCallParameter[] items)
-            {
-                foreach (MethodCallParameter item in items)
-                {
+            public virtual void AddRange(MethodCallParameter[] items) {
+                foreach (MethodCallParameter item in items) {
                     this.List.Add(item);
                 }
             }
@@ -154,10 +158,8 @@ namespace NLog.Appenders
             /// <param name="items">
             /// The MethodCallParameterCollection whose elements are to be added to the end of this MethodCallParameterCollection.
             /// </param>
-            public virtual void AddRange(MethodCallParameterCollection items)
-            {
-                foreach (MethodCallParameter item in items)
-                {
+            public virtual void AddRange(MethodCallParameterCollection items) {
+                foreach (MethodCallParameter item in items) {
                     this.List.Add(item);
                 }
             }
@@ -168,8 +170,7 @@ namespace NLog.Appenders
             /// <param name="value">
             /// The MethodCallParameter to be added to the end of this MethodCallParameterCollection.
             /// </param>
-            public virtual void Add(MethodCallParameter value)
-            {
+            public virtual void Add(MethodCallParameter value) {
                 this.List.Add(value);
             }
 
@@ -183,8 +184,7 @@ namespace NLog.Appenders
             /// true if value is found in this MethodCallParameterCollection;
             /// false otherwise.
             /// </returns>
-            public virtual bool Contains(MethodCallParameter value)
-            {
+            public virtual bool Contains(MethodCallParameter value) {
                 return this.List.Contains(value);
             }
 
@@ -199,8 +199,7 @@ namespace NLog.Appenders
             /// The zero-based index of the first occurrence of the _ELEMENT value if found;
             /// -1 otherwise.
             /// </returns>
-            public virtual int IndexOf(MethodCallParameter value)
-            {
+            public virtual int IndexOf(MethodCallParameter value) {
                 return this.List.IndexOf(value);
             }
 
@@ -213,8 +212,7 @@ namespace NLog.Appenders
             /// <param name="value">
             /// The MethodCallParameter to insert.
             /// </param>
-            public virtual void Insert(int index, MethodCallParameter value)
-            {
+            public virtual void Insert(int index, MethodCallParameter value) {
                 this.List.Insert(index, value);
             }
 
@@ -223,12 +221,10 @@ namespace NLog.Appenders
             /// </summary>
             public virtual MethodCallParameter this[int index]
             {
-                get
-                {
+                get {
                     return (MethodCallParameter) this.List[index];
                 }
-                set
-                {
+                set {
                     this.List[index] = value;
                 }
             }
@@ -239,46 +235,39 @@ namespace NLog.Appenders
             /// <param name="value">
             /// The MethodCallParameter value to remove from this MethodCallParameterCollection.
             /// </param>
-            public virtual void Remove(MethodCallParameter value)
-            {
+            public virtual void Remove(MethodCallParameter value) {
                 this.List.Remove(value);
             }
 
             /// <summary>
             /// Type-specific enumeration class, used by MethodCallParameterCollection.GetEnumerator.
             /// </summary>
-            public class Enumerator: System.Collections.IEnumerator
-            {
+        public class Enumerator: System.Collections.IEnumerator {
                 private System.Collections.IEnumerator wrapped;
 
-                public Enumerator(MethodCallParameterCollection collection)
-                {
+                public Enumerator(MethodCallParameterCollection collection) {
                     this.wrapped = ((System.Collections.CollectionBase)collection).GetEnumerator();
                 }
 
                 public MethodCallParameter Current
                 {
-                    get
-                    {
+                    get {
                         return (MethodCallParameter) (this.wrapped.Current);
                     }
                 }
 
                 object System.Collections.IEnumerator.Current
                 {
-                    get
-                    {
+                    get {
                         return (MethodCallParameter) (this.wrapped.Current);
                     }
                 }
 
-                public bool MoveNext()
-                {
+                public bool MoveNext() {
                     return this.wrapped.MoveNext();
                 }
 
-                public void Reset()
-                {
+                public void Reset() {
                     this.wrapped.Reset();
                 }
             }
@@ -288,9 +277,8 @@ namespace NLog.Appenders
             /// </summary>
             /// <returns>
             /// An object that implements System.Collections.IEnumerator.
-            /// </returns>        
-            public new virtual MethodCallParameterCollection.Enumerator GetEnumerator()
-            {
+            /// </returns>
+            public new virtual MethodCallParameterCollection.Enumerator GetEnumerator() {
                 return new MethodCallParameterCollection.Enumerator(this);
             }
         }
