@@ -1,5 +1,6 @@
 // 
-// Copyright (c) 2004 Jaroslaw Kowalski <jaak@polbox.com>
+// Copyright (c) 2004 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// 
 // 
 // All rights reserved.
 // 
@@ -44,15 +45,17 @@ namespace NLog
         private LogLevel _level;
         private string _loggerName;
         private string _message;
+        private Exception _exception;
 
-        public static readonly LogEventInfo Empty = new LogEventInfo(DateTime.Now, LogLevel.Debug, String.Empty, String.Empty);
+        public static readonly LogEventInfo Empty = new LogEventInfo(DateTime.Now, LogLevel.Debug, String.Empty, String.Empty, null);
 
-        public LogEventInfo(DateTime ts, LogLevel level, string loggerName, string message)
+        public LogEventInfo(DateTime ts, LogLevel level, string loggerName, string message, Exception exception)
         {
             _timeStamp = ts;
             _level = level;
             _loggerName = loggerName;
             _message = message;
+            _exception = exception;
 #if !NETCF
             _stackTrace = null;
             _userStackFrame = 0;
@@ -101,6 +104,14 @@ namespace NLog
             }
         }
 #endif 
+        public Exception Exception
+        {
+            get
+            {
+                return _exception;
+            }
+        }
+
         public string LoggerName
         {
             get

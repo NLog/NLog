@@ -1,5 +1,6 @@
 // 
-// Copyright (c) 2004 Jaroslaw Kowalski <jaak@polbox.com>
+// Copyright (c) 2004 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// 
 // 
 // All rights reserved.
 // 
@@ -30,6 +31,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+
 #if !NETCF
 
 using System;

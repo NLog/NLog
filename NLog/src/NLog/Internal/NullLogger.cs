@@ -1,5 +1,6 @@
 // 
-// Copyright (c) 2004 Jaroslaw Kowalski <jaak@polbox.com>
+// Copyright (c) 2004 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// 
 // 
 // All rights reserved.
 // 
@@ -37,7 +38,10 @@ namespace NLog.Internal
 {
     public sealed class NullLogger: Logger
     {
-        protected override void Write(LogLevel level, IFormatProvider formatProvider, string message, object[]args){}
+        protected override void Write(LogLevel level, IFormatProvider formatProvider, string message, object[]args, Exception ex)
+        {
+            // do nothing
+        }
         public override bool IsEnabled(LogLevel level)
         {
             return false;

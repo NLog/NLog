@@ -1,5 +1,6 @@
 // 
-// Copyright (c) 2004 Jaroslaw Kowalski <jaak@polbox.com>
+// Copyright (c) 2004 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// 
 // 
 // All rights reserved.
 // 
