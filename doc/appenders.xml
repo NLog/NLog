@@ -98,8 +98,8 @@
     <appender name="ASPNetTrace">
         <displayName>ASP.NET Trace Appender</displayName>
         <description>outputs log messages using ASP.NET <code>Trace</code> facility</description>
-        <assembly>NLog.ASPNet.dll</assembly>
-        <namespace>NLog.ASPNet.Appenders</namespace>
+        <assembly>NLog.dll</assembly>
+        <namespace>NLog.Appenders</namespace>
         <className>ASPNetTraceAppender</className>
         <support framework="net-1.0" />
         <support framework="net-1.1" />

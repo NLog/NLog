@@ -35,7 +35,6 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 using System.Data;
-using System.Data.SqlClient;
 
 using NLog.Internal;
 using NLog.Config;
@@ -46,7 +45,7 @@ namespace NLog.Appenders
     public sealed class DatabaseAppender : Appender
     {
         private Assembly _system_data_assembly = typeof(IDbConnection).Assembly;
-        private Type _connectionType = typeof(SqlConnection);
+        private Type _connectionType = null;
         private string _connectionString = null;
         private bool _keepConnection = true;
         private bool _useTransaction = false;
@@ -56,11 +55,14 @@ namespace NLog.Appenders
         private string _dbDatabase = null;
         private IDbConnection _activeConnection = null;
 
-        public DatabaseAppender() { }
+        public DatabaseAppender()
+        {
+            Provider = "sqlserver";
+        }
 
         public string Provider
         {
-            get { return _connectionType.AssemblyQualifiedName; }
+            get { return _connectionType.FullName; }
             set { 
                 switch (value)
                 {
@@ -130,7 +132,7 @@ namespace NLog.Appenders
             set { _dbDatabase = value; }
         }
 
-        protected override void Append(LogEventInfo ev) {
+        protected internal override void Append(LogEventInfo ev) {
             if (_keepConnection) {
                 lock (this) {
                     if (_activeConnection == null)
@@ -138,8 +140,15 @@ namespace NLog.Appenders
                     DoAppend(ev);
                 }
             } else {
-                using (_activeConnection = OpenConnection()) {
+                try {
+                    _activeConnection = OpenConnection();
                     DoAppend(ev);
+                }
+                finally {
+                    if (_activeConnection != null) {
+                        _activeConnection.Close();
+                        _activeConnection = null;
+                    }
                 }
             }
         }

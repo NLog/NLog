@@ -31,15 +31,25 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using System.Reflection;
-using System.Runtime.CompilerServices;
+using System.Globalization;
+using NLog.Internal;
 
-[assembly: AssemblyTitle("NLog.CompactFramework")]
-[assembly: AssemblyDescription("NLog - .NET Compact Framework logging support")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("NLog")]
-[assembly: AssemblyProduct("NLog - .NET Logging Library")]
-[assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")]
-[assembly: AssemblyCulture("")]
+namespace NLog.Internal
+{
+    internal class FactoryHelper
+    {
+        private static Type[] EmptyTypes = new Type[0];
+        private static object[] EmptyParams = new object[0];
 
-[assembly: AssemblyVersion("0.2.0.0")]
+        public static object CreateInstance(Type t) {
+            ConstructorInfo constructor = t.GetConstructor(EmptyTypes); //t.GetConstructor(BindingFlags.Public | BindingFlags.Instance, null, Type.EmptyTypes, null);
+            if (constructor != null) {
+                return constructor.Invoke(EmptyParams);
+            } else {
+                throw new Exception("Cannot access the constructor of type: " + t.FullName + ". Is the required permission granted?");
+            }
+        }
+    }
+}

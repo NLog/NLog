@@ -64,6 +64,7 @@
                 <include name="mscorlib.dll" />
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
+                <include name="System.Data.dll" />
             </references>
             <nowarn>
                 <warning number="1591" />
@@ -88,44 +89,6 @@
         </csc>
     </target>
 
-    <target name="NLog.Contexts" depends="NLog">
-        <csc target="library" output="${output.dir}/NLog.Contexts.dll" doc="${output.dir}/NLog.Contexts.xml" define="${nlog.define}" debug="${nlog.debug}">
-            <sources basedir="src/NLog.Contexts">
-                <include name="**/*.cs" />
-            </sources>
-            <references>
-                <include name="${output.dir}/NLog.dll" />
-                <include name="mscorlib.dll" />
-                <include name="System.dll" />
-                <include name="System.Xml.dll" />
-            </references>
-            <nowarn>
-                <warning number="1591" />
-            </nowarn>
-        </csc>
-    </target>
-
-    <target name="NLog.ASPNet" depends="NLog">
-        <csc target="library" output="${output.dir}/NLog.ASPNet.dll" define="${nlog.define}" debug="${nlog.debug}">
-            <sources basedir="src/NLog.ASPNet">
-                <include name="**/*.cs" />
-                <include name="mscorlib.dll" />
-                <include name="System.dll" />
-                <include name="System.Xml.dll" />
-            </sources>
-            <references>
-                <include name="${output.dir}/NLog.dll" />
-                <include name="mscorlib.dll" />
-                <include name="System.dll" />
-                <include name="System.Xml.dll" />
-                <include name="System.Web.dll" />
-            </references>
-            <nowarn>
-                <warning number="1591" />
-            </nowarn>
-        </csc>
-    </target>
-
     <target name="NLog.CompactFramework" depends="NLog">
         <csc target="library" output="${output.dir}/NLog.CompactFramework.dll" define="${nlog.define}" debug="${nlog.debug}">
             <sources basedir="src/NLog.CompactFramework">
@@ -136,20 +99,6 @@
                 <include name="mscorlib.dll" />
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
-            </references>
-            <nowarn>
-                <warning number="1591" />
-            </nowarn>
-        </csc>
-    </target>
-
-    <target name="NLog.ASP" depends="NLog">
-        <csc target="library" output="${output.dir}/NLog.ASP.dll" define="${nlog.define}" debug="${nlog.debug}">
-            <sources basedir="src/NLog.ASP">
-                <include name="**/*.cs" />
-            </sources>
-            <references>
-                <include name="${output.dir}/NLog.dll" />
             </references>
             <nowarn>
                 <warning number="1591" />
@@ -171,9 +120,10 @@
         </csc>
     </target>
 
-    <target name="NLog.DB" depends="NLog">
-        <csc target="library" output="${output.dir}/NLog.DB.dll" define="${nlog.define}" debug="${nlog.debug}">
-            <sources basedir="src/NLog.DB">
+    <target name="NLog.DotNet" depends="NLog">
+        <!-- don't build it yet - we don't have anything .NET-specific -->
+        <csc if="false" target="library" output="${output.dir}/NLog.DotNet.dll" define="${nlog.define}" debug="${nlog.debug}">
+            <sources basedir="src/NLog.DotNet">
                 <include name="**/*.cs" />
             </sources>
             <references>
@@ -185,14 +135,42 @@
         </csc>
     </target>
 
-    <target name="NLog.Test" depends="NLog, NLog.Contexts, NLog.DB">
+    <target name="NLog.Mono" depends="NLog">
+        <!-- don't build it yet - we don't have anything Mono-specific -->
+        <csc target="library" output="${output.dir}/NLog.Mono.dll" define="${nlog.define}" debug="${nlog.debug}">
+            <sources basedir="src/NLog.Mono">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${output.dir}/NLog.dll" />
+            </references>
+            <nowarn>
+                <warning number="1591" />
+            </nowarn>
+        </csc>
+    </target>
+
+    <target name="NLog.Unix" depends="NLog">
+        <csc if="false" target="library" output="${output.dir}/NLog.Unix.dll" define="${nlog.define}" debug="${nlog.debug}">
+            <sources basedir="src/NLog.Unix">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${output.dir}/NLog.dll" />
+            </references>
+            <nowarn>
+                <warning number="1591" />
+            </nowarn>
+        </csc>
+    </target>
+
+    <target name="NLog.Test" depends="NLog">
         <csc target="exe" output="${output.dir}/NLog.Test.exe" define="${nlog.define}" debug="${nlog.debug}">
             <sources basedir="src/NLog.Test">
                 <include name="**/*.cs" />
             </sources>
             <references>
                 <include name="${output.dir}/NLog.dll" />
-                <include name="${output.dir}/NLog.Contexts.dll" />
                 <include name="mscorlib.dll" />
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
@@ -234,11 +212,11 @@
         <property name="nlog.define" value="${nlog.define};NETCF;NETCF_1_0" />
     </target>
 
-    <target name="build-mono-1.0" depends="NLog, NLog.Contexts, NLog.ASPNet, NLog.DB" />
-    <target name="build-net-1.0" depends="NLog, NLog.Contexts, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop, NLog.DB" />
-    <target name="build-net-1.1" depends="NLog, NLog.Contexts, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop, NLog.DB" />
-    <target name="build-net-2.0" depends="NLog, NLog.Contexts, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop, NLog.DB" />
-    <target name="build-netcf-1.0" depends="NLog, NLog.Contexts, NLog.CompactFramework" />
+    <target name="build-mono-1.0" depends="NLog, NLog.Mono" />
+    <target name="build-net-1.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet" />
+    <target name="build-net-1.1" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet" />
+    <target name="build-net-2.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet" />
+    <target name="build-netcf-1.0" depends="NLog, NLog.CompactFramework" />
 
     <target name="dist">
         <exec program="nant.exe" commandline="-t:net-1.0 release package" if="${framework::exists('net-1.0')}" />
@@ -302,7 +280,7 @@
         </foreach>
     </target>
 
-    <target name="doc" depends="configure, NLog, NLog.Contexts">
+    <target name="doc" depends="configure, NLog">
         <uptodate property="help.uptodate">
             <targetfiles>
                 <include name="${website.dir}/help/NLog.chm" />
@@ -317,7 +295,6 @@
             <ndoc>
                 <assemblies basedir="${output.dir}">
                     <include name="NLog.dll" />
-                    <include name="NLog.Contexts.dll" />
                 </assemblies>
                 <documenters>
                     <documenter name="MSDN">

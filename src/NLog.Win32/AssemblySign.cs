@@ -32,14 +32,9 @@
 // 
 
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
-[assembly: AssemblyTitle("NLog.CompactFramework")]
-[assembly: AssemblyDescription("NLog - .NET Compact Framework logging support")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("NLog")]
-[assembly: AssemblyProduct("NLog - .NET Logging Library")]
-[assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")]
-[assembly: AssemblyCulture("")]
-
-[assembly: AssemblyVersion("0.2.0.0")]
+#if NANT
+[assembly: AssemblyKeyFile("src/NLog.snk")]
+#else
+[assembly: AssemblyKeyFile("../../../NLog.snk")]
+#endif

@@ -37,7 +37,7 @@ using System.Runtime.InteropServices;
 
 using NLog.LayoutAppenders;
 
-namespace NLog.ASP.LayoutAppenders
+namespace NLog.Win32.LayoutAppenders
 {
     [LayoutAppender("asp-request")]
     public class ASPRequestValueLayoutAppender : LayoutAppender
