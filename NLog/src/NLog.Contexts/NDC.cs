@@ -36,7 +36,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Text;
 
-namespace NLog
+namespace NLog.Contexts
 {
     // stack implemented as an StringCollection
     public sealed class NDC
