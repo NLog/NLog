@@ -1,35 +1,35 @@
-//
+// 
 // Copyright (c) 2004 Jaroslaw Kowalski <jaak@polbox.com>
-//
+// 
 // All rights reserved.
-//
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions
+// 
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
 // are met:
-//
-// * Redistributions of source code must retain the above copyright notice,
-//   this list of conditions and the following disclaimer.
-//
+// 
+// * Redistributions of source code must retain the above copyright notice, 
+//   this list of conditions and the following disclaimer. 
+// 
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution.
-//
-// * Neither the name of the Jaroslaw Kowalski nor the names of its
+//   and/or other materials provided with the distribution. 
+// 
+// * Neither the name of the Jaroslaw Kowalski nor the names of its 
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission.
-//
+//   software without specific prior written permission. 
+// 
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
-//
+// 
 
 using System;
 using System.Text;
@@ -41,9 +41,11 @@ using System.Collections;
 using NLog.Internal;
 using NLog.Config;
 
-namespace NLog.Appenders {
+namespace NLog.Appenders
+{
     [Appender("Database")]
-    public sealed class DatabaseAppender : Appender {
+    public sealed class DatabaseAppender : Appender
+    {
         private Assembly _system_data_assembly = typeof(IDbConnection).Assembly;
         private Type _connectionType = null;
         private string _connectionString = null;
@@ -58,34 +60,34 @@ namespace NLog.Appenders {
         private IDbConnection _activeConnection = null;
         private string _connectionStringCache = null;
 
-        public DatabaseAppender() {
+        public DatabaseAppender()
+        {
             DBProvider = "sqlserver";
         }
 
         public string DBProvider
         {
-            get {
-                return _connectionType.FullName;
-            }
-            set {
-                switch (value) {
-                case "sqlserver":
-                case "mssql":
-                case "microsoft":
-                case "msde":
-                    _connectionType = _system_data_assembly.GetType("System.Data.SqlClient.SqlConnection");
+            get { return _connectionType.FullName; }
+            set { 
+                switch (value)
+                {
+                    case "sqlserver":
+                        case "mssql":
+                        case "microsoft":
+                        case "msde":
+                        _connectionType = _system_data_assembly.GetType("System.Data.SqlClient.SqlConnection");
                     break;
 
-                case "oledb":
-                    _connectionType = _system_data_assembly.GetType("System.Data.OleDb.OleDbConnection");
+                    case "oledb":
+                        _connectionType = _system_data_assembly.GetType("System.Data.OleDb.OleDbConnection");
                     break;
 
-                case "odbc":
-                    _connectionType = _system_data_assembly.GetType("System.Data.Odbc.OdbcConnection");
+                    case "odbc":
+                        _connectionType = _system_data_assembly.GetType("System.Data.Odbc.OdbcConnection");
                     break;
 
-                default:
-                    _connectionType = Type.GetType(value);
+                    default:
+                    _connectionType = Type.GetType(value); 
                     break;
                 }
             }
@@ -95,100 +97,62 @@ namespace NLog.Appenders {
         [RequiredParameter]
         public string ConnectionString
         {
-            get {
-                return _connectionString;
-            }
-            set {
-                _connectionString = value;
-            }
+            get { return _connectionString; }
+            set { _connectionString = value; }
         }
 
         public bool KeepConnection
         {
-            get {
-                return _keepConnection;
-            }
-            set {
-                _keepConnection = value;
-            }
+            get { return _keepConnection; }
+            set { _keepConnection = value; }
         }
 
         public bool UseTransactions
         {
-            get {
-                return _useTransaction;
-            }
-            set {
-                _useTransaction = value;
-            }
+            get { return _useTransaction; }
+            set { _useTransaction = value; }
         }
 
         public string DBHost
         {
-            get {
-                return _dbHost;
-            }
-            set {
-                _dbHost = value;
-            }
+            get { return _dbHost; }
+            set { _dbHost = value; }
         }
 
         public string DBUserName
         {
-            get {
-                return _dbUserName;
-            }
-            set {
-                _dbUserName = value;
-            }
+            get { return _dbUserName; }
+            set { _dbUserName = value; }
         }
 
         public string DBPassword
         {
-            get {
-                return _dbPassword;
-            }
-            set {
-                _dbPassword = value;
-            }
+            get { return _dbPassword; }
+            set { _dbPassword = value; }
         }
 
         public string DBDatabase
         {
-            get {
-                return _dbDatabase;
-            }
-            set {
-                _dbDatabase = value;
-            }
+            get { return _dbDatabase; }
+            set { _dbDatabase = value; }
         }
 
         public string CommandText
         {
-            get {
-                return _compiledCommandTextLayout.Text;
-            }
-            set {
-                _compiledCommandTextLayout = new Layout(value);
-            }
+            get { return _compiledCommandTextLayout.Text; }
+            set { _compiledCommandTextLayout = new Layout(value); }
         }
 
         public Layout CommandTextLayout
         {
-            get {
-                return _compiledCommandTextLayout;
-            }
-            set {
-                _compiledCommandTextLayout = value;
-            }
+            get { return _compiledCommandTextLayout; }
+            set { _compiledCommandTextLayout = value; }
         }
 
-        [ArrayParameter(typeof(ParameterInfo), "parameter")]
+        [ArrayParameter(typeof(ParameterInfo),"parameter")]
         public ParameterInfoCollection Parameters
         {
-            get {
-                return _parameters;
-            }
+            get { return _parameters; }
         }
 
         protected internal override void Append(LogEventInfo ev) {
@@ -202,7 +166,8 @@ namespace NLog.Appenders {
                 try {
                     _activeConnection = OpenConnection();
                     DoAppend(ev);
-                } finally {
+                }
+                finally {
                     if (_activeConnection != null) {
                         _activeConnection.Close();
                         _activeConnection = null;
@@ -247,7 +212,7 @@ namespace NLog.Appenders {
 
             if (_connectionString != null)
                 return _connectionString;
-
+            
             StringBuilder sb = new StringBuilder();
 
             sb.Append("Server=");
@@ -273,7 +238,8 @@ namespace NLog.Appenders {
             return _connectionStringCache;
         }
 
-        public class ParameterInfo {
+        public class ParameterInfo
+        {
             public ParameterInfo() { }
 
             private Layout _compiledlayout;
@@ -284,76 +250,54 @@ namespace NLog.Appenders {
 
             public string Name
             {
-                get {
-                    return _name;
-                }
-                set {
-                    _name = value;
-                }
+                get { return _name; }
+                set { _name = value; }
             }
 
             [RequiredParameter]
             public string Layout
             {
-                get {
-                    return _compiledlayout.Text;
-                }
-                set {
-                    _compiledlayout = new Layout(value);
-                }
+                get { return _compiledlayout.Text; }
+                set { _compiledlayout = new Layout(value); }
             }
 
             public Layout CompiledLayout
             {
-                get {
-                    return _compiledlayout;
-                }
-                set {
-                    _compiledlayout = value;
-                }
+                get { return _compiledlayout; }
+                set { _compiledlayout = value; }
             }
 
             public int Size
             {
-                get {
-                    return _size;
-                }
-                set {
-                    _size = value;
-                }
+                get { return _size; }
+                set { _size = value; }
             }
 
             public byte Precision
             {
-                get {
-                    return _precision;
-                }
-                set {
-                    _precision = value;
-                }
+                get { return _precision; }
+                set { _precision = value; }
             }
 
             public byte Scale
             {
-                get {
-                    return _scale;
-                }
-                set {
-                    _scale = value;
-                }
+                get { return _scale; }
+                set { _scale = value; }
             }
         }
 
-#region Generated Typesafe Collection Wrapper
+        #region Generated Typesafe Collection Wrapper
 
         /// <summary>
         /// A collection of elements of type ParameterInfo
         /// </summary>
-    public class ParameterInfoCollection: System.Collections.CollectionBase {
+        public class ParameterInfoCollection: System.Collections.CollectionBase
+        {
             /// <summary>
             /// Initializes a new empty instance of the ParameterInfoCollection class.
             /// </summary>
-            public ParameterInfoCollection() {
+            public ParameterInfoCollection()
+            {
                 // empty
             }
 
@@ -364,7 +308,8 @@ namespace NLog.Appenders {
             /// <param name="items">
             /// The array whose elements are to be added to the new ParameterInfoCollection.
             /// </param>
-            public ParameterInfoCollection(ParameterInfo[] items) {
+            public ParameterInfoCollection(ParameterInfo[] items)
+            {
                 this.AddRange(items);
             }
 
@@ -375,7 +320,8 @@ namespace NLog.Appenders {
             /// <param name="items">
             /// The ParameterInfoCollection whose elements are to be added to the new ParameterInfoCollection.
             /// </param>
-            public ParameterInfoCollection(ParameterInfoCollection items) {
+            public ParameterInfoCollection(ParameterInfoCollection items)
+            {
                 this.AddRange(items);
             }
 
@@ -385,8 +331,10 @@ namespace NLog.Appenders {
             /// <param name="items">
             /// The array whose elements are to be added to the end of this ParameterInfoCollection.
             /// </param>
-            public virtual void AddRange(ParameterInfo[] items) {
-                foreach (ParameterInfo item in items) {
+            public virtual void AddRange(ParameterInfo[] items)
+            {
+                foreach (ParameterInfo item in items)
+                {
                     this.List.Add(item);
                 }
             }
@@ -397,8 +345,10 @@ namespace NLog.Appenders {
             /// <param name="items">
             /// The ParameterInfoCollection whose elements are to be added to the end of this ParameterInfoCollection.
             /// </param>
-            public virtual void AddRange(ParameterInfoCollection items) {
-                foreach (ParameterInfo item in items) {
+            public virtual void AddRange(ParameterInfoCollection items)
+            {
+                foreach (ParameterInfo item in items)
+                {
                     this.List.Add(item);
                 }
             }
@@ -409,7 +359,8 @@ namespace NLog.Appenders {
             /// <param name="value">
             /// The ParameterInfo to be added to the end of this ParameterInfoCollection.
             /// </param>
-            public virtual void Add(ParameterInfo value) {
+            public virtual void Add(ParameterInfo value)
+            {
                 this.List.Add(value);
             }
 
@@ -423,7 +374,8 @@ namespace NLog.Appenders {
             /// true if value is found in this ParameterInfoCollection;
             /// false otherwise.
             /// </returns>
-            public virtual bool Contains(ParameterInfo value) {
+            public virtual bool Contains(ParameterInfo value)
+            {
                 return this.List.Contains(value);
             }
 
@@ -438,7 +390,8 @@ namespace NLog.Appenders {
             /// The zero-based index of the first occurrence of the _ELEMENT value if found;
             /// -1 otherwise.
             /// </returns>
-            public virtual int IndexOf(ParameterInfo value) {
+            public virtual int IndexOf(ParameterInfo value)
+            {
                 return this.List.IndexOf(value);
             }
 
@@ -451,7 +404,8 @@ namespace NLog.Appenders {
             /// <param name="value">
             /// The ParameterInfo to insert.
             /// </param>
-            public virtual void Insert(int index, ParameterInfo value) {
+            public virtual void Insert(int index, ParameterInfo value)
+            {
                 this.List.Insert(index, value);
             }
 
@@ -460,10 +414,12 @@ namespace NLog.Appenders {
             /// </summary>
             public virtual ParameterInfo this[int index]
             {
-                get {
+                get
+                {
                     return (ParameterInfo) this.List[index];
                 }
-                set {
+                set
+                {
                     this.List[index] = value;
                 }
             }
@@ -474,39 +430,46 @@ namespace NLog.Appenders {
             /// <param name="value">
             /// The ParameterInfo value to remove from this ParameterInfoCollection.
             /// </param>
-            public virtual void Remove(ParameterInfo value) {
+            public virtual void Remove(ParameterInfo value)
+            {
                 this.List.Remove(value);
             }
 
             /// <summary>
             /// Type-specific enumeration class, used by ParameterInfoCollection.GetEnumerator.
             /// </summary>
-        public class Enumerator: System.Collections.IEnumerator {
+            public class Enumerator: System.Collections.IEnumerator
+            {
                 private System.Collections.IEnumerator wrapped;
 
-                public Enumerator(ParameterInfoCollection collection) {
+                public Enumerator(ParameterInfoCollection collection)
+                {
                     this.wrapped = ((System.Collections.CollectionBase)collection).GetEnumerator();
                 }
 
                 public ParameterInfo Current
                 {
-                    get {
+                    get
+                    {
                         return (ParameterInfo) (this.wrapped.Current);
                     }
                 }
 
                 object System.Collections.IEnumerator.Current
                 {
-                    get {
+                    get
+                    {
                         return (ParameterInfo) (this.wrapped.Current);
                     }
                 }
 
-                public bool MoveNext() {
+                public bool MoveNext()
+                {
                     return this.wrapped.MoveNext();
                 }
 
-                public void Reset() {
+                public void Reset()
+                {
                     this.wrapped.Reset();
                 }
             }
@@ -516,13 +479,13 @@ namespace NLog.Appenders {
             /// </summary>
             /// <returns>
             /// An object that implements System.Collections.IEnumerator.
-            /// </returns>
-            public new virtual ParameterInfoCollection.Enumerator GetEnumerator() {
+            /// </returns>        
+            public new virtual ParameterInfoCollection.Enumerator GetEnumerator()
+            {
                 return new ParameterInfoCollection.Enumerator(this);
             }
         }
 
-#endregion
-
+        #endregion
     }
 }

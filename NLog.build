@@ -413,7 +413,7 @@
     </target>
 
     <target name="astyle">
-        <astyle style="NAnt" cleanup="true">
+        <astyle style="NAnt" cleanup="true" nobreak-singlelineblocks="true">
             <fileset>
                 <include name="**/*.cs" />
                 <exclude name="**/_*.cs" />
