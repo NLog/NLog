@@ -15,13 +15,15 @@
         <html>
             <head>
                 <link rel="stylesheet" href="style.css" type="text/css" />
+                <meta name="generator" content="NAnt 0.85 style task" />
+                <meta name="keywords" content="NLog logging tracing debugging library easy simple C# .NET log4net log4j Logger C/C++ COM" />
                 <title>NLog - <xsl:value-of select="$common/common/navigation/nav[@href=$page_id]/@label" /></title>
             </head>
             <body width="100%">
                 <div class="titleimage" style="overflow: hidden">
                     <img src="NLog.jpg" />
                 </div>
-		<h6>THIS SITE IS UNDER CONSTRUCTION. SOME SECTIONS ARE MISSING.</h6><br/>
+                <h6>THIS SITE IS UNDER CONSTRUCTION. SOME SECTIONS ARE MISSING.</h6><br/>
                 <table class="page" cellpadding="0" cellspacing="0">
                     <tr>
                         <td valign="top" class="controls">
