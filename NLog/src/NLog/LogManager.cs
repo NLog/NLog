@@ -84,6 +84,7 @@ namespace NLog
                     if (_configLoaded)
                         return _config;
 
+                    _configLoaded = true;
 #if !NETCF
                     if (_config == null) 
                     {
@@ -108,18 +109,19 @@ namespace NLog
                             }
                         }
                     }
-#endif
 
-                    _configLoaded = true;
                     if (_config != null) {
                         _watcher.Watch(_config.FileNamesToWatch);
                     }
+#endif
                     return _config;
                 }
             }
 
             set { 
+#if !NETCF
                 _watcher.StopWatching();
+#endif
 
                 lock (typeof(LogManager)) {
                     _config = value; 
@@ -127,18 +129,22 @@ namespace NLog
 
                     if (_config != null) {
                         ReconfigExistingLoggers(_config);
+#if !NETCF
                         _watcher.Watch(_config.FileNamesToWatch);
+#endif
                     }
                 }
             }
         }
 
+#if !NETCF
         private static MultiFileWatcher _watcher = new MultiFileWatcher(new EventHandler(ConfigFileChanged));
 
         private static void ConfigFileChanged(object sender, EventArgs args) {
             // Console.WriteLine("ConfigFileChanged!!!");
             ReloadConfigOnNextLog = true;
         }
+#endif
 
         public static void ClearLoggerCache() {
         }
@@ -155,7 +161,7 @@ namespace NLog
                 ReloadConfigOnNextLog = false;
             }
         }
-
+        
         internal static void ReconfigExistingLoggers(LoggingConfiguration config)
         {
             foreach (LoggerImpl logger in _loggerCache.Values) {

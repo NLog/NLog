@@ -1,3 +1,5 @@
+#if !NETCF
+
 using System;
 using System.Collections;
 using System.IO;
@@ -78,3 +80,5 @@ namespace NLog
         public event EventHandler OnChange;
     }
 }
+
+#endif
