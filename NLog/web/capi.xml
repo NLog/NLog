@@ -2,6 +2,35 @@
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
 <content lang="en" id="api" subid="capi">
     <h1>C/C++ API</h1>
-    <a href="NLog.chm" />
+    <p>
+        NLog supports a C/C++ logging API that can be used in scenarios that require the use 
+        of C/C++ components in .NET projects. Typical case is porting a legacy systen to .NET
+        where some parts are rewritten in managed code while some remain unmanaged.
+    </p>
+    <p>
+        This API is available through <code>NLogC.dll</code> which is a mixed-mode (managed/unmanaged) 
+        assembly. It provides the following set exported functions:
+    </p>
+
+    <cs src="examples/NLogC.cpp" />
+
+    <p>
+        For your convenience, the following defines which use a <code>TCHAR</code> data type are available:
+    </p>
+    
+    <cs src="examples/NLogCdef.cpp" />
+
+    <p>
+        Here's the short summary of what these functions do:
+    </p>
+
+    <ul>
+        <li><code>NLog_ConfigureFromFile(filename)</code></li>
+        <p>
+            Configures NLog from the specified config file. You should call this function at the beginning of your
+            program if you want to specify your own config file. If you don't do this, NLog will attempt to find
+            the config file the first time you use any of the logging functions using the logic described <link href="config">here</link>.
+        </p>
+    </ul>
 </content>
 

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="api" subid="netapi">
+    <h1>.NET API</h1>
+    <a href="NLog.chm" />
+</content>
+

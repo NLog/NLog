@@ -8,6 +8,7 @@ html, body
     font-family: Verdana;
     font-size: 70%;
     overflow-y: scroll;
+    overflow-x: none;
 }
 
 h1
@@ -45,6 +46,13 @@ a:hover
 {
     color: black;
     background-color: inherit;
+}
+
+div.titleimage
+{
+    overflow: hidden;
+    width: 100%;
+    border-bottom: 1px solid #400000;
 }
 
 span.path
@@ -160,7 +168,6 @@ a.nav
     text-decoration: none;
     padding-left: 4px;
     padding-right: 4px;
-    width: 160px;
 }
 
 a.nav:visited
@@ -181,11 +188,6 @@ a.nav_selected
     font-weight: normal;
     font-size: 17px;
     color: #805020;
-    background-color: white;
-    border: 1px dotted #c0c0c0;
-    padding-left: 4px;
-    padding-right: 4px;
-    width: 160px;
     cursor: pointer; cursor: hand;
     text-decoration: none;
 }
@@ -204,16 +206,20 @@ a.subnav
 {
     display: block;
     font-family: Trebuchet MS, Arial, Helv;
-    font-style: italic;
+    font-style: normal;
     font-weight: normal;
-    font-size: 17px;
+    font-size: 15px;
     color: #202040;
     margin: 1px;
     cursor: pointer; cursor: hand;
     text-decoration: none;
-    padding-left: 16px;
+    padding-left: 4px;
     padding-right: 4px;
-    width: 160px;
+}
+
+td.subnav_spacer
+{
+    width: 10px;
 }
 
 a.subnav:visited
@@ -231,12 +237,13 @@ a.subnav_selected
     display: block;
     font-family: Trebuchet MS, Arial, Helv;
     font-style: italic;
-    font-weight: normal;
-    font-size: 17px;
+    font-weight: bold;
+    font-size: 15px;
     color: #805020;
-    padding-left: 16px;
+    border: 1px dashed #404040;
+    background-color: #fff8f8;
+    padding-left: 4px;
     padding-right: 4px;
-    width: 200px;
     cursor: pointer; cursor: hand;
     text-decoration: none;
 }
@@ -251,25 +258,16 @@ a.subnav_selected:hover
     color: red;
 }
 
-tr.nav_normal
+td.nav
+{
+}
+
+td.nav_selected
 {
     background-color: white;
-    color: #202040;
-    cursor: pointer; cursor: hand;
-}
-
-tr.nav_hilite
-{
-    background-color: #f0f0e0;
-    color: #008000;
-    cursor: pointer; cursor: hand;
-}
-
-tr.nav_selected
-{
-    background-color: #000080;
-    color: white;
-    cursor: pointer; cursor: hand;
+    border: 1px dashed #c0c0c0;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 td.titledesc
@@ -288,7 +286,6 @@ img.thinborder
 
 td.header
 {
-    border-bottom: 1px solid black;
     margin-bottom: 0px;
     height: 80px;
 }
@@ -298,7 +295,6 @@ td.content
     font-family: Trebuchet MS, Arial, Helv;
     font-size: 13px;
     padding: 4px;
-    width: 590px;
     text-align: left;
     background-color: #fff8f8;
 }
@@ -312,7 +308,6 @@ td.controls
 
 table.page
 {
-    width: 800px;
     /* border: 1px solid #404060; */
 }
 

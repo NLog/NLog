@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="howto" subid="howto_write_appender">
-    <h1>How to write your own appender</h1>
+<content lang="en" id="howto" subid="howto_write_filter">
+    <h1>How to write your own filter</h1>
+    <!--
 
     <h5>Why would I want to write an appender?</h5>
 
-    <p>If you want to write your trace messages to some non-standard output (for example to some management tool or over the network or using the PPPoP (<a href="http://www.notes.co.il/benbasat/5240.asp">PPP-over-pigeon</a> protocol) you need to write a custom appender.</p>
+    <p>If you want to write your trace messages to some non-standard output (for example to some management tool or over the network or using the PPP-over-pigeon protocol) you need to write a custom appender.</p>
 
     <h5>How to write an appender?</h5>
     <p>
@@ -52,5 +53,6 @@ you can use integer, string, datetime, boolean parameters.
 </p>
 
 <cs src="examples/AddAppender.cs" />
+-->
 </content>
 

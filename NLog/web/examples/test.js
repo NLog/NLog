@@ -1,5 +1,5 @@
 var logmanager = new ActiveXObject("NLog.LogManager");
-WScript.Echo("Loading config from file 'config8.nlog' with internal logging to console...");
+WScript.Echo("Loading config from file 'config8.nlog'...");
 logmanager.InternalLogToConsole = true;
 logmanager.InternalLogFile = "internal_log.txt";
 logmanager.InternalLogLevel = "Info";
@@ -19,7 +19,7 @@ logger.Warn("This is a warning message");
 logger.Error("This is an error");
 logger.Fatal("This is a fatal message");
 
-WScript.Echo("Loading config from file 'config8a.nlog' without internal logging...");
+WScript.Echo("Loading config from file 'config8a.nlog'...");
 logmanager.InternalLogToConsole = false;
 logmanager.InternalLogFile = "internal_log.txt";
 logmanager.InternalLogLevel = "Fatal";

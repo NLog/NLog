@@ -1,5 +1,5 @@
 <pre xml:space='preserve'><span class='jscript'><span class='k'>var</span> logmanager = <span class='k'>new</span> ActiveXObject(<span class='s'>&quot;NLog.LogManager&quot;</span>);
-WScript.Echo(<span class='s'>&quot;Loading config from file &apos;config8.nlog&apos; with internal logging to console...&quot;</span>);
+WScript.Echo(<span class='s'>&quot;Loading config from file &apos;config8.nlog&apos;...&quot;</span>);
 logmanager.InternalLogToConsole = <span class='k'>true</span>;
 logmanager.InternalLogFile = <span class='s'>&quot;internal_log.txt&quot;</span>;
 logmanager.InternalLogLevel = <span class='s'>&quot;Info&quot;</span>;
@@ -19,7 +19,7 @@ logger.Warn(<span class='s'>&quot;This is a warning message&quot;</span>);
 logger.Error(<span class='s'>&quot;This is an error&quot;</span>);
 logger.Fatal(<span class='s'>&quot;This is a fatal message&quot;</span>);
 
-WScript.Echo(<span class='s'>&quot;Loading config from file &apos;config8a.nlog&apos; without internal logging...&quot;</span>);
+WScript.Echo(<span class='s'>&quot;Loading config from file &apos;config8a.nlog&apos;...&quot;</span>);
 logmanager.InternalLogToConsole = <span class='k'>false</span>;
 logmanager.InternalLogFile = <span class='s'>&quot;internal_log.txt&quot;</span>;
 logmanager.InternalLogLevel = <span class='s'>&quot;Fatal&quot;</span>;
