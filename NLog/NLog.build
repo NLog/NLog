@@ -122,6 +122,7 @@
                 <include name="mscorlib.dll" />
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
+                <include name="System.Web.dll" />
             </references>
             <nowarn>
                 <warning number="1591" />
@@ -213,6 +214,7 @@
         </copy>
     </target>
 
+    <target name="configure-mono-1.0" />
     <target name="configure-net-1.0" />
     <target name="configure-net-1.1" />
     <target name="configure-net-2.0" />
@@ -221,6 +223,7 @@
         <property name="nlog.define" value="${nlog.define};NETCF;NETCF_1_0" />
     </target>
 
+    <target name="build-mono-1.0" depends="NLog, NLog.Contexts, NLog.ASPNet" />
     <target name="build-net-1.0" depends="NLog, NLog.Contexts, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
     <target name="build-net-1.1" depends="NLog, NLog.Contexts, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
     <target name="build-net-2.0" depends="NLog, NLog.Contexts, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
