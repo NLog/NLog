@@ -33,6 +33,7 @@
 
 using System;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace NLog.ASP.LayoutAppenders
 {
@@ -54,9 +55,14 @@ namespace NLog.ASP.LayoutAppenders
         
         public override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            if (_sessionVariable != null) {
-                object variableValue = ASPHelper.GetSessionValue(_sessionVariable);
-                builder.Append(Convert.ToString(variableValue));
+            ASPHelper.ISessionObject session = ASPHelper.GetSessionObject();
+            if (session != null) {
+                if (_sessionVariable != null) {
+
+                    object variableValue = session.GetValue(_sessionVariable);
+                    builder.Append(Convert.ToString(variableValue));
+                }
+                Marshal.ReleaseComObject(session);
             }
         }
     }
