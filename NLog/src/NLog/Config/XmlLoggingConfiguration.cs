@@ -148,24 +148,6 @@ namespace NLog.Config
             return s;
         }
         
-        private static LogLevel LogLevelFromString(string s) {
-            switch (s)
-            {
-                case "Debug":
-                    return LogLevel.Debug;
-                case "Info":
-                    return LogLevel.Info;
-                case "Warn":
-                    return LogLevel.Warn;
-                case "Error":
-                    return LogLevel.Error;
-                case "Fatal":
-                    return LogLevel.Fatal;
-                default:
-                    throw new ArgumentException("Unknown log level: " + s);
-            }
-        }
-
         private void ConfigureRulesFromElement(XmlElement element) {
             if (element == null)
                 return;
@@ -187,7 +169,7 @@ namespace NLog.Config
                 }
 
                 if (ruleElement.HasAttribute("level")) {
-                    LogLevel level = LogLevelFromString(ruleElement.GetAttribute("level"));
+                    LogLevel level = Logger.LogLevelFromString(ruleElement.GetAttribute("level"));
                     rule.EnableLoggingForLevel(level);
                 } else if (ruleElement.HasAttribute("levels")) {
                     string levelsString = ruleElement.GetAttribute("levels");
@@ -195,7 +177,7 @@ namespace NLog.Config
 
                     string[] tokens = levelsString.Split(',');
                     foreach (string s in tokens) {
-                        LogLevel level = LogLevelFromString(s);
+                        LogLevel level = Logger.LogLevelFromString(s);
 						rule.EnableLoggingForLevel(level);
                     }
                 } else {
@@ -203,11 +185,11 @@ namespace NLog.Config
                     int maxLevel = (int)LogLevel.MaxLevel;
 
                     if (ruleElement.HasAttribute("minlevel")) {
-                        minLevel = (int)LogLevelFromString(ruleElement.GetAttribute("minlevel"));
+                        minLevel = (int)Logger.LogLevelFromString(ruleElement.GetAttribute("minlevel"));
                     }
 
                     if (ruleElement.HasAttribute("maxlevel")) {
-                        maxLevel = (int)LogLevelFromString(ruleElement.GetAttribute("maxlevel"));
+                        maxLevel = (int)Logger.LogLevelFromString(ruleElement.GetAttribute("maxlevel"));
                     }
 
                     for (int i = minLevel; i <= maxLevel; ++i) {

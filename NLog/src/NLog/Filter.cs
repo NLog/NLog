@@ -71,5 +71,10 @@ namespace NLog
             }
         }
         public abstract FilterResult Check(LogEventInfo logMessage);
+        
+        public virtual int NeedsStackTrace()
+        {
+            return 0;
+        }
    }
 }
