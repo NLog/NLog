@@ -19,8 +19,10 @@
 
     <target name="configure">
         <call target="configure-${framework::get-target-framework()}" />
-        <property name="output.dir" value="${nant.project.basedir}/bin/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}" unless="${property::exists('output.dir')}" />
+        <property name="output.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/bin" unless="${property::exists('output.dir')}" />
+        <property name="website.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/doc" unless="${property::exists('website.dir')}" />
         <mkdir dir="${output.dir}" />
+        <mkdir dir="${website.dir}" />
     </target>
 
     <target name="build" depends="configure">
@@ -35,28 +37,23 @@
         <property name="nlog.debug" value="false" />
     </target>
 
-    <target name="package" depends="build">
+    <target name="package" depends="build, website, doc">
         <mkdir dir="${nant.project.basedir}/dist" />
         <property name="zip.file" value="${nant.project.basedir}/dist/NLog-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" />
-        <copy file="LICENSE.txt" tofile="${output.dir}/NLog_LICENSE.txt" />
+        <copy file="LICENSE.txt" tofile="${output.dir}/../LICENSE.txt" />
         <zip zipfile="${zip.file}">
-            <fileset basedir="${output.dir}">
-                <include name="*.txt" />
-                <include name="*.dll" />
-                <include name="*.pdb" />
-                <exclude name="*Test*" />
+            <fileset basedir="${output.dir}/..">
+                <include name="bin/*" />
+                <include name="doc/*" />
+                <include name="doc/help/NLog.chm" />
+                <include name="*" />
             </fileset>
         </zip>
     </target>
 
     <target name="clean" depends="configure">
-        <delete>
-            <fileset basedir="${output.dir}">
-                <include name="NLog*.dll" />
-                <include name="NLog*.pdb" />
-                <include name="NLog*.xml" />
-            </fileset>
-        </delete>
+        <delete dir="${output.dir}" />
+        <delete dir="${website.dir}" />
     </target>
 
     <target name="NLog" depends="configure">
@@ -231,13 +228,16 @@
 
     <target name="dist">
         <exec program="nant.exe" commandline="-t:net-1.0 release package" if="${framework::exists('net-1.0')}" />
+        <exec program="nant.exe" commandline="-t:net-1.1 release package" if="${framework::exists('net-1.1')}" />
+        <exec program="nant.exe" commandline="-t:netcf-1.0 release package" if="${framework::exists('netcf-1.0')}" />
+        <!--
         <exec program="nant.exe" commandline="-t:net-1.0 debug package" if="${framework::exists('net-1.0')}" />
         <exec program="nant.exe" commandline="-t:net-1.1 release package" if="${framework::exists('net-1.1')}" />
         <exec program="nant.exe" commandline="-t:net-1.1 debug package" if="${framework::exists('net-1.1')}" />
         <exec program="nant.exe" commandline="-t:net-2.0 release package" if="${framework::exists('net-1.1')}" />
         <exec program="nant.exe" commandline="-t:net-2.0 debug package" if="${framework::exists('net-1.1')}" />
-        <exec program="nant.exe" commandline="-t:netcf-1.0 release package" if="${framework::exists('netcf-1.0')}" />
         <exec program="nant.exe" commandline="-t:netcf-1.0 debug package" if="${framework::exists('netcf-1.0')}" />
+        -->
     </target>
 
     <target name="updateversion">
@@ -261,9 +261,9 @@
         </foreach>
     </target>
 
-    <target name="website">
-        <mkdir dir="doc/website" />
-        <copy todir="doc/website">
+    <target name="website" depends="configure">
+        <mkdir dir="${website.dir}" />
+        <copy todir="${website.dir}">
             <fileset basedir="doc">
                 <include name="*.html" />
                 <include name="*.css" />
@@ -272,9 +272,9 @@
                 <include name="*.js" />
             </fileset>
         </copy>
-        <style style="doc/appenders.xsl" in="doc/appenders.xml" out="doc/website/appenders.html" />
-        <style style="doc/layoutappenders.xsl" in="doc/layoutappenders.xml" out="doc/website/layoutappenders.html" />
-        <style style="doc/filters.xsl" in="doc/filters.xml" out="doc/website/filters.html" />
+        <style style="doc/appenders.xsl" in="doc/appenders.xml" out="${website.dir}/appenders.html" />
+        <style style="doc/layoutappenders.xsl" in="doc/layoutappenders.xml" out="${website.dir}/layoutappenders.html" />
+        <style style="doc/filters.xsl" in="doc/filters.xml" out="${website.dir}/filters.html" />
     </target>
 
     <target name="installer">
@@ -291,15 +291,15 @@
     <target name="doc" depends="configure, NLog, NLog.Contexts">
         <uptodate property="help.uptodate">
             <targetfiles>
-                <include name="doc/help/Documentation.chm" />
+                <include name="${website.dir}/help/NLog.chm" />
             </targetfiles>
             <sourcefiles basedir="${output.dir}">
                 <include name="**/*.dll" />
             </sourcefiles>
         </uptodate>
         <if test="${not help.uptodate}">
-            <delete dir="doc/help" if="${directory::exists('doc/help')}" />
-            <mkdir dir="doc/help" />
+            <delete dir="${website.dir}/help" if="${directory::exists(website.dir+'/help')}" />
+            <mkdir dir="${website.dir}/help" />
             <ndoc>
                 <assemblies basedir="${output.dir}">
                     <include name="NLog.dll" />
@@ -307,13 +307,14 @@
                 </assemblies>
                 <documenters>
                     <documenter name="MSDN">
-                        <property name="OutputDirectory" value="doc/help" />
+                        <property name="OutputDirectory" value="${website.dir}/help" />
                         <!--
                         <property name="SdkDocVersion" value="${link.sdkdoc.version}" />
                         <property name="SdkLinksOnWeb" value="${link.sdkdoc.web}" />
                         -->
                         <!-- do not filter on namespace -->
                         <property name="NamespaceFilter" value="" />
+                        <property name="HtmlHelpName" value="NLog" />
                         <!-- set the name of the application for which docs are generated -->
                         <property name="ApplicationName" value="NLog" />
                         <property name="DocumentAttributes" value="True" />
@@ -327,12 +328,10 @@
         </if>
     </target>
 
-    <target name="publish_website">
-        <delete dir="doc/website" if="${directory::exists('doc/website')}" />
-        <call target="website" />
+    <target name="publish_website" depends="website">
         <zip zipfile="website.zip">
-            <fileset basedir="doc/website">
-                <include name="**/*" />
+            <fileset basedir="${website.dir}">
+                <include name="*" />
             </fileset>
         </zip>
         <echo message="Uploading the zipped website..." />
@@ -344,9 +343,9 @@
 
     <target name="publish_website_help" depends="doc">
         <zip zipfile="help.zip">
-            <fileset basedir="doc/help">
+            <fileset basedir="${website.dir}/help">
                 <include name="**/*" />
-                <exclude name="**/Documentation.*" />
+                <exclude name="**/NLog.*" />
             </fileset>
         </zip>
         <echo message="Uploading the zipped help..." />

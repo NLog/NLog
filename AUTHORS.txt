@@ -1,0 +1,3 @@
+NLog is brought to you by:
+
+Jaroslaw Kowalski <jaak@zd.com.pl>
