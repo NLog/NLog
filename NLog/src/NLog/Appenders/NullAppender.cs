@@ -38,6 +38,7 @@ using System.Diagnostics;
 
 namespace NLog.Appenders
 {
+    [Appender("Null")]
     public class NullAppender : NLog.Appender
     {
 		private bool _formatMessage = false;

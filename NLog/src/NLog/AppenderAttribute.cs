@@ -33,13 +33,20 @@
 
 using System;
 
-namespace NLog.Appenders
+namespace NLog
 {
-    [Appender("Console")]
-    public class ConsoleAppender : NLog.Appender
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class AppenderAttribute : Attribute
     {
-        public override void Append(LogEventInfo ev) {
-            Console.WriteLine(CompiledLayout.GetFormattedMessage(ev));
+        private string _name;
+
+        public AppenderAttribute(string s) {
+            _name = s;
+        }
+        
+        public string Name
+        {
+            get { return _name; }
         }
     }
 }

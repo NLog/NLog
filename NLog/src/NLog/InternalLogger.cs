@@ -55,8 +55,6 @@ namespace NLog
 
         private static string _logFile = null;
 
-        private static TextWriter _textWriter = null;
-
 #if !NETCF
         static InternalLogger()
         {

@@ -69,21 +69,6 @@ namespace NLog
 
         public abstract void Append(LogEventInfo ev);
 
-        public static Appender Create(string name) {
-            Type appenderType;
-            
-            if (name.IndexOf('.') < 0 && name.IndexOf(',') < 0) {
-                // simple name - no dot nor comma - we create an internal appender
-                string fullName = InternalAppenderNamePrefix + name + InternalAppenderNameSuffix;
-
-                // get the type ignoring case and throw on error
-                appenderType = typeof(Appender).Assembly.GetType(fullName, true);
-            } else {
-                appenderType = Type.GetType(name);
-            }
-            return (Appender)Activator.CreateInstance(appenderType);
-        }
-
         public virtual int NeedsStackTrace()
         {
             return CompiledLayout.NeedsStackTrace();

@@ -37,6 +37,7 @@ using System.Diagnostics;
 
 namespace NLog.Appenders
 {
+    [Appender("Trace")]
     public class TraceAppender : NLog.Appender
     {
         public override void Append(LogEventInfo ev) {
