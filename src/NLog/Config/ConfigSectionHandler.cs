@@ -43,9 +43,14 @@ namespace NLog.Config
     {
         public object Create(object parent, object configContext, XmlNode section)
         {
-            string configFileName = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+            try {
+                string configFileName = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
 
-            return new XmlLoggingConfiguration(configFileName);
+                return new XmlLoggingConfiguration(configFileName);
+            } catch (Exception ex) {
+                InternalLogger.Error("ConfigSectionHandler error: {0}", ex);
+                throw ex;
+            }
         }
     }
 }

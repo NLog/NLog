@@ -36,6 +36,7 @@ using System.Web;
 
 namespace NLog.ASPNet.Appenders
 {
+    [Appender("ASPNetTrace")]
     public class ASPNetTraceAppender : NLog.Appender
     {
         public override void Append(LogEventInfo ev) {
