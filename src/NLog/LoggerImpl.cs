@@ -83,16 +83,35 @@ namespace NLog
             bool needTraceSources = false;
 
             for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next) {
+                // once we know we needTraceSources there's nothing more to look for
+                //
+                if (needTraceSources)
+                    break;
                 Appender app = awf.Appender;
                 
                 int nst = app.NeedsStackTrace();
                 
-                if (nst > 1) {
-                    needTraceSources = true;
-                }
                 if (nst > 0) {
                     needTrace = true;
+                }
+                if (nst > 1) {
+                    needTraceSources = true;
                     break;
+                }
+
+                ArrayList filterChain = awf.FilterChain;
+
+                for (int i = 0; i < filterChain.Count; ++i) {
+                    Filter filter = (Filter)filterChain[i];
+
+                    nst = filter.NeedsStackTrace();
+
+                    if (nst > 0) {
+                        needTrace = true;
+                    }
+                    if (nst > 1) {
+                        needTraceSources = true;
+                    }
                 }
             }
 

@@ -798,5 +798,24 @@ namespace NLog
         }
 
         #endregion
+        
+        public static LogLevel LogLevelFromString(string s) {
+            switch (s)
+            {
+                case "Debug":
+                    return LogLevel.Debug;
+                case "Info":
+                    return LogLevel.Info;
+                case "Warn":
+                    return LogLevel.Warn;
+                case "Error":
+                    return LogLevel.Error;
+                case "Fatal":
+                    return LogLevel.Fatal;
+                default:
+                    throw new ArgumentException("Unknown log level: " + s);
+            }
+        }
+
     }
 }

@@ -46,7 +46,7 @@ namespace NLog
     internal sealed class InternalLogger
     {
         private static LogLevel _logLevel = LogLevel.Debug;
-        private static bool _logToConsole = true;
+        private static bool _logToConsole = false;
 
         public static LogLevel LogLevel
         {
@@ -73,7 +73,13 @@ namespace NLog
         {
             try
             {
-                _logFile = Environment.GetEnvironmentVariable("NLOG_INTERNAL");
+                if (Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_TO_CONSOLE") != null) {
+                    LogToConsole = true;
+                }
+                if (Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL") != null) {
+                    LogLevel = Logger.LogLevelFromString(Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL"));
+                }
+                _logFile = Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_FILE");
                 Info("NLog internal logger initialized.");
             }
             catch

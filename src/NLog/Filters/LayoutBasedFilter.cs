@@ -56,5 +56,10 @@ namespace NLog.Filters
         {
             get { return _compiledlayout; }
         }
+
+        public override int NeedsStackTrace()
+        {
+            return CompiledLayout.NeedsStackTrace();
+        }
    }
 }
