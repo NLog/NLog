@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <project default="build" xmlns="http://nant.sf.net/NAnt.xsd">
+    <tstamp />
+
     <property name="nlog.debug" value="true" />
     <property name="nlog.define" value="NANT" />
 
@@ -11,6 +13,9 @@
 
     <property name="sourceforge.addr" value="jkowalski@nlog.sourceforge.net" />
     <property name="sourceforge.groupdir" value="/home/groups/n/nl/nlog" />
+
+    <property name="installer.name" value="nlog-${tstamp.date}.exe" />
+    <property name="source_snapshot.name" value="nlog-${tstamp.date}-src" />
 
     <target name="configure">
         <call target="configure-${framework::get-target-framework()}" />
@@ -244,36 +249,46 @@
 
         <foreach item="Line" in="nlog.version" delim="." property="nlog.major,nlog.minor,nlog.revision,nlog.build">
             <exec program="${makensis.exe}" commandline="/DVERSION=${nlog.major}.${nlog.minor}.${nlog.revision}.${nlog.build} tools\SetupNLog.nsi" />
-            <move file="SetupNLog.exe" tofile="nlog-${nlog.major}.${nlog.minor}.${nlog.revision}.${nlog.build}.exe" />
+            <move file="SetupNLog.exe" tofile="${installer.name}" overwrite="true" />
         </foreach>
     </target>
 
     <target name="doc" depends="configure">
-        <delete dir="doc/help" if="${directory::exists('doc/help')}" />
-        <mkdir dir="doc/help" />
-        <ndoc>
-            <assemblies basedir="${output.dir}">
-                <include name="NLog.dll" />
-            </assemblies>
-            <documenters>
-                <documenter name="MSDN">
-                    <property name="OutputDirectory" value="doc/help" />
-                    <!--
-                    <property name="SdkDocVersion" value="${link.sdkdoc.version}" />
-                    <property name="SdkLinksOnWeb" value="${link.sdkdoc.web}" />
-                    -->
-                    <!-- do not filter on namespace -->
-                    <property name="NamespaceFilter" value="" />
-                    <!-- set the name of the application for which docs are generated -->
-                    <property name="ApplicationName" value="NLog" />
-                    <property name="DocumentAttributes" value="True" />
-                    <property name="IncludeAssemblyVersion" value="True" />
-                    <property name="ShowMissingParams" value="True" />
-                    <property name="ShowMissingReturns" value="True" />
-                    <property name="ShowMissingValues" value="True" />
-                </documenter>
-            </documenters>
-        </ndoc>
+        <uptodate property="help.uptodate">
+            <targetfiles>
+                <include name="doc/help/Documentation.chm" />
+            </targetfiles>
+            <sourcefiles basedir="${output.dir}">
+                <include name="*.dll" />
+            </sourcefiles>
+        </uptodate>
+        <if test="${not help.uptodate}">
+            <delete dir="doc/help" if="${directory::exists('doc/help')}" />
+            <mkdir dir="doc/help" />
+            <ndoc>
+                <assemblies basedir="src">
+                    <include name="**/*.cs" />
+                </assemblies>
+                <documenters>
+                    <documenter name="MSDN">
+                        <property name="OutputDirectory" value="doc/help" />
+                        <!--
+                        <property name="SdkDocVersion" value="${link.sdkdoc.version}" />
+                        <property name="SdkLinksOnWeb" value="${link.sdkdoc.web}" />
+                        -->
+                        <!-- do not filter on namespace -->
+                        <property name="NamespaceFilter" value="" />
+                        <!-- set the name of the application for which docs are generated -->
+                        <property name="ApplicationName" value="NLog" />
+                        <property name="DocumentAttributes" value="True" />
+                        <property name="IncludeAssemblyVersion" value="True" />
+                        <property name="ShowMissingParams" value="True" />
+                        <property name="ShowMissingReturns" value="True" />
+                        <property name="ShowMissingValues" value="True" />
+                    </documenter>
+                </documenters>
+            </ndoc>
+        </if>
     </target>
 
     <target name="publish_website">
@@ -303,5 +318,28 @@
         <echo message="Unpacking the zipped help..." />
         <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_help.sh" />
         <echo message="Help deployed." />
+    </target>
+
+    <target name="source_snapshot">
+        <delete dir="${source_snapshot.name}" if="${directory::exists(source_snapshot.name)}" />
+        <exec program="svn" commandline="export . ${source_snapshot.name}" />
+        <zip zipfile="${source_snapshot.name}.zip">
+            <fileset basedir=".">
+                <include name="${source_snapshot.name}/**" />
+            </fileset>
+        </zip>
+    </target>
+
+    <target name="binary_snapshot">
+        <exec program="nant.exe" commandline="-t:net-1.0 release" />
+    </target>
+
+    <target name="publish_snapshot" depends="installer, source_snapshot, binary_snapshot">
+        <echo message="Uploading ${installer.name}..." />
+        <exec program="${scp.program}" commandline="${scp.program.args} ${installer.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/" />
+        <echo message="Uploading ${source_snapshot.name}..." />
+        <exec program="${scp.program}" commandline="${scp.program.args} ${source_snapshot.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/" />
+        <echo message="Fixing permissions..." />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/fix_group_perm.sh" />
     </target>
 </project>
