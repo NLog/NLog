@@ -32,44 +32,39 @@
 // 
 
 using System;
+using System.Collections;
 using System.Text;
 
 namespace NLog
 {
-    public abstract class Filter
+    internal class AppenderWithFilterChain
     {
-        protected Filter()
+        private Appender _appender;
+        private ArrayList _filterChain;
+        private AppenderWithFilterChain _next;
+
+        public AppenderWithFilterChain(Appender a, ArrayList filterChain)
         {
+            _appender = a;
+            _filterChain = filterChain;
         }
 
-        private FilterResult _filterResult;
-        private string _action = "";
+        public Appender Appender
+        {
+            get { return _appender; }
+            set { _appender = value; }
+        }
 
-        protected FilterResult Result
+        public ArrayList FilterChain
         {
-            get { return _filterResult; }
+            get { return _filterChain; }
+            set { _filterChain = value; }
         }
-            
-        public string Action
+
+        public AppenderWithFilterChain Next
         {
-            get { return _action; }
-            set {
-                _action = value; 
-                switch (_action) {
-                    case "log": 
-                        _filterResult = FilterResult.Log; 
-                    break;
-                    case "ignore": 
-                        _filterResult = FilterResult.Ignore; 
-                    break;
-                    case "neutral": 
-                        _filterResult = FilterResult.Neutral; 
-                    break;
-                    default: 
-                    throw new ArgumentException("Invalid value for the 'Action' parameter. Can be log/ignore/neutral");
-                }
-            }
+            get { return _next; }
+            set { _next = value; }
         }
-        public abstract FilterResult Check(LogEventInfo logMessage);
-   }
+    }
 }

@@ -58,6 +58,7 @@ namespace NLog.Config
 		private bool[] _logLevels = new bool[(int)LogLevel.MaxLevel + 1];
         private ArrayList _appenderNames = new ArrayList();
         private ArrayList _appenders = new ArrayList();
+        private ArrayList _filters = new ArrayList();
         private bool _final = false;
 
 		public ArrayList AppenderNames
@@ -69,6 +70,11 @@ namespace NLog.Config
 		{
 			get { return _appenders; }
 		}
+
+        public ArrayList Filters
+        {
+            get { return _filters; }
+        }
 
 		public bool Final
 		{

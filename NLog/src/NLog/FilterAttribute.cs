@@ -32,44 +32,21 @@
 // 
 
 using System;
-using System.Text;
 
 namespace NLog
 {
-    public abstract class Filter
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class FilterAttribute : Attribute
     {
-        protected Filter()
-        {
-        }
+        private string _name;
 
-        private FilterResult _filterResult;
-        private string _action = "";
-
-        protected FilterResult Result
-        {
-            get { return _filterResult; }
+        public FilterAttribute(string s) {
+            _name = s;
         }
-            
-        public string Action
+        
+        public string Name
         {
-            get { return _action; }
-            set {
-                _action = value; 
-                switch (_action) {
-                    case "log": 
-                        _filterResult = FilterResult.Log; 
-                    break;
-                    case "ignore": 
-                        _filterResult = FilterResult.Ignore; 
-                    break;
-                    case "neutral": 
-                        _filterResult = FilterResult.Neutral; 
-                    break;
-                    default: 
-                    throw new ArgumentException("Invalid value for the 'Action' parameter. Can be log/ignore/neutral");
-                }
-            }
+            get { return _name; }
         }
-        public abstract FilterResult Check(LogEventInfo logMessage);
-   }
+    }
 }
