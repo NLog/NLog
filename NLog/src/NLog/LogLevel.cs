@@ -33,13 +33,34 @@
 
 namespace NLog
 {
+	/// <summary>
+	/// Defines available log levels.
+	/// </summary>
     public enum LogLevel
     {
+		/// <summary>
+		/// Debug log level
+		/// </summary>
         Debug,
-        Info,
-        Warn,
-        Error,
-        Fatal,
-        MaxLevel = Fatal,
+		/// <summary>
+		/// Info log level
+		/// </summary>
+		Info,
+		/// <summary>
+		/// Warn log level
+		/// </summary>
+		Warn,
+		/// <summary>
+		/// Error log level
+		/// </summary>
+		Error,
+		/// <summary>
+		/// Fatal log level
+		/// </summary>
+		Fatal,
+		/// <summary>
+		/// Maximum log level. An alias for LogLevel.Fatal
+		/// </summary>
+		MaxLevel = Fatal,
     }
 }
