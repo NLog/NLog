@@ -176,7 +176,10 @@ namespace NLog
                 catch (Exception ex) 
                 {
                     InternalLogger.Error("FilterChain exception: {0}", ex);
-                    continue;
+					if (LogManager.ThrowExceptions)
+						throw;
+					else
+                    	continue;
                 }
 
                 try 
@@ -186,7 +189,10 @@ namespace NLog
                 catch (Exception ex) 
                 {
                     InternalLogger.Error("Appender exception: {0}", ex);
-                    continue;
+					if (LogManager.ThrowExceptions)
+						throw;
+					else
+                    	continue;
                 }
             }
         }

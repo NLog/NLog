@@ -115,6 +115,20 @@ namespace NLog.Config
                 }
             }
 
+            if (configElement.HasAttribute("throwExceptions")) 
+            {
+                switch (configElement.GetAttribute("throwExceptions")) 
+                {
+                    case "true":
+                        LogManager.ThrowExceptions = true;
+                        break;
+                        
+                    case "false":
+                        LogManager.ThrowExceptions = false;
+                        break;
+                }
+            }
+
             if (configElement.HasAttribute("internalLogToConsole")) 
             {
                 switch (configElement.GetAttribute("internalLogToConsole")) 
@@ -302,7 +316,9 @@ namespace NLog.Config
                     }
                     catch (Exception ex) 
                     {
-                        InternalLogger.Error("Error loading layout-appenders: {0}", ex);
+                        InternalLogger.Error("Error loading extensions: {0}", ex);
+						if (LogManager.ThrowExceptions) 
+							throw;
                     }
                     continue;
                 };
@@ -319,7 +335,9 @@ namespace NLog.Config
                     }
                     catch (Exception ex) 
                     {
-                        InternalLogger.Error("Error loading layout-appenders: {0}", ex);
+                        InternalLogger.Error("Error loading extensions: {0}", ex);
+						if (LogManager.ThrowExceptions) 
+							throw;
                     }
                     continue;
                 };
@@ -463,6 +481,8 @@ namespace NLog.Config
             catch (Exception ex)
             {
                 InternalLogger.Error("Could not load platform specific extensions: {0}", ex);
+				if (LogManager.ThrowExceptions)
+                	throw;
             }
         }
     }
