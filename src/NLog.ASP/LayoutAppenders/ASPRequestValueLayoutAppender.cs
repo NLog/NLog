@@ -32,53 +32,21 @@
 // 
 
 using System;
-using System.IO;
-using System.Security.Principal;
-using System.Runtime.InteropServices;
+using System.Text;
 
-using NLog;
-using NLog.Config;
-
-class Test {
-    static void Main(string[] args) {
-        NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
-        NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");
-
-        l.Debug("to jest debug");
-        l.Info("to jest info");
-        l.Warn("to jest warning");
-        l2.Debug("to jest debug");
-        l2.Info("to jest info");
-        l2.Warn("to jest warning");
-        l.Error("to jest error");
-        l.Fatal("to jest fatal");
-        l2.Error("to jest error");
-        l2.Fatal("to jest fatal");
+namespace NLog.ASP.LayoutAppenders
+{
+    [LayoutAppender("asp-request")]
+    public class ASPRequestValueLayoutAppender : LayoutAppender
+    {
+        public override int GetEstimatedBufferSize(LogEventInfo ev)
+        {
+            return 64;
+        }
         
-        File.Copy("Config1.nlog", "NLog.Test.exe.config", true);
-        System.Threading.Thread.Sleep(100);
-
-        l.Debug("to jest debug");
-        l.Info("to jest info");
-        l.Warn("to jest warning");
-        l2.Debug("to jest debug");
-        l2.Info("to jest info");
-        l2.Warn("to jest warning");
-        l.Error("to jest error");
-        l.Fatal("to jest fatal");
-        l2.Error("to jest error");
-        l2.Fatal("to jest fatal");
-        File.Copy("Config2.nlog", "NLog.Test.exe.config", true);
-        System.Threading.Thread.Sleep(100);
-        l.Debug("to jest debug");
-        l.Info("to jest info");
-        l.Warn("to jest warning");
-        l2.Debug("to jest debug");
-        l2.Info("to jest info");
-        l2.Warn("to jest warning");
-        l.Error("to jest error");
-        l.Fatal("to jest fatal");
-        l2.Error("to jest error");
-        l2.Fatal("to jest fatal");
+        public override void Append(StringBuilder builder, LogEventInfo ev)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

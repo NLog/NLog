@@ -32,11 +32,14 @@
 // 
 
 using System;
+using System.Runtime.InteropServices;
 
 using NLog;
 
 namespace NLog.ComInterop
 {
+    [ComVisible(true)]
+    [ProgId("NLog.Logger")]
 	public class Logger : ILogger
     {
         private static NLog.Logger _defaultLogger = new NullLogger();
