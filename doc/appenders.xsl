@@ -10,7 +10,7 @@
     <body onload="paintColors();">
         <h3>Appenders</h3>
         <h4>Available appenders</h4>
-        <p>The following appenders are available. Click on a link to see appender usage and configuration details.</p>
+        <p>The following appenders are available. Items marked with color may not be supported on all platforms. See particular layout appender documentation for more information. Click on a link to see appender usage and configuration details.</p>
 
         <div class="table">
         <table>
@@ -21,19 +21,29 @@
                 <th>Appender</th>
                 <th>Assembly</th>
                 <th>Description</th>
+                <th>Configurable</th>
             </tr>
             <xsl:for-each select="/appenders/appender">
-            <tr>
-                <td><a>
-                        <xsl:attribute name="href">#<xsl:value-of select="@name" />Appender</xsl:attribute>
-                        <xsl:value-of select="displayName" />
+                <tr>
+                    <xsl:if test="count(support) != 6">
+                        <xsl:attribute name="class">notall</xsl:attribute>
+                    </xsl:if>
+                    <td><a>
+                            <xsl:attribute name="href">#<xsl:value-of select="@name" />Appender</xsl:attribute>
+                            <xsl:value-of select="displayName" />
                     </a></td>
                     <td><xsl:value-of select="assembly" /></td>
                     <td><xsl:value-of select="description" /></td>
-            </tr>
+                    <td>
+                        <xsl:choose>
+                            <xsl:when test="count(parameter) != 0">Yes</xsl:when>
+                            <xsl:otherwise>No</xsl:otherwise>
+                        </xsl:choose>
+                    </td>
+                </tr>
             </xsl:for-each>
         </table>
-        </div>
+    </div>
         <h4>Loading additional appenders</h4>
         <p>If you want to use appenders not found in <code>NLog.dll</code> (such as <code>ASPNetTraceAppender</code>), 
             you need to load them by using the <code>&lt;extensions&gt;</code> element in 
@@ -47,8 +57,11 @@
         ...
 </nlog></xmp>
 
-        <h3>Configuration</h3>
-        <a name="#common" />
+        <h3>Common Appender Configuration</h3>
+        <a name="common" />
+        <p>The following configuration parameters may be used on with all appenders. Note that particular appenders
+            may choose to interpret some parameters differently (for example by ignoring the <code>layout</code> parameter).
+            This is clearly indicated in the appender documentation.</p>
  
         <div class="table">
         <table>
@@ -57,24 +70,28 @@
                 <th>Type</th>
                 <th>Required</th>
                 <th>Description</th>
+                <th>Default</th>
             </tr>
             <tr>
-                <td>Name</td>
+                <td><code>name</code></td>
                 <td>String</td>
                 <td>Yes</td>
                 <td>The name of the appender. This should be a human-readable name. For example: <code>console</code>, <code>masterlogfile</code>.</td>
+                <td></td>
             </tr>
             <tr>
-                <td>Type</td>
+                <td><code>type</code></td>
                 <td>String</td>
                 <td>Yes</td>
                 <td>The type of the appender. This can be a simple type name (for appenders defined in <code>NLog.dll</code>) or a fully qualified type name.</td>
+                <td></td>
             </tr>
             <tr>
-                <td>Layout</td>
+                <td><code>layout</code></td>
                 <td>Layout</td>
                 <td>No</td>
                 <td>The format of logged messages. See <a href="layoutappender.html">Layout Appenders</a> for more info.</td>
+                <td><code>${longdate}|${level}|${message}</code></td>
             </tr>
         </table>
         </div>
@@ -135,112 +152,6 @@
                 <h4>Example</h4>
             </xsl:if>
         </xsl:for-each>
-        <!--
-        <a name="#common" />
-        <h3>Common Appender Configuration</h3>
-        <p>
-        All appenders accept the following parameters:
-        </p>
-        <div class="table">
-        <table>
-            <tr>
-                <th>Parameter&#160;Name</th>
-                <th>Required</th>
-                <th>Description</th>
-            </tr>
-            <tr>
-                <td>Name</td>
-                <td>Yes</td>
-                <td>The name of the appender. This should be a human-readable name. For example: <code>console</code>, <code>masterlogfile</code>.</td>
-            </tr>
-            <tr>
-                <td>Type</td>
-                <td>Yes</td>
-                <td>The type of the appender. This can be a simple type name (for appenders defined in <code>NLog.dll</code>) or a fully qualified type name.</td>
-            </tr>
-            <tr>
-                <td>Layout</td>
-                <td>No</td>
-                <td>The format of logged messages. See <a href="layoutappender.html">Layout Appenders</a> for more info.</td>
-            </tr>
-        </table>
-        </div>
-        <h3>Console Appender</h3>
-        <h4>Summary</h4>
-        <p>
-        The Console Appender is very simple. It logs all output to the console.
-        </p>
-        <h4>Configuration</h4>
-        Console Appender accepts no additional parameters beside the <a href="#common">common</a> ones.
-        <h4>Example</h4>
-        The following example outputs all messages to the console using a simple 4-column format:
-        </p>
-
-<xmp class="code-xml">
-<nlog>
-   <appenders>
-       <appender name="console" type="Console" layout="${longdate}|{$level}|${logger}|${message}" />
-   </appenders>
-
-   <rules>
-       <logger name="*" appendTo="console" />
-   </rules>
-</nlog></xmp>
-
-        <hr size="1" />
-
-        <h3>File Appender</h3>
-        <p>
-        <h4>Summary</h4>
-        This appender is quite powerful. It lets you write your output to one or more files 
-        in an excusive or concurrent manner. 
-        <h4>Configuration</h4>
-        <p>
-        File Appender accepts a the following parameters in addition to the <a href="#common">common parameters</a>.
-        </p>
-        <div class="table">
-        <table>
-            <tr>
-                <th>Parameter&#160;Name</td>
-                <th>Required</td>
-                <th>Description</th>
-            </tr>
-            <tr>
-                <td>Name</td>
-                <td>Yes</td>
-                <td>The name of the appender. This should be a human-readable name. For example: <code>console</code>, <code>masterlogfile</code>.</td>
-            </tr>
-            <tr>
-                <td>Type</td>
-                <td>Yes</td>
-                <td>The type of the appender. This can be a simple type name (for appenders defined in <code>NLog.dll</code>) or a fully qualified type name.</td>
-            </tr>
-            <tr>
-                <td>Layout</td>
-                <td>No</td>
-                <td>The format of logged messages. See <a href="layoutappender.html">Layout Appenders</a> for more info.</td>
-            </tr>
-        </table>
-        </div>
-
-        <h4>Example</h4>
-        The following is an example of the configuration which causes 
-        each log message to be written to a file named LOGGER_NAME.SHORT_DATE.log.
-        </p>
-
-<xmp class="code-xml">
-<nlog>
-   <appenders>
-   <appender name="logfile" type="File" layout="${longdate}|{$level}|${logger}|${message}">
-        <filename>c:\path_to\log\files\${logger}.${shortdate}.log</filename>
-   </appenders>
-
-   <rules>
-        <logger name="*" appendTo="logfile" />
-   </rules>
-</nlog></xmp>
-<hr size="1" />
--->
     </body>
 </html>
 
