@@ -43,9 +43,9 @@ namespace NLog.Config
     {
         public object Create(object parent, object configContext, XmlNode section)
         {
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string configFileName = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
 
-            return new XmlLoggingConfiguration((XmlElement)section, baseDirectory);
+            return new XmlLoggingConfiguration(configFileName);
         }
     }
 }

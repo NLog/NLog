@@ -5,11 +5,11 @@
     </configSections>
     <nlog autoReload="true">
         <appenders>
-            <appender name="console" type="Console" layout="${machinename}" />
+            <appender name="console" type="Console" layout="CONFIG2: ${machinename}" />
         </appenders>
 
         <rules>
-            <logger name="*" level="Debug" appendTo="console" />
+            <logger name="*" appendTo="console" />
         </rules>
     </nlog>
 </configuration>

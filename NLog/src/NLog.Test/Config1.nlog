@@ -5,7 +5,7 @@
     </configSections>
     <nlog autoReload="true">
         <appenders>
-            <appender name="console" type="Console" layout="${machinename}" />
+            <appender name="console" type="Console" layout="CONFIG1: ${machinename}" />
         </appenders>
 
         <rules>
