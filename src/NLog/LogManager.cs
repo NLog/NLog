@@ -40,6 +40,7 @@ using System.Reflection;
 using System.Threading;
 using System.Diagnostics;
 using System.Security;
+using System.Text;
 
 using NLog.Config;
 using NLog.Internal;
@@ -181,6 +182,7 @@ namespace NLog
 
                     if (_config != null)
                     {
+                        Dump(_config);
                         _watcher.Watch(_config.FileNamesToWatch);
                     }
 #else
@@ -225,6 +227,8 @@ namespace NLog
                     _config = value;
                     _configLoaded = true;
 
+                    Dump(value);
+
                     if (_config != null)
                     {
                         ReconfigExistingLoggers(_config);
@@ -252,6 +256,25 @@ namespace NLog
             ReloadConfigOnNextLog = true;
         }
 #endif 
+
+        private static void Dump(LoggingConfiguration config)
+        {
+            if (!InternalLogger.IsDebugEnabled)
+                return;
+
+            InternalLogger.Info("--- NLog configuration dump. ---");
+            InternalLogger.Info("Appenders:");
+            foreach (Appender appender in config.Appenders.Values)
+            {
+                InternalLogger.Info("{0}", appender);
+            }
+            InternalLogger.Info("Rules:");
+            foreach (AppenderRule rule in config.AppenderRules)
+            {
+                InternalLogger.Info("{0}", rule);
+            }
+            InternalLogger.Info("--- End of NLog configuration dump ---");
+        }
 
         internal static void ReloadConfig()
         {
@@ -320,6 +343,20 @@ namespace NLog
                             break;
                     }
                 }
+            }
+
+            InternalLogger.Debug("Appenders for {0} by level:", name);
+            for (int i = 0; i <= (int)LogLevel.MaxLevel; ++i)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendFormat("{0} =>", (LogLevel)i);
+                for (AppenderWithFilterChain afc = appendersByLevel[i]; afc != null; afc = afc.Next)
+                {
+                    sb.AppendFormat(" {0}", afc.Appender.Name);
+                    if (afc.FilterChain.Count > 0)
+                        sb.AppendFormat("({0} filters)", afc.FilterChain.Count);
+                }
+                InternalLogger.Debug(sb.ToString());
             }
             return appendersByLevel;
         }
