@@ -82,7 +82,9 @@ namespace NLog
             bool needTrace = false;
             bool needTraceSources = false;
 
-            foreach (Appender app in appenders) {
+            for (int i = 0; i < appenders.Count; ++i) {
+                Appender app = (Appender)appenders[i];
+                
                 int nst = app.NeedsStackTrace();
                 
                 if (nst > 1) {
@@ -116,7 +118,9 @@ namespace NLog
                 logMessage.SetStackTrace(stackTrace, firstUserFrame);
             }
 #endif            
-            foreach (Appender app in appenders) {
+            for (int i = 0; i < appenders.Count; ++i) {
+                Appender app = (Appender)appenders[i];
+                
                 try {
                     app.Append(logMessage);
                 }
