@@ -60,7 +60,7 @@ namespace NLog
         }
 
         public static void AddLayoutAppendersFromAssembly(Assembly theAssembly) {
-            // Console.WriteLine("AddLayoutAppendersFromAssembly('{0}')", assembly.FullName);
+            InternalLogger.Debug("AddLayoutAppendersFromAssembly('{0}')", theAssembly.FullName);
             foreach (Type t in theAssembly.GetTypes()) {
                 LayoutAppenderAttribute[] attributes = (LayoutAppenderAttribute[])t.GetCustomAttributes(typeof(LayoutAppenderAttribute), false);
                 if (attributes != null) {
@@ -79,7 +79,7 @@ namespace NLog
         }
 
         public static void AddLayoutAppender(string name, Type t) {
-            // Console.WriteLine("AddLayoutAppender('{0}','{1}')", name, t.FullName);
+            InternalLogger.Debug("AddLayoutAppender('{0}','{1}')", name, t.FullName);
             _appenders[name] = t;
         }
 

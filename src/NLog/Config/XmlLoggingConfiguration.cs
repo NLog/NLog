@@ -114,7 +114,7 @@ namespace NLog.Config
             
             foreach (XmlElement el in configElement.GetElementsByTagName("layout-appenders"))
             {
-                AddLayoutAppendersFromElement(el);
+                AddLayoutAppendersFromElement(el, baseDirectory);
             }
             
             foreach (XmlElement el in configElement.GetElementsByTagName("appenders"))
@@ -219,7 +219,7 @@ namespace NLog.Config
             }
         }
 
-        private static void AddLayoutAppendersFromElement(XmlElement element) {
+        private static void AddLayoutAppendersFromElement(XmlElement element, string baseDirectory) {
             if (element == null)
                 return;
 
@@ -229,8 +229,15 @@ namespace NLog.Config
                 string assemblyFile = appenderElement.GetAttribute("assemblyFile");
 
                 if (assemblyFile != null && assemblyFile.Length > 0) {
-					Assembly asm = Assembly.LoadFrom(assemblyFile);
-                    LayoutAppenderFactory.AddLayoutAppendersFromAssembly(asm);
+                    try {
+                        string fullFileName = Path.Combine(baseDirectory, assemblyFile);
+                        InternalLogger.Info("Loading assemblyFile: {0}", fullFileName);
+                        Assembly asm = Assembly.LoadFrom(fullFileName);
+                        LayoutAppenderFactory.AddLayoutAppendersFromAssembly(asm);
+                    }
+                    catch (Exception ex) {
+                        InternalLogger.Error("Error loading layout-appenders: {0}", ex);
+                    }
                     continue;
                 };
 
@@ -238,15 +245,21 @@ namespace NLog.Config
                 string assemblyPartialName = appenderElement.GetAttribute("assemblyPartialName");
 
                 if (assemblyPartialName != null && assemblyPartialName.Length > 0) {
-					Assembly asm = Assembly.LoadWithPartialName(assemblyPartialName);
-					if (asm != null) 
-					{
-						LayoutAppenderFactory.AddLayoutAppendersFromAssembly(asm);
-					}
-					else
-					{
-						throw new ApplicationException("Assembly with partial name " + assemblyPartialName + " not found.");
-					}
+                    try {
+                        InternalLogger.Info("Loading assemblyPartialName: {0}", assemblyPartialName);
+                        Assembly asm = Assembly.LoadWithPartialName(assemblyPartialName);
+                        if (asm != null) 
+                        {
+                            LayoutAppenderFactory.AddLayoutAppendersFromAssembly(asm);
+                        }
+                        else
+                        {
+                            throw new ApplicationException("Assembly with partial name " + assemblyPartialName + " not found.");
+                        }
+                    }
+                    catch (Exception ex) {
+                        InternalLogger.Error("Error loading layout-appenders: {0}", ex);
+                    }
                     continue;
                 };
 #endif
@@ -254,8 +267,14 @@ namespace NLog.Config
                 string assemblyName = appenderElement.GetAttribute("assembly");
 
                 if (assemblyName != null && assemblyName.Length > 0) {
-					Assembly asm = Assembly.Load(assemblyName);
-                    LayoutAppenderFactory.AddLayoutAppendersFromAssembly(asm);
+                    try {
+                        InternalLogger.Info("Loading assemblyName: {0}", assemblyName);
+                        Assembly asm = Assembly.Load(assemblyName);
+                        LayoutAppenderFactory.AddLayoutAppendersFromAssembly(asm);
+                    }
+                    catch (Exception ex) {
+                        InternalLogger.Error("Error loading layout-appenders: {0}", ex);
+                    }
                     continue;
                 };
 
