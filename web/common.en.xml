@@ -8,6 +8,8 @@
             <subnav href="howto_write_appender" label="Write an appender" />
             <subnav href="howto_write_layout_appender" label="Write a layout appender" />
             <subnav href="howto_write_filter" label="Write a filter" />
+            <subnav href="howto_optimize_performance" label="Optimize logging performance" />
+            <subnav href="howto_troubleshoot" label="Troubleshoot logging problems" />
         </nav>
         <nav href="api" label="Logging API">
             <subnav href="netapi" label=".NET API" />

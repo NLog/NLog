@@ -3,7 +3,7 @@
 <content lang="en" id="news">
     <h1>News</h1>
     <table width="100%">
-        <tr><td class="newsdate">2005-03-08</td><td class="newstext"><b style="color:red">NLog 0.5 has been released!</b>. This work is based on 6 months of testing and should be production-ready. Download it <a href="http://sourceforge.net/project/showfiles.php?group_id=116456">here</a>.</td></tr>
+        <tr><td class="newsdate">2005-03-08</td><td class="newstext"><b style="color:red">NLog 0.5 beta 1 has been released!</b>. This work is based on 6 months of testing and should be production-ready. Download it <a href="http://sourceforge.net/project/showfiles.php?group_id=116456">here</a>.</td></tr>
         <tr><td class="newsdate">2004-09-28</td><td class="newstext">Improved support for .NETCF and added MessageBoxAppender. Also added the new .NETCF binary snapshot. You can get the new version from the <a href="snapshots/">snapshots</a> directory.</td></tr>
         <tr><td class="newsdate">2004-09-02</td><td class="newstext">Added preliminary support for database logging. It's available in SVN repository or in the <a href="snapshots/">snapshots</a>.</td></tr>
         <tr><td class="newsdate">2004-08-30</td><td class="newstext"><b>NLog 0.2 beta 1 has been released!</b>. This is the initial public release and includes source and binary package plus a Win32-based graphical <a href="http://nsis.sourceforge.net/">installer</a> which is a one-click way to install NLog for use with VS.NET. Download it <a href="http://sourceforge.net/project/showfiles.php?group_id=116456">here</a>.</td></tr>

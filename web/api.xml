@@ -6,9 +6,9 @@
         NLog provides the following Application Programming Interfaces (APIs)
     </p>
     <ul>
-        <li><link href="netapi">.NET API</link></li>
-        <li><link href="capi">C/C++ API</link></li>
-        <li><link href="comapi">COM API</link></li>
+        <li><link href="netapi">.NET API</link> - native API</li>
+        <li><link href="capi">C/C++ API</link> - a wrapper API to be used in legacy COM applications</li>
+        <li><link href="comapi">COM API</link> - a wrapper API to be used in legacy C/C++ applications</li>
     </ul>
 </content>
 

@@ -1,5 +1,6 @@
 set PrettyPrinter=D:\Work\CSharpPrettyPrint\bin\Debug\csharpprettyprint.exe 
 %PrettyPrinter% jscript test.js test.js.html
+%PrettyPrinter% csharp Performance.cs Performance.cs.html
 %PrettyPrinter% csharp AddAppender.cs AddAppender.cs.html
 %PrettyPrinter% csharp AddLayoutAppender.cs AddLayoutAppender.cs.html
 %PrettyPrinter% csharp MyFirstAppender.cs MyFirstAppender.cs.html
