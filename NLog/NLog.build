@@ -415,7 +415,7 @@
         <echo message="Uploading the zipped website..." />
         <exec program="${scp.program}" commandline="${scp.program.args} website.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
         <echo message="Unpacking the zipped website..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_new_website.sh" />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_website.sh" />
         <echo message="Website deployed." />
     </target>
 

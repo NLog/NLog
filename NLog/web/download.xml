@@ -9,7 +9,6 @@
     <h5>Released Packages</h5>
     <p>
         NLog source and binary packages can be downloaded from the <a href="http://sourceforge.net/project/showfiles.php?group_id=116456">sourceforge file release system</a>.
-
     </p>
     <h5>Subversion Repository</h5>
     <p>NLog uses Subversion 1.0 (<a href="http://subversion.tigris.org">http://subversion.tigris.org</a>)

@@ -444,6 +444,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "LayoutAppenders\Exception.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "LayoutAppenders\Guid.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -525,6 +530,11 @@
                 />
                 <File
                     RelPath = "LayoutAppenders\ShortDate.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutAppenders\ThreadID.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
