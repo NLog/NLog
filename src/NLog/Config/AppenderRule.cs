@@ -203,6 +203,7 @@ namespace NLog.Config
 
         public void Resolve(LoggingConfiguration configuration)
         {
+            Appenders.Clear();
             foreach (string s in AppenderNames)
             {
                 Appender app = configuration.FindAppenderByName(s);

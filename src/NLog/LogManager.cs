@@ -128,14 +128,15 @@ namespace NLog
                     if (_config == null)
                     {
                         string configFile = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
-			if (configFile != null) {
-				configFile = configFile.Replace(".config", ".nlog");
-				if (File.Exists(configFile))
-				{
-					InternalLogger.Debug("Attempting to load config from {0}", configFile);
-					_config = new XmlLoggingConfiguration(configFile);
-				}
-			}
+                        if (configFile != null) 
+                        {
+                            configFile = configFile.Replace(".config", ".nlog");
+                            if (File.Exists(configFile))
+                            {
+                                InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                                _config = new XmlLoggingConfiguration(configFile);
+                            }
+                        }
                     }
                     if (_config == null)
                     {
