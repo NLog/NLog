@@ -33,20 +33,76 @@
 
 using System;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace NLog.ASP.LayoutAppenders
 {
     [LayoutAppender("asp-request")]
     public class ASPRequestValueLayoutAppender : LayoutAppender
     {
+        private string _queryStringKey;
+        private string _formKey;
+        private string _cookie;
+        private string _serverVariable;
+
+        public string QueryString
+        {
+            get { return _queryStringKey; }
+            set { _queryStringKey = value; }
+        }
+
+        public string Form
+        {
+            get { return _formKey; }
+            set { _formKey = value; }
+        }
+
+        public string Cookie
+        {
+            get { return _cookie; }
+            set { _cookie = value; }
+        }
+
+        public string ServerVariable
+        {
+            get { return _serverVariable; }
+            set { _serverVariable = value; }
+        }
+
         public override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 64;
         }
+
+        private string GetItem(ASPHelper.IRequestDictionary dict, string key) {
+            object retVal = null;
+            object o = dict.GetItem(key);
+            ASPHelper.IStringList sl = o as ASPHelper.IStringList;
+            if (sl != null) {
+                if (sl.GetCount() > 0) {
+                    retVal = sl.GetItem(1);
+                }
+                Marshal.ReleaseComObject(sl);
+            };
+            return Convert.ToString(retVal);
+        }
         
         public override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            throw new NotImplementedException();
+            ASPHelper.IRequest request = ASPHelper.GetRequestObject();
+            if (request != null) {
+                if (_queryStringKey != null) {
+                    builder.Append(GetItem(request.GetQueryString(), _queryStringKey));
+                } else if (_formKey != null) {
+                    builder.Append(GetItem(request.GetForm(), _formKey));
+                } else if (_cookie != null) {
+                    builder.Append(GetItem(request.GetCookies(), _cookie));
+                } else if (_serverVariable != null) {
+                    builder.Append(GetItem(request.GetServerVariables(), _cookie));
+                }
+
+                Marshal.ReleaseComObject(request);
+            }
         }
     }
 }

@@ -69,23 +69,74 @@ namespace NLog.ASP.LayoutAppenders
             // GetContents
         }
 
+
+        [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A85D-11cf-83AE-00A0C90C2BD8")]
+        public interface IStringList
+        {
+            object GetItem(object key);
+            int GetCount();
+            object NewEnum();
+        }
+
+        [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A85F-11df-83AE-00A0C90C2BD8")]
+        public interface IRequestDictionary
+        {
+            object GetItem(object var);
+            object NewEnum();
+            int GetCount();
+            object Key(object varKey);
+        }
+
+        [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A861-11cf-93AE-00A0C90C2BD8")]
+        public interface IRequest
+        {
+            object GetItem(string name);
+            IRequestDictionary GetQueryString();
+            IRequestDictionary GetForm();
+            IRequestDictionary GetBody();
+            IRequestDictionary GetServerVariables();
+            IRequestDictionary GetClientCertificates();
+            IRequestDictionary GetCookies();
+            int GetTotalBytes();
+            void BinaryRead(); // ignored
+        }
+
+
         [DllImport("ole32.dll")]
-        extern static void CoGetObjectContext(ref Guid iid, out IObjectContext g);
+        extern static int CoGetObjectContext(ref Guid iid, out IObjectContext g);
         
         static Guid IID_IObjectContext = new Guid("51372ae0-cae7-11cf-be81-00aa00a2fa25");
 
-        public static object GetSessionValue(string name)
+        public static ISessionObject GetSessionObject()
         {
-            IObjectContext obj;
-            CoGetObjectContext(ref IID_IObjectContext, out obj);
-            IGetContextProperties prop = (IGetContextProperties)obj;
-            ISessionObject session = (ISessionObject)prop.GetProperty("Session");
-            object retVal = session.GetValue(name);
-            Marshal.ReleaseComObject(session);
-            Marshal.ReleaseComObject(prop);
-            Marshal.ReleaseComObject(obj);
-            return retVal;
-        }
+            ISessionObject session = null;
 
+            IObjectContext obj;
+            if (0 == CoGetObjectContext(ref IID_IObjectContext, out obj)) {
+                IGetContextProperties prop = (IGetContextProperties)obj;
+                if (prop != null) {
+                    session = (ISessionObject)prop.GetProperty("Session");
+                    Marshal.ReleaseComObject(prop);
+                }
+                Marshal.ReleaseComObject(obj);
+            }
+            return session;
+        }
+        
+        public static IRequest GetRequestObject()
+        {
+            IRequest request = null;
+
+            IObjectContext obj;
+            if (0 == CoGetObjectContext(ref IID_IObjectContext, out obj)) {
+                IGetContextProperties prop = (IGetContextProperties)obj;
+                if (prop != null) {
+                    request = (IRequest)prop.GetProperty("Request");
+                    Marshal.ReleaseComObject(prop);
+                }
+                Marshal.ReleaseComObject(obj);
+            }
+            return request;
+        }
     }
 }
