@@ -99,17 +99,25 @@ div.table {
     background-color: #f8f8f8;
 }
 
+div.summarytable
+{
+    margin-left: 15px;
+    font-family: Verdana, Arial, Helvetica, Geneva, SunSans-Regular, sans-serif;
+}
+
 .summarytable table {
     font-size: 100%;
+    width: 93%;
     border-collapse: collapse;
     background-color: #fffff0;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border: 1px solid #e0e0c0;
 }
 
 .summarytable th {
     font-weight: bold;
-    padding-left: 15px;
+    width: 25%;
+    vertical-align: top;
+    padding-left: 5px;
     padding-right: 15px;
     text-align: left;
 }
