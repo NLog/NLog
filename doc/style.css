@@ -145,3 +145,8 @@ hr {
 .table tr.notall {
     background-color: #f0f0ff;
 }
+
+span.newsdate {
+    color: #0000c0;
+    font-weight: bold;
+}
