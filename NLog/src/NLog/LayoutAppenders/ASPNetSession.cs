@@ -39,13 +39,19 @@ using System.Web;
 namespace NLog.LayoutAppenders
 {
     [LayoutAppender("aspnet-session")]
-    public class ASPNETSessioValueLayoutAppender: LayoutAppender
+    public class ASPNETSessionValueLayoutAppender: LayoutAppender
     {
-        private string _parameter = null;
-
+        private string _variable = null;
+        
+        public string Variable
+        {
+            get { return _variable; }
+            set { _variable = value; }
+        }
+        
         protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
-            if (_parameter == null)
+            if (_variable == null)
                 return 0;
             else
                 return 64;
@@ -53,14 +59,14 @@ namespace NLog.LayoutAppenders
 
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            if (_parameter == null)
+            if (_variable == null)
                 return ;
 
             HttpContext context = HttpContext.Current;
             if (context == null)
                 return ;
 
-            builder.Append(context.Session[_parameter]);
+            builder.Append(context.Session[_variable]);
         }
     }
 }
