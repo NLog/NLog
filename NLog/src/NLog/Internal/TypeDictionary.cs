@@ -43,132 +43,132 @@ using NLog.Config;
 
 namespace NLog.Internal
 {
-	/// <summary>
-	/// A dictionary with keys of type string and values of type Type
-	/// </summary>
-	internal class TypeDictionary: System.Collections.DictionaryBase
-	{
-		/// <summary>
-		/// Initializes a new empty instance of the TypeDictionary class
-		/// </summary>
-		public TypeDictionary()
-		{
-			// empty
-		}
+    /// <summary>
+    /// A dictionary with keys of type string and values of type Type
+    /// </summary>
+    internal class TypeDictionary: System.Collections.DictionaryBase
+    {
+        /// <summary>
+        /// Initializes a new empty instance of the TypeDictionary class
+        /// </summary>
+        public TypeDictionary()
+        {
+            // empty
+        }
 
-		/// <summary>
-		/// Gets or sets the Type associated with the given string
-		/// </summary>
-		/// <param name="key">
-		/// The string whose value to get or set.
-		/// </param>
-		public virtual Type this[string key]
-		{
-			get
-			{
-				return (Type) this.Dictionary[key];
-			}
-			set
-			{
-				this.Dictionary[key] = value;
-			}
-		}
+        /// <summary>
+        /// Gets or sets the Type associated with the given string
+        /// </summary>
+        /// <param name="key">
+        /// The string whose value to get or set.
+        /// </param>
+        public virtual Type this[string key]
+        {
+            get
+            {
+                return (Type) this.Dictionary[key];
+            }
+            set
+            {
+                this.Dictionary[key] = value;
+            }
+        }
 
-		/// <summary>
-		/// Adds an element with the specified key and value to this TypeDictionary.
-		/// </summary>
-		/// <param name="key">
-		/// The string key of the element to add.
-		/// </param>
-		/// <param name="value">
-		/// The Type value of the element to add.
-		/// </param>
-		public virtual void Add(string key, Type value)
-		{
-			this.Dictionary.Add(key, value);
-		}
+        /// <summary>
+        /// Adds an element with the specified key and value to this TypeDictionary.
+        /// </summary>
+        /// <param name="key">
+        /// The string key of the element to add.
+        /// </param>
+        /// <param name="value">
+        /// The Type value of the element to add.
+        /// </param>
+        public virtual void Add(string key, Type value)
+        {
+            this.Dictionary.Add(key, value);
+        }
 
-		/// <summary>
-		/// Determines whether this TypeDictionary contains a specific key.
-		/// </summary>
-		/// <param name="key">
-		/// The string key to locate in this TypeDictionary.
-		/// </param>
-		/// <returns>
-		/// true if this TypeDictionary contains an element with the specified key;
-		/// otherwise, false.
-		/// </returns>
-		public virtual bool Contains(string key)
-		{
-			return this.Dictionary.Contains(key);
-		}
+        /// <summary>
+        /// Determines whether this TypeDictionary contains a specific key.
+        /// </summary>
+        /// <param name="key">
+        /// The string key to locate in this TypeDictionary.
+        /// </param>
+        /// <returns>
+        /// true if this TypeDictionary contains an element with the specified key;
+        /// otherwise, false.
+        /// </returns>
+        public virtual bool Contains(string key)
+        {
+            return this.Dictionary.Contains(key);
+        }
 
-		/// <summary>
-		/// Determines whether this TypeDictionary contains a specific key.
-		/// </summary>
-		/// <param name="key">
-		/// The string key to locate in this TypeDictionary.
-		/// </param>
-		/// <returns>
-		/// true if this TypeDictionary contains an element with the specified key;
-		/// otherwise, false.
-		/// </returns>
-		public virtual bool ContainsKey(string key)
-		{
-			return this.Dictionary.Contains(key);
-		}
+        /// <summary>
+        /// Determines whether this TypeDictionary contains a specific key.
+        /// </summary>
+        /// <param name="key">
+        /// The string key to locate in this TypeDictionary.
+        /// </param>
+        /// <returns>
+        /// true if this TypeDictionary contains an element with the specified key;
+        /// otherwise, false.
+        /// </returns>
+        public virtual bool ContainsKey(string key)
+        {
+            return this.Dictionary.Contains(key);
+        }
 
-		/// <summary>
-		/// Determines whether this TypeDictionary contains a specific value.
-		/// </summary>
-		/// <param name="value">
-		/// The Type value to locate in this TypeDictionary.
-		/// </param>
-		/// <returns>
-		/// true if this TypeDictionary contains an element with the specified value;
-		/// otherwise, false.
-		/// </returns>
-		public virtual bool ContainsValue(Type value)
-		{
-			foreach (Type item in this.Dictionary.Values)
-			{
-				if (item == value)
-					return true;
-			}
-			return false;
-		}
+        /// <summary>
+        /// Determines whether this TypeDictionary contains a specific value.
+        /// </summary>
+        /// <param name="value">
+        /// The Type value to locate in this TypeDictionary.
+        /// </param>
+        /// <returns>
+        /// true if this TypeDictionary contains an element with the specified value;
+        /// otherwise, false.
+        /// </returns>
+        public virtual bool ContainsValue(Type value)
+        {
+            foreach (Type item in this.Dictionary.Values)
+            {
+                if (item == value)
+                    return true;
+            }
+            return false;
+        }
 
-		/// <summary>
-		/// Removes the element with the specified key from this TypeDictionary.
-		/// </summary>
-		/// <param name="key">
-		/// The string key of the element to remove.
-		/// </param>
-		public virtual void Remove(string key)
-		{
-			this.Dictionary.Remove(key);
-		}
+        /// <summary>
+        /// Removes the element with the specified key from this TypeDictionary.
+        /// </summary>
+        /// <param name="key">
+        /// The string key of the element to remove.
+        /// </param>
+        public virtual void Remove(string key)
+        {
+            this.Dictionary.Remove(key);
+        }
 
-		/// <summary>
-		/// Gets a collection containing the keys in this TypeDictionary.
-		/// </summary>
-		public virtual System.Collections.ICollection Keys
-		{
-			get
-			{
-				return this.Dictionary.Keys;
-			}
-		}
+        /// <summary>
+        /// Gets a collection containing the keys in this TypeDictionary.
+        /// </summary>
+        public virtual System.Collections.ICollection Keys
+        {
+            get
+            {
+                return this.Dictionary.Keys;
+            }
+        }
 
-		/// <summary>
-		/// Gets a collection containing the values in this TypeDictionary.
-		/// </summary>
-		public virtual System.Collections.ICollection Values
-		{
-			get
-			{
-				return this.Dictionary.Values;
-			}
-		}
-	}
+        /// <summary>
+        /// Gets a collection containing the values in this TypeDictionary.
+        /// </summary>
+        public virtual System.Collections.ICollection Values
+        {
+            get
+            {
+                return this.Dictionary.Values;
+            }
+        }
+    }
 }

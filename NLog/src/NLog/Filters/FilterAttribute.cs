@@ -40,7 +40,8 @@ namespace NLog.Filters
     {
         private string _name;
 
-        public FilterAttribute(string s) {
+        public FilterAttribute(string s) 
+        {
             _name = s;
         }
         

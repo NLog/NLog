@@ -41,20 +41,20 @@ namespace NLog.Appenders
     [Appender("Null")]
     public sealed class NullAppender : Appender
     {
-		private bool _formatMessage = false;
+        private bool _formatMessage = false;
 
-		public bool FormatMessage
-		{
-			get { return _formatMessage; }
-			set { _formatMessage = value; }
-		}
+        public bool FormatMessage
+        {
+            get { return _formatMessage; }
+            set { _formatMessage = value; }
+        }
 
-		protected internal override void Append(LogEventInfo ev) 
-		{
-			if (_formatMessage)
-			{
-				CompiledLayout.GetFormattedMessage(ev);
-			}
-		}
+        protected internal override void Append(LogEventInfo ev) 
+        {
+            if (_formatMessage)
+            {
+                CompiledLayout.GetFormattedMessage(ev);
+            }
+        }
     }
 }

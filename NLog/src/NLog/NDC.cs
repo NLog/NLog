@@ -43,40 +43,51 @@ namespace NLog
     {
         private NDC() { }
 
-        public static IDisposable Push(string text) {
+        public static IDisposable Push(string text) 
+        {
             StringCollection stack = GetThreadStack();
             int previousCount = stack.Count;
             stack.Add(text);
             return new StackPopper(stack, previousCount);
         }
 
-        public static string Pop() {
+        public static string Pop() 
+        {
             StringCollection stack = GetThreadStack();
-            if (stack.Count > 0) {
+            if (stack.Count > 0) 
+            {
                 string retVal = (string)stack[stack.Count - 1];
                 stack.RemoveAt(stack.Count - 1);
                 return retVal;
-            } else {
+            } 
+            else 
+            {
                 return String.Empty;
             }
         }
 
-        public static string GetTopMessage() {
+        public static string GetTopMessage() 
+        {
             StringCollection stack = GetThreadStack();
-            if (stack.Count > 0) {
+            if (stack.Count > 0) 
+            {
                 return (string)stack[stack.Count - 1];
-            } else {
+            } 
+            else 
+            {
                 return String.Empty;
             }
         }
 
-        public static void Clear() {
+        public static void Clear() 
+        {
             StringCollection stack = GetThreadStack();
 
             stack.Clear();
         }
 
-        public static string GetAllMessages(string separator) {
+        public static string GetAllMessages(string separator) 
+        {
             StringCollection stack = GetThreadStack();
             if (stack.Count == 0)
                 return String.Empty;
@@ -85,19 +96,22 @@ namespace NLog
                 return GetTopMessage();
 
             int totalLength = ((string)stack[0]).Length;
-            for (int i = 1; i < stack.Count; ++i) {
+            for (int i = 1; i < stack.Count; ++i) 
+            {
                 totalLength += separator.Length;
             }
             StringBuilder sb = new StringBuilder(totalLength);
             sb.Append((string)stack[0]);
-            for (int i = 1; i < stack.Count; ++i) {
+            for (int i = 1; i < stack.Count; ++i) 
+            {
                 sb.Append(separator);
                 sb.Append((string)stack[i]);
             }
             return sb.ToString();
         }
 
-        public static string GetBottomMessages(int count, string separator) {
+        public static string GetBottomMessages(int count, string separator) 
+        {
             StringCollection stack = GetThreadStack();
             if (count > stack.Count)
                 count = stack.Count;
@@ -108,41 +122,48 @@ namespace NLog
                 return ((string)stack[0]);
 
             int totalLength = ((string)stack[0]).Length;
-            for (int i = 1; i < count; ++i) {
+            for (int i = 1; i < count; ++i) 
+            {
                 totalLength += separator.Length;
             }
             StringBuilder sb = new StringBuilder(totalLength);
             sb.Append((string)stack[0]);
-            for (int i = 1; i < count; ++i) {
+            for (int i = 1; i < count; ++i) 
+            {
                 sb.Append(separator);
                 sb.Append((string)stack[i]);
             }
             return sb.ToString();
         }
 
-        public static string GetTopMessages(int count, string separator) {
+        public static string GetTopMessages(int count, string separator) 
+        {
             StringCollection stack = GetThreadStack();
             if (count >= stack.Count)
                 return GetAllMessages(separator);
 
             int pos0 = stack.Count - count;
             int totalLength = ((string)stack[pos0]).Length;
-            for (int i = pos0 + 1; i < stack.Count; ++i) {
+            for (int i = pos0 + 1; i < stack.Count; ++i) 
+            {
                 totalLength += separator.Length;
             }
             StringBuilder sb = new StringBuilder(totalLength);
             sb.Append((string)stack[pos0]);
-            for (int i = pos0 + 1; i < stack.Count; ++i) {
+            for (int i = pos0 + 1; i < stack.Count; ++i) 
+            {
                 sb.Append(separator);
                 sb.Append((string)stack[i]);
             }
             return sb.ToString();
         }
 
-        private static StringCollection GetThreadStack() {
+        private static StringCollection GetThreadStack() 
+        {
             StringCollection threadStack = (StringCollection)System.Threading.Thread.GetData(_dataSlot);
             
-            if (threadStack == null) {
+            if (threadStack == null) 
+            {
                 threadStack = new StringCollection();
                 System.Threading.Thread.SetData(_dataSlot, threadStack);
             }
@@ -155,19 +176,21 @@ namespace NLog
             private StringCollection _stack;
             private int _previousCount;
 
-            public StackPopper(StringCollection stack, int previousCount) {
+            public StackPopper(StringCollection stack, int previousCount) 
+            {
                 _stack = stack;
                 _previousCount = previousCount;
             }
 
             void IDisposable.Dispose()
             {
-                while (_stack.Count > _previousCount) {
+                while (_stack.Count > _previousCount) 
+                {
                     _stack.RemoveAt(_stack.Count - 1);
                 }
             }
         }
         
-		private static LocalDataStoreSlot _dataSlot = System.Threading.Thread.AllocateDataSlot();
+        private static LocalDataStoreSlot _dataSlot = System.Threading.Thread.AllocateDataSlot();
     }
 }

@@ -65,11 +65,16 @@ namespace NLog.LayoutAppenders
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 
-            if (_fileName != null) {
+            if (_fileName != null) 
+            {
                 builder.Append(ApplyPadding(Path.Combine(baseDir, _fileName)));
-            } else if (_directoryName != null) {
+            } 
+            else if (_directoryName != null) 
+            {
                 builder.Append(ApplyPadding(Path.Combine(baseDir, _directoryName)));
-            } else {
+            } 
+            else 
+            {
                 builder.Append(ApplyPadding(baseDir));
             }
         }

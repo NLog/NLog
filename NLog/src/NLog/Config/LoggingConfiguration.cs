@@ -58,7 +58,8 @@ namespace NLog.Config
             _appenderRules.Add(rule);
         }
 
-        public Appender FindAppenderByName(string name) {
+        public Appender FindAppenderByName(string name) 
+        {
             return _appenders[name];
         }
 
@@ -71,7 +72,8 @@ namespace NLog.Config
 
         public void ResolveAppenders()
         {
-            foreach (AppenderRule rule in _appenderRules) {
+            foreach (AppenderRule rule in _appenderRules) 
+            {
                 rule.Resolve(this);
             }
         }

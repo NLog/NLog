@@ -36,25 +36,31 @@ using System;
 using NLog;
 using NLog.Config;
 
-public class Test {
-    public static void LogProc(string msg) {
+public class Test 
+{
+    public static void LogProc(string msg) 
+    {
         Console.WriteLine("logproc: {0}", msg);
     }
-    static void Main(string[] args) {
+    static void Main(string[] args) 
+    {
         Console.WriteLine("zzz");
         NLog.LogManager.Configuration = new XmlLoggingConfiguration("NLog.Test.exe.config");
         NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
         NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");
 
-        using (NDC.Push("aaa")) {
+        using (NDC.Push("aaa")) 
+        {
             l.Debug("this is a debug");
             l.Info("this is an info");
             MDC.Set("username", "jarek");
 
             l.Warn("this is a warning");
-            using (NDC.Push("bbb")) {
+            using (NDC.Push("bbb")) 
+            {
                 l2.Debug("this is a debug");
-                using (NDC.Push("ccc")) {
+                using (NDC.Push("ccc")) 
+                {
                     l2.Info("this is an info");
                 }
             }

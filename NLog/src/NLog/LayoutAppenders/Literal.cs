@@ -40,7 +40,8 @@ namespace NLog.LayoutAppenders
     {
         private string _txt;
         
-        public LiteralLayoutAppender(string txt) {
+        public LiteralLayoutAppender(string txt) 
+        {
             _txt = txt;
         }
         

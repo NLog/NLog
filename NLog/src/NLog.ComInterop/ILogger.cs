@@ -35,7 +35,7 @@ using System;
 
 namespace NLog.ComInterop
 {
-	public interface ILogger
+    public interface ILogger
     {
         void Log(string level, string message);
         void Debug(string message);

@@ -41,7 +41,8 @@ namespace NLog.Config
         private Type _elementType;
         private string _elementName;
         
-        public ArrayParameterAttribute(Type elementType, string elementName) {
+        public ArrayParameterAttribute(Type elementType, string elementName) 
+        {
             _elementType = elementType;
             _elementName = elementName;
         }

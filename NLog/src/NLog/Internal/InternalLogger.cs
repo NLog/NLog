@@ -73,10 +73,12 @@ namespace NLog.Internal
         {
             try
             {
-                if (Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_TO_CONSOLE") != null) {
+                if (Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_TO_CONSOLE") != null) 
+                {
                     LogToConsole = true;
                 }
-                if (Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL") != null) {
+                if (Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL") != null) 
+                {
                     LogLevel = Logger.LogLevelFromString(Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL"));
                 }
                 _logFile = Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_FILE");
@@ -100,7 +102,8 @@ namespace NLog.Internal
             if (_logFile == null && !_logToConsole)
                 return;
 
-            try {
+            try 
+            {
                 string formattedMessage = message;
                 if (args != null)
                     formattedMessage = String.Format(formatProvider, message, args);
@@ -113,19 +116,23 @@ namespace NLog.Internal
                 builder.Append(formattedMessage);
                 string msg = builder.ToString();
 
-                if (_logFile != null) {
-                    using (TextWriter textWriter = File.AppendText(_logFile)) {
+                if (_logFile != null) 
+                {
+                    using (TextWriter textWriter = File.AppendText(_logFile)) 
+                    {
                         textWriter.WriteLine(msg);
                     }
                 }
 
-                if (_logToConsole) {
+                if (_logToConsole) 
+                {
                     Console.WriteLine(msg);
                 }
             }
-            catch {
-				// we have no place to log the message to so we ignore it
-			}
+            catch 
+            {
+                // we have no place to log the message to so we ignore it
+            }
         }
 
         internal static bool IsDebugEnabled { get { return LogLevel.Debug >= _logLevel; } }
@@ -144,13 +151,15 @@ namespace NLog.Internal
             Write(level, null, message, args);
         }
 
-        internal static void Log(LogLevel level, string message) {
+        internal static void Log(LogLevel level, string message) 
+        {
             Write(level, null, message, null);
         }
 
         internal static void Debug(IFormatProvider formatProvider, string message, params object[] args) { Write(LogLevel.Debug, formatProvider, message, args); }
         internal static void Debug(string message, params object[] args) { Write(LogLevel.Debug, null, message, args); }
-        internal static void Debug(string message) {
+        internal static void Debug(string message) 
+        {
             Write(LogLevel.Debug, null, message, null);
         }
 
@@ -164,7 +173,8 @@ namespace NLog.Internal
             Write(LogLevel.Info, null, message, args);
         }
 
-        internal static void Info(string message) {
+        internal static void Info(string message) 
+        {
             Write(LogLevel.Info, null, message, null);
         }
 
@@ -178,7 +188,8 @@ namespace NLog.Internal
             Write(LogLevel.Warn, null, message, args);
         }
 
-        internal static void Warn(string message) {
+        internal static void Warn(string message) 
+        {
             Write(LogLevel.Warn, null, message, null);
         }
 
@@ -192,7 +203,8 @@ namespace NLog.Internal
             Write(LogLevel.Error, null, message, args);
         }
 
-        internal static void Error(string message) {
+        internal static void Error(string message) 
+        {
             Write(LogLevel.Error, null, message, null);
         }
 
@@ -206,7 +218,8 @@ namespace NLog.Internal
             Write(LogLevel.Fatal, null, message, args);
         }
 
-        internal static void Fatal(string message) {
+        internal static void Fatal(string message) 
+        {
             Write(LogLevel.Fatal, null, message, null);
         }
     }

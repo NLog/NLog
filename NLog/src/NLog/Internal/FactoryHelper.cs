@@ -43,11 +43,15 @@ namespace NLog.Internal
         private static Type[] EmptyTypes = new Type[0];
         private static object[] EmptyParams = new object[0];
 
-        public static object CreateInstance(Type t) {
+        public static object CreateInstance(Type t) 
+        {
             ConstructorInfo constructor = t.GetConstructor(EmptyTypes); //t.GetConstructor(BindingFlags.Public | BindingFlags.Instance, null, Type.EmptyTypes, null);
-            if (constructor != null) {
+            if (constructor != null) 
+            {
                 return constructor.Invoke(EmptyParams);
-            } else {
+            } 
+            else 
+            {
                 throw new Exception("Cannot access the constructor of type: " + t.FullName + ". Is the required permission granted?");
             }
         }

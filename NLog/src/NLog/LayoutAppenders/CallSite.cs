@@ -69,10 +69,10 @@ namespace NLog.LayoutAppenders
             return 200;
         }
         
-		protected internal override int NeedsStackTrace()
-		{
-			return _sourceFile ? 2 : 1;
-		}
+        protected internal override int NeedsStackTrace()
+        {
+            return _sourceFile ? 2 : 1;
+        }
 
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
@@ -84,18 +84,23 @@ namespace NLog.LayoutAppenders
                     sb2 = new StringBuilder();
 
                 MethodBase method = frame.GetMethod();
-                if (_className) {
+                if (_className) 
+                {
                     sb2.Append(method.DeclaringType.FullName);
                 }
-                if (_methodName) {
-                    if (_className) {
+                if (_methodName) 
+                {
+                    if (_className) 
+                    {
                         sb2.Append(".");
                     }
                     sb2.Append(method.Name);
                 }
-                if (_sourceFile) {
+                if (_sourceFile) 
+                {
                     string fileName = frame.GetFileName();
-                    if (fileName != null) {
+                    if (fileName != null) 
+                    {
                         sb2.Append("(");
                         sb2.Append(fileName);
                         sb2.Append(":");

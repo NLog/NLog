@@ -106,8 +106,10 @@ namespace NLog.Appenders
             set { _concurrentWriteAttemptDelay = value; }
         }
 
-        private StreamWriter OpenStreamWriter(string fileName) {
-            try {
+        private StreamWriter OpenStreamWriter(string fileName) 
+        {
+            try 
+            {
                 StreamWriter retVal;
 
                 FileInfo fi = new FileInfo(fileName);
@@ -119,14 +121,19 @@ namespace NLog.Appenders
                     }
                 }
 
-                if (!ConcurrentWrites) {
+                if (!ConcurrentWrites) 
+                {
                     retVal = new StreamWriter(fileName, true, _encoding);
-                } else {
+                } 
+                else 
+                {
                     int currentDelay = _concurrentWriteAttemptDelay;
                     retVal = null;
 
-                    for (int i = 0; i < _concurrentWriteAttempts; ++i) {
-                        try {
+                    for (int i = 0; i < _concurrentWriteAttempts; ++i) 
+                    {
+                        try 
+                        {
                             retVal = new StreamWriter(fileName, true, _encoding);
                             break;
                         }
@@ -143,28 +150,33 @@ namespace NLog.Appenders
                 retVal.AutoFlush = _autoFlush;
                 return retVal;
             }
-            catch (Exception) {
+            catch (Exception) 
+            {
                 InternalLogger.Error("Unable to create file: '{0}'", fileName);
                 throw;
             }
         }
 
-        protected internal override void Append(LogEventInfo ev) {
+        protected internal override void Append(LogEventInfo ev) 
+        {
             string fileName = _fileNameLayout.GetFormattedMessage(ev);
 
-            if (fileName != _lastFileName && _outputFile != null) {
+            if (fileName != _lastFileName && _outputFile != null) 
+            {
                 _outputFile.Close();
                 _outputFile = null;
             }
             _lastFileName = fileName;
-            if (_outputFile == null) {
+            if (_outputFile == null) 
+            {
                 _outputFile = OpenStreamWriter(fileName);
                 if (_outputFile == null)
                     return;
             }
             _outputFile.WriteLine(CompiledLayout.GetFormattedMessage(ev));
             _outputFile.Flush();
-            if (!KeepFileOpen || ConcurrentWrites) {
+            if (!KeepFileOpen || ConcurrentWrites) 
+            {
                 _outputFile.Close();
                 _outputFile = null;
             }

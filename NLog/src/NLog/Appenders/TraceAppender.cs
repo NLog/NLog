@@ -40,10 +40,14 @@ namespace NLog.Appenders
     [Appender("Trace")]
     public sealed class TraceAppender : Appender
     {
-        protected internal override void Append(LogEventInfo ev) {
-            if (ev.Level >= LogLevel.Error) {
+        protected internal override void Append(LogEventInfo ev) 
+        {
+            if (ev.Level >= LogLevel.Error) 
+            {
                 Trace.Fail(CompiledLayout.GetFormattedMessage(ev));
-            } else {
+            } 
+            else 
+            {
                 Trace.WriteLine(CompiledLayout.GetFormattedMessage(ev));
             }
         }

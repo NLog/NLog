@@ -65,8 +65,10 @@ namespace NLog.Internal
 
         public void StopWatching()
         {
-            lock (this) {
-                foreach (FileSystemWatcher watcher in _watchers) {
+            lock (this) 
+            {
+                foreach (FileSystemWatcher watcher in _watchers) 
+                {
                     Console.WriteLine("releasing watch path: {0} filter: {1}", watcher.Path, watcher.Filter);
                     watcher.EnableRaisingEvents = false;
                     watcher.Dispose();
@@ -81,12 +83,14 @@ namespace NLog.Internal
         {
             if (fileNames == null)
                 return;
-            foreach (string s in fileNames) {
+            foreach (string s in fileNames) 
+            {
                 Watch(s);
             }
         }
 
-        public void Watch(string fileName) {
+        public void Watch(string fileName) 
+        {
             FileSystemWatcher watcher = new FileSystemWatcher();
             watcher.Path = Path.GetDirectoryName(fileName);
             watcher.Filter = Path.GetFileName(fileName);
@@ -95,15 +99,18 @@ namespace NLog.Internal
             watcher.Changed += new FileSystemEventHandler(this.OnWatcherChanged);
             watcher.EnableRaisingEvents = true;
 
-            lock (this) {
+            lock (this) 
+            {
                 _watchers.Add(watcher);
             }
         }
 
         private void OnWatcherChanged(object source, FileSystemEventArgs e)
         {
-            lock (this) {
-                if (!_triggerred) {
+            lock (this) 
+            {
+                if (!_triggerred) 
+                {
                     _triggerred = true;
                     // Console.WriteLine("OnWatcherChanged()");
                     OnChange(source, e);

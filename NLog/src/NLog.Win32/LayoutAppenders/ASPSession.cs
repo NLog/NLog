@@ -60,8 +60,10 @@ namespace NLog.Win32.LayoutAppenders
         protected override void Append(StringBuilder builder, LogEventInfo ev)
         {
             ASPHelper.ISessionObject session = ASPHelper.GetSessionObject();
-            if (session != null) {
-                if (_sessionVariable != null) {
+            if (session != null) 
+            {
+                if (_sessionVariable != null) 
+                {
 
                     object variableValue = session.GetValue(_sessionVariable);
                     builder.Append(Convert.ToString(variableValue));

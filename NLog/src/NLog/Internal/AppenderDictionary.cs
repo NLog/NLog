@@ -44,132 +44,132 @@ using NLog.Appenders;
 
 namespace NLog.Internal
 {
-	/// <summary>
-	/// A dictionary with keys of type string and values of type Appender
-	/// </summary>
-	internal class AppenderDictionary: System.Collections.DictionaryBase
-	{
-		/// <summary>
-		/// Initializes a new empty instance of the AppenderDictionary class
-		/// </summary>
-		public AppenderDictionary()
-		{
-			// empty
-		}
+    /// <summary>
+    /// A dictionary with keys of type string and values of type Appender
+    /// </summary>
+    internal class AppenderDictionary: System.Collections.DictionaryBase
+    {
+        /// <summary>
+        /// Initializes a new empty instance of the AppenderDictionary class
+        /// </summary>
+        public AppenderDictionary()
+        {
+            // empty
+        }
 
-		/// <summary>
-		/// Gets or sets the Appender associated with the given string
-		/// </summary>
-		/// <param name="key">
-		/// The string whose value to get or set.
-		/// </param>
-		public virtual Appender this[string key]
-		{
-			get
-			{
-				return (Appender) this.Dictionary[key];
-			}
-			set
-			{
-				this.Dictionary[key] = value;
-			}
-		}
+        /// <summary>
+        /// Gets or sets the Appender associated with the given string
+        /// </summary>
+        /// <param name="key">
+        /// The string whose value to get or set.
+        /// </param>
+        public virtual Appender this[string key]
+        {
+            get
+            {
+                return (Appender) this.Dictionary[key];
+            }
+            set
+            {
+                this.Dictionary[key] = value;
+            }
+        }
 
-		/// <summary>
-		/// Adds an element with the specified key and value to this AppenderDictionary.
-		/// </summary>
-		/// <param name="key">
-		/// The string key of the element to add.
-		/// </param>
-		/// <param name="value">
-		/// The Appender value of the element to add.
-		/// </param>
-		public virtual void Add(string key, Appender value)
-		{
-			this.Dictionary.Add(key, value);
-		}
+        /// <summary>
+        /// Adds an element with the specified key and value to this AppenderDictionary.
+        /// </summary>
+        /// <param name="key">
+        /// The string key of the element to add.
+        /// </param>
+        /// <param name="value">
+        /// The Appender value of the element to add.
+        /// </param>
+        public virtual void Add(string key, Appender value)
+        {
+            this.Dictionary.Add(key, value);
+        }
 
-		/// <summary>
-		/// Determines whether this AppenderDictionary contains a specific key.
-		/// </summary>
-		/// <param name="key">
-		/// The string key to locate in this AppenderDictionary.
-		/// </param>
-		/// <returns>
-		/// true if this AppenderDictionary contains an element with the specified key;
-		/// otherwise, false.
-		/// </returns>
-		public virtual bool Contains(string key)
-		{
-			return this.Dictionary.Contains(key);
-		}
+        /// <summary>
+        /// Determines whether this AppenderDictionary contains a specific key.
+        /// </summary>
+        /// <param name="key">
+        /// The string key to locate in this AppenderDictionary.
+        /// </param>
+        /// <returns>
+        /// true if this AppenderDictionary contains an element with the specified key;
+        /// otherwise, false.
+        /// </returns>
+        public virtual bool Contains(string key)
+        {
+            return this.Dictionary.Contains(key);
+        }
 
-		/// <summary>
-		/// Determines whether this AppenderDictionary contains a specific key.
-		/// </summary>
-		/// <param name="key">
-		/// The string key to locate in this AppenderDictionary.
-		/// </param>
-		/// <returns>
-		/// true if this AppenderDictionary contains an element with the specified key;
-		/// otherwise, false.
-		/// </returns>
-		public virtual bool ContainsKey(string key)
-		{
-			return this.Dictionary.Contains(key);
-		}
+        /// <summary>
+        /// Determines whether this AppenderDictionary contains a specific key.
+        /// </summary>
+        /// <param name="key">
+        /// The string key to locate in this AppenderDictionary.
+        /// </param>
+        /// <returns>
+        /// true if this AppenderDictionary contains an element with the specified key;
+        /// otherwise, false.
+        /// </returns>
+        public virtual bool ContainsKey(string key)
+        {
+            return this.Dictionary.Contains(key);
+        }
 
-		/// <summary>
-		/// Determines whether this AppenderDictionary contains a specific value.
-		/// </summary>
-		/// <param name="value">
-		/// The Appender value to locate in this AppenderDictionary.
-		/// </param>
-		/// <returns>
-		/// true if this AppenderDictionary contains an element with the specified value;
-		/// otherwise, false.
-		/// </returns>
-		public virtual bool ContainsValue(Appender value)
-		{
-			foreach (Appender item in this.Dictionary.Values)
-			{
-				if (item == value)
-					return true;
-			}
-			return false;
-		}
+        /// <summary>
+        /// Determines whether this AppenderDictionary contains a specific value.
+        /// </summary>
+        /// <param name="value">
+        /// The Appender value to locate in this AppenderDictionary.
+        /// </param>
+        /// <returns>
+        /// true if this AppenderDictionary contains an element with the specified value;
+        /// otherwise, false.
+        /// </returns>
+        public virtual bool ContainsValue(Appender value)
+        {
+            foreach (Appender item in this.Dictionary.Values)
+            {
+                if (item == value)
+                    return true;
+            }
+            return false;
+        }
 
-		/// <summary>
-		/// Removes the element with the specified key from this AppenderDictionary.
-		/// </summary>
-		/// <param name="key">
-		/// The string key of the element to remove.
-		/// </param>
-		public virtual void Remove(string key)
-		{
-			this.Dictionary.Remove(key);
-		}
+        /// <summary>
+        /// Removes the element with the specified key from this AppenderDictionary.
+        /// </summary>
+        /// <param name="key">
+        /// The string key of the element to remove.
+        /// </param>
+        public virtual void Remove(string key)
+        {
+            this.Dictionary.Remove(key);
+        }
 
-		/// <summary>
-		/// Gets a collection containing the keys in this AppenderDictionary.
-		/// </summary>
-		public virtual System.Collections.ICollection Keys
-		{
-			get
-			{
-				return this.Dictionary.Keys;
-			}
-		}
+        /// <summary>
+        /// Gets a collection containing the keys in this AppenderDictionary.
+        /// </summary>
+        public virtual System.Collections.ICollection Keys
+        {
+            get
+            {
+                return this.Dictionary.Keys;
+            }
+        }
 
-		/// <summary>
-		/// Gets a collection containing the values in this AppenderDictionary.
-		/// </summary>
-		public virtual System.Collections.ICollection Values
-		{
-			get
-			{
-				return this.Dictionary.Values;
-			}
-		}
-	}
+        /// <summary>
+        /// Gets a collection containing the values in this AppenderDictionary.
+        /// </summary>
+        public virtual System.Collections.ICollection Values
+        {
+            get
+            {
+                return this.Dictionary.Values;
+            }
+        }
+    }
 }

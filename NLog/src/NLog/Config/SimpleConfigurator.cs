@@ -39,17 +39,22 @@ using NLog;
 using NLog.Appenders;
 using NLog.Filters;
 
-namespace NLog.Config {
-    public class SimpleConfigurator {
-        public static void ConfigureForConsoleLogging() {
+namespace NLog.Config 
+{
+    public class SimpleConfigurator 
+    {
+        public static void ConfigureForConsoleLogging() 
+        {
             ConfigureForConsoleLogging(LogLevel.Info);
         }
 
         public static void ConfigureForConsoleLogging(LogLevel minLevel) {}
 
-        public static void ConfigureForFileLogging(string fileName) {
+        public static void ConfigureForFileLogging(string fileName) 
+        {
             ConfigureForFileLogging(fileName, LogLevel.Info);
         }
 
-        public static void ConfigureForFileLogging(string fileName, LogLevel minLevel) {}}
+        public static void ConfigureForFileLogging(string fileName, LogLevel minLevel) {}
+    }
 }

@@ -53,69 +53,81 @@ namespace NLog
 
         private string _layoutText;
         private LayoutAppenderCollection _layoutAppenders;
-		private int _needsStackTrace = 0;
+        private int _needsStackTrace = 0;
 
         public string Text
         {
             get { return _layoutText; }
-            set { 
+            set 
+            { 
                 _layoutText = value; 
                 _layoutAppenders = CompileLayout(_layoutText, out _needsStackTrace);
             }
         }
 
-        public string GetFormattedMessage(LogEventInfo ev) {
+        public string GetFormattedMessage(LogEventInfo ev) 
+        {
             int size = 0;
 
-            foreach (LayoutAppender app in _layoutAppenders) {
+            foreach (LayoutAppender app in _layoutAppenders) 
+            {
                 int ebs = app.GetEstimatedBufferSize(ev);
                 size += ebs;
             }
                 
             StringBuilder builder = new StringBuilder(size);
 
-            foreach (LayoutAppender app in _layoutAppenders) {
+            foreach (LayoutAppender app in _layoutAppenders) 
+            {
                 app.Append(builder, ev);
             }
 
             return builder.ToString();
         }
 
-        private static LayoutAppenderCollection CompileLayout(string s, out int needsStackTrace) {
+        private static LayoutAppenderCollection CompileLayout(string s, out int needsStackTrace) 
+        {
             LayoutAppenderCollection result = new LayoutAppenderCollection();
-			needsStackTrace = 0;
+            needsStackTrace = 0;
 
             int startingPos = 0;
             int pos = s.IndexOf("${", startingPos);
 
-            while (pos >= 0) {
-                if (pos != startingPos) {
+            while (pos >= 0) 
+            {
+                if (pos != startingPos) 
+                {
                     result.Add(new LiteralLayoutAppender(s.Substring(startingPos, pos - startingPos)));
                 }
                 int pos2 = s.IndexOf("}", pos + 2);
-                if (pos2 >= 0) {
+                if (pos2 >= 0) 
+                {
                     startingPos = pos2 + 1;
                     string item = s.Substring(pos + 2, pos2 - pos - 2);
                     int paramPos = item.IndexOf(':');
                     string layoutAppenderName = item;
                     string layoutAppenderParams = null;
-                    if (paramPos >= 0) {
+                    if (paramPos >= 0) 
+                    {
                         layoutAppenderParams = layoutAppenderName.Substring(paramPos + 1);
                         layoutAppenderName = layoutAppenderName.Substring(0, paramPos);
                     }
 
                     LayoutAppender newLayoutAppender = LayoutAppenderFactory.CreateLayoutAppender(layoutAppenderName, layoutAppenderParams);
-					int nst = newLayoutAppender.NeedsStackTrace();
+                    int nst = newLayoutAppender.NeedsStackTrace();
                     if (nst > needsStackTrace)
-						needsStackTrace = nst;
+                        needsStackTrace = nst;
 
                     result.Add(newLayoutAppender);
                     pos = s.IndexOf("${", startingPos);
-                } else {
+                } 
+                else 
+                {
                     break;
                 }
             }
-            if (startingPos != s.Length) {
+            if (startingPos != s.Length) 
+            {
                 result.Add(new LiteralLayoutAppender(s.Substring(startingPos, s.Length - startingPos)));
             }
 

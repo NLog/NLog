@@ -55,35 +55,45 @@ namespace NLog.Filters
         {
         }
 
-        public static void Clear() {
+        public static void Clear() 
+        {
             _filters.Clear();
         }
 
-        public static void AddFiltersFromAssembly(Assembly theAssembly, string prefix) {
+        public static void AddFiltersFromAssembly(Assembly theAssembly, string prefix) 
+        {
             InternalLogger.Debug("AddFiltersFromAssembly('{0}')", theAssembly.FullName);
-            foreach (Type t in theAssembly.GetTypes()) {
+            foreach (Type t in theAssembly.GetTypes()) 
+            {
                 FilterAttribute[] attributes = (FilterAttribute[])t.GetCustomAttributes(typeof(FilterAttribute), false);
-                if (attributes != null) {
-                    foreach (FilterAttribute attr in attributes) {
+                if (attributes != null) 
+                {
+                    foreach (FilterAttribute attr in attributes) 
+                    {
                         AddFilter(prefix + attr.Name, t);
                     }
                 }
             }
         }
-        private static void AddDefaultFilters() {
+        private static void AddDefaultFilters() 
+        {
             AddFiltersFromAssembly(typeof(FilterFactory).Assembly, String.Empty);
         }
 
-        public static void AddFilter(string name, Type t) {
+        public static void AddFilter(string name, Type t) 
+        {
             InternalLogger.Debug("AddFilter('{0}','{1}')", name, t.FullName);
             _filters[name.ToLower(CultureInfo.InvariantCulture)] = t;
         }
 
-        public static Filter CreateFilter(string name) {
+        public static Filter CreateFilter(string name) 
+        {
             Type t = _filters[name.ToLower(CultureInfo.InvariantCulture)];
-            if (t != null) {
+            if (t != null) 
+            {
                 object o = FactoryHelper.CreateInstance(t);
-                if (o is Filter) {
+                if (o is Filter) 
+                {
                     Filter la = (Filter)o;
                     return la;
                 }
