@@ -37,6 +37,8 @@ using System.IO;
 
 using Microsoft.Win32;
 
+using NLog.LayoutAppenders;
+
 namespace NLog.Win32.LayoutAppenders
 {
     [LayoutAppender("registry")]
@@ -92,12 +94,12 @@ namespace NLog.Win32.LayoutAppenders
             }
         }
         
-        public override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 32;
         }
         
-        public override void Append(StringBuilder builder, LogEventInfo ev)
+        protected override void Append(StringBuilder builder, LogEventInfo ev)
         {
             using (RegistryKey key = _rootKey.OpenSubKey(_subKey))
             {

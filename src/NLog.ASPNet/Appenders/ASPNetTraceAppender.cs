@@ -34,12 +34,14 @@
 using System;
 using System.Web;
 
+using NLog.Appenders;
+
 namespace NLog.ASPNet.Appenders
 {
     [Appender("ASPNetTrace")]
-    public class ASPNetTraceAppender : NLog.Appender
+    public class ASPNetTraceAppender : Appender
     {
-        public override void Append(LogEventInfo ev) {
+        protected override void Append(LogEventInfo ev) {
             HttpContext context = HttpContext.Current;
 
             if (context == null) {

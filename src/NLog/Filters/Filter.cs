@@ -34,43 +34,48 @@
 using System;
 using System.Text;
 
-namespace NLog
+namespace NLog.Filters
 {
-    public abstract class Appender
+    public abstract class Filter
     {
-        protected Appender()
+        protected Filter()
         {
-            Layout = "${longdate}|${level:uppercase=true}|${logger}|${message}";
         }
 
-        private Layout _compiledlayout;
-        private string _name;
+        private FilterResult _filterResult = FilterResult.Neutral;
+        private string _action = "neutral";
 
-        [RequiredParameter]
-        public string Name
+        protected FilterResult Result
         {
-            get { return _name; }
-            set { _name = value; }
+            get { return _filterResult; }
         }
 
         [RequiredParameter]
-        public string Layout
+        public string Action
         {
-            get { return _compiledlayout.Text; }
-            set { _compiledlayout = new Layout(value); }
+            get { return _action; }
+            set {
+                _action = value; 
+                switch (_action) {
+                    case "log": 
+                        _filterResult = FilterResult.Log; 
+                    break;
+                    case "ignore": 
+                        _filterResult = FilterResult.Ignore; 
+                    break;
+                    case "neutral": 
+                        _filterResult = FilterResult.Neutral; 
+                    break;
+                    default: 
+                    throw new ArgumentException("Invalid value for the 'Action' parameter. Can be log/ignore/neutral");
+                }
+            }
         }
-
-        public Layout CompiledLayout
-        {
-            get { return _compiledlayout; }
-            set { _compiledlayout = value; }
-        }
-
-        public abstract void Append(LogEventInfo ev);
-
+        public abstract FilterResult Check(LogEventInfo logMessage);
+        
         public virtual int NeedsStackTrace()
         {
-            return CompiledLayout.NeedsStackTrace();
+            return 0;
         }
-    }
+   }
 }

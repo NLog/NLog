@@ -31,12 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog
+using System;
+
+namespace NLog.LayoutAppenders
 {
-    public enum FilterResult
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class LayoutAppenderAttribute : Attribute
     {
-        Neutral,
-        Log,
-        Ignore,
+        private string _formatString;
+
+        public LayoutAppenderAttribute(string s) {
+            _formatString = s;
+        }
+        
+        public string FormatString
+        {
+            get { return _formatString; }
+        }
     }
 }

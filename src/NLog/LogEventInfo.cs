@@ -36,7 +36,7 @@ using System.Diagnostics;
 
 namespace NLog
 {
-	public struct LogEventInfo
+    public struct LogEventInfo
     {
         public static readonly DateTime ZeroDate = DateTime.Now;
 
@@ -58,15 +58,15 @@ namespace NLog
 #endif
         }
 
-		public DateTime TimeStamp
-		{
-			get { return _timeStamp; }
-		}
+        public DateTime TimeStamp
+        {
+            get { return _timeStamp; }
+        }
 
-		public LogLevel Level
-		{
-			get { return _level; }
-		}
+        public LogLevel Level
+        {
+            get { return _level; }
+        }
 
 #if !NETCF
         private StackTrace _stackTrace;
@@ -78,24 +78,24 @@ namespace NLog
         }
 
         public StackFrame UserStackFrame
-		{
-			get { return (_stackTrace != null) ? _stackTrace.GetFrame(_userStackFrame) : null; }
-		}
+        {
+            get { return (_stackTrace != null) ? _stackTrace.GetFrame(_userStackFrame) : null; }
+        }
 
-		public StackTrace StackTrace
-		{
-			get { return _stackTrace; }
-		}
+        public StackTrace StackTrace
+        {
+            get { return _stackTrace; }
+        }
 #endif
-		public string LoggerName
-		{
-			get { return _loggerName; }
-		}
+        public string LoggerName
+        {
+            get { return _loggerName; }
+        }
 
-		public string Message
-		{
-			get { return _message; }
-		}
+        public string Message
+        {
+            get { return _message; }
+        }
 
     }
 }

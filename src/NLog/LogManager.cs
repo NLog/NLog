@@ -39,6 +39,9 @@ using System.Reflection;
 
 using NLog.Config;
 using NLog.Utils;
+using NLog.Appenders;
+
+using NLog.Internal;
 
 namespace NLog
 {

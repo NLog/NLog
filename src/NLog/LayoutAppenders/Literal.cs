@@ -44,12 +44,12 @@ namespace NLog.LayoutAppenders
             _txt = txt;
         }
         
-        public override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return _txt.Length;
         }
         
-        public override void Append(StringBuilder builder, LogEventInfo ev)
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             builder.Append(_txt);
         }

@@ -48,11 +48,11 @@ namespace NLog.LayoutAppenders
             set { _item = value; }
         }
 
-        public override int GetEstimatedBufferSize(LogEventInfo ev) {
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev) {
             return MDC.Get(Item).Length;
         }
 
-        public override void Append(StringBuilder builder, LogEventInfo ev)
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             string msg = MDC.Get(Item);
             builder.Append(ApplyPadding(msg));

@@ -31,22 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
-namespace NLog
+namespace NLog.Filters
 {
-    [AttributeUsage(AttributeTargets.Class)]
-    public sealed class FilterAttribute : Attribute
+    public enum FilterResult
     {
-        private string _name;
-
-        public FilterAttribute(string s) {
-            _name = s;
-        }
-        
-        public string Name
-        {
-            get { return _name; }
-        }
+        Neutral,
+        Log,
+        Ignore,
     }
 }

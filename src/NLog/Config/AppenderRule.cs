@@ -36,6 +36,8 @@ using System.Collections;
 using System.Collections.Specialized;
 
 using NLog;
+using NLog.Appenders;
+using NLog.Filters;
 
 namespace NLog.Config
 {

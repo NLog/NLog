@@ -39,11 +39,11 @@ using System.Diagnostics;
 namespace NLog.Appenders
 {
     [Appender("Memory")]
-    public class MemoryAppender : NLog.Appender
+    public class MemoryAppender : Appender
     {
 		private StringCollection _logs = new StringCollection();
 
-        public override void Append(LogEventInfo ev) {
+        protected internal override void Append(LogEventInfo ev) {
 			_logs.Add(CompiledLayout.GetFormattedMessage(ev));
         }
 

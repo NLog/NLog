@@ -33,14 +33,14 @@
 
 using System;
 
-namespace NLog
+namespace NLog.Filters
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class AppenderAttribute : Attribute
+    public sealed class FilterAttribute : Attribute
     {
         private string _name;
 
-        public AppenderAttribute(string s) {
+        public FilterAttribute(string s) {
             _name = s;
         }
         

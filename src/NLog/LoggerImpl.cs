@@ -35,6 +35,9 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 
+using NLog.Filters;
+using NLog.Appenders;
+
 namespace NLog
 {
 	sealed class LoggerImpl : Logger

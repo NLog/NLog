@@ -35,6 +35,8 @@ using System;
 using System.Text;
 using System.Runtime.InteropServices;
 
+using NLog.LayoutAppenders;
+
 namespace NLog.ASP.LayoutAppenders
 {
     [LayoutAppender("asp-application")]
@@ -49,12 +51,12 @@ namespace NLog.ASP.LayoutAppenders
             set { _appVariable = value; }
 
         }
-        public override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 64;
         }
         
-        public override void Append(StringBuilder builder, LogEventInfo ev)
+        protected override void Append(StringBuilder builder, LogEventInfo ev)
         {
             ASPHelper.IApplicationObject app = ASPHelper.GetApplicationObject();
             if (app != null) {

@@ -32,50 +32,21 @@
 // 
 
 using System;
-using System.Text;
 
-namespace NLog
+namespace NLog.Appenders
 {
-    public abstract class Filter
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class AppenderAttribute : Attribute
     {
-        protected Filter()
-        {
-        }
+        private string _name;
 
-        private FilterResult _filterResult = FilterResult.Neutral;
-        private string _action = "neutral";
-
-        protected FilterResult Result
-        {
-            get { return _filterResult; }
+        public AppenderAttribute(string s) {
+            _name = s;
         }
-
-        [RequiredParameter]
-        public string Action
-        {
-            get { return _action; }
-            set {
-                _action = value; 
-                switch (_action) {
-                    case "log": 
-                        _filterResult = FilterResult.Log; 
-                    break;
-                    case "ignore": 
-                        _filterResult = FilterResult.Ignore; 
-                    break;
-                    case "neutral": 
-                        _filterResult = FilterResult.Neutral; 
-                    break;
-                    default: 
-                    throw new ArgumentException("Invalid value for the 'Action' parameter. Can be log/ignore/neutral");
-                }
-            }
-        }
-        public abstract FilterResult Check(LogEventInfo logMessage);
         
-        public virtual int NeedsStackTrace()
+        public string Name
         {
-            return 0;
+            get { return _name; }
         }
-   }
+    }
 }

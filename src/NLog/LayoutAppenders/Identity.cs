@@ -70,12 +70,12 @@ namespace NLog.LayoutAppenders
             set { _isAuthenticated = value; }
         }
         
-        public override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 32;
         }
         
-        public override void Append(StringBuilder builder, LogEventInfo ev)
+        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             IPrincipal principal = System.Threading.Thread.CurrentPrincipal;
             if (principal != null) {
