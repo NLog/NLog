@@ -44,6 +44,7 @@ namespace NLog.LayoutAppenders
     {
         private string _variable = null;
 
+        [RequiredParameter]
         public string Variable
         {
             get { return _variable; }

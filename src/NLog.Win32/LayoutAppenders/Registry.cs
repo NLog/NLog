@@ -60,6 +60,7 @@ namespace NLog.Win32.LayoutAppenders
             set { _defaultValue = value; }
         }
         
+        [RequiredParameter]
         public string Key
         {
             get { return _key; }

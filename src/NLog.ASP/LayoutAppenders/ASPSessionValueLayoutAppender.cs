@@ -42,6 +42,7 @@ namespace NLog.ASP.LayoutAppenders
     {
         private string _sessionVariable = null;
 
+        [RequiredParameter]
         public string Variable
         {
             get { return _sessionVariable; }

@@ -32,35 +32,13 @@
 // 
 
 using System;
-using System.Text;
 
-using NLog;
-
-namespace NLog.Filters
+namespace NLog
 {
-    public abstract class LayoutBasedFilter : Filter
+    [AttributeUsage(AttributeTargets.Property)]
+    public sealed class RequiredParameterAttribute : Attribute
     {
-        protected LayoutBasedFilter()
-        {
+        public RequiredParameterAttribute() {
         }
-
-        private Layout _compiledlayout;
-
-        [RequiredParameter]
-        public string Layout
-        {
-            get { return _compiledlayout.Text; }
-            set { _compiledlayout = new Layout(value); }
-        }
-
-        protected Layout CompiledLayout
-        {
-            get { return _compiledlayout; }
-        }
-
-        public override int NeedsStackTrace()
-        {
-            return CompiledLayout.NeedsStackTrace();
-        }
-   }
+    }
 }

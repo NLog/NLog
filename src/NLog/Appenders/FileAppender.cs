@@ -54,6 +54,7 @@ namespace NLog.Appenders
         private int _concurrentWriteAttempts = 10;
         private int _concurrentWriteAttemptDelay = 1;
 
+        [RequiredParameter]
         public string FileName
         {
             get { return _fileNameLayout.Text; }
