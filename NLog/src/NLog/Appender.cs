@@ -46,12 +46,14 @@ namespace NLog
         private Layout _compiledlayout;
         private string _name;
 
+        [RequiredParameter]
         public string Name
         {
             get { return _name; }
             set { _name = value; }
         }
 
+        [RequiredParameter]
         public string Layout
         {
             get { return _compiledlayout.Text; }
