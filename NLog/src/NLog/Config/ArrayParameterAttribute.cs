@@ -33,35 +33,27 @@
 
 using System;
 
-using NLog;
-using NLog.Config;
-
-class Test {
-    static void Main(string[] args) {
-        Console.WriteLine("zzz");
-        NLog.LogManager.Configuration = new XmlLoggingConfiguration("NLog.Test.exe.config");
-        NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
-        NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");
-
-        using (NDC.Push("aaa")) {
-            l.Debug("this is a debug");
-            l.Info("this is an info");
-            MDC.Set("username", "jarek");
-
-            l.Warn("this is a warning");
-            using (NDC.Push("bbb")) {
-                l2.Debug("this is a debug");
-                using (NDC.Push("ccc")) {
-                    l2.Info("this is an info");
-                }
-            }
-            MDC.Set("username", "aaa");
-            l2.Warn("this is a warning");
+namespace NLog.Config
+{
+    [AttributeUsage(AttributeTargets.Property)]
+    public sealed class ArrayParameterAttribute : Attribute
+    {
+        private Type _elementType;
+        private string _elementName;
+        
+        public ArrayParameterAttribute(Type elementType, string elementName) {
+            _elementType = elementType;
+            _elementName = elementName;
         }
-        l.Error("this is an error");
-        MDC.Remove("username");
-        l.Fatal("this is a fatal");
-        l2.Error("this is an error");
-        l2.Fatal("this is a fatal");
+
+        public Type ElementType
+        {
+            get { return _elementType; }
+        }
+
+        public string ElementName
+        {
+            get { return _elementName; }
+        }
     }
 }

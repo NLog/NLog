@@ -32,30 +32,151 @@
 // 
 
 using System;
+using System.Collections;
 using System.Reflection;
 using System.Globalization;
+using System.Xml;
+
 using NLog.Internal;
+using NLog.Config;
 
 namespace NLog.Internal
 {
-    internal class PropertyHelper
+    internal sealed class PropertyHelper
     {
+        private static TypeToPropertyInfoDictionaryAssociation _parameterInfoCache = new TypeToPropertyInfoDictionaryAssociation();
+        
         private PropertyHelper()
         {
         }
 
-        public static void SetPropertyFromString(object o, string name, string value) {
+        public static bool SetPropertyFromString(object o, string name, string value) {
+            InternalLogger.Info("Setting '{0}.{1}' to '{2}'", o.GetType().Name, name, value);
+
             try {
-                PropertyInfo propInfo = o.GetType().GetProperty(name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-                if (propInfo == null)
+                PropertyInfo propInfo = GetPropertyInfo(o, name);
+                if (propInfo == null) {
                     throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
+                }
+
+                if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false)) {
+                    throw new NotSupportedException("Parameter " + name + " of " + o.GetType().Name + " is an array and cannot be assigned a scalar value.");
+                }
 
                 object newValue = Convert.ChangeType(value, propInfo.PropertyType, CultureInfo.InvariantCulture);
 
                 propInfo.SetValue(o, newValue, null);
+                return true;
             }
             catch (Exception ex) {
                 InternalLogger.Error(ex.ToString());
+                return false;
+            }
+        }
+
+        public static void AddArrayItemFromElement(object o, XmlElement el) {
+            string name = el.Name;
+            PropertyInfo propInfo = GetPropertyInfo(o, name);
+            if (propInfo == null)
+                throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
+
+            IList propertyValue = (IList)propInfo.GetValue(o, null);
+            Type elementType = GetArrayElementType(propInfo);
+            object arrayItem = FactoryHelper.CreateInstance(elementType);
+
+            foreach (XmlAttribute attrib in el.Attributes) {
+                string childName = attrib.LocalName;
+                string childValue = attrib.InnerText;
+
+                PropertyHelper.SetPropertyFromString(arrayItem, childName, childValue);
+            }
+
+            foreach (XmlNode node in el.ChildNodes)
+            {
+                if (node is XmlElement)
+                {
+                    XmlElement el2 = (XmlElement)node;
+                    string childName = el2.Name;
+
+                    if (IsArrayProperty(elementType, childName)) {
+                        PropertyHelper.AddArrayItemFromElement(arrayItem, el2);
+                    } else {
+                        string childValue = el2.InnerXml;
+
+                        PropertyHelper.SetPropertyFromString(arrayItem, childName, childValue);
+                    }
+                }
+            }
+
+            propertyValue.Add(arrayItem);
+        }
+
+        private static PropertyInfo GetPropertyInfo(object o, string propertyName)
+        {
+            PropertyInfo propInfo = o.GetType().GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+            if (propInfo != null)
+                return propInfo;
+            
+            lock (_parameterInfoCache) {
+                Type targetType = o.GetType();
+                PropertyInfoDictionary cache = _parameterInfoCache[targetType];
+                if (cache == null) {
+                    cache = BuildPropertyInfoDictionary(targetType);
+                    _parameterInfoCache[targetType] = cache;
+                }
+                return cache[propertyName.ToLower()];
+            }
+        }
+
+        private static PropertyInfo GetPropertyInfo(Type targetType, string propertyName)
+        {
+            PropertyInfo propInfo = targetType.GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+            if (propInfo != null)
+                return propInfo;
+            
+            lock (_parameterInfoCache) {
+                PropertyInfoDictionary cache = _parameterInfoCache[targetType];
+                if (cache == null) {
+                    cache = BuildPropertyInfoDictionary(targetType);
+                    _parameterInfoCache[targetType] = cache;
+                }
+                return cache[propertyName.ToLower()];
+            }
+        }
+
+        private static PropertyInfoDictionary BuildPropertyInfoDictionary(Type t)
+        {
+            PropertyInfoDictionary retVal = new PropertyInfoDictionary();
+            foreach (PropertyInfo propInfo in t.GetProperties())
+            {
+                if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false)) {
+                    ArrayParameterAttribute[] attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
+                    
+                    retVal[attributes[0].ElementName.ToLower()] = propInfo;
+                } else {
+                    retVal[propInfo.Name.ToLower()] = propInfo;
+                }
+            }
+            return retVal;
+        }
+
+        private static Type GetArrayElementType(PropertyInfo propInfo) {
+            if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false)) {
+                ArrayParameterAttribute[] attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
+
+                return attributes[0].ElementType;
+            } else {
+                return null;
+            }
+        }
+
+        public static bool IsArrayProperty(Type t, string name) {
+            PropertyInfo propInfo = GetPropertyInfo(t, name);
+
+            if (!propInfo.IsDefined(typeof(ArrayParameterAttribute), false)) {
+                return false;
+            } else {
+                return true;
             }
         }
     }

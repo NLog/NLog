@@ -260,7 +260,7 @@ namespace NLog.Config
                         string fullFileName = Path.Combine(baseDirectory, assemblyFile);
                         InternalLogger.Info("Loading assemblyFile: {0}", fullFileName);
                         Assembly asm = Assembly.LoadFrom(fullFileName);
-                        LoadExtensionFromAssembly(asm, prefix);
+                        LoadExtensionsFromAssembly(asm, prefix);
                     }
                     catch (Exception ex) {
                         InternalLogger.Error("Error loading layout-appenders: {0}", ex);
@@ -277,7 +277,7 @@ namespace NLog.Config
                         Assembly asm = Assembly.LoadWithPartialName(assemblyPartialName);
                         if (asm != null) 
                         {
-                            LoadExtensionFromAssembly(asm, prefix);
+                            LoadExtensionsFromAssembly(asm, prefix);
                         }
                         else
                         {
@@ -297,7 +297,7 @@ namespace NLog.Config
                     try {
                         InternalLogger.Info("Loading assemblyName: {0}", assemblyName);
                         Assembly asm = Assembly.Load(assemblyName);
-                        LoadExtensionFromAssembly(asm, prefix);
+                        LoadExtensionsFromAssembly(asm, prefix);
                     }
                     catch (Exception ex) {
                         InternalLogger.Error("Error loading layout-appenders: {0}", ex);
@@ -307,8 +307,9 @@ namespace NLog.Config
             }
         }
 
-        private static void LoadExtensionFromAssembly(Assembly asm, string prefix)
+        private static void LoadExtensionsFromAssembly(Assembly asm, string prefix)
         {
+            FilterFactory.AddFiltersFromAssembly(asm, prefix);
             LayoutAppenderFactory.AddLayoutAppendersFromAssembly(asm, prefix);
             AppenderFactory.AddAppendersFromAssembly(asm, prefix);
         }
@@ -370,9 +371,13 @@ namespace NLog.Config
                 {
                     XmlElement el = (XmlElement)node;
                     string name = el.Name;
-                    string value = el.InnerXml;
 
-                    PropertyHelper.SetPropertyFromString(appender, name, value);
+                    if (PropertyHelper.IsArrayProperty(appenderType, name)) {
+                        PropertyHelper.AddArrayItemFromElement(appender, el);
+                    } else {
+                        string value = el.InnerXml;
+                        PropertyHelper.SetPropertyFromString(appender, name, value);
+                    }
                 }
             }
         }
@@ -401,6 +406,16 @@ namespace NLog.Config
         }
 
         private void RegisterPlatformSpecificExtensions(string fileName) {
+            string nlogDir = Path.GetDirectoryName(typeof(LogManager).Assembly.Location);
+            string assemblyFullPath = Path.Combine(nlogDir, fileName);
+
+            if (File.Exists(assemblyFullPath)) {
+                InternalLogger.Debug("Registering platform specific extensions from assembly '{0}'", assemblyFullPath);
+                Assembly asm = Assembly.LoadFrom(assemblyFullPath);
+                LoadExtensionsFromAssembly(asm, String.Empty);
+            } else {
+                InternalLogger.Debug("Could not load platform specific extensions from assembly '{0}'", assemblyFullPath);
+            }
         }
     }
 }

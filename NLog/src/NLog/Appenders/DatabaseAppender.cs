@@ -35,6 +35,7 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 using System.Data;
+using System.Collections;
 
 using NLog.Internal;
 using NLog.Config;
@@ -53,6 +54,8 @@ namespace NLog.Appenders
         private string _dbUserName = null;
         private string _dbPassword = null;
         private string _dbDatabase = null;
+        private string _commandText = null;
+        private ArrayList _parameters = new ArrayList();
         private IDbConnection _activeConnection = null;
 
         public DatabaseAppender()
@@ -132,6 +135,18 @@ namespace NLog.Appenders
             set { _dbDatabase = value; }
         }
 
+        public string CommandText
+        {
+            get { return _commandText; }
+            set { _commandText = value; }
+        }
+
+        [ArrayParameter(typeof(ParameterInfo),"parameter")]
+        public ArrayList Parameters
+        {
+            get { return _parameters; }
+        }
+
         protected internal override void Append(LogEventInfo ev) {
             if (_keepConnection) {
                 lock (this) {
@@ -158,7 +173,42 @@ namespace NLog.Appenders
 
         private IDbConnection OpenConnection() {
             ConstructorInfo constructor = _connectionType.GetConstructor(new Type[] { typeof(string) });
-            return (IDbConnection)constructor.Invoke(new object[] { _connectionString });
+            IDbConnection retVal = (IDbConnection)constructor.Invoke(new object[] { _connectionString });
+
+            if (retVal != null)
+                retVal.Open();
+
+            return retVal;
+        }
+
+        public class ParameterInfo
+        {
+            public ParameterInfo()
+            {
+            }
+
+            private Layout _compiledlayout;
+            private string _name;
+
+            [RequiredParameter]
+            public string Name
+            {
+                get { return _name; }
+                set { _name = value; }
+            }
+
+            [RequiredParameter]
+            public string Layout
+            {
+                get { return _compiledlayout.Text; }
+                set { _compiledlayout = new Layout(value); }
+            }
+
+            public Layout CompiledLayout
+            {
+                get { return _compiledlayout; }
+                set { _compiledlayout = value; }
+            }
         }
     }
 }
