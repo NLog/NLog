@@ -43,6 +43,13 @@ namespace NLog.Appenders
     [Appender("MessageBox")]
     public sealed class MessageBoxAppender: Appender
     {
+        private string _title = "NLog";
+
+        public string Title
+        {
+            get { return _title; }
+            set { _title = value; }
+        }
         protected internal override void Append(LogEventInfo ev)
         {
             MessageBox.Show(CompiledLayout.GetFormattedMessage(ev));

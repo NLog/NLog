@@ -86,8 +86,13 @@
                 />
                 <Reference
                     Name = "system.web.services"
-                    AssemblyName = "system.web.services"
+                    AssemblyName = "System.Web.Services"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\system.web.services.dll"
+                />
+                <Reference
+                    Name = "system.windows.forms"
+                    AssemblyName = "system.windows.forms"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\system.windows.forms.dll"
                 />
             </References>
         </Build>
@@ -190,6 +195,11 @@
                 />
                 <File
                     RelPath = "Appenders\MemoryAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Appenders\MessageBoxAppender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -311,6 +321,10 @@
                 <File
                     RelPath = "Internal\AppenderDictionary.cs"
                     SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\CompactFrameworkHelper.cs"
                     BuildAction = "Compile"
                 />
                 <File

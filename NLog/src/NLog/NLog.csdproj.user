@@ -21,8 +21,8 @@
                     StartURL = ""
                     StartWorkingDirectory = ""
                     StartWithIE = "true"
-                    SelectedDevice = "Same as device of consuming project"
-                    DeploymentPlatform = "Windows CE"
+                    SelectedDevice = "Pocket PC Emulator"
+                    DeploymentPlatform = "Pocket PC"
                 />
                 <Config
                     Name = "Release|Windows CE"

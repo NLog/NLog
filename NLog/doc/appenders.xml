@@ -120,4 +120,17 @@
         <support framework="mono-1.0" />
         <support framework="mono-2.0" />
     </appender>
+    
+    <appender name="MessageBox">
+        <displayName>MessageBox Appender</displayName>
+        <description>pops up a message boxes containing log messages</description>
+        <assembly>NLog.dll</assembly>
+        <namespace>NLog.Appenders</namespace>
+        <className>MessageBoxAppender</className>
+        <support framework="netcf-1.0" />
+        <support framework="net-1.0" />
+        <support framework="net-1.1" />
+        <support framework="net-2.0" />
+    </appender>
+    
 </appenders>

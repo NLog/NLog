@@ -31,11 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
-
 using System;
 using System.Text;
 using System.IO;
+using NLog.Internal;
 
 namespace NLog.LayoutAppenders
 {
@@ -75,8 +74,11 @@ namespace NLog.LayoutAppenders
 
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
+#if !NETCF
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-
+#else
+            string baseDir = CompactFrameworkHelper.GetExeBaseDir();
+#endif
             if (_fileName != null)
             {
                 builder.Append(ApplyPadding(Path.Combine(baseDir, _fileName)));
@@ -93,4 +95,3 @@ namespace NLog.LayoutAppenders
     }
 }
 
-#endif
