@@ -348,7 +348,7 @@ namespace NLog.Appenders
 
             sb.Append("Server=");
             sb.Append(DBHostLayout.GetFormattedMessage(ev));
-            if (DBDatabaseLayout == null)
+            if (DBUserNameLayout == null)
             {
                 sb.Append("Trusted_Connection=SSPI;");
             }
