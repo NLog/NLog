@@ -19,24 +19,24 @@ DirText "This will install NLog Library and tools on your computer. Choose a dir
 Section "Main"
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR
-  File License.txt
+  File LICENSE.txt
 
   SetOutPath $INSTDIR\bin
   ; Put file there
-  File bin\net-1.0\NLog*.dll
-  File bin\net-1.0\NLog*.xml
+  File /r build\net-1.0\bin\*.*
 
-  SetOutPath $INSTDIR\docs
+  SetOutPath $INSTDIR\doc
+  File build\net-1.0\doc\*.*
 
-  File /oname=NLog.chm doc\help\Documentation.chm
-  File doc\website\*.*
+  SetOutPath $INSTDIR\doc\help
+  File build\net-1.0\doc\help\NLog.chm
 
   CreateDirectory "$SMPROGRAMS\NLog"
   CreateShortCut  "$SMPROGRAMS\NLog\Uninstall.lnk" "$INSTDIR\Uninstall.exe" ""
   CreateShortCut  "$SMPROGRAMS\NLog\LICENSE.lnk" "$INSTDIR\License.txt" ""
-  CreateShortCut  "$SMPROGRAMS\NLog\Class Library Reference.lnk" "$INSTDIR\docs\NLog.chm" ""
-  CreateShortCut  "$SMPROGRAMS\NLog\NLog Tutorial.lnk" "$INSTDIR\docs\tutorial.html" ""
-  CreateShortCut  "$SMPROGRAMS\NLog\NLog Documentation.lnk" "$INSTDIR\docs\index.html" ""
+  CreateShortCut  "$SMPROGRAMS\NLog\Class Library Reference.lnk" "$INSTDIR\doc\help\NLog.chm" ""
+  CreateShortCut  "$SMPROGRAMS\NLog\NLog Tutorial.lnk" "$INSTDIR\doc\tutorial.html" ""
+  CreateShortCut  "$SMPROGRAMS\NLog\NLog Documentation.lnk" "$INSTDIR\doc\index.html" ""
 
   WriteRegStr HKCU "Software\Microsoft\VisualStudio\7.0\AssemblyFolders\NLog" "" "$INSTDIR\Bin"
   WriteRegStr HKCU "Software\Microsoft\VisualStudio\7.1\AssemblyFolders\NLog" "" "$INSTDIR\Bin"
@@ -56,16 +56,10 @@ Section "Uninstall"
   Delete "$SMPROGRAMS\NLog\*.lnk"
   RMDir "$SMPROGRAMS\NLog"
 
-  Delete "$INSTDIR\LICENSE.txt"
-  Delete "$INSTDIR\bin\*.dll"
-  Delete "$INSTDIR\bin\*.exe.config"
-  Delete "$INSTDIR\bin\*.exe.manifest"
-  Delete "$INSTDIR\bin\*.exe"
-  Delete "$INSTDIR\docs\*.*"
-  Delete "$INSTDIR\Uninstall.exe"
-
-  RMDir "$INSTDIR\bin"
-  RMDir "$INSTDIR\docs"
+  RMDir /r "$INSTDIR\bin"
+  RMDir /r "$INSTDIR\doc\help"
+  RMDir /r "$INSTDIR\doc"
+  Delete "$INSTDIR\*.*"
   RMDir "$INSTDIR"
 SectionEnd
 ; eof

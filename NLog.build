@@ -38,8 +38,7 @@
     </target>
 
     <target name="package" depends="build, website, doc">
-        <mkdir dir="${nant.project.basedir}/dist" />
-        <property name="zip.file" value="${nant.project.basedir}/dist/NLog-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" />
+        <property name="zip.file" value="${nant.project.basedir}/nlog-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" />
         <copy file="LICENSE.txt" tofile="${output.dir}/../LICENSE.txt" />
         <zip zipfile="${zip.file}">
             <fileset basedir="${output.dir}/..">
@@ -278,7 +277,7 @@
     </target>
 
     <target name="installer">
-        <exec program="nant.exe" commandline="-t:net-1.0 release package doc" />
+        <exec program="nant.exe" commandline="-t:net-1.0 release package build doc" />
         <readregistry property="nsis.dir" key="SOFTWARE\NSIS\" />
         <property name="makensis.exe" value="${nsis.dir}/makensis.exe" />
 
