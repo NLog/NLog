@@ -35,6 +35,7 @@ using System;
 using System.Runtime.InteropServices;
 
 using NLog;
+using NLog.Internal;
 
 namespace NLog.ComInterop
 {

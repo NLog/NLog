@@ -108,7 +108,7 @@
                     AutoGen = "True"
                 />
                 <File
-                    RelPath = "InternalLogger.cs"
+                    RelPath = "Layout.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -144,16 +144,6 @@
                 />
                 <File
                     RelPath = "NDC.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "NullLogger.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "RequiredParameterAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -263,6 +253,31 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Internal\InternalLogger.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\MultiFileWatcher.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\NullLogger.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\PropertyHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\RequiredParameterAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "LayoutAppenders\BaseDir.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -285,10 +300,6 @@
                 <File
                     RelPath = "LayoutAppenders\Identity.cs"
                     SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "LayoutAppenders\Layout.cs"
                     BuildAction = "Compile"
                 />
                 <File
@@ -371,16 +382,7 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
-                <File
-                    RelPath = "Utils\MultiFileWatcher.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Utils\PropertyHelper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
+                <Folder RelPath = "Utils\" />
             </Include>
         </Files>
     </CSHARP>

@@ -44,6 +44,7 @@ using NLog.Utils;
 using NLog.Appenders;
 using NLog.Filters;
 using NLog.LayoutAppenders;
+using NLog.Internal;
 
 namespace NLog.Config
 {

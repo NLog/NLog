@@ -38,6 +38,7 @@ using System.IO;
 using Microsoft.Win32;
 
 using NLog.LayoutAppenders;
+using NLog.Internal;
 
 namespace NLog.Win32.LayoutAppenders
 {

@@ -37,6 +37,8 @@ using System;
 using System.Xml;
 using System.Configuration;
 
+using NLog.Internal;
+
 namespace NLog.Config
 {
     public class ConfigSectionHandler : IConfigurationSectionHandler
