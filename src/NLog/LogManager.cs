@@ -41,6 +41,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Security;
 using System.Text;
+using System.Globalization;
 
 using NLog.Config;
 using NLog.Internal;
@@ -85,6 +86,7 @@ namespace NLog
 
         private LogManager(){}
 
+#if !NETCF
         public static Logger GetCurrentClassLogger()
         {
             StackTrace st = new StackTrace(false);
@@ -92,6 +94,7 @@ namespace NLog
 
             return GetLogger(frame.GetMethod().DeclaringType.FullName);
         }
+#endif
 
         /// <summary>
         /// Gets the specified named logger.
@@ -349,12 +352,12 @@ namespace NLog
             for (int i = 0; i <= (int)LogLevel.MaxLevel; ++i)
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendFormat("{0} =>", (LogLevel)i);
+                sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", (LogLevel)i);
                 for (AppenderWithFilterChain afc = appendersByLevel[i]; afc != null; afc = afc.Next)
                 {
-                    sb.AppendFormat(" {0}", afc.Appender.Name);
+                    sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Appender.Name);
                     if (afc.FilterChain.Count > 0)
-                        sb.AppendFormat("({0} filters)", afc.FilterChain.Count);
+                        sb.AppendFormat(CultureInfo.InvariantCulture, "({0} filters)", afc.FilterChain.Count);
                 }
                 InternalLogger.Debug(sb.ToString());
             }
