@@ -37,7 +37,6 @@ using System.Collections;
 using System.Reflection;
 using System.Globalization;
 
-using NLog.Utils;
 using NLog.Internal;
 
 namespace NLog.LayoutAppenders
