@@ -41,163 +41,166 @@ using NLog.Internal;
 
 namespace NLog
 {
-    sealed class LoggerImpl : Logger
+    sealed class LoggerImpl: Logger
     {
         private const int STACK_TRACE_SKIP_METHODS = 3;
-        
-        private AppenderWithFilterChain[] _appendersByLevel;
+
+        private AppenderWithFilterChain[]_appendersByLevel;
         private string _loggerName;
 
-        public LoggerImpl(string name, AppenderWithFilterChain[] appendersByLevel) 
+        public LoggerImpl(string name, AppenderWithFilterChain[]appendersByLevel)
         {
             _loggerName = name;
             _appendersByLevel = appendersByLevel;
         }
 
-        protected override void Write(LogLevel level, IFormatProvider formatProvider, string message, object[] args) 
+        protected override void Write(LogLevel level, IFormatProvider formatProvider, string message, object[]args)
         {
             WriteToAppenders(level, _appendersByLevel[(int)level], formatProvider, message, args);
         }
 
         internal string Name
         {
-            get { return _loggerName; }
+            get
+            {
+                return _loggerName;
+            }
         }
 
-        internal void Reconfig(AppenderWithFilterChain[] appendersByLevel)
+        internal void Reconfig(AppenderWithFilterChain[]appendersByLevel)
         {
             _appendersByLevel = appendersByLevel;
         }
 
-        private void WriteToAppenders(LogLevel level, AppenderWithFilterChain appenders, IFormatProvider formatProvider, string message, object[] args) 
+        private void WriteToAppenders(LogLevel level, AppenderWithFilterChain appenders, IFormatProvider formatProvider, string message, object[]args)
         {
             if (appenders == null)
-                return;
+                return ;
 
             string formattedMessage;
-            
+
             if (args == null)
                 formattedMessage = message;
             else
                 formattedMessage = String.Format(formatProvider, message, args);
 
             LogEventInfo logMessage = new LogEventInfo(DateTime.Now, level, _loggerName, formattedMessage);
-#if !NETCF            
-            bool needTrace = false;
-            bool needTraceSources = false;
+            #if !NETCF            
+                bool needTrace = false;
+                bool needTraceSources = false;
 
-            for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next) 
-            {
-                // once we know we needTraceSources there's nothing more to look for
-                //
-                if (needTraceSources)
-                    break;
-                Appender app = awf.Appender;
-                
-                int nst = app.NeedsStackTrace();
-                
-                if (nst > 0) 
+                for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next)
                 {
-                    needTrace = true;
-                }
-                if (nst > 1) 
-                {
-                    needTraceSources = true;
-                    break;
-                }
+                    // once we know we needTraceSources there's nothing more to look for
+                    //
+                    if (needTraceSources)
+                        break;
+                    Appender app = awf.Appender;
 
-                FilterCollection filterChain = awf.FilterChain;
+                    int nst = app.NeedsStackTrace();
 
-                for (int i = 0; i < filterChain.Count; ++i) 
-                {
-                    Filter filter = filterChain[i];
-
-                    nst = filter.NeedsStackTrace();
-
-                    if (nst > 0) 
+                    if (nst > 0)
                     {
                         needTrace = true;
                     }
-                    if (nst > 1) 
+                    if (nst > 1)
                     {
                         needTraceSources = true;
-                    }
-                }
-            }
-
-            StackTrace stackTrace = null;
-            if (needTrace) 
-            {
-                int firstUserFrame = 0;
-                stackTrace = new StackTrace(STACK_TRACE_SKIP_METHODS, needTraceSources);
-
-                for (int i = 0; i < stackTrace.FrameCount; ++i)
-                {
-                    System.Reflection.MethodBase mb = stackTrace.GetFrame(i).GetMethod();
-
-                    if (!mb.DeclaringType.FullName.StartsWith("NLog."))
-                    {
-                        firstUserFrame = i;
                         break;
                     }
-                    else 
+
+                    FilterCollection filterChain = awf.FilterChain;
+
+                    for (int i = 0; i < filterChain.Count; ++i)
                     {
-                        // Console.WriteLine("skipping stack frame: " + mb);
+                        Filter filter = filterChain[i];
+
+                        nst = filter.NeedsStackTrace();
+
+                        if (nst > 0)
+                        {
+                            needTrace = true;
+                        }
+                        if (nst > 1)
+                        {
+                            needTraceSources = true;
+                        }
                     }
                 }
-                logMessage.SetStackTrace(stackTrace, firstUserFrame);
-            }
-#endif            
-            for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next) 
+
+                StackTrace stackTrace = null;
+                if (needTrace)
+                {
+                    int firstUserFrame = 0;
+                    stackTrace = new StackTrace(STACK_TRACE_SKIP_METHODS, needTraceSources);
+
+                    for (int i = 0; i < stackTrace.FrameCount; ++i)
+                    {
+                        System.Reflection.MethodBase mb = stackTrace.GetFrame(i).GetMethod();
+
+                        if (!mb.DeclaringType.FullName.StartsWith("NLog."))
+                        {
+                            firstUserFrame = i;
+                            break;
+                        }
+                        else
+                        {
+                            // Console.WriteLine("skipping stack frame: " + mb);
+                        }
+                    }
+                    logMessage.SetStackTrace(stackTrace, firstUserFrame);
+                }
+            #endif 
+            for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next)
             {
                 Appender app = awf.Appender;
-                
-                try 
+
+                try
                 {
                     FilterCollection filterChain = awf.FilterChain;
                     FilterResult result = FilterResult.Neutral;
 
-                    for (int i = 0; i < filterChain.Count; ++i) 
+                    for (int i = 0; i < filterChain.Count; ++i)
                     {
                         Filter f = filterChain[i];
                         result = f.Check(logMessage);
                         if (result != FilterResult.Neutral)
                             break;
                     }
-                    if (result == FilterResult.Ignore) 
+                    if (result == FilterResult.Ignore)
                     {
-                        if (InternalLogger.IsDebugEnabled) 
+                        if (InternalLogger.IsDebugEnabled)
                         {
                             InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", Name, level);
                         }
                         continue;
                     }
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     InternalLogger.Error("FilterChain exception: {0}", ex);
-					if (LogManager.ThrowExceptions)
-						throw;
-					else
-                    	continue;
+                    if (LogManager.ThrowExceptions)
+                        throw;
+                    else
+                        continue;
                 }
 
-                try 
+                try
                 {
                     app.Append(logMessage);
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     InternalLogger.Error("Appender exception: {0}", ex);
-					if (LogManager.ThrowExceptions)
-						throw;
-					else
-                    	continue;
+                    if (LogManager.ThrowExceptions)
+                        throw;
+                    else
+                        continue;
                 }
             }
         }
 
-        public override bool IsEnabled(LogLevel level) 
+        public override bool IsEnabled(LogLevel level)
         {
             if (LogManager.ReloadConfigOnNextLog)
                 LogManager.ReloadConfig();
@@ -207,56 +210,56 @@ namespace NLog
 
         public override bool IsDebugEnabled
         {
-            get 
-            { 
-                if (LogManager.ReloadConfigOnNextLog)
-                    LogManager.ReloadConfig();
-
-                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Debug] != null; 
-            }
-        }
-        
-        public override bool IsInfoEnabled
-        {
-            get 
+            get
             {
                 if (LogManager.ReloadConfigOnNextLog)
                     LogManager.ReloadConfig();
 
-                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Info] != null; 
+                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Debug] != null;
             }
         }
-        
-        public override bool IsWarnEnabled
+
+        public override bool IsInfoEnabled
         {
-            get 
-            { 
+            get
+            {
                 if (LogManager.ReloadConfigOnNextLog)
                     LogManager.ReloadConfig();
 
-                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Warn] != null; 
+                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Info] != null;
             }
         }
-        
+
+        public override bool IsWarnEnabled
+        {
+            get
+            {
+                if (LogManager.ReloadConfigOnNextLog)
+                    LogManager.ReloadConfig();
+
+                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Warn] != null;
+            }
+        }
+
         public override bool IsErrorEnabled
         {
-            get 
-            { 
+            get
+            {
                 if (LogManager.ReloadConfigOnNextLog)
                     LogManager.ReloadConfig();
 
                 return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Error] != null;
             }
         }
-        
+
         public override bool IsFatalEnabled
         {
-            get 
-            { 
+            get
+            {
                 if (LogManager.ReloadConfigOnNextLog)
                     LogManager.ReloadConfig();
 
-                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Fatal] != null; 
+                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Fatal] != null;
             }
         }
     }

@@ -39,9 +39,9 @@ using NLog.Appenders;
 namespace NLog.Win32.Appenders
 {
     [Appender("OutputDebugString")]
-    public sealed class OutputDebugStringAppender : Appender
+    public sealed class OutputDebugStringAppender: Appender
     {
-        protected override void Append(LogEventInfo ev) 
+        protected override void Append(LogEventInfo ev)
         {
             OutputDebugString(CompiledLayout.GetFormattedMessage(ev));
         }

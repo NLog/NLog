@@ -37,13 +37,13 @@ using System.Text;
 namespace NLog.LayoutAppenders
 {
     [LayoutAppender("message")]
-    public class MessageLayoutAppender : LayoutAppender
+    public class MessageLayoutAppender: LayoutAppender
     {
         protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return ev.Message.Length;
         }
-        
+
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             builder.Append(ApplyPadding(ev.Message));

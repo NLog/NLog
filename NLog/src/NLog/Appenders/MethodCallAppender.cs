@@ -43,7 +43,7 @@ using NLog.Config;
 namespace NLog.Appenders
 {
     [Appender("MethodCall")]
-    public sealed class MethodCallAppender : MethodCallAppenderBase
+    public sealed class MethodCallAppender: MethodCallAppenderBase
     {
         private string _className = null;
         private MethodInfo _methodInfo = null;
@@ -51,33 +51,59 @@ namespace NLog.Appenders
 
         public string ClassName
         {
-            get { return _className; }
-            set { _className = value; UpdateMethodInfo(); }
+            get
+            {
+                return _className;
+            }
+            set
+            {
+                _className = value;
+                UpdateMethodInfo();
+            }
         }
 
         public string MethodName
         {
-            get { return _methodName; }
-            set { _methodName = value; UpdateMethodInfo(); }
+            get
+            {
+                return _methodName;
+            }
+            set
+            {
+                _methodName = value;
+                UpdateMethodInfo();
+            }
         }
 
         public MethodInfo Method
         {
-            get { return _methodInfo; }
-            set { _methodInfo = value; }
+            get
+            {
+                return _methodInfo;
+            }
+            set
+            {
+                _methodInfo = value;
+            }
         }
 
-        private void UpdateMethodInfo() {
-            if (ClassName != null && MethodName != null) {
+        private void UpdateMethodInfo()
+        {
+            if (ClassName != null && MethodName != null)
+            {
                 Type targetType = Type.GetType(ClassName);
                 Method = targetType.GetMethod(MethodName);
-            } else {
+            }
+            else
+            {
                 Method = null;
             }
         }
 
-        protected override void DoInvoke(object[] parameters) {
-            if (Method != null) {
+        protected override void DoInvoke(object[]parameters)
+        {
+            if (Method != null)
+            {
                 Method.Invoke(null, parameters);
             }
         }

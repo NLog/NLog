@@ -31,34 +31,34 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 #if !NETCF
-using System;
-using System.Web;
+    using System;
+    using System.Web;
 
-using NLog.Appenders;
+    using NLog.Appenders;
 
-namespace NLog.Appenders
-{
-    [Appender("ASPNetTrace")]
-    public class ASPNetTraceAppender : Appender
+    namespace NLog.Appenders
     {
-        protected internal override void Append(LogEventInfo ev) 
+        [Appender("ASPNetTrace")]
+        public class ASPNetTraceAppender: Appender
         {
-            HttpContext context = HttpContext.Current;
+            protected internal override void Append(LogEventInfo ev)
+            {
+                HttpContext context = HttpContext.Current;
 
-            if (context == null) 
-            {
-                return;
-            }
+                if (context == null)
+                {
+                    return ;
+                }
 
-            if (ev.Level >= LogLevel.Warn) 
-            {
-                context.Trace.Warn(CompiledLayout.GetFormattedMessage(ev));
-            } 
-            else 
-            {
-                context.Trace.Write(CompiledLayout.GetFormattedMessage(ev));
+                if (ev.Level >= LogLevel.Warn)
+                {
+                    context.Trace.Warn(CompiledLayout.GetFormattedMessage(ev));
+                }
+                else
+                {
+                    context.Trace.Write(CompiledLayout.GetFormattedMessage(ev));
+                }
             }
         }
     }
-}
 #endif

@@ -36,12 +36,12 @@ using System;
 namespace NLog.Config
 {
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class ArrayParameterAttribute : Attribute
+    public sealed class ArrayParameterAttribute: Attribute
     {
         private Type _elementType;
         private string _elementName;
-        
-        public ArrayParameterAttribute(Type elementType, string elementName) 
+
+        public ArrayParameterAttribute(Type elementType, string elementName)
         {
             _elementType = elementType;
             _elementName = elementName;
@@ -49,12 +49,18 @@ namespace NLog.Config
 
         public Type ElementType
         {
-            get { return _elementType; }
+            get
+            {
+                return _elementType;
+            }
         }
 
         public string ElementName
         {
-            get { return _elementName; }
+            get
+            {
+                return _elementName;
+            }
         }
     }
 }

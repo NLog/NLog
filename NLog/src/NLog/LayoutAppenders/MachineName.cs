@@ -33,25 +33,25 @@
 
 #if !NETCF
 
-using System;
-using System.Text;
-using System.IO;
+    using System;
+    using System.Text;
+    using System.IO;
 
-namespace NLog.LayoutAppenders
-{
-    [LayoutAppender("machinename")]
-    public class MachineNameLayoutAppender : LayoutAppender
+    namespace NLog.LayoutAppenders
     {
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+        [LayoutAppender("machinename")]
+        public class MachineNameLayoutAppender: LayoutAppender
         {
-            return 32;
-        }
-        
-        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
-        {
-            builder.Append(ApplyPadding(Environment.MachineName));
+            protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+            {
+                return 32;
+            }
+
+            protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+            {
+                builder.Append(ApplyPadding(Environment.MachineName));
+            }
         }
     }
-}
 
 #endif

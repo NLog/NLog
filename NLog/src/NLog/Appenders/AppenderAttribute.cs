@@ -36,18 +36,21 @@ using System;
 namespace NLog.Appenders
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class AppenderAttribute : Attribute
+    public sealed class AppenderAttribute: Attribute
     {
         private string _name;
 
-        public AppenderAttribute(string s) 
+        public AppenderAttribute(string s)
         {
             _name = s;
         }
-        
+
         public string Name
         {
-            get { return _name; }
+            get
+            {
+                return _name;
+            }
         }
     }
 }

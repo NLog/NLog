@@ -32,25 +32,25 @@
 // 
 
 #if !NETCF
-using System;
-using System.Diagnostics;
+    using System;
+    using System.Diagnostics;
 
-namespace NLog.Appenders
-{
-    [Appender("Trace")]
-    public sealed class TraceAppender : Appender
+    namespace NLog.Appenders
     {
-        protected internal override void Append(LogEventInfo ev) 
+        [Appender("Trace")]
+        public sealed class TraceAppender: Appender
         {
-            if (ev.Level >= LogLevel.Error) 
+            protected internal override void Append(LogEventInfo ev)
             {
-                Trace.Fail(CompiledLayout.GetFormattedMessage(ev));
-            } 
-            else 
-            {
-                Trace.WriteLine(CompiledLayout.GetFormattedMessage(ev));
+                if (ev.Level >= LogLevel.Error)
+                {
+                    Trace.Fail(CompiledLayout.GetFormattedMessage(ev));
+                }
+                else
+                {
+                    Trace.WriteLine(CompiledLayout.GetFormattedMessage(ev));
+                }
             }
         }
     }
-}
 #endif

@@ -33,31 +33,31 @@
 
 #if !NETCF
 
-using System;
-using System.Xml;
-using System.Configuration;
+    using System;
+    using System.Xml;
+    using System.Configuration;
 
-using NLog.Internal;
+    using NLog.Internal;
 
-namespace NLog.Config
-{
-    public class ConfigSectionHandler : IConfigurationSectionHandler
+    namespace NLog.Config
     {
-        public object Create(object parent, object configContext, XmlNode section)
+        public class ConfigSectionHandler: IConfigurationSectionHandler
         {
-            try 
+            public object Create(object parent, object configContext, XmlNode section)
             {
-                string configFileName = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+                try
+                {
+                    string configFileName = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
 
-                return new XmlLoggingConfiguration(configFileName);
-            } 
-            catch (Exception ex) 
-            {
-                InternalLogger.Error("ConfigSectionHandler error: {0}", ex);
-                throw;
+                    return new XmlLoggingConfiguration(configFileName);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error("ConfigSectionHandler error: {0}", ex);
+                    throw;
+                }
             }
         }
     }
-}
 
 #endif

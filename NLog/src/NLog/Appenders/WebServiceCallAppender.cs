@@ -43,34 +43,45 @@ using NLog.Config;
 namespace NLog.Appenders
 {
     [Appender("WebServiceCall")]
-    public sealed class WebServiceCallAppender : MethodCallAppenderBase
+    public sealed class WebServiceCallAppender: MethodCallAppenderBase
     {
         private GenericSoapHttpClientProtocol _client = new GenericSoapHttpClientProtocol();
         private string _methodName = null;
 
         public string Url
         {
-            get { return _client.Url; }
-            set { _client.Url = value; }
+            get
+            {
+                return _client.Url;
+            }
+            set
+            {
+                _client.Url = value;
+            }
         }
 
         public string MethodName
         {
-            get { return _methodName; }
-            set { _methodName = value; }
+            get
+            {
+                return _methodName;
+            }
+            set
+            {
+                _methodName = value;
+            }
         }
 
-        protected override void DoInvoke(object[] parameters) {
+        protected override void DoInvoke(object[]parameters)
+        {
             _client.DoInvoke(MethodName, parameters);
         }
-        
-        [System.Web.Services.WebServiceBindingAttribute(Name="NLogService", Namespace="http://nlog.sourceforge.net/appender/")]
-        class GenericSoapHttpClientProtocol : SoapHttpClientProtocol
-        {
-            public GenericSoapHttpClientProtocol() {
-            }
 
-            public object DoInvoke(string method, object[] parameters)
+        [System.Web.Services.WebServiceBindingAttribute(Name = "NLogService", Namespace = "http://nlog.sourceforge.net/appender/")]class GenericSoapHttpClientProtocol: SoapHttpClientProtocol
+        {
+            public GenericSoapHttpClientProtocol(){}
+
+            public object DoInvoke(string method, object[]parameters)
             {
                 return Invoke(method, parameters);
             }

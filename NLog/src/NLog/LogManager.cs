@@ -47,47 +47,57 @@ namespace NLog
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
     /// </summary>
-    public sealed class LogManager 
+    public sealed class LogManager
     {
         private static LoggerDictionary _loggerCache = new LoggerDictionary();
         private static LoggingConfiguration _config;
         private static bool _configLoaded = false;
-		private static bool _throwExceptions = false;
+        private static bool _throwExceptions = false;
         private static bool _reloadConfigOnNextLog = false;
 
         internal static bool ReloadConfigOnNextLog
         {
-            get { return _reloadConfigOnNextLog; }
-            set { _reloadConfigOnNextLog = value; }
+            get
+            {
+                return _reloadConfigOnNextLog;
+            }
+            set
+            {
+                _reloadConfigOnNextLog = value;
+            }
         }
 
         public static bool ThrowExceptions
         {
-            get { return _throwExceptions; }
-            set { _throwExceptions = value; }
+            get
+            {
+                return _throwExceptions;
+            }
+            set
+            {
+                _throwExceptions = value;
+            }
         }
 
-        private LogManager()
-        {
-        }
+        private LogManager(){}
 
         /// <summary>
         /// Gets the specified named logger.
         /// </summary>
         /// <param name="name">name of the logger</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
-        public static Logger GetLogger(string name) 
+        public static Logger GetLogger(string name)
         {
             if (ReloadConfigOnNextLog)
                 ReloadConfig();
 
-            lock (typeof(LogManager))
+            lock(typeof(LogManager))
             {
                 Logger l = _loggerCache[name];
                 if (l != null)
                     return l;
 
-                AppenderWithFilterChain[] appendersByLevel = GetAppendersByLevelForLogger(name, Configuration);
+                AppenderWithFilterChain[]appendersByLevel = GetAppendersByLevelForLogger(name, Configuration);
 
                 Logger newLogger = new LoggerImpl(name, appendersByLevel);
                 _loggerCache[name] = newLogger;
@@ -100,108 +110,108 @@ namespace NLog
         /// </summary>
         public static LoggingConfiguration Configuration
         {
-            get 
-            { 
-                lock (typeof(LogManager)) 
+            get
+            {
+                lock(typeof(LogManager))
                 {
                     if (_configLoaded)
                         return _config;
 
                     _configLoaded = true;
-#if !NETCF
-                    if (_config == null) 
-                    {
-                        // try to load default configuration
-                        _config = XmlLoggingConfiguration.AppConfig;
-                    }
-                    if (_config == null) 
-                    {
-                        string configFile = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
-                        configFile = configFile.Replace(".config", ".nlog");
-                        if (File.Exists(configFile)) 
+                    #if !NETCF
+                        if (_config == null)
                         {
-                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
-                            _config = new XmlLoggingConfiguration(configFile);
+                            // try to load default configuration
+                            _config = XmlLoggingConfiguration.AppConfig;
                         }
-                    }
-                    if (_config == null) 
-                    {
-                        Assembly nlogAssembly = typeof(LoggingConfiguration).Assembly;
-                        if (!nlogAssembly.GlobalAssemblyCache) 
+                        if (_config == null)
                         {
-                            string configFile = nlogAssembly.Location + ".nlog";
-                            if (File.Exists(configFile)) 
+                            string configFile = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+                            configFile = configFile.Replace(".config", ".nlog");
+                            if (File.Exists(configFile))
                             {
                                 InternalLogger.Debug("Attempting to load config from {0}", configFile);
                                 _config = new XmlLoggingConfiguration(configFile);
                             }
                         }
-                    }
-                    
-                    if (_config == null) 
-                    {
-                        if (Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE") != null) 
+                        if (_config == null)
                         {
-                            string configFile = Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE");
-                            if (File.Exists(configFile)) 
+                            Assembly nlogAssembly = typeof(LoggingConfiguration).Assembly;
+                            if (!nlogAssembly.GlobalAssemblyCache)
                             {
-                                InternalLogger.Debug("Attempting to load config from {0}", configFile);
-                                _config = new XmlLoggingConfiguration(configFile);
-                            } 
-                            else 
-                            { 
-                                InternalLogger.Warn("NLog global config file pointed by NLOG_GLOBAL_CONFIG '{0}' doesn't exist.", configFile);
+                                string configFile = nlogAssembly.Location + ".nlog";
+                                if (File.Exists(configFile))
+                                {
+                                    InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                                    _config = new XmlLoggingConfiguration(configFile);
+                                }
                             }
                         }
-                    }
 
-                    if (_config != null) 
-                    {
-                        _watcher.Watch(_config.FileNamesToWatch);
-                    }
-#endif
+                        if (_config == null)
+                        {
+                            if (Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE") != null)
+                            {
+                                string configFile = Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE");
+                                if (File.Exists(configFile))
+                                {
+                                    InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                                    _config = new XmlLoggingConfiguration(configFile);
+                                }
+                                else
+                                {
+                                    InternalLogger.Warn("NLog global config file pointed by NLOG_GLOBAL_CONFIG '{0}' doesn't exist.", configFile);
+                                }
+                            }
+                        }
+
+                        if (_config != null)
+                        {
+                            _watcher.Watch(_config.FileNamesToWatch);
+                        }
+                    #endif 
                     return _config;
                 }
             }
 
-            set 
-            { 
-#if !NETCF
-                _watcher.StopWatching();
-#endif
+            set
+            {
+                #if !NETCF
+                    _watcher.StopWatching();
+                #endif 
 
-                lock (typeof(LogManager)) 
+                lock(typeof(LogManager))
                 {
-                    _config = value; 
+                    _config = value;
                     _configLoaded = true;
 
-                    if (_config != null) 
+                    if (_config != null)
                     {
                         ReconfigExistingLoggers(_config);
-#if !NETCF
-                        _watcher.Watch(_config.FileNamesToWatch);
-#endif
+                        #if !NETCF
+                            _watcher.Watch(_config.FileNamesToWatch);
+                        #endif 
                     }
                 }
             }
         }
 
-#if !NETCF
-        private static MultiFileWatcher _watcher = new MultiFileWatcher(new EventHandler(ConfigFileChanged));
+        #if !NETCF
+            private static MultiFileWatcher _watcher = new MultiFileWatcher(new EventHandler(ConfigFileChanged));
 
-        private static void ConfigFileChanged(object sender, EventArgs args) 
-        {
-            InternalLogger.Debug("ConfigFileChanged!!!");
-            ReloadConfigOnNextLog = true;
-        }
-#endif
+            private static void ConfigFileChanged(object sender, EventArgs args)
+            {
+                InternalLogger.Debug("ConfigFileChanged!!!");
+                ReloadConfigOnNextLog = true;
+            }
+        #endif 
 
-        internal static void ReloadConfig() 
+        internal static void ReloadConfig()
         {
-            lock (typeof(LogManager)) 
+            lock(typeof(LogManager))
             {
                 if (!ReloadConfigOnNextLog)
-                    return;
+                    return ;
 
                 InternalLogger.Debug("Reloading Config...");
                 LoggingConfiguration newConfig = Configuration.Reload();
@@ -210,33 +220,33 @@ namespace NLog
                 ReloadConfigOnNextLog = false;
             }
         }
-        
+
         internal static void ReconfigExistingLoggers(LoggingConfiguration config)
         {
-            foreach (LoggerImpl logger in _loggerCache.Values) 
+            foreach (LoggerImpl logger in _loggerCache.Values)
             {
                 logger.Reconfig(GetAppendersByLevelForLogger(logger.Name, config));
             }
         }
 
-        internal static AppenderWithFilterChain[] GetAppendersByLevelForLogger(string name, LoggingConfiguration config)
+        internal static AppenderWithFilterChain[]GetAppendersByLevelForLogger(string name, LoggingConfiguration config)
         {
-            AppenderWithFilterChain[] appendersByLevel = new AppenderWithFilterChain[(int)LogLevel.MaxLevel + 1];
+            AppenderWithFilterChain[]appendersByLevel = new AppenderWithFilterChain[(int)LogLevel.MaxLevel + 1];
 
-            if (config != null) 
+            if (config != null)
             {
-                foreach (AppenderRule rule in config.AppenderRules) 
+                foreach (AppenderRule rule in config.AppenderRules)
                 {
                     if (rule.Appenders.Count == 0)
                         continue;
 
-                    if (rule.Matches(name)) 
+                    if (rule.Matches(name))
                     {
-                        for (int i = 0; i <= (int)LogLevel.MaxLevel; ++i) 
+                        for (int i = 0; i <= (int)LogLevel.MaxLevel; ++i)
                         {
-                            if (rule.IsLoggingEnabledForLevel((LogLevel)i)) 
+                            if (rule.IsLoggingEnabledForLevel((LogLevel)i))
                             {
-                                foreach (Appender appender in rule.Appenders) 
+                                foreach (Appender appender in rule.Appenders)
                                 {
                                     AppenderWithFilterChain awf = new AppenderWithFilterChain(appender, rule.Filters);
                                     if (appendersByLevel[i] != null)
@@ -254,33 +264,31 @@ namespace NLog
         }
 
         private static int _logsEnabled = 0;
-        
-        class LogEnabler : IDisposable
+
+        class LogEnabler: IDisposable
         {
             public static IDisposable TheEnabler = new LogEnabler();
 
-            private LogEnabler()
-            {
-            }
+            private LogEnabler(){}
 
             void IDisposable.Dispose()
             {
                 LogManager.EnableLogging();
-            } 
+            }
         }
 
-        public static IDisposable DisableLogging() 
+        public static IDisposable DisableLogging()
         {
             Interlocked.Decrement(ref _logsEnabled);
             return LogEnabler.TheEnabler;
         }
-        
-        public static void EnableLogging() 
+
+        public static void EnableLogging()
         {
             Interlocked.Increment(ref _logsEnabled);
         }
-        
-        public static bool IsLoggingEnabled() 
+
+        public static bool IsLoggingEnabled()
         {
             return _logsEnabled >= 0;
         }

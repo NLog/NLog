@@ -39,18 +39,22 @@ using NLog;
 namespace NLog.Filters
 {
     [Filter("whenContains")]
-    public class WhenContainsFilter : LayoutBasedFilter
+    public class WhenContainsFilter: LayoutBasedFilter
     {
-        public WhenContainsFilter()
-        {
-        }
+        public WhenContainsFilter(){}
 
         private string _substring;
-        
+
         public string Substring
         {
-            get { return _substring; }
-            set { _substring = value; }
+            get
+            {
+                return _substring;
+            }
+            set
+            {
+                _substring = value;
+            }
         }
 
         public override FilterResult Check(LogEventInfo logMessage)

@@ -45,19 +45,14 @@ namespace NLog.Config
     {
         internal enum MatchMode
         {
-            All,
-            None,
-            Equals,
-            StartsWith,
-            EndsWith,
-            Contains,
-        }
+            All, None, Equals, StartsWith, EndsWith, Contains, 
+        } 
 
         private string _loggerNamePattern;
         private MatchMode _loggerNameMatchMode;
         private string _loggerNameMatchArgument;
 
-        private bool[] _logLevels = new bool[(int)LogLevel.MaxLevel + 1];
+        private bool[]_logLevels = new bool[(int)LogLevel.MaxLevel + 1];
         private ArrayList _appenderNames = new ArrayList();
         private AppenderCollection _appenders = new AppenderCollection();
         private FilterCollection _filters = new FilterCollection();
@@ -65,30 +60,43 @@ namespace NLog.Config
 
         public IList AppenderNames
         {
-            get { return _appenderNames; }
+            get
+            {
+                return _appenderNames;
+            }
         }
 
         public AppenderCollection Appenders
         {
-            get { return _appenders; }
+            get
+            {
+                return _appenders;
+            }
         }
 
         public FilterCollection Filters
         {
-            get { return _filters; }
+            get
+            {
+                return _filters;
+            }
         }
 
         public bool Final
         {
-            get { return _final; }
-            set { _final = value; }
+            get
+            {
+                return _final;
+            }
+            set
+            {
+                _final = value;
+            }
         }
 
-        public AppenderRule()
-        {
-        }
+        public AppenderRule(){}
 
-        public AppenderRule(string loggerNamePattern, string appenderName, params LogLevel[] levels)
+        public AppenderRule(string loggerNamePattern, string appenderName, params LogLevel[]levels)
         {
             _loggerNamePattern = loggerNamePattern;
             _appenderNames.Add(appenderName);
@@ -115,8 +123,11 @@ namespace NLog.Config
 
         public string LoggerNamePattern
         {
-            get { return _loggerNamePattern; }
-            set 
+            get
+            {
+                return _loggerNamePattern;
+            }
+            set
             {
                 _loggerNamePattern = value;
                 int firstPos = _loggerNamePattern.IndexOf('*');
@@ -126,7 +137,7 @@ namespace NLog.Config
                 {
                     _loggerNameMatchMode = MatchMode.Equals;
                     _loggerNameMatchArgument = value;
-                    return;
+                    return ;
                 }
 
                 if (firstPos == lastPos)
@@ -134,29 +145,29 @@ namespace NLog.Config
                     string before = LoggerNamePattern.Substring(0, firstPos);
                     string after = LoggerNamePattern.Substring(firstPos + 1);
 
-                    if (before.Length > 0) 
+                    if (before.Length > 0)
                     {
                         _loggerNameMatchMode = MatchMode.StartsWith;
                         _loggerNameMatchArgument = before;
-                        return;
+                        return ;
                     }
 
-                    if (after.Length > 0) 
+                    if (after.Length > 0)
                     {
                         _loggerNameMatchMode = MatchMode.EndsWith;
                         _loggerNameMatchArgument = after;
-                        return;
+                        return ;
                     }
-                    return;
+                    return ;
                 }
 
                 // *text*
-                if (firstPos == 0 && lastPos == LoggerNamePattern.Length - 1) 
+                if (firstPos == 0 && lastPos == LoggerNamePattern.Length - 1)
                 {
                     string text = LoggerNamePattern.Substring(1, LoggerNamePattern.Length - 2);
                     _loggerNameMatchMode = MatchMode.Contains;
                     _loggerNameMatchArgument = text;
-                    return;
+                    return ;
                 }
 
                 _loggerNameMatchMode = MatchMode.None;
@@ -164,7 +175,7 @@ namespace NLog.Config
             }
         }
 
-        public bool Matches(string loggerName) 
+        public bool Matches(string loggerName)
         {
             switch (_loggerNameMatchMode)
             {
@@ -191,11 +202,11 @@ namespace NLog.Config
 
         public void Resolve(LoggingConfiguration configuration)
         {
-            foreach (string s in AppenderNames) 
+            foreach (string s in AppenderNames)
             {
                 Appender app = configuration.FindAppenderByName(s);
 
-                if (app != null) 
+                if (app != null)
                 {
                     Appenders.Add(app);
                 }

@@ -39,18 +39,22 @@ using NLog;
 namespace NLog.Filters
 {
     [Filter("whenEqual")]
-    public class WhenEqualsFilter : LayoutBasedFilter
+    public class WhenEqualsFilter: LayoutBasedFilter
     {
-        public WhenEqualsFilter()
-        {
-        }
+        public WhenEqualsFilter(){}
 
         private string _compareTo;
-        
+
         public string CompareTo
         {
-            get { return _compareTo; }
-            set { _compareTo = value; }
+            get
+            {
+                return _compareTo;
+            }
+            set
+            {
+                _compareTo = value;
+            }
         }
 
         public override FilterResult Check(LogEventInfo logMessage)

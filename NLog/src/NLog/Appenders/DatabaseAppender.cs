@@ -44,7 +44,7 @@ using NLog.Config;
 namespace NLog.Appenders
 {
     [Appender("Database")]
-    public sealed class DatabaseAppender : Appender
+    public sealed class DatabaseAppender: Appender
     {
         private Assembly _system_data_assembly = typeof(IDbConnection).Assembly;
         private Type _connectionType = null;
@@ -67,9 +67,12 @@ namespace NLog.Appenders
 
         public string DBProvider
         {
-            get { return _connectionType.FullName; }
-            set 
-            { 
+            get
+            {
+                return _connectionType.FullName;
+            }
+            set
+            {
                 switch (value)
                 {
                     case "sqlserver":
@@ -88,7 +91,7 @@ namespace NLog.Appenders
                         break;
 
                     default:
-                        _connectionType = Type.GetType(value); 
+                        _connectionType = Type.GetType(value);
                         break;
                 }
             }
@@ -98,85 +101,142 @@ namespace NLog.Appenders
         [RequiredParameter]
         public string ConnectionString
         {
-            get { return _connectionString; }
-            set { _connectionString = value; }
+            get
+            {
+                return _connectionString;
+            }
+            set
+            {
+                _connectionString = value;
+            }
         }
 
         public bool KeepConnection
         {
-            get { return _keepConnection; }
-            set { _keepConnection = value; }
+            get
+            {
+                return _keepConnection;
+            }
+            set
+            {
+                _keepConnection = value;
+            }
         }
 
         public bool UseTransactions
         {
-            get { return _useTransaction; }
-            set { _useTransaction = value; }
+            get
+            {
+                return _useTransaction;
+            }
+            set
+            {
+                _useTransaction = value;
+            }
         }
 
         public string DBHost
         {
-            get { return _dbHost; }
-            set { _dbHost = value; }
+            get
+            {
+                return _dbHost;
+            }
+            set
+            {
+                _dbHost = value;
+            }
         }
 
         public string DBUserName
         {
-            get { return _dbUserName; }
-            set { _dbUserName = value; }
+            get
+            {
+                return _dbUserName;
+            }
+            set
+            {
+                _dbUserName = value;
+            }
         }
 
         public string DBPassword
         {
-            get { return _dbPassword; }
-            set { _dbPassword = value; }
+            get
+            {
+                return _dbPassword;
+            }
+            set
+            {
+                _dbPassword = value;
+            }
         }
 
         public string DBDatabase
         {
-            get { return _dbDatabase; }
-            set { _dbDatabase = value; }
+            get
+            {
+                return _dbDatabase;
+            }
+            set
+            {
+                _dbDatabase = value;
+            }
         }
 
         public string CommandText
         {
-            get { return _compiledCommandTextLayout.Text; }
-            set { _compiledCommandTextLayout = new Layout(value); }
+            get
+            {
+                return _compiledCommandTextLayout.Text;
+            }
+            set
+            {
+                _compiledCommandTextLayout = new Layout(value);
+            }
         }
 
         public Layout CommandTextLayout
         {
-            get { return _compiledCommandTextLayout; }
-            set { _compiledCommandTextLayout = value; }
+            get
+            {
+                return _compiledCommandTextLayout;
+            }
+            set
+            {
+                _compiledCommandTextLayout = value;
+            }
         }
 
-        [ArrayParameter(typeof(ParameterInfo),"parameter")]
+        [ArrayParameter(typeof(ParameterInfo), "parameter")]
         public ParameterInfoCollection Parameters
         {
-            get { return _parameters; }
+            get
+            {
+                return _parameters;
+            }
         }
 
-        protected internal override void Append(LogEventInfo ev) 
+        protected internal override void Append(LogEventInfo ev)
         {
-            if (_keepConnection) 
+            if (_keepConnection)
             {
-                lock (this) 
+                lock(this)
                 {
                     if (_activeConnection == null)
                         _activeConnection = OpenConnection();
                     DoAppend(ev);
                 }
-            } 
-            else 
+            }
+            else
             {
-                try 
+                try
                 {
                     _activeConnection = OpenConnection();
                     DoAppend(ev);
                 }
-                finally 
+                finally
                 {
-                    if (_activeConnection != null) 
+                    if (_activeConnection != null)
                     {
                         _activeConnection.Close();
                         _activeConnection = null;
@@ -185,11 +245,11 @@ namespace NLog.Appenders
             }
         }
 
-        private void DoAppend(LogEventInfo ev) 
+        private void DoAppend(LogEventInfo ev)
         {
             IDbCommand command = _activeConnection.CreateCommand();
             command.CommandText = CommandTextLayout.GetFormattedMessage(ev);
-            foreach (ParameterInfo par in Parameters) 
+            foreach (ParameterInfo par in Parameters)
             {
                 IDbDataParameter p = command.CreateParameter();
                 p.Direction = ParameterDirection.Input;
@@ -207,10 +267,20 @@ namespace NLog.Appenders
             command.ExecuteNonQuery();
         }
 
-        private IDbConnection OpenConnection() 
+        private IDbConnection OpenConnection()
         {
-            ConstructorInfo constructor = _connectionType.GetConstructor(new Type[] { typeof(string) });
-            IDbConnection retVal = (IDbConnection)constructor.Invoke(new object[] { BuildConnectionString() });
+            ConstructorInfo constructor = _connectionType.GetConstructor(new Type[]
+            {
+                typeof(string)
+            }
+
+            );
+            IDbConnection retVal = (IDbConnection)constructor.Invoke(new object[]
+            {
+                BuildConnectionString()
+            }
+
+            );
 
             if (retVal != null)
                 retVal.Open();
@@ -218,21 +288,21 @@ namespace NLog.Appenders
             return retVal;
         }
 
-        private string BuildConnectionString() 
+        private string BuildConnectionString()
         {
             if (_connectionStringCache != null)
                 return _connectionStringCache;
 
             if (_connectionString != null)
                 return _connectionString;
-            
+
             StringBuilder sb = new StringBuilder();
 
             sb.Append("Server=");
             sb.Append(DBHost);
             if (DBUserName == null)
                 sb.Append("Trusted_Connection=SSPI;");
-            else 
+            else
             {
                 sb.Append("User id=");
                 sb.Append(DBUserName);
@@ -241,7 +311,7 @@ namespace NLog.Appenders
                 sb.Append(";");
             }
 
-            if (DBDatabase != null) 
+            if (DBDatabase != null)
             {
                 sb.Append("Database=");
                 sb.Append(DBDatabase);
@@ -255,7 +325,7 @@ namespace NLog.Appenders
 
         public class ParameterInfo
         {
-            public ParameterInfo() { }
+            public ParameterInfo(){}
 
             private Layout _compiledlayout;
             private string _name;
@@ -265,39 +335,75 @@ namespace NLog.Appenders
 
             public string Name
             {
-                get { return _name; }
-                set { _name = value; }
+                get
+                {
+                    return _name;
+                }
+                set
+                {
+                    _name = value;
+                }
             }
 
             [RequiredParameter]
             public string Layout
             {
-                get { return _compiledlayout.Text; }
-                set { _compiledlayout = new Layout(value); }
+                get
+                {
+                    return _compiledlayout.Text;
+                }
+                set
+                {
+                    _compiledlayout = new Layout(value);
+                }
             }
 
             public Layout CompiledLayout
             {
-                get { return _compiledlayout; }
-                set { _compiledlayout = value; }
+                get
+                {
+                    return _compiledlayout;
+                }
+                set
+                {
+                    _compiledlayout = value;
+                }
             }
 
             public int Size
             {
-                get { return _size; }
-                set { _size = value; }
+                get
+                {
+                    return _size;
+                }
+                set
+                {
+                    _size = value;
+                }
             }
 
             public byte Precision
             {
-                get { return _precision; }
-                set { _precision = value; }
+                get
+                {
+                    return _precision;
+                }
+                set
+                {
+                    _precision = value;
+                }
             }
 
             public byte Scale
             {
-                get { return _scale; }
-                set { _scale = value; }
+                get
+                {
+                    return _scale;
+                }
+                set
+                {
+                    _scale = value;
+                }
             }
         }
 
@@ -323,7 +429,7 @@ namespace NLog.Appenders
             /// <param name="items">
             /// The array whose elements are to be added to the new ParameterInfoCollection.
             /// </param>
-            public ParameterInfoCollection(ParameterInfo[] items)
+            public ParameterInfoCollection(ParameterInfo[]items)
             {
                 this.AddRange(items);
             }
@@ -346,7 +452,7 @@ namespace NLog.Appenders
             /// <param name="items">
             /// The array whose elements are to be added to the end of this ParameterInfoCollection.
             /// </param>
-            public virtual void AddRange(ParameterInfo[] items)
+            public virtual void AddRange(ParameterInfo[]items)
             {
                 foreach (ParameterInfo item in items)
                 {
@@ -431,7 +537,7 @@ namespace NLog.Appenders
             {
                 get
                 {
-                    return (ParameterInfo) this.List[index];
+                    return (ParameterInfo)this.List[index];
                 }
                 set
                 {
@@ -466,7 +572,7 @@ namespace NLog.Appenders
                 {
                     get
                     {
-                        return (ParameterInfo) (this.wrapped.Current);
+                        return (ParameterInfo)(this.wrapped.Current);
                     }
                 }
 
@@ -474,7 +580,7 @@ namespace NLog.Appenders
                 {
                     get
                     {
-                        return (ParameterInfo) (this.wrapped.Current);
+                        return (ParameterInfo)(this.wrapped.Current);
                     }
                 }
 
@@ -501,6 +607,6 @@ namespace NLog.Appenders
             }
         }
 
-        #endregion
+        #endregion 
     }
 }

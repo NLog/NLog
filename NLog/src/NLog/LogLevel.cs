@@ -41,26 +41,26 @@ namespace NLog
         /// <summary>
         /// Debug log level
         /// </summary>
-        Debug,
+        Debug, 
         /// <summary>
         /// Info log level
         /// </summary>
-        Info,
+        Info, 
         /// <summary>
         /// Warn log level
         /// </summary>
-        Warn,
+        Warn, 
         /// <summary>
         /// Error log level
         /// </summary>
-        Error,
+        Error, 
         /// <summary>
         /// Fatal log level
         /// </summary>
-        Fatal,
+        Fatal, 
         /// <summary>
         /// Maximum log level. An alias for LogLevel.Fatal
         /// </summary>
-        MaxLevel = Fatal,
-    }
+        MaxLevel = Fatal, 
+    } 
 }

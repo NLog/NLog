@@ -51,21 +51,39 @@ namespace NLog.Appenders
         [RequiredParameter]
         public string Name
         {
-            get { return _name; }
-            set { _name = value; }
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
         }
 
         [RequiredParameter]
         public string Layout
         {
-            get { return _compiledlayout.Text; }
-            set { _compiledlayout = new Layout(value); }
+            get
+            {
+                return _compiledlayout.Text;
+            }
+            set
+            {
+                _compiledlayout = new Layout(value);
+            }
         }
 
         public Layout CompiledLayout
         {
-            get { return _compiledlayout; }
-            set { _compiledlayout = value; }
+            get
+            {
+                return _compiledlayout;
+            }
+            set
+            {
+                _compiledlayout = value;
+            }
         }
 
         protected internal abstract void Append(LogEventInfo ev);

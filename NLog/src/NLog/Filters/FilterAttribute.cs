@@ -36,18 +36,21 @@ using System;
 namespace NLog.Filters
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class FilterAttribute : Attribute
+    public sealed class FilterAttribute: Attribute
     {
         private string _name;
 
-        public FilterAttribute(string s) 
+        public FilterAttribute(string s)
         {
             _name = s;
         }
-        
+
         public string Name
         {
-            get { return _name; }
+            get
+            {
+                return _name;
+            }
         }
     }
 }

@@ -66,7 +66,7 @@ namespace NLog.Internal
         {
             get
             {
-                return (PropertyInfoDictionary) this.Dictionary[key];
+                return (PropertyInfoDictionary)this.Dictionary[key];
             }
             set
             {

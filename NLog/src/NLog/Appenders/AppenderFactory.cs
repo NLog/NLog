@@ -51,48 +51,46 @@ namespace NLog.Appenders
             AddDefaultAppenders();
         }
 
-        private AppenderFactory()
-        {
-        }
+        private AppenderFactory(){}
 
-        public static void Clear() 
+        public static void Clear()
         {
             _appenders.Clear();
         }
 
-        public static void AddAppendersFromAssembly(Assembly theAssembly, string prefix) 
+        public static void AddAppendersFromAssembly(Assembly theAssembly, string prefix)
         {
             InternalLogger.Debug("AddAppendersFromAssembly('{0}')", theAssembly.FullName);
-            foreach (Type t in theAssembly.GetTypes()) 
+            foreach (Type t in theAssembly.GetTypes())
             {
-                AppenderAttribute[] attributes = (AppenderAttribute[])t.GetCustomAttributes(typeof(AppenderAttribute), false);
-                if (attributes != null) 
+                AppenderAttribute[]attributes = (AppenderAttribute[])t.GetCustomAttributes(typeof(AppenderAttribute), false);
+                if (attributes != null)
                 {
-                    foreach (AppenderAttribute attr in attributes) 
+                    foreach (AppenderAttribute attr in attributes)
                     {
                         AddAppender(prefix + attr.Name, t);
                     }
                 }
             }
         }
-        private static void AddDefaultAppenders() 
+        private static void AddDefaultAppenders()
         {
             AddAppendersFromAssembly(typeof(AppenderFactory).Assembly, String.Empty);
         }
 
-        public static void AddAppender(string name, Type t) 
+        public static void AddAppender(string name, Type t)
         {
             InternalLogger.Debug("AddAppender('{0}','{1}')", name, t.FullName);
             _appenders[name.ToLower(CultureInfo.InvariantCulture)] = t;
         }
 
-        public static Appender CreateAppender(string name) 
+        public static Appender CreateAppender(string name)
         {
             Type t = _appenders[name.ToLower(CultureInfo.InvariantCulture)];
-            if (t != null) 
+            if (t != null)
             {
                 object o = FactoryHelper.CreateInstance(t);
-                if (o is Appender) 
+                if (o is Appender)
                 {
                     Appender la = (Appender)o;
                     return la;

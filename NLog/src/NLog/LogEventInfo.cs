@@ -47,56 +47,74 @@ namespace NLog
 
         public static readonly LogEventInfo Empty = new LogEventInfo(DateTime.Now, LogLevel.Debug, String.Empty, String.Empty);
 
-        public LogEventInfo(DateTime ts, LogLevel level, string loggerName, string message) 
+        public LogEventInfo(DateTime ts, LogLevel level, string loggerName, string message)
         {
             _timeStamp = ts;
             _level = level;
             _loggerName = loggerName;
             _message = message;
-#if !NETCF
-            _stackTrace = null;
-            _userStackFrame = 0;
-#endif
-        }
+            #if !NETCF
+                _stackTrace = null;
+                _userStackFrame = 0;
+            #endif 
+        } 
 
         public DateTime TimeStamp
         {
-            get { return _timeStamp; }
+            get
+            {
+                return _timeStamp;
+            }
         }
 
         public LogLevel Level
         {
-            get { return _level; }
+            get
+            {
+                return _level;
+            }
         }
 
-#if !NETCF
-        private StackTrace _stackTrace;
-        private int _userStackFrame;
+        #if !NETCF
+            private StackTrace _stackTrace;
+            private int _userStackFrame;
 
-        internal void SetStackTrace(StackTrace stackTrace, int userStackFrame) 
-        {
-            _stackTrace = stackTrace;
-            _userStackFrame = userStackFrame;
-        }
+            internal void SetStackTrace(StackTrace stackTrace, int userStackFrame)
+            {
+                _stackTrace = stackTrace;
+                _userStackFrame = userStackFrame;
+            }
 
-        public StackFrame UserStackFrame
-        {
-            get { return (_stackTrace != null) ? _stackTrace.GetFrame(_userStackFrame) : null; }
-        }
+            public StackFrame UserStackFrame
+            {
+                get
+                {
+                    return (_stackTrace != null) ? _stackTrace.GetFrame(_userStackFrame): null;
+                }
+            }
 
-        public StackTrace StackTrace
-        {
-            get { return _stackTrace; }
-        }
-#endif
+            public StackTrace StackTrace
+            {
+                get
+                {
+                    return _stackTrace;
+                }
+            }
+        #endif 
         public string LoggerName
         {
-            get { return _loggerName; }
+            get
+            {
+                return _loggerName;
+            }
         }
 
         public string Message
         {
-            get { return _message; }
+            get
+            {
+                return _message;
+            }
         }
 
     }

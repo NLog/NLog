@@ -57,7 +57,7 @@ namespace NLog.LayoutAppenders
         /// <param name="items">
         /// The array whose elements are to be added to the new LayoutAppenderCollection.
         /// </param>
-        public LayoutAppenderCollection(LayoutAppender[] items)
+        public LayoutAppenderCollection(LayoutAppender[]items)
         {
             this.AddRange(items);
         }
@@ -80,7 +80,7 @@ namespace NLog.LayoutAppenders
         /// <param name="items">
         /// The array whose elements are to be added to the end of this LayoutAppenderCollection.
         /// </param>
-        public virtual void AddRange(LayoutAppender[] items)
+        public virtual void AddRange(LayoutAppender[]items)
         {
             foreach (LayoutAppender item in items)
             {
@@ -165,7 +165,7 @@ namespace NLog.LayoutAppenders
         {
             get
             {
-                return (LayoutAppender) this.List[index];
+                return (LayoutAppender)this.List[index];
             }
             set
             {
@@ -200,7 +200,7 @@ namespace NLog.LayoutAppenders
             {
                 get
                 {
-                    return (LayoutAppender) (this.wrapped.Current);
+                    return (LayoutAppender)(this.wrapped.Current);
                 }
             }
 
@@ -208,7 +208,7 @@ namespace NLog.LayoutAppenders
             {
                 get
                 {
-                    return (LayoutAppender) (this.wrapped.Current);
+                    return (LayoutAppender)(this.wrapped.Current);
                 }
             }
 

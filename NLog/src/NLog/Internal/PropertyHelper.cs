@@ -45,24 +45,22 @@ namespace NLog.Internal
     internal sealed class PropertyHelper
     {
         private static TypeToPropertyInfoDictionaryAssociation _parameterInfoCache = new TypeToPropertyInfoDictionaryAssociation();
-        
-        private PropertyHelper()
-        {
-        }
 
-        public static bool SetPropertyFromString(object o, string name, string value) 
+        private PropertyHelper(){}
+
+        public static bool SetPropertyFromString(object o, string name, string value)
         {
             InternalLogger.Info("Setting '{0}.{1}' to '{2}'", o.GetType().Name, name, value);
 
-            try 
+            try
             {
                 PropertyInfo propInfo = GetPropertyInfo(o, name);
-                if (propInfo == null) 
+                if (propInfo == null)
                 {
                     throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
                 }
 
-                if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false)) 
+                if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
                 {
                     throw new NotSupportedException("Parameter " + name + " of " + o.GetType().Name + " is an array and cannot be assigned a scalar value.");
                 }
@@ -72,14 +70,14 @@ namespace NLog.Internal
                 propInfo.SetValue(o, newValue, null);
                 return true;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 InternalLogger.Error(ex.ToString());
                 return false;
             }
         }
 
-        public static void AddArrayItemFromElement(object o, XmlElement el) 
+        public static void AddArrayItemFromElement(object o, XmlElement el)
         {
             string name = el.Name;
             PropertyInfo propInfo = GetPropertyInfo(o, name);
@@ -90,7 +88,7 @@ namespace NLog.Internal
             Type elementType = GetArrayElementType(propInfo);
             object arrayItem = FactoryHelper.CreateInstance(elementType);
 
-            foreach (XmlAttribute attrib in el.Attributes) 
+            foreach (XmlAttribute attrib in el.Attributes)
             {
                 string childName = attrib.LocalName;
                 string childValue = attrib.InnerText;
@@ -105,11 +103,11 @@ namespace NLog.Internal
                     XmlElement el2 = (XmlElement)node;
                     string childName = el2.Name;
 
-                    if (IsArrayProperty(elementType, childName)) 
+                    if (IsArrayProperty(elementType, childName))
                     {
                         PropertyHelper.AddArrayItemFromElement(arrayItem, el2);
-                    } 
-                    else 
+                    }
+                    else
                     {
                         string childValue = el2.InnerXml;
 
@@ -126,12 +124,12 @@ namespace NLog.Internal
             PropertyInfo propInfo = o.GetType().GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
             if (propInfo != null)
                 return propInfo;
-            
-            lock (_parameterInfoCache) 
+
+            lock(_parameterInfoCache)
             {
                 Type targetType = o.GetType();
                 PropertyInfoDictionary cache = _parameterInfoCache[targetType];
-                if (cache == null) 
+                if (cache == null)
                 {
                     cache = BuildPropertyInfoDictionary(targetType);
                     _parameterInfoCache[targetType] = cache;
@@ -145,11 +143,11 @@ namespace NLog.Internal
             PropertyInfo propInfo = targetType.GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
             if (propInfo != null)
                 return propInfo;
-            
-            lock (_parameterInfoCache) 
+
+            lock(_parameterInfoCache)
             {
                 PropertyInfoDictionary cache = _parameterInfoCache[targetType];
-                if (cache == null) 
+                if (cache == null)
                 {
                     cache = BuildPropertyInfoDictionary(targetType);
                     _parameterInfoCache[targetType] = cache;
@@ -163,13 +161,13 @@ namespace NLog.Internal
             PropertyInfoDictionary retVal = new PropertyInfoDictionary();
             foreach (PropertyInfo propInfo in t.GetProperties())
             {
-                if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false)) 
+                if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
                 {
-                    ArrayParameterAttribute[] attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
-                    
+                    ArrayParameterAttribute[]attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
+
                     retVal[attributes[0].ElementName.ToLower()] = propInfo;
-                } 
-                else 
+                }
+                else
                 {
                     retVal[propInfo.Name.ToLower()] = propInfo;
                 }
@@ -177,31 +175,31 @@ namespace NLog.Internal
             return retVal;
         }
 
-        private static Type GetArrayElementType(PropertyInfo propInfo) 
+        private static Type GetArrayElementType(PropertyInfo propInfo)
         {
-            if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false)) 
+            if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
             {
-                ArrayParameterAttribute[] attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
+                ArrayParameterAttribute[]attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
 
                 return attributes[0].ElementType;
-            } 
-            else 
+            }
+            else
             {
                 return null;
             }
         }
 
-        public static bool IsArrayProperty(Type t, string name) 
+        public static bool IsArrayProperty(Type t, string name)
         {
             PropertyInfo propInfo = GetPropertyInfo(t, name);
             if (propInfo == null)
                 throw new NotSupportedException("Parameter " + name + " not supported on " + t.Name);
 
-            if (!propInfo.IsDefined(typeof(ArrayParameterAttribute), false)) 
+            if (!propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
             {
                 return false;
-            } 
-            else 
+            }
+            else
             {
                 return true;
             }

@@ -35,8 +35,6 @@ namespace NLog.Filters
 {
     public enum FilterResult
     {
-        Neutral,
-        Log,
-        Ignore,
-    }
+        Neutral, Log, Ignore, 
+    } 
 }

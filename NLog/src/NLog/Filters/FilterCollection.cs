@@ -57,7 +57,7 @@ namespace NLog.Filters
         /// <param name="items">
         /// The array whose elements are to be added to the new FilterCollection.
         /// </param>
-        public FilterCollection(Filter[] items)
+        public FilterCollection(Filter[]items)
         {
             this.AddRange(items);
         }
@@ -80,7 +80,7 @@ namespace NLog.Filters
         /// <param name="items">
         /// The array whose elements are to be added to the end of this FilterCollection.
         /// </param>
-        public virtual void AddRange(Filter[] items)
+        public virtual void AddRange(Filter[]items)
         {
             foreach (Filter item in items)
             {
@@ -165,7 +165,7 @@ namespace NLog.Filters
         {
             get
             {
-                return (Filter) this.List[index];
+                return (Filter)this.List[index];
             }
             set
             {
@@ -200,7 +200,7 @@ namespace NLog.Filters
             {
                 get
                 {
-                    return (Filter) (this.wrapped.Current);
+                    return (Filter)(this.wrapped.Current);
                 }
             }
 
@@ -208,7 +208,7 @@ namespace NLog.Filters
             {
                 get
                 {
-                    return (Filter) (this.wrapped.Current);
+                    return (Filter)(this.wrapped.Current);
                 }
             }
 

@@ -40,7 +40,7 @@ using NLog.LayoutAppenders;
 namespace NLog.Win32.LayoutAppenders
 {
     [LayoutAppender("asp-request")]
-    public class ASPRequestValueLayoutAppender : LayoutAppender
+    public class ASPRequestValueLayoutAppender: LayoutAppender
     {
         private string _queryStringKey;
         private string _formKey;
@@ -50,32 +50,62 @@ namespace NLog.Win32.LayoutAppenders
 
         public string Item
         {
-            get { return _item; }
-            set { _item = value; }
+            get
+            {
+                return _item;
+            }
+            set
+            {
+                _item = value;
+            }
         }
 
         public string QueryString
         {
-            get { return _queryStringKey; }
-            set { _queryStringKey = value; }
+            get
+            {
+                return _queryStringKey;
+            }
+            set
+            {
+                _queryStringKey = value;
+            }
         }
 
         public string Form
         {
-            get { return _formKey; }
-            set { _formKey = value; }
+            get
+            {
+                return _formKey;
+            }
+            set
+            {
+                _formKey = value;
+            }
         }
 
         public string Cookie
         {
-            get { return _cookie; }
-            set { _cookie = value; }
+            get
+            {
+                return _cookie;
+            }
+            set
+            {
+                _cookie = value;
+            }
         }
 
         public string ServerVariable
         {
-            get { return _serverVariable; }
-            set { _serverVariable = value; }
+            get
+            {
+                return _serverVariable;
+            }
+            set
+            {
+                _serverVariable = value;
+            }
         }
 
         protected override int GetEstimatedBufferSize(LogEventInfo ev)
@@ -83,51 +113,52 @@ namespace NLog.Win32.LayoutAppenders
             return 64;
         }
 
-        private string GetItem(ASPHelper.IRequestDictionary dict, string key) 
+        private string GetItem(ASPHelper.IRequestDictionary dict, string key)
         {
             object retVal = null;
             object o = dict.GetItem(key);
             ASPHelper.IStringList sl = o as ASPHelper.IStringList;
-            if (sl != null) 
+            if (sl != null)
             {
-                if (sl.GetCount() > 0) 
+                if (sl.GetCount() > 0)
                 {
                     retVal = sl.GetItem(1);
                 }
                 Marshal.ReleaseComObject(sl);
             }
-            else return o.GetType().ToString();
+            else
+                return o.GetType().ToString();
             return Convert.ToString(retVal);
         }
-        
+
         protected override void Append(StringBuilder builder, LogEventInfo ev)
         {
             ASPHelper.IRequest request = ASPHelper.GetRequestObject();
-            if (request != null) 
+            if (request != null)
             {
-                if (_queryStringKey != null) 
+                if (_queryStringKey != null)
                 {
                     builder.Append(GetItem(request.GetQueryString(), _queryStringKey));
-                } 
-                else if (_formKey != null) 
+                }
+                else if (_formKey != null)
                 {
                     builder.Append(GetItem(request.GetForm(), _formKey));
-                } 
-                else if (_cookie != null) 
+                }
+                else if (_cookie != null)
                 {
                     builder.Append(GetItem(request.GetCookies(), _cookie));
-                } 
-                else if (_serverVariable != null) 
+                }
+                else if (_serverVariable != null)
                 {
                     builder.Append(GetItem(request.GetServerVariables(), _serverVariable));
-                } 
-                else if (_item != null) 
+                }
+                else if (_item != null)
                 {
                     ASPHelper.IDispatch o = request.GetItem(_item);
                     ASPHelper.IStringList sl = o as ASPHelper.IStringList;
-                    if (sl != null) 
+                    if (sl != null)
                     {
-                        if (sl.GetCount() > 0) 
+                        if (sl.GetCount() > 0)
                         {
                             builder.Append(sl.GetItem(1));
                         }

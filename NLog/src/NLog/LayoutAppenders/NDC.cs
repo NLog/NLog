@@ -39,31 +39,49 @@ using NLog.LayoutAppenders;
 namespace NLog.LayoutAppenders
 {
     [LayoutAppender("ndc")]
-    public class NDCLayoutAppender : LayoutAppender
+    public class NDCLayoutAppender: LayoutAppender
     {
-        private int _topFrames = -1;
-        private int _bottomFrames = -1;
+        private int _topFrames =  - 1;
+        private int _bottomFrames =  - 1;
         private string _separator = " ";
-        
+
         public int TopFrames
         {
-            get { return _topFrames; }
-            set { _topFrames = value; }
+            get
+            {
+                return _topFrames;
+            }
+            set
+            {
+                _topFrames = value;
+            }
         }
 
         public int BottomFrames
         {
-            get { return _bottomFrames; }
-            set { _bottomFrames = value; }
+            get
+            {
+                return _bottomFrames;
+            }
+            set
+            {
+                _bottomFrames = value;
+            }
         }
 
         public string Separator
         {
-            get { return _separator; }
-            set { _separator = value; }
+            get
+            {
+                return _separator;
+            }
+            set
+            {
+                _separator = value;
+            }
         }
 
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev) 
+        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 0;
         }
@@ -72,15 +90,15 @@ namespace NLog.LayoutAppenders
         {
             string msg;
 
-            if (TopFrames != -1) 
+            if (TopFrames !=  - 1)
             {
                 msg = NDC.GetTopMessages(TopFrames, Separator);
-            } 
-            else if (BottomFrames != -1) 
+            }
+            else if (BottomFrames !=  - 1)
             {
                 msg = NDC.GetBottomMessages(BottomFrames, Separator);
-            } 
-            else 
+            }
+            else
             {
                 msg = NDC.GetAllMessages(Separator);
             }

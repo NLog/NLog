@@ -39,7 +39,7 @@ public class ReplaceVersion
     static string fileNamePattern = "AssemblyInfo.cs";
     static string newAssemblyVersion;
 
-    public static void Main(string[] args)
+    public static void Main(string[]args)
     {
         if (args.Length < 2)
         {
@@ -47,7 +47,7 @@ public class ReplaceVersion
             Console.WriteLine();
             Console.WriteLine("Scans for AssemblyInfo.cs file in <root_dir> and subdirectories");
             Console.WriteLine("and replaces [assembly: AssemblyVersion()] with given version number");
-            return;
+            return ;
         }
         string dirName = args[0];
         newAssemblyVersion = args[1];
@@ -77,9 +77,9 @@ public class ReplaceVersion
         {
             Console.Write("{0}: ", di.FullName);
             bool changed = false;
-            using (StreamWriter sw = new StreamWriter(tmp))
+            using(StreamWriter sw = new StreamWriter(tmp))
             {
-                using (StreamReader sr = new StreamReader(fullName))
+                using(StreamReader sr = new StreamReader(fullName))
                 {
                     string line = null;
 

@@ -33,144 +33,144 @@
 
 #if NETCF
 
-using System;
-using System.Collections;
-using System.Xml;
-using System.IO;
-using System.Reflection;
-using System.Globalization;
-using System.Text;
+    using System;
+    using System.Collections;
+    using System.Xml;
+    using System.IO;
+    using System.Reflection;
+    using System.Globalization;
+    using System.Text;
 
-namespace System.Collections.Specialized
-{
-	/// <summary>
-	/// A dictionary with keys of type string and values of type String
-	/// </summary>
-	internal class StringDictionary: System.Collections.DictionaryBase
-	{
-		/// <summary>
-		/// Initializes a new empty instance of the StringDictionary class
-		/// </summary>
-		public StringDictionary()
-		{
-			// empty
-		}
+    namespace System.Collections.Specialized
+    {
+        /// <summary>
+        /// A dictionary with keys of type string and values of type String
+        /// </summary>
+        internal class StringDictionary: System.Collections.DictionaryBase
+        {
+            /// <summary>
+            /// Initializes a new empty instance of the StringDictionary class
+            /// </summary>
+            public StringDictionary()
+            {
+                // empty
+            }
 
-		/// <summary>
-		/// Gets or sets the String associated with the given string
-		/// </summary>
-		/// <param name="key">
-		/// The string whose value to get or set.
-		/// </param>
-		public virtual String this[string key]
-		{
-			get
-			{
-				return (String) this.Dictionary[key];
-			}
-			set
-			{
-				this.Dictionary[key] = value;
-			}
-		}
+            /// <summary>
+            /// Gets or sets the String associated with the given string
+            /// </summary>
+            /// <param name="key">
+            /// The string whose value to get or set.
+            /// </param>
+            public virtual String this[string key]
+            {
+                get
+                {
+                    return (String)this.Dictionary[key];
+                }
+                set
+                {
+                    this.Dictionary[key] = value;
+                }
+            }
 
-		/// <summary>
-		/// Adds an element with the specified key and value to this StringDictionary.
-		/// </summary>
-		/// <param name="key">
-		/// The string key of the element to add.
-		/// </param>
-		/// <param name="value">
-		/// The String value of the element to add.
-		/// </param>
-		public virtual void Add(string key, String value)
-		{
-			this.Dictionary.Add(key, value);
-		}
+            /// <summary>
+            /// Adds an element with the specified key and value to this StringDictionary.
+            /// </summary>
+            /// <param name="key">
+            /// The string key of the element to add.
+            /// </param>
+            /// <param name="value">
+            /// The String value of the element to add.
+            /// </param>
+            public virtual void Add(string key, String value)
+            {
+                this.Dictionary.Add(key, value);
+            }
 
-		/// <summary>
-		/// Determines whether this StringDictionary contains a specific key.
-		/// </summary>
-		/// <param name="key">
-		/// The string key to locate in this StringDictionary.
-		/// </param>
-		/// <returns>
-		/// true if this StringDictionary contains an element with the specified key;
-		/// otherwise, false.
-		/// </returns>
-		public virtual bool Contains(string key)
-		{
-			return this.Dictionary.Contains(key);
-		}
+            /// <summary>
+            /// Determines whether this StringDictionary contains a specific key.
+            /// </summary>
+            /// <param name="key">
+            /// The string key to locate in this StringDictionary.
+            /// </param>
+            /// <returns>
+            /// true if this StringDictionary contains an element with the specified key;
+            /// otherwise, false.
+            /// </returns>
+            public virtual bool Contains(string key)
+            {
+                return this.Dictionary.Contains(key);
+            }
 
-		/// <summary>
-		/// Determines whether this StringDictionary contains a specific key.
-		/// </summary>
-		/// <param name="key">
-		/// The string key to locate in this StringDictionary.
-		/// </param>
-		/// <returns>
-		/// true if this StringDictionary contains an element with the specified key;
-		/// otherwise, false.
-		/// </returns>
-		public virtual bool ContainsKey(string key)
-		{
-			return this.Dictionary.Contains(key);
-		}
+            /// <summary>
+            /// Determines whether this StringDictionary contains a specific key.
+            /// </summary>
+            /// <param name="key">
+            /// The string key to locate in this StringDictionary.
+            /// </param>
+            /// <returns>
+            /// true if this StringDictionary contains an element with the specified key;
+            /// otherwise, false.
+            /// </returns>
+            public virtual bool ContainsKey(string key)
+            {
+                return this.Dictionary.Contains(key);
+            }
 
-		/// <summary>
-		/// Determines whether this StringDictionary contains a specific value.
-		/// </summary>
-		/// <param name="value">
-		/// The String value to locate in this StringDictionary.
-		/// </param>
-		/// <returns>
-		/// true if this StringDictionary contains an element with the specified value;
-		/// otherwise, false.
-		/// </returns>
-		public virtual bool ContainsValue(String value)
-		{
-			foreach (String item in this.Dictionary.Values)
-			{
-				if (item == value)
-					return true;
-			}
-			return false;
-		}
+            /// <summary>
+            /// Determines whether this StringDictionary contains a specific value.
+            /// </summary>
+            /// <param name="value">
+            /// The String value to locate in this StringDictionary.
+            /// </param>
+            /// <returns>
+            /// true if this StringDictionary contains an element with the specified value;
+            /// otherwise, false.
+            /// </returns>
+            public virtual bool ContainsValue(String value)
+            {
+                foreach (String item in this.Dictionary.Values)
+                {
+                    if (item == value)
+                        return true;
+                }
+                return false;
+            }
 
-		/// <summary>
-		/// Removes the element with the specified key from this StringDictionary.
-		/// </summary>
-		/// <param name="key">
-		/// The string key of the element to remove.
-		/// </param>
-		public virtual void Remove(string key)
-		{
-			this.Dictionary.Remove(key);
-		}
+            /// <summary>
+            /// Removes the element with the specified key from this StringDictionary.
+            /// </summary>
+            /// <param name="key">
+            /// The string key of the element to remove.
+            /// </param>
+            public virtual void Remove(string key)
+            {
+                this.Dictionary.Remove(key);
+            }
 
-		/// <summary>
-		/// Gets a collection containing the keys in this StringDictionary.
-		/// </summary>
-		public virtual System.Collections.ICollection Keys
-		{
-			get
-			{
-				return this.Dictionary.Keys;
-			}
-		}
+            /// <summary>
+            /// Gets a collection containing the keys in this StringDictionary.
+            /// </summary>
+            public virtual System.Collections.ICollection Keys
+            {
+                get
+                {
+                    return this.Dictionary.Keys;
+                }
+            }
 
-		/// <summary>
-		/// Gets a collection containing the values in this StringDictionary.
-		/// </summary>
-		public virtual System.Collections.ICollection Values
-		{
-			get
-			{
-				return this.Dictionary.Values;
-			}
-		}
-	}
-}
+            /// <summary>
+            /// Gets a collection containing the values in this StringDictionary.
+            /// </summary>
+            public virtual System.Collections.ICollection Values
+            {
+                get
+                {
+                    return this.Dictionary.Values;
+                }
+            }
+        }
+    }
 
 #endif

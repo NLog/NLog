@@ -57,7 +57,7 @@ namespace NLog.Appenders
         /// <param name="items">
         /// The array whose elements are to be added to the new AppenderCollection.
         /// </param>
-        public AppenderCollection(Appender[] items)
+        public AppenderCollection(Appender[]items)
         {
             this.AddRange(items);
         }
@@ -80,7 +80,7 @@ namespace NLog.Appenders
         /// <param name="items">
         /// The array whose elements are to be added to the end of this AppenderCollection.
         /// </param>
-        public virtual void AddRange(Appender[] items)
+        public virtual void AddRange(Appender[]items)
         {
             foreach (Appender item in items)
             {
@@ -165,7 +165,7 @@ namespace NLog.Appenders
         {
             get
             {
-                return (Appender) this.List[index];
+                return (Appender)this.List[index];
             }
             set
             {
@@ -200,7 +200,7 @@ namespace NLog.Appenders
             {
                 get
                 {
-                    return (Appender) (this.wrapped.Current);
+                    return (Appender)(this.wrapped.Current);
                 }
             }
 
@@ -208,7 +208,7 @@ namespace NLog.Appenders
             {
                 get
                 {
-                    return (Appender) (this.wrapped.Current);
+                    return (Appender)(this.wrapped.Current);
                 }
             }
 

@@ -37,13 +37,13 @@ using System.Text;
 namespace NLog.LayoutAppenders
 {
     [LayoutAppender("processtime")]
-    public class ProcessTimeLayoutAppender : LayoutAppender
+    public class ProcessTimeLayoutAppender: LayoutAppender
     {
         protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 32;
         }
-        
+
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
             TimeSpan ts = ev.TimeStamp - LogEventInfo.ZeroDate;

@@ -38,16 +38,16 @@ namespace NLog
 {
     public sealed class MDC
     {
-        private MDC() { }
+        private MDC(){}
 
-        public static void Set(string item, string value) 
+        public static void Set(string item, string value)
         {
             IDictionary dict = GetThreadDictionary();
 
             dict[item] = value;
         }
-        
-        public static string Get(string item) 
+
+        public static string Get(string item)
         {
             IDictionary dict = GetThreadDictionary();
 
@@ -58,32 +58,32 @@ namespace NLog
                 return s;
         }
 
-        public static bool Contains(string item) 
+        public static bool Contains(string item)
         {
             IDictionary dict = GetThreadDictionary();
 
             return dict.Contains(item);
         }
 
-        public static void Remove(string item) 
+        public static void Remove(string item)
         {
             IDictionary dict = GetThreadDictionary();
 
             dict.Remove(item);
         }
 
-        public static void Clear() 
+        public static void Clear()
         {
             IDictionary dict = GetThreadDictionary();
 
             dict.Clear();
         }
 
-        private static IDictionary GetThreadDictionary() 
+        private static IDictionary GetThreadDictionary()
         {
             IDictionary threadDictionary = (IDictionary)System.Threading.Thread.GetData(_dataSlot);
-            
-            if (threadDictionary == null) 
+
+            if (threadDictionary == null)
             {
                 threadDictionary = new Hashtable();
                 System.Threading.Thread.SetData(_dataSlot, threadDictionary);

@@ -43,7 +43,7 @@ using NLog.Internal;
 namespace NLog.Appenders
 {
     [Appender("File")]
-    public class FileAppender : Appender
+    public class FileAppender: Appender
     {
         private Random _random = new Random();
         private Layout _fileNameLayout;
@@ -60,55 +60,103 @@ namespace NLog.Appenders
         [RequiredParameter]
         public string FileName
         {
-            get { return _fileNameLayout.Text; }
-            set { _fileNameLayout = new Layout(value); }
+            get
+            {
+                return _fileNameLayout.Text;
+            }
+            set
+            {
+                _fileNameLayout = new Layout(value);
+            }
         }
 
         public bool CreateDirs
         {
-            get { return _createDirs; }
-            set { _createDirs = value; }
+            get
+            {
+                return _createDirs;
+            }
+            set
+            {
+                _createDirs = value;
+            }
         }
 
         public bool KeepFileOpen
         {
-            get { return _keepFileOpen; }
-            set { _keepFileOpen = value; }
+            get
+            {
+                return _keepFileOpen;
+            }
+            set
+            {
+                _keepFileOpen = value;
+            }
         }
 
         public bool AutoFlush
         {
-            get { return _autoFlush; }
-            set { _autoFlush = value; }
+            get
+            {
+                return _autoFlush;
+            }
+            set
+            {
+                _autoFlush = value;
+            }
         }
 
         public string Encoding
         {
-            get { return _encoding.WebName; }
-            set { _encoding = System.Text.Encoding.GetEncoding(value); }
+            get
+            {
+                return _encoding.WebName;
+            }
+            set
+            {
+                _encoding = System.Text.Encoding.GetEncoding(value);
+            }
         }
 
         public bool ConcurrentWrites
         {
-            get { return _concurrentWrites; }
-            set { _concurrentWrites = value; }
+            get
+            {
+                return _concurrentWrites;
+            }
+            set
+            {
+                _concurrentWrites = value;
+            }
         }
 
         public int ConcurrentWriteAttempts
         {
-            get { return _concurrentWriteAttempts; }
-            set { _concurrentWriteAttempts = value; }
+            get
+            {
+                return _concurrentWriteAttempts;
+            }
+            set
+            {
+                _concurrentWriteAttempts = value;
+            }
         }
 
         public int ConcurrentWriteAttemptDelay
         {
-            get { return _concurrentWriteAttemptDelay; }
-            set { _concurrentWriteAttemptDelay = value; }
+            get
+            {
+                return _concurrentWriteAttemptDelay;
+            }
+            set
+            {
+                _concurrentWriteAttemptDelay = value;
+            }
         }
 
-        private StreamWriter OpenStreamWriter(string fileName) 
+        private StreamWriter OpenStreamWriter(string fileName)
         {
-            try 
+            try
             {
                 StreamWriter retVal;
 
@@ -121,18 +169,18 @@ namespace NLog.Appenders
                     }
                 }
 
-                if (!ConcurrentWrites) 
+                if (!ConcurrentWrites)
                 {
                     retVal = new StreamWriter(fileName, true, _encoding);
-                } 
-                else 
+                }
+                else
                 {
                     int currentDelay = _concurrentWriteAttemptDelay;
                     retVal = null;
 
-                    for (int i = 0; i < _concurrentWriteAttempts; ++i) 
+                    for (int i = 0; i < _concurrentWriteAttempts; ++i)
                     {
-                        try 
+                        try
                         {
                             retVal = new StreamWriter(fileName, true, _encoding);
                             break;
@@ -150,32 +198,32 @@ namespace NLog.Appenders
                 retVal.AutoFlush = _autoFlush;
                 return retVal;
             }
-            catch (Exception) 
+            catch (Exception)
             {
                 InternalLogger.Error("Unable to create file: '{0}'", fileName);
                 throw;
             }
         }
 
-        protected internal override void Append(LogEventInfo ev) 
+        protected internal override void Append(LogEventInfo ev)
         {
             string fileName = _fileNameLayout.GetFormattedMessage(ev);
 
-            if (fileName != _lastFileName && _outputFile != null) 
+            if (fileName != _lastFileName && _outputFile != null)
             {
                 _outputFile.Close();
                 _outputFile = null;
             }
             _lastFileName = fileName;
-            if (_outputFile == null) 
+            if (_outputFile == null)
             {
                 _outputFile = OpenStreamWriter(fileName);
                 if (_outputFile == null)
-                    return;
+                    return ;
             }
             _outputFile.WriteLine(CompiledLayout.GetFormattedMessage(ev));
             _outputFile.Flush();
-            if (!KeepFileOpen || ConcurrentWrites) 
+            if (!KeepFileOpen || ConcurrentWrites)
             {
                 _outputFile.Close();
                 _outputFile = null;

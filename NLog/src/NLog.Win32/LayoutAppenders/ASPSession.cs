@@ -41,28 +41,34 @@ using NLog.Config;
 namespace NLog.Win32.LayoutAppenders
 {
     [LayoutAppender("asp-session")]
-    public class ASPSessionValueLayoutAppender : LayoutAppender
+    public class ASPSessionValueLayoutAppender: LayoutAppender
     {
         private string _sessionVariable = null;
 
         [RequiredParameter]
         public string Variable
         {
-            get { return _sessionVariable; }
-            set { _sessionVariable = value; }
+            get
+            {
+                return _sessionVariable;
+            }
+            set
+            {
+                _sessionVariable = value;
+            }
         }
 
         protected override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 64;
         }
-        
+
         protected override void Append(StringBuilder builder, LogEventInfo ev)
         {
             ASPHelper.ISessionObject session = ASPHelper.GetSessionObject();
-            if (session != null) 
+            if (session != null)
             {
-                if (_sessionVariable != null) 
+                if (_sessionVariable != null)
                 {
 
                     object variableValue = session.GetValue(_sessionVariable);
