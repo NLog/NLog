@@ -56,22 +56,22 @@ namespace NLog.Config
         private string _loggerNameMatchArgument;
 
         private bool[] _logLevels = new bool[(int)LogLevel.MaxLevel + 1];
-        private ArrayList _appenderNames = new ArrayList();
-        private ArrayList _appenders = new ArrayList();
-        private ArrayList _filters = new ArrayList();
+        private StringCollection _appenderNames = new StringCollection();
+        private AppenderCollection _appenders = new AppenderCollection();
+        private FilterCollection _filters = new FilterCollection();
         private bool _final = false;
 
-        public ArrayList AppenderNames
+        public StringCollection AppenderNames
         {
             get { return _appenderNames; }
         }
 
-        public ArrayList Appenders
+        public AppenderCollection Appenders
         {
             get { return _appenders; }
         }
 
-        public ArrayList Filters
+        public FilterCollection Filters
         {
             get { return _filters; }
         }

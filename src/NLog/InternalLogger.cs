@@ -123,8 +123,9 @@ namespace NLog
                     Console.WriteLine(msg);
                 }
             }
-            catch (Exception) {
-            }
+            catch {
+				// we have no place to log the message to so we ignore it
+			}
         }
 
         internal static bool IsDebugEnabled { get { return _logLevel >= LogLevel.Debug; } }

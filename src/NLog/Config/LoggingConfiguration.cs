@@ -41,8 +41,8 @@ namespace NLog.Config
 {
     public class LoggingConfiguration
     {
-        private Hashtable _appenders = new Hashtable();
-        private ArrayList _appenderRules = new ArrayList();
+        private AppenderDictionary _appenders = new AppenderDictionary();
+        private AppenderRuleCollection _appenderRules = new AppenderRuleCollection();
 
         public LoggingConfiguration() { }
 
@@ -57,10 +57,10 @@ namespace NLog.Config
         }
 
         public Appender FindAppenderByName(string name) {
-            return (Appender)_appenders[name];
+            return _appenders[name];
         }
 
-        public ArrayList AppenderRules
+        public AppenderRuleCollection AppenderRules
         {
             get { return _appenderRules; }
         }

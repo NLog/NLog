@@ -37,7 +37,7 @@ using System;
 using System.Collections;
 using System.IO;
 
-namespace NLog
+namespace NLog.Utils
 {
     internal class MultiFileWatcher : IDisposable
     {

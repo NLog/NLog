@@ -38,12 +38,13 @@ using System.Reflection;
 using System.Globalization;
 
 using NLog.LayoutAppenders;
+using NLog.Utils;
 
 namespace NLog
 {
     public sealed class LayoutAppenderFactory
     {
-        private static Hashtable _appenders = new Hashtable();
+        private static TypeDictionary _appenders = new TypeDictionary();
 
         static LayoutAppenderFactory()
         {
@@ -128,7 +129,7 @@ namespace NLog
         }
 
         public static LayoutAppender CreateLayoutAppender(string name, string parameters) {
-            Type t = (Type)_appenders[name];
+            Type t = _appenders[name];
             if (t != null) {
                 object o = Activator.CreateInstance(t);
                 if (o is LayoutAppender) {

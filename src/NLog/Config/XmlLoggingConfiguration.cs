@@ -37,14 +37,16 @@ using System.Reflection;
 using System.Xml;
 using System.IO;
 using System.Globalization;
+using System.Collections.Specialized;
 
 using NLog;
+using NLog.Utils;
 
 namespace NLog.Config
 {
     public class XmlLoggingConfiguration : LoggingConfiguration
     {
-        private Hashtable _visitedFile = new Hashtable();
+        private StringDictionary _visitedFile = new StringDictionary();
 
         private bool _autoReload = false;
         private string _originalFileName = null;
@@ -78,10 +80,10 @@ namespace NLog.Config
 
         private void ConfigureFromFile(string fileName) {
             string key = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
-            if (_visitedFile.Contains(key))
+            if (_visitedFile.ContainsKey(key))
                 return;
 
-            _visitedFile[key] = this;
+            _visitedFile[key] = key;
 
             XmlDocument doc = new XmlDocument();
             doc.Load(fileName);
