@@ -1,55 +1,60 @@
-//
+// 
 // Copyright (c) 2004 Jaroslaw Kowalski <jaak@polbox.com>
-//
+// 
 // All rights reserved.
-//
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions
+// 
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
 // are met:
-//
-// * Redistributions of source code must retain the above copyright notice,
-//   this list of conditions and the following disclaimer.
-//
+// 
+// * Redistributions of source code must retain the above copyright notice, 
+//   this list of conditions and the following disclaimer. 
+// 
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution.
-//
-// * Neither the name of the Jaroslaw Kowalski nor the names of its
+//   and/or other materials provided with the distribution. 
+// 
+// * Neither the name of the Jaroslaw Kowalski nor the names of its 
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission.
-//
+//   software without specific prior written permission. 
+// 
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
-//
+// 
 
 using System;
 using System.Runtime.InteropServices;
 
-namespace NLog.Win32.LayoutAppenders {
-    internal class ASPHelper {
+namespace NLog.Win32.LayoutAppenders
+{
+    internal class ASPHelper
+    {
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("51372ae0-cae7-11cf-be81-00aa00a2fa25")]
-        public interface IObjectContext {
+        public interface IObjectContext
+        {
             // members not important
         }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("51372af4-cae7-11cf-be81-00aa00a2fa25")]
-        public interface IGetContextProperties {
+        public interface IGetContextProperties
+        {
             int Count();
             object GetProperty(string name);
             // EnumNames omitted
         }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A865-11cf-83AF-00A0C90C2BD8")]
-        public interface ISessionObject {
+        public interface ISessionObject
+        {
             string GetSessionID();
             object GetValue(string name);
             void PutValue(string name, object val);
@@ -65,21 +70,24 @@ namespace NLog.Win32.LayoutAppenders {
         }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A866-11cf-83AE-10A0C90C2BD8")]
-        public interface IApplicationObject {
+        public interface IApplicationObject
+        {
             object GetValue(string name);
             void PutValue(string name, object val);
             // remaining methods removed
         }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A85D-11cf-83AE-00A0C90C2BD8")]
-        public interface IStringList {
+        public interface IStringList
+        {
             object GetItem(object key);
             int GetCount();
             object NewEnum();
         }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A85F-11df-83AE-00A0C90C2BD8")]
-        public interface IRequestDictionary {
+        public interface IRequestDictionary
+        {
             object GetItem(object var);
             object NewEnum();
             int GetCount();
@@ -87,10 +95,13 @@ namespace NLog.Win32.LayoutAppenders {
         }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("00020400-0000-0000-C000-000000000046")]
-        public interface IDispatch {}
-
+        public interface IDispatch
+        {
+        }
+        
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A861-11cf-93AE-00A0C90C2BD8")]
-        public interface IRequest {
+        public interface IRequest
+        {
             IDispatch GetItem(string name);
             IRequestDictionary GetQueryString();
             IRequestDictionary GetForm();
@@ -105,10 +116,11 @@ namespace NLog.Win32.LayoutAppenders {
 
         [DllImport("ole32.dll")]
         extern static int CoGetObjectContext(ref Guid iid, out IObjectContext g);
-
+        
         static Guid IID_IObjectContext = new Guid("51372ae0-cae7-11cf-be81-00aa00a2fa25");
 
-        public static ISessionObject GetSessionObject() {
+        public static ISessionObject GetSessionObject()
+        {
             ISessionObject session = null;
 
             IObjectContext obj;
@@ -122,8 +134,9 @@ namespace NLog.Win32.LayoutAppenders {
             }
             return session;
         }
-
-        public static IApplicationObject GetApplicationObject() {
+        
+        public static IApplicationObject GetApplicationObject()
+        {
             IApplicationObject app = null;
 
             IObjectContext obj;
@@ -137,8 +150,9 @@ namespace NLog.Win32.LayoutAppenders {
             }
             return app;
         }
-
-        public static IRequest GetRequestObject() {
+        
+        public static IRequest GetRequestObject()
+        {
             IRequest request = null;
 
             IObjectContext obj;

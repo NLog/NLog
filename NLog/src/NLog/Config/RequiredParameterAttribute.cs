@@ -40,6 +40,5 @@ namespace NLog.Config {
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public sealed class RequiredParameterAttribute : Attribute {
-        public RequiredParameterAttribute() {}
-    }
+        public RequiredParameterAttribute() {}}
 }
