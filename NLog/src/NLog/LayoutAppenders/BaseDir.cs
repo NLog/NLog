@@ -50,7 +50,7 @@ namespace NLog.LayoutAppenders
             get { return _fileName; }
             set { _fileName = value; }
         }
-        
+
         public string Dir
         {
             get { return _directoryName; }
@@ -60,7 +60,7 @@ namespace NLog.LayoutAppenders
         {
             return 32;
         }
-        
+
         public override void Append(StringBuilder builder, LogEventInfo ev)
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
