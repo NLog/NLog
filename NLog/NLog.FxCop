@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FxCopProject Version="1.3" Name="NLog">
+ <ProjectOptions>
+  <SharedProject>False</SharedProject>
+  <Stylesheet Apply="False">c:\program files\microsoft fxcop 1.30\Xml\FxCopReport.Xsl</Stylesheet>
+  <SaveMessages>
+   <Project Status="Active, Excluded" NewOnly="False" />
+   <Report Status="Active" NewOnly="False" />
+  </SaveMessages>
+  <ProjectFile Compress="True" DefaultTargetCheck="True" DefaultRuleCheck="True" SaveByRuleGroup="" Deterministic="False" />
+  <PermitAnalysis>True</PermitAnalysis>
+  <SourceLookup>True</SourceLookup>
+  <AnalysisExceptionsThreshold>100</AnalysisExceptionsThreshold>
+  <RuleExceptionsThreshold>10</RuleExceptionsThreshold>
+  <Spelling Locale="en-us" />
+ </ProjectOptions>
+ <Targets>
+  <AssemblyReferenceDirectories>
+   <Directory>D:\Work\NLog\src\NLog.Test\bin\Debug\</Directory>
+  </AssemblyReferenceDirectories>
+  <Target Name="D:\Work\NLog\src\NLog\bin\Debug\NLog.dll" Analyze="True" AnalyzeAllChildren="True" />
+ </Targets>
+ <Rules>
+  <RuleFiles>
+   <RuleFile Name="$(FxCopDir)\Rules\PerformanceRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\ComRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\UsageRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\DesignRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\GlobalizationRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\NamingRules.dll" Enabled="True" AllRulesEnabled="True" />
+  </RuleFiles>
+  <Groups />
+  <Settings />
+ </Rules>
+ <FxCopReport Version="1.3" LastAnalysis="2004-08-08 19:35:40Z">
+  <Targets>
+   <Target Name="D:\Work\NLog\src\NLog\bin\Debug\NLog.dll">
+    <Modules>
+     <Module Name="nlog.dll">
+      <Namespaces>
+       <Namespace Name="NLog.LayoutAppenders">
+        <Classes>
+         <Class Name="LevelLayoutAppender">
+          <Constructors>
+           <Constructor Name=".cctor()">
+            <Messages>
+             <Message Status="Excluded" Created="2004-08-08 14:08:05Z">
+              <Rule TypeName="DoNotDeclareExplicitStaticConstructors" />
+              <Issues>
+               <Issue Certainty="90" Level="CriticalWarning">
+                <SourceCode Path="D:\Work\NLog\src\NLog\LayoutAppenders" File="Level.cs" Line="16" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>LevelLayoutAppender</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Constructor>
+          </Constructors>
+         </Class>
+        </Classes>
+       </Namespace>
+       <Namespace Name="NLog">
+        <Classes>
+         <Class Name="LayoutAppenderFactory">
+          <Constructors>
+           <Constructor Name=".cctor()">
+            <Messages>
+             <Message Status="Excluded" Created="2004-08-08 14:08:05Z">
+              <Rule TypeName="DoNotDeclareExplicitStaticConstructors" />
+              <Issues>
+               <Issue Certainty="90" Level="CriticalWarning">
+                <SourceCode Path="d:\work\nlog\src\nlog" File="layoutappenderfactory.cs" Line="12" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>LayoutAppenderFactory</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Constructor>
+          </Constructors>
+         </Class>
+        </Classes>
+        <ValueTypes>
+         <ValueType Name="LogEventInfo">
+          <Messages>
+           <Message Status="Excluded" Created="2004-08-08 14:08:05Z">
+            <Rule TypeName="ConsiderOverridingEqualsAndOperatorEqualsOnValueTypes" />
+            <Issues>
+             <Issue Certainty="75" Level="Warning">
+              <Resolution>
+               <Data>
+                <Id>Equals</Id>
+                <Items>
+                 <Item>LogEventInfo</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+             <Issue Certainty="75" Level="Warning">
+              <Resolution>
+               <Data>
+                <Id>op_equality</Id>
+                <Items>
+                 <Item>LogEventInfo</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+            </Issues>
+           </Message>
+          </Messages>
+         </ValueType>
+        </ValueTypes>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+  </Targets>
+  <Rules>
+   <Rule TypeName="ConsiderOverridingEqualsAndOperatorEqualsOnValueTypes">
+    <Name>Consider overriding Equals and the equality operator on value types</Name>
+    <Description>The default System.ValueType implementation might not perform as well as a custom implementation.</Description>
+    <LongDescription />
+    <GroupOwner>MS FxCopDev</GroupOwner>
+    <DevOwner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/Performance/EqualsAndOperatorEqualsOnValueTypes.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <File Name="PerformanceRules.dll" Version="1.30.0.0" />
+   </Rule>
+   <Rule TypeName="DoNotDeclareExplicitStaticConstructors">
+    <Name>Do not declare explicit static constructors</Name>
+    <Description>Static fields should be initialized when declared.</Description>
+    <LongDescription>Initializing static data in explicit static constructors results in less performant code.</LongDescription>
+    <GroupOwner>MS FxCopDev</GroupOwner>
+    <DevOwner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/Performance/DoNotDeclareExplicitStaticConstructors.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="90">CriticalWarning</MessageLevel>
+    <File Name="PerformanceRules.dll" Version="1.30.0.0" />
+   </Rule>
+  </Rules>
+ </FxCopReport>
+</FxCopProject>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//w3c//dtd xhtml 1.1 strict//en" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>NLog - A .NET Logging Tool</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script src='prettyprint.js' type='text/javascript'></script>
+    </head>
+    <body onload="paintColors();">
+        <h3>What is NLog?</h3>
+        <p>
+        NLog is a simple logging library similar in concepts to <a href="http://log4net.sourceforge.net/">log4net</a>, 
+        designed with simplicity and flexibility in mind.
+        </p>
+
+        <h3>Features</h3>
+        <ul>
+            <li>supports .NET, .NET Compact Framework and Mono 1.0</li>
+            <li>easy to configure, both with a config file and programmatically</li>
+            <li>easy to use - interface is identical to <code>Console.WriteLine</code></li>
+        </ul>
+        <h3>Usage</h3>
+        <p>Usage is simple. Just get an instance of a <code>Logger</code> and write your messages to it like you do with <code>Console.WriteLine()</code>.
+        There are 5 predefined logging levels. They are: <code>Debug, Info, Warn, Error, Fatal</code>.
+        <div class="table">
+        <table>
+            <col width="10%">
+            <col width="90%">
+            <tr>
+                <th>Log Level</td>
+                <th>Meaning</th>
+            </tr>
+            <tr>
+                <td>Debug</td>
+                <td>Messages useful for debugging, not normally enabled. This level can include high-traffic messages like the ones you write at each method call.</td>
+            </tr>
+            <tr>
+                <td>Info</td>
+                <td>Normal informational messages. Typically low traffic information - like "user logged on", "user authenticated".</td>
+            </tr>
+            <tr>
+                <td>Warn</td>
+                <td>Warning messages.</td>
+            </tr>
+            <tr>
+                <td>Error</td>
+                <td>Error messages.</td>
+            </tr>
+            <tr>
+                <td>Fatal</td>
+                <td>Fatal error messages. You usually write just one such message - just before the application terminates.</td>
+            </tr>
+        </table>
+    </div>
+        </p>
+        <h3>Example</h3>
+        <xmp class="code-csharp">
+using System;
+using System.Globalization;
+
+using NLog;
+
+class MyClass {
+    static Logger logger = LogManager.GetLogger("MyClass");
+
+    static void Main()
+    {
+        // you can use an interface known from log4net
+        logger.Debug("This is a debugging message");
+        logger.Info("This is a information message");
+        logger.Warn("This is a warning message");
+        logger.Error("This is an error");
+        logger.Fatal("This is a fatal error message");
+
+        // you can ask if the logging is enabled before writing
+        if (logger.IsDebugEnabled) {
+            logger.Debug("Some debug info");
+        }
+        
+        // you can use WriteLine() style formatting
+        logger.Debug("The result is {0} {1}", 1 + 2, "zzz");
+        
+        // you can even pass IFormatProvider for maximum flexibility
+        logger.Debug(CultureInfo.InvariantCulture, "The current time is {0}", DateTime.Now);
+        
+        // you can ask if the logging is enabled for specified level
+        if (logger.IsEnabled(LogLevel.Warn)) {
+            // and you can write the message for a particular level, too
+            logger.Log(LogLevel.Warn, "Some warning info");
+        }
+    }
+}
+</xmp>
+        <h3>Log output</h3>
+        <p>By default, all log messages are displayed on standard output. NLog gives you the possibility
+        to change it. You create many log outputs and selectively route your messages to them.
+        The simplest way to do it is to create a configuration file section in your configuration file.
+        </p>
+        <p>
+        In the following example we define 4 log targets (appenders). Here are the logging rules:
+        <ol>
+            <li><code>Info, Warn</code> and <code>Error</code> messages are printed on the console.</li>
+            <li>All <code>Debug</code> messages go to <code>file1.log</code></li>
+            <li>All <code>Error</code> and <code>Fatal</code> messages go to <code>file2.log</code>. This is indicated by <code>minlevel</code> attribute.</li>
+            <li>All messages from loggers having SQL in their name go to <code>file3.log</code>.</li>
+        </ol>
+        </p>
+<xmp class="code-xml">
+<?xml version="1.0" ?>
+<configuration>
+    <configSections>
+        <section name="nlog" type="NLog.Config.ConfigSectionHandler, NLog" />
+    </configSections>
+
+    <nlog>
+        <appenders>
+            <appender name="console" type="Console" />
+            <appender name="file1" type="File" filename="file1.log" />
+            <appender name="file2" type="File" filename="file2.log" />
+            <appender name="file3" type="File" filename="file3.log" />
+        </appenders>
+
+        <rules>
+            <logger name="*" levels="Info,Warn,Error" appendTo="console" />
+            <logger name="*" level="Debug" appendTo="file1" />
+            <logger name="*" minlevel="Error" appendTo="file2" />
+            <logger name="*SQL*" appendTo="file3" />
+        </rules>
+    </nlog>
+</configuration></xmp>
+    </body>
+</html>
