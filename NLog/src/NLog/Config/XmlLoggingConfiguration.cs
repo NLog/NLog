@@ -487,8 +487,8 @@ namespace NLog.Config
             catch (Exception ex)
             {
                 InternalLogger.Error("Could not load platform specific extensions: {0}", ex);
-                if (LogManager.ThrowExceptions)
-                    throw;
+                //if (LogManager.ThrowExceptions)
+                //    throw;
             }
         }
     }
