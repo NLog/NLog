@@ -86,6 +86,17 @@
         </csc>
     </target>
 
+    <target name="NLog.ASP" depends="NLog">
+        <csc target="library" output="${output.dir}/NLog.ASP.dll" define="${nlog.define}" debug="${nlog.debug}">
+            <sources basedir="src/NLog.ASP">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${output.dir}/NLog.dll" />
+            </references>
+        </csc>
+    </target>
+
     <target name="NLog.Win32" depends="NLog">
         <csc target="library" output="${output.dir}/NLog.Win32.dll" define="${nlog.define}" debug="${nlog.debug}">
             <sources basedir="src/NLog.Win32">
@@ -143,8 +154,8 @@
         <property name="nlog.define" value="${nlog.define};NETCF;NETCF_1_0" />
     </target>
 
-    <target name="build-net-1.0" depends="NLog, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
-    <target name="build-net-1.1" depends="NLog, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
+    <target name="build-net-1.0" depends="NLog, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
+    <target name="build-net-1.1" depends="NLog, NLog.ASP, NLog.ASPNet, NLog.Win32, NLog.ComInterop" />
     <target name="build-netcf-1.0" depends="NLog, NLog.ComInterop" />
 
     <target name="dist">

@@ -32,53 +32,32 @@
 // 
 
 using System;
-using System.IO;
-using System.Security.Principal;
-using System.Runtime.InteropServices;
+using System.Text;
 
-using NLog;
-using NLog.Config;
+namespace NLog.ASP.LayoutAppenders
+{
+    [LayoutAppender("asp-session")]
+    public class ASPSessionValueLayoutAppender : LayoutAppender
+    {
+        private string _sessionVariable = null;
 
-class Test {
-    static void Main(string[] args) {
-        NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
-        NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");
+        public string Variable
+        {
+            get { return _sessionVariable; }
+            set { _sessionVariable = value; }
+        }
 
-        l.Debug("to jest debug");
-        l.Info("to jest info");
-        l.Warn("to jest warning");
-        l2.Debug("to jest debug");
-        l2.Info("to jest info");
-        l2.Warn("to jest warning");
-        l.Error("to jest error");
-        l.Fatal("to jest fatal");
-        l2.Error("to jest error");
-        l2.Fatal("to jest fatal");
+        public override int GetEstimatedBufferSize(LogEventInfo ev)
+        {
+            return 64;
+        }
         
-        File.Copy("Config1.nlog", "NLog.Test.exe.config", true);
-        System.Threading.Thread.Sleep(100);
-
-        l.Debug("to jest debug");
-        l.Info("to jest info");
-        l.Warn("to jest warning");
-        l2.Debug("to jest debug");
-        l2.Info("to jest info");
-        l2.Warn("to jest warning");
-        l.Error("to jest error");
-        l.Fatal("to jest fatal");
-        l2.Error("to jest error");
-        l2.Fatal("to jest fatal");
-        File.Copy("Config2.nlog", "NLog.Test.exe.config", true);
-        System.Threading.Thread.Sleep(100);
-        l.Debug("to jest debug");
-        l.Info("to jest info");
-        l.Warn("to jest warning");
-        l2.Debug("to jest debug");
-        l2.Info("to jest info");
-        l2.Warn("to jest warning");
-        l.Error("to jest error");
-        l.Fatal("to jest fatal");
-        l2.Error("to jest error");
-        l2.Fatal("to jest fatal");
+        public override void Append(StringBuilder builder, LogEventInfo ev)
+        {
+            if (_sessionVariable != null) {
+                object variableValue = ASPHelper.GetSessionValue(_sessionVariable);
+                builder.Append(Convert.ToString(variableValue));
+            }
+        }
     }
 }
