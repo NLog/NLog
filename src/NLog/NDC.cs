@@ -138,12 +138,15 @@ namespace NLog
             return sb.ToString();
         }
 
-        private static ArrayList GetThreadStack()
-        {
-            if (_threadStack == null)
-                _threadStack = new ArrayList();
+        private static ArrayList GetThreadStack() {
+            ArrayList threadStack = (ArrayList)System.Threading.Thread.GetData(_dataSlot);
+            
+            if (threadStack == null) {
+                threadStack = new ArrayList();
+                System.Threading.Thread.SetData(_dataSlot, threadStack);
+            }
 
-            return _threadStack;
+            return threadStack;
         }
 
         private class StackPopper : IDisposable
@@ -163,8 +166,7 @@ namespace NLog
                 }
             }
         }
-
-        [ThreadStatic]
-        private static ArrayList _threadStack;
+        
+		private static LocalDataStoreSlot _dataSlot = System.Threading.Thread.AllocateDataSlot();
     }
 }

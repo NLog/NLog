@@ -75,13 +75,16 @@ namespace NLog
         }
 
         private static IDictionary GetThreadDictionary() {
-            if (_threadDictionary == null)
-                _threadDictionary = new Hashtable();
+            IDictionary threadDictionary = (IDictionary)System.Threading.Thread.GetData(_dataSlot);
+            
+            if (threadDictionary == null) {
+                threadDictionary = new Hashtable();
+                System.Threading.Thread.SetData(_dataSlot, threadDictionary);
+            }
 
-            return _threadDictionary;
+            return threadDictionary;
         }
 
-        [ThreadStatic]
-        private static IDictionary _threadDictionary;
+		private static LocalDataStoreSlot _dataSlot = System.Threading.Thread.AllocateDataSlot();
     }
 }
