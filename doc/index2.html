@@ -7,25 +7,38 @@
         <script src='prettyprint.js' type='text/javascript'></script>
     </head>
     <body onload="paintColors();">
+        <h1>NLog - A .NET Logging Tool</h1>
         <h3>What is NLog?</h3>
         <p>
         NLog is a simple logging library similar in concepts to <a href="http://log4net.sourceforge.net/">log4net</a>, 
         designed with simplicity and flexibility in mind.
         </p>
 
-        <h3>Download</h3>
-        <p>To download a source or binary release of NLog visit SourceForge's <a href="http://sourceforge.net/project/showfiles.php?group_id=116456">file area</a>. 
-        If you want to keep track of NLog's development you can access <a href="http://svn.sav.net/">Subversion repository</a>. Write access is available on request.</p>
-
         <h3>Features</h3>
         <ul>
-            <li>supports .NET, .NET Compact Framework and Mono 1.0</li>
+            <li>.NET, .NET Compact Framework and Mono 1.0 support</li>
             <li>very easy to configure, both with a config file and programmatically</li>
             <li>easy to use - interface is identical to <code>Console.WriteLine</code></li>
         </ul>
 
-        <h3>FAQ</h3>
-        <p>For a list of frequently asked questions and answers, click <a href="faq.html" />here</a>.
+        <h3>News</h3>
+        <p>
+        NLog v0.5-beta1 has been released. This is the initial public release. Click <a href="http://sourceforge.net/project/showfiles.php?group_id=116456">here</a> to download it and report your feedback to the mailing list.
+        </p>
+
+        <h3>Mailing List</h3>
+        <p>For all your NLog-related questions, sign up to the mailing list: <a href="http://lists.sourceforge.net/mailman/listinfo/nlog-list">nlog-list@lists.sourceforge.net</a> and ask your questions there.</p>
+        
+        </p>
+        <h3>Download</h3>
+        <p>To download a source or binary release of NLog visit SourceForge's <a href="http://sourceforge.net/project/showfiles.php?group_id=116456">file area</a>. 
+        If you want to keep track of NLog's development you can access <a href="http://svn.sav.net/">Subversion repository</a>. Write access is available on request.</p>
+
+        <h3>Documentation</h3>
+        To see NLog in action, open the <a href="tutorial.html">NLog Tutorial</a>.<p/>
+        See the <a href="config.html">Configuration Options</a> document for information on configuring NLog.
+        Appender configuration is described in detail in <a href="appenders.html">Appender Reference</a>
+        and <a href="layoutappenders.html">Layout Appender Reference</a>. For a list of frequently asked questions and answers, click <a href="faq.html" />here</a>.
 
         <h3>Usage</h3>
         <p>Usage is simple. Just get an instance of a <code>Logger</code> and write your messages to it like you do with <code>Console.WriteLine()</code>.

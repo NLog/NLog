@@ -5,11 +5,25 @@ body
     background-color: #ffffff;
 }
 
+h1
+{
+    font-weight: bold;
+    color: #000080;
+    font-size: 200%;
+}
+
 h3
 {
     font-weight: bold;
     color: #000080;
     font-size: 120%;
+}
+
+h4
+{
+    font-weight: bold;
+    color: #000080;
+    font-size: 100%;
 }
 
 code
@@ -85,11 +99,41 @@ div.table {
     background-color: #f8f8f8;
 }
 
-hr {
+.summarytable table {
+    font-size: 100%;
     border-collapse: collapse;
-    color: red;
+    background-color: #fffff0;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.summarytable th {
+    font-weight: bold;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: left;
+}
+
+.summarytable td {
+    padding: 1px;
+    padding-right: 15px;
+}
+
+.summarytable td.section {
+    border: 1px solid #999999;
+    background-color: #f0f0e0;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.summarytable tr.appender {
+    background-color: #f8f8f8;
+}
+
+hr {
+    color: #c0c0c0;
 }
 
 .table tr.notall {
-    background-color: #fff0e0;
+    background-color: #f0f0ff;
 }

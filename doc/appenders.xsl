@@ -8,8 +8,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <xsl:call-template name="page-head" />
     <body onload="paintColors();">
-        <h3>Appenders</h3>
-        <h4>Available appenders</h4>
+        <h1>Appender Reference</h1>
+        <h3>Available appenders</h3>
         <p>The following appenders are available. Items marked with color may not be supported on all platforms. See particular layout appender documentation for more information. Click on a link to see appender usage and configuration details.</p>
 
         <div class="table">
@@ -44,21 +44,20 @@
             </xsl:for-each>
         </table>
     </div>
-        <h4>Loading additional appenders</h4>
+        <h3>Loading additional appenders</h3>
         <p>If you want to use appenders not found in <code>NLog.dll</code> (such as <code>ASPNetTraceAppender</code>), 
             you need to load them by using the <code>&lt;extensions&gt;</code> element in 
             your <a href="configfile.html">config file</a>.</p>
         <p>For example:</p>
-<xmp class="code-xml">
+<xmp class="code-xml" xml:space="preserve">
 <nlog autoReload="true">
     <extensions>
         <add assemblyFile="NLog.ASPNet.dll" />
      </extensions>
         ...
 </nlog></xmp>
-
-        <h3>Common Appender Configuration</h3>
         <a name="common" />
+        <h3>Common Appender Configuration</h3>
         <p>The following configuration parameters may be used on with all appenders. Note that particular appenders
             may choose to interpret some parameters differently (for example by ignoring the <code>layout</code> parameter).
             This is clearly indicated in the appender documentation.</p>
@@ -97,9 +96,12 @@
         </div>
         <xsl:for-each select="/appenders/appender">
             <hr size="1" />
+            <a>
+                <xsl:attribute name="name"><xsl:value-of select="@name" />Appender</xsl:attribute>
+            </a>
             <h3><xsl:value-of select="displayName" /></h3>
             <h4>Summary</h4>
-            <div class="table">
+            <div class="summarytable">
                 <table>
                     <tr><td>Assembly Name:</td><td><xsl:value-of select="assembly" /></td></tr>
                     <tr><td>Class Name:</td><td><xsl:value-of select="namespace" />.<xsl:value-of select="className" /></td></tr>
@@ -151,6 +153,8 @@
             <xsl:if test="example">
                 <h4>Example</h4>
             </xsl:if>
+            <br/>
+            <a href="#top">Back to top</a>
         </xsl:for-each>
     </body>
 </html>

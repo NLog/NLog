@@ -9,7 +9,8 @@
             <xsl:call-template name="page-head" />
             <body onload="paintColors();">
                 <a name="top"></a>
-                <h3>Layout Appenders</h3>
+                <h1>Layout Appender Reference</h1>
+                <h3>Available Layout Appenders</h3>
                 <p>
                     The following layout appenders are available. Items marked with color may not be supported on all platforms. See particular layout appender documentation for more information. TODO.
                 </p>
@@ -29,7 +30,7 @@
                                 </xsl:if>
                                 <td><a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><xsl:value-of select="@name" /></a></td>
                                 <td><xsl:value-of select="displayName" /></td>
-                                <td><xsl:value-of select="description" /></td>
+                                <td><xsl:copy-of select="description" /></td>
                                 <td>
                                     <xsl:choose>
                                         <xsl:when test="count(parameter) != 0">Yes</xsl:when>
@@ -62,11 +63,11 @@
                     <a><xsl:attribute name="name"><xsl:value-of select="@name" /></xsl:attribute></a>
                     <h3><xsl:value-of select="displayName" /></h3>
                     <h4>Summary</h4>
-                    <div class="table">
+                    <div class="summarytable">
                         <table>
-                            <tr><td>Assembly Name:</td><td><xsl:value-of select="assembly" /></td></tr>
-                            <tr><td>Class Name:</td><td><xsl:value-of select="namespace" />.<xsl:value-of select="className" /></td></tr>
-                            <tr><td>Frameworks supported:</td><td>
+                            <tr><th>Assembly Name:</th><td><xsl:value-of select="assembly" /></td></tr>
+                            <tr><th>Class Name:</th><td><xsl:value-of select="namespace" />.<xsl:value-of select="className" /></td></tr>
+                            <tr><th>Frameworks supported:</th><td>
                                     <xsl:for-each select="support">
                                         <xsl:if test="position() != 1">, </xsl:if>
                                         <xsl:if test="@framework='net-1.0'">.NET 1.0</xsl:if>
@@ -95,6 +96,7 @@
                     <xsl:if test="example">
                         <h4>Example</h4>
                     </xsl:if>
+                    <br/>
                     <a href="#top">Back to top</a>
                 </xsl:for-each>
             </body>
