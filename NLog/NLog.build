@@ -205,6 +205,21 @@
         <copy file="src/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark.exe.config" />
     </target>
 
+    <target name="NLog.Benchmark-log4net" depends="NLog">
+        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net.exe" define="${nlog.define},LOG4NET" debug="${nlog.debug}" optimize="${nlog.optimize}">
+            <sources basedir="src/NLog.Benchmark">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${nlog.dir}/log4net.dll" />
+                <include name="mscorlib.dll" />
+                <include name="System.dll" />
+                <include name="System.Xml.dll" />
+            </references>
+        </csc>
+        <copy file="src/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark.exe.config" />
+    </target>
+
     <target name="register-com" depends="configure">
         <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'regasm.exe')}"
             commandline="/tlb ${nlog.dir}/NLog.ComInterop.dll" />

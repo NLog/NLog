@@ -75,7 +75,6 @@ namespace NLog.LayoutAppenders
 
         public LevelLayoutAppender()
         {
-            Padding = MaxLength;
         }
 
         private string[]_nameTable = LevelToString;

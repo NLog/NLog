@@ -25,6 +25,7 @@
         <nav href="download" label="Download" />
         <nav href="mailinglists" label="Mailing Lists" />
         <nav href="faq" label="FAQ" />
+        <nav href="blog" label="Blog" />
         <nav href="links" label="Links" />
     </navigation>
 </common>

@@ -46,9 +46,44 @@ namespace NLog.LayoutAppenders
             return 24;
         }
 
+        private void Append2DigitsZeroPadded(StringBuilder builder, int number)
+        {
+            builder.Append((char)((number / 10) + '0'));
+            builder.Append((char)((number % 10) + '0'));
+        }
+
+        private void Append4DigitsZeroPadded(StringBuilder builder, int number)
+        {
+            builder.Append((char)((number / 1000 % 10) + '0'));
+            builder.Append((char)((number / 100 % 10) + '0'));
+            builder.Append((char)((number / 10 % 10) + '0'));
+            builder.Append((char)((number / 1 % 10) + '0'));
+        }
+
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            builder.Append(ApplyPadding(ev.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo)));
+            if (NeedPadding())
+            {
+                builder.Append(ApplyPadding(ev.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo)));
+            }
+            else
+            {
+                DateTime dt = ev.TimeStamp;
+
+                builder.Append(dt.Year);
+                builder.Append('-');
+                Append2DigitsZeroPadded(builder, dt.Month);
+                builder.Append('-');
+                Append2DigitsZeroPadded(builder, dt.Day);
+                builder.Append(' ');
+                Append2DigitsZeroPadded(builder, dt.Hour);
+                builder.Append(':');
+                Append2DigitsZeroPadded(builder, dt.Minute);
+                builder.Append(':');
+                Append2DigitsZeroPadded(builder, dt.Second);
+                builder.Append('.');
+                Append4DigitsZeroPadded(builder, (int)(dt.Ticks % 10000000) / 1000);
+            }
         }
     }
 }

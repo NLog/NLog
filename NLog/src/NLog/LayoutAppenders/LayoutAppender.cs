@@ -151,6 +151,11 @@ namespace NLog.LayoutAppenders
             }
         }
 
+        protected bool NeedPadding()
+        {
+            return (Padding != 0) || UpperCase || LowerCase;
+        }
+
         protected string ApplyPadding(string s)
         {
             if (Padding != 0)

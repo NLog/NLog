@@ -39,6 +39,8 @@ using System.Collections;
 using NLog.Internal;
 using NLog.LayoutAppenders;
 
+using System.Threading;
+
 namespace NLog
 {
     public class Layout
@@ -54,8 +56,9 @@ namespace NLog
         }
 
         private string _layoutText;
-        private LayoutAppenderCollection _layoutAppenders;
+        private LayoutAppender[] _layoutAppenders;
         private int _needsStackTrace = 0;
+        private StringBuilder builder = new StringBuilder();
 
         public string Text
         {
@@ -72,10 +75,16 @@ namespace NLog
 
         public string GetFormattedMessage(LogEventInfo ev)
         {
+            if (_layoutAppenders.Length == 1 && _layoutAppenders[0] is LiteralLayoutAppender)
+            {
+                return ((LiteralLayoutAppender)(_layoutAppenders[0])).Text;
+            }
+
             int size = 0;
 
-            foreach (LayoutAppender app in _layoutAppenders)
+            for (int i = 0; i < _layoutAppenders.Length; ++i)
             {
+                LayoutAppender app = _layoutAppenders[i];
                 try
                 {
                     int ebs = app.GetEstimatedBufferSize(ev);
@@ -89,11 +98,11 @@ namespace NLog
                     }
                 }
             }
-
             StringBuilder builder = new StringBuilder(size);
 
-            foreach (LayoutAppender app in _layoutAppenders)
+            for (int i = 0; i < _layoutAppenders.Length; ++i)
             {
+                LayoutAppender app = _layoutAppenders[i];
                 try
                 {
                     app.Append(builder, ev);
@@ -110,9 +119,20 @@ namespace NLog
             return builder.ToString();
         }
 
-        private static LayoutAppenderCollection CompileLayout(string s, out int needsStackTrace)
+        private StringBuilder AllocateStringBuilder(int size)
         {
-            LayoutAppenderCollection result = new LayoutAppenderCollection();
+            StringBuilder retval = new StringBuilder(size);
+            return retval;
+        }
+
+        private void FreeStringBuilder(StringBuilder builder)
+        {
+            // rely on garbage collection
+        }
+
+        private static LayoutAppender[] CompileLayout(string s, out int needsStackTrace)
+        {
+            ArrayList result = new ArrayList();
             needsStackTrace = 0;
 
             int startingPos = 0;
@@ -156,7 +176,7 @@ namespace NLog
                 result.Add(new LiteralLayoutAppender(s.Substring(startingPos, s.Length - startingPos)));
             }
 
-            return result;
+            return (LayoutAppender[])result.ToArray(typeof(LayoutAppender));
         }
 
         public int NeedsStackTrace()

@@ -55,5 +55,10 @@ namespace NLog.LayoutAppenders
         {
             builder.Append(_txt);
         }
+
+        internal string Text
+        {
+            get { return _txt; }
+        }
     }
 }

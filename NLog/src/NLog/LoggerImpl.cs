@@ -78,14 +78,8 @@ namespace NLog
             if (appenders == null)
                 return ;
 
-            string formattedMessage;
+            LogEventInfo logMessage = new LogEventInfo(DateTime.Now, level, _loggerName, formatProvider, message, args, exception);
 
-            if (args == null)
-                formattedMessage = message;
-            else
-                formattedMessage = String.Format(formatProvider, message, args);
-
-            LogEventInfo logMessage = new LogEventInfo(DateTime.Now, level, _loggerName, formattedMessage, exception);
 #if !NETCF            
             bool needTrace = false;
             bool needTraceSources = false;

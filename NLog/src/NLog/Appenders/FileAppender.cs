@@ -54,8 +54,9 @@ namespace NLog.Appenders
         private StreamWriter _outputFile;
         private System.Text.Encoding _encoding = System.Text.Encoding.Default;
         private bool _autoFlush = true;
-        private bool _concurrentWrites = true;
+        private bool _concurrentWrites = false;
         private int _concurrentWriteAttempts = 10;
+        private int _bufferSize = 32768;
         private int _concurrentWriteAttemptDelay = 1;
 
         [RequiredParameter]
@@ -104,6 +105,18 @@ namespace NLog.Appenders
             set
             {
                 _autoFlush = value;
+            }
+        }
+
+        public int BufferSize
+        {
+            get
+            {
+                return _bufferSize;
+            }
+            set
+            {
+                _bufferSize = value;
             }
         }
 
@@ -172,7 +185,7 @@ namespace NLog.Appenders
 
                 if (!ConcurrentWrites)
                 {
-                    retVal = new StreamWriter(fileName, true, _encoding);
+                    retVal = new StreamWriter(fileName, true, _encoding, _bufferSize);
                 }
                 else
                 {
@@ -183,12 +196,12 @@ namespace NLog.Appenders
                     {
                         try
                         {
-                            retVal = new StreamWriter(fileName, true, _encoding);
+                            retVal = new StreamWriter(fileName, true, _encoding, _bufferSize);
                             break;
                         }
                         catch (IOException ex)
                         {
-                            Console.WriteLine("ex: {0}", ex.Message);
+                            // Console.WriteLine("ex: {0}", ex.Message);
                             int actualDelay = _random.Next(currentDelay);
                             currentDelay *= 2;
                             System.Threading.Thread.Sleep(actualDelay);
@@ -222,6 +235,7 @@ namespace NLog.Appenders
                     _outputFile.Close();
                     _outputFile = null;
                 }
+                
                 _lastFileName = fileName;
                 if (_outputFile == null)
                 {
@@ -230,7 +244,10 @@ namespace NLog.Appenders
                         return ;
                 }
                 _outputFile.WriteLine(CompiledLayout.GetFormattedMessage(ev));
-                _outputFile.Flush();
+                if (AutoFlush)
+                {
+                    _outputFile.Flush();
+                }
                 if (!KeepFileOpen || ConcurrentWrites)
                 {
                     _outputFile.Close();

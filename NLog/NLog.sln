@@ -15,10 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Win32", "src\NLog.Win3
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Benchmark", "src\NLog.Benchmark\NLog.Benchmark.csproj", "{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
-	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
-		DPCodeReviewSolutionGUID = {C4811F53-E779-47F0-8C06-71551FBDB047}
-	EndGlobalSection
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
 		Release = Release
@@ -40,6 +41,10 @@ Global
 		{9BC14989-8F2D-48BB-A613-B63BB08492F3}.Debug.Build.0 = Debug|.NET
 		{9BC14989-8F2D-48BB-A613-B63BB08492F3}.Release.ActiveCfg = Release|.NET
 		{9BC14989-8F2D-48BB-A613-B63BB08492F3}.Release.Build.0 = Release|.NET
+		{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}.Debug.ActiveCfg = Debug|.NET
+		{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}.Debug.Build.0 = Debug|.NET
+		{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}.Release.ActiveCfg = Release|.NET
+		{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(SolutionItems) = postSolution
 		NLog.build = NLog.build
@@ -47,5 +52,8 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
 	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {C4811F53-E779-47F0-8C06-71551FBDB047}
 	EndGlobalSection
 EndGlobal
