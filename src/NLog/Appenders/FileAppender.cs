@@ -39,6 +39,7 @@ using NLog;
 
 namespace NLog.Appenders
 {
+    [Appender("File")]
     public class FileAppender : NLog.Appender
     {
         private Random _random = new Random();

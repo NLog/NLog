@@ -112,9 +112,9 @@ namespace NLog.Config
                 }
             }
             
-            foreach (XmlElement el in configElement.GetElementsByTagName("layout-appenders"))
+            foreach (XmlElement el in configElement.GetElementsByTagName("extensions"))
             {
-                AddLayoutAppendersFromElement(el, baseDirectory);
+                AddExtensionsFromElement(el, baseDirectory);
             }
             
             foreach (XmlElement el in configElement.GetElementsByTagName("appenders"))
@@ -219,21 +219,25 @@ namespace NLog.Config
             }
         }
 
-        private static void AddLayoutAppendersFromElement(XmlElement element, string baseDirectory) {
+        private static void AddExtensionsFromElement(XmlElement element, string baseDirectory) {
             if (element == null)
                 return;
 
             foreach (XmlElement appenderElement in element.GetElementsByTagName("add")) {
-                string name = appenderElement.GetAttribute("name");
-                string type = appenderElement.GetAttribute("type");
                 string assemblyFile = appenderElement.GetAttribute("assemblyFile");
+                string extPrefix = appenderElement.GetAttribute("prefix");
+                if (extPrefix != null && extPrefix.Length != 0) {
+                    extPrefix = extPrefix + ".";
+                } else {
+                    extPrefix = String.Empty;
+                }
 
                 if (assemblyFile != null && assemblyFile.Length > 0) {
                     try {
                         string fullFileName = Path.Combine(baseDirectory, assemblyFile);
                         InternalLogger.Info("Loading assemblyFile: {0}", fullFileName);
                         Assembly asm = Assembly.LoadFrom(fullFileName);
-                        LayoutAppenderFactory.AddLayoutAppendersFromAssembly(asm);
+                        LoadExtensionFromAssembly(asm, extPrefix);
                     }
                     catch (Exception ex) {
                         InternalLogger.Error("Error loading layout-appenders: {0}", ex);
@@ -250,7 +254,7 @@ namespace NLog.Config
                         Assembly asm = Assembly.LoadWithPartialName(assemblyPartialName);
                         if (asm != null) 
                         {
-                            LayoutAppenderFactory.AddLayoutAppendersFromAssembly(asm);
+                            LoadExtensionFromAssembly(asm, extPrefix);
                         }
                         else
                         {
@@ -270,16 +274,20 @@ namespace NLog.Config
                     try {
                         InternalLogger.Info("Loading assemblyName: {0}", assemblyName);
                         Assembly asm = Assembly.Load(assemblyName);
-                        LayoutAppenderFactory.AddLayoutAppendersFromAssembly(asm);
+                        LoadExtensionFromAssembly(asm, extPrefix);
                     }
                     catch (Exception ex) {
                         InternalLogger.Error("Error loading layout-appenders: {0}", ex);
                     }
                     continue;
                 };
-
-                LayoutAppenderFactory.AddLayoutAppender(name, Type.GetType(type));
             }
+        }
+
+        private static void LoadExtensionFromAssembly(Assembly asm, string prefix)
+        {
+            LayoutAppenderFactory.AddLayoutAppendersFromAssembly(asm, prefix);
+            AppenderFactory.AddAppendersFromAssembly(asm, prefix);
         }
            
         private void ConfigureAppendersFromElement(XmlElement element) {
@@ -288,10 +296,11 @@ namespace NLog.Config
 
             foreach (XmlElement appenderElement in element.GetElementsByTagName("appender")) {
                 string type = appenderElement.GetAttribute("type");
-                Appender newAppender = Appender.Create(type);
-
-                ConfigureAppenderFromXmlElement(newAppender, appenderElement);
-                AddAppender(newAppender.Name, newAppender);
+                Appender newAppender = AppenderFactory.CreateAppender(type);
+                if (newAppender != null) {
+                    ConfigureAppenderFromXmlElement(newAppender, appenderElement);
+                    AddAppender(newAppender.Name, newAppender);
+                }
             }
         }
 

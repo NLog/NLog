@@ -38,6 +38,7 @@ using System.Diagnostics;
 
 namespace NLog.Appenders
 {
+    [Appender("Memory")]
     public class MemoryAppender : NLog.Appender
     {
 		private ArrayList _logs = new ArrayList();

@@ -59,19 +59,19 @@ namespace NLog
 			_appenders.Clear();
         }
 
-        public static void AddLayoutAppendersFromAssembly(Assembly theAssembly) {
+        public static void AddLayoutAppendersFromAssembly(Assembly theAssembly, string prefix) {
             InternalLogger.Debug("AddLayoutAppendersFromAssembly('{0}')", theAssembly.FullName);
             foreach (Type t in theAssembly.GetTypes()) {
                 LayoutAppenderAttribute[] attributes = (LayoutAppenderAttribute[])t.GetCustomAttributes(typeof(LayoutAppenderAttribute), false);
                 if (attributes != null) {
                     foreach (LayoutAppenderAttribute attr in attributes) {
-                        AddLayoutAppender(attr.FormatString, t);
+                        AddLayoutAppender(prefix + attr.FormatString, t);
                     }
                 }
             }
         }
         private static void AddDefaultLayoutAppenders() {
-            AddLayoutAppendersFromAssembly(typeof(LayoutAppenderFactory).Assembly);
+            AddLayoutAppendersFromAssembly(typeof(LayoutAppenderFactory).Assembly, String.Empty);
         }
 
         private static LayoutAppender CreateUnknownLayoutAppender(string name, string parameters) {
