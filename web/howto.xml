@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="howto">
+    <h1>How To...</h1>
+    <ol>
+        <li><a href="howto_write_appender.html">How to write your own Appender</a></li>
+    </ol>
+</content>

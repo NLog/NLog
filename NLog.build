@@ -370,6 +370,29 @@
         </if>
     </target>
 
+    <target name="xmldoc" depends="configure, NLog">
+        <ndoc>
+            <assemblies basedir="${nlog.dir}">
+                <include name="NLog.dll" />
+            </assemblies>
+            <documenters>
+                <documenter name="XML">
+                    <property name="OutputDirectory" value="${website.dir}/help" />
+                    <!-- do not filter on namespace -->
+                    <property name="NamespaceFilter" value="" />
+                    <property name="HtmlHelpName" value="NLog" />
+                    <!-- set the name of the application for which docs are generated -->
+                    <property name="ApplicationName" value="NLog" />
+                    <property name="DocumentAttributes" value="True" />
+                    <property name="IncludeAssemblyVersion" value="True" />
+                    <property name="ShowMissingParams" value="True" />
+                    <property name="ShowMissingReturns" value="True" />
+                    <property name="ShowMissingValues" value="True" />
+                </documenter>
+            </documenters>
+        </ndoc>
+    </target>
+
     <target name="publish_website" depends="website">
         <zip zipfile="website.zip">
             <fileset basedir="${website.dir}">
@@ -380,6 +403,19 @@
         <exec program="${scp.program}" commandline="${scp.program.args} website.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
         <echo message="Unpacking the zipped website..." />
         <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_website.sh" />
+        <echo message="Website deployed." />
+    </target>
+
+    <target name="publish_new_web" depends="build-web">
+        <zip zipfile="website.zip">
+            <fileset basedir="${web.dir}">
+                <include name="*" />
+            </fileset>
+        </zip>
+        <echo message="Uploading the zipped website..." />
+        <exec program="${scp.program}" commandline="${scp.program.args} website.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
+        <echo message="Unpacking the zipped website..." />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_new_website.sh" />
         <echo message="Website deployed." />
     </target>
 
@@ -442,5 +478,31 @@
         <exec program="${scp.program}" commandline="${scp.program.args} ${binary_compact_snapshot.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/" />
         <echo message="Fixing permissions..." />
         <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/fix_group_perm.sh" />
+    </target>
+
+    <target name="build-web">
+        <property name="web.dir" value="web/build" unless="${property::exists('web.dir')}" />
+        <property name="web.sourceforge" value="1" />
+        <delete dir="${web.dir}" if="${directory::exists(web.dir)}" failonerror="false" />
+        <mkdir dir="${web.dir}" />
+        <mkdir dir="${web.dir}/examples" />
+        <style destdir="${web.dir}" style="web/style.xsl">
+            <infiles basedir="web">
+                <include name="*.xml" />
+                <exclude name="common.en.xml" />
+            </infiles>
+            <parameters>
+                <parameter name="file_extension" value="html" />
+                <parameter name="sourceforge" value="${web.sourceforge}" />
+            </parameters>
+        </style>
+        <copy todir="${web.dir}">
+            <fileset basedir="web">
+                <include name="*.css" />
+                <include name="*.png" />
+                <include name="*.gif" />
+                <include name="examples/*" />
+            </fileset>
+        </copy>
     </target>
 </project>

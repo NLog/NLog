@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="download">
+    <h1>Downloading NLog</h1>
+    <p>
+        NLog is an open source software, so the source code is available to public and everyone 
+        can join the project to improve it. Source and binary packages are available.
+    </p>
+    <h5>Released Packages</h5>
+    <p>
+        NLog source and binary packages can be downloaded from the <a href="http://sourceforge.net/project/showfiles.php?group_id=116456">sourceforge file release system</a>.
+
+    </p>
+    <h5>Subversion Repository</h5>
+    <p>NLog uses Subversion 1.0 (<a href="http://subversion.tigris.org">http://subversion.tigris.org</a>)
+        as its version control system. We recommend a very good Win32 Subversion client called <a href="http://tortoisesvn.tigris.org">TortoiseSVN</a>.</p>
+    <p>You can grab the latest sources of the library and supporting tools at: <a href="http://svn.sav.net/repos/nlog/trunk/NLog">http://svn.sav.net/repos/nlog/trunk/NLog</a>.
+        Contact <a href="mailto:jaak@zd.com.pl">Jarek</a> to get Subversion access.</p>
+    <h5>Snapshots</h5>
+    <p>
+        For your convenience the source and binary snapshots (including the windows installer)
+        are available <a href="http://nlog.sourceforge.net/snapshots/">here</a>.</p>
+    <h3>Building NLog from source</h3>
+    <p>
+        NLog can be built with either Visual Studio.NET 2003 or <a href="http://nant.sourceforge.net/">NAnt</a>. If you
+        decide to use NAnt - make sure to use one of the latest nightly builds 
+        available <a href="http://nant.sourceforge.net/nightly/latest/">here</a> or NAnt 0.85 version when it becomes available.
+    </p>
+    <p>
+        To build NLog using NAnt, just type <code>nant</code> at the command prompt. To rebuild NLog using VS.NET, open the solution file (<code>NLog.sln</code>) and run <code>Build|Rebuild Solution</code>.
+    </p>
+</content>

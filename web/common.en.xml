@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<common>
+    <navigation>
+        <nav href="index" label="Introduction" />
+        <nav href="news" label="News" />
+        <nav href="tutorial" label="Tutorial" />
+        <nav href="howto" label="How To..." />
+        <nav href="api" label="Logging API">
+            <subnav href="api" label=".NET API" />
+            <subnav href="comapi" label="COM API" />
+            <subnav href="capi" label="C/C++ API" />
+        </nav>
+        <nav href="appenders" label="Reference">
+            <subnav href="appenders" label="Appenders" />
+            <subnav href="layoutappenders" label="Layout Appenders" />
+            <subnav href="filters" label="Filters" />
+            <subnav href="config" label="Configuration File" />
+        </nav>
+        <nav href="download" label="Download" />
+        <nav href="mailinglists" label="Mailing Lists" />
+        <nav href="faq" label="FAQ" />
+        <nav href="links" label="Links" />
+    </navigation>
+</common>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="appenders" subid="config">
+    <h1>NLog Configuration Options</h1>
+    <p>NLog can be configured in many ways, both <a href="#api">programmatically</a> and using config <a href="#file">files</a>. 
+        This document describes the available configuration options.</p>
+    <a name="file" />
+    <h3>Configuration files</h3>
+    <p>NLog attempts to automatically configure itself on first use by reading one or more configuration files.</p>
+    <p>The files are (in the following order):</p>
+    <ol>
+        <li>standard application config file (<code>applicationname.exe.config</code>).</li>
+        <li><code>applicationname.exe.nlog</code> - application specific config file.</li>
+        <li><code>NLog.dll.nlog</code> - shared config file for all applications that use NLog.dll. This isn't used when NLog.dll is loaded from the GAC.</li>
+        <li>the file pointed by <code>NLOG_GLOBAL_CONFIG_FILE</code> environment variables - shared config file for all applications having the environment variable defined (including service processes). In this scenario NLog.dll assembly can be installed in the GAC.</li>
+    </ol>
+    <p>Under .NET Compact Framework the config search path is limited to:</p>
+    <ol>
+        <li><code>applicationname.exe.nlog</code> - application specific config file.</li>
+        <li><code>NLog.dll.nlog</code> - shared config file for all applications that use NLog.dll.</li>
+    </ol>
+    <p>Each config file can use <x><include file="filename" /></x> to include other config files
+        which lets you easily manage logging rules in a central place and reference them instead of copying.</p>
+    <h3>Configuration file syntax</h3>
+    <p>There are two variant of the configuration file syntax: one used in
+        application config file (<code>applicationname.exe.config</code> - let's call it 
+        <code>App.config</code>) and the other used in <code>.nlog</code> config files.</p>
+    <h4>App.config file format</h4>
+    <xml-example src="examples/App.config" />
+    <h4>.nlog file format</h4>
+    <xml-example src="examples/config1.nlog" />
+    <h4>Configuration parameters</h4>
+    <p>The following configuration parameters can be set in the config file.</p>
+    <h5><x><nlog autoReload="true | false" /></x></h5>
+    <p>
+        The <code>autoReload</code> attribute of the <code>nlog</code> tag determines 
+        whether the LogManager should watch each config file for changes and reload 
+        them them each time a change is detected. This is a boolean value which can be 
+        either <code>true</code> or <code>false</code>.
+    </p>
+
+    <h5><x><nlog internalLogToConsole="true | false" /></x></h5>
+    <p>
+        The <code>internalLogToConsole</code> attribute of the <code>nlog</code> tag 
+        determines whether NLog debugging functions output their diagnostic messages
+        to the console. This is a boolean value which can be either <code>true</code> 
+        or <code>false</code>.
+    </p>
+
+    <h5><x><nlog internalLogFile="filename" /></x></h5>
+    <p>
+        The <code>internalLogFile</code> attribute is the name of the file
+        that NLog will write internal diagnostic messages to.
+    </p>
+
+    <h5><x><nlog internalLogLevel="Debug | Info | Warn | Error | Fatal" /></x></h5>
+    <p>
+        The <code>internalLogLevel</code> attribute is the internal logging level which can be either
+        <code>Debug,Info,Warn,Error</code> or <code>Fatal</code>.
+    </p>
+
+    <h5><x><include file="filename" /></x></h5>
+    <p>
+        The <x><include file="filename" /></x> element causes NLog configuration file parser
+        to process the contents of another configuration file. The contents of this included file are processed
+        before the of current file and each file is processed only once even if there are multiple 
+        <x><include file="filename" /></x> elements pointing at the file.</p>
+
+    <p>This feature can be used to keep a central repository of logging rules and appender definitions which
+        can then be included in all places where they are needed.</p>
+
+    <p>The <code>file</code> parameter may include <a href="layoutappenders.html">layout appenders</a> 
+        which lets you load the  configuration files based on some environment characteristics like machine name,
+        enviroment variables, registry.</p>
+    <p>
+        The following configuration file includes a configuration file that's specific to the machine the 
+        component is running on, e.g. when running on a 
+        <b>FRODO</b> machine this will include frodo.config.nlog, when running on <b>BILBO</b> it 
+        will include bilbo.config.nlog. This technique is very useful in a multi-server environment because you
+        can store each server's configuration file in a version control system and NLog will take care of using
+        the proper one after deployment.</p>
+    <xml-example xml:space="preserve" src="examples/config2.nlog" />
+
+    <h5><x><extensions /></x></h5>
+    <p>
+        The <x><extensions /></x> element causes NLog to load additional appenders and layout appenders
+        from an external assembly. This is required for the appenders from anything other than NLog.dll to be available.
+        The following configuration syntax is used to load extensions:
+    </p>
+    <xml-example src="examples/config4.nlog" />
+    <p>
+        NLog recognizes the operating system and CLI runtime and loads the DLLs which are part of NLog 
+        distibution automatically. The following table describes NLog behaviour:</p>
+
+    <div class="table">
+
+        <table border="1" cellpadding="0">
+            <tr>
+                <th>Platform</th>
+                <th>Assemblies automatically loaded</th>
+            </tr>
+            <tr>
+                <td>Microsoft .NET Framework 1.x, 2.x</td>
+                <td><code>NLog.dll, NLog.Win32.dll, NLog.DotNet.dll</code></td>
+            </tr>
+            <tr>
+                <td>Mono on Windows</td>
+                <td><code>NLog.dll, NLog.Win32.dll, NLog.Mono.dll</code></td>
+            </tr>
+            <tr>
+                <td>Mono on Unix/Linux</td>
+                <td><code>NLog.dll, NLog.Unix.dll, NLog.Mono.dll</code></td>
+            </tr>
+            <tr>
+                <td>.NET Compact Framework 1.0</td>
+                <td><code>NLog.dll, NLog.CompactFramework.dll</code></td>
+            </tr>
+        </table>
+
+    </div>
+
+    <h5><x><appenders /></x></h5>
+    <p>
+        The <x><appenders/></x> element defines named appenders. Once you've defined the appender
+        you can reference it in the <a href="#rules">&lt;rules/&gt;</a> section.</p>
+    <p>The following syntax is used to define appenders:</p>
+    <xml-example src="examples/config5.nlog" />
+    <p>The parameter specification depends on the appender type. Click <a href="appenders.html">here</a> for the reference.</p>
+    <h5><x><rules /></x></h5>
+    <p>
+        The <x><rules/></x> element defines the log routing policy. It consists of one or more
+        <x><logger/></x> elements that determine the action to be taken each time a log message is emitted.
+    </p>
+    <p><x><logger/></x> element has the following options:</p>
+    <ul>
+        <li><code>name</code> - the logger name pattern - loggers whose name matches the pattern will be affected by this rule. The name pattern is a string with wildcards.<p/>The following options are accepted:
+            <ul>
+                <li><code>name="*"</code> - matches all loggers - this is the default</li>
+                <li><code>name="abc"</code> - matches the logger named 'abc'</li>
+                <li><code>name="abc*"</code> - matches all loggers whose names start with 'abc'</li>
+                <li><code>name="*abc"</code> - matches all loggers whose names end with 'abc'</li>
+                <li><code>name="*abc*"</code> - matches all loggers whose names contain the 'abc' substring</li>
+                <li><code>name=""</code> - matches nothing - can be used to temporarily disable the rule</li>
+                <p/>
+        </ul></li>
+        <li><code>level</code> - the log level - log events that match this log level will be affected by the rule. The <code>level</code> value can be either of <code>Debug,Info,Warn,Error,Fatal</code>.<p/></li>
+        <li><code>minlevel</code> - the minimum log level - log events that match this or higher log level will be affected by the rule. The <code>minlevel</code> value can be either of <code>Debug,Info,Warn,Error,Fatal</code>.<p/></li>
+        <li><code>maxlevel</code> - the maximum log level - log events that match this or lower log level will be affected by the rule. The <code>maxlevel</code> value can be either of <code>Debug,Info,Warn,Error,Fatal</code>.<p/></li>
+        <li><code>levels</code> - the log levels - log events that match any of specified the log levels will be affected by the rule. The <code>levels</code> value can be a sequence of the valid log levels (<code>Debug,Info,Warn,Error,Fatal</code>) separated by commas.<p/></li>
+        <li><code>appendTo</code> - the list of appenders to be written to when the log event passes the above tests. The <code>appendTo</code> is a sequence of appender names separated by commas.<p/></li>
+        <li><code>final</code> - determines whether any of the following appenders will be processed. If this attribute value is "true" and the log event passes all the above tests, no more appenders will be written to.</li>
+    </ul>
+    <p>In addition, <x><logger/></x> supports <x><filters/></x> child element that can be used 
+        to specify filters. See the <a href="filters.html">Filter Reference</a> for more information.</p>
+    The following example shows various routing options:
+    <xml-example src="examples/config3.nlog" />
+    <a name="api" />
+    <h3>Programmatic configuration</h3>
+    <p>
+        The API for programmatic configuration isn't established yet. Future releases of NLog will fix this by creating
+        and documenting a standard set of interfaces to be used for configuration.
+    </p>
+    <p>
+        The entire configuration is kept in an instance of <code>LoggingConfiguration</code> class. 
+        You create a new configuration by creating an instance of this class and assigning it to 
+        <code>LogManager.Configuration</code>. Consult the sources for more information.
+    </p>
+</content>
+

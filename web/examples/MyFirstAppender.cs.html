@@ -1,0 +1,30 @@
+<pre xml:space='preserve'><span class='csharp'><span class='k'>using</span> NLog;
+<span class='k'>using</span> NLog.Appenders;
+
+<span class='k'>namespace</span> MyNamespace
+{
+    [Appender(<span class='s'>&quot;MyFirst&quot;</span>)]
+    <span class='k'>public</span> <span class='k'>sealed</span> <span class='k'>class</span> MyFirstAppender: Appender
+    {
+        <span class='k'>private</span> <span class='k'>string</span> _host = <span class='s'>&quot;localhost&quot;</span>;
+
+        <span class='k'>public</span> <span class='k'>string</span> Host
+        {
+            get { <span class='k'>return</span> _host; }
+            set { _host = value; }
+        }
+        <span class='k'>protected</span> <span class='k'>override</span> <span class='k'>void</span> Append(LogEventInfo ev)
+        {
+            <span class='k'>string</span> logMessage = CompiledLayout.GetFormattedMessage(ev);
+
+            SendTheMessageToRemoteHost(<span class='k'>this</span>.Host, logMessage);
+        }
+
+        <span class='k'>private</span> <span class='k'>void</span> SendTheMessageToRemoteHost(<span class='k'>string</span> host, <span class='k'>string</span> message)
+        {
+            <span class='c'>// TODO - write me</span>
+        }
+    }
+}
+</span>
+</pre>
