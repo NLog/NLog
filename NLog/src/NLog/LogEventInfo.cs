@@ -72,7 +72,7 @@ namespace NLog
         private StackTrace _stackTrace;
         private int _userStackFrame;
 
-        public void SetStackTrace(StackTrace stackTrace, int userStackFrame) {
+        internal void SetStackTrace(StackTrace stackTrace, int userStackFrame) {
             _stackTrace = stackTrace;
             _userStackFrame = userStackFrame;
         }

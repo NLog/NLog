@@ -143,7 +143,7 @@ namespace NLog.Appenders
                 retVal.AutoFlush = _autoFlush;
                 return retVal;
             }
-            catch (Exception ex) {
+            catch (Exception) {
                 InternalLogger.Error("Unable to create file: '{0}'", fileName);
                 throw;
             }
