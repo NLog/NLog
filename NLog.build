@@ -500,6 +500,7 @@
             <fileset basedir="web">
                 <include name="*.css" />
                 <include name="*.png" />
+                <include name="*.jpg" />
                 <include name="*.gif" />
                 <include name="examples/*" />
             </fileset>

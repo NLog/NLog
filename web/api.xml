@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="api" subid="api">
-    <h1>.NET API</h1>
-    <a href="NLog.chm" />
+<content lang="en" id="api">
+    <h1>NLog API</h1>
+    <p>
+        NLog provides the following Application Programming Interfaces (APIs)
+    </p>
+    <ul>
+        <li><link href="capi">C/C++ API</link></li>
+        <li><link href="netapi">.NET API</link></li>
+        <li><link href="comapi">COM API</link></li>
+    </ul>
 </content>
 

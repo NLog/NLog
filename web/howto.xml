@@ -3,6 +3,6 @@
 <content lang="en" id="howto">
     <h1>How To...</h1>
     <ol>
-        <li><a href="howto_write_appender.html">How to write your own Appender</a></li>
+        <li><link href="howto_write_appender">How to write your own Appender</link></li>
     </ol>
 </content>

@@ -20,10 +20,10 @@
         created and managed by NLog but you may need to use them in some cases.</p>
     <ul>
         <li><b><code>LoggingConfiguration</code></b> - is a set of rules that define the way the messages are routed. 
-            Typically <code>LoggingConfiguration</code> is created automatically from the <a href="config.html">configuration file</a> but
+            Typically <code>LoggingConfiguration</code> is created automatically from the <link href="config">configuration file</link> but
             you can also manipulate it programmatically.</li>
         <li><b><code>Appender</code></b> - is an object responsible for writing out log messages to a persistent
-            medium (for example, a file). Appenders are typically created automatically from the <a href="config.html">configuration file</a> but
+            medium (for example, a file). Appenders are typically created automatically from the <link href="config">configuration file</link> but
             you can also manipulate them programmatically.</li>
         <li><b><code>LayoutAppender</code></b> - is an object responsible for writing out pieces of logging information that
             constitute a log message. For example, there's a layout appender that's responsible for writing out a date, 
@@ -85,7 +85,7 @@
     to change it. You create many log outputs and selectively route your messages to them.
     The simplest way to do it is to create a configuration file section in your configuration file.
 </p>
-<p>See the <a href="config.html">NLog Configuration Options</a> and <a href="appenders.html">Appender Reference</a> for more information.</p>
+<p>See the <link href="config">NLog Configuration Options</link> and <link href="appenders">Appender Reference</link> for more information.</p>
 <p>
     In the following example we define 4 log targets (appenders). Here are the logging rules:
     <ol>
@@ -97,8 +97,8 @@
 </p>
 <xml-example src="examples/config6.nlog" />
 <h3>Log output formatting</h3>
-<p>See the <a href="layoutappenders.html">Layout Appender Reference</a> for more information. Tutorial will be added here soon.</p>
+<p>See the <link href="layoutappenders">Layout Appender Reference</link> for more information. Tutorial will be added here soon.</p>
 
 <h3>Log output filtering</h3>
-<p>See the <a href="filters.html">Filter Reference</a> for more information. Tutorial will be added here soon.</p>
+<p>See the <link href="filters">Filter Reference</link> for more information. Tutorial will be added here soon.</p>
     </content>

@@ -14,6 +14,13 @@
         <li><code>NLog.dll.nlog</code> - shared config file for all applications that use NLog.dll. This isn't used when NLog.dll is loaded from the GAC.</li>
         <li>the file pointed by <code>NLOG_GLOBAL_CONFIG_FILE</code> environment variables - shared config file for all applications having the environment variable defined (including service processes). In this scenario NLog.dll assembly can be installed in the GAC.</li>
     </ol>
+    <p>For ASP.NET Web applications the order is (<code>~/</code> means the base directory of the application):</p>
+    <ol>
+        <li><code>~/web.config</code></li>
+        <li><code>~/web.nlog</code></li>
+        <li><code>~/bin/NLog.dll.nlog</code> (provided that you're not using NLog.dll installed in the GAC).</li>
+        <li>the file pointed by <code>NLOG_GLOBAL_CONFIG_FILE</code> environment variables - shared config file for all applications having the environment variable defined (including service processes). In this scenario NLog.dll assembly can be installed in the GAC.</li>
+    </ol>
     <p>Under .NET Compact Framework the config search path is limited to:</p>
     <ol>
         <li><code>applicationname.exe.nlog</code> - application specific config file.</li>
@@ -69,7 +76,7 @@
     <p>This feature can be used to keep a central repository of logging rules and appender definitions which
         can then be included in all places where they are needed.</p>
 
-    <p>The <code>file</code> parameter may include <a href="layoutappenders.html">layout appenders</a> 
+    <p>The <code>file</code> parameter may include <link href="layoutappenders.html">layout appenders</link> 
         which lets you load the  configuration files based on some environment characteristics like machine name,
         enviroment variables, registry.</p>
     <p>
@@ -125,7 +132,7 @@
         you can reference it in the <a href="#rules">&lt;rules/&gt;</a> section.</p>
     <p>The following syntax is used to define appenders:</p>
     <xml-example src="examples/config5.nlog" />
-    <p>The parameter specification depends on the appender type. Click <a href="appenders.html">here</a> for the reference.</p>
+    <p>The parameter specification depends on the appender type. Click <link href="appenders.html">here</link> for the reference.</p>
     <h5><x><rules /></x></h5>
     <p>
         The <x><rules/></x> element defines the log routing policy. It consists of one or more
@@ -151,7 +158,7 @@
         <li><code>final</code> - determines whether any of the following appenders will be processed. If this attribute value is "true" and the log event passes all the above tests, no more appenders will be written to.</li>
     </ul>
     <p>In addition, <x><logger/></x> supports <x><filters/></x> child element that can be used 
-        to specify filters. See the <a href="filters.html">Filter Reference</a> for more information.</p>
+        to specify filters. See the <link href="filters.html">Filter Reference</link> for more information.</p>
     The following example shows various routing options:
     <xml-example src="examples/config3.nlog" />
     <a name="api" />

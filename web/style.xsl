@@ -18,10 +18,11 @@
                 <title>NLog - <xsl:value-of select="$common/common/navigation/nav[@href=$page_id]/@label" /></title>
             </head>
             <body width="100%">
-                <table align="center" class="page" cellpadding="0" cellspacing="0">
-                    <tr>
-                        <td class="header" colspan="2"><img src="titlebanner.png" /></td>
-                    </tr>
+                <div class="titleimage" style="overflow: hidden">
+                    <img src="NLog.jpg" />
+                </div>
+		<h6>THIS SITE IS UNDER CONSTRUCTION. SOME SECTIONS ARE MISSING.</h6><br/>
+                <table class="page" cellpadding="0" cellspacing="0">
                     <tr>
                         <td valign="top" class="controls">
                             <xsl:call-template name="controls" />
@@ -35,14 +36,13 @@
                             <xsl:if test="$sourceforge='1'">
 <!-- Start of StatCounter Code -->
 <script type="text/javascript" language="javascript">
-var sc_project=575055; 
+var sc_project=575077; 
 var sc_partition=4; 
-var sc_security="e249d6a5"; 
+var sc_security="6fe22c9a"; 
 </script>
 
-<script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c5.statcounter.com/counter.php?sc_project=575055&amp;amp;java=0&amp;amp;security=e249d6a5" alt="free web stats" border="0" /></a> </noscript>
-<!-- End of StatCounter Code -->
-<br/>
+<script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c5.statcounter.com/counter.php?sc_project=575077&amp;java=0&amp;security=6fe22c9a" alt="website tracking" border="0" /></a> </noscript>
+<!-- End of StatCounter Code --><br/>
                                 <a href="http://sourceforge.net"><img src="http://sourceforge.net/sflogo.php?group_id=116456&amp;type=1" width="88" height="31" border="0" alt="SourceForge.net Logo" /></a>
                             </xsl:if>
                         </td>
@@ -75,18 +75,18 @@ var sc_security="e249d6a5";
     
     <xsl:template match="nav">
         <xsl:choose>
-            <xsl:when test="$page_id = @href"><tr><td><a class="nav_selected"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a></td></tr><xsl:apply-templates select="subnav" /></xsl:when>
+            <xsl:when test="$page_id = @href"><tr><td class="nav_selected"><a class="nav_selected"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a><table width="100%"><xsl:apply-templates select="subnav" /></table></td></tr></xsl:when>
             <xsl:otherwise>
-                <tr><td><a class="nav"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a></td></tr>
+                <tr><td class="nav"><a class="nav"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a></td></tr>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 
     <xsl:template match="subnav">
         <xsl:choose>
-            <xsl:when test="$subpage_id = @href"><tr><td><a class="subnav_selected"><xsl:value-of select="@label" /></a></td></tr></xsl:when>
+            <xsl:when test="$subpage_id = @href"><tr><td class="subnav_spacer"></td><td><a class="subnav_selected"><xsl:value-of select="@label" /></a></td></tr></xsl:when>
             <xsl:otherwise>
-                <tr><td><a class="subnav"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a></td></tr>
+                <tr><td class="subnav_spacer"></td><td><a class="subnav"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a></td></tr>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -107,6 +107,10 @@ var sc_security="e249d6a5";
 
     <xsl:template match="x">
         <xsl:apply-templates mode="xml-example" />
+    </xsl:template>
+
+    <xsl:template match="link">
+        <a href="{@href}.{$file_extension}"><xsl:apply-templates /></a>
     </xsl:template>
 
     <xsl:template match="xml-example[@src]">
