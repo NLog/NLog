@@ -1,0 +1,4 @@
+2004-09-02 Jaroslaw Kowalski <jaak@zd.com.pl>
+	
+	* Added initial support for database appender and array 
+	parameter infrastructure
