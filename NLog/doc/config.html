@@ -18,6 +18,7 @@
             <li>standard application config file (<code>applicationname.exe.config</code>).</li>
             <li><code>applicationname.exe.nlog</code> - application specific config file.</li>
             <li><code>NLog.dll.nlog</code> - shared config file for all applications that use NLog.dll. This isn't used when NLog.dll is loaded from the GAC.</li>
+            <li>the file pointed by <code>NLOG_GLOBAL_CONFIG_FILE</code> environment variables - shared config file for all applications having the environment variable defined (including service processes). In this scenario NLog.dll assembly can be installed in the GAC.</li>
         </ol>
         <p>Each config file can use <code>&lt;include file="filename" /&gt;</code> to include other config files
         which lets you easily manage logging rules in a central place and reference them instead of copying.

@@ -109,6 +109,18 @@ namespace NLog
                             }
                         }
                     }
+                    
+                    if (_config == null) {
+                        if (Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE") != null) {
+                            string configFile = Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE");
+                            if (File.Exists(configFile)) {
+                                InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                                _config = new XmlLoggingConfiguration(configFile);
+                            } else { 
+                                InternalLogger.Warn("NLog global config file pointed by NLOG_GLOBAL_CONFIG '{0}' doesn't exist.", configFile);
+                            }
+                        }
+                    }
 
                     if (_config != null) {
                         _watcher.Watch(_config.FileNamesToWatch);
