@@ -369,6 +369,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "LayoutAppenders\ASPNetApplication.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "LayoutAppenders\BaseDir.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
