@@ -71,8 +71,12 @@ namespace NLog
         }
 
         private void WriteToAppenders(LogLevel level, AppenderWithFilterChain appenders, IFormatProvider formatProvider, string message, object[] args) {
-            if (appenders == null)
+            if (appenders == null) {
+                if (InternalLogger.IsDebugEnabled) {
+                    InternalLogger.Debug("No appenders configured for {0}.{1}", Name, level);
+                }
                 return;
+            }
 
             string formattedMessage;
             
@@ -154,8 +158,9 @@ namespace NLog
                         if (result != FilterResult.Neutral)
                             break;
                     }
-                    if (result == FilterResult.Ignore)
+                    if (result == FilterResult.Ignore) {
                         continue;
+                    }
                 }
                 catch (Exception ex) {
                     InternalLogger.Error("FilterChain exception: {0}", ex);

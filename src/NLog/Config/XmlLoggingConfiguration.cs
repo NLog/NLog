@@ -101,7 +101,23 @@ namespace NLog.Config
 
         private void ConfigureFromXmlElement(XmlElement configElement, string baseDirectory) {
             if (configElement.HasAttribute("autoReload")) {
-                AutoReload = true;
+                if (configElement.GetAttribute("autoReload") == "true") {
+                    AutoReload = true;
+                }
+            }
+
+            if (configElement.HasAttribute("internalLogToConsole")) {
+                if (configElement.GetAttribute("internalLogToConsole") == "true") {
+                    InternalLogger.LogToConsole = true;
+                }
+            }
+
+            if (configElement.HasAttribute("internalLogFile")) {
+                InternalLogger.LogFile = configElement.GetAttribute("internalLogFile");
+            }
+
+            if (configElement.HasAttribute("internalLogLevel")) {
+                InternalLogger.LogLevel = Logger.LogLevelFromString(configElement.GetAttribute("internalLogLevel"));
             }
 
             foreach (XmlElement el in configElement.GetElementsByTagName("include"))
@@ -111,6 +127,7 @@ namespace NLog.Config
                 string newFileName = layout.GetFormattedMessage(LogEventInfo.Empty);
                 newFileName = Path.Combine(baseDirectory, newFileName);
                 if (File.Exists(newFileName)) {
+                    InternalLogger.Debug("Including file '{0}'", newFileName);
                     ConfigureFromFile(newFileName);
                 } else {
                     throw new FileNotFoundException("Included fine not found: " + newFileName);
