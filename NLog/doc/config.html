@@ -36,7 +36,7 @@
         <!-- other configSections go here -->
 
     </configSections>
-    <nlog autoReload="true|false">
+    <nlog autoReload="true|false" internalLogToConsole="true|false" internalLogLevel="Debug|Info|Warn|Error|Fatal" internalLogFile="...">
         
         <!-- configuration parameters go here -->
 
@@ -54,6 +54,9 @@
         <h4>Configuration parameters</h4>
         <p>The following configuration parameters can be set in the config file. Click on a parameter to get its description.</p>
         <ul><li><a href="#autoReload">autoReload</a></li>
+            <li><a href="#internalLogToConsole">internalLogToConsole</a></li>
+            <li><a href="#internalLogLevel">internalLogLevel</a></li>
+            <li><a href="#internalLogFile">internalLogFile</a></li>
             <li><a href="#include">&lt;include /&gt;</a></li>
             <li><a href="#extensions">&lt;extensions /&gt;</a></li>
             <li><a href="#appenders">&lt;appenders /&gt;</a></li>
@@ -63,9 +66,29 @@
         <h5>autoReload</h5>
         <p>
             The <code>autoReload</code> attribute of the <code>nlog</code> tag determines 
-            whether the NLogManager should watch each config file for changes and reload 
+            whether the LogManager should watch each config file for changes and reload 
             them them each time a change is detected. This is a boolean value which can be 
             either <code>true</code> or <code>false</code>.
+        </p>
+
+        <h5>internalLogToConsole</h5>
+        <p>
+            The <code>internalLogToConsole</code> attribute of the <code>nlog</code> tag 
+            determines whether NLog debugging functions output their diagnostic messages
+            to the console. This is a boolean value which can be either <code>true</code> 
+            or <code>false</code>.
+        </p>
+
+        <h5>internalLogFile</h5>
+        <p>
+            The <code>internalLogFile</code> attribute is the name of the file
+            that NLog will write internal diagnostic messages to.
+        </p>
+
+        <h5>internalLogLevel</h5>
+        <p>
+        The <code>internalLogLevel</code> attribute is the internal logging level which can be either
+        <code>Debug,Info,Warn,Error</code> or <code>Fatal</code>.
         </p>
 
         <a name="include" />
@@ -108,22 +131,53 @@
 <?xml version="1.0" ?>
 <nlog>
     <extensions>
-        <!-- load assembly from the specified file -->
-        <add assemblyFile="NLog.ASP.dll" />
+        <!-- load assembly from the specified file the path is relative to the config file directory -->
+        <!-- so you need to use bin/filename.dll for web applications -->
         
-        <!-- load assembly using the specified partial name -->
-        <add assemblyPartialName="NLog.ASP" />
+        <add assemblyFile="NLog.Extensions.dll" />
         
         <!-- load assembly using the specified full name -->
-        <add assembly="NLog.ASP, Version=0.0.0000.0, Culture=neutral, PublicKeyToken=0123456789abcdef" />
+        <add assembly="NLog.Extensions, Version=1.2.3456.7, Culture=neutral, PublicKeyToken=0123456789abcdef" />
         
         <!-- load assembly from the specified file and prefix all appenders and layoutappenders with 'zzz' -->
         <!-- This can be used to avoid name clashes on extension dlls. -->
 
-        <add prefix="zzz" assemblyFile="NLog.ASP.dll" />
+        <add prefix="zzz" assemblyFile="NLog.Extensions.dll" />
     </extensions>
 </nlog>
 </xmp>
+        <p>
+        NLog recognizes the operating system and CLI runtime and loads the DLLs which are part of NLog 
+        distibution automatically. The following table describes NLog behaviour:</p>
+        </p>
+
+        <div class="table">
+        
+        <table>
+            <tr>
+                <th>Platform</th>
+                <th>Assemblies automatically loaded</th>
+            </tr>
+            <tr>
+                <td>Microsoft .NET Framework 1.x, 2.x</td>
+                <td><code>NLog.dll, NLog.Win32.dll, NLog.DotNet.dll</code></td>
+            </tr>
+            <tr>
+                <td>Mono on Windows</td>
+                <td><code>NLog.dll, NLog.Win32.dll, NLog.Mono.dll</code></td>
+            </tr>
+            <tr>
+                <td>Mono on Unix/Linux</td>
+                <td><code>NLog.dll, NLog.Unix.dll, NLog.Mono.dll</code></td>
+            </tr>
+            <tr>
+                <td>.NET Compact Framework 1.0</td>
+                <td><code>NLog.dll, NLog.CompactFramework.dll</code></td>
+            </tr>
+        </table>
+
+    </div>
+
         <a name="appenders" />
         <h5>&lt;appenders /&gt;</h5>
         <p>

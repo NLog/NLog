@@ -268,29 +268,6 @@ namespace NLog.Config
                     continue;
                 };
 
-#if !NETCF
-                string assemblyPartialName = appenderElement.GetAttribute("assemblyPartialName");
-
-                if (assemblyPartialName != null && assemblyPartialName.Length > 0) {
-                    try {
-                        InternalLogger.Info("Loading assemblyPartialName: {0}", assemblyPartialName);
-                        Assembly asm = Assembly.LoadWithPartialName(assemblyPartialName);
-                        if (asm != null) 
-                        {
-                            LoadExtensionsFromAssembly(asm, prefix);
-                        }
-                        else
-                        {
-                            throw new ApplicationException("Assembly with partial name " + assemblyPartialName + " not found.");
-                        }
-                    }
-                    catch (Exception ex) {
-                        InternalLogger.Error("Error loading layout-appenders: {0}", ex);
-                    }
-                    continue;
-                };
-#endif
-
                 string assemblyName = appenderElement.GetAttribute("assembly");
 
                 if (assemblyName != null && assemblyName.Length > 0) {

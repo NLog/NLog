@@ -51,6 +51,7 @@ namespace NLog.LayoutAppenders
         private int _absolutePadding = 0;
         private bool _upperCase = false;
         private bool _lowerCase = false;
+        private char _padCharacter = ' ';
         private CultureInfo _cultureInfo = CultureInfo.InvariantCulture;
 
         public int Padding
@@ -62,6 +63,12 @@ namespace NLog.LayoutAppenders
         public int AbsolutePadding
         {
             get { return _absolutePadding; }
+        }
+
+        public char PadCharacter
+        {
+            get { return _padCharacter; }
+            set { _padCharacter = value; }
         }
 
         public bool FixedLength
@@ -97,9 +104,9 @@ namespace NLog.LayoutAppenders
         protected string ApplyPadding(string s) {
             if (Padding != 0) {
                 if (Padding > 0) {
-                    s = s.PadLeft(Padding);
+                    s = s.PadLeft(Padding, PadCharacter);
                 } else {
-                    s = s.PadRight(-Padding);
+                    s = s.PadRight(-Padding, PadCharacter);
                 }
                 if (FixedLength && s.Length > AbsolutePadding)
                 {
