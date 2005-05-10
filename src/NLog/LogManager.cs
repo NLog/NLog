@@ -305,6 +305,7 @@ namespace NLog
         internal static AppenderWithFilterChain[]GetAppendersByLevelForLogger(string name, LoggingConfiguration config)
         {
             AppenderWithFilterChain[]appendersByLevel = new AppenderWithFilterChain[(int)LogLevel.MaxLevel + 1];
+            AppenderWithFilterChain[]lastAppendersByLevel = new AppenderWithFilterChain[(int)LogLevel.MaxLevel + 1];
 
             if (config != null)
             {
@@ -319,26 +320,18 @@ namespace NLog
                         {
                             if (rule.IsLoggingEnabledForLevel((LogLevel)i))
                             {
-                                // first cache the current appender
-                                AppenderWithFilterChain awfcCurrent = appendersByLevel[i];
-
                                 foreach (Appender appender in rule.Appenders)
                                 {
                                     AppenderWithFilterChain awf = new AppenderWithFilterChain(appender, rule.Filters);
-                                    // instead use the local for the current position
-                                    if (awfcCurrent != null)
+                                    if (lastAppendersByLevel[i] != null)
                                     {
-                                        // as before, but using the temp
-                                        awfcCurrent.Next = awf;
+                                        lastAppendersByLevel[i].Next = awf;
                                     }
                                     else
                                     {
-                                        // for the null case, set the temp and ensure the appender list is also updated
-                                        appendersByLevel[i] = awfcCurrent = awf;
+                                        appendersByLevel[i] = awf;
                                     }
-
-                                    // now adjust the temp
-                                    awfcCurrent = awf;
+                                    lastAppendersByLevel[i] = awf;
                                 }
                             }
                         }
