@@ -54,7 +54,7 @@ namespace NLog.Appenders
         private StreamWriter _outputFile;
         private System.Text.Encoding _encoding = System.Text.Encoding.Default;
         private bool _autoFlush = true;
-        private bool _concurrentWrites = false;
+        private bool _concurrentWrites = true;
         private int _concurrentWriteAttempts = 10;
         private int _bufferSize = 32768;
         private int _concurrentWriteAttemptDelay = 1;

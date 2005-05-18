@@ -214,12 +214,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Appenders\NLogViewerAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Appenders\NullAppender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Appenders\TraceAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Appenders\UDPAppender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -390,6 +400,11 @@
                 />
                 <File
                     RelPath = "Internal\StringDictionary.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\ThreadIDHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
