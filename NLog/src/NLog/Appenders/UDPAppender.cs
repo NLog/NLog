@@ -33,24 +33,18 @@
 // 
 
 using System;
-using System.Text;
-using System.Runtime.InteropServices;
+using System.Collections;
+using System.Collections.Specialized;
+using System.Diagnostics;
 
-using NLog.Internal;
-
-namespace NLog.LayoutAppenders
+namespace NLog.Appenders
 {
-    [LayoutAppender("threadid")]
-    public class ThreadIDLayoutAppender: LayoutAppender
+    [Appender("UDP")]
+    public sealed class UDPAppender: Appender
     {
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected internal override void Append(LogEventInfo ev)
         {
-            return 32;
-        }
-
-        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
-        {
-            builder.Append(ApplyPadding(ThreadIDHelper.CurrentThreadID.ToString()));
+            // _logs.Add(CompiledLayout.GetFormattedMessage(ev));
         }
     }
 }

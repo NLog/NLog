@@ -149,5 +149,18 @@ namespace NLog
             }
         }
 
+        public string FormattedMessage
+        {
+            get 
+            {
+                if (_parameters == null || _parameters.Length == 0)
+                    return _message;
+                if (_formatProvider != null)
+                    return String.Format(_formatProvider, _message, _parameters);
+                else
+                    return String.Format(_message, _parameters);
+            }
+        }
+
     }
 }

@@ -33,24 +33,44 @@
 // 
 
 using System;
-using System.Text;
+using System.Collections;
+using System.Reflection;
+using System.Globalization;
+using System.Xml;
 using System.Runtime.InteropServices;
 
 using NLog.Internal;
+using NLog.Config;
 
-namespace NLog.LayoutAppenders
+namespace NLog.Internal
 {
-    [LayoutAppender("threadid")]
-    public class ThreadIDLayoutAppender: LayoutAppender
+    internal sealed class ThreadIDHelper
     {
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+#if !NETCF
+        [DllImport("kernel32.dll")]
+        private extern static int GetCurrentThreadId();
+
+        [DllImport("kernel32.dll")]
+        private extern static int GetCurrentProcessId();
+
+        public static int CurrentThreadID
         {
-            return 32;
+            get { return GetCurrentThreadId(); }
         }
 
-        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+        public static int CurrentProcessID
         {
-            builder.Append(ApplyPadding(ThreadIDHelper.CurrentThreadID.ToString()));
+            get { return GetCurrentProcessId(); }
         }
+#else
+        public static int CurrentThreadID
+        {
+            get { return -1; }
+        }
+        public static int CurrentProcessID
+        {
+            get { return -1; }
+        }
+#endif
     }
 }

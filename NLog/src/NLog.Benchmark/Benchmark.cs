@@ -46,7 +46,7 @@ using NLog;
 
 #if LOG4NET
 
-using log4net.spi;
+using log4net.Core;
 using log4net.Appender;
 
 public class NullAppender : AppenderSkeleton
@@ -114,8 +114,12 @@ class Bench
             }
         }
 #if LOG4NET
+#if LOG4NETWITHFORMAT
+        _output = new XmlTextWriter("log4netwithformat.results.xml", System.Text.Encoding.UTF8);
+#else
         _output = new XmlTextWriter("log4net.results.xml", System.Text.Encoding.UTF8);
-        log4net.Config.DOMConfigurator.Configure(new FileInfo("log4net.config"));
+#endif
+        log4net.Config.XmlConfigurator.Configure(new FileInfo("log4net.config"));
 
         ILog logger1 = LogManager.GetLogger("nonlogger");
         ILog logger2 = LogManager.GetLogger("null1");
@@ -172,7 +176,11 @@ class Bench
         for (int i = 0; i < repeat; ++i)
         {
 #if LOG4NET
+#if LOG4NETWITHFORMAT
+            logger.DebugFormat("This is a message with {0} format parameter", 1);
+#else
             logger.Debug(String.Format("This is a message with {0} format parameter", 1));
+#endif
 #else
             logger.Debug("This is a message with {0} format parameter", 1);
 #endif
@@ -182,7 +190,13 @@ class Bench
         for (int i = 0; i < repeat; ++i)
         {
 #if LOG4NET
+
+#if LOG4NETWITHFORMAT
+            logger.DebugFormat("This is a message with {0}{1} parameters", 2, "o");
+#else            
             logger.Debug(String.Format("This is a message with {0}{1} parameters", 2, "o"));
+#endif
+
 #else
             logger.Debug("This is a message with {0}{1} parameters", 2, "o");
 #endif
@@ -192,7 +206,13 @@ class Bench
         for (int i = 0; i < repeat; ++i)
         {
 #if LOG4NET
+
+#if LOG4NETWITHFORMAT
+            logger.DebugFormat("This is a  {0}{1}{2} parameters", "thr", 3, 3);
+#else
             logger.Debug(String.Format("This is a  {0}{1}{2} parameters", "thr", 3, 3));
+#endif
+            
 #else
             logger.Debug("This is a  {0}{1}{2} parameters", "thr", 3, 3);
 #endif
@@ -213,7 +233,13 @@ class Bench
             if (logger.IsDebugEnabled)
             {
 #if LOG4NET
+
+#if LOG4NETWITHFORMAT
+                logger.DebugFormat("This is a  {0} parameter", 1);
+#else
                 logger.Debug(String.Format("This is a  {0} parameter", 1));
+#endif
+                
 #else
                 logger.Debug("This is a  {0} parameter", 1);
 #endif
@@ -226,7 +252,12 @@ class Bench
             if (logger.IsDebugEnabled)
             {
 #if LOG4NET
+#if LOG4NETWITHFORMAT
+                logger.DebugFormat("This is a  {0}{1} parameters", 2, "o");
+#else
                 logger.Debug(String.Format("This is a  {0}{1} parameters", 2, "o"));
+#endif
+                
 #else
                 logger.Debug("This is a  {0}{1} parameters", 2, "o");
 #endif
@@ -239,7 +270,11 @@ class Bench
             if (logger.IsDebugEnabled)
             {
 #if LOG4NET
+#if LOG4NETWITHFORMAT
+                logger.DebugFormat("This is a  {0}{1}{2} parameters", "thr", 3, 3);
+#else
                 logger.Debug(String.Format("This is a  {0}{1}{2} parameters", "thr", 3, 3));
+#endif
 #else
                 logger.Debug("This is a  {0}{1}{2} parameters", "thr", 3, 3);
 #endif
