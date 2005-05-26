@@ -217,7 +217,22 @@
                 <include name="System.Xml.dll" />
             </references>
         </csc>
-        <copy file="src/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark.exe.config" />
+        <copy file="src/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net.exe.config" />
+    </target>
+
+    <target name="NLog.Benchmark-log4net-withformat" depends="NLog">
+        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe" define="${nlog.define},LOG4NET,LOG4NETWITHFORMAT" debug="${nlog.debug}" optimize="${nlog.optimize}">
+            <sources basedir="src/NLog.Benchmark">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${nlog.dir}/log4net.dll" />
+                <include name="mscorlib.dll" />
+                <include name="System.dll" />
+                <include name="System.Xml.dll" />
+            </references>
+        </csc>
+        <copy file="src/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe.config" />
     </target>
 
     <target name="register-com" depends="configure">

@@ -37,6 +37,7 @@ using System.Threading;
 using System.Globalization;
 using System.IO;
 using System.Xml;
+using System.Runtime.InteropServices;
 
 #if LOG4NET
 using log4net;
@@ -67,31 +68,68 @@ public class NullAppenderWithLayout : AppenderSkeleton
 
 #endif
 
+class StopWatch
+{
+    private long _startTime;
+    private long _stopTime;
+    private static long _frequency;
+
+    static StopWatch()
+    {
+        QueryPerformanceFrequency(out _frequency);
+    }
+    
+    public void Start()
+    {
+        QueryPerformanceCounter(out _startTime);
+    }
+
+    public void Stop()
+    {
+        QueryPerformanceCounter(out _stopTime);
+    }
+
+    public double Seconds
+    {
+        get { return (double)(_stopTime - _startTime) / _frequency; }
+    }
+
+    public double Nanoseconds
+    {
+        get { return (double)1000000000 * (_stopTime - _startTime) / _frequency; }
+    }
+
+    [DllImport("kernel32.dll")]
+    static extern bool QueryPerformanceCounter(out long val);
+
+    [DllImport("kernel32.dll")]
+    static extern bool QueryPerformanceFrequency(out long val);
+}
+
 class Bench
 {
     private const int warmup = 10;
     private static int _repeat;
     private static string _currentTestName;
-    private static DateTime _startTime;
-    private static DateTime _finishTime;
     private static XmlTextWriter _output;
+    private static StopWatch _stopWatch;
 
     public static void BeginTest(string name)
     {
         _output.WriteStartElement("timing");
         _output.WriteAttributeString("name", name);
         _currentTestName = name;
-        _startTime = DateTime.Now;
+        _stopWatch = new StopWatch();
+        _stopWatch.Start();
     }
 
     public static void EndTest()
     {
-        _finishTime = DateTime.Now;
-        // Console.WriteLine("{0}: {1} nanoseconds/log {2} seconds per {3} logs", _currentTestName, , _finishTime - _startTime, _repeat);
-        _output.WriteAttributeString("totalTime", Convert.ToString(_finishTime - _startTime));
+        _stopWatch.Stop();
+        _output.WriteAttributeString("totalTime", Convert.ToString(TimeSpan.FromSeconds(_stopWatch.Seconds)));
         _output.WriteAttributeString("repetitions", Convert.ToString(_repeat));
-        _output.WriteAttributeString("logsPerSecond", Convert.ToString(Convert.ToInt64(_repeat / (_finishTime - _startTime).TotalSeconds)));
-        _output.WriteAttributeString("nanosecondsPerLog", Convert.ToString(100.0 * (_finishTime - _startTime).Ticks / (double)_repeat));
+        _output.WriteAttributeString("logsPerSecond", Convert.ToString(_repeat /_stopWatch.Seconds));
+        _output.WriteAttributeString("nanosecondsPerLog", Convert.ToString(_stopWatch.Nanoseconds / _repeat));
         _output.WriteEndElement();
     }
 
@@ -106,6 +144,10 @@ class Bench
             {
                 repeat *= 10;
                 repeat2 *= 10;
+            }
+            if (args[0] == "short")
+            {
+                repeat2 /= 10;
             }
             if (args[0] == "verylong")
             {
@@ -145,7 +187,7 @@ class Bench
             logger3.Info("Warm up");
         }
         LogTest(logger1, "Non-logging", repeat);
-        LogTest(logger4, "File appender", repeat2);
+        //LogTest(logger4, "File appender", repeat2);
         LogTest(logger3, "Null-appender without layout", repeat);
         LogTest(logger2, "Null-appender with layout rendering", repeat);
         _output.WriteEndElement();
