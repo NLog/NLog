@@ -14,7 +14,7 @@
 
         <!-- 
         Load assembly from the specified file and prefix 
-        all appenders and layoutappenders with 'zzz' 
+        all targets and layout renderers with 'zzz' 
         
         This can be used to avoid name clashes on extension dlls.
         -->

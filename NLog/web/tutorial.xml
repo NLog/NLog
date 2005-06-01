@@ -1,49 +1,27 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
 <content lang="en" id="tutorial">
-    <h1>Tutorial</h1>
-
-    <p style="color: red">TODO - this tutorial needs a complete rewrite. It's too complex to be called a tutorial. Patches are welcome.</p>
+    <h1>Introduction to NLog</h1>
 
     <h3>Basic concepts</h3>
     <p>NLog is a log routing engine. It processes log messages that are output by the components of your program,
-        formats them according to your preference and outputs them to one or more place based on a set of rules.</p>
-
-    <p>The following are the two objects you will use most:</p>
-    <ul>
-        <li><b><code>Logger</code></b> - is an object you write your log messages to. Usually you create 
-            just one such object for each class, typically making it a static member of your class and write 
-            your messages to it.</li>
-        <li><b><code>LogManager</code></b> - is a logger factory that creates specific loggers on request.
-            It also manages the logging configuration.</li>
-    </ul>
-
-    <p>The following are additional objects that you may happen to use with NLog. They are usually automatically 
-        created and managed by NLog but you may need to use them in some cases.</p>
-    <ul>
-        <li><b><code>LoggingConfiguration</code></b> - is a set of rules that define the way the messages are routed. 
-            Typically <code>LoggingConfiguration</code> is created automatically from the <link href="config">configuration file</link> but
-            you can also manipulate it programmatically.</li>
-        <li><b><code>Appender</code></b> - is an object responsible for writing out log messages to a persistent
-            medium (for example, a file). Appenders are typically created automatically from the <link href="config">configuration file</link> but
-            you can also manipulate them programmatically.</li>
-        <li><b><code>LayoutAppender</code></b> - is an object responsible for writing out pieces of logging information that
-            constitute a log message. For example, there's a layout appender that's responsible for writing out a date, 
-            another one prints out a class name and method name, some other writes current thread's identity and so on. 
-            LayoutAppenders are groupped to create <code>Layout</code>s.</li>
-        <li><p><b><code>Layout</code></b> - is a string to be written to the <code>Appender</code> with embedded
-                placeholders for layoutappenders.</p><p>For example: <code>${longdate}|${level}|${message}</code> is
-                a layout consisting of: a long date (YYYY-MM-DD HH:MI:SS.MMM), a pipe character, log level, a pipe
-                character and finally a log message. When you use this layout with a file appender, it will cause the log messages
-                to be formatted accordingly. <code>Layout</code>s are also used in many other places (for example to specify 
-                file names).</p></li>
-        <li><b><code>Filter</code></b> - is an object responsible for selective elimination of unneeded log output.
-            It is invoked before the appender and can prevent or force logging.</li>
-    </ul>
-
-    <h3>Logger levels</h3>
+        formats them according to your preference, filters them according to their level, source and content
+        and outputs them to one or more place based on a set of rules.</p>
+    <h5>Loggers and LogManager</h5>
     <p>
-        There are 5 predefined logging levels. They are: <code>Debug, Info, Warn, Error, Fatal</code>.
+        To write a log message in your code you use an instance of a <code>Logger</code> which you acquire from
+        a <code>LogManager</code>. You can think of loggers as of log sources and targets as log sinks. Typically
+        there's one sink for one class named after its full name including namespace, e.g. 
+        <code>MyCompany.MyProject.NameSpace.ClassName</code> but you may invent your own naming schema as well.
+    </p>
+    <h5>Log levels</h5>
+    <p>
+        Each message that you output has a level which describes its importance. 
+        There are 5 predefined logging levels. They are: <code>Debug, Info, Warn, Error, Fatal</code>. Unlike other logging frameworks
+        NLog <b>does NOT</b> support introducing more logging levels, but I believe that in this case "<i>less is more</i>".
+    </p>
+    <p>
+        The following table describes the allowed logging levels along with their recommended usage.
     </p>
     <div class="table">
         <table>
@@ -75,32 +53,146 @@
             </tr>
         </table>
     </div>
-<h3>Logger usage</h3>
-<p>Usage is simple. Just get an instance of a <code>Logger</code> from the <code>LogManager</code> and 
-    write your messages to it like you do with <code>Console.WriteLine()</code>. To write a message at a particular
-    level use a method that's named after the level.</p>
-<p>The following code example shows what's available:</p>
 
-<cs src="examples/tutorial.cs" />
-<h3>Log output</h3>
-<p>By default, all log messages are displayed on standard output. NLog gives you the possibility
-    to change it. You create many log outputs and selectively route your messages to them.
-    The simplest way to do it is to create a configuration file section in your configuration file.
-</p>
-<p>See the <link href="config">NLog Configuration Options</link> and <link href="appenders">Appender Reference</link> for more information.</p>
-<p>
-    In the following example we define 4 log targets (appenders). Here are the logging rules:
+    <h5>Log routing table</h5>
+    <p>
+        A <i>routing table</i> is used to manage the log rules. It can be accessed either programmatically
+        or as an XML document either standalone or embedded in the application configuration file <code>App.config</code>.
+    </p>
+    <xml-example src="examples/config6.nlog" />
+    <p>
+        The routing table is made up of the following main parts:
+    </p>
+    <ul>
+        <li><b>targets</b> (previously called "appenders") - which specify where log output will go</li>
+        <li><b>rules</b> - which describe the way log messages are routed to reach targets</li>
+    </ul>
+    <p>
+        Each <x><rule/></x> definition consists of a logger name pattern, level specification and target information. The meaning
+        is very simple: "<i>Each time a logger name matches the pattern and level matches the level specification, write the formatted 
+            log message to the specified target</i>".
+    </p>
+    <p>
+        As you can see the routing table is quite clean and simple, but very powerful. 
+        Some examples of what you can use with it include:
+    </p>
+    <ul>
+        <li>send single log message to one or more targets (for example: both to the console and a log file)</li>
+        <li>filter logging messages by their level</li>
+        <li>filter logging messages by their logger name using wildcards</li>
+    </ul>
+    <p>
+        It's also possible to use filters and final rules, and this is described below in advanced section.
+    </p>
+    <h5>Layouts and layout renderers</h5>
+    <p>
+        Layouts are one of the coolest features of NLog. They let you annotate log messages with environmental information like:
+    </p>
+    <ul>
+        <li>date and time in various formats</li>
+        <li>stack trace information</li>
+        <li>exception information</li>
+        <li>classic ASP and ASP.NET session, request and application objects</li>
+        <li>path information (such as appdomain base directory)</li>
+        <li>log event information (logger name, log level)</li>
+        <li>process and thread information</li>
+        <li>machine name information</li>
+        <li>diagnostic contexts</li>
+        <li>counters, guids, and more</li>
+    </ul>
+    <p>
+        Each target has a parameter called <code>layout</code> that describes the log output formatting. By default
+        it is:
+    </p>
+    <p>
+        <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+    </p>
+    <p>
+        so that each log line contains the data, log level, logger name and log message. This can be extended, for example,
+        to provide some particular value from ASP.NET session state, thread id and call site (class and name of the 
+        invoking method):
+    </p>
+    <p>
+        <code>${longdate} ${level:uppercase=true} ${logger} ${aspnet-session:variable=UserName} ${threadid} ${callsite} ${message}</code>
+    </p>
+    <p>
+        Now, each logging message (a line in the output file) will contain all of the above useful information. Example of a real-life configuration that does just that and writes output to both a file and ASP.NET trace facility. Note how the file output is more detailed than ASP.NET trace output:
+    </p>
+    <xml-example src="examples/config11.nlog" />
+    <p>
+        It's even possible to write each log message to a different file based on environmental properties.
+        For example, to write to a new file each day separated by the log level, just change <code>filename=""</code> to:
+    </p>
+    <p>
+        <code>filename="${basedir}/../logs/${date:format=yyyy-MM-dd}_${level}_log.txt"</code>
+    </p>
+    <p>
+        The resulting files will be named:
+    </p>
     <ol>
-        <li><code>Info, Warn</code> and <code>Error</code> messages are printed on the console.</li>
-        <li>All <code>Debug</code> messages go to <code>file1.log</code></li>
-        <li>All <code>Error</code> and <code>Fatal</code> messages go to <code>file2.log</code>. This is indicated by <code>minlevel</code> attribute.</li>
-        <li>All messages from loggers having SQL in their name go to <code>file3.log</code>.</li>
+        <li><code>../logs/2005-05-29_Debug_log.txt</code></li>
+        <li><code>../logs/2005-05-29_Info_log.txt</code></li>
+        <li><code>../logs/2005-05-29_Warn_log.txt</code></li>
+        <li><code>../logs/2005-05-29_Error_log.txt</code></li>
+        <li><code>../logs/2005-05-29_Fatal_log.txt</code></li>
+        <li><code>../logs/2005-05-30_Debug_log.txt</code></li>
+        <li><code>../logs/2005-05-30_Info_log.txt</code></li>
+        <li><code>../logs/2005-05-30_Warn_log.txt</code></li>
+        <li><code>../logs/2005-05-30_Error_log.txt</code></li>
+        <li><code>../logs/2005-05-30_Fatal_log.txt</code></li>
+        <li>...</li>
     </ol>
-</p>
-<xml-example src="examples/config6.nlog" />
-<h3>Log output formatting</h3>
-<p>See the <link href="layoutappenders">Layout Appender Reference</link> for more information. Tutorial will be added here soon.</p>
+    <p>You can probably see that the possibilities are endless. See the <link href="layoutrenderers">Layout Renderers</link> for more information.</p>
+    <h5>Logger usage</h5>
+    <p>Usage is simple. Just get an instance of a <code>Logger</code> from the <code>LogManager</code> and 
+        write your messages to it like you do with <code>Console.WriteLine()</code>. To write a message at a particular
+        level use a method that's named after the level.</p>
+    <p>The following code example shows what's available:</p>
 
-<h3>Log output filtering</h3>
-<p>See the <link href="filters">Filter Reference</link> for more information. Tutorial will be added here soon.</p>
-    </content>
+    <cs src="examples/tutorial.cs" />
+
+    <h3>Advanced concepts</h3>
+    <h5>Internal logging</h5>
+    <p>
+        There are cases where you need to debug your logging configuration. This is usually the case where you don't 
+        get the expected log output. NLog provides a feature called internal logging. Internal logging
+        lets you write NLog-internal debugging messages to the console and/or a log file optionally specifying the
+        log level verbosity. Additionally you may want to tell NLog to throw exceptions on any error. This can
+        help you detect and fix configuration errors (mostly permission problems) easily.
+    </p>
+    <p>
+        The following options can be used in the configuration file to enable internal debugging:
+    </p>
+    <p>
+        <x><nlog internalLogToConsole="true | false" /></x><br/>
+        <x><nlog internalLogFile="filename" /></x><br/>
+        <x><nlog internalLogLevel="Debug | Info | Warn | Error | Fatal" /></x><br/>
+        <x><nlog throwExceptions="true | false" /></x><br/>
+    </p>
+    <p>
+        More information about internal logging can be found in the <link href="howto_troubleshoot">troubleshooting</link> section and in the <link href="config">configuration</link> section.
+    </p>
+    <h5>Include files</h5>
+    <p>
+        If you have many applications you may want to share their logging configurations. NLog provides <x><include /></x>
+        mechanism for that. TODO - write more.
+    </p>
+    <h5>Automatic config-file watching</h5>
+    <p>
+        There are cases where you need to modify the logging configuration at application runtime. Having to restart
+        your application in this case should be avoided especially on production servers.
+        NLog provides a convenient configuration attribute for this. 
+        Just put the following in the configuration file:
+    </p>
+    <xml-example src="examples/config12.nlog" />
+    <h5>Filters</h5>
+    <p>See the <link href="filters">Filter Reference</link> for more information. Tutorial will be added here soon.</p>
+    <h5>Final rules</h5>
+    <p>By default all NLog rules are additive, that is their effects add up. The rules are processed top-down 
+        from the first rule to the last one. Sometimes you want to quit rule processing. That's what the <code>final</code> attribute
+        is used for.
+    </p>
+    <h5>Log processing detailed</h5>
+    <p>The following picture describes log processing. </p>
+    <img style="border: 1px solid #ffe0e0" src="nlog_routing.png" />
+</content>

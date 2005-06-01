@@ -37,39 +37,96 @@ using System.Runtime.InteropServices;
 
 namespace NLog.ComInterop
 {
+    /// <summary>
+    /// NLog COM Interop logger interface
+    /// </summary>
     [Guid("757fd55a-cc93-4b53-a7a0-18e85620704a")]
     [InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface ILogger
     {
+        /// <summary>
+        /// Writes the diagnostic message at the specified level.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
         void Log(string level, string message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the Debug level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
         void Debug(string message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the Info level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
         void Info(string message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the Warn level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
         void Warn(string message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the Error level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
         void Error(string message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the Fatal level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
         void Fatal(string message);
 
+        /// <summary>
+        /// Checks if the specified log level is enabled.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <returns>A value indicating whether the specified log level is enabled.</returns>
         bool IsEnabled(string level);
+
+        /// <summary>
+        /// Returns the boolean value indicating whether the Debug level is enabled.
+        /// </summary>
         bool IsDebugEnabled
         {
             get;
         }
+        /// <summary>
+        /// Returns the boolean value indicating whether the Info level is enabled.
+        /// </summary>
         bool IsInfoEnabled
         {
             get;
         }
+        /// <summary>
+        /// Returns the boolean value indicating whether the Warn level is enabled.
+        /// </summary>
         bool IsWarnEnabled
         {
             get;
         }
+        /// <summary>
+        /// Returns the boolean value indicating whether the Error level is enabled.
+        /// </summary>
         bool IsErrorEnabled
         {
             get;
         }
+        /// <summary>
+        /// Returns the boolean value indicating whether the Fatal level is enabled.
+        /// </summary>
         bool IsFatalEnabled
         {
             get;
         }
 
+        /// <summary>
+        /// The logger name.
+        /// </summary>
         string LoggerName
         {
             get; set;

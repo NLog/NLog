@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="appenders" subid="config">
+<content lang="en" id="reference" subid="config">
     <h1>NLog Configuration Options</h1>
     <p>NLog can be configured in many ways, both <a href="#api">programmatically</a> and using config <a href="#file">files</a>. 
         This document describes the available configuration options.</p>
@@ -73,10 +73,10 @@
         before the of current file and each file is processed only once even if there are multiple 
         <x><include file="filename" /></x> elements pointing at the file.</p>
 
-    <p>This feature can be used to keep a central repository of logging rules and appender definitions which
+    <p>This feature can be used to keep a central repository of logging rules and target definitions which
         can then be included in all places where they are needed.</p>
 
-    <p>The <code>file</code> parameter may include <link href="layoutappenders.html">layout appenders</link> 
+    <p>The <code>file</code> parameter may include <link href="layoutrenderers">layout renderers</link> 
         which lets you load the  configuration files based on some environment characteristics like machine name,
         enviroment variables, registry.</p>
     <p>
@@ -90,8 +90,8 @@
 
     <h5><x><extensions /></x></h5>
     <p>
-        The <x><extensions /></x> element causes NLog to load additional appenders and layout appenders
-        from an external assembly. This is required for the appenders from anything other than NLog.dll to be available.
+        The <x><extensions /></x> element causes NLog to load additional targets, layout renderers and filters
+        from an external assembly. This is required for the targets from anything other than NLog.dll and NLog.*.dll assemblies to be available.
         The following configuration syntax is used to load extensions:
     </p>
     <xml-example src="examples/config4.nlog" />
@@ -126,13 +126,13 @@
 
     </div>
 
-    <h5><x><appenders /></x></h5>
+    <h5><x><targets /></x> or <x><appenders /></x></h5>
     <p>
-        The <x><appenders/></x> element defines named appenders. Once you've defined the appender
+        The <x><targets/></x> element defines named targets (previously called "appenders"). Once you've defined the target
         you can reference it in the <a href="#rules">&lt;rules/&gt;</a> section.</p>
-    <p>The following syntax is used to define appenders:</p>
+    <p>The following syntax is used to define targets:</p>
     <xml-example src="examples/config5.nlog" />
-    <p>The parameter specification depends on the appender type. Click <link href="appenders.html">here</link> for the reference.</p>
+    <p>The parameter specification depends on the target type. Click <link href="targets">here</link> for the reference.</p>
     <h5><x><rules /></x></h5>
     <p>
         The <x><rules/></x> element defines the log routing policy. It consists of one or more
@@ -154,8 +154,8 @@
         <li><code>minlevel</code> - the minimum log level - log events that match this or higher log level will be affected by the rule. The <code>minlevel</code> value can be either of <code>Debug,Info,Warn,Error,Fatal</code>.<p/></li>
         <li><code>maxlevel</code> - the maximum log level - log events that match this or lower log level will be affected by the rule. The <code>maxlevel</code> value can be either of <code>Debug,Info,Warn,Error,Fatal</code>.<p/></li>
         <li><code>levels</code> - the log levels - log events that match any of specified the log levels will be affected by the rule. The <code>levels</code> value can be a sequence of the valid log levels (<code>Debug,Info,Warn,Error,Fatal</code>) separated by commas.<p/></li>
-        <li><code>appendTo</code> - the list of appenders to be written to when the log event passes the above tests. The <code>appendTo</code> is a sequence of appender names separated by commas.<p/></li>
-        <li><code>final</code> - determines whether any of the following appenders will be processed. If this attribute value is "true" and the log event passes all the above tests, no more appenders will be written to.</li>
+        <li><code>appendTo</code> or <code>writeTo</code> - the list of targets to be written to when the log event passes the above tests. The <code>writeTo</code> is a list of target names separated by commas.<p/></li>
+        <li><code>final</code> - determines whether any of the following rules will be processed. If this attribute value is "true" and the log event passes all the above tests, no more targets will be written to.</li>
     </ul>
     <p>In addition, <x><logger/></x> supports <x><filters/></x> child element that can be used 
         to specify filters. See the <link href="filters.html">Filter Reference</link> for more information.</p>

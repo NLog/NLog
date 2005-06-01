@@ -24,9 +24,9 @@
         <li>After the message is qualified to be logged - the log message is formatted based on message and parameters
             passed to the logging function. This can be pretty slow because the <code>String.Format</code>
             isn't very fast.</li>
-        <li>The last step is passing the log event to one or more appenders so that they can
+        <li>The last step is passing the log event to one or more targets so that they can
             to write the event to output. This is usually the most time-consuming part of the process because
-            appenders are typically some kind of persistent storage (file, database) and it takes time
+            targets are typically some kind of persistent storage (file, database) and it takes time
             to write to such outputs.</li>
     </ol>
     <p>

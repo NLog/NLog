@@ -46,7 +46,7 @@ namespace NLog.ComInterop
     [ClassInterface(ClassInterfaceType.None)]
     public class Logger: ILogger
     {
-        private static NLog.Logger _defaultLogger = new NullLogger();
+        private static NLog.Logger _defaultLogger = NLog.LogManager.CreateNullLogger();
 
         private NLog.Logger _logger = _defaultLogger;
         private string _loggerName = String.Empty;

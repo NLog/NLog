@@ -12,6 +12,8 @@
     <property name="ssh.program" value="plink" />
     <property name="ssh.program.args" value="-batch" />
 
+    <property name="ndoc.console.exe" value="C:\Program Files\NDoc 1.3\bin\net\1.1\ndocconsole.exe" />
+
     <property name="sourceforge.addr" value="jkowalski@nlog.sourceforge.net" />
     <property name="sourceforge.groupdir" value="/home/groups/n/nl/nlog" />
 
@@ -75,14 +77,11 @@
                 <include name="System.Web.dll" />
                 <include name="System.Web.Services.dll" />
             </references>
-            <nowarn>
-                <warning number="1591" />
-            </nowarn>
         </csc>
     </target>
 
     <target name="NLog.ComInterop" depends="NLog">
-        <csc target="library" output="${nlog.dir}/NLog.ComInterop.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.ComInterop.dll" doc="${nlog.dir}/NLog.ComInterop.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
             <sources basedir="src/NLog.ComInterop">
                 <include name="**/*.cs" />
             </sources>
@@ -92,9 +91,6 @@
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
             </references>
-            <nowarn>
-                <warning number="1591" />
-            </nowarn>
         </csc>
     </target>
 
@@ -109,38 +105,29 @@
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
             </references>
-            <nowarn>
-                <warning number="1591" />
-            </nowarn>
         </csc>
     </target>
 
     <target name="NLog.Win32" depends="NLog">
-        <csc target="library" output="${nlog.dir}/NLog.Win32.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.Win32.dll" doc="${nlog.dir}/NLog.Win32.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
             <sources basedir="src/NLog.Win32">
                 <include name="**/*.cs" />
             </sources>
             <references>
                 <include name="${nlog.dir}/NLog.dll" />
             </references>
-            <nowarn>
-                <warning number="1591" />
-            </nowarn>
         </csc>
     </target>
 
     <target name="NLog.DotNet" depends="NLog">
         <!-- don't build it yet - we don't have anything .NET-specific -->
-        <csc target="library" output="${nlog.dir}/NLog.DotNet.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.DotNet.dll" doc="${nlog.dir}/NLog.DotNet.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
             <sources basedir="src/NLog.DotNet">
                 <include name="**/*.cs" />
             </sources>
             <references>
                 <include name="${nlog.dir}/NLog.dll" />
             </references>
-            <nowarn>
-                <warning number="1591" />
-            </nowarn>
         </csc>
     </target>
 
@@ -153,9 +140,6 @@
             <references>
                 <include name="${nlog.dir}/NLog.dll" />
             </references>
-            <nowarn>
-                <warning number="1591" />
-            </nowarn>
         </csc>
     </target>
 
@@ -167,9 +151,6 @@
             <references>
                 <include name="${nlog.dir}/NLog.dll" />
             </references>
-            <nowarn>
-                <warning number="1591" />
-            </nowarn>
         </csc>
     </target>
 
@@ -251,10 +232,6 @@
 
     <target name="benchmark" depends="NLog.Benchmark, build">
         <exec program="${nlog.dir}/NLog.Benchmark.exe" workingdir="${nlog.dir}" />
-    </target>
-
-    <target name="longbenchmark" depends="NLog.Benchmark, build">
-        <exec program="${nlog.dir}/NLog.Benchmark.exe" commandline="long" workingdir="${nlog.dir}" />
     </target>
 
     <target name="benchmark-all">
@@ -342,7 +319,7 @@
         </foreach>
     </target>
 
-    <target name="doc" depends="configure, NLog">
+    <target name="doc" depends="configure, build">
         <uptodate property="help.uptodate">
             <targetfiles>
                 <include name="${web.dir}/help/NLog.chm" />
@@ -352,56 +329,8 @@
             </sourcefiles>
         </uptodate>
         <if test="${not help.uptodate}">
-            <delete dir="${web.dir}/help" if="${directory::exists(web.dir+'/help')}" />
-            <mkdir dir="${web.dir}/help" />
-            <ndoc>
-                <assemblies basedir="${nlog.dir}">
-                    <include name="NLog.dll" />
-                </assemblies>
-                <documenters>
-                    <documenter name="MSDN">
-                        <property name="OutputDirectory" value="${web.dir}/help" />
-                        <!--
-                        <property name="SdkDocVersion" value="${link.sdkdoc.version}" />
-                        <property name="SdkLinksOnWeb" value="${link.sdkdoc.web}" />
-                        -->
-                        <!-- do not filter on namespace -->
-                        <property name="NamespaceFilter" value="" />
-                        <property name="HtmlHelpName" value="NLog" />
-                        <!-- set the name of the application for which docs are generated -->
-                        <property name="ApplicationName" value="NLog" />
-                        <property name="DocumentAttributes" value="True" />
-                        <property name="IncludeAssemblyVersion" value="True" />
-                        <property name="ShowMissingParams" value="True" />
-                        <property name="ShowMissingReturns" value="True" />
-                        <property name="ShowMissingValues" value="True" />
-                    </documenter>
-                </documenters>
-            </ndoc>
+            <exec program="${ndoc.console.exe}" workingdir="${nant.project.basedir}" commandline="-documenter=MSDN -project=NLog.ndoc" />
         </if>
-    </target>
-
-    <target name="xmldoc" depends="configure, NLog">
-        <ndoc>
-            <assemblies basedir="${nlog.dir}">
-                <include name="NLog.dll" />
-            </assemblies>
-            <documenters>
-                <documenter name="XML">
-                    <property name="OutputDirectory" value="${web.dir}/help" />
-                    <!-- do not filter on namespace -->
-                    <property name="NamespaceFilter" value="" />
-                    <property name="HtmlHelpName" value="NLog" />
-                    <!-- set the name of the application for which docs are generated -->
-                    <property name="ApplicationName" value="NLog" />
-                    <property name="DocumentAttributes" value="True" />
-                    <property name="IncludeAssemblyVersion" value="True" />
-                    <property name="ShowMissingParams" value="True" />
-                    <property name="ShowMissingReturns" value="True" />
-                    <property name="ShowMissingValues" value="True" />
-                </documenter>
-            </documenters>
-        </ndoc>
     </target>
 
     <target name="publish_website" depends="website">
@@ -478,12 +407,40 @@
         <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/fix_group_perm.sh" />
     </target>
 
+    <target name="xmldoc" depends="build">
+        <exec program="${ndoc.console.exe}" workingdir="${nant.project.basedir}" commandline="-documenter=XML -project=NLog.ndoc" />
+    </target>
+
     <target name="website">
         <property name="web.dir" value="web/build" unless="${property::exists('web.dir')}" />
         <property name="web.sourceforge" value="1" />
         <delete dir="${web.dir}" if="${directory::exists(web.dir)}" failonerror="false" />
         <mkdir dir="${web.dir}" />
         <mkdir dir="${web.dir}/examples" />
+        <style out="${web.dir}/targets.html" style="web/targets.xsl" in="doc/doc.xml">
+            <parameters>
+                <parameter name="file_extension" value="html" />
+                <parameter name="sourceforge" value="${web.sourceforge}" />
+                <parameter name="page_id_override" value="reference" />
+                <parameter name="subpage_id_override" value="targets" />
+            </parameters>
+        </style>
+        <style out="${web.dir}/layoutrenderers.html" style="web/layoutrenderers.xsl" in="doc/doc.xml">
+            <parameters>
+                <parameter name="file_extension" value="html" />
+                <parameter name="sourceforge" value="${web.sourceforge}" />
+                <parameter name="page_id_override" value="reference" />
+                <parameter name="subpage_id_override" value="layoutrenderers" />
+            </parameters>
+        </style>
+        <style out="${web.dir}/filters.html" style="web/filters.xsl" in="doc/doc.xml">
+            <parameters>
+                <parameter name="file_extension" value="html" />
+                <parameter name="sourceforge" value="${web.sourceforge}" />
+                <parameter name="page_id_override" value="reference" />
+                <parameter name="subpage_id_override" value="filters" />
+            </parameters>
+        </style>
         <style destdir="${web.dir}" style="web/style.xsl">
             <infiles basedir="web">
                 <include name="*.xml" />

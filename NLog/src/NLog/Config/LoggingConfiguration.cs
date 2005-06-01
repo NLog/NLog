@@ -38,55 +38,63 @@ using System.Xml;
 
 using NLog;
 using NLog.Internal;
-using NLog.Appenders;
+using NLog.Targets;
 
 namespace NLog.Config
 {
+    /// <summary>
+    /// Keeps logging configuration and provides simple API
+    /// to modify it.
+    /// </summary>
     public class LoggingConfiguration
     {
-        private AppenderDictionary _appenders = new AppenderDictionary();
-        private AppenderRuleCollection _appenderRules = new AppenderRuleCollection();
+        private TargetDictionary _targets = new TargetDictionary();
+        private LoggingRuleCollection _loggingRules = new LoggingRuleCollection();
 
+        /// <summary>
+        /// Creates new instance of LoggingConfiguration object.
+        /// </summary>
         public LoggingConfiguration(){}
 
-        public void AddAppender(string name, Appender appender)
+        /// <summary>
+        /// Registers the specified target object under a given name.
+        /// </summary>
+        /// <param name="name">Name of the target.</param>
+        /// <param name="target">The target object.</param>
+        public void AddTarget(string name, Target target)
         {
-            _appenders[name] = appender;
+            _targets[name] = target;
         }
 
-        public void AddAppenderRule(AppenderRule rule)
+        /// <summary>
+        /// Finds the target with the specified name.
+        /// </summary>
+        /// <param name="name">The name of the target to be found.</param>
+        /// <returns>Found target or <see langword="null" /> when the target is not found.</returns>
+        public Target FindTargetByName(string name)
         {
-            _appenderRules.Add(rule);
+            return _targets[name];
         }
 
-        public Appender FindAppenderByName(string name)
-        {
-            return _appenders[name];
-        }
-
-        public AppenderRuleCollection AppenderRules
+        /// <summary>
+        /// The collection of logging rules
+        /// </summary>
+        public LoggingRuleCollection LoggingRules
         {
             get
             {
-                return _appenderRules;
+                return _loggingRules;
             }
         }
 
-        internal AppenderDictionary Appenders
+        internal TargetDictionary Targets
         {
-            get { return _appenders; }
+            get { return _targets; }
         }
 
-        // implementation details
-
-        public void ResolveAppenders()
-        {
-            foreach (AppenderRule rule in _appenderRules)
-            {
-                rule.Resolve(this);
-            }
-        }
-
+        /// <summary>
+        /// A collection of file names which should be watched for changes by NLog.
+        /// </summary>
         public virtual ICollection FileNamesToWatch
         {
             get
@@ -95,6 +103,10 @@ namespace NLog.Config
             }
         }
 
+        /// <summary>
+        /// Called by LogManager when one of the log configuration files changes.
+        /// </summary>
+        /// <returns>A new instance of <see cref="LoggingConfiguration" /> that represents the updated configuration.</returns>
         public virtual LoggingConfiguration Reload()
         {
             return this;

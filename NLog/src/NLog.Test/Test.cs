@@ -49,6 +49,9 @@ public class Test
         Logger l0 = LogManager.GetCurrentClassLogger();
         NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
         NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");
+        NLog.Internal.InternalLogger.LogToConsole = true;
+
+        LogManager.GlobalThreshold = LogLevel.Debug;
 
         using(NDC.Push("aaa"))
         {

@@ -37,60 +37,33 @@ using System.Collections;
 using System.Diagnostics;
 
 using NLog.Filters;
-using NLog.Appenders;
+using NLog.Targets;
 using NLog.Internal;
 
 namespace NLog
 {
-    sealed class LoggerImpl: Logger
+    sealed class LoggerImpl
     {
         private const int STACK_TRACE_SKIP_METHODS = 3;
 
-        private AppenderWithFilterChain[]_appendersByLevel;
-        private string _loggerName;
-
-        public LoggerImpl(string name, AppenderWithFilterChain[]appendersByLevel)
+        internal static void Write(Logger logger, LogLevel level, TargetWithFilterChain targets, IFormatProvider formatProvider, string message, object[]args, Exception exception)
         {
-            _loggerName = name;
-            _appendersByLevel = appendersByLevel;
-        }
+            if (targets == null)
+                return;
 
-        protected override void Write(LogLevel level, IFormatProvider formatProvider, string message, object[]args, Exception ex)
-        {
-            WriteToAppenders(level, _appendersByLevel[(int)level], formatProvider, message, args, ex);
-        }
-
-        internal string Name
-        {
-            get
-            {
-                return _loggerName;
-            }
-        }
-
-        internal void Reconfig(AppenderWithFilterChain[]appendersByLevel)
-        {
-            _appendersByLevel = appendersByLevel;
-        }
-
-        private void WriteToAppenders(LogLevel level, AppenderWithFilterChain appenders, IFormatProvider formatProvider, string message, object[]args, Exception exception)
-        {
-            if (appenders == null)
-                return ;
-
-            LogEventInfo logMessage = new LogEventInfo(DateTime.Now, level, _loggerName, formatProvider, message, args, exception);
+            LogEventInfo logMessage = new LogEventInfo(DateTime.Now, level, logger.Name, formatProvider, message, args, exception);
 
 #if !NETCF            
             bool needTrace = false;
             bool needTraceSources = false;
 
-            for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next)
+            for (TargetWithFilterChain awf = targets; awf != null; awf = awf.Next)
             {
                 // once we know we needTraceSources there's nothing more to look for
                 //
                 if (needTraceSources)
                     break;
-                Appender app = awf.Appender;
+                Target app = awf.Target;
 
                 int nst = app.NeedsStackTrace();
 
@@ -146,9 +119,9 @@ namespace NLog
                 logMessage.SetStackTrace(stackTrace, firstUserFrame);
             }
 #endif 
-            for (AppenderWithFilterChain awf = appenders; awf != null; awf = awf.Next)
+            for (TargetWithFilterChain awf = targets; awf != null; awf = awf.Next)
             {
-                Appender app = awf.Appender;
+                Target app = awf.Target;
 
                 try
                 {
@@ -166,7 +139,7 @@ namespace NLog
                     {
                         if (InternalLogger.IsDebugEnabled)
                         {
-                            InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", Name, level);
+                            InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", logger.Name, level);
                         }
                         continue;
                     }
@@ -186,75 +159,12 @@ namespace NLog
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error("Appender exception: {0}", ex);
+                    InternalLogger.Error("Target exception: {0}", ex);
                     if (LogManager.ThrowExceptions)
                         throw;
                     else
                         continue;
                 }
-            }
-        }
-
-        public override bool IsEnabled(LogLevel level)
-        {
-            if (LogManager.ReloadConfigOnNextLog)
-                LogManager.ReloadConfig();
-
-            return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)level] != null;
-        }
-
-        public override bool IsDebugEnabled
-        {
-            get
-            {
-                if (LogManager.ReloadConfigOnNextLog)
-                    LogManager.ReloadConfig();
-
-                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Debug] != null;
-            }
-        }
-
-        public override bool IsInfoEnabled
-        {
-            get
-            {
-                if (LogManager.ReloadConfigOnNextLog)
-                    LogManager.ReloadConfig();
-
-                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Info] != null;
-            }
-        }
-
-        public override bool IsWarnEnabled
-        {
-            get
-            {
-                if (LogManager.ReloadConfigOnNextLog)
-                    LogManager.ReloadConfig();
-
-                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Warn] != null;
-            }
-        }
-
-        public override bool IsErrorEnabled
-        {
-            get
-            {
-                if (LogManager.ReloadConfigOnNextLog)
-                    LogManager.ReloadConfig();
-
-                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Error] != null;
-            }
-        }
-
-        public override bool IsFatalEnabled
-        {
-            get
-            {
-                if (LogManager.ReloadConfigOnNextLog)
-                    LogManager.ReloadConfig();
-
-                return LogManager.IsLoggingEnabled() && _appendersByLevel[(int)LogLevel.Fatal] != null;
             }
         }
     }

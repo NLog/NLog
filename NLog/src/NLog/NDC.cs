@@ -39,11 +39,20 @@ using System.Text;
 
 namespace NLog
 {
-    // stack implemented as an StringCollection
+    /// <summary>
+    /// Nested Diagnostics Context - a thread-local structure that keeps a stack
+    /// of strings and provides methods to output them in layouts
+    /// Mostly for compatibility with log4net.
+    /// </summary>
     public sealed class NDC
     {
         private NDC(){}
 
+        /// <summary>
+        /// Pushes the specified text on current thread NDC.
+        /// </summary>
+        /// <param name="text">The text to be pushed.</param>
+        /// <returns>An instance of the object that implements IDisposable that returns the stack to the previous level when IDisposable.Dispose() is called. To be used with C# using() statement.</returns>
         public static IDisposable Push(string text)
         {
             StringCollection stack = GetThreadStack();
@@ -52,6 +61,10 @@ namespace NLog
             return new StackPopper(stack, previousCount);
         }
 
+        /// <summary>
+        /// Pops the top message off the NDC stack.
+        /// </summary>
+        /// <returns>The top message which is no longer on the stack.</returns>
         public static string Pop()
         {
             StringCollection stack = GetThreadStack();
@@ -67,6 +80,10 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Gets the top NDC message but doesn't remove it.
+        /// </summary>
+        /// <returns>The top message. </returns>
         public static string GetTopMessage()
         {
             StringCollection stack = GetThreadStack();
@@ -80,6 +97,9 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Clears current thread NDC stack.
+        /// </summary>
         public static void Clear()
         {
             StringCollection stack = GetThreadStack();
@@ -87,6 +107,11 @@ namespace NLog
             stack.Clear();
         }
 
+        /// <summary>
+        /// Gets all messages on the stack separated by the specified separator.
+        /// </summary>
+        /// <param name="separator">The separator.</param>
+        /// <returns>Messages on the stack concatenated using the specified separator.</returns>
         public static string GetAllMessages(string separator)
         {
             StringCollection stack = GetThreadStack();
@@ -111,6 +136,12 @@ namespace NLog
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Calculates the string representing <c>count</c> bottommost messages using the specified separator.
+        /// </summary>
+        /// <param name="count">Number of bottom messages to be returned</param>
+        /// <param name="separator">The separator</param>
+        /// <returns>A string representing <c>count</c> bottommost messages using the specified separator.</returns>
         public static string GetBottomMessages(int count, string separator)
         {
             StringCollection stack = GetThreadStack();
@@ -137,6 +168,12 @@ namespace NLog
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Calculates the string representing <c>count</c> topmost messages using the specified separator.
+        /// </summary>
+        /// <param name="count">Number of topmost messages to be returned</param>
+        /// <param name="separator">The separator</param>
+        /// <returns>A string representing <c>count</c> topmost messages using the specified separator.</returns>
         public static string GetTopMessages(int count, string separator)
         {
             StringCollection stack = GetThreadStack();

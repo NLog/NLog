@@ -36,16 +36,29 @@ using System;
 using System.Text;
 
 using NLog;
+using NLog.Config;
 
 namespace NLog.Filters
 {
+    /// <summary>
+    /// Matches when the calculated layout does NOT contain the specified substring.
+    /// </summary>
     [Filter("whenNotContains")]
     public class WhenNotContainsFilter: LayoutBasedFilter
     {
-        public WhenNotContainsFilter(){}
+        /// <summary>
+        /// Initializes a new instance of the filter object.
+        /// </summary>
+        public WhenNotContainsFilter()
+        {
+        }
 
         private string _substring;
 
+        /// <summary>
+        /// Substring to be matched.
+        /// </summary>
+        [RequiredParameter]
         public string Substring
         {
             get
@@ -58,9 +71,18 @@ namespace NLog.Filters
             }
         }
 
-        public override FilterResult Check(LogEventInfo logMessage)
+        /// <summary>
+        /// Checks whether log event should be logged or not.
+        /// </summary>
+        /// <param name="logEvent">Log event.</param>
+        /// <returns>
+        /// <see cref="FilterResult.Ignore"/> - if the log event should be ignored<br/>
+        /// <see cref="FilterResult.Neutral"/> - if the filter doesn't want to decide<br/>
+        /// <see cref="FilterResult.Log"/> - if the log event should be logged<br/>
+        /// </returns>
+        protected internal override FilterResult Check(LogEventInfo logEvent)
         {
-            if (CompiledLayout.GetFormattedMessage(logMessage).IndexOf(Substring) < 0)
+            if (CompiledLayout.GetFormattedMessage(logEvent).IndexOf(Substring) < 0)
                 return Result;
             else
                 return FilterResult.Neutral;

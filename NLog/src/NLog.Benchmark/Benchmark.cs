@@ -72,11 +72,24 @@ class StopWatch
 {
     private long _startTime;
     private long _stopTime;
+    private static long _overhead = 0;
     private static long _frequency;
 
     static StopWatch()
     {
         QueryPerformanceFrequency(out _frequency);
+        StopWatch callibration = new StopWatch();
+        long totalOverhead = 0;
+        int loopCount = 0;
+        for (int i = 0; i < 1000000; ++i)
+        {
+            callibration.Start();
+            callibration.Stop();
+            totalOverhead += callibration.Ticks;
+            loopCount++;
+        }
+        _overhead = totalOverhead / loopCount;
+        Console.WriteLine("Callibrating StopWatch: overhead {0}", _overhead);
     }
     
     public void Start()
@@ -89,14 +102,19 @@ class StopWatch
         QueryPerformanceCounter(out _stopTime);
     }
 
+    public long Ticks
+    {
+        get { return _stopTime - _startTime - _overhead; }
+    }
+
     public double Seconds
     {
-        get { return (double)(_stopTime - _startTime) / _frequency; }
+        get { return (double)(_stopTime - _startTime - _overhead) / _frequency; }
     }
 
     public double Nanoseconds
     {
-        get { return (double)1000000000 * (_stopTime - _startTime) / _frequency; }
+        get { return (double)1000000000 * (_stopTime - _startTime - _overhead) / _frequency; }
     }
 
     [DllImport("kernel32.dll")]
@@ -112,55 +130,56 @@ class Bench
     private static int _repeat;
     private static string _currentTestName;
     private static XmlTextWriter _output;
-    private static StopWatch _stopWatch;
+    private static StopWatch _stopWatch = new StopWatch();
 
     public static void BeginTest(string name)
     {
-        _output.WriteStartElement("timing");
-        _output.WriteAttributeString("name", name);
+        if (_output != null)
+        {
+            _output.WriteStartElement("timing");
+            _output.WriteAttributeString("name", name);
+        }
         _currentTestName = name;
-        _stopWatch = new StopWatch();
         _stopWatch.Start();
     }
 
     public static void EndTest()
     {
         _stopWatch.Stop();
-        _output.WriteAttributeString("totalTime", Convert.ToString(TimeSpan.FromSeconds(_stopWatch.Seconds)));
-        _output.WriteAttributeString("repetitions", Convert.ToString(_repeat));
-        _output.WriteAttributeString("logsPerSecond", Convert.ToString(_repeat /_stopWatch.Seconds));
-        _output.WriteAttributeString("nanosecondsPerLog", Convert.ToString(_stopWatch.Nanoseconds / _repeat));
-        _output.WriteEndElement();
+        if (_output != null)
+        {
+            _output.WriteAttributeString("totalTime", Convert.ToString(TimeSpan.FromSeconds(_stopWatch.Seconds)));
+            _output.WriteAttributeString("repetitions", Convert.ToString(_repeat));
+            _output.WriteAttributeString("logsPerSecond", Convert.ToString(_repeat /_stopWatch.Seconds));
+            _output.WriteAttributeString("nanosecondsPerLog", Convert.ToString(_stopWatch.Nanoseconds / _repeat));
+            _output.WriteEndElement();
+        }
     }
 
     public static void Main(string[]args)
     {
         int repeat = 1000000;
         int repeat2 = 100000;
+        string outputFile = args[0];
         Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-        if (args.Length > 0)
+        if (args.Length > 1)
         {
-            if (args[0] == "long")
+            if (args[1] == "long")
             {
                 repeat *= 10;
                 repeat2 *= 10;
             }
-            if (args[0] == "short")
+            if (args[1] == "short")
             {
                 repeat2 /= 10;
             }
-            if (args[0] == "verylong")
+            if (args[1] == "verylong")
             {
                 repeat *= 100;
                 repeat2 *= 10;
             }
         }
 #if LOG4NET
-#if LOG4NETWITHFORMAT
-        _output = new XmlTextWriter("log4netwithformat.results.xml", System.Text.Encoding.UTF8);
-#else
-        _output = new XmlTextWriter("log4net.results.xml", System.Text.Encoding.UTF8);
-#endif
         log4net.Config.XmlConfigurator.Configure(new FileInfo("log4net.config"));
 
         ILog logger1 = LogManager.GetLogger("nonlogger");
@@ -168,15 +187,12 @@ class Bench
         ILog logger3 = LogManager.GetLogger("null2");
         ILog logger4 = LogManager.GetLogger("file1");
 #else
-        _output = new XmlTextWriter("nlog.results.xml", System.Text.Encoding.UTF8);
         Logger logger1 = LogManager.GetLogger("nonlogger");
         Logger logger2 = LogManager.GetLogger("null1");
         Logger logger3 = LogManager.GetLogger("null2");
         Logger logger4 = LogManager.GetLogger("file1");
 #endif
         // _output = new XmlTextWriter(Console.Out);
-        _output.Formatting = Formatting.Indented;
-        _output.WriteStartElement("results");
         for (int i = 0; i < warmup; ++i)
         {
             logger1.Debug("Warm up");
@@ -186,10 +202,21 @@ class Bench
             logger2.Info("Warm up");
             logger3.Info("Warm up");
         }
+
+        // warm up
+        LogTest(logger1, null, 5);
+        //LogTest(logger4, null, 5);
+        LogTest(logger3, null, 5);
+        LogTest(logger2, null, 5);
+
+        _output = new XmlTextWriter(outputFile, System.Text.Encoding.UTF8);
+        _output.Formatting = Formatting.Indented;
+        _output.WriteStartElement("results");
         LogTest(logger1, "Non-logging", repeat);
         //LogTest(logger4, "File appender", repeat2);
         LogTest(logger3, "Null-appender without layout", repeat);
         LogTest(logger2, "Null-appender with layout rendering", repeat);
+
         _output.WriteEndElement();
         _output.Close();
     }
@@ -204,14 +231,19 @@ class Bench
     {
         _repeat = repeat;
 
-        _output.WriteStartElement("test");
-        _output.WriteAttributeString("logger", loggerDesc);
-        _output.WriteAttributeString("repetitions", repeat.ToString());
+        if (_output != null)
+        {
+            _output.WriteStartElement("test");
+            _output.WriteAttributeString("logger", loggerDesc);
+            _output.WriteAttributeString("repetitions", repeat.ToString());
+        }
 
         BeginTest("No formatting");
         for (int i = 0; i < repeat; ++i)
         {
+            // System.Diagnostics.Debugger.Break();
             logger.Debug("This is a message without formatting.");
+            // System.Diagnostics.Debugger.Break();
         }
         EndTest();
         BeginTest("1 format parameter");
@@ -323,6 +355,9 @@ class Bench
             }
         }
         EndTest();
-        _output.WriteEndElement();
+        if (_output != null)
+        {
+            _output.WriteEndElement();
+        }
     }
 }

@@ -38,8 +38,14 @@ using System.Diagnostics;
 
 namespace NLog
 {
+    /// <summary>
+    /// Represents the logging event.
+    /// </summary>
     public struct LogEventInfo
     {
+        /// <summary>
+        /// The date of the first log event created.
+        /// </summary>
         public static readonly DateTime ZeroDate = DateTime.Now;
 
         private DateTime _timeStamp;
@@ -50,8 +56,22 @@ namespace NLog
         private object[] _parameters;
         private IFormatProvider _formatProvider;
 
+        /// <summary>
+        /// An empty event - for rendering layouts where logging
+        /// event is not otherwise available.
+        /// </summary>
         public static readonly LogEventInfo Empty = new LogEventInfo(DateTime.Now, LogLevel.Debug, String.Empty, CultureInfo.InvariantCulture, String.Empty, null, null);
 
+        /// <summary>
+        /// Creates a new instance of <see cref="LogEventInfo"/> and assigns its fields.
+        /// </summary>
+        /// <param name="ts">Logging timestamp.</param>
+        /// <param name="level">Log level</param>
+        /// <param name="loggerName">Logger name</param>
+        /// <param name="formatProvider"><see cref="IFormatProvider"/> object</param>
+        /// <param name="message">Log message including parameter placeholders</param>
+        /// <param name="parameters">Parameter array.</param>
+        /// <param name="exception">Exception information.</param>
         public LogEventInfo(DateTime ts, LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters, Exception exception)
         {
             _timeStamp = ts;
@@ -67,6 +87,9 @@ namespace NLog
 #endif 
         } 
 
+        /// <summary>
+        /// Gets the timestamp of the logging event.
+        /// </summary>
         public DateTime TimeStamp
         {
             get
@@ -75,6 +98,9 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Gets the level of the logging event.
+        /// </summary>
         public LogLevel Level
         {
             get
@@ -93,6 +119,9 @@ namespace NLog
             _userStackFrame = userStackFrame;
         }
 
+        /// <summary>
+        /// Gets the stack frame of the method that did the logging.
+        /// </summary>
         public StackFrame UserStackFrame
         {
             get
@@ -101,6 +130,9 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Gets the entire stack trace.
+        /// </summary>
         public StackTrace StackTrace
         {
             get
@@ -109,6 +141,9 @@ namespace NLog
             }
         }
 #endif 
+        /// <summary>
+        /// Gets the exception information.
+        /// </summary>
         public Exception Exception
         {
             get
@@ -117,6 +152,9 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Gets the logger name.
+        /// </summary>
         public string LoggerName
         {
             get
@@ -125,6 +163,9 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Gets the raw log message including any parameter placeholders.
+        /// </summary>
         public string Message
         {
             get
@@ -133,6 +174,10 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Gets the parameter values or <see langword="null" /> if no parameters have
+        /// been specified.
+        /// </summary>
         public object[] Parameters
         {
             get
@@ -141,6 +186,10 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Gets the format provider that was provided while logging or <see langword="null" />
+        /// when no formatProvider was specified.
+        /// </summary>
         public IFormatProvider FormatProvider
         {
             get
@@ -149,6 +198,10 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Renders the logging message by invoking <see cref="String.Format"/> on
+        /// a <see cref="Message"/>, <see cref="Parameters"/> and <see cref="FormatProvider"/>.
+        /// </summary>
         public string FormattedMessage
         {
             get 

@@ -43,9 +43,12 @@ using NLog.Internal;
 
 namespace NLog.Config
 {
+    /// <summary>
+    /// NLog configuration section handler class for configuring NLog from App.config
+    /// </summary>
     public class ConfigSectionHandler: IConfigurationSectionHandler
     {
-        public object Create(object parent, object configContext, XmlNode section)
+        object IConfigurationSectionHandler.Create(object parent, object configContext, XmlNode section)
         {
             try
             {

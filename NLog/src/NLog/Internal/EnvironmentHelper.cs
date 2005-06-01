@@ -48,12 +48,11 @@ namespace NLog.Internal
             {
                 return Environment.GetEnvironmentVariable(name);
             }
-            catch (SecurityException ex)
+            catch (SecurityException)
             {
                 return null;
             }
         }
-
     }
 }
 #endif

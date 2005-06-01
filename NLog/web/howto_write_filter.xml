@@ -1,7 +1,80 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
 <content lang="en" id="howto" subid="howto_write_filter">
-    <h1>How to write your own filter</h1>
-    <p>To be written. This is more or less identical to creating your own layout appender.</p>
+    <h1>How to write your own Filter</h1>
+
+    <h5>Why would I want to write a Filter?</h5>
+
+    <p>Filters are a way to eliminate unnecessary logging messages and prevent them 
+        from reaching log <link href="targets">targets</link>. NLog comes with
+        pre-defined filters that operate on string layouts and support most
+        common operators. You need your own filter if none of the <link href="filters">provided filters</link>
+        are suitable for your purpose.
+    </p>
+
+    <h5>How to write a filter?</h5>
+    <p>
+        It's really easy. Create a class that inherits from <code>NLog.Filter</code> 
+        and override the <code>Check()</code> method. This method should return one of the following:
+    </p>
+    <p>
+        <ul>
+            <li><code>FilterResult.Neutral</code> - The filter doesn't want to decide whether the message should be logged. Further filters (if any) should be invoked to check.</li>
+            <li><code>FilterResult.Ignore</code> - The message should NOT be logged</li>
+            <li><code>FilterResult.Log</code> - The message should be logged. No further filters will be invoked.</li>
+        </ul>
+    </p>
+    <p>
+        Typically it's up to the user to decide what to do with the message after the filter matches. 
+        Each filter has a <code>Result</code> that contains user-requested filter result for such a case. Filters 
+        that would like to support user-configurability should return <code>Result</code> or <code>FilterResult.Neutral</code>.
+    </p>
+
+    <h5>Example</h5>
+    <p>This is an example filter that eliminates messages sent between the specified hours.</p>
+    <p>
+        <code>csc.exe /t:library /out:MyAssembly.dll /r:NLog.dll MyFirstFilter.cs</code>
+    </p>
+
+<cs src="examples/MyFirstFilter.cs" />
+
+<h5>How to use the newly created layout renderer?</h5>
+<p>
+    It's easy. Just put the renderer in a DLL and reference it from the the config file using the <x><extensions /></x>
+    clause as described <a href="config.html#extensions">here</a>.
+</p> 
+
+<h5>Configuration file example</h5>
+<p>
+    This example causes all messages between 10:00 and 12:59 to be ignored. Simple isn't it?
+</p>
+
+<xml-example src="examples/config10.nlog" />
+
+<h5>How to pass configuration options to the filter?</h5>
+
+<p>
+Consider the above example. There are properties called "FromHour" and "ToHour" that do just that. 
+Having a public property that sets the required configuration parameters is enough for NLog to use it. 
+Each attribute that you put in the filter definition gets passed to the appropriate public property. 
+NLog takes care of the appropriate conversions necessary so that you can use integer, string, datetime, 
+boolean parameters. The parameters are case-insensitive.
+</p>
+
+<x><filters> ... <hourRange fromHour="10" toHour="12" action="Ignore" /> ... </filters></x>
+
+<p>sets the FromHour property to 10 and ToHour to 12 during configuration. To pass more parameters, just use more attributes:</p>
+
+<x><filters> ... <hourRange p1="" p2="" p3="" p4="" pN="" action="Ignore" /> ... </filters></x>
+
+<h5>Do I really need to create a separate DLL?</h5>
+
+<p>
+    Not really. You can use FilterFactory.AddFilter() to register your layout renderer programmatically. 
+    Just be sure to to it at the very beginning of your program before any log messages are written.
+    It should be possible to reference your EXE using the <x><extensions /></x> clause.
+</p>
+
+<cs src="examples/AddFilter.cs" />
 </content>
 

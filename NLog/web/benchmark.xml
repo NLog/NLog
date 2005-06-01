@@ -32,19 +32,6 @@
             </p>
         </ul>
     </p>
-    <h5><a name="results">Benchmark Results</a></h5>
-    <p>
-        If you want to see how NLog performs in comparison to <a href="http://logging.apache.org/log4net">log4net</a>, download the <link href="download">source code</link>
-        and run:
-    </p>
-    <p>
-        <code>nant comparison-website</code>
-    </p>
-    <p>
-        After that <code>web/build/benchmark.html</code> will contain this page but extended to include 
-        the log4net benchmark results. The results are gathered by running NLog.Benchmark-log4net.exe which you
-        can build and run for yourself. 
-    </p>
     <benchmark-table />
 </content>
 

@@ -37,29 +37,42 @@ using System.Text;
 using System.Collections;
 
 using NLog.Internal;
-using NLog.LayoutAppenders;
+using NLog.LayoutRenderers;
 
 using System.Threading;
 
 namespace NLog
 {
+    /// <summary>
+    /// Represents a string with embedded placeholders that can render contextual information.
+    /// </summary>
     public class Layout
     {
+        /// <summary>
+        /// Creates a new instance of the <see cref="Layout"/> and sets it to empty string.
+        /// </summary>
         public Layout()
         {
             Text = String.Empty;
         }
 
+        /// <summary>
+        /// Creates a new instance of the <see cref="Layout"/> and sets it to the specified string.
+        /// </summary>
+        /// <param name="txt">The layout string to parse.</param>
         public Layout(string txt)
         {
             Text = txt;
         }
 
         private string _layoutText;
-        private LayoutAppender[] _layoutAppenders;
+        private LayoutRenderer[] _LayoutRenderers;
         private int _needsStackTrace = 0;
         private StringBuilder builder = new StringBuilder();
 
+        /// <summary>
+        /// The layout text
+        /// </summary>
         public string Text
         {
             get
@@ -69,22 +82,28 @@ namespace NLog
             set
             {
                 _layoutText = value;
-                _layoutAppenders = CompileLayout(_layoutText, out _needsStackTrace);
+                _LayoutRenderers = CompileLayout(_layoutText, out _needsStackTrace);
             }
         }
 
+        /// <summary>
+        /// Renders the layout for the specified logging event by invoking layout renderers
+        /// that make up the event.
+        /// </summary>
+        /// <param name="ev">The logging event.</param>
+        /// <returns>The rendered layout.</returns>
         public string GetFormattedMessage(LogEventInfo ev)
         {
-            if (_layoutAppenders.Length == 1 && _layoutAppenders[0] is LiteralLayoutAppender)
+            if (_LayoutRenderers.Length == 1 && _LayoutRenderers[0] is LiteralLayoutRenderer)
             {
-                return ((LiteralLayoutAppender)(_layoutAppenders[0])).Text;
+                return ((LiteralLayoutRenderer)(_LayoutRenderers[0])).Text;
             }
 
             int size = 0;
 
-            for (int i = 0; i < _layoutAppenders.Length; ++i)
+            for (int i = 0; i < _LayoutRenderers.Length; ++i)
             {
-                LayoutAppender app = _layoutAppenders[i];
+                LayoutRenderer app = _LayoutRenderers[i];
                 try
                 {
                     int ebs = app.GetEstimatedBufferSize(ev);
@@ -100,9 +119,9 @@ namespace NLog
             }
             StringBuilder builder = new StringBuilder(size);
 
-            for (int i = 0; i < _layoutAppenders.Length; ++i)
+            for (int i = 0; i < _LayoutRenderers.Length; ++i)
             {
-                LayoutAppender app = _layoutAppenders[i];
+                LayoutRenderer app = _LayoutRenderers[i];
                 try
                 {
                     app.Append(builder, ev);
@@ -119,18 +138,7 @@ namespace NLog
             return builder.ToString();
         }
 
-        private StringBuilder AllocateStringBuilder(int size)
-        {
-            StringBuilder retval = new StringBuilder(size);
-            return retval;
-        }
-
-        private void FreeStringBuilder(StringBuilder builder)
-        {
-            // rely on garbage collection
-        }
-
-        private static LayoutAppender[] CompileLayout(string s, out int needsStackTrace)
+        private static LayoutRenderer[] CompileLayout(string s, out int needsStackTrace)
         {
             ArrayList result = new ArrayList();
             needsStackTrace = 0;
@@ -142,7 +150,7 @@ namespace NLog
             {
                 if (pos != startingPos)
                 {
-                    result.Add(new LiteralLayoutAppender(s.Substring(startingPos, pos - startingPos)));
+                    result.Add(new LiteralLayoutRenderer(s.Substring(startingPos, pos - startingPos)));
                 }
                 int pos2 = s.IndexOf("}", pos + 2);
                 if (pos2 >= 0)
@@ -150,20 +158,20 @@ namespace NLog
                     startingPos = pos2 + 1;
                     string item = s.Substring(pos + 2, pos2 - pos - 2);
                     int paramPos = item.IndexOf(':');
-                    string layoutAppenderName = item;
-                    string layoutAppenderParams = null;
+                    string LayoutRenderer = item;
+                    string LayoutRendererParams = null;
                     if (paramPos >= 0)
                     {
-                        layoutAppenderParams = layoutAppenderName.Substring(paramPos + 1);
-                        layoutAppenderName = layoutAppenderName.Substring(0, paramPos);
+                        LayoutRendererParams = LayoutRenderer.Substring(paramPos + 1);
+                        LayoutRenderer = LayoutRenderer.Substring(0, paramPos);
                     }
 
-                    LayoutAppender newLayoutAppender = LayoutAppenderFactory.CreateLayoutAppender(layoutAppenderName, layoutAppenderParams);
-                    int nst = newLayoutAppender.NeedsStackTrace();
+                    LayoutRenderer newLayoutRenderer = LayoutRendererFactory.CreateLayoutRenderer(LayoutRenderer, LayoutRendererParams);
+                    int nst = newLayoutRenderer.NeedsStackTrace();
                     if (nst > needsStackTrace)
                         needsStackTrace = nst;
 
-                    result.Add(newLayoutAppender);
+                    result.Add(newLayoutRenderer);
                     pos = s.IndexOf("${", startingPos);
                 }
                 else
@@ -173,12 +181,17 @@ namespace NLog
             }
             if (startingPos != s.Length)
             {
-                result.Add(new LiteralLayoutAppender(s.Substring(startingPos, s.Length - startingPos)));
+                result.Add(new LiteralLayoutRenderer(s.Substring(startingPos, s.Length - startingPos)));
             }
 
-            return (LayoutAppender[])result.ToArray(typeof(LayoutAppender));
+            return (LayoutRenderer[])result.ToArray(typeof(LayoutRenderer));
         }
 
+        /// <summary>
+        /// Returns the value indicating whether a stack trace and/or the source file
+        /// information should be gathered during layout processing.
+        /// </summary>
+        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
         public int NeedsStackTrace()
         {
             return _needsStackTrace;
