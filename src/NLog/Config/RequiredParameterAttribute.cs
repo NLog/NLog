@@ -37,12 +37,17 @@ using System;
 namespace NLog.Config
 {
     /// <summary>
-    /// Attribute used to mark the required parameters for appenders,
-    /// layout appenders and filters.
+    /// Attribute used to mark the required parameters for targets,
+    /// layout targets and filters.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public sealed class RequiredParameterAttribute: Attribute
     {
-        public RequiredParameterAttribute(){}
+        /// <summary>
+        /// Creates a new RequiredParameterAttribute object.
+        /// </summary>
+        public RequiredParameterAttribute()
+        {
+        }
     }
 }

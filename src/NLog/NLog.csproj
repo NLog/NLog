@@ -34,7 +34,7 @@
                     FileAlignment = "4096"
                     IncrementalBuild = "false"
                     NoStdLib = "false"
-                    NoWarn = "1591"
+                    NoWarn = ""
                     Optimize = "false"
                     OutputPath = "bin\Debug\"
                     RegisterForComInterop = "false"
@@ -99,11 +99,6 @@
         <Files>
             <Include>
                 <File
-                    RelPath = "AppenderWithFilterChain.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -114,7 +109,52 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Filter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FilterAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FilterCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FilterFactory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FilterResult.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Layout.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRenderer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRendererAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRendererCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRendererFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -154,97 +194,27 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Appenders\Appender.cs"
+                    RelPath = "Target.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Appenders\AppenderAttribute.cs"
+                    RelPath = "TargetAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Appenders\AppenderCollection.cs"
+                    RelPath = "TargetCollection.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Appenders\AppenderFactory.cs"
+                    RelPath = "TargetFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Appenders\ASPNetTraceAppender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Appenders\ConsoleAppender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Appenders\DatabaseAppender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Appenders\FileAppender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Appenders\MemoryAppender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Appenders\MessageBoxAppender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Appenders\MethodCallAppender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Appenders\MethodCallAppenderBase.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Appenders\NLogViewerAppender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Appenders\NullAppender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Appenders\TraceAppender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Appenders\UDPAppender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Appenders\WebServiceCallAppender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Config\AppenderRule.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Config\AppenderRuleCollection.cs"
+                    RelPath = "Config\AcceptsLayoutAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -264,6 +234,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Config\LoggingRule.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Config\LoggingRuleCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Config\RequiredParameterAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -275,31 +255,6 @@
                 />
                 <File
                     RelPath = "Config\XmlLoggingConfiguration.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Filters\Filter.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Filters\FilterAttribute.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Filters\FilterCollection.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Filters\FilterFactory.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Filters\FilterResult.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -329,12 +284,12 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Internal\AppenderDictionary.cs"
+                    RelPath = "Internal\CompactFrameworkHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Internal\CompactFrameworkHelper.cs"
+                    RelPath = "Internal\ContextDataProviderDictionary.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -359,12 +314,12 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Internal\InternalLogger.cs"
+                    RelPath = "Internal\HttpNetworkSender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Internal\LayoutAppenderDictionary.cs"
+                    RelPath = "Internal\InternalLogger.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -379,7 +334,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Internal\NullLogger.cs"
+                    RelPath = "Internal\NetworkSender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -404,6 +359,21 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Internal\TargetDictionary.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\TargetWithFilterChain.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\TcpNetworkSender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Internal\ThreadIDHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -419,147 +389,222 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\ASPNetApplication.cs"
+                    RelPath = "Internal\UdpNetworkSender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\ASPNetRequest.cs"
+                    RelPath = "LayoutRenderers\ASPNetApplication.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\ASPNetSession.cs"
+                    RelPath = "LayoutRenderers\ASPNetRequest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\BaseDir.cs"
+                    RelPath = "LayoutRenderers\ASPNetSession.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\CallSite.cs"
+                    RelPath = "LayoutRenderers\BaseDir.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\Counter.cs"
+                    RelPath = "LayoutRenderers\CallSite.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\Date.cs"
+                    RelPath = "LayoutRenderers\Counter.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\Environment.cs"
+                    RelPath = "LayoutRenderers\Date.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\Exception.cs"
+                    RelPath = "LayoutRenderers\Environment.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\Guid.cs"
+                    RelPath = "LayoutRenderers\Exception.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\Identity.cs"
+                    RelPath = "LayoutRenderers\Guid.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\LayoutAppender.cs"
+                    RelPath = "LayoutRenderers\Identity.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\LayoutAppenderAttribute.cs"
+                    RelPath = "LayoutRenderers\Level.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\LayoutAppenderCollection.cs"
+                    RelPath = "LayoutRenderers\Literal.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\LayoutAppenderFactory.cs"
+                    RelPath = "LayoutRenderers\LoggerName.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\Level.cs"
+                    RelPath = "LayoutRenderers\LongDate.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\Literal.cs"
+                    RelPath = "LayoutRenderers\MachineName.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\LoggerName.cs"
+                    RelPath = "LayoutRenderers\MDC.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\LongDate.cs"
+                    RelPath = "LayoutRenderers\Message.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\MachineName.cs"
+                    RelPath = "LayoutRenderers\NDC.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\MDC.cs"
+                    RelPath = "LayoutRenderers\NLogDir.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\Message.cs"
+                    RelPath = "LayoutRenderers\ProcessTime.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\NDC.cs"
+                    RelPath = "LayoutRenderers\ShortDate.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\NLogDir.cs"
+                    RelPath = "LayoutRenderers\ThreadID.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\ProcessTime.cs"
+                    RelPath = "LayoutRenderers\ThreadName.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\ShortDate.cs"
+                    RelPath = "LayoutRenderers\Ticks.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\ThreadID.cs"
+                    RelPath = "Targets\ASPNetTrace.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\ThreadName.cs"
+                    RelPath = "Targets\Console.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutAppenders\Ticks.cs"
+                    RelPath = "Targets\Database.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\DatabaseParameterInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\DatabaseParameterInfoCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Debug.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\File.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Memory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\MessageBox.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\MethodCall.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\MethodCallParameter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\MethodCallParameterCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\MethodCallTargetBase.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Network.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\NLogViewer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Null.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Trace.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\WebService.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

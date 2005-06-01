@@ -45,5 +45,6 @@ namespace NLog.ComInterop
         bool InternalLogToConsole { get; set; }
         string InternalLogFile { get; set; }
         string InternalLogLevel { get; set; }
+        ILogger GetLogger(string name);
     }
 }

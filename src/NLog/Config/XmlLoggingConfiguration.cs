@@ -41,13 +41,17 @@ using System.Globalization;
 using System.Collections.Specialized;
 
 using NLog;
-using NLog.Appenders;
+using NLog.Targets;
 using NLog.Filters;
-using NLog.LayoutAppenders;
+using NLog.LayoutRenderers;
 using NLog.Internal;
 
 namespace NLog.Config
 {
+    /// <summary>
+    /// A class for configuring NLog through an XML configuration file 
+    /// (App.config style or App.nlog style)
+    /// </summary>
     public class XmlLoggingConfiguration: LoggingConfiguration
     {
         private StringDictionary _visitedFile = new StringDictionary();
@@ -55,6 +59,10 @@ namespace NLog.Config
         private bool _autoReload = false;
         private string _originalFileName = null;
 
+        /// <summary>
+        /// Gets or sets the value indicating whether the configuration files
+        /// should be watched for changes and reloaded automatically when changed.
+        /// </summary>
         public bool AutoReload
         {
             get
@@ -67,6 +75,11 @@ namespace NLog.Config
             }
         }
 
+        /// <summary>
+        /// Constructs a new instance of <see cref="XmlLoggingConfiguration" />
+        /// class and reads the configuration from the specified config file.
+        /// </summary>
+        /// <param name="fileName">Configuration file to be read.</param>
         public XmlLoggingConfiguration(string fileName)
         {
             InternalLogger.Info("Configuring from {0}...", fileName);
@@ -74,16 +87,34 @@ namespace NLog.Config
             ConfigureFromFile(fileName);
         }
 
+        /// <summary>
+        /// Constructs a new instance of <see cref="XmlLoggingConfiguration" />
+        /// class and reads the configuration from the specified XML element.
+        /// </summary>
+        /// <param name="configElement"><see cref="XmlElement" /> containing the configuration section.</param>
+        /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files).</param>
         public XmlLoggingConfiguration(XmlElement configElement, string fileName)
         {
-            InternalLogger.Info("Configuring from an XML element in {0}...", fileName);
-            string key = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
-            _visitedFile[key] = key;
+            if (fileName != null)
+            {
+                InternalLogger.Info("Configuring from an XML element in {0}...", fileName);
+                string key = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
+                _visitedFile[key] = key;
 
-            _originalFileName = fileName;
-            ConfigureFromXmlElement(configElement, Path.GetDirectoryName(fileName));
+                _originalFileName = fileName;
+                ConfigureFromXmlElement(configElement, Path.GetDirectoryName(fileName));
+            }
+            else
+            {
+                ConfigureFromXmlElement(configElement, null);
+            }
         }
 
+        /// <summary>
+        /// Gets the collection of file names which should be watched for changes by NLog.
+        /// This is the list of configuration files processed.
+        /// If the <c>autoReload</c> attribute is not set it returns null.
+        /// </summary>
         public override ICollection FileNamesToWatch
         {
             get
@@ -95,6 +126,10 @@ namespace NLog.Config
             }
         }
 
+        /// <summary>
+        /// Re-reads the original configuration file and returns the new <see cref="LoggingConfiguration" /> object.
+        /// </summary>
+        /// <returns>The new <see cref="XmlLoggingConfiguration" /> object.</returns>
         public override LoggingConfiguration Reload()
         {
             return new XmlLoggingConfiguration(_originalFileName);
@@ -123,92 +158,139 @@ namespace NLog.Config
             }
         }
 
+        private static string GetCaseInsensitiveAttribute(XmlElement element, string name)
+        {
+            // first try a case-sensitive match
+            string s = element.GetAttribute(name);
+            if (s != null && s != "")
+                return s;
+
+            // then look through all attributes and do a case-insensitive compare
+            // this isn't very fast, but we don't need ultra speed here
+
+            foreach (XmlAttribute a in element.Attributes)
+            {
+                if (0 == String.Compare(a.Name, name, true))
+                    return a.Value;
+            }
+
+            return null;
+        }
+
+        private static bool HasCaseInsensitiveAttribute(XmlElement element, string name)
+        {
+            // first try a case-sensitive match
+            if (element.HasAttribute(name))
+                return true;
+
+            // then look through all attributes and do a case-insensitive compare
+            // this isn't very fast, but we don't need ultra speed here because usually we have about
+            // 3 attributes per element
+
+            foreach (XmlAttribute a in element.Attributes)
+            {
+                if (0 == String.Compare(a.Name, name, true))
+                    return true;
+            }
+
+            return false;
+        }
+
+        private void IncludeFileFromElement(XmlElement includeElement, string baseDirectory)
+        {
+            Layout layout = new Layout(GetCaseInsensitiveAttribute(includeElement, "file"));
+
+            string newFileName = layout.GetFormattedMessage(LogEventInfo.Empty);
+            newFileName = Path.Combine(baseDirectory, newFileName);
+            if (File.Exists(newFileName))
+            {
+                InternalLogger.Debug("Including file '{0}'", newFileName);
+                ConfigureFromFile(newFileName);
+            }
+            else
+            {
+                throw new FileNotFoundException("Included file not found: " + newFileName);
+            }
+        }
+
         private void ConfigureFromXmlElement(XmlElement configElement, string baseDirectory)
         {
-            if (configElement.HasAttribute("autoReload"))
+            switch (GetCaseInsensitiveAttribute(configElement, "autoReload"))
             {
-                if (configElement.GetAttribute("autoReload") == "true")
-                {
+                case "true":
                     AutoReload = true;
-                }
-            }
-
-            if (configElement.HasAttribute("throwExceptions"))
-            {
-                switch (configElement.GetAttribute("throwExceptions"))
-                {
-                    case "true":
-                        LogManager.ThrowExceptions = true;
                     break;
 
-                    case "false":
-                        LogManager.ThrowExceptions = false;
+                case "false":
+                    AutoReload = false;
                     break;
-                }
             }
 
-            if (configElement.HasAttribute("internalLogToConsole"))
+            switch (GetCaseInsensitiveAttribute(configElement, "throwExceptions"))
             {
-                switch (configElement.GetAttribute("internalLogToConsole"))
-                {
-                    case "true":
-                        InternalLogger.LogToConsole = true;
+                case "true":
+                    LogManager.ThrowExceptions = true;
                     break;
 
-                    case "false":
-                        InternalLogger.LogToConsole = true;
+                case "false":
+                    LogManager.ThrowExceptions = false;
                     break;
-                }
             }
 
-            if (configElement.HasAttribute("internalLogFile"))
+            switch (GetCaseInsensitiveAttribute(configElement, "internalLogToConsole"))
             {
-                InternalLogger.LogFile = configElement.GetAttribute("internalLogFile");
+                case "true":
+                    InternalLogger.LogToConsole = true;
+                    break;
+
+                case "false":
+                    InternalLogger.LogToConsole = true;
+                    break;
             }
 
-            if (configElement.HasAttribute("internalLogLevel"))
-            {
-                InternalLogger.LogLevel = Logger.LogLevelFromString(configElement.GetAttribute("internalLogLevel"));
-            }
+            string s = GetCaseInsensitiveAttribute(configElement, "internalLogFile");
+            if (s != null)
+                    InternalLogger.LogFile = s;
 
-            foreach (XmlElement el in configElement.GetElementsByTagName("include"))
-            {
-                Layout layout = new Layout(el.GetAttribute("file"));
-
-                string newFileName = layout.GetFormattedMessage(LogEventInfo.Empty);
-                newFileName = Path.Combine(baseDirectory, newFileName);
-                if (File.Exists(newFileName))
-                {
-                    InternalLogger.Debug("Including file '{0}'", newFileName);
-                    ConfigureFromFile(newFileName);
-                }
-                else
-                {
-                    throw new FileNotFoundException("Included file not found: " + newFileName);
-                }
-            }
+            s = GetCaseInsensitiveAttribute(configElement, "internalLogLevel");
+            if (s != null)
+                InternalLogger.LogLevel = Logger.LogLevelFromString(s);
 
             RegisterPlatformSpecificExtensions();
 
-            foreach (XmlElement el in configElement.GetElementsByTagName("extensions"))
+            foreach (XmlNode node in configElement.ChildNodes)
             {
-                AddExtensionsFromElement(el, baseDirectory);
-            }
+                XmlElement el = node as XmlElement;
+                if (el == null)
+                    continue;
 
-            foreach (XmlElement el in configElement.GetElementsByTagName("appenders"))
-            {
-                ConfigureAppendersFromElement(el);
-            }
+                switch (el.LocalName)
+                {
+                    case "extensions":
+                        AddExtensionsFromElement(el, baseDirectory);
+                        break;
 
-            foreach (XmlElement el in configElement.GetElementsByTagName("rules"))
-            {
-                ConfigureRulesFromElement(el);
-            }
+                    case "include":
+                        IncludeFileFromElement(el, baseDirectory);
+                        break;
 
-            ResolveAppenders();
+                    case "appenders":
+                    case "targets":
+                        ConfigureTargetsFromElement(el);
+                        break;
+
+                    case "rules":
+                        ConfigureRulesFromElement(this, LoggingRules, el);
+                        break;
+                }
+            }
         }
 
 #if !NETCF
+        /// <summary>
+        /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
+        /// the application configuration file (<c>app.exe.config</c>).
+        /// </summary>
         public static LoggingConfiguration AppConfig
         {
             get
@@ -227,36 +309,48 @@ namespace NLog.Config
             return s;
         }
 
-        private void ConfigureRulesFromElement(XmlElement element)
+        private static void ConfigureRulesFromElement(LoggingConfiguration config, LoggingRuleCollection rules, XmlElement element)
         {
             if (element == null)
                 return ;
-            foreach (XmlElement ruleElement in element.GetElementsByTagName("logger"))
+
+            foreach (XmlNode n1 in element.ChildNodes)
             {
-                AppenderRule rule = new AppenderRule();
-                string namePattern = ruleElement.GetAttribute("name");
-                string appendTo = ruleElement.GetAttribute("appendTo");
+                XmlElement el = n1 as XmlElement;
+                if (el == null)
+                    continue;
+                
+                XmlElement ruleElement = el;
+
+                LoggingRule rule = new LoggingRule();
+                string namePattern = GetCaseInsensitiveAttribute(ruleElement, "name");
+                string appendTo = GetCaseInsensitiveAttribute(ruleElement, "appendTo");
+                if (appendTo == null)
+                    appendTo = GetCaseInsensitiveAttribute(ruleElement, "writeTo");
 
                 rule.LoggerNamePattern = namePattern;
-                foreach (string appenderName in appendTo.Split(','))
+                if (appendTo != null)
                 {
-                    rule.AppenderNames.Add(appenderName.Trim());
+                    foreach (string targetName in appendTo.Split(','))
+                    {
+                        rule.Targets.Add(config.FindTargetByName(targetName.Trim()));
+                    }
                 }
                 rule.Final = false;
 
-                if (ruleElement.HasAttribute("final"))
+                if (HasCaseInsensitiveAttribute(ruleElement, "final"))
                 {
                     rule.Final = true;
                 }
 
-                if (ruleElement.HasAttribute("level"))
+                if (HasCaseInsensitiveAttribute(ruleElement, "level"))
                 {
-                    LogLevel level = Logger.LogLevelFromString(ruleElement.GetAttribute("level"));
+                    LogLevel level = Logger.LogLevelFromString(GetCaseInsensitiveAttribute(ruleElement, "level"));
                     rule.EnableLoggingForLevel(level);
                 }
-                else if (ruleElement.HasAttribute("levels"))
+                else if (HasCaseInsensitiveAttribute(ruleElement, "levels"))
                 {
-                    string levelsString = ruleElement.GetAttribute("levels");
+                    string levelsString = GetCaseInsensitiveAttribute(ruleElement, "levels");
                     levelsString = CleanWhitespace(levelsString);
 
                     string[]tokens = levelsString.Split(',');
@@ -271,14 +365,14 @@ namespace NLog.Config
                     int minLevel = 0;
                     int maxLevel = (int)LogLevel.MaxLevel;
 
-                    if (ruleElement.HasAttribute("minlevel"))
+                    if (HasCaseInsensitiveAttribute(ruleElement, "minlevel"))
                     {
-                        minLevel = (int)Logger.LogLevelFromString(ruleElement.GetAttribute("minlevel"));
+                        minLevel = (int)Logger.LogLevelFromString(GetCaseInsensitiveAttribute(ruleElement, "minlevel"));
                     }
 
-                    if (ruleElement.HasAttribute("maxlevel"))
+                    if (HasCaseInsensitiveAttribute(ruleElement, "maxlevel"))
                     {
-                        maxLevel = (int)Logger.LogLevelFromString(ruleElement.GetAttribute("maxlevel"));
+                        maxLevel = (int)Logger.LogLevelFromString(GetCaseInsensitiveAttribute(ruleElement, "maxlevel"));
                     }
 
                     for (int i = minLevel; i <= maxLevel; ++i)
@@ -291,7 +385,7 @@ namespace NLog.Config
                 {
                     if (n is XmlElement)
                     {
-                        XmlElement el = (XmlElement)n;
+                        el = (XmlElement)n;
 
                         if (el.Name == "filters")
                         {
@@ -300,7 +394,9 @@ namespace NLog.Config
                     }
                 }
 
-                AppenderRules.Add(rule);
+                ConfigureRulesFromElement(config, rule.ChildRules, ruleElement);
+
+                rules.Add(rule);
             }
         }
 
@@ -309,84 +405,99 @@ namespace NLog.Config
             if (element == null)
                 return ;
 
-            foreach (XmlElement appenderElement in element.GetElementsByTagName("add"))
+            foreach (XmlNode node in element.ChildNodes)
             {
-                string assemblyFile = appenderElement.GetAttribute("assemblyFile");
-                string extPrefix = appenderElement.GetAttribute("prefix");
-                string prefix;
-                if (extPrefix != null && extPrefix.Length != 0)
-                {
-                    prefix = extPrefix + ".";
-                }
-                else
-                {
-                    prefix = String.Empty;
-                }
-
-                if (assemblyFile != null && assemblyFile.Length > 0)
-                {
-                    try
-                    {
-                        string fullFileName = Path.Combine(baseDirectory, assemblyFile);
-                        InternalLogger.Info("Loading assemblyFile: {0}", fullFileName);
-                        Assembly asm = Assembly.LoadFrom(fullFileName);
-                        LoadExtensionsFromAssembly(asm, prefix);
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Error("Error loading extensions: {0}", ex);
-                        if (LogManager.ThrowExceptions)
-                            throw;
-                    }
+                XmlElement targetElement = node as XmlElement;
+                if (targetElement == null)
                     continue;
-                };
 
-                string assemblyName = appenderElement.GetAttribute("assembly");
-
-                if (assemblyName != null && assemblyName.Length > 0)
+                if (targetElement.Name == "add")
                 {
-                    try
+                    string assemblyFile = GetCaseInsensitiveAttribute(targetElement, "assemblyFile");
+                    string extPrefix = GetCaseInsensitiveAttribute(targetElement, "prefix");
+                    string prefix;
+                    if (extPrefix != null && extPrefix.Length != 0)
                     {
-                        InternalLogger.Info("Loading assemblyName: {0}", assemblyName);
-                        Assembly asm = Assembly.Load(assemblyName);
-                        LoadExtensionsFromAssembly(asm, prefix);
+                        prefix = extPrefix + ".";
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        InternalLogger.Error("Error loading extensions: {0}", ex);
-                        if (LogManager.ThrowExceptions)
-                            throw;
+                        prefix = String.Empty;
                     }
-                    continue;
-                };
+
+                    if (assemblyFile != null && assemblyFile.Length > 0)
+                    {
+                        try
+                        {
+                            string fullFileName = Path.Combine(baseDirectory, assemblyFile);
+                            InternalLogger.Info("Loading assemblyFile: {0}", fullFileName);
+                            Assembly asm = Assembly.LoadFrom(fullFileName);
+                            LoadExtensionsFromAssembly(asm, prefix);
+                        }
+                        catch (Exception ex)
+                        {
+                            InternalLogger.Error("Error loading extensions: {0}", ex);
+                            if (LogManager.ThrowExceptions)
+                                throw;
+                        }
+                        continue;
+                    };
+
+                    string assemblyName = GetCaseInsensitiveAttribute(targetElement, "assembly");
+
+                    if (assemblyName != null && assemblyName.Length > 0)
+                    {
+                        try
+                        {
+                            InternalLogger.Info("Loading assemblyName: {0}", assemblyName);
+                            Assembly asm = Assembly.Load(assemblyName);
+                            LoadExtensionsFromAssembly(asm, prefix);
+                        }
+                        catch (Exception ex)
+                        {
+                            InternalLogger.Error("Error loading extensions: {0}", ex);
+                            if (LogManager.ThrowExceptions)
+                                throw;
+                        }
+                        continue;
+                    };
+                }
+
             }
         }
-
         private static void LoadExtensionsFromAssembly(Assembly asm, string prefix)
         {
             FilterFactory.AddFiltersFromAssembly(asm, prefix);
-            LayoutAppenderFactory.AddLayoutAppendersFromAssembly(asm, prefix);
-            AppenderFactory.AddAppendersFromAssembly(asm, prefix);
+            LayoutRendererFactory.AddLayoutRenderersFromAssembly(asm, prefix);
+            TargetFactory.AddTargetsFromAssembly(asm, prefix);
         }
 
-        private void ConfigureAppendersFromElement(XmlElement element)
+        private void ConfigureTargetsFromElement(XmlElement element)
         {
             if (element == null)
                 return ;
 
-            foreach (XmlElement appenderElement in element.GetElementsByTagName("appender"))
+            foreach (XmlNode n in element.ChildNodes)
             {
-                string type = appenderElement.GetAttribute("type");
-                Appender newAppender = AppenderFactory.CreateAppender(type);
-                if (newAppender != null)
+                XmlElement targetElement = n as XmlElement;
+                
+                if (targetElement == null)
+                    continue;
+                
+                if (targetElement.LocalName == "target" || targetElement.LocalName == "appender")
                 {
-                    ConfigureAppenderFromXmlElement(newAppender, appenderElement);
-                    AddAppender(newAppender.Name, newAppender);
+                    string type = GetCaseInsensitiveAttribute(targetElement, "type");
+                    Target newTarget = TargetFactory.CreateTarget(type);
+                    if (newTarget != null)
+                    {
+                        ConfigureTargetFromXmlElement(newTarget, targetElement);
+                        AddTarget(newTarget.Name, newTarget);
+                    }
                 }
             }
         }
 
-        private void ConfigureRuleFiltersFromXmlElement(AppenderRule rule, XmlElement element)
+        private static void ConfigureRuleFiltersFromXmlElement(LoggingRule rule, XmlElement element)
         {
             if (element == null)
                 return ;
@@ -412,9 +523,9 @@ namespace NLog.Config
             }
         }
 
-        private void ConfigureAppenderFromXmlElement(Appender appender, XmlElement element)
+        private void ConfigureTargetFromXmlElement(Target target, XmlElement element)
         {
-            Type appenderType = appender.GetType();
+            Type targetType = target.GetType();
 
             foreach (XmlAttribute attrib in element.Attributes)
             {
@@ -424,7 +535,7 @@ namespace NLog.Config
                 if (name == "type")
                     continue;
 
-                PropertyHelper.SetPropertyFromString(appender, name, value);
+                PropertyHelper.SetPropertyFromString(target, name, value);
             }
 
             foreach (XmlNode node in element.ChildNodes)
@@ -434,14 +545,14 @@ namespace NLog.Config
                     XmlElement el = (XmlElement)node;
                     string name = el.Name;
 
-                    if (PropertyHelper.IsArrayProperty(appenderType, name))
+                    if (PropertyHelper.IsArrayProperty(targetType, name))
                     {
-                        PropertyHelper.AddArrayItemFromElement(appender, el);
+                        PropertyHelper.AddArrayItemFromElement(target, el);
                     }
                     else
                     {
                         string value = el.InnerXml;
-                        PropertyHelper.SetPropertyFromString(appender, name, value);
+                        PropertyHelper.SetPropertyFromString(target, name, value);
                     }
                 }
             }

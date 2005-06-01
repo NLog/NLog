@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <xsl:variable name="result_lang" select="/*[position()=1]/@lang" />
-    <xsl:variable name="common_file" select="concat('common.', $result_lang, '.xml')" />
-    <xsl:variable name="page_id" select="/*[position()=1]/@id" />
-    <xsl:variable name="subpage_id" select="/*[position()=1]/@subid" />
-    <xsl:variable name="common" select="document($common_file)" />
+    <xsl:variable name="page_id" select="concat(/*[position()=1]/@id,$page_id_override)" />
+    <xsl:variable name="subpage_id" select="concat(/*[position()=1]/@subid,$subpage_id_override)" />
+    <xsl:variable name="common" select="document('common.en.xml')" />
+    <xsl:param name="page_id_override"></xsl:param>
+    <xsl:param name="subpage_id_override"></xsl:param>
     <xsl:param name="file_extension">xml</xsl:param>
     <xsl:param name="sourceforge">0</xsl:param>
     <xsl:param name="log4net_comparison">0</xsl:param>
@@ -24,14 +24,14 @@
                 <div class="titleimage" style="overflow: hidden">
                     <img src="NLog.jpg" />
                 </div>
-                <h6>THIS SITE IS UNDER CONSTRUCTION. SOME SECTIONS ARE MISSING.</h6><br/>
+                <p style="color: red; font-weight: bold; padding: 4px; margin-top: 10px; margin-bottom: 10px; border: 1px solid #800000; background-color: #ffe0e0;">THIS SITE IS UNDER CONSTRUCTION. SOME SECTIONS ARE MISSING.</p>
                 <table class="page" cellpadding="0" cellspacing="0">
                     <tr>
                         <td valign="top" class="controls">
                             <xsl:call-template name="controls" />
                         </td>
                         <td valign="top" align="left" class="content">
-                            <xsl:apply-templates select="content" />
+                            <xsl:apply-templates select="/" mode="content" />
                         </td>
                     </tr>
                     <tr>
@@ -62,7 +62,7 @@ var sc_security="6fe22c9a";
         </xsl:copy>
     </xsl:template>
 
-    <xsl:template match="content">
+    <xsl:template match="content" mode="content">
         <xsl:apply-templates select="*" />
     </xsl:template>
 
@@ -162,214 +162,6 @@ var sc_security="6fe22c9a";
         </xsl:copy>
     </xsl:template>
     
-    <xsl:template match="appender-list">
-        <div class="table">
-            <table>
-                <col width="20%" />
-                <col width="20%" />
-                <col width="60%" />
-                <tr>
-                    <th>Appender</th>
-                    <th>Assembly</th>
-                    <th>Description</th>
-                    <th>Configurable</th>
-                </tr>
-                <xsl:for-each select="/content/appenders/appender">
-                    <tr>
-                        <xsl:if test="count(support) != 6">
-                            <xsl:attribute name="class">notall</xsl:attribute>
-                        </xsl:if>
-                        <td><a>
-                                <xsl:attribute name="href">#<xsl:value-of select="@name" />Appender</xsl:attribute>
-                                <xsl:value-of select="displayName" />
-                        </a></td>
-                        <td><xsl:value-of select="assembly" /></td>
-                        <td><xsl:value-of select="description" /></td>
-                        <td>
-                            <xsl:choose>
-                                <xsl:when test="count(parameter) != 0">Yes</xsl:when>
-                                <xsl:otherwise>No</xsl:otherwise>
-                            </xsl:choose>
-                        </td>
-                    </tr>
-                </xsl:for-each>
-            </table>
-        </div>
-    </xsl:template>
-
-    <xsl:template match="appenders">
-        <xsl:apply-templates />
-    </xsl:template>
-    
-    <xsl:template match="appender">
-        <hr size="1" />
-        <a>
-            <xsl:attribute name="name"><xsl:value-of select="@name" />Appender</xsl:attribute>
-        </a>
-        <h3><xsl:value-of select="displayName" /></h3>
-        <h4>Summary</h4>
-        <div class="summarytable">
-            <table>
-                <tr><th>Usage:</th><td><code>&lt;appender name="..." type="<xsl:value-of select="@name" />" layout="..." 
-                            <xsl:for-each select="parameter">
-                                <xsl:value-of select="@name" />="..."
-                            </xsl:for-each>
-                            /&gt;</code></td></tr>
-                <tr><th>Assembly Name:</th><td><xsl:value-of select="assembly" /></td></tr>
-                <tr><th>Class Name:</th><td><xsl:value-of select="namespace" />.<xsl:value-of select="className" /></td></tr>
-                <tr><th>Frameworks supported:</th><td>
-                        <xsl:for-each select="support">
-                            <xsl:if test="position() != 1">, </xsl:if>
-                            <xsl:if test="@framework='net-1.0'">.NET 1.0</xsl:if>
-                            <xsl:if test="@framework='net-1.1'">.NET 1.1</xsl:if>
-                            <xsl:if test="@framework='net-2.0'">.NET 2.0</xsl:if>
-                            <xsl:if test="@framework='netcf-1.0'">.NET CF 1.0</xsl:if>
-                            <xsl:if test="@framework='mono-1.0'">Mono 1.0</xsl:if>
-                            <xsl:if test="@framework='mono-1.1'">Mono 1.1</xsl:if>
-                            <xsl:if test="@framework='mono-2.0'">Mono 2.0</xsl:if>
-                        </xsl:for-each>
-                </td></tr>
-            </table>
-        </div>
-        <h4>Configuration</h4>
-        <xsl:if test="not(parameter)">
-            <p>
-                This appender doesn't support any configuration parameters beside the <a href="#common">common</a> ones. 
-            </p>
-        </xsl:if>
-        <xsl:if test="parameter">
-            <p>
-                This appender supports the following configuration parameters in addition to the <a href="#common">common</a> ones. 
-            </p>
-            <div class="table">
-                <table>
-                    <tr>
-                        <th>Parameter&#160;Name</th>
-                        <th align="center">Type</th>
-                        <th align="center">Required</th>
-                        <th>Description</th>
-                        <th align="center">Default</th>
-                    </tr>
-                    <xsl:for-each select="parameter">
-                        <tr valign="top">
-                            <td><code><xsl:value-of select="@name" /></code></td>
-                            <td align="center"><xsl:value-of select="@type" /></td>
-                            <td align="center"><xsl:value-of select="@required" /></td>
-                            <td align="left"><xsl:value-of select="@description" /></td>
-                            <td align="center"><xsl:value-of select="@default" /></td>
-                        </tr>
-                    </xsl:for-each>
-                </table>
-            </div>
-        </xsl:if>
-        <xsl:if test="example">
-            <h4>Example</h4>
-        </xsl:if>
-        <br/>
-        <a href="#top">Back to top</a>
-    </xsl:template>
-
-    <xsl:template match="layoutappender-list">
-    <div class="table">
-        <table>
-            <tr>
-                <th>Token</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Parameters?</th>
-            </tr>
-
-            <xsl:for-each select="layoutappenders/la">
-                <tr>
-                    <xsl:if test="count(support) != 6">
-                        <xsl:attribute name="class">notall</xsl:attribute>
-                    </xsl:if>
-                    <td><a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><xsl:value-of select="@name" /></a></td>
-                    <td><xsl:value-of select="displayName" /></td>
-                    <td><xsl:copy-of select="description" /></td>
-                    <td>
-                        <xsl:choose>
-                            <xsl:when test="count(parameter) != 0">Yes</xsl:when>
-                            <xsl:otherwise>No</xsl:otherwise>
-                        </xsl:choose>
-                    </td>
-                </tr>
-            </xsl:for-each>
-        </table>
-    </div>
-    </xsl:template>
-
-    <xsl:template match="layoutappenders">
-        <xsl:apply-templates select="la" />
-    </xsl:template>
-    
-    <xsl:template match="la">
-        <hr size="1" />
-        <a><xsl:attribute name="name"><xsl:value-of select="@name" /></xsl:attribute></a>
-        <h3><xsl:value-of select="displayName" /></h3>
-        <h4>Summary</h4>
-        <div class="summarytable">
-            <table>
-                <tr><th>Usage:</th><td><code>${<xsl:value-of select="@name" />}</code></td></tr>
-                <tr><th>Description:</th><td><xsl:value-of select="description" /></td></tr>
-                <tr><th>Defined in:</th><td><xsl:value-of select="assembly" /></td></tr>
-                <tr><th>Class Name:</th><td><xsl:value-of select="namespace" />.<xsl:value-of select="className" /></td></tr>
-                <tr><th>Frameworks supported:</th><td>
-                        <xsl:for-each select="support">
-                            <xsl:if test="position() != 1">, </xsl:if>
-                            <xsl:if test="@framework='net-1.0'">.NET 1.0</xsl:if>
-                            <xsl:if test="@framework='net-1.1'">.NET 1.1</xsl:if>
-                            <xsl:if test="@framework='net-2.0'">.NET 2.0</xsl:if>
-                            <xsl:if test="@framework='netcf-1.0'">.NET CF 1.0</xsl:if>
-                            <xsl:if test="@framework='mono-1.0'">Mono 1.0</xsl:if>
-                            <xsl:if test="@framework='mono-1.1'">Mono 1.1</xsl:if>
-                            <xsl:if test="@framework='mono-2.0'">Mono 2.0</xsl:if>
-                        </xsl:for-each>
-                </td></tr>
-            </table>
-        </div>
-        <h4>Configuration</h4>
-        <xsl:if test="not(parameter)">
-            <p>
-                This appender doesn't support any configuration parameters beside the <a href="#common">common</a> ones. 
-            </p>
-        </xsl:if>
-        <xsl:if test="parameter">
-            <p>
-                This appender supports the following configuration parameters in addition to the <a href="#common">common</a> ones. 
-            </p>
-            <xsl:call-template name="parameters-table" />
-        </xsl:if>
-        <xsl:if test="example">
-            <h4>Example</h4>
-        </xsl:if>
-        <br/>
-        <a href="#top">Back to top</a>
-    </xsl:template>
-
-    <xsl:template name="parameters-table">
-        <div class="table">
-            <table>
-                <tr>
-                    <th>Parameter Name</th>
-                    <th align="center">Type</th>
-                    <th align="center">Required</th>
-                    <th>Description</th>
-                    <th align="center">Default</th>
-                </tr>
-                <xsl:for-each select="parameter">
-                    <tr valign="top">
-                        <td><code><xsl:value-of select="@name" /></code></td>
-                        <td align="center"><xsl:value-of select="@type" /></td>
-                        <td align="center"><xsl:value-of select="@required" /></td>
-                        <td align="left"><xsl:value-of select="@description" /></td>
-                        <td align="center"><xsl:value-of select="@default" /></td>
-                    </tr>
-                </xsl:for-each>
-            </table>
-        </div>
-    </xsl:template>
-
     <xsl:template match="benchmark-table">
         <xsl:variable name="nlog_results" select="document('nlog.results.xml')" />
         <xsl:variable name="log4net_results" select="document('log4net.results.xml')" />

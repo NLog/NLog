@@ -34,2233 +34,149 @@
 
 using System;
 
+using NLog.Internal;
+
 namespace NLog
 {
     /// <summary>
     /// Provides logging interface and utility functions.
     /// </summary>
     [CLSCompliant(true)]
-    public abstract class Logger
+    public class Logger
     {
-        protected abstract void Write(LogLevel level, IFormatProvider formatProvider, string message, object[]args, Exception ex);
+        private TargetWithFilterChain[] _targetsByLevel;
+        private string _loggerName;
+        private bool _isDebugEnabled;
+        private bool _isInfoEnabled;
+        private bool _isWarnEnabled;
+        private bool _isErrorEnabled;
+        private bool _isFatalEnabled;
+
+        private TargetWithFilterChain GetTargetsForLevel(int level)
+        {
+            return _targetsByLevel[level];
+        }
+
+        internal Logger(string name, TargetWithFilterChain[]targetsByLevel)
+        {
+            _loggerName = name;
+            SetTargetsByLevel(targetsByLevel);
+        }
+
+        internal string Name
+        {
+            get
+            {
+                return _loggerName;
+            }
+        }
+
+        internal void Reconfig(TargetWithFilterChain[] targetsByLevel)
+        {
+            SetTargetsByLevel(targetsByLevel);
+        }
+
+        internal void WriteToTargets(int level, IFormatProvider formatProvider, string message, object[]args, Exception exception)
+        {
+            LoggerImpl.Write(this, (LogLevel)level, GetTargetsForLevel(level), formatProvider, message, args, exception);
+        }
+
+        internal void WriteToTargets(int level, string message)
+        {
+            LoggerImpl.Write(this, (LogLevel)level, GetTargetsForLevel(level), null, message, null, null);
+        }
+
+        internal void WriteToTargets(int level, string message, object[]args)
+        {
+            LoggerImpl.Write(this, (LogLevel)level, GetTargetsForLevel(level), null, message, args, null);
+        }
+
+        private void SetTargetsByLevel(TargetWithFilterChain[] targetsByLevel)
+        {
+            _targetsByLevel = targetsByLevel;
+            // pre-calculate 'enabled' flags
+            _isDebugEnabled = _targetsByLevel[(int)LogLevel.Debug] != null;
+            _isInfoEnabled = _targetsByLevel[(int)LogLevel.Info] != null;
+            _isWarnEnabled = _targetsByLevel[(int)LogLevel.Warn] != null;
+            _isErrorEnabled = _targetsByLevel[(int)LogLevel.Error] != null;
+            _isFatalEnabled = _targetsByLevel[(int)LogLevel.Fatal] != null;
+        }
 
         /// <summary>
         /// Determines if logging is enabled for the specified level.
         /// </summary>
         /// <param name="level">level to be checked</param>
         /// <returns><see langword="true" /> if logging is enabled for the specified level, otherwise it returns <see langword="false" />.</returns>
-        public abstract bool IsEnabled(LogLevel level);
+        public bool IsEnabled(LogLevel level)
+        {
+            LogManager.CheckForConfigChanges();
+            return _targetsByLevel[(int)level] != null; 
+        }
 
         /// <summary>
         /// Determines if logging is enabled for the <c>Debug</c> level.
         /// </summary>
         /// <returns><see langword="true" /> if logging is enabled for the <c>Debug</c> level, otherwise it returns <see langword="false" />.</returns>
-        public abstract bool IsDebugEnabled
+        public bool IsDebugEnabled
         {
-            get;
+            get
+            {
+                LogManager.CheckForConfigChanges();
+                return _isDebugEnabled; 
+            }
         }
 
         /// <summary>
         /// Determines if logging is enabled for the <c>Info</c> level.
         /// </summary>
         /// <returns><see langword="true" /> if logging is enabled for the <c>Info</c> level, otherwise it returns <see langword="false" />.</returns>
-        public abstract bool IsInfoEnabled
+        public bool IsInfoEnabled
         {
-            get;
+            get
+            {
+                LogManager.CheckForConfigChanges();
+                return _isInfoEnabled; 
+            }
         }
 
         /// <summary>
         /// Determines if logging is enabled for the <c>Warn</c> level.
         /// </summary>
         /// <returns><see langword="true" /> if logging is enabled for the <c>Warn</c> level, otherwise it returns <see langword="false" />.</returns>
-        public abstract bool IsWarnEnabled
+        public bool IsWarnEnabled
         {
-            get;
+            get
+            {
+                LogManager.CheckForConfigChanges();
+                return _isWarnEnabled;
+            }
         }
 
         /// <summary>
         /// Determines if logging is enabled for the <c>Error</c> level.
         /// </summary>
         /// <returns><see langword="true" /> if logging is enabled for the <c>Error</c> level, otherwise it returns <see langword="false" />.</returns>
-        public abstract bool IsErrorEnabled
+        public bool IsErrorEnabled
         {
-            get;
+            get
+            {
+                LogManager.CheckForConfigChanges();
+                return _isErrorEnabled; 
+            }
         }
 
         /// <summary>
         /// Determines if logging is enabled for the <c>Fatal</c> level.
         /// </summary>
         /// <returns><see langword="true" /> if logging is enabled for the <c>Fatal</c> level, otherwise it returns <see langword="false" />.</returns>
-        public abstract bool IsFatalEnabled
+        public bool IsFatalEnabled
         {
-            get;
+            get
+            {
+                LogManager.CheckForConfigChanges();
+                return _isFatalEnabled; 
+            }
         }
-
-        // the following code has been automatically generated by a PERL script
-        // do not hand-modify
-
-
-
-        #region Log() overloads 
-
-        /// <overloads>
-        /// Writes the diagnostic message at the specified level using the specified format provider and format parameters.
-        /// </overloads>
-        /// <summary>
-        /// Writes the diagnostic message at the specified level.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        public void Log(LogLevel level, string message) 
-        {
-            if (IsEnabled(level))
-                Write(level, null, message, null, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the specified level.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        public void LogException(LogLevel level, string message, Exception exception) 
-        {
-            if (IsEnabled(level))
-                Write(level, null, message, null, exception);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified parameters and formatting them with the supplied format provider.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="args">Arguments to format.</param>
-        public void Log(LogLevel level, IFormatProvider formatProvider, string message, params object[] args) 
-        { 
-            if (IsEnabled(level))
-                Write(level, formatProvider, message, args, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified parameters.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="args">Arguments to format.</param>
-        public void Log(LogLevel level, string message, params object[] args) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, args, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified parameters.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="arg1">First argument to format.</param>
-        /// <param name="arg2">Second argument to format.</param>
-        public void Log(LogLevel level, string message, System.Object arg1, System.Object arg2) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, new object[] { arg1, arg2 }, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified parameters.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="arg1">First argument to format.</param>
-        /// <param name="arg2">Second argument to format.</param>
-        /// <param name="arg3">Third argument to format.</param>
-        public void Log(LogLevel level, string message, System.Object arg1, System.Object arg2, System.Object arg3) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, new object[] { arg1, arg2, arg3 }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
-        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Boolean argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Boolean" /> as a parameter.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
-        public void Log(LogLevel level, string message, System.Boolean argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
-        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Char argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Char" /> as a parameter.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
-        public void Log(LogLevel level, string message, System.Char argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
-        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Byte argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Byte" /> as a parameter.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
-        public void Log(LogLevel level, string message, System.Byte argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
-        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.String argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.String" /> as a parameter.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
-        public void Log(LogLevel level, string message, System.String argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
-        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Int32 argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Int32" /> as a parameter.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
-        public void Log(LogLevel level, string message, System.Int32 argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
-        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Int64 argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Int64" /> as a parameter.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
-        public void Log(LogLevel level, string message, System.Int64 argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
-        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Single argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Single" /> as a parameter.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
-        public void Log(LogLevel level, string message, System.Single argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
-        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Double argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Double" /> as a parameter.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
-        public void Log(LogLevel level, string message, System.Double argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
-        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Decimal argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Decimal" /> as a parameter.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
-        public void Log(LogLevel level, string message, System.Decimal argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
-        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Object argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Object" /> as a parameter.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
-        public void Log(LogLevel level, string message, System.Object argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.SByte argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.SByte" /> as a parameter.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Log(LogLevel level, string message, System.SByte argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.UInt32 argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.UInt32" /> as a parameter.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Log(LogLevel level, string message, System.UInt32 argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.UInt64 argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the specified level using the specified <see cref="T:System.UInt64" /> as a parameter.
-        /// </summary>
-        /// <param name="level">the log level.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Log(LogLevel level, string message, System.UInt64 argument) 
-        { 
-            if (IsEnabled(level))
-                Write(level, null, message, new object[] { argument }, null);
-        }
-
-        #endregion
-
-
-        #region Debug() overloads 
-
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified format provider and format parameters.
-        /// </overloads>
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        public void Debug(string message) 
-        {
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, null, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        public void DebugException(string message, Exception exception) 
-        {
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, null, exception);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters and formatting them with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="args">Arguments to format.</param>
-        public void Debug(IFormatProvider formatProvider, string message, params object[] args) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, formatProvider, message, args, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="args">Arguments to format.</param>
-        public void Debug(string message, params object[] args) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, args, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="arg1">First argument to format.</param>
-        /// <param name="arg2">Second argument to format.</param>
-        public void Debug(string message, System.Object arg1, System.Object arg2) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, new object[] { arg1, arg2 }, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="arg1">First argument to format.</param>
-        /// <param name="arg2">Second argument to format.</param>
-        /// <param name="arg3">Third argument to format.</param>
-        public void Debug(string message, System.Object arg1, System.Object arg2, System.Object arg3) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, new object[] { arg1, arg2, arg3 }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
-        public void Debug(IFormatProvider formatProvider, string message, System.Boolean argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Boolean" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
-        public void Debug(string message, System.Boolean argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
-        public void Debug(IFormatProvider formatProvider, string message, System.Char argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Char" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
-        public void Debug(string message, System.Char argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
-        public void Debug(IFormatProvider formatProvider, string message, System.Byte argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Byte" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
-        public void Debug(string message, System.Byte argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
-        public void Debug(IFormatProvider formatProvider, string message, System.String argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.String" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
-        public void Debug(string message, System.String argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
-        public void Debug(IFormatProvider formatProvider, string message, System.Int32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Int32" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
-        public void Debug(string message, System.Int32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
-        public void Debug(IFormatProvider formatProvider, string message, System.Int64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Int64" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
-        public void Debug(string message, System.Int64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
-        public void Debug(IFormatProvider formatProvider, string message, System.Single argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Single" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
-        public void Debug(string message, System.Single argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
-        public void Debug(IFormatProvider formatProvider, string message, System.Double argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Double" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
-        public void Debug(string message, System.Double argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
-        public void Debug(IFormatProvider formatProvider, string message, System.Decimal argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Decimal" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
-        public void Debug(string message, System.Decimal argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
-        public void Debug(IFormatProvider formatProvider, string message, System.Object argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Object" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
-        public void Debug(string message, System.Object argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Debug(IFormatProvider formatProvider, string message, System.SByte argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.SByte" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Debug(string message, System.SByte argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Debug(IFormatProvider formatProvider, string message, System.UInt32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.UInt32" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Debug(string message, System.UInt32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Debug(IFormatProvider formatProvider, string message, System.UInt64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.UInt64" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Debug(string message, System.UInt64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Debug))
-                Write(LogLevel.Debug, null, message, new object[] { argument }, null);
-        }
-
-        #endregion
-
-
-        #region Info() overloads 
-
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified format provider and format parameters.
-        /// </overloads>
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        public void Info(string message) 
-        {
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, null, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Info</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        public void InfoException(string message, Exception exception) 
-        {
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, null, exception);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified parameters and formatting them with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="args">Arguments to format.</param>
-        public void Info(IFormatProvider formatProvider, string message, params object[] args) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, formatProvider, message, args, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified parameters.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="args">Arguments to format.</param>
-        public void Info(string message, params object[] args) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, args, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified parameters.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="arg1">First argument to format.</param>
-        /// <param name="arg2">Second argument to format.</param>
-        public void Info(string message, System.Object arg1, System.Object arg2) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, new object[] { arg1, arg2 }, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified parameters.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="arg1">First argument to format.</param>
-        /// <param name="arg2">Second argument to format.</param>
-        /// <param name="arg3">Third argument to format.</param>
-        public void Info(string message, System.Object arg1, System.Object arg2, System.Object arg3) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, new object[] { arg1, arg2, arg3 }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
-        public void Info(IFormatProvider formatProvider, string message, System.Boolean argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Boolean" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
-        public void Info(string message, System.Boolean argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
-        public void Info(IFormatProvider formatProvider, string message, System.Char argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Char" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
-        public void Info(string message, System.Char argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
-        public void Info(IFormatProvider formatProvider, string message, System.Byte argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Byte" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
-        public void Info(string message, System.Byte argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
-        public void Info(IFormatProvider formatProvider, string message, System.String argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.String" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
-        public void Info(string message, System.String argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
-        public void Info(IFormatProvider formatProvider, string message, System.Int32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Int32" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
-        public void Info(string message, System.Int32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
-        public void Info(IFormatProvider formatProvider, string message, System.Int64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Int64" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
-        public void Info(string message, System.Int64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
-        public void Info(IFormatProvider formatProvider, string message, System.Single argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Single" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
-        public void Info(string message, System.Single argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
-        public void Info(IFormatProvider formatProvider, string message, System.Double argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Double" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
-        public void Info(string message, System.Double argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
-        public void Info(IFormatProvider formatProvider, string message, System.Decimal argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Decimal" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
-        public void Info(string message, System.Decimal argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
-        public void Info(IFormatProvider formatProvider, string message, System.Object argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Object" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
-        public void Info(string message, System.Object argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Info(IFormatProvider formatProvider, string message, System.SByte argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.SByte" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Info(string message, System.SByte argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Info(IFormatProvider formatProvider, string message, System.UInt32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.UInt32" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Info(string message, System.UInt32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Info(IFormatProvider formatProvider, string message, System.UInt64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.UInt64" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Info(string message, System.UInt64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Info))
-                Write(LogLevel.Info, null, message, new object[] { argument }, null);
-        }
-
-        #endregion
-
-
-        #region Warn() overloads 
-
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified format provider and format parameters.
-        /// </overloads>
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        public void Warn(string message) 
-        {
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, null, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Warn</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        public void WarnException(string message, Exception exception) 
-        {
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, null, exception);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters and formatting them with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="args">Arguments to format.</param>
-        public void Warn(IFormatProvider formatProvider, string message, params object[] args) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, formatProvider, message, args, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="args">Arguments to format.</param>
-        public void Warn(string message, params object[] args) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, args, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="arg1">First argument to format.</param>
-        /// <param name="arg2">Second argument to format.</param>
-        public void Warn(string message, System.Object arg1, System.Object arg2) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, new object[] { arg1, arg2 }, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="arg1">First argument to format.</param>
-        /// <param name="arg2">Second argument to format.</param>
-        /// <param name="arg3">Third argument to format.</param>
-        public void Warn(string message, System.Object arg1, System.Object arg2, System.Object arg3) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, new object[] { arg1, arg2, arg3 }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
-        public void Warn(IFormatProvider formatProvider, string message, System.Boolean argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Boolean" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
-        public void Warn(string message, System.Boolean argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
-        public void Warn(IFormatProvider formatProvider, string message, System.Char argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Char" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
-        public void Warn(string message, System.Char argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
-        public void Warn(IFormatProvider formatProvider, string message, System.Byte argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Byte" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
-        public void Warn(string message, System.Byte argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
-        public void Warn(IFormatProvider formatProvider, string message, System.String argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.String" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
-        public void Warn(string message, System.String argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
-        public void Warn(IFormatProvider formatProvider, string message, System.Int32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Int32" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
-        public void Warn(string message, System.Int32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
-        public void Warn(IFormatProvider formatProvider, string message, System.Int64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Int64" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
-        public void Warn(string message, System.Int64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
-        public void Warn(IFormatProvider formatProvider, string message, System.Single argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Single" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
-        public void Warn(string message, System.Single argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
-        public void Warn(IFormatProvider formatProvider, string message, System.Double argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Double" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
-        public void Warn(string message, System.Double argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
-        public void Warn(IFormatProvider formatProvider, string message, System.Decimal argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Decimal" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
-        public void Warn(string message, System.Decimal argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
-        public void Warn(IFormatProvider formatProvider, string message, System.Object argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Object" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
-        public void Warn(string message, System.Object argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Warn(IFormatProvider formatProvider, string message, System.SByte argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.SByte" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Warn(string message, System.SByte argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Warn(IFormatProvider formatProvider, string message, System.UInt32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.UInt32" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Warn(string message, System.UInt32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Warn(IFormatProvider formatProvider, string message, System.UInt64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.UInt64" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Warn(string message, System.UInt64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Warn))
-                Write(LogLevel.Warn, null, message, new object[] { argument }, null);
-        }
-
-        #endregion
-
-
-        #region Error() overloads 
-
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified format provider and format parameters.
-        /// </overloads>
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        public void Error(string message) 
-        {
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, null, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Error</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        public void ErrorException(string message, Exception exception) 
-        {
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, null, exception);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified parameters and formatting them with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="args">Arguments to format.</param>
-        public void Error(IFormatProvider formatProvider, string message, params object[] args) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, formatProvider, message, args, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="args">Arguments to format.</param>
-        public void Error(string message, params object[] args) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, args, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="arg1">First argument to format.</param>
-        /// <param name="arg2">Second argument to format.</param>
-        public void Error(string message, System.Object arg1, System.Object arg2) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, new object[] { arg1, arg2 }, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="arg1">First argument to format.</param>
-        /// <param name="arg2">Second argument to format.</param>
-        /// <param name="arg3">Third argument to format.</param>
-        public void Error(string message, System.Object arg1, System.Object arg2, System.Object arg3) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, new object[] { arg1, arg2, arg3 }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
-        public void Error(IFormatProvider formatProvider, string message, System.Boolean argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Boolean" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
-        public void Error(string message, System.Boolean argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
-        public void Error(IFormatProvider formatProvider, string message, System.Char argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Char" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
-        public void Error(string message, System.Char argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
-        public void Error(IFormatProvider formatProvider, string message, System.Byte argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Byte" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
-        public void Error(string message, System.Byte argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
-        public void Error(IFormatProvider formatProvider, string message, System.String argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.String" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
-        public void Error(string message, System.String argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
-        public void Error(IFormatProvider formatProvider, string message, System.Int32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Int32" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
-        public void Error(string message, System.Int32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
-        public void Error(IFormatProvider formatProvider, string message, System.Int64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Int64" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
-        public void Error(string message, System.Int64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
-        public void Error(IFormatProvider formatProvider, string message, System.Single argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Single" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
-        public void Error(string message, System.Single argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
-        public void Error(IFormatProvider formatProvider, string message, System.Double argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Double" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
-        public void Error(string message, System.Double argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
-        public void Error(IFormatProvider formatProvider, string message, System.Decimal argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Decimal" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
-        public void Error(string message, System.Decimal argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
-        public void Error(IFormatProvider formatProvider, string message, System.Object argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Object" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
-        public void Error(string message, System.Object argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Error(IFormatProvider formatProvider, string message, System.SByte argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.SByte" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Error(string message, System.SByte argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Error(IFormatProvider formatProvider, string message, System.UInt32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.UInt32" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Error(string message, System.UInt32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Error(IFormatProvider formatProvider, string message, System.UInt64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.UInt64" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Error(string message, System.UInt64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Error))
-                Write(LogLevel.Error, null, message, new object[] { argument }, null);
-        }
-
-        #endregion
-
-
-        #region Fatal() overloads 
-
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified format provider and format parameters.
-        /// </overloads>
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        public void Fatal(string message) 
-        {
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, null, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        public void FatalException(string message, Exception exception) 
-        {
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, null, exception);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters and formatting them with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="args">Arguments to format.</param>
-        public void Fatal(IFormatProvider formatProvider, string message, params object[] args) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, formatProvider, message, args, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="args">Arguments to format.</param>
-        public void Fatal(string message, params object[] args) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, args, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="arg1">First argument to format.</param>
-        /// <param name="arg2">Second argument to format.</param>
-        public void Fatal(string message, System.Object arg1, System.Object arg2) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, new object[] { arg1, arg2 }, null);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="arg1">First argument to format.</param>
-        /// <param name="arg2">Second argument to format.</param>
-        /// <param name="arg3">Third argument to format.</param>
-        public void Fatal(string message, System.Object arg1, System.Object arg2, System.Object arg3) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, new object[] { arg1, arg2, arg3 }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
-        public void Fatal(IFormatProvider formatProvider, string message, System.Boolean argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Boolean" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
-        public void Fatal(string message, System.Boolean argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
-        public void Fatal(IFormatProvider formatProvider, string message, System.Char argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Char" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
-        public void Fatal(string message, System.Char argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
-        public void Fatal(IFormatProvider formatProvider, string message, System.Byte argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Byte" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
-        public void Fatal(string message, System.Byte argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
-        public void Fatal(IFormatProvider formatProvider, string message, System.String argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.String" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
-        public void Fatal(string message, System.String argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
-        public void Fatal(IFormatProvider formatProvider, string message, System.Int32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Int32" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
-        public void Fatal(string message, System.Int32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
-        public void Fatal(IFormatProvider formatProvider, string message, System.Int64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Int64" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
-        public void Fatal(string message, System.Int64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
-        public void Fatal(IFormatProvider formatProvider, string message, System.Single argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Single" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
-        public void Fatal(string message, System.Single argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
-        public void Fatal(IFormatProvider formatProvider, string message, System.Double argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Double" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
-        public void Fatal(string message, System.Double argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
-        public void Fatal(IFormatProvider formatProvider, string message, System.Decimal argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Decimal" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
-        public void Fatal(string message, System.Decimal argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
-        public void Fatal(IFormatProvider formatProvider, string message, System.Object argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Object" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
-        public void Fatal(string message, System.Object argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Fatal(IFormatProvider formatProvider, string message, System.SByte argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.SByte" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Fatal(string message, System.SByte argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Fatal(IFormatProvider formatProvider, string message, System.UInt32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.UInt32" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Fatal(string message, System.UInt32 argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, new object[] { argument }, null);
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Fatal(IFormatProvider formatProvider, string message, System.UInt64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.UInt64" /> as a parameter.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void Fatal(string message, System.UInt64 argument) 
-        { 
-            if (IsEnabled(LogLevel.Fatal))
-                Write(LogLevel.Fatal, null, message, new object[] { argument }, null);
-        }
-
-        #endregion
 
         /// <summary>
         /// Returns the <see cref="T:NLog.LogLevel"/> that corresponds to the supplied <see langword="string" />.
@@ -2281,10 +197,2013 @@ namespace NLog
                     return LogLevel.Error;
                 case "Fatal":
                     return LogLevel.Fatal;
+                case "Off":
+                    return LogLevel.Off;
                 default:
                     throw new ArgumentException("Unknown log level: " + s);
             }
         }
 
+        /// <summary>
+        /// Returns a string representation of the given log level.
+        /// </summary>
+        /// <param name="level">Log level</param>
+        /// <returns>Log level name.</returns>
+        public static string LogLevelToString(LogLevel level)
+        {
+            switch (level)
+            {
+                case LogLevel.Debug:
+                    return "Debug";
+
+                case LogLevel.Info:
+                    return "Info";
+
+                case LogLevel.Warn:
+                    return "Warn";
+
+                case LogLevel.Error:
+                    return "Error";
+
+                case LogLevel.Fatal:
+                    return "Fatal";
+
+                default:
+                    return String.Empty;
+            }
+        }
+
+        // the following code has been automatically generated by a PERL script
+        // do not hand-modify
+
+        #region Log() overloads 
+
+        /// <overloads>
+		/// Writes the diagnostic message at the specified level using the specified format provider and format parameters.
+        /// </overloads>
+		/// <summary>
+		/// Writes the diagnostic message at the specified level.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> to be written.</param>
+        public void Log(LogLevel level, string message) {
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message);
+        }
+
+		/// <summary>
+		/// Writes the diagnostic message and exception at the specified level.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> to be written.</param>
+		/// <param name="exception">An exception to be logged.</param>
+        public void LogException(LogLevel level, string message, Exception exception) {
+            if (IsEnabled(level))
+                WriteToTargets((int)level, null, message, null, exception);
+        }
+
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified parameters and formatting them with the supplied format provider.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="args">Arguments to format.</param>
+        public void Log(LogLevel level, IFormatProvider formatProvider, string message, params object[] args) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, formatProvider, message, args, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified parameters.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="args">Arguments to format.</param>
+        public void Log(LogLevel level, string message, params object[] args) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, args);
+        }
+        
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified parameters.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="arg1">First argument to format.</param>
+		/// <param name="arg2">Second argument to format.</param>
+        public void Log(LogLevel level, string message, System.Object arg1, System.Object arg2) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, new object[] { arg1, arg2 });
+        }
+        
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified parameters.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="arg1">First argument to format.</param>
+		/// <param name="arg2">Second argument to format.</param>
+		/// <param name="arg3">Third argument to format.</param>
+        public void Log(LogLevel level, string message, System.Object arg1, System.Object arg2, System.Object arg3) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, new object[] { arg1, arg2, arg3 });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
+        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Boolean argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Boolean" /> as a parameter.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
+        public void Log(LogLevel level, string message, System.Boolean argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
+        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Char argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Char" /> as a parameter.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
+        public void Log(LogLevel level, string message, System.Char argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
+        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Byte argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Byte" /> as a parameter.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
+        public void Log(LogLevel level, string message, System.Byte argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
+        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.String argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.String" /> as a parameter.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
+        public void Log(LogLevel level, string message, System.String argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
+        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Int32 argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Int32" /> as a parameter.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
+        public void Log(LogLevel level, string message, System.Int32 argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
+        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Int64 argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Int64" /> as a parameter.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
+        public void Log(LogLevel level, string message, System.Int64 argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
+        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Single argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Single" /> as a parameter.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
+        public void Log(LogLevel level, string message, System.Single argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
+        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Double argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Double" /> as a parameter.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
+        public void Log(LogLevel level, string message, System.Double argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
+        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Decimal argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Decimal" /> as a parameter.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
+        public void Log(LogLevel level, string message, System.Decimal argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
+        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Object argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Object" /> as a parameter.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
+        public void Log(LogLevel level, string message, System.Object argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.SByte argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.SByte" /> as a parameter.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Log(LogLevel level, string message, System.SByte argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.UInt32 argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.UInt32" /> as a parameter.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Log(LogLevel level, string message, System.UInt32 argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.UInt64 argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.UInt64" /> as a parameter.
+		/// </summary>
+		/// <param name="level">the log level.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Log(LogLevel level, string message, System.UInt64 argument) { 
+            if (IsEnabled(level))
+                WriteToTargets((int)level, message, new object[] { argument });
+        }
+
+        #endregion
+
+
+        #region Debug() overloads 
+
+        /// <overloads>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified format provider and format parameters.
+        /// </overloads>
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> to be written.</param>
+        public void Debug(string message) {
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message);
+        }
+
+		/// <summary>
+		/// Writes the diagnostic message and exception at the <c>Debug</c> level.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> to be written.</param>
+		/// <param name="exception">An exception to be logged.</param>
+        public void DebugException(string message, Exception exception) {
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, null, message, null, exception);
+        }
+
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters and formatting them with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="args">Arguments to format.</param>
+        public void Debug(IFormatProvider formatProvider, string message, params object[] args) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, formatProvider, message, args, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="args">Arguments to format.</param>
+        public void Debug(string message, params object[] args) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, args);
+        }
+        
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="arg1">First argument to format.</param>
+		/// <param name="arg2">Second argument to format.</param>
+        public void Debug(string message, System.Object arg1, System.Object arg2) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, new object[] { arg1, arg2 });
+        }
+        
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="arg1">First argument to format.</param>
+		/// <param name="arg2">Second argument to format.</param>
+		/// <param name="arg3">Third argument to format.</param>
+        public void Debug(string message, System.Object arg1, System.Object arg2, System.Object arg3) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, new object[] { arg1, arg2, arg3 });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
+        public void Debug(IFormatProvider formatProvider, string message, System.Boolean argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Boolean" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
+        public void Debug(string message, System.Boolean argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
+        public void Debug(IFormatProvider formatProvider, string message, System.Char argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Char" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
+        public void Debug(string message, System.Char argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
+        public void Debug(IFormatProvider formatProvider, string message, System.Byte argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Byte" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
+        public void Debug(string message, System.Byte argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
+        public void Debug(IFormatProvider formatProvider, string message, System.String argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.String" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
+        public void Debug(string message, System.String argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
+        public void Debug(IFormatProvider formatProvider, string message, System.Int32 argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Int32" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
+        public void Debug(string message, System.Int32 argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
+        public void Debug(IFormatProvider formatProvider, string message, System.Int64 argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Int64" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
+        public void Debug(string message, System.Int64 argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
+        public void Debug(IFormatProvider formatProvider, string message, System.Single argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Single" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
+        public void Debug(string message, System.Single argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
+        public void Debug(IFormatProvider formatProvider, string message, System.Double argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Double" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
+        public void Debug(string message, System.Double argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
+        public void Debug(IFormatProvider formatProvider, string message, System.Decimal argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Decimal" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
+        public void Debug(string message, System.Decimal argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
+        public void Debug(IFormatProvider formatProvider, string message, System.Object argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Object" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
+        public void Debug(string message, System.Object argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Debug(IFormatProvider formatProvider, string message, System.SByte argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.SByte" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Debug(string message, System.SByte argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Debug(IFormatProvider formatProvider, string message, System.UInt32 argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.UInt32" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Debug(string message, System.UInt32 argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Debug(IFormatProvider formatProvider, string message, System.UInt64 argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.UInt64" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Debug(string message, System.UInt64 argument) { 
+            if (IsDebugEnabled)
+                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+        }
+
+        #endregion
+
+
+        #region Info() overloads 
+
+        /// <overloads>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified format provider and format parameters.
+        /// </overloads>
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> to be written.</param>
+        public void Info(string message) {
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message);
+        }
+
+		/// <summary>
+		/// Writes the diagnostic message and exception at the <c>Info</c> level.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> to be written.</param>
+		/// <param name="exception">An exception to be logged.</param>
+        public void InfoException(string message, Exception exception) {
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, null, message, null, exception);
+        }
+
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified parameters and formatting them with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="args">Arguments to format.</param>
+        public void Info(IFormatProvider formatProvider, string message, params object[] args) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, formatProvider, message, args, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified parameters.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="args">Arguments to format.</param>
+        public void Info(string message, params object[] args) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, args);
+        }
+        
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified parameters.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="arg1">First argument to format.</param>
+		/// <param name="arg2">Second argument to format.</param>
+        public void Info(string message, System.Object arg1, System.Object arg2) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, new object[] { arg1, arg2 });
+        }
+        
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified parameters.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="arg1">First argument to format.</param>
+		/// <param name="arg2">Second argument to format.</param>
+		/// <param name="arg3">Third argument to format.</param>
+        public void Info(string message, System.Object arg1, System.Object arg2, System.Object arg3) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, new object[] { arg1, arg2, arg3 });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
+        public void Info(IFormatProvider formatProvider, string message, System.Boolean argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Boolean" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
+        public void Info(string message, System.Boolean argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
+        public void Info(IFormatProvider formatProvider, string message, System.Char argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Char" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
+        public void Info(string message, System.Char argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
+        public void Info(IFormatProvider formatProvider, string message, System.Byte argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Byte" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
+        public void Info(string message, System.Byte argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
+        public void Info(IFormatProvider formatProvider, string message, System.String argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.String" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
+        public void Info(string message, System.String argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
+        public void Info(IFormatProvider formatProvider, string message, System.Int32 argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Int32" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
+        public void Info(string message, System.Int32 argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
+        public void Info(IFormatProvider formatProvider, string message, System.Int64 argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Int64" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
+        public void Info(string message, System.Int64 argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
+        public void Info(IFormatProvider formatProvider, string message, System.Single argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Single" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
+        public void Info(string message, System.Single argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
+        public void Info(IFormatProvider formatProvider, string message, System.Double argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Double" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
+        public void Info(string message, System.Double argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
+        public void Info(IFormatProvider formatProvider, string message, System.Decimal argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Decimal" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
+        public void Info(string message, System.Decimal argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
+        public void Info(IFormatProvider formatProvider, string message, System.Object argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Object" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
+        public void Info(string message, System.Object argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Info(IFormatProvider formatProvider, string message, System.SByte argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.SByte" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Info(string message, System.SByte argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Info(IFormatProvider formatProvider, string message, System.UInt32 argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.UInt32" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Info(string message, System.UInt32 argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Info(IFormatProvider formatProvider, string message, System.UInt64 argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.UInt64" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Info(string message, System.UInt64 argument) { 
+            if (IsInfoEnabled)
+                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+        }
+
+        #endregion
+
+
+        #region Warn() overloads 
+
+        /// <overloads>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified format provider and format parameters.
+        /// </overloads>
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> to be written.</param>
+        public void Warn(string message) {
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message);
+        }
+
+		/// <summary>
+		/// Writes the diagnostic message and exception at the <c>Warn</c> level.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> to be written.</param>
+		/// <param name="exception">An exception to be logged.</param>
+        public void WarnException(string message, Exception exception) {
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, null, message, null, exception);
+        }
+
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters and formatting them with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="args">Arguments to format.</param>
+        public void Warn(IFormatProvider formatProvider, string message, params object[] args) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, formatProvider, message, args, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="args">Arguments to format.</param>
+        public void Warn(string message, params object[] args) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, args);
+        }
+        
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="arg1">First argument to format.</param>
+		/// <param name="arg2">Second argument to format.</param>
+        public void Warn(string message, System.Object arg1, System.Object arg2) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, new object[] { arg1, arg2 });
+        }
+        
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="arg1">First argument to format.</param>
+		/// <param name="arg2">Second argument to format.</param>
+		/// <param name="arg3">Third argument to format.</param>
+        public void Warn(string message, System.Object arg1, System.Object arg2, System.Object arg3) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, new object[] { arg1, arg2, arg3 });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
+        public void Warn(IFormatProvider formatProvider, string message, System.Boolean argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Boolean" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
+        public void Warn(string message, System.Boolean argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
+        public void Warn(IFormatProvider formatProvider, string message, System.Char argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Char" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
+        public void Warn(string message, System.Char argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
+        public void Warn(IFormatProvider formatProvider, string message, System.Byte argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Byte" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
+        public void Warn(string message, System.Byte argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
+        public void Warn(IFormatProvider formatProvider, string message, System.String argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.String" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
+        public void Warn(string message, System.String argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
+        public void Warn(IFormatProvider formatProvider, string message, System.Int32 argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Int32" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
+        public void Warn(string message, System.Int32 argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
+        public void Warn(IFormatProvider formatProvider, string message, System.Int64 argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Int64" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
+        public void Warn(string message, System.Int64 argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
+        public void Warn(IFormatProvider formatProvider, string message, System.Single argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Single" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
+        public void Warn(string message, System.Single argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
+        public void Warn(IFormatProvider formatProvider, string message, System.Double argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Double" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
+        public void Warn(string message, System.Double argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
+        public void Warn(IFormatProvider formatProvider, string message, System.Decimal argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Decimal" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
+        public void Warn(string message, System.Decimal argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
+        public void Warn(IFormatProvider formatProvider, string message, System.Object argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Object" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
+        public void Warn(string message, System.Object argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Warn(IFormatProvider formatProvider, string message, System.SByte argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.SByte" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Warn(string message, System.SByte argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Warn(IFormatProvider formatProvider, string message, System.UInt32 argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.UInt32" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Warn(string message, System.UInt32 argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Warn(IFormatProvider formatProvider, string message, System.UInt64 argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.UInt64" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Warn(string message, System.UInt64 argument) { 
+            if (IsWarnEnabled)
+                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+        }
+
+        #endregion
+
+
+        #region Error() overloads 
+
+        /// <overloads>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified format provider and format parameters.
+        /// </overloads>
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> to be written.</param>
+        public void Error(string message) {
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message);
+        }
+
+		/// <summary>
+		/// Writes the diagnostic message and exception at the <c>Error</c> level.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> to be written.</param>
+		/// <param name="exception">An exception to be logged.</param>
+        public void ErrorException(string message, Exception exception) {
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, null, message, null, exception);
+        }
+
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified parameters and formatting them with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="args">Arguments to format.</param>
+        public void Error(IFormatProvider formatProvider, string message, params object[] args) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, formatProvider, message, args, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="args">Arguments to format.</param>
+        public void Error(string message, params object[] args) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, args);
+        }
+        
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="arg1">First argument to format.</param>
+		/// <param name="arg2">Second argument to format.</param>
+        public void Error(string message, System.Object arg1, System.Object arg2) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, new object[] { arg1, arg2 });
+        }
+        
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="arg1">First argument to format.</param>
+		/// <param name="arg2">Second argument to format.</param>
+		/// <param name="arg3">Third argument to format.</param>
+        public void Error(string message, System.Object arg1, System.Object arg2, System.Object arg3) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, new object[] { arg1, arg2, arg3 });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
+        public void Error(IFormatProvider formatProvider, string message, System.Boolean argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Boolean" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
+        public void Error(string message, System.Boolean argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
+        public void Error(IFormatProvider formatProvider, string message, System.Char argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Char" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
+        public void Error(string message, System.Char argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
+        public void Error(IFormatProvider formatProvider, string message, System.Byte argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Byte" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
+        public void Error(string message, System.Byte argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
+        public void Error(IFormatProvider formatProvider, string message, System.String argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.String" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
+        public void Error(string message, System.String argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
+        public void Error(IFormatProvider formatProvider, string message, System.Int32 argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Int32" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
+        public void Error(string message, System.Int32 argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
+        public void Error(IFormatProvider formatProvider, string message, System.Int64 argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Int64" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
+        public void Error(string message, System.Int64 argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
+        public void Error(IFormatProvider formatProvider, string message, System.Single argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Single" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
+        public void Error(string message, System.Single argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
+        public void Error(IFormatProvider formatProvider, string message, System.Double argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Double" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
+        public void Error(string message, System.Double argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
+        public void Error(IFormatProvider formatProvider, string message, System.Decimal argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Decimal" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
+        public void Error(string message, System.Decimal argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
+        public void Error(IFormatProvider formatProvider, string message, System.Object argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Object" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
+        public void Error(string message, System.Object argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Error(IFormatProvider formatProvider, string message, System.SByte argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.SByte" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Error(string message, System.SByte argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Error(IFormatProvider formatProvider, string message, System.UInt32 argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.UInt32" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Error(string message, System.UInt32 argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Error(IFormatProvider formatProvider, string message, System.UInt64 argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.UInt64" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Error(string message, System.UInt64 argument) { 
+            if (IsErrorEnabled)
+                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+        }
+
+        #endregion
+
+
+        #region Fatal() overloads 
+
+        /// <overloads>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified format provider and format parameters.
+        /// </overloads>
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> to be written.</param>
+        public void Fatal(string message) {
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message);
+        }
+
+		/// <summary>
+		/// Writes the diagnostic message and exception at the <c>Fatal</c> level.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> to be written.</param>
+		/// <param name="exception">An exception to be logged.</param>
+        public void FatalException(string message, Exception exception) {
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, null, message, null, exception);
+        }
+
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters and formatting them with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="args">Arguments to format.</param>
+        public void Fatal(IFormatProvider formatProvider, string message, params object[] args) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, args, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="args">Arguments to format.</param>
+        public void Fatal(string message, params object[] args) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, args);
+        }
+        
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="arg1">First argument to format.</param>
+		/// <param name="arg2">Second argument to format.</param>
+        public void Fatal(string message, System.Object arg1, System.Object arg2) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, new object[] { arg1, arg2 });
+        }
+        
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing format items.</param>
+		/// <param name="arg1">First argument to format.</param>
+		/// <param name="arg2">Second argument to format.</param>
+		/// <param name="arg3">Third argument to format.</param>
+        public void Fatal(string message, System.Object arg1, System.Object arg2, System.Object arg3) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, new object[] { arg1, arg2, arg3 });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
+        public void Fatal(IFormatProvider formatProvider, string message, System.Boolean argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Boolean" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
+        public void Fatal(string message, System.Boolean argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
+        public void Fatal(IFormatProvider formatProvider, string message, System.Char argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Char" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
+        public void Fatal(string message, System.Char argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
+        public void Fatal(IFormatProvider formatProvider, string message, System.Byte argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Byte" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
+        public void Fatal(string message, System.Byte argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
+        public void Fatal(IFormatProvider formatProvider, string message, System.String argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.String" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
+        public void Fatal(string message, System.String argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
+        public void Fatal(IFormatProvider formatProvider, string message, System.Int32 argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Int32" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
+        public void Fatal(string message, System.Int32 argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
+        public void Fatal(IFormatProvider formatProvider, string message, System.Int64 argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Int64" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
+        public void Fatal(string message, System.Int64 argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
+        public void Fatal(IFormatProvider formatProvider, string message, System.Single argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Single" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
+        public void Fatal(string message, System.Single argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
+        public void Fatal(IFormatProvider formatProvider, string message, System.Double argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Double" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
+        public void Fatal(string message, System.Double argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
+        public void Fatal(IFormatProvider formatProvider, string message, System.Decimal argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Decimal" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
+        public void Fatal(string message, System.Decimal argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
+        public void Fatal(IFormatProvider formatProvider, string message, System.Object argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Object" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
+        public void Fatal(string message, System.Object argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Fatal(IFormatProvider formatProvider, string message, System.SByte argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.SByte" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.SByte" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Fatal(string message, System.SByte argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Fatal(IFormatProvider formatProvider, string message, System.UInt32 argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.UInt32" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt32" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Fatal(string message, System.UInt32 argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
+		/// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Fatal(IFormatProvider formatProvider, string message, System.UInt64 argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+        }
+		/// <summary>
+		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.UInt64" /> as a parameter.
+		/// </summary>
+		/// <param name="message">A <see langword="string" /> containing one format item.</param>
+		/// <param name="argument">The <see cref="T:System.UInt64" /> argument to format.</param>
+        [CLSCompliant(false)]
+        public void Fatal(string message, System.UInt64 argument) { 
+            if (IsFatalEnabled)
+                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+        }
+
+        #endregion
+      // end of generated code
     }
 }

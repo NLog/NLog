@@ -5,13 +5,15 @@
 for $level (@levels) {
 
     if ($level eq "Log") {
-        $level2 = "level";
+        $level2 = "(int)level";
         $level3 = "specified";
+        $isenabled = "IsEnabled(level)";
         $arg0 = "LogLevel level, ";
         $param0 = qq!\n		/// <param name="level">the log level.</param>!;
     } else {
-        $level2 = "LogLevel.$level";
+        $level2 = "(int)LogLevel.$level";
         $level3 = "<c>$level</c>";
+        $isenabled = "Is${level}Enabled";
         $arg0 = "";
         $param0 = "";
     }
@@ -29,8 +31,8 @@ for $level (@levels) {
 		/// </summary>$param0
 		/// <param name="message">A <see langword="string" /> to be written.</param>
         public void $level(${arg0}string message) {
-            if (IsEnabled($level2))
-                Write($level2, null, message, null, null);
+            if ($isenabled)
+                WriteToTargets($level2, message);
         }
 
 		/// <summary>
@@ -39,8 +41,8 @@ for $level (@levels) {
 		/// <param name="message">A <see langword="string" /> to be written.</param>
 		/// <param name="exception">An exception to be logged.</param>
         public void ${level}Exception(${arg0}string message, Exception exception) {
-            if (IsEnabled($level2))
-                Write($level2, null, message, null, exception);
+            if ($isenabled)
+                WriteToTargets($level2, null, message, null, exception);
         }
 
 		/// <summary>
@@ -50,8 +52,8 @@ for $level (@levels) {
 		/// <param name="message">A <see langword="string" /> containing format items.</param>
 		/// <param name="args">Arguments to format.</param>
         public void $level(${arg0}IFormatProvider formatProvider, string message, params object[] args) { 
-            if (IsEnabled($level2))
-                Write($level2, formatProvider, message, args, null); 
+            if ($isenabled)
+                WriteToTargets($level2, formatProvider, message, args, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the $level3 level using the specified parameters.
@@ -59,8 +61,8 @@ for $level (@levels) {
 		/// <param name="message">A <see langword="string" /> containing format items.</param>
 		/// <param name="args">Arguments to format.</param>
         public void $level(${arg0}string message, params object[] args) { 
-            if (IsEnabled($level2))
-                Write($level2, null, message, args, null);
+            if ($isenabled)
+                WriteToTargets($level2, message, args);
         }
         
 		/// <summary>
@@ -70,8 +72,8 @@ for $level (@levels) {
 		/// <param name="arg1">First argument to format.</param>
 		/// <param name="arg2">Second argument to format.</param>
         public void $level(${arg0}string message, System.Object arg1, System.Object arg2) { 
-            if (IsEnabled($level2))
-                Write($level2, null, message, new object[] { arg1, arg2 }, null);
+            if ($isenabled)
+                WriteToTargets($level2, message, new object[] { arg1, arg2 });
         }
         
 		/// <summary>
@@ -82,8 +84,8 @@ for $level (@levels) {
 		/// <param name="arg2">Second argument to format.</param>
 		/// <param name="arg3">Third argument to format.</param>
         public void $level(${arg0}string message, System.Object arg1, System.Object arg2, System.Object arg3) { 
-            if (IsEnabled($level2))
-                Write($level2, null, message, new object[] { arg1, arg2, arg3 }, null);
+            if ($isenabled)
+                WriteToTargets($level2, message, new object[] { arg1, arg2, arg3 });
         }
 EOT
     for $t (@clitypes) {
@@ -95,8 +97,8 @@ EOT
 		/// <param name="message">A <see langword="string" /> containing one format item.</param>
 		/// <param name="argument">The <see cref="T:$t" /> argument to format.</param>
         public void $level(${arg0}IFormatProvider formatProvider, string message, $t argument) { 
-            if (IsEnabled($level2))
-                Write($level2, formatProvider, message, new object[] { argument }, null); 
+            if ($isenabled)
+                WriteToTargets($level2, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the $level3 level using the specified <see cref="T:$t" /> as a parameter.
@@ -104,8 +106,8 @@ EOT
 		/// <param name="message">A <see langword="string" /> containing one format item.</param>
 		/// <param name="argument">The <see cref="T:$t" /> argument to format.</param>
         public void $level(${arg0}string message, $t argument) { 
-            if (IsEnabled($level2))
-                Write($level2, null, message, new object[] { argument }, null);
+            if ($isenabled)
+                WriteToTargets($level2, message, new object[] { argument });
         }
 EOT
     }
@@ -119,8 +121,8 @@ EOT
 		/// <param name="argument">The <see cref="T:$t" /> argument to format.</param>
         [CLSCompliant(false)]
         public void $level(${arg0}IFormatProvider formatProvider, string message, $t argument) { 
-            if (IsEnabled($level2))
-                Write($level2, formatProvider, message, new object[] { argument }, null); 
+            if ($isenabled)
+                WriteToTargets($level2, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the $level3 level using the specified <see cref="T:$t" /> as a parameter.
@@ -129,8 +131,8 @@ EOT
 		/// <param name="argument">The <see cref="T:$t" /> argument to format.</param>
         [CLSCompliant(false)]
         public void $level(${arg0}string message, $t argument) { 
-            if (IsEnabled($level2))
-                Write($level2, null, message, new object[] { argument }, null);
+            if ($isenabled)
+                WriteToTargets($level2, message, new object[] { argument });
         }
 EOT
     }

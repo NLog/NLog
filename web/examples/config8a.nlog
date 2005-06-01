@@ -1,7 +1,7 @@
 <nlog>
-    <appenders>
-        <appender name="console" type="Console" />
-    </appenders>
+    <targets>
+        <target name="console" type="Console" />
+    </targets>
 
     <rules>
         <logger name="*" minlevel="Warn" appendTo="console" />

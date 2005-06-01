@@ -37,25 +37,59 @@ using System.Collections;
 using System.Collections.Specialized;
 
 using NLog;
-using NLog.Appenders;
+using NLog.Targets;
 using NLog.Filters;
 
 namespace NLog.Config
 {
+    /// <summary>
+    /// Provides simple programmatic configuration API used for trivial logging cases.
+    /// </summary>
     public class SimpleConfigurator
     {
+        /// <summary>
+        /// Configures NLog for console logging so that all messages above and including
+        /// the <see cref="LogLevel.Info"/> level are output to the console.
+        /// </summary>
         public static void ConfigureForConsoleLogging()
         {
             ConfigureForConsoleLogging(LogLevel.Info);
         }
 
-        public static void ConfigureForConsoleLogging(LogLevel minLevel){}
+        /// <summary>
+        /// Configures NLog for console logging so that all messages above and including
+        /// the specified level are output to the console.
+        /// </summary>
+        /// <param name="minLevel">The minimal logging level.</param>
+        public static void ConfigureForConsoleLogging(LogLevel minLevel)
+        {
+            ConsoleTarget consoleTarget = new ConsoleTarget();
 
+            LoggingConfiguration config = new LoggingConfiguration();
+            LoggingRule rule = new LoggingRule("*", minLevel, consoleTarget);
+            config.LoggingRules.Add(rule);
+            LogManager.Configuration = config;
+        }
+
+        /// <summary>
+        /// Configures NLog for file logging so that all messages above and including
+        /// the <see cref="LogLevel.Info"/> level are written to the specified file.
+        /// </summary>
+        /// <param name="fileName">Log file name.</param>
         public static void ConfigureForFileLogging(string fileName)
         {
             ConfigureForFileLogging(fileName, LogLevel.Info);
         }
 
-        public static void ConfigureForFileLogging(string fileName, LogLevel minLevel){}
+        /// <summary>
+        /// Configures NLog for file logging so that all messages above and including
+        /// the specified level are written to the specified file.
+        /// </summary>
+        /// <param name="fileName">Log file name.</param>
+        /// <param name="minLevel">The minimal logging level.</param>
+        public static void ConfigureForFileLogging(string fileName, LogLevel minLevel)
+        {
+            throw new NotImplementedException("Not implemented yet.");
+        }
     }
 }

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="howto" subid="howto_write_target">
+    <h1>How to write your own Target</h1>
+
+    <h5>Why would I want to write a Target?</h5>
+
+    <p>If you want to write your trace messages to some non-standard output (for example to some management tool or over the network or using the PPPoP (<a href="http://www.notes.co.il/benbasat/5240.asp">PPP-over-pigeon</a> protocol) you need to write a custom Target.</p>
+
+    <h5>How to write a target?</h5>
+    <p>
+        It's really easy. Create a class that inherits from <code>NLog.Target</code> 
+        and override the <code>Append()</code> method. In the body of the method use 
+        <code>CompiledLayout.GetFormattedMessage()</code> to get the message text, then send the text to the destination media.
+    </p>
+
+    <h5>Example</h5>
+    <p>This is a skeleton target that writes messages to the specified host. Compile using:</p>
+    <p>
+        <code>csc.exe /t:library /out:MyAssembly.dll /r:NLog.dll MyFirstTarget.cs</code>
+    </p>
+
+<cs src="examples/MyFirstTarget.cs" />
+
+<h5>How to use the newly created target?</h5>
+<p>
+
+    It's easy. Just put the target in a DLL and reference it from the the config file using the <x><extensions /></x>
+    clause as described <a href="config.html#extensions">here</a>.
+</p>
+
+<h5>Configuration file example</h5>
+
+<xml-example src="examples/config7.nlog" />
+
+<h5>How to pass configuration options to the target?</h5>
+
+<p>
+Consider the above example. There's a property called "Host" that does just that. 
+Having a public property that sets the required configuration parameters is enough for NLog to use it. 
+Each attribute that you put in the <x><target /></x> definition gets passed 
+to the appropriate public property. NLog takes care of the appropriate conversions necessary so that
+you can use integer, string, datetime, boolean parameters.
+</p>
+
+<h5>Do I really need to create a separate DLL?</h5>
+
+<p>
+    Not really. You can use TargetFactory.AddTarget() to register your target programmatically. 
+    Just be sure to to it at the very beginning of your program before any log messages are written.
+    It should be possible to reference your EXE using the <x><extensions /></x> clause.
+</p>
+
+<cs src="examples/AddTarget.cs" />
+</content>
+

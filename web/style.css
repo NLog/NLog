@@ -3,23 +3,37 @@ html, body
     margin-right: 4px;
     margin-left: 4px;
     margin-top: 2px;
-    background-color: #fff8f8;
+    background-color: white;
     color: black;
     font-family: Verdana;
-    font-size: 70%;
+    font-size: 11px;
     overflow-y: scroll;
     overflow-x: none;
 }
 
 h1
 {
-    font-size: 150%;
+    font-size: 19px;
 }
 
 h2
 {
     margin-top: 30px;
-    font-size: 120%;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+h5
+{
+    margin-top: 30px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+h6
+{
+    font-size: 10px;
+    font-weight: bold;
 }
 
 td.nav
@@ -159,9 +173,9 @@ span.xmlcomment
 a.nav
 {
     display: block;
-    font-family: Trebuchet MS, Arial, Helv;
+    font-family: Tahoma, Arial, Helv;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 15px;
     color: #202040;
     margin: 1px;
@@ -184,11 +198,12 @@ a.nav:hover
 a.nav_selected
 {
     display: block;
-    font-family: Trebuchet MS, Arial, Helv;
+    font-family: Tahoma, Trebuchet MS, Arial, Helv;
     font-style: normal;
     font-weight: normal;
     font-size: 17px;
     color: #805020;
+    margin-left: 4px;
     cursor: pointer; cursor: hand;
     text-decoration: none;
 }
@@ -230,8 +245,7 @@ a.subnav:visited
 
 a.subnav:hover
 {
-    color: red;
-    background-color: #e0e0e0;
+    background-color: #fff0d0;
 }
 
 a.subnav_selected
@@ -243,7 +257,7 @@ a.subnav_selected
     font-size: 12px;
     color: #805020;
     /* border: 1px dashed #404040; */
-    background-color: #ffe0e0;
+    background-color: #fff0c0;
     padding-left: 4px;
     padding-right: 4px;
     cursor: pointer; cursor: hand;
@@ -266,7 +280,7 @@ td.nav
 
 td.nav_selected
 {
-    background-color: white;
+    background-color: #ffffc0;
     border: 1px dashed #c0c0c0;
     padding-left: 4px;
     padding-right: 4px;
@@ -275,7 +289,7 @@ td.nav_selected
 td.titledesc
 {
     font-family: Verdana;
-    font-size: 70%;
+    font-size: 12px;
     vertical-align: bottom;
     padding-bottom: 10px;
     padding-right: 10px;
@@ -298,14 +312,14 @@ td.content
     font-size: 13px;
     padding: 4px;
     text-align: left;
-    background-color: #fff8f8;
+    background-color: #ffffff;
 }
 
 td.controls
 {
     padding: 6px;
     width: 220px;
-    background-color: #fff8f8;
+    background-color: #ffffff;
 }
 
 table.page
@@ -321,7 +335,7 @@ tr.spacer
 
 td.copyright
 {
-    background-color: #fff8f8;
+    background-color: white;
     padding: 4px;
     font-size: 11px;
     text-align: center;
@@ -331,7 +345,7 @@ td.copyright
 
 td.hostedby
 {
-    background-color: #fff8f8;
+    background-color: white;
     padding: 4px;
 }
 
@@ -352,22 +366,26 @@ td.newstext
 
 .xml-example
 {
-    background-color: #ffffff; 
+    background-color: #fffff0; 
     border: 1px solid #c0c0c0; 
-    overflow-x: auto; 
-    width: 600px;
+    overflow: auto;
+    width: 96%;
+    display: block;
+    margin-left: 2%;
     font-size: 12px;
+    padding: 4px;
 }
 
 .csharp-example
 {
     font-family: Courier New;
-    background-color: #ffffff; 
+    background-color: #fffff0; 
     border: 1px solid #c0c0c0; 
-    overflow-x: auto; 
-    overflow-y: auto; 
-    width: 600px;
+    overflow: auto; 
+    width: 96%;
+    margin-left: 2%;
     font-size: 12px;
+    padding: 4px;
 }
 
 .csharp .k
@@ -435,6 +453,15 @@ code
     margin: 0px;
 }
 
+.noborder table {
+    font-size: 13px;
+}
+
+.noborder td {
+    margin: 4px;
+    padding: 4px;
+}
+
 .table tr.alternate
 {
     background-color: #fff0f0;
@@ -485,4 +512,86 @@ table.submenu
 .benchmark-winner
 {
     background-color: #ffffb0;
+}
+
+td.label
+{
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.missing
+{
+    color: red;
+}
+
+code.config
+{
+    background-color: white;
+    display: block;
+    border: 1px solid #e0e0e0;
+    padding: 4px;
+}
+
+.acceptslayout
+{
+    font-family: Tahoma;
+    font-size: 11px;
+    background-color: yellow;
+    border: 1px solid #e0e000;
+    margin-right: 4px;
+    padding-left: 2px;
+    padding-right: 2px;
+    cursor: normal;
+}
+
+.required
+{
+    font-weight: bold;
+    color: blue;
+    text-decoration: none;
+}
+
+pre.example
+{
+    background-color: #fffff0;
+    border: 1px solid #c0c0c0;
+    color: black;
+    padding: 4px;
+}
+
+.subexample
+{
+    padding-left: 50px;
+}
+
+.subremarks
+{
+    padding-left: 50px;
+}
+
+.propertyheader
+{
+    padding-top: 2px;
+    padding-bottom: 2px;
+    display: block;
+}
+
+.propertydetails
+{
+    display: block;
+}
+
+.parametername
+{
+    text-align: left;
+    vertical-align: top;
+    font-size: 11px;
+}
+
+.parametervalue
+{
+    text-align: left;
+    vertical-align: top;
+    font-size: 11px;
 }

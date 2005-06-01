@@ -4,9 +4,9 @@
         <add assembly="MyAssembly" />
     </extensions>
 
-    <appenders>
-        <appender name="a1" type="MyFirst" host="localhost" />
-    </appenders>
+    <targets>
+        <target name="a1" type="MyFirst" host="localhost" />
+    </targets>
 
     <rules>
         <logger name="*" minLevel="Info" appendTo="a1" />

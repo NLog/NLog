@@ -86,7 +86,7 @@ namespace NLog.Internal
                 throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
 
             IList propertyValue = (IList)propInfo.GetValue(o, null);
-            Type elementType = GetArrayElementType(propInfo);
+            Type elementType = GetArrayItemType(propInfo);
             object arrayItem = FactoryHelper.CreateInstance(elementType);
 
             foreach (XmlAttribute attrib in el.Attributes)
@@ -176,13 +176,13 @@ namespace NLog.Internal
             return retVal;
         }
 
-        private static Type GetArrayElementType(PropertyInfo propInfo)
+        private static Type GetArrayItemType(PropertyInfo propInfo)
         {
             if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
             {
                 ArrayParameterAttribute[]attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
 
-                return attributes[0].ElementType;
+                return attributes[0].ItemType;
             }
             else
             {

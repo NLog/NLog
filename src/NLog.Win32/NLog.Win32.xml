@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NLog.Win32</name>
+    </assembly>
+    <members>
+        <member name="T:NLog.Win32.LayoutRenderers.ASPApplicationValueLayoutRenderer">
+            <summary>
+            ASP Application variable.
+            </summary>
+        </member>
+        <member name="M:NLog.Win32.LayoutRenderers.ASPApplicationValueLayoutRenderer.GetEstimatedBufferSize(NLog.LogEventInfo)">
+            <summary>
+            Returns the estimated number of characters that are needed to
+            hold the rendered value for the specified logging event.
+            </summary>
+            <param name="ev">Logging event information.</param>
+            <returns>The number of characters.</returns>
+            <remarks>
+            Because ASP appender uses COM Interop which is quite expensive, this method always returns 64.
+            </remarks>
+        </member>
+        <member name="M:NLog.Win32.LayoutRenderers.ASPApplicationValueLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+            <summary>
+            Renders the specified ASP Application variable and appends it to the specified <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
+            <param name="ev">Logging event.</param>
+        </member>
+        <member name="P:NLog.Win32.LayoutRenderers.ASPApplicationValueLayoutRenderer.Item">
+            <summary>
+            The variable name.
+            </summary>
+        </member>
+        <member name="T:NLog.Win32.LayoutRenderers.ASPRequestValueLayoutRenderer">
+            <summary>
+            ASP Request variable
+            </summary>
+        </member>
+        <member name="M:NLog.Win32.LayoutRenderers.ASPRequestValueLayoutRenderer.GetEstimatedBufferSize(NLog.LogEventInfo)">
+            <summary>
+            Returns the estimated number of characters that are needed to
+            hold the rendered value for the specified logging event.
+            </summary>
+            <param name="ev">Logging event information.</param>
+            <returns>The number of characters.</returns>
+            <remarks>
+            Because ASP appender uses COM Interop which is quite expensive, this method always returns 64.
+            </remarks>
+        </member>
+        <member name="M:NLog.Win32.LayoutRenderers.ASPRequestValueLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+            <summary>
+            Renders the specified ASP Request variable and appends it to the specified <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
+            <param name="ev">Logging event.</param>
+        </member>
+        <member name="P:NLog.Win32.LayoutRenderers.ASPRequestValueLayoutRenderer.Item">
+            <summary>
+            The item name. The QueryString, Form, Cookies, or ServerVariables collection variables having the specified name are rendered.
+            </summary>
+        </member>
+        <member name="P:NLog.Win32.LayoutRenderers.ASPRequestValueLayoutRenderer.QueryString">
+            <summary>
+            The QueryString variable to be rendered.
+            </summary>
+        </member>
+        <member name="P:NLog.Win32.LayoutRenderers.ASPRequestValueLayoutRenderer.Form">
+            <summary>
+            The form variable to be rendered.
+            </summary>
+        </member>
+        <member name="P:NLog.Win32.LayoutRenderers.ASPRequestValueLayoutRenderer.Cookie">
+            <summary>
+            The cookie to be rendered.
+            </summary>
+        </member>
+        <member name="P:NLog.Win32.LayoutRenderers.ASPRequestValueLayoutRenderer.ServerVariable">
+            <summary>
+            The ServerVariables item to be rendered.
+            </summary>
+        </member>
+        <member name="T:NLog.Win32.LayoutRenderers.ASPSessionValueLayoutRenderer">
+            <summary>
+            ASP Session variable.
+            </summary>
+        </member>
+        <member name="M:NLog.Win32.LayoutRenderers.ASPSessionValueLayoutRenderer.GetEstimatedBufferSize(NLog.LogEventInfo)">
+            <summary>
+            Returns the estimated number of characters that are needed to
+            hold the rendered value for the specified logging event.
+            </summary>
+            <param name="ev">Logging event information.</param>
+            <returns>The number of characters.</returns>
+            <remarks>
+            Because ASP appender uses COM Interop which is quite expensive, this method always returns 64.
+            </remarks>
+        </member>
+        <member name="M:NLog.Win32.LayoutRenderers.ASPSessionValueLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+            <summary>
+            Renders the specified ASP Session variable and appends it to the specified <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
+            <param name="ev">Logging event.</param>
+        </member>
+        <member name="P:NLog.Win32.LayoutRenderers.ASPSessionValueLayoutRenderer.Variable">
+            <summary>
+            Session variable name.
+            </summary>
+        </member>
+        <member name="T:NLog.Win32.LayoutRenderers.RegistryLayoutRenderer">
+            <summary>
+            A value from the Registry.
+            </summary>
+        </member>
+        <member name="P:NLog.Win32.LayoutRenderers.RegistryLayoutRenderer.Value">
+            <summary>
+            Registry value.
+            </summary>
+        </member>
+        <member name="P:NLog.Win32.LayoutRenderers.RegistryLayoutRenderer.DefaultValue">
+            <summary>
+            The value to be output when the specified registry key or value is not found.
+            </summary>
+        </member>
+        <member name="P:NLog.Win32.LayoutRenderers.RegistryLayoutRenderer.Key">
+            <summary>
+            Registry key.
+            </summary>
+            <remarks>
+            Must have one of the forms:
+            <list type="String">
+            <item>HKLM\Key\Full\Name</item>
+            <item>HKEY_LOCAL_MACHINE\Key\Full\Name</item>
+            <item>HKCU\Key\Full\Name</item>
+            <item>HKEY_CURRENT_USER\Key\Full\Name</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="T:NLog.Win32.Targets.OutputDebugStringTarget">
+            <summary>
+            Outputs logging messages through the <c>OutputDebugString()</c> Win32 API.
+            </summary>
+        </member>
+        <member name="M:NLog.Win32.Targets.OutputDebugStringTarget.Append(NLog.LogEventInfo)">
+            <summary>
+            Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
+            </summary>
+            <param name="ev">The logging event.</param>
+        </member>
+        <member name="M:NLog.Win32.Targets.OutputDebugStringTarget.OutputDebugString(System.String)">
+            <summary>
+            Stub for OutputDebugString native method
+            </summary>
+            <param name="message">the string to output</param>
+        </member>
+    </members>
+</doc>

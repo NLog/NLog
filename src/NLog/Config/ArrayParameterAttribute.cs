@@ -36,26 +36,42 @@ using System;
 
 namespace NLog.Config
 {
+    /// <summary>
+    /// Used to mark configurable parameters which are arrays. 
+    /// Specifies the mapping between XML elements and .NET types.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public sealed class ArrayParameterAttribute: Attribute
     {
-        private Type _elementType;
+        private Type _itemType;
         private string _elementName;
 
-        public ArrayParameterAttribute(Type elementType, string elementName)
+        /// <summary>
+        /// Creates a new instance of ArrayParameterAttribute specifying the
+        /// element type and configuration element name.
+        /// </summary>
+        /// <param name="itemType">The type of the array item</param>
+        /// <param name="elementName">The XML element name that represents the item.</param>
+        public ArrayParameterAttribute(Type itemType, string elementName)
         {
-            _elementType = elementType;
+            _itemType = itemType;
             _elementName = elementName;
         }
 
-        public Type ElementType
+        /// <summary>
+        /// The .NET type of the array item
+        /// </summary>
+        public Type ItemType
         {
             get
             {
-                return _elementType;
+                return _itemType;
             }
         }
 
+        /// <summary>
+        /// The XML element name.
+        /// </summary>
         public string ElementName
         {
             get

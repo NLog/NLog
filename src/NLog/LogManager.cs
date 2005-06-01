@@ -45,7 +45,7 @@ using System.Globalization;
 
 using NLog.Config;
 using NLog.Internal;
-using NLog.Appenders;
+using NLog.Targets;
 
 namespace NLog
 {
@@ -56,6 +56,7 @@ namespace NLog
     {
         private static LoggerDictionary _loggerCache = new LoggerDictionary();
         private static LoggingConfiguration _config;
+        private static LogLevel _globalThreshold = LogLevel.Debug;
         private static bool _configLoaded = false;
         private static bool _throwExceptions = false;
         private static bool _reloadConfigOnNextLog = false;
@@ -72,6 +73,10 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Specified whether NLog should throw exceptions. By default exceptions
+        /// are not thrown under any circumstances.
+        /// </summary>
         public static bool ThrowExceptions
         {
             get
@@ -87,6 +92,12 @@ namespace NLog
         private LogManager(){}
 
 #if !NETCF
+        /// <summary>
+        /// Gets the logger named after the currently-being-initialized class.
+        /// </summary>
+        /// <returns>The logger.</returns>
+        /// <remarks>This is a slow-running method. 
+        /// Make sure you're not doing this in a loop.</remarks>
         public static Logger GetCurrentClassLogger()
         {
             StackTrace st = new StackTrace(false);
@@ -97,14 +108,30 @@ namespace NLog
 #endif
 
         /// <summary>
+        /// Creates a logger that discards all log messages.
+        /// </summary>
+        /// <returns></returns>
+        public static Logger CreateNullLogger()
+        {
+            TargetWithFilterChain[]targetsByLevel = new TargetWithFilterChain[(int)LogLevel.MaxLevel + 1];
+            return new Logger("", targetsByLevel);
+
+        }
+
+        internal static void CheckForConfigChanges()
+        {
+            if (ReloadConfigOnNextLog)
+                ReloadConfig();
+        }
+
+        /// <summary>
         /// Gets the specified named logger.
         /// </summary>
         /// <param name="name">name of the logger</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         public static Logger GetLogger(string name)
         {
-            if (ReloadConfigOnNextLog)
-                ReloadConfig();
+            CheckForConfigChanges();
 
             lock(typeof(LogManager))
             {
@@ -112,9 +139,9 @@ namespace NLog
                 if (l != null)
                     return l;
 
-                AppenderWithFilterChain[]appendersByLevel = GetAppendersByLevelForLogger(name, Configuration);
+                TargetWithFilterChain[]targetsByLevel = GetTargetsByLevelForLogger(name, Configuration);
 
-                Logger newLogger = new LoggerImpl(name, appendersByLevel);
+                Logger newLogger = new Logger(name, targetsByLevel);
                 _loggerCache[name] = newLogger;
                 return newLogger;
             }
@@ -266,13 +293,13 @@ namespace NLog
                 return;
 
             InternalLogger.Info("--- NLog configuration dump. ---");
-            InternalLogger.Info("Appenders:");
-            foreach (Appender appender in config.Appenders.Values)
+            InternalLogger.Info("Targets:");
+            foreach (Target target in config.Targets.Values)
             {
-                InternalLogger.Info("{0}", appender);
+                InternalLogger.Info("{0}", target);
             }
             InternalLogger.Info("Rules:");
-            foreach (AppenderRule rule in config.AppenderRules)
+            foreach (LoggingRule rule in config.LoggingRules)
             {
                 InternalLogger.Info("{0}", rule);
             }
@@ -294,67 +321,82 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Loops through all loggers previously returned by <see cref="GetLogger" />
+        /// and recalculates their appender and filter list. Useful after modifying the configuration programmatically
+        /// to ensure that all loggers have been properly configured.
+        /// </summary>
+        public static void ReconfigExistingLoggers()
+        {
+            ReconfigExistingLoggers(Configuration);
+        }
+
         internal static void ReconfigExistingLoggers(LoggingConfiguration config)
         {
-            foreach (LoggerImpl logger in _loggerCache.Values)
+            foreach (Logger logger in _loggerCache.Values)
             {
-                logger.Reconfig(GetAppendersByLevelForLogger(logger.Name, config));
+                logger.Reconfig(GetTargetsByLevelForLogger(logger.Name, config));
             }
         }
 
-        internal static AppenderWithFilterChain[]GetAppendersByLevelForLogger(string name, LoggingConfiguration config)
+        internal static void GetTargetsByLevelForLogger(string name, LoggingRuleCollection rules, TargetWithFilterChain[]targetsByLevel, TargetWithFilterChain[]lastTargetsByLevel)
         {
-            AppenderWithFilterChain[]appendersByLevel = new AppenderWithFilterChain[(int)LogLevel.MaxLevel + 1];
-            AppenderWithFilterChain[]lastAppendersByLevel = new AppenderWithFilterChain[(int)LogLevel.MaxLevel + 1];
-
-            if (config != null)
+            foreach (LoggingRule rule in rules)
             {
-                foreach (AppenderRule rule in config.AppenderRules)
+                if (rule.NameMatches(name))
                 {
-                    if (rule.Appenders.Count == 0)
-                        continue;
-
-                    if (rule.Matches(name))
+                    for (int i = 0; i <= (int)LogLevel.MaxLevel; ++i)
                     {
-                        for (int i = 0; i <= (int)LogLevel.MaxLevel; ++i)
+                        if (i >= (int)GlobalThreshold && rule.IsLoggingEnabledForLevel((LogLevel)i))
                         {
-                            if (rule.IsLoggingEnabledForLevel((LogLevel)i))
+                            foreach (Target target in rule.Targets)
                             {
-                                foreach (Appender appender in rule.Appenders)
+                                TargetWithFilterChain awf = new TargetWithFilterChain(target, rule.Filters);
+                                if (lastTargetsByLevel[i] != null)
                                 {
-                                    AppenderWithFilterChain awf = new AppenderWithFilterChain(appender, rule.Filters);
-                                    if (lastAppendersByLevel[i] != null)
-                                    {
-                                        lastAppendersByLevel[i].Next = awf;
-                                    }
-                                    else
-                                    {
-                                        appendersByLevel[i] = awf;
-                                    }
-                                    lastAppendersByLevel[i] = awf;
+                                    lastTargetsByLevel[i].Next = awf;
                                 }
+                                else
+                                {
+                                    targetsByLevel[i] = awf;
+                                }
+                                lastTargetsByLevel[i] = awf;
                             }
                         }
-                        if (rule.Final)
-                            break;
                     }
+
+                    GetTargetsByLevelForLogger(name, rule.ChildRules, targetsByLevel, lastTargetsByLevel);
+
+                    if (rule.Final)
+                        break;
                 }
             }
+        }
 
-            InternalLogger.Debug("Appenders for {0} by level:", name);
+        internal static TargetWithFilterChain[]GetTargetsByLevelForLogger(string name, LoggingConfiguration config)
+        {
+            TargetWithFilterChain[]targetsByLevel = new TargetWithFilterChain[(int)LogLevel.MaxLevel + 1];
+            TargetWithFilterChain[]lastTargetsByLevel = new TargetWithFilterChain[(int)LogLevel.MaxLevel + 1];
+
+            if (config != null && IsLoggingEnabled())
+            {
+                GetTargetsByLevelForLogger(name, config.LoggingRules, targetsByLevel, lastTargetsByLevel);
+            }
+
+            InternalLogger.Debug("Targets for {0} by level:", name);
             for (int i = 0; i <= (int)LogLevel.MaxLevel; ++i)
             {
                 StringBuilder sb = new StringBuilder();
                 sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", (LogLevel)i);
-                for (AppenderWithFilterChain afc = appendersByLevel[i]; afc != null; afc = afc.Next)
+                for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.Next)
                 {
-                    sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Appender.Name);
+                    sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
                     if (afc.FilterChain.Count > 0)
                         sb.AppendFormat(CultureInfo.InvariantCulture, "({0} filters)", afc.FilterChain.Count);
                 }
                 InternalLogger.Debug(sb.ToString());
             }
-            return appendersByLevel;
+            return targetsByLevel;
         }
 
         private static int _logsEnabled = 0;
@@ -371,20 +413,62 @@ namespace NLog
             }
         }
 
+        /// <summary>Decreases the log enable counter and if it reaches -1 
+        /// the logs are disabled.</summary>
+        /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
+        /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
+        /// <returns>An object that iplements IDisposable whose Dispose() method
+        /// reenables logging. To be used with C# <c>using ()</c> statement.</returns>
         public static IDisposable DisableLogging()
         {
-            Interlocked.Decrement(ref _logsEnabled);
+            lock (typeof(LogManager))
+            {
+                _logsEnabled--;
+                if (_logsEnabled == -1)
+                    ReconfigExistingLoggers();
+            }
             return LogEnabler.TheEnabler;
         }
 
+        /// <summary>Increases the log enable counter and if it reaches 0 the logs are disabled.</summary>
+        /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
+        /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
         public static void EnableLogging()
         {
-            Interlocked.Increment(ref _logsEnabled);
+            lock (typeof(LogManager))
+            {
+                _logsEnabled++;
+                if (_logsEnabled == 0)
+                    ReconfigExistingLoggers();
+            }
         }
 
+        /// <summary>
+        /// Returns <see langword="true" /> if logging is currently enabled.
+        /// </summary>
+        /// <returns><see langword="true" /> if logging is currently enabled, 
+        /// <see langword="false"/> otherwise.</returns>
+        /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
+        /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
         public static bool IsLoggingEnabled()
         {
             return _logsEnabled >= 0;
+        }
+
+        /// <summary>
+        /// Global log threshold. Log events below this threshold are not logged.
+        /// </summary>
+        public static LogLevel GlobalThreshold
+        {
+            get { return _globalThreshold; }
+            set 
+            { 
+                lock(typeof(LogManager))
+                {
+                    _globalThreshold = value;
+                    ReconfigExistingLoggers();
+                }
+            }
         }
     }
 }

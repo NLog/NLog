@@ -37,10 +37,20 @@ using System.Collections;
 
 namespace NLog
 {
+    /// <summary>
+    /// Mapped Diagnostics Context - a thread-local structure that keeps a dictionary
+    /// of strings and provides methods to output them in layouts. 
+    /// Mostly for compatibility with log4net.
+    /// </summary>
     public sealed class MDC
     {
         private MDC(){}
 
+        /// <summary>
+        /// Sets the current thread MDC item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
         public static void Set(string item, string value)
         {
             IDictionary dict = GetThreadDictionary();
@@ -48,6 +58,11 @@ namespace NLog
             dict[item] = value;
         }
 
+        /// <summary>
+        /// Gets the current thread MDC named item.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <returns>The item value of String.Empty if the value is not present.</returns>
         public static string Get(string item)
         {
             IDictionary dict = GetThreadDictionary();
@@ -59,6 +74,11 @@ namespace NLog
                 return s;
         }
 
+        /// <summary>
+        /// Checks whether the specified item exists in current thread MDC.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <returns>A boolean indicating whether the specified item exists in current thread MDC.</returns>
         public static bool Contains(string item)
         {
             IDictionary dict = GetThreadDictionary();
@@ -66,6 +86,10 @@ namespace NLog
             return dict.Contains(item);
         }
 
+        /// <summary>
+        /// Removes the specified item from current thread MDC.
+        /// </summary>
+        /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
             IDictionary dict = GetThreadDictionary();
@@ -73,6 +97,9 @@ namespace NLog
             dict.Remove(item);
         }
 
+        /// <summary>
+        /// Clears the content of current thread MDC.
+        /// </summary>
         public static void Clear()
         {
             IDictionary dict = GetThreadDictionary();

@@ -1,42 +1,32 @@
 ﻿<results>
   <test logger="Non-logging" repetitions="1000000">
-    <timing name="No formatting" totalTime="00:00:00.0200288" repetitions="1000000" logsPerSecond="49928104" nanosecondsPerLog="20.0288" />
-    <timing name="1 format parameter" totalTime="00:00:00.1101584" repetitions="1000000" logsPerSecond="9077837" nanosecondsPerLog="110.1584" />
-    <timing name="2 format parameters" totalTime="00:00:00.1502160" repetitions="1000000" logsPerSecond="6657080" nanosecondsPerLog="150.216" />
-    <timing name="3 format parameters" totalTime="00:00:00.1902736" repetitions="1000000" logsPerSecond="5255590" nanosecondsPerLog="190.2736" />
-    <timing name="No formatting, using a guard" totalTime="00:00:00.0200288" repetitions="1000000" logsPerSecond="49928104" nanosecondsPerLog="20.0288" />
-    <timing name="1 format parameter, using a guard" totalTime="00:00:00.0100144" repetitions="1000000" logsPerSecond="99856207" nanosecondsPerLog="10.0144" />
-    <timing name="2 format parameters, using a guard" totalTime="00:00:00.0100144" repetitions="1000000" logsPerSecond="99856207" nanosecondsPerLog="10.0144" />
-    <timing name="3 format parameters, using a guard" totalTime="00:00:00.0300432" repetitions="1000000" logsPerSecond="33285402" nanosecondsPerLog="30.0432" />
-  </test>
-  <test logger="File appender" repetitions="100000">
-    <timing name="No formatting" totalTime="00:00:00.6909936" repetitions="100000" logsPerSecond="144719" nanosecondsPerLog="6909.936" />
-    <timing name="1 format parameter" totalTime="00:00:00.6909936" repetitions="100000" logsPerSecond="144719" nanosecondsPerLog="6909.936" />
-    <timing name="2 format parameters" totalTime="00:00:00.7510800" repetitions="100000" logsPerSecond="133142" nanosecondsPerLog="7510.8" />
-    <timing name="3 format parameters" totalTime="00:00:00.8211808" repetitions="100000" logsPerSecond="121776" nanosecondsPerLog="8211.808" />
-    <timing name="No formatting, using a guard" totalTime="00:00:00.6509360" repetitions="100000" logsPerSecond="153625" nanosecondsPerLog="6509.36" />
-    <timing name="1 format parameter, using a guard" totalTime="00:00:00.6008640" repetitions="100000" logsPerSecond="166427" nanosecondsPerLog="6008.64" />
-    <timing name="2 format parameters, using a guard" totalTime="00:00:00.9613824" repetitions="100000" logsPerSecond="104017" nanosecondsPerLog="9613.824" />
-    <timing name="3 format parameters, using a guard" totalTime="00:00:00.8712528" repetitions="100000" logsPerSecond="114777" nanosecondsPerLog="8712.528" />
+    <timing name="No formatting" totalTime="00:00:00.0080000" repetitions="1000000" logsPerSecond="132232914.665682" nanosecondsPerLog="7.5624136587192" />
+    <timing name="1 format parameter" totalTime="00:00:00.0080000" repetitions="1000000" logsPerSecond="122143758.95721" nanosecondsPerLog="8.18707405550147" />
+    <timing name="2 format parameters" totalTime="00:00:00.0280000" repetitions="1000000" logsPerSecond="36267654.86636" nanosecondsPerLog="27.5727781044798" />
+    <timing name="3 format parameters" totalTime="00:00:00.0350000" repetitions="1000000" logsPerSecond="28821741.4409482" nanosecondsPerLog="34.6960298026705" />
+    <timing name="No formatting, using a guard" totalTime="00:00:00.0070000" repetitions="1000000" logsPerSecond="144324852.834449" nanosecondsPerLog="6.92881357826204" />
+    <timing name="1 format parameter, using a guard" totalTime="00:00:00.0070000" repetitions="1000000" logsPerSecond="142356134.420362" nanosecondsPerLog="7.02463581265217" />
+    <timing name="2 format parameters, using a guard" totalTime="00:00:00.0070000" repetitions="1000000" logsPerSecond="144330672.150317" nanosecondsPerLog="6.9285342131472" />
+    <timing name="3 format parameters, using a guard" totalTime="00:00:00.0070000" repetitions="1000000" logsPerSecond="144330672.150317" nanosecondsPerLog="6.9285342131472" />
   </test>
   <test logger="Null-appender without layout" repetitions="1000000">
-    <timing name="No formatting" totalTime="00:00:00.2904176" repetitions="1000000" logsPerSecond="3443317" nanosecondsPerLog="290.4176" />
-    <timing name="1 format parameter" totalTime="00:00:00.3404896" repetitions="1000000" logsPerSecond="2936947" nanosecondsPerLog="340.4896" />
-    <timing name="2 format parameters" totalTime="00:00:00.3404896" repetitions="1000000" logsPerSecond="2936947" nanosecondsPerLog="340.4896" />
-    <timing name="3 format parameters" totalTime="00:00:00.4206048" repetitions="1000000" logsPerSecond="2377529" nanosecondsPerLog="420.6048" />
-    <timing name="No formatting, using a guard" totalTime="00:00:00.3104464" repetitions="1000000" logsPerSecond="3221168" nanosecondsPerLog="310.4464" />
-    <timing name="1 format parameter, using a guard" totalTime="00:00:00.3304752" repetitions="1000000" logsPerSecond="3025946" nanosecondsPerLog="330.4752" />
-    <timing name="2 format parameters, using a guard" totalTime="00:00:00.4005760" repetitions="1000000" logsPerSecond="2496405" nanosecondsPerLog="400.576" />
-    <timing name="3 format parameters, using a guard" totalTime="00:00:00.4005760" repetitions="1000000" logsPerSecond="2496405" nanosecondsPerLog="400.576" />
+    <timing name="No formatting" totalTime="00:00:00.1590000" repetitions="1000000" logsPerSecond="6294225.63271163" nanosecondsPerLog="158.875778904861" />
+    <timing name="1 format parameter" totalTime="00:00:00.2010000" repetitions="1000000" logsPerSecond="4979820.81495806" nanosecondsPerLog="200.810438198151" />
+    <timing name="2 format parameters" totalTime="00:00:00.2130000" repetitions="1000000" logsPerSecond="4705061.60733768" nanosecondsPerLog="212.537068258675" />
+    <timing name="3 format parameters" totalTime="00:00:00.2330000" repetitions="1000000" logsPerSecond="4289027.32146152" nanosecondsPerLog="233.153096273409" />
+    <timing name="No formatting, using a guard" totalTime="00:00:00.1610000" repetitions="1000000" logsPerSecond="6212880.69579223" nanosecondsPerLog="160.95593154996" />
+    <timing name="1 format parameter, using a guard" totalTime="00:00:00.2060000" repetitions="1000000" logsPerSecond="4862574.06859003" nanosecondsPerLog="205.652394368558" />
+    <timing name="2 format parameters, using a guard" totalTime="00:00:00.2180000" repetitions="1000000" logsPerSecond="4588807.27123555" nanosecondsPerLog="217.921551482102" />
+    <timing name="3 format parameters, using a guard" totalTime="00:00:00.2370000" repetitions="1000000" logsPerSecond="4223886.16241845" nanosecondsPerLog="236.748804666515" />
   </test>
   <test logger="Null-appender with layout rendering" repetitions="1000000">
-    <timing name="No formatting" totalTime="00:00:04.4564080" repetitions="1000000" logsPerSecond="224396" nanosecondsPerLog="4456.408" />
-    <timing name="1 format parameter" totalTime="00:00:06.0687264" repetitions="1000000" logsPerSecond="164779" nanosecondsPerLog="6068.7264" />
-    <timing name="2 format parameters" totalTime="00:00:06.1588560" repetitions="1000000" logsPerSecond="162368" nanosecondsPerLog="6158.856" />
-    <timing name="3 format parameters" totalTime="00:00:06.6095040" repetitions="1000000" logsPerSecond="151297" nanosecondsPerLog="6609.504" />
-    <timing name="No formatting, using a guard" totalTime="00:00:04.3162064" repetitions="1000000" logsPerSecond="231685" nanosecondsPerLog="4316.2064" />
-    <timing name="1 format parameter, using a guard" totalTime="00:00:05.8484096" repetitions="1000000" logsPerSecond="170987" nanosecondsPerLog="5848.4096" />
-    <timing name="2 format parameters, using a guard" totalTime="00:00:05.9685824" repetitions="1000000" logsPerSecond="167544" nanosecondsPerLog="5968.5824" />
-    <timing name="3 format parameters, using a guard" totalTime="00:00:06.6395472" repetitions="1000000" logsPerSecond="150613" nanosecondsPerLog="6639.5472" />
+    <timing name="No formatting" totalTime="00:00:02.7100000" repetitions="1000000" logsPerSecond="369043.367488961" nanosecondsPerLog="2709.70863615348" />
+    <timing name="1 format parameter" totalTime="00:00:03.7000000" repetitions="1000000" logsPerSecond="270289.688459089" nanosecondsPerLog="3699.73418409323" />
+    <timing name="2 format parameters" totalTime="00:00:03.8000000" repetitions="1000000" logsPerSecond="263152.516487902" nanosecondsPerLog="3800.07766350193" />
+    <timing name="3 format parameters" totalTime="00:00:04.0620000" repetitions="1000000" logsPerSecond="246186.326352651" nanosecondsPerLog="4061.96402056686" />
+    <timing name="No formatting, using a guard" totalTime="00:00:02.6320000" repetitions="1000000" logsPerSecond="379986.618100044" nanosecondsPerLog="2631.67162306941" />
+    <timing name="1 format parameter, using a guard" totalTime="00:00:03.4930000" repetitions="1000000" logsPerSecond="286322.163456505" nanosecondsPerLog="3492.56930699293" />
+    <timing name="2 format parameters, using a guard" totalTime="00:00:03.6730000" repetitions="1000000" logsPerSecond="272257.378903654" nanosecondsPerLog="3672.99503149143" />
+    <timing name="3 format parameters, using a guard" totalTime="00:00:04.0670000" repetitions="1000000" logsPerSecond="245881.747169287" nanosecondsPerLog="4066.99566565024" />
   </test>
 </results>

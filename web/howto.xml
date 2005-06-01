@@ -3,8 +3,8 @@
 <content lang="en" id="howto">
     <h1>How To...</h1>
     <ol>
-        <li><link href="howto_write_appender">How to write your own Appender</link></li>
-        <li><link href="howto_write_layout_appender">How to write your own Layout Appender</link></li>
+        <li><link href="howto_write_target">How to write your own log Target</link></li>
+        <li><link href="howto_write_layout_renderer">How to write your own Layout Renderer</link></li>
         <li><link href="howto_write_filter">How to write your own Filter</link></li>
         <li><link href="howto_optimize_performance">How to optimize logging performance</link></li>
         <li><link href="howto_troubleshoot">How to troubleshoot your logging problems</link></li>

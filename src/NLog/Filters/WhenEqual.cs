@@ -36,16 +36,27 @@ using System;
 using System.Text;
 
 using NLog;
+using NLog.Config;
 
 namespace NLog.Filters
 {
+    /// <summary>
+    /// Matches when the calculated layout is equal to the specified substring.
+    /// </summary>
     [Filter("whenEqual")]
     public class WhenEqualsFilter: LayoutBasedFilter
     {
+        /// <summary>
+        /// Initializes a new instance of the filter object.
+        /// </summary>
         public WhenEqualsFilter(){}
 
         private string _compareTo;
 
+        /// <summary>
+        /// String to compare the layout to.
+        /// </summary>
+        [RequiredParameter]
         public string CompareTo
         {
             get
@@ -58,9 +69,18 @@ namespace NLog.Filters
             }
         }
 
-        public override FilterResult Check(LogEventInfo logMessage)
+        /// <summary>
+        /// Checks whether log event should be logged or not.
+        /// </summary>
+        /// <param name="logEvent">Log event.</param>
+        /// <returns>
+        /// <see cref="FilterResult.Ignore"/> - if the log event should be ignored<br/>
+        /// <see cref="FilterResult.Neutral"/> - if the filter doesn't want to decide<br/>
+        /// <see cref="FilterResult.Log"/> - if the log event should be logged<br/>
+        /// </returns>
+        protected internal override FilterResult Check(LogEventInfo logEvent)
         {
-            if (CompiledLayout.GetFormattedMessage(logMessage) == CompareTo)
+            if (CompiledLayout.GetFormattedMessage(logEvent) == CompareTo)
                 return Result;
             else
                 return FilterResult.Neutral;

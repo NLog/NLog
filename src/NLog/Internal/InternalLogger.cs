@@ -18,7 +18,6 @@
 // * Neither the name of the Jaroslaw Kowalski nor the names of its 
 //   contributors may be used to endorse or promote products derived from this
 //   software without specific prior written permission. 
-// 
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
@@ -44,11 +43,17 @@ using NLog.Config;
 
 namespace NLog.Internal
 {
+    /// <summary>
+    /// NLog internal logger
+    /// </summary>
     public sealed class InternalLogger
     {
         private static LogLevel _logLevel = LogLevel.Info;
         private static bool _logToConsole = false;
 
+        /// <summary>
+        /// Internal log level.
+        /// </summary>
         public static LogLevel LogLevel
         {
             get
@@ -61,6 +66,9 @@ namespace NLog.Internal
             }
         }
 
+        /// <summary>
+        /// Log internal messages to the console.
+        /// </summary>
         public static bool LogToConsole
         {
             get
@@ -73,6 +81,10 @@ namespace NLog.Internal
             }
         }
 
+        /// <summary>
+        /// The name of the internal log file.
+        /// </summary>
+        /// <remarks><see langword="null" /> value disables internal logging to a file.</remarks>
         public static string LogFile
         {
             get
@@ -150,35 +162,50 @@ namespace NLog.Internal
             }
         }
 
-        internal static bool IsDebugEnabled
+        /// <summary>
+        /// Returns true when internal log level includes Debug messages
+        /// </summary>
+        public static bool IsDebugEnabled
         {
             get
             {
                 return LogLevel.Debug >= _logLevel;
             }
         }
-        internal static bool IsInfoEnabled
+        /// <summary>
+        /// Returns true when internal log level includes Info messages
+        /// </summary>
+        public static bool IsInfoEnabled
         {
             get
             {
                 return LogLevel.Info >= _logLevel;
             }
         }
-        internal static bool IsWarnEnabled
+        /// <summary>
+        /// Returns true when internal log level includes Warn messages
+        /// </summary>
+        public static bool IsWarnEnabled
         {
             get
             {
                 return LogLevel.Warn >= _logLevel;
             }
         }
-        internal static bool IsErrorEnabled
+        /// <summary>
+        /// Returns true when internal log level includes Error messages
+        /// </summary>
+        public static bool IsErrorEnabled
         {
             get
             {
                 return LogLevel.Error >= _logLevel;
             }
         }
-        internal static bool IsFatalEnabled
+        /// <summary>
+        /// Returns true when internal log level includes Fatal messages
+        /// </summary>
+        public static bool IsFatalEnabled
         {
             get
             {
@@ -186,90 +213,185 @@ namespace NLog.Internal
             }
         }
 
-        internal static void Log(LogLevel level, IFormatProvider formatProvider, string message, params object[]args)
+        /// <summary>
+        /// Logs the specified message at the specified level.
+        /// </summary>
+        /// <param name="level">Log level.</param>
+        /// <param name="formatProvider">Format provider to be used for formatting.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments.</param>
+        public static void Log(LogLevel level, IFormatProvider formatProvider, string message, params object[]args)
         {
             Write(level, formatProvider, message, args);
         }
 
-        internal static void Log(LogLevel level, string message, params object[]args)
+        /// <summary>
+        /// Logs the specified message at the specified level.
+        /// </summary>
+        /// <param name="level">Log level.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments.</param>
+        public static void Log(LogLevel level, string message, params object[]args)
         {
             Write(level, null, message, args);
         }
 
-        internal static void Log(LogLevel level, string message)
+        /// <summary>
+        /// Logs the specified message at the specified level.
+        /// </summary>
+        /// <param name="level">Log level.</param>
+        /// <param name="message">Log message.</param>
+        public static void Log(LogLevel level, string message)
         {
             Write(level, null, message, null);
         }
 
-        internal static void Debug(IFormatProvider formatProvider, string message, params object[]args)
+        /// <summary>
+        /// Logs the specified message at the Debug level.
+        /// </summary>
+        /// <param name="formatProvider">Format provider to be used for formatting.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments.</param>
+        public static void Debug(IFormatProvider formatProvider, string message, params object[]args)
         {
             Write(LogLevel.Debug, formatProvider, message, args);
         }
-        internal static void Debug(string message, params object[]args)
+
+        /// <summary>
+        /// Logs the specified message at the Debug level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments.</param>
+        public static void Debug(string message, params object[]args)
         {
             Write(LogLevel.Debug, null, message, args);
         }
-        internal static void Debug(string message)
+
+        /// <summary>
+        /// Logs the specified message at the Debug level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public static void Debug(string message)
         {
             Write(LogLevel.Debug, null, message, null);
         }
 
-        internal static void Info(IFormatProvider formatProvider, string message, params object[]args)
+        /// <summary>
+        /// Logs the specified message at the Info level.
+        /// </summary>
+        /// <param name="formatProvider">Format provider to be used for formatting.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments.</param>
+        public static void Info(IFormatProvider formatProvider, string message, params object[]args)
         {
             Write(LogLevel.Info, formatProvider, message, args);
         }
 
-        internal static void Info(string message, params object[]args)
+        /// <summary>
+        /// Logs the specified message at the Info level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments.</param>
+        public static void Info(string message, params object[]args)
         {
             Write(LogLevel.Info, null, message, args);
         }
 
-        internal static void Info(string message)
+        /// <summary>
+        /// Logs the specified message at the Info level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public static void Info(string message)
         {
             Write(LogLevel.Info, null, message, null);
         }
 
-        internal static void Warn(IFormatProvider formatProvider, string message, params object[]args)
+        /// <summary>
+        /// Logs the specified message at the Warn level.
+        /// </summary>
+        /// <param name="formatProvider">Format provider to be used for formatting.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments.</param>
+        public static void Warn(IFormatProvider formatProvider, string message, params object[]args)
         {
             Write(LogLevel.Warn, formatProvider, message, args);
         }
 
-        internal static void Warn(string message, params object[]args)
+        /// <summary>
+        /// Logs the specified message at the Warn level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments.</param>
+        public static void Warn(string message, params object[]args)
         {
             Write(LogLevel.Warn, null, message, args);
         }
 
-        internal static void Warn(string message)
+        /// <summary>
+        /// Logs the specified message at the Warn level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public static void Warn(string message)
         {
             Write(LogLevel.Warn, null, message, null);
         }
 
-        internal static void Error(IFormatProvider formatProvider, string message, params object[]args)
+        /// <summary>
+        /// Logs the specified message at the Error level.
+        /// </summary>
+        /// <param name="formatProvider">Format provider to be used for formatting.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments.</param>
+        public static void Error(IFormatProvider formatProvider, string message, params object[]args)
         {
             Write(LogLevel.Error, formatProvider, message, args);
         }
 
-        internal static void Error(string message, params object[]args)
+        /// <summary>
+        /// Logs the specified message at the Error level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments.</param>
+        public static void Error(string message, params object[]args)
         {
             Write(LogLevel.Error, null, message, args);
         }
 
-        internal static void Error(string message)
+        /// <summary>
+        /// Logs the specified message at the Error level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public static void Error(string message)
         {
             Write(LogLevel.Error, null, message, null);
         }
 
-        internal static void Fatal(IFormatProvider formatProvider, string message, params object[]args)
+        /// <summary>
+        /// Logs the specified message at the Fatal level.
+        /// </summary>
+        /// <param name="formatProvider">Format provider to be used for formatting.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments.</param>
+        public static void Fatal(IFormatProvider formatProvider, string message, params object[]args)
         {
             Write(LogLevel.Fatal, formatProvider, message, args);
         }
 
-        internal static void Fatal(string message, params object[]args)
+        /// <summary>
+        /// Logs the specified message at the Fatal level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments.</param>
+        public static void Fatal(string message, params object[]args)
         {
             Write(LogLevel.Fatal, null, message, args);
         }
 
-        internal static void Fatal(string message)
+        /// <summary>
+        /// Logs the specified message at the Fatal level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public static void Fatal(string message)
         {
             Write(LogLevel.Fatal, null, message, null);
         }

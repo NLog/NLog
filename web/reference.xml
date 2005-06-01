@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="reference">
+    <h1>NLog Reference</h1>
+    <p>The following reference documents are available</p>
+    <ol>
+        <li><link href="config">Configuration File Reference</link></li>
+        <li><link href="targets">Log Target Reference</link></li>
+        <li><link href="layoutrenderers">Layout Renderer Reference</link></li>
+        <li><link href="filters">Filter Reference</link></li>
+    </ol>
+</content>

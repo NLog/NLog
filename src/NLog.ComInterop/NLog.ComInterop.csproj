@@ -29,7 +29,7 @@
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
                     DefineConstants = ""
-                    DocumentationFile = ""
+                    DocumentationFile = "NLog.ComInterop.xml"
                     DebugSymbols = "true"
                     FileAlignment = "4096"
                     IncrementalBuild = "false"
@@ -40,7 +40,7 @@
                     RegisterForComInterop = "true"
                     RemoveIntegerChecks = "false"
                     TreatWarningsAsErrors = "false"
-                    WarningLevel = "1"
+                    WarningLevel = "4"
                 />
                 <Config
                     Name = "Release"
@@ -49,7 +49,7 @@
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
                     DefineConstants = ""
-                    DocumentationFile = ""
+                    DocumentationFile = "NLog.ComInterop.xml"
                     DebugSymbols = "false"
                     FileAlignment = "4096"
                     IncrementalBuild = "false"

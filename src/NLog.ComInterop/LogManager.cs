@@ -69,5 +69,13 @@ namespace NLog.ComInterop
             get { return NLog.Internal.InternalLogger.LogFile; }
             set { NLog.Internal.InternalLogger.LogFile = value; }
         }
+
+        public ILogger GetLogger(string name)
+        {
+            Logger l = new Logger();
+            l.LoggerName = name;
+            return l;
+
+        }
     }
 }
