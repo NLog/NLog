@@ -1,8 +1,6 @@
 html, body
 {
-    margin-right: 4px;
-    margin-left: 4px;
-    margin-top: 2px;
+    margin: 0px;
     background-color: white;
     color: black;
     font-family: Verdana;
@@ -39,7 +37,7 @@ h6
 td.nav
 {
     font-family: Trebuchet MS, Arial, Helv;
-    font-size: 16px;
+    font-size: 13px;
     font-style: normal;
     padding: 3px;
     width: 150px;
@@ -47,7 +45,7 @@ td.nav
 
 a:link
 {
-    color: #5b5b0e;
+    color: blue;
     background-color: inherit;
 }
 
@@ -59,7 +57,7 @@ a:visited
 
 a:hover
 {
-    color: black;
+    color: blue;
     background-color: inherit;
 }
 
@@ -67,7 +65,8 @@ div.titleimage
 {
     overflow: hidden;
     width: 100%;
-    border-bottom: 1px solid #400000;
+    height: 83px;
+    background-image: url(title.png);
 }
 
 span.path
@@ -176,7 +175,6 @@ a.nav
     font-family: Tahoma, Arial, Helv;
     font-style: normal;
     font-weight: bold;
-    font-size: 15px;
     color: #202040;
     margin: 1px;
     cursor: pointer; cursor: hand;
@@ -192,7 +190,7 @@ a.nav:visited
 
 a.nav:hover
 {
-    color: red;
+    color: blue;
 }
 
 a.nav_selected
@@ -200,9 +198,9 @@ a.nav_selected
     display: block;
     font-family: Tahoma, Trebuchet MS, Arial, Helv;
     font-style: normal;
-    font-weight: normal;
-    font-size: 17px;
+    font-weight: bold;
     color: #805020;
+    margin: 1px;
     margin-left: 4px;
     cursor: pointer; cursor: hand;
     text-decoration: none;
@@ -215,7 +213,7 @@ a.nav_selected:visited
 
 a.nav_selected:hover
 {
-    color: red;
+    color: blue;
 }
 
 a.subnav
@@ -245,7 +243,7 @@ a.subnav:visited
 
 a.subnav:hover
 {
-    background-color: #fff0d0;
+    background-color: #f0f0f0;
 }
 
 a.subnav_selected
@@ -255,9 +253,9 @@ a.subnav_selected
     font-style: normal;
     font-weight: bold;
     font-size: 12px;
-    color: #805020;
-    /* border: 1px dashed #404040; */
-    background-color: #fff0c0;
+    color: black;
+    border: 1px solid #d0d0d0;
+    background-color: #ABC8E5;
     padding-left: 4px;
     padding-right: 4px;
     cursor: pointer; cursor: hand;
@@ -280,10 +278,12 @@ td.nav
 
 td.nav_selected
 {
-    background-color: #ffffc0;
-    border: 1px dashed #c0c0c0;
+    background-color: #DFEAF5;
+    border: 1px solid #e0e0e0;
     padding-left: 4px;
     padding-right: 4px;
+    width: 160px;
+    font-size: 13px;
 }
 
 td.titledesc
@@ -310,16 +310,19 @@ td.content
 {
     font-family: Trebuchet MS, Arial, Helv;
     font-size: 13px;
-    padding: 4px;
+    padding: 20px;
+    width: 600px;
     text-align: left;
-    background-color: #ffffff;
+    background-color: white;
 }
 
 td.controls
 {
     padding: 6px;
-    width: 220px;
-    background-color: #ffffff;
+    width: 170px;
+    background-color: #F2F7FC;
+    border-right: 1px solid #c0c0c0;
+    border-bottom: 1px solid #c0c0c0;
 }
 
 table.page
@@ -345,8 +348,9 @@ td.copyright
 
 td.hostedby
 {
-    background-color: white;
+    background-color: #F2F7FC;
     padding: 4px;
+    border-right: 1px solid #c0c0c0;
 }
 
 td.newsdate
@@ -369,9 +373,8 @@ td.newstext
     background-color: #fffff0; 
     border: 1px solid #c0c0c0; 
     overflow: auto;
-    width: 96%;
+    width: 600px;
     display: block;
-    margin-left: 2%;
     font-size: 12px;
     padding: 4px;
 }
@@ -382,8 +385,7 @@ td.newstext
     background-color: #fffff0; 
     border: 1px solid #c0c0c0; 
     overflow: auto; 
-    width: 96%;
-    margin-left: 2%;
+    width: 600px;
     font-size: 12px;
     padding: 4px;
 }
@@ -440,6 +442,7 @@ code
     border-collapse: collapse;
     font-size: 13px;
     background-color: white;
+    width: 600px;
 }
 
 .table td {
@@ -518,6 +521,13 @@ td.label
 {
     font-weight: bold;
     vertical-align: top;
+    font-size: 11px;
+}
+
+td.description
+{
+    vertical-align: top;
+    font-size: 11px;
 }
 
 .missing

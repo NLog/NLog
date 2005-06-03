@@ -140,11 +140,26 @@ namespace NLog.Win32.LayoutRenderers
             }
         }
 
+        /// <summary>
+        /// Returns the estimated number of characters that are needed to
+        /// hold the rendered value for the specified logging event.
+        /// </summary>
+        /// <param name="ev">Logging event information.</param>
+        /// <returns>The number of characters.</returns>
+        /// <remarks>
+        /// This function always returns 32.
+        /// </remarks>
         protected override int GetEstimatedBufferSize(LogEventInfo ev)
         {
             return 32;
         }
 
+        /// <summary>
+        /// Reads the specified registry key and value and appends it to
+        /// the passed <see cref="StringBuilder"/>.
+        /// </summary>
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="ev">Logging event. Ignored.</param>
         protected override void Append(StringBuilder builder, LogEventInfo ev)
         {
             using(RegistryKey key = _rootKey.OpenSubKey(_subKey))

@@ -40,6 +40,9 @@ using NLog.Internal;
 
 namespace NLog.ComInterop
 {
+    /// <summary>
+    /// NLog COM Interop logger implementation
+    /// </summary>
     [ComVisible(true)]
     [ProgId("NLog.Logger")]
     [Guid("181f39a8-41a8-4e35-91b6-5f8d96f5e61c")]
@@ -51,42 +54,42 @@ namespace NLog.ComInterop
         private NLog.Logger _logger = _defaultLogger;
         private string _loggerName = String.Empty;
 
-        public void Log(string level, string message)
+        void ILogger.Log(string level, string message)
         {
             _logger.Log(StringToLevel(level), message);
         }
 
-        public void Debug(string message)
+        void ILogger.Debug(string message)
         {
             _logger.Debug(message);
         }
 
-        public void Info(string message)
+        void ILogger.Info(string message)
         {
             _logger.Info(message);
         }
 
-        public void Warn(string message)
+        void ILogger.Warn(string message)
         {
             _logger.Warn(message);
         }
 
-        public void Error(string message)
+        void ILogger.Error(string message)
         {
             _logger.Error(message);
         }
 
-        public void Fatal(string message)
+        void ILogger.Fatal(string message)
         {
             _logger.Fatal(message);
         }
 
-        public bool IsEnabled(string level)
+        bool ILogger.IsEnabled(string level)
         {
             return _logger.IsEnabled(StringToLevel(level));
         }
 
-        public bool IsDebugEnabled
+        bool ILogger.IsDebugEnabled
         {
             get
             {
@@ -94,7 +97,7 @@ namespace NLog.ComInterop
             }
         }
 
-        public bool IsInfoEnabled
+        bool ILogger.IsInfoEnabled
         {
             get
             {
@@ -102,7 +105,7 @@ namespace NLog.ComInterop
             }
         }
 
-        public bool IsWarnEnabled
+        bool ILogger.IsWarnEnabled
         {
             get
             {
@@ -110,7 +113,7 @@ namespace NLog.ComInterop
             }
         }
 
-        public bool IsErrorEnabled
+        bool ILogger.IsErrorEnabled
         {
             get
             {
@@ -118,7 +121,7 @@ namespace NLog.ComInterop
             }
         }
 
-        public bool IsFatalEnabled
+        bool ILogger.IsFatalEnabled
         {
             get
             {
@@ -126,7 +129,7 @@ namespace NLog.ComInterop
             }
         }
 
-        public string LoggerName
+        string ILogger.LoggerName
         {
             get
             {

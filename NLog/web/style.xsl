@@ -24,18 +24,11 @@
                 <div class="titleimage" style="overflow: hidden">
                     <img src="NLog.jpg" />
                 </div>
-                <p style="color: red; font-weight: bold; padding: 4px; margin-top: 10px; margin-bottom: 10px; border: 1px solid #800000; background-color: #ffe0e0;">THIS SITE IS UNDER CONSTRUCTION. SOME SECTIONS ARE MISSING.</p>
                 <table class="page" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td valign="top" class="controls">
+                        <td valign="top" class="controls" rowspan="2">
                             <xsl:call-template name="controls" />
-                        </td>
-                        <td valign="top" align="left" class="content">
-                            <xsl:apply-templates select="/" mode="content" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="hostedby">
+                            <p/>
                             <xsl:if test="$sourceforge='1'">
 <!-- Start of StatCounter Code -->
 <script type="text/javascript" language="javascript">
@@ -49,6 +42,12 @@ var sc_security="6fe22c9a";
                                 <a href="http://sourceforge.net"><img src="http://sourceforge.net/sflogo.php?group_id=116456&amp;type=1" width="88" height="31" border="0" alt="SourceForge.net Logo" /></a>
                             </xsl:if>
                         </td>
+                        <td valign="top" align="left" class="content">
+                            <p style="color: blue; font-weight: bold; padding: 4px; margin-bottom: 10px; border: 1px solid #ABC8E5; background-color: #DFEAF5;">THIS SITE IS UNDER CONSTRUCTION. SOME SECTIONS ARE MISSING.</p>
+                            <xsl:apply-templates select="/" mode="content" />
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="copyright">Copyright &#169; 2003-2005 by Jaros³aw Kowalski</td>
                     </tr>
                 </table>
@@ -151,7 +150,10 @@ var sc_security="6fe22c9a";
     </xsl:template>
 
     <xsl:template match="@*[name()='xml:space']" mode="xml-example"></xsl:template>
-    <xsl:template match="@*" mode="xml-example"><span class="xmlattribute">&#160;<xsl:value-of select="name()"/></span><span class="xmlpunct">=</span><span class="xmlattribtext">"<xsl:value-of select="." />"</span></xsl:template>
+    <xsl:template match="@*" mode="xml-example">
+        <span class="xmlattribute"><xsl:text> </xsl:text><xsl:value-of select="name()"/></span>
+        <span class="xmlpunct">=</span><span class="xmlattribtext">"<xsl:value-of select="." />"</span>
+    </xsl:template>
 
     <xsl:template match="comment()" mode="xml-example">
         <span class="xmlcomment">&lt;!--<xsl:value-of select="." />--&gt;</span>

@@ -113,6 +113,25 @@
             A value from the Registry.
             </summary>
         </member>
+        <member name="M:NLog.Win32.LayoutRenderers.RegistryLayoutRenderer.GetEstimatedBufferSize(NLog.LogEventInfo)">
+            <summary>
+            Returns the estimated number of characters that are needed to
+            hold the rendered value for the specified logging event.
+            </summary>
+            <param name="ev">Logging event information.</param>
+            <returns>The number of characters.</returns>
+            <remarks>
+            This function always returns 32.
+            </remarks>
+        </member>
+        <member name="M:NLog.Win32.LayoutRenderers.RegistryLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+            <summary>
+            Reads the specified registry key and value and appends it to
+            the passed <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
+            <param name="ev">Logging event. Ignored.</param>
+        </member>
         <member name="P:NLog.Win32.LayoutRenderers.RegistryLayoutRenderer.Value">
             <summary>
             Registry value.

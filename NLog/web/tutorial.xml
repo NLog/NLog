@@ -190,9 +190,12 @@
     <h5>Final rules</h5>
     <p>By default all NLog rules are additive, that is their effects add up. The rules are processed top-down 
         from the first rule to the last one. Sometimes you want to quit rule processing. That's what the <code>final</code> attribute
-        is used for.
+        is used for. [TODO - more to be written].
     </p>
+    <!--
     <h5>Log processing detailed</h5>
     <p>The following picture describes log processing. </p>
     <img style="border: 1px solid #ffe0e0" src="nlog_routing.png" />
+    <p/>
+    -->
 </content>
