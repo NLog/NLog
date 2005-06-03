@@ -41,41 +41,43 @@ using NLog.Config;
 
 namespace NLog.ComInterop
 {
+    /// <summary>
+    /// NLog COM Interop LogManager implementation
+    /// </summary>
     [ComVisible(true)]
     [ProgId("NLog.LogManager")]
     [Guid("9a7e8d84-72e4-478a-9a05-23c7ef0cfca8")]
     [ClassInterface(ClassInterfaceType.None)]
     public class LogManager: ILogManager
     {
-        public void LoadConfigFromFile(string fileName)
+        void ILogManager.LoadConfigFromFile(string fileName)
         {
             NLog.LogManager.Configuration = new XmlLoggingConfiguration(fileName);
         }
 
-        public bool InternalLogToConsole
+        bool ILogManager.InternalLogToConsole
         {
             get { return NLog.Internal.InternalLogger.LogToConsole; }
             set { NLog.Internal.InternalLogger.LogToConsole = value; }
         }
 
-        public string InternalLogLevel
+        string ILogManager.InternalLogLevel
         {
             get { return NLog.Internal.InternalLogger.LogLevel.ToString(); }
             set { NLog.Internal.InternalLogger.LogLevel = NLog.Logger.LogLevelFromString(value); }
         }
 
-        public string InternalLogFile
+        string ILogManager.InternalLogFile
         {
             get { return NLog.Internal.InternalLogger.LogFile; }
             set { NLog.Internal.InternalLogger.LogFile = value; }
         }
 
-        public ILogger GetLogger(string name)
+        ILogger ILogManager.GetLogger(string name)
         {
-            Logger l = new Logger();
+            ILogger l = new Logger();
             l.LoggerName = name;
             return l;
-
         }
     }
 }

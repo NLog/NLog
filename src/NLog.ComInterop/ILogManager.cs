@@ -37,14 +37,39 @@ using System.Runtime.InteropServices;
 
 namespace NLog.ComInterop
 {
+    /// <summary>
+    /// NLog COM Interop LogManager interface
+    /// </summary>
     [Guid("7ee3af3b-ba37-45b6-8f5d-cc23bb46c698")]
     [InterfaceType(ComInterfaceType.InterfaceIsDual)]
     public interface ILogManager
     {
+        /// <summary>
+        /// Loads NLog configuration from the specified file.
+        /// </summary>
+        /// <param name="fileName">The name of the file to load NLog configuration from</param>
         void LoadConfigFromFile(string fileName);
+
+        /// <summary>
+        /// Internal log to the console.
+        /// </summary>
         bool InternalLogToConsole { get; set; }
+
+        /// <summary>
+        /// Internal log file.
+        /// </summary>
         string InternalLogFile { get; set; }
+
+        /// <summary>
+        /// The name of the internal log level.
+        /// </summary>
         string InternalLogLevel { get; set; }
+
+        /// <summary>
+        /// Creates the specified logger object and assigns a LoggerName to it.
+        /// </summary>
+        /// <param name="name">Logger name</param>
+        /// <returns>The new logger instance.</returns>
         ILogger GetLogger(string name);
     }
 }

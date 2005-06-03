@@ -8,11 +8,13 @@
         <div class="noborder" style="width: 600px">
             <table>
                 <xsl:apply-templates select="//class[attribute/@name='NLog.LayoutRendererAttribute']" mode="list">
+                    <xsl:sort select="../../@name" />
                     <xsl:sort select="attribute[@name='NLog.LayoutRendererAttribute']/property[@name='FormatString']/@value" />
                 </xsl:apply-templates>
             </table>
         </div>
         <xsl:apply-templates select="//class[attribute/@name='NLog.LayoutRendererAttribute']" mode="details">
+            <xsl:sort select="../../@name" />
             <xsl:sort select="attribute[@name='NLog.LayoutRendererAttribute']/property[@name='FormatString']/@value" />
         </xsl:apply-templates>
     </xsl:template>
@@ -22,6 +24,7 @@
         <tr>
             <td class="label"><a href="#{$type_tag}"><xsl:value-of select="$type_tag" /></a></td>
             <td class="description"><xsl:apply-templates select="documentation/summary" /></td>
+            <td class="label"><xsl:value-of select="../../@name" /></td>
         </tr>
     </xsl:template>
 
