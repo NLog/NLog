@@ -58,7 +58,7 @@ namespace NLog.Config
         private MatchMode _loggerNameMatchMode;
         private string _loggerNameMatchArgument;
 
-        private bool[]_logLevels = new bool[(int)LogLevel.MaxLevel + 1];
+        private bool[]_logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
         private TargetCollection _targets = new TargetCollection();
         private FilterCollection _filters = new FilterCollection();
         private LoggingRuleCollection _childRules = new LoggingRuleCollection();
@@ -77,7 +77,7 @@ namespace NLog.Config
             for (int i = 0; i < _logLevels.Length; ++i)
             {
                 if (_logLevels[0])
-                    sb.AppendFormat(CultureInfo.InvariantCulture, "{0} ", ((LogLevel)i).ToString());
+                    sb.AppendFormat(CultureInfo.InvariantCulture, "{0} ", LogLevel.FromOrdinal(i).ToString());
             }
             sb.Append("] appendTo: [ ");
             foreach (Target app in _targets)
@@ -153,9 +153,9 @@ namespace NLog.Config
         {
             _loggerNamePattern = loggerNamePattern;
             _targets.Add(target);
-            for (int i = (int)minLevel; i <= (int)LogLevel.MaxLevel; ++i)
+            for (int i = (int)minLevel.Ordinal; i <= (int)LogLevel.MaxLevel.Ordinal; ++i)
             {
-                EnableLoggingForLevel((LogLevel)i);
+                EnableLoggingForLevel(LogLevel.FromOrdinal(i));
             }
         }
 
@@ -179,7 +179,7 @@ namespace NLog.Config
         /// <param name="level">Level to be enabled.</param>
         public void EnableLoggingForLevel(LogLevel level)
         {
-            _logLevels[(int)level] = true;
+            _logLevels[level.Ordinal] = true;
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace NLog.Config
         /// <param name="level">Level to be disabled.</param>
         public void DisableLoggingForLevel(LogLevel level)
         {
-            _logLevels[(int)level] = false;
+            _logLevels[level.Ordinal] = false;
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace NLog.Config
         /// <returns><see langword="true"/> when the log level is enabled, <see langword="false" /> otherwise.</returns>
         public bool IsLoggingEnabledForLevel(LogLevel level)
         {
-            return _logLevels[(int)level];
+            return _logLevels[level.Ordinal];
         }
 
         /// <summary>

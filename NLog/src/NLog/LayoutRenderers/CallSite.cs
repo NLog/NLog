@@ -138,19 +138,19 @@ namespace NLog.LayoutRenderers
                     sb2 = new StringBuilder();
 
                 MethodBase method = frame.GetMethod();
-                if (_className)
+                if (ClassName)
                 {
                     sb2.Append(method.DeclaringType.FullName);
                 }
-                if (_methodName)
+                if (MethodName)
                 {
-                    if (_className)
+                    if (ClassName)
                     {
                         sb2.Append(".");
                     }
                     sb2.Append(method.Name);
                 }
-                if (_sourceFile)
+                if (FileName)
                 {
                     string fileName = frame.GetFileName();
                     if (fileName != null)

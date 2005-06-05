@@ -110,7 +110,7 @@ namespace NLog.Internal
                 }
                 if (EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL") != null)
                 {
-                    LogLevel = Logger.LogLevelFromString(Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL"));
+                    LogLevel = LogLevel.FromString(Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL"));
                 }
                 _logFile = EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_INTERNAL_LOG_FILE");
                 Info("NLog internal logger initialized.");

@@ -18,8 +18,16 @@ namespace NLog.UnitTests
         {
             NLog.Targets.DebugTarget debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
 
+            Console.WriteLine("lastmsg: {0}", debugTarget.LastMessage);
+
             Assert.IsNotNull(debugTarget, "Debug target '" + targetName + "' not found");
             Assert.AreEqual(msg, debugTarget.LastMessage, "Unexpected last message value on '" + targetName + "'");
+        }
+
+        public string GetDebugLastMessage(string targetName)
+        {
+            NLog.Targets.DebugTarget debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
+            return debugTarget.LastMessage;
         }
     }
 }

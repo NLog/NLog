@@ -113,8 +113,8 @@ namespace NLog
         /// <returns></returns>
         public static Logger CreateNullLogger()
         {
-            TargetWithFilterChain[]targetsByLevel = new TargetWithFilterChain[(int)LogLevel.MaxLevel + 1];
-            return new Logger("", targetsByLevel);
+            TargetWithFilterChain[]targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
+            return new Logger("", new LoggerConfiguration(targetsByLevel));
 
         }
 
@@ -139,9 +139,7 @@ namespace NLog
                 if (l != null)
                     return l;
 
-                TargetWithFilterChain[]targetsByLevel = GetTargetsByLevelForLogger(name, Configuration);
-
-                Logger newLogger = new Logger(name, targetsByLevel);
+                Logger newLogger = new Logger(name, GetConfigurationForLogger(name, Configuration));
                 _loggerCache[name] = newLogger;
                 return newLogger;
             }
@@ -335,7 +333,7 @@ namespace NLog
         {
             foreach (Logger logger in _loggerCache.Values)
             {
-                logger.Reconfig(GetTargetsByLevelForLogger(logger.Name, config));
+                logger.SetConfiguration(GetConfigurationForLogger(logger.Name, config));
             }
         }
 
@@ -345,9 +343,9 @@ namespace NLog
             {
                 if (rule.NameMatches(name))
                 {
-                    for (int i = 0; i <= (int)LogLevel.MaxLevel; ++i)
+                    for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
                     {
-                        if (i >= (int)GlobalThreshold && rule.IsLoggingEnabledForLevel((LogLevel)i))
+                        if (i >= GlobalThreshold.Ordinal && rule.IsLoggingEnabledForLevel(LogLevel.FromOrdinal(i)))
                         {
                             foreach (Target target in rule.Targets)
                             {
@@ -373,10 +371,10 @@ namespace NLog
             }
         }
 
-        internal static TargetWithFilterChain[]GetTargetsByLevelForLogger(string name, LoggingConfiguration config)
+        internal static LoggerConfiguration GetConfigurationForLogger(string name, LoggingConfiguration config)
         {
-            TargetWithFilterChain[]targetsByLevel = new TargetWithFilterChain[(int)LogLevel.MaxLevel + 1];
-            TargetWithFilterChain[]lastTargetsByLevel = new TargetWithFilterChain[(int)LogLevel.MaxLevel + 1];
+            TargetWithFilterChain[]targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
+            TargetWithFilterChain[]lastTargetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
 
             if (config != null && IsLoggingEnabled())
             {
@@ -384,10 +382,10 @@ namespace NLog
             }
 
             InternalLogger.Debug("Targets for {0} by level:", name);
-            for (int i = 0; i <= (int)LogLevel.MaxLevel; ++i)
+            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", (LogLevel)i);
+                sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
                 for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.Next)
                 {
                     sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
@@ -396,7 +394,8 @@ namespace NLog
                 }
                 InternalLogger.Debug(sb.ToString());
             }
-            return targetsByLevel;
+
+            return new LoggerConfiguration(targetsByLevel);
         }
 
         private static int _logsEnabled = 0;

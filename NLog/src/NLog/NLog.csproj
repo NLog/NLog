@@ -324,6 +324,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Internal\LoggerConfiguration.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Internal\LoggerDictionary.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

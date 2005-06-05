@@ -43,6 +43,12 @@ td.nav
     width: 150px;
 }
 
+a
+{
+    color: blue;
+    background-color: inherit;
+}
+
 a:link
 {
     color: blue;
@@ -51,7 +57,7 @@ a:link
 
 a:visited
 {
-    color: #5b5b0e;
+    color: blue;
     background-color: inherit;
 }
 

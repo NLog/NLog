@@ -44,7 +44,7 @@ namespace NLog
     [CLSCompliant(true)]
     public class Logger
     {
-        private TargetWithFilterChain[] _targetsByLevel;
+        private LoggerConfiguration _configuration;
         private string _loggerName;
         private bool _isDebugEnabled;
         private bool _isInfoEnabled;
@@ -52,15 +52,15 @@ namespace NLog
         private bool _isErrorEnabled;
         private bool _isFatalEnabled;
 
-        private TargetWithFilterChain GetTargetsForLevel(int level)
+        private TargetWithFilterChain GetTargetsForLevel(LogLevel level)
         {
-            return _targetsByLevel[level];
+            return _configuration.GetTargetsForLevel(level);
         }
 
-        internal Logger(string name, TargetWithFilterChain[]targetsByLevel)
+        internal Logger(string name, LoggerConfiguration configuration)
         {
             _loggerName = name;
-            SetTargetsByLevel(targetsByLevel);
+            SetConfiguration(configuration);
         }
 
         internal string Name
@@ -71,35 +71,31 @@ namespace NLog
             }
         }
 
-        internal void Reconfig(TargetWithFilterChain[] targetsByLevel)
+        internal void WriteToTargets(LogLevel level, IFormatProvider formatProvider, string message, object[]args, Exception exception)
         {
-            SetTargetsByLevel(targetsByLevel);
+            LoggerImpl.Write(this, level, GetTargetsForLevel(level), formatProvider, message, args, exception);
         }
 
-        internal void WriteToTargets(int level, IFormatProvider formatProvider, string message, object[]args, Exception exception)
+        internal void WriteToTargets(LogLevel level, string message)
         {
-            LoggerImpl.Write(this, (LogLevel)level, GetTargetsForLevel(level), formatProvider, message, args, exception);
+            LoggerImpl.Write(this, level, GetTargetsForLevel(level), null, message, null, null);
         }
 
-        internal void WriteToTargets(int level, string message)
+        internal void WriteToTargets(LogLevel level, string message, object[]args)
         {
-            LoggerImpl.Write(this, (LogLevel)level, GetTargetsForLevel(level), null, message, null, null);
+            LoggerImpl.Write(this, level, GetTargetsForLevel(level), null, message, args, null);
         }
 
-        internal void WriteToTargets(int level, string message, object[]args)
+        internal void SetConfiguration(LoggerConfiguration configuration)
         {
-            LoggerImpl.Write(this, (LogLevel)level, GetTargetsForLevel(level), null, message, args, null);
-        }
+            _configuration = configuration;
 
-        private void SetTargetsByLevel(TargetWithFilterChain[] targetsByLevel)
-        {
-            _targetsByLevel = targetsByLevel;
             // pre-calculate 'enabled' flags
-            _isDebugEnabled = _targetsByLevel[(int)LogLevel.Debug] != null;
-            _isInfoEnabled = _targetsByLevel[(int)LogLevel.Info] != null;
-            _isWarnEnabled = _targetsByLevel[(int)LogLevel.Warn] != null;
-            _isErrorEnabled = _targetsByLevel[(int)LogLevel.Error] != null;
-            _isFatalEnabled = _targetsByLevel[(int)LogLevel.Fatal] != null;
+            _isDebugEnabled = configuration.IsEnabled(LogLevel.Debug);
+            _isInfoEnabled = configuration.IsEnabled(LogLevel.Info);
+            _isWarnEnabled = configuration.IsEnabled(LogLevel.Warn);
+            _isErrorEnabled = configuration.IsEnabled(LogLevel.Error);
+            _isFatalEnabled = configuration.IsEnabled(LogLevel.Fatal);
         }
 
         /// <summary>
@@ -110,7 +106,7 @@ namespace NLog
         public bool IsEnabled(LogLevel level)
         {
             LogManager.CheckForConfigChanges();
-            return _targetsByLevel[(int)level] != null; 
+            return GetTargetsForLevel(level) != null; 
         }
 
         /// <summary>
@@ -178,61 +174,6 @@ namespace NLog
             }
         }
 
-        /// <summary>
-        /// Returns the <see cref="T:NLog.LogLevel"/> that corresponds to the supplied <see langword="string" />.
-        /// </summary>
-        /// <param name="s">the texual representation of the log level</param>
-        /// <returns>the enumeration value.</returns>
-        public static LogLevel LogLevelFromString(string s)
-        {
-            switch (s)
-            {
-                case "Debug":
-                    return LogLevel.Debug;
-                case "Info":
-                    return LogLevel.Info;
-                case "Warn":
-                    return LogLevel.Warn;
-                case "Error":
-                    return LogLevel.Error;
-                case "Fatal":
-                    return LogLevel.Fatal;
-                case "Off":
-                    return LogLevel.Off;
-                default:
-                    throw new ArgumentException("Unknown log level: " + s);
-            }
-        }
-
-        /// <summary>
-        /// Returns a string representation of the given log level.
-        /// </summary>
-        /// <param name="level">Log level</param>
-        /// <returns>Log level name.</returns>
-        public static string LogLevelToString(LogLevel level)
-        {
-            switch (level)
-            {
-                case LogLevel.Debug:
-                    return "Debug";
-
-                case LogLevel.Info:
-                    return "Info";
-
-                case LogLevel.Warn:
-                    return "Warn";
-
-                case LogLevel.Error:
-                    return "Error";
-
-                case LogLevel.Fatal:
-                    return "Fatal";
-
-                default:
-                    return String.Empty;
-            }
-        }
-
         // the following code has been automatically generated by a PERL script
         // do not hand-modify
 
@@ -248,7 +189,7 @@ namespace NLog
 		/// <param name="message">A <see langword="string" /> to be written.</param>
         public void Log(LogLevel level, string message) {
             if (IsEnabled(level))
-                WriteToTargets((int)level, message);
+                WriteToTargets(level, message);
         }
 
 		/// <summary>
@@ -259,7 +200,7 @@ namespace NLog
 		/// <param name="exception">An exception to be logged.</param>
         public void LogException(LogLevel level, string message, Exception exception) {
             if (IsEnabled(level))
-                WriteToTargets((int)level, null, message, null, exception);
+                WriteToTargets(level, null, message, null, exception);
         }
 
 		/// <summary>
@@ -271,7 +212,7 @@ namespace NLog
 		/// <param name="args">Arguments to format.</param>
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, params object[] args) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, formatProvider, message, args, null); 
+                WriteToTargets(level, formatProvider, message, args, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified parameters.
@@ -281,7 +222,7 @@ namespace NLog
 		/// <param name="args">Arguments to format.</param>
         public void Log(LogLevel level, string message, params object[] args) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, args);
+                WriteToTargets(level, message, args);
         }
         
 		/// <summary>
@@ -293,7 +234,7 @@ namespace NLog
 		/// <param name="arg2">Second argument to format.</param>
         public void Log(LogLevel level, string message, System.Object arg1, System.Object arg2) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, new object[] { arg1, arg2 });
+                WriteToTargets(level, message, new object[] { arg1, arg2 });
         }
         
 		/// <summary>
@@ -306,7 +247,7 @@ namespace NLog
 		/// <param name="arg3">Third argument to format.</param>
         public void Log(LogLevel level, string message, System.Object arg1, System.Object arg2, System.Object arg3) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, new object[] { arg1, arg2, arg3 });
+                WriteToTargets(level, message, new object[] { arg1, arg2, arg3 });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
@@ -317,7 +258,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Boolean argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Boolean" /> as a parameter.
@@ -327,7 +268,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
         public void Log(LogLevel level, string message, System.Boolean argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
@@ -338,7 +279,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Char argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Char" /> as a parameter.
@@ -348,7 +289,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
         public void Log(LogLevel level, string message, System.Char argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
@@ -359,7 +300,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Byte argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Byte" /> as a parameter.
@@ -369,7 +310,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
         public void Log(LogLevel level, string message, System.Byte argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
@@ -380,7 +321,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.String argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.String" /> as a parameter.
@@ -390,7 +331,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
         public void Log(LogLevel level, string message, System.String argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
@@ -401,7 +342,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Int32 argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Int32" /> as a parameter.
@@ -411,7 +352,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
         public void Log(LogLevel level, string message, System.Int32 argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
@@ -422,7 +363,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Int64 argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Int64" /> as a parameter.
@@ -432,7 +373,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
         public void Log(LogLevel level, string message, System.Int64 argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
@@ -443,7 +384,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Single argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Single" /> as a parameter.
@@ -453,7 +394,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
         public void Log(LogLevel level, string message, System.Single argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
@@ -464,7 +405,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Double argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Double" /> as a parameter.
@@ -474,7 +415,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
         public void Log(LogLevel level, string message, System.Double argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
@@ -485,7 +426,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Decimal argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Decimal" /> as a parameter.
@@ -495,7 +436,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
         public void Log(LogLevel level, string message, System.Decimal argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
@@ -506,7 +447,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.Object argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.Object" /> as a parameter.
@@ -516,7 +457,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
         public void Log(LogLevel level, string message, System.Object argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
@@ -528,7 +469,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.SByte argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.SByte" /> as a parameter.
@@ -539,7 +480,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Log(LogLevel level, string message, System.SByte argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
@@ -551,7 +492,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.UInt32 argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.UInt32" /> as a parameter.
@@ -562,7 +503,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Log(LogLevel level, string message, System.UInt32 argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
@@ -574,7 +515,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, System.UInt64 argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the specified level using the specified <see cref="T:System.UInt64" /> as a parameter.
@@ -585,7 +526,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Log(LogLevel level, string message, System.UInt64 argument) { 
             if (IsEnabled(level))
-                WriteToTargets((int)level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
         }
 
         #endregion
@@ -602,7 +543,7 @@ namespace NLog
 		/// <param name="message">A <see langword="string" /> to be written.</param>
         public void Debug(string message) {
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message);
+                WriteToTargets(LogLevel.Debug, message);
         }
 
 		/// <summary>
@@ -612,7 +553,7 @@ namespace NLog
 		/// <param name="exception">An exception to be logged.</param>
         public void DebugException(string message, Exception exception) {
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, null, message, null, exception);
+                WriteToTargets(LogLevel.Debug, null, message, null, exception);
         }
 
 		/// <summary>
@@ -623,7 +564,7 @@ namespace NLog
 		/// <param name="args">Arguments to format.</param>
         public void Debug(IFormatProvider formatProvider, string message, params object[] args) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, formatProvider, message, args, null); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, args, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
@@ -632,7 +573,7 @@ namespace NLog
 		/// <param name="args">Arguments to format.</param>
         public void Debug(string message, params object[] args) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, args);
+                WriteToTargets(LogLevel.Debug, message, args);
         }
         
 		/// <summary>
@@ -643,7 +584,7 @@ namespace NLog
 		/// <param name="arg2">Second argument to format.</param>
         public void Debug(string message, System.Object arg1, System.Object arg2) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, new object[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Debug, message, new object[] { arg1, arg2 });
         }
         
 		/// <summary>
@@ -655,7 +596,7 @@ namespace NLog
 		/// <param name="arg3">Third argument to format.</param>
         public void Debug(string message, System.Object arg1, System.Object arg2, System.Object arg3) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, new object[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Debug, message, new object[] { arg1, arg2, arg3 });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
@@ -665,7 +606,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
         public void Debug(IFormatProvider formatProvider, string message, System.Boolean argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Boolean" /> as a parameter.
@@ -674,7 +615,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
         public void Debug(string message, System.Boolean argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
@@ -684,7 +625,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
         public void Debug(IFormatProvider formatProvider, string message, System.Char argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Char" /> as a parameter.
@@ -693,7 +634,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
         public void Debug(string message, System.Char argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
@@ -703,7 +644,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
         public void Debug(IFormatProvider formatProvider, string message, System.Byte argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Byte" /> as a parameter.
@@ -712,7 +653,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
         public void Debug(string message, System.Byte argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
@@ -722,7 +663,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
         public void Debug(IFormatProvider formatProvider, string message, System.String argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.String" /> as a parameter.
@@ -731,7 +672,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
         public void Debug(string message, System.String argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
@@ -741,7 +682,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
         public void Debug(IFormatProvider formatProvider, string message, System.Int32 argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Int32" /> as a parameter.
@@ -750,7 +691,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
         public void Debug(string message, System.Int32 argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
@@ -760,7 +701,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
         public void Debug(IFormatProvider formatProvider, string message, System.Int64 argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Int64" /> as a parameter.
@@ -769,7 +710,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
         public void Debug(string message, System.Int64 argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
@@ -779,7 +720,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
         public void Debug(IFormatProvider formatProvider, string message, System.Single argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Single" /> as a parameter.
@@ -788,7 +729,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
         public void Debug(string message, System.Single argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
@@ -798,7 +739,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
         public void Debug(IFormatProvider formatProvider, string message, System.Double argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Double" /> as a parameter.
@@ -807,7 +748,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
         public void Debug(string message, System.Double argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
@@ -817,7 +758,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
         public void Debug(IFormatProvider formatProvider, string message, System.Decimal argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Decimal" /> as a parameter.
@@ -826,7 +767,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
         public void Debug(string message, System.Decimal argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
@@ -836,7 +777,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
         public void Debug(IFormatProvider formatProvider, string message, System.Object argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.Object" /> as a parameter.
@@ -845,7 +786,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
         public void Debug(string message, System.Object argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
@@ -856,7 +797,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Debug(IFormatProvider formatProvider, string message, System.SByte argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.SByte" /> as a parameter.
@@ -866,7 +807,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Debug(string message, System.SByte argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
@@ -877,7 +818,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Debug(IFormatProvider formatProvider, string message, System.UInt32 argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.UInt32" /> as a parameter.
@@ -887,7 +828,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Debug(string message, System.UInt32 argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
@@ -898,7 +839,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Debug(IFormatProvider formatProvider, string message, System.UInt64 argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Debug</c> level using the specified <see cref="T:System.UInt64" /> as a parameter.
@@ -908,7 +849,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Debug(string message, System.UInt64 argument) { 
             if (IsDebugEnabled)
-                WriteToTargets((int)LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
         }
 
         #endregion
@@ -925,7 +866,7 @@ namespace NLog
 		/// <param name="message">A <see langword="string" /> to be written.</param>
         public void Info(string message) {
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message);
+                WriteToTargets(LogLevel.Info, message);
         }
 
 		/// <summary>
@@ -935,7 +876,7 @@ namespace NLog
 		/// <param name="exception">An exception to be logged.</param>
         public void InfoException(string message, Exception exception) {
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, null, message, null, exception);
+                WriteToTargets(LogLevel.Info, null, message, null, exception);
         }
 
 		/// <summary>
@@ -946,7 +887,7 @@ namespace NLog
 		/// <param name="args">Arguments to format.</param>
         public void Info(IFormatProvider formatProvider, string message, params object[] args) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, formatProvider, message, args, null); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, args, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified parameters.
@@ -955,7 +896,7 @@ namespace NLog
 		/// <param name="args">Arguments to format.</param>
         public void Info(string message, params object[] args) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, args);
+                WriteToTargets(LogLevel.Info, message, args);
         }
         
 		/// <summary>
@@ -966,7 +907,7 @@ namespace NLog
 		/// <param name="arg2">Second argument to format.</param>
         public void Info(string message, System.Object arg1, System.Object arg2) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, new object[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Info, message, new object[] { arg1, arg2 });
         }
         
 		/// <summary>
@@ -978,7 +919,7 @@ namespace NLog
 		/// <param name="arg3">Third argument to format.</param>
         public void Info(string message, System.Object arg1, System.Object arg2, System.Object arg3) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, new object[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Info, message, new object[] { arg1, arg2, arg3 });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
@@ -988,7 +929,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
         public void Info(IFormatProvider formatProvider, string message, System.Boolean argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Boolean" /> as a parameter.
@@ -997,7 +938,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
         public void Info(string message, System.Boolean argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
@@ -1007,7 +948,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
         public void Info(IFormatProvider formatProvider, string message, System.Char argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Char" /> as a parameter.
@@ -1016,7 +957,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
         public void Info(string message, System.Char argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
@@ -1026,7 +967,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
         public void Info(IFormatProvider formatProvider, string message, System.Byte argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Byte" /> as a parameter.
@@ -1035,7 +976,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
         public void Info(string message, System.Byte argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
@@ -1045,7 +986,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
         public void Info(IFormatProvider formatProvider, string message, System.String argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.String" /> as a parameter.
@@ -1054,7 +995,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
         public void Info(string message, System.String argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
@@ -1064,7 +1005,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
         public void Info(IFormatProvider formatProvider, string message, System.Int32 argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Int32" /> as a parameter.
@@ -1073,7 +1014,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
         public void Info(string message, System.Int32 argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
@@ -1083,7 +1024,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
         public void Info(IFormatProvider formatProvider, string message, System.Int64 argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Int64" /> as a parameter.
@@ -1092,7 +1033,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
         public void Info(string message, System.Int64 argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
@@ -1102,7 +1043,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
         public void Info(IFormatProvider formatProvider, string message, System.Single argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Single" /> as a parameter.
@@ -1111,7 +1052,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
         public void Info(string message, System.Single argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
@@ -1121,7 +1062,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
         public void Info(IFormatProvider formatProvider, string message, System.Double argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Double" /> as a parameter.
@@ -1130,7 +1071,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
         public void Info(string message, System.Double argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
@@ -1140,7 +1081,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
         public void Info(IFormatProvider formatProvider, string message, System.Decimal argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Decimal" /> as a parameter.
@@ -1149,7 +1090,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
         public void Info(string message, System.Decimal argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
@@ -1159,7 +1100,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
         public void Info(IFormatProvider formatProvider, string message, System.Object argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.Object" /> as a parameter.
@@ -1168,7 +1109,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
         public void Info(string message, System.Object argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
@@ -1179,7 +1120,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Info(IFormatProvider formatProvider, string message, System.SByte argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.SByte" /> as a parameter.
@@ -1189,7 +1130,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Info(string message, System.SByte argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
@@ -1200,7 +1141,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Info(IFormatProvider formatProvider, string message, System.UInt32 argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.UInt32" /> as a parameter.
@@ -1210,7 +1151,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Info(string message, System.UInt32 argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
@@ -1221,7 +1162,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Info(IFormatProvider formatProvider, string message, System.UInt64 argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Info</c> level using the specified <see cref="T:System.UInt64" /> as a parameter.
@@ -1231,7 +1172,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Info(string message, System.UInt64 argument) { 
             if (IsInfoEnabled)
-                WriteToTargets((int)LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
         }
 
         #endregion
@@ -1248,7 +1189,7 @@ namespace NLog
 		/// <param name="message">A <see langword="string" /> to be written.</param>
         public void Warn(string message) {
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message);
+                WriteToTargets(LogLevel.Warn, message);
         }
 
 		/// <summary>
@@ -1258,7 +1199,7 @@ namespace NLog
 		/// <param name="exception">An exception to be logged.</param>
         public void WarnException(string message, Exception exception) {
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, null, message, null, exception);
+                WriteToTargets(LogLevel.Warn, null, message, null, exception);
         }
 
 		/// <summary>
@@ -1269,7 +1210,7 @@ namespace NLog
 		/// <param name="args">Arguments to format.</param>
         public void Warn(IFormatProvider formatProvider, string message, params object[] args) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, formatProvider, message, args, null); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, args, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters.
@@ -1278,7 +1219,7 @@ namespace NLog
 		/// <param name="args">Arguments to format.</param>
         public void Warn(string message, params object[] args) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, args);
+                WriteToTargets(LogLevel.Warn, message, args);
         }
         
 		/// <summary>
@@ -1289,7 +1230,7 @@ namespace NLog
 		/// <param name="arg2">Second argument to format.</param>
         public void Warn(string message, System.Object arg1, System.Object arg2) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, new object[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Warn, message, new object[] { arg1, arg2 });
         }
         
 		/// <summary>
@@ -1301,7 +1242,7 @@ namespace NLog
 		/// <param name="arg3">Third argument to format.</param>
         public void Warn(string message, System.Object arg1, System.Object arg2, System.Object arg3) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, new object[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Warn, message, new object[] { arg1, arg2, arg3 });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
@@ -1311,7 +1252,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
         public void Warn(IFormatProvider formatProvider, string message, System.Boolean argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Boolean" /> as a parameter.
@@ -1320,7 +1261,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
         public void Warn(string message, System.Boolean argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
@@ -1330,7 +1271,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
         public void Warn(IFormatProvider formatProvider, string message, System.Char argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Char" /> as a parameter.
@@ -1339,7 +1280,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
         public void Warn(string message, System.Char argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
@@ -1349,7 +1290,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
         public void Warn(IFormatProvider formatProvider, string message, System.Byte argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Byte" /> as a parameter.
@@ -1358,7 +1299,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
         public void Warn(string message, System.Byte argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
@@ -1368,7 +1309,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
         public void Warn(IFormatProvider formatProvider, string message, System.String argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.String" /> as a parameter.
@@ -1377,7 +1318,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
         public void Warn(string message, System.String argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
@@ -1387,7 +1328,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
         public void Warn(IFormatProvider formatProvider, string message, System.Int32 argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Int32" /> as a parameter.
@@ -1396,7 +1337,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
         public void Warn(string message, System.Int32 argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
@@ -1406,7 +1347,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
         public void Warn(IFormatProvider formatProvider, string message, System.Int64 argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Int64" /> as a parameter.
@@ -1415,7 +1356,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
         public void Warn(string message, System.Int64 argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
@@ -1425,7 +1366,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
         public void Warn(IFormatProvider formatProvider, string message, System.Single argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Single" /> as a parameter.
@@ -1434,7 +1375,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
         public void Warn(string message, System.Single argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
@@ -1444,7 +1385,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
         public void Warn(IFormatProvider formatProvider, string message, System.Double argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Double" /> as a parameter.
@@ -1453,7 +1394,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
         public void Warn(string message, System.Double argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
@@ -1463,7 +1404,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
         public void Warn(IFormatProvider formatProvider, string message, System.Decimal argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Decimal" /> as a parameter.
@@ -1472,7 +1413,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
         public void Warn(string message, System.Decimal argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
@@ -1482,7 +1423,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
         public void Warn(IFormatProvider formatProvider, string message, System.Object argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.Object" /> as a parameter.
@@ -1491,7 +1432,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
         public void Warn(string message, System.Object argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
@@ -1502,7 +1443,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Warn(IFormatProvider formatProvider, string message, System.SByte argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.SByte" /> as a parameter.
@@ -1512,7 +1453,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Warn(string message, System.SByte argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
@@ -1523,7 +1464,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Warn(IFormatProvider formatProvider, string message, System.UInt32 argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.UInt32" /> as a parameter.
@@ -1533,7 +1474,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Warn(string message, System.UInt32 argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
@@ -1544,7 +1485,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Warn(IFormatProvider formatProvider, string message, System.UInt64 argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Warn</c> level using the specified <see cref="T:System.UInt64" /> as a parameter.
@@ -1554,7 +1495,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Warn(string message, System.UInt64 argument) { 
             if (IsWarnEnabled)
-                WriteToTargets((int)LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
         }
 
         #endregion
@@ -1571,7 +1512,7 @@ namespace NLog
 		/// <param name="message">A <see langword="string" /> to be written.</param>
         public void Error(string message) {
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message);
+                WriteToTargets(LogLevel.Error, message);
         }
 
 		/// <summary>
@@ -1581,7 +1522,7 @@ namespace NLog
 		/// <param name="exception">An exception to be logged.</param>
         public void ErrorException(string message, Exception exception) {
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, null, message, null, exception);
+                WriteToTargets(LogLevel.Error, null, message, null, exception);
         }
 
 		/// <summary>
@@ -1592,7 +1533,7 @@ namespace NLog
 		/// <param name="args">Arguments to format.</param>
         public void Error(IFormatProvider formatProvider, string message, params object[] args) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, formatProvider, message, args, null); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, args, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
@@ -1601,7 +1542,7 @@ namespace NLog
 		/// <param name="args">Arguments to format.</param>
         public void Error(string message, params object[] args) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, args);
+                WriteToTargets(LogLevel.Error, message, args);
         }
         
 		/// <summary>
@@ -1612,7 +1553,7 @@ namespace NLog
 		/// <param name="arg2">Second argument to format.</param>
         public void Error(string message, System.Object arg1, System.Object arg2) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, new object[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Error, message, new object[] { arg1, arg2 });
         }
         
 		/// <summary>
@@ -1624,7 +1565,7 @@ namespace NLog
 		/// <param name="arg3">Third argument to format.</param>
         public void Error(string message, System.Object arg1, System.Object arg2, System.Object arg3) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, new object[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Error, message, new object[] { arg1, arg2, arg3 });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
@@ -1634,7 +1575,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
         public void Error(IFormatProvider formatProvider, string message, System.Boolean argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Boolean" /> as a parameter.
@@ -1643,7 +1584,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
         public void Error(string message, System.Boolean argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
@@ -1653,7 +1594,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
         public void Error(IFormatProvider formatProvider, string message, System.Char argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Char" /> as a parameter.
@@ -1662,7 +1603,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
         public void Error(string message, System.Char argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
@@ -1672,7 +1613,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
         public void Error(IFormatProvider formatProvider, string message, System.Byte argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Byte" /> as a parameter.
@@ -1681,7 +1622,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
         public void Error(string message, System.Byte argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
@@ -1691,7 +1632,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
         public void Error(IFormatProvider formatProvider, string message, System.String argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.String" /> as a parameter.
@@ -1700,7 +1641,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
         public void Error(string message, System.String argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
@@ -1710,7 +1651,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
         public void Error(IFormatProvider formatProvider, string message, System.Int32 argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Int32" /> as a parameter.
@@ -1719,7 +1660,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
         public void Error(string message, System.Int32 argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
@@ -1729,7 +1670,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
         public void Error(IFormatProvider formatProvider, string message, System.Int64 argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Int64" /> as a parameter.
@@ -1738,7 +1679,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
         public void Error(string message, System.Int64 argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
@@ -1748,7 +1689,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
         public void Error(IFormatProvider formatProvider, string message, System.Single argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Single" /> as a parameter.
@@ -1757,7 +1698,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
         public void Error(string message, System.Single argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
@@ -1767,7 +1708,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
         public void Error(IFormatProvider formatProvider, string message, System.Double argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Double" /> as a parameter.
@@ -1776,7 +1717,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
         public void Error(string message, System.Double argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
@@ -1786,7 +1727,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
         public void Error(IFormatProvider formatProvider, string message, System.Decimal argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Decimal" /> as a parameter.
@@ -1795,7 +1736,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
         public void Error(string message, System.Decimal argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
@@ -1805,7 +1746,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
         public void Error(IFormatProvider formatProvider, string message, System.Object argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.Object" /> as a parameter.
@@ -1814,7 +1755,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
         public void Error(string message, System.Object argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
@@ -1825,7 +1766,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Error(IFormatProvider formatProvider, string message, System.SByte argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.SByte" /> as a parameter.
@@ -1835,7 +1776,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Error(string message, System.SByte argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
@@ -1846,7 +1787,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Error(IFormatProvider formatProvider, string message, System.UInt32 argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.UInt32" /> as a parameter.
@@ -1856,7 +1797,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Error(string message, System.UInt32 argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
@@ -1867,7 +1808,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Error(IFormatProvider formatProvider, string message, System.UInt64 argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Error</c> level using the specified <see cref="T:System.UInt64" /> as a parameter.
@@ -1877,7 +1818,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Error(string message, System.UInt64 argument) { 
             if (IsErrorEnabled)
-                WriteToTargets((int)LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
         }
 
         #endregion
@@ -1894,7 +1835,7 @@ namespace NLog
 		/// <param name="message">A <see langword="string" /> to be written.</param>
         public void Fatal(string message) {
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message);
+                WriteToTargets(LogLevel.Fatal, message);
         }
 
 		/// <summary>
@@ -1904,7 +1845,7 @@ namespace NLog
 		/// <param name="exception">An exception to be logged.</param>
         public void FatalException(string message, Exception exception) {
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, null, message, null, exception);
+                WriteToTargets(LogLevel.Fatal, null, message, null, exception);
         }
 
 		/// <summary>
@@ -1915,7 +1856,7 @@ namespace NLog
 		/// <param name="args">Arguments to format.</param>
         public void Fatal(IFormatProvider formatProvider, string message, params object[] args) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, args, null); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, args, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters.
@@ -1924,7 +1865,7 @@ namespace NLog
 		/// <param name="args">Arguments to format.</param>
         public void Fatal(string message, params object[] args) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, args);
+                WriteToTargets(LogLevel.Fatal, message, args);
         }
         
 		/// <summary>
@@ -1935,7 +1876,7 @@ namespace NLog
 		/// <param name="arg2">Second argument to format.</param>
         public void Fatal(string message, System.Object arg1, System.Object arg2) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, new object[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { arg1, arg2 });
         }
         
 		/// <summary>
@@ -1947,7 +1888,7 @@ namespace NLog
 		/// <param name="arg3">Third argument to format.</param>
         public void Fatal(string message, System.Object arg1, System.Object arg2, System.Object arg3) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, new object[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { arg1, arg2, arg3 });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Boolean" /> as a parameter and formatting it with the supplied format provider.
@@ -1957,7 +1898,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
         public void Fatal(IFormatProvider formatProvider, string message, System.Boolean argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Boolean" /> as a parameter.
@@ -1966,7 +1907,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Boolean" /> argument to format.</param>
         public void Fatal(string message, System.Boolean argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Char" /> as a parameter and formatting it with the supplied format provider.
@@ -1976,7 +1917,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
         public void Fatal(IFormatProvider formatProvider, string message, System.Char argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Char" /> as a parameter.
@@ -1985,7 +1926,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Char" /> argument to format.</param>
         public void Fatal(string message, System.Char argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Byte" /> as a parameter and formatting it with the supplied format provider.
@@ -1995,7 +1936,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
         public void Fatal(IFormatProvider formatProvider, string message, System.Byte argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Byte" /> as a parameter.
@@ -2004,7 +1945,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Byte" /> argument to format.</param>
         public void Fatal(string message, System.Byte argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.String" /> as a parameter and formatting it with the supplied format provider.
@@ -2014,7 +1955,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
         public void Fatal(IFormatProvider formatProvider, string message, System.String argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.String" /> as a parameter.
@@ -2023,7 +1964,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.String" /> argument to format.</param>
         public void Fatal(string message, System.String argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Int32" /> as a parameter and formatting it with the supplied format provider.
@@ -2033,7 +1974,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
         public void Fatal(IFormatProvider formatProvider, string message, System.Int32 argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Int32" /> as a parameter.
@@ -2042,7 +1983,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int32" /> argument to format.</param>
         public void Fatal(string message, System.Int32 argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Int64" /> as a parameter and formatting it with the supplied format provider.
@@ -2052,7 +1993,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
         public void Fatal(IFormatProvider formatProvider, string message, System.Int64 argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Int64" /> as a parameter.
@@ -2061,7 +2002,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Int64" /> argument to format.</param>
         public void Fatal(string message, System.Int64 argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Single" /> as a parameter and formatting it with the supplied format provider.
@@ -2071,7 +2012,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
         public void Fatal(IFormatProvider formatProvider, string message, System.Single argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Single" /> as a parameter.
@@ -2080,7 +2021,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Single" /> argument to format.</param>
         public void Fatal(string message, System.Single argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Double" /> as a parameter and formatting it with the supplied format provider.
@@ -2090,7 +2031,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
         public void Fatal(IFormatProvider formatProvider, string message, System.Double argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Double" /> as a parameter.
@@ -2099,7 +2040,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Double" /> argument to format.</param>
         public void Fatal(string message, System.Double argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Decimal" /> as a parameter and formatting it with the supplied format provider.
@@ -2109,7 +2050,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
         public void Fatal(IFormatProvider formatProvider, string message, System.Decimal argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Decimal" /> as a parameter.
@@ -2118,7 +2059,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Decimal" /> argument to format.</param>
         public void Fatal(string message, System.Decimal argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Object" /> as a parameter and formatting it with the supplied format provider.
@@ -2128,7 +2069,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
         public void Fatal(IFormatProvider formatProvider, string message, System.Object argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.Object" /> as a parameter.
@@ -2137,7 +2078,7 @@ namespace NLog
 		/// <param name="argument">The <see cref="T:System.Object" /> argument to format.</param>
         public void Fatal(string message, System.Object argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.SByte" /> as a parameter and formatting it with the supplied format provider.
@@ -2148,7 +2089,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Fatal(IFormatProvider formatProvider, string message, System.SByte argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.SByte" /> as a parameter.
@@ -2158,7 +2099,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Fatal(string message, System.SByte argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.UInt32" /> as a parameter and formatting it with the supplied format provider.
@@ -2169,7 +2110,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Fatal(IFormatProvider formatProvider, string message, System.UInt32 argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.UInt32" /> as a parameter.
@@ -2179,7 +2120,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Fatal(string message, System.UInt32 argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.UInt64" /> as a parameter and formatting it with the supplied format provider.
@@ -2190,7 +2131,7 @@ namespace NLog
         [CLSCompliant(false)]
         public void Fatal(IFormatProvider formatProvider, string message, System.UInt64 argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }, null); 
         }
 		/// <summary>
 		/// Writes the diagnostic message at the <c>Fatal</c> level using the specified <see cref="T:System.UInt64" /> as a parameter.
@@ -2200,10 +2141,10 @@ namespace NLog
         [CLSCompliant(false)]
         public void Fatal(string message, System.UInt64 argument) { 
             if (IsFatalEnabled)
-                WriteToTargets((int)LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
         }
 
         #endregion
-      // end of generated code
+     // end of generated code
     }
 }
