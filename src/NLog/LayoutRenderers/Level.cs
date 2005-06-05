@@ -43,77 +43,6 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("level")]
     public class LevelLayoutRenderer: LayoutRenderer
     {
-        private static string[]LevelToString;
-        private static string[]UpperCaseLevelToString;
-        private static string[]LowerCaseLevelToString;
-        private static int MaxLength;
-
-        static LevelLayoutRenderer()
-        {
-            LevelToString = new string[(int)LogLevel.MaxLevel + 1];
-            MaxLength = 0;
-            for (int i = 0; i < LevelToString.Length; ++i)
-            {
-                LogLevel ll = (LogLevel)i;
-                LevelToString[i] = Logger.LogLevelToString(ll);
-                if (LevelToString[i].Length > MaxLength)
-                    MaxLength = LevelToString[i].Length;
-            }
-
-            for (int i = 0; i < LevelToString.Length; ++i)
-            {
-                if (LevelToString[i].Length < MaxLength)
-                {
-                    LevelToString[i] = LevelToString[i] + new string(' ', MaxLength - LevelToString[i].Length);
-                }
-            }
-            UpperCaseLevelToString = new string[(int)LogLevel.MaxLevel + 1];
-            LowerCaseLevelToString = new string[(int)LogLevel.MaxLevel + 1];
-            for (int i = 0; i < LevelToString.Length; ++i)
-            {
-                UpperCaseLevelToString[i] = LevelToString[i].ToUpper();
-                LowerCaseLevelToString[i] = LevelToString[i].ToLower();
-            }
-        }
-
-        private string[]_nameTable = LevelToString;
-
-        /// <summary>
-        /// Render an upper-case string.
-        /// </summary>
-        public new bool UpperCase
-        {
-            set
-            {
-                if (value)
-                    _nameTable = UpperCaseLevelToString;
-                else
-                    _nameTable = LevelToString;
-            }
-            get
-            {
-                return _nameTable == UpperCaseLevelToString;
-            }
-        }
-
-        /// <summary>
-        /// Render a lower-case string.
-        /// </summary>
-        public new bool LowerCase
-        {
-            set
-            {
-                if (value)
-                    _nameTable = LowerCaseLevelToString;
-                else
-                    _nameTable = LevelToString;
-            }
-            get
-            {
-                return _nameTable == LowerCaseLevelToString;
-            }
-        }
-
         /// <summary>
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
@@ -127,7 +56,7 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
-            return MaxLength;
+            return 8;
         }
 
         /// <summary>
@@ -137,7 +66,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ev">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            builder.Append(ApplyPadding(_nameTable[(int)ev.Level]));
+            builder.Append(ApplyPadding(ev.Level.ToString()));
         }
     }
 }

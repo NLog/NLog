@@ -33,51 +33,34 @@
 // 
 
 using System;
-using System.Runtime.InteropServices;
+using System.Collections;
+using System.Xml;
+using System.IO;
+using System.Reflection;
+using System.Globalization;
+using System.Text;
 
-using NLog;
-using NLog.Internal;
 using NLog.Config;
 
-namespace NLog.ComInterop
+namespace NLog.Internal
 {
-    /// <summary>
-    /// NLog COM Interop LogManager implementation
-    /// </summary>
-    [ComVisible(true)]
-    [ProgId("NLog.LogManager")]
-    [Guid("9a7e8d84-72e4-478a-9a05-23c7ef0cfca8")]
-    [ClassInterface(ClassInterfaceType.None)]
-    public class LogManager: ILogManager
+    internal class LoggerConfiguration
     {
-        void ILogManager.LoadConfigFromFile(string fileName)
+        private TargetWithFilterChain[] _targetsByLevel;
+
+        public LoggerConfiguration(TargetWithFilterChain[] targetsByLevel)
         {
-            NLog.LogManager.Configuration = new XmlLoggingConfiguration(fileName);
+            _targetsByLevel = targetsByLevel;
         }
 
-        bool ILogManager.InternalLogToConsole
+        public TargetWithFilterChain GetTargetsForLevel(LogLevel level)
         {
-            get { return NLog.Internal.InternalLogger.LogToConsole; }
-            set { NLog.Internal.InternalLogger.LogToConsole = value; }
+            return _targetsByLevel[level.Ordinal];
         }
 
-        string ILogManager.InternalLogLevel
+        public bool IsEnabled(LogLevel level)
         {
-            get { return NLog.Internal.InternalLogger.LogLevel.ToString(); }
-            set { NLog.Internal.InternalLogger.LogLevel = NLog.LogLevel.FromString(value); }
-        }
-
-        string ILogManager.InternalLogFile
-        {
-            get { return NLog.Internal.InternalLogger.LogFile; }
-            set { NLog.Internal.InternalLogger.LogFile = value; }
-        }
-
-        ILogger ILogManager.GetLogger(string name)
-        {
-            ILogger l = new Logger();
-            l.LoggerName = name;
-            return l;
+            return _targetsByLevel[level.Ordinal] != null;
         }
     }
 }

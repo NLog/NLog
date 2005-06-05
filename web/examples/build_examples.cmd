@@ -10,6 +10,8 @@ set PrettyPrinter=D:\Work\CSharpPrettyPrint\bin\Debug\csharpprettyprint.exe
 %PrettyPrinter% csharp MyFirstLayoutRenderer.cs MyFirstLayoutRenderer.cs.html
 %PrettyPrinter% csharp MyFirstFilter.cs MyFirstFilter.cs.html
 %PrettyPrinter% csharp tutorial.cs tutorial.cs.html
+%PrettyPrinter% csharp GetLogger.cs GetLogger.cs.html
+%PrettyPrinter% csharp GetCurrentClassLogger.cs GetCurrentClassLogger.cs.html
 %PrettyPrinter% csharp NLogC.cpp NLogC.cpp.html
 %PrettyPrinter% csharp NLogCdef.cpp NLogCdef.cpp.html
 

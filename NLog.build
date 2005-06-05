@@ -22,9 +22,14 @@
     <property name="binary_snapshot.name" value="nlog-${tstamp.date}-bin.zip" />
     <property name="binary_compact_snapshot.name" value="nlog-compact-${tstamp.date}-bin.zip" />
 
+    <property name="clover.enabled" value="false" />
+    <property name="clover.home" value="C:\Program Files\Cenqua\Clover.NET" />
+    <property name="clover.build.dir" value="CloverBuild" />
+    <property name="clover.report.dir" value="${clover.build.dir}/report" />
+
     <target name="configure">
         <call target="configure-${framework::get-target-framework()}" />
-        <property name="nlog.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/bin" unless="${property::exists('nlog.dir')}" />
+        <property name="nlog.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(clover.enabled,'-clover','')}${if(nlog.debug,'-debug','')}/bin" unless="${property::exists('nlog.dir')}" />
         <property name="web.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/doc" unless="${property::exists('web.dir')}" />
         <mkdir dir="${nlog.dir}" />
         <mkdir dir="${web.dir}" />
@@ -143,6 +148,19 @@
         </csc>
     </target>
 
+    <target name="NLog.UnitTests" depends="NLog">
+        <copy file="${nant.location}/lib/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/nunit.framework.dll" tofile="${nlog.dir}/nunit.framework.dll" />
+        <csc target="library" output="${nlog.dir}/NLog.UnitTests.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+            <sources basedir="src/NLog.UnitTests">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${nlog.dir}/NLog.dll" />
+                <include name="${nlog.dir}/nunit.framework.dll" />
+            </references>
+        </csc>
+    </target>
+
     <target name="NLog.Unix" depends="NLog">
         <csc target="library" output="${nlog.dir}/NLog.Unix.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
             <sources basedir="src/NLog.Unix">
@@ -216,6 +234,13 @@
         <copy file="src/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe.config" />
     </target>
 
+    <target name="test" depends="NLog.UnitTests">
+        <nunit2>
+            <formatter type="Plain" />
+            <test assemblyname="${nlog.dir}/NLog.UnitTests.dll" />
+        </nunit2>
+    </target>
+
     <target name="register-com" depends="configure">
         <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'regasm.exe')}"
             commandline="/tlb ${nlog.dir}/NLog.ComInterop.dll" />
@@ -224,10 +249,6 @@
     <target name="register-com-with-codebase" depends="configure">
         <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'regasm.exe')}"
             commandline="/tlb /codebase ${nlog.dir}/NLog.ComInterop.dll" />
-    </target>
-
-    <target name="test" depends="NLog.Test, build">
-        <exec program="${nlog.dir}/NLog.Test.exe" workingdir="${nlog.dir}" />
     </target>
 
     <target name="benchmark" depends="NLog.Benchmark, build">
@@ -343,6 +364,19 @@
         <exec program="${scp.program}" commandline="${scp.program.args} website.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
         <echo message="Unpacking the zipped website..." />
         <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_website.sh" />
+        <echo message="Website deployed." />
+    </target>
+
+    <target name="publish_test_website" depends="website">
+        <zip zipfile="website.zip">
+            <fileset basedir="${web.dir}">
+                <include name="*" />
+            </fileset>
+        </zip>
+        <echo message="Uploading the zipped website..." />
+        <exec program="${scp.program}" commandline="${scp.program.args} website.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
+        <echo message="Unpacking the zipped website..." />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_test_website.sh" />
         <echo message="Website deployed." />
     </target>
 
@@ -489,4 +523,27 @@
             </fileset>
         </copy>
     </target>
+
+    <target name="load-clover">
+        <loadtasks assembly="${clover.home}\CloverNAnt-0.85.dll" />
+    </target>
+
+    <target name="clover" depends="load-clover">
+        <property name="clover.enabled" value="true" />
+        <clover-setup 
+            initstring="${clover.build.dir}/clover.cdb"
+            builddir="${clover.build.dir}"
+            enabled="${clover.enabled}"
+            flushinterval="1000"
+            />
+    </target>
+
+    <target name="clover-html-report" depends="clover">
+        <clover-report>
+            <current title="Sooda Coverage" output="${clover.report.dir}">
+                <format type="html" />
+            </current>
+        </clover-report>
+    </target>
+
 </project>

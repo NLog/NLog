@@ -5,13 +5,13 @@
 for $level (@levels) {
 
     if ($level eq "Log") {
-        $level2 = "(int)level";
+        $level2 = "level";
         $level3 = "specified";
         $isenabled = "IsEnabled(level)";
         $arg0 = "LogLevel level, ";
         $param0 = qq!\n		/// <param name="level">the log level.</param>!;
     } else {
-        $level2 = "(int)LogLevel.$level";
+        $level2 = "LogLevel.$level";
         $level3 = "<c>$level</c>";
         $isenabled = "Is${level}Enabled";
         $arg0 = "";

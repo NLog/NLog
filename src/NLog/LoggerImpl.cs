@@ -35,6 +35,7 @@
 using System;
 using System.Collections;
 using System.Diagnostics;
+using System.Reflection;
 
 using NLog.Filters;
 using NLog.Targets;
@@ -44,7 +45,8 @@ namespace NLog
 {
     sealed class LoggerImpl
     {
-        private const int STACK_TRACE_SKIP_METHODS = 3;
+        private const int STACK_TRACE_SKIP_METHODS = 0;
+        private static Assembly _thisAssembly = typeof(LoggerImpl).Assembly;
 
         internal static void Write(Logger logger, LogLevel level, TargetWithFilterChain targets, IFormatProvider formatProvider, string message, object[]args, Exception exception)
         {
@@ -106,7 +108,7 @@ namespace NLog
                 {
                     System.Reflection.MethodBase mb = stackTrace.GetFrame(i).GetMethod();
 
-                    if (!mb.DeclaringType.FullName.StartsWith("NLog."))
+                    if (mb.DeclaringType.Assembly != _thisAssembly)
                     {
                         firstUserFrame = i;
                         break;

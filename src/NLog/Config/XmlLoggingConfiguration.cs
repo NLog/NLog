@@ -254,7 +254,7 @@ namespace NLog.Config
 
             s = GetCaseInsensitiveAttribute(configElement, "internalLogLevel");
             if (s != null)
-                InternalLogger.LogLevel = Logger.LogLevelFromString(s);
+                InternalLogger.LogLevel = LogLevel.FromString(s);
 
             RegisterPlatformSpecificExtensions();
 
@@ -345,7 +345,7 @@ namespace NLog.Config
 
                 if (HasCaseInsensitiveAttribute(ruleElement, "level"))
                 {
-                    LogLevel level = Logger.LogLevelFromString(GetCaseInsensitiveAttribute(ruleElement, "level"));
+                    LogLevel level = LogLevel.FromString(GetCaseInsensitiveAttribute(ruleElement, "level"));
                     rule.EnableLoggingForLevel(level);
                 }
                 else if (HasCaseInsensitiveAttribute(ruleElement, "levels"))
@@ -356,28 +356,28 @@ namespace NLog.Config
                     string[]tokens = levelsString.Split(',');
                     foreach (string s in tokens)
                     {
-                        LogLevel level = Logger.LogLevelFromString(s);
+                        LogLevel level = LogLevel.FromString(s);
                         rule.EnableLoggingForLevel(level);
                     }
                 }
                 else
                 {
                     int minLevel = 0;
-                    int maxLevel = (int)LogLevel.MaxLevel;
+                    int maxLevel = LogLevel.MaxLevel.Ordinal;
 
                     if (HasCaseInsensitiveAttribute(ruleElement, "minlevel"))
                     {
-                        minLevel = (int)Logger.LogLevelFromString(GetCaseInsensitiveAttribute(ruleElement, "minlevel"));
+                        minLevel = LogLevel.FromString(GetCaseInsensitiveAttribute(ruleElement, "minlevel")).Ordinal;
                     }
 
                     if (HasCaseInsensitiveAttribute(ruleElement, "maxlevel"))
                     {
-                        maxLevel = (int)Logger.LogLevelFromString(GetCaseInsensitiveAttribute(ruleElement, "maxlevel"));
+                        maxLevel = LogLevel.FromString(GetCaseInsensitiveAttribute(ruleElement, "maxlevel")).Ordinal;
                     }
 
                     for (int i = minLevel; i <= maxLevel; ++i)
                     {
-                        rule.EnableLoggingForLevel((LogLevel)i);
+                        rule.EnableLoggingForLevel(LogLevel.FromOrdinal(i));
                     }
                 }
 

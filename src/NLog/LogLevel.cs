@@ -32,46 +32,140 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+
 namespace NLog
 {
     /// <summary>
     /// Defines available log levels.
     /// </summary>
-    public enum LogLevel
+    public class LogLevel
     {
-        /// <summary>
-        /// Debug log level
-        /// </summary>
-        Debug, 
+        private string _name;
+        private string _uppercaseName;
+        private string _lowercaseName;
+        private int _ordinal;
 
         /// <summary>
-        /// Info log level
+        /// The Debug level.
         /// </summary>
-        Info, 
+        public static readonly LogLevel Debug = new LogLevel("Debug", 0);
 
         /// <summary>
-        /// Warn log level
+        /// The Info level.
         /// </summary>
-        Warn, 
+        public static readonly LogLevel Info = new LogLevel("Info", 1);
 
         /// <summary>
-        /// Error log level
+        /// The Warn level.
         /// </summary>
-        Error, 
+        public static readonly LogLevel Warn = new LogLevel("Warn", 2);
 
         /// <summary>
-        /// Fatal log level
+        /// The Error level.
         /// </summary>
-        Fatal, 
+        public static readonly LogLevel Error = new LogLevel("Error", 3);
 
         /// <summary>
-        /// Maximum log level. An alias for LogLevel.Fatal
+        /// The Fatal level.
         /// </summary>
-        MaxLevel = Fatal, 
+        public static readonly LogLevel Fatal = new LogLevel("Fatal", 4);
 
         /// <summary>
-        /// Disable logging
+        /// The Off level.
         /// </summary>
-        Off,
+        public static readonly LogLevel Off = new LogLevel("Off", 5);
+
+        public static readonly LogLevel MaxLevel = Fatal;
+
+        private static LogLevel[] _levelByOrdinal;
+
+        static LogLevel()
+        {
+            Debug = new LogLevel("Debug", 0);
+            Info = new LogLevel("Info", 1);
+            Warn = new LogLevel("Warn", 2);
+            Error = new LogLevel("Error", 3);
+            Fatal = new LogLevel("Fatal", 4);
+            Off = new LogLevel("Off", 5);
+
+            _levelByOrdinal = new LogLevel[] { Debug, Info, Warn, Error, Fatal, Off };
+            MaxLevel = Fatal;
+        }
+
+        public LogLevel(string name, int ordinal)
+        {
+            _name = name;
+            _uppercaseName = name.ToUpper();
+            _lowercaseName = name.ToLower();
+            _ordinal = ordinal;
+        }
+
+        public string Name
+        {
+            get { return _name; }
+        }
+
+        internal int Ordinal
+        {
+            get { return _ordinal; }
+        }
+
+        public static LogLevel FromOrdinal(int ordinal)
+        {
+            return _levelByOrdinal[ordinal];
+        }
+
+        public static bool operator <=(LogLevel l1, LogLevel l2)
+        {
+            return l1.Ordinal <= l2.Ordinal;
+        }
+
+        public static bool operator >=(LogLevel l1, LogLevel l2)
+        {
+            return l1.Ordinal >= l2.Ordinal;
+        }
+
+        public static bool operator <(LogLevel l1, LogLevel l2)
+        {
+            return l1.Ordinal < l2.Ordinal;
+        }
+
+        public static bool operator >(LogLevel l1, LogLevel l2)
+        {
+            return l1.Ordinal > l2.Ordinal;
+        }
+
+        /// <summary>
+        /// Returns the <see cref="T:NLog.LogLevel"/> that corresponds to the supplied <see langword="string" />.
+        /// </summary>
+        /// <param name="s">the texual representation of the log level</param>
+        /// <returns>the enumeration value.</returns>
+        public static LogLevel FromString(string s)
+        {
+            // case sensitive search first
+            for (int i = 0; i < _levelByOrdinal.Length; ++i)
+            {
+                if (_levelByOrdinal[i].Name == s)
+                    return _levelByOrdinal[i];
+            }
+
+            // case insensitive search
+            for (int i = 0; i < _levelByOrdinal.Length; ++i)
+            {
+                if (0 == String.Compare(_levelByOrdinal[i].Name, s, true))
+                    return _levelByOrdinal[i];
+            }
+            throw new ArgumentException("Unknown log level: " + s);
+        }
+
+        /// <summary>
+        /// Returns a string representation of the log level.
+        /// </summary>
+        /// <returns>Log level name.</returns>
+        public override string ToString()
+        {
+            return Name;
+        }
     } 
 }
