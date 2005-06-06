@@ -19,6 +19,10 @@
     <p>
         For your convenience the source and binary snapshots (including the windows installer)
         are available <a href="http://nlog.sourceforge.net/snapshots/">here</a>.</p>
+    <h5>Daily Subversion Snapshots</h5>
+    <p>
+        The source snapshots are automatically generated on each day and 
+        are available <a href="http://nlog.sourceforge.net/snapshots/">here</a>.</p>
     <h3>Building NLog from source</h3>
     <p>
         NLog can be built with either Visual Studio.NET 2003 or <a href="http://nant.sourceforge.net/">NAnt</a>. If you
