@@ -24,6 +24,7 @@
             <subnav href="config" label="Configuration File" />
         </nav>
         <nav href="download" label="Download" />
+        <nav href="technical" label="Technical Information" />
         <nav href="mailinglists" label="Mailing Lists" />
         <nav href="faq" label="FAQ" />
         <nav href="blog" label="Blog" />

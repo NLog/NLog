@@ -23,16 +23,19 @@
     <property name="binary_compact_snapshot.name" value="nlog-compact-${tstamp.date}-bin.zip" />
 
     <property name="clover.enabled" value="false" />
-    <property name="clover.home" value="C:\Program Files\Cenqua\Clover.NET" />
+    <property name="clover.home" value="C:\Apps\CloverNLog" />
     <property name="clover.build.dir" value="CloverBuild" />
-    <property name="clover.report.dir" value="${clover.build.dir}/report" />
+    <property name="clover.report.dir" value="build/clover_report" />
+
+    <property name="web.dir" value="web/build" unless="${property::exists('web.dir')}" />
+    <property name="nlog.help.dir" value="build/help" unless="${property::exists('nlog.help.dir')}" />
+
+    <property name="nunit2.report.dir" value="${nant.project.basedir}/build/test_results" />
 
     <target name="configure">
         <call target="configure-${framework::get-target-framework()}" />
         <property name="nlog.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(clover.enabled,'-clover','')}${if(nlog.debug,'-debug','')}/bin" unless="${property::exists('nlog.dir')}" />
-        <property name="web.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(nlog.debug,'-debug','')}/doc" unless="${property::exists('web.dir')}" />
         <mkdir dir="${nlog.dir}" />
-        <mkdir dir="${web.dir}" />
     </target>
 
     <target name="build" depends="configure">
@@ -65,7 +68,6 @@
 
     <target name="clean" depends="configure">
         <delete dir="${nlog.dir}" />
-        <delete dir="${web.dir}" />
     </target>
 
     <target name="NLog" depends="configure">
@@ -236,7 +238,7 @@
 
     <target name="test" depends="NLog.UnitTests">
         <nunit2>
-            <formatter type="Plain" />
+            <formatter type="Xml" usefile="true" extension=".xml" outputdir="build/test_results_xml" />
             <test assemblyname="${nlog.dir}/NLog.UnitTests.dll" />
         </nunit2>
     </target>
@@ -343,14 +345,14 @@
     <target name="doc" depends="configure, build">
         <uptodate property="help.uptodate">
             <targetfiles>
-                <include name="${web.dir}/help/NLog.chm" />
+                <include name="${nlog.help.dir}/NLog.chm" />
             </targetfiles>
             <sourcefiles basedir="${nlog.dir}">
                 <include name="**/*.dll" />
             </sourcefiles>
         </uptodate>
         <if test="${not help.uptodate}">
-            <exec program="${ndoc.console.exe}" workingdir="${nant.project.basedir}" commandline="-documenter=MSDN -project=NLog.ndoc" />
+            <exec program="${ndoc.console.exe}" workingdir="${nant.project.basedir}" commandline="-documenter=MSDN -project=NLog.ndoc -OutputDirectory=${nlog.help.dir}" />
         </if>
     </target>
 
@@ -382,7 +384,7 @@
 
     <target name="publish_website_help" depends="doc">
         <zip zipfile="help.zip">
-            <fileset basedir="${web.dir}/help">
+            <fileset basedir="${nlog.help.dir}">
                 <include name="**/*" />
                 <exclude name="**/NLog.chm" />
             </fileset>
@@ -394,13 +396,26 @@
         <echo message="Help deployed." />
     </target>
 
+    <target name="publish_clover" depends="clover-html-report">
+        <zip zipfile="clover.zip">
+            <fileset basedir="${clover.report.dir}">
+                <include name="**/*" />
+            </fileset>
+        </zip>
+        <echo message="Uploading the zipped coverage results..." />
+        <exec program="${scp.program}" commandline="${scp.program.args} clover.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
+        <echo message="Unpacking the zipped coverage results..." />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_clover.sh" />
+        <echo message="Coverage results deployed." />
+    </target>
+
     <target name="source_snapshot">
-        <delete dir="tmp/source_snapshot" if="${directory::exists('tmp/source_snapshot')}" />
-        <property name="tmp.dir" value="tmp/source_snapshot/NLog-${tstamp.date}" />
-        <mkdir dir="tmp/source_snapshot" if="${not directory::exists('tmp/source_snapshot')}" />
-        <exec program="svn" commandline="export . ${tmp.dir}" />
+        <delete dir="build/source_snapshot" if="${directory::exists('build/source_snapshot')}" />
+        <property name="build.dir" value="build/source_snapshot/NLog-${tstamp.date}" />
+        <mkdir dir="build/source_snapshot" if="${not directory::exists('build/source_snapshot')}" />
+        <exec program="svn" commandline="export . ${build.dir}" />
         <zip zipfile="${source_snapshot.name}">
-            <fileset basedir="tmp/source_snapshot">
+            <fileset basedir="build/source_snapshot">
                 <include name="**/*" />
                 <exclude name="_svn" />
             </fileset>
@@ -446,7 +461,6 @@
     </target>
 
     <target name="website">
-        <property name="web.dir" value="web/build" unless="${property::exists('web.dir')}" />
         <property name="web.sourceforge" value="1" />
         <delete dir="${web.dir}" if="${directory::exists(web.dir)}" failonerror="false" />
         <mkdir dir="${web.dir}" />
@@ -540,10 +554,40 @@
 
     <target name="clover-html-report" depends="clover">
         <clover-report>
-            <current title="Sooda Coverage" output="${clover.report.dir}">
+            <current title="NLog Coverage" output="${clover.report.dir}">
                 <format type="html" />
             </current>
         </clover-report>
+    </target>
+
+    <target name="load-nunit2report">
+        <loadtasks assembly="tools/nunit2report/NAnt.NUnit2ReportTasks.dll" />
+    </target>
+
+    <target name="nunit2report" depends="load-nunit2report, test">
+        <nunit2report format="frames" todir="${nunit2.report.dir}" verbose="true">
+            <fileset>
+                <include name="build/test_results_xml/*.xml" />
+            </fileset>
+        </nunit2report>
+    </target>
+
+    <target name="publish_nunit2report" depends="nunit2report">
+        <zip zipfile="nunit2report.zip">
+            <fileset basedir="${nunit2.report.dir}">
+                <include name="**/*" />
+            </fileset>
+        </zip>
+        <echo message="Uploading the zipped nunit2report results..." />
+        <exec program="${scp.program}" commandline="${scp.program.args} nunit2report.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
+        <echo message="Unpacking the zipped nunit2report results..." />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_nunit2report.sh" />
+        <echo message="NUnit2report results deployed." />
+    </target>
+
+    <target name="sourceforge_release">
+        <exec program="nant" commandline="publish_nunit2report" />
+        <exec program="nant" commandline="clover test publish_clover" />
     </target>
 
 </project>

@@ -67,6 +67,8 @@ var sc_security="6fe22c9a";
 
     <xsl:template name="controls">
         <xsl:apply-templates select="$common/common/navigation" />
+        <p/>
+        <a href="http://www.cenqua.com/clover.net"><img src="http://www.cenqua.com/images/cloverednet1.gif" width="89" height="33" border="0" alt="Code Coverage by Clover.NET"/></a>
     </xsl:template>
 
     <xsl:template match="navigation">

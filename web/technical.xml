@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="technical">
+    <h1>Technical Information</h1>
+    <p>
+        Here you'll find some information about the inner working of NLog.
+    </p>
+    <ol>
+        <li><a href="/clover/index.html">Latest code coverage results generated using Clover.NET (this is just a beginning of any serious unit testing so the coverage isn't very good)</a></li>
+        <li><a href="/nunit2report/">Latest NUnit testing results generated using NUnit2Report</a></li>
+    </ol>
+</content>

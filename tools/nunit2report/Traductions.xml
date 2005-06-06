@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Traductions>
+	<Traduction lang="fr" key="UnitTestsResults">Résultats des Test Unitaires</Traduction>
+	<Traduction lang="fr" key="GeneratedBy">Généré par</Traduction>
+	<Traduction lang="fr" key="Designed">A utiliser avec</Traduction>
+	<Traduction lang="fr" key="and">et</Traduction>
+	<Traduction lang="fr" key="EnvironmentInformation">Informations environnement</Traduction>
+	<Traduction lang="fr" key="Tests">Tests</Traduction>
+	<Traduction lang="fr" key="Failures">Echecs</Traduction>
+	<Traduction lang="fr" key="Errors">Erreurs</Traduction>
+	<Traduction lang="fr" key="SuccessRate">Taux de succès</Traduction>
+	<Traduction lang="fr" key="Time">Durée (s)</Traduction>
+	<Traduction lang="fr" key="Summary">Résumé</Traduction>
+	<Traduction lang="fr" key="Name">Nom</Traduction>
+	<Traduction lang="fr" key="Status">Status</Traduction>
+	<Traduction lang="fr" key="TestSuiteSummary">Index des suites de tests</Traduction>
+	<Traduction lang="fr" key="Backtotop">Retour haut de page</Traduction>
+	<Traduction lang="fr" key="NETCLRVersion">Version .NET CLR</Traduction>
+	<Traduction lang="fr" key="OperatingSystem">Système d'exploitation</Traduction>
+	<Traduction lang="fr" key="BaseDirectory">Répertoire de base</Traduction>
+	<Traduction lang="fr" key="Buildfile">Fichier de construction</Traduction>
+	<Traduction lang="fr" key="NAntVersion">Nant Version</Traduction>
+	<Traduction lang="fr" key="NAntLocation">Répertoire Nant</Traduction>
+	<Traduction lang="fr" key="Value">Valeur</Traduction>
+	<Traduction lang="fr" key="Property">Propriété</Traduction>
+	<Traduction lang="fr" key="EnvironmentInformation">Information Environment</Traduction>
+	<Traduction lang="fr" key="anticipated">sont prévisibles et vérifiés grâce aux assertions tandis que les</Traduction>
+	<Traduction lang="fr" key="failures">Les échecs</Traduction>
+	<Traduction lang="fr" key="errors">erreurs</Traduction>
+	<Traduction lang="fr" key="unanticipated">ne sont pas anticipées.</Traduction>
+	<Traduction lang="fr" key="Note">Note</Traduction>
+	<Traduction lang="fr" key="Failure">Echec</Traduction>
+	<Traduction lang="fr" key="Error">Erreur</Traduction>
+	<Traduction lang="fr" key="Pass">Passé</Traduction>
+	<Traduction lang="fr" key="Ignored">Ignoré</Traduction>
+	<Traduction lang="fr" key="Home">Accueil</Traduction>
+</Traductions>	
+	
