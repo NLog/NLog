@@ -47,7 +47,7 @@ namespace NLog.Viewer
             {
                 using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp))
                 {
-                    socket.Bind(new IPEndPoint(IPAddress.Any, 40000));
+                    socket.Bind(new IPEndPoint(IPAddress.Any, 4000));
 
                     IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
                     EndPoint senderRemote = (EndPoint)sender;

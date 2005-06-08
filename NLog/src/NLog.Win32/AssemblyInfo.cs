@@ -37,4 +37,4 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("NLog.Win32")][assembly: AssemblyDescription("NLog - Win32-specific logging support")][assembly: AssemblyConfiguration("")][assembly: AssemblyCompany("NLog")][assembly: AssemblyProduct("NLog - .NET Logging Library")][assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")][assembly: AssemblyCulture("")]
 
-[assembly: AssemblyVersion("0.5.0.0")]
+[assembly: AssemblyVersion("0.9.0.0")]

@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests", "src\NLog.
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Viewer", "src\NLog.Viewer\NLog.Viewer.csproj", "{E82961D7-4727-4330-913B-576C55E0A102}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -53,6 +57,10 @@ Global
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Debug.Build.0 = Debug|.NET
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Release.ActiveCfg = Release|.NET
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Release.Build.0 = Release|.NET
+		{E82961D7-4727-4330-913B-576C55E0A102}.Debug.ActiveCfg = Debug|.NET
+		{E82961D7-4727-4330-913B-576C55E0A102}.Debug.Build.0 = Debug|.NET
+		{E82961D7-4727-4330-913B-576C55E0A102}.Release.ActiveCfg = Release|.NET
+		{E82961D7-4727-4330-913B-576C55E0A102}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(SolutionItems) = postSolution
 		NLog.build = NLog.build

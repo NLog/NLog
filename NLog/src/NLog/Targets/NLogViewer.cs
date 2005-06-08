@@ -32,7 +32,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if DEFUNCT
 
 using System;
 using System.IO;
@@ -53,7 +52,7 @@ namespace NLog.Targets
     /// Sends logging messages to the remote instance of NLog Viewer. 
     /// NOT OPERATIONAL YET.
     /// </summary>
-    // [Target("NLogViewer", IgnoresLayout=true)]
+    [Target("NLogViewer", IgnoresLayout=true)]
     public sealed class NLogViewerTarget: NetworkTarget
     {
         private bool _includeCallSite = false;
@@ -153,5 +152,3 @@ namespace NLog.Targets
         }
     }
 }
-
-#endif
