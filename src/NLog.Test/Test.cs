@@ -33,6 +33,7 @@
 // 
 
 using System;
+using System.Runtime.InteropServices;
 
 using NLog;
 using NLog.Config;

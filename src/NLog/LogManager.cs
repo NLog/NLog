@@ -100,8 +100,7 @@ namespace NLog
         /// Make sure you're not doing this in a loop.</remarks>
         public static Logger GetCurrentClassLogger()
         {
-            StackTrace st = new StackTrace(false);
-            StackFrame frame = st.GetFrame(1);
+            StackFrame frame = new StackFrame(1, false);
 
             return GetLogger(frame.GetMethod().DeclaringType.FullName);
         }
