@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="news">
+    <h1>Release Notes</h1>
+    <p style="color: red"><b>Caution:</b> This website reflects the logging API and configuration file format
+        for NLog 0.9. For information on previous versions see the archived website <a href="ancient/">here</a>.</p>
+    <table width="100%">
+        <tr><td class="newsdate">2005-06-09</td><td class="newstext">
+                <p>NLog 0.9 has been released!</p>
+
+                <p>Major changes:</p>
+                <ol>
+                    <li><b>API redesign/rename.</b></li>
+                    <p>"Appender" has been renamed as "Target" and 
+                        "LayoutAppender" as "LayoutRenderer". This should make it easier for 
+                        people to understand the basic concepts ("layout appender" wasn't a good 
+                        idea). Old configuration file format is still supported. Old extension code 
+                        should require nothing more than a search/replace and a recompile.
+                    </p>
+                    <li>
+                        Improved logging and non-logging speed by removing most abstraction
+                        from the Logger class.
+                    </li>
+                    <p>
+                        A single non-logging operation takes only 7 
+                        nanoseconds which means 140.000.000 logs/second). Logging API should remain 
+                        the same.
+                    </p>
+                    <li>
+                        Changed the way the configuration file is parsed. Now elements are 
+                        processed top-down and you can change the order of the sections as well as 
+                        the elements you reference have been processed before. 
+                    </li>
+                </ol> 
+
+                <p>Bugs fixed:</p>
+                <ol>
+                    <li>Fixed an old bug where appenders were incorrectly combined into a chain.</li>
+                </ol>
+
+                <p>New additions:</p>
+                <ol>
+                    <li>Network target (capable of sending messages over TCP and UDP, HTTP to be 
+                        supported)</li>
+                    <li>Preliminary NLogViewer target and a sketchy, but already usable viewer 
+                        application. "Chainsaw" target should probably be added as well.</li>
+                    <li>Added LogManager.GlobalThreshold</li>
+                    <li>API documentation, target, layout renderer and filter documentation is 
+                        generated from source code comments using NDoc.</li>
+                    <li>100% of public methods are commented in the source code.</li>
+                    <li>Reworked the tutorial and howtos</li>
+                    <li>Reworked the website.</li>
+                </ol>
+
+            </td>
+        </tr>
+    </table>
+</content>

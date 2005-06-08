@@ -27,7 +27,6 @@
             <property name="ShowVisualBasic" value="True" />
             <property name="IncludeFavorites" value="True" />
             <property name="BinaryTOC" value="False" />
-            <property name="ShowMissingSummaries" value="True" />
             <property name="ShowMissingParams" value="True" />
             <property name="ShowMissingReturns" value="True" />
             <property name="DocumentInheritedFrameworkMembers" value="False" />

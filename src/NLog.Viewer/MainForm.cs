@@ -456,6 +456,19 @@ namespace NLog.Viewer
 
         private void MainForm_Load(object sender, System.EventArgs e)
         {
+            MessageBox.Show(this, @"
+This just a sketch of the upcoming NLog Viewer application. 
+It receives messages sent over UDP protocol port 4000 and displays them.
+
+To send messages to be received by NLog.Viewer, add the following target to the config file:
+
+<targets>
+    ...
+   <target name=""viewer"" type=""NLogViewer"" address=""udp://localhost:4000"" />
+</targets>
+"
+                );
+
             LoadLogs();
         }
 

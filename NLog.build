@@ -17,24 +17,26 @@
     <property name="sourceforge.addr" value="jkowalski@nlog.sourceforge.net" />
     <property name="sourceforge.groupdir" value="/home/groups/n/nl/nlog" />
 
-    <property name="installer.name" value="nlog-${tstamp.date}.exe" />
-    <property name="source_snapshot.name" value="nlog-${tstamp.date}-src.zip" />
-    <property name="binary_snapshot.name" value="nlog-${tstamp.date}-bin.zip" />
-    <property name="binary_compact_snapshot.name" value="nlog-compact-${tstamp.date}-bin.zip" />
+    <property name="nlog.package.name" value="${tstamp.date}" unless="${property::exists('nlog.package.name')}" />
+
+    <property name="installer.name" value="nlog-${nlog.package.name}.exe" />
+    <property name="source_snapshot.name" value="nlog-${nlog.package.name}-src.zip" />
+    <property name="binary_snapshot.name" value="nlog-${nlog.package.name}-bin.zip" />
+    <property name="binary_compact_snapshot.name" value="nlog-compact-${nlog.package.name}-bin.zip" />
 
     <property name="clover.enabled" value="false" />
     <property name="clover.home" value="C:\Apps\CloverNLog" />
-    <property name="clover.build.dir" value="CloverBuild" />
-    <property name="clover.report.dir" value="build/clover_report" />
-
-    <property name="web.dir" value="web/build" unless="${property::exists('web.dir')}" />
-    <property name="nlog.help.dir" value="build/help" unless="${property::exists('nlog.help.dir')}" />
-
-    <property name="nunit2.report.dir" value="${nant.project.basedir}/build/test_results" />
 
     <target name="configure">
         <call target="configure-${framework::get-target-framework()}" />
-        <property name="nlog.dir" value="${nant.project.basedir}/build/${framework::get-target-framework()}${if(clover.enabled,'-clover','')}${if(nlog.debug,'-debug','')}/bin" unless="${property::exists('nlog.dir')}" />
+        <property name="buildsubdir" value="${framework::get-target-framework()}${if(clover.enabled,'-clover','')}${if(nlog.debug,'-debug','')}" />
+        <property name="nlog.dir" value="${nant.project.basedir}/build/${buildsubdir}/bin" unless="${property::exists('nlog.dir')}" />
+        <property name="nlog.help.dir" value="build/${buildsubdir}/help" unless="${property::exists('nlog.help.dir')}" />
+        <property name="nunit2.report.dir" value="${nant.project.basedir}/build/${buildsubdir}/test_results" />
+        <property name="clover.report.dir" value="build/${buildsubdir}/clover_report" />
+        <property name="clover.build.dir" value="build/${buildsubdir}/clover" />
+        <property name="web.dir" value="build/${buildsubdir}/web" unless="${property::exists('web.dir')}" />
+
         <mkdir dir="${nlog.dir}" />
     </target>
 
@@ -52,22 +54,21 @@
         <property name="nlog.optimize" value="true" />
     </target>
 
-    <target name="package" depends="build, website, doc">
-        <property name="zip.file" value="${nant.project.basedir}/nlog-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" unless="${property::exists('zip.file')}" />
-        <copy file="LICENSE.txt" tofile="${nlog.dir}/../LICENSE.txt" />
-        <zip zipfile="${zip.file}">
-            <fileset basedir="${nlog.dir}/..">
+    <target name="package" depends="build">
+        <zip zipfile="${binary_snapshot.name}">
+            <fileset basedir="build/${buildsubdir}">
                 <include name="bin/*" />
-                <include name="doc/*" />
-                <include name="doc/examples/**/*" />
-                <include name="doc/help/NLog.chm" />
-                <include name="*" />
+                <include name="help/NLog.chm" />
+                <include name="web/**/*" />
+            </fileset>
+            <fileset basedir=".">
+                <include name="LICENSE.txt" />
             </fileset>
         </zip>
     </target>
 
     <target name="clean" depends="configure">
-        <delete dir="${nlog.dir}" />
+        <delete dir="build/${buildsubdir}" />
     </target>
 
     <target name="NLog" depends="configure">
@@ -236,9 +237,23 @@
         <copy file="src/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe.config" />
     </target>
 
+    <target name="NLog.Viewer" depends="configure">
+        <csc target="winexe" output="${nlog.dir}/NLog.Viewer.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+            <sources basedir="src/NLog.Viewer">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="System.Windows.Forms.dll" />
+            </references>
+            <resources basedir="src/NLog.Viewer" prefix="NLog.Viewer" dynamicprefix="true">
+                <include name="**/*.resx" />
+            </resources>
+        </csc>
+    </target>
+
     <target name="test" depends="NLog.UnitTests">
         <nunit2>
-            <formatter type="Xml" usefile="true" extension=".xml" outputdir="build/test_results_xml" />
+            <formatter type="Xml" usefile="true" extension=".xml" outputdir="build/${buildsubdir}/test_results_xml" />
             <test assemblyname="${nlog.dir}/NLog.UnitTests.dll" />
         </nunit2>
     </target>
@@ -291,10 +306,13 @@
     </target>
 
     <target name="build-mono-1.0" depends="NLog, NLog.Mono" />
-    <target name="build-net-1.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet" />
-    <target name="build-net-1.1" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet" />
-    <target name="build-net-2.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet" />
+    <target name="build-net-1.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLog.Viewer" />
+    <target name="build-net-1.1" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLog.Viewer" />
+    <target name="build-net-2.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLog.Viewer" />
     <target name="build-netcf-1.0" depends="NLog, NLog.CompactFramework" />
+
+    <target name="fullbuild" depends="build, cleanwebsite, doc">
+    </target>
 
     <target name="dist">
         <exec program="nant.exe" commandline="-t:net-1.0 release package" if="${framework::exists('net-1.0')}" />
@@ -331,15 +349,23 @@
         </foreach>
     </target>
 
-    <target name="installer">
-        <exec program="nant.exe" commandline="-t:net-1.0 release package build doc" />
+    <target name="installer" depends="configure">
+        <!-- <exec program="nant.exe" commandline="-t:net-1.0 release package build doc" /> -->
         <readregistry property="nsis.dir" key="SOFTWARE\NSIS\" />
         <property name="makensis.exe" value="${nsis.dir}/makensis.exe" />
 
         <foreach item="Line" in="nlog.version" delim="." property="nlog.major,nlog.minor,nlog.revision,nlog.build">
-            <exec program="${makensis.exe}" commandline="/DVERSION=${nlog.major}.${nlog.minor}.${nlog.revision}.${nlog.build} tools\SetupNLog.nsi" />
+            <exec program="${makensis.exe}" commandline="/DVERSION=${nlog.major}.${nlog.minor}.${nlog.revision}.${nlog.build} /DBUILDSUBDIR=${buildsubdir} tools\SetupNLog.nsi" />
             <move file="SetupNLog.exe" tofile="${installer.name}" overwrite="true" />
         </foreach>
+    </target>
+
+    <target name="fulldist">
+        <call target="clean" />
+        <call target="fullbuild" />
+        <call target="installer" />
+        <call target="package" />
+        <call target="source_snapshot" />
     </target>
 
     <target name="doc" depends="configure, build">
@@ -356,7 +382,10 @@
         </if>
     </target>
 
-    <target name="publish_website" depends="website">
+    <target name="cleanwebsite" depends="xmldoc, website">
+    </target>
+
+    <target name="publish_website" depends="cleanwebsite">
         <zip zipfile="website.zip">
             <fileset basedir="${web.dir}">
                 <include name="*" />
@@ -369,7 +398,7 @@
         <echo message="Website deployed." />
     </target>
 
-    <target name="publish_test_website" depends="website">
+    <target name="publish_test_website" depends="cleanwebsite">
         <zip zipfile="website.zip">
             <fileset basedir="${web.dir}">
                 <include name="*" />
@@ -411,9 +440,9 @@
 
     <target name="source_snapshot">
         <delete dir="build/source_snapshot" if="${directory::exists('build/source_snapshot')}" />
-        <property name="build.dir" value="build/source_snapshot/NLog-${tstamp.date}" />
+        <property name="snapshot.dir" value="build/source_snapshot/NLog" />
         <mkdir dir="build/source_snapshot" if="${not directory::exists('build/source_snapshot')}" />
-        <exec program="svn" commandline="export . ${build.dir}" />
+        <exec program="svn" commandline="export . ${snapshot.dir}" />
         <zip zipfile="${source_snapshot.name}">
             <fileset basedir="build/source_snapshot">
                 <include name="**/*" />
@@ -457,7 +486,7 @@
     </target>
 
     <target name="xmldoc" depends="build">
-        <exec program="${ndoc.console.exe}" workingdir="${nant.project.basedir}" commandline="-documenter=XML -project=NLog.ndoc" />
+        <exec program="${ndoc.console.exe}" workingdir="${nant.project.basedir}" commandline="-documenter=XML -project=NLog.ndoc -OutputFile=build/${buildsubdir}/doc.xml" />
     </target>
 
     <target name="website">
@@ -465,7 +494,7 @@
         <delete dir="${web.dir}" if="${directory::exists(web.dir)}" failonerror="false" />
         <mkdir dir="${web.dir}" />
         <mkdir dir="${web.dir}/examples" />
-        <style out="${web.dir}/targets.html" style="web/targets.xsl" in="doc/doc.xml">
+        <style out="${web.dir}/targets.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -473,7 +502,7 @@
                 <parameter name="subpage_id_override" value="targets" />
             </parameters>
         </style>
-        <style out="${web.dir}/layoutrenderers.html" style="web/layoutrenderers.xsl" in="doc/doc.xml">
+        <style out="${web.dir}/layoutrenderers.html" style="web/layoutrenderers.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -481,7 +510,7 @@
                 <parameter name="subpage_id_override" value="layoutrenderers" />
             </parameters>
         </style>
-        <style out="${web.dir}/filters.html" style="web/filters.xsl" in="doc/doc.xml">
+        <style out="${web.dir}/filters.html" style="web/filters.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -544,6 +573,7 @@
 
     <target name="clover" depends="load-clover">
         <property name="clover.enabled" value="true" />
+        <call target="configure" />
         <clover-setup 
             initstring="${clover.build.dir}/clover.cdb"
             builddir="${clover.build.dir}"
@@ -560,6 +590,8 @@
         </clover-report>
     </target>
 
+    <target name="coverage_test" depends="clover, test, clover-html-report" />
+
     <target name="load-nunit2report">
         <loadtasks assembly="tools/nunit2report/NAnt.NUnit2ReportTasks.dll" />
     </target>
@@ -567,7 +599,7 @@
     <target name="nunit2report" depends="load-nunit2report, test">
         <nunit2report format="frames" todir="${nunit2.report.dir}" verbose="true">
             <fileset>
-                <include name="build/test_results_xml/*.xml" />
+                <include name="build/${buildsubdir}/test_results_xml/*.xml" />
             </fileset>
         </nunit2report>
     </target>

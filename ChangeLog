@@ -1,15 +1,3 @@
-2005-03-09 Jaroslaw Kowalski <jaak@zd.com.pl>
-	* Implemented the Exception Layout Appender (finally)
+2005-06-09 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 
-2004-10-12 Jaroslaw Kowalski <jaak@zd.com.pl>
-	* Added Managed C++ wrapper for use in C++ projects
-	* Added Exception logging
-	
-2004-09-28 Jaroslaw Kowalski <jaak@zd.com.pl>
-	* Improved support for .NET Compact Framework by adding
-	project files and automated config file loading.
-	
-2004-09-02 Jaroslaw Kowalski <jaak@zd.com.pl>
-	
-	* Added initial support for database appender and array 
-	parameter infrastructure
+NLog v0.9 has been released.

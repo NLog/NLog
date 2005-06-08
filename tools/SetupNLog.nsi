@@ -23,28 +23,26 @@ Section "Main"
 
   SetOutPath $INSTDIR\bin
   ; Put file there
-  File /r build\net-1.0\bin\*.*
+  File /r "build\${BUILDSUBDIR}\bin\*.*"
 
-  SetOutPath $INSTDIR\doc
-  File build\net-1.0\doc\*.*
-
-  SetOutPath $INSTDIR\doc\examples
-  File /r build\net-1.0\doc\examples\*.*
+  SetOutPath $INSTDIR\web
+  File /r build\${BUILDSUBDIR}\web\*.*
 
   SetOutPath $INSTDIR\doc\help
-  File build\net-1.0\doc\help\NLog.chm
+  File build\${BUILDSUBDIR}\help\NLog.chm
 
   CreateDirectory "$SMPROGRAMS\NLog"
   CreateShortCut  "$SMPROGRAMS\NLog\Uninstall.lnk" "$INSTDIR\Uninstall.exe" ""
   CreateShortCut  "$SMPROGRAMS\NLog\LICENSE.lnk" "$INSTDIR\License.txt" ""
-  CreateShortCut  "$SMPROGRAMS\NLog\Class Library Reference.lnk" "$INSTDIR\doc\help\NLog.chm" ""
-  CreateShortCut  "$SMPROGRAMS\NLog\NLog Tutorial.lnk" "$INSTDIR\doc\tutorial.html" ""
-  CreateShortCut  "$SMPROGRAMS\NLog\NLog Documentation.lnk" "$INSTDIR\doc\index.html" ""
+  CreateShortCut  "$SMPROGRAMS\NLog\Class Library Reference.lnk" "$INSTDIR\help\NLog.chm" ""
+  CreateShortCut  "$SMPROGRAMS\NLog\NLog Tutorial.lnk" "$INSTDIR\web\tutorial.html" ""
+  CreateShortCut  "$SMPROGRAMS\NLog\NLog Archived Website.lnk" "$INSTDIR\web\index.html" ""
+  CreateShortCut  "$SMPROGRAMS\NLog\NLog Viewer (preview).lnk" "$INSTDIR\bin\NLog.Viewer.exe" ""
 
   WriteRegStr HKCU "Software\Microsoft\VisualStudio\7.0\AssemblyFolders\NLog" "" "$INSTDIR\Bin"
   WriteRegStr HKCU "Software\Microsoft\VisualStudio\7.1\AssemblyFolders\NLog" "" "$INSTDIR\Bin"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\NLog" "" ""
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\NLog" "DisplayName" "NLog Class Library"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\NLog" "DisplayName" "NLog - A .NET Logging Library"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\NLog" "UninstallString" "$INSTDIR\Uninstall.exe"
   WriteUninstaller "$INSTDIR\Uninstall.exe"
 
@@ -60,8 +58,8 @@ Section "Uninstall"
   RMDir "$SMPROGRAMS\NLog"
 
   RMDir /r "$INSTDIR\bin"
-  RMDir /r "$INSTDIR\doc\help"
-  RMDir /r "$INSTDIR\doc"
+  RMDir /r "$INSTDIR\help"
+  RMDir /r "$INSTDIR\web"
   Delete "$INSTDIR\*.*"
   RMDir "$INSTDIR"
 SectionEnd
