@@ -1,6 +1,7 @@
 using System;
 using System.Xml;
 using System.Reflection;
+using System.Diagnostics;
 
 using NLog;
 using NLog.Config;
@@ -27,10 +28,12 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
-#line 10000
-            logger.Debug("a");
+#line 100000
+            logger.Debug("msg");
             string lastMessage = GetDebugLastMessage("debug");
-            Assert.IsTrue(lastMessage.ToLower().IndexOf("callsite.cs:10001") >= 0, "Invalid line number. Expected 10001, got: " + lastMessage);
+            // There's a difference in handling line numbers between .NET and Mono
+            // We're just interested in checking if it's above 100000
+            Assert.IsTrue(lastMessage.ToLower().IndexOf("callsite.cs:10000") >= 0, "Invalid line number. Expected prefix of 10000, got: " + lastMessage);
 #line default
         }
 
