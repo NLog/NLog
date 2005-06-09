@@ -339,10 +339,8 @@
         <readregistry property="nsis.dir" key="SOFTWARE\NSIS\" />
         <property name="makensis.exe" value="${nsis.dir}/makensis.exe" />
 
-        <foreach item="Line" in="nlog.version" delim="." property="nlog.major,nlog.minor,nlog.revision,nlog.build">
-            <exec program="${makensis.exe}" commandline="/DVERSION=${nlog.major}.${nlog.minor}.${nlog.revision}.${nlog.build} /DBUILDSUBDIR=${buildsubdir} tools\SetupNLog.nsi" />
-            <move file="SetupNLog.exe" tofile="${installer.name}" overwrite="true" />
-        </foreach>
+        <exec program="${makensis.exe}" commandline="/DNLOGVERSION=${nlog.package.name} /DBUILDSUBDIR=${buildsubdir} tools\SetupNLog.nsi" />
+        <move file="SetupNLog.exe" tofile="${installer.name}" overwrite="true" />
     </target>
 
     <target name="fulldist">
@@ -361,8 +359,8 @@
     </target>
 
     <target name="fullrelease">
-        <exec program="nant" commandline="-t:net-1.1 fulldist" />
-        <exec program="nant" commandline="-t:netcf-1.0 compactdist" />
+        <exec program="nant" commandline="-t:net-1.0 release fulldist" />
+        <exec program="nant" commandline="-t:netcf-1.0 release compactdist" />
     </target>
 
     <target name="doc" depends="configure, build">

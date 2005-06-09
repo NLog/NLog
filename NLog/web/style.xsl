@@ -43,7 +43,7 @@ var sc_security="6fe22c9a";
                             </xsl:if>
                         </td>
                         <td valign="top" align="left" class="content">
-                            <p style="color: blue; font-weight: bold; padding: 4px; margin-bottom: 10px; border: 1px solid #ABC8E5; background-color: #DFEAF5;">THIS SITE IS UNDER CONSTRUCTION. SOME SECTIONS ARE MISSING.</p>
+                            <!-- <p style="color: blue; font-weight: bold; padding: 4px; margin-bottom: 10px; border: 1px solid #ABC8E5; background-color: #DFEAF5;">THIS SITE IS UNDER CONSTRUCTION. SOME SECTIONS ARE MISSING.</p> -->
                             <xsl:apply-templates select="/" mode="content" />
                         </td>
                     </tr>

@@ -101,7 +101,7 @@ namespace NLog.Viewer
                                     logEventInfo.ReceivedTime = DateTime.Now;
                                     ProcessLogEvent(logEventInfo);
                                 }
-                                catch (Exception ex)
+                                catch (Exception)
                                 {
                                     // MessageBox.Show(ex.ToString());
                                 }
@@ -111,7 +111,7 @@ namespace NLog.Viewer
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
