@@ -3,7 +3,7 @@
 <content lang="en" id="news">
     <h1>News</h1>
     <table width="100%">
-        <tr><td class="newsdate">TBA</td><td class="newstext">
+        <tr><td class="newsdate">2005-06-09</td><td class="newstext">
                 <p><b style="color: red">NLog 0.9 has been released!</b>. Click <link href="releasenotes">here</link> for the release notes. Source and binary packages can be found <link href="download">here</link>.</p>
              </td>
          </tr>
