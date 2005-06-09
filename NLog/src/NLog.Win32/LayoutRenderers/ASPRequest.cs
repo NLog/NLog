@@ -135,7 +135,7 @@ namespace NLog.Win32.LayoutRenderers
         /// <param name="ev">Logging event information.</param>
         /// <returns>The number of characters.</returns>
         /// <remarks>
-        /// Because ASP appender uses COM Interop which is quite expensive, this method always returns 64.
+        /// Because ASP target uses COM Interop which is quite expensive, this method always returns 64.
         /// </remarks>
         protected override int GetEstimatedBufferSize(LogEventInfo ev)
         {

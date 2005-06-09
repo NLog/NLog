@@ -320,7 +320,7 @@ namespace NLog
 
         /// <summary>
         /// Loops through all loggers previously returned by <see cref="GetLogger" />
-        /// and recalculates their appender and filter list. Useful after modifying the configuration programmatically
+        /// and recalculates their target and filter list. Useful after modifying the configuration programmatically
         /// to ensure that all loggers have been properly configured.
         /// </summary>
         public static void ReconfigExistingLoggers()
