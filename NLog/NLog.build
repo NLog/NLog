@@ -54,7 +54,7 @@
         <property name="nlog.optimize" value="true" />
     </target>
 
-    <target name="package" depends="build">
+    <target name="binary_snapshot" depends="build">
         <zip zipfile="${binary_snapshot.name}">
             <fileset basedir="build/${buildsubdir}">
                 <include name="bin/*" />
@@ -314,20 +314,6 @@
     <target name="fullbuild" depends="build, cleanwebsite, doc">
     </target>
 
-    <target name="dist">
-        <exec program="nant.exe" commandline="-t:net-1.0 release package" if="${framework::exists('net-1.0')}" />
-        <exec program="nant.exe" commandline="-t:net-1.1 release package" if="${framework::exists('net-1.1')}" />
-        <exec program="nant.exe" commandline="-t:netcf-1.0 release package" if="${framework::exists('netcf-1.0')}" />
-        <!--
-        <exec program="nant.exe" commandline="-t:net-1.0 debug package" if="${framework::exists('net-1.0')}" />
-        <exec program="nant.exe" commandline="-t:net-1.1 release package" if="${framework::exists('net-1.1')}" />
-        <exec program="nant.exe" commandline="-t:net-1.1 debug package" if="${framework::exists('net-1.1')}" />
-        <exec program="nant.exe" commandline="-t:net-2.0 release package" if="${framework::exists('net-1.1')}" />
-        <exec program="nant.exe" commandline="-t:net-2.0 debug package" if="${framework::exists('net-1.1')}" />
-        <exec program="nant.exe" commandline="-t:netcf-1.0 debug package" if="${framework::exists('netcf-1.0')}" />
-        -->
-    </target>
-
     <target name="updateversion">
         <foreach item="Line" in="Nlog.version" delim=";" property="nlog.version">
             <exec workingdir="${nant.project.basedir}" program="tools/ReplaceVersion.exe" commandline=". ${nlog.version}" />
@@ -349,8 +335,7 @@
         </foreach>
     </target>
 
-    <target name="installer" depends="configure">
-        <!-- <exec program="nant.exe" commandline="-t:net-1.0 release package build doc" /> -->
+    <target name="installer" depends="build">
         <readregistry property="nsis.dir" key="SOFTWARE\NSIS\" />
         <property name="makensis.exe" value="${nsis.dir}/makensis.exe" />
 
@@ -364,8 +349,20 @@
         <call target="clean" />
         <call target="fullbuild" />
         <call target="installer" />
-        <call target="package" />
+        <call target="binary_snapshot" />
         <call target="source_snapshot" />
+    </target>
+
+    <target name="compactdist">
+        <call target="clean" />
+        <call target="fullbuild" />
+        <property name="binary_snapshot.name" value="${binary_compact_snapshot.name}" />
+        <call target="binary_snapshot" />
+    </target>
+
+    <target name="fullrelease">
+        <exec program="nant" commandline="-t:net-1.1 fulldist" />
+        <exec program="nant" commandline="-t:netcf-1.0 compactdist" />
     </target>
 
     <target name="doc" depends="configure, build">
@@ -378,7 +375,8 @@
             </sourcefiles>
         </uptodate>
         <if test="${not help.uptodate}">
-            <exec program="${ndoc.console.exe}" workingdir="${nant.project.basedir}" commandline="-documenter=MSDN -project=NLog.ndoc -OutputDirectory=${nlog.help.dir}" />
+            <copy file="${nant.project.basedir}/NLog-${framework::get-target-framework()}.ndoc" tofile="build/${buildsubdir}/NLog.ndoc" />
+            <exec program="${ndoc.console.exe}" workingdir="build/${buildsubdir}" commandline="-documenter=MSDN -project=NLog.ndoc" />
         </if>
     </target>
 
@@ -451,14 +449,6 @@
         </zip>
     </target>
 
-    <target name="binary_snapshot">
-        <exec program="nant.exe" commandline="-t:net-1.0 release build website package -D:zip.file=${binary_snapshot.name}" />
-    </target>
-
-    <target name="binary_compact_snapshot">
-        <exec program="nant.exe" commandline="-t:netcf-1.0 release build website package -D:zip.file=${binary_compact_snapshot.name}" />
-    </target>
-
     <target name="astyle">
         <astyle style="NAnt" cleanup="true" >
             <fileset>
@@ -472,7 +462,7 @@
         <solution configuration="Release" solutionfile="NLog.sln" />
     </target>
 
-    <target name="publish_snapshot" depends="installer, source_snapshot, binary_snapshot, binary_compact_snapshot">
+    <target name="publish_snapshot" depends="fullrelease">
         <echo message="Uploading ${installer.name}..." />
         <exec program="${scp.program}" commandline="${scp.program.args} ${installer.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/" />
         <echo message="Uploading ${source_snapshot.name}..." />
@@ -486,7 +476,8 @@
     </target>
 
     <target name="xmldoc" depends="build">
-        <exec program="${ndoc.console.exe}" workingdir="${nant.project.basedir}" commandline="-documenter=XML -project=NLog.ndoc -OutputFile=build/${buildsubdir}/doc.xml" />
+        <copy file="${nant.project.basedir}/NLog-${framework::get-target-framework()}.ndoc" tofile="build/${buildsubdir}/NLog.ndoc" />
+        <exec program="${ndoc.console.exe}" workingdir="build/${buildsubdir}" commandline="-documenter=XML -project=NLog.ndoc" />
     </target>
 
     <target name="website" depends="configure">
