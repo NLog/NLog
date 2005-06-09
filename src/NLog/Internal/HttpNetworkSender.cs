@@ -57,7 +57,7 @@ namespace NLog.Internal
         /// <remarks>The method uses HTTP <c>POST</c> method to connect to the server.</remarks>
         protected override void DoSend(string text)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException("Not implemented yet");
         }
     }
 }

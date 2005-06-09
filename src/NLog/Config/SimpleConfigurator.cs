@@ -47,6 +47,7 @@ namespace NLog.Config
     /// </summary>
     public class SimpleConfigurator
     {
+#if !NETCF
         /// <summary>
         /// Configures NLog for console logging so that all messages above and including
         /// the <see cref="LogLevel.Info"/> level are output to the console.
@@ -70,6 +71,7 @@ namespace NLog.Config
             config.LoggingRules.Add(rule);
             LogManager.Configuration = config;
         }
+#endif
 
         /// <summary>
         /// Configures NLog for file logging so that all messages above and including
@@ -89,7 +91,7 @@ namespace NLog.Config
         /// <param name="minLevel">The minimal logging level.</param>
         public static void ConfigureForFileLogging(string fileName, LogLevel minLevel)
         {
-            throw new NotImplementedException("Not implemented yet.");
+            throw new NotSupportedException("Not implemented yet.");
         }
     }
 }

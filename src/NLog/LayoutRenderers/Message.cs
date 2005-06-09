@@ -94,11 +94,19 @@ namespace NLog.LayoutRenderers
                 {
                     if (ev.FormatProvider != null)
                     {
+#if NETCF
+                        builder.Append(String.Format(ev.FormatProvider, ev.Message, ev.Parameters));
+#else
                         builder.AppendFormat(ev.FormatProvider, ev.Message, ev.Parameters);
+#endif
                     }
                     else
                     {
+#if NETCF
+                        builder.Append(String.Format(ev.Message, ev.Parameters));
+#else
                         builder.AppendFormat(ev.Message, ev.Parameters);
+#endif
                     }
                 };
             }
