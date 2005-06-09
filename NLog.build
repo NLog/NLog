@@ -489,7 +489,7 @@
         <exec program="${ndoc.console.exe}" workingdir="${nant.project.basedir}" commandline="-documenter=XML -project=NLog.ndoc -OutputFile=build/${buildsubdir}/doc.xml" />
     </target>
 
-    <target name="website">
+    <target name="website" depends="configure">
         <property name="web.sourceforge" value="1" />
         <delete dir="${web.dir}" if="${directory::exists(web.dir)}" failonerror="false" />
         <mkdir dir="${web.dir}" />

@@ -157,9 +157,9 @@ class Bench
         _output.Formatting = Formatting.Indented;
         _output.WriteStartElement("results");
         LogTest(logger1, "Non-logging", repeat);
-        //LogTest(logger4, "File appender", repeat2);
-        LogTest(logger3, "Null-appender without layout", repeat);
-        LogTest(logger2, "Null-appender with layout rendering", repeat);
+        LogTest(logger4, "File target", repeat2);
+        LogTest(logger3, "Null-target without layout", repeat);
+        LogTest(logger2, "Null-target with layout rendering", repeat);
 
         _output.WriteEndElement();
         _output.Close();
