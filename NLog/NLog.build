@@ -19,7 +19,7 @@
 
     <property name="nlog.package.name" value="${tstamp.date}" unless="${property::exists('nlog.package.name')}" />
 
-    <property name="installer.name" value="nlog-${nlog.package.name}.exe" />
+    <property name="installer.name" value="nlog-installer-${nlog.package.name}.exe" />
     <property name="source_snapshot.name" value="nlog-${nlog.package.name}-src.zip" />
     <property name="binary_snapshot.name" value="nlog-${nlog.package.name}-bin.zip" />
     <property name="binary_compact_snapshot.name" value="nlog-compact-${nlog.package.name}-bin.zip" />
@@ -36,6 +36,10 @@
         <property name="clover.report.dir" value="build/${buildsubdir}/clover_report" />
         <property name="clover.build.dir" value="build/${buildsubdir}/clover" />
         <property name="web.dir" value="build/${buildsubdir}/web" unless="${property::exists('web.dir')}" />
+
+        <echo message="Building NLog for ${framework::get-target-framework()}" />
+        <echo message="Package name: ${nlog.package.name}" />
+        <echo message="Target dir: ${nlog.dir}" />
 
         <mkdir dir="${nlog.dir}" />
     </target>
@@ -359,8 +363,8 @@
     </target>
 
     <target name="fullrelease">
-        <exec program="nant" commandline="-t:net-1.0 release fulldist" />
-        <exec program="nant" commandline="-t:netcf-1.0 release compactdist" />
+        <exec program="nant" commandline="-t:net-1.0 -D:nlog.package.name=${nlog.package.name} release fulldist" />
+        <exec program="nant" commandline="-t:netcf-1.0 -D:nlog.package.name=${nlog.package.name} release compactdist" />
     </target>
 
     <target name="doc" depends="configure, build">

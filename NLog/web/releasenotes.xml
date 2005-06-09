@@ -3,7 +3,7 @@
 <content lang="en" id="news">
     <h1>Release Notes</h1>
     <p style="color: red"><b>Caution:</b> This website reflects the logging API and configuration file format
-        of NLog 0.9. For information on previous versions see the archived website <a href="old/">here</a>.</p>
+        of NLog 0.9. For information on previous versions see the archived website <a href="http://nlog.sourceforge.net/old/">here</a>.</p>
     <table width="100%">
         <tr><td class="newsdate">2005-06-09</td><td class="newstext">
                 <p>NLog 0.9 has been released!</p>
