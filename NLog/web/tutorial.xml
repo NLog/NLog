@@ -11,7 +11,7 @@
     <p>
         To write a log message in your code you use an instance of a <code>Logger</code> which you acquire from
         a <code>LogManager</code>. You can think of loggers as of log sources and targets as log sinks. Typically
-        there's one sink for one class named after its full name including namespace, e.g. 
+        there's one source for each class named after its full name including namespace, e.g. 
         <code>MyCompany.MyProject.NameSpace.ClassName</code> but you may invent your own naming schema as well.
     </p>
     <h5>Log levels</h5>
