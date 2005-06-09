@@ -1,7 +1,7 @@
 !cd ..
 
 ; The name of the installer
-Name "NLog"
+Name "NLog ${NLOGVERSION}"
 
 SetCompress force
 SetCompressor lzma
@@ -13,7 +13,7 @@ OutFile "SetupNLog.exe"
 InstallDir $PROGRAMFILES\NLog
 
 ; The text to prompt the user to enter a directory
-DirText "This will install NLog Library and tools on your computer. Choose a directory:"
+DirText "This will install NLog version ${NLOGVERSION} on your computer. Choose a directory:"
 
 ; The stuff to install
 Section "Main"
@@ -34,7 +34,7 @@ Section "Main"
   CreateDirectory "$SMPROGRAMS\NLog"
   CreateShortCut  "$SMPROGRAMS\NLog\Uninstall.lnk" "$INSTDIR\Uninstall.exe" ""
   CreateShortCut  "$SMPROGRAMS\NLog\LICENSE.lnk" "$INSTDIR\License.txt" ""
-  CreateShortCut  "$SMPROGRAMS\NLog\Class Library Reference.lnk" "$INSTDIR\help\NLog.chm" ""
+  CreateShortCut  "$SMPROGRAMS\NLog\NLog Class Library Reference.lnk" "$INSTDIR\help\NLog.chm" ""
   CreateShortCut  "$SMPROGRAMS\NLog\NLog Tutorial.lnk" "$INSTDIR\web\tutorial.html" ""
   CreateShortCut  "$SMPROGRAMS\NLog\NLog Archived Website.lnk" "$INSTDIR\web\index.html" ""
   CreateShortCut  "$SMPROGRAMS\NLog\NLog Viewer (preview).lnk" "$INSTDIR\bin\NLog.Viewer.exe" ""
@@ -57,10 +57,6 @@ Section "Uninstall"
   Delete "$SMPROGRAMS\NLog\*.lnk"
   RMDir "$SMPROGRAMS\NLog"
 
-  RMDir /r "$INSTDIR\bin"
-  RMDir /r "$INSTDIR\help"
-  RMDir /r "$INSTDIR\web"
-  Delete "$INSTDIR\*.*"
-  RMDir "$INSTDIR"
+  RMDir /r "$INSTDIR"
 SectionEnd
 ; eof
