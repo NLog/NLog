@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// Copyright (c) 2004,2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 // 
 // 
 // All rights reserved.
@@ -18,6 +18,7 @@
 // * Neither the name of the Jaroslaw Kowalski nor the names of its 
 //   contributors may be used to endorse or promote products derived from this
 //   software without specific prior written permission. 
+// 
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
