@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// Copyright (c) 2004,2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 // 
 // 
 // All rights reserved.
@@ -31,7 +31,6 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-
 
 using System;
 using System.IO;

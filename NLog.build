@@ -440,7 +440,7 @@
 
     <target name="source_snapshot">
         <delete dir="build/source_snapshot" if="${directory::exists('build/source_snapshot')}" />
-        <property name="snapshot.dir" value="build/source_snapshot/NLog" />
+        <property name="snapshot.dir" value="build/source_snapshot/NLog-${nlog.package.name}" />
         <mkdir dir="build/source_snapshot" if="${not directory::exists('build/source_snapshot')}" />
         <exec program="svn" commandline="export . ${snapshot.dir}" />
         <zip zipfile="${source_snapshot.name}">
