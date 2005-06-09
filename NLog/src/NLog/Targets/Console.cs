@@ -32,6 +32,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETCF
+
 using System;
 
 namespace NLog.Targets
@@ -73,3 +75,5 @@ namespace NLog.Targets
         }
     }
 }
+
+#endif

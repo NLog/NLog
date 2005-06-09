@@ -54,8 +54,6 @@ namespace NLog.Targets
     [Target("NLogViewer", IgnoresLayout=true)]
     public sealed class NLogViewerTarget: NetworkTarget
     {
-        private bool _includeCallSite = false;
-        private bool _includeSourceInfo = false;
         private string _appInfo;
 
         /// <summary>
@@ -64,7 +62,11 @@ namespace NLog.Targets
         /// </summary>
         public NLogViewerTarget()
         {
+#if NETCF
+            _appInfo = ".NET CF Application";
+#else
             _appInfo = AppDomain.CurrentDomain.FriendlyName;
+#endif
         }
 
         /// <summary>
@@ -75,6 +77,10 @@ namespace NLog.Targets
             get { return _appInfo; }
             set { _appInfo = value; }
         }
+
+#if !NETCF
+        private bool _includeCallSite = false;
+        private bool _includeSourceInfo = false;
 
         /// <summary>
         /// Include call site (class and method name) in the information sent over the network.
@@ -106,6 +112,7 @@ namespace NLog.Targets
                 return 1;
             return 0;
         }
+#endif
 
         /// <summary>
         /// Constructs an XML packet including the logging event information and sends it over the network.
@@ -127,8 +134,9 @@ namespace NLog.Targets
             xtw.WriteElementString("level", ev.Level.ToString());
             xtw.WriteElementString("processId", ThreadIDHelper.CurrentProcessID.ToString());
             xtw.WriteElementString("threadId", ThreadIDHelper.CurrentThreadID.ToString());
-            xtw.WriteElementString("threadName", System.Threading.Thread.CurrentThread.Name);
 
+#if !NETCF
+            xtw.WriteElementString("threadName", System.Threading.Thread.CurrentThread.Name);
             if (IncludeCallSite)
             {
                 System.Diagnostics.StackFrame frame = ev.UserStackFrame;
@@ -145,6 +153,9 @@ namespace NLog.Targets
                     xtw.WriteElementString("sourceColumn", frame.GetFileColumnNumber().ToString());
                 }
             }
+#else
+            xtw.WriteElementString("threadName", "");
+#endif
             xtw.WriteEndElement();
             xtw.Flush();
             NetworkSend(AddressLayout.GetFormattedMessage(ev), sw.ToString());

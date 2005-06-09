@@ -103,7 +103,7 @@
     </target>
 
     <target name="NLog.CompactFramework" depends="NLog">
-        <csc target="library" output="${nlog.dir}/NLog.CompactFramework.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.CompactFramework.dll" doc="${nlog.dir}/NLog.CompactFramework.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
             <sources basedir="src/NLog.CompactFramework">
                 <include name="**/*.cs" />
             </sources>

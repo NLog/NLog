@@ -28,7 +28,7 @@ Section "Main"
   SetOutPath $INSTDIR\web
   File /r build\${BUILDSUBDIR}\web\*.*
 
-  SetOutPath $INSTDIR\doc\help
+  SetOutPath $INSTDIR\help
   File build\${BUILDSUBDIR}\help\NLog.chm
 
   CreateDirectory "$SMPROGRAMS\NLog"

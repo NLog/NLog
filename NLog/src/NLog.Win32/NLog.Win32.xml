@@ -17,7 +17,7 @@
             <param name="ev">Logging event information.</param>
             <returns>The number of characters.</returns>
             <remarks>
-            Because ASP appender uses COM Interop which is quite expensive, this method always returns 64.
+            Because ASP target uses COM Interop which is quite expensive, this method always returns 64.
             </remarks>
         </member>
         <member name="M:NLog.Win32.LayoutRenderers.ASPApplicationValueLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
@@ -45,7 +45,7 @@
             <param name="ev">Logging event information.</param>
             <returns>The number of characters.</returns>
             <remarks>
-            Because ASP appender uses COM Interop which is quite expensive, this method always returns 64.
+            Because ASP target uses COM Interop which is quite expensive, this method always returns 64.
             </remarks>
         </member>
         <member name="M:NLog.Win32.LayoutRenderers.ASPRequestValueLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
@@ -93,7 +93,7 @@
             <param name="ev">Logging event information.</param>
             <returns>The number of characters.</returns>
             <remarks>
-            Because ASP appender uses COM Interop which is quite expensive, this method always returns 64.
+            Because ASP target uses COM Interop which is quite expensive, this method always returns 64.
             </remarks>
         </member>
         <member name="M:NLog.Win32.LayoutRenderers.ASPSessionValueLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
