@@ -107,7 +107,7 @@ namespace NLog
             dict.Clear();
         }
 
-        private static IDictionary GetThreadDictionary()
+        internal static IDictionary GetThreadDictionary()
         {
             IDictionary threadDictionary = (IDictionary)System.Threading.Thread.GetData(_dataSlot);
 

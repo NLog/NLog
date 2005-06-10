@@ -34,33 +34,31 @@
 
 using System;
 using System.Text;
+using System.Diagnostics;
+using System.Reflection;
+using System.Data;
+using System.Collections;
 
+using NLog.Internal;
 using NLog.Config;
 
-namespace NLog
+namespace NLog.Targets
 {
     /// <summary>
-    /// Represents logging target.
+    /// Represents a parameter to a NLogViewer target.
     /// </summary>
-    public abstract class Target
+    public class NLogViewerParameterInfo
     {
-        /// <summary>
-        /// Creates a new instance of the logging target and initializes
-        /// default layout.
+        /// <summary>ba
+        /// Creates a new instance of <see cref="NLogViewerParameterInfo"/>.
         /// </summary>
-        /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
-        /// </remarks>
-        protected Target()
-        {
-            Layout = "${longdate}|${level:uppercase=true}|${logger}|${message}";
-        }
+        public NLogViewerParameterInfo(){}
 
         private Layout _compiledlayout;
         private string _name;
 
         /// <summary>
-        /// The name of the target.
+        /// Viewer parameter name.
         /// </summary>
         [RequiredParameter]
         public string Name
@@ -76,11 +74,10 @@ namespace NLog
         }
 
         /// <summary>
-        /// The text to be rendered.
+        /// The layout that should be use to calcuate the value for the parameter.
         /// </summary>
         [RequiredParameter]
         [AcceptsLayout]
-        [System.ComponentModel.DefaultValue("${longdate}|${level:uppercase=true}|${logger}|${message}")]
         public string Layout
         {
             get
@@ -94,9 +91,9 @@ namespace NLog
         }
 
         /// <summary>
-        /// The compiled layout to be rendered.
+        /// The compiled representation of the Layout property.
         /// </summary>
-        protected Layout CompiledLayout
+        public Layout CompiledLayout
         {
             get
             {
@@ -106,48 +103,6 @@ namespace NLog
             {
                 _compiledlayout = value;
             }
-        }
-
-        /// <summary>
-        /// Writes logging event to the log target. Must be overridden in inheriting
-        /// classes.
-        /// </summary>
-        /// <param name="ev">Logging event to be written out.</param>
-        protected internal abstract void Append(LogEventInfo ev);
-
-        /// <summary>
-        /// Determines whether stack trace information should be gathered
-        /// during log event processing. By default it calls <see cref="NLog.Layout.NeedsStackTrace" /> on
-        /// <see cref="Target.CompiledLayout" />.
-        /// </summary>
-        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
-        protected internal virtual int NeedsStackTrace()
-        {
-            return CompiledLayout.NeedsStackTrace();
-        }
-
-        /// <summary>
-        /// Returns the text representation of the object. Used for diagnostics.
-        /// </summary>
-        /// <returns>A string that describes the target.</returns>
-        public override string ToString()
-        {
-            return String.Format("{0}: {1}", Name, this.GetType().FullName);
-        }
-
-        /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
-        /// </summary>
-        protected internal virtual void Flush()
-        {
-            // do nothing
-        }
-
-        /// <summary>
-        /// Closes the target and releases any unmanaged resources.
-        /// </summary>
-        protected internal virtual void Close()
-        {
         }
     }
 }

@@ -251,6 +251,13 @@ namespace NLog
 
                 lock(typeof(LogManager))
                 {
+                    LoggingConfiguration oldConfig = _config;
+                    if (oldConfig != null)
+                    {
+                        InternalLogger.Info("Closing old configuration.");
+                        oldConfig.Close();
+                    }
+
                     _config = value;
                     _configLoaded = true;
 
@@ -270,6 +277,7 @@ namespace NLog
                         }
 #endif 
                     }
+
                 }
             }
         }
@@ -283,6 +291,10 @@ namespace NLog
             ReloadConfigOnNextLog = true;
         }
 #endif 
+
+        public void FlushPendingLogs()
+        {
+        }
 
         private static void Dump(LoggingConfiguration config)
         {

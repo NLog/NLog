@@ -33,27 +33,31 @@
 // 
 
 #if !NETCF
-
 using System;
 using System.Text;
-using System.IO;
-using NLog.Internal;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// The machine name that the process is running on.
+    /// Stack trace renderer.  Outputs a simple stack trace dump.
+    /// ${stacktrace} is replaced with a simple stack trace, eg:
+    ///     at NLog.LoggerImpl.Write ()
+    ///     at NLog.Logger.WriteToTargets ()
+    ///     at NLog.Logger.Error ()
+    ///     at Limp.Math.Matrix.set_Item ()
+    ///     at Limp.Math.Matrix.Random ()
+    ///     at Test.TestLU ()
     /// </summary>
-    [LayoutRenderer("machinename")]
-    public class MachineNameLayoutRenderer: LayoutRenderer
+    /// <remarks>
+    /// Would be nice if the dump skipped the NLog.Logger entries.  Also, is
+    /// there a way to display a stack trace which has the extra information
+    /// shown from an exception trace?
+    /// </remarks>
+    [LayoutRenderer("stacktrace")]
+    public class StackTraceLayoutRenderer: LayoutRenderer
     {
-        static string _machineName = GetMachineName();
-
-        internal static string MachineName
-        {
-            get { return _machineName; }
-        }
-
         /// <summary>
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
@@ -67,31 +71,28 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
-            return _machineName.Length;
+            return 200;
         }
 
         /// <summary>
-        /// Renders the machine name and appends it to the specified <see cref="StringBuilder" />.
+        /// Checks whether the stack trace is requested.
+        /// </summary>
+        /// <returns>2 when the source file information is requested, 1 otherwise.</returns>
+        protected internal override int NeedsStackTrace()
+        {
+            return 2;
+        }
+
+        /// <summary>
+        /// Renders the call site and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="ev">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            builder.Append(ApplyPadding(_machineName));
-        }
-
-        private static string GetMachineName()
-        {
-            try
-            {
-                return Environment.MachineName;
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Warn("Error getting machine name: {0}", ex);
-                return String.Empty;
-            }
-        }
+	    StackTrace trace = ev.StackTrace;
+	    builder.Append( trace );
+	}
     }
 }
 

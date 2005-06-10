@@ -33,35 +33,33 @@
 // 
 
 using System;
-using System.Collections;
-using System.Xml;
 using System.IO;
-using System.Reflection;
-using System.Globalization;
 using System.Text;
+using System.Xml;
+using System.Reflection;
+using System.Diagnostics;
+
+using NLog.Internal;
+using System.Net;
+using System.Net.Sockets;
 
 using NLog.Config;
 
-namespace NLog.Internal
+namespace NLog.Targets
 {
-    internal class LoggerConfiguration
+    /// <summary>
+    /// Sends logging messages to the remote instance of Chainsaw application from log4j. 
+    /// </summary>
+    [Target("Chainsaw", IgnoresLayout=true)]
+    public class ChainsawTarget: NLogViewerTarget
     {
-        private TargetWithFilterChain[] _targetsByLevel;
-
-        public LoggerConfiguration(TargetWithFilterChain[] targetsByLevel)
+        /// <summary>
+        /// Creates a new instance of the <see cref="ChainsawTarget"/> 
+        /// and initializes default property values.
+        /// </summary>
+        public ChainsawTarget()
         {
-            _targetsByLevel = targetsByLevel;
+            IncludeNLogData = false;
         }
-
-        public TargetWithFilterChain GetTargetsForLevel(LogLevel level)
-        {
-            return _targetsByLevel[level.Ordinal];
-        }
-
-        public bool IsEnabled(LogLevel level)
-        {
-            return _targetsByLevel[level.Ordinal] != null;
-        }
-
     }
 }
