@@ -120,7 +120,7 @@ namespace NLog
         /// </summary>
         /// <param name="ordinal">The ordinal.</param>
         /// <returns>The <see cref="LogLevel"/> instance. For 0 it returns <see cref="LogLevel.Debug"/>, 1 gives <see cref="LogLevel.Info"/> and so on</returns>
-        internal static LogLevel FromOrdinal(int ordinal)
+        public static LogLevel FromOrdinal(int ordinal)
         {
             return _levelByOrdinal[ordinal];
         }

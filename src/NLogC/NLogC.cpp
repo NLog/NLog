@@ -11,25 +11,101 @@
 static void WriteToA(NLogLevel level, LPCSTR loggerName, LPCSTR messageBuffer)
 {
     NLog::Logger *logger = NLog::LogManager::GetLogger(loggerName);
-   logger->Log((NLog::LogLevel)(int)level, messageBuffer);
+    switch (level)
+    {
+    case NLOG_DEBUG:
+        if (logger->IsDebugEnabled)
+            logger->Debug(messageBuffer);
+        break;
+    case NLOG_INFO:
+        if (logger->IsInfoEnabled)
+            logger->Info(messageBuffer);
+        break;
+    case NLOG_WARN:
+        if (logger->IsWarnEnabled)
+            logger->Warn(messageBuffer);
+        break;
+    case NLOG_ERROR:
+        if (logger->IsErrorEnabled)
+            logger->Error(messageBuffer);
+        break;
+    case NLOG_FATAL:
+        if (logger->IsFatalEnabled)
+            logger->Fatal(messageBuffer);
+        break;
+    }
 }
 
 static void WriteToW(NLogLevel level, LPCWSTR loggerName, LPCWSTR messageBuffer)
 {
     NLog::Logger *logger = NLog::LogManager::GetLogger(loggerName);
-    logger->Log((NLog::LogLevel)(int)level, messageBuffer);
+    switch (level)
+    {
+    case NLOG_DEBUG:
+        if (logger->IsDebugEnabled)
+            logger->Debug(messageBuffer);
+        break;
+    case NLOG_INFO:
+        if (logger->IsInfoEnabled)
+            logger->Info(messageBuffer);
+        break;
+    case NLOG_WARN:
+        if (logger->IsWarnEnabled)
+            logger->Warn(messageBuffer);
+        break;
+    case NLOG_ERROR:
+        if (logger->IsErrorEnabled)
+            logger->Error(messageBuffer);
+        break;
+    case NLOG_FATAL:
+        if (logger->IsFatalEnabled)
+            logger->Fatal(messageBuffer);
+        break;
+    }
 }
 
 static bool IsLogEnabledA(NLogLevel level, LPCSTR loggerName)
 {
     NLog::Logger *logger = NLog::LogManager::GetLogger(loggerName);
-    return logger->IsEnabled((NLog::LogLevel)(int)level);
+    switch (level)
+    {
+    case NLOG_DEBUG:
+        return logger->IsDebugEnabled;
+
+    case NLOG_INFO:
+        return logger->IsInfoEnabled;
+
+    case NLOG_WARN:
+        return logger->IsWarnEnabled;
+
+    case NLOG_ERROR:
+        return logger->IsErrorEnabled;
+
+    case NLOG_FATAL:
+        return logger->IsFatalEnabled;
+    }
 }
 
 static bool IsLogEnabledW(NLogLevel level, LPCWSTR loggerName)
 {
     NLog::Logger *logger = NLog::LogManager::GetLogger(loggerName);
-    return logger->IsEnabled((NLog::LogLevel)(int)level);
+    switch (level)
+    {
+    case NLOG_DEBUG:
+        return logger->IsDebugEnabled;
+
+    case NLOG_INFO:
+        return logger->IsInfoEnabled;
+
+    case NLOG_WARN:
+        return logger->IsWarnEnabled;
+
+    case NLOG_ERROR:
+        return logger->IsErrorEnabled;
+
+    case NLOG_FATAL:
+        return logger->IsFatalEnabled;
+    }
 }
 
 static BOOL ConfigureFromFileA(LPCSTR fileName)
