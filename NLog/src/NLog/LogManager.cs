@@ -292,10 +292,6 @@ namespace NLog
         }
 #endif 
 
-        public void FlushPendingLogs()
-        {
-        }
-
         private static void Dump(LoggingConfiguration config)
         {
             if (!InternalLogger.IsDebugEnabled)

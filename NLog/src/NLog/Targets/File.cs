@@ -64,11 +64,12 @@ namespace NLog.Targets
         private int _concurrentWriteAttempts = 10;
         private int _bufferSize = 32768;
         private int _concurrentWriteAttemptDelay = 1;
+#if !NETCF
         private bool _async = false;
         private bool _stopLoggingThread = false;
         private Thread _loggingThread = null;
         private Queue _fileWriteRequestQueue = new Queue();
-
+#endif
         /// <summary>
         /// The name of the file to write to.
         /// </summary>
@@ -251,6 +252,7 @@ namespace NLog.Targets
             }
         }
 
+#if !NETCF
         /// <summary>
         /// Write to the file in a separate thread. (EXPERIMENTAL)
         /// </summary>
@@ -389,6 +391,7 @@ namespace NLog.Targets
             }
         }
 
+#endif
         private StreamWriter OpenStreamWriter(string fileName, bool throwOnError)
         {
             try
@@ -458,6 +461,7 @@ namespace NLog.Targets
         /// <param name="ev">The logging event.</param>
         protected internal override void Append(LogEventInfo ev)
         {
+#if !NETCF
             if (_async)
             {
                 lock (_fileWriteRequestQueue)
@@ -469,6 +473,7 @@ namespace NLog.Targets
                 }
                 return;
             }
+#endif
             lock (this)
             {
                 string fileName = _fileNameLayout.GetFormattedMessage(ev);
@@ -512,9 +517,12 @@ namespace NLog.Targets
                     _outputFile = null;
                 }
             }
+#if !NETCF
             StopLoggingThread();
+#endif
         }
 
+#if !NETCF
         /// <summary>
         /// Represents a single request to write to a file.
         /// </summary>
@@ -574,5 +582,6 @@ namespace NLog.Targets
                 }
             }
         }
+#endif
     }
 }

@@ -111,6 +111,20 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Returns the value indicating whether call site and/or source information should be gathered.
+        /// </summary>
+        /// <returns>2 - when IncludeSourceInfo is set, 1 when IncludeCallSite is set, 0 otherwise</returns>
+        protected internal override int NeedsStackTrace()
+        {
+            if (IncludeSourceInfo)
+                return 2;
+            if (IncludeCallSite)
+                return 1;
+            return 0;
+        }
+#endif
+
+        /// <summary>
         /// Include MDC dictionary in the information sent over the network.
         /// </summary>
         public bool IncludeMDC
@@ -127,21 +141,6 @@ namespace NLog.Targets
             get { return _includeNDC; }
             set { _includeNDC = value; }
         }
-
-        /// <summary>
-        /// Returns the value indicating whether call site and/or source information should be gathered.
-        /// </summary>
-        /// <returns>2 - when IncludeSourceInfo is set, 1 when IncludeCallSite is set, 0 otherwise</returns>
-        protected internal override int NeedsStackTrace()
-        {
-            if (IncludeSourceInfo)
-                return 2;
-            if (IncludeCallSite)
-                return 1;
-            return 0;
-        }
-#endif
-
         /// <summary>
         /// The collection of paramters. Each parameter contains a mapping
         /// between NLog layout and a database named or positional parameter.
@@ -207,7 +206,11 @@ namespace NLog.Targets
 
                 xtw.WriteStartElement("log4j:data");
                 xtw.WriteAttributeString("name", "log4jmachinename");
+#if NETCF
+                xtw.WriteAttributeString("value", "netcf");
+#else
                 xtw.WriteAttributeString("value", NLog.LayoutRenderers.MachineNameLayoutRenderer.MachineName);
+#endif
                 xtw.WriteEndElement();
             }
             xtw.WriteEndElement();
