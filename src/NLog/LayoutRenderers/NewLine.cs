@@ -66,7 +66,11 @@ namespace NLog.LayoutRenderers
         /// <param name="ev">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
+#if NETCF
+            builder.Append("\n");
+#else
             builder.Append(Environment.NewLine);
+#endif
         }
     }
 }
