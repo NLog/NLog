@@ -41,23 +41,38 @@ using System.Reflection;
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// Stack trace renderer.  Outputs a simple stack trace dump.
-    /// ${stacktrace} is replaced with a simple stack trace, eg:
-    ///     at NLog.LoggerImpl.Write ()
-    ///     at NLog.Logger.WriteToTargets ()
-    ///     at NLog.Logger.Error ()
-    ///     at Limp.Math.Matrix.set_Item ()
-    ///     at Limp.Math.Matrix.Random ()
-    ///     at Test.TestLU ()
+    /// Stack trace renderer.
     /// </summary>
-    /// <remarks>
-    /// Would be nice if the dump skipped the NLog.Logger entries.  Also, is
-    /// there a way to display a stack trace which has the extra information
-    /// shown from an exception trace?
-    /// </remarks>
     [LayoutRenderer("stacktrace")]
     public class StackTraceLayoutRenderer: LayoutRenderer
     {
+        private string _format = "flat";
+        private int _topFrames = 3;
+
+        /// <summary>
+        /// The output format of the stack trace.
+        /// </summary>
+        /// <remarks>
+        /// Allowed values are <c>raw</c>, <c>flat</c> and <c>detailedflat</c>.
+        /// </remarks>
+        [System.ComponentModel.DefaultValue("flat")]
+        public string Format
+        {
+            get { return _format; }
+            set { _format = value; }
+        }
+
+        /// <summary>
+        /// The number of top stack frames to be rendered.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(3)]
+        public int TopFrames
+        {
+            get { return _topFrames; }
+            set { _topFrames = value; }
+        }
+
+
         /// <summary>
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
@@ -90,9 +105,50 @@ namespace NLog.LayoutRenderers
         /// <param name="ev">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-	    StackTrace trace = ev.StackTrace;
-	    builder.Append( trace );
-	}
+            bool first = true;
+            int startingFrame = ev.UserStackFrameNumber + TopFrames - 1;
+            if (startingFrame >= ev.StackTrace.FrameCount)
+                startingFrame = ev.StackTrace.FrameCount - 1;
+
+            switch (Format)
+            {
+                case "raw":
+                    for (int i = startingFrame; i >= ev.UserStackFrameNumber; --i)
+                    {
+                        StackFrame f = ev.StackTrace.GetFrame(i);
+                        builder.Append(f.ToString());
+                    }
+                    break;
+
+                case "flat":
+                    for (int i = startingFrame; i >= ev.UserStackFrameNumber; --i)
+                    {
+                        StackFrame f = ev.StackTrace.GetFrame(i);
+                        if (!first)
+                            builder.Append(" => ");
+
+                        builder.Append(f.GetMethod().DeclaringType.Name);
+                        builder.Append(".");
+                        builder.Append(f.GetMethod().Name);
+                        first = false;
+                    }
+                    break;
+
+                case "detailedflat":
+                    for (int i = startingFrame; i >= ev.UserStackFrameNumber; --i)
+                    {
+                        StackFrame f = ev.StackTrace.GetFrame(i);
+                        if (!first)
+                            builder.Append(" => ");
+
+                        builder.Append("[");
+                        builder.Append(f.GetMethod());
+                        builder.Append("]");
+                        first = false;
+                    }
+                    break;
+            }
+        }
     }
 }
 

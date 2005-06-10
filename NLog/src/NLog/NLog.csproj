@@ -494,6 +494,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "LayoutRenderers\NewLine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "LayoutRenderers\NLogDir.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -505,6 +510,11 @@
                 />
                 <File
                     RelPath = "LayoutRenderers\ShortDate.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRenderers\StackTrace.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
