@@ -529,6 +529,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Targets\Chainsaw.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Targets\Console.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -595,6 +600,16 @@
                 />
                 <File
                     RelPath = "Targets\NLogViewer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\NLogViewerParameterInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\NLogViewerParameterInfoCollection.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

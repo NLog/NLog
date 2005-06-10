@@ -35,6 +35,9 @@
 using System;
 using System.Xml;
 using System.IO;
+using System.Threading;
+using System.Collections;
+using System.Collections.Specialized;
 
 using NLog;
 using NLog.Config;
@@ -61,6 +64,10 @@ namespace NLog.Targets
         private int _concurrentWriteAttempts = 10;
         private int _bufferSize = 32768;
         private int _concurrentWriteAttemptDelay = 1;
+        private bool _async = false;
+        private bool _stopLoggingThread = false;
+        private Thread _loggingThread = null;
+        private Queue _fileWriteRequestQueue = new Queue();
 
         /// <summary>
         /// The name of the file to write to.
@@ -244,7 +251,145 @@ namespace NLog.Targets
             }
         }
 
-        private StreamWriter OpenStreamWriter(string fileName)
+        /// <summary>
+        /// Write to the file in a separate thread. (EXPERIMENTAL)
+        /// </summary>
+        [System.ComponentModel.DefaultValueAttribute(false)]
+        public bool Async
+        {
+            get { return _async; }
+            set 
+            {
+                _async = value; 
+                if (value)
+                    StartLoggingThread();
+                else
+                    StopLoggingThread();
+            }
+        }
+
+        private void StartLoggingThread()
+        {
+            if (_loggingThread != null)
+            {
+                // already started.
+                return;
+            }
+
+            _stopLoggingThread = false;
+            _fileWriteRequestQueue = new Queue();
+            Internal.InternalLogger.Debug("Starting logging thread.");
+            _loggingThread = new Thread(new ThreadStart(LoggingThread));
+            _loggingThread.IsBackground = true;
+            _loggingThread.Start();
+        }
+
+        private void StopLoggingThread()
+        {
+            if (_loggingThread == null)
+                return;
+
+            InternalLogger.Debug("Stopping logging thread.");
+            _stopLoggingThread = true;
+            if (!_loggingThread.Join(3000))
+            {
+                InternalLogger.Warn("Logging thread failed to stop. Aborting.");
+                _loggingThread.Abort();
+            }
+            else
+            {
+                InternalLogger.Debug("Logging thread stopped.");
+            }
+            lock (_fileWriteRequestQueue)
+            {
+                _fileWriteRequestQueue.Clear();
+            }
+        }
+
+        private void LoggingThread()
+        {
+            ArrayList pendingFileRequests = new ArrayList();
+            while (!_stopLoggingThread)
+            {
+                pendingFileRequests.Clear();
+                lock (_fileWriteRequestQueue)
+                {
+                    //
+                    // move requests to a local structure to decrease
+                    // lock contingency
+                    //
+
+                    if (_fileWriteRequestQueue.Count > 0)
+                    {
+                        for (int i = 0; (i < 100) && _fileWriteRequestQueue.Count > 0; ++i)
+                        {
+                            FileWriteRequest fwr = (FileWriteRequest)_fileWriteRequestQueue.Dequeue();
+                            pendingFileRequests.Add(fwr);
+                        }
+                    }
+                }
+
+                if (pendingFileRequests.Count == 0)
+                {
+                    Thread.Sleep(100);
+                    continue;
+                }
+
+                // lock is no longer held
+
+                // sort the file requests by the file name and 
+                // the sequence to maximize file handle reuse
+
+                pendingFileRequests.Sort(FileWriteRequest.GetComparer());
+
+                /*
+                InternalLogger.Debug("---");
+                foreach (FileWriteRequest fwr in pendingFileRequests)
+                {
+                    InternalLogger.Debug("request: {0} {1}", fwr.FileName, fwr.Sequence);
+                }
+                */
+
+                string currentFileName = "";
+                StreamWriter currentStreamWriter = null;
+                int requests = 0;
+                int reopens = 0;
+
+                for (int i = 0; i < pendingFileRequests.Count; ++i)
+                {
+                    FileWriteRequest fwr = (FileWriteRequest)pendingFileRequests[i];
+
+                    if (fwr.FileName != currentFileName)
+                    {
+                        if (currentStreamWriter != null)
+                        {
+                            currentStreamWriter.Close();
+                        }
+                        currentFileName = fwr.FileName;
+                        currentStreamWriter = OpenStreamWriter(fwr.FileName, false);
+                        reopens++;
+                    }
+                    requests++;
+                    if (currentStreamWriter != null)
+                        currentStreamWriter.WriteLine(fwr.Text);
+                }
+                if (currentStreamWriter != null)
+                {
+                    currentStreamWriter.Close();
+                    currentStreamWriter = null;
+                }
+                /*
+                
+                if (requests > 0)
+                {
+                    InternalLogger.Debug("Processed {0} requests/ {1} reopens", requests, reopens);
+                }
+                
+                */
+            }
+        }
+
+        private StreamWriter OpenStreamWriter(string fileName, bool throwOnError)
         {
             try
             {
@@ -313,6 +458,17 @@ namespace NLog.Targets
         /// <param name="ev">The logging event.</param>
         protected internal override void Append(LogEventInfo ev)
         {
+            if (_async)
+            {
+                lock (_fileWriteRequestQueue)
+                {
+                    _fileWriteRequestQueue.Enqueue(
+                        new FileWriteRequest(
+                        _fileNameLayout.GetFormattedMessage(ev),
+                        CompiledLayout.GetFormattedMessage(ev)));
+                }
+                return;
+            }
             lock (this)
             {
                 string fileName = _fileNameLayout.GetFormattedMessage(ev);
@@ -326,7 +482,7 @@ namespace NLog.Targets
                 _lastFileName = fileName;
                 if (_outputFile == null)
                 {
-                    _outputFile = OpenStreamWriter(fileName);
+                    _outputFile = OpenStreamWriter(fileName, true);
                     if (_outputFile == null)
                         return ;
                 }
@@ -339,6 +495,82 @@ namespace NLog.Targets
                 {
                     _outputFile.Close();
                     _outputFile = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Closes the file.
+        /// </summary>
+        protected internal override void Close()
+        {
+            lock (this)
+            {
+                if (_outputFile != null)
+                {
+                    _outputFile.Close();
+                    _outputFile = null;
+                }
+            }
+            StopLoggingThread();
+        }
+
+        /// <summary>
+        /// Represents a single request to write to a file.
+        /// </summary>
+        class FileWriteRequest
+        {
+            private string _fileName;
+            private string _text;
+            private long _sequence;
+
+            private static long _globalSequence;
+
+            public FileWriteRequest(string fileName, string text)
+            {
+                _fileName = fileName;
+                _text = text;
+                _sequence = Interlocked.Increment(ref _globalSequence);
+            }
+
+            public string FileName
+            {
+                get { return _fileName; }
+            }
+
+            public string Text
+            {
+                get { return _text; }
+            }
+
+            public long Sequence
+            {
+                get { return _sequence; }
+            }
+
+            private static IComparer _comparer = new Comparer();
+
+            public static IComparer GetComparer()
+            {
+                return _comparer;
+            }
+
+            class Comparer : IComparer
+            {
+                public int Compare(object x, object y)
+                {
+                    FileWriteRequest fwr1 = (FileWriteRequest)x;
+                    FileWriteRequest fwr2 = (FileWriteRequest)y;
+
+                    int val = String.CompareOrdinal(fwr1.FileName, fwr2.FileName);
+                    if (val != 0)
+                        return val;
+
+                    if (fwr1.Sequence < fwr2.Sequence)
+                        return -1;
+                    if (fwr1.Sequence > fwr2.Sequence)
+                        return 1;
+                    return 0;
                 }
             }
         }

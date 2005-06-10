@@ -111,5 +111,24 @@ namespace NLog.Config
         {
             return this;
         }
+
+        /// <summary>
+        /// Closes all targets and releases any unmanaged resources.
+        /// </summary>
+        public void Close()
+        {
+            foreach (Target target in _targets.Values)
+            {
+                try
+                {
+                    target.Close();
+                
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error("Error while closing target: {0} {1}", target.Name, ex); 
+                }
+            }
+        }
     }
 }

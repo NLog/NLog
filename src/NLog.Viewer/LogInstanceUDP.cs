@@ -53,30 +53,6 @@ namespace NLog.Viewer
 
         public override void InputThread()
         {
-            XmlSerializer ser = new XmlSerializer(typeof(LogEventInfo));
-
-            /*
-            LogEventInfo lei = new LogEventInfo();
-            lei.SendTime = DateTime.Now;
-            lei.ReceivedTime = DateTime.Now;
-            lei.MessageText = "Ala ma kota";
-            lei.Logger = "Logger";
-            lei.Level = "Debug";
-            lei.SourceAssembly = typeof(LogInstanceUDP).Assembly.FullName;
-            lei.SourceFile = "LogInstanceUDP.cs";
-            lei.SourceLine = 29;
-            lei.SourceType = this.GetType().FullName;
-            lei.SourceMethod = System.Reflection.MethodInfo.GetCurrentMethod().ToString();
-            lei.ExtraInfo = new LogEventExtraInfo[1];
-            lei.ExtraInfo[0].Name = "somename";
-            lei.ExtraInfo[0].Value = "somevalue";
-
-            using (FileStream fs = File.Create("c:\\dump.xml"))
-            {
-                ser.Serialize(fs, lei);
-            }
-            */
-
             try
             {
                 using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp))
@@ -97,13 +73,20 @@ namespace NLog.Viewer
                                 try
                                 {
                                     MemoryStream ms = new MemoryStream(buffer, 0, got);
-                                    LogEventInfo logEventInfo = (LogEventInfo)ser.Deserialize(ms);
+                                    MessageBox.Show(System.Text.Encoding.UTF8.GetString(buffer, 0, got));
+                                    XmlTextReader reader = new XmlTextReader(ms);
+                                    reader.Namespaces = false;
+
+                                    LogEventInfo logEventInfo;
+                                    reader.Read();
+                                    logEventInfo = LogEventInfo.ParseLog4JEvent(reader);
+                                    
                                     logEventInfo.ReceivedTime = DateTime.Now;
                                     ProcessLogEvent(logEventInfo);
                                 }
-                                catch (Exception)
+                                catch (Exception ex)
                                 {
-                                    // MessageBox.Show(ex.ToString());
+                                    MessageBox.Show(ex.ToString());
                                 }
                                 // _listView.Items.Insert(0, System.Text.Encoding.Default.GetString(buffer, 0, got));
                             }
