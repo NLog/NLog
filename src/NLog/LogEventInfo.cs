@@ -131,6 +131,18 @@ namespace NLog
         }
 
         /// <summary>
+        /// Gets the number index of the stack frame that represents the user
+        /// code (not the NLog code)
+        /// </summary>
+        public int UserStackFrameNumber
+        {
+            get
+            {
+                return _userStackFrame;
+            }
+        }
+
+        /// <summary>
         /// Gets the entire stack trace.
         /// </summary>
         public StackTrace StackTrace
