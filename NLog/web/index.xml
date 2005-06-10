@@ -24,6 +24,7 @@
     </p>
 
     <h3>Current Status</h3>
+    <p>2005-06-10: NLog 0.91 hotfix release is available. It fixes the issues with NLogViewer and NLogC library. Packages can be found <a href="snapshots/">here</a></p>
     <p>2005-06-09: <b style="color: red">NLog 0.9 has been released!</b>. Click <link href="releasenotes">here</link> for the release notes. Source and binary packages can be found <link href="download">here</link></p>
 
     <h3>Documentation</h3>

@@ -514,6 +514,7 @@ To send messages to be received by NLog.Viewer, add the following target to the 
                 Directory.CreateDirectory(logsDir);
 
             XmlSerializer serializer = new XmlSerializer(typeof(LogInstanceConfigurationInfo));
+            int totalInstances = 0;
 
             foreach (string logFile in Directory.GetFiles(logsDir, "*.loginstance"))
             {
@@ -526,12 +527,26 @@ To send messages to be received by NLog.Viewer, add the following target to the 
 
                         tabControl1.TabPages.Add(instance.CreateTab(this));
                         instance.Start();
+                        totalInstances++;
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(String.Format("Unable to read log instance configuration from {0}: {1}", logFile, ex.ToString()));
                 }
+            }
+
+            if (totalInstances == 0)
+            {
+                LogInstanceConfigurationInfo lici = 
+                    new LogInstanceConfigurationInfo();
+
+                lici.Name = "UDP port 4000";
+                
+                LogInstance instance = LogInstanceFactory.CreateLogInstance(lici);
+                tabControl1.TabPages.Add(instance.CreateTab(this));
+                instance.Start();
+                totalInstances++;
             }
         }
 
