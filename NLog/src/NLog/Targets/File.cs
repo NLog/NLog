@@ -50,7 +50,7 @@ namespace NLog.Targets
     /// Writes logging messages to one or more files.
     /// </summary>
     [Target("File")]
-    public class FileTarget: Target
+    public class FileTarget: AsyncTarget
     {
         private Random _random = new Random();
         private Layout _fileNameLayout;
@@ -64,12 +64,7 @@ namespace NLog.Targets
         private int _concurrentWriteAttempts = 10;
         private int _bufferSize = 32768;
         private int _concurrentWriteAttemptDelay = 1;
-#if !NETCF
-        private bool _async = false;
-        private bool _stopLoggingThread = false;
-        private Thread _loggingThread = null;
-        private Queue _fileWriteRequestQueue = new Queue();
-#endif
+
         /// <summary>
         /// The name of the file to write to.
         /// </summary>
@@ -252,92 +247,19 @@ namespace NLog.Targets
             }
         }
 
-#if !NETCF
-        /// <summary>
-        /// Write to the file in a separate thread. (EXPERIMENTAL)
-        /// </summary>
-        [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool Async
-        {
-            get { return _async; }
-            set 
-            {
-                _async = value; 
-                if (value)
-                    StartLoggingThread();
-                else
-                    StopLoggingThread();
-            }
-        }
-
-        private void StartLoggingThread()
-        {
-            if (_loggingThread != null)
-            {
-                // already started.
-                return;
-            }
-
-            _stopLoggingThread = false;
-            _fileWriteRequestQueue = new Queue();
-            Internal.InternalLogger.Debug("Starting logging thread.");
-            _loggingThread = new Thread(new ThreadStart(LoggingThread));
-            _loggingThread.IsBackground = true;
-            _loggingThread.Start();
-        }
-
-        private void StopLoggingThread()
-        {
-            if (_loggingThread == null)
-                return;
-
-            InternalLogger.Debug("Stopping logging thread.");
-            _stopLoggingThread = true;
-            if (!_loggingThread.Join(3000))
-            {
-                InternalLogger.Warn("Logging thread failed to stop. Aborting.");
-                _loggingThread.Abort();
-            }
-            else
-            {
-                InternalLogger.Debug("Logging thread stopped.");
-            }
-            lock (_fileWriteRequestQueue)
-            {
-                _fileWriteRequestQueue.Clear();
-            }
-        }
-
-        private void LoggingThread()
+        protected override void LoggingThreadProc()
         {
             ArrayList pendingFileRequests = new ArrayList();
-            while (!_stopLoggingThread)
+            while (!LoggingThreadStopRequested)
             {
                 pendingFileRequests.Clear();
-                lock (_fileWriteRequestQueue)
-                {
-                    //
-                    // move requests to a local structure to decrease
-                    // lock contingency
-                    //
-
-                    if (_fileWriteRequestQueue.Count > 0)
-                    {
-                        for (int i = 0; (i < 100) && _fileWriteRequestQueue.Count > 0; ++i)
-                        {
-                            FileWriteRequest fwr = (FileWriteRequest)_fileWriteRequestQueue.Dequeue();
-                            pendingFileRequests.Add(fwr);
-                        }
-                    }
-                }
+				RequestQueue.DequeueBatch(pendingFileRequests, 100);
 
                 if (pendingFileRequests.Count == 0)
                 {
                     Thread.Sleep(100);
                     continue;
                 }
-
-                // lock is no longer held
 
                 // sort the file requests by the file name and 
                 // the sequence to maximize file handle reuse
@@ -391,7 +313,6 @@ namespace NLog.Targets
             }
         }
 
-#endif
         private StreamWriter OpenStreamWriter(string fileName, bool throwOnError)
         {
             try
@@ -436,9 +357,9 @@ namespace NLog.Targets
                 retVal.AutoFlush = _autoFlush;
                 return retVal;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                InternalLogger.Error("Unable to create file: '{0}'", fileName);
+                InternalLogger.Error("Unable to create file: '{0}' {1}", fileName, ex);
                 throw;
             }
         }
@@ -461,19 +382,15 @@ namespace NLog.Targets
         /// <param name="ev">The logging event.</param>
         protected internal override void Append(LogEventInfo ev)
         {
-#if !NETCF
-            if (_async)
+            if (Async)
             {
-                lock (_fileWriteRequestQueue)
-                {
-                    _fileWriteRequestQueue.Enqueue(
+				RequestQueue.Enqueue(
                         new FileWriteRequest(
                         _fileNameLayout.GetFormattedMessage(ev),
                         CompiledLayout.GetFormattedMessage(ev)));
-                }
                 return;
             }
-#endif
+
             lock (this)
             {
                 string fileName = _fileNameLayout.GetFormattedMessage(ev);

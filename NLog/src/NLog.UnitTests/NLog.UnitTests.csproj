@@ -115,6 +115,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Internal\AsyncQueueTests.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "LayoutRenderers\BaseDir.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

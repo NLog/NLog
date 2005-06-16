@@ -98,11 +98,10 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Send the given text over the specified protocol optionally using asynchronous invocation.
+        /// Send the given text over the specified protocol.
         /// </summary>
         /// <param name="text">Text to be sent.</param>
-        /// <param name="async">Use asynchronous invocation (ignored yet).</param>
-        public void Send(string text, bool async)
+        public void Send(string text)
         {
             DoSend(text);
         }
