@@ -269,7 +269,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Filters\WhenEqual.cs"
+                    RelPath = "Filters\WhenEquals.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -280,6 +280,11 @@
                 />
                 <File
                     RelPath = "Filters\WhenNotEqual.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\AsyncRequestQueue.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -535,6 +540,11 @@
                 />
                 <File
                     RelPath = "Targets\ASPNetTrace.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\AsyncTarget.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

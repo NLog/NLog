@@ -244,7 +244,7 @@ namespace NLog.Config
                     break;
 
                 case "false":
-                    InternalLogger.LogToConsole = true;
+                    InternalLogger.LogToConsole = false;
                     break;
             }
 
@@ -318,6 +318,9 @@ namespace NLog.Config
             {
                 XmlElement el = n1 as XmlElement;
                 if (el == null)
+                    continue;
+
+                if (0 != String.Compare(el.LocalName, "logger", true))
                     continue;
                 
                 XmlElement ruleElement = el;

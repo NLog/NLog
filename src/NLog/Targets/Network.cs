@@ -36,6 +36,7 @@ using System;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Threading;
 
 using NLog.Internal;
 
@@ -45,22 +46,12 @@ namespace NLog.Targets
     /// Sends logging messages over network.
     /// </summary>
     [Target("Network")]
-    public class NetworkTarget: Target
+    public class NetworkTarget: AsyncTarget
     {
-        private bool _async = false;
         private bool _newline = false;
         private bool _keepConnection = true;
         private Layout _addressLayout = null;
         private NetworkSender _sender = null;
-
-        /// <summary>
-        /// Use asynchronous sending routine.
-        /// </summary>
-        public bool Async
-        {
-            get { return _async; }
-            set { _async = true; }
-        }
 
         /// <summary>
         /// The network address. Can be tcp://host:port, udp://host:port, http://host:port or https://host:port
@@ -115,6 +106,11 @@ namespace NLog.Targets
         /// <param name="text">The text to be sent.</param>
         protected void NetworkSend(string address, string text)
         {
+            if (Async)
+            {
+                RequestQueue.Enqueue(new NetworkWriteRequest(address, text));
+                return;
+            }
             NetworkSender sender;
             bool keep;
 
@@ -146,7 +142,7 @@ namespace NLog.Targets
 
             try
             {
-                sender.Send(text, false);
+                sender.Send(text);
             }
             catch (Exception)
             {
@@ -181,5 +177,129 @@ namespace NLog.Targets
                 NetworkSend(AddressLayout.GetFormattedMessage(ev), CompiledLayout.GetFormattedMessage(ev));
             }
         }
+
+#if !NETCF
+
+        protected override void LoggingThreadProc()
+        {
+            ArrayList pendingNetworkRequests = new ArrayList();
+            NetworkSender currentSender = null;
+            string currentSenderAddress = "";
+
+            while (!LoggingThreadStopRequested)
+            {
+                pendingNetworkRequests.Clear();
+                RequestQueue.DequeueBatch(pendingNetworkRequests, 100);
+
+                if (pendingNetworkRequests.Count == 0)
+                {
+                    Thread.Sleep(100);
+                    continue;
+                }
+
+                // sort the network requests by the address and 
+                // the sequence to maximize socket reuse
+
+                pendingNetworkRequests.Sort(NetworkWriteRequest.GetComparer());
+
+                /*
+                    InternalLogger.Debug("---");
+                    foreach (FileWriteRequest fwr in pendingNetworkRequests)
+                    {
+                        InternalLogger.Debug("request: {0} {1}", fwr.FileName, fwr.Sequence);
+                    }
+                    */
+
+                int requests = 0;
+                int reopens = 0;
+
+                for (int i = 0; i < pendingNetworkRequests.Count; ++i)
+                {
+                    NetworkWriteRequest fwr = (NetworkWriteRequest)pendingNetworkRequests[i];
+
+                    if (fwr.Address != currentSenderAddress)
+                    {
+                        if (currentSender != null)
+                        {
+                            currentSender.Close();
+                            currentSender = null;
+                        }
+                        currentSenderAddress = fwr.Address;
+                        currentSender = NetworkSender.Create(fwr.Address);
+                        reopens++;
+                    }
+                    requests++;
+                    if (currentSender != null)
+                        currentSender.Send(fwr.Text);
+                }
+            }
+            if (currentSender != null)
+            {
+                currentSender.Close();
+                currentSender = null;
+            }
+        }
+
+        /// <summary>
+        /// Represents a single async request to write to a network place.
+        /// </summary>
+        class NetworkWriteRequest
+        {
+            private string _address;
+            private string _text;
+            private long _sequence;
+
+            private static long _globalSequence;
+
+            public NetworkWriteRequest(string address, string text)
+            {
+                _address = address;
+                _text = text;
+                _sequence = Interlocked.Increment(ref _globalSequence);
+            }
+
+            public string Address
+            {
+                get { return _address; }
+            }
+
+            public string Text
+            {
+                get { return _text; }
+            }
+
+            public long Sequence
+            {
+                get { return _sequence; }
+            }
+
+            private static IComparer _comparer = new Comparer();
+
+            public static IComparer GetComparer()
+            {
+                return _comparer;
+            }
+
+            class Comparer : IComparer
+            {
+                public int Compare(object x, object y)
+                {
+                    NetworkWriteRequest fwr1 = (NetworkWriteRequest)x;
+                    NetworkWriteRequest fwr2 = (NetworkWriteRequest)y;
+
+                    int val = String.CompareOrdinal(fwr1.Address, fwr2.Address);
+                    if (val != 0)
+                        return val;
+
+                    if (fwr1.Sequence < fwr2.Sequence)
+                        return -1;
+                    if (fwr1.Sequence > fwr2.Sequence)
+                        return 1;
+                    return 0;
+                }
+            }
+        }
+#endif
+
     }
 }

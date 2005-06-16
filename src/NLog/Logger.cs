@@ -63,7 +63,10 @@ namespace NLog
             SetConfiguration(configuration);
         }
 
-        internal string Name
+        /// <summary>
+        /// Gets the name of the logger.
+        /// </summary>
+        public string Name
         {
             get
             {

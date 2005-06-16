@@ -112,6 +112,26 @@ namespace NLog.Config
             return this;
         }
 
+        
+        /// <summary>
+        /// Flushes any pending log messages on all appenders.
+        /// </summary>
+        public void FlushAllTargets()
+        {
+            foreach (Target target in _targets.Values)
+            {
+                try
+                {
+                    target.Flush();
+                
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error("Error while flushing target: {0} {1}", target.Name, ex); 
+                }
+            }
+        }
+
         /// <summary>
         /// Closes all targets and releases any unmanaged resources.
         /// </summary>

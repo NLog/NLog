@@ -89,6 +89,7 @@ class Bench
 
     public static void EndTest()
     {
+        //LogManager.Configuration.FlushAllTargets();
         _stopWatch.Stop();
         if (_output != null)
         {
@@ -130,11 +131,13 @@ class Bench
         ILog logger2 = LogManager.GetLogger("null1");
         ILog logger3 = LogManager.GetLogger("null2");
         ILog logger4 = LogManager.GetLogger("file1");
+        ILog logger5 = LogManager.GetLogger("file2");
 #else
         Logger logger1 = LogManager.GetLogger("nonlogger");
         Logger logger2 = LogManager.GetLogger("null1");
         Logger logger3 = LogManager.GetLogger("null2");
         Logger logger4 = LogManager.GetLogger("file1");
+        Logger logger5 = LogManager.GetLogger("file2");
 #endif
         // _output = new XmlTextWriter(Console.Out);
         for (int i = 0; i < warmup; ++i)
@@ -160,6 +163,7 @@ class Bench
         LogTest(logger4, "File target", repeat2);
         LogTest(logger3, "Null-target without layout", repeat);
         LogTest(logger2, "Null-target with layout rendering", repeat);
+        LogTest(logger5, "Async file target", repeat2);
 
         _output.WriteEndElement();
         _output.Close();
