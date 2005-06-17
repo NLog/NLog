@@ -106,11 +106,13 @@ namespace NLog.Targets
         /// <param name="text">The text to be sent.</param>
         protected void NetworkSend(string address, string text)
         {
+#if !NETCF
             if (Async)
             {
                 RequestQueue.Enqueue(new NetworkWriteRequest(address, text));
                 return;
             }
+#endif
             NetworkSender sender;
             bool keep;
 

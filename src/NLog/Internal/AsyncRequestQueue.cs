@@ -1,3 +1,5 @@
+#if !NETCF
+
 using System;
 using System.Collections;
 
@@ -190,3 +192,5 @@ namespace NLog.Internal
 		}
 	}
 }
+
+#endif

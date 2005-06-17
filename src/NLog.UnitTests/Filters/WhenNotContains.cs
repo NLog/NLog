@@ -42,20 +42,24 @@ using NLog.Config;
 
 using NUnit.Framework;
 
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.UnitTests.Filters
 {
     [TestFixture]
-	public class BaseDir : NLogTestBase
+	public class WhenNotContains : NLogTestBase
 	{
         [Test]
-        public void BaseDirTest()
+        public void WhenNotContainsTest()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' appendTo='debug'>
+                    <filters>
+                        <whenNotContains layout='${message}' substring='zzz' action='Ignore' />
+                    </filters>
+                    </logger>
                 </rules>
             </nlog>");
 
@@ -63,19 +67,26 @@ namespace NLog.UnitTests.LayoutRenderers
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
-            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            AssertDebugLastMessage("debug", baseDir + " a");
+            AssertDebugCounter("debug", 0);
+            logger.Debug("zzz");
+            AssertDebugCounter("debug", 1);
+            logger.Debug("ZzzZ");
+            AssertDebugCounter("debug", 1);
         }
 
         [Test]
-        public void BaseDirCombineTest()
+        public void WhenNotContainsInsensitiveTest()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${basedir:dir=..} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' appendTo='debug'>
+                    <filters>
+                        <whenNotContains layout='${message}' substring='zzz' action='Ignore' ignoreCase='true' />
+                    </filters>
+                    </logger>
                 </rules>
             </nlog>");
 
@@ -83,28 +94,13 @@ namespace NLog.UnitTests.LayoutRenderers
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
-            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..");
-            AssertDebugLastMessage("debug", baseDir + " a");
-        }
-
-        [Test]
-        public void BaseDirFileCombineTest()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${basedir:file=a.txt} ${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
-                </rules>
-            </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
-            Logger logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "a.txt");
-            AssertDebugLastMessage("debug", baseDir + " a");
+            AssertDebugCounter("debug", 0);
+            logger.Debug("zzz");
+            AssertDebugCounter("debug", 1);
+            logger.Debug("ZzzZ");
+            AssertDebugCounter("debug", 2);
+            logger.Debug("aaa");
+            AssertDebugCounter("debug", 2);
         }
     }
 }

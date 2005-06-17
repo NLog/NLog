@@ -247,72 +247,6 @@ namespace NLog.Targets
             }
         }
 
-        protected override void LoggingThreadProc()
-        {
-            ArrayList pendingFileRequests = new ArrayList();
-            while (!LoggingThreadStopRequested)
-            {
-                pendingFileRequests.Clear();
-				RequestQueue.DequeueBatch(pendingFileRequests, 100);
-
-                if (pendingFileRequests.Count == 0)
-                {
-                    Thread.Sleep(100);
-                    continue;
-                }
-
-                // sort the file requests by the file name and 
-                // the sequence to maximize file handle reuse
-
-                pendingFileRequests.Sort(FileWriteRequest.GetComparer());
-
-                /*
-                InternalLogger.Debug("---");
-                foreach (FileWriteRequest fwr in pendingFileRequests)
-                {
-                    InternalLogger.Debug("request: {0} {1}", fwr.FileName, fwr.Sequence);
-                }
-                */
-
-                string currentFileName = "";
-                StreamWriter currentStreamWriter = null;
-                int requests = 0;
-                int reopens = 0;
-
-                for (int i = 0; i < pendingFileRequests.Count; ++i)
-                {
-                    FileWriteRequest fwr = (FileWriteRequest)pendingFileRequests[i];
-
-                    if (fwr.FileName != currentFileName)
-                    {
-                        if (currentStreamWriter != null)
-                        {
-                            currentStreamWriter.Close();
-                        }
-                        currentFileName = fwr.FileName;
-                        currentStreamWriter = OpenStreamWriter(fwr.FileName, false);
-                        reopens++;
-                    }
-                    requests++;
-                    if (currentStreamWriter != null)
-                        currentStreamWriter.WriteLine(fwr.Text);
-                }
-                if (currentStreamWriter != null)
-                {
-                    currentStreamWriter.Close();
-                    currentStreamWriter = null;
-                }
-                /*
-                
-                if (requests > 0)
-                {
-                    InternalLogger.Debug("Processed {0} requests/ {1} reopens", requests, reopens);
-                }
-                
-                */
-            }
-        }
-
         private StreamWriter OpenStreamWriter(string fileName, bool throwOnError)
         {
             try
@@ -382,6 +316,7 @@ namespace NLog.Targets
         /// <param name="ev">The logging event.</param>
         protected internal override void Append(LogEventInfo ev)
         {
+#if !NETCF
             if (Async)
             {
 				RequestQueue.Enqueue(
@@ -390,6 +325,7 @@ namespace NLog.Targets
                         CompiledLayout.GetFormattedMessage(ev)));
                 return;
             }
+#endif
 
             lock (this)
             {
@@ -440,6 +376,72 @@ namespace NLog.Targets
         }
 
 #if !NETCF
+        protected override void LoggingThreadProc()
+        {
+            ArrayList pendingFileRequests = new ArrayList();
+            while (!LoggingThreadStopRequested)
+            {
+                pendingFileRequests.Clear();
+				RequestQueue.DequeueBatch(pendingFileRequests, 100);
+
+                if (pendingFileRequests.Count == 0)
+                {
+                    Thread.Sleep(100);
+                    continue;
+                }
+
+                // sort the file requests by the file name and 
+                // the sequence to maximize file handle reuse
+
+                pendingFileRequests.Sort(FileWriteRequest.GetComparer());
+
+                /*
+                InternalLogger.Debug("---");
+                foreach (FileWriteRequest fwr in pendingFileRequests)
+                {
+                    InternalLogger.Debug("request: {0} {1}", fwr.FileName, fwr.Sequence);
+                }
+                */
+
+                string currentFileName = "";
+                StreamWriter currentStreamWriter = null;
+                int requests = 0;
+                int reopens = 0;
+
+                for (int i = 0; i < pendingFileRequests.Count; ++i)
+                {
+                    FileWriteRequest fwr = (FileWriteRequest)pendingFileRequests[i];
+
+                    if (fwr.FileName != currentFileName)
+                    {
+                        if (currentStreamWriter != null)
+                        {
+                            currentStreamWriter.Close();
+                        }
+                        currentFileName = fwr.FileName;
+                        currentStreamWriter = OpenStreamWriter(fwr.FileName, false);
+                        reopens++;
+                    }
+                    requests++;
+                    if (currentStreamWriter != null)
+                        currentStreamWriter.WriteLine(fwr.Text);
+                }
+                if (currentStreamWriter != null)
+                {
+                    currentStreamWriter.Close();
+                    currentStreamWriter = null;
+                }
+                /*
+                
+                if (requests > 0)
+                {
+                    InternalLogger.Debug("Processed {0} requests/ {1} reopens", requests, reopens);
+                }
+                
+                */
+            }
+        }
+
         /// <summary>
         /// Represents a single request to write to a file.
         /// </summary>

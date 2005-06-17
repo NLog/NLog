@@ -41,15 +41,15 @@ using NLog.Config;
 namespace NLog.Filters
 {
     /// <summary>
-    /// Matches when the calculated layout contains the specified substring.
+    /// Matches when the calculated layout is equal to the specified substring.
     /// </summary>
-    [Filter("whenContains")]
-    public class WhenContainsFilter: LayoutBasedFilter
+    [Filter("whenEqual")]
+    public class WhenEqualFilter: LayoutBasedFilter
     {
         /// <summary>
         /// Initializes a new instance of the filter object.
         /// </summary>
-        public WhenContainsFilter(){}
+        public WhenEqualFilter(){}
 
         private bool _ignoreCase = false;
 
@@ -63,21 +63,21 @@ namespace NLog.Filters
             set { _ignoreCase = value; }
         }
 
-        private string _substring;
+        private string _compareTo;
 
         /// <summary>
-        /// Substring to be matched.
+        /// String to compare the layout to.
         /// </summary>
         [RequiredParameter]
-        public string Substring
+        public string CompareTo
         {
             get
             {
-                return _substring;
+                return _compareTo;
             }
             set
             {
-                _substring = value;
+                _compareTo = value;
             }
         }
 
@@ -92,20 +92,10 @@ namespace NLog.Filters
         /// </returns>
         protected internal override FilterResult Check(LogEventInfo logEvent)
         {
-            if (IgnoreCase)
-            {
-                if (CompiledLayout.GetFormattedMessage(logEvent).ToLower().IndexOf(Substring.ToLower()) >= 0)
-                    return Result;
-                else
-                    return FilterResult.Neutral;
-            }
+            if (0 == String.Compare(CompiledLayout.GetFormattedMessage(logEvent), CompareTo, IgnoreCase))
+                return Result;
             else
-            {
-                if (CompiledLayout.GetFormattedMessage(logEvent).IndexOf(Substring) >= 0)
-                    return Result;
-                else
-                    return FilterResult.Neutral;
-            }
+                return FilterResult.Neutral;
         }
     }
 }

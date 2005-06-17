@@ -71,6 +71,18 @@ namespace NLog.Filters
             }
         }
 
+        private bool _ignoreCase = false;
+
+        /// <summary>
+        /// Ignore case when comparing strings.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(false)]
+        public bool IgnoreCase
+        {
+            get { return _ignoreCase; }
+            set { _ignoreCase = value; }
+        }
+
         /// <summary>
         /// Checks whether log event should be logged or not.
         /// </summary>
@@ -82,10 +94,20 @@ namespace NLog.Filters
         /// </returns>
         protected internal override FilterResult Check(LogEventInfo logEvent)
         {
-            if (CompiledLayout.GetFormattedMessage(logEvent).IndexOf(Substring) < 0)
-                return Result;
+            if (IgnoreCase)
+            {
+                if (CompiledLayout.GetFormattedMessage(logEvent).ToLower().IndexOf(Substring.ToLower()) < 0)
+                    return Result;
+                else
+                    return FilterResult.Neutral;
+            }
             else
-                return FilterResult.Neutral;
+            {
+                if (CompiledLayout.GetFormattedMessage(logEvent).IndexOf(Substring) < 0)
+                    return Result;
+                else
+                    return FilterResult.Neutral;
+            }
         }
     }
 }

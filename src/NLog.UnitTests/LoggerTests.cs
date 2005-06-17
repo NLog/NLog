@@ -1,0 +1,1010 @@
+// 
+// Copyright (c) 2004,2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// 
+// 
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+// * Redistributions of source code must retain the above copyright notice, 
+//   this list of conditions and the following disclaimer. 
+// 
+// * Redistributions in binary form must reproduce the above copyright notice,
+//   this list of conditions and the following disclaimer in the documentation
+//   and/or other materials provided with the distribution. 
+// 
+// * Neither the name of the Jaroslaw Kowalski nor the names of its 
+//   contributors may be used to endorse or promote products derived from this
+//   software without specific prior written permission. 
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// THE POSSIBILITY OF SUCH DAMAGE.
+// 
+
+using System;
+using System.Xml;
+using System.Globalization;
+
+using NLog;
+using NLog.Config;
+
+using NUnit.Framework;
+
+namespace NLog.UnitTests
+{
+    [TestFixture]
+	public class LoggerTests : NLogTestBase
+	{
+        [Test]
+        public void DebugTest()
+        {
+            // test all possible overloads of the Debug() method
+
+            for (int enabled = 0; enabled < 2; ++enabled)
+            {
+                XmlDocument doc = new XmlDocument();
+                if (enabled == 0)
+                {
+                    doc.LoadXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+                else
+                {
+                    doc.LoadXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+
+                LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
+
+                Logger logger = LogManager.GetLogger("A");
+
+                logger.Debug("message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Debug("message{0}", (ulong)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (ulong)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Debug("message{0}", (long)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (long)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Debug("message{0}", (uint)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (uint)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Debug("message{0}", (int)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (int)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Debug("message{0}", (ushort)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (ushort)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Debug("message{0}", (sbyte)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (sbyte)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Debug("message{0}", this);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", this);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+            
+                logger.Debug("message{0}", (short)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (short)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Debug("message{0}", (byte)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (byte)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Debug("message{0}", 'c');
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagec");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", 'd');
+                if (enabled == 1) AssertDebugLastMessage("debug", "messaged");
+            
+                logger.Debug("message{0}", "ddd");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", "eee");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee");
+            
+                logger.Debug("message{0}{1}", "ddd", 1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}{1}", "eee", 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2");
+            
+                logger.Debug("message{0}{1}{2}", "ddd", 1, "eee");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1eee");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}{1}{2}", "eee", 2, "fff");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fff");
+            
+                logger.Debug("message{0}{1}{2}{3}", "eee", 2, "fff", "ggg");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fffggg");
+            
+                logger.Debug("message{0}", true);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageTrue");
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", false);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageFalse");
+
+                CultureInfo oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                logger.Debug("message{0}", (float)1.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                logger.Debug("message{0}", (double)1.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                logger.Debug("message{0}", (decimal)1.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                logger.DebugException("message", new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                if (enabled == 0)
+                    AssertDebugCounter("debug", 0);
+            }
+        }
+
+        [Test]
+        public void InfoTest()
+        {
+            // test all possible overloads of the Info() method
+
+            for (int enabled = 0; enabled < 2; ++enabled)
+            {
+                XmlDocument doc = new XmlDocument();
+                if (enabled == 0)
+                {
+                    doc.LoadXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+                else
+                {
+                    doc.LoadXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Info' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+
+                LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
+
+                Logger logger = LogManager.GetLogger("A");
+
+                logger.Info("message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Info("message{0}", (ulong)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", (ulong)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Info("message{0}", (long)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", (long)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Info("message{0}", (uint)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", (uint)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Info("message{0}", (int)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", (int)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Info("message{0}", (ushort)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", (ushort)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Info("message{0}", (sbyte)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", (sbyte)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Info("message{0}", this);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", this);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+            
+                logger.Info("message{0}", (short)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", (short)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Info("message{0}", (byte)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", (byte)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Info("message{0}", 'c');
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagec");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", 'd');
+                if (enabled == 1) AssertDebugLastMessage("debug", "messaged");
+            
+                logger.Info("message{0}", "ddd");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", "eee");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee");
+            
+                logger.Info("message{0}{1}", "ddd", 1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}{1}", "eee", 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2");
+            
+                logger.Info("message{0}{1}{2}", "ddd", 1, "eee");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1eee");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}{1}{2}", "eee", 2, "fff");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fff");
+            
+                logger.Info("message{0}{1}{2}{3}", "eee", 2, "fff", "ggg");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fffggg");
+            
+                logger.Info("message{0}", true);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageTrue");
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", false);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageFalse");
+
+                CultureInfo oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                logger.Info("message{0}", (float)1.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                logger.Info("message{0}", (double)1.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                logger.Info("message{0}", (decimal)1.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                logger.InfoException("message", new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                if (enabled == 0)
+                    AssertDebugCounter("debug", 0);
+            }
+        }
+
+        [Test]
+        public void WarnTest()
+        {
+            // test all possible overloads of the Warn() method
+
+            for (int enabled = 0; enabled < 2; ++enabled)
+            {
+                XmlDocument doc = new XmlDocument();
+                if (enabled == 0)
+                {
+                    doc.LoadXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+                else
+                {
+                    doc.LoadXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Warn' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+
+                LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
+
+                Logger logger = LogManager.GetLogger("A");
+
+                logger.Warn("message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Warn("message{0}", (ulong)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (ulong)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Warn("message{0}", (long)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (long)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Warn("message{0}", (uint)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (uint)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Warn("message{0}", (int)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (int)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Warn("message{0}", (ushort)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (ushort)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Warn("message{0}", (sbyte)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (sbyte)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Warn("message{0}", this);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", this);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+            
+                logger.Warn("message{0}", (short)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (short)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Warn("message{0}", (byte)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (byte)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Warn("message{0}", 'c');
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagec");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", 'd');
+                if (enabled == 1) AssertDebugLastMessage("debug", "messaged");
+            
+                logger.Warn("message{0}", "ddd");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", "eee");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee");
+            
+                logger.Warn("message{0}{1}", "ddd", 1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}{1}", "eee", 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2");
+            
+                logger.Warn("message{0}{1}{2}", "ddd", 1, "eee");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1eee");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}{1}{2}", "eee", 2, "fff");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fff");
+            
+                logger.Warn("message{0}{1}{2}{3}", "eee", 2, "fff", "ggg");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fffggg");
+            
+                logger.Warn("message{0}", true);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageTrue");
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", false);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageFalse");
+
+                CultureInfo oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                logger.Warn("message{0}", (float)1.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                logger.Warn("message{0}", (double)1.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                logger.Warn("message{0}", (decimal)1.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                logger.WarnException("message", new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                if (enabled == 0)
+                    AssertDebugCounter("debug", 0);
+            }
+        }
+
+        [Test]
+        public void ErrorTest()
+        {
+            // test all possible overloads of the Error() method
+
+            for (int enabled = 0; enabled < 2; ++enabled)
+            {
+                XmlDocument doc = new XmlDocument();
+                if (enabled == 0)
+                {
+                    doc.LoadXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+                else
+                {
+                    doc.LoadXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Error' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+
+                LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
+
+                Logger logger = LogManager.GetLogger("A");
+
+                logger.Error("message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Error("message{0}", (ulong)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", (ulong)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Error("message{0}", (long)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", (long)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Error("message{0}", (uint)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", (uint)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Error("message{0}", (int)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", (int)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Error("message{0}", (ushort)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", (ushort)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Error("message{0}", (sbyte)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", (sbyte)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Error("message{0}", this);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", this);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+            
+                logger.Error("message{0}", (short)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", (short)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Error("message{0}", (byte)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", (byte)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Error("message{0}", 'c');
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagec");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", 'd');
+                if (enabled == 1) AssertDebugLastMessage("debug", "messaged");
+            
+                logger.Error("message{0}", "ddd");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", "eee");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee");
+            
+                logger.Error("message{0}{1}", "ddd", 1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}{1}", "eee", 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2");
+            
+                logger.Error("message{0}{1}{2}", "ddd", 1, "eee");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1eee");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}{1}{2}", "eee", 2, "fff");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fff");
+            
+                logger.Error("message{0}{1}{2}{3}", "eee", 2, "fff", "ggg");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fffggg");
+            
+                logger.Error("message{0}", true);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageTrue");
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", false);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageFalse");
+
+                CultureInfo oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                logger.Error("message{0}", (float)1.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                logger.Error("message{0}", (double)1.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                logger.Error("message{0}", (decimal)1.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                logger.ErrorException("message", new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                if (enabled == 0)
+                    AssertDebugCounter("debug", 0);
+            }
+        }
+
+        [Test]
+        public void FatalTest()
+        {
+            // test all possible overloads of the Fatal() method
+
+            for (int enabled = 0; enabled < 2; ++enabled)
+            {
+                XmlDocument doc = new XmlDocument();
+                if (enabled == 0)
+                {
+                    doc.LoadXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+                else
+                {
+                    doc.LoadXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Fatal' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+
+                LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
+
+                Logger logger = LogManager.GetLogger("A");
+
+                logger.Fatal("message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Fatal("message{0}", (ulong)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (ulong)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Fatal("message{0}", (long)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (long)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Fatal("message{0}", (uint)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (uint)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Fatal("message{0}", (int)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (int)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Fatal("message{0}", (ushort)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (ushort)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Fatal("message{0}", (sbyte)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (sbyte)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Fatal("message{0}", this);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", this);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+            
+                logger.Fatal("message{0}", (short)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (short)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Fatal("message{0}", (byte)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (byte)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                logger.Fatal("message{0}", 'c');
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagec");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", 'd');
+                if (enabled == 1) AssertDebugLastMessage("debug", "messaged");
+            
+                logger.Fatal("message{0}", "ddd");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", "eee");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee");
+            
+                logger.Fatal("message{0}{1}", "ddd", 1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}{1}", "eee", 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2");
+            
+                logger.Fatal("message{0}{1}{2}", "ddd", 1, "eee");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1eee");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}{1}{2}", "eee", 2, "fff");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fff");
+            
+                logger.Fatal("message{0}{1}{2}{3}", "eee", 2, "fff", "ggg");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fffggg");
+            
+                logger.Fatal("message{0}", true);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageTrue");
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", false);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageFalse");
+
+                CultureInfo oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                logger.Fatal("message{0}", (float)1.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                logger.Fatal("message{0}", (double)1.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                logger.Fatal("message{0}", (decimal)1.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                logger.FatalException("message", new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                if (enabled == 0)
+                    AssertDebugCounter("debug", 0);
+            }
+        }
+
+
+        [Test]
+        public void LogTest()
+        {
+            // test all possible overloads of the Log(level) method
+
+            foreach (LogLevel level in new LogLevel[] { LogLevel.Debug, LogLevel.Info, LogLevel.Warn, LogLevel.Error, LogLevel.Fatal })
+            {
+
+                for (int enabled = 0; enabled < 2; ++enabled)
+                {
+                    XmlDocument doc = new XmlDocument();
+                    if (enabled == 0)
+                    {
+                        doc.LoadXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                    }
+                    else
+                    {
+                        doc.LoadXml(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='" + level.Name + @"' appendTo='debug' />
+                            </rules>
+                                  </nlog>");
+                              }
+
+                    LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
+
+                    Logger logger = LogManager.GetLogger("A");
+
+                    logger.Log(level, "message");
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                    logger.Log(level, "message{0}", (ulong)1);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (ulong)2);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                    logger.Log(level, "message{0}", (long)1);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (long)2);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                    logger.Log(level, "message{0}", (uint)1);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (uint)2);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                    logger.Log(level, "message{0}", (int)1);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (int)2);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                    logger.Log(level, "message{0}", (ushort)1);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (ushort)2);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                    logger.Log(level, "message{0}", (sbyte)1);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (sbyte)2);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                    logger.Log(level, "message{0}", this);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", this);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+            
+                    logger.Log(level, "message{0}", (short)1);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (short)2);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                    logger.Log(level, "message{0}", (byte)1);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (byte)2);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+            
+                    logger.Log(level, "message{0}", 'c');
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messagec");
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", 'd');
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messaged");
+            
+                    logger.Log(level, "message{0}", "ddd");
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messageddd");
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", "eee");
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messageeee");
+            
+                    logger.Log(level, "message{0}{1}", "ddd", 1);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1");
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}{1}", "eee", 2);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2");
+            
+                    logger.Log(level, "message{0}{1}{2}", "ddd", 1, "eee");
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1eee");
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}{1}{2}", "eee", 2, "fff");
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fff");
+            
+                    logger.Log(level, "message{0}{1}{2}{3}", "eee", 2, "fff", "ggg");
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fffggg");
+            
+                    logger.Log(level, "message{0}", true);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messageTrue");
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", false);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "messageFalse");
+
+                    CultureInfo oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                    System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                    logger.Log(level, "message{0}", (float)1.5);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                    System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (float)2.5);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                    oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                    System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                    logger.Log(level, "message{0}", (double)1.5);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                    System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (double)2.5);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                    oldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+                    System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                    logger.Log(level, "message{0}", (decimal)1.5);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
+                    System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
+
+                    logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+            
+                    logger.LogException(level, "message", new Exception("test"));
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                    if (enabled == 0)
+                        AssertDebugCounter("debug", 0);
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            return "object-to-string";
+        }
+
+    }
+
+
+}
