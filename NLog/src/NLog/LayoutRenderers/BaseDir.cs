@@ -105,13 +105,13 @@ namespace NLog.LayoutRenderers
 #else
             string baseDir = CompactFrameworkHelper.GetExeBaseDir();
 #endif
-            if (_fileName != null)
+            if (File != null)
             {
-                builder.Append(ApplyPadding(Path.Combine(baseDir, _fileName)));
+                builder.Append(ApplyPadding(Path.Combine(baseDir, File)));
             }
-            else if (_directoryName != null)
+            else if (Dir != null)
             {
-                builder.Append(ApplyPadding(Path.Combine(baseDir, _directoryName)));
+                builder.Append(ApplyPadding(Path.Combine(baseDir, Dir)));
             }
             else
             {

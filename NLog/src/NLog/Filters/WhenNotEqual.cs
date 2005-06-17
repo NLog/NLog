@@ -59,14 +59,20 @@ namespace NLog.Filters
         [RequiredParameter]
         public string CompareTo
         {
-            get
-            {
-                return _compareTo;
-            }
-            set
-            {
-                _compareTo = value;
-            }
+            get { return _compareTo; }
+            set { _compareTo = value; }
+        }
+
+        private bool _ignoreCase = false;
+
+        /// <summary>
+        /// Ignore case when comparing strings.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(false)]
+        public bool IgnoreCase
+        {
+            get { return _ignoreCase; }
+            set { _ignoreCase = value; }
         }
 
         /// <summary>
@@ -80,7 +86,7 @@ namespace NLog.Filters
         /// </returns>
         protected internal override FilterResult Check(LogEventInfo logEvent)
         {
-            if (CompiledLayout.GetFormattedMessage(logEvent) != CompareTo)
+            if (0 != String.Compare(CompiledLayout.GetFormattedMessage(logEvent), CompareTo, IgnoreCase))
                 return Result;
             else
                 return FilterResult.Neutral;

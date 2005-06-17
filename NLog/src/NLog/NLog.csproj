@@ -269,7 +269,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Filters\WhenEquals.cs"
+                    RelPath = "Filters\WhenEqual.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

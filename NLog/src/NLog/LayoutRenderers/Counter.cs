@@ -121,14 +121,14 @@ namespace NLog.LayoutRenderers
         {
             int v;
 
-            if (_sequence != null)
+            if (Sequence != null)
             {
                 v = GetNextSequenceValue(Sequence, Value, Increment);
             }
             else
             {
                 v = _value;
-                _value += _increment;
+                _value += Increment;
             }
 
             builder.Append(ApplyPadding(v.ToString(Culture)));

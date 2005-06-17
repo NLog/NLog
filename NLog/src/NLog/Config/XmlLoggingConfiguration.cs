@@ -359,8 +359,11 @@ namespace NLog.Config
                     string[]tokens = levelsString.Split(',');
                     foreach (string s in tokens)
                     {
-                        LogLevel level = LogLevel.FromString(s);
-                        rule.EnableLoggingForLevel(level);
+                        if (s != "")
+                        {
+                            LogLevel level = LogLevel.FromString(s);
+                            rule.EnableLoggingForLevel(level);
+                        }
                     }
                 }
                 else

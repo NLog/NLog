@@ -35,7 +35,6 @@
 using System;
 using System.Xml;
 using System.Reflection;
-using System.IO;
 
 using NLog;
 using NLog.Config;
@@ -45,66 +44,31 @@ using NUnit.Framework;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class BaseDir : NLogTestBase
+	public class LongDate : NLogTestBase
 	{
         [Test]
-        public void BaseDirTest()
+        public void LongDateTest()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${longdate}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' appendTo='debug' />
                 </rules>
             </nlog>");
 
             LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
-            Logger logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            AssertDebugLastMessage("debug", baseDir + " a");
-        }
-
-        [Test]
-        public void BaseDirCombineTest()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${basedir:dir=..} ${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
-                </rules>
-            </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
-            Logger logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..");
-            AssertDebugLastMessage("debug", baseDir + " a");
-        }
-
-        [Test]
-        public void BaseDirFileCombineTest()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${basedir:file=a.txt} ${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
-                </rules>
-            </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
-            Logger logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "a.txt");
-            AssertDebugLastMessage("debug", baseDir + " a");
+            LogManager.GetLogger("d").Debug("zzz");
+            string date = GetDebugLastMessage("debug");
+            Console.WriteLine("d: {0}", date);
+            Assert.AreEqual(date.Length, 24);
+            Assert.AreEqual(date[4], '-');
+            Assert.AreEqual(date[7], '-');
+            Assert.AreEqual(date[10], ' ');
+            Assert.AreEqual(date[13], ':');
+            Assert.AreEqual(date[16], ':');
+            Assert.AreEqual(date[19], '.');
         }
     }
 }

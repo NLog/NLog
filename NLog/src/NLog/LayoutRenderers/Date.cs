@@ -84,7 +84,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ev">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            builder.Append(ApplyPadding(ev.TimeStamp.ToString(_format, CultureInfo)));
+            builder.Append(ApplyPadding(ev.TimeStamp.ToString(Format, CultureInfo)));
         }
     }
 }

@@ -120,6 +120,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "LoggerTests.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LogLevelTests.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "NLogTestBase.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -130,8 +140,32 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Internal\AsyncQueueTests.cs"
+                    RelPath = "Filters\API.cs"
                     SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Filters\WhenContains.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Filters\WhenEqual.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Filters\WhenNotContains.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Filters\WhenNotEqual.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\AsyncQueueTests.cs"
                     BuildAction = "Compile"
                 />
                 <File
@@ -141,6 +175,16 @@
                 />
                 <File
                     RelPath = "LayoutRenderers\CallSite.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRenderers\Counter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRenderers\Date.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -156,6 +200,21 @@
                 />
                 <File
                     RelPath = "LayoutRenderers\LogLevel.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRenderers\LongDate.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRenderers\Message.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRenderers\ShortDate.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
