@@ -81,7 +81,7 @@ namespace NLog
             set
             {
                 _action = value;
-                switch (_action)
+                switch (_action.ToLower())
                 {
                     case "log":
                         _filterResult = FilterResult.Log;

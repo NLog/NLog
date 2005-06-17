@@ -299,7 +299,7 @@ namespace NLog
 
             InternalLogger.Info("--- NLog configuration dump. ---");
             InternalLogger.Info("Targets:");
-            foreach (Target target in config.Targets.Values)
+            foreach (Target target in config._targets.Values)
             {
                 InternalLogger.Info("{0}", target);
             }

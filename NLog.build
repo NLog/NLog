@@ -256,7 +256,7 @@
     </target>
 
     <target name="test" depends="NLog.UnitTests">
-        <nunit2>
+        <nunit2 failonerror="false">
             <formatter type="Xml" usefile="true" extension=".xml" outputdir="build/${buildsubdir}/test_results_xml" />
             <test assemblyname="${nlog.dir}/NLog.UnitTests.dll" />
         </nunit2>

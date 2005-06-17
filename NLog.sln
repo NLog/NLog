@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.AsyncBenchmark", "src\
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.DotNet", "src\NLog.DotNet\NLog.DotNet.csproj", "{55D1C193-FD9D-4E22-9A09-1AD62C863651}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -69,6 +73,10 @@ Global
 		{F666E83B-3806-4F90-A577-809AA8EEED0E}.Debug.Build.0 = Debug|.NET
 		{F666E83B-3806-4F90-A577-809AA8EEED0E}.Release.ActiveCfg = Release|.NET
 		{F666E83B-3806-4F90-A577-809AA8EEED0E}.Release.Build.0 = Release|.NET
+		{55D1C193-FD9D-4E22-9A09-1AD62C863651}.Debug.ActiveCfg = Debug|.NET
+		{55D1C193-FD9D-4E22-9A09-1AD62C863651}.Debug.Build.0 = Debug|.NET
+		{55D1C193-FD9D-4E22-9A09-1AD62C863651}.Release.ActiveCfg = Release|.NET
+		{55D1C193-FD9D-4E22-9A09-1AD62C863651}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(SolutionItems) = postSolution
 		NLog.build = NLog.build
