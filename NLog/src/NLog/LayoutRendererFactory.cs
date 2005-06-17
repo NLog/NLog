@@ -95,7 +95,7 @@ namespace NLog
 
         private static LayoutRenderer CreateUnknownLayoutRenderer(string name, string parameters)
         {
-            return new LiteralLayoutRenderer("[unknown layout target:" + name + ":" + parameters + "]");
+            return new LiteralLayoutRenderer("[unknown layout renderer:" + name + ":" + parameters + "]");
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace NLog
         public static void AddLayoutRenderer(string name, Type t)
         {
             InternalLogger.Debug("AddLayoutRenderer('{0}','{1}')", name, t.FullName);
-            _targets[name] = t;
+            _targets[name.ToLower()] = t;
         }
 
         private static void ApplyLayoutRendererParameters(LayoutRenderer target, string parameterString)
@@ -174,7 +174,7 @@ namespace NLog
         /// <returns>A new instance of the <see cref="LayoutRenderer"/> object.</returns>
         public static LayoutRenderer CreateLayoutRenderer(string name, string parameters)
         {
-            Type t = _targets[name];
+            Type t = _targets[name.ToLower()];
             if (t != null)
             {
                 object o = FactoryHelper.CreateInstance(t);

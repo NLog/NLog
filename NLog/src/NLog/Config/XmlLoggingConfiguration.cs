@@ -145,7 +145,7 @@ namespace NLog.Config
 
             XmlDocument doc = new XmlDocument();
             doc.Load(fileName);
-            if (doc.DocumentElement.LocalName == "configuration")
+            if (0 == String.Compare(doc.DocumentElement.LocalName, "configuration", true))
             {
                 foreach (XmlElement el in doc.DocumentElement.GetElementsByTagName("nlog"))
                 {
@@ -170,7 +170,7 @@ namespace NLog.Config
 
             foreach (XmlAttribute a in element.Attributes)
             {
-                if (0 == String.Compare(a.Name, name, true))
+                if (0 == String.Compare(a.LocalName, name, true))
                     return a.Value;
             }
 
@@ -189,7 +189,7 @@ namespace NLog.Config
 
             foreach (XmlAttribute a in element.Attributes)
             {
-                if (0 == String.Compare(a.Name, name, true))
+                if (0 == String.Compare(a.LocalName, name, true))
                     return true;
             }
 
@@ -264,7 +264,7 @@ namespace NLog.Config
                 if (el == null)
                     continue;
 
-                switch (el.LocalName)
+                switch (el.LocalName.ToLower())
                 {
                     case "extensions":
                         AddExtensionsFromElement(el, baseDirectory);
@@ -390,7 +390,7 @@ namespace NLog.Config
                     {
                         el = (XmlElement)n;
 
-                        if (el.Name == "filters")
+                        if (0 == String.Compare(el.LocalName, "filters", true))
                         {
                             ConfigureRuleFiltersFromXmlElement(rule, el);
                         }
@@ -414,7 +414,7 @@ namespace NLog.Config
                 if (targetElement == null)
                     continue;
 
-                if (targetElement.Name == "add")
+                if (0 == String.Compare(targetElement.LocalName, "add", true))
                 {
                     string assemblyFile = GetCaseInsensitiveAttribute(targetElement, "assemblyFile");
                     string extPrefix = GetCaseInsensitiveAttribute(targetElement, "prefix");
@@ -487,7 +487,8 @@ namespace NLog.Config
                 if (targetElement == null)
                     continue;
                 
-                if (targetElement.LocalName == "target" || targetElement.LocalName == "appender")
+                if (0 == String.Compare(targetElement.LocalName, "target", true) || 
+                    0 == String.Compare(targetElement.LocalName, "appender", true))
                 {
                     string type = GetCaseInsensitiveAttribute(targetElement, "type");
                     Target newTarget = TargetFactory.CreateTarget(type);
@@ -509,7 +510,7 @@ namespace NLog.Config
             {
                 if (node is XmlElement)
                 {
-                    string name = node.Name;
+                    string name = node.LocalName;
 
                     Filter filter = FilterFactory.CreateFilter(name);
 
@@ -535,7 +536,7 @@ namespace NLog.Config
                 string name = attrib.LocalName;
                 string value = attrib.InnerText;
 
-                if (name == "type")
+                if (0 == String.Compare(name, "type", true))
                     continue;
 
                 PropertyHelper.SetPropertyFromString(target, name, value);
@@ -546,7 +547,7 @@ namespace NLog.Config
                 if (node is XmlElement)
                 {
                     XmlElement el = (XmlElement)node;
-                    string name = el.Name;
+                    string name = el.LocalName;
 
                     if (PropertyHelper.IsArrayProperty(targetType, name))
                     {
@@ -599,16 +600,22 @@ namespace NLog.Config
 
         private void RegisterPlatformSpecificExtensions(string name)
         {
-
+            InternalLogger.Debug("RegisterPlatformSpecificExtensions('{0}')", name);
             AssemblyName nlogAssemblyName = typeof(LogManager).Assembly.GetName();
-            nlogAssemblyName.Name = name;
+            AssemblyName newAssemblyName = new AssemblyName();
+            newAssemblyName.Name = name;
+            newAssemblyName.CultureInfo = nlogAssemblyName.CultureInfo;
+            newAssemblyName.Flags = nlogAssemblyName.Flags;
+            newAssemblyName.SetPublicKey(nlogAssemblyName.GetPublicKey());
+            newAssemblyName.Version = nlogAssemblyName.Version;
 
             try
             {
-                InternalLogger.Info("Registering platform specific extensions from assembly '{0}'", nlogAssemblyName);
-                Assembly asm = Assembly.Load(nlogAssemblyName);
+                InternalLogger.Info("Registering platform specific extensions from assembly '{0}'", newAssemblyName);
+                Assembly asm = Assembly.Load(newAssemblyName);
+                InternalLogger.Info("Loaded {0}", asm.FullName);
                 LoadExtensionsFromAssembly(asm, String.Empty);
-                InternalLogger.Info("Registered platform specific extensions from assembly '{0}'.", nlogAssemblyName);
+                InternalLogger.Info("Registered platform specific extensions from assembly '{0}'.", newAssemblyName);
             }
             catch (Exception ex)
             {

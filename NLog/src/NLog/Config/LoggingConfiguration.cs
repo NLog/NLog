@@ -35,6 +35,7 @@
 using System;
 using System.Collections;
 using System.Xml;
+using System.Globalization;
 
 using NLog;
 using NLog.Internal;
@@ -48,7 +49,7 @@ namespace NLog.Config
     /// </summary>
     public class LoggingConfiguration
     {
-        private TargetDictionary _targets = new TargetDictionary();
+        internal TargetDictionary _targets = new TargetDictionary();
         private LoggingRuleCollection _loggingRules = new LoggingRuleCollection();
 
         /// <summary>
@@ -63,7 +64,17 @@ namespace NLog.Config
         /// <param name="target">The target object.</param>
         public void AddTarget(string name, Target target)
         {
-            _targets[name] = target;
+            InternalLogger.Debug("Registering target {0}: {1}", name, target.GetType().FullName);
+            _targets[name.ToLower(CultureInfo.InvariantCulture)] = target;
+        }
+
+        /// <summary>
+        /// Removes the specified named target.
+        /// </summary>
+        /// <param name="name">Name of the target.</param>
+        public void RemoveTarget(string name)
+        {
+            _targets.Remove(name.ToLower(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
@@ -73,7 +84,7 @@ namespace NLog.Config
         /// <returns>Found target or <see langword="null" /> when the target is not found.</returns>
         public Target FindTargetByName(string name)
         {
-            return _targets[name];
+            return _targets[name.ToLower(CultureInfo.InvariantCulture)];
         }
 
         /// <summary>
@@ -85,11 +96,6 @@ namespace NLog.Config
             {
                 return _loggingRules;
             }
-        }
-
-        internal TargetDictionary Targets
-        {
-            get { return _targets; }
         }
 
         /// <summary>

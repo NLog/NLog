@@ -248,5 +248,11 @@ namespace NLog
         {
             return new TargetCollection.Enumerator(this);
         }
+
+        protected override void OnSet(int index, object oldValue, object newValue)
+        {
+            base.OnSet (index, oldValue, newValue);
+        }
+
     }
 }
