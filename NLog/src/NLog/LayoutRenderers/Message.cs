@@ -68,21 +68,7 @@ namespace NLog.LayoutRenderers
         {
             if (NeedPadding())
             {
-                if (ev.Parameters == null || ev.Parameters.Length == 0)
-                {
-                    builder.Append(ApplyPadding(ev.Message));
-                }
-                else
-                {
-                    if (ev.FormatProvider != null)
-                    {
-                        builder.Append(ApplyPadding(String.Format(ev.FormatProvider, ev.Message, ev.Parameters)));
-                    }
-                    else
-                    {
-                        builder.Append(ApplyPadding(String.Format(ev.Message, ev.Parameters)));
-                    }
-                };
+                builder.Append(ApplyPadding(ev.FormattedMessage));
             }
             else
             {

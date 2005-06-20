@@ -89,10 +89,9 @@ namespace NLog.Win32.LayoutRenderers
             ASPHelper.ISessionObject session = ASPHelper.GetSessionObject();
             if (session != null)
             {
-                if (_sessionVariable != null)
+                if (Variable != null)
                 {
-
-                    object variableValue = session.GetValue(_sessionVariable);
+                    object variableValue = session.GetValue(Variable);
                     builder.Append(Convert.ToString(variableValue));
                 }
                 Marshal.ReleaseComObject(session);

@@ -4,7 +4,9 @@ NLog.Logger logger = NLog.LogManager.GetLogger("default.aspx");
 
 void Page_Load(Object sender, EventArgs e)
 {
-    logger.Info("test");
+    logger.Info("got Page_Load() event");
+    logger.Warn("Some warning...");
+    logger.Error("Some error...");
 
     Response.Write("loaded!");
 }

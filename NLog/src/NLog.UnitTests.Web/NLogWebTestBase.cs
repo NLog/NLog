@@ -33,42 +33,39 @@
 // 
 
 using System;
-using System.Xml;
-using System.Reflection;
-
-using NLog;
-using NLog.Config;
+using System.Net;
 
 using NUnit.Framework;
 
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.UnitTests.Web
 {
-    [TestFixture]
-	public class LongDate : NLogTestBase
+	public class NLogWebTestBase
 	{
-        [Test]
-        public void LongDateTest()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${longdate}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
-                </rules>
-            </nlog>");
+        public string WebTestDir;
+        public string NLogTestBaseUrl = "http://localhost/nlogtest/";
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-            LogManager.GetLogger("d").Debug("zzz");
-            string date = GetDebugLastMessage("debug");
-            Console.WriteLine("d: {0}", date);
-            Assert.AreEqual(date.Length, 24);
-            Assert.AreEqual(date[4], '-');
-            Assert.AreEqual(date[7], '-');
-            Assert.AreEqual(date[10], ' ');
-            Assert.AreEqual(date[13], ':');
-            Assert.AreEqual(date[16], ':');
-            Assert.AreEqual(date[19], '.');
+        protected void ClearASPNetTrace()
+        {
+            DownloadUrl("Trace.axd?clear=1");
+        }
+
+        protected string GetFirstASPNetTrace()
+        {
+            return DownloadUrl("Trace.axd?id=0");
+        }
+
+        protected string DownloadUrl(string url)
+        {
+            WebClient wc = new WebClient();
+            byte[] data = wc.DownloadData(NLogTestBaseUrl + url);
+            return System.Text.Encoding.ASCII.GetString(data);
+        }
+
+        protected void AssertContains(string trace, string substr)
+        {
+            Assert.IsTrue(trace.IndexOf(substr) >= 0, "Trace doesn't contain a '" + substr + "' text.");
+            Console.WriteLine("Trace contains '{0}' text.", substr);
+
         }
     }
 }

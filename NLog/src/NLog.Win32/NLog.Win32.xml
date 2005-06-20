@@ -27,7 +27,7 @@
             <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
             <param name="ev">Logging event.</param>
         </member>
-        <member name="P:NLog.Win32.LayoutRenderers.ASPApplicationValueLayoutRenderer.Item">
+        <member name="P:NLog.Win32.LayoutRenderers.ASPApplicationValueLayoutRenderer.Variable">
             <summary>
             The variable name.
             </summary>
@@ -155,6 +155,22 @@
             <item>HKEY_CURRENT_USER\Key\Full\Name</item>
             </list>
             </remarks>
+        </member>
+        <member name="T:NLog.Win32.Targets.ASPResponseTarget">
+            <summary>
+            Outputs logging messages through the ASP Response object.
+            </summary>
+        </member>
+        <member name="M:NLog.Win32.Targets.ASPResponseTarget.Append(NLog.LogEventInfo)">
+            <summary>
+            Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
+            </summary>
+            <param name="ev">The logging event.</param>
+        </member>
+        <member name="P:NLog.Win32.Targets.ASPResponseTarget.AddComments">
+            <summary>
+            Add &lt;!-- --&gt; comments around all written texts.
+            </summary>
         </member>
         <member name="T:NLog.Win32.Targets.OutputDebugStringTarget">
             <summary>

@@ -46,11 +46,15 @@ namespace NLog.Internal
         {
             try
             {
-                return Environment.GetEnvironmentVariable(name);
+                string s = Environment.GetEnvironmentVariable(name);
+                if (s == "")
+                    return null;
+                else
+                    return s;
             }
             catch (SecurityException)
             {
-                return null;
+                return "";
             }
         }
     }

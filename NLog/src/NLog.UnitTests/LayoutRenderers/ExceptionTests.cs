@@ -35,72 +35,52 @@
 using System;
 using System.Xml;
 using System.Reflection;
-using System.IO;
 
 using NLog;
 using NLog.Config;
 
 using NUnit.Framework;
 
-namespace NLog.UnitTests.Filters
+namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class WhenNotContains : NLogTestBase
+	public class ExceptionTests : NLogTestBase
 	{
         [Test]
-        public void WhenNotContainsTest()
+        public void ExceptionTest()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:format=message}' />
+                    <target name='debug2' type='Debug' layout='${exception:format=type}' />
+                    <target name='debug3' type='Debug' layout='${exception:format=shorttype}' />
+                    <target name='debug4' type='Debug' layout='${exception:format=tostring}' />
+                    <target name='debug5' type='Debug' layout='${exception:format=stacktrace}' />
+                    <target name='debug6' type='Debug' layout='${exception:format=method}' />
+                </targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug'>
-                    <filters>
-                        <whenNotContains layout='${message}' substring='zzz' action='Ignore' />
-                    </filters>
-                    </logger>
+                    <logger name='*' minlevel='Debug' appendTo='debug1,debug2,debug3,debug4,debug5,debug6' />
                 </rules>
             </nlog>");
 
             LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
-            Logger logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            AssertDebugCounter("debug", 0);
-            logger.Debug("zzz");
-            AssertDebugCounter("debug", 1);
-            logger.Debug("ZzzZ");
-            AssertDebugCounter("debug", 1);
-        }
-
-        [Test]
-        public void WhenNotContainsInsensitiveTest()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug'>
-                    <filters>
-                        <whenNotContains layout='${message}' substring='zzz' action='Ignore' ignoreCase='true' />
-                    </filters>
-                    </logger>
-                </rules>
-            </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
-            Logger logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            AssertDebugCounter("debug", 0);
-            logger.Debug("zzz");
-            AssertDebugCounter("debug", 1);
-            logger.Debug("ZzzZ");
-            AssertDebugCounter("debug", 2);
-            logger.Debug("aaa");
-            AssertDebugCounter("debug", 2);
+            try
+            {
+                throw new ArgumentException("exceptionmsg");
+            }
+            catch (ArgumentException ex)
+            {
+                LogManager.GetLogger("d").DebugException("zzz", ex);
+                AssertDebugLastMessage("debug1", "exceptionmsg");
+                AssertDebugLastMessage("debug2", "System.ArgumentException");
+                AssertDebugLastMessage("debug3", "ArgumentException");
+                AssertDebugLastMessage("debug4", ex.ToString());
+                AssertDebugLastMessage("debug5", ex.StackTrace);
+                AssertDebugLastMessage("debug6", System.Reflection.MethodBase.GetCurrentMethod().ToString());
+            }
         }
     }
 }

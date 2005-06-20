@@ -44,6 +44,7 @@ using NLog.Config;
 
 namespace NLog.Internal
 {
+    // CLOVER:OFF
     /// <summary>
     /// A dictionary with keys of type Type and values of type PropertyInfoDictionary
     /// </summary>

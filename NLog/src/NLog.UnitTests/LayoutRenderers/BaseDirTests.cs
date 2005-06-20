@@ -45,15 +45,15 @@ using NUnit.Framework;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class LogLevel : NLogTestBase
+	public class BaseDirTests : NLogTestBase
 	{
         [Test]
-        public void LogLevelTest()
+        public void BaseDirTest()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${level} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' appendTo='debug' />
                 </rules>
@@ -63,15 +63,48 @@ namespace NLog.UnitTests.LayoutRenderers
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "Debug a");
-            logger.Info("a");
-            AssertDebugLastMessage("debug", "Info a");
-            logger.Warn("a");
-            AssertDebugLastMessage("debug", "Warn a");
-            logger.Error("a");
-            AssertDebugLastMessage("debug", "Error a");
-            logger.Fatal("a");
-            AssertDebugLastMessage("debug", "Fatal a");
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            AssertDebugLastMessage("debug", baseDir + " a");
+        }
+
+        [Test]
+        public void BaseDirCombineTest()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${basedir:dir=..} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                </rules>
+            </nlog>");
+
+            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
+
+            Logger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..");
+            AssertDebugLastMessage("debug", baseDir + " a");
+        }
+
+        [Test]
+        public void BaseDirFileCombineTest()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${basedir:file=a.txt} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                </rules>
+            </nlog>");
+
+            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
+
+            Logger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "a.txt");
+            AssertDebugLastMessage("debug", baseDir + " a");
         }
     }
 }

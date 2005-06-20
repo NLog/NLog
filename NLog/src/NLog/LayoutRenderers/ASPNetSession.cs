@@ -70,7 +70,7 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
         {
-            if (_variable == null)
+            if (Variable == null)
                 return 0;
             else
                 return 64;
@@ -83,7 +83,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ev">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            if (_variable == null)
+            if (Variable == null)
                 return ;
 
             HttpContext context = HttpContext.Current;
@@ -93,7 +93,7 @@ namespace NLog.LayoutRenderers
 			if (context.Session == null)
 				return ;
 
-            builder.Append(context.Session[_variable]);
+            builder.Append(context.Session[Variable]);
         }
     }
 }

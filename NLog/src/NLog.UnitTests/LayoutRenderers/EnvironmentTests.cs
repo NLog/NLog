@@ -35,72 +35,32 @@
 using System;
 using System.Xml;
 using System.Reflection;
-using System.IO;
 
 using NLog;
 using NLog.Config;
 
 using NUnit.Framework;
 
-namespace NLog.UnitTests.Filters
+namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class WhenNotEqual : NLogTestBase
+	public class EnvironmentTests : NLogTestBase
 	{
         [Test]
-        public void WhenNotEqualTest()
+        public void EnvironmentTest()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${environment:variable=PATH:uppercase=true}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug'>
-                    <filters>
-                        <whenNotEqual layout='${message}' compareTo='skipme' action='Ignore' />
-                    </filters>
-                    </logger>
+                    <logger name='*' minlevel='Debug' appendTo='debug' />
                 </rules>
             </nlog>");
 
             LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
-            Logger logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            AssertDebugCounter("debug", 0);
-            logger.Debug("skipme");
-            AssertDebugCounter("debug", 1);
-            logger.Debug("SkipMe");
-            AssertDebugCounter("debug", 1);
-        }
-
-        [Test]
-        public void WhenNotEqualInsensitiveTest()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug'>
-                    <filters>
-                        <whenNotEqual layout='${message}' compareTo='skipmetoo' action='Ignore' ignoreCase='true' />
-                    </filters>
-                    </logger>
-                </rules>
-            </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
-            Logger logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            AssertDebugCounter("debug", 0);
-            logger.Debug("skipMeToo");
-            AssertDebugCounter("debug", 1);
-            logger.Debug("skipmetoo");
-            AssertDebugCounter("debug", 2);
-            logger.Debug("dontskipme");
-            AssertDebugCounter("debug", 2);
+            LogManager.GetLogger("d").Debug("zzz");
+            AssertDebugLastMessage("debug", System.Environment.GetEnvironmentVariable("PATH").ToUpper());
         }
     }
 }

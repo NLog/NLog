@@ -157,25 +157,28 @@ namespace NLog.LayoutRenderers
 
 			if (context.Request == null)
 				return ;
-			if (_queryStringKey != null)
+			if (QueryString != null)
             {
-                builder.Append(context.Request.QueryString[_queryStringKey]);
+                builder.Append(context.Request.QueryString[QueryString]);
             }
-            else if (_formKey != null)
+            else if (Form != null)
             {
-                builder.Append(context.Request.Form[_formKey]);
+                builder.Append(context.Request.Form[Form]);
             }
-            else if (_cookie != null)
+            else if (Cookie != null)
             {
-                builder.Append(context.Request.Cookies[_cookie]);
+                HttpCookie cookie = context.Request.Cookies[Cookie];
+
+                if (cookie != null)
+                    builder.Append(cookie.Value);
             }
-            else if (_serverVariable != null)
+            else if (ServerVariable != null)
             {
-                builder.Append(context.Request.ServerVariables[_serverVariable]);
+                builder.Append(context.Request.ServerVariables[ServerVariable]);
             }
-            else if (_item != null)
+            else if (Item != null)
             {
-                builder.Append(context.Request[_item]);
+                builder.Append(context.Request[Item]);
             }
         }
     }

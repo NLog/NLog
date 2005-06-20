@@ -35,7 +35,6 @@
 using System;
 using System.Xml;
 using System.Reflection;
-using System.IO;
 
 using NLog;
 using NLog.Config;
@@ -45,15 +44,15 @@ using NUnit.Framework;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class Literal : NLogTestBase
+	public class MDCTests : NLogTestBase
 	{
         [Test]
-        public void LiteralTest()
+        public void MDCTest()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='abcd' /></targets>
+                <targets><target name='debug' type='Debug' layout='${mdc:item=myitem} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' appendTo='debug' />
                 </rules>
@@ -61,9 +60,17 @@ namespace NLog.UnitTests.LayoutRenderers
 
             LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
-            Logger logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            AssertDebugLastMessage("debug", "abcd");
+            NLog.MDC.Set("myitem", "myvalue");
+            LogManager.GetLogger("A").Debug("a");
+            AssertDebugLastMessage("debug", "myvalue a");
+
+            NLog.MDC.Set("myitem", "value2");
+            LogManager.GetLogger("A").Debug("b");
+            AssertDebugLastMessage("debug", "value2 b");
+
+            NLog.MDC.Remove("myitem");
+            LogManager.GetLogger("A").Debug("c");
+            AssertDebugLastMessage("debug", " c");
         }
     }
 }

@@ -45,10 +45,10 @@ using NUnit.Framework;
 namespace NLog.UnitTests.Filters
 {
     [TestFixture]
-	public class WhenEqual : NLogTestBase
+	public class WhenContainsTests : NLogTestBase
 	{
         [Test]
-        public void WhenEqualTest()
+        public void WhenContainsTest()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
@@ -57,7 +57,7 @@ namespace NLog.UnitTests.Filters
                 <rules>
                     <logger name='*' minlevel='Debug' appendTo='debug'>
                     <filters>
-                        <whenEqual layout='${message}' compareTo='skipme' action='Ignore' />
+                        <whenContains layout='${message}' substring='zzz' action='Ignore' />
                     </filters>
                     </logger>
                 </rules>
@@ -68,14 +68,14 @@ namespace NLog.UnitTests.Filters
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 1);
-            logger.Debug("skipme");
+            logger.Debug("zzz");
             AssertDebugCounter("debug", 1);
-            logger.Debug("SkipMe");
+            logger.Debug("ZzzZ");
             AssertDebugCounter("debug", 2);
         }
 
         [Test]
-        public void WhenEqualInsensitiveTest()
+        public void WhenContainsInsensitiveTest()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
@@ -84,7 +84,7 @@ namespace NLog.UnitTests.Filters
                 <rules>
                     <logger name='*' minlevel='Debug' appendTo='debug'>
                     <filters>
-                        <whenEqual layout='${message}' compareTo='skipmetoo' action='Ignore' ignoreCase='true' />
+                        <whenContains layout='${message}' substring='zzz' action='Ignore' ignoreCase='true' />
                     </filters>
                     </logger>
                 </rules>
@@ -95,10 +95,12 @@ namespace NLog.UnitTests.Filters
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 1);
-            logger.Debug("skipMeToo");
+            logger.Debug("zzz");
             AssertDebugCounter("debug", 1);
-            logger.Debug("skipmetoo");
+            logger.Debug("ZzzZ");
             AssertDebugCounter("debug", 1);
+            logger.Debug("aaa");
+            AssertDebugCounter("debug", 2);
         }
     }
 }
