@@ -33,52 +33,44 @@
 // 
 
 using System;
-using System.Collections;
-using System.Text;
+using System.Xml;
+using System.Reflection;
+using System.IO;
 
-using NLog.Targets;
-using NLog.Filters;
+using NLog;
+using NLog.Config;
 
-namespace NLog.Internal
+using NUnit.Framework;
+
+namespace NLog.UnitTests.Filters
 {
-    internal class TargetWithFilterChain
-    {
-        private Target _target;
-        private FilterCollection _filterChain;
-        private TargetWithFilterChain _next;
-
-        public TargetWithFilterChain(Target a, FilterCollection filterChain)
+    [TestFixture]
+	public class APITests : NLogTestBase
+	{
+        [Test]
+        public void APITest()
         {
-            _target = a;
-            _filterChain = filterChain;
-        }
+            // this is mostly to make Clover happy
 
-        public Target Target
-        {
-            get
-            {
-                return _target;
-            }
-        }
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' appendTo='debug'>
+                    <filters>
+                        <whenContains layout='${message}' substring='zzz' action='Ignore' />
+                    </filters>
+                    </logger>
+                </rules>
+            </nlog>");
 
-        public FilterCollection FilterChain
-        {
-            get
-            {
-                return _filterChain;
-            }
-        }
-
-        public TargetWithFilterChain Next
-        {
-            get
-            {
-                return _next;
-            }
-            set
-            {
-                _next = value;
-            }
+            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
+            Assert.IsTrue(LogManager.Configuration.LoggingRules[0].Filters[0] is NLog.Filters.WhenContainsFilter);
+            NLog.Filters.WhenContainsFilter wcf = (NLog.Filters.WhenContainsFilter)LogManager.Configuration.LoggingRules[0].Filters[0];
+            Assert.AreEqual(wcf.Layout, "${message}");
+            Assert.AreEqual(wcf.Substring, "zzz");
+            Assert.AreEqual("Ignore", wcf.Action);
         }
     }
 }

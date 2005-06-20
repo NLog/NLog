@@ -83,7 +83,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ev">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            if (_variable == null)
+            if (Variable == null)
                 return ;
 
             HttpContext context = HttpContext.Current;
@@ -92,7 +92,7 @@ namespace NLog.LayoutRenderers
 
 			if (context.Application == null)
 				return ;
-			builder.Append(context.Application[_variable]);
+			builder.Append(context.Application[Variable]);
         }
     }
 }

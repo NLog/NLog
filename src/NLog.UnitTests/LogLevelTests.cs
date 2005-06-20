@@ -82,6 +82,33 @@ namespace NLog.UnitTests
             Assert.AreSame(LogLevel.FromString("warn"), LogLevel.Warn);
             Assert.AreSame(LogLevel.FromString("error"), LogLevel.Error);
             Assert.AreSame(LogLevel.FromString("fatal"), LogLevel.Fatal);
+            Assert.AreSame(LogLevel.FromString("off"), LogLevel.Off);
+
+            Assert.AreSame(LogLevel.FromString("Debug"), LogLevel.Debug);
+            Assert.AreSame(LogLevel.FromString("Info"), LogLevel.Info);
+            Assert.AreSame(LogLevel.FromString("Warn"), LogLevel.Warn);
+            Assert.AreSame(LogLevel.FromString("Error"), LogLevel.Error);
+            Assert.AreSame(LogLevel.FromString("Fatal"), LogLevel.Fatal);
+            Assert.AreSame(LogLevel.FromString("Off"), LogLevel.Off);
+
+            Assert.AreSame(LogLevel.FromString("DebuG"), LogLevel.Debug);
+            Assert.AreSame(LogLevel.FromString("InfO"), LogLevel.Info);
+            Assert.AreSame(LogLevel.FromString("WarN"), LogLevel.Warn);
+            Assert.AreSame(LogLevel.FromString("ErroR"), LogLevel.Error);
+            Assert.AreSame(LogLevel.FromString("FataL"), LogLevel.Fatal);
+
+            Assert.AreSame(LogLevel.FromString("DEBUG"), LogLevel.Debug);
+            Assert.AreSame(LogLevel.FromString("INFO"), LogLevel.Info);
+            Assert.AreSame(LogLevel.FromString("WARN"), LogLevel.Warn);
+            Assert.AreSame(LogLevel.FromString("ERROR"), LogLevel.Error);
+            Assert.AreSame(LogLevel.FromString("FATAL"), LogLevel.Fatal);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void FromStringFailingTest()
+        {
+            LogLevel l = LogLevel.FromString("zzz");
         }
 
         [Test]

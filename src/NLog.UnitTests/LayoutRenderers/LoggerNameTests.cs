@@ -33,52 +33,36 @@
 // 
 
 using System;
-using System.Collections;
-using System.Text;
+using System.Xml;
+using System.Reflection;
 
-using NLog.Targets;
-using NLog.Filters;
+using NLog;
+using NLog.Config;
 
-namespace NLog.Internal
+using NUnit.Framework;
+
+namespace NLog.UnitTests.LayoutRenderers
 {
-    internal class TargetWithFilterChain
-    {
-        private Target _target;
-        private FilterCollection _filterChain;
-        private TargetWithFilterChain _next;
-
-        public TargetWithFilterChain(Target a, FilterCollection filterChain)
+    [TestFixture]
+	public class LoggerNameTests : NLogTestBase
+	{
+        [Test]
+        public void LoggerNameTest()
         {
-            _target = a;
-            _filterChain = filterChain;
-        }
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${logger} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                </rules>
+            </nlog>");
 
-        public Target Target
-        {
-            get
-            {
-                return _target;
-            }
-        }
+            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
-        public FilterCollection FilterChain
-        {
-            get
-            {
-                return _filterChain;
-            }
-        }
-
-        public TargetWithFilterChain Next
-        {
-            get
-            {
-                return _next;
-            }
-            set
-            {
-                _next = value;
-            }
+            Logger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "A a");
         }
     }
 }

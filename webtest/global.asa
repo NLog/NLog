@@ -1,0 +1,11 @@
+<script language="JScript" runat="Server"> 
+function Application_OnStart()
+{
+    Application("av") = "appvalue2";
+}
+
+function Session_OnStart()
+{
+    Session("sv") = "sessionvalue2";
+}
+</script>

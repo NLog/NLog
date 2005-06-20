@@ -38,6 +38,7 @@ using System.Text;
 
 namespace NLog
 {
+    // CLOVER:OFF
     /// <summary>
     /// A collection of elements of type Filter
     /// </summary>

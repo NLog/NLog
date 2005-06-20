@@ -1,15 +1,17 @@
 <%@ Application %>
 <script language="C#" runat="server">
-NLog.Logger logger = NLog.LogManager.GetLogger("global.asax");
+NLog.Logger logger = NLog.LogManager.GetLogger("Global.Logger");
 
 protected void Application_Start(Object sender, EventArgs e)
 {
     logger.Info("Application_Start");
+    Application["av"] = "appvalue1";
 }
 
 protected void Session_Start(Object sender, EventArgs e)
 {
     logger.Info("Session_Start");
+    Session["sv"] = "sessionvalue1";
 }
 
 protected void Application_BeginRequest(Object sender, EventArgs e)

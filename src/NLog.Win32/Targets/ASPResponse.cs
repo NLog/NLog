@@ -33,54 +33,48 @@
 // 
 
 using System;
-using System.Xml;
-using System.Reflection;
+using System.Runtime.InteropServices;
 
-using NLog;
-using NLog.Config;
+using NLog.Targets;
 
-using NUnit.Framework;
-
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.Win32.Targets
 {
-    [TestFixture]
-	public class Date : NLogTestBase
-	{
-        [Test]
-        public void DefaultDateTest()
+    /// <summary>
+    /// Outputs logging messages through the ASP Response object.
+    /// </summary>
+    [Target("ASPResponse")]
+    public sealed class ASPResponseTarget: Target
+    {
+        private bool _addComments;
+
+        /// <summary>
+        /// Add &lt;!-- --&gt; comments around all written texts.
+        /// </summary>
+        public bool AddComments
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${date}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
-                </rules>
-            </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-            LogManager.GetLogger("d").Debug("zzz");
-            DateTime dt = DateTime.Parse(GetDebugLastMessage("debug"));
-            DateTime now = DateTime.Now;
-
-            Assert.IsTrue(Math.Abs((dt - now).TotalSeconds) < 5);
+            get { return _addComments; }
+            set { _addComments = value; }
         }
-
-        [Test]
-        public void FormattedDateTest()
+     
+        /// <summary>
+        /// Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
+        /// </summary>
+        /// <param name="ev">The logging event.</param>
+        protected override void Append(LogEventInfo ev)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${date:format=yyyy-MM-dd}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
-                </rules>
-            </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-            LogManager.GetLogger("d").Debug("zzz");
-            AssertDebugLastMessage("debug", DateTime.Now.ToString("yyyy-MM-dd"));
+            ASPHelper.IResponse response = ASPHelper.GetResponseObject();
+            if (response != null)
+            {
+                if (AddComments)
+                {
+                    response.Write("<!-- " + CompiledLayout.GetFormattedMessage(ev) + "-->");
+                }
+                else
+                {
+                    response.Write(CompiledLayout.GetFormattedMessage(ev));
+                }
+                Marshal.ReleaseComObject(response);
+            }
         }
     }
 }

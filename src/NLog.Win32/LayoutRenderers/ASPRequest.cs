@@ -35,6 +35,7 @@
 using System;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Reflection;
 
 using NLog.LayoutRenderers;
 
@@ -170,25 +171,26 @@ namespace NLog.Win32.LayoutRenderers
             ASPHelper.IRequest request = ASPHelper.GetRequestObject();
             if (request != null)
             {
-                if (_queryStringKey != null)
+                if (QueryString != null)
                 {
-                    builder.Append(GetItem(request.GetQueryString(), _queryStringKey));
+                    builder.Append(GetItem(request.GetQueryString(), QueryString));
                 }
-                else if (_formKey != null)
+                else if (Form != null)
                 {
-                    builder.Append(GetItem(request.GetForm(), _formKey));
+                    builder.Append(GetItem(request.GetForm(), Form));
                 }
-                else if (_cookie != null)
+                else if (Cookie != null)
                 {
-                    builder.Append(GetItem(request.GetCookies(), _cookie));
+                    object cookie = request.GetCookies().GetItem(Cookie);
+                    builder.Append(Convert.ToString(ASPHelper.GetComDefaultProperty(cookie)));
                 }
-                else if (_serverVariable != null)
+                else if (ServerVariable != null)
                 {
-                    builder.Append(GetItem(request.GetServerVariables(), _serverVariable));
+                    builder.Append(GetItem(request.GetServerVariables(), ServerVariable));
                 }
-                else if (_item != null)
+                else if (Item != null)
                 {
-                    ASPHelper.IDispatch o = request.GetItem(_item);
+                    ASPHelper.IDispatch o = request.GetItem(Item);
                     ASPHelper.IStringList sl = o as ASPHelper.IStringList;
                     if (sl != null)
                     {

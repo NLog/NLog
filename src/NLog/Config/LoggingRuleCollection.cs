@@ -42,6 +42,7 @@ using NLog.Filters;
 
 namespace NLog.Config
 {
+    // CLOVER:OFF
     /// <summary>
     /// A collection of elements of type LoggingRule
     /// </summary>

@@ -33,6 +33,7 @@
 // 
 
 using System;
+using System.Configuration;
 using System.Collections;
 using System.Xml;
 using System.IO;
@@ -105,16 +106,35 @@ namespace NLog.Internal
         {
             try
             {
-                if (EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_INTERNAL_LOG_TO_CONSOLE") != null)
+                switch (ConfigurationSettings.AppSettings["nlog.internalLogToConsole"].ToLower())
                 {
-                    LogToConsole = true;
+                    case "false":
+                        LogToConsole = false;
+                        break;
+
+                    case "true":
+                        LogToConsole = true;
+                        break;
+
+                    default:
+                        if (EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_INTERNAL_LOG_TO_CONSOLE") != null)
+                        {
+                            LogToConsole = true;
+                        }
+                        break;
                 }
-                if (EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL") != null)
-                {
-                    LogLevel = LogLevel.FromString(Environment.GetEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL"));
-                }
-                _logFile = EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_INTERNAL_LOG_FILE");
+                string levelString = ConfigurationSettings.AppSettings["nlog.internalLogLevel"];
+                if (levelString == null || levelString.Length == 0)
+                    levelString = EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL");
+                if (levelString != null && levelString.Length > 0)
+                    LogLevel = LogLevel.FromString(EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL"));
+
+                LogFile = ConfigurationSettings.AppSettings["nlog.internalLogFile"];
+                if (LogFile == null)
+                    LogFile = EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_INTERNAL_LOG_FILE");
                 Info("NLog internal logger initialized.");
+                Console.WriteLine("level: {0} console: {1} file: {2}", LogLevel.ToString(), LogToConsole, LogFile);
+                Console.ReadLine();
             }
             catch {}
         }

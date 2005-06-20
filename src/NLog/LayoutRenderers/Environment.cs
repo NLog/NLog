@@ -90,9 +90,9 @@ namespace NLog.LayoutRenderers
         /// <param name="ev">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            if (_variable != null)
+            if (Variable != null)
             {
-                builder.Append(ApplyPadding(EnvironmentHelper.GetSafeEnvironmentVariable(_variable)));
+                builder.Append(ApplyPadding(EnvironmentHelper.GetSafeEnvironmentVariable(Variable)));
             }
         }
     }

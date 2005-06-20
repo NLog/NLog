@@ -35,72 +35,52 @@
 using System;
 using System.Xml;
 using System.Reflection;
-using System.IO;
 
 using NLog;
 using NLog.Config;
 
 using NUnit.Framework;
 
-namespace NLog.UnitTests.Filters
+namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class WhenContains : NLogTestBase
+	public class DateTests : NLogTestBase
 	{
         [Test]
-        public void WhenContainsTest()
+        public void DefaultDateTest()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${date}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug'>
-                    <filters>
-                        <whenContains layout='${message}' substring='zzz' action='Ignore' />
-                    </filters>
-                    </logger>
+                    <logger name='*' minlevel='Debug' appendTo='debug' />
                 </rules>
             </nlog>");
 
             LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
+            LogManager.GetLogger("d").Debug("zzz");
+            DateTime dt = DateTime.Parse(GetDebugLastMessage("debug"));
+            DateTime now = DateTime.Now;
 
-            Logger logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            AssertDebugCounter("debug", 1);
-            logger.Debug("zzz");
-            AssertDebugCounter("debug", 1);
-            logger.Debug("ZzzZ");
-            AssertDebugCounter("debug", 2);
+            Assert.IsTrue(Math.Abs((dt - now).TotalSeconds) < 5);
         }
 
         [Test]
-        public void WhenContainsInsensitiveTest()
+        public void FormattedDateTest()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${date:format=yyyy-MM-dd}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug'>
-                    <filters>
-                        <whenContains layout='${message}' substring='zzz' action='Ignore' ignoreCase='true' />
-                    </filters>
-                    </logger>
+                    <logger name='*' minlevel='Debug' appendTo='debug' />
                 </rules>
             </nlog>");
 
             LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
-            Logger logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            AssertDebugCounter("debug", 1);
-            logger.Debug("zzz");
-            AssertDebugCounter("debug", 1);
-            logger.Debug("ZzzZ");
-            AssertDebugCounter("debug", 1);
-            logger.Debug("aaa");
-            AssertDebugCounter("debug", 2);
+            LogManager.GetLogger("d").Debug("zzz");
+            AssertDebugLastMessage("debug", DateTime.Now.ToString("yyyy-MM-dd"));
         }
     }
 }

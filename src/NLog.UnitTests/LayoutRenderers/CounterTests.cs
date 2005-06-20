@@ -44,7 +44,7 @@ using NUnit.Framework;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class Counter : NLogTestBase
+	public class CounterTests : NLogTestBase
 	{
         [Test]
         public void DefaultCounterTest()

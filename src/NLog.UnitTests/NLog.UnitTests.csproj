@@ -140,81 +140,107 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Filters\API.cs"
+                    RelPath = "Filters\APITests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Filters\WhenContains.cs"
+                    RelPath = "Filters\WhenContainsTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Filters\WhenEqual.cs"
+                    RelPath = "Filters\WhenEqualTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Filters\WhenNotContains.cs"
+                    RelPath = "Filters\WhenNotContainsTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Filters\WhenNotEqual.cs"
+                    RelPath = "Filters\WhenNotEqualTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Internal\AsyncQueueTests.cs"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "LayoutRenderers\BaseDir.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutRenderers\CallSite.cs"
+                    RelPath = "LayoutRenderers\BaseDirTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutRenderers\Counter.cs"
+                    RelPath = "LayoutRenderers\CallSiteTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutRenderers\Date.cs"
+                    RelPath = "LayoutRenderers\CounterTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutRenderers\Literal.cs"
+                    RelPath = "LayoutRenderers\DateTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutRenderers\LoggerName.cs"
+                    RelPath = "LayoutRenderers\EnvironmentTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutRenderers\LogLevel.cs"
+                    RelPath = "LayoutRenderers\ExceptionTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutRenderers\LongDate.cs"
+                    RelPath = "LayoutRenderers\LiteralTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutRenderers\Message.cs"
+                    RelPath = "LayoutRenderers\LoggerNameTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LayoutRenderers\ShortDate.cs"
+                    RelPath = "LayoutRenderers\LogLevelTests.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRenderers\LongDateTests.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRenderers\MDCTests.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRenderers\MessageTests.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRenderers\NDCTests.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRenderers\ShortDateTests.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRenderers\ThreadNameTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

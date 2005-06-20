@@ -45,6 +45,7 @@ using NLog.Filters;
 
 namespace NLog.Internal
 {
+    // CLOVER:OFF
     /// <summary>
     /// A dictionary with keys of type string and values of type Filter
     /// </summary>

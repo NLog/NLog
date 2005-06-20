@@ -35,6 +35,7 @@
 using System;
 using System.Xml;
 using System.Reflection;
+using System.IO;
 
 using NLog;
 using NLog.Config;
@@ -44,23 +45,25 @@ using NUnit.Framework;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class ShortDate : NLogTestBase
+	public class LiteralTests : NLogTestBase
 	{
         [Test]
-        public void ShortDateTest()
+        public void LiteralTest()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${shortdate}' /></targets>
+                <targets><target name='debug' type='Debug' layout='abcd' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' appendTo='debug' />
                 </rules>
             </nlog>");
 
             LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-            LogManager.GetLogger("d").Debug("zzz");
-            AssertDebugLastMessage("debug", DateTime.Now.ToString("yyyy-MM-dd"));
+
+            Logger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "abcd");
         }
     }
 }

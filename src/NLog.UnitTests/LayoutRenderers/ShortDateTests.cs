@@ -35,42 +35,32 @@
 using System;
 using System.Xml;
 using System.Reflection;
-using System.IO;
 
 using NLog;
 using NLog.Config;
 
 using NUnit.Framework;
 
-namespace NLog.UnitTests.Filters
+namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class API : NLogTestBase
+	public class ShortDateTests : NLogTestBase
 	{
         [Test]
-        public void APITest()
+        public void ShortDateTest()
         {
-            // this is mostly to make Clover happy
-
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${shortdate}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug'>
-                    <filters>
-                        <whenContains layout='${message}' substring='zzz' action='Ignore' />
-                    </filters>
-                    </logger>
+                    <logger name='*' minlevel='Debug' appendTo='debug' />
                 </rules>
             </nlog>");
 
             LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-            Assert.IsTrue(LogManager.Configuration.LoggingRules[0].Filters[0] is NLog.Filters.WhenContainsFilter);
-            NLog.Filters.WhenContainsFilter wcf = (NLog.Filters.WhenContainsFilter)LogManager.Configuration.LoggingRules[0].Filters[0];
-            Assert.AreEqual(wcf.Layout, "${message}");
-            Assert.AreEqual(wcf.Substring, "zzz");
-            Assert.AreEqual("Ignore", wcf.Action);
+            LogManager.GetLogger("d").Debug("zzz");
+            AssertDebugLastMessage("debug", DateTime.Now.ToString("yyyy-MM-dd"));
         }
     }
 }

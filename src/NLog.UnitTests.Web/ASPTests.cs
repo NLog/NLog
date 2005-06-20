@@ -35,34 +35,53 @@
 using System;
 using System.Xml;
 using System.Reflection;
-
-using NLog;
-using NLog.Config;
+using System.IO;
+using System.Net;
 
 using NUnit.Framework;
 
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.UnitTests.Web
 {
     [TestFixture]
-	public class LoggerName : NLogTestBase
+	public class ASPTests : NLogWebTestBase
 	{
         [Test]
-        public void LoggerNameTest()
+        public void ContextTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${logger} ${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
-                </rules>
-            </nlog>");
+            //
+            // simulate a POST request, with "formvariable=fv1" POST data,
+            // cookie1=abcd Cookie and ?queryparam=1234 query string
+            //
+            // expect the web server to return a formatted text that
+            // uses all layout renderers
+            //
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(NLogTestBaseUrl + "context.asp?queryparam=1234");
+            request.Headers.Add("Cookie: cookie1=abcd");
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
 
-            Logger logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            AssertDebugLastMessage("debug", "A a");
+            string postDataString = "formvariable=fv1";
+            byte[] postData = System.Text.Encoding.ASCII.GetBytes(postDataString);
+            request.ContentLength = postData.Length;
+            using (Stream requestStream = request.GetRequestStream())
+            {
+                requestStream.Write(postData, 0, postData.Length);
+            }
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            {
+                Console.WriteLine(response.ContentLength);
+                Console.WriteLine(response.ContentType);
+                byte[] data = new byte[4000];
+                int got;
+
+                using (Stream stream = response.GetResponseStream())
+                {
+                    got = stream.Read(data, 0, data.Length);
+                }
+                string s = System.Text.Encoding.ASCII.GetString(data, 0, got);
+                Assert.AreEqual("id='1234', form='fv1', cookie='abcd', servervariable='/nlogtest/context.asp' item='1234' session='sessionvalue2' app='appvalue2' message", s);
+            }
         }
     }
 }

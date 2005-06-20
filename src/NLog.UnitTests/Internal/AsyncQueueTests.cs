@@ -88,9 +88,6 @@ namespace NLog.UnitTests
         [Test]
         public void AsyncQueueTest3()
         {
-            InternalLogger.LogToConsole = true;
-            InternalLogger.LogLevel = LogLevel.Debug;
-
             _queue = new AsyncRequestQueue(1, AsyncRequestQueue.OverflowAction.Block);
             _sum = 0;
             Thread receiverThread = new Thread(new ThreadStart(AsyncQueueTest3Thread));
@@ -110,9 +107,6 @@ namespace NLog.UnitTests
         [Test]
         public void AsyncQueueTest4()
         {
-            InternalLogger.LogToConsole = true;
-            InternalLogger.LogLevel = LogLevel.Debug;
-
             for (int i = 1; i < 40; ++i)
             {
                 _queue = new AsyncRequestQueue(i, AsyncRequestQueue.OverflowAction.Block);
@@ -148,7 +142,7 @@ namespace NLog.UnitTests
             {
                 tmp.Clear();
                 _queue.DequeueBatch(tmp, 5);
-                Console.WriteLine("Dequeued {0}", tmp.Count);
+                // Console.WriteLine("Dequeued {0}", tmp.Count);
                 if (tmp.Count == 0)
                 {
                     Thread.Sleep(10);

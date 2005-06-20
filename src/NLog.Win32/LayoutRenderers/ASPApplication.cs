@@ -53,7 +53,7 @@ namespace NLog.Win32.LayoutRenderers
         /// The variable name.
         /// </summary>
         [RequiredParameter]
-        public string Item
+        public string Variable
         {
             get
             {
@@ -90,10 +90,10 @@ namespace NLog.Win32.LayoutRenderers
             ASPHelper.IApplicationObject app = ASPHelper.GetApplicationObject();
             if (app != null)
             {
-                if (_appVariable != null)
+                if (Variable != null)
                 {
 
-                    object variableValue = app.GetValue(_appVariable);
+                    object variableValue = app.GetValue(Variable);
                     builder.Append(Convert.ToString(variableValue));
                 }
                 Marshal.ReleaseComObject(app);

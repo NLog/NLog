@@ -23,6 +23,7 @@
     <property name="source_snapshot.name" value="nlog-${nlog.package.name}-src.zip" />
     <property name="binary_snapshot.name" value="nlog-${nlog.package.name}-bin.zip" />
     <property name="binary_compact_snapshot.name" value="nlog-compact-${nlog.package.name}-bin.zip" />
+    <property name="webtest.dir" value="${nant.project.basedir}/webtest" />
 
     <property name="clover.enabled" value="false" />
     <property name="clover.home" value="C:\Apps\CloverNLog" />
@@ -168,6 +169,19 @@
         </csc>
     </target>
 
+    <target name="NLog.UnitTests.Web" depends="NLog">
+        <copy file="${nant.location}/lib/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/nunit.framework.dll" tofile="${nlog.dir}/nunit.framework.dll" />
+        <csc target="library" output="${nlog.dir}/NLog.UnitTests.Web.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+            <sources basedir="src/NLog.UnitTests.Web">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${nlog.dir}/NLog.dll" />
+                <include name="${nlog.dir}/nunit.framework.dll" />
+            </references>
+        </csc>
+    </target>
+
     <target name="NLog.Unix" depends="NLog">
         <csc target="library" output="${nlog.dir}/NLog.Unix.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
             <sources basedir="src/NLog.Unix">
@@ -262,14 +276,85 @@
         </nunit2>
     </target>
 
-    <target name="register-com" depends="configure">
+    <target name="webtest" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.UnitTests.Web">
+        <!-- stop IIS on local machine -->
+        
+        <echo message="Stopping IIS..." />
+        <exec program="iisreset.exe" commandline="/stop" />
+
+        <!-- copy binaries to the "bin" directory -->
+
+        <copy todir="${webtest.dir}/bin" verbose="true">
+            <fileset basedir="${nlog.dir}">
+                <include name="NLog.dll" />
+                <include name="NLog.Win32.dll" />
+                <include name="NLog.ComInterop.dll" />
+                <include name="cloverruntime.dll" />
+            </fileset>
+        </copy>
+
+        <!-- register NLog.ComInterop.dll COM component -->
+
+        <echo message="Registering COM interop library..." />
+
         <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'regasm.exe')}"
-            commandline="/tlb ${nlog.dir}/NLog.ComInterop.dll" />
+            commandline="/tlb /codebase ${webtest.dir}/bin/NLog.ComInterop.dll" />
+
+        <!-- start IIS -->
+        
+        <echo message="Starting IIS..." />
+        <exec program="iisreset.exe" commandline="/start" />
+
+        <sleep seconds="5" />
+
+        <!-- run unit tests -->
+        
+        <echo message="Running tests..." />
+
+        <nunit2 failonerror="false">
+            <formatter type="Xml" usefile="true" extension=".xml" outputdir="build/${buildsubdir}/test_results_xml" />
+            <test assemblyname="${nlog.dir}/NLog.UnitTests.Web.dll" />
+        </nunit2>
+
+        <sleep seconds="5" />
+        
+        <echo message="Running tests again..." />
+        
+        <nunit2 failonerror="false">
+            <formatter type="Xml" usefile="true" extension=".xml" outputdir="build/${buildsubdir}/test_results_xml" />
+            <test assemblyname="${nlog.dir}/NLog.UnitTests.Web.dll" />
+        </nunit2>
+
+        <if test="false">
+
+            <sleep seconds="5" /> <!-- give Clover some time to dump its statistics -->
+
+            <!-- stop IIS -->
+
+            <echo message="Stopping IIS..." />
+            <exec program="iisreset.exe" commandline="/stop" />
+
+            <!-- unregister COM components -->
+
+            <echo message="Unregistering COM interop library..." />
+
+            <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'regasm.exe')}"
+                commandline="/unregister /tlb ${webtest.dir}/bin/NLog.ComInterop.dll" if="false" />
+
+            <!-- start IIS -->
+            <echo message="Starting IIS..." />
+            <exec program="iisreset.exe" commandline="/start" />
+        </if>
+
     </target>
 
-    <target name="register-com-with-codebase" depends="configure">
-        <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'regasm.exe')}"
-            commandline="/tlb /codebase ${nlog.dir}/NLog.ComInterop.dll" />
+    <target name="dowebtest" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.UnitTests.Web">
+        <echo message="Running tests..." />
+
+        <nunit2 failonerror="false">
+            <formatter type="Xml" usefile="true" extension=".xml" outputdir="build/${buildsubdir}/test_results_xml" />
+            <test assemblyname="${nlog.dir}/NLog.UnitTests.Web.dll" />
+        </nunit2>
     </target>
 
     <target name="benchmark" depends="NLog.Benchmark, build">
@@ -288,14 +373,6 @@
         <exec program="nant.exe" commandline="-t:net-1.1 release longbenchmark" if="${framework::exists('net-1.1')}" />
         <exec program="nant.exe" commandline="-t:net-2.0 release longbenchmark" if="${framework::exists('net-2.0')}" />
         <exec program="nant.exe" commandline="-t:mono-1.0 release longbenchmark" if="${framework::exists('mono-1.0')}" />
-    </target>
-
-    <target name="webtest" depends="build">
-        <copy todir="webtest/bin">
-            <fileset basedir="${nlog.dir}">
-                <include name="*.dll" />
-            </fileset>
-        </copy>
     </target>
 
     <target name="configure-mono-1.0">
@@ -567,15 +644,28 @@
     <target name="clover" depends="load-clover">
         <property name="clover.enabled" value="true" />
         <call target="configure" />
+        <delete file="${clover.build.dir}/clover.cdb" failonerror="false" />
         <clover-setup 
             initstring="${clover.build.dir}/clover.cdb"
             builddir="${clover.build.dir}"
             enabled="${clover.enabled}"
-            flushinterval="1000"
-            />
+            flushinterval="100">
+            <fileset basedir="src">
+                <include name="**/*" />
+                <exclude name="NLog.UnitTests.Web/**/*" />
+            </fileset>
+        </clover-setup>
     </target>
 
-    <target name="clover-html-report" depends="clover">
+    <target name="clover-html-report" depends="load-clover">
+        <property name="clover.enabled" value="true" />
+        <call target="configure" />
+        <clover-setup 
+            initstring="${clover.build.dir}/clover.cdb"
+            builddir="${clover.build.dir}"
+            enabled="${clover.enabled}"
+            flushinterval="100"
+            />
         <clover-report>
             <current title="NLog Coverage" output="${clover.report.dir}">
                 <format type="html" />
@@ -583,10 +673,24 @@
         </clover-report>
     </target>
 
-    <target name="coverage_test" depends="clover, test, clover-html-report" />
+    <target name="coverage_test">
+        <call target="clover" />
+        <call target="test" />
+        <call target="webtest" />
+        <call target="clover-html-report" />
+    </target>
 
     <target name="load-nunit2report">
         <loadtasks assembly="tools/nunit2report/NAnt.NUnit2ReportTasks.dll" />
+    </target>
+
+    <target name="setup_unittest_website">
+        <mkiisdir dirpath="${nant.project.basedir}/nlogtest" vdirname="nlogtest" 
+            authntlm="false" 
+            authanonymous="true" 
+            authbasic="false" 
+            failonerror="false"
+            />
     </target>
 
     <target name="nunit2report" depends="load-nunit2report, test">

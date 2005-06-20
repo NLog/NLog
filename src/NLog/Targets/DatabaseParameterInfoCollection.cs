@@ -44,6 +44,7 @@ using NLog.Config;
 
 namespace NLog.Targets
 {
+    // CLOVER:OFF
     /// <summary>
     /// A collection of elements of type DatabaseParameterInfo
     /// </summary>
