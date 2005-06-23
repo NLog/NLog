@@ -334,9 +334,19 @@ namespace NLog.Config
                 rule.LoggerNamePattern = namePattern;
                 if (appendTo != null)
                 {
-                    foreach (string targetName in appendTo.Split(','))
+                    foreach (string t in appendTo.Split(','))
                     {
-                        rule.Targets.Add(config.FindTargetByName(targetName.Trim()));
+                        string targetName = t.Trim();
+                        Target target = config.FindTargetByName(targetName);
+
+                        if (target != null)
+                        {
+                            rule.Targets.Add(target);
+                        }
+                        else
+                        {
+                            throw new Exception("Target " + targetName + " not found.");
+                        }
                     }
                 }
                 rule.Final = false;
