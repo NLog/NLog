@@ -32,6 +32,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#define TRACE
+
 #if !NETCF
 using System;
 using System.Diagnostics;

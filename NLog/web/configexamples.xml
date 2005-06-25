@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="configexamples">
+    <h1>Configuration Examples</h1>
+    <p>This page presents examples of various NLog configuration files, both simple and advanced. If you have some cool
+        example that you want to share, send it to the <a href="mailto:nlog-list@lists.sourceforge.net">mailing list</a>
+        and it will be included on this page.</p>.
+    <p>
+        For a general configuration information click <link href="config">here</link>.
+    </p>
+    <div class="table">
+        <table>
+            <tr>
+                <th>Description</th>
+                <th>Author</th>
+                <th>Date</th>
+            </tr>
+            <tr>
+                <td><a href="#console">Simple logging to the console</a></td>
+                <td>Jaroslaw Kowalski</td>
+                <td>2005-06-25</td>
+            </tr>
+        </table>
+    </div>
+</content>
