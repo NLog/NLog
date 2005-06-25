@@ -40,7 +40,7 @@ td.nav
     font-size: 13px;
     font-style: normal;
     padding: 3px;
-    width: 150px;
+    width: 190px;
 }
 
 a
@@ -288,7 +288,7 @@ td.nav_selected
     border: 1px solid #e0e0e0;
     padding-left: 4px;
     padding-right: 4px;
-    width: 160px;
+    width: 190px;
     font-size: 13px;
 }
 
@@ -325,7 +325,7 @@ td.content
 td.controls
 {
     padding: 6px;
-    width: 170px;
+    width: 200px;
     background-color: #F2F7FC;
     border-right: 1px solid #c0c0c0;
     border-bottom: 1px solid #c0c0c0;
