@@ -55,6 +55,7 @@ namespace NLog.Config
     public class XmlLoggingConfiguration: LoggingConfiguration
     {
         private StringDictionary _visitedFile = new StringDictionary();
+        private NameValueCollection _variables = new NameValueCollection(CaseInsensitiveHashCodeProvider.DefaultInvariant, CaseInsensitiveComparer.DefaultInvariant);
 
         private bool _autoReload = false;
         private string _originalFileName = null;
@@ -158,12 +159,12 @@ namespace NLog.Config
             }
         }
 
-        private static string GetCaseInsensitiveAttribute(XmlElement element, string name)
+        private string GetCaseInsensitiveAttribute(XmlElement element, string name)
         {
             // first try a case-sensitive match
             string s = element.GetAttribute(name);
             if (s != null && s != "")
-                return s;
+                return PropertyHelper.ExpandVariables(s, _variables);
 
             // then look through all attributes and do a case-insensitive compare
             // this isn't very fast, but we don't need ultra speed here
@@ -171,7 +172,7 @@ namespace NLog.Config
             foreach (XmlAttribute a in element.Attributes)
             {
                 if (0 == String.Compare(a.LocalName, name, true))
-                    return a.Value;
+                    return PropertyHelper.ExpandVariables(a.Value, _variables);
             }
 
             return null;
@@ -279,11 +280,23 @@ namespace NLog.Config
                         ConfigureTargetsFromElement(el);
                         break;
 
+                    case "variable":
+                        SetVariable(el);
+                        break;
+
                     case "rules":
                         ConfigureRulesFromElement(this, LoggingRules, el);
                         break;
                 }
             }
+        }
+
+        private void SetVariable(XmlElement el)
+        {
+            string name = GetCaseInsensitiveAttribute(el, "name");
+            string value = GetCaseInsensitiveAttribute(el, "value");
+
+            _variables[name] = value;
         }
 
 #if !NETCF
@@ -309,7 +322,7 @@ namespace NLog.Config
             return s;
         }
 
-        private static void ConfigureRulesFromElement(LoggingConfiguration config, LoggingRuleCollection rules, XmlElement element)
+        private void ConfigureRulesFromElement(LoggingConfiguration config, LoggingRuleCollection rules, XmlElement element)
         {
             if (element == null)
                 return ;
@@ -416,7 +429,7 @@ namespace NLog.Config
             }
         }
 
-        private static void AddExtensionsFromElement(XmlElement element, string baseDirectory)
+        private void AddExtensionsFromElement(XmlElement element, string baseDirectory)
         {
             if (element == null)
                 return ;
@@ -514,7 +527,7 @@ namespace NLog.Config
             }
         }
 
-        private static void ConfigureRuleFiltersFromXmlElement(LoggingRule rule, XmlElement element)
+        private void ConfigureRuleFiltersFromXmlElement(LoggingRule rule, XmlElement element)
         {
             if (element == null)
                 return ;
@@ -532,7 +545,7 @@ namespace NLog.Config
                         string attribName = attrib.LocalName;
                         string attribValue = attrib.InnerText;
 
-                        PropertyHelper.SetPropertyFromString(filter, attribName, attribValue);
+                        PropertyHelper.SetPropertyFromString(filter, attribName, attribValue, _variables);
                     }
 
                     rule.Filters.Add(filter);
@@ -552,7 +565,7 @@ namespace NLog.Config
                 if (0 == String.Compare(name, "type", true))
                     continue;
 
-                PropertyHelper.SetPropertyFromString(target, name, value);
+                PropertyHelper.SetPropertyFromString(target, name, value, _variables);
             }
 
             foreach (XmlNode node in element.ChildNodes)
@@ -564,12 +577,12 @@ namespace NLog.Config
 
                     if (PropertyHelper.IsArrayProperty(targetType, name))
                     {
-                        PropertyHelper.AddArrayItemFromElement(target, el);
+                        PropertyHelper.AddArrayItemFromElement(target, el, _variables);
                     }
                     else
                     {
                         string value = el.InnerXml;
-                        PropertyHelper.SetPropertyFromString(target, name, value);
+                        PropertyHelper.SetPropertyFromString(target, name, value, _variables);
                     }
                 }
             }

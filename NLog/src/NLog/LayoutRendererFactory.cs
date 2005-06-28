@@ -35,6 +35,7 @@
 using System;
 using System.Text;
 using System.Collections;
+using System.Collections.Specialized;
 using System.Reflection;
 using System.Globalization;
 
@@ -162,7 +163,7 @@ namespace NLog
                 string name = parameterString.Substring(nameStartPos, nameEndPos - nameStartPos);
                 string value = valueBuf.ToString();
 
-                PropertyHelper.SetPropertyFromString(target, name, value);
+                PropertyHelper.SetPropertyFromString(target, name, value, null);
             }
         }
 

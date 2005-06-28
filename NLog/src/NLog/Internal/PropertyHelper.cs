@@ -36,6 +36,7 @@ using System;
 using System.Collections;
 using System.Reflection;
 using System.Globalization;
+using System.Collections.Specialized;
 using System.Xml;
 
 using NLog.Internal;
@@ -49,8 +50,28 @@ namespace NLog.Internal
 
         private PropertyHelper(){}
 
-        public static bool SetPropertyFromString(object o, string name, string value)
+        public static string ExpandVariables(string input, NameValueCollection variables)
         {
+            if (variables == null || variables.Count == 0)
+                return input;
+
+            string output = input;
+
+            // TODO - make this case-insensitive, will probably require a different
+            // approach
+
+            foreach (string s in variables.Keys)
+            {
+                output = output.Replace("${" + s + "}", variables[s]);
+            }
+
+            return output;
+        }
+
+        public static bool SetPropertyFromString(object o, string name, string value0, NameValueCollection variables)
+        {
+            string value = ExpandVariables(value0, variables);
+
             InternalLogger.Info("Setting '{0}.{1}' to '{2}'", o.GetType().Name, name, value);
 
             try
@@ -78,7 +99,7 @@ namespace NLog.Internal
             }
         }
 
-        public static void AddArrayItemFromElement(object o, XmlElement el)
+        public static void AddArrayItemFromElement(object o, XmlElement el, NameValueCollection variables)
         {
             string name = el.Name;
             PropertyInfo propInfo = GetPropertyInfo(o, name);
@@ -94,7 +115,7 @@ namespace NLog.Internal
                 string childName = attrib.LocalName;
                 string childValue = attrib.InnerText;
 
-                PropertyHelper.SetPropertyFromString(arrayItem, childName, childValue);
+                PropertyHelper.SetPropertyFromString(arrayItem, childName, childValue, variables);
             }
 
             foreach (XmlNode node in el.ChildNodes)
@@ -106,13 +127,13 @@ namespace NLog.Internal
 
                     if (IsArrayProperty(elementType, childName))
                     {
-                        PropertyHelper.AddArrayItemFromElement(arrayItem, el2);
+                        PropertyHelper.AddArrayItemFromElement(arrayItem, el2, variables);
                     }
                     else
                     {
                         string childValue = el2.InnerXml;
 
-                        PropertyHelper.SetPropertyFromString(arrayItem, childName, childValue);
+                        PropertyHelper.SetPropertyFromString(arrayItem, childName, childValue, variables);
                     }
                 }
             }
