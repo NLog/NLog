@@ -509,6 +509,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "LayoutRenderers\PerformanceCounter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "LayoutRenderers\ProcessTime.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

@@ -72,12 +72,12 @@ public class Test
             MDC.Set("username", "aaa");
             l2.Warn("this is a warning");
         }
-        l.Error("this is an error");
-        MDC.Remove("username");
-        l.Fatal("this is a fatal");
-        l2.Error("this is an error");
-        l2.Fatal("this is a fatal");
-        l0.Debug("Class logger!");
+            l.Error("this is an error {0}", 3);
+            MDC.Remove("username");
+            l.Fatal("this is a fatal");
+            l2.Error("this is an error");
+            l2.Fatal("this is a fatal");
+            l0.Debug("Class logger!");
 
         Logger l3 = LogManager.GetLogger("ExceptionLogger");
 

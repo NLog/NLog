@@ -67,6 +67,9 @@ namespace NLog.Targets
             get { return _requestQueue; }
         }
 
+        /// <summary>
+        /// The thread that is used to write log messages.
+        /// </summary>
         protected Thread LoggingThread
         {
             get { return _loggingThread; }
@@ -150,6 +153,9 @@ namespace NLog.Targets
             _requestQueue.Clear();
         }
         
+        /// <summary>
+        /// Waits for the asynchronous thread to finish writing messages.
+        /// </summary>
         protected internal override void Flush()
         {
             InternalLogger.Debug("Flushing logging thread. Requests in queue: {0}", _requestQueue.RequestCount);

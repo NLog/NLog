@@ -542,14 +542,16 @@
     </target>
 
     <target name="publish_snapshot" depends="fullrelease">
+        <echo message="Creating a directory for ${nlog.package.name}..." />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} mkdir ${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}" />
         <echo message="Uploading ${installer.name}..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ${installer.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/" />
+        <exec program="${scp.program}" commandline="${scp.program.args} ${installer.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ${source_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ${source_snapshot.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/" />
+        <exec program="${scp.program}" commandline="${scp.program.args} ${source_snapshot.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ${binary_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ${binary_snapshot.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/" />
+        <exec program="${scp.program}" commandline="${scp.program.args} ${binary_snapshot.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ${binary_compact_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ${binary_compact_snapshot.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/" />
+        <exec program="${scp.program}" commandline="${scp.program.args} ${binary_compact_snapshot.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}/" />
         <echo message="Fixing permissions..." />
         <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/fix_group_perm.sh" />
     </target>
