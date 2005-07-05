@@ -55,7 +55,7 @@ namespace NLog.Config
     public class XmlLoggingConfiguration: LoggingConfiguration
     {
         private StringDictionary _visitedFile = new StringDictionary();
-        private NameValueCollection _variables = new NameValueCollection(CaseInsensitiveHashCodeProvider.DefaultInvariant, CaseInsensitiveComparer.DefaultInvariant);
+        private NameValueCollection _variables = new NameValueCollection(CaseInsensitiveHashCodeProvider.Default, CaseInsensitiveComparer.Default);
 
         private bool _autoReload = false;
         private string _originalFileName = null;

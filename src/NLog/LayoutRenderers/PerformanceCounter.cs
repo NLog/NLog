@@ -88,6 +88,21 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Name of the performance counter instance (e.g. _Global_).
+        /// </summary>
+        public string Instance
+        {
+            get
+            {
+                return _instanceName;
+            }
+            set
+            {
+                _instanceName = value;
+            }
+        }
+
+        /// <summary>
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
         /// </summary>
@@ -110,8 +125,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ev">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            // doesn't work yet.
-
+            // doesn't work reliably yet.
             PerformanceCounter pc = new PerformanceCounter(_categoryName, _counterName, _instanceName, true);
             builder.Append(ApplyPadding(pc.NextValue().ToString(CultureInfo)));
         }

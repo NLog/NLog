@@ -48,7 +48,7 @@
             CopyProjectDestinationFolder = ""
             CopyProjectUncPath = ""
             CopyProjectOption = "0"
-            ProjectView = "ProjectFiles"
+            ProjectView = "ShowAllFiles"
         />
     </ECSHARP>
 </VisualStudioProject>

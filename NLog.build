@@ -543,7 +543,7 @@
 
     <target name="publish_snapshot" depends="fullrelease">
         <echo message="Creating a directory for ${nlog.package.name}..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} mkdir ${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}" />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} mkdir ${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}" failonerror="false" />
         <echo message="Uploading ${installer.name}..." />
         <exec program="${scp.program}" commandline="${scp.program.args} ${installer.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ${source_snapshot.name}..." />
