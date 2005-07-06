@@ -56,7 +56,7 @@ namespace NLog
     {
         private static LoggerDictionary _loggerCache = new LoggerDictionary();
         private static LoggingConfiguration _config;
-        private static LogLevel _globalThreshold = LogLevel.Debug;
+        private static LogLevel _globalThreshold = LogLevel.MinLevel;
         private static bool _configLoaded = false;
         private static bool _throwExceptions = false;
         private static bool _reloadConfigOnNextLog = false;

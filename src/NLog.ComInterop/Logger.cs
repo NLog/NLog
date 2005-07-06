@@ -59,6 +59,11 @@ namespace NLog.ComInterop
             _logger.Log(StringToLevel(level), message);
         }
 
+        void ILogger.Trace(string message)
+        {
+            _logger.Trace(message);
+        }
+
         void ILogger.Debug(string message)
         {
             _logger.Debug(message);
@@ -87,6 +92,14 @@ namespace NLog.ComInterop
         bool ILogger.IsEnabled(string level)
         {
             return _logger.IsEnabled(StringToLevel(level));
+        }
+
+        bool ILogger.IsTraceEnabled
+        {
+            get
+            {
+                return _logger.IsTraceEnabled;
+            }
         }
 
         bool ILogger.IsDebugEnabled
@@ -146,6 +159,8 @@ namespace NLog.ComInterop
         {
             switch (s[0])
             {
+                case 'T':
+                    return LogLevel.Trace;
                 case 'D':
                     return LogLevel.Debug;
                 case 'I':

@@ -47,50 +47,60 @@ namespace NLog
         private int _ordinal;
 
         /// <summary>
+        /// The Trace level.
+        /// </summary>
+        public static readonly LogLevel Trace;
+
+        /// <summary>
         /// The Debug level.
         /// </summary>
-        public static readonly LogLevel Debug = new LogLevel("Debug", 0);
+        public static readonly LogLevel Debug;
 
         /// <summary>
         /// The Info level.
         /// </summary>
-        public static readonly LogLevel Info = new LogLevel("Info", 1);
+        public static readonly LogLevel Info;
 
         /// <summary>
         /// The Warn level.
         /// </summary>
-        public static readonly LogLevel Warn = new LogLevel("Warn", 2);
+        public static readonly LogLevel Warn;
 
         /// <summary>
         /// The Error level.
         /// </summary>
-        public static readonly LogLevel Error = new LogLevel("Error", 3);
+        public static readonly LogLevel Error;
 
         /// <summary>
         /// The Fatal level.
         /// </summary>
-        public static readonly LogLevel Fatal = new LogLevel("Fatal", 4);
+        public static readonly LogLevel Fatal;
 
         /// <summary>
         /// The Off level.
         /// </summary>
-        public static readonly LogLevel Off = new LogLevel("Off", 5);
+        public static readonly LogLevel Off;
 
-        internal static readonly LogLevel MaxLevel = Fatal;
+        internal static readonly LogLevel MaxLevel;
+        internal static readonly LogLevel MinLevel;
 
         private static LogLevel[] _levelByOrdinal;
 
         static LogLevel()
         {
-            Debug = new LogLevel("Debug", 0);
-            Info = new LogLevel("Info", 1);
-            Warn = new LogLevel("Warn", 2);
-            Error = new LogLevel("Error", 3);
-            Fatal = new LogLevel("Fatal", 4);
-            Off = new LogLevel("Off", 5);
+            int l = 0;
+            
+            Trace = new LogLevel("Trace", l++);
+            Debug = new LogLevel("Debug", l++);
+            Info = new LogLevel("Info", l++);
+            Warn = new LogLevel("Warn", l++);
+            Error = new LogLevel("Error", l++);
+            Fatal = new LogLevel("Fatal", l++);
+            Off = new LogLevel("Off", l++);
 
-            _levelByOrdinal = new LogLevel[] { Debug, Info, Warn, Error, Fatal, Off };
-            MaxLevel = Fatal;
+            _levelByOrdinal = new LogLevel[] { Trace, Debug, Info, Warn, Error, Fatal, Off };
+            MinLevel = _levelByOrdinal[0];
+            MaxLevel = _levelByOrdinal[_levelByOrdinal.Length - 2]; // ignore the Off level
         }
 
         // to be changed into public in the future.
