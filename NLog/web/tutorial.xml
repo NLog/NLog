@@ -17,7 +17,7 @@
     <h5>Log levels</h5>
     <p>
         Each message that you output has a level which describes its importance. 
-        There are 5 predefined logging levels. They are: <code>Debug, Info, Warn, Error, Fatal</code>. Unlike other logging frameworks
+        There are 6 predefined logging levels. They are: <code>Trace, Debug, Info, Warn, Error, Fatal</code>. Unlike other logging frameworks
         NLog <b>does NOT</b> support introducing more logging levels, but I believe that in this case "<i>less is more</i>".
     </p>
     <p>
@@ -30,6 +30,10 @@
             <tr>
                 <th>Log Level</th>
                 <th>Meaning</th>
+            </tr>
+            <tr>
+                <td>Trace</td>
+                <td>Messages useful to programmer only, not normally enabled, even by the support team. This level can include high-volume messages like the dump of entire datasets, XML documents, detailed parameter information, etc.</td>
             </tr>
             <tr>
                 <td>Debug</td>
@@ -166,7 +170,7 @@
     <p>
         <x><nlog internalLogToConsole="true | false" /></x><br/>
         <x><nlog internalLogFile="filename" /></x><br/>
-        <x><nlog internalLogLevel="Debug | Info | Warn | Error | Fatal" /></x><br/>
+        <x><nlog internalLogLevel="Trace | Debug | Info | Warn | Error | Fatal" /></x><br/>
         <x><nlog throwExceptions="true | false" /></x><br/>
     </p>
     <p>

@@ -1,3 +1,24 @@
+* added a new Trace level, more verbose than the Debug
+* fixed VS.NET Compact Framework project file
+* added support for <variable name="" value="" /> configuration element
+* added experimental PerformanceCounter layout renderer.
+* fixed the Trace target in Release mode by defining TRACE symbol
+* refactored NLogViewer to use log4j schema instead of inventing my own
+* added StackTrace layout renderer, 3 different logging formats
+* added async="true" to the "File" target to improve logging speed by
+writing messages in a separate thread and optimizing file access.
+* added NewLine layout renderer
+* fixed CompactFramework build
+* fixed NLogC compilation
+* fixed the filter configuration bug as reported by Ron Grabowski
+* fixes for case-insensitive parsing of the config files.
+* added unit tests that verify case-insensitivity.
+* added many more unit tests (we have now over 70% coverage)
+* fixed bugs related to ${asp-request:cookie} and ${aspnet-request:cookie}
+and many other small bugs
+* added some minimal VB.NET test code
+* added some meaningful error message when a named target is not defined.
+
 2005-06-09 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 
 NLog v0.9 has been released.

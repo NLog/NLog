@@ -184,6 +184,17 @@ namespace NLog.Internal
         }
 
         /// <summary>
+        /// Returns true when internal log level includes Trace messages
+        /// </summary>
+        public static bool IsTraceEnabled
+        {
+            get
+            {
+                return LogLevel.Trace >= _logLevel;
+            }
+        }
+
+        /// <summary>
         /// Returns true when internal log level includes Debug messages
         /// </summary>
         public static bool IsDebugEnabled
@@ -265,6 +276,36 @@ namespace NLog.Internal
         public static void Log(LogLevel level, string message)
         {
             Write(level, null, message, null);
+        }
+
+        /// <summary>
+        /// Logs the specified message at the Trace level.
+        /// </summary>
+        /// <param name="formatProvider">Format provider to be used for formatting.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments.</param>
+        public static void Trace(IFormatProvider formatProvider, string message, params object[]args)
+        {
+            Write(LogLevel.Trace, formatProvider, message, args);
+        }
+
+        /// <summary>
+        /// Logs the specified message at the Trace level.
+        /// </summary>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments.</param>
+        public static void Trace(string message, params object[]args)
+        {
+            Write(LogLevel.Trace, null, message, args);
+        }
+
+        /// <summary>
+        /// Logs the specified message at the Trace level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public static void Trace(string message)
+        {
+            Write(LogLevel.Trace, null, message, null);
         }
 
         /// <summary>

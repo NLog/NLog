@@ -52,6 +52,12 @@ namespace NLog.ComInterop
         void Log(string level, string message);
 
         /// <summary>
+        /// Writes the diagnostic message at the Trace level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        void Trace(string message);
+
+        /// <summary>
         /// Writes the diagnostic message at the Debug level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
@@ -88,6 +94,13 @@ namespace NLog.ComInterop
         /// <returns>A value indicating whether the specified log level is enabled.</returns>
         bool IsEnabled(string level);
 
+        /// <summary>
+        /// Returns the boolean value indicating whether the Trace level is enabled.
+        /// </summary>
+        bool IsTraceEnabled
+        {
+            get;
+        }
         /// <summary>
         /// Returns the boolean value indicating whether the Debug level is enabled.
         /// </summary>

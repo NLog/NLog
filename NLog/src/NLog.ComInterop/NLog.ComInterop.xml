@@ -16,6 +16,12 @@
             <param name="level">The log level.</param>
             <param name="message">A <see langword="string" /> to be written.</param>
         </member>
+        <member name="M:NLog.ComInterop.ILogger.Trace(System.String)">
+            <summary>
+            Writes the diagnostic message at the Trace level.
+            </summary>
+            <param name="message">A <see langword="string" /> to be written.</param>
+        </member>
         <member name="M:NLog.ComInterop.ILogger.Debug(System.String)">
             <summary>
             Writes the diagnostic message at the Debug level.
@@ -52,6 +58,11 @@
             </summary>
             <param name="level">The log level.</param>
             <returns>A value indicating whether the specified log level is enabled.</returns>
+        </member>
+        <member name="P:NLog.ComInterop.ILogger.IsTraceEnabled">
+            <summary>
+            Returns the boolean value indicating whether the Trace level is enabled.
+            </summary>
         </member>
         <member name="P:NLog.ComInterop.ILogger.IsDebugEnabled">
             <summary>

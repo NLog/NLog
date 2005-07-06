@@ -13,6 +13,10 @@ static void WriteToA(NLogLevel level, LPCSTR loggerName, LPCSTR messageBuffer)
     NLog::Logger *logger = NLog::LogManager::GetLogger(loggerName);
     switch (level)
     {
+    case NLOG_TRACE:
+        if (logger->IsTraceEnabled)
+            logger->Trace(messageBuffer);
+        break;
     case NLOG_DEBUG:
         if (logger->IsDebugEnabled)
             logger->Debug(messageBuffer);
@@ -41,6 +45,10 @@ static void WriteToW(NLogLevel level, LPCWSTR loggerName, LPCWSTR messageBuffer)
     NLog::Logger *logger = NLog::LogManager::GetLogger(loggerName);
     switch (level)
     {
+    case NLOG_TRACE:
+        if (logger->IsTraceEnabled)
+            logger->Trace(messageBuffer);
+        break;
     case NLOG_DEBUG:
         if (logger->IsDebugEnabled)
             logger->Debug(messageBuffer);
@@ -69,6 +77,9 @@ static bool IsLogEnabledA(NLogLevel level, LPCSTR loggerName)
     NLog::Logger *logger = NLog::LogManager::GetLogger(loggerName);
     switch (level)
     {
+    case NLOG_TRACE:
+        return logger->IsTraceEnabled;
+
     case NLOG_DEBUG:
         return logger->IsDebugEnabled;
 
@@ -83,6 +94,9 @@ static bool IsLogEnabledA(NLogLevel level, LPCSTR loggerName)
 
     case NLOG_FATAL:
         return logger->IsFatalEnabled;
+
+    default:
+        return false;
     }
 }
 
@@ -91,6 +105,9 @@ static bool IsLogEnabledW(NLogLevel level, LPCWSTR loggerName)
     NLog::Logger *logger = NLog::LogManager::GetLogger(loggerName);
     switch (level)
     {
+    case NLOG_TRACE:
+        return logger->IsTraceEnabled;
+
     case NLOG_DEBUG:
         return logger->IsDebugEnabled;
 
@@ -105,6 +122,9 @@ static bool IsLogEnabledW(NLogLevel level, LPCWSTR loggerName)
 
     case NLOG_FATAL:
         return logger->IsFatalEnabled;
+
+    default:
+        return false;
     }
 }
 
@@ -135,6 +155,14 @@ static BOOL ConfigureFromFileW(LPCWSTR fileName)
 }
 
 #pragma unmanaged
+
+NLOGC_API void NLog_TraceA(LPCSTR loggerName, LPCSTR logMessage, ...)
+{
+    va_list args;
+    va_start(args, loggerName);
+    NLog_LogVA(NLOG_TRACE, loggerName, logMessage, args);
+    va_end(args);
+}
 
 NLOGC_API void NLog_DebugA(LPCSTR loggerName, LPCSTR logMessage, ...)
 {
@@ -201,6 +229,13 @@ NLOGC_API void NLog_LogVA(NLogLevel level, LPCSTR loggerName, LPCSTR logMessage,
     }
 }
 
+NLOGC_API void NLog_TraceW(LPCWSTR loggerName, LPCWSTR logMessage, ...)
+{
+    va_list args;
+    va_start(args, loggerName);
+    NLog_LogVW(NLOG_TRACE, loggerName, logMessage, args);
+    va_end(args);
+}
 
 NLOGC_API void NLog_DebugW(LPCWSTR loggerName, LPCWSTR logMessage, ...)
 {

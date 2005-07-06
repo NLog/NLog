@@ -9,6 +9,7 @@ class MyClass {
     static void Main()
     {
         // you can use an interface known from log4net
+        logger.Trace("This is a trace message");
         logger.Debug("This is a debugging message");
         logger.Info("This is a information message");
         logger.Warn("This is a warning message");

@@ -46,6 +46,7 @@
     </p>
     <ul>
         <li><a href="help/NLog.Logger.Log_overloads.html">Log()</a> - Writes the diagnostic message at the specified level using the specified format provider and format parameters. </li>
+        <li><a href="help/NLog.Logger.Trace_overloads.html">Trace()</a> - Writes the diagnostic message at the Trace level using the specified format provider and format parameters. </li>
         <li><a href="help/NLog.Logger.Debug_overloads.html">Debug()</a> - Writes the diagnostic message at the Debug level using the specified format provider and format parameters. </li>
         <li><a href="help/NLog.Logger.Info_overloads.html">Info()</a> - Writes the diagnostic message at the Info level using the specified format provider and format parameters. </li>
         <li><a href="help/NLog.Logger.Warn_overloads.html">Warn()</a> - Writes the diagnostic message at the Warn level using the specified format provider and format parameters. </li>
@@ -57,6 +58,7 @@
     </p>
     <ul>
         <li><a href="help/NLog.Logger.IsEnabled.html">IsEnabled()</a> - Determines if logging is enabled for the specified level.</li>
+        <li><a href="help/NLog.Logger.IsTraceEnabled.html">IsTraceEnabled</a> - Determines if logging is enabled for the Trace level.</li>
         <li><a href="help/NLog.Logger.IsDebugEnabled.html">IsDebugEnabled</a> - Determines if logging is enabled for the Debug level.</li>
         <li><a href="help/NLog.Logger.IsInfoEnabled.html">IsInfoEnabled</a> - Determines if logging is enabled for the Info level.</li>
         <li><a href="help/NLog.Logger.IsWarnEnabled.html">IsWarnEnabled</a> - Determines if logging is enabled for the Warn level.</li>

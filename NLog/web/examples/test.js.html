@@ -7,12 +7,14 @@ logmanager.LoadConfigFromFile(<span class='s'>&quot;config8.nlog&quot;</span>);
 
 <span class='k'>var</span> logger = <span class='k'>new</span> ActiveXObject(<span class='s'>&quot;NLog.Logger&quot;</span>);
 logger.LoggerName = <span class='s'>&quot;TestLogger&quot;</span>;
+logger.Log(<span class='s'>&quot;Trace&quot;</span>, <span class='s'>&quot;This is a trace message&quot;</span>);
 logger.Log(<span class='s'>&quot;Debug&quot;</span>, <span class='s'>&quot;This is a debugging message&quot;</span>);
 logger.Log(<span class='s'>&quot;Info&quot;</span>, <span class='s'>&quot;This is an information message&quot;</span>);
 logger.Log(<span class='s'>&quot;Warn&quot;</span>, <span class='s'>&quot;This is a warning message&quot;</span>);
 logger.Log(<span class='s'>&quot;Error&quot;</span>, <span class='s'>&quot;This is an error&quot;</span>);
 logger.Log(<span class='s'>&quot;Fatal&quot;</span>, <span class='s'>&quot;This is a fatal message&quot;</span>);
 
+logger.Trace(<span class='s'>&quot;This is a trace message&quot;</span>);
 logger.Debug(<span class='s'>&quot;This is a debugging message&quot;</span>);
 logger.Info(<span class='s'>&quot;This is an information message&quot;</span>);
 logger.Warn(<span class='s'>&quot;This is a warning message&quot;</span>);
@@ -25,12 +27,14 @@ logmanager.InternalLogFile = <span class='s'>&quot;internal_log.txt&quot;</span>
 logmanager.InternalLogLevel = <span class='s'>&quot;Fatal&quot;</span>;
 logmanager.LoadConfigFromFile(<span class='s'>&quot;config8a.nlog&quot;</span>);
 
+logger.Log(<span class='s'>&quot;Trace&quot;</span>, <span class='s'>&quot;This is a trace message&quot;</span>);
 logger.Log(<span class='s'>&quot;Debug&quot;</span>, <span class='s'>&quot;This is a debugging message&quot;</span>);
 logger.Log(<span class='s'>&quot;Info&quot;</span>, <span class='s'>&quot;This is an information message&quot;</span>);
 logger.Log(<span class='s'>&quot;Warn&quot;</span>, <span class='s'>&quot;This is a warning message&quot;</span>);
 logger.Log(<span class='s'>&quot;Error&quot;</span>, <span class='s'>&quot;This is an error&quot;</span>);
 logger.Log(<span class='s'>&quot;Fatal&quot;</span>, <span class='s'>&quot;This is a fatal message&quot;</span>);
 
+logger.Trace(<span class='s'>&quot;This is a trace message&quot;</span>);
 logger.Debug(<span class='s'>&quot;This is a debugging message&quot;</span>);
 logger.Info(<span class='s'>&quot;This is an information message&quot;</span>);
 logger.Warn(<span class='s'>&quot;This is a warning message&quot;</span>);
