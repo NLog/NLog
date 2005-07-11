@@ -344,7 +344,7 @@ namespace NLog.Targets
                     if (_outputFile == null)
                         return ;
                 }
-                _outputFile.WriteLine(CompiledLayout.GetFormattedMessage(ev));
+                WriteToFile(_outputFile, CompiledLayout.GetFormattedMessage(ev));
                 if (AutoFlush)
                 {
                     _outputFile.Flush();
@@ -424,7 +424,9 @@ namespace NLog.Targets
                     }
                     requests++;
                     if (currentStreamWriter != null)
-                        currentStreamWriter.WriteLine(fwr.Text);
+                    {
+                        WriteToFile(currentStreamWriter, fwr.Text);
+                    }
                 }
                 if (currentStreamWriter != null)
                 {
@@ -440,6 +442,11 @@ namespace NLog.Targets
                 
                 */
             }
+        }
+
+        protected virtual void WriteToFile(StreamWriter sw, string text)
+        {
+            sw.WriteLine(sw, text);
         }
 
         /// <summary>
