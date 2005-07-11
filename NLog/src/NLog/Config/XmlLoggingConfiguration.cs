@@ -340,6 +340,9 @@ namespace NLog.Config
 
                 LoggingRule rule = new LoggingRule();
                 string namePattern = GetCaseInsensitiveAttribute(ruleElement, "name");
+                if (namePattern == null)
+                    namePattern = "*";
+
                 string appendTo = GetCaseInsensitiveAttribute(ruleElement, "appendTo");
                 if (appendTo == null)
                     appendTo = GetCaseInsensitiveAttribute(ruleElement, "writeTo");
