@@ -375,6 +375,11 @@ namespace NLog.Targets
 #endif
         }
 
+        protected virtual void WriteToFile(StreamWriter sw, string text)
+        {
+            sw.WriteLine(text);
+        }
+
 #if !NETCF
         protected override void LoggingThreadProc()
         {
@@ -442,11 +447,6 @@ namespace NLog.Targets
                 
                 */
             }
-        }
-
-        protected virtual void WriteToFile(StreamWriter sw, string text)
-        {
-            sw.WriteLine(sw, text);
         }
 
         /// <summary>
