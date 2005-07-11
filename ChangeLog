@@ -1,3 +1,5 @@
+* added an overridable FileTarget.WriteToFile method to allow for subclassing
+of File target to support encryption
 * added a new Trace level, more verbose than the Debug
 * fixed VS.NET Compact Framework project file
 * added support for <variable name="" value="" /> configuration element
