@@ -1,3 +1,4 @@
+* Fixed #22: Connection string builder omits ; after Server parameter
 * added an overridable FileTarget.WriteToFile method to allow for subclassing
 of File target to support encryption
 * added a new Trace level, more verbose than the Debug
