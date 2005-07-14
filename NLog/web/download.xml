@@ -20,6 +20,7 @@
         For your convenience the source and binary snapshots (including the windows installer)
         are available <a href="http://nlog.sourceforge.net/snapshots/">here</a>. They are occasionally generated between
         releases and primarily meant for testing.</p>
+    <!--    <iframe src="http://nlog.sourceforge.net/snapshots2/" width="620" height="300" style="border: 0px solid #c0c0c0"/> -->
     <h5>Daily Subversion Snapshots</h5>
     <p>
         The source snapshots are automatically generated on each day and 
