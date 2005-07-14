@@ -552,6 +552,8 @@
         <exec program="${scp.program}" commandline="${scp.program.args} ${binary_snapshot.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ${binary_compact_snapshot.name}..." />
         <exec program="${scp.program}" commandline="${scp.program.args} ${binary_compact_snapshot.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}/" />
+        <echo message="Uploading ChangeLog..." />
+        <exec program="${scp.program}" commandline="${scp.program.args} ChangeLog ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}/" />
         <echo message="Fixing permissions..." />
         <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/fix_group_perm.sh" />
     </target>
