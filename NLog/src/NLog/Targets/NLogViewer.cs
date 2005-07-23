@@ -120,7 +120,16 @@ namespace NLog.Targets
                 return 2;
             if (IncludeCallSite)
                 return 1;
-            return 0;
+
+            int max = 0;
+            for (int i = 0; i < Parameters.Count; ++i)
+            {
+                max = Math.Max(max, Parameters[i].NeedsStackTrace());
+                if (max == 2)
+                    break;
+            }
+
+            return max;
         }
 #endif
 

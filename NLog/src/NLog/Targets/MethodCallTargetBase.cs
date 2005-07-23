@@ -73,6 +73,25 @@ namespace NLog.Targets
         protected abstract void DoInvoke(object[]parameters);
 
         /// <summary>
+        /// Determines whether stack trace information should be gathered
+        /// during log event processing. It calls <see cref="NLog.Layout.NeedsStackTrace" /> on
+        /// all parameters.
+        /// </summary>
+        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
+        protected internal override int NeedsStackTrace()
+        {
+            int max = base.NeedsStackTrace();
+            for (int i = 0; i < Parameters.Count; ++i)
+            {
+                max = Math.Max(max, Parameters[i].NeedsStackTrace());
+                if (max == 2)
+                    break;
+            }
+
+            return max;
+        }
+
+        /// <summary>
         /// Array of parameters to be passed.
         /// </summary>
         [ArrayParameter(typeof(MethodCallParameter), "parameter")]

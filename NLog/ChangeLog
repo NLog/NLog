@@ -1,3 +1,7 @@
+2005-07-23 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+	* Fixed #23: ${callsite} doesn't work with MethodCall target and
+	NLogViewer target
+
 2005-07-14 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 	* Fixed #22: Connection string builder omits ; after Server parameter
 
