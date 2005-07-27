@@ -176,6 +176,21 @@ namespace NLog
         }
 
         /// <summary>
+        /// Gets the logger short name.
+        /// </summary>
+        public string LoggerShortName
+        {
+            get
+            {
+                int lastDot = _loggerName.LastIndexOf('.');
+                if (lastDot >= 0)
+                    return _loggerName.Substring(lastDot + 1);
+                else
+                    return _loggerName;
+            }
+        }
+
+        /// <summary>
         /// Gets the raw log message including any parameter placeholders.
         /// </summary>
         public string Message

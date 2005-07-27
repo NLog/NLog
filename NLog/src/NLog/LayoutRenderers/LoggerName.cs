@@ -44,6 +44,15 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("logger")]
     public class LoggerNameLayoutRenderer: LayoutRenderer
     {
+        private bool _shortName = false;
+
+        [System.ComponentModel.DefaultValue(false)]
+        public bool ShortName
+        {
+            get { return _shortName; }
+            set { _shortName = value; }
+        }
+        
         /// <summary>
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
@@ -67,7 +76,10 @@ namespace NLog.LayoutRenderers
         /// <param name="ev">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            builder.Append(ApplyPadding(ev.LoggerName));
+            if (ShortName)
+                builder.Append(ApplyPadding(ev.LoggerShortName));
+            else
+                builder.Append(ApplyPadding(ev.LoggerName));
         }
     }
 }
