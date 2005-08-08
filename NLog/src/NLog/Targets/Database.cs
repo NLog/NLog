@@ -397,6 +397,30 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Determines whether stack trace information should be gathered
+        /// during log event processing. It calls <see cref="NLog.Layout.NeedsStackTrace" /> on
+        /// all parameters.
+        /// </summary>
+        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
+        protected internal override int NeedsStackTrace()
+        {
+            int max = base.NeedsStackTrace();
+            if (DBHostLayout != null) max = Math.Max(max, DBHostLayout.NeedsStackTrace());
+            if (DBUserNameLayout != null) max = Math.Max(max, DBUserNameLayout.NeedsStackTrace());
+            if (DBDatabaseLayout != null) max = Math.Max(max, DBDatabaseLayout.NeedsStackTrace());
+            if (DBPasswordLayout != null) max = Math.Max(max, DBPasswordLayout.NeedsStackTrace());
+            if (CommandTextLayout != null) max = Math.Max(max, CommandTextLayout.NeedsStackTrace());
+            for (int i = 0; i < Parameters.Count; ++i)
+            {
+                max = Math.Max(max, Parameters[i].NeedsStackTrace());
+                if (max == 2)
+                    break;
+            }
+
+            return max;
+        }
+
         private void DoAppend(LogEventInfo ev)
         {
             IDbCommand command = _activeConnection.CreateCommand();

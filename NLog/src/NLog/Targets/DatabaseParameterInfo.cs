@@ -155,5 +155,16 @@ namespace NLog.Targets
                 _scale = value;
             }
         }
+        
+        /// <summary>
+        /// Determines whether stack trace information should be gathered
+        /// during log event processing. It calls <see cref="NLog.Layout.NeedsStackTrace" /> on
+        /// Layout and FileName parameters.
+        /// </summary>
+        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
+        protected internal int NeedsStackTrace()
+        {
+            return CompiledLayout.NeedsStackTrace();
+        }
     }
 }
