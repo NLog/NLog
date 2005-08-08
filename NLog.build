@@ -16,6 +16,7 @@
 
     <property name="sourceforge.addr" value="jkowalski@nlog.sourceforge.net" />
     <property name="sourceforge.groupdir" value="/home/groups/n/nl/nlog" />
+    <property name="csc.warninglevel" value="4" />
 
     <property name="nlog.package.name" value="${tstamp.date}" unless="${property::exists('nlog.package.name')}" />
 
@@ -77,7 +78,7 @@
     </target>
 
     <target name="NLog" depends="configure">
-        <csc target="library" output="${nlog.dir}/NLog.dll" doc="${nlog.dir}/NLog.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.dll" doc="${nlog.dir}/NLog.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog">
                 <include name="**/*.cs" />
             </sources>
@@ -94,7 +95,7 @@
     </target>
 
     <target name="NLog.ComInterop" depends="NLog">
-        <csc target="library" output="${nlog.dir}/NLog.ComInterop.dll" doc="${nlog.dir}/NLog.ComInterop.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.ComInterop.dll" doc="${nlog.dir}/NLog.ComInterop.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog.ComInterop">
                 <include name="**/*.cs" />
             </sources>
@@ -108,7 +109,7 @@
     </target>
 
     <target name="NLog.CompactFramework" depends="NLog">
-        <csc target="library" output="${nlog.dir}/NLog.CompactFramework.dll" doc="${nlog.dir}/NLog.CompactFramework.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.CompactFramework.dll" doc="${nlog.dir}/NLog.CompactFramework.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog.CompactFramework">
                 <include name="**/*.cs" />
             </sources>
@@ -122,7 +123,7 @@
     </target>
 
     <target name="NLog.Win32" depends="NLog">
-        <csc target="library" output="${nlog.dir}/NLog.Win32.dll" doc="${nlog.dir}/NLog.Win32.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.Win32.dll" doc="${nlog.dir}/NLog.Win32.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog.Win32">
                 <include name="**/*.cs" />
             </sources>
@@ -134,7 +135,7 @@
 
     <target name="NLog.DotNet" depends="NLog">
         <!-- don't build it yet - we don't have anything .NET-specific -->
-        <csc target="library" output="${nlog.dir}/NLog.DotNet.dll" doc="${nlog.dir}/NLog.DotNet.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.DotNet.dll" doc="${nlog.dir}/NLog.DotNet.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog.DotNet">
                 <include name="**/*.cs" />
             </sources>
@@ -146,7 +147,7 @@
 
     <target name="NLog.Mono" depends="NLog">
         <!-- don't build it yet - we don't have anything Mono-specific -->
-        <csc target="library" output="${nlog.dir}/NLog.Mono.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.Mono.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog.Mono">
                 <include name="**/*.cs" />
             </sources>
@@ -158,7 +159,7 @@
 
     <target name="NLog.UnitTests" depends="NLog">
         <copy file="${nant.location}/lib/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/nunit.framework.dll" tofile="${nlog.dir}/nunit.framework.dll" />
-        <csc target="library" output="${nlog.dir}/NLog.UnitTests.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.UnitTests.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog.UnitTests">
                 <include name="**/*.cs" />
             </sources>
@@ -171,7 +172,7 @@
 
     <target name="NLog.UnitTests.Web" depends="NLog">
         <copy file="${nant.location}/lib/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/nunit.framework.dll" tofile="${nlog.dir}/nunit.framework.dll" />
-        <csc target="library" output="${nlog.dir}/NLog.UnitTests.Web.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.UnitTests.Web.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog.UnitTests.Web">
                 <include name="**/*.cs" />
             </sources>
@@ -183,7 +184,7 @@
     </target>
 
     <target name="NLog.Unix" depends="NLog">
-        <csc target="library" output="${nlog.dir}/NLog.Unix.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="library" output="${nlog.dir}/NLog.Unix.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog.Unix">
                 <include name="**/*.cs" />
             </sources>
@@ -194,7 +195,7 @@
     </target>
 
     <target name="NLog.Test" depends="NLog">
-        <csc target="exe" output="${nlog.dir}/NLog.Test.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="exe" output="${nlog.dir}/NLog.Test.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog.Test">
                 <include name="**/*.cs" />
             </sources>
@@ -211,7 +212,7 @@
     </target>
 
     <target name="NLog.Benchmark" depends="NLog">
-        <csc target="exe" output="${nlog.dir}/NLog.Benchmark.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="exe" output="${nlog.dir}/NLog.Benchmark.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog.Benchmark">
                 <include name="**/*.cs" />
             </sources>
@@ -226,7 +227,7 @@
     </target>
 
     <target name="NLog.Benchmark-log4net" depends="NLog">
-        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net.exe" define="${nlog.define},LOG4NET" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net.exe" define="${nlog.define},LOG4NET" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog.Benchmark">
                 <include name="**/*.cs" />
             </sources>
@@ -241,7 +242,7 @@
     </target>
 
     <target name="NLog.Benchmark-log4net-withformat" depends="NLog">
-        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe" define="${nlog.define},LOG4NET,LOG4NETWITHFORMAT" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe" define="${nlog.define},LOG4NET,LOG4NETWITHFORMAT" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog.Benchmark">
                 <include name="**/*.cs" />
             </sources>
@@ -256,7 +257,7 @@
     </target>
 
     <target name="NLog.Viewer" depends="configure">
-        <csc target="winexe" output="${nlog.dir}/NLog.Viewer.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}">
+        <csc target="winexe" output="${nlog.dir}/NLog.Viewer.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog.Viewer">
                 <include name="**/*.cs" />
             </sources>
