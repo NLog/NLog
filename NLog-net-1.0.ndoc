@@ -32,6 +32,7 @@
             <property name="DocumentInheritedFrameworkMembers" value="False" />
             <property name="CopyrightText" value="Copyright (c) 2004-2005 by Jaroslaw Kowalski" />
             <property name="CopyrightHref" value="http://nlog.sourceforge.net/" />
+            <property name="InstanceMembersDefaultToSafe" value="True" />
         </documenter>
         <documenter name="MSDN 2003">
             <property name="OutputDirectory" value=".\doc\" />
