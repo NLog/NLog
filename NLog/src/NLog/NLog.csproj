@@ -584,6 +584,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Targets\Debugger.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Targets\File.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

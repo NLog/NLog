@@ -611,3 +611,9 @@ pre.example
     vertical-align: top;
     font-size: 11px;
 }
+
+hr
+{
+    color: #0000ff;
+    height: 1px;
+}

@@ -1,3 +1,6 @@
+2005-08-10 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+	* Fixed #28: Documentation threading safety statement bug
+
 2005-08-08 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 	* Added #27: Debugger target.
 	* Fixed #26: ${callsite} not working with database parameters

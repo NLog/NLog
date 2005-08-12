@@ -569,6 +569,78 @@
         <delete dir="${web.dir}" if="${directory::exists(web.dir)}" failonerror="false" />
         <mkdir dir="${web.dir}" />
         <mkdir dir="${web.dir}/examples" />
+
+        <script language="C#">
+            <code><![CDATA[
+                public static void ScriptMain(Project project) {
+                    System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
+                    doc.Load(project.ExpandProperties("build/${buildsubdir}/doc.xml", Location.UnknownLocation));
+                    string targets = "";
+                    string layoutRenderers = "";
+                    string filters = "";
+                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value"))
+                    {
+                        if (targets != "")
+                            targets += ",";
+                        targets += node.InnerText;
+                    }
+                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@name='NLog.LayoutRendererAttribute']/property[@name='FormatString']/@value"))
+                    {
+                        if (layoutRenderers != "")
+                            layoutRenderers += ",";
+                        layoutRenderers += node.InnerText;
+                    }
+                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@name='NLog.FilterAttribute']/property[@name='Name']/@value"))
+                    {
+                        if (filters != "")
+                            filters += ",";
+                        filters += node.InnerText;
+                    }
+
+                    project.Properties["nlog.targetNames"] = targets;
+                    project.Properties["nlog.layoutRendererNames"] = layoutRenderers;
+                    project.Properties["nlog.filterNames"] = filters;
+                  
+                }
+                ]]></code>
+        </script>
+
+        <foreach item="String" in="${nlog.targetNames}" delim="," property="t">
+            <style out="${web.dir}/target.${t}.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
+                <parameters>
+                    <parameter name="file_extension" value="html" />
+                    <parameter name="sourceforge" value="${web.sourceforge}" />
+                    <parameter name="page_id_override" value="reference" />
+                    <parameter name="subpage_id_override" value="targets" />
+                    <parameter name="target_name" value="${t}" />
+                </parameters>
+            </style>
+        </foreach>
+
+        <foreach item="String" in="${nlog.layoutRendererNames}" delim="," property="t">
+            <style out="${web.dir}/lr.${t}.html" style="web/layoutrenderers.xsl" in="build/${buildsubdir}/doc.xml">
+                <parameters>
+                    <parameter name="file_extension" value="html" />
+                    <parameter name="sourceforge" value="${web.sourceforge}" />
+                    <parameter name="page_id_override" value="reference" />
+                    <parameter name="subpage_id_override" value="layoutrenderers" />
+                    <parameter name="lr_name" value="${t}" />
+                </parameters>
+            </style>
+        </foreach>
+
+        <foreach item="String" in="${nlog.filterNames}" delim="," property="t">
+            <style out="${web.dir}/filter.${t}.html" style="web/filters.xsl" in="build/${buildsubdir}/doc.xml">
+                <parameters>
+                    <parameter name="file_extension" value="html" />
+                    <parameter name="sourceforge" value="${web.sourceforge}" />
+                    <parameter name="page_id_override" value="reference" />
+                    <parameter name="subpage_id_override" value="filters" />
+                    <parameter name="filter_name" value="${t}" />
+                </parameters>
+            </style>
+        </foreach>
+
         <style out="${web.dir}/targets.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
                 <parameter name="file_extension" value="html" />
@@ -577,6 +649,7 @@
                 <parameter name="subpage_id_override" value="targets" />
             </parameters>
         </style>
+
         <style out="${web.dir}/layoutrenderers.html" style="web/layoutrenderers.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
                 <parameter name="file_extension" value="html" />
