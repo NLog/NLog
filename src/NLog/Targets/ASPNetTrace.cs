@@ -46,6 +46,42 @@ namespace NLog.Targets
     /// <remarks>
     /// Resulting log entries can be viewed by navigating to http://server/path/Trace.axd
     /// </remarks>
+    /// <example>
+    /// To set up the ASP.NET Trace target in the configuration file, 
+    /// use the following syntax:
+    /// <code escaped="true">
+    /// <nlog>
+    ///     <targets>
+    ///         <target name="aspnet" type="ASPNetTrace" layout="${logger} ${message}" />
+    ///     </targets>
+    ///     <rules>
+    ///         <logger name="*" minlevel="Info" writeTo="aspnet" />
+    ///     </rules>
+    /// </nlog>
+    /// </code>
+    /// To set up the log target programmatically use code like this:
+    /// <code>
+    /// using NLog;
+    /// using NLog.Config;
+    /// using NLog.Targets;
+    /// 
+    /// // create the target
+    /// ASPNetTarget target = new ASPNetTarget();
+    /// 
+    /// // create logging configuration object
+    /// LoggingConfiguration config = new LoggingConfiguration();
+    /// 
+    /// // add a rule that directs all messages above the Debug level
+    /// // to the above target
+    /// // LoggingRule rule = new LoggingRule("*", LogLevel.Debug, target);
+    /// 
+    /// // add the rule
+    /// config.LoggingRules.Add(rule);
+    /// 
+    /// // activate the configuration
+    /// LogManager.Configuration = config;
+    /// </code>
+    /// </example>
     [Target("ASPNetTrace")]
     public class ASPNetTraceTarget: Target
     {

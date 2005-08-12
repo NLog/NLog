@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:include href="style.xsl" />
+    <xsl:param name="filter_name" />
 
     <xsl:template match="*" mode="content">
-        <h1>Log Filters</h1>
-        The following filters are available:
-        <div class="noborder" style="width: 600px">
-            <table>
-                <xsl:apply-templates select="//class[attribute/@name='NLog.FilterAttribute']" mode="list">
-                    <xsl:sort select="attribute[@name='NLog.FilterAttribute']/property[@name='Name']/@value" />
-                </xsl:apply-templates>
-            </table>
-        </div>
-        <xsl:apply-templates select="//class[attribute/@name='NLog.FilterAttribute']" mode="details">
-            <xsl:sort select="attribute[@name='NLog.FilterAttribute']/property[@name='Name']/@value" />
-        </xsl:apply-templates>
+        <xsl:if test="not($filter_name)">
+            <h1>Log Filters</h1>
+            The following filters are available:
+            <div class="noborder" style="width: 600px">
+                <table>
+                    <xsl:apply-templates select="//class[attribute/@name='NLog.FilterAttribute']" mode="list">
+                        <xsl:sort select="attribute[@name='NLog.FilterAttribute']/property[@name='Name']/@value" />
+                    </xsl:apply-templates>
+                </table>
+            </div>
+        </xsl:if>
+        <xsl:if test="$filter_name">
+            <xsl:apply-templates select="//class[attribute/@name='NLog.FilterAttribute' and attribute/property[@name='Name']/@value=$filter_name]" mode="details">
+                <xsl:sort select="attribute[@name='NLog.FilterAttribute']/property[@name='Name']/@value" />
+            </xsl:apply-templates>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="class" mode="list">
         <xsl:variable name="type_tag" select="attribute[@name='NLog.FilterAttribute']/property[@name='Name']/@value" />
         <tr>
-            <td class="label"><a href="#{$type_tag}"><xsl:value-of select="$type_tag" /></a></td>
+            <td class="label"><a href="filter.{$type_tag}.html"><xsl:value-of select="$type_tag" /></a></td>
             <td class="description"><xsl:apply-templates select="documentation/summary" /></td>
         </tr>
     </xsl:template>
@@ -37,14 +42,14 @@
 
     <xsl:template match="class" mode="details">
         <xsl:variable name="type_tag" select="attribute[@name='NLog.FilterAttribute']/property[@name='Name']/@value" />
-        <hr/>
-        <h2><a name="{$type_tag}"><xsl:value-of select="$type_tag" /></a></h2>
+        <hr size="1" />
+        <h3><xsl:value-of select="$type_tag" /> Filter</h3>
         <xsl:apply-templates select="documentation/summary" /><p/>
         <xsl:if test="documentation/remarks">
-            <h5>Remarks</h5>
+            <h4>Remarks</h4>
             <xsl:apply-templates select="documentation/remarks" /><p/>
         </xsl:if>
-        <h5>Parameters:</h5>
+        <h4>Parameters:</h4>
         <table>
             <xsl:apply-templates select="property" mode="parameter">
                 <xsl:sort select="count(attribute[@name='NLog.Config.RequiredParameterAttribute'])" order="descending" />
@@ -52,13 +57,15 @@
             </xsl:apply-templates>
         </table>
         <xsl:if test="documentation/example">
-            <h5>Example:</h5>
+            <h4>Example:</h4>
             <xsl:apply-templates select="documentation/example" />
         </xsl:if>
         <xsl:if test="documentation/remarks">
-            <h5>Remarks:</h5>
+            <h4>Remarks:</h4>
             <xsl:apply-templates select="documentation/remarks" />
         </xsl:if>
+        <hr size="1" />
+        <a href="filters.html">Back to the filter list.</a>
     </xsl:template>
 
     <xsl:template match="property[@set='false']" mode="parameter">
@@ -98,11 +105,11 @@
                     <p>Default value is: <code><xsl:value-of select="attribute[@name='System.ComponentModel.DefaultValueAttribute']/property[@name='Value']/@value" /></code>.</p>
                 </xsl:if>
                 <xsl:if test="documentation/remarks">
-                    <h5>Remarks</h5>
+                    <h4>Remarks</h4>
                     <p><xsl:apply-templates select="documentation/remarks" /></p>
                 </xsl:if>
                 <xsl:if test="documentation/example">
-                    <h5>Example</h5>
+                    <h4>Example</h4>
                     <p><xsl:apply-templates select="documentation/example" /></p>
                 </xsl:if>
             </td>
