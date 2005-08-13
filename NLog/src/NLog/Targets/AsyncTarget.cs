@@ -53,30 +53,36 @@ namespace NLog.Targets
     {
 #if !NETCF
         private bool _async = false;
-        private bool _stopLoggingThread = false;
-        private Thread _loggingThread = null;
-        private AsyncRequestQueue _requestQueue = new AsyncRequestQueue(10000, AsyncRequestQueue.OverflowAction.Discard);
+        private bool _stopLazyWriterThread = false;
+        private Thread _lazyWriterThread = null;
+        private AsyncRequestQueue _lazyWriterRequestQueue = new AsyncRequestQueue(10000, AsyncRequestQueue.OverflowAction.Discard);
 
-        protected bool LoggingThreadStopRequested
+        /// <summary>
+        /// Checks whether lazy writer thread is requested to stop.
+        /// </summary>
+        protected bool LazyWriterThreadStopRequested
         {
-            get { return _stopLoggingThread; }
+            get { return _stopLazyWriterThread; }
         }
 
+        /// <summary>
+        /// The queue of lazy writer thread requests.
+        /// </summary>
         protected AsyncRequestQueue RequestQueue
         {
-            get { return _requestQueue; }
+            get { return _lazyWriterRequestQueue; }
         }
 
         /// <summary>
         /// The thread that is used to write log messages.
         /// </summary>
-        protected Thread LoggingThread
+        protected Thread LazyWriterThread
         {
-            get { return _loggingThread; }
+            get { return _lazyWriterThread; }
         }
 
         /// <summary>
-        /// Process log requests in a separate thread. (EXPERIMENTAL)
+        /// Process log requests in a separate thread.
         /// </summary>
         [System.ComponentModel.DefaultValueAttribute(false)]
         public bool Async
@@ -86,14 +92,14 @@ namespace NLog.Targets
             {
                 _async = value; 
                 if (value)
-                    StartLoggingThread();
+                    StartLazyWriterThread();
                 else
-                    StopLoggingThread();
+                    StopLazyWriterThread();
             }
         }
 
 		/// <summary>
-		/// The action to be taken when the background thread request queue count
+		/// The action to be taken when the lazy writer thread request queue count
 		/// exceeds the set limit.
 		/// </summary>
 		/// <remarks>
@@ -104,76 +110,86 @@ namespace NLog.Targets
 		[System.ComponentModel.DefaultValue("discard")]
 		public string OverflowAction
 		{
-			get { return _requestQueue.OverflowActionString; }
-			set { _requestQueue.OverflowActionString = value; }
+			get { return _lazyWriterRequestQueue.OverflowActionString; }
+			set { _lazyWriterRequestQueue.OverflowActionString = value; }
 		}
 
 		/// <summary>
-		/// The limit on the number of requests in the background thread request queue.
+		/// The limit on the number of requests in the lazy writer thread request queue.
 		/// </summary>
 		[System.ComponentModel.DefaultValue(10000)]
 		public int QueueLimit
 		{
-			get { return _requestQueue.RequestLimit; }
-			set { _requestQueue.RequestLimit = value; }
+			get { return _lazyWriterRequestQueue.RequestLimit; }
+			set { _lazyWriterRequestQueue.RequestLimit = value; }
 		}
 
-        protected virtual void StartLoggingThread()
+        /// <summary>
+        /// Starts the lazy writer thread which periodically writes
+        /// queued log messages.
+        /// </summary>
+        protected virtual void StartLazyWriterThread()
         {
-            if (_loggingThread != null)
+            if (_lazyWriterThread != null)
             {
                 // already started.
                 return;
             }
 
-            _stopLoggingThread = false;
-			_requestQueue.Clear();
+            _stopLazyWriterThread = false;
+			_lazyWriterRequestQueue.Clear();
             Internal.InternalLogger.Debug("Starting logging thread.");
-            _loggingThread = new Thread(new ThreadStart(LoggingThreadProc));
-            _loggingThread.IsBackground = true;
-            _loggingThread.Start();
+            _lazyWriterThread = new Thread(new ThreadStart(LazyWriterThreadProc));
+            _lazyWriterThread.IsBackground = true;
+            _lazyWriterThread.Start();
         }
 
-        protected virtual void StopLoggingThread()
+        /// <summary>
+        /// Starts the lazy writer thread.
+        /// </summary>
+        protected virtual void StopLazyWriterThread()
         {
-            if (_loggingThread == null)
+            if (_lazyWriterThread == null)
                 return;
 
             Flush();
-            _stopLoggingThread = true;
-            if (!_loggingThread.Join(3000))
+            _stopLazyWriterThread = true;
+            if (!_lazyWriterThread.Join(3000))
             {
                 InternalLogger.Warn("Logging thread failed to stop. Aborting.");
-                _loggingThread.Abort();
+                _lazyWriterThread.Abort();
             }
             else
             {
                 InternalLogger.Debug("Logging thread stopped.");
             }
-            _requestQueue.Clear();
+            _lazyWriterRequestQueue.Clear();
         }
         
         /// <summary>
-        /// Waits for the asynchronous thread to finish writing messages.
+        /// Waits for the lazy writer thread to finish writing messages.
         /// </summary>
         protected internal override void Flush()
         {
-            InternalLogger.Debug("Flushing logging thread. Requests in queue: {0}", _requestQueue.RequestCount);
-            while (_requestQueue.RequestCount > 0)
+            InternalLogger.Debug("Flushing lazy writer thread. Requests in queue: {0}", _lazyWriterRequestQueue.RequestCount);
+            while (_lazyWriterRequestQueue.RequestCount > 0)
             {
-                int before = _requestQueue.RequestCount;
+                int before = _lazyWriterRequestQueue.RequestCount;
                 Thread.Sleep(100);
-                int after = _requestQueue.RequestCount;
+                int after = _lazyWriterRequestQueue.RequestCount;
                 if (after == before)
                 {
                     // some lockup - quit the thread
                     break;
                 }
             }
-            InternalLogger.Debug("After flush. Requests in queue: {0}", _requestQueue.RequestCount);
+            InternalLogger.Debug("After flush. Requests in queue: {0}", _lazyWriterRequestQueue.RequestCount);
         }
 
-        protected abstract void LoggingThreadProc();
+        /// <summary>
+        /// Lazy writer thread method. To be overridden in inheriting classes.
+        /// </summary>
+        protected abstract void LazyWriterThreadProc();
 #endif
     }
 }

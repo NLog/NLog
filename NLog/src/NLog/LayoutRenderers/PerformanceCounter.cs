@@ -45,7 +45,7 @@ using NLog.Internal;
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// The performance counter. (NOT OPERATIONAL YET)
+    /// The performance counter.
     /// </summary>
     [LayoutRenderer("performancecounter")]
     public class PerformanceCounterLayoutRenderer: LayoutRenderer
@@ -54,6 +54,7 @@ namespace NLog.LayoutRenderers
         private string _counterName = null;
         private string _instanceName = null;
         private string _machineName = null;
+        private PerformanceCounter _perfCounter = null;
 
         /// <summary>
         /// Name of the counter category.
@@ -68,6 +69,7 @@ namespace NLog.LayoutRenderers
             set
             {
                 _categoryName = value;
+                InvalidatePerformanceCounter();
             }
         }
 
@@ -84,6 +86,7 @@ namespace NLog.LayoutRenderers
             set
             {
                 _counterName = value;
+                InvalidatePerformanceCounter();
             }
         }
 
@@ -99,6 +102,23 @@ namespace NLog.LayoutRenderers
             set
             {
                 _instanceName = value;
+                InvalidatePerformanceCounter();
+            }
+        }
+
+        /// <summary>
+        /// Name of the machine to read the performance counter from.
+        /// </summary>
+        public string MachineName
+        {
+            get
+            {
+                return _machineName;
+            }
+            set
+            {
+                _machineName = value;
+                InvalidatePerformanceCounter();
             }
         }
 
@@ -118,6 +138,38 @@ namespace NLog.LayoutRenderers
             return 32;
         }
 
+        private void CreatePerformanceCounter()
+        {
+            if (_perfCounter == null)
+            {
+                lock (this)
+                {
+                    if (_perfCounter == null)
+                    {
+                        _perfCounter = new PerformanceCounter(_categoryName, _counterName, _instanceName, true);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Closes currently open performance counter (if any).
+        /// </summary>
+        private void InvalidatePerformanceCounter()
+        {
+            if (_perfCounter != null)
+            {
+                lock (this)
+                {
+                    if (_perfCounter != null)
+                    {
+                        _perfCounter.Close();
+                        _perfCounter = null;
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Renders the specified environment variable and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
@@ -125,9 +177,8 @@ namespace NLog.LayoutRenderers
         /// <param name="ev">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo ev)
         {
-            // doesn't work reliably yet.
-            PerformanceCounter pc = new PerformanceCounter(_categoryName, _counterName, _instanceName, true);
-            builder.Append(ApplyPadding(pc.NextValue().ToString(CultureInfo)));
+            CreatePerformanceCounter();
+            builder.Append(ApplyPadding(_perfCounter.NextValue().ToString(CultureInfo)));
         }
     }
 }

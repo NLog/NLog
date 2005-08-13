@@ -40,8 +40,23 @@ using System.Diagnostics;
 namespace NLog.Targets
 {
     /// <summary>
-    /// Writes logging messages to the attached debugger.
+    /// Writes logging messages to the attached managed debugger.
     /// </summary>
+    /// <example>
+    /// <p>
+    /// To set up the target in the configuration file, 
+    /// use the following syntax:
+    /// </p>
+    /// <xml src="examples/targets/Debugger/DebuggerTarget.nlog" />
+    /// <p>
+    /// This assumes just one target and a single rule. More configuration
+    /// options are described <a href="config.html">here</a>.
+    /// </p>
+    /// <p>
+    /// To set up the log target programmatically use code like this:
+    /// </p>
+    /// <cs src="examples/targets/Debugger/DebuggerTarget.cs" />
+    /// </example>
     [Target("Debugger")]
     public sealed class DebuggerTarget: Target
     {

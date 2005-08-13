@@ -55,7 +55,12 @@
         </xsl:if>
         <xsl:if test="property[not(@declaringType='NLog.LayoutRenderer')]">
             <h4>Parameters:</h4>
-            <table>
+            <table class="paramtable">
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
                 <xsl:apply-templates select="property[not(@declaringType='NLog.LayoutRenderer')]" mode="parameter">
                     <xsl:sort select="count(attribute[@name='NLog.Config.RequiredParameterAttribute'])" order="descending" />
                     <xsl:sort select="@name" />
@@ -99,6 +104,16 @@
                     </xsl:if>
                     <xsl:value-of select="@name" />
                 </span>
+            </td>
+            <td class="parametertype">
+                <nobr>
+                    <xsl:call-template name="simple-type-name">
+                        <xsl:with-param name="type" select="@type" />
+                    </xsl:call-template>
+                    <xsl:if test="attribute/@name='NLog.Config.AcceptsLayoutAttribute'">
+                        &#160;<a href="layoutrenderers.html"><span class="acceptslayout" title="This parameter accepts layout specification. Click here to learn more about layouts.">${}</span></a>
+                    </xsl:if>
+                </nobr>
             </td>
             <td class="parametervalue">
                 <xsl:apply-templates select="documentation/summary" />

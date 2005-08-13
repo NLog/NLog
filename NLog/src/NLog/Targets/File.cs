@@ -371,20 +371,39 @@ namespace NLog.Targets
                 }
             }
 #if !NETCF
-            StopLoggingThread();
+            StopLazyWriterThread();
 #endif
         }
 
-        protected virtual void WriteToFile(StreamWriter sw, string text)
+        /// <summary>
+        /// Writes the specified text to the specified file.
+        /// </summary>
+        /// <param name="file">file to write to</param>
+        /// <param name="text">text to be written</param>
+        /// <remarks>
+        /// You can override this method to additional things before
+        /// the text is actually written to the file. For example this
+        /// is a way to add encryption support.
+        /// </remarks>
+        protected virtual void WriteToFile(StreamWriter file, string text)
         {
-            sw.WriteLine(text);
+            file.WriteLine(text);
         }
 
 #if !NETCF
-        protected override void LoggingThreadProc()
+
+        /// <summary>
+        /// Writes log messages to files in a separate thread.
+        /// </summary>
+        /// <remarks>
+        /// This method fetches a number of requests as a batch, sorts
+        /// them by the file name (to minimize the number of open and close calls)
+        /// and writes messages to the files.
+        /// </remarks>
+        protected override void LazyWriterThreadProc()
         {
             ArrayList pendingFileRequests = new ArrayList();
-            while (!LoggingThreadStopRequested)
+            while (!LazyWriterThreadStopRequested)
             {
                 pendingFileRequests.Clear();
 				RequestQueue.DequeueBatch(pendingFileRequests, 100);

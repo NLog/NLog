@@ -182,13 +182,17 @@ namespace NLog.Targets
 
 #if !NETCF
 
-        protected override void LoggingThreadProc()
+        /// <summary>
+        /// Periodically writes network messages to network destinations 
+        /// in a separate thread.
+        /// </summary>
+        protected override void LazyWriterThreadProc()
         {
             ArrayList pendingNetworkRequests = new ArrayList();
             NetworkSender currentSender = null;
             string currentSenderAddress = "";
 
-            while (!LoggingThreadStopRequested)
+            while (!LazyWriterThreadStopRequested)
             {
                 pendingNetworkRequests.Clear();
                 RequestQueue.DequeueBatch(pendingNetworkRequests, 100);

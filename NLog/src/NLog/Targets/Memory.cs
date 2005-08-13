@@ -42,6 +42,21 @@ namespace NLog.Targets
     /// <summary>
     /// Writes logging messages to an ArrayList in memory for programmatic retrieval.
     /// </summary>
+    /// <example>
+    /// <p>
+    /// To set up the target in the configuration file, 
+    /// use the following syntax:
+    /// </p>
+    /// <xml src="examples/targets/Memory/MemoryTarget.nlog" />
+    /// <p>
+    /// This assumes just one target and a single rule. More configuration
+    /// options are described <a href="config.html">here</a>.
+    /// </p>
+    /// <p>
+    /// To set up the log target programmatically use code like this:
+    /// </p>
+    /// <cs src="examples/targets/Memory/MemoryTarget.cs" />
+    /// </example>
     [Target("Memory")]
     public sealed class MemoryTarget: Target
     {

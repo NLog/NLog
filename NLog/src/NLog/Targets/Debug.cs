@@ -42,8 +42,24 @@ using System.Threading;
 namespace NLog.Targets
 {
     /// <summary>
-    /// Counts logging messages but does not output them anywhere.
+    /// Counts logging messages but does not output them anywhere. Provides 
+    /// the counter of logged messages and remembers the latest one.
     /// </summary>
+    /// <example>
+    /// <p>
+    /// To set up the target in the configuration file, 
+    /// use the following syntax:
+    /// </p>
+    /// <xml src="examples/targets/Debug/DebugTarget.nlog" />
+    /// <p>
+    /// This assumes just one target and a single rule. More configuration
+    /// options are described <a href="config.html">here</a>.
+    /// </p>
+    /// <p>
+    /// To set up the log target programmatically use code like this:
+    /// </p>
+    /// <cs src="examples/targets/Debug/DebugTarget.cs" />
+    /// </example>
     [Target("Debug")]
     public sealed class DebugTarget: Target
     {
