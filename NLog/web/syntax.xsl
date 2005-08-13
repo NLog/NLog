@@ -1,33 +1,37 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-    <xsl:template match="cs[@src]">
+
+    <xsl:template name="external-iframe">
         <p/>
         <a href="{@src}.html" style="display:none">A</a>
-        <iframe src="{@src}.html" style="width: 100%; border: 1px solid #c0c0c0">
-        </iframe>
-        <br />
-        <a href="{@src}">Download this file</a>
+        <table cellpadding="0" cellspacing="0" style="width: 100%; height: 200px">
+            <tr>
+                <td colspan="2">
+                    <iframe src="{@src}.html">
+                        <xsl:attribute name="style">width: 100%; height: 200px; border: 1px solid #c0c0c0</xsl:attribute>
+                        <xsl:attribute name="id"><xsl:value-of select="generate-id(.)" /></xsl:attribute>
+                        <xsl:attribute name="name"><xsl:value-of select="generate-id(.)" /></xsl:attribute>
+                    </iframe>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="{@src}">Download this file</a></td>
+                <td align="right"><a href="javascript:enlarge_iframe('{generate-id(.)}')">Enlarge</a></td>
+            </tr>
+        </table>
         <p/>
+    </xsl:template>
+
+    <xsl:template match="cs[@src]">
+        <xsl:call-template name="external-iframe" />
     </xsl:template>
 
     <xsl:template match="js[@src]">
-        <p/>
-        <a href="{@src}.html" style="display:none">A</a>
-        <iframe src="{@src}.html" style="width: 100%; border: 1px solid #c0c0c0">
-        </iframe>
-        <br/>
-        <a href="{@src}">Download this file</a>
-        <p/>
+        <xsl:call-template name="external-iframe" />
     </xsl:template>
 
     <xsl:template match="xml[@src]">
-        <p/>
-        <a href="{@src}.html" style="display:none">A</a>
-        <iframe src="{@src}.html" style="width: 100%; border: 1px solid #c0c0c0">
-        </iframe>
-        <br/>
-        <a href="{@src}">Download this file</a>
-        <p/>
+        <xsl:call-template name="external-iframe" />
     </xsl:template>
 
     <xsl:template match="x">
@@ -75,32 +79,14 @@
     </xsl:template>
 
     <xsl:template match="xml[@src]" mode="slashdoc">
-        <p/>
-        <a href="{@src}.html" style="display:none">A</a>
-        <iframe src="{@src}.html" style="width: 100%; border: 1px solid #c0c0c0">
-        </iframe>
-        <br/>
-        <a href="{@src}">Download this file</a>
-        <p/>
+        <xsl:call-template name="external-iframe" />
     </xsl:template>
     
     <xsl:template match="js[@src]" mode="slashdoc">
-        <p/>
-        <a href="{@src}.html" style="display:none">A</a>
-        <iframe src="{@src}.html" style="width: 100%; border: 1px solid #c0c0c0">
-        </iframe>
-        <br/>
-        <a href="{@src}">Download this file</a>
-        <p/>
+        <xsl:call-template name="external-iframe" />
     </xsl:template>
     
     <xsl:template match="cs[@src]" mode="slashdoc">
-        <p/>
-        <a href="{@src}.html" style="display:none">A</a>
-        <iframe src="{@src}.html" style="width: 100%; border: 1px solid #c0c0c0">
-        </iframe>
-        <br/>
-        <a href="{@src}">Download this file</a>
-        <p/>
+        <xsl:call-template name="external-iframe" />
     </xsl:template>
 </xsl:stylesheet>

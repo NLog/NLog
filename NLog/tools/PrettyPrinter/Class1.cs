@@ -126,6 +126,7 @@ namespace CSharpPrettyPrint
             {
                 case 'S':
                     return "<span class='s'>" + l0 + "</span>";
+
                 case 'C': /* comment
                            * 
                            *  */
@@ -221,6 +222,7 @@ namespace CSharpPrettyPrint
 
                     case XmlNodeType.SignificantWhitespace:
                     case XmlNodeType.Whitespace:
+                    case XmlNodeType.Text:
                         output.Write(xtr.Value);
                         break;
 

@@ -21,6 +21,31 @@
                 <meta name="generator" content="NAnt 0.85 style task" />
                 <meta name="keywords" content="NLog logging tracing debugging library easy simple C# .NET log4net log4j Logger C/C++ COM" />
                 <title>NLog - <xsl:value-of select="$common/common/navigation/nav[@href=$page_id]/@label" /></title>
+                <script language="javascript">
+                    function enlarge_iframe(frameName)
+                    {
+                        var f = document.getElementById(frameName);
+                        var f2 = window.frames[f.name];
+                        var b = f2.document.getElementsByTagName("BODY");
+                        var iframeBody = b[0];
+                        var h = iframeBody.offsetHeight + 25;
+                        f.style.height = h + "px";
+                    }
+                    function fix_iframe(f)
+                    {
+                        try
+                        {
+                            var f2 = window.frames[f.name];
+                            var b = f2.document.getElementsByTagName("BODY");
+                            var iframeBody = b[0];
+                            var h = iframeBody.offsetHeight + 25;
+                            f.style.height = h + "px";
+                        }
+                        catch (e)
+                        {
+                        }
+                    }
+                </script>
             </head>
             <body width="100%">
                 <img src="title.png" style="display: none" /> <!-- need this for CHM -->

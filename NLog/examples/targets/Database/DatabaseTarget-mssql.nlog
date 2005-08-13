@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<nlog autoReload="true">
+    <targets>
+        <target name="database" type="Database">
+
+            <dbprovider>mssql</dbprovider>
+
+            <!-- database connection parameters -->
+            <!-- alternatively you could provide a single 'connectionstring' parameter -->
+
+            <dbhost>.</dbhost> 
+            <dbdatabase>NLogDatabase</dbdatabase>
+            <dbusername>nloguser</dbusername>
+            <dbpassword>nlogpassword</dbpassword>
+
+            <commandText>
+                insert into LogTable(time_stamp,level,logger,message) values(@time_stamp, @level, @logger, @message);
+            </commandText>
+
+            <parameter name="@time_stamp" layout="${date}" />
+            <parameter name="@level" layout="${level}" />
+            <parameter name="@logger" layout="${logger}" />
+            <parameter name="@message" layout="${message}" />
+        </target>
+    </targets>
+
+    <rules>
+        <logger name="*" minlevel="Debug" appendTo="database" />
+    </rules>
+</nlog>

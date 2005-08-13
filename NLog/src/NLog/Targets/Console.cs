@@ -42,7 +42,7 @@ namespace NLog.Targets
     /// Writes logging messages to the console.
     /// </summary>
     /// <example>
-    /// To set up the Console target in the configuration file, 
+    /// To set up the target in the configuration file, 
     /// use the following syntax:
     /// <xml src="examples/targets/Console/ConsoleTarget.nlog" />
     /// To set up the log target programmatically use code like this:
