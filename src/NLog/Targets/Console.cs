@@ -44,39 +44,9 @@ namespace NLog.Targets
     /// <example>
     /// To set up the Console target in the configuration file, 
     /// use the following syntax:
-    /// <code escaped="true">
-    /// <nlog>
-    ///     <targets>
-    ///         <target name="console" type="Console" layout="${logger} ${message}" />
-    ///     </targets>
-    ///     <rules>
-    ///         <logger name="*" minlevel="Info" writeTo="console" />
-    ///     </rules>
-    /// </nlog>
-    /// </code>
+    /// <xml src="examples/targets/Console/ConsoleTarget.nlog" />
     /// To set up the log target programmatically use code like this:
-    /// <code>
-    /// using NLog;
-    /// using NLog.Config;
-    /// using NLog.Targets;
-    /// 
-    /// // create the target
-    /// ConsoleTarget target = new ConsoleTarget();
-    /// target.Error = true; // send log events to stderr instead of stdout
-    /// 
-    /// // create logging configuration object
-    /// LoggingConfiguration config = new LoggingConfiguration();
-    /// 
-    /// // add a rule that directs all messages above the Debug level
-    /// // to the above target
-    /// // LoggingRule rule = new LoggingRule("*", LogLevel.Debug, target);
-    /// 
-    /// // add the rule
-    /// config.LoggingRules.Add(rule);
-    /// 
-    /// // activate the configuration
-    /// LogManager.Configuration = config;
-    /// </code>
+    /// <cs src="examples/targets/Console/ConsoleTarget.cs" />
     /// </example>
     [Target("Console")]
     public sealed class ConsoleTarget: Target

@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<nlog>
+    <targets>
+        <target name="file" type="File" filename="${basedir}/logs/logfile.txt"
+            layout="${longdate} ${level:uppercase=true} ${logger} ${aspnet-session:variable=UserName} ${threadid} ${callsite} ${message}" />
+        <target name="trace" type="ASPNetTrace" 
+            layout="${level:uppercase=true} ${callsite} ${message}" />
+    </targets>
+
+    <rules>
+        <logger name="*" minLevel="Info" appendTo="trace" />
+        <logger name="*" minLevel="Debug" appendTo="file" />
+    </rules>
+</nlog>

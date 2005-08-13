@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="bug">
+    <h1>Report NLog Bug</h1>
+    <p>NLog uses TRAC for bug tracking and project management. The interface can be found <a href="http://trac.sav.net/nlog">here.</a></p>
+</content>

@@ -3,20 +3,14 @@
 <content lang="en" id="news">
     <h1>News</h1>
     <table width="100%">
+        <tr><td class="newsdate">2005-08-15</td><td class="newstext">
+                <p><b style="color: red">NLog 0.95 has been released!</b>. Click <link href="releasenotes">here</link> for the release notes. Source and binary packages can be found <link href="download">here</link>.</p>
+             </td>
+         </tr>
         <tr><td class="newsdate">2005-06-09</td><td class="newstext">
-                <p><b style="color: red">NLog 0.9 has been released!</b>. Click <link href="releasenotes">here</link> for the release notes. Source and binary packages can be found <link href="download">here</link>.</p>
+                <p>NLog 0.9 has been released!. Click <link href="releasenotes">here</link> for the release notes. Source and binary packages can be found <link href="download">here</link>.</p>
              </td>
          </tr>
         <tr><td class="newsdate">2005-03-08</td><td class="newstext">NLog 0.5 beta 1 has been released!. This work is based on 6 months of testing and should be production-ready. Download it <a href="http://sourceforge.net/project/showfiles.php?group_id=116456">here</a>.</td></tr>
-        <!--
-        <tr><td class="newsdate">2004-09-28</td><td class="newstext">Improved support for .NETCF and added MessageBoxAppender. Also added the new .NETCF binary snapshot. You can get the new version from the <a href="snapshots/">snapshots</a> directory.</td></tr>
-        <tr><td class="newsdate">2004-09-02</td><td class="newstext">Added preliminary support for database logging. It's available in SVN repository or in the <a href="snapshots/">snapshots</a>.</td></tr>
-        <tr><td class="newsdate">2004-08-30</td><td class="newstext"><b>NLog 0.2 beta 1 has been released!</b>. This is the initial public release and includes source and binary package plus a Win32-based graphical <a href="http://nsis.sourceforge.net/">installer</a> which is a one-click way to install NLog for use with VS.NET. Download it <a href="http://sourceforge.net/project/showfiles.php?group_id=116456">here</a>.</td></tr>
-        <tr><td class="newsdate">2004-08-26</td><td class="newstext">Added OutputDebugString appender.</td></tr>
-        <tr><td class="newsdate">2004-08-25</td><td class="newstext">First API stabilization attempt. Introduced typed collection for almost all public properties. The logging interface is now clean and very unlikely to change in the future. Programmatic configuration API may see some revisions, but don't expect them to be major.</td></tr>
-        <tr><td class="newsdate">2004-08-23</td><td class="newstext">Initial support for MDC and NDC is in SVN. See <a href="http://sourceforge.net/mailarchive/forum.php?thread_id=5390518&amp;forum_id=41984">this post</a> for more information. Website will be updated soon to reflect MDC/NDC support.</td></tr>
-        <tr><td class="newsdate">2004-08-23</td><td class="newstext">Initial support for <a href="filters.html">filter infrastructure</a> added to SVN repository. NLog core is feature complete now. Future work will concentrate on stabilizing things and adding new appenders, layout appenders and filters.</td></tr>
-        <tr><td class="newsdate">2004-08-21</td><td class="newstext">Public announcement of the NLog project.</td></tr>
-        -->
     </table>
 </content>

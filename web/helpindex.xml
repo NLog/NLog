@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="helpindex">
+    <h3>What is NLog?</h3>
+    <p>
+        NLog is a .NET logging library similar in concepts to <a href="http://log4net.sourceforge.net/">log4net</a>, 
+        designed with simplicity and flexibility in mind. NLog project is hosted at <a href="http://sourceforge.net/projects/nlog">sourceforge.net</a>.
+    </p>
+
+    <h3>Features</h3>
+    <ul>
+        <li>.NET, .NET Compact Framework and Mono 1.0 support</li>
+        <li>very easy to configure, both with a config file and programmatically</li>
+        <li>easy to use - interface is identical to <code>Console.WriteLine</code> - there's no need to use <code>String.Format</code> any more</li>
+        <li>supports <link href="netapi">.NET</link>, <link href="capi">C/C++</link> and <link href="comapi">COM</link> interop API</li>
+    </ul>
+    <p>
+        NLog is open source, licensed 
+        under the terms of <a href="http://www.opensource.org/licenses/bsd-license.php">BSD license</a>, 
+        which permits commercial use. Everyone is encouraged to test it and report feedback to the mailing list.
+    </p>
+    <p>
+        The logging API is modelled after log4net with some extensions that help it achieve great speed as described <link href="netapi">here</link>.
+    </p>
+
+    <h3>Documentation</h3>
+    <ul>
+        <li>To see NLog in action, open the <link href="tutorial">NLog Tutorial</link>.</li>
+        <li>For an overview of APIs provided by NLog, click <link href="api">here</link>.</li>
+        <li>Various <link href="howto">How To</link> documents provide describe NLog extensibility, troubleshooting and performance.</li>
+        <li>See the <link href="config">Configuration Options</link> document for information on configuring NLog.</li>
+        <li>For the usage information see the <link href="reference">Reference</link> section.</li>
+    </ul>
+</content>

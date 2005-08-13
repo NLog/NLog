@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<nlog>
+    <extensions>
+        <add assembly="MyAssembly" />
+    </extensions>
+
+    <targets>
+        <target name="console" type="Console" />
+    </targets>
+
+    <rules>
+        <logger name="*" minLevel="Info" appendTo="console">
+            <filters>
+                <hourRange fromHour="10" toHour="12" action="Ignore" />
+            </filters>
+        </logger>
+    </rules>
+</nlog>

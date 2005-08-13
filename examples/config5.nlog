@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<nlog>
+    <targets>
+        <target name="name1" type="type1" layout="layout1" parameter1="..." parameterN="..." />
+        <target name="name2" type="type2" layout="layout2" parameter1="..." parameterN="..." />
+        <target name="name3" type="type3" layout="layout3" parameter1="..." parameterN="..." />
+        <target name="name4" type="type4" layout="layout4" parameter1="..." parameterN="..." />
+    </targets>
+</nlog>
+

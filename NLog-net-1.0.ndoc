@@ -25,23 +25,33 @@
             <property name="HtmlHelpName" value="NLog" />
             <property name="Title" value="NLog Logging Library" />
             <property name="ShowVisualBasic" value="True" />
+            <property name="SdkLinksOnWeb" value="True" />
             <property name="IncludeFavorites" value="True" />
+            <property name="RootPageTOCName" value="Welcome to NLog" />
+            <property name="RootPageFileName" value=".\helpweb\helpindex.html" />
             <property name="BinaryTOC" value="False" />
+            <property name="FilesToInclude" value="targets.html|filters.html|layoutrenderers.html" />
+            <property name="AdditionalContentResourceDirectory" value=".\helpweb\" />
+            <property name="ExtensibilityStylesheet" value=".\syntax.xsl" />
             <property name="ShowMissingParams" value="True" />
             <property name="ShowMissingReturns" value="True" />
             <property name="DocumentInheritedFrameworkMembers" value="False" />
+            <property name="AssemblyVersionInfo" value="AssemblyVersion" />
             <property name="CopyrightText" value="Copyright (c) 2004-2005 by Jaroslaw Kowalski" />
             <property name="CopyrightHref" value="http://nlog.sourceforge.net/" />
+            <property name="Preliminary" value="True" />
             <property name="InstanceMembersDefaultToSafe" value="True" />
         </documenter>
         <documenter name="MSDN 2003">
             <property name="OutputDirectory" value=".\doc\" />
             <property name="Title" value="An NDoc Documented Class Library" />
+            <property name="ExtensibilityStylesheet" value=".\syntax.xsl" />
         </documenter>
         <documenter name="VS.NET 2003">
             <property name="OutputDirectory" value=".\doc\" />
             <property name="HtmlHelpName" value="Documentation" />
             <property name="Title" value="An NDoc documented library" />
+            <property name="ExtensibilityStylesheet" value=".\syntax.xsl" />
         </documenter>
         <documenter name="XML">
             <property name="OutputFile" value=".\doc.xml" />

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="website">
+    <h1>NLog website</h1>
+    <p>NLog website is located <a href="http://nlog.sourceforge.net/">here</a>. To report a bug, use the TRAC interface available <a href="http://trac.sav.net/nlog">here</a>.</p>
+</content>

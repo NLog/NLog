@@ -1,3 +1,0 @@
-<nlog xml:space="preserve">
-    <include file="${machinename}.config.log" />
-</nlog>

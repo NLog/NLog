@@ -40,7 +40,7 @@ td.nav
     font-size: 13px;
     font-style: normal;
     padding: 3px;
-    width: 190px;
+    width: 150px;
 }
 
 a
@@ -119,8 +119,16 @@ pre.csharp
     font-size: 11px;
     padding: 4px;
     font-color: #606060;
-    background-color: #f0f0f0;
-    border: 1px solid #e0e0e0;
+    background-color: #fffff8;
+}
+
+pre.xml
+{
+    font-family: Courier New;
+    font-size: 11px;
+    padding: 4px;
+    font-color: #606060;
+    background-color: #fffff8;
 }
 
 span.keyword
@@ -183,6 +191,7 @@ a.nav
     font-weight: bold;
     color: #202040;
     margin: 1px;
+    width: 150px;
     cursor: pointer; cursor: hand;
     text-decoration: none;
     padding-left: 4px;
@@ -288,7 +297,7 @@ td.nav_selected
     border: 1px solid #e0e0e0;
     padding-left: 4px;
     padding-right: 4px;
-    width: 190px;
+    width: 150px;
     font-size: 13px;
 }
 
@@ -317,7 +326,7 @@ td.content
     font-family: Trebuchet MS, Arial, Helv;
     font-size: 13px;
     padding: 20px;
-    width: 600px;
+    width: 100%;
     text-align: left;
     background-color: white;
 }
@@ -325,7 +334,7 @@ td.content
 td.controls
 {
     padding: 6px;
-    width: 200px;
+    width: 170px;
     background-color: #F2F7FC;
     border-right: 1px solid #c0c0c0;
     border-bottom: 1px solid #c0c0c0;
@@ -374,12 +383,17 @@ td.newstext
     font-size: 13px;
 }
 
+body.example
+{
+    border: 0px solid black;
+}
+
 .xml-example
 {
     background-color: #fffff0; 
     border: 1px solid #c0c0c0; 
     overflow: auto;
-    width: 600px;
+    width: 100%;
     display: block;
     font-size: 12px;
     padding: 4px;
@@ -391,7 +405,7 @@ td.newstext
     background-color: #fffff0; 
     border: 1px solid #c0c0c0; 
     overflow: auto; 
-    width: 600px;
+    width: 100%;
     font-size: 12px;
     padding: 4px;
 }
@@ -438,6 +452,37 @@ td.newstext
     color: #400000;
 }
 
+.xml .a
+{
+    color: #ff0000;
+}
+
+.xml .at
+{
+    color: #0000ff;
+}
+
+.xml .b
+{
+    color: #0000ff;
+}
+
+.xml .e
+{
+    color: #800000;
+}
+
+.xml .c
+{
+    color: #008000;
+    font-style: italic;
+}
+
+.xml .x
+{
+    color: #A0A000;
+}
+
 code
 {
     color: #000080;
@@ -448,7 +493,7 @@ code
     border-collapse: collapse;
     font-size: 13px;
     background-color: white;
-    width: 600px;
+    width: 100%;
 }
 
 .table td {
@@ -483,7 +528,7 @@ div.summarytable
 
 .summarytable table {
     font-size: 100%;
-    width: 100%;
+    width: 100%%;
     border-collapse: collapse;
     background-color: white;
     border: 1px solid #e0e0c0;

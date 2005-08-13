@@ -33,9 +33,9 @@
         application config file (<code>applicationname.exe.config</code> - let's call it 
         <code>App.config</code>) and the other used in <code>.nlog</code> config files.</p>
     <h4>App.config file format</h4>
-    <xml-example src="examples/App.config" />
+    <xml src="examples/App.config" />
     <h4>.nlog file format</h4>
-    <xml-example src="examples/config1.nlog" />
+    <xml src="examples/config1.nlog" />
     <h4>Configuration parameters</h4>
     <p>The following configuration parameters can be set in the config file.</p>
     <h5><x><nlog autoReload="true | false" /></x></h5>
@@ -86,7 +86,7 @@
         will include bilbo.config.nlog. This technique is very useful in a multi-server environment because you
         can store each server's configuration file in a version control system and NLog will take care of using
         the proper one after deployment.</p>
-    <xml-example xml:space="preserve" src="examples/config2.nlog" />
+    <xml xml:space="preserve" src="examples/config2.nlog" />
 
     <h5><x><extensions /></x></h5>
     <p>
@@ -94,7 +94,7 @@
         from an external assembly. This is required for the targets from anything other than NLog.dll and NLog.*.dll assemblies to be available.
         The following configuration syntax is used to load extensions:
     </p>
-    <xml-example src="examples/config4.nlog" />
+    <xml src="examples/config4.nlog" />
     <p>
         NLog recognizes the operating system and CLI runtime and loads the DLLs which are part of NLog 
         distibution automatically. The following table describes NLog behaviour:</p>
@@ -131,7 +131,7 @@
         The <x><targets/></x> element defines named targets (previously called "appenders"). Once you've defined the target
         you can reference it in the <a href="#rules">&lt;rules/&gt;</a> section.</p>
     <p>The following syntax is used to define targets:</p>
-    <xml-example src="examples/config5.nlog" />
+    <xml src="examples/config5.nlog" />
     <p>The parameter specification depends on the target type. Click <link href="targets">here</link> for the reference.</p>
     <h5><x><rules /></x></h5>
     <p>
@@ -160,7 +160,7 @@
     <p>In addition, <x><logger/></x> supports <x><filters/></x> child element that can be used 
         to specify filters. See the <link href="filters.html">Filter Reference</link> for more information.</p>
     The following example shows various routing options:
-    <xml-example src="examples/config3.nlog" />
+    <xml src="examples/config3.nlog" />
     <a name="api" />
     <h3>Programmatic configuration</h3>
     <p>

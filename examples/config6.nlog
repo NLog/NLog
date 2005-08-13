@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<configuration>
+    <configSections>
+        <section name="nlog" type="NLog.Config.ConfigSectionHandler, NLog" />
+    </configSections>
+
+    <nlog>
+        <targets>
+            <target name="console" type="Console" />
+            <target name="file1" type="File" filename="file1.log" />
+            <target name="file2" type="File" filename="file2.log" />
+            <target name="file3" type="File" filename="file3.log" />
+        </targets>
+
+        <rules>
+            <logger name="*" levels="Info,Warn,Error" writeTo="console" />
+            <logger name="*" level="Debug" writeTo="file1" />
+            <logger name="*" minlevel="Error" writeTo="file2" />
+            <logger name="*SQL*" writeTo="file3" />
+        </rules>
+    </nlog>
+</configuration>
+
