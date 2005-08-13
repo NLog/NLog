@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<nlog>
+    <targets>
+        <target name="msgbox" type="MessageBox" layout="${longdate}: ${message}" caption="${level}" />
+    </targets>
+
+    <rules>
+        <logger name="*" minLevel="Debug" writeTo="msgbox" />
+    </rules>
+</nlog>

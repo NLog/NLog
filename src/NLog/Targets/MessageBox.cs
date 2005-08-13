@@ -46,6 +46,25 @@ namespace NLog.Targets
     /// <summary>
     /// Pops up logging messages as message boxes.
     /// </summary>
+    /// <example>
+    /// <p>
+    /// To set up the target in the configuration file, 
+    /// use the following syntax:
+    /// </p>
+    /// <xml src="examples/targets/MessageBox/MessageBoxTarget.nlog" />
+    /// <p>
+    /// This assumes just one target and a single rule. More configuration
+    /// options are described <a href="config.html">here</a>.
+    /// </p>
+    /// <p>
+    /// The result is a message box:
+    /// </p>
+    /// <img src="examples/targets/MessageBox/MessageBoxTarget.gif" />
+    /// <p>
+    /// To set up the log target programmatically use code like this:
+    /// </p>
+    /// <cs src="examples/targets/MessageBox/MessageBoxTarget.cs" />
+    /// </example>
     [Target("MessageBox")]
     public sealed class MessageBoxTarget: Target
     {

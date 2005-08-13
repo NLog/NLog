@@ -58,12 +58,23 @@
             ... 
             /&gt;
         </code>
-        <h4>Parameters:</h4>
-        <table>
+        <h4>Parameters (blue fields are required):</h4>
+        <table cellspacing="0" cellpadding="0" class="paramtable">
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
             <xsl:apply-templates select="property" mode="parameter">
                 <xsl:sort select="count(attribute[@name='NLog.Config.RequiredParameterAttribute'])" order="descending" />
                 <xsl:sort select="@name" />
             </xsl:apply-templates>
+            <xsl:if test="property[attribute/@name='NLog.Config.ArrayParameterAttribute']">
+                <xsl:apply-templates select="property" mode="parameter2">
+                    <xsl:sort select="count(attribute[@name='NLog.Config.RequiredParameterAttribute'])" order="descending" />
+                    <xsl:sort select="@name" />
+                </xsl:apply-templates>
+            </xsl:if>
         </table>
         <xsl:if test="documentation/example">
             <h4>Example:</h4>
@@ -81,11 +92,11 @@
         <!-- ignore -->
     </xsl:template>
 
-    <xsl:template match="property[@name='Name']" mode="parameter">
+    <xsl:template match="property[@id='P:NLog.Target.Name']" mode="parameter">
         <!-- ignore -->
     </xsl:template>
 
-    <xsl:template match="property[@name='Type']" mode="parameter">
+    <xsl:template match="property[@id='P:NLog.Target.Type']" mode="parameter">
         <!-- ignore -->
     </xsl:template>
 
@@ -103,19 +114,24 @@
                         </xsl:if>
                         <xsl:value-of select="@name" />
                     </span>
-
-                    <xsl:if test="attribute/@name='NLog.Config.AcceptsLayoutAttribute'">
-                        <br/><a href="layoutrenderers.html"><span class="acceptslayout" title="This parameter accepts layout specification. Click here to learn more about layouts.">${}</span></a>
-                    </xsl:if>
+                </td>
+                <td class="parametertype">
+                    <nobr>
+                        <xsl:call-template name="simple-type-name">
+                            <xsl:with-param name="type" select="@type" />
+                        </xsl:call-template>
+                        <xsl:if test="attribute/@name='NLog.Config.AcceptsLayoutAttribute'">
+                            &#160;<a href="layoutrenderers.html"><span class="acceptslayout" title="This parameter accepts layout specification. Click here to learn more about layouts.">${}</span></a>
+                        </xsl:if>
+                    </nobr>
                 </td>
                 <td class="parametervalue">
                     <xsl:apply-templates select="documentation/summary" /><br/>
                     <xsl:if test="attribute[@name='System.ComponentModel.DefaultValueAttribute']">
-                        <p>Default value is: <code><xsl:value-of select="attribute[@name='System.ComponentModel.DefaultValueAttribute']/property[@name='Value']/@value" /></code>.</p>
+                        Default value is: <code><xsl:value-of select="attribute[@name='System.ComponentModel.DefaultValueAttribute']/property[@name='Value']/@value" /></code>.
                     </xsl:if>
                     <xsl:if test="documentation/remarks">
-                        <h4>Remarks</h4>
-                        <p><xsl:apply-templates select="documentation/remarks" /></p>
+                        <xsl:apply-templates select="documentation/remarks" />
                     </xsl:if>
                     <xsl:if test="documentation/example">
                         <h4>Example</h4>
@@ -127,11 +143,31 @@
     </xsl:template>
 
     <xsl:template match="property[attribute/@name='NLog.Config.ArrayParameterAttribute']" mode="parameter2">
-        <xsl:variable name="itemtype" select="attribute[@name='NLog.Config.ArrayParameterAttribute']/property[@name='ElementType']/@value" />
-        <br/>&lt;<xsl:value-of select="@name" />&gt;<br/>
-        <xsl:value-of select="$itemtype" />
-        <xsl:apply-templates select="//class[@name='$itemtype']" mode="parameter" />
-        &lt;/<xsl:value-of select="@name" />&gt;
+        <xsl:variable name="itemname" select="attribute[@name='NLog.Config.ArrayParameterAttribute']/property[@name='ElementName']/@value" />
+        <xsl:variable name="itemtype" select="attribute[@name='NLog.Config.ArrayParameterAttribute']/property[@name='ItemType']/@value" />
+        <tr>
+            <td valign="top" class="parametername" rowspan="2">
+                <xsl:value-of select="@name" />
+            </td>
+            <td class="parametertype" colspan="2">
+                Collection of 
+                <xsl:call-template name="simple-type-name">
+                    <xsl:with-param name="type"><xsl:value-of select="$itemtype" /></xsl:with-param>
+                </xsl:call-template>. Each element is represented as &lt;<xsl:value-of select="$itemname" />/&gt;
+            </td>
+        </tr>
+        <tr>
+            <td class="parametervalue" colspan="2">
+                <table class="subparamtable" cellspacing="0" cellpadding="0" width="100%">
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <xsl:apply-templates select="//class[@id=concat('T:',$itemtype)]/property" mode="parameter" />
+                </table>
+            </td>
+        </tr>
     </xsl:template>
 
     <xsl:template match="property" mode="parameter2">

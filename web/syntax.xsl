@@ -4,10 +4,36 @@
     <xsl:template name="external-iframe">
         <p/>
         <a href="{@src}.html" style="display:none">A</a>
-        <table cellpadding="0" cellspacing="0" style="width: 100%; height: 200px">
+        <script language="JavaScript">
+        function enlarge_iframe_<xsl:value-of select="generate-id(.)" />()
+        {
+            try
+            {
+                var f = document.getElementById('<xsl:value-of select="generate-id(.)" />');
+                var f2 = window.frames[f.name];
+                var h;
+                if (!document.all)
+                {
+                    h = f2.document.body.offsetHeight + 15;
+                }
+                else
+                {
+                    h = f2.document.body.scrollHeight + 15;
+                }
+                // alert('enlarge_iframe_' + f.name + " h = " + h);
+                f.style.height = h + "px";
+            }
+            catch (e)
+            {
+                alert(e.description);
+            }
+        }
+        </script>
+
+        <table cellpadding="0" cellspacing="0" style="width: 95%;" border="0">
             <tr>
-                <td colspan="2">
-                    <iframe src="{@src}.html">
+                <td valign="bottom">
+                    <iframe src="{@src}.html" onload='enlarge_iframe_{generate-id(.)}()'>
                         <xsl:attribute name="style">width: 100%; height: 200px; border: 1px solid #c0c0c0</xsl:attribute>
                         <xsl:attribute name="id"><xsl:value-of select="generate-id(.)" /></xsl:attribute>
                         <xsl:attribute name="name"><xsl:value-of select="generate-id(.)" /></xsl:attribute>
@@ -15,8 +41,7 @@
                 </td>
             </tr>
             <tr>
-                <td><a href="{@src}">Download this file</a></td>
-                <td align="right"><a href="javascript:enlarge_iframe('{generate-id(.)}')">Enlarge</a></td>
+                <td style="font-size: 12px"><a href="{@src}">Download this file</a></td>
             </tr>
         </table>
         <p/>

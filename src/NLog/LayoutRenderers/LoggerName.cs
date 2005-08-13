@@ -46,6 +46,9 @@ namespace NLog.LayoutRenderers
     {
         private bool _shortName = false;
 
+        /// <summary>
+        /// Render short logger name (the part after the trailing dot character).
+        /// </summary>
         [System.ComponentModel.DefaultValue(false)]
         public bool ShortName
         {

@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<nlog>
+    <targets>
+        <target name="debugger" type="Debugger" layout="${message}" />
+    </targets>
+
+    <rules>
+        <logger name="*" minLevel="Info" writeTo="debugger" />
+    </rules>
+</nlog>
