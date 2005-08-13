@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <xsl:variable name="page_id" select="concat(/*[position()=1]/@id,$page_id_override)" />
-    <xsl:variable name="subpage_id" select="concat(/*[position()=1]/@subid,$subpage_id_override)" />
-    <xsl:variable name="common" select="document('common.en.xml')" />
     <xsl:param name="page_id_override"></xsl:param>
     <xsl:param name="subpage_id_override"></xsl:param>
     <xsl:param name="file_extension">xml</xsl:param>
     <xsl:param name="sourceforge">0</xsl:param>
     <xsl:param name="log4net_comparison">0</xsl:param>
+    <xsl:param name="mode">web</xsl:param>
 
+    <xsl:variable name="page_id" select="concat(/*[position()=1]/@id,$page_id_override)" />
+    <xsl:variable name="subpage_id" select="concat(/*[position()=1]/@subid,$subpage_id_override)" />
+    <xsl:variable name="common" select="document(concat($mode,'menu.xml'))" />
+    
     <xsl:output method="html" indent="no" />
 
     <xsl:template match="/">
@@ -21,10 +23,11 @@
                 <title>NLog - <xsl:value-of select="$common/common/navigation/nav[@href=$page_id]/@label" /></title>
             </head>
             <body width="100%">
+                <img src="title.png" style="display: none" /> <!-- need this for CHM -->
                 <div class="titleimage" style="overflow: hidden">
                     <img src="NLog.jpg" />
                 </div>
-                <table class="page" cellpadding="0" cellspacing="0">
+                <table class="page" cellpadding="0" cellspacing="0" style="table-layout: fixed">
                     <tr>
                         <td valign="top" class="controls" rowspan="2">
                             <xsl:call-template name="controls" />
@@ -67,9 +70,10 @@ var sc_security="6fe22c9a";
 
     <xsl:template name="controls">
         <xsl:apply-templates select="$common/common/navigation" />
-        <p/>
-        <p style="border: 1px solid #c0c0c0; background-color: white; padding: 4px; font-size: 13px; color: red; font-weight: bold">Important information for users of NLog versions 0.2 and 0.5! Click <a href="releasenotes.html">here</a>.</p>
-        <a href="http://www.cenqua.com/clover.net"><img src="http://www.cenqua.com/images/cloverednet1.gif" width="89" height="33" border="0" alt="Code Coverage by Clover.NET"/></a>
+        <xsl:if test="$sourceforge = '1'">
+            <p/>
+            <a href="http://www.cenqua.com/clover.net"><img src="http://www.cenqua.com/images/cloverednet1.gif" width="89" height="33" border="0" alt="Code Coverage by Clover.NET"/></a>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="navigation">
@@ -96,77 +100,8 @@ var sc_security="6fe22c9a";
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="cs">
-        <pre class="csharp-example">
-            <xsl:copy-of select="document(concat(@src,'.html'))" />
-        </pre>
-        <!-- <a href="{@src}">Download this sample</a><br/> -->
-    </xsl:template>
+    <xsl:include href="syntax.xsl" />
 
-    <xsl:template match="js">
-        <pre class="jscript-example">
-            <xsl:copy-of select="document(concat(@src,'.html'))" />
-        </pre>
-        <!-- <a href="{@src}">Download this sample</a><br/> -->
-    </xsl:template>
-
-    <xsl:template match="x">
-        <xsl:apply-templates mode="xml-example" />
-    </xsl:template>
-
-    <xsl:template match="link">
-        <a href="{@href}.{$file_extension}"><xsl:apply-templates /></a>
-    </xsl:template>
-
-    <xsl:template match="xml-example[@src]">
-        <pre class="xml-example">
-            <xsl:apply-templates mode="xml-example" select="document(@src)" />
-        </pre>
-        <!-- <a href="{@src}">Download this sample</a><br/> -->
-    </xsl:template>
-
-    <xsl:template match="xml-example">
-        <pre class="xml-example">
-            <xsl:apply-templates mode="xml-example" />
-        </pre>
-    </xsl:template>
-
-    <xsl:template match="*" mode="xml-example">
-        <xsl:choose>
-            <xsl:when test="count(descendant::node()) = 0">
-                <span class="xmlbracket">&lt;</span>
-                <span class="xmlelement"><xsl:value-of select="name()" /></span>
-                <xsl:apply-templates select="@*" mode="xml-example" />
-                <span class="xmlbracket"> /&gt;</span>
-            </xsl:when>
-            <xsl:otherwise>
-                <span class="xmlbracket">&lt;</span>
-                <span class="xmlelement"><xsl:value-of select="name()" /></span>
-                <xsl:apply-templates select="@*" mode="xml-example" />
-                <span class="xmlbracket">&gt;</span>
-                <xsl:apply-templates mode="xml-example" />
-                <span class="xmlbracket">&lt;/</span>
-                <span class="xmlelement"><xsl:value-of select="name()" /></span>
-                <span class="xmlbracket">&gt;</span>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
-    <xsl:template match="@*[name()='xml:space']" mode="xml-example"></xsl:template>
-    <xsl:template match="@*" mode="xml-example">
-        <span class="xmlattribute"><xsl:text> </xsl:text><xsl:value-of select="name()"/></span>
-        <span class="xmlpunct">=</span><span class="xmlattribtext">"<xsl:value-of select="." />"</span>
-    </xsl:template>
-
-    <xsl:template match="comment()" mode="xml-example">
-        <span class="xmlcomment">&lt;!--<xsl:value-of select="." />--&gt;</span>
-    </xsl:template>
-    <xsl:template match="node()" mode="xml-example" priority="-10">
-        <xsl:copy>
-            <xsl:apply-templates mode="xml-example" />
-        </xsl:copy>
-    </xsl:template>
-    
     <xsl:template match="benchmark-table">
         <xsl:variable name="nlog_results" select="document('nlog.results.xml')" />
         <xsl:variable name="log4net_results" select="document('log4net.results.xml')" />

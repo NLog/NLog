@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<nlog>
+    <extensions>
+        <!-- 
+        Load assembly from the specified file the path is 
+        relative to the config file directory 
+        so you need to use bin/filename.dll for web applications 
+        -->
+
+        <add assemblyFile="NLog.Extensions.dll" />
+
+        <!-- load assembly using the specified name -->
+        <add assembly="NLog.Extensions" />
+
+        <!-- 
+        Load assembly from the specified file and prefix 
+        all targets and layout renderers with 'zzz' 
+        
+        This can be used to avoid name clashes on extension dlls.
+        -->
+
+        <add prefix="zzz" assemblyFile="NLog.Extensions.dll" />
+    </extensions>
+</nlog>
+

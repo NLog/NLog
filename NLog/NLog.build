@@ -13,6 +13,7 @@
     <property name="ssh.program.args" value="-batch" />
 
     <property name="ndoc.console.exe" value="C:\Program Files\NDoc 1.3\bin\net\1.1\ndocconsole.exe" />
+    <property name="prettyprinter.exe" value="tools/PrettyPrinter.exe" />
 
     <property name="sourceforge.addr" value="jkowalski@nlog.sourceforge.net" />
     <property name="sourceforge.groupdir" value="/home/groups/n/nl/nlog" />
@@ -38,6 +39,7 @@
         <property name="clover.report.dir" value="build/${buildsubdir}/clover_report" />
         <property name="clover.build.dir" value="build/${buildsubdir}/clover" />
         <property name="web.dir" value="build/${buildsubdir}/web" unless="${property::exists('web.dir')}" />
+        <property name="helpweb.dir" value="build/${buildsubdir}/helpweb" unless="${property::exists('helpweb.dir')}" />
 
         <echo message="Building NLog for ${framework::get-target-framework()}" />
         <echo message="Package name: ${nlog.package.name}" />
@@ -74,7 +76,7 @@
     </target>
 
     <target name="clean" depends="configure">
-        <delete dir="build/${buildsubdir}" />
+        <delete dir="build/${buildsubdir}" failonerror="false" />
     </target>
 
     <target name="NLog" depends="configure">
@@ -445,17 +447,25 @@
         <exec program="nant" commandline="-t:netcf-1.0 -D:nlog.package.name=${nlog.package.name} release compactdist" />
     </target>
 
-    <target name="doc" depends="configure, build">
+    <target name="doc" depends="configure, build, xmldoc, website, helpwebsite">
+        <copy file="${nant.project.basedir}/web/syntax.xsl" tofile="build/${buildsubdir}/syntax.xsl" />
+        <copy file="${nant.project.basedir}/NLog-${framework::get-target-framework()}.ndoc" tofile="build/${buildsubdir}/NLog.ndoc" />
+        <copy todir="build/${buildsubdir}/help/examples">
+            <fileset basedir="build/${buildsubdir}/helpweb/examples">
+                <include name="**/*" />
+            </fileset>
+        </copy>
         <uptodate property="help.uptodate">
             <targetfiles>
                 <include name="${nlog.help.dir}/NLog.chm" />
             </targetfiles>
-            <sourcefiles basedir="${nlog.dir}">
+            <sourcefiles basedir="build/${buildsubdir}">
                 <include name="**/*.dll" />
+                <include name="web/**/*" />
+                <include name="NLog.ndoc" />
             </sourcefiles>
         </uptodate>
         <if test="${not help.uptodate}">
-            <copy file="${nant.project.basedir}/NLog-${framework::get-target-framework()}.ndoc" tofile="build/${buildsubdir}/NLog.ndoc" />
             <exec program="${ndoc.console.exe}" workingdir="build/${buildsubdir}" commandline="-documenter=MSDN -project=NLog.ndoc" />
         </if>
     </target>
@@ -560,16 +570,19 @@
     </target>
 
     <target name="xmldoc" depends="build">
-        <copy file="${nant.project.basedir}/NLog-${framework::get-target-framework()}.ndoc" tofile="build/${buildsubdir}/NLog.ndoc" />
-        <exec program="${ndoc.console.exe}" workingdir="build/${buildsubdir}" commandline="-documenter=XML -project=NLog.ndoc" />
-    </target>
-
-    <target name="website" depends="configure">
-        <property name="web.sourceforge" value="1" />
-        <delete dir="${web.dir}" if="${directory::exists(web.dir)}" failonerror="false" />
-        <mkdir dir="${web.dir}" />
-        <mkdir dir="${web.dir}/examples" />
-
+        <uptodate property="xmldoc.uptodate">
+            <targetfiles>
+                <include name="build/${buildsubdir}/doc.xml" />
+            </targetfiles>
+            <sourcefiles basedir="build/${buildsubdir}">
+                <include name="**/*.dll" />
+            </sourcefiles>
+        </uptodate>
+        <if test="${not xmldoc.uptodate}">
+            <copy file="${nant.project.basedir}/NLog-${framework::get-target-framework()}.ndoc" tofile="build/${buildsubdir}/NLog.ndoc" />
+            <exec program="${ndoc.console.exe}" workingdir="build/${buildsubdir}" commandline="-documenter=XML -project=NLog.ndoc" />
+        </if>
+        <echo message="Getting target, filter and layout renderer names from build/${buildsubdir}/doc.xml ..." />
         <script language="C#">
             <code><![CDATA[
                 public static void ScriptMain(Project project) {
@@ -605,68 +618,205 @@
                 ]]></code>
         </script>
 
+    </target>
+
+    <target name="website" depends="configure">
+        <property name="webbuild.dir" value="${web.dir}" />
+        <property name="web.buildmode" value="web" />
+        <property name="web.sourceforge" value="1" />
+        <call target="buildwebsite" />
+        <copy file="${web.dir}/introduction.html" tofile="${web.dir}/index.html" />
+    </target>
+
+    <target name="helpwebsite" depends="configure">
+        <property name="webbuild.dir" value="${helpweb.dir}" />
+        <property name="web.buildmode" value="help" />
+        <property name="web.sourceforge" value="0" />
+        <call target="buildwebsite" />
+    </target>
+
+    <target name="buildwebsite" depends="configure, xmldoc">
+        <mkdir dir="${webbuild.dir}" />
+        <mkdir dir="${webbuild.dir}/examples" />
+
+        <copy todir="${webbuild.dir}">
+            <fileset basedir="web">
+                <include name="*.css" />
+                <include name="*.png" />
+                <include name="*.jpg" />
+                <include name="*.gif" />
+            </fileset>
+        </copy>
+
+        <copy todir="${webbuild.dir}/examples">
+            <fileset basedir="examples">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+
+        <!-- syntax-hilite all *.cs files -->
+
+        <foreach item="File" property="filename">
+            <in>
+                <items basedir="${webbuild.dir}/examples">
+                    <include name="**/*.cs" />
+                </items>
+            </in>
+            <do>
+                <uptodate property="file.uptodate">
+                    <targetfiles>
+                        <include name="${filename}.html" />
+                    </targetfiles>
+                    <sourcefiles>
+                        <include name="${filename}" />
+                    </sourcefiles>
+                </uptodate>
+                <if test="${not file.uptodate}">
+                    <echo message="Syntax-highlighting ${filename}" />
+                    <exec program="${prettyprinter.exe}" commandline='-l csharp -i "${filename}" -o "${filename}.html" -s style.css' />
+                </if>
+            </do>
+        </foreach>
+
+        <foreach item="File" property="filename">
+            <in>
+                <items basedir="${webbuild.dir}/examples">
+                    <include name="**/*.js" />
+                </items>
+            </in>
+            <do>
+                <copy file="web/style.css" tofile="${path::combine(path::get-directory-name(filename),'style.css')}" />
+                <uptodate property="file.uptodate">
+                    <targetfiles>
+                        <include name="${filename}.html" />
+                    </targetfiles>
+                    <sourcefiles>
+                        <include name="${filename}" />
+                    </sourcefiles>
+                </uptodate>
+                <if test="${not file.uptodate}">
+                    <echo message="Syntax-highlighting ${filename}" />
+                    <exec program="${prettyprinter.exe}" commandline='-l jscript -i "${filename}" -o "${filename}.html" -s style.css' />
+                </if>
+            </do>
+        </foreach>
+
+        <foreach item="File" property="filename">
+            <in>
+                <items basedir="${webbuild.dir}/examples">
+                    <include name="**/*.nlog" />
+                </items>
+            </in>
+            <do>
+                <copy file="web/style.css" tofile="${path::combine(path::get-directory-name(filename),'style.css')}" />
+                <uptodate property="file.uptodate">
+                    <targetfiles>
+                        <include name="${filename}.html" />
+                    </targetfiles>
+                    <sourcefiles>
+                        <include name="${filename}" />
+                    </sourcefiles>
+                </uptodate>
+                <if test="${not file.uptodate}">
+                    <echo message="Syntax-highlighting ${filename}" />
+                    <exec program="${prettyprinter.exe}" commandline='-l xml -i "${filename}" -o "${filename}.html" -s style.css' />
+                </if>
+            </do>
+        </foreach>
+
+        <foreach item="File" property="filename">
+            <in>
+                <items basedir="${webbuild.dir}/examples">
+                    <include name="*.config" />
+                </items>
+            </in>
+            <do>
+                <copy file="web/style.css" tofile="${path::combine(path::get-directory-name(filename),'style.css')}" />
+                <uptodate property="file.uptodate">
+                    <targetfiles>
+                        <include name="${filename}.html" />
+                    </targetfiles>
+                    <sourcefiles>
+                        <include name="${filename}" />
+                    </sourcefiles>
+                </uptodate>
+                <if test="${not file.uptodate}">
+                    <echo message="Syntax-highlighting ${filename}" />
+                    <exec program="${prettyprinter.exe}" commandline='-l xml -i "${filename}" -o "${filename}.html" -s style.css' />
+                </if>
+            </do>
+        </foreach>
+
         <foreach item="String" in="${nlog.targetNames}" delim="," property="t">
-            <style out="${web.dir}/target.${t}.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
+            <style out="${webbuild.dir}/target.${t}.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
                 <parameters>
                     <parameter name="file_extension" value="html" />
                     <parameter name="sourceforge" value="${web.sourceforge}" />
                     <parameter name="page_id_override" value="reference" />
                     <parameter name="subpage_id_override" value="targets" />
+                    <parameter name="mode" value="${web.buildmode}" />
                     <parameter name="target_name" value="${t}" />
                 </parameters>
             </style>
         </foreach>
 
         <foreach item="String" in="${nlog.layoutRendererNames}" delim="," property="t">
-            <style out="${web.dir}/lr.${t}.html" style="web/layoutrenderers.xsl" in="build/${buildsubdir}/doc.xml">
+            <style out="${webbuild.dir}/lr.${t}.html" style="web/layoutrenderers.xsl" in="build/${buildsubdir}/doc.xml">
                 <parameters>
                     <parameter name="file_extension" value="html" />
                     <parameter name="sourceforge" value="${web.sourceforge}" />
                     <parameter name="page_id_override" value="reference" />
                     <parameter name="subpage_id_override" value="layoutrenderers" />
+                    <parameter name="mode" value="${web.buildmode}" />
                     <parameter name="lr_name" value="${t}" />
                 </parameters>
             </style>
         </foreach>
 
         <foreach item="String" in="${nlog.filterNames}" delim="," property="t">
-            <style out="${web.dir}/filter.${t}.html" style="web/filters.xsl" in="build/${buildsubdir}/doc.xml">
+            <style out="${webbuild.dir}/filter.${t}.html" style="web/filters.xsl" in="build/${buildsubdir}/doc.xml">
                 <parameters>
                     <parameter name="file_extension" value="html" />
                     <parameter name="sourceforge" value="${web.sourceforge}" />
                     <parameter name="page_id_override" value="reference" />
                     <parameter name="subpage_id_override" value="filters" />
+                    <parameter name="mode" value="${web.buildmode}" />
                     <parameter name="filter_name" value="${t}" />
                 </parameters>
             </style>
         </foreach>
 
-        <style out="${web.dir}/targets.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
+        <style out="${webbuild.dir}/targets.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
                 <parameter name="page_id_override" value="reference" />
                 <parameter name="subpage_id_override" value="targets" />
+                <parameter name="mode" value="${web.buildmode}" />
             </parameters>
         </style>
 
-        <style out="${web.dir}/layoutrenderers.html" style="web/layoutrenderers.xsl" in="build/${buildsubdir}/doc.xml">
+        <style out="${webbuild.dir}/layoutrenderers.html" style="web/layoutrenderers.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
                 <parameter name="page_id_override" value="reference" />
                 <parameter name="subpage_id_override" value="layoutrenderers" />
+                <parameter name="mode" value="${web.buildmode}" />
             </parameters>
         </style>
-        <style out="${web.dir}/filters.html" style="web/filters.xsl" in="build/${buildsubdir}/doc.xml">
+        
+        <style out="${webbuild.dir}/filters.html" style="web/filters.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
                 <parameter name="page_id_override" value="reference" />
                 <parameter name="subpage_id_override" value="filters" />
+                <parameter name="mode" value="${web.buildmode}" />
             </parameters>
         </style>
-        <style destdir="${web.dir}" style="web/style.xsl">
+        
+        <style destdir="${webbuild.dir}" style="web/style.xsl">
             <infiles basedir="web">
                 <include name="*.xml" />
                 <exclude name="common.en.xml" />
@@ -674,17 +824,10 @@
             <parameters>
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
+                <parameter name="mode" value="${web.buildmode}" />
             </parameters>
         </style>
-        <copy todir="${web.dir}">
-            <fileset basedir="web">
-                <include name="*.css" />
-                <include name="*.png" />
-                <include name="*.jpg" />
-                <include name="*.gif" />
-                <include name="examples/*" />
-            </fileset>
-        </copy>
+
     </target>
     
     <target name="comparison-website">

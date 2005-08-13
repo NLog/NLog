@@ -1,0 +1,3 @@
+<nlog>
+    <include file="${machinename}.config.log" />
+</nlog>

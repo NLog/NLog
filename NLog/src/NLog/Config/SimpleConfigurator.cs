@@ -74,6 +74,30 @@ namespace NLog.Config
 #endif
 
         /// <summary>
+        /// Configures NLog for to log to the specified target so that all messages 
+        /// above and including the <see cref="LogLevel.Info"/> level are output.
+        /// </summary>
+        /// <param name="target">The target to log all messages to.</param>
+        public static void ConfigureForTargetLogging(Target target)
+        {
+            ConfigureForTargetLogging(target, LogLevel.Info);
+        }
+
+        /// <summary>
+        /// Configures NLog for to log to the specified target so that all messages 
+        /// above and including the specified level are output.
+        /// </summary>
+        /// <param name="target">The target to log all messages to.</param>
+        /// <param name="minLevel">The minimal logging level.</param>
+        public static void ConfigureForTargetLogging(Target target, LogLevel minLevel)
+        {
+            LoggingConfiguration config = new LoggingConfiguration();
+            LoggingRule rule = new LoggingRule("*", minLevel, target);
+            config.LoggingRules.Add(rule);
+            LogManager.Configuration = config;
+        }
+
+        /// <summary>
         /// Configures NLog for file logging so that all messages above and including
         /// the <see cref="LogLevel.Info"/> level are written to the specified file.
         /// </summary>

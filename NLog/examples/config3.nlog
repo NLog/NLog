@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<nlog>
+    <targets>
+        <target name="console" type="Console" />
+        <target name="file1" type="File" filename="file1.log" />
+        <target name="file2" type="File" filename="file2.log" />
+        <target name="file3" type="File" filename="file3.log" />
+    </targets>
+
+    <rules>
+        <!-- SQL messages to file3.log but nowhere else-->
+        <logger name="*SQL*" appendTo="file3" final="true" />
+
+        <!-- Info and Error messages go to the console and file1.log -->
+        <logger levels="Info,Error" appendTo="console,file1" />
+
+        <!-- log all Debug messages to file1.log -->
+        <logger name="*" level="Debug" appendTo="file1" />
+
+        <!-- log error and fatal messages to file2.log -->
+        <logger name="*" minlevel="Error" appendTo="file2" />
+    </rules>
+</nlog>
+

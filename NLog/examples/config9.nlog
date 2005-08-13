@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<nlog>
+    <extensions>
+        <add assembly="MyAssembly" />
+    </extensions>
+
+    <targets>
+        <target name="console" type="Console" layout="${hour:showminutes=false} ${message}" />
+    </targets>
+
+    <rules>
+        <logger name="*" minLevel="Info" appendTo="console" />
+    </rules>
+</nlog>

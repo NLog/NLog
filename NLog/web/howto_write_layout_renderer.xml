@@ -39,7 +39,7 @@
     This example causes all messages written to the console to be prepended with current hour. Simple isn't it?
 </p>
 
-<xml-example src="examples/config9.nlog" />
+<xml src="examples/config9.nlog" />
 
 <h5>How to pass configuration options to the renderer?</h5>
 

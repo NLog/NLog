@@ -31,7 +31,7 @@
 
 <h5>Configuration file example</h5>
 
-<xml-example src="examples/config7.nlog" />
+<xml src="examples/config7.nlog" />
 
 <h5>How to pass configuration options to the target?</h5>
 
