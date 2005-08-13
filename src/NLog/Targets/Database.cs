@@ -47,6 +47,24 @@ namespace NLog.Targets
     /// <summary>
     /// Writes logging messages to the database using an ADO.NET provider.
     /// </summary>
+    /// <example>
+    /// <para>
+    /// The configuration is dependent on the database type, because
+    /// there are differnet methods of specifying connection string, SQL
+    /// command and command parameters.
+    /// </para>
+    /// <para>MS SQL Server using System.Data.SqlClient:</para>
+    /// <xml src="examples/targets/Database/DatabaseTarget-mssql.nlog" height="450" />
+    /// 
+    /// <para>Oracle using System.Data.OracleClient:</para>
+    /// <xml src="examples/targets/Database/DatabaseTarget-oracle-native.nlog" height="350" />
+    /// 
+    /// <para>Oracle using System.Data.OleDbClient:</para>
+    /// <xml src="examples/targets/Database/DatabaseTarget-oracle-oledb.nlog" height="350" />
+    /// 
+    /// <para>To set up the log target programmatically use code like this (an equivalent of MSSQL configuration):</para>
+    /// <cs src="examples/targets/Database/DatabaseTarget.cs" height="630" />
+    /// </example>
     [Target("Database", IgnoresLayout=true)]
     public sealed class DatabaseTarget: Target
     {
