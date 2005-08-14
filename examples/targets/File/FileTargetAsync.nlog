@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<nlog>
+    <targets>
+        <!-- Log in a separate thread, possibly queueing up to
+        5000 messages. When the queue overflows, discard any
+        extra messages-->
+        
+        <target name="file" type="File"
+            filename="${basedir}/logs/${level}.txt" 
+            async="true"
+            queueLimit="5000"
+            overflowAction="discard" />
+    </targets>
+
+    <rules>
+        <logger name="*" minLevel="Debug" writeTo="file" />
+    </rules>
+</nlog>

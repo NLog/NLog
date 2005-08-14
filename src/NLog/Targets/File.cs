@@ -49,6 +49,44 @@ namespace NLog.Targets
     /// <summary>
     /// Writes logging messages to one or more files.
     /// </summary>
+    /// <example>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <xml src="examples/targets/File/FileTarget.nlog" />
+    /// <p>
+    /// You can use a single target to write to multiple files. The following
+    /// example writes each log message to a file named after its log level, so
+    /// it will create:
+    /// <c>Trace.log</c>, <c>Debug.log</c>, <c>Info.log</c>, <c>Warn.log</c>, 
+    /// <c>Error.log</c>, <c>Fatal.log</c>
+    /// </p>
+    /// <xml src="examples/targets/File/FileTargetMultiple.nlog" />
+    /// <p>
+    /// The file names can be quite complex for the most demanding scenarios. This
+    /// example shows a way to create separate files for each day, user and log level.
+    /// As you can see, the possibilities are endless.
+    /// </p>
+    /// <xml src="examples/targets/File/FileTargetMultiple2.nlog" />
+    /// <p>
+    /// Depending on your usage scenario it may be useful to switch the
+    /// target into asynchronous mode. This way all your log messages
+    /// will be written in a separate thread so your main thread can finish
+    /// your work more quickly. Asynchronous logging is recommended
+    /// for multi-threaded server applications which run for a long time and
+    /// is not recommended for quickly-finishing command line applications.
+    /// </p>
+    /// <xml src="examples/targets/File/FileTargetAsync.nlog" />
+    /// <p>
+    /// The above examples assume just one target and a single rule. 
+    /// More configuration options are described <a href="config.html">here</a>.
+    /// </p>
+    /// <p>
+    /// To set up the log target programmatically use code like this:
+    /// </p>
+    /// <cs src="examples/targets/File/FileTarget.cs" />
+    /// </example>
     [Target("File")]
     public class FileTarget: AsyncTarget
     {

@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<nlog>
+    <targets>
+        <target name="file" type="File"
+            layout="${longdate} ${logger} ${message}" 
+            filename="${basedir}/logs/logfile.txt" 
+            keepfileopen="false"
+            encoding="iso-8859-2" />
+    </targets>
+
+    <rules>
+        <logger name="*" minLevel="Debug" writeTo="file" />
+    </rules>
+</nlog>

@@ -49,10 +49,6 @@
             <h4>Summary</h4>
             <xsl:apply-templates select="documentation/summary" /><p/>
         </xsl:if>
-        <xsl:if test="documentation/remarks">
-            <h4>Remarks</h4>
-            <xsl:apply-templates select="documentation/remarks" /><p/>
-        </xsl:if>
         <h4>Configuration file usage:</h4>
         <code class="config">&lt;target name="..." type="<b><u><xsl:value-of select="$type_tag" /></u></b>"
             ... 

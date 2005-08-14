@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<nlog>
+    <targets>
+        <target name="file" type="File"
+            layout="${longdate} ${logger} ${message}" 
+            filename="${basedir}/${level}.log" />
+    </targets>
+
+    <rules>
+        <logger name="*" minLevel="Debug" writeTo="file" />
+    </rules>
+</nlog>

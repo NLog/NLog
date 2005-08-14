@@ -44,7 +44,7 @@ namespace NLog.Targets
     /// </summary>
     /// <example>
     /// <p>
-    /// To set up the target in the configuration file, 
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
     /// <xml src="examples/targets/Memory/MemoryTarget.nlog" />
