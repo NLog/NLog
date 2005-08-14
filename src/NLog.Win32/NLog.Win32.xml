@@ -142,7 +142,20 @@
             The value to be output when the specified registry key or value is not found.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:NLog.Win32.LayoutRenderers.RegistryLayoutRenderer.Key" -->
+        <member name="P:NLog.Win32.LayoutRenderers.RegistryLayoutRenderer.Key">
+            <summary>
+            Registry key.
+            </summary>
+            <remarks>
+            Must have one of the forms:
+            <ul>
+            <li>HKLM\Key\Full\Name</li>
+            <li>HKEY_LOCAL_MACHINE\Key\Full\Name</li>
+            <li>HKCU\Key\Full\Name</li>
+            <li>HKEY_CURRENT_USER\Key\Full\Name</li>
+            </ul>
+            </remarks>
+        </member>
         <member name="T:NLog.Win32.Targets.ASPResponseTarget">
             <summary>
             Outputs logging messages through the ASP Response object.
