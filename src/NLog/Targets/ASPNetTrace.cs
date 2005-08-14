@@ -47,40 +47,24 @@ namespace NLog.Targets
     /// Resulting log entries can be viewed by navigating to http://server/path/Trace.axd
     /// </remarks>
     /// <example>
-    /// To set up the ASP.NET Trace target in the configuration file, 
-    /// use the following syntax:
-    /// <code escaped="true">
-    /// <nlog>
-    ///     <targets>
-    ///         <target name="aspnet" type="ASPNetTrace" layout="${logger} ${message}" />
-    ///     </targets>
-    ///     <rules>
-    ///         <logger name="*" minlevel="Info" writeTo="aspnet" />
-    ///     </rules>
-    /// </nlog>
-    /// </code>
-    /// To set up the log target programmatically use code like this:
-    /// <code>
-    /// using NLog;
-    /// using NLog.Config;
-    /// using NLog.Targets;
-    /// 
-    /// // create the target
-    /// ASPNetTarget target = new ASPNetTarget();
-    /// 
-    /// // create logging configuration object
-    /// LoggingConfiguration config = new LoggingConfiguration();
-    /// 
-    /// // add a rule that directs all messages above the Debug level
-    /// // to the above target
-    /// // LoggingRule rule = new LoggingRule("*", LogLevel.Debug, target);
-    /// 
-    /// // add the rule
-    /// config.LoggingRules.Add(rule);
-    /// 
-    /// // activate the configuration
-    /// LogManager.Configuration = config;
-    /// </code>
+    /// <p>To set up the ASP.NET Trace target in the configuration file, put
+    /// the following in <c>web.nlog</c> file in your web application directory.
+    /// </p>
+    /// <xml src="examples/targets/ASPNetTrace/web.nlog" />
+    /// <p>
+    /// This assumes just one target and a single rule. More configuration
+    /// options are described <a href="config.html">here</a>.
+    /// </p>
+    /// <p>
+    /// To configure the target programmatically, put the following
+    /// piece of code in your <c>Application_OnStart()</c> handler in Global.asax.cs 
+    /// or some other place that gets executed at the very beginning of your code:
+    /// </p>
+    /// <cs src="examples/targets/ASPNetTrace/Global.asax.cs" />
+    /// <p>
+    /// Fully working C# project can be found in the <c>Examples/Targets/ASPNetTrace</c>
+    /// directory along with usage instructions.
+    /// </p>
     /// </example>
     [Target("ASPNetTrace")]
     public class ASPNetTraceTarget: Target
