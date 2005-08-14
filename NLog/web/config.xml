@@ -60,10 +60,18 @@
         that NLog will write internal diagnostic messages to.
     </p>
 
-    <h5><x><nlog internalLogLevel="Debug | Info | Warn | Error | Fatal" /></x></h5>
+    <h5><x><nlog internalLogLevel="Trace | Debug | Info | Warn | Error | Fatal" /></x></h5>
     <p>
         The <code>internalLogLevel</code> attribute is the internal logging level which can be either
-        <code>Debug,Info,Warn,Error</code> or <code>Fatal</code>.
+        <code>Trace,Debug,Info,Warn,Error</code> or <code>Fatal</code>.
+    </p>
+
+    <h5><x><nlog globalThreshold="Trace | Debug | Info | Warn | Error | Fatal" /></x></h5>
+    <p>
+        The <code>globalThreshold</code> attribute sets the global log level. Log messages
+        below this level will not be logged, regardless of any <x><logger /></x> settings.
+        Possible values are: <code>Trace,Debug,Info,Warn,Error</code> or <code>Fatal</code>.
+        This is a config-file equivalent of <code>LogManager.GlobalThreshold</code> property.
     </p>
 
     <h5><x><include file="filename" /></x></h5>
