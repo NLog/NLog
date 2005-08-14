@@ -6,7 +6,8 @@
 	* Fixed #29: Root logging level support. 
 	Added <nlog globalThreshold="..." />
 	* Massive website, documentation and packaging updates
-	* Added SimpleConfigurator.ConfigureForTargetLogging()
+	* Added SimpleConfigurator.ConfigureForTargetLogging() and
+	SimpleConfigurator.ConfigureForFileLogging()
 
 2005-08-10 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 	* Fixed #28: Documentation threading safety statement bug

@@ -115,7 +115,9 @@ namespace NLog.Config
         /// <param name="minLevel">The minimal logging level.</param>
         public static void ConfigureForFileLogging(string fileName, LogLevel minLevel)
         {
-            throw new NotSupportedException("Not implemented yet.");
+            FileTarget target = new FileTarget();
+            target.FileName = fileName;
+            ConfigureForTargetLogging(target, minLevel);
         }
     }
 }
