@@ -90,12 +90,12 @@ namespace NLog.Win32.LayoutRenderers
         /// </summary>
         /// <remarks>
         /// Must have one of the forms:
-        /// <list type="String">
-        /// <item>HKLM\Key\Full\Name</item>
-        /// <item>HKEY_LOCAL_MACHINE\Key\Full\Name</item>
-        /// <item>HKCU\Key\Full\Name</item>
-        /// <item>HKEY_CURRENT_USER\Key\Full\Name</item>
-        /// </list>
+        /// <ul>
+        /// <li>HKLM\Key\Full\Name</li>
+        /// <li>HKEY_LOCAL_MACHINE\Key\Full\Name</li>
+        /// <li>HKCU\Key\Full\Name</li>
+        /// <li>HKEY_CURRENT_USER\Key\Full\Name</li>
+        /// </ul>
         /// </remarks>
         [RequiredParameter]
         public string Key

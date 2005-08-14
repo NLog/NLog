@@ -133,8 +133,6 @@ namespace NLog.Internal
                 if (LogFile == null)
                     LogFile = EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_INTERNAL_LOG_FILE");
                 Info("NLog internal logger initialized.");
-                Console.WriteLine("level: {0} console: {1} file: {2}", LogLevel.ToString(), LogToConsole, LogFile);
-                Console.ReadLine();
             }
             catch {}
         }

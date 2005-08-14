@@ -11,23 +11,32 @@
             </xsl:apply-templates>
         </xsl:if>
         <xsl:if test="not($target_name)">
-        <h1>Log Targets</h1>
-        The following log targets are available. Click on the target name for full reference.
-        <div class="noborder" style="width: 600px">
-            <table>
-                <xsl:apply-templates select="//class[attribute/@name='NLog.TargetAttribute']" mode="list">
-                    <xsl:sort select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
-                </xsl:apply-templates>
-            </table>
-        </div>
+            <h1>Log Targets</h1>
+            <p>
+                The following log targets are available. Click on the target name for full reference.
+            </p>
+            <div class="noborder" style="width: 600px">
+                <table class="listtable">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th><nobr>Defined in</nobr></th>
+                    </tr>
+                    <xsl:apply-templates select="//class[attribute/@name='NLog.TargetAttribute']" mode="list">
+                        <xsl:sort select="../../@name" />
+                        <xsl:sort select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
+                    </xsl:apply-templates>
+                </table>
+            </div>
         </xsl:if>
     </xsl:template>
 
     <xsl:template match="class" mode="list">
         <xsl:variable name="type_tag" select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
         <tr>
-            <td class="label"><a href="target.{$type_tag}.html"><xsl:value-of select="$type_tag" /></a></td>
+            <td class="name"><a href="target.{$type_tag}.html"><xsl:value-of select="$type_tag" /></a></td>
             <td class="description"><xsl:apply-templates select="documentation/summary" /></td>
+            <td class="assembly"><xsl:value-of select="../../@name" /></td>
         </tr>
     </xsl:template>
 
@@ -44,7 +53,12 @@
     <xsl:template match="class" mode="details">
         <xsl:variable name="type_tag" select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
         <h3><xsl:value-of select="$type_tag" /> Target</h3>
-            <hr size="1" />
+        <hr size="1" />
+        <h4>Defined in:</h4>
+        <table class="definedin" cellspacing="0">
+            <tr><td>Assembly:</td><td><xsl:value-of select="../../@name" /></td></tr>
+            <tr><td>Class name:</td><td><xsl:value-of select="substring-after(@id,'T:')" /></td></tr>
+        </table>
         <xsl:if test="documentation/summary">
             <h4>Summary</h4>
             <xsl:apply-templates select="documentation/summary" /><p/>
