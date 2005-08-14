@@ -259,7 +259,7 @@ namespace NLog.Targets
 
             xtw.WriteEndElement();
             xtw.Flush();
-            Console.WriteLine(sw.ToString());
+            // Console.WriteLine(sw.ToString());
             NetworkSend(AddressLayout.GetFormattedMessage(ev), sw.ToString());
         }
     }
