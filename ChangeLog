@@ -1,4 +1,6 @@
 2005-08-14 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+	* Fixed #29: Root logging level support. 
+	Added <nlog globalThreshold="..." />
 	* Massive website, documentation and packaging updates
 	* Added SimpleConfigurator.ConfigureForTargetLogging()
 

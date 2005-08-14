@@ -257,6 +257,10 @@ namespace NLog.Config
             if (s != null)
                 InternalLogger.LogLevel = LogLevel.FromString(s);
 
+            s = GetCaseInsensitiveAttribute(configElement, "globalThreshold");
+            if (s != null)
+                LogManager.GlobalThreshold = LogLevel.FromString(s);
+
             RegisterPlatformSpecificExtensions();
 
             foreach (XmlNode node in configElement.ChildNodes)
