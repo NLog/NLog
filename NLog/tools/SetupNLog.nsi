@@ -23,10 +23,10 @@ Section "Main"
 
   SetOutPath $INSTDIR\bin
   ; Put file there
-  File /r "build\${BUILDSUBDIR}\bin\*.*"
+  File /r /x _svn "build\${BUILDSUBDIR}\bin\*.*"
 
-  SetOutPath $INSTDIR\web
-  File /r build\${BUILDSUBDIR}\web\*.*
+  SetOutPath $INSTDIR\examples
+  File /r /x _svn examples\*.*
 
   SetOutPath $INSTDIR\help
   File build\${BUILDSUBDIR}\help\NLog.chm
@@ -34,9 +34,8 @@ Section "Main"
   CreateDirectory "$SMPROGRAMS\NLog"
   CreateShortCut  "$SMPROGRAMS\NLog\Uninstall.lnk" "$INSTDIR\Uninstall.exe" ""
   CreateShortCut  "$SMPROGRAMS\NLog\LICENSE.lnk" "$INSTDIR\License.txt" ""
-  CreateShortCut  "$SMPROGRAMS\NLog\NLog Class Library Reference.lnk" "$INSTDIR\help\NLog.chm" ""
-  CreateShortCut  "$SMPROGRAMS\NLog\NLog Tutorial.lnk" "$INSTDIR\web\tutorial.html" ""
-  CreateShortCut  "$SMPROGRAMS\NLog\NLog Archived Website.lnk" "$INSTDIR\web\index.html" ""
+  CreateShortCut  "$SMPROGRAMS\NLog\NLog Documentation.lnk" "$INSTDIR\help\NLog.chm" ""
+  CreateShortCut  "$SMPROGRAMS\NLog\NLog Configuration Examples.lnk" "$INSTDIR\examples" ""
   CreateShortCut  "$SMPROGRAMS\NLog\NLog Viewer (preview).lnk" "$INSTDIR\bin\NLog.Viewer.exe" ""
 
   WriteRegStr HKCU "Software\Microsoft\VisualStudio\7.0\AssemblyFolders\NLog" "" "$INSTDIR\Bin"

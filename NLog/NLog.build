@@ -67,10 +67,10 @@
             <fileset basedir="build/${buildsubdir}">
                 <include name="bin/*" />
                 <include name="help/NLog.chm" />
-                <include name="web/**/*" />
             </fileset>
             <fileset basedir=".">
                 <include name="LICENSE.txt" />
+                <include name="examples/**/*" />
             </fileset>
         </zip>
     </target>
