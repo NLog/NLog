@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<nlog>
+    <targets>
+        <target name="eventlog" type="EventLog" layout="${logger}: ${message}" source="My Source" log="Application" />
+    </targets>
+
+    <rules>
+        <logger name="*" minLevel="Debug" writeTo="eventlog" />
+    </rules>
+</nlog>

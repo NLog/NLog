@@ -587,7 +587,7 @@
             <code><![CDATA[
                 public static void ScriptMain(Project project) {
                     System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
-                    doc.Load(project.ExpandProperties("build/${buildsubdir}/doc.xml", Location.UnknownLocation));
+                    doc.Load(project.ExpandProperties("${nant.project.basedir}/build/${buildsubdir}/doc.xml", Location.UnknownLocation));
                     string targets = "";
                     string layoutRenderers = "";
                     string filters = "";

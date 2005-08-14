@@ -704,3 +704,58 @@ hr
     color: #0000ff;
     height: 1px;
 }
+
+table.listtable
+{
+    border-collapse: collapse;
+    background-color: #ffffe0;
+}
+
+.listtable th
+{
+    color: black;
+    border: 1px solid #b0b0b0;
+    background-color: #ffff80;
+    font-size: 14px;
+    padding: 2px;
+}
+
+.listtable td.name
+{
+    border: 1px solid #b0b0b0;
+    padding: 4px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 12px;
+}
+
+.listtable td.description
+{
+    border: 1px solid #b0b0b0;
+    padding: 4px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 12px;
+}
+
+.listtable td.assembly
+{
+    border: 1px solid #b0b0b0;
+    padding: 4px;
+    text-align: center;
+    vertical-align: top;
+    font-size: 12px;
+}
+
+table.definedin
+{
+    font-size: 12px;
+    border-collapse: collapse;
+}
+
+.definedin td
+{
+    margin: 0px;
+    padding: 4px;
+    border: 1px solid #c0c0c0;
+}

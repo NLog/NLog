@@ -7,9 +7,16 @@
     <xsl:template match="*" mode="content">
         <xsl:if test="not($lr_name)">
             <h1>Layout Renderers</h1>
-            The following layout renderers are available:
+            <p>
+                The following layout renderers are available. Click on a name for full reference.
+            </p>
             <div class="noborder" style="width: 600px">
-                <table>
+                <table class="listtable">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th><nobr>Defined in</nobr></th>
+                    </tr>
                     <xsl:apply-templates select="//class[attribute/@name='NLog.LayoutRendererAttribute']" mode="list">
                         <xsl:sort select="../../@name" />
                         <xsl:sort select="attribute[@name='NLog.LayoutRendererAttribute']/property[@name='FormatString']/@value" />
@@ -28,9 +35,9 @@
     <xsl:template match="class" mode="list">
         <xsl:variable name="type_tag" select="attribute[@name='NLog.LayoutRendererAttribute']/property[@name='FormatString']/@value" />
         <tr>
-            <td class="label"><a href="lr.{$type_tag}.html"><xsl:value-of select="$type_tag" /></a></td>
+            <td class="name"><a href="lr.{$type_tag}.html"><xsl:value-of select="$type_tag" /></a></td>
             <td class="description"><xsl:apply-templates select="documentation/summary" /></td>
-            <td class="label"><xsl:value-of select="../../@name" /></td>
+            <td class="assembly"><xsl:value-of select="../../@name" /></td>
         </tr>
     </xsl:template>
 
@@ -48,11 +55,12 @@
         <xsl:variable name="type_tag" select="attribute[@name='NLog.LayoutRendererAttribute']/property[@name='FormatString']/@value" />
         <h3>${<xsl:value-of select="$type_tag" />} Layout Renderer</h3>
         <hr size="1" />
-        <xsl:apply-templates select="documentation/summary" /><p/>
-        <xsl:if test="documentation/remarks">
-            <h4>Remarks</h4>
-            <xsl:apply-templates select="documentation/remarks" /><p/>
-        </xsl:if>
+        <h4>Defined in:</h4>
+        <table class="definedin" cellspacing="0">
+            <tr><td>Assembly:</td><td><xsl:value-of select="../../@name" /></td></tr>
+            <tr><td>Class name:</td><td><xsl:value-of select="substring-after(@id,'T:')" /></td></tr>
+        </table>
+        <p><xsl:apply-templates select="documentation/summary" /></p>
         <xsl:if test="property[not(@declaringType='NLog.LayoutRenderer')]">
             <h4>Parameters:</h4>
             <table class="paramtable">
@@ -121,7 +129,6 @@
                     <p>Default value is: <code><xsl:value-of select="attribute[@name='System.ComponentModel.DefaultValueAttribute']/property[@name='Value']/@value" /></code>.</p>
                 </xsl:if>
                 <xsl:if test="documentation/remarks">
-                    <h4>Remarks</h4>
                     <p><xsl:apply-templates select="documentation/remarks" /></p>
                 </xsl:if>
                 <xsl:if test="documentation/example">

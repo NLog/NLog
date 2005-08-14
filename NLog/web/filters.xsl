@@ -6,9 +6,16 @@
     <xsl:template match="*" mode="content">
         <xsl:if test="not($filter_name)">
             <h1>Log Filters</h1>
-            The following filters are available:
+            <p>
+                The following filters are available. Click on a name for full reference.
+            </p>
             <div class="noborder" style="width: 600px">
-                <table>
+                <table class="listtable">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th><nobr>Defined in</nobr></th>
+                    </tr>
                     <xsl:apply-templates select="//class[attribute/@name='NLog.FilterAttribute']" mode="list">
                         <xsl:sort select="attribute[@name='NLog.FilterAttribute']/property[@name='Name']/@value" />
                     </xsl:apply-templates>
@@ -25,8 +32,9 @@
     <xsl:template match="class" mode="list">
         <xsl:variable name="type_tag" select="attribute[@name='NLog.FilterAttribute']/property[@name='Name']/@value" />
         <tr>
-            <td class="label"><a href="filter.{$type_tag}.html"><xsl:value-of select="$type_tag" /></a></td>
+            <td class="name"><a href="filter.{$type_tag}.html"><xsl:value-of select="$type_tag" /></a></td>
             <td class="description"><xsl:apply-templates select="documentation/summary" /></td>
+            <td class="assembly"><xsl:value-of select="../../@name" /></td>
         </tr>
     </xsl:template>
 
@@ -42,9 +50,14 @@
 
     <xsl:template match="class" mode="details">
         <xsl:variable name="type_tag" select="attribute[@name='NLog.FilterAttribute']/property[@name='Name']/@value" />
-        <hr size="1" />
         <h3><xsl:value-of select="$type_tag" /> Filter</h3>
-        <xsl:apply-templates select="documentation/summary" /><p/>
+        <hr size="1" />
+        <h4>Defined in:</h4>
+        <table class="definedin" cellspacing="0">
+            <tr><td>Assembly:</td><td><xsl:value-of select="../../@name" /></td></tr>
+            <tr><td>Class name:</td><td><xsl:value-of select="substring-after(@id,'T:')" /></td></tr>
+        </table>
+        <p><xsl:apply-templates select="documentation/summary" /></p>
         <xsl:if test="documentation/remarks">
             <h4>Remarks</h4>
             <xsl:apply-templates select="documentation/remarks" /><p/>

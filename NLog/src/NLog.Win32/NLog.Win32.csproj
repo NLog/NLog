@@ -79,6 +79,11 @@
                     AssemblyName = "System.Xml"
                     HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
+                <Reference
+                    Name = "System.Messaging"
+                    AssemblyName = "System.Messaging"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Messaging.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -120,6 +125,16 @@
                 />
                 <File
                     RelPath = "Targets\ASPResponse.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\EventLog.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\MSMQ.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

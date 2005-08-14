@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<nlog>
+    <targets>
+        <target name="queue" type="MSMQ"
+            layout="${message}" 
+            queue=".\private$\nlog.${logger}"
+            encoding="iso-8859-2"
+            recoverable="true"
+            label="${logger}" />
+    </targets>
+
+    <rules>
+        <logger name="*" minLevel="Debug" writeTo="queue" />
+    </rules>
+</nlog>
