@@ -146,7 +146,14 @@ namespace NLog.LayoutRenderers
                 {
                     if (_perfCounter == null)
                     {
-                        _perfCounter = new PerformanceCounter(_categoryName, _counterName, _instanceName, true);
+                        if (_machineName != null)
+                        {
+                            _perfCounter = new PerformanceCounter(_categoryName, _counterName, _instanceName, _machineName);
+                        }
+                        else
+                        {
+                            _perfCounter = new PerformanceCounter(_categoryName, _counterName, _instanceName, true);
+                        }
                     }
                 }
             }
