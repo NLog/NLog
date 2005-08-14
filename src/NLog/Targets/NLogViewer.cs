@@ -190,40 +190,6 @@ namespace NLog.Targets
             {
                 xtw.WriteElementString("log4j:NDC", NDC.GetAllMessages(" "));
             }
-            xtw.WriteStartElement("logj4:properties");
-            if (IncludeMDC)
-            {
-                foreach (System.Collections.DictionaryEntry entry in MDC.GetThreadDictionary())
-                {
-                    xtw.WriteStartElement("log4j:data");
-                    xtw.WriteAttributeString("name", Convert.ToString(entry.Key));
-                    xtw.WriteAttributeString("value", Convert.ToString(entry.Value));
-                    xtw.WriteEndElement();
-                }
-                foreach (NLogViewerParameterInfo parameter in Parameters)
-                {
-                    xtw.WriteStartElement("log4j:data");
-                    xtw.WriteAttributeString("name", parameter.Name);
-                    xtw.WriteAttributeString("value", parameter.CompiledLayout.GetFormattedMessage(ev));
-                    xtw.WriteEndElement();
-                }
-
-                xtw.WriteStartElement("log4j:data");
-                xtw.WriteAttributeString("name", "log4japp");
-                xtw.WriteAttributeString("value", AppInfo);
-                xtw.WriteEndElement();
-
-                xtw.WriteStartElement("log4j:data");
-                xtw.WriteAttributeString("name", "log4jmachinename");
-#if NETCF
-                xtw.WriteAttributeString("value", "netcf");
-#else
-                xtw.WriteAttributeString("value", NLog.LayoutRenderers.MachineNameLayoutRenderer.MachineName);
-#endif
-                xtw.WriteEndElement();
-            }
-            xtw.WriteEndElement();
-
 #if !NETCF
             if (IncludeCallSite || IncludeSourceInfo)
             {
@@ -231,13 +197,13 @@ namespace NLog.Targets
                 MethodBase methodBase = frame.GetMethod();
                 Type type = methodBase.DeclaringType;
 
-                xtw.WriteStartElement("log4j:locationInfo");
-                xtw.WriteElementString("class", type.FullName);
-                xtw.WriteElementString("method", methodBase.ToString());
+                xtw.WriteStartElement("log4j:locationinfo");
+                xtw.WriteAttributeString("class", type.FullName);
+                xtw.WriteAttributeString("method", methodBase.ToString());
                 if (IncludeSourceInfo)
                 {
-                    xtw.WriteElementString("file", frame.GetFileName());
-                    xtw.WriteElementString("line", frame.GetFileLineNumber().ToString());
+                    xtw.WriteAttributeString("file", frame.GetFileName());
+                    xtw.WriteAttributeString("line", frame.GetFileLineNumber().ToString());
                 }
                 xtw.WriteEndElement();
 
@@ -257,8 +223,43 @@ namespace NLog.Targets
                 }
             }
 #endif
+            xtw.WriteStartElement("log4j:properties");
+            if (IncludeMDC)
+            {
+                foreach (System.Collections.DictionaryEntry entry in MDC.GetThreadDictionary())
+                {
+                    xtw.WriteStartElement("log4j:data");
+                    xtw.WriteAttributeString("name", Convert.ToString(entry.Key));
+                    xtw.WriteAttributeString("value", Convert.ToString(entry.Value));
+                    xtw.WriteEndElement();
+                }
+            }
+            foreach (NLogViewerParameterInfo parameter in Parameters)
+            {
+                xtw.WriteStartElement("log4j:data");
+                xtw.WriteAttributeString("name", parameter.Name);
+                xtw.WriteAttributeString("value", parameter.CompiledLayout.GetFormattedMessage(ev));
+                xtw.WriteEndElement();
+            }
+
+            xtw.WriteStartElement("log4j:data");
+            xtw.WriteAttributeString("name", "log4japp");
+            xtw.WriteAttributeString("value", AppInfo);
+            xtw.WriteEndElement();
+
+            xtw.WriteStartElement("log4j:data");
+            xtw.WriteAttributeString("name", "log4jmachinename");
+#if NETCF
+                xtw.WriteAttributeString("value", "netcf");
+#else
+            xtw.WriteAttributeString("value", NLog.LayoutRenderers.MachineNameLayoutRenderer.MachineName);
+#endif
+            xtw.WriteEndElement();
+            xtw.WriteEndElement();
+
             xtw.WriteEndElement();
             xtw.Flush();
+            Console.WriteLine(sw.ToString());
             NetworkSend(AddressLayout.GetFormattedMessage(ev), sw.ToString());
         }
     }
