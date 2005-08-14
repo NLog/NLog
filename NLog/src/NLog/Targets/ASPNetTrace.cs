@@ -43,11 +43,8 @@ namespace NLog.Targets
     /// <summary>
     /// Writes logging messages to the ASP.NET trace.
     /// </summary>
-    /// <remarks>
-    /// Resulting log entries can be viewed by navigating to http://server/path/Trace.axd
-    /// </remarks>
     /// <example>
-    /// <p>To set up the ASP.NET Trace target in the configuration file, put
+    /// <p>To set up the ASP.NET Trace target in the <a href="config.html">configuration file</a>, put
     /// the following in <c>web.nlog</c> file in your web application directory.
     /// </p>
     /// <xml src="examples/targets/ASPNetTrace/web.nlog" />
@@ -65,6 +62,15 @@ namespace NLog.Targets
     /// Fully working C# project can be found in the <c>Examples/Targets/ASPNetTrace</c>
     /// directory along with usage instructions.
     /// </p>
+    /// Resulting log entries can be viewed by navigating to http://server/path/Trace.axd.
+    /// <br/>
+    /// <b>HTTP Request List:</b><br/>
+    /// <img src="examples/targets/ASPNetTrace/ASPNetTraceOutput1.gif" />
+    /// <p/>
+    /// <b>HTTP Request Details:</b>
+    /// <br/>
+    /// <img src="examples/targets/ASPNetTrace/ASPNetTraceOutput2.gif" />
+    /// <p/>
     /// </example>
     [Target("ASPNetTrace")]
     public class ASPNetTraceTarget: Target

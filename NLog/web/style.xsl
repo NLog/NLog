@@ -93,7 +93,7 @@ var sc_security="6fe22c9a";
 
     <xsl:template match="subnav">
         <xsl:choose>
-            <xsl:when test="$subpage_id = @href"><tr><td><a class="subnav_selected" href="{../@href}.{$file_extension}"><xsl:value-of select="@label" /></a></td></tr></xsl:when>
+            <xsl:when test="$subpage_id = @href"><tr><td><a class="subnav_selected" href="{@href}.{$file_extension}"><xsl:value-of select="@label" /></a></td></tr></xsl:when>
             <xsl:otherwise>
                 <tr><td><a class="subnav"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a></td></tr>
             </xsl:otherwise>

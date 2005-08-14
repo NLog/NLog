@@ -40,11 +40,11 @@ using System.Diagnostics;
 namespace NLog.Targets
 {
     /// <summary>
-    /// Writes logging messages to the attached managed debugger.
+    /// Writes logging messages to the attached managed debugger (for example Visual Studio .NET or DbgCLR).
     /// </summary>
     /// <example>
     /// <p>
-    /// To set up the target in the configuration file, 
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
     /// <xml src="examples/targets/Debugger/DebuggerTarget.nlog" />
