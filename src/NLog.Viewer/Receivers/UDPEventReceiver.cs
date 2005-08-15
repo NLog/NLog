@@ -45,7 +45,7 @@ using NLog.Viewer.Configuration;
 
 namespace NLog.Viewer.Receivers
 {
-    public class UDPEventReceiver : LogEventReceiver
+    public class UDPEventReceiver : NetworkEventReceiver
     {
         public UDPEventReceiver(ReceiverParameterCollection parameters) : base(parameters)
         {
@@ -57,7 +57,8 @@ namespace NLog.Viewer.Receivers
             {
                 using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp))
                 {
-                    socket.Bind(new IPEndPoint(IPAddress.Any, 4000));
+                    socket.Bind(new IPEndPoint(IPAddress.Any, this.Port));
+                    Log.Write("UDP listening on port {0}", this.Port);
 
                     IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
                     EndPoint senderRemote = (EndPoint)sender;

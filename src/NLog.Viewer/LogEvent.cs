@@ -175,6 +175,11 @@ namespace NLog.Viewer
 
             while (reader.Read())
             {
+                if (reader.NodeType == XmlNodeType.EndElement)
+                {
+                    if (reader.LocalName == "log4j:event")
+                        return ev;
+                }
                 if (reader.NodeType == XmlNodeType.Element)
                 {
                     switch (reader.LocalName)

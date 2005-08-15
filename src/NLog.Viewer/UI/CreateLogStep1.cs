@@ -4,6 +4,8 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 
+using NLog.Viewer.Receivers;
+
 namespace NLog.Viewer.UI
 {
 	/// <summary>
@@ -119,10 +121,10 @@ namespace NLog.Viewer.UI
 
         private void CreateLogStep1_Load(object sender, System.EventArgs e)
         {
-            this.listBox1.Items.Add("UDP Log - receives messages over UDP protocol");
-            this.listBox1.Items.Add("TCP Log - receives messages over TCP protocol");
-            this.listBox1.Items.Add("HTTP Log - receives messages over HTTP protocol");
-            this.listBox1.Items.Add("MSMQ Log - receives messages over Microsoft Message Queue");
+            foreach (LogEventReceiverInfo ri in LogReceiverFactory.Receivers)
+            {
+                this.listBox1.Items.Add(ri);
+            }
         }
 
         private void listBox1_DoubleClick(object sender, System.EventArgs e)

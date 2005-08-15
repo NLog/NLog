@@ -41,21 +41,43 @@ namespace NLog.Viewer.Receivers
 {
 	public class LogReceiverFactory
 	{
-        private static StringToLogEventReceiverInfoMap _receivers = new StringToLogEventReceiverInfoMap();
+        private static StringToLogEventReceiverInfoMap _name2receiver = new StringToLogEventReceiverInfoMap();
+        private static LogEventReceiverInfoCollection _receivers = new LogEventReceiverInfoCollection();
+
+        public static LogEventReceiverInfoCollection Receivers
+        {
+            get { return _receivers; }
+        }
 
         static LogReceiverFactory()
         {
-            AddReceiverInfo(new LogEventReceiverInfo("UDP", "UDP123", typeof(UDPEventReceiver)));
+            LogEventReceiverInfo ri;
+            
+            // UDP receiver
+            ri = new LogEventReceiverInfo();
+            ri.Name = "UDP";
+            ri.Description = "Receives events from the network using UDP protocol";
+            ri.Type = typeof(UDPEventReceiver);
+            AddReceiverInfo(ri);
+
+            // TCP receiver
+            ri = new LogEventReceiverInfo();
+            ri.Name = "TCP";
+            ri.Description = "Receives events from the network using TCP protocol";
+            ri.Type = typeof(TCPEventReceiver);
+
+            AddReceiverInfo(ri);
         }
 
         public static void AddReceiverInfo(LogEventReceiverInfo ri)
         {
-            _receivers[ri.Name] = ri;
+            _name2receiver[ri.Name] = ri;
+            _receivers.Add(ri);
         }
 
         public static LogEventReceiver CreateLogReceiver(string type, ReceiverParameterCollection parameters)
         {
-            LogEventReceiverInfo ri = _receivers[type];
+            LogEventReceiverInfo ri = _name2receiver[type];
             if (ri == null)
                 throw new ArgumentException("Unknown receiver type: " + type);
 

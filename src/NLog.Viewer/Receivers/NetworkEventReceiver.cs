@@ -33,72 +33,39 @@
 // 
 
 using System;
-using System.Threading;
-using System.Windows.Forms;
-using System.Text;
+using System.Net;
+using System.Net.Sockets;
+using System.Xml;
 using System.IO;
-using System.Collections;
-using System.Drawing;
+using System.Xml.Serialization;
+using System.Windows.Forms;
 using System.Collections.Specialized;
 
 using NLog.Viewer.Configuration;
 
 namespace NLog.Viewer.Receivers
 {
-	public abstract class LogEventReceiver
-	{
-        private LogInstance _instance = null;
-        private Thread _inputThread = null;
-        private bool _quitThread;
+    public abstract class NetworkEventReceiver : LogEventReceiver
+    {
+        private int _port;
 
-		public LogEventReceiver(ReceiverParameterCollection parameters)
-		{
-		}
-
-        public void Start()
+        public NetworkEventReceiver(ReceiverParameterCollection parameters) : base(parameters)
         {
-            _quitThread = false;
-            _inputThread = new Thread(new ThreadStart(InputThread));
-            _inputThread.IsBackground = true;
-            _inputThread.Start();
-        }
+            _port = 4000;
 
-        public void Stop()
-        {
-            if (_inputThread != null)
+            foreach (ReceiverParameter rp in parameters)
             {
-                _quitThread = true;
-                if (!_inputThread.Join(2000))
+                if (rp.Name == "port")
                 {
-                    _inputThread.Abort();
+                    _port = Convert.ToInt32(rp.Value);
                 }
             }
         }
 
-        public bool IsRunning
+        public int Port
         {
-            get { return _inputThread.IsAlive; }
-        }
-
-        public abstract void InputThread();
-
-        public bool QuitInputThread
-        {
-            get { return _quitThread; }
-        }
-
-        public void EventReceived(LogEvent logEvent)
-        {
-            LogInstance i = _instance;
-            if (i != null)
-            {
-                i.ProcessLogEvent(logEvent);
-            }
-        }
-
-        internal void Connect(LogInstance instance)
-        {
-            _instance = instance;
+            get { return _port; }
+            set { _port = value; }
         }
     }
 }
