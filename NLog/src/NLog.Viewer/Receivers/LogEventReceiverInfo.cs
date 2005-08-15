@@ -54,5 +54,11 @@ namespace NLog.Viewer.Receivers
         public string Name;
         public string Description;
         public Type Type;
+
+        public override string ToString()
+        {
+            return String.Format("{0} - {1}", this.Name, this.Description);
+        }
+
 	}
 }
