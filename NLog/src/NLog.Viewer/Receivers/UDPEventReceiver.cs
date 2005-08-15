@@ -39,15 +39,15 @@ using System.Xml;
 using System.IO;
 using System.Xml.Serialization;
 using System.Windows.Forms;
+using System.Collections.Specialized;
 
-namespace NLog.Viewer
+using NLog.Viewer.Configuration;
+
+namespace NLog.Viewer.Receivers
 {
-    /// <summary>
-    /// Summary description for LogInstanceUDP.
-    /// </summary>
-    public class LogInstanceUDP : LogInstance
+    public class UDPEventReceiver : LogEventReceiver
     {
-        public LogInstanceUDP(LogInstanceConfigurationInfo LogInstanceConfigurationInfo) : base(LogInstanceConfigurationInfo)
+        public UDPEventReceiver(ReceiverParameterCollection parameters) : base(parameters)
         {
         }
 
@@ -73,16 +73,16 @@ namespace NLog.Viewer
                                 try
                                 {
                                     MemoryStream ms = new MemoryStream(buffer, 0, got);
-                                    MessageBox.Show(System.Text.Encoding.UTF8.GetString(buffer, 0, got));
+                                    //MessageBox.Show(System.Text.Encoding.UTF8.GetString(buffer, 0, got));
                                     XmlTextReader reader = new XmlTextReader(ms);
                                     reader.Namespaces = false;
 
-                                    LogEventInfo logEventInfo;
+                                    LogEvent logEventInfo;
                                     reader.Read();
-                                    logEventInfo = LogEventInfo.ParseLog4JEvent(reader);
+                                    logEventInfo = LogEvent.ParseLog4JEvent(reader);
                                     
                                     logEventInfo.ReceivedTime = DateTime.Now;
-                                    ProcessLogEvent(logEventInfo);
+                                    EventReceived(logEventInfo);
                                 }
                                 catch (Exception ex)
                                 {

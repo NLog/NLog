@@ -42,7 +42,10 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Xml;
 
-namespace NLog.Viewer
+using NLog.Viewer.UI;
+using NLog.Viewer.Configuration;
+
+namespace NLog.Viewer.UI
 {
 	/// <summary>
 	/// Summary description for Form1.
@@ -61,18 +64,14 @@ namespace NLog.Viewer
         private System.Windows.Forms.ToolBarButton toolBarButton1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.StatusBar statusBar1;
         private System.Windows.Forms.ToolBarButton toolBarButton2;
-        private System.Windows.Forms.MenuItem menuItem1;
         private System.Windows.Forms.MenuItem menuItem3;
         private System.Windows.Forms.MenuItem menuItem6;
         private System.Windows.Forms.MenuItem menuItem2;
-        private System.Windows.Forms.MenuItem menuItem7;
         private System.Windows.Forms.MenuItem menuItem4;
         private System.Windows.Forms.MenuItem menuItem5;
         private System.Windows.Forms.MenuItem menuItem8;
-        private System.Windows.Forms.MenuItem menuItem9;
         private System.Windows.Forms.MenuItem menuItem10;
         private System.Windows.Forms.MenuItem menuItem11;
         private System.Windows.Forms.MenuItem menuItem12;
@@ -93,6 +92,10 @@ namespace NLog.Viewer
         private System.Windows.Forms.MenuItem menuItem22;
         private System.Windows.Forms.MenuItem menuItem23;
         private System.Windows.Forms.MenuItem menuItem24;
+        private System.Windows.Forms.MenuItem menuItemManageLogs;
+        private System.Windows.Forms.MenuItem menuItem1;
+        private System.Windows.Forms.TextBox textBoxLog;
+        private System.Windows.Forms.MenuItem menuItemNewLog;
 
         private string _baseConfigurationPath;
 
@@ -127,18 +130,17 @@ namespace NLog.Viewer
             this.components = new System.ComponentModel.Container();
             System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxLog = new System.Windows.Forms.TextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this.menuItemFile = new System.Windows.Forms.MenuItem();
-            this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.menuItemManageLogs = new System.Windows.Forms.MenuItem();
             this.menuItem3 = new System.Windows.Forms.MenuItem();
             this.menuItemFileExit = new System.Windows.Forms.MenuItem();
             this.menuItem6 = new System.Windows.Forms.MenuItem();
-            this.menuItem9 = new System.Windows.Forms.MenuItem();
+            this.menuItemNewLog = new System.Windows.Forms.MenuItem();
             this.menuItem10 = new System.Windows.Forms.MenuItem();
-            this.menuItem7 = new System.Windows.Forms.MenuItem();
             this.menuItem12 = new System.Windows.Forms.MenuItem();
             this.menuItem13 = new System.Windows.Forms.MenuItem();
             this.menuItem11 = new System.Windows.Forms.MenuItem();
@@ -157,39 +159,41 @@ namespace NLog.Viewer
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.treeContextMenu = new System.Windows.Forms.ContextMenu();
             this.menuItem14 = new System.Windows.Forms.MenuItem();
+            this.menuItem27 = new System.Windows.Forms.MenuItem();
+            this.menuItem21 = new System.Windows.Forms.MenuItem();
             this.menuItem16 = new System.Windows.Forms.MenuItem();
             this.menuItem17 = new System.Windows.Forms.MenuItem();
             this.menuItem18 = new System.Windows.Forms.MenuItem();
             this.menuItem19 = new System.Windows.Forms.MenuItem();
             this.menuItem20 = new System.Windows.Forms.MenuItem();
-            this.menuItem26 = new System.Windows.Forms.MenuItem();
-            this.menuItem27 = new System.Windows.Forms.MenuItem();
             this.menuItem15 = new System.Windows.Forms.MenuItem();
-            this.menuItem21 = new System.Windows.Forms.MenuItem();
+            this.menuItem26 = new System.Windows.Forms.MenuItem();
             this.menuItem22 = new System.Windows.Forms.MenuItem();
             this.menuItem23 = new System.Windows.Forms.MenuItem();
             this.menuItem24 = new System.Windows.Forms.MenuItem();
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.textBoxLog);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 238);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(536, 80);
             this.panel1.TabIndex = 1;
             // 
-            // textBox1
+            // textBoxLog
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(536, 80);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "";
+            this.textBoxLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxLog.Location = new System.Drawing.Point(0, 0);
+            this.textBoxLog.Multiline = true;
+            this.textBoxLog.Name = "textBoxLog";
+            this.textBoxLog.ReadOnly = true;
+            this.textBoxLog.Size = new System.Drawing.Size(536, 80);
+            this.textBoxLog.TabIndex = 0;
+            this.textBoxLog.Text = "";
             // 
             // splitter1
             // 
@@ -219,24 +223,27 @@ namespace NLog.Viewer
             // 
             this.menuItemFile.Index = 0;
             this.menuItemFile.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-                                                                                         this.menuItem1,
+                                                                                         this.menuItemNewLog,
+                                                                                         this.menuItem10,
                                                                                          this.menuItem3,
+                                                                                         this.menuItemManageLogs,
+                                                                                         this.menuItem1,
                                                                                          this.menuItemFileExit});
             this.menuItemFile.Text = "&File";
             // 
-            // menuItem1
+            // menuItemManageLogs
             // 
-            this.menuItem1.Index = 0;
-            this.menuItem1.Text = "Manage logs...";
+            this.menuItemManageLogs.Index = 3;
+            this.menuItemManageLogs.Text = "Manage logs...";
             // 
             // menuItem3
             // 
-            this.menuItem3.Index = 1;
+            this.menuItem3.Index = 2;
             this.menuItem3.Text = "-";
             // 
             // menuItemFileExit
             // 
-            this.menuItemFileExit.Index = 2;
+            this.menuItemFileExit.Index = 5;
             this.menuItemFileExit.Text = "&Exit";
             this.menuItemFileExit.Click += new System.EventHandler(this.menuItemFileExit_Click);
             // 
@@ -244,9 +251,6 @@ namespace NLog.Viewer
             // 
             this.menuItem6.Index = 1;
             this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-                                                                                      this.menuItem9,
-                                                                                      this.menuItem10,
-                                                                                      this.menuItem7,
                                                                                       this.menuItem12,
                                                                                       this.menuItem13,
                                                                                       this.menuItem11,
@@ -256,54 +260,50 @@ namespace NLog.Viewer
                                                                                       this.menuItem8});
             this.menuItem6.Text = "&Log";
             // 
-            // menuItem9
+            // menuItemNewLog
             // 
-            this.menuItem9.Index = 0;
-            this.menuItem9.Text = "&New...\tCtrl-N";
+            this.menuItemNewLog.Index = 0;
+            this.menuItemNewLog.Text = "&New...\tCtrl-N";
+            this.menuItemNewLog.Click += new System.EventHandler(this.menuItemNewLog_Click);
             // 
             // menuItem10
             // 
             this.menuItem10.Index = 1;
             this.menuItem10.Text = "C&lose";
             // 
-            // menuItem7
-            // 
-            this.menuItem7.Index = 2;
-            this.menuItem7.Text = "-";
-            // 
             // menuItem12
             // 
-            this.menuItem12.Index = 3;
+            this.menuItem12.Index = 0;
             this.menuItem12.Text = "&Enabled";
             // 
             // menuItem13
             // 
-            this.menuItem13.Index = 4;
+            this.menuItem13.Index = 1;
             this.menuItem13.Text = "-";
             // 
             // menuItem11
             // 
-            this.menuItem11.Index = 5;
+            this.menuItem11.Index = 2;
             this.menuItem11.Text = "&Clear";
             // 
             // menuItem2
             // 
-            this.menuItem2.Index = 6;
+            this.menuItem2.Index = 3;
             this.menuItem2.Text = "&Save log to a file...";
             // 
             // menuItem5
             // 
-            this.menuItem5.Index = 7;
+            this.menuItem5.Index = 4;
             this.menuItem5.Text = "-";
             // 
             // menuItem4
             // 
-            this.menuItem4.Index = 8;
+            this.menuItem4.Index = 5;
             this.menuItem4.Text = "&Filter...";
             // 
             // menuItem8
             // 
-            this.menuItem8.Index = 9;
+            this.menuItem8.Index = 6;
             this.menuItem8.Text = "&Hightlighting...";
             // 
             // menuItemHelp
@@ -394,6 +394,16 @@ namespace NLog.Viewer
                                                                                        this.menuItem26});
             this.menuItem14.Text = "Log &Level";
             // 
+            // menuItem27
+            // 
+            this.menuItem27.Index = 0;
+            this.menuItem27.Text = "None";
+            // 
+            // menuItem21
+            // 
+            this.menuItem21.Index = 1;
+            this.menuItem21.Text = "-";
+            // 
             // menuItem16
             // 
             this.menuItem16.Index = 2;
@@ -419,25 +429,15 @@ namespace NLog.Viewer
             this.menuItem20.Index = 6;
             this.menuItem20.Text = "&Fatal";
             // 
-            // menuItem26
-            // 
-            this.menuItem26.Index = 8;
-            this.menuItem26.Text = "&Custom...";
-            // 
-            // menuItem27
-            // 
-            this.menuItem27.Index = 0;
-            this.menuItem27.Text = "None";
-            // 
             // menuItem15
             // 
             this.menuItem15.Index = 7;
             this.menuItem15.Text = "-";
             // 
-            // menuItem21
+            // menuItem26
             // 
-            this.menuItem21.Index = 1;
-            this.menuItem21.Text = "-";
+            this.menuItem26.Index = 8;
+            this.menuItem26.Text = "&Custom...";
             // 
             // menuItem22
             // 
@@ -453,6 +453,11 @@ namespace NLog.Viewer
             // 
             this.menuItem24.Index = 3;
             this.menuItem24.Text = "&Reset do defaults";
+            // 
+            // menuItem1
+            // 
+            this.menuItem1.Index = 4;
+            this.menuItem1.Text = "-";
             // 
             // MainForm
             // 
@@ -474,15 +479,6 @@ namespace NLog.Viewer
         }
 		#endregion
 
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
-		[STAThread]
-		static void Main() 
-		{
-			Application.Run(new MainForm());
-		}
-
         private void menuItemFileExit_Click(object sender, System.EventArgs e)
         {
             this.Close();
@@ -490,20 +486,14 @@ namespace NLog.Viewer
 
         private void MainForm_Load(object sender, System.EventArgs e)
         {
-            MessageBox.Show(this, @"
-This just a sketch of the upcoming NLog Viewer application. 
-It receives messages sent over UDP protocol port 4000 and displays them.
-
-To send messages to be received by NLog.Viewer, add the following target to the config file:
-
-<targets>
-    ...
-   <target name=""viewer"" type=""NLogViewer"" address=""udp://localhost:4000"" />
-</targets>
-"
-                );
-
             LoadLogs();
+        }
+
+        private void FormLog(string s, params object[] p)
+        {
+            string s2 = String.Format(s, p);
+            textBoxLog.AppendText(s2 + "\r\n");
+
         }
 
         private void LoadLogs()
@@ -513,17 +503,20 @@ To send messages to be received by NLog.Viewer, add the following target to the 
             if (!Directory.Exists(logsDir))
                 Directory.CreateDirectory(logsDir);
 
-            XmlSerializer serializer = new XmlSerializer(typeof(LogInstanceConfigurationInfo));
+            XmlSerializer serializer = new XmlSerializer(typeof(LogInstanceConfiguration));
             int totalInstances = 0;
+
+            FormLog("Looking for '*.loginstance' files in '{0}'", logsDir);
 
             foreach (string logFile in Directory.GetFiles(logsDir, "*.loginstance"))
             {
+                FormLog("Found {0}", logFile);
                 try
                 {
                     using (FileStream fs = File.OpenRead(logFile))
                     {
-                        LogInstanceConfigurationInfo LogInstanceConfigurationInfo =  (LogInstanceConfigurationInfo)serializer.Deserialize(fs);
-                        LogInstance instance = LogInstanceFactory.CreateLogInstance(LogInstanceConfigurationInfo);
+                        LogInstanceConfiguration logInstanceConfig =  (LogInstanceConfiguration)serializer.Deserialize(fs);
+                        LogInstance instance = new LogInstance(logInstanceConfig);
 
                         tabControl1.TabPages.Add(instance.CreateTab(this));
                         instance.Start();
@@ -532,21 +525,27 @@ To send messages to be received by NLog.Viewer, add the following target to the 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(String.Format("Unable to read log instance configuration from {0}: {1}", logFile, ex.ToString()));
+                    FormLog("Unable to read log instance configuration from {0}: {1}", logFile, ex.ToString());
                 }
             }
 
             if (totalInstances == 0)
             {
-                LogInstanceConfigurationInfo lici = 
-                    new LogInstanceConfigurationInfo();
+                FormLog("No instance found. Creating default log on UDP port 4000");
 
+                LogInstanceConfiguration lici = new LogInstanceConfiguration();
                 lici.Name = "UDP port 4000";
-                
-                LogInstance instance = LogInstanceFactory.CreateLogInstance(lici);
+                lici.ReceiverType = "UDP";
+                lici.ReceiverParameters.Add(new ReceiverParameter("port", "4000"));
+
+                LogInstance instance = new LogInstance(lici);
                 tabControl1.TabPages.Add(instance.CreateTab(this));
                 instance.Start();
                 totalInstances++;
+            }
+            else
+            {
+                FormLog("Found {0} instances.", totalInstances);
             }
         }
 
@@ -555,5 +554,12 @@ To send messages to be received by NLog.Viewer, add the following target to the 
             return Path.Combine(_baseConfigurationPath, "Logs");
         }
 
+        private void menuItemNewLog_Click(object sender, System.EventArgs e)
+        {
+            using (CreateLogStep1 s1 = new CreateLogStep1())
+            {
+                s1.ShowDialog(this);
+            }
+        }
 	}
 }

@@ -103,12 +103,12 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LogColumnInfo.cs"
+                    RelPath = "EntryPoint.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LogerConfigInfo.cs"
+                    RelPath = "LogEvent.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -118,12 +118,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LogEventInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "LogInfo.cs"
+                    RelPath = "LogEventPropertyCollection.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -133,22 +128,97 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LogInstanceFactory.cs"
+                    RelPath = "LogInstanceCollection.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LogInstanceUDP.cs"
+                    RelPath = "Configuration\LogColumn.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "MainForm.cs"
+                    RelPath = "Configuration\LogColumnCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Configuration\LoggerConfig.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Configuration\LoggerConfigCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Configuration\LogInstanceConfiguration.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Configuration\ReceiverParameter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Configuration\ReceiverParameterCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Configuration\StringToLoggerConfigMap.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Receivers\LogEventReceiver.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Receivers\LogEventReceiverInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Receivers\LogReceiverAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Receivers\LogReceiverFactory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Receivers\StringToLogEventReceiverInfoMap.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Receivers\UDPEventReceiver.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "UI\CreateLogStep1.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "MainForm.resx"
+                    RelPath = "UI\CreateLogStep1.resx"
+                    DependentUpon = "CreateLogStep1.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "UI\MainForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "UI\MainForm.resx"
                     DependentUpon = "MainForm.cs"
                     BuildAction = "EmbeddedResource"
                 />

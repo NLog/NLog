@@ -35,21 +35,60 @@
 using System;
 using System.Xml;
 using System.Xml.Serialization;
-using System.Drawing;
+using System.Collections;
 
-namespace NLog.Viewer
+namespace NLog.Viewer.Configuration
 {
-	public class LoggerConfigInfo
+    [XmlRoot("loginstance")]
+	public class LogInstanceConfiguration
 	{
-        [XmlAttribute("name")]
+        private bool _dirty;
+
+        [XmlElement("name")]
         public string Name;
 
-        [XmlAttribute("color")]
-        public string color;
+        [XmlArray("columns")]
+        [XmlArrayItem("column")]
+        public LogColumnCollection Columns = new LogColumnCollection();
 
-        public Color Color
+        [XmlIgnore]
+        public bool Dirty
         {
-            get { return Color.FromName(color); }
+            get { return _dirty; }
+            set { _dirty = value; }
+        }
+
+        public string ReceiverType;
+
+        [XmlArray("receiver-parameters")]
+        [XmlArrayItem("param", typeof(ReceiverParameter))]
+        public ReceiverParameterCollection ReceiverParameters = new ReceiverParameterCollection();
+
+        [XmlArray("loggers")]
+        [XmlArrayItem("logger", typeof(LoggerConfig))]
+        public LoggerConfigCollection Loggers = new LoggerConfigCollection();
+
+        private StringToLoggerConfigMap _loggerName2LoggerConfig;
+
+        public LoggerConfig GetLoggerConfig(string loggerName)
+        {
+            lock (this)
+            {
+                if (_loggerName2LoggerConfig == null)
+                {
+                    _loggerName2LoggerConfig = new StringToLoggerConfigMap();
+                }
+                return (LoggerConfig)_loggerName2LoggerConfig[loggerName];
+            }
+        }
+
+        public void AddLoggerConfig(LoggerConfig lc)
+        {
+            lock (this)
+            {
+                _loggerName2LoggerConfig[lc.Name] = lc;
+                Loggers.Add(lc);
+            }
         }
 	}
 }
