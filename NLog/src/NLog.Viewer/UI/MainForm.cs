@@ -163,6 +163,7 @@ namespace NLog.Viewer.UI
             this.menuItem14 = new System.Windows.Forms.MenuItem();
             this.menuItem27 = new System.Windows.Forms.MenuItem();
             this.menuItem21 = new System.Windows.Forms.MenuItem();
+            this.menuItem7 = new System.Windows.Forms.MenuItem();
             this.menuItem16 = new System.Windows.Forms.MenuItem();
             this.menuItem17 = new System.Windows.Forms.MenuItem();
             this.menuItem18 = new System.Windows.Forms.MenuItem();
@@ -173,7 +174,6 @@ namespace NLog.Viewer.UI
             this.menuItem22 = new System.Windows.Forms.MenuItem();
             this.menuItem23 = new System.Windows.Forms.MenuItem();
             this.menuItem24 = new System.Windows.Forms.MenuItem();
-            this.menuItem7 = new System.Windows.Forms.MenuItem();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -181,9 +181,9 @@ namespace NLog.Viewer.UI
             // 
             this.panel1.Controls.Add(this.textBoxLog);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 238);
+            this.panel1.Location = new System.Drawing.Point(0, 158);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(536, 80);
+            this.panel1.Size = new System.Drawing.Size(536, 160);
             this.panel1.TabIndex = 1;
             // 
             // textBoxLog
@@ -193,14 +193,15 @@ namespace NLog.Viewer.UI
             this.textBoxLog.Multiline = true;
             this.textBoxLog.Name = "textBoxLog";
             this.textBoxLog.ReadOnly = true;
-            this.textBoxLog.Size = new System.Drawing.Size(536, 80);
+            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxLog.Size = new System.Drawing.Size(536, 160);
             this.textBoxLog.TabIndex = 0;
             this.textBoxLog.Text = "";
             // 
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(0, 235);
+            this.splitter1.Location = new System.Drawing.Point(0, 155);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(536, 3);
             this.splitter1.TabIndex = 2;
@@ -210,7 +211,7 @@ namespace NLog.Viewer.UI
             // 
             this.splitter2.Location = new System.Drawing.Point(0, 32);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(3, 203);
+            this.splitter2.Size = new System.Drawing.Size(3, 123);
             this.splitter2.TabIndex = 4;
             this.splitter2.TabStop = false;
             // 
@@ -362,12 +363,12 @@ namespace NLog.Viewer.UI
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(533, 181);
+            this.tabControl1.Size = new System.Drawing.Size(533, 101);
             this.tabControl1.TabIndex = 6;
             // 
             // statusBar1
             // 
-            this.statusBar1.Location = new System.Drawing.Point(3, 213);
+            this.statusBar1.Location = new System.Drawing.Point(3, 133);
             this.statusBar1.Name = "statusBar1";
             this.statusBar1.Size = new System.Drawing.Size(533, 22);
             this.statusBar1.TabIndex = 7;
@@ -411,6 +412,11 @@ namespace NLog.Viewer.UI
             // 
             this.menuItem21.Index = 1;
             this.menuItem21.Text = "-";
+            // 
+            // menuItem7
+            // 
+            this.menuItem7.Index = 2;
+            this.menuItem7.Text = "Trace";
             // 
             // menuItem16
             // 
@@ -461,11 +467,6 @@ namespace NLog.Viewer.UI
             // 
             this.menuItem24.Index = 3;
             this.menuItem24.Text = "&Reset do defaults";
-            // 
-            // menuItem7
-            // 
-            this.menuItem7.Index = 2;
-            this.menuItem7.Text = "Trace";
             // 
             // MainForm
             // 

@@ -66,6 +66,7 @@ namespace NLog.Internal
 		}
 
 		private Queue _queue = new Queue();
+        private int _batchedItems = 0;
 		private OverflowAction _overflowAction = OverflowAction.Discard;
 		private int _requestLimit = 10000;
 
@@ -185,12 +186,12 @@ namespace NLog.Internal
 
         /// <summary>
         /// Dequeues a maximum of <c>count</c> items from the queue
-        /// and adds them to the specified <see cref="IList"/>.
+        /// and adds returns the <see cref="ArrayList"/> containing them.
         /// </summary>
-        /// <param name="target">The list to add the items to.</param>
         /// <param name="count">Maximum number of items to be dequeued.</param>
-		public void DequeueBatch(IList target, int count)
+		public ArrayList DequeueBatch(int count)
 		{
+            ArrayList target = new ArrayList();
 			lock (this)
 			{
 				for (int i = 0; i < count; ++i)
@@ -204,7 +205,18 @@ namespace NLog.Internal
 				}
                 System.Threading.Monitor.PulseAll(this);
 			}
+            _batchedItems = target.Count;
+            return target;
 		}
+
+        /// <summary>
+        /// Notifies the queue that the request batch has been processed.
+        /// </summary>
+        /// <param name="batch">The batch.</param>
+        public void BatchProcessed(ArrayList batch)
+        {
+            _batchedItems = 0;
+        }
 
         /// <summary>
         /// Clears the queue.
@@ -224,7 +236,15 @@ namespace NLog.Internal
 		{
 			get { return _queue.Count; }
 		}
-	}
+
+        /// <summary>
+        /// Number of requests currently being processed (in the queue + batched)
+        /// </summary>
+        public int UnprocessedRequestCount
+        {
+            get { return _queue.Count + _batchedItems; }
+        }
+    }
 }
 
 #endif

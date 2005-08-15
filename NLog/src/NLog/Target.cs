@@ -138,9 +138,27 @@ namespace NLog
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>
-        protected internal virtual void Flush()
+        public void Flush()
+        {
+            Flush(TimeSpan.MaxValue);
+        }
+
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public virtual void Flush(TimeSpan timeout)
         {
             // do nothing
+        }
+
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public void Flush(int timeoutMilliseconds)
+        {
+            Flush(TimeSpan.FromMilliseconds(timeoutMilliseconds));
         }
 
         /// <summary>

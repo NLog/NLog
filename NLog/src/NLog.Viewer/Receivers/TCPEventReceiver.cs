@@ -150,6 +150,10 @@ namespace NLog.Viewer.Receivers
                         }
                     }
                 }
+                catch (IOException ex)
+                {
+                    Log.Write("IO Exception: {0}", ex.Message);
+                }
                 catch (Exception ex)
                 {
                     Log.Write("Exception: {0}", ex.ToString());

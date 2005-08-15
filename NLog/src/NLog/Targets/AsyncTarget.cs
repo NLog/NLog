@@ -169,16 +169,33 @@ namespace NLog.Targets
         /// <summary>
         /// Waits for the lazy writer thread to finish writing messages.
         /// </summary>
-        protected internal override void Flush()
+        public override void Flush(TimeSpan timeout)
         {
-            InternalLogger.Debug("Flushing lazy writer thread. Requests in queue: {0}", _lazyWriterRequestQueue.RequestCount);
-            while (_lazyWriterRequestQueue.RequestCount > 0)
+            InternalLogger.Debug("Flushing lazy writer thread. Requests in queue: {0}", _lazyWriterRequestQueue.UnprocessedRequestCount);
+
+            DateTime deadLine = DateTime.MaxValue;
+            if (timeout != TimeSpan.MaxValue)
+                deadLine = DateTime.Now.Add(timeout);
+
+            InternalLogger.Debug("Waiting until {0}", deadLine);
+
+            while (_lazyWriterRequestQueue.UnprocessedRequestCount > 0 && DateTime.Now < deadLine)
             {
-                int before = _lazyWriterRequestQueue.RequestCount;
-                Thread.Sleep(100);
-                int after = _lazyWriterRequestQueue.RequestCount;
+                int before = _lazyWriterRequestQueue.UnprocessedRequestCount;
+                int after = before;
+
+                // we wait max. 5 seconds, and if there's no queue activity
+                // we give up
+                for (int i = 0; i < 100 && DateTime.Now < deadLine; ++i)
+                {
+                    Thread.Sleep(50);
+                    after = _lazyWriterRequestQueue.UnprocessedRequestCount;
+                    if (after != before)
+                        break;
+                }
                 if (after == before)
                 {
+                    InternalLogger.Debug("Aborting flush because of a possible lazy writer thread lockup. Requests in queue: {0}", _lazyWriterRequestQueue.RequestCount);
                     // some lockup - quit the thread
                     break;
                 }
