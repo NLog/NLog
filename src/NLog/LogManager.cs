@@ -405,6 +405,32 @@ namespace NLog
             return new LoggerConfiguration(targetsByLevel);
         }
 
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        public static void Flush()
+        {
+            Configuration.FlushAllTargets(TimeSpan.MaxValue);
+        }
+
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public static void Flush(TimeSpan timeout)
+        {
+            Configuration.FlushAllTargets(timeout);
+        }
+
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public static void Flush(int timeoutMilliseconds)
+        {
+            Configuration.FlushAllTargets(TimeSpan.FromMilliseconds(timeoutMilliseconds));
+        }
+
         private static int _logsEnabled = 0;
 
         class LogEnabler: IDisposable

@@ -188,14 +188,12 @@ namespace NLog.Targets
         /// </summary>
         protected override void LazyWriterThreadProc()
         {
-            ArrayList pendingNetworkRequests = new ArrayList();
             NetworkSender currentSender = null;
             string currentSenderAddress = "";
 
             while (!LazyWriterThreadStopRequested)
             {
-                pendingNetworkRequests.Clear();
-                RequestQueue.DequeueBatch(pendingNetworkRequests, 100);
+                ArrayList pendingNetworkRequests = RequestQueue.DequeueBatch(100);
 
                 if (pendingNetworkRequests.Count == 0)
                 {
@@ -203,40 +201,52 @@ namespace NLog.Targets
                     continue;
                 }
 
-                // sort the network requests by the address and 
-                // the sequence to maximize socket reuse
-
-                pendingNetworkRequests.Sort(NetworkWriteRequest.GetComparer());
-
-                /*
-                    InternalLogger.Debug("---");
-                    foreach (FileWriteRequest fwr in pendingNetworkRequests)
-                    {
-                        InternalLogger.Debug("request: {0} {1}", fwr.FileName, fwr.Sequence);
-                    }
-                    */
-
-                int requests = 0;
-                int reopens = 0;
-
-                for (int i = 0; i < pendingNetworkRequests.Count; ++i)
+                try
                 {
-                    NetworkWriteRequest fwr = (NetworkWriteRequest)pendingNetworkRequests[i];
 
-                    if (fwr.Address != currentSenderAddress)
+                    // sort the network requests by the address and 
+                    // the sequence to maximize socket reuse
+
+                    pendingNetworkRequests.Sort(NetworkWriteRequest.GetComparer());
+
+                    int requests = 0;
+                    int reopens = 0;
+
+                    for (int i = 0; i < pendingNetworkRequests.Count; ++i)
                     {
-                        if (currentSender != null)
+                        NetworkWriteRequest fwr = (NetworkWriteRequest)pendingNetworkRequests[i];
+
+                        if (fwr.Address != currentSenderAddress)
                         {
-                            currentSender.Close();
-                            currentSender = null;
+                            if (currentSender != null)
+                            {
+                                currentSender.Close();
+                                currentSender = null;
+                            }
+                            currentSenderAddress = fwr.Address;
+                            try
+                            {
+                                currentSender = NetworkSender.Create(fwr.Address);
+                            }
+                            catch (Exception ex)
+                            {
+                                InternalLogger.Debug("Cannot create sender: {0}", fwr.Address);
+                                currentSender = null;
+                            }
+                            reopens++;
                         }
-                        currentSenderAddress = fwr.Address;
-                        currentSender = NetworkSender.Create(fwr.Address);
-                        reopens++;
+                        requests++;
+                        if (currentSender != null)
+                            currentSender.Send(fwr.Text);
                     }
-                    requests++;
-                    if (currentSender != null)
-                        currentSender.Send(fwr.Text);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error("Error in File lazy writer thread: {0}", ex);
+                }
+                finally
+                {
+                    RequestQueue.BatchProcessed(pendingNetworkRequests);
                 }
             }
             if (currentSender != null)

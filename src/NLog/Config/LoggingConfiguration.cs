@@ -122,13 +122,13 @@ namespace NLog.Config
         /// <summary>
         /// Flushes any pending log messages on all appenders.
         /// </summary>
-        public void FlushAllTargets()
+        internal void FlushAllTargets(TimeSpan timeout)
         {
             foreach (Target target in _targets.Values)
             {
                 try
                 {
-                    target.Flush();
+                    target.Flush(timeout);
                 
                 }
                 catch (Exception ex)

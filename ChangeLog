@@ -1,4 +1,6 @@
 2005-08-14 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+	* Fixed #34: Typos in the code prevented Chainsaw target
+	from working properly.
 	* Added #31: MSMQ target
 	* Added #30: EventLog target
 	* Fixed #8: Made Performance Counter layout renderer somewhat more

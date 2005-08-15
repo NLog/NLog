@@ -440,11 +440,9 @@ namespace NLog.Targets
         /// </remarks>
         protected override void LazyWriterThreadProc()
         {
-            ArrayList pendingFileRequests = new ArrayList();
             while (!LazyWriterThreadStopRequested)
             {
-                pendingFileRequests.Clear();
-				RequestQueue.DequeueBatch(pendingFileRequests, 100);
+				ArrayList pendingFileRequests = RequestQueue.DequeueBatch(100);
 
                 if (pendingFileRequests.Count == 0)
                 {
@@ -452,57 +450,52 @@ namespace NLog.Targets
                     continue;
                 }
 
-                // sort the file requests by the file name and 
-                // the sequence to maximize file handle reuse
-
-                pendingFileRequests.Sort(FileWriteRequest.GetComparer());
-
-                /*
-                InternalLogger.Debug("---");
-                foreach (FileWriteRequest fwr in pendingFileRequests)
-                {
-                    InternalLogger.Debug("request: {0} {1}", fwr.FileName, fwr.Sequence);
-                }
-                */
-
                 string currentFileName = "";
-                StreamWriter currentStreamWriter = null;
                 int requests = 0;
                 int reopens = 0;
-
-                for (int i = 0; i < pendingFileRequests.Count; ++i)
+                StreamWriter currentStreamWriter = null;
+                try
                 {
-                    FileWriteRequest fwr = (FileWriteRequest)pendingFileRequests[i];
 
-                    if (fwr.FileName != currentFileName)
+                    // sort the file requests by the file name and 
+                    // the sequence to maximize file handle reuse
+
+                    pendingFileRequests.Sort(FileWriteRequest.GetComparer());
+
+                    for (int i = 0; i < pendingFileRequests.Count; ++i)
                     {
+                        FileWriteRequest fwr = (FileWriteRequest)pendingFileRequests[i];
+
+                        if (fwr.FileName != currentFileName)
+                        {
+                            if (currentStreamWriter != null)
+                            {
+                                currentStreamWriter.Close();
+                            }
+                            currentFileName = fwr.FileName;
+                            currentStreamWriter = OpenStreamWriter(fwr.FileName, false);
+                            reopens++;
+                        }
+                        requests++;
                         if (currentStreamWriter != null)
                         {
-                            currentStreamWriter.Close();
+                            WriteToFile(currentStreamWriter, fwr.Text);
                         }
-                        currentFileName = fwr.FileName;
-                        currentStreamWriter = OpenStreamWriter(fwr.FileName, false);
-                        reopens++;
                     }
-                    requests++;
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error("Error in File lazy writer thread: {0}", ex);
+                }
+                finally
+                {
+                    RequestQueue.BatchProcessed(pendingFileRequests);
                     if (currentStreamWriter != null)
                     {
-                        WriteToFile(currentStreamWriter, fwr.Text);
+                        currentStreamWriter.Close();
+                        currentStreamWriter = null;
                     }
                 }
-                if (currentStreamWriter != null)
-                {
-                    currentStreamWriter.Close();
-                    currentStreamWriter = null;
-                }
-                /*
-                
-                if (requests > 0)
-                {
-                    InternalLogger.Debug("Processed {0} requests/ {1} reopens", requests, reopens);
-                }
-                
-                */
             }
         }
 

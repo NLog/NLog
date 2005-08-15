@@ -55,8 +55,7 @@ namespace NLog.UnitTests
             q.Enqueue(2);
             q.Enqueue(3);
             q.Enqueue(4);
-            ArrayList tmp = new ArrayList();
-            q.DequeueBatch(tmp, 5);
+            ArrayList tmp = q.DequeueBatch(5);
 
             Assert.AreEqual(4, tmp.Count);
             Assert.AreEqual(1, tmp[0]);
@@ -73,8 +72,7 @@ namespace NLog.UnitTests
             q.Enqueue(2);
             q.Enqueue(3);
             q.Enqueue(4);
-            ArrayList tmp = new ArrayList();
-            q.DequeueBatch(tmp, 5);
+            ArrayList tmp = q.DequeueBatch(5);
 
             Assert.AreEqual(3, tmp.Count);
             Assert.AreEqual(1, tmp[0]);
@@ -137,11 +135,9 @@ namespace NLog.UnitTests
 
         void AsyncQueueTest3Thread()
         {
-            ArrayList tmp = new ArrayList();
             while (_sum < 36)
             {
-                tmp.Clear();
-                _queue.DequeueBatch(tmp, 5);
+                ArrayList tmp = _queue.DequeueBatch(5);
                 // Console.WriteLine("Dequeued {0}", tmp.Count);
                 if (tmp.Count == 0)
                 {

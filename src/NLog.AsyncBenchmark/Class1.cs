@@ -134,7 +134,7 @@ namespace NLog.AsyncBenchmark
 
                         long avgThreadTime = sumThreadTime / threadCount;
 
-                        LogManager.Configuration.FlushAllTargets();
+                        LogManager.Flush();
                         _timeToFlush.Stop();
                         output.WriteLine("{0};{1};{2};{3};{4};{5};{6}", logger.Name, threadCount, repetitions, _timeToFlush.Ticks, minThreadTime, maxThreadTime, avgThreadTime);
                         output.Flush();

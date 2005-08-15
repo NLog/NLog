@@ -38,40 +38,89 @@ using System.Runtime.InteropServices;
 using NLog;
 using NLog.Config;
 
-public class Test
+namespace NLog.Tester
 {
-    public static void LogProc(string msg)
-    {
-        Console.WriteLine("logproc: {0}", msg);
-    }
-    static void Main(string[]args)
-    {
-        //NLog.LogManager.Configuration = new XmlLoggingConfiguration("NLog.Test.exe.config");
-        Logger l0 = LogManager.GetCurrentClassLogger();
-        NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
-        NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");
-        NLog.Internal.InternalLogger.LogToConsole = true;
 
-        LogManager.GlobalThreshold = LogLevel.Debug;
-
-        using(NDC.Push("aaa"))
+    public class Test
+    {
+        public static void LogProc(string msg)
         {
-            l.Debug("this is a debug");
-            l.Info("this is an info");
-            MDC.Set("username", "jarek");
-
-            l.Warn("this is a warning");
-            using(NDC.Push("bbb"))
+            Console.WriteLine("logproc: {0}", msg);
+        }
+        static void Main(string[]args)
+        {
+            NLog.Internal.InternalLogger.LogToConsole = true;
+            NLog.Internal.InternalLogger.LogLevel = LogLevel.Debug;
+            NLog.Targets.ChainsawTarget t = new NLog.Targets.ChainsawTarget();
+            t.Address = "tcp://localhost:4001";
+            t.IncludeCallSite = true;
+            t.IncludeMDC = true;
+            t.IncludeNDC = true;
+            t.Async = true;
+            t.IncludeSourceInfo = true;
+            SimpleConfigurator.ConfigureForTargetLogging(t, LogLevel.Trace);
+            Logger p = LogManager.GetCurrentClassLogger();
+            Logger p2 = LogManager.GetLogger("NLog.Tester.ABC");
+            Logger p3 = LogManager.GetLogger("NLog.Def.ABC");
+            MDC.Set("AAA", "b");
+            MDC.Set("BBB", "C");
+            using (NDC.Push("AAA"))
             {
-                l2.Debug("this is a debug");
-                using(NDC.Push("ccc"))
+                for (int i = 0; i < 100; ++i)
                 {
-                    l2.Info("this is an info");
+                    p.Trace("This is a trace");
+                    p.Debug("This is a debug");
+                    p.Info("This is a info");
+                    p.Warn("This is a warn");
+                    p.Error("This is a error");
+                    p.Fatal("This is a fatal");
+
+                    p2.Trace("This is a trace");
+                    p2.Debug("This is a debug");
+                    p2.Info("This is a info");
+                    p2.Warn("This is a warn");
+                    p2.Error("This is a error");
+                    p2.Fatal("This is a fatal");
+
+                    p3.Trace("This is a trace");
+                    p3.Debug("This is a debug");
+                    p3.Info("This is a info");
+                    p3.Warn("This is a warn");
+                    p3.Error("This is a error");
+                    p3.Fatal("This is a fatal");
                 }
             }
-            MDC.Set("username", "aaa");
-            l2.Warn("this is a warning");
-        }
+
+            t.Flush(10000);
+
+            return;
+
+            
+            //NLog.LogManager.Configuration = new XmlLoggingConfiguration("NLog.Test.exe.config");
+            Logger l0 = LogManager.GetCurrentClassLogger();
+            NLog.Logger l = NLog.LogManager.GetLogger("Aaa");
+            NLog.Logger l2 = NLog.LogManager.GetLogger("Bbb");
+
+            LogManager.GlobalThreshold = LogLevel.Debug;
+
+            using(NDC.Push("aaa"))
+            {
+                l.Debug("this is a debug");
+                l.Info("this is an info");
+                MDC.Set("username", "jarek");
+
+                l.Warn("this is a warning");
+                using(NDC.Push("bbb"))
+                {
+                    l2.Debug("this is a debug");
+                    using(NDC.Push("ccc"))
+                    {
+                        l2.Info("this is an info");
+                    }
+                }
+                MDC.Set("username", "aaa");
+                l2.Warn("this is a warning");
+            }
             l.Error("this is an error {0}", 3);
             MDC.Remove("username");
             l.Fatal("this is a fatal");
@@ -79,15 +128,16 @@ public class Test
             l2.Fatal("this is a fatal");
             l0.Debug("Class logger!");
 
-        Logger l3 = LogManager.GetLogger("ExceptionLogger");
+            Logger l3 = LogManager.GetLogger("ExceptionLogger");
 
-        try
-        {
-            throw new ArgumentException("msg", "par");
-        }
-        catch (Exception ex)
-        {
-            l3.ErrorException("Exception occured", ex);
+            try
+            {
+                throw new ArgumentException("msg", "par");
+            }
+            catch (Exception ex)
+            {
+                l3.ErrorException("Exception occured", ex);
+            }
         }
     }
 }
