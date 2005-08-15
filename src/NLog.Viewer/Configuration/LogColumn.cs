@@ -36,15 +36,17 @@ using System;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace NLog.Viewer
+namespace NLog.Viewer.Configuration
 {
-    [XmlType("param")]
-	public struct LogEventProperty
+	public class LogColumn
 	{
         [XmlAttribute("name")]
         public string Name;
 
-        [XmlAttribute("value")]
-        public string Value;
+        [XmlAttribute("visible")]
+        public bool Visible;
+
+        [XmlAttribute("width")]
+        public int Width;
 	}
 }

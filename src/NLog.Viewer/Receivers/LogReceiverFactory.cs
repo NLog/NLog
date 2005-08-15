@@ -33,56 +33,34 @@
 // 
 
 using System;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Collections;
+using System.Collections.Specialized;
 
-namespace NLog.Viewer
+using NLog.Viewer.Configuration;
+
+namespace NLog.Viewer.Receivers
 {
-    [XmlRoot("loginstance")]
-	public class LogInstanceConfigurationInfo
+	public class LogReceiverFactory
 	{
-        private bool _dirty;
+        private static StringToLogEventReceiverInfoMap _receivers = new StringToLogEventReceiverInfoMap();
 
-        [XmlElement("name")]
-        public string Name;
-
-        [XmlArray("columns")]
-        [XmlArrayItem("column")]
-        public LogColumnInfo[] Columns;
-
-        [XmlIgnore]
-        public bool Dirty
+        static LogReceiverFactory()
         {
-            get { return _dirty; }
-            set { _dirty = value; }
+            AddReceiverInfo(new LogEventReceiverInfo("UDP", "UDP123", typeof(UDPEventReceiver)));
         }
 
-        [XmlArray("loggers")]
-        [XmlArrayItem("logger", typeof(LoggerConfigInfo))]
-        public ArrayList loggerConfigInfos = new ArrayList();
-
-        private Hashtable _loggerName2LoggerConfigInfo;
-
-        public LoggerConfigInfo GetLoggerConfigInfo(string loggerName)
+        public static void AddReceiverInfo(LogEventReceiverInfo ri)
         {
-            lock (this)
-            {
-                if (_loggerName2LoggerConfigInfo == null)
-                {
-                    _loggerName2LoggerConfigInfo = new Hashtable();
-                }
-                return (LoggerConfigInfo)_loggerName2LoggerConfigInfo[loggerName];
-            }
+            _receivers[ri.Name] = ri;
         }
 
-        public void AddLoggerConfigInfo(LoggerConfigInfo loggerConfigInfo)
+        public static LogEventReceiver CreateLogReceiver(string type, ReceiverParameterCollection parameters)
         {
-            lock (this)
-            {
-                _loggerName2LoggerConfigInfo[loggerConfigInfo.Name] = loggerConfigInfo;
-                loggerConfigInfos.Add(loggerConfigInfo.Name);
-            }
+            LogEventReceiverInfo ri = _receivers[type];
+            if (ri == null)
+                throw new ArgumentException("Unknown receiver type: " + type);
+
+            object o = Activator.CreateInstance(ri.Type, new object[] { parameters });
+            return (LogEventReceiver)o;
         }
 	}
 }

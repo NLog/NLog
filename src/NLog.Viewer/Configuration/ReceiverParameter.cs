@@ -36,11 +36,20 @@ using System;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace NLog.Viewer
+namespace NLog.Viewer.Configuration
 {
-    [XmlType("param")]
-	public struct LogEventProperty
+	public class ReceiverParameter
 	{
+        public ReceiverParameter()
+        {
+        }
+        
+        public ReceiverParameter(string name, string value)
+        {
+            this.Name = name;
+            this.Value = value;
+        }
+
         [XmlAttribute("name")]
         public string Name;
 

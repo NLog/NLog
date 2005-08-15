@@ -40,29 +40,34 @@ using System.IO;
 using System.Collections;
 using System.Drawing;
 
+using NLog.Viewer.Receivers;
+using NLog.Viewer.Configuration;
+using NLog.Viewer.UI;
+
 namespace NLog.Viewer
 {
-	public abstract class LogInstance
+	public class LogInstance
 	{
-        private LogInstanceConfigurationInfo _logInstanceConfigurationInfo;
-        private Thread _inputThread = null;
-        private bool _quitThread;
+        private LogInstanceConfiguration _config;
+        private LogEventReceiver _receiver;
         private ListView _listView;
         private TreeView _treeView;
 
-		public LogInstance(LogInstanceConfigurationInfo logInstanceConfigurationInfo)
+		public LogInstance(LogInstanceConfiguration config)
 		{
-            _logInstanceConfigurationInfo = logInstanceConfigurationInfo;
+            _config = config;
+            _receiver = LogReceiverFactory.CreateLogReceiver(config.ReceiverType, config.ReceiverParameters);
+            _receiver.Connect(this);
 		}
 
-        public LogInstanceConfigurationInfo LogInstanceConfigurationInfo
+        public LogInstanceConfiguration Config
         {
-            get { return _logInstanceConfigurationInfo; }
+            get { return _config; }
         }
 
         public TabPage CreateTab(MainForm form)
         {
-            TabPage page = new TabPage(LogInstanceConfigurationInfo.Name);
+            TabPage page = new TabPage(Config.Name);
             page.ImageIndex = 1;
 
             TreeView treeView = new TreeView();
@@ -97,50 +102,33 @@ namespace NLog.Viewer
 
         public void Start()
         {
-            _quitThread = false;
-            _inputThread = new Thread(new ThreadStart(InputThread));
-            _inputThread.IsBackground = true;
-            _inputThread.Start();
+            _receiver.Start();
         }
 
         public void Stop()
         {
-            if (_inputThread != null)
-            {
-                _quitThread = true;
-                if (!_inputThread.Join(2000))
-                {
-                    _inputThread.Abort();
-                }
-            }
+            _receiver.Stop();
         }
 
         public bool IsRunning
         {
-            get { return _inputThread.IsAlive; }
-        }
-
-        public abstract void InputThread();
-
-        protected bool QuitInputThread
-        {
-            get { return _quitThread; }
+            get { return _receiver.IsRunning; }
         }
 
         private Hashtable _logger2node = new Hashtable();
 
-        private void LoggerToNode(string logger, out TreeNode treeNode, out LoggerConfigInfo loggerConfigInfo)
+        private void LoggerToNode(string logger, out TreeNode treeNode, out LoggerConfig loggerConfigInfo)
         {
             object o = _logger2node[logger];
             if (o != null)
             {
                 treeNode = (TreeNode)o;
-                loggerConfigInfo = (LoggerConfigInfo)treeNode.Tag;
+                loggerConfigInfo = (LoggerConfig)treeNode.Tag;
                 return;
             }
 
             TreeNode parentNode;
-            LoggerConfigInfo parentLoggerConfigInfo;
+            LoggerConfig parentLoggerConfigInfo;
 
             string baseName;
             int rightmostDot = logger.LastIndexOf('.');
@@ -148,7 +136,7 @@ namespace NLog.Viewer
             {
                 parentNode = _treeView.Nodes[0];
                 baseName = logger;
-                parentLoggerConfigInfo = LogInstanceConfigurationInfo.GetLoggerConfigInfo("");
+                parentLoggerConfigInfo = Config.GetLoggerConfig("");
             }
             else
             {
@@ -157,7 +145,7 @@ namespace NLog.Viewer
                 LoggerToNode(parentLoggerName, out parentNode, out parentLoggerConfigInfo);
             }
 
-            LoggerConfigInfo lci = LogInstanceConfigurationInfo.GetLoggerConfigInfo(logger);
+            LoggerConfig lci = Config.GetLoggerConfig(logger);
 
             TreeNode newNode = new TreeNode(baseName);
             _logger2node[logger] = newNode;
@@ -176,7 +164,7 @@ namespace NLog.Viewer
             parentNode.Expand();
         }
 
-        protected void ProcessLogEvent(LogEventInfo eventInfo)
+        internal void ProcessLogEvent(LogEvent eventInfo)
         {
             ListViewItem item =_listView.Items.Insert(0, eventInfo.ReceivedTime.ToString());
             item.SubItems.Add(eventInfo.Logger);
@@ -185,6 +173,10 @@ namespace NLog.Viewer
 
             switch (eventInfo.Level[0])
             {
+                case 'T':
+                    item.ForeColor = Color.Gray;
+                    break;
+
                 case 'D':
                     item.ForeColor = Color.Navy;
                     break;
@@ -206,7 +198,7 @@ namespace NLog.Viewer
                     break;
             }
 
-            LoggerConfigInfo loggerConfigInfo;
+            LoggerConfig loggerConfigInfo;
             TreeNode treeNode;
 
             LoggerToNode(eventInfo.Logger, out treeNode, out loggerConfigInfo);

@@ -35,16 +35,24 @@
 using System;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Drawing;
 
-namespace NLog.Viewer
+namespace NLog.Viewer.Receivers
 {
-    [XmlType("param")]
-	public struct LogEventProperty
+	public class LogEventReceiverInfo
 	{
-        [XmlAttribute("name")]
-        public string Name;
+        public LogEventReceiverInfo()
+        {
+        }
 
-        [XmlAttribute("value")]
-        public string Value;
+        public LogEventReceiverInfo(string name, string description, Type type)
+        {
+            this.Name = name;
+            this.Description = description;
+            this.Type = type;
+        }
+        public string Name;
+        public string Description;
+        public Type Type;
 	}
 }

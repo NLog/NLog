@@ -33,20 +33,72 @@
 // 
 
 using System;
-using System.Xml;
-using System.Xml.Serialization;
+using System.Threading;
+using System.Windows.Forms;
+using System.Text;
+using System.IO;
+using System.Collections;
+using System.Drawing;
+using System.Collections.Specialized;
 
-namespace NLog.Viewer
+using NLog.Viewer.Configuration;
+
+namespace NLog.Viewer.Receivers
 {
-	public class LogColumnInfo
+	public abstract class LogEventReceiver
 	{
-        [XmlAttribute("name")]
-        public string Name;
+        private LogInstance _instance = null;
+        private Thread _inputThread = null;
+        private bool _quitThread;
 
-        [XmlAttribute("visible")]
-        public bool Visible;
+		public LogEventReceiver(ReceiverParameterCollection parameters)
+		{
+		}
 
-        [XmlAttribute("width")]
-        public int Width;
-	}
+        public void Start()
+        {
+            _quitThread = false;
+            _inputThread = new Thread(new ThreadStart(InputThread));
+            _inputThread.IsBackground = true;
+            _inputThread.Start();
+        }
+
+        public void Stop()
+        {
+            if (_inputThread != null)
+            {
+                _quitThread = true;
+                if (!_inputThread.Join(2000))
+                {
+                    _inputThread.Abort();
+                }
+            }
+        }
+
+        public bool IsRunning
+        {
+            get { return _inputThread.IsAlive; }
+        }
+
+        public abstract void InputThread();
+
+        protected bool QuitInputThread
+        {
+            get { return _quitThread; }
+        }
+
+        protected void EventReceived(LogEvent logEvent)
+        {
+            LogInstance i = _instance;
+            if (i != null)
+            {
+                i.ProcessLogEvent(logEvent);
+            }
+        }
+
+        internal void Connect(LogInstance instance)
+        {
+            _instance = instance;
+        }
+    }
 }

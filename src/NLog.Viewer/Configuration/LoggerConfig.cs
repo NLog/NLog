@@ -33,14 +33,23 @@
 // 
 
 using System;
+using System.Xml;
+using System.Xml.Serialization;
+using System.Drawing;
 
-namespace NLog.Viewer
+namespace NLog.Viewer.Configuration
 {
-	public class LogInstanceFactory
+	public class LoggerConfig
 	{
-        public static LogInstance CreateLogInstance(LogInstanceConfigurationInfo LogInstanceConfigurationInfo)
+        [XmlAttribute("name")]
+        public string Name;
+
+        [XmlAttribute("color")]
+        public string color;
+
+        public Color Color
         {
-            return new LogInstanceUDP(LogInstanceConfigurationInfo);
+            get { return Color.FromName(color); }
         }
 	}
 }

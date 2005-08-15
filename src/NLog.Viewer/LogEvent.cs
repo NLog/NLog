@@ -39,7 +39,7 @@ using System.Collections;
 
 namespace NLog.Viewer
 {
-	public class LogEventInfo
+	public class LogEvent
 	{
         private DateTime _sentTime;
         private DateTime _receivedTime;
@@ -133,10 +133,9 @@ namespace NLog.Viewer
             set { _thread = value; }
         }
 
+        public LogEventPropertyCollection Properties = new LogEventPropertyCollection();
 
-        public ArrayList ExtraInfo = new ArrayList();
-
-        public static void ParseLog4JProperties(LogEventInfo ev, XmlTextReader reader, string namePrefix)
+        public static void ParseLog4JProperties(LogEvent ev, XmlTextReader reader, string namePrefix)
         {
             if (reader.IsEmptyElement)
                 return;
@@ -154,20 +153,19 @@ namespace NLog.Viewer
                     string name = reader.GetAttribute("name");
                     string value = reader.GetAttribute("value");
 
-                    LogEventExtraInfo ei = new LogEventExtraInfo();
+                    LogEventProperty ei = new LogEventProperty();
                     ei.Name = namePrefix + name;
                     ei.Value = value;
-                    ev.ExtraInfo.Add(ei);
-
+                    ev.Properties.Add(ei);
                 }
             }
         }
 
         private static DateTime _log4jDateBase = new DateTime(1970, 1, 1);
 
-        public static LogEventInfo ParseLog4JEvent(XmlTextReader reader)
+        public static LogEvent ParseLog4JEvent(XmlTextReader reader)
         {
-            LogEventInfo ev = new LogEventInfo();
+            LogEvent ev = new LogEvent();
             ev.Logger = reader.GetAttribute("logger");
             ev.Level = reader.GetAttribute("level");
             ev.Thread = reader.GetAttribute("thread");
