@@ -51,7 +51,7 @@ namespace NLog.Tester
         {
             NLog.Internal.InternalLogger.LogToConsole = true;
             NLog.Internal.InternalLogger.LogLevel = LogLevel.Debug;
-            NLog.Targets.ChainsawTarget t = new NLog.Targets.ChainsawTarget();
+            NLog.Targets.NLogViewerTarget t = new NLog.Targets.NLogViewerTarget();
             t.Address = "tcp://localhost:4001";
             t.IncludeCallSite = true;
             t.IncludeMDC = true;
@@ -66,7 +66,7 @@ namespace NLog.Tester
             MDC.Set("BBB", "C");
             using (NDC.Push("AAA"))
             {
-                for (int i = 0; i < 100; ++i)
+                for (int i = 0; i < 3; ++i)
                 {
                     p.Trace("This is a trace");
                     p.Debug("This is a debug");

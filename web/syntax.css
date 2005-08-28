@@ -1,0 +1,90 @@
+pre.csharp
+{
+    font-family: Courier New;
+    font-size: 11px;
+    padding: 4px;
+    font-color: #606060;
+    background-color: #fffff8;
+}
+
+pre.xml
+{
+    font-family: Courier New;
+    font-size: 11px;
+    padding: 4px;
+    font-color: #606060;
+    background-color: #fffff8;
+}
+
+.csharp .k
+{
+    color: #0000ff;
+}
+
+.csharp .c
+{
+    color: #008000;
+    font-style: italic;
+}
+
+.csharp .s
+{
+    color: #C00000;
+}
+
+.csharp .r
+{
+    color: #400000;
+}
+
+.jscript .k
+{
+    color: #0000ff;
+}
+
+.jscript .c
+{
+    color: #008000;
+    font-style: italic;
+}
+
+.jscript .s
+{
+    color: #400000;
+}
+
+.jscript .r
+{
+    color: #400000;
+}
+
+.xml .a
+{
+    color: #ff0000;
+}
+
+.xml .at
+{
+    color: #0000ff;
+}
+
+.xml .b
+{
+    color: #0000ff;
+}
+
+.xml .e
+{
+    color: #800000;
+}
+
+.xml .c
+{
+    color: #008000;
+    font-style: italic;
+}
+
+.xml .x
+{
+    color: #A0A000;
+}

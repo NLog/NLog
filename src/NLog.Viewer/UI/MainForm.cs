@@ -52,7 +52,6 @@ namespace NLog.Viewer.UI
 	/// </summary>
 	public class MainForm : System.Windows.Forms.Form
 	{
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Splitter splitter2;
         private System.Windows.Forms.MainMenu mainMenu1;
@@ -64,14 +63,11 @@ namespace NLog.Viewer.UI
         private System.Windows.Forms.ToolBarButton toolBarButton1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.StatusBar statusBar1;
         private System.Windows.Forms.ToolBarButton toolBarButton2;
         private System.Windows.Forms.MenuItem menuItem3;
         private System.Windows.Forms.MenuItem menuItem6;
         private System.Windows.Forms.MenuItem menuItem2;
-        private System.Windows.Forms.MenuItem menuItem4;
         private System.Windows.Forms.MenuItem menuItem5;
-        private System.Windows.Forms.MenuItem menuItem8;
         private System.Windows.Forms.MenuItem menuItem10;
         private System.Windows.Forms.MenuItem menuItem11;
         private System.Windows.Forms.MenuItem menuItem12;
@@ -94,11 +90,26 @@ namespace NLog.Viewer.UI
         private System.Windows.Forms.MenuItem menuItem24;
         private System.Windows.Forms.MenuItem menuItemManageLogs;
         private System.Windows.Forms.MenuItem menuItem1;
-        private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.MenuItem menuItemNewLog;
         private System.Windows.Forms.MenuItem menuItem7;
+        private System.Windows.Forms.MenuItem menuItem9;
 
         private string _baseConfigurationPath;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.MenuItem menuItemViewStatusMessages;
+        private System.Windows.Forms.MenuItem menuItemLogEventDetails;
+        private System.Windows.Forms.TextBox textBoxLog;
+        private System.Windows.Forms.Splitter splitter3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TabPage tabPageNLogViewerTrace;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.TextBox textBoxSelectedMessageText;
+        private System.Windows.Forms.ListView listviewSelectedLogEventProperties;
+        private System.Windows.Forms.MenuItem menuItemFilterHighlight;
+        private LogInstanceCollection _instances = new LogInstanceCollection();
 
 		public MainForm()
 		{
@@ -130,8 +141,6 @@ namespace NLog.Viewer.UI
 		{
             this.components = new System.ComponentModel.Container();
             System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(MainForm));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.textBoxLog = new System.Windows.Forms.TextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
@@ -142,14 +151,16 @@ namespace NLog.Viewer.UI
             this.menuItemManageLogs = new System.Windows.Forms.MenuItem();
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItemFileExit = new System.Windows.Forms.MenuItem();
+            this.menuItem9 = new System.Windows.Forms.MenuItem();
+            this.menuItemLogEventDetails = new System.Windows.Forms.MenuItem();
+            this.menuItemViewStatusMessages = new System.Windows.Forms.MenuItem();
             this.menuItem6 = new System.Windows.Forms.MenuItem();
             this.menuItem12 = new System.Windows.Forms.MenuItem();
             this.menuItem13 = new System.Windows.Forms.MenuItem();
             this.menuItem11 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.menuItem5 = new System.Windows.Forms.MenuItem();
-            this.menuItem4 = new System.Windows.Forms.MenuItem();
-            this.menuItem8 = new System.Windows.Forms.MenuItem();
+            this.menuItemFilterHighlight = new System.Windows.Forms.MenuItem();
             this.menuItemHelp = new System.Windows.Forms.MenuItem();
             this.menuItemHelpAbout = new System.Windows.Forms.MenuItem();
             this.toolBar1 = new System.Windows.Forms.ToolBar();
@@ -157,7 +168,8 @@ namespace NLog.Viewer.UI
             this.toolBarButton2 = new System.Windows.Forms.ToolBarButton();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.statusBar1 = new System.Windows.Forms.StatusBar();
+            this.tabPageNLogViewerTrace = new System.Windows.Forms.TabPage();
+            this.textBoxLog = new System.Windows.Forms.TextBox();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.treeContextMenu = new System.Windows.Forms.ContextMenu();
             this.menuItem14 = new System.Windows.Forms.MenuItem();
@@ -174,36 +186,26 @@ namespace NLog.Viewer.UI
             this.menuItem22 = new System.Windows.Forms.MenuItem();
             this.menuItem23 = new System.Windows.Forms.MenuItem();
             this.menuItem24 = new System.Windows.Forms.MenuItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.splitter3 = new System.Windows.Forms.Splitter();
+            this.textBoxSelectedMessageText = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.listviewSelectedLogEventProperties = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabControl1.SuspendLayout();
+            this.tabPageNLogViewerTrace.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.textBoxLog);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 158);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(536, 160);
-            this.panel1.TabIndex = 1;
-            // 
-            // textBoxLog
-            // 
-            this.textBoxLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxLog.Location = new System.Drawing.Point(0, 0);
-            this.textBoxLog.Multiline = true;
-            this.textBoxLog.Name = "textBoxLog";
-            this.textBoxLog.ReadOnly = true;
-            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxLog.Size = new System.Drawing.Size(536, 160);
-            this.textBoxLog.TabIndex = 0;
-            this.textBoxLog.Text = "";
             // 
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(0, 155);
+            this.splitter1.Location = new System.Drawing.Point(0, 242);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(536, 3);
+            this.splitter1.Size = new System.Drawing.Size(742, 3);
             this.splitter1.TabIndex = 2;
             this.splitter1.TabStop = false;
             // 
@@ -211,7 +213,7 @@ namespace NLog.Viewer.UI
             // 
             this.splitter2.Location = new System.Drawing.Point(0, 32);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(3, 123);
+            this.splitter2.Size = new System.Drawing.Size(3, 210);
             this.splitter2.TabIndex = 4;
             this.splitter2.TabStop = false;
             // 
@@ -219,6 +221,7 @@ namespace NLog.Viewer.UI
             // 
             this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
                                                                                       this.menuItemFile,
+                                                                                      this.menuItem9,
                                                                                       this.menuItem6,
                                                                                       this.menuItemHelp});
             // 
@@ -266,17 +269,34 @@ namespace NLog.Viewer.UI
             this.menuItemFileExit.Text = "&Exit";
             this.menuItemFileExit.Click += new System.EventHandler(this.menuItemFileExit_Click);
             // 
+            // menuItem9
+            // 
+            this.menuItem9.Index = 1;
+            this.menuItem9.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+                                                                                      this.menuItemLogEventDetails,
+                                                                                      this.menuItemViewStatusMessages});
+            this.menuItem9.Text = "&View";
+            // 
+            // menuItemLogEventDetails
+            // 
+            this.menuItemLogEventDetails.Index = 0;
+            this.menuItemLogEventDetails.Text = "Log Event Details";
+            // 
+            // menuItemViewStatusMessages
+            // 
+            this.menuItemViewStatusMessages.Index = 1;
+            this.menuItemViewStatusMessages.Text = "Status Messages";
+            // 
             // menuItem6
             // 
-            this.menuItem6.Index = 1;
+            this.menuItem6.Index = 2;
             this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
                                                                                       this.menuItem12,
                                                                                       this.menuItem13,
                                                                                       this.menuItem11,
                                                                                       this.menuItem2,
                                                                                       this.menuItem5,
-                                                                                      this.menuItem4,
-                                                                                      this.menuItem8});
+                                                                                      this.menuItemFilterHighlight});
             this.menuItem6.Text = "&Log";
             // 
             // menuItem12
@@ -304,19 +324,15 @@ namespace NLog.Viewer.UI
             this.menuItem5.Index = 4;
             this.menuItem5.Text = "-";
             // 
-            // menuItem4
+            // menuItemFilterHighlight
             // 
-            this.menuItem4.Index = 5;
-            this.menuItem4.Text = "&Filter...";
-            // 
-            // menuItem8
-            // 
-            this.menuItem8.Index = 6;
-            this.menuItem8.Text = "&Hightlighting...";
+            this.menuItemFilterHighlight.Index = 5;
+            this.menuItemFilterHighlight.Text = "&Filter / Highlight...";
+            this.menuItemFilterHighlight.Click += new System.EventHandler(this.menuItemFilterHighlight_Click);
             // 
             // menuItemHelp
             // 
-            this.menuItemHelp.Index = 2;
+            this.menuItemHelp.Index = 3;
             this.menuItemHelp.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
                                                                                          this.menuItemHelpAbout});
             this.menuItemHelp.Text = "&Help";
@@ -337,7 +353,7 @@ namespace NLog.Viewer.UI
             this.toolBar1.Location = new System.Drawing.Point(0, 0);
             this.toolBar1.Name = "toolBar1";
             this.toolBar1.ShowToolTips = true;
-            this.toolBar1.Size = new System.Drawing.Size(536, 32);
+            this.toolBar1.Size = new System.Drawing.Size(742, 32);
             this.toolBar1.TabIndex = 5;
             // 
             // toolBarButton1
@@ -356,6 +372,7 @@ namespace NLog.Viewer.UI
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tabPageNLogViewerTrace);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.HotTrack = true;
             this.tabControl1.ImageList = this.imageList1;
@@ -363,16 +380,29 @@ namespace NLog.Viewer.UI
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(533, 101);
+            this.tabControl1.Size = new System.Drawing.Size(739, 210);
             this.tabControl1.TabIndex = 6;
             // 
-            // statusBar1
+            // tabPageNLogViewerTrace
             // 
-            this.statusBar1.Location = new System.Drawing.Point(3, 133);
-            this.statusBar1.Name = "statusBar1";
-            this.statusBar1.Size = new System.Drawing.Size(533, 22);
-            this.statusBar1.TabIndex = 7;
-            this.statusBar1.Text = "Ready";
+            this.tabPageNLogViewerTrace.Controls.Add(this.textBoxLog);
+            this.tabPageNLogViewerTrace.Location = new System.Drawing.Point(4, 27);
+            this.tabPageNLogViewerTrace.Name = "tabPageNLogViewerTrace";
+            this.tabPageNLogViewerTrace.Size = new System.Drawing.Size(731, 179);
+            this.tabPageNLogViewerTrace.TabIndex = 0;
+            this.tabPageNLogViewerTrace.Text = "NLog Viewer Trace";
+            // 
+            // textBoxLog
+            // 
+            this.textBoxLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxLog.Location = new System.Drawing.Point(0, 0);
+            this.textBoxLog.Multiline = true;
+            this.textBoxLog.Name = "textBoxLog";
+            this.textBoxLog.ReadOnly = true;
+            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxLog.Size = new System.Drawing.Size(731, 179);
+            this.textBoxLog.TabIndex = 1;
+            this.textBoxLog.Text = "";
             // 
             // imageList2
             // 
@@ -468,12 +498,98 @@ namespace NLog.Viewer.UI
             this.menuItem24.Index = 3;
             this.menuItem24.Text = "&Reset do defaults";
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // splitter3
+            // 
+            this.splitter3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.splitter3.Location = new System.Drawing.Point(739, 0);
+            this.splitter3.Name = "splitter3";
+            this.splitter3.Size = new System.Drawing.Size(3, 250);
+            this.splitter3.TabIndex = 1;
+            this.splitter3.TabStop = false;
+            // 
+            // textBoxSelectedMessageText
+            // 
+            this.textBoxSelectedMessageText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+                | System.Windows.Forms.AnchorStyles.Left) 
+                | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSelectedMessageText.Location = new System.Drawing.Point(456, 24);
+            this.textBoxSelectedMessageText.Multiline = true;
+            this.textBoxSelectedMessageText.Name = "textBoxSelectedMessageText";
+            this.textBoxSelectedMessageText.ReadOnly = true;
+            this.textBoxSelectedMessageText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxSelectedMessageText.Size = new System.Drawing.Size(272, 218);
+            this.textBoxSelectedMessageText.TabIndex = 0;
+            this.textBoxSelectedMessageText.Text = "";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.listviewSelectedLogEventProperties);
+            this.panel1.Controls.Add(this.splitter3);
+            this.panel1.Controls.Add(this.textBoxSelectedMessageText);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 245);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(742, 250);
+            this.panel1.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(8, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(440, 23);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Selected Log Event Properties:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // listviewSelectedLogEventProperties
+            // 
+            this.listviewSelectedLogEventProperties.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+                | System.Windows.Forms.AnchorStyles.Left)));
+            this.listviewSelectedLogEventProperties.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+                                                                                                                 this.columnHeader1,
+                                                                                                                 this.columnHeader2});
+            this.listviewSelectedLogEventProperties.FullRowSelect = true;
+            this.listviewSelectedLogEventProperties.GridLines = true;
+            this.listviewSelectedLogEventProperties.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listviewSelectedLogEventProperties.Location = new System.Drawing.Point(8, 24);
+            this.listviewSelectedLogEventProperties.Name = "listviewSelectedLogEventProperties";
+            this.listviewSelectedLogEventProperties.Size = new System.Drawing.Size(440, 218);
+            this.listviewSelectedLogEventProperties.TabIndex = 2;
+            this.listviewSelectedLogEventProperties.View = System.Windows.Forms.View.Details;
+            this.listviewSelectedLogEventProperties.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Name";
+            this.columnHeader1.Width = 100;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Value";
+            this.columnHeader2.Width = 500;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(456, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(176, 23);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Message Text:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(536, 318);
+            this.ClientSize = new System.Drawing.Size(742, 495);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.statusBar1);
             this.Controls.Add(this.splitter2);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel1);
@@ -482,6 +598,8 @@ namespace NLog.Viewer.UI
             this.Name = "MainForm";
             this.Text = "NLog Viewer";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPageNLogViewerTrace.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -507,13 +625,15 @@ namespace NLog.Viewer.UI
 
         private void LoadLogs()
         {
-            string logsDir = GetLogsDirectory();
+            LoadLogs(GetLogsDirectory());
+        }
 
+        private void LoadLogs(string logsDir)
+        {
             if (!Directory.Exists(logsDir))
                 Directory.CreateDirectory(logsDir);
 
             XmlSerializer serializer = new XmlSerializer(typeof(LogInstanceConfiguration));
-            int totalInstances = 0;
 
             Log.Write("Looking for '*.loginstance' files in '{0}'", logsDir);
 
@@ -522,15 +642,12 @@ namespace NLog.Viewer.UI
                 Log.Write("Found {0}", logFile);
                 try
                 {
-                    using (FileStream fs = File.OpenRead(logFile))
-                    {
-                        LogInstanceConfiguration logInstanceConfig =  (LogInstanceConfiguration)serializer.Deserialize(fs);
-                        LogInstance instance = new LogInstance(logInstanceConfig);
+                    LogInstanceConfiguration logInstanceConfig = LogInstanceConfiguration.Load(logFile);
+                    LogInstance instance = new LogInstance(logInstanceConfig);
+                    instance.CreateTab(this);
 
-                        tabControl1.TabPages.Add(instance.CreateTab(this));
-                        instance.Start();
-                        totalInstances++;
-                    }
+                    instance.Start();
+                    _instances.Add(instance);
                 }
                 catch (Exception ex)
                 {
@@ -538,7 +655,8 @@ namespace NLog.Viewer.UI
                 }
             }
 
-            if (totalInstances == 0)
+            CreateInstanceFileName(logsDir);
+            if (_instances.Count == 0)
             {
                 Log.Write("No instance found. Creating default log on UDP port 4000");
 
@@ -546,26 +664,40 @@ namespace NLog.Viewer.UI
                 lici.Name = "udp://localhost:4000";
                 lici.ReceiverType = "UDP";
                 lici.ReceiverParameters.Add(new ReceiverParameter("port", "4000"));
+                lici.FileName = CreateInstanceFileName(logsDir);
+                lici.Save();
 
                 LogInstance instance = new LogInstance(lici);
-                tabControl1.TabPages.Add(instance.CreateTab(this));
+                instance.CreateTab(this);
                 instance.Start();
-                totalInstances++;
+                _instances.Add(instance);
 
                 lici = new LogInstanceConfiguration();
                 lici.Name = "tcp://localhost:4001";
                 lici.ReceiverType = "TCP";
                 lici.ReceiverParameters.Add(new ReceiverParameter("port", "4001"));
+                lici.FileName = CreateInstanceFileName(logsDir);
+                lici.Save();
 
                 instance = new LogInstance(lici);
-                tabControl1.TabPages.Add(instance.CreateTab(this));
-                instance.Start();
-                totalInstances++;
+                instance.CreateTab(this);
+                _instances.Add(instance);
             }
             else
             {
-                Log.Write("Found {0} instances.", totalInstances);
+                Log.Write("Found {0} instances.", _instances.Count);
             }
+            ReloadTabPages();
+        }
+
+        private void ReloadTabPages()
+        {
+            this.tabControl1.TabPages.Clear();
+            foreach (LogInstance i in _instances)
+            {
+                this.tabControl1.TabPages.Add(i.TabPage);
+            }
+            this.tabControl1.TabPages.Add(tabPageNLogViewerTrace);
         }
 
         private string GetLogsDirectory()
@@ -578,6 +710,102 @@ namespace NLog.Viewer.UI
             using (CreateLogStep1 s1 = new CreateLogStep1())
             {
                 s1.ShowDialog(this);
+            }
+        }
+
+        private string CreateInstanceFileName(string baseDir)
+        {
+            for (int i = 0; i < 10000; ++i)
+            {
+                string fileName = String.Format("{0:0000}", i);
+                string fullName = Path.Combine(baseDir, fileName) + ".loginstance";
+                if (!File.Exists(fullName))
+                    return fullName;
+            }
+            return Path.Combine(baseDir, Guid.NewGuid().ToString("N"));
+        }
+
+        private void timer1_Tick(object sender, System.EventArgs e)
+        {
+            for (int i = 0; i < _instances.Count; ++i)
+            {
+                _instances[i].OnTimer();
+            }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+        
+        }
+
+        private LogEvent _selectedLogEvent = null;
+
+        public void LogEventSelected(LogInstance instance, LogEvent evt)
+        {
+            if (evt != _selectedLogEvent)
+            {
+                _selectedLogEvent = evt;
+
+                textBoxSelectedMessageText.Text = evt.MessageText;
+                ListViewItem item;
+
+                listviewSelectedLogEventProperties.Items.Clear(); 
+
+                item = new ListViewItem(new string[] { "Sent Time", evt.SentTime.ToString() });
+                listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Received Time", evt.ReceivedTime.ToString() });
+                listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Logger", evt.Logger });
+                listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Level", evt.Level });
+                listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Application", evt.SourceApplication });
+                listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Thread", evt.Thread });
+                listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Assembly", evt.SourceAssembly });
+                listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Class", evt.SourceType });
+                listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Method", evt.SourceMethod });
+                listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Source File", evt.SourceFile });
+                listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Source Line", evt.SourceLine.ToString() });
+                listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Source Column", evt.SourceColumn.ToString() });
+                listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Machine", evt.SourceMachine });
+                listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Stack Trace", evt.StackTrace });
+                listviewSelectedLogEventProperties.Items.Add(item);
+
+                foreach (LogEventProperty lep in evt.Properties)
+                {
+                    item = new ListViewItem(new string[] { lep.Name, lep.Value });
+                    listviewSelectedLogEventProperties.Items.Add(item);
+                }
+            }
+        }
+
+        private void menuItemFilterHighlight_Click(object sender, System.EventArgs e)
+        {
+            using (FilterHighlight dlg = new FilterHighlight())
+            {
+                dlg.ShowDialog(this);
             }
         }
 	}

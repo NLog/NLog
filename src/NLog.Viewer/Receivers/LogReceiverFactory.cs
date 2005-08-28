@@ -56,14 +56,14 @@ namespace NLog.Viewer.Receivers
             // UDP receiver
             ri = new LogEventReceiverInfo();
             ri.Name = "UDP";
-            ri.Description = "Receives events from the network using UDP protocol";
+            ri.Description = "Receives XML events from the network using UDP protocol";
             ri.Type = typeof(UDPEventReceiver);
             AddReceiverInfo(ri);
 
             // TCP receiver
             ri = new LogEventReceiverInfo();
             ri.Name = "TCP";
-            ri.Description = "Receives events from the network using TCP protocol";
+            ri.Description = "Receives XML events from the network using TCP protocol";
             ri.Type = typeof(TCPEventReceiver);
 
             AddReceiverInfo(ri);

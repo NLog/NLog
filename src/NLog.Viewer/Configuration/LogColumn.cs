@@ -40,11 +40,18 @@ namespace NLog.Viewer.Configuration
 {
 	public class LogColumn
 	{
+        public LogColumn()
+        {
+        }
+
+        public LogColumn(string name, int width)
+        {
+            this.Name = name;
+            this.Width = width;
+        }
+
         [XmlAttribute("name")]
         public string Name;
-
-        [XmlAttribute("visible")]
-        public bool Visible;
 
         [XmlAttribute("width")]
         public int Width;

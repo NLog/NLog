@@ -37,12 +37,17 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Collections;
 
+using System.IO;
+
 namespace NLog.Viewer.Configuration
 {
     [XmlRoot("loginstance")]
 	public class LogInstanceConfiguration
 	{
         private bool _dirty;
+
+        [XmlIgnore]
+        public string FileName;
 
         [XmlElement("name")]
         public string Name;
@@ -58,6 +63,19 @@ namespace NLog.Viewer.Configuration
             set { _dirty = value; }
         }
 
+        [XmlAttribute("max-log-entries")]
+        [System.ComponentModel.DefaultValue(1000)]
+        public int MaxLogEntries = 1000;
+
+        [XmlElement("sortBy")]
+        [System.ComponentModel.DefaultValue("ID")]
+        public string OrderBy = "ID";
+
+        [XmlElement("sortAscending")]
+        [System.ComponentModel.DefaultValue(true)]
+        public bool SortAscending = true;
+
+        [XmlAttribute("receiver-type")]
         public string ReceiverType;
 
         [XmlArray("receiver-parameters")]
@@ -90,5 +108,38 @@ namespace NLog.Viewer.Configuration
                 Loggers.Add(lc);
             }
         }
-	}
+
+        private void Resolve()
+        {
+            if (Columns.Count == 0)
+            {
+                Columns.Add(new LogColumn("ID", 60));
+                Columns.Add(new LogColumn("Time", 120));
+                Columns.Add(new LogColumn("Logger", 200));
+                Columns.Add(new LogColumn("Level", 50));
+                Columns.Add(new LogColumn("Text", 300));
+            }
+        }
+
+        private static XmlSerializer _serializer = new XmlSerializer(typeof(LogInstanceConfiguration));
+
+        public void Save()
+        {
+            using (FileStream fs = File.OpenWrite(this.FileName))
+            {
+                _serializer.Serialize(fs, this);
+            }
+        }
+
+        public static LogInstanceConfiguration Load(string fileName)
+        {
+            using (FileStream fs = File.OpenRead(fileName))
+            {
+                LogInstanceConfiguration c = (LogInstanceConfiguration)_serializer.Deserialize(fs);
+                c.FileName = fileName;
+                c.Resolve();
+                return c;
+            }
+        }
+    }
 }

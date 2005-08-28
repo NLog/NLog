@@ -63,7 +63,7 @@ namespace NLog.Targets
         /// <summary>
         /// Include NLog-specific extensions to log4j schema.
         /// </summary>
-        protected bool IncludeNLogData = true;
+        public bool IncludeNLogData = true;
 
         /// <summary>
         /// Creates a new instance of the <see cref="NLogViewerTarget"/> 
@@ -209,16 +209,8 @@ namespace NLog.Targets
 
                 if (IncludeNLogData)
                 {
-                    xtw.WriteStartElement("nlog:locationInfo");
-                    xtw.WriteElementString("assembly", type.Assembly.FullName);
-                    xtw.WriteElementString("class", type.FullName);
-                    xtw.WriteElementString("method", methodBase.ToString());
-                    if (IncludeSourceInfo)
-                    {
-                        xtw.WriteElementString("file", frame.GetFileName());
-                        xtw.WriteElementString("line", frame.GetFileLineNumber().ToString());
-                        xtw.WriteElementString("column", frame.GetFileColumnNumber().ToString());
-                    }
+                    xtw.WriteStartElement("nlog:locationinfo");
+                    xtw.WriteAttributeString("assembly", type.Assembly.FullName);
                     xtw.WriteEndElement();
                 }
             }
