@@ -37,12 +37,15 @@ using System.Xml;
 using System.ComponentModel;
 using System.Collections;
 
+using System.Windows.Forms;
+
 namespace NLog.Viewer
 {
 	public class LogEvent
 	{
         private DateTime _sentTime;
         private DateTime _receivedTime;
+        private int _id;
         private string _logger;
         private string _level;
         private string _message;
@@ -51,9 +54,18 @@ namespace NLog.Viewer
         private string _sourceType;
         private string _sourceMethod;
         private string _sourceFile;
+        private string _sourceMachine;
+        private string _sourceApplication;
         private int _sourceLine;
         private int _sourceColumn;
         private string _thread;
+        private ListViewItem _listViewItem;
+
+        public int ID
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
 
         public DateTime SentTime
         {
@@ -115,6 +127,18 @@ namespace NLog.Viewer
             set { _sourceFile = value; }
         }
 
+        public string SourceMachine
+        {
+            get { return _sourceMachine; }
+            set { _sourceMachine = value; }
+        }
+
+        public string SourceApplication
+        {
+            get { return _sourceApplication; }
+            set { _sourceApplication = value; }
+        }
+
         public int SourceLine
         {
             get { return _sourceLine; }
@@ -131,6 +155,12 @@ namespace NLog.Viewer
         {
             get { return _thread; }
             set { _thread = value; }
+        }
+
+        public ListViewItem ListViewItem
+        {
+            get { return _listViewItem; }
+            set { _listViewItem = value; }
         }
 
         public LogEventPropertyCollection Properties = new LogEventPropertyCollection();
@@ -153,6 +183,18 @@ namespace NLog.Viewer
                     string name = reader.GetAttribute("name");
                     string value = reader.GetAttribute("value");
 
+                    if (name == "log4japp")
+                    {
+                        ev.SourceApplication = value;
+                        continue;
+                    }
+
+                    if (name == "log4jmachinename")
+                    {
+                        ev.SourceMachine = value;
+                        continue;
+                    }
+
                     LogEventProperty ei = new LogEventProperty();
                     ei.Name = namePrefix + name;
                     ei.Value = value;
@@ -172,6 +214,7 @@ namespace NLog.Viewer
             ev.SentTime = _log4jDateBase.AddMilliseconds(Convert.ToDouble(reader.GetAttribute("timestamp"))).ToLocalTime();
 
             // System.Windows.Forms.MessageBox.Show(reader.ReadOuterXml());
+            // Log.Write(reader.ReadOuterXml());
 
             while (reader.Read())
             {
@@ -195,6 +238,18 @@ namespace NLog.Viewer
                         case "log4j:MDC":
                             ParseLog4JProperties(ev, reader, "mdc:");
                             continue;
+
+                        default:
+                        case "log4j:locationinfo":
+                            ev.SourceType = reader.GetAttribute("class");
+                            ev.SourceMethod = reader.GetAttribute("method");
+                            ev.SourceFile = reader.GetAttribute("file");
+                            //ev.SourceLine = reader.GetAttribute("line");
+                            continue;
+
+                        case "nlog:locationinfo":
+                            ev.SourceAssembly = reader.GetAttribute("assembly");
+                            break;
                     }
                 }
             }
