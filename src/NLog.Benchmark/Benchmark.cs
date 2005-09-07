@@ -39,13 +39,13 @@ using System.IO;
 using System.Xml;
 using System.Runtime.InteropServices;
 
-#if LOG4NET
+#if LOG4NET || LOG4NET_WITH_FASTLOGGER
 using log4net;
 #else
 using NLog;
 #endif
 
-#if LOG4NET
+#if LOG4NET || LOG4NET_WITH_FASTLOGGER
 
 using log4net.Core;
 using log4net.Appender;
@@ -132,7 +132,15 @@ class Bench
         ILog logger3 = LogManager.GetLogger("null2");
         ILog logger4 = LogManager.GetLogger("file1");
         ILog logger5 = LogManager.GetLogger("file2");
-#else
+#elif LOG4NET_WITH_FASTLOGGER
+        log4net.Config.XmlConfigurator.Configure(new FileInfo("log4net.config"));
+
+        FastLogger logger1 = FastLoggerLogManager.GetLogger("nonlogger");
+        FastLogger logger2 = FastLoggerLogManager.GetLogger("null1");
+        FastLogger logger3 = FastLoggerLogManager.GetLogger("null2");
+        FastLogger logger4 = FastLoggerLogManager.GetLogger("file1");
+        FastLogger logger5 = FastLoggerLogManager.GetLogger("file2");
+#else        
         Logger logger1 = LogManager.GetLogger("nonlogger");
         Logger logger2 = LogManager.GetLogger("null1");
         Logger logger3 = LogManager.GetLogger("null2");
@@ -172,6 +180,8 @@ class Bench
     private static void LogTest(
 #if LOG4NET
             ILog logger, 
+#elif LOG4NET_WITH_FASTLOGGER
+            FastLogger logger,
 #else
             Logger logger, 
 #endif
@@ -197,12 +207,10 @@ class Bench
         BeginTest("1 format parameter");
         for (int i = 0; i < repeat; ++i)
         {
-#if LOG4NET
-#if LOG4NETWITHFORMAT
+#if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
             logger.DebugFormat("This is a message with {0} format parameter", 1);
-#else
+#elif LOG4NET
             logger.Debug(String.Format("This is a message with {0} format parameter", 1));
-#endif
 #else
             logger.Debug("This is a message with {0} format parameter", 1);
 #endif
@@ -211,30 +219,23 @@ class Bench
         BeginTest("2 format parameters");
         for (int i = 0; i < repeat; ++i)
         {
-#if LOG4NET
-
-#if LOG4NETWITHFORMAT
+#if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
             logger.DebugFormat("This is a message with {0}{1} parameters", 2, "o");
-#else            
+#elif LOG4NET
             logger.Debug(String.Format("This is a message with {0}{1} parameters", 2, "o"));
-#endif
-
 #else
             logger.Debug("This is a message with {0}{1} parameters", 2, "o");
+            
 #endif
         }
         EndTest();
         BeginTest("3 format parameters");
         for (int i = 0; i < repeat; ++i)
         {
-#if LOG4NET
-
-#if LOG4NETWITHFORMAT
+#if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
             logger.DebugFormat("This is a  {0}{1}{2} parameters", "thr", 3, 3);
-#else
+#elif LOG4NET
             logger.Debug(String.Format("This is a  {0}{1}{2} parameters", "thr", 3, 3));
-#endif
-            
 #else
             logger.Debug("This is a  {0}{1}{2} parameters", "thr", 3, 3);
 #endif
@@ -254,14 +255,10 @@ class Bench
         {
             if (logger.IsDebugEnabled)
             {
-#if LOG4NET
-
-#if LOG4NETWITHFORMAT
+#if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
                 logger.DebugFormat("This is a  {0} parameter", 1);
-#else
+#elif LOG4NET
                 logger.Debug(String.Format("This is a  {0} parameter", 1));
-#endif
-                
 #else
                 logger.Debug("This is a  {0} parameter", 1);
 #endif
@@ -273,13 +270,10 @@ class Bench
         {
             if (logger.IsDebugEnabled)
             {
-#if LOG4NET
-#if LOG4NETWITHFORMAT
+#if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
                 logger.DebugFormat("This is a  {0}{1} parameters", 2, "o");
-#else
+#elif LOG4NET
                 logger.Debug(String.Format("This is a  {0}{1} parameters", 2, "o"));
-#endif
-                
 #else
                 logger.Debug("This is a  {0}{1} parameters", 2, "o");
 #endif
@@ -291,12 +285,10 @@ class Bench
         {
             if (logger.IsDebugEnabled)
             {
-#if LOG4NET
-#if LOG4NETWITHFORMAT
+#if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
                 logger.DebugFormat("This is a  {0}{1}{2} parameters", "thr", 3, 3);
-#else
+#elif LOG4NET
                 logger.Debug(String.Format("This is a  {0}{1}{2} parameters", "thr", 3, 3));
-#endif
 #else
                 logger.Debug("This is a  {0}{1}{2} parameters", "thr", 3, 3);
 #endif
@@ -306,6 +298,7 @@ class Bench
         if (_output != null)
         {
             _output.WriteEndElement();
+            _output.Flush();
         }
     }
 }
