@@ -258,6 +258,21 @@
         <copy file="src/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe.config" />
     </target>
 
+    <target name="NLog.Benchmark-log4net-with-concrete-logger" depends="NLog">
+        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net-concrete-logger.exe" define="${nlog.define},LOG4NET_WITH_FASTLOGGER" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
+            <sources basedir="src/NLog.Benchmark">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${nlog.dir}/log4net.dll" />
+                <include name="mscorlib.dll" />
+                <include name="System.dll" />
+                <include name="System.Xml.dll" />
+            </references>
+        </csc>
+        <copy file="src/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe.config" />
+    </target>
+
     <target name="NLog.Viewer" depends="configure">
         <csc target="winexe" output="${nlog.dir}/NLog.Viewer.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog.Viewer">
