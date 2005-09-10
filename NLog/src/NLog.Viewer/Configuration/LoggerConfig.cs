@@ -37,7 +37,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Drawing;
 
-namespace NLog.Viewer.Configuration
+namespace NLogViewer.Configuration
 {
 	public class LoggerConfig
 	{

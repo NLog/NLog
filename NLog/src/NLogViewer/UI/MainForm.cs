@@ -52,8 +52,6 @@ namespace NLogViewer.UI
 	/// </summary>
 	public class MainForm : System.Windows.Forms.Form
 	{
-        private System.Windows.Forms.Splitter splitter1;
-        private System.Windows.Forms.Splitter splitter2;
         private System.Windows.Forms.MainMenu mainMenu1;
         private System.Windows.Forms.MenuItem menuItemFileExit;
         private System.Windows.Forms.MenuItem menuItemHelpAbout;
@@ -99,15 +97,7 @@ namespace NLogViewer.UI
         private System.Windows.Forms.MenuItem menuItemViewStatusMessages;
         private System.Windows.Forms.MenuItem menuItemLogEventDetails;
         private System.Windows.Forms.TextBox textBoxLog;
-        private System.Windows.Forms.Splitter splitter3;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabPage tabPageNLogViewerTrace;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.TextBox textBoxSelectedMessageText;
-        private System.Windows.Forms.ListView listviewSelectedLogEventProperties;
         private System.Windows.Forms.MenuItem menuItemFilterHighlight;
         private LogInstanceCollection _instances = new LogInstanceCollection();
 
@@ -141,8 +131,6 @@ namespace NLogViewer.UI
 		{
             this.components = new System.ComponentModel.Container();
             System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(MainForm));
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.splitter2 = new System.Windows.Forms.Splitter();
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this.menuItemFile = new System.Windows.Forms.MenuItem();
             this.menuItemNewLog = new System.Windows.Forms.MenuItem();
@@ -187,35 +175,9 @@ namespace NLogViewer.UI
             this.menuItem23 = new System.Windows.Forms.MenuItem();
             this.menuItem24 = new System.Windows.Forms.MenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.splitter3 = new System.Windows.Forms.Splitter();
-            this.textBoxSelectedMessageText = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.listviewSelectedLogEventProperties = new System.Windows.Forms.ListView();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.label2 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageNLogViewerTrace.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // splitter1
-            // 
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(0, 242);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(742, 3);
-            this.splitter1.TabIndex = 2;
-            this.splitter1.TabStop = false;
-            // 
-            // splitter2
-            // 
-            this.splitter2.Location = new System.Drawing.Point(0, 32);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(3, 210);
-            this.splitter2.TabIndex = 4;
-            this.splitter2.TabStop = false;
             // 
             // mainMenu1
             // 
@@ -376,11 +338,11 @@ namespace NLogViewer.UI
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.HotTrack = true;
             this.tabControl1.ImageList = this.imageList1;
-            this.tabControl1.Location = new System.Drawing.Point(3, 32);
+            this.tabControl1.Location = new System.Drawing.Point(0, 32);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(739, 210);
+            this.tabControl1.Size = new System.Drawing.Size(742, 463);
             this.tabControl1.TabIndex = 6;
             // 
             // tabPageNLogViewerTrace
@@ -388,7 +350,7 @@ namespace NLogViewer.UI
             this.tabPageNLogViewerTrace.Controls.Add(this.textBoxLog);
             this.tabPageNLogViewerTrace.Location = new System.Drawing.Point(4, 27);
             this.tabPageNLogViewerTrace.Name = "tabPageNLogViewerTrace";
-            this.tabPageNLogViewerTrace.Size = new System.Drawing.Size(731, 179);
+            this.tabPageNLogViewerTrace.Size = new System.Drawing.Size(734, 432);
             this.tabPageNLogViewerTrace.TabIndex = 0;
             this.tabPageNLogViewerTrace.Text = "NLog Viewer Trace";
             // 
@@ -400,7 +362,7 @@ namespace NLogViewer.UI
             this.textBoxLog.Name = "textBoxLog";
             this.textBoxLog.ReadOnly = true;
             this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxLog.Size = new System.Drawing.Size(731, 179);
+            this.textBoxLog.Size = new System.Drawing.Size(734, 432);
             this.textBoxLog.TabIndex = 1;
             this.textBoxLog.Text = "";
             // 
@@ -504,95 +466,11 @@ namespace NLogViewer.UI
             this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // splitter3
-            // 
-            this.splitter3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter3.Location = new System.Drawing.Point(739, 0);
-            this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(3, 250);
-            this.splitter3.TabIndex = 1;
-            this.splitter3.TabStop = false;
-            // 
-            // textBoxSelectedMessageText
-            // 
-            this.textBoxSelectedMessageText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
-                | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxSelectedMessageText.Location = new System.Drawing.Point(456, 24);
-            this.textBoxSelectedMessageText.Multiline = true;
-            this.textBoxSelectedMessageText.Name = "textBoxSelectedMessageText";
-            this.textBoxSelectedMessageText.ReadOnly = true;
-            this.textBoxSelectedMessageText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxSelectedMessageText.Size = new System.Drawing.Size(272, 218);
-            this.textBoxSelectedMessageText.TabIndex = 0;
-            this.textBoxSelectedMessageText.Text = "";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.listviewSelectedLogEventProperties);
-            this.panel1.Controls.Add(this.splitter3);
-            this.panel1.Controls.Add(this.textBoxSelectedMessageText);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 245);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(742, 250);
-            this.panel1.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(8, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(440, 23);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Selected Log Event Properties:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // listviewSelectedLogEventProperties
-            // 
-            this.listviewSelectedLogEventProperties.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left)));
-            this.listviewSelectedLogEventProperties.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-                                                                                                                 this.columnHeader1,
-                                                                                                                 this.columnHeader2});
-            this.listviewSelectedLogEventProperties.FullRowSelect = true;
-            this.listviewSelectedLogEventProperties.GridLines = true;
-            this.listviewSelectedLogEventProperties.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listviewSelectedLogEventProperties.Location = new System.Drawing.Point(8, 24);
-            this.listviewSelectedLogEventProperties.Name = "listviewSelectedLogEventProperties";
-            this.listviewSelectedLogEventProperties.Size = new System.Drawing.Size(440, 218);
-            this.listviewSelectedLogEventProperties.TabIndex = 2;
-            this.listviewSelectedLogEventProperties.View = System.Windows.Forms.View.Details;
-            this.listviewSelectedLogEventProperties.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 100;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Value";
-            this.columnHeader2.Width = 500;
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(456, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(176, 23);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Message Text:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(742, 495);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.splitter2);
-            this.Controls.Add(this.splitter1);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolBar1);
             this.Menu = this.mainMenu1;
             this.Name = "MainForm";
@@ -600,7 +478,6 @@ namespace NLogViewer.UI
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPageNLogViewerTrace.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -736,69 +613,6 @@ namespace NLogViewer.UI
         private void listView1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
         
-        }
-
-        private LogEvent _selectedLogEvent = null;
-
-        public void LogEventSelected(LogInstance instance, LogEvent evt)
-        {
-            if (evt != _selectedLogEvent)
-            {
-                _selectedLogEvent = evt;
-
-                textBoxSelectedMessageText.Text = evt.MessageText;
-                ListViewItem item;
-
-                listviewSelectedLogEventProperties.Items.Clear(); 
-
-                item = new ListViewItem(new string[] { "Sent Time", evt.SentTime.ToString() });
-                listviewSelectedLogEventProperties.Items.Add(item);
-
-                item = new ListViewItem(new string[] { "Received Time", evt.ReceivedTime.ToString() });
-                listviewSelectedLogEventProperties.Items.Add(item);
-
-                item = new ListViewItem(new string[] { "Logger", evt.Logger });
-                listviewSelectedLogEventProperties.Items.Add(item);
-
-                item = new ListViewItem(new string[] { "Level", evt.Level });
-                listviewSelectedLogEventProperties.Items.Add(item);
-
-                item = new ListViewItem(new string[] { "Application", evt.SourceApplication });
-                listviewSelectedLogEventProperties.Items.Add(item);
-
-                item = new ListViewItem(new string[] { "Thread", evt.Thread });
-                listviewSelectedLogEventProperties.Items.Add(item);
-
-                item = new ListViewItem(new string[] { "Assembly", evt.SourceAssembly });
-                listviewSelectedLogEventProperties.Items.Add(item);
-
-                item = new ListViewItem(new string[] { "Class", evt.SourceType });
-                listviewSelectedLogEventProperties.Items.Add(item);
-
-                item = new ListViewItem(new string[] { "Method", evt.SourceMethod });
-                listviewSelectedLogEventProperties.Items.Add(item);
-
-                item = new ListViewItem(new string[] { "Source File", evt.SourceFile });
-                listviewSelectedLogEventProperties.Items.Add(item);
-
-                item = new ListViewItem(new string[] { "Source Line", evt.SourceLine.ToString() });
-                listviewSelectedLogEventProperties.Items.Add(item);
-
-                item = new ListViewItem(new string[] { "Source Column", evt.SourceColumn.ToString() });
-                listviewSelectedLogEventProperties.Items.Add(item);
-
-                item = new ListViewItem(new string[] { "Machine", evt.SourceMachine });
-                listviewSelectedLogEventProperties.Items.Add(item);
-
-                item = new ListViewItem(new string[] { "Stack Trace", evt.StackTrace });
-                listviewSelectedLogEventProperties.Items.Add(item);
-
-                foreach (LogEventProperty lep in evt.Properties)
-                {
-                    item = new ListViewItem(new string[] { lep.Name, lep.Value });
-                    listviewSelectedLogEventProperties.Items.Add(item);
-                }
-            }
         }
 
         private void menuItemFilterHighlight_Click(object sender, System.EventArgs e)

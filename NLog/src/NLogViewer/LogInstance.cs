@@ -50,13 +50,14 @@ namespace NLogViewer
     {
         private LogInstanceConfiguration _config;
         private LogEventReceiver _receiver;
-        private ListView _listView;
-        private TreeView _treeView;
         private MainForm _mainForm;
         private TabPage _tabPage;
-        private StatusBarPanel _sbpanelStatus;
-        private StatusBarPanel _sbpanelTotalEvents;
-        private StatusBarPanel _sbpanelDisplayedEvents;
+        private LogInstanceTabPage _tabPanel;
+
+        public LogInstanceTabPage TabPanel
+        {
+            get { return _tabPanel; }
+        }
 
         private TreeNode _threadsTreeNode;
         private TreeNode _assembliesTreeNode;
@@ -102,6 +103,11 @@ namespace NLogViewer
             _tabPage = page;
             page.ImageIndex = 1;
 
+            LogInstanceTabPage tabPanel = new LogInstanceTabPage();
+            tabPanel.Dock = DockStyle.Fill;
+            page.Controls.Add(tabPanel);
+            _tabPanel = tabPanel;
+
             _loggersTreeNode = new TreeNode("Loggers");
             _levelsTreeNode = new TreeNode("Levels");
             _threadsTreeNode = new TreeNode("Threads");
@@ -111,7 +117,7 @@ namespace NLogViewer
             _machinesTreeNode = new TreeNode("Machines");
             _filesTreeNode = new TreeNode("Files");
 
-            TreeView treeView = new TreeView();
+            TreeView treeView = _tabPanel.treeView;
             treeView.Nodes.Add(_loggersTreeNode);
             treeView.Nodes.Add(_levelsTreeNode);
             treeView.Nodes.Add(_threadsTreeNode);
@@ -120,61 +126,12 @@ namespace NLogViewer
             treeView.Nodes.Add(_filesTreeNode);
             treeView.Nodes.Add(_applicationsTreeNode);
             treeView.Nodes.Add(_machinesTreeNode);
-
             treeView.Dock = DockStyle.Left;
             treeView.ContextMenu = form.treeContextMenu;
 
-            Splitter splitter = new Splitter();
-            splitter.Dock = DockStyle.Left;
-
-            ListView listView = new ListView();
-            listView.Dock = DockStyle.Fill;
-            listView.View = View.Details;
-            listView.FullRowSelect = true;
-            listView.GridLines = true;
-            listView.Font = new Font("Tahoma", 8);
-            listView.MultiSelect = false;
-            listView.ListViewItemSorter = new ItemComparer(_config);
-            listView.AllowColumnReorder = true;
-            //listView.Sorting = SortOrder.Ascending;
-            listView.SelectedIndexChanged += new EventHandler(this.ItemSelected);
-            listView.ColumnClick += new ColumnClickEventHandler(this.ColumnClicked);
-
-            _listView = listView;
-            _treeView = treeView;
-
-            StatusBar sb = new StatusBar();
-            sb.Dock = DockStyle.Bottom;
-            sb.SizingGrip = false;
-            sb.ShowPanels = true;
-
-            StatusBarPanel sbpanel;
-
-            sbpanel= new StatusBarPanel();
-            sbpanel.Width = 200;
-            sbpanel.Text = "Status: Running";
-            _sbpanelStatus = sbpanel;
-            sb.Panels.Add(sbpanel);
-
-            sbpanel= new StatusBarPanel();
-            sbpanel.Width = 200;
-            sbpanel.Text = "Log events received: 0";
-            _sbpanelTotalEvents = sbpanel;
-            sb.Panels.Add(sbpanel);
-
-            sbpanel= new StatusBarPanel();
-            sbpanel.Width = 200;
-            sbpanel.Text = "Log events displayed: 0";
-            _sbpanelDisplayedEvents = sbpanel;
-            sb.Panels.Add(sbpanel);
-
-            page.Controls.Add(listView);
-            page.Controls.Add(splitter);
-            page.Controls.Add(treeView);
-            page.Controls.Add(sb);
-
+            TabPanel.listViewLogMessages.SelectedIndexChanged += new EventHandler(this.ItemSelected);
+            TabPanel.listViewLogMessages.ColumnClick += new ColumnClickEventHandler(this.ColumnClicked);
             page.Text = Config.Name;
-
             SetupColumns();
         }
 
@@ -182,13 +139,13 @@ namespace NLogViewer
         {
             foreach (LogColumn lc in Config.Columns)
             {
-                _listView.Columns.Add(lc.Name, lc.Width, HorizontalAlignment.Left);
+                TabPanel.listViewLogMessages.Columns.Add(lc.Name, lc.Width, HorizontalAlignment.Left);
             }
         }
 
         private void ColumnClicked(object sender, ColumnClickEventArgs e)
         {
-            ColumnHeader column = _listView.Columns[e.Column];
+            ColumnHeader column = TabPanel.listViewLogMessages.Columns[e.Column];
             string columnName = column.Text;
 
             if (_config.OrderBy == columnName)
@@ -201,7 +158,7 @@ namespace NLogViewer
                 _config.OrderBy = columnName;
             }
 
-            _listView.ListViewItemSorter = new ItemComparer(_config);
+            TabPanel.listViewLogMessages.ListViewItemSorter = new ItemComparer(_config);
         }
 
         public void Start()
@@ -224,13 +181,77 @@ namespace NLogViewer
             get { return _tabPage; }
         }
 
+        private LogEvent _selectedLogEvent = null;
+
+        public void LogEventSelected(LogInstance instance, LogEvent evt)
+        {
+            if (evt != _selectedLogEvent)
+            {
+                _selectedLogEvent = evt;
+
+                TabPanel.textBoxSelectedMessageText.Text = evt.MessageText;
+                ListViewItem item;
+
+                TabPanel.listviewSelectedLogEventProperties.Items.Clear(); 
+
+                item = new ListViewItem(new string[] { "Sent Time", evt.SentTime.ToString() });
+                TabPanel.listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Received Time", evt.ReceivedTime.ToString() });
+                TabPanel.listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Logger", evt.Logger });
+                TabPanel.listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Level", evt.Level });
+                TabPanel.listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Application", evt.SourceApplication });
+                TabPanel.listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Thread", evt.Thread });
+                TabPanel.listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Assembly", evt.SourceAssembly });
+                TabPanel.listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Class", evt.SourceType });
+                TabPanel.listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Method", evt.SourceMethod });
+                TabPanel.listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Source File", evt.SourceFile });
+                TabPanel.listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Source Line", evt.SourceLine.ToString() });
+                TabPanel.listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Source Column", evt.SourceColumn.ToString() });
+                TabPanel.listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Machine", evt.SourceMachine });
+                TabPanel.listviewSelectedLogEventProperties.Items.Add(item);
+
+                item = new ListViewItem(new string[] { "Stack Trace", evt.StackTrace });
+                TabPanel.listviewSelectedLogEventProperties.Items.Add(item);
+
+                foreach (LogEventProperty lep in evt.Properties)
+                {
+                    item = new ListViewItem(new string[] { lep.Name, lep.Value });
+                    TabPanel.listviewSelectedLogEventProperties.Items.Add(item);
+                }
+            }
+        }
+
         private void ItemSelected(object sender, System.EventArgs e)
         {
-            if (_listView.SelectedItems.Count == 1)
+            if (TabPanel.listViewLogMessages.SelectedItems.Count == 1)
             {
-                object tag = _listView.SelectedItems[0].Tag;
+                object tag = TabPanel.listViewLogMessages.SelectedItems[0].Tag;
                 LogEvent evt = (LogEvent)tag;
-                _mainForm.LogEventSelected(this, evt);
+
+                LogEventSelected(this, evt);
             }
         }
 
@@ -265,7 +286,7 @@ namespace NLogViewer
 
             TreeNode newNode = new TreeNode(baseName);
             cache[attributeValue] = newNode;
-            _treeView.Invoke(_addTreeNodeDelegate, new object[] { parentNode, newNode });
+            TabPanel.treeView.Invoke(_addTreeNodeDelegate, new object[] { parentNode, newNode });
             return newNode;
         }
 
@@ -338,14 +359,14 @@ namespace NLogViewer
             LogEvent removedEvent = (LogEvent)_events.AddAndRemoveLast(logEvent);
             if (removedEvent != null && removedEvent.ListViewItem != null)
             {
-                _listView.Items.Remove(removedEvent.ListViewItem);
+                TabPanel.listViewLogMessages.Items.Remove(removedEvent.ListViewItem);
             }
 
             if (TryFilters(logEvent))
             {
                 ListViewItem item = LogEventToListViewItem(logEvent);
 
-                _listView.Items.Add(item);
+                TabPanel.listViewLogMessages.Items.Add(item);
             
                 DateTime currentTime = DateTime.Now;
 
@@ -359,9 +380,9 @@ namespace NLogViewer
                 LogEventAttributeToNode(logEvent.SourceMachine, _machinesTreeNode, _machine2NodeCache, (char)0);
                 LogEventAttributeToNode(logEvent.SourceFile, _filesTreeNode, _file2NodeCache, (char)'\\');
                 //LogEventAttributeToNode(logEvent.SourceType, _typesTreeNode, _type);
-                _sbpanelDisplayedEvents.Text = "Log events displayed: " + _listView.Items.Count;
+                //_sbpanelDisplayedEvents.Text = "Log events displayed: " + TabPanel.listViewLogMessages.Items.Count;
             }
-            _sbpanelTotalEvents.Text = "Log events received: " + _events.Count;
+            //_sbpanelTotalEvents.Text = "Log events received: " + _events.Count;
         }
        
         enum SortColumnID
