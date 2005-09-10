@@ -33,27 +33,26 @@
 // 
 
 using System;
-using System.Xml;
-using System.Xml.Serialization;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Security.Permissions;
 
-namespace NLogViewer.Configuration
-{
-	public class ReceiverParameter
-	{
-        public ReceiverParameter()
-        {
-        }
-        
-        public ReceiverParameter(string name, string value)
-        {
-            this.Name = name;
-            this.Value = value;
-        }
+[assembly: AssemblyTitle("NLogViewer Interfaces")]
+[assembly: AssemblyDescription("NLog")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("NLog")]
+[assembly: AssemblyProduct("NLog - .NET Logging Library")]
+[assembly: AssemblyCopyright("Copyright (c) 2004,2005 by Jaroslaw Kowalski")]
+[assembly: AssemblyCulture("")]
 
-        [XmlAttribute("name")]
-        public string Name;
+[assembly: AssemblyVersion("0.9.0.0")]
 
-        [XmlAttribute("value")]
-        public string Value;
-	}
-}
+[assembly: CLSCompliant(true)]
+[assembly: ComVisible(false)]
+
+#if !NETCF
+//[assembly: ReflectionPermission(SecurityAction.RequestMinimum, MemberAccess = true, TypeInformation = true)]
+//[assembly: SecurityPermission(SecurityAction.RequestMinimum, Flags = SecurityPermissionFlag.Execution)]
+//[assembly: FileIOPermission(SecurityAction.RequestMinimum, Unrestricted = true)]
+#endif

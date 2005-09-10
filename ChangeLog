@@ -1,3 +1,6 @@
+2005-08-28 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+	* Some work on NLogViewer
+
 2005-08-14 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 	* Fixed #34: Typos in the code prevented Chainsaw target
 	from working properly.

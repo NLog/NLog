@@ -35,25 +35,21 @@
 using System;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Drawing;
 
 namespace NLogViewer.Configuration
 {
-	public class ReceiverParameter
+	public class LoggerConfig
 	{
-        public ReceiverParameter()
-        {
-        }
-        
-        public ReceiverParameter(string name, string value)
-        {
-            this.Name = name;
-            this.Value = value;
-        }
-
         [XmlAttribute("name")]
         public string Name;
 
-        [XmlAttribute("value")]
-        public string Value;
+        [XmlAttribute("color")]
+        public string color;
+
+        public Color GetColor()
+        {
+            return Color.FromName(color);
+        }
 	}
 }

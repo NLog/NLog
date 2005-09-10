@@ -32,28 +32,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.Xml.Serialization;
+using System.Reflection;
 
-namespace NLogViewer.Configuration
-{
-	public class ReceiverParameter
-	{
-        public ReceiverParameter()
-        {
-        }
-        
-        public ReceiverParameter(string name, string value)
-        {
-            this.Name = name;
-            this.Value = value;
-        }
-
-        [XmlAttribute("name")]
-        public string Name;
-
-        [XmlAttribute("value")]
-        public string Value;
-	}
-}
+#if NANT
+[assembly: AssemblyKeyFile("src/NLog.snk")]
+#else 
+[assembly: AssemblyKeyFile("../../../NLog.snk")]
+#endif
