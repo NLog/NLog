@@ -64,7 +64,7 @@ namespace NLog
 
             InternalLogger.Info("Registering platform specific extensions...");
 #if NETCF
-            RegisterPlatformSpecificExtensions("NLog.CompactFramework");
+            RegisterPlatformSpecificExtensions(result, "NLog.CompactFramework");
 #else 
             if (Type.GetType("System.MonoType", false) != null)
             {

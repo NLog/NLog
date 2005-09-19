@@ -273,15 +273,15 @@
         <copy file="src/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe.config" />
     </target>
 
-    <target name="NLog.Viewer" depends="configure">
-        <csc target="winexe" output="${nlog.dir}/NLog.Viewer.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLog.Viewer">
+    <target name="NLogViewer" depends="configure">
+        <csc target="winexe" output="${nlog.dir}/NLogViewer.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
+            <sources basedir="src/NLogViewer">
                 <include name="**/*.cs" />
             </sources>
             <references>
                 <include name="System.Windows.Forms.dll" />
             </references>
-            <resources basedir="src/NLog.Viewer" prefix="NLog.Viewer" dynamicprefix="true">
+            <resources basedir="src/NLogViewer" prefix="NLogViewer" dynamicprefix="true">
                 <include name="**/*.resx" />
             </resources>
         </csc>
@@ -405,9 +405,9 @@
     </target>
 
     <target name="build-mono-1.0" depends="NLog, NLog.Mono" />
-    <target name="build-net-1.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLog.Viewer" />
-    <target name="build-net-1.1" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLog.Viewer" />
-    <target name="build-net-2.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLog.Viewer" />
+    <target name="build-net-1.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLogViewer" />
+    <target name="build-net-1.1" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLogViewer" />
+    <target name="build-net-2.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLogViewer" />
     <target name="build-netcf-1.0" depends="NLog, NLog.CompactFramework" />
 
     <target name="fullbuild" depends="build, cleanwebsite, doc">
