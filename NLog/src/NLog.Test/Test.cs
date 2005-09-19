@@ -51,13 +51,10 @@ namespace NLog.Tester
         {
             NLog.Internal.InternalLogger.LogToConsole = true;
             NLog.Internal.InternalLogger.LogLevel = LogLevel.Debug;
-            NLog.Targets.NLogViewerTarget t = new NLog.Targets.NLogViewerTarget();
-            t.Address = "tcp://localhost:4001";
-            t.IncludeCallSite = true;
-            t.IncludeMDC = true;
-            t.IncludeNDC = true;
-            t.Async = true;
-            t.IncludeSourceInfo = true;
+
+            NLog.Targets.ConsoleTarget t = new NLog.Targets.ConsoleTarget();
+            t.Layout = "${windows-identity:domain=false}";
+
             SimpleConfigurator.ConfigureForTargetLogging(t, LogLevel.Trace);
             Logger p = LogManager.GetCurrentClassLogger();
             Logger p2 = LogManager.GetLogger("NLog.Tester.ABC");

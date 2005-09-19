@@ -261,8 +261,6 @@ namespace NLog.Config
             if (s != null)
                 LogManager.GlobalThreshold = LogLevel.FromString(s);
 
-            RegisterPlatformSpecificExtensions();
-
             foreach (XmlNode node in configElement.ChildNodes)
             {
                 XmlElement el = node as XmlElement;
@@ -468,7 +466,10 @@ namespace NLog.Config
                             string fullFileName = Path.Combine(baseDirectory, assemblyFile);
                             InternalLogger.Info("Loading assemblyFile: {0}", fullFileName);
                             Assembly asm = Assembly.LoadFrom(fullFileName);
-                            LoadExtensionsFromAssembly(asm, prefix);
+
+                            TargetFactory.AddTargetsFromAssembly(asm, prefix);
+                            LayoutRendererFactory.AddLayoutRenderersFromAssembly(asm, prefix);
+                            FilterFactory.AddFiltersFromAssembly(asm, prefix);
                         }
                         catch (Exception ex)
                         {
@@ -487,7 +488,9 @@ namespace NLog.Config
                         {
                             InternalLogger.Info("Loading assemblyName: {0}", assemblyName);
                             Assembly asm = Assembly.Load(assemblyName);
-                            LoadExtensionsFromAssembly(asm, prefix);
+                            TargetFactory.AddTargetsFromAssembly(asm, prefix);
+                            LayoutRendererFactory.AddLayoutRenderersFromAssembly(asm, prefix);
+                            FilterFactory.AddFiltersFromAssembly(asm, prefix);
                         }
                         catch (Exception ex)
                         {
@@ -501,13 +504,6 @@ namespace NLog.Config
 
             }
         }
-        private static void LoadExtensionsFromAssembly(Assembly asm, string prefix)
-        {
-            FilterFactory.AddFiltersFromAssembly(asm, prefix);
-            LayoutRendererFactory.AddLayoutRenderersFromAssembly(asm, prefix);
-            TargetFactory.AddTargetsFromAssembly(asm, prefix);
-        }
-
         private void ConfigureTargetsFromElement(XmlElement element)
         {
             if (element == null)
@@ -592,69 +588,6 @@ namespace NLog.Config
                         PropertyHelper.SetPropertyFromString(target, name, value, _variables);
                     }
                 }
-            }
-        }
-
-        private static bool _platformSpecificExtensionsRegistered = false;
-
-        private void RegisterPlatformSpecificExtensions()
-        {
-            if (_platformSpecificExtensionsRegistered)
-                return ;
-            _platformSpecificExtensionsRegistered = true;
-
-            InternalLogger.Info("Registering platform specific extensions...");
-#if NETCF
-            RegisterPlatformSpecificExtensions("NLog.CompactFramework");
-#else 
-            if (Type.GetType("System.MonoType", false) != null)
-            {
-                RegisterPlatformSpecificExtensions("NLog.Mono");
-            }
-            else
-            {
-                RegisterPlatformSpecificExtensions("NLog.DotNet");
-            }
-
-            PlatformID platform = System.Environment.OSVersion.Platform;
-
-            if (platform == PlatformID.Win32NT || platform == PlatformID.Win32Windows)
-            {
-                RegisterPlatformSpecificExtensions("NLog.Win32");
-            }
-
-            if ((int)platform == 128 || (int)platform == 4)
-            {
-                // mono-1.0 used '128' here, net-2.0 and mono-2.0 use '4'
-                RegisterPlatformSpecificExtensions("NLog.Unix");
-            }
-#endif 
-        }
-
-        private void RegisterPlatformSpecificExtensions(string name)
-        {
-            InternalLogger.Debug("RegisterPlatformSpecificExtensions('{0}')", name);
-            AssemblyName nlogAssemblyName = typeof(LogManager).Assembly.GetName();
-            AssemblyName newAssemblyName = new AssemblyName();
-            newAssemblyName.Name = name;
-            newAssemblyName.CultureInfo = nlogAssemblyName.CultureInfo;
-            newAssemblyName.Flags = nlogAssemblyName.Flags;
-            newAssemblyName.SetPublicKey(nlogAssemblyName.GetPublicKey());
-            newAssemblyName.Version = nlogAssemblyName.Version;
-
-            try
-            {
-                InternalLogger.Info("Registering platform specific extensions from assembly '{0}'", newAssemblyName);
-                Assembly asm = Assembly.Load(newAssemblyName);
-                InternalLogger.Info("Loaded {0}", asm.FullName);
-                LoadExtensionsFromAssembly(asm, String.Empty);
-                InternalLogger.Info("Registered platform specific extensions from assembly '{0}'.", newAssemblyName);
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Error("Could not load platform specific extensions: {0}", ex);
-                //if (LogManager.ThrowExceptions)
-                //    throw;
             }
         }
     }

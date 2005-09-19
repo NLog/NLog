@@ -1,3 +1,7 @@
+2005-09-19 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+	* Added ${windows-identity} layout renderer. Restructured the
+	way extensions are loaded (ExtensionUtils).
+
 2005-08-28 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 	* Some work on NLogViewer
 
