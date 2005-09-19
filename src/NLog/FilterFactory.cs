@@ -51,8 +51,10 @@ namespace NLog
 
         static FilterFactory()
         {
-            Clear();
-            AddDefaultFilters();
+            foreach (Assembly a in ExtensionUtils.GetExtensionAssemblies())
+            {
+                AddFiltersFromAssembly(a, "");
+            }
         }
 
         private FilterFactory(){}

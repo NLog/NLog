@@ -53,8 +53,10 @@ namespace NLog
 
         static LayoutRendererFactory()
         {
-            Clear();
-            AddDefaultLayoutRenderers();
+            foreach (Assembly a in ExtensionUtils.GetExtensionAssemblies())
+            {
+                AddLayoutRenderersFromAssembly(a, "");
+            }
         }
 
         private LayoutRendererFactory(){}
@@ -88,10 +90,6 @@ namespace NLog
                     }
                 }
             }
-        }
-        private static void AddDefaultLayoutRenderers()
-        {
-            AddLayoutRenderersFromAssembly(typeof(LayoutRendererFactory).Assembly, String.Empty);
         }
 
         private static LayoutRenderer CreateUnknownLayoutRenderer(string name, string parameters)

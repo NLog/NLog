@@ -51,7 +51,10 @@ namespace NLog
 
         static TargetFactory()
         {
-            Reset();
+            foreach (Assembly a in ExtensionUtils.GetExtensionAssemblies())
+            {
+                AddTargetsFromAssembly(a, "");
+            }
         }
 
         private TargetFactory(){}
@@ -65,7 +68,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Removes all targets and reloads them from NLog assembly.
+        /// Removes all targets and reloads them from NLog assembly and default extension assemblies.
         /// </summary>
         public static void Reset()
         {

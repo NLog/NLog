@@ -36,6 +36,7 @@ using System;
 using System.Collections;
 using System.Xml;
 using System.Globalization;
+using System.Reflection;
 
 using NLog;
 using NLog.Internal;
