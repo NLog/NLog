@@ -113,15 +113,6 @@ li
     color: black;
 }
 
-pre.csharp
-{
-    font-family: Courier New;
-    font-size: 11px;
-    padding: 4px;
-    font-color: #606060;
-    background-color: #fffff8;
-}
-
 pre.xml
 {
     font-family: Courier New;
