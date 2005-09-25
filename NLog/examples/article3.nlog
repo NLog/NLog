@@ -1,0 +1,9 @@
+<nlog>
+    <targets>
+        <target name="konsola" type="Console" layout="${longdate} ${message}" />
+    </targets>
+
+    <rules>
+        <logger name="*" minlevel="Debug" writeTo="konsola" />
+    </rules>
+</nlog>

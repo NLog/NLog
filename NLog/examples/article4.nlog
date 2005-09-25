@@ -1,0 +1,9 @@
+<nlog>
+    <targets>
+        <target name="codziennyPlik" type="File" layout="${longdate} ${message}" filename="${shortdate}.log" />
+    </targets>
+
+    <rules>
+        <logger name="*" minlevel="Debug" writeTo="codziennyPlik" />
+    </rules>
+</nlog>
