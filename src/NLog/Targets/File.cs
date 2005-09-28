@@ -88,7 +88,7 @@ namespace NLog.Targets
     /// <cs src="examples/targets/File/FileTarget.cs" />
     /// </example>
     [Target("File")]
-    public class FileTarget: AsyncTarget
+    public class FileTarget: Target
     {
         private Random _random = new Random();
         private Layout _fileNameLayout;
@@ -102,6 +102,15 @@ namespace NLog.Targets
         private int _concurrentWriteAttempts = 10;
         private int _bufferSize = 32768;
         private int _concurrentWriteAttemptDelay = 1;
+        private LogEventComparer _logEventComparer;
+
+        /// <summary>
+        /// Creates a new instance of <see cref="FileTarget"/>.
+        /// </summary>
+        public FileTarget()
+        {
+            _logEventComparer = new LogEventComparer(this);
+        }
 
         /// <summary>
         /// The name of the file to write to.
@@ -337,37 +346,25 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Determines whether stack trace information should be gathered
-        /// during log event processing. It calls <see cref="NLog.Layout.NeedsStackTrace" /> on
-        /// Layout and FileName parameters.
+        /// Adds all layouts used by this target to the specified collection.
         /// </summary>
-        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
-        protected internal override int NeedsStackTrace()
+        /// <param name="layouts">The collection to add layouts to.</param>
+        public override void PopulateLayouts(LayoutCollection layouts)
         {
-            return Math.Max(base.NeedsStackTrace(), _fileNameLayout.NeedsStackTrace());
+            base.PopulateLayouts (layouts);
+            layouts.Add(_fileNameLayout);
         }
 
         /// <summary>
         /// Writes the specified logging event to a file specified in the FileName 
         /// parameter.
         /// </summary>
-        /// <param name="ev">The logging event.</param>
-        protected internal override void Append(LogEventInfo ev)
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
         {
-#if !NETCF
-            if (Async)
-            {
-				RequestQueue.Enqueue(
-                        new FileWriteRequest(
-                        _fileNameLayout.GetFormattedMessage(ev),
-                        CompiledLayout.GetFormattedMessage(ev)));
-                return;
-            }
-#endif
-
             lock (this)
             {
-                string fileName = _fileNameLayout.GetFormattedMessage(ev);
+                string fileName = _fileNameLayout.GetFormattedMessage(logEvent);
 
                 if (fileName != _lastFileName && _outputFile != null)
                 {
@@ -382,7 +379,7 @@ namespace NLog.Targets
                     if (_outputFile == null)
                         return ;
                 }
-                WriteToFile(_outputFile, CompiledLayout.GetFormattedMessage(ev));
+                WriteToFile(_outputFile, CompiledLayout.GetFormattedMessage(logEvent));
                 if (AutoFlush)
                 {
                     _outputFile.Flush();
@@ -408,9 +405,60 @@ namespace NLog.Targets
                     _outputFile = null;
                 }
             }
-#if !NETCF
-            StopLazyWriterThread();
-#endif
+        }
+
+        /// <summary>
+        /// Writes the specified array of logging events to a file specified in the FileName 
+        /// parameter.
+        /// </summary>
+        /// <param name="logEvents">An array of <see cref="LogEventInfo "/> objects.</param>
+        /// <remarks>
+        /// This function makes use of the fact that the events are batched by sorting 
+        /// the requests by filename. This optimizes the number of open/close calls
+        /// and can help improve performance.
+        /// </remarks>
+        protected internal override void Write(LogEventInfo[] logEvents)
+        {
+            string currentFileName = "";
+            int requests = 0;
+            int reopens = 0;
+            StreamWriter currentStreamWriter = null;
+
+            try
+            {
+                Array.Sort(logEvents, _logEventComparer);
+
+                for (int i = 0; i < logEvents.Length; ++i)
+                {
+                    LogEventInfo logEvent = logEvents[i];
+                    string logEventFileName = _fileNameLayout.GetFormattedMessage(logEvent);
+                    string logEventText = CompiledLayout.GetFormattedMessage(logEvent);
+
+                    if (logEventFileName != currentFileName)
+                    {
+                        if (currentStreamWriter != null)
+                        {
+                            currentStreamWriter.Close();
+                        }
+                        currentFileName = logEventFileName;
+                        currentStreamWriter = OpenStreamWriter(logEventFileName, false);
+                        reopens++;
+                    }
+                    requests++;
+                    if (currentStreamWriter != null)
+                    {
+                        WriteToFile(currentStreamWriter, logEventText);
+                    }
+                }
+            }
+            finally
+            {
+                if (currentStreamWriter != null)
+                {
+                    currentStreamWriter.Close();
+                    currentStreamWriter = null;
+                }
+            }
         }
 
         /// <summary>
@@ -428,136 +476,33 @@ namespace NLog.Targets
             file.WriteLine(text);
         }
 
-#if !NETCF
-
-        /// <summary>
-        /// Writes log messages to files in a separate thread.
-        /// </summary>
-        /// <remarks>
-        /// This method fetches a number of requests as a batch, sorts
-        /// them by the file name (to minimize the number of open and close calls)
-        /// and writes messages to the files.
-        /// </remarks>
-        protected override void LazyWriterThreadProc()
+        class LogEventComparer : IComparer
         {
-            while (!LazyWriterThreadStopRequested)
+            private FileTarget _fileTarget;
+
+            public LogEventComparer(FileTarget fileTarget)
             {
-				ArrayList pendingFileRequests = RequestQueue.DequeueBatch(100);
+                _fileTarget = fileTarget;
+            }
 
-                if (pendingFileRequests.Count == 0)
-                {
-                    Thread.Sleep(100);
-                    continue;
-                }
+            public int Compare(object x, object y)
+            {
+                LogEventInfo le1 = (LogEventInfo)x;
+                LogEventInfo le2 = (LogEventInfo)y;
 
-                string currentFileName = "";
-                int requests = 0;
-                int reopens = 0;
-                StreamWriter currentStreamWriter = null;
-                try
-                {
+                string filename1 = _fileTarget._fileNameLayout.GetFormattedMessage(le1);
+                string filename2 = _fileTarget._fileNameLayout.GetFormattedMessage(le2);
 
-                    // sort the file requests by the file name and 
-                    // the sequence to maximize file handle reuse
+                int val = String.CompareOrdinal(filename1, filename2);
+                if (val != 0)
+                    return val;
 
-                    pendingFileRequests.Sort(FileWriteRequest.GetComparer());
-
-                    for (int i = 0; i < pendingFileRequests.Count; ++i)
-                    {
-                        FileWriteRequest fwr = (FileWriteRequest)pendingFileRequests[i];
-
-                        if (fwr.FileName != currentFileName)
-                        {
-                            if (currentStreamWriter != null)
-                            {
-                                currentStreamWriter.Close();
-                            }
-                            currentFileName = fwr.FileName;
-                            currentStreamWriter = OpenStreamWriter(fwr.FileName, false);
-                            reopens++;
-                        }
-                        requests++;
-                        if (currentStreamWriter != null)
-                        {
-                            WriteToFile(currentStreamWriter, fwr.Text);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error("Error in File lazy writer thread: {0}", ex);
-                }
-                finally
-                {
-                    RequestQueue.BatchProcessed(pendingFileRequests);
-                    if (currentStreamWriter != null)
-                    {
-                        currentStreamWriter.Close();
-                        currentStreamWriter = null;
-                    }
-                }
+                if (le1.SequenceID < le2.SequenceID)
+                    return -1;
+                if (le1.SequenceID > le2.SequenceID)
+                    return 1;
+                return 0;
             }
         }
-
-        /// <summary>
-        /// Represents a single request to write to a file.
-        /// </summary>
-        class FileWriteRequest
-        {
-            private string _fileName;
-            private string _text;
-            private long _sequence;
-
-            private static long _globalSequence;
-
-            public FileWriteRequest(string fileName, string text)
-            {
-                _fileName = fileName;
-                _text = text;
-                _sequence = Interlocked.Increment(ref _globalSequence);
-            }
-
-            public string FileName
-            {
-                get { return _fileName; }
-            }
-
-            public string Text
-            {
-                get { return _text; }
-            }
-
-            public long Sequence
-            {
-                get { return _sequence; }
-            }
-
-            private static IComparer _comparer = new Comparer();
-
-            public static IComparer GetComparer()
-            {
-                return _comparer;
-            }
-
-            class Comparer : IComparer
-            {
-                public int Compare(object x, object y)
-                {
-                    FileWriteRequest fwr1 = (FileWriteRequest)x;
-                    FileWriteRequest fwr2 = (FileWriteRequest)y;
-
-                    int val = String.CompareOrdinal(fwr1.FileName, fwr2.FileName);
-                    if (val != 0)
-                        return val;
-
-                    if (fwr1.Sequence < fwr2.Sequence)
-                        return -1;
-                    if (fwr1.Sequence > fwr2.Sequence)
-                        return 1;
-                    return 0;
-                }
-            }
-        }
-#endif
     }
 }

@@ -48,10 +48,10 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
         /// </summary>
-        /// <param name="ev">The logging event.</param>
-        protected override void Append(LogEventInfo ev)
+        /// <param name="logEvent">The logging event.</param>
+        protected override void Write(LogEventInfo logEvent)
         {
-            OutputDebugString(CompiledLayout.GetFormattedMessage(ev));
+            OutputDebugString(CompiledLayout.GetFormattedMessage(logEvent));
         }
 
         /// <summary>

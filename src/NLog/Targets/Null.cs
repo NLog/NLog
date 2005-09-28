@@ -67,12 +67,12 @@ namespace NLog.Targets
         /// Does nothing. Optionally it calculates the layout text but
         /// discards the results.
         /// </summary>
-        /// <param name="ev">The logging event.</param>
-        protected internal override void Append(LogEventInfo ev)
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
         {
             if (_formatMessage)
             {
-                CompiledLayout.GetFormattedMessage(ev);
+                CompiledLayout.GetFormattedMessage(logEvent);
             }
         }
     }

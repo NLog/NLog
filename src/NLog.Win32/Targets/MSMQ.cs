@@ -107,30 +107,27 @@ namespace NLog.Win32.Targets
         }
 
         /// <summary>
-        /// Determines whether stack trace information should be gathered
-        /// during log event processing. It calls <see cref="NLog.Layout.NeedsStackTrace" /> on
-        /// Layout, Queue and Label parameters.
+        /// Adds all layouts used by this target to the specified collection.
         /// </summary>
-        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
-        protected override int NeedsStackTrace()
+        /// <param name="layouts">The collection to add layouts to.</param>
+        public override void PopulateLayouts(LayoutCollection layouts)
         {
-            int nst = base.NeedsStackTrace();
-            nst = Math.Max(nst, _queue.NeedsStackTrace());
-            nst = Math.Max(nst, _label.NeedsStackTrace());
-            return nst;
+            base.PopulateLayouts (layouts);
+            layouts.Add(_queue);
+            layouts.Add(_label);
         }
 
         /// <summary>
         /// Writes the specified logging event to a queue specified in the Queue 
         /// parameter.
         /// </summary>
-        /// <param name="ev">The logging event.</param>
-        protected override void Append(LogEventInfo ev)
+        /// <param name="logEvent">The logging event.</param>
+        protected override void Write(LogEventInfo logEvent)
         {
             if (_queue == null)
                 return;
 
-            string queue = _queue.GetFormattedMessage(ev);
+            string queue = _queue.GetFormattedMessage(logEvent);
 
             if (!MessageQueue.Exists(queue))
             {
@@ -142,7 +139,7 @@ namespace NLog.Win32.Targets
 
             using (MessageQueue mq = new MessageQueue(queue))
             {
-                Message msg = PrepareMessage(ev);
+                Message msg = PrepareMessage(logEvent);
                 if (msg != null)
                 {
                     mq.Send(msg);
@@ -153,30 +150,30 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Prepares a message to be sent to the message queue.
         /// </summary>
-        /// <param name="ev">The log event to be used when calculating label and text to be written.</param>
+        /// <param name="logEvent">The log event to be used when calculating label and text to be written.</param>
         /// <returns>The message to be sent</returns>
         /// <remarks>
         /// You may override this method in inheriting classes
         /// to provide services like encryption or message 
         /// authentication.
         /// </remarks>
-        protected virtual Message PrepareMessage(LogEventInfo ev)
+        protected virtual Message PrepareMessage(LogEventInfo logEvent)
         {
             Message msg = new Message();
             if (_label != null)
             {
-                msg.Label = _label.GetFormattedMessage(ev);
+                msg.Label = _label.GetFormattedMessage(logEvent);
             }
             msg.Recoverable = _recoverableMessages;
             msg.Priority = _messagePriority;
 
             if (_useXmlEncoding)
             {
-                msg.Body = CompiledLayout.GetFormattedMessage(ev);
+                msg.Body = CompiledLayout.GetFormattedMessage(logEvent);
             }
             else
             {
-                byte[] dataBytes = _encoding.GetBytes(CompiledLayout.GetFormattedMessage(ev));
+                byte[] dataBytes = _encoding.GetBytes(CompiledLayout.GetFormattedMessage(logEvent));
 
                 msg.BodyStream.Write(dataBytes, 0, dataBytes.Length);
             }

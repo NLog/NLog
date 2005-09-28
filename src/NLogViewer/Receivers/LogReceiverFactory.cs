@@ -33,7 +33,9 @@
 // 
 
 using System;
+using System.Reflection;
 using System.Collections.Specialized;
+using System.IO;
 
 using NLogViewer.Configuration;
 
@@ -51,22 +53,12 @@ namespace NLogViewer.Receivers
 
         static LogReceiverFactory()
         {
-            LogEventReceiverInfo ri;
-            
-            // UDP receiver
-            ri = new LogEventReceiverInfo();
-            ri.Name = "UDP";
-            ri.Description = "Receives XML events from the network using UDP protocol";
-            ri.Type = typeof(UDPEventReceiver);
-            AddReceiverInfo(ri);
-
-            // TCP receiver
-            ri = new LogEventReceiverInfo();
-            ri.Name = "TCP";
-            ri.Description = "Receives XML events from the network using TCP protocol";
-            ri.Type = typeof(TCPEventReceiver);
-
-            AddReceiverInfo(ri);
+            AddReceiversFromAssembly(typeof(LogReceiverFactory).Assembly);
+            foreach (string assemblyName in NLogViewerConfiguration.Configuration.ExtensionAssemblies)
+            {
+                Assembly extensionAssembly = Assembly.Load(assemblyName);
+                AddReceiversFromAssembly(extensionAssembly);
+            }
         }
 
         public static void AddReceiverInfo(LogEventReceiverInfo ri)
@@ -75,14 +67,43 @@ namespace NLogViewer.Receivers
             _receivers.Add(ri);
         }
 
-        public static LogEventReceiver CreateLogReceiver(string type, ReceiverParameterCollection parameters)
+        private static void AddReceiversFromAssembly(Assembly assembly)
+        {
+            foreach (Type t in assembly.GetExportedTypes())
+            {
+                if (!t.IsDefined(typeof(LogEventReceiverAttribute), false))
+                    continue;
+
+                LogEventReceiverAttribute attr = (LogEventReceiverAttribute)Attribute.GetCustomAttribute(t, typeof(LogEventReceiverAttribute), false);
+                LogEventReceiverInfo ri = new LogEventReceiverInfo();
+
+                ri.Name = attr.Name;
+                ri.Summary = attr.Summary;
+                ri.Description = attr.Description;
+                ri.Type = t;
+                AddReceiverInfo(ri);
+                Log.Write("Adding receiver to factory {0} ({1})", ri, t.AssemblyQualifiedName);
+            }
+        }
+
+        public static ILogEventReceiver CreateLogReceiver(string type, ReceiverParameterCollection parameters)
         {
             LogEventReceiverInfo ri = _name2receiver[type];
             if (ri == null)
                 throw new ArgumentException("Unknown receiver type: " + type);
 
-            object o = Activator.CreateInstance(ri.Type, new object[] { parameters });
-            return (LogEventReceiver)o;
+            object o = Activator.CreateInstance(ri.Type);
+            ILogEventReceiver receiver = (ILogEventReceiver)o;
+
+            // prepare configuration parameters
+            NameValueCollection configParameters = new NameValueCollection();
+            foreach (ReceiverParameter p in parameters)
+            {
+                configParameters[p.Name] = p.Value;
+            }
+
+            receiver.Configure(configParameters);
+            return receiver;
         }
 	}
 }

@@ -34,6 +34,7 @@
 
 using System;
 using System.Text;
+using System.Collections;
 
 using NLog.Config;
 
@@ -56,7 +57,48 @@ namespace NLog
             Layout = "${longdate}|${level:uppercase=true}|${logger}|${message}";
         }
 
+        /// <summary>
+        /// Gets the collection of <see cref="Layout"/> objects that are used
+        /// by this target.
+        /// </summary>
+        /// <returns>A <see cref="LayoutCollection"/> object which is a typed collection
+        /// of <see cref="Layout"/> objects. The collection is cached and accumulated 
+        /// by calling <see cref="PopulateLayouts"/>.</returns>
+        public LayoutCollection GetLayouts()
+        {
+            LayoutCollection lc = _allLayouts;
+            if (lc == null)
+            {
+                lock (this)
+                {
+                    lc = _allLayouts;
+                    if (lc == null)
+                    {
+                        lc = new LayoutCollection();
+                        PopulateLayouts(lc);
+                        _allLayouts = lc;
+                        return lc;
+                    }
+                    else
+                    {
+                        return lc;
+                    }
+                }
+            }
+            else
+            {
+                return lc;
+            }
+        }
+
+        protected void InvalidateLayouts()
+        {
+            _allLayouts = null;
+        }
+
+        private LayoutCollection _allLayouts = null;
         private Layout _compiledlayout;
+        private int _needsStackTrace = -1;
         private string _name;
 
         /// <summary>
@@ -112,18 +154,56 @@ namespace NLog
         /// Writes logging event to the log target. Must be overridden in inheriting
         /// classes.
         /// </summary>
-        /// <param name="ev">Logging event to be written out.</param>
-        protected internal abstract void Append(LogEventInfo ev);
+        /// <param name="logEvent">Logging event to be written out.</param>
+        protected internal abstract void Write(LogEventInfo logEvent);
+
+        /// <summary>
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Append" method. Inheriting classes can use this method to
+        /// optimize batch writes.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        protected internal virtual void Write(LogEventInfo[] logEvents)
+        {
+            for (int i = 0; i < logEvents.Length; ++i)
+            {
+                Write(logEvents[i]);
+            }
+        }
 
         /// <summary>
         /// Determines whether stack trace information should be gathered
         /// during log event processing. By default it calls <see cref="NLog.Layout.NeedsStackTrace" /> on
-        /// <see cref="Target.CompiledLayout" />.
+        /// the result of <see cref="GetLayouts()"/>.
         /// </summary>
         /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
         protected internal virtual int NeedsStackTrace()
         {
-            return CompiledLayout.NeedsStackTrace();
+            int nst = _needsStackTrace;
+
+            if (nst == -1)
+            {
+                lock (this)
+                {
+                    nst = _needsStackTrace;
+                    if (nst == -1)
+                    {
+                        int max = 0;
+                        LayoutCollection layouts = GetLayouts();
+
+                        for (int i = 0; i < layouts.Count; ++i)
+                        {
+                            max = Math.Max(max, layouts[i].NeedsStackTrace());
+                            if (max == 2)
+                                break;
+                        }
+                        nst = max;
+                        _needsStackTrace = nst;
+                    }
+                }
+            }
+
+            return nst;
         }
 
         /// <summary>
@@ -132,7 +212,10 @@ namespace NLog
         /// <returns>A string that describes the target.</returns>
         public override string ToString()
         {
-            return String.Format("{0}: {1}", Name, this.GetType().FullName);
+            if (Name != null)
+                return String.Format("{0}: {1}", Name, this.GetType().FullName);
+            else
+                return this.GetType().FullName;
         }
 
         /// <summary>
@@ -165,6 +248,44 @@ namespace NLog
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
         protected internal virtual void Close()
+        {
+        }
+
+        /// <summary>
+        /// Calls the <see cref="NLog.Layout.Precalculate"/> on each volatile layout
+        /// used by this target.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
+        /// <remarks>
+        /// A layout is volatile if it contains at least one <see cref="Layout"/> for 
+        /// which <see cref="LayoutRenderer.IsVolatile"/> returns true.
+        /// </remarks>
+        public void PrecalculateVolatileLayouts(LogEventInfo logEvent)
+        {
+            LayoutCollection layouts = GetLayouts();
+
+            for (int i = 0; i < layouts.Count; ++i)
+            {
+                if (layouts[i].IsVolatile())
+                    layouts[i].Precalculate(logEvent);
+            }
+        }
+
+        /// <summary>
+        /// Adds all layouts used by this target to the specified collection.
+        /// </summary>
+        /// <param name="layouts">The collection to add layouts to.</param>
+        public virtual void PopulateLayouts(LayoutCollection layouts)
+        {
+            if (this.CompiledLayout != null)
+                layouts.Add(this.CompiledLayout);
+        }
+
+        /// <summary>
+        /// Initializes the target. Can be used by inheriting classes
+        /// to initialize logging.
+        /// </summary>
+        public virtual void Initialize()
         {
         }
     }

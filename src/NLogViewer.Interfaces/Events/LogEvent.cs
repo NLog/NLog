@@ -37,10 +37,11 @@ using System.Xml;
 using System.ComponentModel;
 using System.Collections;
 
-using System.Windows.Forms;
-
-namespace NLogViewer
+namespace NLogViewer.Events
 {
+    /// <summary>
+    /// Represents the log event.
+    /// </summary>
 	public class LogEvent
 	{
         private DateTime _sentTime;
@@ -59,7 +60,6 @@ namespace NLogViewer
         private int _sourceLine;
         private int _sourceColumn;
         private string _thread;
-        private ListViewItem _listViewItem;
 
         public int ID
         {
@@ -155,12 +155,6 @@ namespace NLogViewer
         {
             get { return _thread; }
             set { _thread = value; }
-        }
-
-        public ListViewItem ListViewItem
-        {
-            get { return _listViewItem; }
-            set { _listViewItem = value; }
         }
 
         public LogEventPropertyCollection Properties = new LogEventPropertyCollection();

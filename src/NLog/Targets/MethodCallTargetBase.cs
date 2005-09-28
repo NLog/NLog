@@ -54,13 +54,13 @@ namespace NLog.Targets
         /// <summary>
         /// Prepares an array of parameters to be passed based on the logging event and calls DoInvoke()
         /// </summary>
-        /// <param name="ev">The logging event.</param>
-        protected internal override void Append(LogEventInfo ev)
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
         {
             object[]parameters = new object[Parameters.Count];
             for (int i = 0; i < parameters.Length; ++i)
             {
-                parameters[i] = Parameters[i].GetValue(ev);
+                parameters[i] = Parameters[i].GetValue(logEvent);
             }
 
             DoInvoke(parameters);
@@ -73,22 +73,14 @@ namespace NLog.Targets
         protected abstract void DoInvoke(object[]parameters);
 
         /// <summary>
-        /// Determines whether stack trace information should be gathered
-        /// during log event processing. It calls <see cref="NLog.Layout.NeedsStackTrace" /> on
-        /// all parameters.
+        /// Adds all layouts used by this target to the specified collection.
         /// </summary>
-        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
-        protected internal override int NeedsStackTrace()
+        /// <param name="layouts">The collection to add layouts to.</param>
+        public override void PopulateLayouts(LayoutCollection layouts)
         {
-            int max = base.NeedsStackTrace();
+            base.PopulateLayouts (layouts);
             for (int i = 0; i < Parameters.Count; ++i)
-            {
-                max = Math.Max(max, Parameters[i].NeedsStackTrace());
-                if (max == 2)
-                    break;
-            }
-
-            return max;
+                layouts.Add(Parameters[i].CompiledLayout);
         }
 
         /// <summary>

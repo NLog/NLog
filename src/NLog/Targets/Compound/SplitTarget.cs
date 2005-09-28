@@ -33,27 +33,53 @@
 // 
 
 using System;
+using System.IO;
+using System.Text;
 using System.Xml;
-using System.Xml.Serialization;
+using System.Reflection;
+using System.Diagnostics;
 
-namespace NLogViewer.Configuration
+using NLog.Internal;
+using System.Net;
+using System.Net.Sockets;
+
+using NLog.Config;
+
+namespace NLog.Targets.Compound
 {
-	public class ReceiverParameter
-	{
-        public ReceiverParameter()
+    /// <summary>
+    /// A compound target that writes logging events to all attached
+    /// sub-targets.
+    /// </summary>
+    [Target("SplitGroup",IgnoresLayout=true)]
+    public class SplitTarget: CompoundTargetBase
+    {
+        /// <summary>
+        /// Creates a new instance of <see cref="SplitTarget"/>.
+        /// </summary>
+        public SplitTarget()
         {
         }
-        
-        public ReceiverParameter(string name, string value)
+
+        /// <summary>
+        /// Creates a new instance of <see cref="SplitTarget"/> and
+        /// initializes the <see cref="Targets"/> collection to the
+        /// provided array of <see cref="Target"/> objects.
+        /// </summary>
+        public SplitTarget(params Target[] targets) : base(targets)
         {
-            this.Name = name;
-            this.Value = value;
         }
 
-        [XmlAttribute("name")]
-        public string Name;
-
-        [XmlAttribute("value")]
-        public string Value;
-	}
+        /// <summary>
+        /// Forwards the specified log event to all sub-targets.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
+        {
+            for (int i = 0; i < Targets.Count; ++i)
+            {
+                Targets[i].Write(logEvent);
+            }
+        }
+   }
 }

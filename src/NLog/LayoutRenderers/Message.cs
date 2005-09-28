@@ -40,58 +40,58 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The formatted log message.
     /// </summary>
-    [LayoutRenderer("message")]
+    [LayoutRenderer("message",UsingLogEventInfo=true)]
     public class MessageLayoutRenderer: LayoutRenderer
     {
         /// <summary>
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
         /// </summary>
-        /// <param name="ev">Logging event information.</param>
+        /// <param name="logEvent">Logging event information.</param>
         /// <returns>The number of characters.</returns>
         /// <remarks>
         /// If the exact number is not known or
         /// expensive to calculate this function should return a rough estimate
         /// that's big enough in most cases, but not too big, in order to conserve memory.
         /// </remarks>
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
-            return ev.Message.Length;
+            return logEvent.Message.Length;
         }
 
         /// <summary>
         /// Renders the log message including any positional parameters and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ev">Logging event.</param>
-        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+        /// <param name="logEvent">Logging event.</param>
+        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (NeedPadding())
             {
-                builder.Append(ApplyPadding(ev.FormattedMessage));
+                builder.Append(ApplyPadding(logEvent.FormattedMessage));
             }
             else
             {
-                if (ev.Parameters == null || ev.Parameters.Length == 0)
+                if (logEvent.Parameters == null || logEvent.Parameters.Length == 0)
                 {
-                    builder.Append(ev.Message);
+                    builder.Append(logEvent.Message);
                 }
                 else
                 {
-                    if (ev.FormatProvider != null)
+                    if (logEvent.FormatProvider != null)
                     {
 #if NETCF
-                        builder.Append(String.Format(ev.FormatProvider, ev.Message, ev.Parameters));
+                        builder.Append(String.Format(logEvent.FormatProvider, logEvent.Message, logEvent.Parameters));
 #else
-                        builder.AppendFormat(ev.FormatProvider, ev.Message, ev.Parameters);
+                        builder.AppendFormat(logEvent.FormatProvider, logEvent.Message, logEvent.Parameters);
 #endif
                     }
                     else
                     {
 #if NETCF
-                        builder.Append(String.Format(ev.Message, ev.Parameters));
+                        builder.Append(String.Format(logEvent.Message, logEvent.Parameters));
 #else
-                        builder.AppendFormat(ev.Message, ev.Parameters);
+                        builder.AppendFormat(logEvent.Message, logEvent.Parameters);
 #endif
                     }
                 };

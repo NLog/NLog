@@ -44,6 +44,7 @@ using System.Net;
 using System.Net.Sockets;
 
 using NLog.Config;
+using NLog.LayoutRenderers;
 
 namespace NLog.Targets
 {
@@ -54,16 +55,22 @@ namespace NLog.Targets
     [Target("NLogViewer", IgnoresLayout=true)]
     public class NLogViewerTarget: NetworkTarget
     {
-        private string _appInfo;
-        private bool _includeMDC = false;
-        private bool _includeNDC = false;
-        private static DateTime _log4jDateBase = new DateTime(1970, 1, 1);
         private NLogViewerParameterInfoCollection _parameters = new NLogViewerParameterInfoCollection();
+        private Log4JXmlEventLayoutRenderer _log4jrenderer;
+
+        private Log4JXmlEventLayoutRenderer Renderer
+        {
+            get { return _log4jrenderer; }
+        }
 
         /// <summary>
         /// Include NLog-specific extensions to log4j schema.
         /// </summary>
-        public bool IncludeNLogData = true;
+        public bool IncludeNLogData
+        {
+            get { return Renderer.IncludeNLogData; }
+            set { Renderer.IncludeNLogData = value;  }
+        }
 
         /// <summary>
         /// Creates a new instance of the <see cref="NLogViewerTarget"/> 
@@ -71,12 +78,20 @@ namespace NLog.Targets
         /// </summary>
         public NLogViewerTarget()
         {
+            Layout = "${log4jxmlevent}";
+
+            if (CompiledLayout.Renderers.Length != 1)
+                throw new InvalidOperationException("Assertion failed.");
+            _log4jrenderer = CompiledLayout.Renderers[0] as Log4JXmlEventLayoutRenderer;
+            if (_log4jrenderer == null)
+                throw new InvalidOperationException("Assertion failed #2.");
+
 #if NETCF
-            _appInfo = ".NET CF Application";
+            Renderer.AppInfo =  = ".NET CF Application";
 #else
-            _appInfo = String.Format("{0}({1})", AppDomain.CurrentDomain.FriendlyName,
-                NLog.Internal.ThreadIDHelper.CurrentProcessID);
+            Renderer.AppInfo = String.Format("{0}({1})", AppDomain.CurrentDomain.FriendlyName, NLog.Internal.ThreadIDHelper.CurrentProcessID);
 #endif
+            Renderer.Parameters = _parameters;
         }
 
         /// <summary>
@@ -84,21 +99,18 @@ namespace NLog.Targets
         /// </summary>
         public string AppInfo
         {
-            get { return _appInfo; }
-            set { _appInfo = value; }
+            get { return Renderer.AppInfo; }
+            set { Renderer.AppInfo = value; }
         }
 
 #if !NETCF
-        private bool _includeCallSite = false;
-        private bool _includeSourceInfo = false;
-
         /// <summary>
         /// Include call site (class and method name) in the information sent over the network.
         /// </summary>
         public bool IncludeCallSite
         {
-            get { return _includeCallSite; }
-            set { _includeCallSite = value; }
+            get { return Renderer.IncludeCallSite; }
+            set { Renderer.IncludeCallSite = value; }
         }
 
         /// <summary>
@@ -106,8 +118,19 @@ namespace NLog.Targets
         /// </summary>
         public bool IncludeSourceInfo
         {
-            get { return _includeSourceInfo; }
-            set { _includeSourceInfo = value; }
+            get { return Renderer.IncludeSourceInfo; }
+            set { Renderer.IncludeSourceInfo = value; }
+        }
+
+        /// <summary>
+        /// Adds all layouts used by this target to the specified collection.
+        /// </summary>
+        /// <param name="layouts">The collection to add layouts to.</param>
+        public override void PopulateLayouts(LayoutCollection layouts)
+        {
+            base.PopulateLayouts (layouts);
+            for (int i = 0; i < Parameters.Count; ++i)
+                layouts.Add(Parameters[i].CompiledLayout);
         }
 
         /// <summary>
@@ -121,15 +144,7 @@ namespace NLog.Targets
             if (IncludeCallSite)
                 return 1;
 
-            int max = 0;
-            for (int i = 0; i < Parameters.Count; ++i)
-            {
-                max = Math.Max(max, Parameters[i].NeedsStackTrace());
-                if (max == 2)
-                    break;
-            }
-
-            return max;
+            return base.NeedsStackTrace();
         }
 #endif
 
@@ -138,8 +153,8 @@ namespace NLog.Targets
         /// </summary>
         public bool IncludeMDC
         {
-            get { return _includeMDC; }
-            set { _includeMDC = value; }
+            get { return Renderer.IncludeMDC; }
+            set { Renderer.IncludeMDC = value; }
         }
 
         /// <summary>
@@ -147,8 +162,8 @@ namespace NLog.Targets
         /// </summary>
         public bool IncludeNDC
         {
-            get { return _includeNDC; }
-            set { _includeNDC = value; }
+            get { return Renderer.IncludeNDC; }
+            set { Renderer.IncludeNDC = value; }
         }
         /// <summary>
         /// The collection of paramters. Each parameter contains a mapping
@@ -166,93 +181,10 @@ namespace NLog.Targets
         /// <summary>
         /// Constructs an XML packet including the logging event information and sends it over the network.
         /// </summary>
-        /// <param name="ev">Logging event information.</param>
-        protected internal override void Append(LogEventInfo ev)
+        /// <param name="logEvent">Logging event information.</param>
+        protected internal override void Write(LogEventInfo logEvent)
         {
-            StringBuilder sb = new StringBuilder(512);
-            StringWriter sw = new StringWriter();
-
-            XmlTextWriter xtw = new XmlTextWriter(sw);
-            xtw.Formatting = Formatting.Indented;
-
-            xtw.WriteStartElement("log4j:event");
-            xtw.WriteAttributeString("logger", ev.LoggerName);
-            xtw.WriteAttributeString("level", ev.Level.Name.ToUpper());
-            xtw.WriteAttributeString("timestamp", Convert.ToString((long)(ev.TimeStamp.ToUniversalTime() - _log4jDateBase).TotalMilliseconds));
-#if !NETCF
-            xtw.WriteAttributeString("thread", NLog.Internal.ThreadIDHelper.CurrentThreadID.ToString());
-#else
-            xtw.WriteElementString("thread", "");
-#endif
-
-            xtw.WriteElementString("log4j:message", ev.FormattedMessage);
-            if (IncludeNDC)
-            {
-                xtw.WriteElementString("log4j:NDC", NDC.GetAllMessages(" "));
-            }
-#if !NETCF
-            if (IncludeCallSite || IncludeSourceInfo)
-            {
-                System.Diagnostics.StackFrame frame = ev.UserStackFrame;
-                MethodBase methodBase = frame.GetMethod();
-                Type type = methodBase.DeclaringType;
-
-                xtw.WriteStartElement("log4j:locationinfo");
-                xtw.WriteAttributeString("class", type.FullName);
-                xtw.WriteAttributeString("method", methodBase.ToString());
-                if (IncludeSourceInfo)
-                {
-                    xtw.WriteAttributeString("file", frame.GetFileName());
-                    xtw.WriteAttributeString("line", frame.GetFileLineNumber().ToString());
-                }
-                xtw.WriteEndElement();
-
-                if (IncludeNLogData)
-                {
-                    xtw.WriteStartElement("nlog:locationinfo");
-                    xtw.WriteAttributeString("assembly", type.Assembly.FullName);
-                    xtw.WriteEndElement();
-                }
-            }
-#endif
-            xtw.WriteStartElement("log4j:properties");
-            if (IncludeMDC)
-            {
-                foreach (System.Collections.DictionaryEntry entry in MDC.GetThreadDictionary())
-                {
-                    xtw.WriteStartElement("log4j:data");
-                    xtw.WriteAttributeString("name", Convert.ToString(entry.Key));
-                    xtw.WriteAttributeString("value", Convert.ToString(entry.Value));
-                    xtw.WriteEndElement();
-                }
-            }
-            foreach (NLogViewerParameterInfo parameter in Parameters)
-            {
-                xtw.WriteStartElement("log4j:data");
-                xtw.WriteAttributeString("name", parameter.Name);
-                xtw.WriteAttributeString("value", parameter.CompiledLayout.GetFormattedMessage(ev));
-                xtw.WriteEndElement();
-            }
-
-            xtw.WriteStartElement("log4j:data");
-            xtw.WriteAttributeString("name", "log4japp");
-            xtw.WriteAttributeString("value", AppInfo);
-            xtw.WriteEndElement();
-
-            xtw.WriteStartElement("log4j:data");
-            xtw.WriteAttributeString("name", "log4jmachinename");
-#if NETCF
-                xtw.WriteAttributeString("value", "netcf");
-#else
-            xtw.WriteAttributeString("value", NLog.LayoutRenderers.MachineNameLayoutRenderer.MachineName);
-#endif
-            xtw.WriteEndElement();
-            xtw.WriteEndElement();
-
-            xtw.WriteEndElement();
-            xtw.Flush();
-            // Console.WriteLine(sw.ToString());
-            NetworkSend(AddressLayout.GetFormattedMessage(ev), sw.ToString());
+            NetworkSend(AddressLayout.GetFormattedMessage(logEvent), CompiledLayout.GetFormattedMessage(logEvent));
         }
     }
 }

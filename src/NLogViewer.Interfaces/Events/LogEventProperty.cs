@@ -33,26 +33,18 @@
 // 
 
 using System;
-using System.Threading;
-using System.Windows.Forms;
-using System.Text;
-using System.IO;
-using System.Collections;
-using System.Drawing;
+using System.Xml;
+using System.Xml.Serialization;
 
-namespace NLogViewer
+namespace NLogViewer.Events
 {
-    [Serializable]
-    [AttributeUsage(AttributeTargets.Class)]
-	public sealed class LogInstanceAttribute : Attribute
+    [XmlType("param")]
+	public struct LogEventProperty
 	{
-        private string _name;
-        private string _description;
+        [XmlAttribute("name")]
+        public string Name;
 
-        public LogInstanceAttribute(string name, string description)
-        {
-            _name = name;
-            _description = description;
-        }
-    }
+        [XmlAttribute("value")]
+        public string Value;
+	}
 }

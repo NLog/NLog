@@ -1,6 +1,6 @@
 using System;
 
-namespace NLogViewer
+namespace NLogViewer.Events
 {
     /// <summary>
     /// A collection of elements of type LogEvent

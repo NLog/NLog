@@ -42,6 +42,9 @@ using NLog.Internal;
 
 namespace NLog
 {
+    /// <summary>
+    /// A class that loads and manages NLog extension assemblies.
+    /// </summary>
     public class ExtensionUtils
     {
         private static ArrayList _extensionAssemblies = new ArrayList();
@@ -51,6 +54,10 @@ namespace NLog
             FindPlatformSpecificAssemblies(_extensionAssemblies);
         }
 
+        /// <summary>
+        /// Gets the list of loaded NLog extension assemblies.
+        /// </summary>
+        /// <returns>An <see cref="ArrayList"/> containing all NLog extension assemblies that have been loaded.</returns>
         public static ArrayList GetExtensionAssemblies()
         {
             return _extensionAssemblies;

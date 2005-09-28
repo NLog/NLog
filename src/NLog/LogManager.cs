@@ -232,6 +232,7 @@ namespace NLog
                         }
                     }
 #endif 
+                    _config.InitializeAll();
                     return _config;
                 }
             }
@@ -261,10 +262,11 @@ namespace NLog
                     _config = value;
                     _configLoaded = true;
 
-                    Dump(value);
-
                     if (_config != null)
                     {
+                        Dump(_config);
+
+                        _config.InitializeAll();
                         ReconfigExistingLoggers(_config);
 #if !NETCF
                         try
@@ -500,6 +502,34 @@ namespace NLog
                     _globalThreshold = value;
                     ReconfigExistingLoggers();
                 }
+            }
+        }
+
+        private static void SetupTerminationEvents()
+        {
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(TurnOffLogging);
+            AppDomain.CurrentDomain.DomainUnload += new EventHandler(TurnOffLogging);
+        }
+
+        private static void TurnOffLogging(object sender, EventArgs args)
+        {
+            // reset logging configuration to null
+            // this causes old configuration (if any) to be closed.
+
+            InternalLogger.Info("Shutting down logging...");
+            Configuration = null;
+            InternalLogger.Info("Logger has been shut down.");
+        }
+
+        static LogManager()
+        {
+            try
+            {
+                SetupTerminationEvents();
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn("Error setting up termiation events: {0}", ex);
             }
         }
     }

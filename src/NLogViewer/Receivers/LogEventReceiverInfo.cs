@@ -45,19 +45,21 @@ namespace NLogViewer.Receivers
         {
         }
 
-        public LogEventReceiverInfo(string name, string description, Type type)
+        public LogEventReceiverInfo(string name, string summary, string description, Type type)
         {
             this.Name = name;
+            this.Summary = summary;
             this.Description = description;
             this.Type = type;
         }
         public string Name;
         public string Description;
+        public string Summary;
         public Type Type;
 
         public override string ToString()
         {
-            return String.Format("{0} - {1}", this.Name, this.Description);
+            return String.Format("{0} - {1}", this.Name, this.Summary);
         }
 
 	}

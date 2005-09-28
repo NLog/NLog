@@ -10,7 +10,7 @@
     <h5>How to write a target?</h5>
     <p>
         It's really easy. Create a class that inherits from <code>NLog.Target</code> 
-        and override the <code>Append()</code> method. In the body of the method use 
+        and override the <code>Write()</code> method. In the body of the method use 
         <code>CompiledLayout.GetFormattedMessage()</code> to get the message text, then send the text to the destination media.
     </p>
 

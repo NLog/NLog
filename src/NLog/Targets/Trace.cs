@@ -52,16 +52,16 @@ namespace NLog.Targets
         /// <see cref="System.Diagnostics.Trace.Fail"/> method, otherwise it uses
         /// <see cref="System.Diagnostics.Trace.Write" /> method.
         /// </summary>
-        /// <param name="ev">The logging event.</param>
-        protected internal override void Append(LogEventInfo ev)
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
         {
-            if (ev.Level >= LogLevel.Error)
+            if (logEvent.Level >= LogLevel.Error)
             {
-                Trace.Fail(CompiledLayout.GetFormattedMessage(ev));
+                Trace.Fail(CompiledLayout.GetFormattedMessage(logEvent));
             }
             else
             {
-                Trace.WriteLine(CompiledLayout.GetFormattedMessage(ev));
+                Trace.WriteLine(CompiledLayout.GetFormattedMessage(logEvent));
             }
         }
     }

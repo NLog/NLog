@@ -43,13 +43,14 @@ using System.Drawing;
 using NLogViewer.Receivers;
 using NLogViewer.Configuration;
 using NLogViewer.UI;
+using NLogViewer.Events;
 
 namespace NLogViewer
 {
-    public class LogInstance
+    public class LogInstance : ILogEventProcessor
     {
         private LogInstanceConfiguration _config;
-        private LogEventReceiver _receiver;
+        private ILogEventReceiver _receiver;
         private MainForm _mainForm;
         private TabPage _tabPage;
         private LogInstanceTabPage _tabPanel;
@@ -304,7 +305,6 @@ namespace NLogViewer
         private ListViewItem LogEventToListViewItem(LogEvent logEvent)
         {
             ListViewItem item = new ListViewItem();
-            logEvent.ListViewItem = item;
             item.Tag = logEvent;
             item.Text = logEvent.ID.ToString();
             item.SubItems.Add(logEvent.ReceivedTime.ToString());
@@ -342,6 +342,7 @@ namespace NLogViewer
                 }
             }
 
+            SetListViewItemForLogEvent(logEvent, item);
             return item;
         }
 
@@ -351,15 +352,31 @@ namespace NLogViewer
         }
 
         private static int _globalEventID = 0;
+        private Hashtable _logEventToListViewItem = new Hashtable();
 
-        internal void ProcessLogEvent(LogEvent logEvent)
+        private ListViewItem GetListViewItemForLogEvent(LogEvent ev)
+        {
+            return (ListViewItem)_logEventToListViewItem[ev];
+        }
+
+        private void SetListViewItemForLogEvent(LogEvent ev, ListViewItem item)
+        {
+            _logEventToListViewItem[ev] = item;
+        }
+
+        public void ProcessLogEvent(LogEvent logEvent)
         {
             logEvent.ID = Interlocked.Increment(ref _globalEventID);
 
             LogEvent removedEvent = (LogEvent)_events.AddAndRemoveLast(logEvent);
-            if (removedEvent != null && removedEvent.ListViewItem != null)
+            
+            if (removedEvent != null)
             {
-                TabPanel.listViewLogMessages.Items.Remove(removedEvent.ListViewItem);
+                ListViewItem listViewItem = GetListViewItemForLogEvent(removedEvent);
+                if (listViewItem != null)
+                {
+                    TabPanel.listViewLogMessages.Items.Remove(listViewItem);
+                }
             }
 
             if (TryFilters(logEvent))

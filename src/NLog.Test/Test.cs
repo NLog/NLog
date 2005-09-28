@@ -37,6 +37,9 @@ using System.Runtime.InteropServices;
 
 using NLog;
 using NLog.Config;
+using NLog.Targets.Compound;
+using NLog.Targets.Wrappers.RequestBuffering;
+using NLog.Targets.Wrappers;
 
 namespace NLog.Tester
 {
@@ -50,46 +53,50 @@ namespace NLog.Tester
         static void Main(string[]args)
         {
             NLog.Internal.InternalLogger.LogToConsole = true;
-            NLog.Internal.InternalLogger.LogLevel = LogLevel.Debug;
+            NLog.Internal.InternalLogger.LogLevel = LogLevel.Trace;
 
-            NLog.Targets.ConsoleTarget t = new NLog.Targets.ConsoleTarget();
-            t.Layout = "${windows-identity:domain=false}";
+            System.Threading.Thread.CurrentThread.Name = "threadNameIsHere";
 
-            SimpleConfigurator.ConfigureForTargetLogging(t, LogLevel.Trace);
             Logger p = LogManager.GetCurrentClassLogger();
             Logger p2 = LogManager.GetLogger("NLog.Tester.ABC");
             Logger p3 = LogManager.GetLogger("NLog.Def.ABC");
             MDC.Set("AAA", "b");
             MDC.Set("BBB", "C");
-            using (NDC.Push("AAA"))
+
+            for (int i = 0; i < 2; ++i)
             {
-                for (int i = 0; i < 3; ++i)
-                {
-                    p.Trace("This is a trace");
-                    p.Debug("This is a debug");
-                    p.Info("This is a info");
-                    p.Warn("This is a warn");
-                    p.Error("This is a error");
-                    p.Fatal("This is a fatal");
-
-                    p2.Trace("This is a trace");
-                    p2.Debug("This is a debug");
-                    p2.Info("This is a info");
-                    p2.Warn("This is a warn");
-                    p2.Error("This is a error");
-                    p2.Fatal("This is a fatal");
-
-                    p3.Trace("This is a trace");
-                    p3.Debug("This is a debug");
-                    p3.Info("This is a info");
-                    p3.Warn("This is a warn");
-                    p3.Error("This is a error");
-                    p3.Fatal("This is a fatal");
-                }
+                p.Debug("aaa " + i);
+                p.Info("bbb " + i);
             }
+#if A
+                using (NDC.Push("AAA"))
+                {
+                    for (int i = 0; i < 3; ++i)
+                    {
+                        p.Trace("This is a trace");
+                        p.Debug("This is a debug");
+                        p.Info("This is a info");
+                        p.Warn("This is a warn");
+                        p.Error("This is a error");
+                        p.Fatal("This is a fatal");
 
-            t.Flush(10000);
+                        p2.Trace("This is a trace");
+                        p2.Debug("This is a debug");
+                        p2.Info("This is a info");
+                        p2.Warn("This is a warn");
+                        p2.Error("This is a error");
+                        p2.Fatal("This is a fatal");
 
+                        p3.Trace("This is a trace");
+                        p3.Debug("This is a debug");
+                        p3.Info("This is a info");
+                        p3.Warn("This is a warn");
+                        p3.Error("This is a error");
+                        p3.Fatal("This is a fatal");
+                    }
+                }
+#endif
+            //LogManager.Flush();
             return;
 
             

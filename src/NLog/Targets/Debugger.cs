@@ -63,12 +63,12 @@ namespace NLog.Targets
         /// <summary>
         /// Writes the specified logging event to the attached debugger.
         /// </summary>
-        /// <param name="ev">The logging event.</param>
-        protected internal override void Append(LogEventInfo ev)
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
         {
             if (Debugger.IsLogging())
             {
-                Debugger.Log(ev.Level.Ordinal, ev.LoggerName, CompiledLayout.GetFormattedMessage(ev) + "\n");
+                Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, CompiledLayout.GetFormattedMessage(logEvent) + "\n");
             }
         }
     }

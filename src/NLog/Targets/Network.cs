@@ -43,10 +43,10 @@ using NLog.Internal;
 namespace NLog.Targets
 {
     /// <summary>
-    /// Sends logging messages over network.
+    /// Sends logging messages over the network.
     /// </summary>
     [Target("Network")]
-    public class NetworkTarget: AsyncTarget
+    public class NetworkTarget: Target
     {
         private bool _newline = false;
         private bool _keepConnection = true;
@@ -106,13 +106,6 @@ namespace NLog.Targets
         /// <param name="text">The text to be sent.</param>
         protected void NetworkSend(string address, string text)
         {
-#if !NETCF
-            if (Async)
-            {
-                RequestQueue.Enqueue(new NetworkWriteRequest(address, text));
-                return;
-            }
-#endif
             NetworkSender sender;
             bool keep;
 
@@ -167,155 +160,17 @@ namespace NLog.Targets
         /// Sends the 
         /// rendered logging event over the network optionally concatenating it with a newline character.
         /// </summary>
-        /// <param name="ev">The logging event.</param>
-        protected internal override void Append(LogEventInfo ev)
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
         {
             if (NewLine)
             {
-                NetworkSend(AddressLayout.GetFormattedMessage(ev), CompiledLayout.GetFormattedMessage(ev) + "\r\n");
+                NetworkSend(AddressLayout.GetFormattedMessage(logEvent), CompiledLayout.GetFormattedMessage(logEvent) + "\r\n");
             }
             else
             {
-                NetworkSend(AddressLayout.GetFormattedMessage(ev), CompiledLayout.GetFormattedMessage(ev));
+                NetworkSend(AddressLayout.GetFormattedMessage(logEvent), CompiledLayout.GetFormattedMessage(logEvent));
             }
         }
-
-#if !NETCF
-
-        /// <summary>
-        /// Periodically writes network messages to network destinations 
-        /// in a separate thread.
-        /// </summary>
-        protected override void LazyWriterThreadProc()
-        {
-            NetworkSender currentSender = null;
-            string currentSenderAddress = "";
-
-            while (!LazyWriterThreadStopRequested)
-            {
-                ArrayList pendingNetworkRequests = RequestQueue.DequeueBatch(100);
-
-                if (pendingNetworkRequests.Count == 0)
-                {
-                    Thread.Sleep(100);
-                    continue;
-                }
-
-                try
-                {
-
-                    // sort the network requests by the address and 
-                    // the sequence to maximize socket reuse
-
-                    pendingNetworkRequests.Sort(NetworkWriteRequest.GetComparer());
-
-                    int requests = 0;
-                    int reopens = 0;
-
-                    for (int i = 0; i < pendingNetworkRequests.Count; ++i)
-                    {
-                        NetworkWriteRequest fwr = (NetworkWriteRequest)pendingNetworkRequests[i];
-
-                        if (fwr.Address != currentSenderAddress)
-                        {
-                            if (currentSender != null)
-                            {
-                                currentSender.Close();
-                                currentSender = null;
-                            }
-                            currentSenderAddress = fwr.Address;
-                            try
-                            {
-                                currentSender = NetworkSender.Create(fwr.Address);
-                            }
-                            catch (Exception ex)
-                            {
-                                InternalLogger.Debug("Cannot create sender: {0}", fwr.Address);
-                                currentSender = null;
-                            }
-                            reopens++;
-                        }
-                        requests++;
-                        if (currentSender != null)
-                            currentSender.Send(fwr.Text);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error("Error in File lazy writer thread: {0}", ex);
-                }
-                finally
-                {
-                    RequestQueue.BatchProcessed(pendingNetworkRequests);
-                }
-            }
-            if (currentSender != null)
-            {
-                currentSender.Close();
-                currentSender = null;
-            }
-        }
-
-        /// <summary>
-        /// Represents a single async request to write to a network place.
-        /// </summary>
-        class NetworkWriteRequest
-        {
-            private string _address;
-            private string _text;
-            private long _sequence;
-
-            private static long _globalSequence;
-
-            public NetworkWriteRequest(string address, string text)
-            {
-                _address = address;
-                _text = text;
-                _sequence = Interlocked.Increment(ref _globalSequence);
-            }
-
-            public string Address
-            {
-                get { return _address; }
-            }
-
-            public string Text
-            {
-                get { return _text; }
-            }
-
-            public long Sequence
-            {
-                get { return _sequence; }
-            }
-
-            private static IComparer _comparer = new Comparer();
-
-            public static IComparer GetComparer()
-            {
-                return _comparer;
-            }
-
-            class Comparer : IComparer
-            {
-                public int Compare(object x, object y)
-                {
-                    NetworkWriteRequest fwr1 = (NetworkWriteRequest)x;
-                    NetworkWriteRequest fwr2 = (NetworkWriteRequest)y;
-
-                    int val = String.CompareOrdinal(fwr1.Address, fwr2.Address);
-                    if (val != 0)
-                        return val;
-
-                    if (fwr1.Sequence < fwr2.Sequence)
-                        return -1;
-                    if (fwr1.Sequence > fwr2.Sequence)
-                        return 1;
-                    return 0;
-                }
-            }
-        }
-#endif
-
     }
 }

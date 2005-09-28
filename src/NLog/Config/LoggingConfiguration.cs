@@ -139,6 +139,21 @@ namespace NLog.Config
             }
         }
 
+        internal void InitializeAll()
+        {
+            foreach (Target target in _targets.Values)
+            {
+                try
+                {
+                    target.Initialize();
+                
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error("Error while closing target: {0} {1}", target.Name, ex); 
+                }
+            }
+        }
         /// <summary>
         /// Closes all targets and releases any unmanaged resources.
         /// </summary>

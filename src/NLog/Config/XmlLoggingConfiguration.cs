@@ -517,7 +517,8 @@ namespace NLog.Config
                     continue;
                 
                 if (0 == String.Compare(targetElement.LocalName, "target", true) || 
-                    0 == String.Compare(targetElement.LocalName, "appender", true))
+                    0 == String.Compare(targetElement.LocalName, "appender", true) ||
+                    0 == String.Compare(targetElement.LocalName, "wrapper", true))
                 {
                     string type = GetCaseInsensitiveAttribute(targetElement, "type");
                     Target newTarget = TargetFactory.CreateTarget(type);
@@ -559,6 +560,8 @@ namespace NLog.Config
         private void ConfigureTargetFromXmlElement(Target target, XmlElement element)
         {
             Type targetType = target.GetType();
+            NLog.Targets.Compound.CompoundTargetBase compound = target as NLog.Targets.Compound.CompoundTargetBase;
+            NLog.Targets.Wrappers.WrapperTargetBase wrapper = target as NLog.Targets.Wrappers.WrapperTargetBase;
 
             foreach (XmlAttribute attrib in element.Attributes)
             {
@@ -577,6 +580,44 @@ namespace NLog.Config
                 {
                     XmlElement el = (XmlElement)node;
                     string name = el.LocalName;
+
+                    if ((name == "target" || name == "wrapper") && compound != null)
+                    {
+                        string type = GetCaseInsensitiveAttribute(el, "type");
+                        Target newTarget = TargetFactory.CreateTarget(type);
+                        if (newTarget != null)
+                        {
+                            ConfigureTargetFromXmlElement(newTarget, el);
+                            if (newTarget.Name != null)
+                            {
+                                // if the new target has name, register it
+                                AddTarget(newTarget.Name, newTarget);
+                            }
+                            compound.Targets.Add(newTarget);
+                        }
+                        continue;
+                    }
+
+                    if ((name == "target" || name == "wrapper") && wrapper != null)
+                    {
+                        string type = GetCaseInsensitiveAttribute(el, "type");
+                        Target newTarget = TargetFactory.CreateTarget(type);
+                        if (newTarget != null)
+                        {
+                            ConfigureTargetFromXmlElement(newTarget, el);
+                            if (newTarget.Name != null)
+                            {
+                                // if the new target has name, register it
+                                AddTarget(newTarget.Name, newTarget);
+                            }
+                            if (wrapper.WrappedTarget != null)
+                            {
+                                throw new Exception("Wrapped target already defined.");
+                            }
+                            wrapper.WrappedTarget = newTarget;
+                        }
+                        continue;
+                    }
 
                     if (PropertyHelper.IsArrayProperty(targetType, name))
                     {

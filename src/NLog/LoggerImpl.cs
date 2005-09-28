@@ -157,7 +157,7 @@ namespace NLog
 
                 try
                 {
-                    app.Append(logMessage);
+                    app.Write(logMessage);
                 }
                 catch (Exception ex)
                 {

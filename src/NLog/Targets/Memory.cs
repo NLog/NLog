@@ -65,10 +65,10 @@ namespace NLog.Targets
         /// <summary>
         /// Renders the logging event message and adds it to the internal ArrayList of log messages.
         /// </summary>
-        /// <param name="ev">The logging event.</param>
-        protected internal override void Append(LogEventInfo ev)
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
         {
-            _logs.Add(CompiledLayout.GetFormattedMessage(ev));
+            _logs.Add(CompiledLayout.GetFormattedMessage(logEvent));
         }
 
         /// <summary>

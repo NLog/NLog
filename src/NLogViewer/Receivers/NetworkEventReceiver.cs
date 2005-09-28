@@ -45,20 +45,23 @@ using NLogViewer.Configuration;
 
 namespace NLogViewer.Receivers
 {
-    public abstract class NetworkEventReceiver : LogEventReceiver
+    public abstract class NetworkEventReceiver : LogEventReceiverSkeleton
     {
         private int _port;
 
-        public NetworkEventReceiver(ReceiverParameterCollection parameters) : base(parameters)
+        public NetworkEventReceiver()
         {
+        }
+
+        public override void Configure(NameValueCollection parameters)
+        {
+            base.Configure(parameters);
+            
             _port = 4000;
 
-            foreach (ReceiverParameter rp in parameters)
+            if (parameters["port"] != null)
             {
-                if (rp.Name == "port")
-                {
-                    _port = Convert.ToInt32(rp.Value);
-                }
+                _port = Convert.ToInt32(parameters["port"]);
             }
         }
 

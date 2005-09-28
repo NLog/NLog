@@ -385,24 +385,24 @@ namespace NLog.Targets
         /// a new database command, prepares parameters for it by calculating
         /// layouts and executes the command.
         /// </summary>
-        /// <param name="ev">The logging event.</param>
-        protected internal override void Append(LogEventInfo ev)
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
         {
             if (_keepConnection)
             {
                 lock(this)
                 {
                     if (_activeConnection == null)
-                        _activeConnection = OpenConnection(ev);
-                    DoAppend(ev);
+                        _activeConnection = OpenConnection(logEvent);
+                    DoAppend(logEvent);
                 }
             }
             else
             {
                 try
                 {
-                    _activeConnection = OpenConnection(ev);
-                    DoAppend(ev);
+                    _activeConnection = OpenConnection(logEvent);
+                    DoAppend(logEvent);
                 }
                 finally
                 {
@@ -416,33 +416,30 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Determines whether stack trace information should be gathered
-        /// during log event processing. It calls <see cref="NLog.Layout.NeedsStackTrace" /> on
-        /// all parameters.
+        /// Adds all layouts used by this target to the specified collection.
         /// </summary>
-        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
-        protected internal override int NeedsStackTrace()
+        /// <param name="layouts">The collection to add layouts to.</param>
+        public override void PopulateLayouts(LayoutCollection layouts)
         {
-            int max = base.NeedsStackTrace();
-            if (DBHostLayout != null) max = Math.Max(max, DBHostLayout.NeedsStackTrace());
-            if (DBUserNameLayout != null) max = Math.Max(max, DBUserNameLayout.NeedsStackTrace());
-            if (DBDatabaseLayout != null) max = Math.Max(max, DBDatabaseLayout.NeedsStackTrace());
-            if (DBPasswordLayout != null) max = Math.Max(max, DBPasswordLayout.NeedsStackTrace());
-            if (CommandTextLayout != null) max = Math.Max(max, CommandTextLayout.NeedsStackTrace());
+            base.PopulateLayouts (layouts);
+
+            if (DBHostLayout != null) layouts.Add(DBHostLayout);
+            if (DBUserNameLayout != null) layouts.Add(DBUserNameLayout);
+            if (DBDatabaseLayout != null) layouts.Add(DBDatabaseLayout);
+            if (DBPasswordLayout != null) layouts.Add(DBPasswordLayout);
+            if (CommandTextLayout != null) layouts.Add(CommandTextLayout);
+
             for (int i = 0; i < Parameters.Count; ++i)
             {
-                max = Math.Max(max, Parameters[i].NeedsStackTrace());
-                if (max == 2)
-                    break;
+                if (Parameters[i].CompiledLayout != null)
+                    layouts.Add(Parameters[i].CompiledLayout);
             }
-
-            return max;
         }
 
-        private void DoAppend(LogEventInfo ev)
+        private void DoAppend(LogEventInfo logEvent)
         {
             IDbCommand command = _activeConnection.CreateCommand();
-            command.CommandText = CommandTextLayout.GetFormattedMessage(ev);
+            command.CommandText = CommandTextLayout.GetFormattedMessage(logEvent);
             foreach (DatabaseParameterInfo par in Parameters)
             {
                 IDbDataParameter p = command.CreateParameter();
@@ -455,13 +452,13 @@ namespace NLog.Targets
                     p.Precision = par.Precision;
                 if (par.Scale != 0)
                     p.Scale = par.Scale;
-                p.Value = par.CompiledLayout.GetFormattedMessage(ev);
+                p.Value = par.CompiledLayout.GetFormattedMessage(logEvent);
                 command.Parameters.Add(p);
             }
             command.ExecuteNonQuery();
         }
 
-        private IDbConnection OpenConnection(LogEventInfo ev)
+        private IDbConnection OpenConnection(LogEventInfo logEvent)
         {
             ConstructorInfo constructor = _connectionType.GetConstructor(new Type[]
             {
@@ -471,7 +468,7 @@ namespace NLog.Targets
             );
             IDbConnection retVal = (IDbConnection)constructor.Invoke(new object[]
             {
-                BuildConnectionString(ev)
+                BuildConnectionString(logEvent)
             }
 
             );
@@ -482,7 +479,7 @@ namespace NLog.Targets
             return retVal;
         }
 
-        private string BuildConnectionString(LogEventInfo ev)
+        private string BuildConnectionString(LogEventInfo logEvent)
         {
             if (_connectionStringCache != null)
                 return _connectionStringCache;
@@ -493,7 +490,7 @@ namespace NLog.Targets
             StringBuilder sb = new StringBuilder();
 
             sb.Append("Server=");
-            sb.Append(DBHostLayout.GetFormattedMessage(ev));
+            sb.Append(DBHostLayout.GetFormattedMessage(logEvent));
             sb.Append(";");
             if (DBUserNameLayout == null)
             {
@@ -502,16 +499,16 @@ namespace NLog.Targets
             else
             {
                 sb.Append("User id=");
-                sb.Append(DBUserNameLayout.GetFormattedMessage(ev));
+                sb.Append(DBUserNameLayout.GetFormattedMessage(logEvent));
                 sb.Append(";Password=");
-                sb.Append(DBPasswordLayout.GetFormattedMessage(ev));
+                sb.Append(DBPasswordLayout.GetFormattedMessage(logEvent));
                 sb.Append(";");
             }
 
             if (DBDatabaseLayout != null)
             {
                 sb.Append("Database=");
-                sb.Append(DBDatabaseLayout.GetFormattedMessage(ev));
+                sb.Append(DBDatabaseLayout.GetFormattedMessage(logEvent));
             }
 
             _connectionStringCache = sb.ToString();
@@ -519,6 +516,5 @@ namespace NLog.Targets
             InternalLogger.Debug("Connection string: {0}", _connectionStringCache);
             return _connectionStringCache;
         }
-
     }
 }

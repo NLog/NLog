@@ -69,11 +69,11 @@ namespace NLog.Targets
         /// <summary>
         /// Increases the number of messages.
         /// </summary>
-        /// <param name="ev">The logging event.</param>
-        protected internal override void Append(LogEventInfo ev)
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
         {
             _counter++;
-            _lastMessage = CompiledLayout.GetFormattedMessage(ev);
+            _lastMessage = CompiledLayout.GetFormattedMessage(logEvent);
         }
 
         /// <summary>

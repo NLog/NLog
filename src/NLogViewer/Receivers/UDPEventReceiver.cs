@@ -42,12 +42,14 @@ using System.Windows.Forms;
 using System.Collections.Specialized;
 
 using NLogViewer.Configuration;
+using NLogViewer.Events;
 
 namespace NLogViewer.Receivers
 {
+    [LogEventReceiver("UDP", "UDP Event Receiver", "Receives events from the network using the UDP protocol and log4j XML schema")]
     public class UDPEventReceiver : NetworkEventReceiver
     {
-        public UDPEventReceiver(ReceiverParameterCollection parameters) : base(parameters)
+        public UDPEventReceiver()
         {
         }
 
