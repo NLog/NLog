@@ -275,6 +275,8 @@ namespace NLog.Targets
         private void SendMessage(MailMessage msg)
         {
             SmtpMail.SmtpServer = _smtpServer;
+            Internal.InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, _smtpServer);
+
             SmtpMail.Send(msg);
         }
     }

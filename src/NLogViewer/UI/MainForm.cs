@@ -476,6 +476,7 @@ namespace NLogViewer.UI
             this.Name = "MainForm";
             this.Text = "NLog Viewer";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Closed += new System.EventHandler(this.MainForm_Closed);
             this.tabControl1.ResumeLayout(false);
             this.tabPageNLogViewerTrace.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -491,6 +492,7 @@ namespace NLogViewer.UI
         private void MainForm_Load(object sender, System.EventArgs e)
         {
             Log.SetTargetForm(this);
+            NLogViewerTrace.WriteDelegate = new InternalLogWriteDelegate(LogWrite);
             LoadLogs();
         }
 
@@ -559,6 +561,17 @@ namespace NLogViewer.UI
                 instance = new LogInstance(lici);
                 instance.CreateTab(this);
                 _instances.Add(instance);
+
+                lici = new LogInstanceConfiguration();
+                lici.Name = "smtp://localhost:25";
+                lici.ReceiverType = "SMTP";
+                lici.ReceiverParameters.Add(new ReceiverParameter("port", "25"));
+                lici.FileName = CreateInstanceFileName(logsDir);
+                lici.Save();
+
+                instance = new LogInstance(lici);
+                instance.CreateTab(this);
+                _instances.Add(instance);
             }
             else
             {
@@ -620,6 +633,14 @@ namespace NLogViewer.UI
             using (FilterHighlight dlg = new FilterHighlight())
             {
                 dlg.ShowDialog(this);
+            }
+        }
+
+        private void MainForm_Closed(object sender, System.EventArgs e)
+        {
+            foreach (LogInstance i in _instances)
+            {
+                i.Stop();
             }
         }
 	}

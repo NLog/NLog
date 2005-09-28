@@ -13,7 +13,7 @@ namespace NLogViewer.Receivers
     [LogEventReceiver("SMTP", "SMTP Event Receiver based on NDumbster", "Receives XML events from the mock SMTP server")]
     public class NDumbsterSmtpEventReceiver : LogEventReceiverSkeleton
     {
-        private SimpleSmtpServer _smtpServer;
+        private SimpleSmtpServer _smtpServer = null;
         private int _port = SimpleSmtpServer.DEFAULT_SMTP_PORT;
 
         public NDumbsterSmtpEventReceiver()
@@ -22,6 +22,7 @@ namespace NLogViewer.Receivers
 
         public override void Configure(NameValueCollection parameters)
         {
+            NLogViewerTrace.Write("Configuring SMTP...");
             base.Configure(parameters);
             
             if (parameters["port"] != null)
@@ -33,6 +34,7 @@ namespace NLogViewer.Receivers
 
         public override void Start()
         {
+            NLogViewerTrace.Write("Starting SMTP server on port {0}", _port);
             _smtpServer = SimpleSmtpServer.Start(_port);
             base.Start ();
         }
@@ -42,12 +44,13 @@ namespace NLogViewer.Receivers
         {
             while (!QuitInputThread)
             {
-                System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2));
+                System.Threading.Thread.Sleep(TimeSpan.FromMilliseconds(100));
 
                 if (_smtpServer.ReceivedEmailCount > 0)
                 {
                     foreach(SmtpMessage message in _smtpServer.ReceivedEmail)
                     {
+                        NLogViewerTrace.Write("Received mail: {0}", message.Body);
                         StringReader sr = new StringReader(message.Body);
                         XmlTextReader reader = new XmlTextReader(sr);
                         reader.Namespaces = false;
@@ -72,9 +75,15 @@ namespace NLogViewer.Receivers
             }
         }
 
-        ~NDumbsterSmtpEventReceiver()
+        public override void Stop()
         {
-            _smtpServer.Stop();
+            NLogViewerTrace.Write("Stopping SMTP Server on port {0}", _port);
+            base.Stop ();
+            if (_smtpServer != null)
+            {
+                _smtpServer.Stop();
+                _smtpServer = null;
+            }
         }
     }
 }

@@ -94,6 +94,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "NLogViewerTrace.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Configuration\ReceiverParameter.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
