@@ -66,8 +66,9 @@ namespace NLog
         }
 
         private string _layoutText;
-        private LayoutRenderer[] _LayoutRenderers;
+        private LayoutRenderer[] _renderers;
         private int _needsStackTrace = 0;
+        private bool _isVolatile = false;
         private StringBuilder builder = new StringBuilder();
 
         /// <summary>
@@ -82,7 +83,7 @@ namespace NLog
             set
             {
                 _layoutText = value;
-                _LayoutRenderers = CompileLayout(_layoutText, out _needsStackTrace);
+                _renderers = CompileLayout(_layoutText, out _needsStackTrace, out _isVolatile);
             }
         }
 
@@ -90,23 +91,27 @@ namespace NLog
         /// Renders the layout for the specified logging event by invoking layout renderers
         /// that make up the event.
         /// </summary>
-        /// <param name="ev">The logging event.</param>
+        /// <param name="logEvent">The logging event.</param>
         /// <returns>The rendered layout.</returns>
-        public string GetFormattedMessage(LogEventInfo ev)
+        public string GetFormattedMessage(LogEventInfo logEvent)
         {
-            if (_LayoutRenderers.Length == 1 && _LayoutRenderers[0] is LiteralLayoutRenderer)
+            if (_renderers.Length == 1 && _renderers[0] is LiteralLayoutRenderer)
             {
-                return ((LiteralLayoutRenderer)(_LayoutRenderers[0])).Text;
+                return ((LiteralLayoutRenderer)(_renderers[0])).Text;
             }
+
+            string cachedValue = logEvent.GetCachedLayoutValue(this);
+            if (cachedValue != null)
+                return cachedValue;
 
             int size = 0;
 
-            for (int i = 0; i < _LayoutRenderers.Length; ++i)
+            for (int i = 0; i < _renderers.Length; ++i)
             {
-                LayoutRenderer app = _LayoutRenderers[i];
+                LayoutRenderer app = _renderers[i];
                 try
                 {
-                    int ebs = app.GetEstimatedBufferSize(ev);
+                    int ebs = app.GetEstimatedBufferSize(logEvent);
                     size += ebs;
                 }
                 catch (Exception ex)
@@ -119,12 +124,12 @@ namespace NLog
             }
             StringBuilder builder = new StringBuilder(size);
 
-            for (int i = 0; i < _LayoutRenderers.Length; ++i)
+            for (int i = 0; i < _renderers.Length; ++i)
             {
-                LayoutRenderer app = _LayoutRenderers[i];
+                LayoutRenderer app = _renderers[i];
                 try
                 {
-                    app.Append(builder, ev);
+                    app.Append(builder, logEvent);
                 }
                 catch (Exception ex)
                 {
@@ -135,13 +140,16 @@ namespace NLog
                 }
             }
 
-            return builder.ToString();
+            string value = builder.ToString();
+            logEvent.AddCachedLayoutValue(this, value);
+            return value;
         }
 
-        private static LayoutRenderer[] CompileLayout(string s, out int needsStackTrace)
+        private static LayoutRenderer[] CompileLayout(string s, out int needsStackTrace, out bool isVolatile)
         {
             ArrayList result = new ArrayList();
             needsStackTrace = 0;
+            isVolatile = false;
 
             int startingPos = 0;
             int pos = s.IndexOf("${", startingPos);
@@ -170,6 +178,8 @@ namespace NLog
                     int nst = newLayoutRenderer.NeedsStackTrace();
                     if (nst > needsStackTrace)
                         needsStackTrace = nst;
+                    if (newLayoutRenderer.IsVolatile())
+                        isVolatile = true;
 
                     result.Add(newLayoutRenderer);
                     pos = s.IndexOf("${", startingPos);
@@ -195,6 +205,42 @@ namespace NLog
         public int NeedsStackTrace()
         {
             return _needsStackTrace;
+        }
+
+        /// <summary>
+        /// Returns the value indicating whether this layout includes any volatile 
+        /// layout renderers.
+        /// </summary>
+        /// <returns><see langword="true" /> when the layout includes at least 
+        /// one volatile renderer, <see langword="false"/> otherwise.</returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained 
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
+        public bool IsVolatile()
+        {
+            return _isVolatile;
+        }
+
+        public LayoutRenderer[] Renderers
+        {
+            get { return _renderers; }
+        }
+
+        /// <summary>
+        /// Precalculates the layout for the specified log event and stores the result
+        /// in per-log event cache.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
+        /// <remarks>
+        /// Calling this method enables you to store the log event in a buffer
+        /// and/or potentially evaluate it in another thread even though the 
+        /// layout may contain thread-dependent renderer.
+        /// </remarks>
+        public void Precalculate(LogEventInfo logEvent)
+        {
+            //Console.WriteLine("Precalculating {0}", this.Text);
+            GetFormattedMessage(logEvent);
         }
     }
 }

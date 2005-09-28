@@ -33,72 +33,53 @@
 // 
 
 using System;
-using System.Threading;
-using System.Windows.Forms;
-using System.Text;
 using System.IO;
-using System.Collections;
-using System.Drawing;
-using System.Collections.Specialized;
+using System.Text;
+using System.Xml;
+using System.Reflection;
+using System.Diagnostics;
 
-using NLogViewer.Configuration;
+using NLog.Internal;
+using System.Net;
+using System.Net.Sockets;
 
-namespace NLogViewer.Receivers
+using NLog.Config;
+
+namespace NLog.Targets.Compound
 {
-	public abstract class LogEventReceiver
-	{
-        private LogInstance _instance = null;
-        private Thread _inputThread = null;
-        private bool _quitThread;
+    /// <summary>
+    /// A compound target writes to a randomly-chosen target among the sub-targets.
+    /// </summary>
+    [Target("RandomizeGroup",IgnoresLayout=true)]
+    public class RandomizeTarget: CompoundTargetBase
+    {
+        private static Random _random = new Random();
 
-		public LogEventReceiver(ReceiverParameterCollection parameters)
-		{
-		}
-
-        public void Start()
+        /// <summary>
+        /// Creates an instance of <see cref="RandomizeTarget"/>.
+        /// </summary>
+        public RandomizeTarget()
         {
-            _quitThread = false;
-            _inputThread = new Thread(new ThreadStart(InputThread));
-            _inputThread.IsBackground = true;
-            _inputThread.Start();
         }
 
-        public void Stop()
+        /// <summary>
+        /// Creates an instance of <see cref="RandomizeTarget"/> and
+        /// initializes the <see cref="Targets"/> collection with the
+        /// specified list of <see cref="Target"/> objects.
+        /// </summary>
+        public RandomizeTarget(params Target[] targets) : base(targets)
         {
-            if (_inputThread != null)
-            {
-                _quitThread = true;
-                if (!_inputThread.Join(2000))
-                {
-                    _inputThread.Abort();
-                }
-            }
         }
 
-        public bool IsRunning
+        /// <summary>
+        /// Forwards the log event to one of the sub-targets. 
+        /// The sub-target is randomly chosen.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
         {
-            get { return _inputThread.IsAlive; }
+            int pos = _random.Next(Targets.Count);
+            Targets[pos].Write(logEvent);
         }
-
-        public abstract void InputThread();
-
-        public bool QuitInputThread
-        {
-            get { return _quitThread; }
-        }
-
-        public void EventReceived(LogEvent logEvent)
-        {
-            LogInstance i = _instance;
-            if (i != null)
-            {
-                i.ProcessLogEvent(logEvent);
-            }
-        }
-
-        internal void Connect(LogInstance instance)
-        {
-            _instance = instance;
-        }
-    }
+   }
 }

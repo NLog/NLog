@@ -12,9 +12,10 @@ namespace MyNamespace
             get { return _host; }
             set { _host = value; }
         }
-        protected override void Append(LogEventInfo ev)
+
+        protected override void Write(LogEventInfo logEvent)
         {
-            string logMessage = CompiledLayout.GetFormattedMessage(ev);
+            string logMessage = CompiledLayout.GetFormattedMessage(logEvent);
 
             SendTheMessageToRemoteHost(this.Host, logMessage);
         }

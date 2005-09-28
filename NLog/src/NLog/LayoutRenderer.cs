@@ -53,14 +53,14 @@ namespace NLog
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
         /// </summary>
-        /// <param name="ev">Logging event information.</param>
+        /// <param name="logEvent">Logging event information.</param>
         /// <returns>The number of characters.</returns>
         /// <remarks>
         /// If the exact number is not known or
         /// expensive to calculate this function should return a rough estimate
         /// that's big enough in most cases, but not too big, in order to conserve memory.
         /// </remarks>
-        protected internal abstract int GetEstimatedBufferSize(LogEventInfo ev);
+        protected internal abstract int GetEstimatedBufferSize(LogEventInfo logEvent);
 
         /// <summary>
         /// Determines whether stack trace information should be gathered
@@ -74,11 +74,25 @@ namespace NLog
         }
 
         /// <summary>
+        /// Determines whether the layout renderer is volatile.
+        /// </summary>
+        /// <returns>A boolean indicating whether the layout renderer is volatile.</returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained 
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
+        protected internal virtual bool IsVolatile()
+        {
+            LayoutRendererAttribute attr = (LayoutRendererAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(LayoutRendererAttribute));
+            return !attr.UsingLogEventInfo;
+        }
+
+        /// <summary>
         /// Renders the specified environmental information and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ev">Logging event.</param>
-        protected internal abstract void Append(StringBuilder builder, LogEventInfo ev);
+        /// <param name="logEvent">Logging event.</param>
+        protected internal abstract void Append(StringBuilder builder, LogEventInfo logEvent);
 
         private int _padding = 0;
         private bool _fixedLength = false;

@@ -36,6 +36,7 @@ using System;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Text;
 
 using System.Windows.Forms;
 
@@ -89,13 +90,44 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Adds all layouts used by this target to the specified collection.
+        /// </summary>
+        /// <param name="layouts">The collection to add layouts to.</param>
+        public override void PopulateLayouts(LayoutCollection layouts)
+        {
+            base.PopulateLayouts (layouts);
+            layouts.Add(_caption);
+        }
+
+        /// <summary>
         /// Displays the message box with the log message and caption specified in the Caption
         /// parameter.
         /// </summary>
-        /// <param name="ev">The logging event.</param>
-        protected internal override void Append(LogEventInfo ev)
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
         {
-            MessageBox.Show(CompiledLayout.GetFormattedMessage(ev), _caption.GetFormattedMessage(ev));
+            MessageBox.Show(CompiledLayout.GetFormattedMessage(logEvent), _caption.GetFormattedMessage(logEvent));
+        }
+
+        /// <summary>
+        /// Displays the message box with the array of rendered logs messages and caption specified in the Caption
+        /// parameter.
+        /// </summary>
+        /// <param name="logEvents">The array of logging events.</param>
+        protected internal override void Write(LogEventInfo[] logEvents)
+        {
+            if (logEvents.Length == 0)
+                return;
+
+            StringBuilder sb = new StringBuilder();
+            LogEventInfo lastLogEvent = logEvents[logEvents.Length - 1];
+            foreach (LogEventInfo ev in logEvents)
+            {
+                sb.Append(CompiledLayout.GetFormattedMessage(ev));
+                sb.Append("\n");
+            }
+
+            MessageBox.Show(sb.ToString(), _caption.GetFormattedMessage(lastLogEvent));
         }
     }
 }

@@ -35,18 +35,24 @@
 using System;
 using System.Globalization;
 using System.Diagnostics;
+using System.Threading;
+
+using System.Collections;
+using System.Collections.Specialized;
 
 namespace NLog
 {
     /// <summary>
     /// Represents the logging event.
     /// </summary>
-    public struct LogEventInfo
+    public class LogEventInfo
     {
         /// <summary>
         /// The date of the first log event created.
         /// </summary>
         public static readonly DateTime ZeroDate = DateTime.Now;
+
+        private static long _globalSequenceID = 0;
 
         private DateTime _timeStamp;
         private LogLevel _level;
@@ -55,6 +61,8 @@ namespace NLog
         private Exception _exception;
         private object[] _parameters;
         private IFormatProvider _formatProvider;
+        private IDictionary _layoutCache;
+        private long _sequenceID;
 
         /// <summary>
         /// An empty event - for rendering layouts where logging
@@ -81,6 +89,8 @@ namespace NLog
             _parameters = parameters;
             _formatProvider = formatProvider;
             _exception = exception;
+            _layoutCache = null;
+            _sequenceID = Interlocked.Increment(ref _globalSequenceID);
 #if !NETCF
             _stackTrace = null;
             _userStackFrame = 0;
@@ -242,5 +252,28 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// The unique identifier of log event which is automatically generated
+        /// and monotonously increasing.
+        /// </summary>
+        public long SequenceID
+        {
+            get { return _sequenceID; }
+        }
+
+        internal string GetCachedLayoutValue(Layout layout)
+        {
+            if (_layoutCache == null)
+                return null;
+            string result = (string)_layoutCache[layout];
+            return result;
+        }
+
+        internal void AddCachedLayoutValue(Layout layout, string value)
+        {
+            if (_layoutCache == null)
+                _layoutCache = new HybridDictionary();
+            _layoutCache[layout] = value;
+        }
     }
 }

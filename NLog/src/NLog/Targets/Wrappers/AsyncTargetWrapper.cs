@@ -32,6 +32,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETCF
+
 using System;
 using System.Xml;
 using System.IO;
@@ -44,15 +46,97 @@ using NLog.Config;
 
 using NLog.Internal;
 
-namespace NLog.Targets
+namespace NLog.Targets.Wrappers
 {
     /// <summary>
-    /// Base class for targets that support asynchronous operation.
+    /// A target wrapper that provides asynchronous, buffered execution of target writes.
     /// </summary>
-    public abstract class AsyncTarget: Target
+    [Target("AsyncWrapper")]
+    public class AsyncTargetWrapper: WrapperTargetBase
     {
-#if !NETCF
-        private bool _async = false;
+        private int _batchSize = 100;
+        private int _timeToSleepBetweenBatches = 50;
+
+        /// <summary>
+        /// Initializes the target by starting the lazy writer thread.
+        /// </summary>
+        public override void Initialize()
+        {
+            StartLazyWriterThread();
+        }
+
+        /// <summary>
+        /// Closes the target by stopping the lazy writer thread.
+        /// </summary>
+        protected internal override void Close()
+        {
+            StopLazyWriterThread();
+        }
+
+        /// <summary>
+        /// The number of log events that should be processed in a batch
+        /// by the lazy writer thread.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(100)]
+        public int BatchSize
+        {
+            get { return _batchSize; }
+            set { _batchSize = value; }
+        }
+
+        /// <summary>
+        /// The time in milliseconds to sleep between batches.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(50)]
+        public int TimeToSleepBetweenBatches
+        {
+            get { return _timeToSleepBetweenBatches; }
+            set { _timeToSleepBetweenBatches = value; }
+        }
+
+        private void LazyWriterThreadProc()
+        {
+            while (!LazyWriterThreadStopRequested)
+            {
+                ArrayList pendingRequests = RequestQueue.DequeueBatch(BatchSize);
+
+                if (pendingRequests.Count == 0)
+                {
+                    Thread.Sleep(TimeToSleepBetweenBatches);
+                    continue;
+                }
+
+                try
+                {
+                    LogEventInfo[] events = (LogEventInfo[])pendingRequests.ToArray(typeof(LogEventInfo));
+                    WrappedTarget.Write(events);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error("Error in lazy writer thread: {0}", ex);
+                }
+                finally
+                {
+                    RequestQueue.BatchProcessed(pendingRequests);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds the log event to asynchronous queue to be processed by 
+        /// the lazy writer thread.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
+        /// <remarks>
+        /// The <see cref="Target.PrecalculateVolatileLayouts"/> is called
+        /// to ensure that the log event can be processed in another thread.
+        /// </remarks>
+        protected internal override void Write(LogEventInfo logEvent)
+        {
+            WrappedTarget.PrecalculateVolatileLayouts(logEvent);
+            RequestQueue.Enqueue(logEvent);
+        }
+
         private bool _stopLazyWriterThread = false;
         private Thread _lazyWriterThread = null;
         private AsyncRequestQueue _lazyWriterRequestQueue = new AsyncRequestQueue(10000, AsyncRequestQueue.OverflowAction.Discard);
@@ -79,23 +163,6 @@ namespace NLog.Targets
         protected Thread LazyWriterThread
         {
             get { return _lazyWriterThread; }
-        }
-
-        /// <summary>
-        /// Process log requests in a separate thread.
-        /// </summary>
-        [System.ComponentModel.DefaultValueAttribute(false)]
-        public bool Async
-        {
-            get { return _async; }
-            set 
-            {
-                _async = value; 
-                if (value)
-                    StartLazyWriterThread();
-                else
-                    StopLazyWriterThread();
-            }
         }
 
 		/// <summary>
@@ -202,11 +269,7 @@ namespace NLog.Targets
             }
             InternalLogger.Debug("After flush. Requests in queue: {0}", _lazyWriterRequestQueue.RequestCount);
         }
-
-        /// <summary>
-        /// Lazy writer thread method. To be overridden in inheriting classes.
-        /// </summary>
-        protected abstract void LazyWriterThreadProc();
-#endif
     }
 }
+
+#endif

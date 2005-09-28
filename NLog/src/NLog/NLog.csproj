@@ -139,6 +139,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "LayoutCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "LayoutRenderer.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -294,11 +299,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Internal\ContextDataProviderDictionary.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Internal\DictionaryBase.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -330,6 +330,16 @@
                 />
                 <File
                     RelPath = "Internal\InternalLogger.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\LayoutRendererDictionary.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\LogEventInfoBuffer.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -474,6 +484,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "LayoutRenderers\Log4JXmlEvent.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "LayoutRenderers\LoggerName.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -554,11 +569,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Targets\AsyncTarget.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Targets\Chainsaw.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -595,6 +605,11 @@
                 />
                 <File
                     RelPath = "Targets\File.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Mail.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -660,6 +675,81 @@
                 />
                 <File
                     RelPath = "Targets\WebService.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Compound\CompoundTargetBase.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Compound\FallbackTarget.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Compound\RandomizeTarget.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Compound\RoundRobinTarget.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Compound\SplitTarget.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Wrappers\AsyncTargetWrapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Wrappers\AutoFlushTargetWrapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Wrappers\BufferingTargetWrapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Wrappers\RepeatTargetWrapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Wrappers\RetryTargetWrapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Wrappers\WrapperTargetBase.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Wrappers\RequestBuffering\ASPNetRequestBufferingTarget.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Wrappers\RequestBuffering\GlobalRequestBufferingTarget.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Wrappers\RequestBuffering\RequestBufferingTargetBase.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\Wrappers\RequestBuffering\ThreadRequestBufferingTarget.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

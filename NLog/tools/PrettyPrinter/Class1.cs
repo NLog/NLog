@@ -386,9 +386,9 @@ namespace CSharpPrettyPrint
                 return 1;
             }
 
-            using (StreamReader infile = File.OpenText(inputFile))
+            using (StreamReader infile = new StreamReader(inputFile, System.Text.Encoding.Default))
             {
-                using (StreamWriter outfile = File.CreateText(outputFile))
+                using (StreamWriter outfile = new StreamWriter(outputFile, false, System.Text.Encoding.UTF8))
                 {
                     if (mode == "html")
                     {

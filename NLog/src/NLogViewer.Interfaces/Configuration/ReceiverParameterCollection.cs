@@ -156,11 +156,18 @@ namespace NLogViewer.Configuration
         {
             private System.Collections.IEnumerator wrapped;
 
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="collection"></param>
             public Enumerator(ReceiverParameterCollection collection)
             {
                 this.wrapped = ((System.Collections.CollectionBase)collection).GetEnumerator();
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public ReceiverParameter Current
             {
                 get
@@ -169,6 +176,9 @@ namespace NLogViewer.Configuration
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             object System.Collections.IEnumerator.Current
             {
                 get
@@ -177,11 +187,18 @@ namespace NLogViewer.Configuration
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <returns></returns>
             public bool MoveNext()
             {
                 return this.wrapped.MoveNext();
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public void Reset()
             {
                 this.wrapped.Reset();

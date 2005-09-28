@@ -50,14 +50,14 @@ namespace NLog.LayoutRenderers
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
         /// </summary>
-        /// <param name="ev">Logging event information.</param>
+        /// <param name="logEvent">Logging event information.</param>
         /// <returns>The number of characters.</returns>
         /// <remarks>
         /// If the exact number is not known or
         /// expensive to calculate this function should return a rough estimate
         /// that's big enough in most cases, but not too big, in order to conserve memory.
         /// </remarks>
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
             return 32;
         }
@@ -66,8 +66,8 @@ namespace NLog.LayoutRenderers
         /// Renders the current thread identifier and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ev">Logging event.</param>
-        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+        /// <param name="logEvent">Logging event.</param>
+        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             builder.Append(ApplyPadding(ThreadIDHelper.CurrentThreadID.ToString()));
         }

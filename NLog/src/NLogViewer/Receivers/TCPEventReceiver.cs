@@ -43,12 +43,14 @@ using System.Collections.Specialized;
 using System.Threading;
 
 using NLogViewer.Configuration;
+using NLogViewer.Events;
 
 namespace NLogViewer.Receivers
 {
+    [LogEventReceiver("TCP", "TCP Event Receiver", "Receives events from the network using the TCP protocol and log4j XML schema")]
     public class TCPEventReceiver : NetworkEventReceiver
     {
-        public TCPEventReceiver(ReceiverParameterCollection parameters) : base(parameters)
+        public TCPEventReceiver()
         {
         }
 

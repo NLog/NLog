@@ -59,19 +59,19 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
         /// </summary>
-        /// <param name="ev">The logging event.</param>
-        protected override void Append(LogEventInfo ev)
+        /// <param name="logEvent">The logging event.</param>
+        protected override void Write(LogEventInfo logEvent)
         {
             ASPHelper.IResponse response = ASPHelper.GetResponseObject();
             if (response != null)
             {
                 if (AddComments)
                 {
-                    response.Write("<!-- " + CompiledLayout.GetFormattedMessage(ev) + "-->");
+                    response.Write("<!-- " + CompiledLayout.GetFormattedMessage(logEvent) + "-->");
                 }
                 else
                 {
-                    response.Write(CompiledLayout.GetFormattedMessage(ev));
+                    response.Write(CompiledLayout.GetFormattedMessage(logEvent));
                 }
                 Marshal.ReleaseComObject(response);
             }

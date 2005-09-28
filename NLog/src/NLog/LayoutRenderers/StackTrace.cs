@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Stack trace renderer.
     /// </summary>
-    [LayoutRenderer("stacktrace")]
+    [LayoutRenderer("stacktrace",UsingLogEventInfo=true)]
     public class StackTraceLayoutRenderer: LayoutRenderer
     {
         private string _format = "flat";
@@ -77,14 +77,14 @@ namespace NLog.LayoutRenderers
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
         /// </summary>
-        /// <param name="ev">Logging event information.</param>
+        /// <param name="logEvent">Logging event information.</param>
         /// <returns>The number of characters.</returns>
         /// <remarks>
         /// If the exact number is not known or
         /// expensive to calculate this function should return a rough estimate
         /// that's big enough in most cases, but not too big, in order to conserve memory.
         /// </remarks>
-        protected internal override int GetEstimatedBufferSize(LogEventInfo ev)
+        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
             return 200;
         }
@@ -102,28 +102,28 @@ namespace NLog.LayoutRenderers
         /// Renders the call site and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ev">Logging event.</param>
-        protected internal override void Append(StringBuilder builder, LogEventInfo ev)
+        /// <param name="logEvent">Logging event.</param>
+        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             bool first = true;
-            int startingFrame = ev.UserStackFrameNumber + TopFrames - 1;
-            if (startingFrame >= ev.StackTrace.FrameCount)
-                startingFrame = ev.StackTrace.FrameCount - 1;
+            int startingFrame = logEvent.UserStackFrameNumber + TopFrames - 1;
+            if (startingFrame >= logEvent.StackTrace.FrameCount)
+                startingFrame = logEvent.StackTrace.FrameCount - 1;
 
             switch (Format)
             {
                 case "raw":
-                    for (int i = startingFrame; i >= ev.UserStackFrameNumber; --i)
+                    for (int i = startingFrame; i >= logEvent.UserStackFrameNumber; --i)
                     {
-                        StackFrame f = ev.StackTrace.GetFrame(i);
+                        StackFrame f = logEvent.StackTrace.GetFrame(i);
                         builder.Append(f.ToString());
                     }
                     break;
 
                 case "flat":
-                    for (int i = startingFrame; i >= ev.UserStackFrameNumber; --i)
+                    for (int i = startingFrame; i >= logEvent.UserStackFrameNumber; --i)
                     {
-                        StackFrame f = ev.StackTrace.GetFrame(i);
+                        StackFrame f = logEvent.StackTrace.GetFrame(i);
                         if (!first)
                             builder.Append(" => ");
 
@@ -135,9 +135,9 @@ namespace NLog.LayoutRenderers
                     break;
 
                 case "detailedflat":
-                    for (int i = startingFrame; i >= ev.UserStackFrameNumber; --i)
+                    for (int i = startingFrame; i >= logEvent.UserStackFrameNumber; --i)
                     {
-                        StackFrame f = ev.StackTrace.GetFrame(i);
+                        StackFrame f = logEvent.StackTrace.GetFrame(i);
                         if (!first)
                             builder.Append(" => ");
 

@@ -140,14 +140,14 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Writes the specified logging event to the event log. 
         /// </summary>
-        /// <param name="ev">The logging event.</param>
-        protected override void Append(LogEventInfo ev)
+        /// <param name="logEvent">The logging event.</param>
+        protected override void Write(LogEventInfo logEvent)
         {
             UpdateEventLogSource();
             if (!_operational)
                 return;
             
-            string message = CompiledLayout.GetFormattedMessage(ev);
+            string message = CompiledLayout.GetFormattedMessage(logEvent);
             if (message.Length > 16384)
             {
                 // limitation of EventLog API
@@ -156,11 +156,11 @@ namespace NLog.Win32.Targets
 
             EventLogEntryType entryType;
 
-            if (ev.Level >= LogLevel.Error)
+            if (logEvent.Level >= LogLevel.Error)
             {
                 entryType = EventLogEntryType.Error;
             } 
-            else if (ev.Level >= LogLevel.Warn)
+            else if (logEvent.Level >= LogLevel.Warn)
             {
                 entryType = EventLogEntryType.Warning;
             }

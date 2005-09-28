@@ -44,6 +44,7 @@ namespace NLog
     {
         private string _formatString;
         private bool _ignoresPadding = false;
+        private bool _usingLogEventInfo = false;
 
         /// <summary>
         /// Creates a new instance of <see cref="LayoutRendererAttribute"/>
@@ -74,6 +75,16 @@ namespace NLog
         {
             get { return _ignoresPadding; }
             set { _ignoresPadding = value; }
+        }
+
+        /// <summary>
+        /// Marks the specified layout renderer as relying purely on the contents
+        /// of <see cref="LogEventInfo"/> only and not on any other information (such as thread-
+        /// </summary>
+        public bool UsingLogEventInfo
+        {
+            get { return _usingLogEventInfo; }
+            set { _usingLogEventInfo = value; }
         }
     }
 }

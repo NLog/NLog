@@ -82,8 +82,8 @@ namespace NLog.Targets
         /// <see cref="System.Web.TraceContext.Warn"/> method, otherwise it uses
         /// <see cref="System.Web.TraceContext.Write" /> method.
         /// </summary>
-        /// <param name="ev">The logging event.</param>
-        protected internal override void Append(LogEventInfo ev)
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
         {
             HttpContext context = HttpContext.Current;
 
@@ -92,13 +92,13 @@ namespace NLog.Targets
                 return ;
             }
 
-            if (ev.Level >= LogLevel.Warn)
+            if (logEvent.Level >= LogLevel.Warn)
             {
-                context.Trace.Warn(ev.LoggerName, CompiledLayout.GetFormattedMessage(ev));
+                context.Trace.Warn(logEvent.LoggerName, CompiledLayout.GetFormattedMessage(logEvent));
             }
             else
             {
-                context.Trace.Write(ev.LoggerName, CompiledLayout.GetFormattedMessage(ev));
+                context.Trace.Write(logEvent.LoggerName, CompiledLayout.GetFormattedMessage(logEvent));
             }
         }
     }

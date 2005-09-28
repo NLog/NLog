@@ -94,10 +94,19 @@
                     Project = "{0EC214BD-71C7-47A8-900A-2909265FD164}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "NLogViewer.NDumbsterSmtpReceiver"
+                    Project = "{DF3699DA-0D87-4EEF-803A-72678C231D92}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
             <Include>
+                <File
+                    RelPath = "App.config"
+                    BuildAction = "None"
+                />
                 <File
                     RelPath = "App.ico"
                     BuildAction = "Content"
@@ -109,6 +118,7 @@
                 />
                 <File
                     RelPath = "AssemblySign.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -127,32 +137,17 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "LogEvent.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "LogEventCollection.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "LogEventExtraInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "LogEventPropertyCollection.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "LogInstance.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "LogInstanceCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Configuration\ConfigSectionHandler.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -182,22 +177,12 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Configuration\ReceiverParameter.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Configuration\ReceiverParameterCollection.cs"
+                    RelPath = "Configuration\NLogViewerConfiguration.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Configuration\StringToLoggerConfigMap.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Receivers\LogEventReceiver.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -208,11 +193,6 @@
                 />
                 <File
                     RelPath = "Receivers\LogEventReceiverInfoCollection.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Receivers\LogReceiverAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

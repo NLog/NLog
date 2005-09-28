@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <!-- this is for development -->
-    <xsl:param name="external-base">../build/net-1.1-debug/web/</xsl:param>
+    <xsl:param name="external-base"></xsl:param>
 
     <xsl:template name="external-iframe">
         <xsl:if test="@inline='true'">

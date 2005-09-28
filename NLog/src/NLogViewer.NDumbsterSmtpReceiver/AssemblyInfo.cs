@@ -33,18 +33,20 @@
 // 
 
 using System;
-using System.Xml;
-using System.Xml.Serialization;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Security.Permissions;
 
-namespace NLogViewer
-{
-    [XmlType("param")]
-	public struct LogEventProperty
-	{
-        [XmlAttribute("name")]
-        public string Name;
+[assembly: AssemblyTitle("NLogViewer NDumbster mock SMTP receiver")]
+[assembly: AssemblyDescription("NLog")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("NLog")]
+[assembly: AssemblyProduct("NLog - .NET Logging Library")]
+[assembly: AssemblyCopyright("Copyright (c) 2004,2005 by Jaroslaw Kowalski")]
+[assembly: AssemblyCulture("")]
 
-        [XmlAttribute("value")]
-        public string Value;
-	}
-}
+[assembly: AssemblyVersion("0.9.0.0")]
+
+[assembly: CLSCompliant(true)]
+[assembly: ComVisible(false)]

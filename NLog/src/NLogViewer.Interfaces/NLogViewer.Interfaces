@@ -1,0 +1,410 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NLogViewer.Interfaces</name>
+    </assembly>
+    <members>
+        <member name="T:NLogViewer.Configuration.ReceiverParameter">
+            <summary>
+            Represents a parameter to the receiver
+            </summary>
+            <remarks>
+            The parameters are uninterpreted (name,value) string pairs.
+            </remarks>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameter.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:NLogViewer.Configuration.ReceiverParameter"/>.
+            </summary>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameter.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:NLogViewer.Configuration.ReceiverParameter"/> and sets the parameter name and value.
+            </summary>
+        </member>
+        <member name="F:NLogViewer.Configuration.ReceiverParameter.Name">
+            <summary>
+            Parameter name.
+            </summary>
+        </member>
+        <member name="F:NLogViewer.Configuration.ReceiverParameter.Value">
+            <summary>
+            Parameter value.
+            </summary>
+        </member>
+        <member name="T:NLogViewer.Configuration.ReceiverParameterCollection">
+            <summary>
+            A collection of elements of type ReceiverParameter
+            </summary>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameterCollection.#ctor">
+            <summary>
+            Initializes a new empty instance of the ReceiverParameterCollection class.
+            </summary>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameterCollection.#ctor(NLogViewer.Configuration.ReceiverParameter[])">
+            <summary>
+            Initializes a new instance of the ReceiverParameterCollection class, containing elements
+            copied from an array.
+            </summary>
+            <param name="items">
+            The array whose elements are to be added to the new ReceiverParameterCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameterCollection.#ctor(NLogViewer.Configuration.ReceiverParameterCollection)">
+            <summary>
+            Initializes a new instance of the ReceiverParameterCollection class, containing elements
+            copied from another instance of ReceiverParameterCollection
+            </summary>
+            <param name="items">
+            The ReceiverParameterCollection whose elements are to be added to the new ReceiverParameterCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameterCollection.AddRange(NLogViewer.Configuration.ReceiverParameter[])">
+            <summary>
+            Adds the elements of an array to the end of this ReceiverParameterCollection.
+            </summary>
+            <param name="items">
+            The array whose elements are to be added to the end of this ReceiverParameterCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameterCollection.AddRange(NLogViewer.Configuration.ReceiverParameterCollection)">
+            <summary>
+            Adds the elements of another ReceiverParameterCollection to the end of this ReceiverParameterCollection.
+            </summary>
+            <param name="items">
+            The ReceiverParameterCollection whose elements are to be added to the end of this ReceiverParameterCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameterCollection.Add(NLogViewer.Configuration.ReceiverParameter)">
+            <summary>
+            Adds an instance of type ReceiverParameter to the end of this ReceiverParameterCollection.
+            </summary>
+            <param name="value">
+            The ReceiverParameter to be added to the end of this ReceiverParameterCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameterCollection.Contains(NLogViewer.Configuration.ReceiverParameter)">
+            <summary>
+            Determines whether a specfic ReceiverParameter value is in this ReceiverParameterCollection.
+            </summary>
+            <param name="value">
+            The ReceiverParameter value to locate in this ReceiverParameterCollection.
+            </param>
+            <returns>
+            true if value is found in this ReceiverParameterCollection;
+            false otherwise.
+            </returns>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameterCollection.IndexOf(NLogViewer.Configuration.ReceiverParameter)">
+            <summary>
+            Return the zero-based index of the first occurrence of a specific value
+            in this ReceiverParameterCollection
+            </summary>
+            <param name="value">
+            The ReceiverParameter value to locate in the ReceiverParameterCollection.
+            </param>
+            <returns>
+            The zero-based index of the first occurrence of the _ELEMENT value if found;
+            -1 otherwise.
+            </returns>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameterCollection.Insert(System.Int32,NLogViewer.Configuration.ReceiverParameter)">
+            <summary>
+            Inserts an element into the ReceiverParameterCollection at the specified index
+            </summary>
+            <param name="index">
+            The index at which the ReceiverParameter is to be inserted.
+            </param>
+            <param name="value">
+            The ReceiverParameter to insert.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameterCollection.Remove(NLogViewer.Configuration.ReceiverParameter)">
+            <summary>
+            Removes the first occurrence of a specific ReceiverParameter from this ReceiverParameterCollection.
+            </summary>
+            <param name="value">
+            The ReceiverParameter value to remove from this ReceiverParameterCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameterCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that can iterate through the elements of this ReceiverParameterCollection.
+            </summary>
+            <returns>
+            An object that implements System.Collections.IEnumerator.
+            </returns>        
+        </member>
+        <member name="P:NLogViewer.Configuration.ReceiverParameterCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets the ReceiverParameter at the given index in this ReceiverParameterCollection.
+            </summary>
+        </member>
+        <member name="T:NLogViewer.Configuration.ReceiverParameterCollection.Enumerator">
+            <summary>
+            Type-specific enumeration class, used by ReceiverParameterCollection.GetEnumerator.
+            </summary>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameterCollection.Enumerator.#ctor(NLogViewer.Configuration.ReceiverParameterCollection)">
+            <summary>
+            
+            </summary>
+            <param name="collection"></param>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameterCollection.Enumerator.MoveNext">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NLogViewer.Configuration.ReceiverParameterCollection.Enumerator.Reset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NLogViewer.Configuration.ReceiverParameterCollection.Enumerator.Current">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NLogViewer.Configuration.ReceiverParameterCollection.Enumerator.System#Collections#IEnumerator#Current">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NLogViewer.Events.LogEvent">
+            <summary>
+            Represents the log event.
+            </summary>
+        </member>
+        <member name="T:NLogViewer.Events.LogEventCollection">
+            <summary>
+            A collection of elements of type LogEvent
+            </summary>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventCollection.#ctor">
+            <summary>
+            Initializes a new empty instance of the LogEventCollection class.
+            </summary>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventCollection.#ctor(NLogViewer.Events.LogEvent[])">
+            <summary>
+            Initializes a new instance of the LogEventCollection class, containing elements
+            copied from an array.
+            </summary>
+            <param name="items">
+            The array whose elements are to be added to the new LogEventCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventCollection.#ctor(NLogViewer.Events.LogEventCollection)">
+            <summary>
+            Initializes a new instance of the LogEventCollection class, containing elements
+            copied from another instance of LogEventCollection
+            </summary>
+            <param name="items">
+            The LogEventCollection whose elements are to be added to the new LogEventCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventCollection.AddRange(NLogViewer.Events.LogEvent[])">
+            <summary>
+            Adds the elements of an array to the end of this LogEventCollection.
+            </summary>
+            <param name="items">
+            The array whose elements are to be added to the end of this LogEventCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventCollection.AddRange(NLogViewer.Events.LogEventCollection)">
+            <summary>
+            Adds the elements of another LogEventCollection to the end of this LogEventCollection.
+            </summary>
+            <param name="items">
+            The LogEventCollection whose elements are to be added to the end of this LogEventCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventCollection.Add(NLogViewer.Events.LogEvent)">
+            <summary>
+            Adds an instance of type LogEvent to the end of this LogEventCollection.
+            </summary>
+            <param name="value">
+            The LogEvent to be added to the end of this LogEventCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventCollection.Contains(NLogViewer.Events.LogEvent)">
+            <summary>
+            Determines whether a specfic LogEvent value is in this LogEventCollection.
+            </summary>
+            <param name="value">
+            The LogEvent value to locate in this LogEventCollection.
+            </param>
+            <returns>
+            true if value is found in this LogEventCollection;
+            false otherwise.
+            </returns>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventCollection.IndexOf(NLogViewer.Events.LogEvent)">
+            <summary>
+            Return the zero-based index of the first occurrence of a specific value
+            in this LogEventCollection
+            </summary>
+            <param name="value">
+            The LogEvent value to locate in the LogEventCollection.
+            </param>
+            <returns>
+            The zero-based index of the first occurrence of the _ELEMENT value if found;
+            -1 otherwise.
+            </returns>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventCollection.Insert(System.Int32,NLogViewer.Events.LogEvent)">
+            <summary>
+            Inserts an element into the LogEventCollection at the specified index
+            </summary>
+            <param name="index">
+            The index at which the LogEvent is to be inserted.
+            </param>
+            <param name="value">
+            The LogEvent to insert.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventCollection.Remove(NLogViewer.Events.LogEvent)">
+            <summary>
+            Removes the first occurrence of a specific LogEvent from this LogEventCollection.
+            </summary>
+            <param name="value">
+            The LogEvent value to remove from this LogEventCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that can iterate through the elements of this LogEventCollection.
+            </summary>
+            <returns>
+            An object that implements System.Collections.IEnumerator.
+            </returns>        
+        </member>
+        <member name="P:NLogViewer.Events.LogEventCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets the LogEvent at the given index in this LogEventCollection.
+            </summary>
+        </member>
+        <member name="T:NLogViewer.Events.LogEventCollection.Enumerator">
+            <summary>
+            Type-specific enumeration class, used by LogEventCollection.GetEnumerator.
+            </summary>
+        </member>
+        <member name="T:NLogViewer.Events.LogEventPropertyCollection">
+            <summary>
+            A collection of elements of type LogEventProperty
+            </summary>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventPropertyCollection.#ctor">
+            <summary>
+            Initializes a new empty instance of the LogEventPropertyCollection class.
+            </summary>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventPropertyCollection.#ctor(NLogViewer.Events.LogEventProperty[])">
+            <summary>
+            Initializes a new instance of the LogEventPropertyCollection class, containing elements
+            copied from an array.
+            </summary>
+            <param name="items">
+            The array whose elements are to be added to the new LogEventPropertyCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventPropertyCollection.#ctor(NLogViewer.Events.LogEventPropertyCollection)">
+            <summary>
+            Initializes a new instance of the LogEventPropertyCollection class, containing elements
+            copied from another instance of LogEventPropertyCollection
+            </summary>
+            <param name="items">
+            The LogEventPropertyCollection whose elements are to be added to the new LogEventPropertyCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventPropertyCollection.AddRange(NLogViewer.Events.LogEventProperty[])">
+            <summary>
+            Adds the elements of an array to the end of this LogEventPropertyCollection.
+            </summary>
+            <param name="items">
+            The array whose elements are to be added to the end of this LogEventPropertyCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventPropertyCollection.AddRange(NLogViewer.Events.LogEventPropertyCollection)">
+            <summary>
+            Adds the elements of another LogEventPropertyCollection to the end of this LogEventPropertyCollection.
+            </summary>
+            <param name="items">
+            The LogEventPropertyCollection whose elements are to be added to the end of this LogEventPropertyCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventPropertyCollection.Add(NLogViewer.Events.LogEventProperty)">
+            <summary>
+            Adds an instance of type LogEventProperty to the end of this LogEventPropertyCollection.
+            </summary>
+            <param name="value">
+            The LogEventProperty to be added to the end of this LogEventPropertyCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventPropertyCollection.Contains(NLogViewer.Events.LogEventProperty)">
+            <summary>
+            Determines whether a specfic LogEventProperty value is in this LogEventPropertyCollection.
+            </summary>
+            <param name="value">
+            The LogEventProperty value to locate in this LogEventPropertyCollection.
+            </param>
+            <returns>
+            true if value is found in this LogEventPropertyCollection;
+            false otherwise.
+            </returns>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventPropertyCollection.IndexOf(NLogViewer.Events.LogEventProperty)">
+            <summary>
+            Return the zero-based index of the first occurrence of a specific value
+            in this LogEventPropertyCollection
+            </summary>
+            <param name="value">
+            The LogEventProperty value to locate in the LogEventPropertyCollection.
+            </param>
+            <returns>
+            The zero-based index of the first occurrence of the _ELEMENT value if found;
+            -1 otherwise.
+            </returns>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventPropertyCollection.Insert(System.Int32,NLogViewer.Events.LogEventProperty)">
+            <summary>
+            Inserts an element into the LogEventPropertyCollection at the specified index
+            </summary>
+            <param name="index">
+            The index at which the LogEventProperty is to be inserted.
+            </param>
+            <param name="value">
+            The LogEventProperty to insert.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventPropertyCollection.Remove(NLogViewer.Events.LogEventProperty)">
+            <summary>
+            Removes the first occurrence of a specific LogEventProperty from this LogEventPropertyCollection.
+            </summary>
+            <param name="value">
+            The LogEventProperty value to remove from this LogEventPropertyCollection.
+            </param>
+        </member>
+        <member name="M:NLogViewer.Events.LogEventPropertyCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that can iterate through the elements of this LogEventPropertyCollection.
+            </summary>
+            <returns>
+            An object that implements System.Collections.IEnumerator.
+            </returns>        
+        </member>
+        <member name="P:NLogViewer.Events.LogEventPropertyCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets the LogEventProperty at the given index in this LogEventPropertyCollection.
+            </summary>
+        </member>
+        <member name="T:NLogViewer.Events.LogEventPropertyCollection.Enumerator">
+            <summary>
+            Type-specific enumeration class, used by LogEventPropertyCollection.GetEnumerator.
+            </summary>
+        </member>
+    </members>
+</doc>

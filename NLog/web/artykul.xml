@@ -441,8 +441,10 @@
                 komunikaty maj¹ byæ zapisane do bazy danych i pliku errors.log (<code>writeTo="bledy,bazaDanych"</code>)</li>
             <li>W kolejnym wierszu zapisano regu³ê numer 2. Mówi ona, ¿e komunikaty na poziomie powy¿ej Info (<code>minlevel="Info"</code>) dla komponentu
                 Gizmo* (<code>name="Gizmo*"</code>) trafiaj¹ do bazy danych (<code>writeTo="bazaDanych"</code>)</li>
-            <li>Ostatni wiersz to implementacja regu³y nr 3. Jest ona podobna do regu³y 2, z wyj¹kiem innego wzorca
+            <li>Przedostatni wiersz to implementacja regu³y nr 3. Jest ona podobna do regu³y 2, z wyj¹kiem innego wzorca
                 nazwy Ÿród³a (<code>name="*"</code>) i innej specyfikacji wyjœcia <code>writeTo="codziennyPlik"</code>)</li>
+            <li>Ostatni wiersz to implementacja regu³y nr 5. Wszystkie komunikaty na poziomie Trace lub wy¿szym trafiaj¹
+            na konsolê.</li>
         </ol>
     </p>
     <h2>Przydatne linki</h2>

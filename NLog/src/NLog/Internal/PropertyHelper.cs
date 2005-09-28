@@ -88,7 +88,6 @@ namespace NLog.Internal
                 }
 
                 object newValue = Convert.ChangeType(value, propInfo.PropertyType, CultureInfo.InvariantCulture);
-
                 propInfo.SetValue(o, newValue, null);
                 return true;
             }

@@ -29,7 +29,7 @@
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
                     DefineConstants = "DEBUG;TRACE"
-                    DocumentationFile = ""
+                    DocumentationFile = "NLogViewer.Interfaces"
                     DebugSymbols = "true"
                     FileAlignment = "4096"
                     IncrementalBuild = "false"
@@ -49,7 +49,7 @@
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
                     DefineConstants = "TRACE"
-                    DocumentationFile = ""
+                    DocumentationFile = "NLogViewer.Interfaces"
                     DebugSymbols = "false"
                     FileAlignment = "4096"
                     IncrementalBuild = "false"
@@ -90,6 +90,57 @@
                 />
                 <File
                     RelPath = "AssemblySign.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Configuration\ReceiverParameter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Configuration\ReceiverParameterCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Events\LogEvent.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Events\LogEventCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Events\LogEventProperty.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Events\LogEventPropertyCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Receivers\ILogEventProcessor.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Receivers\ILogEventReceiver.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Receivers\LogEventReceiverAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Receivers\LogEventReceiverSkeleton.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
             </Include>
