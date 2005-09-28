@@ -63,7 +63,7 @@ namespace NLogViewer.Configuration
             set { _dirty = value; }
         }
 
-        [XmlAttribute("max-log-entries")]
+        [XmlElement("max-log-entries")]
         [System.ComponentModel.DefaultValue(1000)]
         public int MaxLogEntries = 1000;
 
@@ -75,7 +75,7 @@ namespace NLogViewer.Configuration
         [System.ComponentModel.DefaultValue(true)]
         public bool SortAscending = true;
 
-        [XmlAttribute("receiver-type")]
+        [XmlElement("receiver-type")]
         public string ReceiverType;
 
         [XmlArray("receiver-parameters")]
