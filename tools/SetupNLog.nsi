@@ -28,6 +28,10 @@ Section "Main"
   SetOutPath $INSTDIR\examples
   File /r /x _svn examples\*.*
 
+  SetOutPath $INSTDIR\nlogc
+  File /r "build\${BUILDSUBDIR}\nlogc\*.*"
+  File "src\NLogC\NLogC FAQ.txt"
+
   SetOutPath $INSTDIR\help
   File build\${BUILDSUBDIR}\help\NLog.chm
 
@@ -37,6 +41,7 @@ Section "Main"
   CreateShortCut  "$SMPROGRAMS\NLog\NLog Documentation.lnk" "$INSTDIR\help\NLog.chm" ""
   CreateShortCut  "$SMPROGRAMS\NLog\NLog Configuration Examples.lnk" "$INSTDIR\examples" ""
   CreateShortCut  "$SMPROGRAMS\NLog\NLog Viewer (preview).lnk" "$INSTDIR\bin\NLog.Viewer.exe" ""
+  CreateShortCut  "$SMPROGRAMS\NLog\NLog C and C++ Library.lnk" "$INSTDIR\nlogc" ""
 
   WriteRegStr HKCU "Software\Microsoft\VisualStudio\7.0\AssemblyFolders\NLog" "" "$INSTDIR\Bin"
   WriteRegStr HKCU "Software\Microsoft\VisualStudio\7.1\AssemblyFolders\NLog" "" "$INSTDIR\Bin"

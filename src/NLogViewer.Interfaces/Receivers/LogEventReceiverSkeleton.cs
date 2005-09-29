@@ -38,6 +38,8 @@ using System.Text;
 using System.IO;
 using System.Collections;
 using System.Collections.Specialized;
+using System.Reflection;
+using System.Globalization;
 
 using NLogViewer.Configuration;
 using NLogViewer.Events;
@@ -56,6 +58,16 @@ namespace NLogViewer.Receivers
 
         public virtual void Configure(NameValueCollection parameters)
         {
+            foreach (string name in parameters.Keys)
+            {
+                PropertyInfo pi = this.GetType().GetProperty(name);
+                if (pi == null)
+                    return;
+
+                // NLogViewerTrace.Write("Setting {0} to {1}", 
+                object value = Convert.ChangeType(parameters[name], pi.PropertyType, CultureInfo.InvariantCulture);
+                pi.SetValue(this, value, null);
+            }
         }
 
         public virtual void Start()

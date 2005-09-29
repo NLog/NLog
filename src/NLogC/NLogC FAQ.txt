@@ -1,0 +1,23 @@
+Mini FAQ:
+
+1. Which binaries should I use?
+===============================
+
+Make sure to choose the version that matches your compiler and .NET version. 
+Make sure to put the NLog.dll in the same directory where NLogC.dll is located.
+
+2. How to compile?
+==================
+
+That's simple: just add #include "NLogC.h" and link with "NLogC.lib"
+
+3. Where should I put the config file?
+======================================
+
+The reliable way is to put the configuration in "NLog.dll.nlog" file in the same
+directory where NLog.dll is located. 
+
+Other options depend on your host application. For example, if are writing 
+a ASP.NET application that calls back to C++ code you may also use Web.config
+and/org Web.nlog.
+
