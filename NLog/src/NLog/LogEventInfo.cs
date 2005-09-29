@@ -52,7 +52,7 @@ namespace NLog
         /// </summary>
         public static readonly DateTime ZeroDate = DateTime.Now;
 
-        private static long _globalSequenceID = 0;
+        private static int _globalSequenceID = 0;
 
         private DateTime _timeStamp;
         private LogLevel _level;
@@ -62,7 +62,7 @@ namespace NLog
         private object[] _parameters;
         private IFormatProvider _formatProvider;
         private IDictionary _layoutCache;
-        private long _sequenceID;
+        private int _sequenceID;
 
         /// <summary>
         /// An empty event - for rendering layouts where logging
@@ -256,7 +256,7 @@ namespace NLog
         /// The unique identifier of log event which is automatically generated
         /// and monotonously increasing.
         /// </summary>
-        public long SequenceID
+        public int SequenceID
         {
             get { return _sequenceID; }
         }

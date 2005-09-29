@@ -86,11 +86,6 @@ namespace NLog.Targets
             if (_log4jrenderer == null)
                 throw new InvalidOperationException("Assertion failed #2.");
 
-#if NETCF
-            Renderer.AppInfo =  = ".NET CF Application";
-#else
-            Renderer.AppInfo = String.Format("{0}({1})", AppDomain.CurrentDomain.FriendlyName, NLog.Internal.ThreadIDHelper.CurrentProcessID);
-#endif
             Renderer.Parameters = _parameters;
         }
 

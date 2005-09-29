@@ -504,7 +504,7 @@ namespace NLog
                 }
             }
         }
-
+#if !NETCF
         private static void SetupTerminationEvents()
         {
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(TurnOffLogging);
@@ -520,9 +520,10 @@ namespace NLog
             Configuration = null;
             InternalLogger.Info("Logger has been shut down.");
         }
-
+#endif
         static LogManager()
         {
+#if !NETCF
             try
             {
                 SetupTerminationEvents();
@@ -531,6 +532,7 @@ namespace NLog
             {
                 InternalLogger.Warn("Error setting up termiation events: {0}", ex);
             }
+#endif
         }
     }
 }

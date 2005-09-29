@@ -32,8 +32,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
-
 using System;
 using System.Xml;
 using System.IO;
@@ -102,5 +100,3 @@ namespace NLog.Targets.Wrappers
 
     }
 }
-
-#endif

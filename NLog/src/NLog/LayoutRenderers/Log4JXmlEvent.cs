@@ -32,7 +32,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
 using System;
 using System.Text;
 using System.IO;
@@ -58,6 +57,15 @@ namespace NLog.LayoutRenderers
         private bool _indentXml = false;
         private static DateTime _log4jDateBase = new DateTime(1970, 1, 1);
         private NLogViewerParameterInfoCollection _parameters = new NLogViewerParameterInfoCollection();
+
+        public Log4JXmlEventLayoutRenderer()
+        {
+#if NETCF
+            AppInfo = ".NET CF Application";
+#else
+            AppInfo = String.Format("{0}({1})", AppDomain.CurrentDomain.FriendlyName, NLog.Internal.ThreadIDHelper.CurrentProcessID);
+#endif
+        }
 
         /// <summary>
         /// Include NLog-specific extensions to log4j schema.
@@ -227,5 +235,3 @@ namespace NLog.LayoutRenderers
         }
     }
 }
-
-#endif
