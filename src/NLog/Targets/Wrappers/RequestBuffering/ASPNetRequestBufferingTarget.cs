@@ -32,6 +32,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETCF
+
 using System;
 using System.IO;
 using System.Text;
@@ -73,3 +75,5 @@ namespace NLog.Targets.Wrappers.RequestBuffering
         }
     }
 }
+
+#endif

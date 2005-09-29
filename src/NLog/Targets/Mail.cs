@@ -32,6 +32,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETCF
 using System;
 using System.Collections;
 using System.Collections.Specialized;
@@ -281,3 +282,5 @@ namespace NLog.Targets
         }
     }
 }
+
+#endif

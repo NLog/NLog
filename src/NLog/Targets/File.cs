@@ -426,7 +426,7 @@ namespace NLog.Targets
 
             try
             {
-                Array.Sort(logEvents, _logEventComparer);
+                Array.Sort(logEvents, 0, logEvents.Length, _logEventComparer);
 
                 for (int i = 0; i < logEvents.Length; ++i)
                 {
