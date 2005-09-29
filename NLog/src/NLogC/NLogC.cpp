@@ -1,80 +1,104 @@
 #include "stdafx.h"
 #include <stdio.h>
 #include "NLogC.h"
-
-#include <map>
+#include <string.h>
+#include <stdarg.h>
 
 #define NLOG_BUFFER_SIZE 8192
 
 #pragma managed
 
-static void WriteToA(NLogLevel level, LPCSTR loggerName, LPCSTR messageBuffer)
+#ifdef __cplusplus_cli
+
+#define MANAGED_REFERENCE(a) a^
+#define NEW_MANAGED_OBJECT gcnew
+
+inline System::String^ CharArrayToString(const char *str)
 {
-    NLog::Logger *logger = NLog::LogManager::GetLogger(loggerName);
+    return gcnew System::String(str);        
+}
+
+inline System::String^ CharArrayToString(const wchar_t *str)
+{
+    return gcnew System::String(str);        
+}
+
+#else
+
+#define MANAGED_REFERENCE(a) a *
+#define NEW_MANAGED_OBJECT new
+#define CharArrayToString(a) a
+
+#endif
+
+static void WriteToA(NLogLevel level, const char * loggerName, const char * messageBuffer)
+{
+    MANAGED_REFERENCE(NLog::Logger) logger = NLog::LogManager::GetLogger(CharArrayToString(loggerName));
+
     switch (level)
     {
     case NLOG_TRACE:
         if (logger->IsTraceEnabled)
-            logger->Trace(messageBuffer);
+            logger->Trace(CharArrayToString(messageBuffer));
         break;
     case NLOG_DEBUG:
         if (logger->IsDebugEnabled)
-            logger->Debug(messageBuffer);
+            logger->Debug(CharArrayToString(messageBuffer));
         break;
     case NLOG_INFO:
         if (logger->IsInfoEnabled)
-            logger->Info(messageBuffer);
+            logger->Info(CharArrayToString(messageBuffer));
         break;
     case NLOG_WARN:
         if (logger->IsWarnEnabled)
-            logger->Warn(messageBuffer);
+            logger->Warn(CharArrayToString(messageBuffer));
         break;
     case NLOG_ERROR:
         if (logger->IsErrorEnabled)
-            logger->Error(messageBuffer);
+            logger->Error(CharArrayToString(messageBuffer));
         break;
     case NLOG_FATAL:
         if (logger->IsFatalEnabled)
-            logger->Fatal(messageBuffer);
+            logger->Fatal(CharArrayToString(messageBuffer));
         break;
     }
 }
 
-static void WriteToW(NLogLevel level, LPCWSTR loggerName, LPCWSTR messageBuffer)
+static void WriteToW(NLogLevel level, const wchar_t * loggerName, const wchar_t * messageBuffer)
 {
-    NLog::Logger *logger = NLog::LogManager::GetLogger(loggerName);
+    MANAGED_REFERENCE(NLog::Logger) logger = NLog::LogManager::GetLogger(CharArrayToString(loggerName));
     switch (level)
     {
     case NLOG_TRACE:
         if (logger->IsTraceEnabled)
-            logger->Trace(messageBuffer);
+            logger->Trace(CharArrayToString(messageBuffer));
         break;
     case NLOG_DEBUG:
         if (logger->IsDebugEnabled)
-            logger->Debug(messageBuffer);
+            logger->Debug(CharArrayToString(messageBuffer));
         break;
     case NLOG_INFO:
         if (logger->IsInfoEnabled)
-            logger->Info(messageBuffer);
+            logger->Info(CharArrayToString(messageBuffer));
         break;
     case NLOG_WARN:
         if (logger->IsWarnEnabled)
-            logger->Warn(messageBuffer);
+            logger->Warn(CharArrayToString(messageBuffer));
         break;
     case NLOG_ERROR:
         if (logger->IsErrorEnabled)
-            logger->Error(messageBuffer);
+            logger->Error(CharArrayToString(messageBuffer));
         break;
     case NLOG_FATAL:
         if (logger->IsFatalEnabled)
-            logger->Fatal(messageBuffer);
+            logger->Fatal(CharArrayToString(messageBuffer));
         break;
     }
 }
 
-static bool IsLogEnabledA(NLogLevel level, LPCSTR loggerName)
+static bool IsLogEnabledA(NLogLevel level, const char * loggerName)
 {
-    NLog::Logger *logger = NLog::LogManager::GetLogger(loggerName);
+    MANAGED_REFERENCE(NLog::Logger) logger = NLog::LogManager::GetLogger(CharArrayToString(loggerName));
     switch (level)
     {
     case NLOG_TRACE:
@@ -100,9 +124,9 @@ static bool IsLogEnabledA(NLogLevel level, LPCSTR loggerName)
     }
 }
 
-static bool IsLogEnabledW(NLogLevel level, LPCWSTR loggerName)
+static bool IsLogEnabledW(NLogLevel level, const wchar_t * loggerName)
 {
-    NLog::Logger *logger = NLog::LogManager::GetLogger(loggerName);
+    MANAGED_REFERENCE(NLog::Logger) logger = NLog::LogManager::GetLogger(CharArrayToString(loggerName));
     switch (level)
     {
     case NLOG_TRACE:
@@ -128,35 +152,35 @@ static bool IsLogEnabledW(NLogLevel level, LPCWSTR loggerName)
     }
 }
 
-static BOOL ConfigureFromFileA(LPCSTR fileName)
+static bool ConfigureFromFileA(const char * fileName)
 {
     try
     {
-        NLog::LogManager::Configuration = new NLog::Config::XmlLoggingConfiguration(fileName);
-        return TRUE;
+        NLog::LogManager::Configuration = NEW_MANAGED_OBJECT NLog::Config::XmlLoggingConfiguration(CharArrayToString(fileName));
+        return true;
     }
-    catch (System::Exception *)
+    catch (MANAGED_REFERENCE(System::Exception))
     {
-        return FALSE;
+        return false;
     }
 }
 
-static BOOL ConfigureFromFileW(LPCWSTR fileName)
+static bool ConfigureFromFileW(const wchar_t * fileName)
 {
     try
     {
-        NLog::LogManager::Configuration = new NLog::Config::XmlLoggingConfiguration(fileName);
-        return TRUE;
+        NLog::LogManager::Configuration = NEW_MANAGED_OBJECT NLog::Config::XmlLoggingConfiguration(CharArrayToString(fileName));
+        return true;
     }
-    catch (System::Exception *)
+    catch (MANAGED_REFERENCE(System::Exception))
     {
-        return FALSE;
+        return false;
     }
 }
 
 #pragma unmanaged
 
-NLOGC_API void NLog_TraceA(LPCSTR loggerName, LPCSTR logMessage, ...)
+NLOGC_API void NLog_TraceA(const char * loggerName, const char * logMessage, ...)
 {
     va_list args;
     va_start(args, loggerName);
@@ -164,7 +188,7 @@ NLOGC_API void NLog_TraceA(LPCSTR loggerName, LPCSTR logMessage, ...)
     va_end(args);
 }
 
-NLOGC_API void NLog_DebugA(LPCSTR loggerName, LPCSTR logMessage, ...)
+NLOGC_API void NLog_DebugA(const char * loggerName, const char * logMessage, ...)
 {
     va_list args;
     va_start(args, loggerName);
@@ -172,7 +196,7 @@ NLOGC_API void NLog_DebugA(LPCSTR loggerName, LPCSTR logMessage, ...)
     va_end(args);
 }
 
-NLOGC_API void NLog_InfoA(LPCSTR loggerName, LPCSTR logMessage, ...)
+NLOGC_API void NLog_InfoA(const char * loggerName, const char * logMessage, ...)
 {
     va_list args;
     va_start(args, loggerName);
@@ -180,7 +204,7 @@ NLOGC_API void NLog_InfoA(LPCSTR loggerName, LPCSTR logMessage, ...)
     va_end(args);
 }
 
-NLOGC_API void NLog_WarnA(LPCSTR loggerName, LPCSTR logMessage, ...)
+NLOGC_API void NLog_WarnA(const char * loggerName, const char * logMessage, ...)
 {
     va_list args;
     va_start(args, loggerName);
@@ -188,7 +212,7 @@ NLOGC_API void NLog_WarnA(LPCSTR loggerName, LPCSTR logMessage, ...)
     va_end(args);
 }
 
-NLOGC_API void NLog_ErrorA(LPCSTR loggerName, LPCSTR logMessage, ...)
+NLOGC_API void NLog_ErrorA(const char * loggerName, const char * logMessage, ...)
 {
     va_list args;
     va_start(args, loggerName);
@@ -196,7 +220,7 @@ NLOGC_API void NLog_ErrorA(LPCSTR loggerName, LPCSTR logMessage, ...)
     va_end(args);
 }
 
-NLOGC_API void NLog_FatalA(LPCSTR loggerName, LPCSTR logMessage, ...)
+NLOGC_API void NLog_FatalA(const char * loggerName, const char * logMessage, ...)
 {
     va_list args;
     va_start(args, loggerName);
@@ -204,7 +228,7 @@ NLOGC_API void NLog_FatalA(LPCSTR loggerName, LPCSTR logMessage, ...)
     va_end(args);
 }
 
-NLOGC_API void NLog_LogA(NLogLevel level, LPCSTR loggerName, LPCSTR logMessage, ...)
+NLOGC_API void NLog_LogA(NLogLevel level, const char * loggerName, const char * logMessage, ...)
 {
     va_list args;
     va_start(args, loggerName);
@@ -212,7 +236,7 @@ NLOGC_API void NLog_LogA(NLogLevel level, LPCSTR loggerName, LPCSTR logMessage, 
     va_end(args);
 }
 
-NLOGC_API void NLog_LogVA(NLogLevel level, LPCSTR loggerName, LPCSTR logMessage, va_list args)
+NLOGC_API void NLog_LogVA(NLogLevel level, const char * loggerName, const char * logMessage, va_list args)
 {
     if (0 != strchr(logMessage, '%'))
     {
@@ -229,7 +253,7 @@ NLOGC_API void NLog_LogVA(NLogLevel level, LPCSTR loggerName, LPCSTR logMessage,
     }
 }
 
-NLOGC_API void NLog_TraceW(LPCWSTR loggerName, LPCWSTR logMessage, ...)
+NLOGC_API void NLog_TraceW(const wchar_t * loggerName, const wchar_t * logMessage, ...)
 {
     va_list args;
     va_start(args, loggerName);
@@ -237,7 +261,7 @@ NLOGC_API void NLog_TraceW(LPCWSTR loggerName, LPCWSTR logMessage, ...)
     va_end(args);
 }
 
-NLOGC_API void NLog_DebugW(LPCWSTR loggerName, LPCWSTR logMessage, ...)
+NLOGC_API void NLog_DebugW(const wchar_t * loggerName, const wchar_t * logMessage, ...)
 {
     va_list args;
     va_start(args, loggerName);
@@ -245,7 +269,7 @@ NLOGC_API void NLog_DebugW(LPCWSTR loggerName, LPCWSTR logMessage, ...)
     va_end(args);
 }
 
-NLOGC_API void NLog_InfoW(LPCWSTR loggerName, LPCWSTR logMessage, ...)
+NLOGC_API void NLog_InfoW(const wchar_t * loggerName, const wchar_t * logMessage, ...)
 {
     va_list args;
     va_start(args, loggerName);
@@ -253,7 +277,7 @@ NLOGC_API void NLog_InfoW(LPCWSTR loggerName, LPCWSTR logMessage, ...)
     va_end(args);
 }
 
-NLOGC_API void NLog_WarnW(LPCWSTR loggerName, LPCWSTR logMessage, ...)
+NLOGC_API void NLog_WarnW(const wchar_t * loggerName, const wchar_t * logMessage, ...)
 {
     va_list args;
     va_start(args, loggerName);
@@ -261,7 +285,7 @@ NLOGC_API void NLog_WarnW(LPCWSTR loggerName, LPCWSTR logMessage, ...)
     va_end(args);
 }
 
-NLOGC_API void NLog_ErrorW(LPCWSTR loggerName, LPCWSTR logMessage, ...)
+NLOGC_API void NLog_ErrorW(const wchar_t * loggerName, const wchar_t * logMessage, ...)
 {
     va_list args;
     va_start(args, loggerName);
@@ -269,7 +293,7 @@ NLOGC_API void NLog_ErrorW(LPCWSTR loggerName, LPCWSTR logMessage, ...)
     va_end(args);
 }
 
-NLOGC_API void NLog_FatalW(LPCWSTR loggerName, LPCWSTR logMessage, ...)
+NLOGC_API void NLog_FatalW(const wchar_t * loggerName, const wchar_t * logMessage, ...)
 {
     va_list args;
     va_start(args, loggerName);
@@ -277,7 +301,7 @@ NLOGC_API void NLog_FatalW(LPCWSTR loggerName, LPCWSTR logMessage, ...)
     va_end(args);
 }
 
-NLOGC_API void NLog_LogW(NLogLevel level, LPCWSTR loggerName, LPCWSTR logMessage, ...)
+NLOGC_API void NLog_LogW(NLogLevel level, const wchar_t * loggerName, const wchar_t * logMessage, ...)
 {
     va_list args;
     va_start(args, loggerName);
@@ -285,7 +309,7 @@ NLOGC_API void NLog_LogW(NLogLevel level, LPCWSTR loggerName, LPCWSTR logMessage
     va_end(args);
 }
 
-NLOGC_API void NLog_LogVW(NLogLevel level, LPCWSTR loggerName, LPCWSTR logMessage, va_list args)
+NLOGC_API void NLog_LogVW(NLogLevel level, const wchar_t * loggerName, const wchar_t * logMessage, va_list args)
 {
     wchar_t messageBuffer[NLOG_BUFFER_SIZE];
     if (0 != wcschr(logMessage, L'%'))
@@ -302,12 +326,12 @@ NLOGC_API void NLog_LogVW(NLogLevel level, LPCWSTR loggerName, LPCWSTR logMessag
     }
 }
 
-NLOGC_API int NLog_ConfigureFromFileA(LPCSTR fileName)
+NLOGC_API int NLog_ConfigureFromFileA(const char * fileName)
 {
-    return ConfigureFromFileA(fileName);
+    return ConfigureFromFileA(fileName) ? 1 : 0;
 }
 
-NLOGC_API int NLog_ConfigureFromFileW(LPCWSTR fileName)
+NLOGC_API int NLog_ConfigureFromFileW(const wchar_t * fileName)
 {
-    return ConfigureFromFileW(fileName);
+    return ConfigureFromFileW(fileName) ? 1 : 0;
 }

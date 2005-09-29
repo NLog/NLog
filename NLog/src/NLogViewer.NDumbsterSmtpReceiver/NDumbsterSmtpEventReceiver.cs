@@ -10,7 +10,9 @@ using NLogViewer.Events;
 
 namespace NLogViewer.Receivers
 {
-    [LogEventReceiver("SMTP", "SMTP Event Receiver based on NDumbster", "Receives XML events from the mock SMTP server")]
+    [LogEventReceiver("SMTP", 
+        "SMTP Event Receiver based on NDumbster", 
+        "Receives XML events from the mock SMTP server")]
     public class NDumbsterSmtpEventReceiver : LogEventReceiverSkeleton
     {
         private SimpleSmtpServer _smtpServer = null;
@@ -20,16 +22,10 @@ namespace NLogViewer.Receivers
         {
         }
 
-        public override void Configure(NameValueCollection parameters)
+        public int Port
         {
-            NLogViewerTrace.Write("Configuring SMTP...");
-            base.Configure(parameters);
-            
-            if (parameters["port"] != null)
-            {
-                _port = Convert.ToInt32(parameters["port"]);
-            }
-
+            get { return _port; }
+            set { _port = value; }
         }
 
         public override void Start()

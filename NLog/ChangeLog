@@ -1,3 +1,24 @@
+2005-09-29 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+
+	* Added batch NLogC compilation, added installer and nlogc binary
+	snapshot.
+
+2005-09-28 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+
+	* Refactored NLogViewer by separating NLogViewer.Interfaces
+	* Added NLogViewer.NDumbsterSmtpReceiver (by Ron Grabowski)
+	* Added support for caching layout results per logEvent which
+	makes them transportable across threads
+	* Renamed Target.Append() method to Write() (how did I forget it?)
+	* Added Target.Write(LogEvent[] manyEvents) for cases where the
+	target can optimize group writes
+	* Added Log4JXmlEvent.cs
+	* Added Wrappers: AsyncWrapper, AutoFlushWrapper, BufferingWrapper, 
+	RepeatingWrapper, RetryingWrapper
+	* Some preliminary work on request buffering wrappers. 
+	* Added compound targets (fallback, randomize, roundrobin, split)
+    * WARNING: This requires some serious testing.
+
 2005-09-19 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 	* Added ${windows-identity} layout renderer. Restructured the
 	way extensions are loaded (ExtensionUtils).
