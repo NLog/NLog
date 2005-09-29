@@ -2,6 +2,7 @@
 
 	* Added batch NLogC compilation, added installer and nlogc binary
 	snapshot.
+	* Added authentication options to the Mail target (thanks Ron).
 
 2005-09-28 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 
