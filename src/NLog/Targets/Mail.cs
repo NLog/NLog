@@ -38,6 +38,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Text;
 using System.Diagnostics;
+using System.Reflection;
 
 using System.Web.Mail;
 
@@ -87,6 +88,10 @@ namespace NLog.Targets
         private Layout _body = new Layout("${message}");
         private Encoding _encoding = System.Text.Encoding.UTF8;
         private string _smtpServer;
+        private string _smtpUsername;
+        private string _smtpPassword;
+        private string _smtpAuthentication = "none";
+        private int _smtpPort = 25;
         private bool _isHtml = false;
 
         /// <summary>
@@ -162,6 +167,7 @@ namespace NLog.Targets
         /// <summary>
         /// Mail message body (repeated for each log message send in one mail)
         /// </summary>
+        [System.ComponentModel.DefaultValue("${message}")]
         public string Body
         {
             get { return _body.Text; }
@@ -171,6 +177,7 @@ namespace NLog.Targets
         /// <summary>
         /// Encoding to be used for sending e-mail.
         /// </summary>
+        [System.ComponentModel.DefaultValue("UTF8")]
         public string Encoding
         {
             get { return _encoding.EncodingName; }
@@ -180,6 +187,7 @@ namespace NLog.Targets
         /// <summary>
         /// Send message as HTML instead of plain text.
         /// </summary>
+        [System.ComponentModel.DefaultValue(false)]
         public bool HTML
         {
             get { return _isHtml; }
@@ -193,6 +201,70 @@ namespace NLog.Targets
         {
             get { return _smtpServer; }
             set { _smtpServer = value; }
+        }
+
+        /// <summary>
+        /// SMTP Authentication mode.
+        /// </summary>
+        /// <remarks>
+        /// Possible values are:
+        /// <ul>
+        /// <li><b>none</b> - no authentication</li>
+        /// <li><b>basic</b> - SMTPUsername and SMTPPassword are used to provide the credentials</li>
+        /// <li><b>ntlm</b> - integrated Windows authentication</li>
+        /// </ul>
+        /// </remarks>
+        [System.ComponentModel.DefaultValue("none")]
+        public string SMTPAuthentication
+        {
+            get { return _smtpAuthentication; }
+            set { 
+                AssertFieldsSupport("SMTPAuthentication");
+                string n = value.ToLower();
+                if (n == "none" || n == "basic" || n == "ntlm")
+                    _smtpAuthentication = n;
+                else
+                    throw new ArgumentException("Invalid argument to SMTPAuthentication. Allowed values are none,basic or ntlm");
+            }
+        }
+
+        /// <summary>
+        /// The username used to connect to SMTP server (used when SMTPAuthentication is set to "basic").
+        /// </summary>
+        public string SMTPUsername
+        {
+            get { return _smtpUsername; }
+            set { 
+                AssertFieldsSupport("SMTPUsername");
+                _smtpUsername = value;
+            }
+        }
+
+        /// <summary>
+        /// The password used to authenticate against SMTP server (used when SMTPAuthentication is set to "basic").
+        /// </summary>
+        public string SMTPPassword
+        {
+            get { return _smtpPassword; }
+            set { 
+                AssertFieldsSupport("SMTPPassword");
+                _smtpPassword = value;
+            }
+        }
+
+        /// <summary>
+        /// The port that SMTP Server is listening on.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(25)]
+        public int SMTPPort
+        {
+            get { return _smtpPort; }
+            set
+            { 
+                if (value != 25)
+                    AssertFieldsSupport("SMTPPort");
+                _smtpPort = value; 
+            }
         }
 
         /// <summary>
@@ -271,6 +343,25 @@ namespace NLog.Targets
             msg.BodyEncoding = System.Text.Encoding.UTF8;
             msg.BodyFormat = HTML ? MailFormat.Html : MailFormat.Text;
             msg.Priority = MailPriority.Normal;
+
+            IDictionary fields = GetFieldsDictionary(msg);
+            if (fields != null)
+            {
+                if (SMTPPort != 25)
+                {
+                    fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", SMTPPort);
+                }
+                if (SMTPAuthentication == "basic")
+                {
+                    fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", "1");	
+                    fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", SMTPUsername);
+                    fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", SMTPPassword);
+                }
+                if (SMTPAuthentication == "ntlm")
+                {
+                    fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", "2");	
+                }
+            }
         }
 
         private void SendMessage(MailMessage msg)
@@ -279,6 +370,25 @@ namespace NLog.Targets
             Internal.InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, _smtpServer);
 
             SmtpMail.Send(msg);
+        }
+
+        // .NET 1.0 doesn't support "MailMessage.Fields". We want to be portable so 
+        // we detect this at runtime.
+
+        private PropertyInfo _fieldsProperty = typeof(MailMessage).GetProperty("Fields");
+
+        private void AssertFieldsSupport(string fieldName)
+        {
+            if (_fieldsProperty == null)
+                throw new ArgumentException("Parameter " + fieldName + " isn't supported on this runtime version.");
+        }
+
+        private IDictionary GetFieldsDictionary(MailMessage m)
+        {
+            if (_fieldsProperty == null)
+                return null;
+
+            return (IDictionary)_fieldsProperty.GetValue(m, null);
         }
     }
 }
