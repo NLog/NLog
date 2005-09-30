@@ -4,6 +4,7 @@
         <nav href="index" label="Introduction" />
         <nav href="news" label="News" />
         <nav href="tutorial" label="Tutorial" />
+        <nav href="http://www.nabble.com/NLog-Forum-f6167" label="Forum" />
         <!-- <nav href="configexamples" label="Configuration Examples" /> -->
         <nav href="benchmark" label="Benchmark" />
         <nav href="howto" label="How To...">

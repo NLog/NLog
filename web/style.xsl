@@ -12,7 +12,7 @@
     <xsl:variable name="subpage_id" select="concat(/*[position()=1]/@subid,$subpage_id_override)" />
     <xsl:variable name="common" select="document(concat($mode,'menu.xml'))" />
     
-    <xsl:output method="html" indent="no" />
+    <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/">
         <html>
@@ -87,7 +87,7 @@ var sc_security="6fe22c9a";
         <xsl:choose>
             <xsl:when test="$page_id = @href"><tr><td class="nav_selected"><a class="nav_selected"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a><table class="submenu" width="100%"><xsl:apply-templates select="subnav" /></table></td></tr></xsl:when>
             <xsl:otherwise>
-                <tr><td class="nav"><a class="nav"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a></td></tr>
+                <tr><td class="nav"><a class="nav" href="{@href}.{$file_extension}"><xsl:value-of select="@label" /></a></td></tr>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -96,7 +96,7 @@ var sc_security="6fe22c9a";
         <xsl:choose>
             <xsl:when test="$subpage_id = @href"><tr><td><a class="subnav_selected" href="{@href}.{$file_extension}"><xsl:value-of select="@label" /></a></td></tr></xsl:when>
             <xsl:otherwise>
-                <tr><td><a class="subnav"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a></td></tr>
+                <tr><td><a class="subnav" href="{@href}.{$file_extension}"><xsl:value-of select="@label" /></a></td></tr>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
