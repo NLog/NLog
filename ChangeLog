@@ -1,3 +1,8 @@
+2005-10-11 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+
+	* Fixed a nullref exception when no config file was present.
+	* Fixed support for CC field in the Mail target
+
 2005-09-29 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 
 	* Added batch NLogC compilation, added installer and nlogc binary
