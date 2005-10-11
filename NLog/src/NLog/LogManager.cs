@@ -232,7 +232,10 @@ namespace NLog
                         }
                     }
 #endif 
-                    _config.InitializeAll();
+                    if (_config != null)
+                    {
+                        _config.InitializeAll();
+                    }
                     return _config;
                 }
             }

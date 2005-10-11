@@ -339,6 +339,8 @@ namespace NLog.Targets
             if (_bcc != null)
                 msg.Bcc = _bcc.GetFormattedMessage(logEvent);
 
+            if (_cc != null)
+                msg.Cc = _cc.GetFormattedMessage(logEvent);
             msg.Subject = _subject.GetFormattedMessage(logEvent);
             msg.BodyEncoding = System.Text.Encoding.UTF8;
             msg.BodyFormat = HTML ? MailFormat.Html : MailFormat.Text;

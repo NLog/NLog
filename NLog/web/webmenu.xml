@@ -4,7 +4,7 @@
         <nav href="index" label="Introduction" />
         <nav href="news" label="News" />
         <nav href="tutorial" label="Tutorial" />
-        <nav href="http://www.nabble.com/NLog-Forum-f6167" label="Forum" />
+        <nav href="http://www.nabble.com/NLog-Forum-f6167.html" noext="true" label="Forum" />
         <!-- <nav href="configexamples" label="Configuration Examples" /> -->
         <nav href="benchmark" label="Benchmark" />
         <nav href="howto" label="How To...">
@@ -25,7 +25,11 @@
             <subnav href="filters" label="Filters" />
             <subnav href="config" label="Configuration File" />
         </nav>
-        <nav href="download" label="Download" />
+        <nav href="download" label="Download">
+            <subnav href="http://sourceforge.net/project/showfiles.php?group_id=116456" noext="true" label="Official Releases"/>
+            <subnav href="http://nlog.sourceforge.net/snapshots/" noext="true" label="Snapshots" />
+            <subnav href="subversion" label="SVN Repository" />
+        </nav>
         <nav href="http://trac.sav.net/nlog/index" label="Report a Bug" />
         <nav href="technical" label="Technical Information" />
         <nav href="mailinglists" label="Mailing Lists" />

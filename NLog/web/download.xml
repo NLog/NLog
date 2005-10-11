@@ -16,18 +16,6 @@
         For your convenience the source and binary snapshots (including the windows installer)
         are available <a href="http://nlog.sourceforge.net/snapshots/">here</a>. They are occasionally generated between
         releases and primarily meant for testing.</p>
-    <!--    <iframe src="http://nlog.sourceforge.net/snapshots2/" width="620" height="300" style="border: 0px solid #c0c0c0"/> -->
-
-    <h3>Source code access</h3>
-    <h5>Subversion Repository</h5>
-    <p>NLog uses Subversion 1.0 (<a href="http://subversion.tigris.org">http://subversion.tigris.org</a>)
-        as its version control system. We recommend a very good Win32 Subversion client called <a href="http://tortoisesvn.tigris.org">TortoiseSVN</a>.</p>
-    <p>You can grab the latest sources of the library and supporting tools at: <a href="http://svn.sav.net/repos/nlog/trunk/NLog">http://svn.sav.net/repos/nlog/trunk/NLog</a>.
-        Contact <a href="mailto:jaak@jkowalski.net">Jarek</a> to get Subversion access.</p>
-    <h5>Daily Subversion Snapshots</h5>
-    <p>
-        The source snapshots are automatically generated on each day and 
-        are available <a href="http://nlog.sourceforge.net/snapshots/">here</a>.</p>
     <h3>Building NLog from source</h3>
     <p>
         NLog can be built with either Visual Studio.NET 2003 or <a href="http://nant.sourceforge.net/">NAnt</a>. If you

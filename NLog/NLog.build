@@ -352,6 +352,7 @@
             </resources>
         </csc>
         <copy file="src/NLogViewer/App.config" tofile="${nlog.dir}/NLogViewer.exe.config" />
+        <copy file="src/NLogViewer/NLogViewer.exe.manifest" tofile="${nlog.dir}/NLogViewer.exe.manifest" />
     </target>
 
     <target name="NLogViewer.Interfaces" depends="configure">
