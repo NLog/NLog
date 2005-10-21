@@ -1,3 +1,9 @@
+2005-10-21 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+
+	* Added ${processname}, ${processid} layout renderers
+	* Added GDC (Global Diagnostics Context) and ${gdc} layout renderer which
+	is a global (as opposed to per-thread) version of MDC and ${mdc}
+
 2005-10-11 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 
 	* Fixed a nullref exception when no config file was present.

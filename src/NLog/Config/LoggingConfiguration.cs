@@ -65,6 +65,8 @@ namespace NLog.Config
         /// <param name="target">The target object.</param>
         public void AddTarget(string name, Target target)
         {
+            if (name == null)
+                throw new ArgumentException("name", "Target name cannot be null");
             InternalLogger.Debug("Registering target {0}: {1}", name, target.GetType().FullName);
             _targets[name.ToLower(CultureInfo.InvariantCulture)] = target;
         }

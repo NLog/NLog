@@ -78,17 +78,24 @@ namespace NLog
         /// <param name="prefix">The prefix to be prepended to layout renderer names.</param>
         public static void AddLayoutRenderersFromAssembly(Assembly theAssembly, string prefix)
         {
-            InternalLogger.Debug("AddLayoutRenderersFromAssembly('{0}')", theAssembly.FullName);
-            foreach (Type t in theAssembly.GetTypes())
+            try
             {
-                LayoutRendererAttribute[]attributes = (LayoutRendererAttribute[])t.GetCustomAttributes(typeof(LayoutRendererAttribute), false);
-                if (attributes != null)
+                InternalLogger.Debug("AddLayoutRenderersFromAssembly('{0}')", theAssembly.FullName);
+                foreach (Type t in theAssembly.GetTypes())
                 {
-                    foreach (LayoutRendererAttribute attr in attributes)
+                    LayoutRendererAttribute[]attributes = (LayoutRendererAttribute[])t.GetCustomAttributes(typeof(LayoutRendererAttribute), false);
+                    if (attributes != null)
                     {
-                        AddLayoutRenderer(prefix + attr.FormatString, t);
+                        foreach (LayoutRendererAttribute attr in attributes)
+                        {
+                            AddLayoutRenderer(prefix + attr.FormatString, t);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error("Failed to add layout renderers from '" + theAssembly.FullName + "': {0}", ex);
             }
         }
 

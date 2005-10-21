@@ -37,6 +37,8 @@ using System.Collections;
 using System.Reflection;
 using System.Globalization;
 using System.Xml;
+using System.IO;
+using System.Text;
 using System.Runtime.InteropServices;
 
 using NLog.Internal;
@@ -46,6 +48,21 @@ namespace NLog.Internal
 {
     internal sealed class ThreadIDHelper
     {
+        private static int _currentProcessID;
+        private static string _currentProcessName;
+        private static string _currentProcessBaseName;
+        private static string _currentProcessDirectoryName;
+
+        static ThreadIDHelper()
+        {
+            _currentProcessID = GetCurrentProcessId();
+            StringBuilder sb = new StringBuilder(512);
+            GetModuleFileName(IntPtr.Zero, sb, sb.Capacity);
+            _currentProcessName = sb.ToString();
+            _currentProcessBaseName = Path.GetFileNameWithoutExtension(_currentProcessName);
+            _currentProcessDirectoryName = Path.GetDirectoryName(_currentProcessName);
+        }
+            
 #if !NETCF
         [DllImport("kernel32.dll")]
         private extern static int GetCurrentThreadId();
@@ -53,6 +70,18 @@ namespace NLog.Internal
         [DllImport("kernel32.dll")]
         private extern static int GetCurrentProcessId();
 
+        [DllImport("kernel32.dll", SetLastError=true, PreserveSig=true)]
+        private static extern uint GetModuleFileName([In] IntPtr hModule, [Out] StringBuilder lpFilename, [In] [MarshalAs(UnmanagedType.U4)] int nSize);
+#else
+        [DllImport("coredll.dll")]
+        private extern static int GetCurrentThreadId();
+
+        [DllImport("coredll.dll")]
+        private extern static int GetCurrentProcessId();
+
+        [DllImport("coredll.dll", SetLastError=true)]
+        private static extern uint GetModuleFileName([In] IntPtr hModule, [Out] StringBuilder lpFilename, [In] int nSize);
+#endif
         public static int CurrentThreadID
         {
             get { return GetCurrentThreadId(); }
@@ -60,17 +89,22 @@ namespace NLog.Internal
 
         public static int CurrentProcessID
         {
-            get { return GetCurrentProcessId(); }
+            get { return _currentProcessID; }
         }
-#else
-        public static int CurrentThreadID
+
+        public static string CurrentProcessName
         {
-            get { return -1; }
+            get { return _currentProcessName; }
         }
-        public static int CurrentProcessID
+
+        public static string CurrentProcessBaseName
         {
-            get { return -1; }
+            get { return _currentProcessBaseName; }
         }
-#endif
+        
+        public static string CurrentProcessDirectory
+        {
+            get { return _currentProcessDirectoryName; }
+        }
     }
 }
