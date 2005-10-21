@@ -85,17 +85,24 @@ namespace NLog
         /// <param name="prefix">The prefix to be prepended to target names.</param>
         public static void AddTargetsFromAssembly(Assembly theAssembly, string prefix)
         {
-            InternalLogger.Debug("AddTargetsFromAssembly('{0}')", theAssembly.FullName);
-            foreach (Type t in theAssembly.GetTypes())
+            try
             {
-                TargetAttribute[]attributes = (TargetAttribute[])t.GetCustomAttributes(typeof(TargetAttribute), false);
-                if (attributes != null)
+                InternalLogger.Debug("AddTargetsFromAssembly('{0}')", theAssembly.FullName);
+                foreach (Type t in theAssembly.GetTypes())
                 {
-                    foreach (TargetAttribute attr in attributes)
+                    TargetAttribute[]attributes = (TargetAttribute[])t.GetCustomAttributes(typeof(TargetAttribute), false);
+                    if (attributes != null)
                     {
-                        AddTarget(prefix + attr.Name, t);
+                        foreach (TargetAttribute attr in attributes)
+                        {
+                            AddTarget(prefix + attr.Name, t);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error("Failed to add targets from '" + theAssembly.FullName + "': {0}", ex);
             }
         }
 

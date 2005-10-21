@@ -60,6 +60,7 @@ namespace NLog.Tester
             Logger p = LogManager.GetCurrentClassLogger();
             Logger p2 = LogManager.GetLogger("NLog.Tester.ABC");
             Logger p3 = LogManager.GetLogger("NLog.Def.ABC");
+            GDC.Set("GGG", "b");
             MDC.Set("AAA", "b");
             MDC.Set("BBB", "C");
 

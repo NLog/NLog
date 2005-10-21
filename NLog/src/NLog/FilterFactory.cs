@@ -76,18 +76,26 @@ namespace NLog
         /// <param name="prefix">The prefix to be prepended to filter names.</param>
         public static void AddFiltersFromAssembly(Assembly theAssembly, string prefix)
         {
-            InternalLogger.Debug("AddFiltersFromAssembly('{0}')", theAssembly.FullName);
-            foreach (Type t in theAssembly.GetTypes())
+            try
             {
-                FilterAttribute[]attributes = (FilterAttribute[])t.GetCustomAttributes(typeof(FilterAttribute), false);
-                if (attributes != null)
+                InternalLogger.Debug("AddFiltersFromAssembly('{0}')", theAssembly.FullName);
+                foreach (Type t in theAssembly.GetTypes())
                 {
-                    foreach (FilterAttribute attr in attributes)
+                    FilterAttribute[]attributes = (FilterAttribute[])t.GetCustomAttributes(typeof(FilterAttribute), false);
+                    if (attributes != null)
                     {
-                        AddFilter(prefix + attr.Name, t);
+                        foreach (FilterAttribute attr in attributes)
+                        {
+                            AddFilter(prefix + attr.Name, t);
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                InternalLogger.Error("Failed to add filters from '" + theAssembly.FullName + "': {0}", ex);
+            }
+            
         }
         private static void AddDefaultFilters()
         {
