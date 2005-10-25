@@ -252,7 +252,8 @@ namespace NLog.Conditions
         };
 
         static ConditionTokenType[] charIndexToTokenType = new ConditionTokenType[128];
-        static Hashtable keywordToTokenType = System.Collections.Specialized.CollectionsUtil.CreateCaseInsensitiveHashtable();
+        static Hashtable keywordToTokenType = 
+            new Hashtable(CaseInsensitiveHashCodeProvider.Default, CaseInsensitiveComparer.Default);
 
         static ConditionTokenizer() 
         {

@@ -95,7 +95,12 @@ namespace NLog.Internal
             }
             set
             {
-                _logFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, value);
+#if !NETCF
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+#else
+            string baseDir = CompactFrameworkHelper.GetExeBaseDir();
+#endif
+                _logFile = Path.Combine(baseDir, value);
             }
         }
 
