@@ -36,7 +36,9 @@ using System.Runtime.Serialization;
 
 namespace NLog.Conditions 
 {
+#if !NETCF
     [Serializable]
+#endif
     public class ConditionParseException : Exception 
     {
         private int _p0;
@@ -61,6 +63,8 @@ namespace NLog.Conditions
             _p0 = p0;
             _p1 = p1;
         }
+#if !NETCF
         protected ConditionParseException(SerializationInfo info, StreamingContext context) : base(info, context) {}
+#endif
     }
 }

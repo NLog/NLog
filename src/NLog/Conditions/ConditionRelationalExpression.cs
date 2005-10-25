@@ -116,18 +116,6 @@ namespace NLog.Conditions
                 return;
             }
 
-            if (val1 is short || val2 is short)
-            {
-                val1 = Convert.ToInt16(val1);
-                val2 = Convert.ToInt16(val2);
-                return;
-            }
-            if (val1 is sbyte || val2 is sbyte)
-            {
-                val1 = Convert.ToSByte(val1);
-                val2 = Convert.ToSByte(val2);
-                return;
-            }
             if (val1 is bool || val2 is bool)
             {
                 val1 = Convert.ToBoolean(val1);
