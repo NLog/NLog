@@ -1,6 +1,5 @@
 // 
-// Copyright (c) 2004,2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
-// 
+// Copyright (c) 2002-2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 // 
 // All rights reserved.
 // 
@@ -15,7 +14,7 @@
 //   this list of conditions and the following disclaimer in the documentation
 //   and/or other materials provided with the distribution. 
 // 
-// * Neither the name of the Jaroslaw Kowalski nor the names of its 
+// * Neither the name of Jaroslaw Kowalski nor the names of its 
 //   contributors may be used to endorse or promote products derived from this
 //   software without specific prior written permission. 
 // 
@@ -34,44 +33,26 @@
 
 using System;
 using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
 
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-using System.Threading;
+using System.Xml.Serialization;
 
-using NLog.Config;
-
-namespace NLog.Targets.Wrappers.RequestBuffering
+namespace NLog.Conditions
 {
     /// <summary>
-    /// A request buffering target that uses a global variable for its storage.
+    /// Condition message expression (represented by the <b>message</b> keyword).
     /// </summary>
-    [Target("GlobalRequestBufferingWrapper")]
-    public class GlobalRequestBufferingTarget: RequestBufferingTargetBase
+    public class ConditionMessageExpression : ConditionExpression
     {
-        private LogEventInfoBuffer _buffer = null;
+        public ConditionMessageExpression() {}
 
-        protected override LogEventInfoBuffer GetOrCreateBuffer()
+        public override object Evaluate(LogEventInfo context)
         {
-            LogEventInfoBuffer buffer = _buffer;
-            if (buffer == null)
-            {
-                lock (this)
-                {
-                    buffer = _buffer;
-                    if (buffer == null)
-                    {
-                        buffer = CreateBuffer();
-                        _buffer = buffer;
-                    }
-                }
-            }
-            return buffer;
+            return context.Message;
+        }
+
+        public override string ToString()
+        {
+            return "message";
         }
     }
 }

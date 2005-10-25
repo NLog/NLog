@@ -50,7 +50,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// A target wrapper that causes a flush after each write on a wrapped target.
     /// </summary>
-    [Target("AutoFlushWrapper",IgnoresLayout=true)]
+    [Target("AutoFlushWrapper",IgnoresLayout=true,IsWrapper=true)]
     public class AutoFlushTargetWrapper: WrapperTargetBase
     {
         /// <summary>

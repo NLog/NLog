@@ -1,3 +1,27 @@
+2005-10-25 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+
+	* Added ASPNetBufferingWrapper target which buffers and post-processes
+	the entire ASP.NET request (requires you to use the NLogHttpModule)
+	* Added PostFilteringWrapper target which is able to filter log events
+	based on a buffer as a whole. It is possible for example to dump the
+	detailed ( >= Trace level) trace of a request if there was at least 
+	one >= Warn event in the buffer, but under normal conditions only output
+	the >= Info levels.
+	* Reworked the way the documentation is generated (we no longer use
+	ugly IFRAMEs and the same method is used to generate the website and
+	the docs)
+	* Added a new conditions language (see conditions.html for more
+	information) which let you write powerful   filtering conditions 
+	while keeping the syntax natural and readable
+	* Added <when condition="..." action="..." /> filter which uses condition
+	expressions
+	* Added examples for the MailTarget and BufferedMailTarget
+	* Fixed Close() behaviour for unnamed targets (like the ones configured
+	by SimpleConfigurator)
+	* Added some more documentation (still some work to do before the release)
+	* Fixed the example for asynchronous Tile target (async="true" is not 
+	supported and is replaced by the AsyncWrapper target)
+
 2005-10-21 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 
 	* Added ${processname}, ${processid} layout renderers

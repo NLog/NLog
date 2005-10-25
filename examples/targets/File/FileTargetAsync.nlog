@@ -4,12 +4,10 @@
         <!-- Log in a separate thread, possibly queueing up to
         5000 messages. When the queue overflows, discard any
         extra messages-->
-        
-        <target name="file" type="File"
-            filename="${basedir}/logs/${level}.txt" 
-            async="true"
-            queueLimit="5000"
-            overflowAction="discard" />
+
+        <target name="file" type="AsyncWrapper" queueLimit="5000" overflowAction="discard">
+            <target type="File" filename="${basedir}/logs/${level}.txt" />
+        </target>
     </targets>
 
     <rules>

@@ -597,6 +597,18 @@ code.config
     cursor: normal;
 }
 
+.acceptscondition
+{
+    font-family: Tahoma;
+    font-size: 11px;
+    background-color: yellow;
+    border: 1px solid #e0e000;
+    margin-right: 4px;
+    padding-left: 2px;
+    padding-right: 2px;
+    cursor: normal;
+}
+
 .required
 {
     font-weight: bold;

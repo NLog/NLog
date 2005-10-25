@@ -58,6 +58,9 @@ namespace NLog.LayoutRenderers
         private static DateTime _log4jDateBase = new DateTime(1970, 1, 1);
         private NLogViewerParameterInfoCollection _parameters = new NLogViewerParameterInfoCollection();
 
+        /// <summary>
+        /// Creates a new instance of <see cref="Log4JXmlEventLayoutRenderer"/> and initializes default values.
+        /// </summary>
         public Log4JXmlEventLayoutRenderer()
         {
 #if NETCF
@@ -86,6 +89,17 @@ namespace NLog.LayoutRenderers
             set { _indentXml = value; }
         }
 
+        /// <summary>
+        /// Returns the estimated number of characters that are needed to
+        /// hold the rendered value for the specified logging event.
+        /// </summary>
+        /// <param name="logEvent">Logging event information.</param>
+        /// <returns>The number of characters.</returns>
+        /// <remarks>
+        /// If the exact number is not known or
+        /// expensive to calculate this function should return a rough estimate
+        /// that's big enough in most cases, but not too big, in order to conserve memory.
+        /// </remarks>
         protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
             return 512;
@@ -147,6 +161,11 @@ namespace NLog.LayoutRenderers
             set { _parameters = value; }
         }
 
+        /// <summary>
+        /// Renders the XML logging event and appends it to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             StringWriter sw = new StringWriter(builder);

@@ -33,38 +33,51 @@
 // 
 
 using System;
-using System.IO;
 using System.Text;
-using System.Xml;
-using System.Reflection;
 using System.Diagnostics;
+using System.Reflection;
+using System.Data;
+using System.Collections;
 
 using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-using System.Threading;
-
 using NLog.Config;
+using NLog.Conditions;
 
-namespace NLog.Targets.Wrappers.RequestBuffering
+namespace NLog.Targets.Wrappers
 {
-    /// <summary>
-    /// A request buffering target that uses a thread-local variable for its storage.
-    /// </summary>
-    [Target("ThreadRequestBufferingWrapper")]
-    public class ThreadRequestBufferingTarget: RequestBufferingTargetBase
+    public class FilteringRule
     {
-        private LocalDataStoreSlot _dataSlot = Thread.AllocateDataSlot();
+        private ConditionExpression _exists;
+        private ConditionExpression _filter;
 
-        protected override LogEventInfoBuffer GetOrCreateBuffer()
+        public FilteringRule() {}
+
+        [RequiredParameter]
+        [AcceptsCondition]
+        public string Exists
         {
-            LogEventInfoBuffer buffer = (LogEventInfoBuffer)Thread.GetData(_dataSlot);
-            if (buffer == null)
-            {
-                buffer = CreateBuffer();
-                Thread.SetData(_dataSlot, buffer);
-            }
-            return buffer;
+            get { return _exists.ToString(); }
+            set { _exists = ConditionParser.ParseExpression(value); }
+        }
+
+        [RequiredParameter]
+        [AcceptsCondition]
+        public string Filter
+        {
+            get { return _filter.ToString(); }
+            set { _filter = ConditionParser.ParseExpression(value); }
+        }
+
+        public ConditionExpression FilterCondition 
+        {
+            get { return _filter; }
+            set { _filter = value; }
+        }
+
+        public ConditionExpression ExistsCondition
+        {
+            get { return _exists; }
+            set { _exists = value; }
         }
     }
 }

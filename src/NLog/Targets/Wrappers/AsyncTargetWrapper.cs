@@ -51,7 +51,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// A target wrapper that provides asynchronous, buffered execution of target writes.
     /// </summary>
-    [Target("AsyncWrapper")]
+    [Target("AsyncWrapper",IsWrapper=true)]
     public class AsyncTargetWrapper: WrapperTargetBase
     {
         private int _batchSize = 100;

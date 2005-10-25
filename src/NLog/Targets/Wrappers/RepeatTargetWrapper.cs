@@ -50,7 +50,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// A target wrapper that repeats each log event the specified number of times.
     /// </summary>
-    [Target("RepeatingWrapper",IgnoresLayout=true)]
+    [Target("RepeatingWrapper",IgnoresLayout=true,IsWrapper=true)]
     public class RepeatTargetWrapper: WrapperTargetBase
     {
         private int _repeatCount = 3;

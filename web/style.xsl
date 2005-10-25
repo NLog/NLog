@@ -12,7 +12,7 @@
     <xsl:variable name="subpage_id" select="concat(/*[position()=1]/@subid,$subpage_id_override)" />
     <xsl:variable name="common" select="document(concat($mode,'menu.xml'))" />
     
-    <xsl:output method="html" indent="yes" />
+    <xsl:output method="html" indent="no" />
 
     <xsl:template match="/">
         <html>

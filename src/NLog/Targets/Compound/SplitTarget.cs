@@ -51,7 +51,7 @@ namespace NLog.Targets.Compound
     /// A compound target that writes logging events to all attached
     /// sub-targets.
     /// </summary>
-    [Target("SplitGroup",IgnoresLayout=true)]
+    [Target("SplitGroup",IgnoresLayout=true,IsCompound=true)]
     public class SplitTarget: CompoundTargetBase
     {
         /// <summary>

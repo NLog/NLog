@@ -50,7 +50,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// A target that buffers log events and sends them in batches to the wrapped target.
     /// </summary>
-    [Target("BufferingWrapper",IgnoresLayout=true)]
+    [Target("BufferingWrapper",IgnoresLayout=true,IsWrapper=true)]
     public class BufferingTargetWrapper: WrapperTargetBase
     {
         private LogEventInfoBuffer _buffer;
@@ -112,6 +112,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         public override void Flush(TimeSpan timeout)
         {
+            Console.Write("Flushing...");
             base.Flush (timeout);
 
             LogEventInfo[] events = _buffer.GetEventsAndClear();

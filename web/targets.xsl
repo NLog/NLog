@@ -13,6 +13,20 @@
         <xsl:if test="not($target_name)">
             <h1>Log Targets</h1>
             <p>
+                The following types of targets are supported by NLog:
+            </p>
+            <ul>
+                <li><b><a href="#regular">Regular Targets</a></b> - which write the log messages to some output</li>
+                <li><b><a href="#wrappers">Target Wrappers</a></b> - which modify the behaviour of a target by adding 
+                    features such as asynchronous processing, buffering, filtering and so on.</li>
+                <li><b><a href="#compound">Compound Targets</a></b> - which route the log messages to one or more attached targets -
+                    they can be used to provide failover, load balancing, log splitting and so on</li>
+            </ul>
+
+            <a name="regular"></a>
+
+            <h3>Regular Targets</h3>
+            <p>
                 The following log targets are available. Click on the target name for full reference.
             </p>
             <div class="noborder" style="width: 600px">
@@ -22,7 +36,43 @@
                         <th>Description</th>
                         <th><nobr>Defined in</nobr></th>
                     </tr>
-                    <xsl:apply-templates select="//class[attribute/@name='NLog.TargetAttribute']" mode="list">
+                    <xsl:apply-templates select="//class[attribute[@name='NLog.TargetAttribute' and not(property[@name='IsWrapper' and @value='True']) and not(property[@name='IsCompound' and @value='True'])]]" mode="list">
+                        <xsl:sort select="../../@name" />
+                        <xsl:sort select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
+                    </xsl:apply-templates>
+                </table>
+            </div>
+            <a name="wrappers" />
+            <h3>Target Wrappers</h3>
+            <p>
+                The following target wrappers are available. Click on the target name for full reference.
+            </p>
+            <div class="noborder" style="width: 600px">
+                <table class="listtable">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th><nobr>Defined in</nobr></th>
+                    </tr>
+                    <xsl:apply-templates select="//class[attribute[@name='NLog.TargetAttribute' and property[@name='IsWrapper' and @value='True']]]" mode="list">
+                        <xsl:sort select="../../@name" />
+                        <xsl:sort select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
+                    </xsl:apply-templates>
+                </table>
+            </div>
+            <a name="compound" />
+            <h3>Compound Targets</h3>
+            <p>
+                The following compound targets are available. Click on the target name for full reference.
+            </p>
+            <div class="noborder" style="width: 600px">
+                <table class="listtable">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th><nobr>Defined in</nobr></th>
+                    </tr>
+                    <xsl:apply-templates select="//class[attribute[@name='NLog.TargetAttribute' and property[@name='IsCompound' and @value='True']]]" mode="list">
                         <xsl:sort select="../../@name" />
                         <xsl:sort select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
                     </xsl:apply-templates>
@@ -63,11 +113,6 @@
             <h4>Summary</h4>
             <xsl:apply-templates select="documentation/summary" /><p/>
         </xsl:if>
-        <h4>Configuration file usage:</h4>
-        <code class="config">&lt;target name="..." type="<b><u><xsl:value-of select="$type_tag" /></u></b>"
-            ... 
-            /&gt;
-        </code>
         <h4>Parameters (blue fields are required):</h4>
         <table cellspacing="0" cellpadding="0" class="paramtable">
             <tr>
@@ -114,6 +159,10 @@
         <!-- ignore -->
     </xsl:template>
 
+    <xsl:template match="property[@type='NLog.Conditions.ConditionExpression']" mode="parameter">
+        <!-- ignore -->
+    </xsl:template>
+
     <xsl:template match="property" mode="parameter">
         <xsl:if test="@name != 'Layout' or not(../attribute[@name='NLog.TargetAttribute']/property[@name='IgnoresLayout']/@value='True')">
             <tr>
@@ -132,6 +181,9 @@
                         </xsl:call-template>
                         <xsl:if test="attribute/@name='NLog.Config.AcceptsLayoutAttribute'">
                             &#160;<a href="layoutrenderers.html"><span class="acceptslayout" title="This parameter accepts layout specification. Click here to learn more about layouts.">${}</span></a>
+                        </xsl:if>
+                        <xsl:if test="attribute/@name='NLog.Config.AcceptsConditionAttribute'">
+                            &#160;<a href="conditions.html"><span class="acceptscondition" title="This parameter accepts condition expressions. Click here to learn more about condition expressions.">[c()]</span></a>
                         </xsl:if>
                     </nobr>
                 </td>

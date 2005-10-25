@@ -52,7 +52,7 @@ namespace NLog.Targets.Compound
     /// A compound target that forwards writes to the sub-targets in a
     /// round-robin fashion.
     /// </summary>
-    [Target("RoundRobinGroup",IgnoresLayout=true)]
+    [Target("RoundRobinGroup",IgnoresLayout=true,IsCompound=true)]
     public class RoundRobinTarget: CompoundTargetBase
     {
         private int _currentTarget = 0;

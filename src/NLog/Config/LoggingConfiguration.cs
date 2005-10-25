@@ -51,6 +51,7 @@ namespace NLog.Config
     public class LoggingConfiguration
     {
         internal TargetDictionary _targets = new TargetDictionary();
+        internal TargetCollection _aliveTargets = new TargetCollection();
         private LoggingRuleCollection _loggingRules = new LoggingRuleCollection();
 
         /// <summary>
@@ -143,7 +144,16 @@ namespace NLog.Config
 
         internal void InitializeAll()
         {
-            foreach (Target target in _targets.Values)
+            foreach (LoggingRule r in LoggingRules)
+            {
+                foreach (Target t in r.Targets)
+                {
+                    if (!_aliveTargets.Contains(t))
+                        _aliveTargets.Add(t);
+                }
+            }
+
+            foreach (Target target in _aliveTargets)
             {
                 try
                 {
@@ -161,12 +171,13 @@ namespace NLog.Config
         /// </summary>
         public void Close()
         {
-            foreach (Target target in _targets.Values)
+            InternalLogger.Debug("Closing logging configuration...");
+            foreach (Target target in _aliveTargets)
             {
                 try
                 {
+                    InternalLogger.Debug("Closing target {1} ({0})", target.Name, target.GetType().FullName);
                     target.Close();
-                
                 }
                 catch (Exception ex)
                 {

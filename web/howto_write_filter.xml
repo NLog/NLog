@@ -36,45 +36,45 @@
         <code>csc.exe /t:library /out:MyAssembly.dll /r:NLog.dll MyFirstFilter.cs</code>
     </p>
 
-<cs src="examples/MyFirstFilter.cs" />
+    <cs src="examples/MyFirstFilter.cs" />
 
-<h5>How to use the newly created layout renderer?</h5>
-<p>
-    It's easy. Just put the renderer in a DLL and reference it from the the config file using the <x><extensions /></x>
-    clause as described <a href="config.html#extensions">here</a>.
-</p> 
+    <h5>How to use the newly created layout renderer?</h5>
+    <p>
+        It's easy. Just put the renderer in a DLL and reference it from the the config file using the <x><extensions /></x>
+        clause as described <a href="config.html#extensions">here</a>.
+    </p> 
 
-<h5>Configuration file example</h5>
-<p>
-    This example causes all messages between 10:00 and 12:59 to be ignored. Simple isn't it?
-</p>
+    <h5>Configuration file example</h5>
+    <p>
+        This example causes all messages between 10:00 and 12:59 to be ignored. Simple isn't it?
+    </p>
 
-<xml src="examples/config10.nlog" />
+    <xml src="examples/config10.nlog" />
 
-<h5>How to pass configuration options to the filter?</h5>
+    <h5>How to pass configuration options to the filter?</h5>
 
-<p>
-Consider the above example. There are properties called "FromHour" and "ToHour" that do just that. 
-Having a public property that sets the required configuration parameters is enough for NLog to use it. 
-Each attribute that you put in the filter definition gets passed to the appropriate public property. 
-NLog takes care of the appropriate conversions necessary so that you can use integer, string, datetime, 
-boolean parameters. The parameters are case-insensitive.
-</p>
+    <p>
+        Consider the above example. There are properties called "FromHour" and "ToHour" that do just that. 
+        Having a public property that sets the required configuration parameters is enough for NLog to use it. 
+        Each attribute that you put in the filter definition gets passed to the appropriate public property. 
+        NLog takes care of the appropriate conversions necessary so that you can use integer, string, datetime, 
+        boolean parameters. The parameters are case-insensitive.
+    </p>
 
-<x><filters> ... <hourRange fromHour="10" toHour="12" action="Ignore" /> ... </filters></x>
+    <x><filters> ... <hourRange fromHour="10" toHour="12" action="Ignore" /> ... </filters></x>
 
-<p>sets the FromHour property to 10 and ToHour to 12 during configuration. To pass more parameters, just use more attributes:</p>
+    <p>sets the FromHour property to 10 and ToHour to 12 during configuration. To pass more parameters, just use more attributes:</p>
 
-<x><filters> ... <hourRange p1="" p2="" p3="" p4="" pN="" action="Ignore" /> ... </filters></x>
+    <x><filters> ... <hourRange p1="" p2="" p3="" p4="" pN="" action="Ignore" /> ... </filters></x>
 
-<h5>Do I really need to create a separate DLL?</h5>
+    <h5>Do I really need to create a separate DLL?</h5>
 
-<p>
-    Not really. You can use FilterFactory.AddFilter() to register your layout renderer programmatically. 
-    Just be sure to to it at the very beginning of your program before any log messages are written.
-    It should be possible to reference your EXE using the <x><extensions /></x> clause.
-</p>
+    <p>
+        Not really. You can use FilterFactory.AddFilter() to register your layout renderer programmatically. 
+        Just be sure to to it at the very beginning of your program before any log messages are written.
+        It should be possible to reference your EXE using the <x><extensions /></x> clause.
+    </p>
 
-<cs src="examples/AddFilter.cs" />
+    <cs src="examples/AddFilter.cs" />
 </content>
 
