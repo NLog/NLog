@@ -402,7 +402,7 @@ namespace NLog
                 {
                     sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
                     if (afc.FilterChain.Count > 0)
-                        sb.AppendFormat(CultureInfo.InvariantCulture, "({0} filters)", afc.FilterChain.Count);
+                        sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
                 }
                 InternalLogger.Debug(sb.ToString());
             }

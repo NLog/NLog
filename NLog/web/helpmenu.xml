@@ -7,6 +7,7 @@
             <subnav href="howto_write_target" label="Write a log target" />
             <subnav href="howto_write_layout_renderer" label="Write a layout renderer" />
             <subnav href="howto_write_filter" label="Write a filter" />
+            <subnav href="howto_write_condition_function" label="Write a condition function" />
             <subnav href="howto_optimize_performance" label="Optimize logging performance" />
             <subnav href="howto_troubleshoot" label="Troubleshoot logging problems" />
         </nav>
@@ -19,6 +20,7 @@
             <subnav href="targets" label="Targets" />
             <subnav href="layoutrenderers" label="Layout Renderers" />
             <subnav href="filters" label="Filters" />
+            <subnav href="conditions" label="Conditions" />
             <subnav href="config" label="Configuration File" />
         </nav>
         <nav href="faq" label="FAQ" />

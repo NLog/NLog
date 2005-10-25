@@ -41,7 +41,7 @@ using NLog.Internal;
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// The identifier of the current thread.
+    /// The identifier of the current process.
     /// </summary>
     [LayoutRenderer("processid")]
     public class ProcessIDLayoutRenderer: LayoutRenderer
@@ -62,6 +62,11 @@ namespace NLog.LayoutRenderers
             return 32;
         }
 
+        /// <summary>
+        /// Renders the current process ID.
+        /// </summary>
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             builder.Append(ApplyPadding(ThreadIDHelper.CurrentProcessID.ToString()));

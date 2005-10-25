@@ -44,6 +44,8 @@ namespace NLog
     {
         private string _name;
         private bool _ignoresLayout = false;
+        private bool _isCompound = false;
+        private bool _isWrapper = false;
 
         /// <summary>
         /// Creates a new instance of the TargetAttribute class and sets the name.
@@ -72,6 +74,18 @@ namespace NLog
         {
             get { return _ignoresLayout; }
             set { _ignoresLayout = value; }
+        }
+
+        public bool IsWrapper
+        {
+            get { return _isWrapper; }
+            set { _isWrapper = value; }
+        }
+
+        public bool IsCompound
+        {
+            get { return _isCompound; }
+            set { _isCompound = value; }
         }
     }
 }

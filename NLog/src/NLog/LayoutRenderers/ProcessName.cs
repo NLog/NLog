@@ -48,6 +48,10 @@ namespace NLog.LayoutRenderers
     {
         private bool _fullName = false;
 
+        /// <summary>
+        /// Write the full path to the process executable.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(false)]
         public bool FullName
         {
             get { return _fullName; }
@@ -70,6 +74,11 @@ namespace NLog.LayoutRenderers
             return 32;
         }
 
+        /// <summary>
+        /// Renders the current process name (optionally with a full path).
+        /// </summary>
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (FullName)

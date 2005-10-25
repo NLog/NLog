@@ -95,7 +95,7 @@ namespace NLog.Internal
             }
             set
             {
-                _logFile = value;
+                _logFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, value);
             }
         }
 

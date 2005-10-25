@@ -40,33 +40,50 @@ using System.Reflection;
 using System.Diagnostics;
 
 using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
+using System.Web;
 
 using NLog.Config;
 
-namespace NLog.Targets.Wrappers.RequestBuffering
+namespace NLog.Targets.Wrappers
 {
     /// <summary>
-    /// A base class for creating smart per-request buffering target wrappers.
-    /// The wrappers gather all log events making up the each request and 
-    /// forwarding the events depending on the request status. 
-    /// Request is usually a HTTP request but can be any logical transaction.
+    /// A target that buffers log events for the duration of 
+    /// the ASP.NET Request and sends them down to the wrapped target
+    /// as soon as the request ends.
     /// </summary>
-    public abstract class RequestBufferingTargetBase: WrapperTargetBase
+    [Target("ASPNetBufferingWrapper",IgnoresLayout=true,IsWrapper=true)]
+    public class ASPNetBufferingTargetWrapper: WrapperTargetBase
     {
-        private int _bufferSize;
+        private object _dataSlot = new object();
+        private int _bufferSize = 100;
         private int _growLimit = 0;
-        private bool _growBufferAsNeeded = false;
-        private EndRequestObject _endRequestObject;
+        private bool _growBufferAsNeeded = true;
 
         /// <summary>
-        /// Creates a new instance of <see cref="RequestBufferingTargetBase"/>.
+        /// Creates a new instance of the <see cref="ASPNetBufferingTargetWrapper"/> and initializes <see cref="BufferSize"/> to 100.
         /// </summary>
-        public RequestBufferingTargetBase()
+        public ASPNetBufferingTargetWrapper()
         {
-            BufferSize = 4000;
-            _endRequestObject = new EndRequestObject(this);
+            BufferSize = 100;
+            GrowBufferAsNeeded = true;
+        }
+
+        /// <summary>
+        /// Creates a new instance of the <see cref="ASPNetBufferingTargetWrapper"/>, initializes <see cref="BufferSize"/> to 100 and
+        /// sets the <see cref="WrapperTargetBase.WrappedTarget"/> to the specified value.
+        /// </summary>
+        public ASPNetBufferingTargetWrapper(Target writeTo) : this(writeTo, 100)
+        {
+        }
+
+        /// <summary>
+        /// Creates a new instance of the <see cref="ASPNetBufferingTargetWrapper"/>, initializes <see cref="BufferSize"/> and
+        /// the <see cref="WrapperTargetBase.WrappedTarget"/> to the specified values.
+        /// </summary>
+        public ASPNetBufferingTargetWrapper(Target writeTo, int bufferSize)
+        {
+            WrappedTarget = writeTo;
+            BufferSize = bufferSize;
         }
 
         /// <summary>
@@ -106,73 +123,59 @@ namespace NLog.Targets.Wrappers.RequestBuffering
             }
         }
 
+        public override void Initialize()
+        {
+            NLog.Web.NLogHttpModule.BeginRequest += new EventHandler(this.OnBeginRequest);
+            NLog.Web.NLogHttpModule.EndRequest += new EventHandler(this.OnEndRequest);
+        }
+
+        /// <summary>
+        /// Adds the specified log event to the buffer.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            LogEventInfoBuffer buffer = GetOrCreateBuffer();
+            WrappedTarget.PrecalculateVolatileLayouts(logEvent);
+            LogEventInfoBuffer buffer = GetRequestBuffer();
             if (buffer != null)
             {
                 buffer.Append(logEvent);
             }
         }
 
-        protected abstract LogEventInfoBuffer GetOrCreateBuffer();
-
-        protected LogEventInfoBuffer CreateBuffer()
+        /// <summary>
+        /// Closes the target by flushing pending events in the buffer (if any).
+        /// </summary>
+        protected internal override void Close()
         {
-            return new LogEventInfoBuffer(this.BufferSize, this.GrowBufferAsNeeded, this.BufferGrowLimit);
+            Flush(TimeSpan.FromSeconds(3));
+            base.Close ();
         }
 
-        public IDisposable BeginRequest()
+        private LogEventInfoBuffer GetRequestBuffer()
         {
-            // end previous request (if any)
-            EndRequest();
-            return _endRequestObject;
+            HttpContext context = HttpContext.Current;
+            if (context == null)
+                return null;
+            return context.Items[_dataSlot] as LogEventInfoBuffer;
         }
 
-        public void EndRequest()
+        private void OnBeginRequest(object sender, EventArgs args)
         {
-            LogEventInfoBuffer buffer = GetOrCreateBuffer();
+            HttpContext context = HttpContext.Current;
+            context.Items[_dataSlot] = new LogEventInfoBuffer(this.BufferSize, this.GrowBufferAsNeeded, this.BufferGrowLimit);
+        }
+
+        private void OnEndRequest(object sender, EventArgs args)
+        {
+            LogEventInfoBuffer buffer = GetRequestBuffer();
             if (buffer != null)
             {
-                // get buffered events
-
                 LogEventInfo[] events = buffer.GetEventsAndClear();
-                for (int i = 0; i < events.Length; ++i)
+                if (events.Length > 0)
                 {
-                    LogEventInfo e = events[i];
-                    if (ShouldWrite(e))
-                        WrappedTarget.Write(e);
+                    WrappedTarget.Write(events);
                 }
-            }
-        }
-
-        protected virtual bool ShouldWrite(LogEventInfo e)
-        {
-            return e.Level >= LogLevel.Info;
-        }
-
-        /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
-        {
-            base.PopulateLayouts (layouts);
-            WrappedTarget.PopulateLayouts(layouts);
-        }
-
-        class EndRequestObject : IDisposable
-        {
-            private RequestBufferingTargetBase _target;
-
-            public EndRequestObject(RequestBufferingTargetBase target)
-            {
-                _target = target;
-            }
-
-            public void Dispose()
-            {
-                _target.EndRequest();
             }
         }
     }

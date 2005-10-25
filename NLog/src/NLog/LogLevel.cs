@@ -39,7 +39,7 @@ namespace NLog
     /// <summary>
     /// Defines available log levels.
     /// </summary>
-    public class LogLevel
+    public class LogLevel : IComparable
     {
         private string _name;
         private string _uppercaseName;
@@ -217,6 +217,12 @@ namespace NLog
         public override string ToString()
         {
             return Name;
+        }
+
+        public int CompareTo(object obj)
+        {
+            LogLevel l = (LogLevel)obj;
+            return this.Ordinal - l.Ordinal;
         }
     } 
 }

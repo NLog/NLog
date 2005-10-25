@@ -50,7 +50,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// A target wrapper that causes retries on wrapped target errors.
     /// </summary>
-    [Target("RetryingWrapper",IgnoresLayout=true)]
+    [Target("RetryingWrapper",IgnoresLayout=true,IsWrapper=true)]
     public class RetryTargetWrapper: WrapperTargetBase
     {
         private int _retryCount = 3;

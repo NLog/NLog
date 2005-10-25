@@ -38,12 +38,11 @@ using System.Runtime.InteropServices;
 using NLog;
 using NLog.Config;
 using NLog.Targets.Compound;
-using NLog.Targets.Wrappers.RequestBuffering;
 using NLog.Targets.Wrappers;
+using NLog.Conditions;
 
 namespace NLog.Tester
 {
-
     public class Test
     {
         public static void LogProc(string msg)
@@ -54,6 +53,13 @@ namespace NLog.Tester
         {
             NLog.Internal.InternalLogger.LogToConsole = true;
             NLog.Internal.InternalLogger.LogLevel = LogLevel.Trace;
+
+            //ConditionExpression where = ConditionParser.ParseBooleanExpression("starts-with('a','b')");
+            //Console.WriteLine("where: {0}", where);
+
+            //Console.WriteLine(where.Evaluate(null));
+            //return; 
+            
 
             System.Threading.Thread.CurrentThread.Name = "threadNameIsHere";
 

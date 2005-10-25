@@ -70,8 +70,8 @@ namespace NLog.Targets
     /// </p>
     /// <xml src="examples/targets/File/FileTargetMultiple2.nlog" />
     /// <p>
-    /// Depending on your usage scenario it may be useful to switch the
-    /// target into asynchronous mode. This way all your log messages
+    /// Depending on your usage scenario it may be useful to add an <a href="target.AsyncWrapper.html">asynchronous target wrapper</a>
+    /// around the file target. This way all your log messages
     /// will be written in a separate thread so your main thread can finish
     /// your work more quickly. Asynchronous logging is recommended
     /// for multi-threaded server applications which run for a long time and

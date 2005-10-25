@@ -556,7 +556,12 @@
     </target>
 
     <target name="doc" depends="configure, build, xmldoc, website, helpwebsite">
-        <copy file="${nant.project.basedir}/web/syntax.xsl" tofile="build/${buildsubdir}/syntax.xsl" />
+        <copy file="${nant.project.basedir}/web/syntax.xsl" tofile="build/${buildsubdir}/syntax.xsl" overwrite="true" />
+        <xmlpoke file="build/${buildsubdir}/syntax.xsl" xpath="//xsl:param[@name='external-base']" value="file://${webbuild.dir}">
+            <namespaces>
+                <namespace prefix="xsl" uri="http://www.w3.org/1999/XSL/Transform" />
+            </namespaces>
+        </xmlpoke>
         <copy file="${nant.project.basedir}/NLog-${framework::get-target-framework()}.ndoc" tofile="build/${buildsubdir}/NLog.ndoc" />
         <copy todir="build/${buildsubdir}/help/examples">
             <fileset basedir="build/${buildsubdir}/helpweb/examples">
@@ -574,7 +579,7 @@
             </sourcefiles>
         </uptodate>
         <if test="${not help.uptodate}">
-            <exec program="${ndoc.console.exe}" workingdir="build/${buildsubdir}" commandline="-documenter=MSDN -project=NLog.ndoc" />
+            <exec program="${ndoc.console.exe}" workingdir="build/${buildsubdir}" commandline="-documenter=MSDN -project=.\NLog.ndoc" />
         </if>
     </target>
 
@@ -690,7 +695,7 @@
         </uptodate>
         <if test="${not xmldoc.uptodate}">
             <copy file="${nant.project.basedir}/NLog-${framework::get-target-framework()}.ndoc" tofile="build/${buildsubdir}/NLog.ndoc" />
-            <exec program="${ndoc.console.exe}" workingdir="build/${buildsubdir}" commandline="-documenter=XML -project=NLog.ndoc" />
+            <exec program="${ndoc.console.exe}" workingdir="build/${buildsubdir}" commandline="-documenter=XML -project=./NLog.ndoc" />
         </if>
         <echo message="Getting target, filter and layout renderer names from build/${buildsubdir}/doc.xml ..." />
         <script language="C#">
@@ -731,7 +736,7 @@
     </target>
 
     <target name="website" depends="configure">
-        <property name="webbuild.dir" value="${web.dir}" />
+        <property name="webbuild.dir" value="${path::combine(nant.project.basedir,web.dir)}" />
         <property name="web.buildmode" value="web" />
         <property name="web.sourceforge" value="1" />
         <call target="buildwebsite" />
@@ -739,7 +744,7 @@
     </target>
 
     <target name="helpwebsite" depends="configure">
-        <property name="webbuild.dir" value="${helpweb.dir}" />
+        <property name="webbuild.dir" value="${path::combine(nant.project.basedir,helpweb.dir)}" />
         <property name="web.buildmode" value="help" />
         <property name="web.sourceforge" value="0" />
         <call target="buildwebsite" />
@@ -864,7 +869,7 @@
         <foreach item="String" in="${nlog.targetNames}" delim="," property="t">
             <style out="${webbuild.dir}/target.${t}.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
                 <parameters>
-                    <parameter name="external-base" value="" />
+                    <parameter name="external-base" value="${webbuild.dir}" />
                     <parameter name="file_extension" value="html" />
                     <parameter name="sourceforge" value="${web.sourceforge}" />
                     <parameter name="page_id_override" value="reference" />
@@ -878,7 +883,7 @@
         <foreach item="String" in="${nlog.layoutRendererNames}" delim="," property="t">
             <style out="${webbuild.dir}/lr.${t}.html" style="web/layoutrenderers.xsl" in="build/${buildsubdir}/doc.xml">
                 <parameters>
-                    <parameter name="external-base" value="" />
+                    <parameter name="external-base" value="${webbuild.dir}" />
                     <parameter name="file_extension" value="html" />
                     <parameter name="sourceforge" value="${web.sourceforge}" />
                     <parameter name="page_id_override" value="reference" />
@@ -892,7 +897,7 @@
         <foreach item="String" in="${nlog.filterNames}" delim="," property="t">
             <style out="${webbuild.dir}/filter.${t}.html" style="web/filters.xsl" in="build/${buildsubdir}/doc.xml">
                 <parameters>
-                    <parameter name="external-base" value="" />
+                    <parameter name="external-base" value="${webbuild.dir}" />
                     <parameter name="file_extension" value="html" />
                     <parameter name="sourceforge" value="${web.sourceforge}" />
                     <parameter name="page_id_override" value="reference" />
@@ -905,7 +910,7 @@
 
         <style out="${webbuild.dir}/targets.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
-                <parameter name="external-base" value="" />
+                <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
                 <parameter name="page_id_override" value="reference" />
@@ -916,7 +921,7 @@
 
         <style out="${webbuild.dir}/layoutrenderers.html" style="web/layoutrenderers.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
-                <parameter name="external-base" value="" />
+                <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
                 <parameter name="page_id_override" value="reference" />
@@ -927,7 +932,7 @@
         
         <style out="${webbuild.dir}/filters.html" style="web/filters.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
-                <parameter name="external-base" value="" />
+                <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
                 <parameter name="page_id_override" value="reference" />
@@ -936,13 +941,24 @@
             </parameters>
         </style>
         
+        <style out="${webbuild.dir}/conditions.html" style="web/conditions.xsl" in="build/${buildsubdir}/doc.xml">
+            <parameters>
+                <parameter name="external-base" value="${webbuild.dir}" />
+                <parameter name="file_extension" value="html" />
+                <parameter name="sourceforge" value="${web.sourceforge}" />
+                <parameter name="page_id_override" value="reference" />
+                <parameter name="subpage_id_override" value="conditions" />
+                <parameter name="mode" value="${web.buildmode}" />
+            </parameters>
+        </style>
+
         <style destdir="${webbuild.dir}" style="web/style.xsl">
             <infiles basedir="web">
                 <include name="*.xml" />
                 <exclude name="common.en.xml" />
             </infiles>
             <parameters>
-                <parameter name="external-base" value="" />
+                <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
                 <parameter name="mode" value="${web.buildmode}" />

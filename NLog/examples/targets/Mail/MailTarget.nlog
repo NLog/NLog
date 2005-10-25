@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<nlog>
+    <targets>
+        <target name="mail" type="Mail"
+            smtpserver="192.168.0.15" 
+            from="jaak@jkowalski.net"
+            to="jaak@jkowalski.net"
+            subject="test subject" />
+    </targets>
+
+    <rules>
+        <logger name="*" minLevel="Debug" writeTo="mail" />
+    </rules>
+</nlog>

@@ -50,7 +50,7 @@ namespace NLog.Targets.Compound
     /// <summary>
     /// A compound target writes to a randomly-chosen target among the sub-targets.
     /// </summary>
-    [Target("RandomizeGroup",IgnoresLayout=true)]
+    [Target("RandomizeGroup",IgnoresLayout=true,IsCompound=true)]
     public class RandomizeTarget: CompoundTargetBase
     {
         private static Random _random = new Random();

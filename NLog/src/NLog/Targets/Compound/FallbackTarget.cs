@@ -50,7 +50,7 @@ namespace NLog.Targets.Compound
     /// <summary>
     /// A compound target that provides fallback-on-error functionality.
     /// </summary>
-    [Target("FallbackGroup",IgnoresLayout=true)]
+    [Target("FallbackGroup",IgnoresLayout=true,IsCompound=true)]
     public class FallbackTarget: CompoundTargetBase
     {
         private int _currentTarget = 0;
