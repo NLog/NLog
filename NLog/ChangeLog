@@ -1,3 +1,7 @@
+2005-10-26 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+
+	* Added ${aspnet-sessionid} to access (guess!) ASP.NET session ID
+
 2005-10-25 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 
 	* Added ASPNetBufferingWrapper target which buffers and post-processes
