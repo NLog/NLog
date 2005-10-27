@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <nlog>
     <targets>
-        <target name="console" type="Console" layout="${date:format=hh\:MM\:ss} ${logger} ${message}" />
+        <target name="console" type="Console" layout="${date:format=HH\:MM\:ss} ${logger} ${message}" />
     </targets>
 
     <rules>

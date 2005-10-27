@@ -52,6 +52,27 @@ namespace NLog.Targets
     /// Sends logging messages to the remote instance of NLog Viewer. 
     /// NOT OPERATIONAL YET.
     /// </summary>
+    /// <example>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <xml src="examples/targets/NLogViewer/NLogViewerTarget.nlog" />
+    /// <p>
+    /// This assumes just one target and a single rule. More configuration
+    /// options are described <a href="config.html">here</a>.
+    /// </p>
+    /// <p>
+    /// To set up the log target programmatically use code like this:
+    /// </p>
+    /// <cs src="examples/targets/NLogViewer/NLogViewerTarget.cs" />
+    /// <p>
+    /// NOTE: If your receiver application is ever likely to be off-line, don't use TCP protocol
+    /// or you'll get TCP timeouts and your application will crawl. 
+    /// Either switch to UDP transport or use <a href="target.AsyncWrapper.html">AsyncWrapper</a> target
+    /// so that your application threads will not be blocked by the timing-out connection attempts.
+    /// </p>
+    /// </example>
     [Target("NLogViewer", IgnoresLayout=true)]
     public class NLogViewerTarget: NetworkTarget
     {
