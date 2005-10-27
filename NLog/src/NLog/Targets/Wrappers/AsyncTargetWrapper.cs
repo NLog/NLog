@@ -51,6 +51,19 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// A target wrapper that provides asynchronous, buffered execution of target writes.
     /// </summary>
+    /// <example>
+    /// <p><b>TODO - write some more whys and howtos...</b></p>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <xml src="examples/targets/AsyncWrapper/AsyncTargetWrapper.nlog" />
+    /// <p>
+    /// The above examples assume just one target and a single rule. See below for
+    /// a programmatic configuration that's equivalent to the above config file:
+    /// </p>
+    /// <cs src="examples/targets/AsyncWrapper/AsyncTargetWrapper.cs" />
+    /// </example>
     [Target("AsyncWrapper",IsWrapper=true)]
     public class AsyncTargetWrapper: WrapperTargetBase
     {

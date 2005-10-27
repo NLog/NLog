@@ -79,7 +79,11 @@ namespace NLog.Targets
     /// </p>
     /// <xml src="examples/targets/File/FileTargetAsync.nlog" />
     /// <p>
-    /// The above examples assume just one target and a single rule. 
+    /// The above examples assume just one target and a single rule. See below for
+    /// a programmatic configuration that's equivalent to the above config file:
+    /// </p>
+    /// <cs src="examples/targets/File/FileTargetAsync.cs" />
+    /// <p>
     /// More configuration options are described <a href="config.html">here</a>.
     /// </p>
     /// <p>
