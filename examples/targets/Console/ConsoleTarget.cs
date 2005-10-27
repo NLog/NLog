@@ -6,7 +6,7 @@ class Example
     static void Main(string[] args)
     {
         ConsoleTarget target = new ConsoleTarget();
-        target.Layout = "${date:format=hh\\:MM\\:ss} ${logger} ${message}";
+        target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${message}";
 
         NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
 

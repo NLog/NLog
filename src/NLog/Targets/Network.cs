@@ -45,6 +45,39 @@ namespace NLog.Targets
     /// <summary>
     /// Sends logging messages over the network.
     /// </summary>
+    /// <example>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <xml src="examples/targets/Network/NetworkTarget.nlog" />
+    /// <p>
+    /// This assumes just one target and a single rule. More configuration
+    /// options are described <a href="config.html">here</a>.
+    /// </p>
+    /// <p>
+    /// To set up the log target programmatically use code like this:
+    /// </p>
+    /// <cs src="examples/targets/Network/NetworkTarget.cs" />
+    /// <p>
+    /// To print the results, use any application that's able to receive messages over
+    /// TCP or UDP. <a href="http://m.nu/program/util/netcat/netcat.html">NetCat</a> is
+    /// a simple but very powerful command-line tool that can be used for that. This image
+    /// demonstrates the NetCat tool receiving log messages from Network target.
+    /// </p>
+    /// <img src="examples/targets/Network/Output.gif" />
+    /// <p>
+    /// NOTE: If your receiver application is ever likely to be off-line, don't use TCP protocol
+    /// or you'll get TCP timeouts and your application will crawl. 
+    /// Either switch to UDP transport or use <a href="target.AsyncWrapper.html">AsyncWrapper</a> target
+    /// so that your application threads will not be blocked by the timing-out connection attempts.
+    /// </p>
+    /// <p>
+    /// There are two specialized versions of the Network target: <a href="target.Chainsaw.html">Chainsaw</a>
+    /// and <a href="target.NLogViewer.html">NLogViewer</a> which write to instances of Chainsaw log4j viewer
+    /// or NLogViewer application respectively.
+    /// </p>
+    /// </example>
     [Target("Network")]
     public class NetworkTarget: Target
     {

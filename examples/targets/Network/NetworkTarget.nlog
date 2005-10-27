@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<nlog>
+    <targets>
+        <target name="network" type="Network" address="tcp://localhost:5555" layout="${level} ${logger} ${message}${newline}" />
+    </targets>
+
+    <rules>
+        <logger name="*" minLevel="Debug" writeTo="network" />
+    </rules>
+</nlog>
