@@ -2,7 +2,7 @@
 set DOTNETSDK_DIR=C:\Program Files\Microsoft Visual Studio 8\SDK\v2.0
 set VS_DIR=C:\Program Files\Microsoft Visual Studio 8
 set VC_DIR=C:\Program Files\Microsoft Visual Studio 8\VC
-set FRAMEWORK_DIR=%WINDIR%\Microsoft.NET\Framework\v2.0.50215
+set FRAMEWORK_DIR=%WINDIR%\Microsoft.NET\Framework\v2.0.50727
 set NLOG_BASE_DIR=%CD%
 
 set PATH=%VC_DIR%\bin;%VS_DIR%\Common7\ide;%PATH%
