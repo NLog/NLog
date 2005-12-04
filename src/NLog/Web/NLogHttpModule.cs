@@ -60,12 +60,18 @@ namespace NLog.Web
 
         public void BeginRequestHandler(object sender, EventArgs args)
         {
-            BeginRequest(sender, args);
+            if (BeginRequest != null)
+            {
+                BeginRequest(sender, args);
+            }
         }
 
         public void EndRequestHandler(object sender, EventArgs args)
         {
-            EndRequest(sender, args);
+            if (EndRequest != null)
+            {
+                EndRequest(sender, args);
+            }
         }
     }
 }
