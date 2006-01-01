@@ -329,6 +329,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Config\AcceptsConditionAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Config\AcceptsLayoutAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
