@@ -37,6 +37,7 @@ using System;
 using System.Text;
 using System.Diagnostics;
 using System.Reflection;
+using System.IO;
 
 namespace NLog.LayoutRenderers
 {
@@ -49,6 +50,7 @@ namespace NLog.LayoutRenderers
         private bool _className = true;
         private bool _methodName = true;
         private bool _sourceFile = false;
+        private bool _includeSourcePath = true;
 
         /// <summary>
         /// Render the class name.
@@ -95,6 +97,22 @@ namespace NLog.LayoutRenderers
             set
             {
                 _sourceFile = value;
+            }
+        }
+
+        /// <summary>
+        /// Include source file path.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(true)]
+        public bool IncludeSourcePath
+        {
+            get
+            {
+                return _includeSourcePath;
+            }
+            set
+            {
+                _includeSourcePath = value;
             }
         }
 
@@ -156,7 +174,14 @@ namespace NLog.LayoutRenderers
                     if (fileName != null)
                     {
                         sb2.Append("(");
-                        sb2.Append(fileName);
+                        if (IncludeSourcePath)
+                        {
+                            sb2.Append(fileName);
+                        }
+                        else
+                        {
+                            sb2.Append(Path.GetFileName(fileName));
+                        }
                         sb2.Append(":");
                         sb2.Append(frame.GetFileLineNumber());
                         sb2.Append(")");
