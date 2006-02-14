@@ -1,0 +1,8 @@
+2005-02-14 Francis Gingras <francis@atresearch.com>
+
+	* Added Clear log functionality to the UI. 
+
+2005-02-14 Jaroslaw Kowalski <jaak@jkowalski.net>
+
+	* Turned NLogViewer into a separate project. Now having a separate
+	ChangeLog.

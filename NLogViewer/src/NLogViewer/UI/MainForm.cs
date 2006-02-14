@@ -130,7 +130,7 @@ namespace NLogViewer.UI
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(MainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this.menuItemFile = new System.Windows.Forms.MenuItem();
             this.menuItemNewLog = new System.Windows.Forms.MenuItem();
@@ -182,21 +182,21 @@ namespace NLogViewer.UI
             // mainMenu1
             // 
             this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-                                                                                      this.menuItemFile,
-                                                                                      this.menuItem9,
-                                                                                      this.menuItem6,
-                                                                                      this.menuItemHelp});
+            this.menuItemFile,
+            this.menuItem9,
+            this.menuItem6,
+            this.menuItemHelp});
             // 
             // menuItemFile
             // 
             this.menuItemFile.Index = 0;
             this.menuItemFile.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-                                                                                         this.menuItemNewLog,
-                                                                                         this.menuItem10,
-                                                                                         this.menuItem3,
-                                                                                         this.menuItemManageLogs,
-                                                                                         this.menuItem1,
-                                                                                         this.menuItemFileExit});
+            this.menuItemNewLog,
+            this.menuItem10,
+            this.menuItem3,
+            this.menuItemManageLogs,
+            this.menuItem1,
+            this.menuItemFileExit});
             this.menuItemFile.Text = "&File";
             // 
             // menuItemNewLog
@@ -235,8 +235,8 @@ namespace NLogViewer.UI
             // 
             this.menuItem9.Index = 1;
             this.menuItem9.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-                                                                                      this.menuItemLogEventDetails,
-                                                                                      this.menuItemViewStatusMessages});
+            this.menuItemLogEventDetails,
+            this.menuItemViewStatusMessages});
             this.menuItem9.Text = "&View";
             // 
             // menuItemLogEventDetails
@@ -253,12 +253,12 @@ namespace NLogViewer.UI
             // 
             this.menuItem6.Index = 2;
             this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-                                                                                      this.menuItem12,
-                                                                                      this.menuItem13,
-                                                                                      this.menuItem11,
-                                                                                      this.menuItem2,
-                                                                                      this.menuItem5,
-                                                                                      this.menuItemFilterHighlight});
+            this.menuItem12,
+            this.menuItem13,
+            this.menuItem11,
+            this.menuItem2,
+            this.menuItem5,
+            this.menuItemFilterHighlight});
             this.menuItem6.Text = "&Log";
             // 
             // menuItem12
@@ -275,6 +275,7 @@ namespace NLogViewer.UI
             // 
             this.menuItem11.Index = 2;
             this.menuItem11.Text = "&Clear";
+            this.menuItem11.Click += new System.EventHandler(this.menuItem11_Click);
             // 
             // menuItem2
             // 
@@ -296,7 +297,7 @@ namespace NLogViewer.UI
             // 
             this.menuItemHelp.Index = 3;
             this.menuItemHelp.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-                                                                                         this.menuItemHelpAbout});
+            this.menuItemHelpAbout});
             this.menuItemHelp.Text = "&Help";
             // 
             // menuItemHelpAbout
@@ -308,8 +309,8 @@ namespace NLogViewer.UI
             // 
             this.toolBar1.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
             this.toolBar1.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
-                                                                                        this.toolBarButton1,
-                                                                                        this.toolBarButton2});
+            this.toolBarButton1,
+            this.toolBarButton2});
             this.toolBar1.DropDownArrows = true;
             this.toolBar1.ImageList = this.imageList1;
             this.toolBar1.Location = new System.Drawing.Point(0, 0);
@@ -317,6 +318,7 @@ namespace NLogViewer.UI
             this.toolBar1.ShowToolTips = true;
             this.toolBar1.Size = new System.Drawing.Size(742, 32);
             this.toolBar1.TabIndex = 5;
+            this.toolBar1.ButtonClick += new System.Windows.Forms.ToolBarButtonClickEventHandler(this.toolBar1_ButtonClick);
             // 
             // toolBarButton1
             // 
@@ -328,7 +330,6 @@ namespace NLogViewer.UI
             // 
             // imageList1
             // 
-            this.imageList1.ImageSize = new System.Drawing.Size(21, 20);
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
@@ -364,35 +365,35 @@ namespace NLogViewer.UI
             this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxLog.Size = new System.Drawing.Size(734, 432);
             this.textBoxLog.TabIndex = 1;
-            this.textBoxLog.Text = "";
             // 
             // imageList2
             // 
+            this.imageList2.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList2.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // treeContextMenu
             // 
             this.treeContextMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-                                                                                            this.menuItem14,
-                                                                                            this.menuItem22,
-                                                                                            this.menuItem23,
-                                                                                            this.menuItem24});
+            this.menuItem14,
+            this.menuItem22,
+            this.menuItem23,
+            this.menuItem24});
             // 
             // menuItem14
             // 
             this.menuItem14.Index = 0;
             this.menuItem14.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-                                                                                       this.menuItem27,
-                                                                                       this.menuItem21,
-                                                                                       this.menuItem7,
-                                                                                       this.menuItem16,
-                                                                                       this.menuItem17,
-                                                                                       this.menuItem18,
-                                                                                       this.menuItem19,
-                                                                                       this.menuItem20,
-                                                                                       this.menuItem15,
-                                                                                       this.menuItem26});
+            this.menuItem27,
+            this.menuItem21,
+            this.menuItem7,
+            this.menuItem16,
+            this.menuItem17,
+            this.menuItem18,
+            this.menuItem19,
+            this.menuItem20,
+            this.menuItem15,
+            this.menuItem26});
             this.menuItem14.Text = "Log &Level";
             // 
             // menuItem27
@@ -468,18 +469,20 @@ namespace NLogViewer.UI
             // 
             // MainForm
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
             this.ClientSize = new System.Drawing.Size(742, 495);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.toolBar1);
             this.Menu = this.mainMenu1;
             this.Name = "MainForm";
             this.Text = "NLog Viewer";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.Closed += new System.EventHandler(this.MainForm_Closed);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPageNLogViewerTrace.ResumeLayout(false);
+            this.tabPageNLogViewerTrace.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 		#endregion
@@ -642,6 +645,23 @@ namespace NLogViewer.UI
             {
                 i.Stop();
             }
+        }
+
+        private void menuItem11_Click(object sender, EventArgs e)
+        {
+            foreach (LogInstance i in _instances)
+            {
+                i.Clear();
+            }
+        }
+
+        private void toolBar1_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
+        {
+            if (e.Button == toolBarButton2)
+                foreach (LogInstance i in _instances)
+                {
+                    i.Clear();
+                }
         }
 	}
 }

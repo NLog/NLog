@@ -364,6 +364,11 @@ namespace NLogViewer
             _logEventToListViewItem[ev] = item;
         }
 
+        public void Clear()
+        {
+            TabPanel.listViewLogMessages.Items.Clear();
+        }
+
         public void ProcessLogEvent(LogEvent logEvent)
         {
             logEvent.ID = Interlocked.Increment(ref _globalEventID);
