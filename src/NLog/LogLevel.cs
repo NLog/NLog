@@ -89,7 +89,7 @@ namespace NLog
         static LogLevel()
         {
             int l = 0;
-            
+
             Trace = new LogLevel("Trace", l++);
             Debug = new LogLevel("Debug", l++);
             Info = new LogLevel("Info", l++);
@@ -219,6 +219,14 @@ namespace NLog
             return Name;
         }
 
+        /// <summary>
+        /// Compares the level to the other <see cref="LogLevel"/> object.
+        /// </summary>
+        /// <param name="obj">the object object</param>
+        /// <returns>a value less than zero when this logger's <see cref="Ordinal"/> is 
+        /// less than the other logger's ordinal, 0 when they are equal and 
+        /// greater than zero when this ordinal is greater than the
+        /// other ordinal.</returns>
         public int CompareTo(object obj)
         {
             LogLevel l = (LogLevel)obj;

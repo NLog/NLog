@@ -76,12 +76,18 @@ namespace NLog
             set { _ignoresLayout = value; }
         }
 
+        /// <summary>
+        /// Marks the target as 'wrapper' target (used to generate the target summary documentation page);
+        /// </summary>
         public bool IsWrapper
         {
             get { return _isWrapper; }
             set { _isWrapper = value; }
         }
 
+        /// <summary>
+        /// Marks the target as 'compound' target (used to generate the target summary documentation page);
+        /// </summary>
         public bool IsCompound
         {
             get { return _isCompound; }

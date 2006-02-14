@@ -559,6 +559,21 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "LayoutRenderers\ASPNetSessionID.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRenderers\ASPNetUserAuthType.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LayoutRenderers\ASPNetUserIdentity.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "LayoutRenderers\BaseDir.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

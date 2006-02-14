@@ -91,6 +91,9 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Invalidates the collection of layouts cached by <see cref="GetLayouts"/>.
+        /// </summary>
         protected void InvalidateLayouts()
         {
             _allLayouts = null;

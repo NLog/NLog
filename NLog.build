@@ -7,16 +7,15 @@
     <property name="nlog.define" value="NANT" />
 
     <property name="scp.program" value="pscp" />
-    <property name="scp.program.args" value="-batch -q" />
-
     <property name="ssh.program" value="plink" />
-    <property name="ssh.program.args" value="-batch" />
+    <property name="ssh.server" value="jaak@sav.net" />
+    <property name="scp.args" value="-q -batch" />
+    <property name="ssh.args" value="-batch" />
 
     <property name="ndoc.console.exe" value="C:\Program Files\NDoc 1.3\bin\net\1.1\ndocconsole.exe" />
     <property name="prettyprinter.exe" value="tools/PrettyPrinter.exe" />
 
-    <property name="sourceforge.addr" value="jkowalski@nlog.sourceforge.net" />
-    <property name="sourceforge.groupdir" value="/home/groups/n/nl/nlog" />
+    <property name="webserver.deploy.dir" value="web/www.nlog-project.org/html" />
     <property name="csc.warninglevel" value="4" />
 
     <property name="nlog.package.name" value="${tstamp.date}" unless="${property::exists('nlog.package.name')}" />
@@ -494,9 +493,9 @@
     </target>
 
     <target name="build-mono-1.0" depends="NLog, NLog.Mono" />
-    <target name="build-net-1.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLogViewer, NLogC" />
-    <target name="build-net-1.1" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLogViewer, NLogC" />
-    <target name="build-net-2.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLogViewer, NLogC" />
+    <target name="build-net-1.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLogC" />
+    <target name="build-net-1.1" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLogC" />
+    <target name="build-net-2.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLogC" />
     <target name="build-netcf-1.0" depends="NLog, NLog.CompactFramework" />
     <target name="build-nlogc-net-1.0" depends="NLogC-1.0, NLogC-1.1, NLogC-2.0" />
     <target name="build-nlogc-net-1.1" depends="NLogC-1.1, NLogC-2.0" />
@@ -593,9 +592,9 @@
             </fileset>
         </zip>
         <echo message="Uploading the zipped website..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} website.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
+        <exec program="${scp.program}" commandline="${scp.program.args} website.zip ${deploy.host}:${deploy.dir}" />
         <echo message="Unpacking the zipped website..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_website.sh" />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${deploy.host} ${deploy.dir}/unpack_website.sh" />
         <echo message="Website deployed." />
     </target>
 
@@ -606,24 +605,23 @@
             </fileset>
         </zip>
         <echo message="Uploading the zipped website..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} website.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
+        <exec program="${scp.program}" commandline="${scp.program.args} website.zip ${deploy.host}:${deploy.dir}" />
         <echo message="Unpacking the zipped website..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_test_website.sh" />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${deploy.host} ${deploy.dir}/unpack_test_website.sh" />
         <echo message="Website deployed." />
     </target>
 
     <target name="publish_website_help" depends="doc">
-        <zip zipfile="help.zip">
+        <zip zipfile="web.zip">
             <fileset basedir="${nlog.help.dir}">
                 <include name="**/*" />
                 <exclude name="**/NLog.chm" />
             </fileset>
         </zip>
-        <echo message="Uploading the zipped help..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} help.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
-        <echo message="Unpacking the zipped help..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_help.sh" />
-        <echo message="Help deployed." />
+        <echo message="Uploading web.zip and tools/web_install.sh to ${ssh.server}..." />
+        <exec program="${scp.program}" commandline="${scp.args} web.zip tools/web_install.sh ${ssh.server}:." workingdir="." />
+        <echo message="Spawning web_install.sh..." />
+        <exec program="${ssh.program}" commandline="${ssh.args} ${ssh.server} dos2unix web_install.sh &amp;&amp; /bin/bash web_install.sh ${webserver.deploy.dir}/help" workingdir="." />
     </target>
 
     <target name="publish_clover" depends="clover-html-report">
@@ -633,9 +631,9 @@
             </fileset>
         </zip>
         <echo message="Uploading the zipped coverage results..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} clover.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
+        <exec program="${scp.program}" commandline="${scp.program.args} clover.zip ${deploy.host}:${deploy.dir}" />
         <echo message="Unpacking the zipped coverage results..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_clover.sh" />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${deploy.host} ${deploy.dir}/unpack_clover.sh" />
         <echo message="Coverage results deployed." />
     </target>
 
@@ -667,21 +665,21 @@
 
     <target name="publish_snapshot" depends="fullrelease">
         <echo message="Creating a directory for ${nlog.package.name}..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} mkdir ${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}" failonerror="false" />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${deploy.host} mkdir ${deploy.dir}/htdocs/snapshots/${nlog.package.name}" failonerror="false" />
         <echo message="Uploading ${installer.name}..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ${installer.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}/" />
+        <exec program="${scp.program}" commandline="${scp.program.args} ${installer.name} ${deploy.host}:${deploy.dir}/htdocs/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ${source_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ${source_snapshot.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}/" />
+        <exec program="${scp.program}" commandline="${scp.program.args} ${source_snapshot.name} ${deploy.host}:${deploy.dir}/htdocs/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ${binary_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ${binary_snapshot.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}/" />
+        <exec program="${scp.program}" commandline="${scp.program.args} ${binary_snapshot.name} ${deploy.host}:${deploy.dir}/htdocs/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ${nlogc_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ${nlogc_snapshot.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}/" />
+        <exec program="${scp.program}" commandline="${scp.program.args} ${nlogc_snapshot.name} ${deploy.host}:${deploy.dir}/htdocs/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ${binary_compact_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ${binary_compact_snapshot.name} ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}/" />
+        <exec program="${scp.program}" commandline="${scp.program.args} ${binary_compact_snapshot.name} ${deploy.host}:${deploy.dir}/htdocs/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ChangeLog..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ChangeLog ${sourceforge.addr}:${sourceforge.groupdir}/htdocs/snapshots/${nlog.package.name}/" />
+        <exec program="${scp.program}" commandline="${scp.program.args} ChangeLog ${deploy.host}:${deploy.dir}/htdocs/snapshots/${nlog.package.name}/" />
         <echo message="Fixing permissions..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/fix_group_perm.sh" />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${deploy.host} ${deploy.dir}/fix_group_perm.sh" />
     </target>
 
     <target name="xmldoc" depends="build">
@@ -1037,10 +1035,29 @@
             </fileset>
         </zip>
         <echo message="Uploading the zipped nunit2report results..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} nunit2report.zip ${sourceforge.addr}:${sourceforge.groupdir}" />
+        <exec program="${scp.program}" commandline="${scp.program.args} nunit2report.zip ${deploy.host}:${deploy.dir}" />
         <echo message="Unpacking the zipped nunit2report results..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${sourceforge.addr} ${sourceforge.groupdir}/unpack_nunit2report.sh" />
+        <exec program="${ssh.program}" commandline="${ssh.program.args} ${deploy.host} ${deploy.dir}/unpack_nunit2report.sh" />
         <echo message="NUnit2report results deployed." />
+    </target>
+
+    <target name="deploy-web" depends="website">
+        <delete file="web.zip" if="${file::exists('web.zip')}" />
+        <zip zipfile="web.zip" stampdatetime="${datetime::now()}" includeemptydirs="true">
+            <fileset basedir="${web.dir}">
+                <include name="**/*" />
+                <exclude name="**/.svn" />
+                <exclude name="**/.svn/**" />
+                <exclude name="**/_svn" />
+                <exclude name="**/_svn/**" />
+                <exclude name="**/*.swp" />
+            </fileset>
+        </zip>
+        <echo message="Uploading web.zip and tools/web_install.sh to ${ssh.server}..." />
+        <exec program="${scp.program}" commandline="${scp.args} web.zip tools/web_install.sh ${ssh.server}:." workingdir="." />
+        <echo message="Spawning web_install.sh..." />
+        <exec program="${ssh.program}" commandline="${ssh.args} ${ssh.server} dos2unix web_install.sh &amp;&amp; /bin/bash web_install.sh ${webserver.deploy.dir}" workingdir="." />
+        <!-- <delete file="web.zip" /> -->
     </target>
 
     <target name="sourceforge_release">

@@ -1,3 +1,15 @@
+2006-02-13 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+
+	* Added some docs, moving website to http://www.nlog-project.org/
+	* Excluded NLogViewer from build and project.
+	* Refactored LoggerImpl to allow for some extensibility in the future.
+
+2006-01-13 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+
+	* Fixed a serious reentrancy bug which caused all sorts of problems
+	when formatted message included a parameter where ToString
+	did the logging itself.
+
 2005-10-26 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
 
 	* Added ${aspnet-sessionid} to access (guess!) ASP.NET session ID

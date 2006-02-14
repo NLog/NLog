@@ -125,6 +125,9 @@ namespace NLog.Targets.Wrappers
             }
         }
 
+        /// <summary>
+        /// Initializes the target by hooking up the NLogHttpModule BeginRequest and EndRequest events.
+        /// </summary>
         public override void Initialize()
         {
             NLog.Web.NLogHttpModule.BeginRequest += new EventHandler(this.OnBeginRequest);
