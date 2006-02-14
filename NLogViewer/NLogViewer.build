@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project default="build" xmlns="http://nant.sf.net/NAnt.xsd">
+    <tstamp />
+
+    <property name="nlog.debug" value="true" />
+    <property name="nlog.optimize" value="true" />
+    <property name="nlog.define" value="NANT" />
+    <property name="csc.warninglevel" value="4" />
+
+    <property name="clover.enabled" value="false" />
+    <property name="clover.home" value="C:\Apps\CloverNLog" />
+
+    <target name="configure">
+        <call target="configure-${framework::get-target-framework()}" />
+        <property name="buildsubdir" value="${framework::get-target-framework()}${if(clover.enabled,'-clover','')}${if(nlog.debug,'-debug','')}" />
+        <property name="nlogviewer.dir" value="${nant.project.basedir}/build/${buildsubdir}/bin" unless="${property::exists('nlogviewer.dir')}" />
+
+        <echo message="Building NLog for ${framework::get-target-framework()}" />
+        <echo message="Target dir: ${nlogviewer.dir}" />
+
+        <mkdir dir="${nlogviewer.dir}" />
+    </target>
+
+    <target name="build" depends="configure, NLogViewer" />
+
+    <target name="debug">
+        <property name="nlog.debug" value="true" />
+        <property name="nlog.optimize" value="false" />
+    </target>
+
+    <target name="release">
+        <property name="nlog.debug" value="false" />
+        <property name="nlog.optimize" value="true" />
+    </target>
+
+    <target name="NLogViewer" depends="configure, NLogViewer.Interfaces, NLogViewer.NDumbsterSmtpReceiver">
+        <csc target="winexe" output="${nlogviewer.dir}/NLogViewer.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
+            <sources basedir="src/NLogViewer">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="System.Windows.Forms.dll" />
+                <include name="${nlogviewer.dir}/NLogViewer.Interfaces.dll" />
+            </references>
+            <resources basedir="src/NLogViewer" prefix="NLogViewer" dynamicprefix="true">
+                <include name="**/*.resx" />
+            </resources>
+        </csc>
+        <copy file="src/NLogViewer/App.config" tofile="${nlogviewer.dir}/NLogViewer.exe.config" />
+        <copy file="src/NLogViewer/NLogViewer.exe.manifest" tofile="${nlogviewer.dir}/NLogViewer.exe.manifest" />
+    </target>
+
+    <target name="NLogViewer.Interfaces" depends="configure">
+        <csc target="library" output="${nlogviewer.dir}/NLogViewer.Interfaces.dll" doc="${nlogviewer.dir}/NLogViewer.Interfaces.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
+            <sources basedir="src/NLogViewer.Interfaces">
+                <include name="**/*.cs" />
+            </sources>
+        </csc>
+    </target>
+
+    <target name="NLogViewer.NDumbsterSmtpReceiver" depends="configure">
+        <copy file="external/nDumbster.dll" tofile="${nlogviewer.dir}/nDumbster.dll" />
+        <csc target="library" output="${nlogviewer.dir}/NLogViewer.NDumbsterSmtpReceiver.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
+            <sources basedir="src/NLogViewer.NDumbsterSmtpReceiver">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="${nlogviewer.dir}/NLogViewer.Interfaces.dll" />
+                <include name="${nlogviewer.dir}/nDumbster.dll" />
+            </references>
+        </csc>
+    </target>
+
+    <target name="configure-mono-1.0">
+        <property name="nlog.define" value="${nlog.define};MONO;MONO_1_0" />
+    </target>
+    <target name="configure-net-1.0" />
+    <target name="configure-net-1.1" />
+    <target name="configure-net-2.0" />
+
+    <target name="configure-netcf-1.0">
+        <property name="nlog.define" value="${nlog.define};NETCF;NETCF_1_0" />
+    </target>
+</project>
