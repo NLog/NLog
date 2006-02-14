@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="mailinglists">
+    <h1>Mailing Lists</h1>
+    <p>If you're interested in NLog Viewer development, you may consider joining the following mailing lists:</p>
+    <ul>
+        <li><a href="http://lists.sourceforge.net/lists/listinfo/nlog-list">nlog-list@lists.sourceforge.net</a> - General English discussion</li>
+        <li><a href="http://lists.sourceforge.net/lists/listinfo/nlog-commits">nlog-commits@lists.sourceforge.net</a> - SVN commits</li>
+    </ul>
+</content>
+

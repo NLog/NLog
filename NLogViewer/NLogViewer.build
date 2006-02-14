@@ -7,6 +7,15 @@
     <property name="nlog.define" value="NANT" />
     <property name="csc.warninglevel" value="4" />
 
+    <property name="scp.program" value="pscp" />
+    <property name="ssh.program" value="plink" />
+    <property name="ssh.server" value="jaak@sav.net" />
+    <property name="scp.args" value="-q -batch" />
+    <property name="ssh.args" value="-batch" />
+
+    <property name="webserver.deploy.dir" value="web/viewer.nlog-project.org/html" />
+    <property name="csc.warninglevel" value="4" />
+
     <property name="clover.enabled" value="false" />
     <property name="clover.home" value="C:\Apps\CloverNLog" />
 
@@ -14,6 +23,7 @@
         <call target="configure-${framework::get-target-framework()}" />
         <property name="buildsubdir" value="${framework::get-target-framework()}${if(clover.enabled,'-clover','')}${if(nlog.debug,'-debug','')}" />
         <property name="nlogviewer.dir" value="${nant.project.basedir}/build/${buildsubdir}/bin" unless="${property::exists('nlogviewer.dir')}" />
+        <property name="web.dir" value="build/${buildsubdir}/web" unless="${property::exists('web.dir')}" />
 
         <echo message="Building NLog for ${framework::get-target-framework()}" />
         <echo message="Target dir: ${nlogviewer.dir}" />
@@ -71,6 +81,47 @@
         </csc>
     </target>
 
+    <target name="website" depends="configure">
+        <property name="webbuild.dir" value="${path::combine(nant.project.basedir,web.dir)}" />
+        <property name="web.buildmode" value="web" />
+        <property name="web.sourceforge" value="1" />
+        <call target="buildwebsite" />
+        <copy file="${web.dir}/introduction.html" tofile="${web.dir}/index.html" />
+    </target>
+
+    <target name="helpwebsite" depends="configure">
+        <property name="webbuild.dir" value="${path::combine(nant.project.basedir,helpweb.dir)}" />
+        <property name="web.buildmode" value="help" />
+        <property name="web.sourceforge" value="0" />
+        <call target="buildwebsite" />
+    </target>
+
+    <target name="buildwebsite" depends="configure">
+        <mkdir dir="${webbuild.dir}" />
+
+        <copy todir="${webbuild.dir}">
+            <fileset basedir="web">
+                <include name="*.css" />
+                <include name="*.png" />
+                <include name="*.jpg" />
+                <include name="*.gif" />
+            </fileset>
+        </copy>
+
+        <style destdir="${webbuild.dir}" style="web/style.xsl">
+            <infiles basedir="web">
+                <include name="*.xml" />
+                <exclude name="common.en.xml" />
+            </infiles>
+            <parameters>
+                <parameter name="external-base" value="${webbuild.dir}" />
+                <parameter name="file_extension" value="html" />
+                <parameter name="sourceforge" value="${web.sourceforge}" />
+                <parameter name="mode" value="${web.buildmode}" />
+            </parameters>
+        </style>
+    </target>
+    
     <target name="configure-mono-1.0">
         <property name="nlog.define" value="${nlog.define};MONO;MONO_1_0" />
     </target>
@@ -81,4 +132,24 @@
     <target name="configure-netcf-1.0">
         <property name="nlog.define" value="${nlog.define};NETCF;NETCF_1_0" />
     </target>
+
+    <target name="deploy-web" depends="website">
+        <delete file="web.zip" if="${file::exists('web.zip')}" />
+        <zip zipfile="web.zip" stampdatetime="${datetime::now()}" includeemptydirs="true">
+            <fileset basedir="${web.dir}">
+                <include name="**/*" />
+                <exclude name="**/.svn" />
+                <exclude name="**/.svn/**" />
+                <exclude name="**/_svn" />
+                <exclude name="**/_svn/**" />
+                <exclude name="**/*.swp" />
+            </fileset>
+        </zip>
+        <echo message="Uploading web.zip and tools/web_install.sh to ${ssh.server}..." />
+        <exec program="${scp.program}" commandline="${scp.args} web.zip tools/web_install.sh ${ssh.server}:." workingdir="." />
+        <echo message="Spawning web_install.sh..." />
+        <exec program="${ssh.program}" commandline="${ssh.args} ${ssh.server} dos2unix web_install.sh &amp;&amp; /bin/bash web_install.sh ${webserver.deploy.dir}" workingdir="." />
+        <!-- <delete file="web.zip" /> -->
+    </target>
+
 </project>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="links">
+    <h1>Links</h1>
+    <ol>
+        <li><a href="http://www.nlog-project.org/">NLog</a> project</li>
+        <li><a href="http://logging.apache.org/log4net/">log4net</a> library.</li>
+    </ol>
+</content>
+

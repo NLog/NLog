@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="introduction">
+    <h3>What is NLog Viewer?</h3>
+    <p>
+        NLog Viewer is a simple application that receives log events from external sources and displays them.
+    </p>
+</content>

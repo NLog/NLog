@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="download">
+    <h1>Downloading NLog Viewer</h1>
+    <p>
+        NLog Viewer is an open source software, so the source code is available to public and everyone 
+        can join the project to improve it. Source and binary packages are available.
+    </p>
+    <h3>Binary packages</h3>
+    <h5>Released Packages</h5>
+    <p>
+        NLog Viewer source and binary packages can be downloaded from the <a href="http://sourceforge.net/project/showfiles.php?group_id=116456">sourceforge file release system</a>.
+    </p>
+    <h5>Snapshots</h5>
+    <p>
+        For your convenience the source and binary snapshots (including the windows installer)
+        are available <a href="snapshots/">here</a>. They are occasionally generated between
+        releases and primarily meant for testing.</p>
+    <h3>Building NLog Viewer from source</h3>
+    <p>
+        NLog Viewer can be built with either Visual Studio.NET 2003 or <a href="http://nant.sourceforge.net/">NAnt</a>. If you
+        decide to use NAnt - make sure to use one of the latest nightly builds 
+        available <a href="http://nant.sourceforge.net/nightly/latest/">here</a> or NAnt 0.85 version when it becomes available.
+    </p>
+    <p>
+        To build NLog Viewer using NAnt, just type <code>nant</code> at the command prompt. 
+        To rebuild NLog Viewer using VS.NET, open the solution file (<code>NLogViewer .sln</code>) and run <code>Build|Rebuild Solution</code>.
+    </p>
+</content>

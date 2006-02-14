@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<common>
+    <navigation>
+        <nav href="introduction" label="Introduction" />
+        <nav href="screenshots" label="Screenshots" />
+        <nav href="download" label="Download">
+            <subnav href="http://sourceforge.net/project/showfiles.php?group_id=116456" noext="true" label="Official Releases"/>
+            <subnav href="http://viewer.nlog-project.org/snapshots/" noext="true" label="Snapshots" />
+            <subnav href="subversion" label="SVN Repository" />
+        </nav>
+        <!-- <nav href="http://www.nabble.com/NLog-Forum-f6167.html" noext="true" label="Forum" /> -->
+        <nav href="mailinglists" label="Mailing Lists" />
+        <!-- <nav href="http://trac.nlog-project.org/nlogviewer/" noext="true" label="Report a Bug" /> -->
+        <nav href="links" label="Links" />
+    </navigation>
+</common>
