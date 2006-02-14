@@ -225,6 +225,12 @@ namespace NLog.Conditions
             return ParseBooleanOr();
         }
 
+        /// <summary>
+        /// Parses the specified condition string and turns it into
+        /// <see cref="ConditionExpression"/> tree.
+        /// </summary>
+        /// <param name="expr">The expression to be parsed.</param>
+        /// <returns>The root of the expression syntax tree which can be used to get the value of the condition in a specified context</returns>
         public static ConditionExpression ParseExpression(string expr) 
         {
             ConditionParser parser = new ConditionParser(expr);

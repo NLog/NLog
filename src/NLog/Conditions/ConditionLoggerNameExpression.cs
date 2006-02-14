@@ -43,13 +43,25 @@ namespace NLog.Conditions
     /// </summary>
     public class ConditionLoggerNameExpression : ConditionExpression
     {
+        /// <summary>
+        /// Creates a new instance of <see cref="ConditionLoggerNameExpression"/>.
+        /// </summary>
         public ConditionLoggerNameExpression() {}
 
+        /// <summary>
+        /// Evaluates to the logger name.
+        /// </summary>
+        /// <param name="context">evaluation context</param>
+        /// <returns>The logger name</returns>
         public override object Evaluate(LogEventInfo context)
         {
             return context.LoggerName;
         }
 
+        /// <summary>
+        /// Returns a string representation of this expression
+        /// </summary>
+        /// <returns>a <b>logger</b> string</returns>
         public override string ToString()
         {
             return "logger";
