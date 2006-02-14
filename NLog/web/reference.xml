@@ -4,9 +4,10 @@
     <h1>NLog Reference</h1>
     <p>The following reference documents are available</p>
     <ol>
-        <li><link href="config">Configuration File Reference</link></li>
         <li><link href="targets">Log Target Reference</link></li>
         <li><link href="layoutrenderers">Layout Renderer Reference</link></li>
         <li><link href="filters">Filter Reference</link></li>
+        <li><link href="conditions">Condition Reference</link></li>
+        <li><link href="config">Configuration File Reference</link></li>
     </ol>
 </content>

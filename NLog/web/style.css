@@ -5,8 +5,6 @@ html, body
     color: black;
     font-family: Verdana;
     font-size: 11px;
-    overflow-y: scroll;
-    overflow-x: none;
 }
 
 h1
@@ -317,6 +315,7 @@ td.content
     font-family: Trebuchet MS, Arial, Helv;
     font-size: 13px;
     padding: 20px;
+    padding-right: 150px;
     width: 100%;
     text-align: left;
     background-color: white;
@@ -762,3 +761,28 @@ table.definedin
     padding: 4px;
     border: 1px solid #c0c0c0;
 }
+
+#googleads
+{
+    position: absolute;
+    top: 90px;
+    right: 10px;
+}
+
+.underconstruction
+{
+    color: black;
+    font-size: 12px;
+    display: block;
+    padding: 4px;
+    background-color: #ffffc0;
+    border: 1px solid #ffc0c0;
+}
+
+#googlesearch
+{
+    position: absolute;
+    top: 4px;
+    right: 10px;
+}
+

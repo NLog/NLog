@@ -2,10 +2,6 @@
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
 <content lang="en" id="news">
     <table width="100%">
-        <tr><td class="newsdate">2005-08-15</td>
-            <td class="newstext">
-            </td>
-        </tr>
         <tr><td class="newsdate">2005-06-09</td><td class="newstext">
                 <p>NLog 0.9 has been released!</p>
 

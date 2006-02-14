@@ -42,19 +42,76 @@ var sc_security="6fe22c9a";
 </script>
 
 <script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c5.statcounter.com/counter.php?sc_project=575077&amp;java=0&amp;security=6fe22c9a" alt="website tracking" border="0" /></a> </noscript>
-<!-- End of StatCounter Code --><br/>
-                                <a href="http://sourceforge.net"><img src="http://sourceforge.net/sflogo.php?group_id=116456&amp;type=1" width="88" height="31" border="0" alt="SourceForge.net Logo" /></a>
+<!-- End of StatCounter Code -->
                             </xsl:if>
                         </td>
                         <td valign="top" align="left" class="content">
                             <!-- <p style="color: blue; font-weight: bold; padding: 4px; margin-bottom: 10px; border: 1px solid #ABC8E5; background-color: #DFEAF5;">THIS SITE IS UNDER CONSTRUCTION. SOME SECTIONS ARE MISSING.</p> -->
+                            <span class="underconstruction">
+                                This web site is under construction and describes a version of NLog currently under development. Some sections may be missing or not up-to-date.
+                            </span>
                             <xsl:apply-templates select="/" mode="content" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="copyright">Copyright &#169; 2003-2005 by Jaros³aw Kowalski</td>
+                        <td class="copyright">Copyright &#169; 2003-2006 by Jaros³aw Kowalski</td>
                     </tr>
                 </table>
+         <xsl:if test="$mode = 'web'">
+                <div id="googlesearch">
+                    <!-- SiteSearch Google -->
+                    <form method="get" action="http://www.google.com/custom" target="_top">
+                        <table border="0">
+                            <tr><td nowrap="nowrap" valign="top" align="left" height="32">
+<input type="hidden" name="domains" value="www.nlog-project.org"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" value="Google Search"></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value=""></input>
+<font size="-1" color="#000080">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.nlog-project.org" checked="checked"></input>
+<font size="-1" color="#000080">www.nlog-project.org</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-2535373996863248"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="UTF-8"></input>
+<input type="hidden" name="oe" value="UTF-8"></input>
+<input type="hidden" name="cof" value="GALT:#0066CC;GL:1;DIV:#999999;VLC:336633;AH:center;BGC:FFFFFF;LBGC:FF9900;ALC:0066CC;LC:0066CC;T:000000;GFNT:666666;GIMP:666666;FORID:1;"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+                </div>
+            </xsl:if>
+            <xsl:if test="$mode = 'web'">
+                <div id="googleads">
+                    <script type="text/javascript"><xsl:comment>
+                            google_ad_client = "pub-2535373996863248";
+                            google_ad_width = 120;
+                            google_ad_height = 600;
+                            google_ad_format = "120x600_as";
+                            google_ad_type = "text_image";
+                            google_ad_channel ="";
+                            google_color_border = "5290ee";
+                            google_color_bg = "FFFFFF";
+                            google_color_link = "0000FF";
+                            google_color_url = "008000";
+                            google_color_text = "000000";
+                            //</xsl:comment></script>
+                    <script type="text/javascript"
+                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                    </script>
+                </div>
+            </xsl:if>
             </body>
         </html>
     </xsl:template>
