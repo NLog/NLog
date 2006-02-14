@@ -48,12 +48,12 @@ namespace NLog
         private const int STACK_TRACE_SKIP_METHODS = 0;
         private static Assembly _thisAssembly = typeof(LoggerImpl).Assembly;
 
-        internal static void Write(Logger logger, LogLevel level, TargetWithFilterChain targets, IFormatProvider formatProvider, string message, object[]args, Exception exception)
+        internal static void Write(Type loggerType, string loggerName, LogLevel level, TargetWithFilterChain targets, IFormatProvider formatProvider, string message, object[]args, Exception exception)
         {
             if (targets == null)
                 return;
 
-            LogEventInfo logMessage = new LogEventInfo(DateTime.Now, level, logger.Name, formatProvider, message, args, exception);
+            LogEventInfo logMessage = new LogEventInfo(DateTime.Now, level, loggerName, formatProvider, message, args, exception, null);
 
 #if !NETCF            
             bool needTrace = false;
@@ -108,14 +108,14 @@ namespace NLog
                 {
                     System.Reflection.MethodBase mb = stackTrace.GetFrame(i).GetMethod();
 
-                    if (mb.DeclaringType.Assembly != _thisAssembly)
+                    if (mb.DeclaringType == loggerType)
                     {
-                        firstUserFrame = i;
-                        break;
+                        firstUserFrame = i + 1;
                     }
                     else
                     {
-                        // Console.WriteLine("skipping stack frame: " + mb);
+                        if (firstUserFrame != 0)
+                            break;
                     }
                 }
                 logMessage.SetStackTrace(stackTrace, firstUserFrame);
@@ -141,7 +141,7 @@ namespace NLog
                     {
                         if (InternalLogger.IsDebugEnabled)
                         {
-                            InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", logger.Name, level);
+                            InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", loggerName, level);
                         }
                         continue;
                     }

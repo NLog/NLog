@@ -58,17 +58,19 @@ namespace NLog
         private LogLevel _level;
         private string _loggerName;
         private string _message;
+        private string _formattedMessage;
         private Exception _exception;
         private object[] _parameters;
         private IFormatProvider _formatProvider;
         private IDictionary _layoutCache;
+        private IDictionary _callContext;
         private int _sequenceID;
 
         /// <summary>
         /// An empty event - for rendering layouts where logging
         /// event is not otherwise available.
         /// </summary>
-        public static readonly LogEventInfo Empty = new LogEventInfo(DateTime.Now, LogLevel.Debug, String.Empty, CultureInfo.InvariantCulture, String.Empty, null, null);
+        public static readonly LogEventInfo Empty = new LogEventInfo(DateTime.Now, LogLevel.Debug, String.Empty, CultureInfo.InvariantCulture, String.Empty, null, null, null);
 
         /// <summary>
         /// Creates a new instance of <see cref="LogEventInfo"/> and assigns its fields.
@@ -80,7 +82,8 @@ namespace NLog
         /// <param name="message">Log message including parameter placeholders</param>
         /// <param name="parameters">Parameter array.</param>
         /// <param name="exception">Exception information.</param>
-        public LogEventInfo(DateTime ts, LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters, Exception exception)
+        /// <param name="callContext">Call context information dictionary (not interpreted by NLog, suitable for passing call-level context parameters)</param>
+        public LogEventInfo(DateTime ts, LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters, Exception exception, IDictionary callContext)
         {
             _timeStamp = ts;
             _level = level;
@@ -91,6 +94,14 @@ namespace NLog
             _exception = exception;
             _layoutCache = null;
             _sequenceID = Interlocked.Increment(ref _globalSequenceID);
+            _callContext = callContext;
+            if (_parameters == null || _parameters.Length == 0)
+                _formattedMessage = _message;
+            else if (_formatProvider != null)
+                _formattedMessage = String.Format(_formatProvider, _message, _parameters);
+            else
+                _formattedMessage = String.Format(_message, _parameters);
+
 #if !NETCF
             _stackTrace = null;
             _userStackFrame = 0;
@@ -243,13 +254,24 @@ namespace NLog
         {
             get 
             {
-                if (_parameters == null || _parameters.Length == 0)
-                    return _message;
-                if (_formatProvider != null)
-                    return String.Format(_formatProvider, _message, _parameters);
-                else
-                    return String.Format(_message, _parameters);
+                return _formattedMessage;
             }
+        }
+
+        /// <summary>
+        /// Gets the specified call context value.
+        /// </summary>
+        /// <param name="key">The key value</param>
+        /// <returns>Call context value corresponding to the specified key.</returns>
+        /// <remarks>
+        /// NLog doesn't interpret the call context values in any way. They are
+        /// intented to be used within layout renderers and targets.
+        /// </remarks>
+        public object CallContext(object key)
+        {
+            if (_callContext == null)
+                return null;
+            return _callContext[key];
         }
 
         /// <summary>

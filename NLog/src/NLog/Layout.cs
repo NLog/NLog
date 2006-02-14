@@ -222,6 +222,9 @@ namespace NLog
             return _isVolatile;
         }
 
+        /// <summary>
+        /// A collection of <see cref="LayoutRenderer"/> objects that make up this layout.
+        /// </summary>
         public LayoutRenderer[] Renderers
         {
             get { return _renderers; }

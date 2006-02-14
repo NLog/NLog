@@ -36,9 +36,15 @@ using System;
 
 namespace NLog
 {
+    /// <summary>
+    /// Marks the class as containing condition methods.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class,AllowMultiple=true)]
     public sealed class ConditionMethodsAttribute: Attribute
     {
+        /// <summary>
+        /// Creates a new instance of <see cref="ConditionMethodsAttribute"/>.
+        /// </summary>
         public ConditionMethodsAttribute()
         {
         }
