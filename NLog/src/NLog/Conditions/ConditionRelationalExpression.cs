@@ -48,13 +48,8 @@ namespace NLog.Conditions
     /// </summary>
     public class ConditionRelationalExpression : ConditionExpression 
     {
-        [XmlElement("Left")]
         public ConditionExpression par1;
-
-        [XmlElement("Right")]
         public ConditionExpression par2;
-
-        [XmlAttribute("operator")]
         public ConditionRelationalOperator op;
 
         public ConditionRelationalExpression() {}
