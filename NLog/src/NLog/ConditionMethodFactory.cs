@@ -59,11 +59,21 @@ namespace NLog
 
         private ConditionMethodFactory(){}
 
+        /// <summary>
+        /// Removes all condition method information from the factory.
+        /// </summary>
         public static void Clear()
         {
             _conditionMethods.Clear();
         }
 
+        /// <summary>
+        /// Scans the specified assembly for types marked with <see cref="ConditionMethodsAttribute" /> and adds
+        /// them to the factory. Optionally it prepends the specified text to layout renderer names to avoid
+        /// naming collisions.
+        /// </summary>
+        /// <param name="theAssembly">The assembly to be scanned for layout renderers.</param>
+        /// <param name="prefix">The prefix to be prepended to layout renderer names.</param>
         public static void AddConditionMethodsFromAssembly(Assembly theAssembly, string prefix)
         {
             try
@@ -76,7 +86,7 @@ namespace NLog
                         foreach (MethodInfo mi in t.GetMethods(BindingFlags.Public | BindingFlags.Static))
                         {
                             ConditionMethodAttribute[] malist = (ConditionMethodAttribute[])mi.GetCustomAttributes(typeof(ConditionMethodAttribute), false);
-                            
+
                             foreach (ConditionMethodAttribute ma in malist)
                             {
                                 AddConditionMethod(ma.Name, mi);
@@ -89,7 +99,7 @@ namespace NLog
             {
                 InternalLogger.Error("Failed to add LogEventConditions from '" + theAssembly.FullName + "': {0}", ex);
             }
-            
+
         }
         private static void AddDefaultConditionMethods()
         {
