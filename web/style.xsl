@@ -6,6 +6,7 @@
     <xsl:param name="file_extension">xml</xsl:param>
     <xsl:param name="sourceforge">0</xsl:param>
     <xsl:param name="log4net_comparison">0</xsl:param>
+    <xsl:param name="build_time">2006-01-01</xsl:param>
     <xsl:param name="mode">web</xsl:param>
 
     <xsl:variable name="page_id" select="concat(/*[position()=1]/@id,$page_id_override)" />
@@ -44,17 +45,20 @@ var sc_security="6fe22c9a";
 <script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c5.statcounter.com/counter.php?sc_project=575077&amp;java=0&amp;security=6fe22c9a" alt="website tracking" border="0" /></a> </noscript>
 <!-- End of StatCounter Code -->
                             </xsl:if>
+                            <div class="lastupdated">Last updated: <xsl:value-of select="$build_time" /></div>
                         </td>
                         <td valign="top" align="left" class="content">
                             <!-- <p style="color: blue; font-weight: bold; padding: 4px; margin-bottom: 10px; border: 1px solid #ABC8E5; background-color: #DFEAF5;">THIS SITE IS UNDER CONSTRUCTION. SOME SECTIONS ARE MISSING.</p> -->
-                            <span class="underconstruction">
-                                This web site is under construction and describes a version of NLog currently under development. Some sections may be missing or not up-to-date.
-                            </span>
+                            <xsl:if test="$mode = 'web'">
+                                <span class="underconstruction">
+                                    This web site is under construction and describes a version of NLog currently under development. Some sections may be missing or not up-to-date.
+                                </span>
+                            </xsl:if>
                             <xsl:apply-templates select="/" mode="content" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="copyright">Copyright &#169; 2003-2006 by Jaros³aw Kowalski</td>
+                        <td class="copyright">Copyright &#169; 2004-2006 by Jaros³aw Kowalski.</td>
                     </tr>
                 </table>
          <xsl:if test="$mode = 'web'">

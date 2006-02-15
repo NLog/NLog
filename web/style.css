@@ -364,13 +364,15 @@ td.newsdate
     vertical-align: top;
     text-align: right;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
+    padding: 4px;
 }
 
 td.newstext
 {
     font-family: Trebuchet MS, Arial, Helv;
     font-size: 13px;
+    padding: 4px;
 }
 
 body.example
@@ -786,3 +788,22 @@ table.definedin
     right: 10px;
 }
 
+.lastupdated
+{
+    margin-top: 4px;
+    font-size: 10px;
+    padding: 2px;
+    border: 1px solid #c0c0c0;
+    background-color: white;
+    color: black;
+}
+
+.altreleasenote
+{
+    background-color: #e0e0ff;
+}
+
+.releasenote
+{
+    background-color: #c0c0ff;
+}

@@ -2,6 +2,8 @@
 <project default="build" xmlns="http://nant.sf.net/NAnt.xsd">
     <tstamp />
 
+    <tstamp property="buildtime" pattern="yyyy-MM-dd" verbose="true" />
+
     <property name="nlog.debug" value="true" />
     <property name="nlog.optimize" value="true" />
     <property name="nlog.define" value="NANT" />
@@ -845,6 +847,7 @@
         <foreach item="String" in="${nlog.targetNames}" delim="," property="t">
             <style out="${webbuild.dir}/target.${t}.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
                 <parameters>
+                    <parameter name="build_time" value="${buildtime}" />
                     <parameter name="external-base" value="${webbuild.dir}" />
                     <parameter name="file_extension" value="html" />
                     <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -859,6 +862,7 @@
         <foreach item="String" in="${nlog.layoutRendererNames}" delim="," property="t">
             <style out="${webbuild.dir}/lr.${t}.html" style="web/layoutrenderers.xsl" in="build/${buildsubdir}/doc.xml">
                 <parameters>
+                    <parameter name="build_time" value="${buildtime}" />
                     <parameter name="external-base" value="${webbuild.dir}" />
                     <parameter name="file_extension" value="html" />
                     <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -873,6 +877,7 @@
         <foreach item="String" in="${nlog.filterNames}" delim="," property="t">
             <style out="${webbuild.dir}/filter.${t}.html" style="web/filters.xsl" in="build/${buildsubdir}/doc.xml">
                 <parameters>
+                    <parameter name="build_time" value="${buildtime}" />
                     <parameter name="external-base" value="${webbuild.dir}" />
                     <parameter name="file_extension" value="html" />
                     <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -886,6 +891,7 @@
 
         <style out="${webbuild.dir}/targets.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
+                <parameter name="build_time" value="${buildtime}" />
                 <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -897,6 +903,7 @@
 
         <style out="${webbuild.dir}/layoutrenderers.html" style="web/layoutrenderers.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
+                <parameter name="build_time" value="${buildtime}" />
                 <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -908,6 +915,7 @@
         
         <style out="${webbuild.dir}/filters.html" style="web/filters.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
+                <parameter name="build_time" value="${buildtime}" />
                 <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -919,6 +927,7 @@
         
         <style out="${webbuild.dir}/conditions.html" style="web/conditions.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
+                <parameter name="build_time" value="${buildtime}" />
                 <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -934,6 +943,7 @@
                 <exclude name="common.en.xml" />
             </infiles>
             <parameters>
+                <parameter name="build_time" value="${buildtime}" />
                 <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />

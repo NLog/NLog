@@ -1,9 +1,98 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
 <content lang="en" id="news">
+    <h1>Release Notes</h1>
     <table width="100%">
-        <tr><td class="newsdate">2005-06-09</td><td class="newstext">
-                <p>NLog 0.9 has been released!</p>
+        <tr class="altreleasenote">
+            <td class="newsdate">Date to be announced</td>
+            <td class="newstext">
+                <p><b style="color: red; font-size: 16px">NLog 0.95 has been released!</b></p>
+                <p>
+                    Major changes:
+                </p>
+                <ul>
+                    <li>Added new Trace level, more verbose than the Debug level.</li>
+                    <li>Added a new <a href="http://www.nlog-project.org/conditions.html">conditions language</a> (see conditions.html for more information) which 
+                        let you write powerful filtering conditions while keeping the syntax natural and readable</li>
+                    <li><b><u>BREAKING CHANGE</u></b>: Renamed <code>Target.Append()</code> method to <code>Target.Write()</code></li>
+                    <li>Added <code>Target.Write(LogEvent[] manyEvents)</code> for cases where the
+                        target can optimize group writes</li>
+                    <li>Added global log threshold and configurability at the config level (<x><nlog globalThreshold="..." /></x>)</li>
+                    <li>Added support for <x><variable name="" value="" /></x> configuration element. Details are <a href="http://sourceforge.net/mailarchive/message.php?msg_id=12189220">here</a>.</li>
+                    <li>Added infrastructure for <a href="http://sourceforge.net/mailarchive/message.php?msg_id=13149726">compound targets and wrapper targets</li>.</li>
+                </ul>
+                <p>
+                    Bugs fixed:
+                </p>
+                <ul>
+                    <li>Fixed the filter configuration bug as reported by Ron Grabowski</li>
+                    <li>
+                        Fixed a serious reentrancy bug which caused all sorts of problems
+                        when formatted message included a parameter where ToString
+                        did the logging itself. More details <a href="http://trac.nlog-project.org/nlog/ticket/64">here</a>.
+                    </li>
+                    <li>Fixed a nullref exception when no config file was present.</li>
+                    <li>Fixed support for CC field in the Mail target</li>
+                    <li>Fixed Close() behaviour for unnamed targets (like the ones configured by SimpleConfigurator)</li>
+                    <li>Typos in the code prevented Chainsaw target	from working properly.</li>
+                    <li>${callsite} not working with database parameters</li>
+                    <li>${callsite} doesn't work with MethodCall target and NLogViewer target</li>
+                    <li>Connection string builder omits ; after Server parameter</li>
+                    <li>Fixed the Trace target in Release mode by defining TRACE symbol</li>
+                    <li>Fixed VS.NET Compact Framework project file</li>
+                    <li>Fixed the Trace target in Release mode by defining TRACE symbol</li>
+                    <li>Fixed bugs related to ${asp-request:cookie} and ${aspnet-request:cookie}</li>
+                    <li>Fixes for case-insensitive parsing of the config files.</li>
+                    <li>fixed CompactFramework build</li>
+                </ul>
+                <p>
+                    New additions:
+                </p>
+                <ul>
+                    <li>Added <x><when condition="..." action="..." /></x> filter which uses condition expressions</li>
+                    <li>Added <code>${aspnet-sessionid}</code> to access (guess!) ASP.NET session ID</li>
+                    <li>Added ${processname}, ${processid} layout renderers</li>
+                    <li>Added ASPNetBufferingWrapper target which buffers and post-processes the entire ASP.NET
+                        request (requires you to use the NLogHttpModule)</li>
+                    <li>Added PostFilteringWrapper target which is able to filter log events based on a buffer 
+                        as a whole. Details are <a href="http://sourceforge.net/mailarchive/forum.php?thread_id=8806711&amp;forum_id=41984">here</a>.</li>
+                    <li>Added GDC (Global Diagnostics Context) and ${gdc} layout renderer which
+                        is a global (as opposed to per-thread) version of MDC and ${mdc}</li>
+                    <li>Added authentication options to the Mail target (thanks Ron).</li>
+                    <li>Added support for caching layout results per logEvent which makes them transportable across threads</li>
+                    <li>Added ${log4jxmlevent} which renders <a href="http://logging.apache.org/log4j">log4j</a>-compatible XML event</li>
+                    <li>Added <a href="http://www.nlog-project.org/targets.html">wrapper targets</a>: AsyncWrapper, AutoFlushWrapper, BufferingWrapper,  RepeatingWrapper, RetryingWrapper</li>
+                    <li>Added <a href="http://www.nlog-project.org/targets.html">compound targets</a> (fallback, randomize, roundrobin, split)</li>
+                    <li>Added ${windows-identity} layout renderer.</li>
+                    <li>Added MSMQ target (Message Queue)</li>
+                    <li>Added EventLog target</li>
+                    <li>Added ${pc} - Performance Counter layout renderer</li>
+                    <li>Added SimpleConfigurator.ConfigureForTargetLogging() and SimpleConfigurator.ConfigureForFileLogging()</li>
+                    <li>Added Debugger target</li>
+                    <li>Added ${logger:shortname=true} option.</li>
+                    <li>Added ${stacktrace} layout renderer, 3 different logging formats. Details are <a href="http://sourceforge.net/mailarchive/message.php?msg_id=12029446">here</a>.</li>
+                    <li>Added ${newline} layout renderer.</li>
+                    <li>Added IgnoreCase option to filters</li>
+                </ul>
+                <p>
+                    Other changes:
+                </p>
+                <ul>
+                    <li>Project web site has been moved to <a href="http://www.nlog-project.org/">http://www.nlog-project.org/</a></li>
+                    <li>Patch by Yuri Mamrukov to simplify InternalLogger configuration from environment
+                        variables and/or App.config settings. Fixes some nasty bug there. 
+                        More details are available <a href="http://sourceforge.net/mailarchive/forum.php?thread_id=9260106&amp;forum_id=42511">here</a>.</li>
+                    <li>Excluded NLogViewer from build and project. It will become be a separate project <a href="http://viewer.nlog-project.org/">here</a>.</li>
+                    <li>Added batch NLogC compilation, added installer and nlogc binary snapshot.</li>
+                    <li>Added some minimal VB.NET test code</li>
+                    <li>Added some meaningful error message when a named target is not defined.</li>
+                    <li>Added many unit tests</li>
+                </ul>
+            </td>
+        </tr>
+        <tr class="releasenote">
+            <td class="newsdate">2005-06-09</td><td class="newstext">
+                <p><b>NLog 0.9 has been released!</b></p>
 
                 <p>Major changes:</p>
                 <ol>

@@ -14,7 +14,7 @@
     <h5>Snapshots</h5>
     <p>
         For your convenience the source and binary snapshots (including the windows installer)
-        are available <a href="http://www.nlog-projects.org/snapshots/">here</a>. They are occasionally generated between
+        are available <a href="http://www.nlog-project.org/snapshots/">here</a>. They are occasionally generated between
         releases and primarily meant for testing.</p>
     <h3>Building NLog from source</h3>
     <p>
