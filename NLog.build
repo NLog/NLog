@@ -8,10 +8,11 @@
 
     <property name="scp.program" value="pscp" />
     <property name="ssh.program" value="plink" />
-    <property name="ssh.server" value="jaak@sav.net" />
     <property name="scp.args" value="-q -batch" />
     <property name="ssh.args" value="-batch" />
 
+    <property name="deploy.host" value="jaak@sav.net" />
+    
     <property name="ndoc.console.exe" value="C:\Program Files\NDoc 1.3\bin\net\1.1\ndocconsole.exe" />
     <property name="prettyprinter.exe" value="tools/PrettyPrinter.exe" />
 
@@ -585,32 +586,6 @@
     <target name="cleanwebsite" depends="xmldoc, website">
     </target>
 
-    <target name="publish_website" depends="cleanwebsite">
-        <zip zipfile="website.zip">
-            <fileset basedir="${web.dir}">
-                <include name="*" />
-            </fileset>
-        </zip>
-        <echo message="Uploading the zipped website..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} website.zip ${deploy.host}:${deploy.dir}" />
-        <echo message="Unpacking the zipped website..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${deploy.host} ${deploy.dir}/unpack_website.sh" />
-        <echo message="Website deployed." />
-    </target>
-
-    <target name="publish_test_website" depends="cleanwebsite">
-        <zip zipfile="website.zip">
-            <fileset basedir="${web.dir}">
-                <include name="*" />
-            </fileset>
-        </zip>
-        <echo message="Uploading the zipped website..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} website.zip ${deploy.host}:${deploy.dir}" />
-        <echo message="Unpacking the zipped website..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${deploy.host} ${deploy.dir}/unpack_test_website.sh" />
-        <echo message="Website deployed." />
-    </target>
-
     <target name="publish_website_help" depends="doc">
         <zip zipfile="web.zip">
             <fileset basedir="${nlog.help.dir}">
@@ -618,10 +593,10 @@
                 <exclude name="**/NLog.chm" />
             </fileset>
         </zip>
-        <echo message="Uploading web.zip and tools/web_install.sh to ${ssh.server}..." />
-        <exec program="${scp.program}" commandline="${scp.args} web.zip tools/web_install.sh ${ssh.server}:." workingdir="." />
+        <echo message="Uploading web.zip and tools/web_install.sh to ${deploy.host}..." />
+        <exec program="${scp.program}" commandline="${scp.args} web.zip tools/web_install.sh ${deploy.host}:." workingdir="." />
         <echo message="Spawning web_install.sh..." />
-        <exec program="${ssh.program}" commandline="${ssh.args} ${ssh.server} dos2unix web_install.sh &amp;&amp; /bin/bash web_install.sh ${webserver.deploy.dir}/help" workingdir="." />
+        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} dos2unix web_install.sh &amp;&amp; /bin/bash web_install.sh ${webserver.deploy.dir}/help" workingdir="." />
     </target>
 
     <target name="publish_clover" depends="clover-html-report">
@@ -631,9 +606,9 @@
             </fileset>
         </zip>
         <echo message="Uploading the zipped coverage results..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} clover.zip ${deploy.host}:${deploy.dir}" />
+        <exec program="${scp.program}" commandline="${scp.args} clover.zip ${deploy.host}:${deploy.dir}" />
         <echo message="Unpacking the zipped coverage results..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${deploy.host} ${deploy.dir}/unpack_clover.sh" />
+        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} ${deploy.dir}/unpack_clover.sh" />
         <echo message="Coverage results deployed." />
     </target>
 
@@ -663,23 +638,26 @@
         <solution configuration="Release" solutionfile="NLog.sln" />
     </target>
 
-    <target name="publish_snapshot" depends="fullrelease">
+    <target name="upload_snapshot">
         <echo message="Creating a directory for ${nlog.package.name}..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${deploy.host} mkdir ${deploy.dir}/htdocs/snapshots/${nlog.package.name}" failonerror="false" />
+        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} mkdir ${webserver.deploy.dir}/snapshots/${nlog.package.name}" failonerror="false" />
         <echo message="Uploading ${installer.name}..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ${installer.name} ${deploy.host}:${deploy.dir}/htdocs/snapshots/${nlog.package.name}/" />
+        <exec program="${scp.program}" commandline="${scp.args} ${installer.name} ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ${source_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ${source_snapshot.name} ${deploy.host}:${deploy.dir}/htdocs/snapshots/${nlog.package.name}/" />
+        <exec program="${scp.program}" commandline="${scp.args} ${source_snapshot.name} ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ${binary_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ${binary_snapshot.name} ${deploy.host}:${deploy.dir}/htdocs/snapshots/${nlog.package.name}/" />
+        <exec program="${scp.program}" commandline="${scp.args} ${binary_snapshot.name} ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ${nlogc_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ${nlogc_snapshot.name} ${deploy.host}:${deploy.dir}/htdocs/snapshots/${nlog.package.name}/" />
+        <exec program="${scp.program}" commandline="${scp.args} ${nlogc_snapshot.name} ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ${binary_compact_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ${binary_compact_snapshot.name} ${deploy.host}:${deploy.dir}/htdocs/snapshots/${nlog.package.name}/" />
+        <exec program="${scp.program}" commandline="${scp.args} ${binary_compact_snapshot.name} ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ChangeLog..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} ChangeLog ${deploy.host}:${deploy.dir}/htdocs/snapshots/${nlog.package.name}/" />
+        <exec program="${scp.program}" commandline="${scp.args} ChangeLog ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Fixing permissions..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${deploy.host} ${deploy.dir}/fix_group_perm.sh" />
+        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} ${deploy.dir}/fix_group_perm.sh" />
+    </target>
+
+    <target name="publish_snapshot" depends="fullrelease, upload_snapshot">
     </target>
 
     <target name="xmldoc" depends="build">
@@ -1035,9 +1013,9 @@
             </fileset>
         </zip>
         <echo message="Uploading the zipped nunit2report results..." />
-        <exec program="${scp.program}" commandline="${scp.program.args} nunit2report.zip ${deploy.host}:${deploy.dir}" />
+        <exec program="${scp.program}" commandline="${scp.args} nunit2report.zip ${deploy.host}:${deploy.dir}" />
         <echo message="Unpacking the zipped nunit2report results..." />
-        <exec program="${ssh.program}" commandline="${ssh.program.args} ${deploy.host} ${deploy.dir}/unpack_nunit2report.sh" />
+        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} ${deploy.dir}/unpack_nunit2report.sh" />
         <echo message="NUnit2report results deployed." />
     </target>
 
@@ -1053,10 +1031,10 @@
                 <exclude name="**/*.swp" />
             </fileset>
         </zip>
-        <echo message="Uploading web.zip and tools/web_install.sh to ${ssh.server}..." />
-        <exec program="${scp.program}" commandline="${scp.args} web.zip tools/web_install.sh ${ssh.server}:." workingdir="." />
+        <echo message="Uploading web.zip and tools/web_install.sh to ${deploy.host}..." />
+        <exec program="${scp.program}" commandline="${scp.args} web.zip tools/web_install.sh ${deploy.host}:." workingdir="." />
         <echo message="Spawning web_install.sh..." />
-        <exec program="${ssh.program}" commandline="${ssh.args} ${ssh.server} dos2unix web_install.sh &amp;&amp; /bin/bash web_install.sh ${webserver.deploy.dir}" workingdir="." />
+        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} dos2unix web_install.sh &amp;&amp; /bin/bash web_install.sh ${webserver.deploy.dir}" workingdir="." />
         <!-- <delete file="web.zip" /> -->
     </target>
 

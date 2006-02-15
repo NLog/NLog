@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2002-2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -41,7 +41,7 @@ namespace NLog.Conditions
     /// <summary>
     /// Hand-written tokenizer for conditions.
     /// </summary>
-    public class ConditionTokenizer 
+    internal sealed class ConditionTokenizer 
     {
         private string _inputString = null;
         private int _position = 0;
@@ -141,7 +141,7 @@ namespace NLog.Conditions
         public void Expect(ConditionTokenType type) 
         {
             if (_tokenType != type)
-                throw new ConditionParseException("Expected token of type: " + type + ", got " + _tokenType + " (" + _tokenValue + ").", TokenPosition);
+                throw new ConditionParseException("Expected token of type: " + type + ", got " + _tokenType + " (" + _tokenValue + ").");
 
             GetNextToken();
         }
@@ -150,10 +150,10 @@ namespace NLog.Conditions
         public void ExpectKeyword(string s) 
         {
             if (_tokenType != ConditionTokenType.Keyword)
-                throw new ConditionParseException("Expected keyword: " + s + ", got " + _tokenType + ".", TokenPosition);
+                throw new ConditionParseException("Expected keyword: " + s + ", got " + _tokenType + ".");
 
             if (_tokenValueLowercase != s)
-                throw new ConditionParseException("Expected keyword: " + s + ", got " + _tokenValueLowercase + ".", TokenPosition);
+                throw new ConditionParseException("Expected keyword: " + s + ", got " + _tokenValueLowercase + ".");
 
             GetNextToken();
         }
@@ -161,7 +161,7 @@ namespace NLog.Conditions
         public string EatKeyword() 
         {
             if (_tokenType != ConditionTokenType.Keyword)
-                throw new ConditionParseException("Identifier expected", TokenPosition);
+                throw new ConditionParseException("Identifier expected");
 
             string s = (string)_tokenValue;
             GetNextToken();

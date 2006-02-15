@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2002-2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -40,7 +40,7 @@ namespace NLog.Conditions
     /// <summary>
     /// Condition <b>and</b> expression.
     /// </summary>
-    public class ConditionAndExpression : ConditionExpression 
+    internal sealed class ConditionAndExpression : ConditionExpression 
     {
         /// <summary>
         /// The left hand side of the AND expression.

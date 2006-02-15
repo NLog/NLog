@@ -37,8 +37,8 @@
             <property name="ShowMissingReturns" value="True" />
             <property name="DocumentInheritedFrameworkMembers" value="False" />
             <property name="AssemblyVersionInfo" value="AssemblyVersion" />
-            <property name="CopyrightText" value="Copyright (c) 2004-2005 by Jaroslaw Kowalski" />
-            <property name="CopyrightHref" value="http://nlog.sourceforge.net/" />
+            <property name="CopyrightText" value="Copyright (c) 2004-2006 by Jaroslaw Kowalski" />
+            <property name="CopyrightHref" value="http://www.nlog-project.org/" />
             <property name="Preliminary" value="True" />
             <property name="InstanceMembersDefaultToSafe" value="True" />
         </documenter>

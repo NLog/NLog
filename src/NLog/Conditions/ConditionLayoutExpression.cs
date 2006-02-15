@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2002-2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -42,7 +42,7 @@ namespace NLog.Conditions
     /// Condition layout expression (represented by a string literal
     /// with embedded ${})
     /// </summary>
-    public class ConditionLayoutExpression : ConditionExpression
+    internal sealed class ConditionLayoutExpression : ConditionExpression
     {
         private Layout _layout;
 

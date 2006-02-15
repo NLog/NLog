@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2002-2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -46,7 +46,7 @@ namespace NLog.Conditions
     /// Condition relational (<b>==</b>, <b>!=</b>, <b>&lt;</b>, <b>&lt;=</b>, 
     /// <b>&gt;</b> or <b>&gt;=</b>) expression.
     /// </summary>
-    public class ConditionRelationalExpression : ConditionExpression 
+    internal sealed class ConditionRelationalExpression : ConditionExpression 
     {
         public ConditionExpression par1;
         public ConditionExpression par2;
