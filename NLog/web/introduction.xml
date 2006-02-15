@@ -24,15 +24,5 @@
     </p>
 
     <h3>Current Status</h3>
-    <p>TBA: <b style="color: red">NLog 0.95 has been released</b>. Release notes can be found <link href="releasenotes">here</link>.</p>
-
-    <h3>Documentation</h3>
-    <ul>
-        <li>To see NLog in action, open the <link href="tutorial">NLog Tutorial</link>.</li>
-        <li>NLog API documentation generated using <a href="http://ndoc.sourceforge.net/">NDoc</a> is available <a href="help/index.html">here</a>.</li>
-        <li>For an overview of APIs provided by NLog, click <link href="api">here</link>.</li>
-        <li>Various <link href="howto">How To</link> documents provide describe NLog extensibility, troubleshooting and performance.</li>
-        <li>See the <link href="config">Configuration Options</link> document for information on configuring NLog.</li>
-        <li>For the usage information see the <link href="reference">Reference</link> section.</li>
-    </ul>
+    <p>Date to be announced: <b style="color: red">NLog 0.95 has been released</b>. Release notes can be found <link href="releasenotes">here</link>.</p>
 </content>
