@@ -35,15 +35,26 @@
                             <xsl:call-template name="controls" />
                             <p/>
                             <xsl:if test="$sourceforge='1'">
-<!-- Start of StatCounter Code -->
-<script type="text/javascript" language="javascript">
-var sc_project=575077; 
-var sc_partition=4; 
-var sc_security="6fe22c9a"; 
-</script>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <!-- Start of StatCounter Code -->
+                                            <script type="text/javascript" language="javascript">
+                                                var sc_project=575077; 
+                                                var sc_partition=4; 
+                                                var sc_security="6fe22c9a"; 
+                                            </script>
 
-<script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c5.statcounter.com/counter.php?sc_project=575077&amp;java=0&amp;security=6fe22c9a" alt="website tracking" border="0" /></a> </noscript>
-<!-- End of StatCounter Code -->
+                                            <script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c5.statcounter.com/counter.php?sc_project=575077&amp;java=0&amp;security=6fe22c9a" alt="website tracking" border="0" /></a> </noscript>
+                                            <!-- End of StatCounter Code -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="http://www.cenqua.com/clover.net"><img src="http://www.cenqua.com/images/cloverednet1.gif" width="89" height="33" border="0" alt="Code Coverage by Clover.NET"/></a>
+                                        </td>
+                                    </tr>
+                                </table>
                             </xsl:if>
                             <div class="lastupdated">Last updated: <xsl:value-of select="$build_time" /></div>
                         </td>
@@ -132,10 +143,6 @@ var sc_security="6fe22c9a";
 
     <xsl:template name="controls">
         <xsl:apply-templates select="$common/common/navigation" />
-        <xsl:if test="$sourceforge = '1'">
-            <p/>
-            <a href="http://www.cenqua.com/clover.net"><img src="http://www.cenqua.com/images/cloverednet1.gif" width="89" height="33" border="0" alt="Code Coverage by Clover.NET"/></a>
-        </xsl:if>
     </xsl:template>
 
     <xsl:template match="navigation">

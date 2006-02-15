@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="support">
+    <h1>Support</h1>
+    <p>
+        The following support options are available for NLog:
+    </p>
+    <ul>
+        <li><link href="mailinglists">Mailing Lists</link> and <a href="http://www.nabble.com/NLog-Forum-f6167.html">Forum</a> where you can ask questions about NLog usage.</li>
+        <li><a href="http://trac.nlog-project.org/nlog/">TRAC interface</a> where you can report bugs and feature requests.</li>
+    </ul>
+</content>

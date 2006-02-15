@@ -2,7 +2,6 @@
 <common>
     <navigation>
         <nav href="helpindex" label="Introduction" />
-        <nav href="tutorial" label="Tutorial" />
         <nav href="documentation" label="Documentation">
             <subnav href="tutorial" label="Introduction to NLog" />
             <subnav href="api" label="API Reference" />
@@ -12,6 +11,11 @@
             <subnav href="conditions" label="Conditions" />
             <subnav href="config" label="Configuration File" />
             <subnav href="howto" label="How To..." />
+        </nav>
+        <nav href="support" label="Support">
+            <subnav href="http://www.nabble.com/NLog-Forum-f6167.html" noext="true" label="Forum" />
+            <subnav href="http://trac.nlog-project.org/nlog/" noext="true" label="Bugs" />
+            <subnav href="mailinglists" label="Mailing Lists" />
         </nav>
         <nav href="website" label="Website" />
     </navigation>
