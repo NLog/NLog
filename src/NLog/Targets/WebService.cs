@@ -83,7 +83,7 @@ namespace NLog.Targets
             _client.DoInvoke(MethodName, parameters);
         }
 
-        [System.Web.Services.WebServiceBindingAttribute(Name = "NLogService", Namespace = "http://nlog.sourceforge.net/target/")]class GenericSoapHttpClientProtocol: SoapHttpClientProtocol
+        [System.Web.Services.WebServiceBindingAttribute(Name = "NLogService", Namespace = "http://www.nlog-project.org/targets/WebServiceCallTarget")] class GenericSoapHttpClientProtocol: SoapHttpClientProtocol
         {
             public GenericSoapHttpClientProtocol(){}
 

@@ -15,12 +15,12 @@ stupid) principle wherever possible.
 The Latest Version
 ------------------
 Details of the latest version can be found on the NLog project web site
-http://nlog.sourceforge.net/
+http://www.nlog-project.org/
 
 Documentation
 -------------
 Documentation is available in HTML format, in the doc/ directory or on the 
-project website (http://nlog.sourceforge.net/).
+project website (http://www.nlog-project.org/)
 
 License
 -------
