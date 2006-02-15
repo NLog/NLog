@@ -1,20 +1,29 @@
-2006-02-13 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2006-02-14 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Updated license and email addresses.
+	* Updated assembly version and description for 0.95 release.
+
+2006-02-13 Yuri Mamrukov <yvm@att.net>
+
+	* Patch to simplify InternalLogger configuration from environment
+	variables and/or App.config settings. Fixes some nasty bug here.
+
+2006-02-13 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Added some docs, moving website to http://www.nlog-project.org/
 	* Excluded NLogViewer from build and project.
 	* Refactored LoggerImpl to allow for some extensibility in the future.
 
-2006-01-13 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2006-01-13 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Fixed a serious reentrancy bug which caused all sorts of problems
 	when formatted message included a parameter where ToString
 	did the logging itself.
 
-2005-10-26 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-10-26 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Added ${aspnet-sessionid} to access (guess!) ASP.NET session ID
 
-2005-10-25 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-10-25 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Added ASPNetBufferingWrapper target which buffers and post-processes
 	the entire ASP.NET request (requires you to use the NLogHttpModule)
@@ -38,24 +47,24 @@
 	* Fixed the example for asynchronous Tile target (async="true" is not 
 	supported and is replaced by the AsyncWrapper target)
 
-2005-10-21 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-10-21 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Added ${processname}, ${processid} layout renderers
 	* Added GDC (Global Diagnostics Context) and ${gdc} layout renderer which
 	is a global (as opposed to per-thread) version of MDC and ${mdc}
 
-2005-10-11 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-10-11 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Fixed a nullref exception when no config file was present.
 	* Fixed support for CC field in the Mail target
 
-2005-09-29 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-09-29 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Added batch NLogC compilation, added installer and nlogc binary
 	snapshot.
 	* Added authentication options to the Mail target (thanks Ron).
 
-2005-09-28 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-09-28 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Refactored NLogViewer by separating NLogViewer.Interfaces
 	* Added NLogViewer.NDumbsterSmtpReceiver (by Ron Grabowski)
@@ -71,14 +80,14 @@
 	* Added compound targets (fallback, randomize, roundrobin, split)
     * WARNING: This requires some serious testing.
 
-2005-09-19 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-09-19 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added ${windows-identity} layout renderer. Restructured the
 	way extensions are loaded (ExtensionUtils).
 
-2005-08-28 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-08-28 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Some work on NLogViewer
 
-2005-08-14 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-08-14 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Fixed #34: Typos in the code prevented Chainsaw target
 	from working properly.
 	* Added #31: MSMQ target
@@ -91,60 +100,60 @@
 	* Added SimpleConfigurator.ConfigureForTargetLogging() and
 	SimpleConfigurator.ConfigureForFileLogging()
 
-2005-08-10 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-08-10 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Fixed #28: Documentation threading safety statement bug
 
-2005-08-08 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-08-08 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added #27: Debugger target.
 	* Fixed #26: ${callsite} not working with database parameters
 
-2005-07-27 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-07-27 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added #24: ${logger:shortname=true} option.
 
-2005-07-23 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-07-23 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Fixed #23: ${callsite} doesn't work with MethodCall target and
 	NLogViewer target
 
-2005-07-14 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-07-14 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Fixed #22: Connection string builder omits ; after Server parameter
 
-2005-07-11 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-07-11 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* added an overridable FileTarget.WriteToFile method to allow for subclassing
 	of File target to support encryption
 
-2005-07-09 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-07-09 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* fixed the Trace target in Release mode by defining TRACE symbol
 
-2005-07-06 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-07-06 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* added a new Trace level, more verbose than the Debug
 
-2005-07-05 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-07-05 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* fixed VS.NET Compact Framework project file
 
-2005-06-28 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-06-28 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* added support for <variable name="" value="" /> configuration element
 	* added experimental PerformanceCounter layout renderer.
 
-2005-06-25 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-06-25 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* fixed the Trace target in Release mode by defining TRACE symbol
 
-2005-06-23 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-06-23 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* added some minimal VB.NET test code
 	* added some meaningful error message when a named target is not defined.
 
-2005-06-20 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-06-20 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* fixed bugs related to ${asp-request:cookie} and ${aspnet-request:cookie} and many other small bugs
 
-2005-06-17 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-06-17 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* fixes for case-insensitive parsing of the config files.
 	* added IgnoreCase option to filters
 	* added unit tests that verify case-insensitivity.
 	* added many more unit tests (we have now over 70% coverage)
 
-2005-06-16 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-06-16 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* fixed the filter configuration bug as reported by Ron Grabowski
 
-2005-06-10 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-06-10 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* added StackTrace layout renderer, 3 different logging formats
 	* added NewLine layout renderer
 	* added async="true" to the "File" target to improve logging speed by
@@ -153,5 +162,5 @@
 	* refactored NLogViewer to use log4j schema instead of inventing my own
 	* fixed CompactFramework build
 
-2005-06-09 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+2005-06-09 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* NLog v0.9 has been released.

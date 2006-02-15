@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2002-2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -41,7 +41,7 @@ namespace NLog.Conditions
     /// <summary>
     /// Condition level expression (represented by the <b>level</b> keyword).
     /// </summary>
-    public class ConditionLevelExpression : ConditionExpression
+    internal sealed class ConditionLevelExpression : ConditionExpression
     {
         /// <summary>
         /// Creates a new instance of <see cref="ConditionLevelExpression"/>.

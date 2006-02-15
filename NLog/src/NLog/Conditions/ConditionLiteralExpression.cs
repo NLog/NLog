@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2002-2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -41,7 +41,7 @@ namespace NLog.Conditions
     /// <summary>
     /// Condition literal expression (numeric, <b>LogLevel.XXX</b>, <b>true</b> or <b>false</b>)
     /// </summary>
-    public class ConditionLiteralExpression : ConditionExpression
+    internal sealed class ConditionLiteralExpression : ConditionExpression
     {
         private object _literal;
 

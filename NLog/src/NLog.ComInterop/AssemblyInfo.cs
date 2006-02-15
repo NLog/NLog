@@ -1,6 +1,5 @@
 // 
-// Copyright (c) 2004,2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
-// 
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -15,7 +14,7 @@
 //   this list of conditions and the following disclaimer in the documentation
 //   and/or other materials provided with the distribution. 
 // 
-// * Neither the name of the Jaroslaw Kowalski nor the names of its 
+// * Neither the name of Jaroslaw Kowalski nor the names of its 
 //   contributors may be used to endorse or promote products derived from this
 //   software without specific prior written permission. 
 // 
@@ -40,12 +39,12 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("NLog.ComInterop")]
 [assembly: AssemblyDescription("NLog COM Interop")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("NLog")]
+[assembly: AssemblyCompany("NLog - http://www.nlog-project.org/")]
 [assembly: AssemblyProduct("NLog - .NET Logging Library")]
-[assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")]
+[assembly: AssemblyCopyright("Copyright (c) 2004-2006 by Jaroslaw Kowalski")]
 [assembly: AssemblyCulture("")]
 
-[assembly: AssemblyVersion("0.9.0.0")]
+[assembly: AssemblyVersion("0.9.5.0")]
 
 [assembly: Guid("fb84adc2-a04b-4ff3-8a20-7c069c3cfa6f")]
 

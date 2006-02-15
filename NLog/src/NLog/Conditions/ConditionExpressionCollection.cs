@@ -1,6 +1,5 @@
 // 
-// Copyright (c) 2004,2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
-// 
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -15,7 +14,7 @@
 //   this list of conditions and the following disclaimer in the documentation
 //   and/or other materials provided with the distribution. 
 // 
-// * Neither the name of the Jaroslaw Kowalski nor the names of its 
+// * Neither the name of Jaroslaw Kowalski nor the names of its 
 //   contributors may be used to endorse or promote products derived from this
 //   software without specific prior written permission. 
 // 
@@ -42,7 +41,7 @@ namespace NLog.Conditions
     /// <summary>
     /// A collection of elements of type ConditionExpression
     /// </summary>
-    public class ConditionExpressionCollection: System.Collections.CollectionBase
+    internal class ConditionExpressionCollection: System.Collections.CollectionBase
     {
         /// <summary>
         /// Initializes a new empty instance of the ConditionExpressionCollection class.

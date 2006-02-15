@@ -1,6 +1,5 @@
 // 
-// Copyright (c) 2004,2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
-// 
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -15,7 +14,7 @@
 //   this list of conditions and the following disclaimer in the documentation
 //   and/or other materials provided with the distribution. 
 // 
-// * Neither the name of the Jaroslaw Kowalski nor the names of its 
+// * Neither the name of Jaroslaw Kowalski nor the names of its 
 //   contributors may be used to endorse or promote products derived from this
 //   software without specific prior written permission. 
 // 
@@ -63,18 +62,34 @@ namespace NLog.Targets.Wrappers
         {
         }
 
+        /// <summary>
+        /// Default filter to be applied when no specific rule matches.
+        /// </summary>
         public string DefaultFilter
         {
             get { return _defaultFilter.ToString(); }
             set { _defaultFilter = ConditionParser.ParseExpression(value); }
         }
 
+        /// <summary>
+        /// Collection of filtering rules. The rules are processed top-down
+        /// and the first rule that matches determines the filtering condition to
+        /// be applied to log events.
+        /// </summary>
         [ArrayParameter(typeof(FilteringRule), "when")]
         public FilteringRuleCollection Rules
         {
             get { return _rules; }
         }
 
+
+        /// <summary>
+        /// Evaluates all filtering rules to find the first one that matches.
+        /// The matching rule determines the filtering condition to be applied
+        /// to all items in a buffer. If no condition matches, default filter
+        /// is applied to the array of log events.
+        /// </summary>
+        /// <param name="logEvents">Array of log events to be post-filtered.</param>
         protected internal override void Write(LogEventInfo[] logEvents)
         {
             ConditionExpression resultFilter = null;
@@ -130,14 +145,28 @@ namespace NLog.Targets.Wrappers
             }
         }
 
+        /// <summary>
+        /// Processes a single log event. Not very useful for this post-filtering
+        /// wrapper.
+        /// </summary>
+        /// <param name="logEvent">Log event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
             Write(new LogEventInfo[] { logEvent });
         }
 
+        /// <summary>
+        /// Adds all layouts used by this target to the specified collection.
+        /// </summary>
+        /// <param name="layouts">The collection to add layouts to.</param>
         public override void PopulateLayouts(LayoutCollection layouts)
         {
             base.PopulateLayouts(layouts);
+            foreach (FilteringRule fr in Rules)
+            {
+                fr.FilterCondition.PopulateLayouts(layouts);
+                fr.ExistsCondition.PopulateLayouts(layouts);
+            }
             _defaultFilter.PopulateLayouts(layouts);
         }
     }

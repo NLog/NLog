@@ -1,6 +1,5 @@
 // 
-// Copyright (c) 2004,2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
-// 
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -15,7 +14,7 @@
 //   this list of conditions and the following disclaimer in the documentation
 //   and/or other materials provided with the distribution. 
 // 
-// * Neither the name of the Jaroslaw Kowalski nor the names of its 
+// * Neither the name of Jaroslaw Kowalski nor the names of its 
 //   contributors may be used to endorse or promote products derived from this
 //   software without specific prior written permission. 
 // 
@@ -64,7 +63,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="FilteringWrapper"/> and 
+        /// Creates a new instance of <see cref="FilteringTargetWrapper"/> and 
         /// initializes the <see cref="WrapperTargetBase.WrappedTarget"/> and
         /// <see cref="Condition"/> properties.
         /// </summary>
@@ -74,6 +73,10 @@ namespace NLog.Targets.Wrappers
             Condition = condition;
         }
 
+        /// <summary>
+        /// Condition expression. Log events who meet this condition will be forwarded 
+        /// to the wrapped target.
+        /// </summary>
         [RequiredParameter]
         [AcceptsCondition]
         public string Condition
@@ -82,6 +85,12 @@ namespace NLog.Targets.Wrappers
             set { _condition = ConditionParser.ParseExpression(value); }
         }
 
+        /// <summary>
+        /// Checks the condition against the passed log event.
+        /// If the condition is met, the log event is forwarded to
+        /// the wrapped target.
+        /// </summary>
+        /// <param name="logEvent">Log event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
             object v = _condition.Evaluate(logEvent);
@@ -89,6 +98,10 @@ namespace NLog.Targets.Wrappers
                 WrappedTarget.Write(logEvent);
         }
 
+        /// <summary>
+        /// Adds all layouts used by this target to the specified collection.
+        /// </summary>
+        /// <param name="layouts">The collection to add layouts to.</param>
         public override void PopulateLayouts(LayoutCollection layouts)
         {
             base.PopulateLayouts(layouts);

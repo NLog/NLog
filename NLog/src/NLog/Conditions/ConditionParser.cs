@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2002-2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -134,7 +134,7 @@ namespace NLog.Conditions
                 }
             }
 
-            throw new ConditionParseException("Unexpected token: " + tokenizer.TokenValue, tokenizer.TokenPosition);
+            throw new ConditionParseException("Unexpected token: " + tokenizer.TokenValue);
         }
 
         private ConditionExpression ParseBooleanRelation() 
@@ -236,7 +236,7 @@ namespace NLog.Conditions
             ConditionParser parser = new ConditionParser(expr);
             ConditionExpression e = parser.ParseExpression();
             if (!parser.tokenizer.IsEOF())
-                throw new ConditionParseException("Unexpected token: " + parser.tokenizer.TokenValue, parser.tokenizer.TokenPosition);
+                throw new ConditionParseException("Unexpected token: " + parser.tokenizer.TokenValue);
             return e;
         }
     }

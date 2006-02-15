@@ -1,6 +1,5 @@
 // 
-// Copyright (c) 2004,2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
-// 
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -15,7 +14,7 @@
 //   this list of conditions and the following disclaimer in the documentation
 //   and/or other materials provided with the distribution. 
 // 
-// * Neither the name of the Jaroslaw Kowalski nor the names of its 
+// * Neither the name of Jaroslaw Kowalski nor the names of its 
 //   contributors may be used to endorse or promote products derived from this
 //   software without specific prior written permission. 
 // 
@@ -50,8 +49,10 @@ namespace NLog.Internal
     /// </summary>
     public sealed class InternalLogger
     {
-        private static LogLevel _logLevel = LogLevel.Info;
-        private static bool _logToConsole = false;
+        static LogLevel _logLevel = LogLevel.Info;
+        static bool _logToConsole = false;
+		static string _logFile = null;
+		static bool _loadExtensions = true;
 
         /// <summary>
         /// Internal log level.
@@ -104,42 +105,95 @@ namespace NLog.Internal
             }
         }
 
-        private static string _logFile = null;
+		/// <summary>
+		/// Defines whether the platform specific extensions are loaded at startup.
+		/// </summary>
+		public static bool LoadExtensions
+		{
+			get
+			{
+				return _loadExtensions;
+			}
+			set
+			{
+				_loadExtensions = value;
+			}
+		}
 
 #if !NETCF
+		
+		static string GetSetting(string configName, string envName)
+		{
+			string setting = ConfigurationSettings.AppSettings[configName];
+			if (setting == null)
+			{
+				try
+				{
+					setting = Environment.GetEnvironmentVariable(envName);
+				}
+				catch
+				{
+					// ignore
+				}
+			}
+			return setting;
+		}
+
         static InternalLogger()
         {
-            try
+            string setting = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE");
+            if (setting != null)
             {
-                switch (ConfigurationSettings.AppSettings["nlog.internalLogToConsole"].ToLower())
+                try
                 {
-                    case "false":
-                        LogToConsole = false;
-                        break;
-
-                    case "true":
-                        LogToConsole = true;
-                        break;
-
-                    default:
-                        if (EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_INTERNAL_LOG_TO_CONSOLE") != null)
-                        {
-                            LogToConsole = true;
-                        }
-                        break;
+                    LogToConsole = Convert.ToBoolean(setting);
                 }
-                string levelString = ConfigurationSettings.AppSettings["nlog.internalLogLevel"];
-                if (levelString == null || levelString.Length == 0)
-                    levelString = EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL");
-                if (levelString != null && levelString.Length > 0)
-                    LogLevel = LogLevel.FromString(EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_INTERNAL_LOG_LEVEL"));
-
-                LogFile = ConfigurationSettings.AppSettings["nlog.internalLogFile"];
-                if (LogFile == null)
-                    LogFile = EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_INTERNAL_LOG_FILE");
-                Info("NLog internal logger initialized.");
+                catch
+                {
+                    // ignore
+                }
             }
-            catch {}
+
+            setting = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL");
+            if (setting != null)
+            {
+                try
+                {
+                    LogLevel = LogLevel.FromString(setting);
+                }
+                catch
+                {
+                    // ignore
+                }
+            }
+
+            setting = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE");
+            if (setting != null)
+            {
+                try
+                {
+                    LogFile = setting;
+                }
+                catch
+                {
+                    // ignore
+                }
+            }
+
+            setting = GetSetting("nlog.internalLoadExtensions", "NLOG_INTERNAL_LOAD_EXTENSIONS");
+            if (setting != null)
+            {
+                try
+                {
+                    LoadExtensions = Convert.ToBoolean(setting);
+                }
+                catch
+                {
+                    // ignore
+                }
+            }
+
+            Info("NLog internal logger initialized.");
         }
 #endif 
 

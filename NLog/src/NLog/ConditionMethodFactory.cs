@@ -1,6 +1,5 @@
 // 
-// Copyright (c) 2004,2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
-// 
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -15,7 +14,7 @@
 //   this list of conditions and the following disclaimer in the documentation
 //   and/or other materials provided with the distribution. 
 // 
-// * Neither the name of the Jaroslaw Kowalski nor the names of its 
+// * Neither the name of Jaroslaw Kowalski nor the names of its 
 //   contributors may be used to endorse or promote products derived from this
 //   software without specific prior written permission. 
 // 
@@ -101,17 +100,28 @@ namespace NLog
             }
 
         }
+
         private static void AddDefaultConditionMethods()
         {
             AddConditionMethodsFromAssembly(typeof(ConditionMethodFactory).Assembly, String.Empty);
         }
 
+        /// <summary>
+        /// Registers the specified condition method under a specified name.
+        /// </summary>
+        /// <param name="name">Name of the condition method.</param>
+        /// <param name="mi"><see cref="MethodInfo" /> of the method to be registered.</param>
         public static void AddConditionMethod(string name, MethodInfo mi)
         {
             InternalLogger.Debug("AddConditionMethods('{0}','{1}')", name, mi);
             _conditionMethods[name.ToLower(CultureInfo.InvariantCulture)] = mi;
         }
 
+        /// <summary>
+        /// Returns the <see cref="MethodInfo"/> for the specified condition method.
+        /// </summary>
+        /// <param name="name">Name of the condition method.</param>
+        /// <returns><see cref="MethodInfo"/> object that represents the condition method.</returns>
         public static MethodInfo CreateConditionMethod(string name)
         {
             return _conditionMethods[name.ToLower(CultureInfo.InvariantCulture)];

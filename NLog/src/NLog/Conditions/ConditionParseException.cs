@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2002-2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -36,34 +36,38 @@ using System.Runtime.Serialization;
 
 namespace NLog.Conditions 
 {
+    /// <summary>
+    /// Exception during parsing of condition expression
+    /// </summary>
 #if !NETCF
     [Serializable]
 #endif
     public class ConditionParseException : Exception 
     {
-        private int _p0;
-        private int _p1;
+        /// <summary>
+        /// Creates a new instance of <see cref="ConditionParseException"/>.
+        /// </summary>
+        public ConditionParseException() {}
 
-        public ConditionParseException(string desc) : this(desc, -1, -1) {}
+        /// <summary>
+        /// Creates a new instance of <see cref="ConditionParseException"/>.
+        /// </summary>
+        /// <param name="desc">Error message</param>
+        public ConditionParseException(string desc) : base(desc) {}
 
-        public ConditionParseException(string desc, int p) : this(desc, p, p) {}
+        /// <summary>
+        /// Creates a new instance of <see cref="ConditionParseException"/>.
+        /// </summary>
+        /// <param name="desc">Error message</param>
+        /// <param name="inner">Inner exception</param>
+        public ConditionParseException(string desc, Exception inner) : base(desc, inner) {}
 
-        public ConditionParseException(string desc, int p0, int p1) : base(desc) 
-        {
-            _p0 = p0;
-            _p1 = p1;
-        }
-
-        public ConditionParseException(string desc, Exception inner) : this(desc, -1, -1, inner) {}
-
-        public ConditionParseException(string desc, int p, Exception inner) : this(desc, p, p, inner) {}
-
-        public ConditionParseException(string desc, int p0, int p1, Exception inner) : base(desc, inner) 
-        {
-            _p0 = p0;
-            _p1 = p1;
-        }
 #if !NETCF
+        /// <summary>
+        /// Creates a new instance of <see cref="ConditionParseException"/>.
+        /// </summary>
+        /// <param name="info">Serialization info</param>
+        /// <param name="context">Streaming context</param>
         protected ConditionParseException(SerializationInfo info, StreamingContext context) : base(info, context) {}
 #endif
     }

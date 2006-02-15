@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2002-2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -36,7 +36,7 @@ namespace NLog.Conditions
     /// <summary>
     /// Relational operators used in conditions.
     /// </summary>
-    public enum ConditionRelationalOperator
+    internal enum ConditionRelationalOperator
     {
         /// <summary>
         /// Equality (==)

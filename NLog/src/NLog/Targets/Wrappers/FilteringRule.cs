@@ -1,6 +1,5 @@
 // 
-// Copyright (c) 2004,2005 Jaroslaw Kowalski <jkowalski@users.sourceforge.net>
-// 
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -15,7 +14,7 @@
 //   this list of conditions and the following disclaimer in the documentation
 //   and/or other materials provided with the distribution. 
 // 
-// * Neither the name of the Jaroslaw Kowalski nor the names of its 
+// * Neither the name of Jaroslaw Kowalski nor the names of its 
 //   contributors may be used to endorse or promote products derived from this
 //   software without specific prior written permission. 
 // 
@@ -45,13 +44,22 @@ using NLog.Conditions;
 
 namespace NLog.Targets.Wrappers
 {
+    /// <summary>
+    /// Filtering rule for <see cref="PostFilteringTargetWrapper"/>.
+    /// </summary>
     public class FilteringRule
     {
         private ConditionExpression _exists;
         private ConditionExpression _filter;
 
+        /// <summary>
+        /// Creates a new instance of <see cref="FilteringRule"/>.
+        /// </summary>
         public FilteringRule() {}
 
+        /// <summary>
+        /// Condition to be tested.
+        /// </summary>
         [RequiredParameter]
         [AcceptsCondition]
         public string Exists
@@ -60,6 +68,9 @@ namespace NLog.Targets.Wrappers
             set { _exists = ConditionParser.ParseExpression(value); }
         }
 
+        /// <summary>
+        /// Resulting filter to be applied when the condition matches.
+        /// </summary>
         [RequiredParameter]
         [AcceptsCondition]
         public string Filter
@@ -68,12 +79,18 @@ namespace NLog.Targets.Wrappers
             set { _filter = ConditionParser.ParseExpression(value); }
         }
 
+        /// <summary>
+        /// Parsed Filter condition.
+        /// </summary>
         public ConditionExpression FilterCondition 
         {
             get { return _filter; }
             set { _filter = value; }
         }
 
+        /// <summary>
+        /// Parsed Exists condition.
+        /// </summary>
         public ConditionExpression ExistsCondition
         {
             get { return _exists; }
