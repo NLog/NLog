@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <common>
     <navigation>
-        <nav href="index" label="Introduction" />
+        <nav href="introduction" label="Introduction" />
         <nav href="news" label="News" />
         <nav href="tutorial" label="Tutorial" />
         <nav href="http://www.nabble.com/NLog-Forum-f6167.html" noext="true" label="Forum" />
