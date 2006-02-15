@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="api">
+<content lang="en" id="documentation" subid="api">
     <h1>NLog API</h1>
     <p>
         NLog provides the following Application Programming Interfaces (APIs)

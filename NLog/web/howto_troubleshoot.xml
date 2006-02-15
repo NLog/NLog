@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="howto" subid="howto_troubleshoot">
+<content lang="en" id="documentation" subid="howto">
     <h1>How to troubleshoot logging problems</h1>
     <p>If you have trouble getting NLog to work properly you may want to enable some debugging
         output to see what may be going wrong. This document describes the available internal debugging 

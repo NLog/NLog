@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="howto">
+<content lang="en" id="documentation" subid="howto">
     <h1>How To...</h1>
     <ol>
         <li><link href="howto_write_target">How to write your own log Target</link></li>

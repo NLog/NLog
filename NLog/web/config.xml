@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="reference" subid="config">
+<content lang="en" id="documentation" subid="config">
     <h1>NLog Configuration Options</h1>
     <p>NLog can be configured in many ways, both <a href="#api">programmatically</a> and using config <a href="#file">files</a>. 
         This document describes the available configuration options.</p>
