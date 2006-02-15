@@ -20,12 +20,13 @@
             <subnav href="config" label="Configuration File" />
             <subnav href="howto" label="How To..." />
         </nav>
-        <nav href="http://www.nabble.com/NLog-Forum-f6167.html" noext="true" label="Forum" />
-        <nav href="http://trac.nlog-project.org/nlog/" noext="true" label="Bugs" />
-        <nav href="mailinglists" label="Mailing Lists" />
+        <nav href="support" label="Support">
+            <subnav href="http://www.nabble.com/NLog-Forum-f6167.html" noext="true" label="Forum" />
+            <subnav href="http://trac.nlog-project.org/nlog/" noext="true" label="Bugs" />
+            <subnav href="mailinglists" label="Mailing Lists" />
+        </nav>
         <!-- <nav href="technical" label="Technical Information" /> -->
         <!-- <nav href="faq" label="FAQ" /> -->
-        <nav href="blog" label="Blog" />
         <nav href="links" label="Links" />
     </navigation>
 </common>

@@ -12,8 +12,8 @@
                 </p>
                 <ul>
                     <li>Added new Trace level, more verbose than the Debug level.</li>
-                    <li>Added a new <a href="http://www.nlog-project.org/conditions.html">conditions language</a> (see conditions.html for more information) which 
-                        let you write powerful filtering conditions while keeping the syntax natural and readable</li>
+                    <li>Added a new <a href="http://www.nlog-project.org/conditions.html">conditions language</a> which 
+                        lets you write powerful filtering conditions while keeping the syntax natural and readable</li>
                     <li><b><u>BREAKING CHANGE</u></b>: Renamed <code>Target.Append()</code> method to <code>Target.Write()</code></li>
                     <li>Added <code>Target.Write(LogEvent[] manyEvents)</code> for cases where the
                         target can optimize group writes</li>
