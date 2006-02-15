@@ -19,7 +19,8 @@
                         target can optimize group writes</li>
                     <li>Added global log threshold and configurability at the config level (<x><nlog globalThreshold="..." /></x>)</li>
                     <li>Added support for <x><variable name="" value="" /></x> configuration element. Details are <a href="http://sourceforge.net/mailarchive/message.php?msg_id=12189220">here</a>.</li>
-                    <li>Added infrastructure for <a href="http://sourceforge.net/mailarchive/message.php?msg_id=13149726">compound targets and wrapper targets</li>.</li>
+                    <li>Added infrastructure for <a href="http://sourceforge.net/mailarchive/message.php?msg_id=13149726">compound targets and wrapper targets</a>.</li>
+                    <li>Added detailed documentation with examples for many targets, both on the website and in the help file</a>
                 </ul>
                 <p>
                     Bugs fixed:
