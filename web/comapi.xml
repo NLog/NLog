@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="api" subid="comapi">
+<content lang="en" id="documentation" subid="comapi">
     <h1>COM API</h1>
     <p>
         NLog features a COM Interop API tha can be used to provide logging for legacy COM applications/components that

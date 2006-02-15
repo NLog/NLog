@@ -776,6 +776,7 @@
             <in>
                 <items basedir="${webbuild.dir}/examples">
                     <include name="**/*.js" />
+                    <include name="**/*.cpp" />
                 </items>
             </in>
             <do>
@@ -851,7 +852,7 @@
                     <parameter name="external-base" value="${webbuild.dir}" />
                     <parameter name="file_extension" value="html" />
                     <parameter name="sourceforge" value="${web.sourceforge}" />
-                    <parameter name="page_id_override" value="reference" />
+                    <parameter name="page_id_override" value="documentation" />
                     <parameter name="subpage_id_override" value="targets" />
                     <parameter name="mode" value="${web.buildmode}" />
                     <parameter name="target_name" value="${t}" />
@@ -866,7 +867,7 @@
                     <parameter name="external-base" value="${webbuild.dir}" />
                     <parameter name="file_extension" value="html" />
                     <parameter name="sourceforge" value="${web.sourceforge}" />
-                    <parameter name="page_id_override" value="reference" />
+                    <parameter name="page_id_override" value="documentation" />
                     <parameter name="subpage_id_override" value="layoutrenderers" />
                     <parameter name="mode" value="${web.buildmode}" />
                     <parameter name="lr_name" value="${t}" />
@@ -881,7 +882,7 @@
                     <parameter name="external-base" value="${webbuild.dir}" />
                     <parameter name="file_extension" value="html" />
                     <parameter name="sourceforge" value="${web.sourceforge}" />
-                    <parameter name="page_id_override" value="reference" />
+                    <parameter name="page_id_override" value="documentation" />
                     <parameter name="subpage_id_override" value="filters" />
                     <parameter name="mode" value="${web.buildmode}" />
                     <parameter name="filter_name" value="${t}" />
@@ -895,7 +896,7 @@
                 <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
-                <parameter name="page_id_override" value="reference" />
+                <parameter name="page_id_override" value="documentation" />
                 <parameter name="subpage_id_override" value="targets" />
                 <parameter name="mode" value="${web.buildmode}" />
             </parameters>
@@ -907,7 +908,7 @@
                 <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
-                <parameter name="page_id_override" value="reference" />
+                <parameter name="page_id_override" value="documentation" />
                 <parameter name="subpage_id_override" value="layoutrenderers" />
                 <parameter name="mode" value="${web.buildmode}" />
             </parameters>
@@ -919,7 +920,7 @@
                 <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
-                <parameter name="page_id_override" value="reference" />
+                <parameter name="page_id_override" value="documentation" />
                 <parameter name="subpage_id_override" value="filters" />
                 <parameter name="mode" value="${web.buildmode}" />
             </parameters>
@@ -931,7 +932,7 @@
                 <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
-                <parameter name="page_id_override" value="reference" />
+                <parameter name="page_id_override" value="documentation" />
                 <parameter name="subpage_id_override" value="conditions" />
                 <parameter name="mode" value="${web.buildmode}" />
             </parameters>

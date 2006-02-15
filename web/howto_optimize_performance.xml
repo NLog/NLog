@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="howto" subid="howto_optimize_performance">
+<content lang="en" id="documentation" subid="howto">
     <h1>How to optimize logging performance</h1>
 
     <h4>Overview</h4>

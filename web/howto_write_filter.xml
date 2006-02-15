@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="howto" subid="howto_write_filter">
+<content lang="en" id="documentation" subid="howto">
     <h1>How to write your own Filter</h1>
 
     <h5>Why would I want to write a Filter?</h5>

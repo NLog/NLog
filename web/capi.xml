@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="api" subid="capi">
+<content lang="en" id="documentation" subid="capi">
     <h1>C/C++ API</h1>
     <p>
         NLog supports a C/C++ logging API that can be used in scenarios that require the use 

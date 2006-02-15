@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="api" subid="netapi">
+<content lang="en" id="documentation" subid="netapi">
     <h1>.NET API</h1>
     <p>
         NLog uses a simple logging API which is similar to the one provided by <a href="http://logging.apache.org/log4net">log4net</a>.
