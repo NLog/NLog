@@ -40,7 +40,6 @@ Section "Main"
   CreateShortCut  "$SMPROGRAMS\NLog\LICENSE.lnk" "$INSTDIR\License.txt" ""
   CreateShortCut  "$SMPROGRAMS\NLog\NLog Documentation.lnk" "$INSTDIR\help\NLog.chm" ""
   CreateShortCut  "$SMPROGRAMS\NLog\NLog Configuration Examples.lnk" "$INSTDIR\examples" ""
-  CreateShortCut  "$SMPROGRAMS\NLog\NLog Viewer (preview).lnk" "$INSTDIR\bin\NLog.Viewer.exe" ""
   CreateShortCut  "$SMPROGRAMS\NLog\NLog C and C++ Library.lnk" "$INSTDIR\nlogc" ""
 
   WriteRegStr HKCU "Software\Microsoft\VisualStudio\7.0\AssemblyFolders\NLog" "" "$INSTDIR\Bin"
