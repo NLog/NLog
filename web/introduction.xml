@@ -3,26 +3,42 @@
 <content lang="en" id="introduction">
     <h3>What is NLog?</h3>
     <p>
-        NLog is a .NET logging library similar in concepts to <a href="http://logging.apache.org/log4net/">log4net</a>, 
-        designed with simplicity and flexibility in mind.
-    </p>
-
-    <h3>Features</h3>
-    <ul>
-        <li>.NET, .NET Compact Framework and Mono 1.0 support</li>
-        <li>very easy to configure, both with a config file and programmatically</li>
-        <li>easy to use - interface is identical to <code>Console.WriteLine</code> - there's no need to use <code>String.Format</code> any more</li>
-        <li>supports <link href="netapi">.NET</link>, <link href="capi">C/C++</link> and <link href="comapi">COM</link> interop API</li>
-    </ul>
-    <p>
-        NLog is open source, licensed 
-        under the terms of <a href="http://www.opensource.org/licenses/bsd-license.php">BSD license</a>, 
-        which permits commercial use. Everyone is encouraged to test it and report feedback to the mailing list.
+        NLog is a .NET logging library designed with simplicity and flexibility in mind. With NLog you 
+        can process diagnostic messages emitted from any .NET language, augment them with 
+        <link href="layoutrenderers">contextual information</link>, format them according to your preference
+        and send them to one or more <link href="targets">targets</link>. 
     </p>
     <p>
-        The logging API is modelled after log4net with some extensions that help it achieve great speed as described <link href="netapi">here</link>.
+        The <link href="netapi">API</link> (application programming interface) is similar 
+        to <a href="http://logging.apache.org/log4net/">log4net</a>, and the configuration is very simple.
+        NLog uses a <link href="config">routing table</link> while log4net uses a logger hierarchy 
+        with attachable appenders. This makes NLog's configuration very easy to read and maintain. 
+    </p>
+    <p>
+        NLog is licensed under the terms of <a href="http://svn.nlog-project.org/repos/nlog/trunk/NLog/LICENSE.txt">BSD license</a>, 
+        which permits commercial use and the source code is available to anyone at no cost.
+        Everyone is encouraged to test it and report feedback to the mailing list.
     </p>
 
-    <h3>Current Status</h3>
-    <p>Date to be announced: <b style="color: red">NLog 0.95 has been released</b>. Release notes can be found <link href="releasenotes">here</link>.</p>
+    <p>
+        NLog supports <link href="netapi">.NET</link>, <link href="capi">C/C++</link> and <link href="comapi">COM</link> interop API 
+        so that all your application components including legacy modules written in C++/COM can send their messages through
+        a common log routing engine.
+    </p>
+    <p>
+        The .NET API is very fast at filtering messages, so that you can keep your logging instructions in code
+        and let NLog filter them out at runtime. NLog can filter out as many as 150 million logging instructions
+        per second on a single-CPU 1.6 GHz laptop. Add that to <a href="target.AsyncWrapper.html">asynchronous processing</a> and 
+        other <a href="targets.html#wrappers">wrappers</a> and you'll get a very powerful and scalable logging tool.
+    </p>
+
+    <h3>Recent News</h3>
+    <p>2006-02-20: <b style="color: red">NLog 0.95 has been released</b>. Release notes can be found <link href="releasenotes">here</link>.</p>
+    <h3>TODO List</h3>
+    <p>
+        There are some things that need to be done before NLog can become v1.0. <a href="http://trac.nlog-project.org/nlog/milestone/NLog%201.0">This page</a>
+        lists them. The most important thing to be improved is the documentation. If you're a good technical writer and would like 
+        to help in writing/proofing the documentation, consider joining the <link href="mailinglists">mailing lists</link> where
+        the development effort is coordinated.
+    </p>
 </content>

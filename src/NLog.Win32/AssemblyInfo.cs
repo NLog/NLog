@@ -31,8 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Security.Permissions;
+
 
 [assembly: AssemblyTitle("NLog.Win32")]
 [assembly: AssemblyDescription("NLog - Win32-specific logging support")]
@@ -43,3 +47,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCulture("")]
 
 [assembly: AssemblyVersion("0.9.5.0")]
+
+[assembly: CLSCompliant(true)]
+[assembly: ComVisible(false)]
+

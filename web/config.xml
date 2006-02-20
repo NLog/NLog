@@ -166,7 +166,7 @@
         <li><code>final</code> - determines whether any of the following rules will be processed. If this attribute value is "true" and the log event passes all the above tests, no more targets will be written to.</li>
     </ul>
     <p>In addition, <x><logger/></x> supports <x><filters/></x> child element that can be used 
-        to specify filters. See the <link href="filters.html">Filter Reference</link> for more information.</p>
+        to specify filters. See the <link href="filters">Filter Reference</link> for more information.</p>
     The following example shows various routing options:
     <xml src="examples/config3.nlog" />
     <a name="api" />

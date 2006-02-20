@@ -182,10 +182,9 @@ namespace NLog
             Type t = _targets[name.ToLower()];
             if (t != null)
             {
-                object o = FactoryHelper.CreateInstance(t);
-                if (o is LayoutRenderer)
+                LayoutRenderer la = FactoryHelper.CreateInstance(t) as LayoutRenderer;
+                if (la != null)
                 {
-                    LayoutRenderer la = (LayoutRenderer)o;
 
                     if (parameters != null && parameters.Length > 0)
                     {

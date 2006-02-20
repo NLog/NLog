@@ -140,14 +140,9 @@ namespace NLog
             Type t = _targets[name.ToLower(CultureInfo.InvariantCulture)];
             if (t != null)
             {
-                object o = FactoryHelper.CreateInstance(t);
-                if (o is Target)
-                {
-                    Target la = (Target)o;
+                Target la = FactoryHelper.CreateInstance(t) as Target;
+                if (la != null)
                     return la;
-                }
-                else
-                    throw new ArgumentException("Target " + name + " not found.");
             }
             throw new ArgumentException("Target " + name + " not found.");
         }

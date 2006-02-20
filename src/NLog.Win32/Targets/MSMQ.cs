@@ -66,11 +66,11 @@ namespace NLog.Win32.Targets
 	{
         private Layout _queue;
         private Layout _label;
-        private bool _createIfNotExists = false;
+        private bool _createIfNotExists;
         private Encoding _encoding = System.Text.Encoding.UTF8;
-        private bool _useXmlEncoding = false;
+        private bool _useXmlEncoding;
         private MessagePriority _messagePriority = MessagePriority.Normal;
-        private bool _recoverableMessages = false;
+        private bool _recoverableMessages;
 
         /// <summary>
         /// Name of the queue to write to.

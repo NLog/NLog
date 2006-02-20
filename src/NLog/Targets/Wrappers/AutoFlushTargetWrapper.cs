@@ -70,7 +70,7 @@ namespace NLog.Targets.Wrappers
 
         /// <summary>
         /// Forwards the call to the <see cref="WrapperTargetBase.WrappedTarget"/>.Write()
-        /// and calls <see cref="Target.Flush"/> on it.
+        /// and calls <see cref="Target.Flush()"/> on it.
         /// </summary>
         /// <param name="logEvent"></param>
         protected internal override void Write(LogEventInfo logEvent)

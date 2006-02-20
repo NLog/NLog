@@ -54,6 +54,11 @@ namespace NLog.Internal
             _url = url;
         }
 
+        ~NetworkSender()
+        {
+            Dispose(false);
+        }
+
         /// <summary>
         /// Creates a new instance of the network sender based on a network URL:
         /// </summary>
@@ -117,7 +122,16 @@ namespace NLog.Internal
         /// </summary>
         public void Dispose()
         {
-            Close();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Close();
+            }
         }
     }
 }

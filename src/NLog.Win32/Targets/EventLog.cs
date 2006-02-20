@@ -69,8 +69,8 @@ namespace NLog.Win32.Targets
         private string _machineName = ".";
         private string _sourceName;
         private string _logName = "Application";
-        private bool _needEventLogSourceUpdate = true;
-        private bool _operational = false;
+        private bool _needEventLogSourceUpdate;
+        private bool _operational;
 
         /// <summary>
         /// Creates a new instance of <see cref="EventLogTarget"/> and 
