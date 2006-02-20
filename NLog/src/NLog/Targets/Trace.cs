@@ -48,8 +48,8 @@ namespace NLog.Targets
         /// <summary>
         /// Writes the specified logging event to the <see cref="System.Diagnostics.Trace"/> facility.
         /// If the log level is greater than or equal to <see cref="LogLevel.Error"/> it uses the
-        /// <see cref="System.Diagnostics.Trace.Fail"/> method, otherwise it uses
-        /// <see cref="System.Diagnostics.Trace.Write" /> method.
+        /// <see cref="System.Diagnostics.Trace.Fail(String)"/> method, otherwise it uses
+        /// <see cref="System.Diagnostics.Trace.Write(String)" /> method.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)

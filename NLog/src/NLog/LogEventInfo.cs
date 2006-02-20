@@ -246,8 +246,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Renders the logging message by invoking <see cref="String.Format"/> on
-        /// a <see cref="Message"/>, <see cref="Parameters"/> and <see cref="FormatProvider"/>.
+        /// Returns the formatted message.
         /// </summary>
         public string FormattedMessage
         {

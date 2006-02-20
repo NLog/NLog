@@ -39,14 +39,16 @@ namespace NLog.Win32
 {
     internal class ASPHelper
     {
+        private ASPHelper() { }
+
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("51372ae0-cae7-11cf-be81-00aa00a2fa25")]
-            public interface IObjectContext
+        public interface IObjectContext
         {
             // members not important
         }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("51372af4-cae7-11cf-be81-00aa00a2fa25")]
-            public interface IGetContextProperties
+        public interface IGetContextProperties
         {
             int Count();
             object GetProperty(string name);
@@ -54,7 +56,7 @@ namespace NLog.Win32
         }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A865-11cf-83AF-00A0C90C2BD8")]
-            public interface ISessionObject
+        public interface ISessionObject
         {
             string GetSessionID();
             object GetValue(string name);
@@ -71,7 +73,7 @@ namespace NLog.Win32
         }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A866-11cf-83AE-10A0C90C2BD8")]
-            public interface IApplicationObject
+        public interface IApplicationObject
         {
             object GetValue(string name);
             void PutValue(string name, object val);
@@ -79,7 +81,7 @@ namespace NLog.Win32
         }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A85D-11cf-83AE-00A0C90C2BD8")]
-            public interface IStringList
+        public interface IStringList
         {
             object GetItem(object key);
             int GetCount();
@@ -87,7 +89,7 @@ namespace NLog.Win32
         }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A85F-11df-83AE-00A0C90C2BD8")]
-            public interface IRequestDictionary
+        public interface IRequestDictionary
         {
             object GetItem(object var);
             object NewEnum();
@@ -96,10 +98,10 @@ namespace NLog.Win32
         }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("00020400-0000-0000-C000-000000000046")]
-            public interface IDispatch{}
+        public interface IDispatch{}
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A861-11cf-93AE-00A0C90C2BD8")]
-            public interface IRequest
+        public interface IRequest
         {
             IDispatch GetItem(string name);
             IRequestDictionary GetQueryString();
@@ -113,7 +115,7 @@ namespace NLog.Win32
         }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A864-11cf-83BE-00A0C90C2BD8")]
-            public interface IResponse
+        public interface IResponse
         {
             void GetBuffer(); // placeholder
             void PutBuffer(); // placeholder
@@ -140,7 +142,7 @@ namespace NLog.Win32
         }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("71EAF260-0CE0-11D0-A53E-00A0C90C2091")]
-            public interface IReadCookie
+        public interface IReadCookie
         {
             void GetItem(object key, out object val);
             object HasKeys();
@@ -149,7 +151,8 @@ namespace NLog.Win32
             object GetKey(object key);
         }
 
-        [DllImport("ole32.dll")]extern static int CoGetObjectContext(ref Guid iid, out IObjectContext g);
+        [DllImport("ole32.dll")]
+        extern static int CoGetObjectContext(ref Guid iid, out IObjectContext g);
 
         static Guid IID_IObjectContext = new Guid("51372ae0-cae7-11cf-be81-00aa00a2fa25");
 

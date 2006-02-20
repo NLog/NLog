@@ -339,22 +339,22 @@ namespace NLog.Conditions
             {
                 TokenType = ConditionTokenType.String;
 
-                string s = "";
+                StringBuilder sb = new StringBuilder();
 
-                s += ch;
+                sb.Append(ch);
                 ReadChar();
 
                 while ((i = PeekChar()) != -1) 
                 {
                     ch = (char)i;
 
-                    s += (char)ReadChar();
+                    sb.Append((char)ReadChar());
 
                     if (ch == '\'') 
                     {
                         if (PeekChar() == (int)'\'') 
                         {
-                            s += '\'';
+                            sb.Append('\'');
                             ReadChar();
                         } 
                         else
@@ -362,7 +362,7 @@ namespace NLog.Conditions
                     }
                 };
 
-                _tokenValue = s;
+                _tokenValue = sb.ToString();
                 return ;
             }
 

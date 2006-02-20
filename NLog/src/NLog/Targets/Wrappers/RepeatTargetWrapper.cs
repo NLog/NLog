@@ -83,7 +83,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Forwards the log message to the <see cref="WrapperTargetBase.WrappedTarget"/> by calling the <see cref="Target.Write"/> method <see cref="RepeatCount"/> times.
+        /// Forwards the log message to the <see cref="WrapperTargetBase.WrappedTarget"/> by calling the <see cref="Target.Write(LogEventInfo)"/> method <see cref="RepeatCount"/> times.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         protected internal override void Write(LogEventInfo logEvent)
@@ -95,7 +95,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Forwards the array of log events to the <see cref="WrapperTargetBase.WrappedTarget"/> by calling the <see cref="Target.Write"/> method <see cref="RepeatCount"/> times.
+        /// Forwards the array of log events to the <see cref="WrapperTargetBase.WrappedTarget"/> by calling the <see cref="Target.Write(LogEventInfo[])"/> method <see cref="RepeatCount"/> times.
         /// </summary>
         /// <param name="logEvents">The array of log events.</param>
         protected internal override void Write(LogEventInfo[] logEvents)

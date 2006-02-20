@@ -1,0 +1,62 @@
+Major changes: 
+
+* Added new Trace level, more verbose than the Debug level.
+* Added a new conditions language which lets you write powerful filtering conditions while keeping the syntax natural and readable
+* BREAKING CHANGE: Renamed Target.Append() method to Target.Write()
+* Added Target.Write(LogEvent[] manyEvents) for cases where the target can optimize group writes
+* Added global log threshold and configurability at the config level (<nlog globalThreshold="..." />)
+* Added support for <variable name="" value="" /> configuration element. Details are here.
+* Added infrastructure for compound targets and wrapper targets.
+* Added detailed documentation with examples for many targets, both on the website and in the help file
+
+Bugs fixed: 
+
+* Fixed the filter configuration bug as reported by Ron Grabowski
+* Fixed a serious reentrancy bug which caused all sorts of problems when formatted message included a parameter where ToString did the logging itself. More details here. 
+* Fixed a nullref exception when no config file was present.
+* Fixed support for CC field in the Mail target
+* Fixed Close() behaviour for unnamed targets (like the ones configured by SimpleConfigurator)
+* Typos in the code prevented Chainsaw target from working properly.
+* ${callsite} not working with database parameters
+* ${callsite} doesn't work with MethodCall target and NLogViewer target
+* Connection string builder omits ; after Server parameter
+* Fixed the Trace target in Release mode by defining TRACE symbol
+* Fixed VS.NET Compact Framework project file
+* Fixed the Trace target in Release mode by defining TRACE symbol
+* Fixed bugs related to ${asp-request:cookie} and ${aspnet-request:cookie}
+* Fixes for case-insensitive parsing of the config files.
+* fixed CompactFramework build
+
+New additions: 
+
+* Added <when condition="..." action="..." /> filter which uses condition expressions
+* Added ${aspnet-sessionid} to access (guess!) ASP.NET session ID
+* Added ${processname}, ${processid} layout renderers
+* Added ASPNetBufferingWrapper target which buffers and post-processes the entire ASP.NET request (requires you to use the NLogHttpModule)
+* Added PostFilteringWrapper target which is able to filter log events based on a buffer as a whole. Details are here.
+* Added GDC (Global Diagnostics Context) and ${gdc} layout renderer which is a global (as opposed to per-thread) version of MDC and ${mdc}
+* Added authentication options to the Mail target (thanks Ron).
+* Added support for caching layout results per logEvent which makes them transportable across threads
+* Added ${log4jxmlevent} which renders log4j-compatible XML event
+* Added wrapper targets: AsyncWrapper, AutoFlushWrapper, BufferingWrapper, RepeatingWrapper, RetryingWrapper
+* Added compound targets (fallback, randomize, roundrobin, split)
+* Added ${windows-identity} layout renderer.
+* Added MSMQ target (Message Queue)
+* Added EventLog target
+* Added ${pc} - Performance Counter layout renderer
+* Added SimpleConfigurator.ConfigureForTargetLogging() and SimpleConfigurator.ConfigureForFileLogging()
+* Added Debugger target
+* Added ${logger:shortname=true} option.
+* Added ${stacktrace} layout renderer, 3 different logging formats. Details are here.
+* Added ${newline} layout renderer.
+* Added IgnoreCase option to filters
+
+Other changes: 
+
+* Project web site has been moved to http://www.nlog-project.org/
+* Patch by Yuri Mamrukov to simplify InternalLogger configuration from environment variables and/or App.config settings. Fixes some nasty bug there. More details are available here.
+* Excluded NLogViewer from build and project. It will become be a separate project here.
+* Added batch NLogC compilation, added installer and nlogc binary snapshot.
+* Added some minimal VB.NET test code
+* Added some meaningful error message when a named target is not defined.
+* Added many unit tests

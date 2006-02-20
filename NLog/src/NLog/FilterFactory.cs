@@ -126,14 +126,9 @@ namespace NLog
             Type t = _filters[name.ToLower(CultureInfo.InvariantCulture)];
             if (t != null)
             {
-                object o = FactoryHelper.CreateInstance(t);
-                if (o is Filter)
-                {
-                    Filter la = (Filter)o;
+                Filter la = FactoryHelper.CreateInstance(t) as Filter;
+                if (la != null)
                     return la;
-                }
-                else
-                    throw new ArgumentException("Filter " + name + " not found.");
             }
             throw new ArgumentException("Filter " + name + " not found.");
         }

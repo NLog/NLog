@@ -13,7 +13,7 @@
     <xsl:variable name="subpage_id" select="concat(/*[position()=1]/@subid,$subpage_id_override)" />
     <xsl:variable name="common" select="document(concat($mode,'menu.xml'))" />
     
-    <xsl:output method="html" indent="no" />
+    <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/">
         <html>
@@ -60,11 +60,13 @@
                         </td>
                         <td valign="top" align="left" class="content">
                             <!-- <p style="color: blue; font-weight: bold; padding: 4px; margin-bottom: 10px; border: 1px solid #ABC8E5; background-color: #DFEAF5;">THIS SITE IS UNDER CONSTRUCTION. SOME SECTIONS ARE MISSING.</p> -->
+                            <!--
                             <xsl:if test="$mode = 'web'">
                                 <span class="underconstruction">
                                     This web site is under construction and describes a version of NLog currently under development. Some sections may be missing or not up-to-date.
                                 </span>
                             </xsl:if>
+                            -->
                             <xsl:apply-templates select="/" mode="content" />
                         </td>
                     </tr>

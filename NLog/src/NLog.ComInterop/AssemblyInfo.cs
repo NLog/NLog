@@ -48,3 +48,5 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("fb84adc2-a04b-4ff3-8a20-7c069c3cfa6f")]
 
+[assembly: CLSCompliant(true)]
+[assembly: ComVisible(true)]

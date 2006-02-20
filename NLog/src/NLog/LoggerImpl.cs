@@ -42,8 +42,10 @@ using NLog.Internal;
 
 namespace NLog
 {
-    sealed class LoggerImpl
+    internal sealed class LoggerImpl
     {
+        private LoggerImpl() { }
+        
         private const int STACK_TRACE_SKIP_METHODS = 0;
         private static Assembly _thisAssembly = typeof(LoggerImpl).Assembly;
 

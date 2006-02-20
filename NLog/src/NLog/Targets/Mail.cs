@@ -219,9 +219,11 @@ namespace NLog.Targets
             get { return _smtpAuthentication; }
             set { 
                 AssertFieldsSupport("SmtpAuthentication");
-                string n = value.ToLower();
-                if (n == "none" || n == "basic" || n == "ntlm")
-                    _smtpAuthentication = n;
+                if (String.Compare(value, "none", true) == 0 || 
+                    String.Compare(value, "basic", true) == 0 || 
+                    String.Compare(value, "ntlm", true) == 0
+                        )
+                    _smtpAuthentication = value.ToLower();
                 else
                     throw new ArgumentException("Invalid argument to SmtpAuthentication. Allowed values are none,basic or ntlm");
             }
