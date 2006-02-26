@@ -508,6 +508,8 @@ namespace NLog.Config
             if (element == null)
                 return ;
 
+            bool asyncWrap = 0 == String.Compare(GetCaseInsensitiveAttribute(element, "async"), "true", true);
+
             foreach (XmlNode n in element.ChildNodes)
             {
                 XmlElement targetElement = n as XmlElement;
@@ -524,6 +526,18 @@ namespace NLog.Config
                     if (newTarget != null)
                     {
                         ConfigureTargetFromXmlElement(newTarget, targetElement);
+#if !NETCF                        
+                        if (asyncWrap)
+                        {
+                            NLog.Targets.Wrappers.AsyncTargetWrapper atw = new NLog.Targets.Wrappers.AsyncTargetWrapper();
+                            atw.WrappedTarget = newTarget;
+                            atw.Name = newTarget.Name;
+                            newTarget.Name = newTarget.Name + "_wrapped";
+                            
+                            InternalLogger.Debug("Wrapping target '{0}' with AsyncTargetWrapper and renaming to '{1}", atw.Name, newTarget.Name);
+                            newTarget = atw;
+                        }
+#endif
                         AddTarget(newTarget.Name, newTarget);
                     }
                 }
