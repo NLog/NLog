@@ -32,23 +32,22 @@
 // 
 
 using System;
-using System.IO;
-using System.Text;
-using System.Xml;
 using System.Reflection;
 using System.Diagnostics;
 using System.Collections;
-
 using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
 using NLog.Config;
 
 namespace NLog.Win32.Targets
 {
     /// <summary>
     /// A target wrapper that increments specified perf counter on each write.
+    /// TODO:
+    /// 1. Unable to create a category allowing multiple counter instances (.Net 2.0 API only, probably)
+    /// 2. Is there any way of adding new counters without deleting the whole category?
+    /// 3. There should be some mechanism of resetting the counter (e.g every day starts from 0), or auto-switching to 
+    ///    another counter instance (with dynamic creation of new instance). This could be done with layouts. 
+    /// 
     /// </summary>
     [Target("PerfCounter")]
     public class PerfCounterTarget : Target
@@ -121,10 +120,10 @@ namespace NLog.Win32.Targets
         
         
         
-        public PerformanceCounterType CounterType
+        public string CounterType
         {
-            get { return _counterType; }
-            set { _counterType = value; }
+            get { return _counterType.ToString(); }
+            set { _counterType = (PerformanceCounterType) Enum.Parse(typeof(PerformanceCounterType), value, false); }
         }
         
         private void InitializePerfCounter()
@@ -132,15 +131,13 @@ namespace NLog.Win32.Targets
             lock(this)
             {
                 _operational = true;
-                _perfCounter = null;
-                if (_categoryName == null || _counterName == null) 
-                {
-                    throw new Exception("Missing category name or counter name for target: " + Name);
-                    _operational = false;
-                    return;
-                }
                 try
                 {
+                    if (_perfCounter != null) { _perfCounter.Close(); _perfCounter = null; }
+                    if (_categoryName == null || _counterName == null) 
+                    {
+                        throw new Exception("Missing category name or counter name for target: " + Name);
+                    }
                     
                     if (!PerformanceCounterCategory.Exists(CategoryName) || !PerformanceCounterCategory.CounterExists(CounterName, CategoryName))
                     {
@@ -159,7 +156,7 @@ namespace NLog.Win32.Targets
                         {
                             if (PerformanceCounterCategory.Exists(CategoryName))
                             {
-                                //we must delete the whole category and rebuild from scratch
+                                //delete the whole category and rebuild from scratch
                                 PerformanceCounterCategory.Delete(CategoryName);
                             }
                             
@@ -167,8 +164,8 @@ namespace NLog.Win32.Targets
                             foreach(PerfCounterTarget t in targets)
                             {
                                 CounterCreationData ccd = new CounterCreationData();
-                                ccd.CounterName = t.CounterName;
-                                ccd.CounterType = t.CounterType;  
+                                ccd.CounterName = t._counterName;
+                                ccd.CounterType = t._counterType;  
                                 ccds.Add(ccd);                                    
                             }
                             PerformanceCounterCategory.Create(CategoryName,"Category created by NLog",ccds);
@@ -185,6 +182,7 @@ namespace NLog.Win32.Targets
                 catch(Exception ex)
                 {
                     _operational = false;
+                    _perfCounter = null;
                     if (LogManager.ThrowExceptions) throw ex;
                 }
             }
