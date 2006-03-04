@@ -47,8 +47,9 @@ namespace NLog.LayoutRenderers
         private bool _name = true;
         private bool _authType = true;
         private bool _isAuthenticated = true;
+        private bool _fsNormalize = false;
         private string _separator = ":";
-
+ 
         /// <summary>
         /// The separator to be used when concatenating 
         /// parts of identity information.
@@ -115,6 +116,23 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// When true the output of this renderer is modified so it can be used as a part of file path
+        /// (illegal characters are replaced with '_')
+        /// </summary>
+        [System.ComponentModel.DefaultValue(false)]
+        public bool FSNormalize
+        {
+            get
+            {
+                return _fsNormalize;
+            }
+            set
+            {
+                _fsNormalize = value;
+            }
+        }
+        
+        /// <summary>
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
         /// </summary>
@@ -146,7 +164,7 @@ namespace NLog.LayoutRenderers
                     StringBuilder sb2 = builder;
                     if (Padding != 0)
                         sb2 = new StringBuilder();
-
+                    int sbstart = sb2.Length;
                     bool first = true;
 
                     if (_isAuthenticated)
@@ -186,6 +204,15 @@ namespace NLog.LayoutRenderers
                         first = false;
                     }
 
+                    if (_fsNormalize)
+                    {
+                        for (int i=sbstart; i<sb2.Length; i++)
+                        {
+                            char c = sb2[i];
+                            if (!Char.IsLetterOrDigit(c) && c != '_' && c != '-' && c != '.') sb2[i] = '_';
+                        }
+                    }
+                    
                     if (Padding != 0)
                         builder.Append(ApplyPadding(sb2.ToString()));
                 }
