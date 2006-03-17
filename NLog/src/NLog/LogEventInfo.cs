@@ -94,12 +94,23 @@ namespace NLog
             _layoutCache = null;
             _sequenceID = Interlocked.Increment(ref _globalSequenceID);
             _callContext = callContext;
-            if (_parameters == null || _parameters.Length == 0)
-                _formattedMessage = _message;
-            else if (_formatProvider != null)
-                _formattedMessage = String.Format(_formatProvider, _message, _parameters);
-            else
-                _formattedMessage = String.Format(_message, _parameters);
+
+            try
+            {
+                if (_parameters == null || _parameters.Length == 0)
+                    _formattedMessage = _message;
+                else if (_formatProvider != null)
+                    _formattedMessage = String.Format(_formatProvider, _message, _parameters);
+                else
+                    _formattedMessage = String.Format(_message, _parameters);
+            }
+            catch (Exception ex)
+            {
+                if (LogManager.ThrowExceptions)
+                    throw;
+                else
+                    _formattedMessage = _message;
+            }
 
 #if !NETCF
             _stackTrace = null;
