@@ -41,14 +41,15 @@ using NLog.Config;
 namespace NLog.Win32.Targets
 {
     /// <summary>
-    /// A target wrapper that increments specified perf counter on each write.
+    /// Increments specified performance counter on each write.
+    /// </summary>
+    /// <remarks>
     /// TODO:
     /// 1. Unable to create a category allowing multiple counter instances (.Net 2.0 API only, probably)
     /// 2. Is there any way of adding new counters without deleting the whole category?
     /// 3. There should be some mechanism of resetting the counter (e.g every day starts from 0), or auto-switching to 
     ///    another counter instance (with dynamic creation of new instance). This could be done with layouts. 
-    /// 
-    /// </summary>
+    /// </remarks>
     [Target("PerfCounter")]
     public class PerfCounterTarget : Target
     {
@@ -71,9 +72,6 @@ namespace NLog.Win32.Targets
                 if (!_perfCounterTargets.Contains(this)) _perfCounterTargets.Add(this);
             }
         }
-
-
-
         
         protected override void Write(LogEventInfo logEvent)
         {
