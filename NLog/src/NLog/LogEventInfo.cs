@@ -35,6 +35,7 @@ using System;
 using System.Globalization;
 using System.Diagnostics;
 using System.Threading;
+using System.Reflection;
 
 using System.Collections;
 using System.Collections.Specialized;
@@ -94,23 +95,10 @@ namespace NLog
             _layoutCache = null;
             _sequenceID = Interlocked.Increment(ref _globalSequenceID);
             _callContext = callContext;
+            _formattedMessage = null;
 
-            try
-            {
-                if (_parameters == null || _parameters.Length == 0)
-                    _formattedMessage = _message;
-                else if (_formatProvider != null)
-                    _formattedMessage = String.Format(_formatProvider, _message, _parameters);
-                else
-                    _formattedMessage = String.Format(_message, _parameters);
-            }
-            catch (Exception ex)
-            {
-                if (LogManager.ThrowExceptions)
-                    throw;
-                else
-                    _formattedMessage = _message;
-            }
+            if (NeedToPreformatMessage(parameters))
+                CalcFormattedMessage();
 
 #if !NETCF
             _stackTrace = null;
@@ -263,6 +251,9 @@ namespace NLog
         {
             get 
             {
+                if (_formattedMessage == null)
+                    CalcFormattedMessage();
+
                 return _formattedMessage;
             }
         }
@@ -305,6 +296,64 @@ namespace NLog
             if (_layoutCache == null)
                 _layoutCache = new HybridDictionary();
             _layoutCache[layout] = value;
+        }
+
+        private void CalcFormattedMessage()
+        {
+            try
+            {
+                if (_parameters == null || _parameters.Length == 0)
+                    _formattedMessage = _message;
+                else if (_formatProvider != null)
+                    _formattedMessage = String.Format(_formatProvider, _message, _parameters);
+                else
+                    _formattedMessage = String.Format(_message, _parameters);
+            }
+            catch (Exception ex)
+            {
+                if (LogManager.ThrowExceptions)
+                    throw;
+                else
+                    _formattedMessage = _message;
+            }
+        }
+
+        private bool NeedToPreformatMessage(object[] parameters)
+        {
+            // we need to preformat message if it contains any parameters which could possibly
+            // do logging in their ToString()
+            if (parameters == null)
+                return false;
+            
+            if (parameters.Length == 0)
+                return false;
+            
+            if (parameters.Length > 4)
+            {
+                // too many parameters, too costly to check
+                return true;
+            }
+
+            for (int i = 0; i < parameters.Length; ++i)
+            {
+                if (!IsSafeToDeferFormatting(parameters[i]))
+                    return true;
+            }
+            return false;
+        }
+
+        private static Assembly _mscorlibAssembly = typeof(Object).Assembly;
+
+        private bool IsSafeToDeferFormatting(object value)
+        {
+            if (value == null)
+                return true;
+
+            //
+            // types from mscorlib.dll are considered safe since they
+            // have no chance of overriding ToString to include logging code
+            // 
+            return value.GetType().Assembly == _mscorlibAssembly;
         }
     }
 }

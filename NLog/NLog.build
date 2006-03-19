@@ -31,7 +31,7 @@
     <property name="webtest.dir" value="${nant.project.basedir}/webtest" />
 
     <property name="clover.enabled" value="false" />
-    <property name="clover.home" value="C:\Apps\CloverNLog" />
+    <property name="clover.home" value="D:\Apps\CloverNLog" />
 
     <target name="configure">
         <call target="configure-${framework::get-target-framework()}" />
@@ -655,8 +655,6 @@
         <exec program="${scp.program}" commandline="${scp.args} ${binary_compact_snapshot.name} ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ChangeLog..." />
         <exec program="${scp.program}" commandline="${scp.args} ChangeLog ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
-        <echo message="Fixing permissions..." />
-        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} ${deploy.dir}/fix_group_perm.sh" />
     </target>
 
     <target name="publish_snapshot" depends="fullrelease, upload_snapshot">

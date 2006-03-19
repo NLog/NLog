@@ -1,3 +1,16 @@
+2006-03-19 Jaroslaw Kowalski <jaak@jkowalski.net>
+
+	* Optimization to defer calling String.Format() until it's really
+	needed.
+
+2006-02-24 Rafal Gwizdala <gwrafal@poczta.onet.pl>
+
+	* Add PerfCounter target that increases the PC value by one each
+	time the message is passed to it.
+	* Added FSNormalize option to ${identity} target to strip all
+	characters not allowed in the file names and replace them with
+	underscores.
+
 2006-02-24 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Added config-level option <targets async="true">...</targets>
