@@ -150,7 +150,7 @@ namespace NLog.Config
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, LogLevel minLevel, Target target)
         {
-            _loggerNamePattern = loggerNamePattern;
+            LoggerNamePattern = loggerNamePattern;
             _targets.Add(target);
             for (int i = (int)minLevel.Ordinal; i <= (int)LogLevel.MaxLevel.Ordinal; ++i)
             {
@@ -168,7 +168,7 @@ namespace NLog.Config
         /// <remarks>By default no logging levels are defined. You should call <see cref="EnableLoggingForLevel" /> and <see cref="DisableLoggingForLevel"/> to set them.</remarks>
         public LoggingRule(string loggerNamePattern, Target target)
         {
-            _loggerNamePattern = loggerNamePattern;
+            LoggerNamePattern = loggerNamePattern;
             _targets.Add(target);
         }
 

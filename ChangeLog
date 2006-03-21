@@ -1,3 +1,9 @@
+2006-03-21 Jaroslaw Kowalski <jaak@jkowalski.net>
+
+	* Fixed a programmatic configuration bug where invalid value was passed
+	to LoggingRule.LoggerNamePattern. 
+	Thanks to danieljaysmith - at - excite - dot - com for spotting this.
+
 2006-03-19 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Optimization to defer calling String.Format() until it's really
