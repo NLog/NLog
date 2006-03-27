@@ -1,3 +1,7 @@
+2006-03-27 Jaroslaw Kowalski <jaak@jkowalski.net>
+
+    * Updated .NET CF project file
+
 2006-03-21 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Fixed a programmatic configuration bug where invalid value was passed
