@@ -15,7 +15,7 @@
         <ul>
             <li>relational operators (<b>==</b>, <b>!=</b>, <b>&lt;=</b>, <b>&lt;=</b>, <b>&gt;=</b> and <b>&gt;</b>)</li>
             <li><b>and</b>, <b>or</b>, <b>not</b> boolean operators</li>
-            <li>string literals which are always evaluated as <a href="layouts.html">layouts</a> - <b>'${somerenderer}'</b></li>
+            <li>string literals which are always evaluated as <a href="layoutrenderers.html">layouts</a> - <b>'${somerenderer}'</b></li>
             <li>boolean literals - <b>true</b> and <b>false</b></li>
             <li>log level literals - <b>LogLevel.Trace</b>, <b>LogLevel.Debug</b>, ... <b>LogLevel.Fatal</b></li>
             <li>numeric literals - <b>12345</b> (integer literal) and <b>12345.678</b> (floating point literal)</li>
