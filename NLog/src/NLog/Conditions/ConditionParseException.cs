@@ -32,7 +32,9 @@
 // 
 
 using System;
+#if !NETCF
 using System.Runtime.Serialization;
+#endif
 
 namespace NLog.Conditions 
 {

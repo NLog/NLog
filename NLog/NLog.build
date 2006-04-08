@@ -495,11 +495,16 @@
         <property name="nlog.define" value="${nlog.define};NETCF;NETCF_1_0" />
     </target>
 
+    <target name="configure-netcf-2.0">
+        <property name="nlog.define" value="${nlog.define};NETCF;NETCF_2_0" />
+    </target>
+
     <target name="build-mono-1.0" depends="NLog, NLog.Mono" />
     <target name="build-net-1.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLogC" />
     <target name="build-net-1.1" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLogC" />
     <target name="build-net-2.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLogC" />
     <target name="build-netcf-1.0" depends="NLog, NLog.CompactFramework" />
+    <target name="build-netcf-2.0" depends="NLog, NLog.CompactFramework" />
     <target name="build-nlogc-net-1.0" depends="NLogC-1.0, NLogC-1.1, NLogC-2.0" />
     <target name="build-nlogc-net-1.1" depends="NLogC-1.1, NLogC-2.0" />
     <target name="build-nlogc-net-2.0" depends="NLogC-2.0" />

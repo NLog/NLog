@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if NETCF
+#if NETCF_1_0
 
 using System;
 using System.Collections;
