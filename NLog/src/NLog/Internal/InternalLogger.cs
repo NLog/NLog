@@ -198,10 +198,6 @@ namespace NLog.Internal
             {
                 _loadExtensions = Convert.ToBoolean(setting);
             }
-            else
-            {
-                return true;
-            }
 
             Info("NLog internal logger initialized.");
         }
