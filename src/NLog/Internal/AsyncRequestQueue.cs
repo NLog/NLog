@@ -101,49 +101,6 @@ namespace NLog.Internal
 		}
 
         /// <summary>
-        /// The string representation of <see cref="OnOverflow"/>.
-        /// </summary>
-		public string OverflowActionString
-		{
-			get { 
-				switch (_overflowAction)
-				{
-					case OverflowAction.None:
-						return "none";
-
-					case OverflowAction.Block:
-						return "block";
-
-					case OverflowAction.Discard:
-						return "discard";
-
-					default:
-						throw new NotSupportedException("Unsupported _overflowAction: " + _overflowAction);
-				}
-			}
-			set 
-			{
-				switch (value)
-				{
-					case "none":
-						_overflowAction = OverflowAction.None;
-						break;
-
-					case "discard":
-						_overflowAction = OverflowAction.Discard;
-						break;
-
-					case "block":
-						_overflowAction = OverflowAction.Block;
-						break;
-
-					default:
-						throw new NotSupportedException("Unsupported _overflowAction: " + value);
-				}
-			}
-		}
-
-        /// <summary>
         /// Enqueues another item. If the queue is overflown the appropriate
         /// action is taken as specified by <see cref="OnOverflow"/>.
         /// </summary>

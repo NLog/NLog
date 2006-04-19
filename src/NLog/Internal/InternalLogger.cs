@@ -51,8 +51,11 @@ namespace NLog.Internal
     {
         static LogLevel _logLevel = LogLevel.Info;
         static bool _logToConsole = false;
-		static string _logFile = null;
-		static bool _loadExtensions = true;
+#if !NETCF_1_0
+        static bool _logToConsoleError = false;
+#endif
+        static string _logFile = null;
+        static bool _loadExtensions = true;
 
         /// <summary>
         /// Internal log level.
@@ -74,70 +77,65 @@ namespace NLog.Internal
         /// </summary>
         public static bool LogToConsole
         {
-            get
-            {
-                return _logToConsole;
-            }
-            set
-            {
-                _logToConsole = value;
-            }
+            get { return _logToConsole; }
+            set { _logToConsole = value; }
         }
 
+#if !NETCF_1_0
+        /// <summary>
+        /// Log internal messages to the console error stream.
+        /// </summary>
+        public static bool LogToConsoleError
+        {
+            get { return _logToConsoleError; }
+            set { _logToConsoleError = value; }
+        }
+#endif
         /// <summary>
         /// The name of the internal log file.
         /// </summary>
         /// <remarks><see langword="null" /> value disables internal logging to a file.</remarks>
         public static string LogFile
         {
-            get
-            {
-                return _logFile;
-            }
+            get { return _logFile; }
             set
             {
 #if !NETCF
-            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 #else
-            string baseDir = CompactFrameworkHelper.GetExeBaseDir();
+                string baseDir = CompactFrameworkHelper.GetExeBaseDir();
 #endif
                 _logFile = Path.Combine(baseDir, value);
             }
         }
 
-		/// <summary>
-		/// Defines whether the platform specific extensions are loaded at startup.
-		/// </summary>
-		public static bool LoadExtensions
-		{
-			get
-			{
-				return _loadExtensions;
-			}
-			set
-			{
-				_loadExtensions = value;
-			}
-		}
+        /// <summary>
+        /// Defines whether the platform specific extensions are loaded at startup.
+        /// </summary>
+        public static bool LoadExtensions
+        {
+            get { return _loadExtensions; }
+            set { _loadExtensions = value; }
+        }
 
 #if !NETCF
 		
-		static string GetSetting(string configName, string envName)
-		{
-			string setting = ConfigurationSettings.AppSettings[configName];
-			if (setting == null)
-			{
-				try
-				{
-					setting = Environment.GetEnvironmentVariable(envName);
-				}
-				catch
-				{
-					// ignore
-				}
-			}
-			return setting;
-		}
+        static string GetSetting(string configName, string envName)
+        {
+            string setting = ConfigurationSettings.AppSettings[configName];
+            if (setting == null)
+            {
+                try
+                {
+                    setting = Environment.GetEnvironmentVariable(envName);
+                }
+                catch
+                {
+                    // ignore
+                }
+            }
+            return setting;
+        }
 
         static InternalLogger()
         {
@@ -153,6 +151,21 @@ namespace NLog.Internal
                     // ignore
                 }
             }
+
+#if !NETCF_1_0
+            setting = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR");
+            if (setting != null)
+            {
+                try
+                {
+                    LogToConsoleError = Convert.ToBoolean(setting);
+                }
+                catch
+                {
+                    // ignore
+                }
+            }
+#endif
 
             setting = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL");
             if (setting != null)
@@ -183,14 +196,11 @@ namespace NLog.Internal
             setting = GetSetting("nlog.internalLoadExtensions", "NLOG_INTERNAL_LOAD_EXTENSIONS");
             if (setting != null)
             {
-                try
-                {
-                    LoadExtensions = Convert.ToBoolean(setting);
-                }
-                catch
-                {
-                    // ignore
-                }
+                _loadExtensions = Convert.ToBoolean(setting);
+            }
+            else
+            {
+                return true;
             }
 
             Info("NLog internal logger initialized.");
@@ -204,7 +214,11 @@ namespace NLog.Internal
             if (level < _logLevel)
                 return ;
 
-            if (_logFile == null && !_logToConsole)
+            if (_logFile == null && !_logToConsole
+#if !NETCF_1_0
+                && !_logToConsoleError
+#endif
+                )
                 return ;
 
             try
@@ -233,6 +247,13 @@ namespace NLog.Internal
                 {
                     Console.WriteLine(msg);
                 }
+
+#if !NETCF_1_0
+                if (_logToConsoleError)
+                {
+                    Console.Error.WriteLine(msg);
+                }
+#endif
             }
             catch 
             {

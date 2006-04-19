@@ -54,6 +54,9 @@ namespace NLog.Internal
             _url = url;
         }
 
+        /// <summary>
+        /// Disposes the <see cref="NetworkSender"/> object.
+        /// </summary>
         ~NetworkSender()
         {
             Dispose(false);

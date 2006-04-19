@@ -46,6 +46,19 @@ namespace NLog.LayoutRenderers
     {
         private string _fileName = null;
         private string _directoryName = null;
+        private string _baseDir;
+
+        /// <summary>
+        /// Creates a new instance of <see cref="BaseDirLayoutRenderer"/>.
+        /// </summary>
+        public BaseDirLayoutRenderer()
+        {
+#if !NETCF
+            _baseDir = AppDomain.CurrentDomain.BaseDirectory;
+#else
+            _baseDir = CompactFrameworkHelper.GetExeBaseDir();
+#endif
+        }
 
         /// <summary>
         /// The name of the file to be Path.Combine()'d with with the base directory.
@@ -99,23 +112,28 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-#if !NETCF
-            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-#else
-            string baseDir = CompactFrameworkHelper.GetExeBaseDir();
-#endif
             if (File != null)
             {
-                builder.Append(ApplyPadding(Path.Combine(baseDir, File)));
+                builder.Append(ApplyPadding(Path.Combine(_baseDir, File)));
             }
             else if (Dir != null)
             {
-                builder.Append(ApplyPadding(Path.Combine(baseDir, Dir)));
+                builder.Append(ApplyPadding(Path.Combine(_baseDir, Dir)));
             }
             else
             {
-                builder.Append(ApplyPadding(baseDir));
+                builder.Append(ApplyPadding(_baseDir));
             }
+        }
+
+        /// <summary>
+        /// Determines whether the value produced by the layout renderer
+        /// is fixed per current app-domain.
+        /// </summary>
+        /// <returns><see langword="true"/></returns>
+        protected internal override bool IsAppDomainFixed()
+        {
+            return true;
         }
     }
 }

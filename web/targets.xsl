@@ -165,42 +165,7 @@
 
     <xsl:template match="property" mode="parameter">
         <xsl:if test="@name != 'Layout' or not(../attribute[@name='NLog.TargetAttribute']/property[@name='IgnoresLayout']/@value='True')">
-            <tr>
-                <td class="parametername">
-                    <span>
-                        <xsl:if test="attribute/@name='NLog.Config.RequiredParameterAttribute'">
-                            <xsl:attribute name="class">required</xsl:attribute>
-                        </xsl:if>
-                        <xsl:value-of select="@name" />
-                    </span>
-                </td>
-                <td class="parametertype">
-                    <nobr>
-                        <xsl:call-template name="simple-type-name">
-                            <xsl:with-param name="type" select="@type" />
-                        </xsl:call-template>
-                        <xsl:if test="attribute/@name='NLog.Config.AcceptsLayoutAttribute'">
-                            &#160;<a href="layoutrenderers.html"><span class="acceptslayout" title="This parameter accepts layout specification. Click here to learn more about layouts.">${}</span></a>
-                        </xsl:if>
-                        <xsl:if test="attribute/@name='NLog.Config.AcceptsConditionAttribute'">
-                            &#160;<a href="conditions.html"><span class="acceptscondition" title="This parameter accepts condition expressions. Click here to learn more about condition expressions.">[c()]</span></a>
-                        </xsl:if>
-                    </nobr>
-                </td>
-                <td class="parametervalue">
-                    <xsl:apply-templates select="documentation/summary" /><br/>
-                    <xsl:if test="attribute[@name='System.ComponentModel.DefaultValueAttribute']">
-                        Default value is: <code><xsl:value-of select="attribute[@name='System.ComponentModel.DefaultValueAttribute']/property[@name='Value']/@value" /></code>.
-                    </xsl:if>
-                    <xsl:if test="documentation/remarks">
-                        <xsl:apply-templates select="documentation/remarks" />
-                    </xsl:if>
-                    <xsl:if test="documentation/example">
-                        <h4>Example</h4>
-                        <p><xsl:apply-templates select="documentation/example" /></p>
-                    </xsl:if>
-                </td>
-            </tr>
+            <xsl:call-template name="parameter_info" />
         </xsl:if>
     </xsl:template>
 

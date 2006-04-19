@@ -32,53 +32,67 @@
 // 
 
 using System;
-using System.Text;
-using System.Runtime.InteropServices;
+using System.Xml;
+using System.IO;
+using System.Threading;
+using System.Collections;
+using System.Collections.Specialized;
+
+using NLog;
+using NLog.Config;
 
 using NLog.Internal;
 
-namespace NLog.LayoutRenderers
+namespace NLog.Internal.FileAppenders
 {
-    /// <summary>
-    /// The identifier of the current process.
-    /// </summary>
-    [LayoutRenderer("processid")]
-    public class ProcessIDLayoutRenderer: LayoutRenderer
+    internal class SingleProcessFileAppender : IFileAppender
     {
-        /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        private FileStream _file;
+        private string _fileName;
+
+        public static readonly IFileAppenderFactory TheFactory = new Factory();
+
+        class Factory : IFileAppenderFactory
         {
-            return 32;
+            public IFileAppender Open(string fileName, IFileOpener opener)
+            {
+                return new SingleProcessFileAppender(fileName, opener);
+            }
         }
 
-        /// <summary>
-        /// Renders the current process ID.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
+        public string FileName
         {
-            builder.Append(ApplyPadding(ThreadIDHelper.CurrentProcessID.ToString()));
+            get { return _fileName; }
         }
 
-        /// <summary>
-        /// Determines whether the value produced by the layout renderer
-        /// is fixed per current app-domain.
-        /// </summary>
-        /// <returns><see langword="true"/></returns>
-        protected internal override bool IsAppDomainFixed()
+        public SingleProcessFileAppender(string fileName, IFileOpener opener)
         {
-            return true;
+            _fileName = fileName;
+            _file = opener.Create(fileName, FileShare.ReadWrite);
+        }
+
+        public void Write(byte[] bytes)
+        {
+            lock (this)
+            {
+                _file.Write(bytes, 0, bytes.Length);
+            }
+        }
+
+        public void Flush()
+        {
+            _file.Flush();
+        }
+
+        public void Close()
+        {
+            InternalLogger.Trace("Closing '{0}'", _fileName);
+            _file.Close();
+        }
+
+        public bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
+        {
+            throw new NotSupportedException("SimpleProcessFileAppender doesn't support GetFileInfo");
         }
     }
 }

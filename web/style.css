@@ -660,7 +660,7 @@ table.subparamtable
     border: 1px solid #000000;
 }
 
-.paramtable th
+table.paramtable th
 {
     color: black;
     border: 1px solid #b0b0b0;
@@ -668,7 +668,7 @@ table.subparamtable
     font-size: 14px;
 }
 
-.subparamtable th
+table.subparamtable th
 {
     color: black;
     border: 1px solid #b0b0b0;
@@ -806,4 +806,9 @@ table.definedin
 .releasenote
 {
     background-color: #c0c0ff;
+}
+
+img.out_link
+{
+    margin-left: 4px;
 }

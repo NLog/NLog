@@ -88,6 +88,11 @@
                     BuildAction = "None"
                 />
                 <File
+                    RelPath = "StopWatch.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Test.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

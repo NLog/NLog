@@ -32,53 +32,78 @@
 // 
 
 using System;
-using System.Runtime.InteropServices;
+using System.Xml;
+using System.IO;
+using System.Threading;
+using System.Collections;
+using System.Collections.Specialized;
 
 using NLog;
 using NLog.Config;
-using NLog.Targets.Compound;
-using NLog.Targets.Wrappers;
-using NLog.Conditions;
-using NLog.Targets;
-using NLog.Win32.Targets;
 
-namespace NLog.Tester
+using NLog.Internal;
+
+namespace NLog.Internal.FileAppenders
 {
-    public class Test
+    internal class RetryingMultiProcessFileAppender : IFileAppender
     {
-        public static void LogProc(string msg)
+        public static readonly IFileAppenderFactory TheFactory = new Factory();
+
+        public class Factory : IFileAppenderFactory
         {
-            Console.WriteLine("logproc: {0}", msg);
+            public IFileAppender Open(string fileName, IFileOpener opener)
+            {
+                return new RetryingMultiProcessFileAppender(fileName, opener);
+            }
         }
 
-        static void Main(string[]args)
+        private string _fileName;
+        private IFileOpener _opener;
+
+        public RetryingMultiProcessFileAppender(string fileName, IFileOpener opener)
         {
-            Internal.InternalLogger.LogToConsole = true;
-            Internal.InternalLogger.LogLevel = LogLevel.Trace;
-            StopWatch sw;
+            _fileName = fileName;
+            _opener = opener;
+        }
 
+        public string FileName
+        {
+            get { return _fileName; }
+        }
 
-            System.Threading.Thread.CurrentThread.Name = "threadNameIsHere";
-
-            Logger p = LogManager.GetCurrentClassLogger();
-            GDC.Set("GGG", "b");
-            MDC.Set("AAA", "b");
-            MDC.Set("BBB", "C");
-
-            sw = new StopWatch();
-            sw.Start();
-            for (int i = 0; i < 2; ++i)
+        public void Write(byte[] bytes)
+        {
+            using (FileStream fileStream = _opener.Create(_fileName, FileShare.None))
             {
-                p.Trace("trace {0} ala ma kota", i);
-                p.Debug("debug {0} ala ma ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go kota i niewielkiego psa", i);
-                p.Info("info {0}", i);
-                p.Warn("warn {0}", i);
-                p.Error("error {0}", i);
-                p.Fatal("fatal {0}", i);
+                fileStream.Write(bytes, 0, bytes.Length);
             }
-            sw.Stop();
-            Console.WriteLine("t: {0}", sw.Seconds);
-            return;
+        }
+
+        public void Flush()
+        {
+            // nothing to do
+        }
+
+        public void Close()
+        {
+            // nothing to do
+        }
+
+        public bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
+        {
+            FileInfo fi = new FileInfo(_fileName);
+            if (fi.Exists)
+            {
+                fileLength = fi.Length;
+                lastWriteTime = fi.LastWriteTime;
+                return true;
+            }
+            else
+            {
+                fileLength = -1;
+                lastWriteTime = DateTime.MinValue;
+                return false;
+            }
         }
     }
 }

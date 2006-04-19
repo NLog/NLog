@@ -94,6 +94,17 @@ namespace NLog.LayoutRenderers
                 builder.Append(ApplyPadding(EnvironmentHelper.GetSafeEnvironmentVariable(Variable)));
             }
         }
+
+        /// <summary>
+        /// Determines whether the value produced by the layout renderer
+        /// is fixed per current app-domain.
+        /// </summary>
+        /// <returns><see langword="true"/></returns>
+        protected internal override bool IsAppDomainFixed()
+        {
+            // AFAIK there's no way to change the env variables
+            return true;
+        }
     }
 }
 

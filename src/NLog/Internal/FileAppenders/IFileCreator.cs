@@ -32,53 +32,24 @@
 // 
 
 using System;
-using System.Text;
-using System.Runtime.InteropServices;
+using System.Xml;
+using System.IO;
+using System.Threading;
+using System.Collections;
+using System.Collections.Specialized;
+
+using NLog;
+using NLog.Config;
 
 using NLog.Internal;
 
-namespace NLog.LayoutRenderers
+namespace NLog.Internal.FileAppenders
 {
     /// <summary>
-    /// The identifier of the current process.
+    /// Abstract file-opening.
     /// </summary>
-    [LayoutRenderer("processid")]
-    public class ProcessIDLayoutRenderer: LayoutRenderer
+    internal interface IFileOpener
     {
-        /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
-        {
-            return 32;
-        }
-
-        /// <summary>
-        /// Renders the current process ID.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            builder.Append(ApplyPadding(ThreadIDHelper.CurrentProcessID.ToString()));
-        }
-
-        /// <summary>
-        /// Determines whether the value produced by the layout renderer
-        /// is fixed per current app-domain.
-        /// </summary>
-        /// <returns><see langword="true"/></returns>
-        protected internal override bool IsAppDomainFixed()
-        {
-            return true;
-        }
+        FileStream Create(string fileName, FileShare fileShare);
     }
 }

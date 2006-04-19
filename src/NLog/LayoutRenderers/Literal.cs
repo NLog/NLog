@@ -83,6 +83,7 @@ namespace NLog.LayoutRenderers
         internal string Text
         {
             get { return _txt; }
+            set { _txt = value; }
         }
     }
 }

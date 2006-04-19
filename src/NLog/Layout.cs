@@ -180,6 +180,9 @@ namespace NLog
                     if (newLayoutRenderer.IsVolatile())
                         isVolatile = true;
 
+                    if (newLayoutRenderer.IsAppDomainFixed())
+                        newLayoutRenderer = ConvertToLiteral(newLayoutRenderer);
+
                     result.Add(newLayoutRenderer);
                     pos = s.IndexOf("${", startingPos);
                 }
@@ -193,7 +196,34 @@ namespace NLog
                 result.Add(new LiteralLayoutRenderer(s.Substring(startingPos, s.Length - startingPos)));
             }
 
+            MergeLiterals(result);
+
             return (LayoutRenderer[])result.ToArray(typeof(LayoutRenderer));
+        }
+
+        private static void MergeLiterals(ArrayList list)
+        {
+            for (int i = 0; i + 1 < list.Count;)
+            {
+                LiteralLayoutRenderer lr1 = list[i] as LiteralLayoutRenderer;
+                LiteralLayoutRenderer lr2 = list[i + 1] as LiteralLayoutRenderer;
+                if (lr1 != null && lr2 != null)
+                {
+                    lr1.Text += lr2.Text;
+                    list.RemoveAt(i + 1);
+                }
+                else
+                {
+                    i++;
+                }
+            }
+        }
+
+        private static LayoutRenderer ConvertToLiteral(LayoutRenderer renderer)
+        {
+            StringBuilder sb = new StringBuilder();
+            renderer.Append(sb, LogEventInfo.Empty);
+            return new LiteralLayoutRenderer(sb.ToString());
         }
 
         /// <summary>
