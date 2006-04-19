@@ -1,5 +1,5 @@
 @echo off
-set DOTNETSDK_DIR=C:\Program Files\Microsoft Visual Studio 8\SDK\v2.0
+set DOTNETSDK_DIR=C:\Program Files\Microsoft.NET\SDK\v2.0
 set VS_DIR=C:\Program Files\Microsoft Visual Studio 8
 set VC_DIR=C:\Program Files\Microsoft Visual Studio 8\VC
 set FRAMEWORK_DIR=%WINDIR%\Microsoft.NET\Framework\v2.0.50727

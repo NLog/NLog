@@ -132,6 +132,16 @@ namespace NLog.LayoutRenderers
                 builder.Append(ApplyPadding(baseDir));
             }
         }
+
+        /// <summary>
+        /// Determines whether the value produced by the layout renderer
+        /// is fixed per current app-domain.
+        /// </summary>
+        /// <returns><see langword="true"/></returns>
+        protected internal override bool IsAppDomainFixed()
+        {
+            return true;
+        }
     }
 }
 

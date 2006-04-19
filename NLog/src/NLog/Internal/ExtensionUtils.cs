@@ -101,6 +101,22 @@ namespace NLog
 
         private static void RegisterPlatformSpecificExtensions(ArrayList result, string name)
         {
+            string embeddedResourceName = "EmbeddedAssembly." + name + ".dll";
+
+            System.IO.Stream embeddedAssemblyStream = typeof(LogManager).Assembly.GetManifestResourceStream(embeddedResourceName);
+            if (embeddedAssemblyStream != null)
+            {
+                InternalLogger.Info("Loading assembly from resources: {0}", embeddedResourceName);
+                byte[] assemblyBytes = new byte[embeddedAssemblyStream.Length];
+                embeddedAssemblyStream.Read(assemblyBytes, 0, assemblyBytes.Length);
+                embeddedAssemblyStream.Close();
+
+                Assembly asm = Assembly.Load(assemblyBytes);
+                InternalLogger.Info("Loaded {0} from resources", asm.FullName);
+                result.Add(asm);
+                return;
+            }
+
             InternalLogger.Debug("RegisterPlatformSpecificExtensions('{0}')", name);
             AssemblyName nlogAssemblyName = typeof(LogManager).Assembly.GetName();
             AssemblyName newAssemblyName = new AssemblyName();

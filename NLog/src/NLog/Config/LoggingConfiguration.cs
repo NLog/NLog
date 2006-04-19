@@ -165,6 +165,25 @@ namespace NLog.Config
                 }
             }
         }
+
+        /// <summary>
+        /// Returns a collection of named targets specified in the configuration.
+        /// </summary>
+        /// <returns>A <see cref="TargetCollection"/> object that contains a list of named targets.</returns>
+        /// <remarks>
+        /// Unnamed targets (such as those wrapped by other targets) are not returned.
+        /// </remarks>
+        public TargetCollection GetConfiguredNamedTargets()
+        {
+            TargetCollection tc = new TargetCollection();
+            foreach (Target t in _targets.Values)
+            {
+                tc.Add(t);
+            }
+            return tc;
+        }
+
+
         /// <summary>
         /// Closes all targets and releases any unmanaged resources.
         /// </summary>

@@ -271,5 +271,17 @@ namespace NLog
             }
             return s;
         }
+
+        /// <summary>
+        /// Determines whether the value produced by the layout renderer
+        /// is fixed per current app-domain.
+        /// </summary>
+        /// <returns>The boolean value. <c>true</c> makes the value
+        /// of the layout renderer be precalculated and inserted as a literal
+        /// in the resulting layout string.</returns>
+        protected internal virtual bool IsAppDomainFixed()
+        {
+            return false;
+        }
     }
 }

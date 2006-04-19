@@ -544,6 +544,41 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Internal\FileAppenders\CountingSingleProcessFileAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FileAppenders\IFileAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FileAppenders\IFileAppenderFactory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FileAppenders\IFileCreator.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FileAppenders\MutexMultiProcessFileAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FileAppenders\RetryingMultiProcessFileAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FileAppenders\SingleProcessFileAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "LayoutRenderers\ASPNetApplication.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

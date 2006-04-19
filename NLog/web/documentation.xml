@@ -3,7 +3,10 @@
 <content lang="en" id="documentation">
     <h1>NLog Documentation</h1>
 
-    <link href="tutorial">Introduction to NLog</link>
+    <ul>
+        <li><link href="tutorial">Introduction to NLog</link></li>
+        <li><link href="filearchive">File Archiving Explained</link></li>
+    </ul>
 
     <h3>API Reference</h3>
     <ul>

@@ -80,7 +80,7 @@ namespace NLog.Internal
             }
         }
 
-        [DllImport("CoreDll.dll", CharSet=CharSet.Unicode)]
+        [DllImport("coredll.dll", CharSet=CharSet.Unicode)]
         private static extern int GetModuleFileName(IntPtr hModule, StringBuilder szBuffer, int nCapacity);
     }
 }

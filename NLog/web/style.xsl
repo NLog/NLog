@@ -160,7 +160,13 @@ urchinTracker();
             <xsl:apply-templates select="nav" />
         </table>
     </xsl:template>
-    
+
+    <xsl:template match="a[starts-with(@href,'http://') and not(starts-with(@href,'http://www.nlog-project'))]">
+        <a href="http://www.nlog-project.org/external/{substring-after(@href,'http://')}">
+            <xsl:apply-templates />
+        </a>
+        <img class="out_link" src="out_link.gif" />
+    </xsl:template>
     <xsl:template match="nav">
         <xsl:choose>
             <xsl:when test="$page_id = @href"><tr><td class="nav_selected"><a class="nav_selected"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a><table class="submenu" width="100%"><xsl:apply-templates select="subnav" /></table></td></tr></xsl:when>
@@ -198,6 +204,58 @@ urchinTracker();
     </xsl:template>
 
     <xsl:include href="syntax.xsl" />
+
+    <xsl:template name="parameter_info">
+        <tr>
+            <td class="parametername">
+                <span>
+                    <xsl:if test="attribute/@name='NLog.Config.RequiredParameterAttribute'">
+                        <xsl:attribute name="class">required</xsl:attribute>
+                    </xsl:if>
+                    <xsl:value-of select="@name" />
+                </span>
+            </td>
+            <td class="parametertype">
+                <nobr>
+                    <xsl:call-template name="simple-type-name">
+                        <xsl:with-param name="type" select="@type" />
+                    </xsl:call-template>
+                    <xsl:if test="attribute/@name='NLog.Config.AcceptsLayoutAttribute'">
+                        &#160;<a href="layoutrenderers.html"><span class="acceptslayout" title="This parameter accepts layout specification. Click here to learn more about layouts.">${}</span></a>
+                    </xsl:if>
+                    <xsl:if test="attribute/@name='NLog.Config.AcceptsConditionAttribute'">
+                        &#160;<a href="conditions.html"><span class="acceptscondition" title="This parameter accepts condition expressions. Click here to learn more about condition expressions.">[c()]</span></a>
+                    </xsl:if>
+                </nobr>
+            </td>
+            <td class="parametervalue">
+                <xsl:apply-templates select="documentation/summary" />
+                <xsl:if test="attribute[@name='System.ComponentModel.DefaultValueAttribute']">
+                    <p>Default value is: <code><xsl:value-of select="attribute[@name='System.ComponentModel.DefaultValueAttribute']/property[@name='Value']/@value" /></code>.</p>
+                </xsl:if>
+                <xsl:variable name="typename" select="concat('T:',translate(@type,'#','.'))" />
+                <xsl:variable name="enumnode" select="//enumeration[@id=$typename]" />
+                <xsl:if test="$enumnode">
+                    <p>
+                        Possible values are:
+                        <ul>
+                            <xsl:for-each select="$enumnode/field">
+                                <li><b><code><xsl:value-of select="@name" /></code></b> - <xsl:apply-templates select="documentation/summary" /></li>
+                            </xsl:for-each>
+                        </ul>
+                    </p>
+                </xsl:if>
+                <xsl:if test="documentation/remarks">
+                    <p><xsl:apply-templates select="documentation/remarks" /></p>
+                </xsl:if>
+                <xsl:if test="documentation/example">
+                    <h4>Example</h4>
+                    <p><xsl:apply-templates select="documentation/example" /></p>
+                </xsl:if>
+            </td>
+        </tr>
+    </xsl:template>
+
 
     <xsl:template match="benchmark-table">
         <xsl:variable name="nlog_results" select="document('nlog.results.xml')" />

@@ -15,7 +15,7 @@
 
     <property name="deploy.host" value="jaak@sav.net" />
     
-    <property name="ndoc.console.exe" value="C:\Program Files\NDoc 1.3\bin\net\1.1\ndocconsole.exe" />
+    <property name="ndoc.console.exe" value="D:\Apps\NDoc\1.1\ndocconsole.exe" />
     <property name="prettyprinter.exe" value="tools/PrettyPrinter.exe" />
 
     <property name="webserver.deploy.dir" value="web/www.nlog-project.org/html" />
@@ -108,6 +108,30 @@
                 <include name="System.Web.dll" />
                 <include name="System.Web.Services.dll" />
             </references>
+        </csc>
+    </target>
+
+    <target name="EmbedDlls" depends="configure">
+        <delete file="${nlog.dir}/NLog.dll" />
+
+        <csc target="library" output="${nlog.dir}/NLog.dll" doc="${nlog.dir}/NLog.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
+            <sources basedir="src/NLog">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="mscorlib.dll" />
+                <include name="System.dll" />
+                <include name="System.Xml.dll" />
+                <include name="System.Data.dll" />
+                <include name="System.Windows.Forms.dll" />
+                <include name="System.Web.dll" />
+                <include name="System.Web.Services.dll" />
+            </references>
+            <resources basedir="${nlog.dir}" prefix="EmbeddedAssembly" dynamicprefix="true">
+                <include name="NLog.Win32.dll" />
+                <include name="NLog.Unix.dll" />
+                <include name="NLog.DotNet.dll" />
+            </resources>
         </csc>
     </target>
 
@@ -560,6 +584,7 @@
     <target name="fullrelease">
         <exec program="nant" commandline="-t:net-1.0 -D:nlog.package.name=${nlog.package.name} release fulldist" />
         <exec program="nant" commandline="-t:netcf-1.0 -D:nlog.package.name=${nlog.package.name} release compactdist" />
+        <exec program="nant" commandline="-t:netcf-2.0 -D:nlog.package.name=${nlog.package.name} release compactdist" />
     </target>
 
     <target name="doc" depends="configure, build, xmldoc, website, helpwebsite">
@@ -1057,4 +1082,31 @@
         <exec program="nant" commandline="clover test publish_clover" />
     </target>
 
+    <target name="build_examples" depends="configure, NLog, NLog.Win32">
+        <foreach item="File" property="file">
+            <in>
+                <items basedir="examples">
+                    <include name="targets/**/*.cs" />
+                    <exclude name="targets/**/*.asax.cs" />
+                </items>
+            </in>
+            <do>
+                <echo message="Building ${file}" />
+                <property name="basename" value="${path::get-file-name-without-extension(file)}" />
+
+                <csc target="exe" output="${nlog.dir}/${basename}.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
+                    <sources>
+                        <include name="${file}" />
+                    </sources>
+                    <references>
+                        <include name="${nlog.dir}/NLog.dll" />
+                        <include name="${nlog.dir}/NLog.Win32.dll" />
+                        <include name="mscorlib.dll" />
+                        <include name="System.dll" />
+                        <include name="System.Xml.dll" />
+                    </references>
+                </csc>
+            </do>
+        </foreach>
+    </target>
 </project>

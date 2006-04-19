@@ -181,16 +181,11 @@ namespace NLog.Targets.Wrappers
 		/// The action to be taken when the lazy writer thread request queue count
 		/// exceeds the set limit.
 		/// </summary>
-		/// <remarks>
-		/// Can be <c>none</c> - do nothing, add another request to the queue
-		/// <c>discard</c> - discard the request, <c>block</c> - block the logging
-		/// thread to give the processing thread more time.
-		/// </remarks>
-		[System.ComponentModel.DefaultValue("discard")]
-		public string OverflowAction
+		[System.ComponentModel.DefaultValue("Discard")]
+		public AsyncRequestQueue.OverflowAction OverflowAction
 		{
-			get { return _lazyWriterRequestQueue.OverflowActionString; }
-			set { _lazyWriterRequestQueue.OverflowActionString = value; }
+			get { return _lazyWriterRequestQueue.OnOverflow; }
+			set { _lazyWriterRequestQueue.OnOverflow = value; }
 		}
 
 		/// <summary>

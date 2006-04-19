@@ -1,3 +1,24 @@
+2006-04-18 Jaroslaw Kowalski <jaak@jkowalski.net>
+
+	* Added LayoutRenderer.IsAppDomainFixed() and an optimization to turn
+	such things into literals.
+	* Added LoggingConfiguration.GetConfiguredNamedTargets() API
+	* BREAKING CHANGE - Completely restructured the way File target works.
+	The new structure is based on Streams instead of StreamWriters and
+	enables archiving (kind of similar to "rolling file appender" from log4net
+	world, but supporting multiple files at a time)
+	* BREAKING CHANGE - removed some properties which accepted strings. Now
+	replaced with enums.
+	* Added caching to File target to optimize the number file open/close
+	operations
+	* Added an option for multiple processes to append to the same OPEN file
+	in a synchronized manner. Unixes get this   for free, but Win32 requires
+	you to use mutexes to synchronize file access.
+	* Enabled the use of enumerations as parameteters (including docgen)
+	* Added InternalLogger.LogToConsoleError and their config file and
+	environment variable counterparts
+	* Refactored website generation
+
 2006-03-27 Jaroslaw Kowalski <jaak@jkowalski.net>
 
     * Updated .NET CF project file

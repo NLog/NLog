@@ -86,7 +86,17 @@ namespace NLog.Internal
                     throw new NotSupportedException("Parameter " + name + " of " + o.GetType().Name + " is an array and cannot be assigned a scalar value.");
                 }
 
-                object newValue = Convert.ChangeType(value, propInfo.PropertyType, CultureInfo.InvariantCulture);
+                object newValue;
+
+                if (propInfo.PropertyType.IsEnum)
+                {
+                    FieldInfo enumField = propInfo.PropertyType.GetField(value, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
+                    newValue = enumField.GetValue(null);
+                }
+                else
+                {
+                    newValue = Convert.ChangeType(value, propInfo.PropertyType, CultureInfo.InvariantCulture);
+                }
                 propInfo.SetValue(o, newValue, null);
                 return true;
             }

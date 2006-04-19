@@ -32,53 +32,26 @@
 // 
 
 using System;
-using System.Runtime.InteropServices;
+using System.Xml;
+using System.IO;
+using System.Threading;
+using System.Collections;
+using System.Collections.Specialized;
 
 using NLog;
 using NLog.Config;
-using NLog.Targets.Compound;
-using NLog.Targets.Wrappers;
-using NLog.Conditions;
-using NLog.Targets;
-using NLog.Win32.Targets;
 
-namespace NLog.Tester
+using NLog.Internal;
+
+namespace NLog.Internal.FileAppenders
 {
-    public class Test
+    internal interface IFileAppender
     {
-        public static void LogProc(string msg)
-        {
-            Console.WriteLine("logproc: {0}", msg);
-        }
+        string FileName { get; }
+        void Write(byte[] bytes);
+        void Flush();
+        void Close();
 
-        static void Main(string[]args)
-        {
-            Internal.InternalLogger.LogToConsole = true;
-            Internal.InternalLogger.LogLevel = LogLevel.Trace;
-            StopWatch sw;
-
-
-            System.Threading.Thread.CurrentThread.Name = "threadNameIsHere";
-
-            Logger p = LogManager.GetCurrentClassLogger();
-            GDC.Set("GGG", "b");
-            MDC.Set("AAA", "b");
-            MDC.Set("BBB", "C");
-
-            sw = new StopWatch();
-            sw.Start();
-            for (int i = 0; i < 2; ++i)
-            {
-                p.Trace("trace {0} ala ma kota", i);
-                p.Debug("debug {0} ala ma ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go kota i niewielkiego psa", i);
-                p.Info("info {0}", i);
-                p.Warn("warn {0}", i);
-                p.Error("error {0}", i);
-                p.Fatal("fatal {0}", i);
-            }
-            sw.Stop();
-            Console.WriteLine("t: {0}", sw.Seconds);
-            return;
-        }
+        bool GetFileInfo(out DateTime lastWriteTime, out long fileLength);
     }
 }

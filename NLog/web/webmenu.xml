@@ -19,6 +19,7 @@
             <subnav href="conditions" label="Conditions" />
             <subnav href="config" label="Configuration File" />
             <subnav href="howto" label="How To..." />
+            <subnav href="filearchive" label="File Archiving" />
         </nav>
         <nav href="support" label="Support">
             <subnav href="http://www.nabble.com/NLog-Forum-f6167.html" noext="true" label="Forum" />

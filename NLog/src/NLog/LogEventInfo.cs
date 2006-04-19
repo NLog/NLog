@@ -309,7 +309,7 @@ namespace NLog
                 else
                     _formattedMessage = String.Format(_message, _parameters);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 if (LogManager.ThrowExceptions)
                     throw;

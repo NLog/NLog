@@ -42,6 +42,7 @@ using NLog;
 using NLog.Config;
 
 using NLog.Internal;
+using NLog.Internal.FileAppenders;
 
 namespace NLog.Targets
 {
@@ -91,21 +92,85 @@ namespace NLog.Targets
     /// <cs src="examples/targets/File/FileTarget.cs" />
     /// </example>
     [Target("File")]
-    public class FileTarget: Target
+    public class FileTarget: Target, IFileOpener
     {
+        /// <summary>
+        /// Specifies the way archive numbering is performed.
+        /// </summary>
+        public enum ArchiveNumberingMode
+        {
+            /// <summary>
+            /// Sequence style numbering. The most recent archive has the highest number.
+            /// </summary>
+            Sequence,
+
+            /// <summary>
+            /// Rolling style numbering (the most recent is always #0 then #1, ..., #N
+            /// </summary>
+            Rolling,
+        }
+
+        /// <summary>
+        /// Modes of archiving files based on time.
+        /// </summary>
+        public enum ArchiveEveryMode
+        {
+            /// <summary>
+            /// Don't archive based on time.
+            /// </summary>
+            None,
+
+            /// <summary>
+            /// Archive every year.
+            /// </summary>
+            Year,
+
+            /// <summary>
+            /// Archive every month.
+            /// </summary>
+            Month,
+
+            /// <summary>
+            /// Archive daily.
+            /// </summary>
+            Day,
+
+            /// <summary>
+            /// Archive every hour.
+            /// </summary>
+            Hour,
+
+            /// <summary>
+            /// Archive every minute.
+            /// </summary>
+            Minute
+        }
+
         private Random _random = new Random();
         private Layout _fileNameLayout;
-        private bool _createDirs = false;
-        private bool _keepFileOpen = false;
-        private string _lastFileName = String.Empty;
-        private StreamWriter _outputFile;
+        private bool _createDirs = true;
+        private bool _keepFileOpen = true;
         private System.Text.Encoding _encoding = System.Text.Encoding.Default;
+#if NETCF_1_0
+        private string _newLine = "\r\n";
+#else
+        private string _newLine = Environment.NewLine;
+#endif
         private bool _autoFlush = true;
         private bool _concurrentWrites = true;
+        private bool _networkWrites = false;
         private int _concurrentWriteAttempts = 10;
         private int _bufferSize = 32768;
         private int _concurrentWriteAttemptDelay = 1;
         private LogEventComparer _logEventComparer;
+        private Layout _autoArchiveFileName = null;
+        private int _maxArchiveFiles = 9;
+        private long _archiveAboveSize = -1;
+        private ArchiveEveryMode _archiveEvery = ArchiveEveryMode.None;
+        private int _openFileCacheSize = 1;
+        private IFileAppenderFactory _appenderFactory;
+        private IFileAppender[] _recentAppenders;
+        private ArchiveNumberingMode _archiveNumbering = ArchiveNumberingMode.Sequence;
 
         /// <summary>
         /// Creates a new instance of <see cref="FileTarget"/>.
@@ -133,51 +198,54 @@ namespace NLog.Targets
         [AcceptsLayout]
         public string FileName
         {
-            get
-            {
-                return _fileNameLayout.Text;
-            }
-            set
-            {
-                _fileNameLayout = new Layout(value);
-            }
+            get { return _fileNameLayout.Text; }
+            set { _fileNameLayout = new Layout(value); }
         }
 
         /// <summary>
         /// Create directories if they don't exist.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        /// <remarks>
+        /// Setting this to false may improve performance a bit, but you'll receive an error
+        /// when attempting to write to a directory that's not present.
+        /// </remarks>
+        [System.ComponentModel.DefaultValue(true)]
         public bool CreateDirs
         {
-            get
-            {
-                return _createDirs;
-            }
-            set
-            {
-                _createDirs = value;
-            }
+            get { return _createDirs; }
+            set { _createDirs = value; }
+        }
+
+        /// <summary>
+        /// The number of files to be kept open. Setting this to a higher value may improve performance
+        /// in a situation where a single File target is writing to many files
+        /// (such as splitting by level or by logger).
+        /// </summary>
+        /// <remarks>
+        /// The files are managed on a LRU (least recently used) basis, which flushes
+        /// the files that have not been used for the longest period of time should the
+        /// cache become full. As a rule of thumb, you shouldn't set this parameter to 
+        /// a very high value. A number like 10-15 shouldn't be exceeded, because you'd
+        /// be keeping a large number of files open which consumes system resources.
+        /// </remarks>
+        [System.ComponentModel.DefaultValue(1)]
+        public int OpenFileCacheSize
+        {
+            get { return _openFileCacheSize; }
+            set { _openFileCacheSize = value; }
         }
 
         /// <summary>
         /// Keep log file open instead of opening and closing it on each logging event.
         /// </summary>
         /// <remarks>
-        /// Setting this property to <c>True</c> helps improve performance but is not recommended in multithreaded or multiprocess
-        /// scenarios because the file is kept locked and other processes cannot write to it which
-        /// effectively prevents logging.
+        /// Setting this property to <c>True</c> helps improve performance.
         /// </remarks>
-        [System.ComponentModel.DefaultValue(false)]
+        [System.ComponentModel.DefaultValue(true)]
         public bool KeepFileOpen
         {
-            get
-            {
-                return _keepFileOpen;
-            }
-            set
-            {
-                _keepFileOpen = value;
-            }
+            get { return _keepFileOpen; }
+            set { _keepFileOpen = value; }
         }
 
         /// <summary>
@@ -186,14 +254,8 @@ namespace NLog.Targets
         [System.ComponentModel.DefaultValue(true)]
         public bool AutoFlush
         {
-            get
-            {
-                return _autoFlush;
-            }
-            set
-            {
-                _autoFlush = value;
-            }
+            get { return _autoFlush; }
+            set { _autoFlush = value; }
         }
 
         /// <summary>
@@ -202,14 +264,8 @@ namespace NLog.Targets
         [System.ComponentModel.DefaultValue(32768)]
         public int BufferSize
         {
-            get
-            {
-                return _bufferSize;
-            }
-            set
-            {
-                _bufferSize = value;
-            }
+            get { return _bufferSize; }
+            set { _bufferSize = value; }
         }
 
         /// <summary>
@@ -219,35 +275,32 @@ namespace NLog.Targets
         /// </remarks>
         public string Encoding
         {
-            get
-            {
-                return _encoding.WebName;
-            }
-            set
-            {
-                _encoding = System.Text.Encoding.GetEncoding(value);
-            }
+            get { return _encoding.WebName; }
+            set { _encoding = System.Text.Encoding.GetEncoding(value); }
         }
 
         /// <summary>
-        /// Enables concurrent writes to the log file by multiple processes.
+        /// Enables concurrent writes to the log file by multiple processes on the same host.
         /// </summary>
         /// <remarks>
-        /// This prevents the log files from being kept open and makes NLog
-        /// retry file writes until a write succeeds. This allows for logging in
-        /// multiprocess environment.
+        /// This makes multi-process logging possible. NLog uses a special technique
+        /// that lets it keep the files open for writing.
         /// </remarks>
         [System.ComponentModel.DefaultValue(true)]
         public bool ConcurrentWrites
         {
-            get
-            {
-                return _concurrentWrites;
-            }
-            set
-            {
-                _concurrentWrites = value;
-            }
+            get { return _concurrentWrites; }
+            set { _concurrentWrites = value; }
+        }
+
+        /// <summary>
+        /// Disables open-fi
+        /// </summary>
+        [System.ComponentModel.DefaultValue(false)]
+        public bool NetworkWrites
+        {
+            get { return _networkWrites; }
+            set { _networkWrites = value; }
         }
 
         /// <summary>
@@ -257,14 +310,60 @@ namespace NLog.Targets
         [System.ComponentModel.DefaultValue(10)]
         public int ConcurrentWriteAttempts
         {
-            get
-            {
-                return _concurrentWriteAttempts;
+            get { return _concurrentWriteAttempts; }
+            set { _concurrentWriteAttempts = value; }
+        }
+
+        /// <summary>
+        /// Automatically <a href="filearchive.html">archive log files</a> that exceed the specified size in bytes.
+        /// </summary>
+        /// <remarks>
+        /// Caution: Enabling this option can considerably slow down your file 
+        /// logging in multi-process scenarios. If only one process is going to
+        /// be writing to the file, consider setting <c>ConcurrentWrites</c>
+        /// to <c>false</c> for maximum performance.
+        /// </remarks>
+        public long ArchiveAboveSize
+        {
+            get { return _archiveAboveSize; }
+            set { _archiveAboveSize = value; }
+        }
+
+        /// <summary>
+        /// Automatically <a href="filearchive.html">archive log files</a> every time the specified time passes.
+        /// Possible options are: <c>year</c>, <c>month</c>, <c>day</c>, <c>hour</c>, <c>minute</c>. Files are 
+        /// moved to the archive as part of the write operation if the current period of time changes. For example
+        /// if the current <c>hour</c> changes from 10 to 11, the first write that will occur
+        /// on or after 11:00 will trigger the <a href="filearchive.html">archiving</a>.
+        /// </summary>
+        /// <remarks>
+        /// <p>
+        /// Caution: Enabling this option can considerably slow down your file 
+        /// logging in multi-process scenarios. If only one process is going to
+        /// be writing to the file, consider setting <c>ConcurrentWrites</c>
+        /// to <c>false</c> for maximum performance.
+        /// </p>
+        /// </remarks>
+        public ArchiveEveryMode ArchiveEvery
+        {
+            get { return _archiveEvery; }
+            set { _archiveEvery = value; }
+        }
+
+        /// <summary>
+        /// The name of the file to be used for an archive. It may contain a special placeholder {#####}
+        /// that will be replaced with a sequence of numbers depending on the archiving strategy.
+        /// </summary>
+        [AcceptsLayout]
+        public string ArchiveFileName
+        {
+            get 
+            { 
+                if (_autoArchiveFileName == null)
+                    return null;
+                return _autoArchiveFileName.Text;
             }
-            set
-            {
-                _concurrentWriteAttempts = value;
-            }
+            set { _autoArchiveFileName = new Layout(value); }
         }
 
         /// <summary>
@@ -287,65 +386,217 @@ namespace NLog.Targets
         [System.ComponentModel.DefaultValue(1)]
         public int ConcurrentWriteAttemptDelay
         {
-            get
+            get { return _concurrentWriteAttemptDelay; }
+            set { _concurrentWriteAttemptDelay = value; }
+        }
+
+        /// <summary>
+        /// Maximum number of archive files that should be kept.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(9)]
+        public int MaxArchiveFiles
+        {
+            get { return _maxArchiveFiles; }
+            set { _maxArchiveFiles = value; }
+        }
+
+        /// <summary>
+        /// Determines the way <a href="filearchive.html">file archives</a> are numbered. 
+        /// </summary>
+        public ArchiveNumberingMode ArchiveNumbering
+        {
+            get { return _archiveNumbering; }
+            set { _archiveNumbering = value; }
+        }
+
+        private void RecursiveRollingRename(string fileName, string pattern, int archiveNumber)
+        {
+            if (archiveNumber >= MaxArchiveFiles)
             {
-                return _concurrentWriteAttemptDelay;
+                File.Delete(fileName);
+                return;
             }
-            set
+
+            if (!File.Exists(fileName))
+                return;
+
+            string newFileName = pattern.Replace("{#}", archiveNumber.ToString());
+            if (File.Exists(fileName))
+                RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
+
+            if (InternalLogger.IsTraceEnabled)
+                InternalLogger.Trace("Renaming {0} to {1}", fileName, newFileName);
+            try
             {
-                _concurrentWriteAttemptDelay = value;
+                File.Move(fileName, newFileName);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(newFileName));
+                File.Move(fileName, newFileName);
             }
         }
 
-        private StreamWriter OpenStreamWriter(string fileName, bool throwOnError)
+        private string ReplaceNumber(string pattern, int value)
         {
+            int firstPart = pattern.IndexOf("{#");
+            int lastPart = pattern.IndexOf("#}") + 2;
+            int numDigits = lastPart - firstPart - 2;
+
+            return pattern.Substring(0, firstPart) + Convert.ToString(value, 10).PadLeft(numDigits, '0') + pattern.Substring(lastPart);
+        }
+
+        private void SequentialArchive(string fileName, string pattern)
+        {
+            string baseNamePattern = Path.GetFileName(pattern);
+
+            //Console.WriteLine("baseNamePatern: {0}", baseNamePattern);
+
+            int firstPart = baseNamePattern.IndexOf("{#");
+            int lastPart = baseNamePattern.IndexOf("#}") + 2;
+            int trailerLength = baseNamePattern.Length - lastPart;
+
+            string fileNameMask = baseNamePattern.Substring(0, firstPart) + "*" + baseNamePattern.Substring(lastPart);
+
+            //Console.WriteLine("fileNameMask: {0}", fileNameMask);
+            string dirName = Path.GetDirectoryName(pattern);
+            int nextNumber = -1;
+            int minNumber = -1;
+
+            Hashtable number2name = new Hashtable();
+
             try
             {
-                StreamWriter retVal;
-
-                FileInfo fi = new FileInfo(fileName);
-                if (!fi.Exists)
+                // Console.WriteLine("dirName: {0}", dirName);
+                foreach (string s in Directory.GetFiles(dirName, fileNameMask))
                 {
-                    if (!fi.Directory.Exists)
+                    string baseName = Path.GetFileName(s);
+                    string number = baseName.Substring(firstPart, baseName.Length - trailerLength - firstPart);
+                    int num = Convert.ToInt32(number);
+
+                    nextNumber = Math.Max(nextNumber, num);
+                    if (minNumber != -1)
                     {
-                        Directory.CreateDirectory(fi.DirectoryName);
+                        minNumber = Math.Min(minNumber, num);
                     }
-                }
-
-                if (!ConcurrentWrites)
-                {
-                    retVal = new StreamWriter(fileName, true, _encoding, _bufferSize);
-                }
-                else
-                {
-                    int currentDelay = _concurrentWriteAttemptDelay;
-                    retVal = null;
-
-                    for (int i = 0; i < _concurrentWriteAttempts; ++i)
+                    else
                     {
-                        try
-                        {
-                            retVal = new StreamWriter(fileName, true, _encoding, _bufferSize);
-                            break;
-                        }
-                        catch (IOException)
-                        {
-                            // Console.WriteLine("ex: {0}", ex.Message);
-                            int actualDelay = _random.Next(currentDelay);
-                            currentDelay *= 2;
-                            System.Threading.Thread.Sleep(actualDelay);
-                        }
+                        minNumber = num;
                     }
-                }
 
-                retVal.AutoFlush = _autoFlush;
-                return retVal;
+                    number2name[num] = s;
+                }
+                nextNumber++;
             }
-            catch (Exception ex)
+            catch (DirectoryNotFoundException)
             {
-                InternalLogger.Error("Unable to create file: '{0}' {1}", fileName, ex);
-                throw;
+                Directory.CreateDirectory(dirName);
+                nextNumber = 0;
             }
+
+            if (minNumber != -1)
+            {
+                int minNumberToKeep = nextNumber - _maxArchiveFiles + 1;
+                for (int i = minNumber; i < minNumberToKeep; ++i)
+                {
+                    string s = (string)number2name[i];
+                    if (s != null)
+                    {
+                        File.Delete(s);
+                    }
+                }
+            }
+
+            string newFileName = ReplaceNumber(pattern, nextNumber);
+            File.Move(fileName, newFileName);
+        }
+
+        private void DoAutoArchive(string fileName, LogEventInfo ev)
+        {
+            FileInfo fi = new FileInfo(fileName);
+            if (!fi.Exists)
+                return;
+
+            // Console.WriteLine("DoAutoArchive({0})", fileName);
+            
+            string fileNamePattern;
+
+            if (_autoArchiveFileName == null)
+            {
+                string ext = Path.GetExtension(fileName);
+                fileNamePattern = Path.ChangeExtension(fileName, ".{#}" + ext);
+
+            }
+            else
+            {
+                fileNamePattern = _autoArchiveFileName.GetFormattedMessage(ev);
+            }
+
+            switch (ArchiveNumbering)
+            {
+                case ArchiveNumberingMode.Rolling:
+                    RecursiveRollingRename(fileName, fileNamePattern, 0);
+                    break;
+
+                case ArchiveNumberingMode.Sequence:
+                    SequentialArchive(fileName, fileNamePattern);
+                    break;
+            }
+        }
+
+        private bool ShouldAutoArchive(string fileName, LogEventInfo ev, int upcomingWriteSize)
+        {
+            if (_archiveAboveSize == -1 && _archiveEvery == ArchiveEveryMode.None)
+                return false;
+
+            DateTime lastWriteTime;
+            long fileLength;
+
+            if (!GetFileInfo(fileName, out lastWriteTime, out fileLength))
+                return false;
+
+            if (_archiveAboveSize != -1)
+            {
+                if (fileLength + upcomingWriteSize > _archiveAboveSize)
+                    return true;
+            }
+
+            if (_archiveEvery != ArchiveEveryMode.None)
+            {
+                string formatString;
+
+                switch (_archiveEvery)
+                {
+                    case ArchiveEveryMode.Year:
+                        formatString = "yyyy";
+                        break;
+
+                    case ArchiveEveryMode.Month:
+                        formatString = "yyyyMM";
+                        break;
+
+                    default:
+                    case ArchiveEveryMode.Day:
+                        formatString = "yyyyMMdd";
+                        break;
+
+                    case ArchiveEveryMode.Hour:
+                        formatString = "yyyyMMddHH";
+                        break;
+
+                    case ArchiveEveryMode.Minute:
+                        formatString = "yyyyMMddHHmm";
+                        break;
+                }
+
+                string ts = lastWriteTime.ToString(formatString);
+                string ts2 = ev.TimeStamp.ToString(formatString);
+
+                if (ts != ts2)
+                    return true;
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -368,47 +619,19 @@ namespace NLog.Targets
             lock (this)
             {
                 string fileName = _fileNameLayout.GetFormattedMessage(logEvent);
+                string renderedText = CompiledLayout.GetFormattedMessage(logEvent) + _newLine;
+                byte[] bytes = TransformBytes(_encoding.GetBytes(renderedText));
 
-                if (fileName != _lastFileName && _outputFile != null)
+                if (ShouldAutoArchive(fileName, logEvent, bytes.Length))
                 {
-                    _outputFile.Close();
-                    _outputFile = null;
+                    InvalidateCacheItem(fileName);
+                    DoAutoArchive(fileName, logEvent);
                 }
-                
-                _lastFileName = fileName;
-                if (_outputFile == null)
-                {
-                    _outputFile = OpenStreamWriter(fileName, true);
-                    if (_outputFile == null)
-                        return ;
-                }
-                WriteToFile(_outputFile, CompiledLayout.GetFormattedMessage(logEvent));
-                if (AutoFlush)
-                {
-                    _outputFile.Flush();
-                }
-                if (!KeepFileOpen || ConcurrentWrites)
-                {
-                    _outputFile.Close();
-                    _outputFile = null;
-                }
+
+                WriteToFile(fileName, bytes);
             }
         }
 
-        /// <summary>
-        /// Closes the file.
-        /// </summary>
-        protected internal override void Close()
-        {
-            lock (this)
-            {
-                if (_outputFile != null)
-                {
-                    _outputFile.Close();
-                    _outputFile = null;
-                }
-            }
-        }
 
         /// <summary>
         /// Writes the specified array of logging events to a file specified in the FileName 
@@ -422,61 +645,224 @@ namespace NLog.Targets
         /// </remarks>
         protected internal override void Write(LogEventInfo[] logEvents)
         {
-            string currentFileName = "";
-            int requests = 0;
-            int reopens = 0;
-            StreamWriter currentStreamWriter = null;
+            Array.Sort(logEvents, 0, logEvents.Length, _logEventComparer);
 
-            try
+            for (int i = 0; i < logEvents.Length; ++i)
             {
-                Array.Sort(logEvents, 0, logEvents.Length, _logEventComparer);
+                LogEventInfo logEvent = logEvents[i];
+                string logEventFileName = _fileNameLayout.GetFormattedMessage(logEvent);
+                string logEventText = CompiledLayout.GetFormattedMessage(logEvent) + _newLine;
+                byte[] bytes = TransformBytes(_encoding.GetBytes(logEventText));
 
-                for (int i = 0; i < logEvents.Length; ++i)
+                if (ShouldAutoArchive(logEventFileName, logEvent, bytes.Length))
                 {
-                    LogEventInfo logEvent = logEvents[i];
-                    string logEventFileName = _fileNameLayout.GetFormattedMessage(logEvent);
-                    string logEventText = CompiledLayout.GetFormattedMessage(logEvent);
+                    InvalidateCacheItem(logEventFileName);
+                    DoAutoArchive(logEventFileName, logEvent);
+                }
 
-                    if (logEventFileName != currentFileName)
-                    {
-                        if (currentStreamWriter != null)
-                        {
-                            currentStreamWriter.Close();
-                        }
-                        currentFileName = logEventFileName;
-                        currentStreamWriter = OpenStreamWriter(logEventFileName, false);
-                        reopens++;
-                    }
-                    requests++;
-                    if (currentStreamWriter != null)
-                    {
-                        WriteToFile(currentStreamWriter, logEventText);
-                    }
-                }
-            }
-            finally
-            {
-                if (currentStreamWriter != null)
-                {
-                    currentStreamWriter.Close();
-                    currentStreamWriter = null;
-                }
+                WriteToFile(logEventFileName, bytes);
             }
         }
 
         /// <summary>
-        /// Writes the specified text to the specified file.
+        /// Initializes file logging by creating data structures that
+        /// enable efficient multi-file logging.
         /// </summary>
-        /// <param name="file">file to write to</param>
-        /// <param name="text">text to be written</param>
-        /// <remarks>
-        /// You can override this method to additional things before
-        /// the text is actually written to the file. For example this
-        /// is a way to add encryption support.
-        /// </remarks>
-        protected virtual void WriteToFile(StreamWriter file, string text)
+        public override void Initialize()
         {
-            file.WriteLine(text);
+            base.Initialize ();
+
+            if (!KeepFileOpen)
+            {
+                _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
+            }
+            else
+            {
+                if (_archiveAboveSize != -1 || _archiveEvery != ArchiveEveryMode.None)
+                {
+                    if (NetworkWrites)
+                    {
+                        _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
+                    }
+                    else if (ConcurrentWrites)
+                    {
+#if NETCF
+                        _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
+#else
+                        _appenderFactory = MutexMultiProcessFileAppender.TheFactory;
+#endif
+                    }
+                    else
+                    {
+                        _appenderFactory = CountingSingleProcessFileAppender.TheFactory;
+                    }
+                }
+                else
+                {
+                    if (NetworkWrites)
+                    {
+                        _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
+                    }
+                    else if (ConcurrentWrites)
+                    {
+#if NETCF
+                        _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
+#else
+                        _appenderFactory = MutexMultiProcessFileAppender.TheFactory;
+#endif
+                    }
+                    else
+                    {
+                        _appenderFactory = SingleProcessFileAppender.TheFactory;
+                    }
+
+                }
+            }
+
+            _recentAppenders = new IFileAppender[OpenFileCacheSize];
+
+            // Console.Error.WriteLine("Name: {0} Factory: {1}", this.Name, _appenderFactory.GetType().FullName);
+        }
+
+        /// <summary>
+        /// Modifies the specified byte array before it gets sent to a file.
+        /// </summary>
+        /// <param name="bytes">The byte array</param>
+        /// <returns>The modified byte array. The function can do the modification in-place.</returns>
+        protected virtual byte[] TransformBytes(byte[] bytes)
+        {
+            return bytes;
+        }
+
+        private void WriteToFile(string fileName, byte[] bytes)
+        {
+            //
+            // IFileAppender.Write is the most expensive operation here
+            // so the in-memory data structure doesn't have to be 
+            // very sophisticated. It's a table-based LRU, where we move 
+            // the used element to become the first one.
+            // The number of items is usually very limited so the 
+            // performance should be equivalent to the one of the hashtable.
+            //
+
+            int freeSpot = _recentAppenders.Length - 1;
+
+            for (int i = 0; i < _recentAppenders.Length; ++i)
+            {
+                if (_recentAppenders[i] == null)
+                {
+                    freeSpot = i;
+                    break;
+                }
+
+                if (_recentAppenders[i].FileName == fileName)
+                {
+                    // found it, move it to the first place on the list
+                    // (MRU)
+
+                    IFileAppender app = _recentAppenders[i];
+                    for (int j = i; j > 0; --j)
+                    {
+                        _recentAppenders[j] = _recentAppenders[j - 1];
+                    }
+                    _recentAppenders[0] = app;
+                    app.Write(bytes);
+                    return;
+                }
+            }
+
+            if (_recentAppenders[freeSpot] != null)
+            {
+                _recentAppenders[freeSpot].Close();
+                _recentAppenders[freeSpot] = null;
+            }
+
+            for (int j = freeSpot; j > 0; --j)
+            {
+                _recentAppenders[j] = _recentAppenders[j - 1];
+            }
+
+            _recentAppenders[0] = _appenderFactory.Open(fileName, this);
+            _recentAppenders[0].Write(bytes);
+        }
+
+        /// <summary>
+        /// Flushes all pending file operations.
+        /// </summary>
+        /// <param name="timeout">The timeout</param>
+        /// <remarks>
+        /// The timeout parameter is ignored, because file APIs don't provide
+        /// the needed functionality.
+        /// </remarks>
+        public override void Flush(TimeSpan timeout)
+        {
+            for (int i = 0; i < _recentAppenders.Length; ++i)
+            {
+                if (_recentAppenders[i] == null)
+                    break;
+                _recentAppenders[i].Flush();
+            }
+        }
+
+        /// <summary>
+        /// Closes the file(s) opened for writing.
+        /// </summary>
+        protected internal override void Close()
+        {
+            for (int i = 0; i < _recentAppenders.Length; ++i)
+            {
+                if (_recentAppenders[i] == null)
+                    break;
+                _recentAppenders[i].Close();
+                _recentAppenders[i] = null;
+            }
+        }
+
+        private bool GetFileInfo(string fileName, out DateTime lastWriteTime, out long fileLength)
+        {
+            for (int i = 0; i < _recentAppenders.Length; ++i)
+            {
+                if (_recentAppenders[i] == null)
+                    break;
+                if (_recentAppenders[i].FileName == fileName)
+                {
+                    _recentAppenders[i].GetFileInfo(out lastWriteTime, out fileLength);
+                    return true;
+                }
+            }
+
+            FileInfo fi = new FileInfo(fileName);
+            if (fi.Exists)
+            {
+                fileLength = fi.Length;
+                lastWriteTime = fi.LastWriteTime;
+                return true;
+            }
+            else
+            {
+                fileLength = -1;
+                lastWriteTime = DateTime.MinValue;
+                return false;
+            }
+        }
+ 
+        private void InvalidateCacheItem(string fileName)
+        {
+            for (int i = 0; i < _recentAppenders.Length; ++i)
+            {
+                if (_recentAppenders[i] == null)
+                    break;
+                if (_recentAppenders[i].FileName == fileName)
+                {
+                    _recentAppenders[i].Close();
+                    for (int j = i; j < _recentAppenders.Length - 1; ++j)
+                    {
+                        _recentAppenders[j] = _recentAppenders[j + 1];
+                    }
+                    _recentAppenders[_recentAppenders.Length - 1] = null;
+                    break;
+                }
+            }
         }
 
         class LogEventComparer : IComparer
@@ -507,5 +893,47 @@ namespace NLog.Targets
                 return 0;
             }
         }
+
+        FileStream IFileOpener.Create(string fileName, System.IO.FileShare fileShare)
+        {
+            int currentDelay = ConcurrentWriteAttemptDelay;
+
+            InternalLogger.Trace("Opening {0} with FileShare.{1}", fileName, fileShare);
+            for (int i = 0; i < ConcurrentWriteAttempts; ++i)
+            {
+                try
+                {
+                    return TryCreate(fileName, fileShare);
+                }
+                catch (IOException)
+                {
+                    if (!ConcurrentWrites || i + 1 == ConcurrentWriteAttempts)
+                        throw; // rethrow
+
+                    int actualDelay = _random.Next(currentDelay);
+                    InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, fileName, actualDelay);
+                    currentDelay *= 2;
+                    System.Threading.Thread.Sleep(actualDelay);
+                }
+            }
+            throw new Exception("Should not be reached.");
+        }
+
+        private FileStream TryCreate(string fileName, FileShare fileShare)
+        {
+            try
+            {
+                return new FileStream(fileName, FileMode.Append, FileAccess.Write, fileShare);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                if (!CreateDirs)
+                    throw;
+
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName));
+                return new FileStream(fileName, FileMode.Append, FileAccess.Write, fileShare);
+            }
+        }
+
     }
 }
