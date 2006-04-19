@@ -65,11 +65,6 @@
             </Settings>
             <References>
                 <Reference
-                    Name = "NLog"
-                    Project = "{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
                     Name = "System"
                     AssemblyName = "System"
                     HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.1.4322\System.dll"
@@ -83,6 +78,11 @@
                     Name = "System.Messaging"
                     AssemblyName = "System.Messaging"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Messaging.dll"
+                />
+                <Reference
+                    Name = "NLog"
+                    Project = "{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
             </References>
         </Build>
@@ -130,6 +130,41 @@
                 />
                 <File
                     RelPath = "Targets\ASPResponse.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\ColoredConsole.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\ConsoleOutputColor.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\ConsoleRowHighlightingRule.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\ConsoleRowHighlightingRuleCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\ConsoleWin32Api.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\ConsoleWordHighlightingRule.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Targets\ConsoleWordHighlightingRuleCollection.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
