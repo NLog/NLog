@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<nlog>
+    <targets>
+        <target name="console" type="ColoredConsole" layout="${date:format=HH\:MM\:ss} ${logger} ${message}">
+        </target>
+    </targets>
+
+    <rules>
+        <logger name="*" minLevel="Trace" writeTo="console" />
+    </rules>
+</nlog>
