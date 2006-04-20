@@ -119,11 +119,13 @@ namespace NLog.Internal.FileAppenders
 
         private string GetMutexName(string fileName)
         {
-            System.Security.Cryptography.MD5CryptoServiceProvider csp = new System.Security.Cryptography.MD5CryptoServiceProvider();
-            byte[] bytes = csp.ComputeHash(System.Text.Encoding.UTF8.GetBytes(fileName));
-            string token = "filelock-mutex-" + Convert.ToBase64String(bytes);
-            //Console.WriteLine(token);
-            return token;
+            string canonicalName = Path.GetFullPath(fileName).ToLower();
+
+            canonicalName = canonicalName.Replace('\\', '_');
+            canonicalName = canonicalName.Replace('/', '_');
+            canonicalName = canonicalName.Replace(':', '_');
+
+            return "filelock-mutex-" + canonicalName;
         }
 
         public bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
