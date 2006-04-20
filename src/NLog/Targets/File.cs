@@ -934,6 +934,5 @@ namespace NLog.Targets
                 return new FileStream(fileName, FileMode.Append, FileAccess.Write, fileShare);
             }
         }
-
     }
 }
