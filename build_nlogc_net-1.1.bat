@@ -1,7 +1,4 @@
 @echo off
-set DOTNETSDK_DIR=C:\Program Files\Microsoft Visual Studio .NET 2003\SDK\v1.1
-set VS_DIR=C:\Program Files\Microsoft Visual Studio .NET 2003
-set VC_DIR=%VS_DIR%\VC7
 set FRAMEWORK_DIR=%WINDIR%\Microsoft.NET\Framework\v1.1.4322
 set NLOG_BASE_DIR=%CD%
 

@@ -194,7 +194,14 @@
             </sourcefiles>
         </uptodate>
         <if test="${not nlogc.uptodate}">
-            <exec program="build_nlogc_net-1.0.bat" workingdir="${nant.project.basedir}" commandline="${string::replace(nlog.dir,'/','\')} ${string::replace(nlogc.dir,'/','\')}" />
+            <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\7.0\Setup\VS\ProductDir" />
+            <exec program="build_nlogc_net-1.0.bat" workingdir="${nant.project.basedir}" commandline="${string::replace(nlog.dir,'/','\')} ${string::replace(nlogc.dir,'/','\')}">
+                <environment>
+                    <variable name="VS_DIR" value="${visualstudio.dir}" />
+                    <variable name="VC_DIR" value="${path::combine(visualstudio.dir,'VC7')}" />
+                    <variable name="DOTNETSDK_DIR" value="${path::combine(framework::get-sdk-directory('net-1.0'),'..')}" />
+                </environment>
+            </exec>
         </if>
     </target>
 
@@ -218,7 +225,14 @@
             </sourcefiles>
         </uptodate>
         <if test="${not nlogc.uptodate}">
-            <exec program="build_nlogc_net-1.1.bat" workingdir="${nant.project.basedir}" commandline="${string::replace(nlog.dir,'/','\')} ${string::replace(nlogc.dir,'/','\')}" />
+            <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\7.1\Setup\VS\ProductDir" />
+            <exec program="build_nlogc_net-1.1.bat" workingdir="${nant.project.basedir}" commandline="${string::replace(nlog.dir,'/','\')} ${string::replace(nlogc.dir,'/','\')}">
+                <environment>
+                    <variable name="VS_DIR" value="${visualstudio.dir}" />
+                    <variable name="VC_DIR" value="${path::combine(visualstudio.dir,'VC7')}" />
+                    <variable name="DOTNETSDK_DIR" value="${path::combine(framework::get-sdk-directory('net-1.1'),'..')}" />
+                </environment>
+            </exec>
         </if>
     </target>
 
@@ -232,7 +246,15 @@
             </sourcefiles>
         </uptodate>
         <if test="${not nlogc.uptodate}">
-            <exec program="build_nlogc_net-2.0.bat" workingdir="${nant.project.basedir}" commandline="${string::replace(nlog.dir,'/','\')} ${string::replace(nlogc.dir,'/','\')}" />
+            <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VS\ProductDir" />
+            <readregistry property="visualc.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VC\ProductDir" />
+            <exec program="build_nlogc_net-2.0.bat" workingdir="${nant.project.basedir}" commandline="${string::replace(nlog.dir,'/','\')} ${string::replace(nlogc.dir,'/','\')}">
+                <environment>
+                    <variable name="VS_DIR" value="${visualstudio.dir}" />
+                    <variable name="VC_DIR" value="${visualc.dir}" />
+                    <variable name="DOTNETSDK_DIR" value="${path::combine(framework::get-sdk-directory('net-2.0'),'..')}" />
+                </environment>
+            </exec>
         </if>
     </target>
 

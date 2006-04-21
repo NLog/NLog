@@ -398,6 +398,7 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
+                <Folder RelPath = "DotNet\" />
                 <File
                     RelPath = "Filters\ConditionBasedFilter.cs"
                     SubType = "Code"
@@ -773,6 +774,7 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
+                <Folder RelPath = "Mono\" />
                 <File
                     RelPath = "Targets\ASPNetTrace.cs"
                     SubType = "Code"
@@ -968,6 +970,7 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
+                <Folder RelPath = "Unix\" />
                 <File
                     RelPath = "Web\NLogHttpModule.cs"
                     SubType = "Code"
@@ -1055,6 +1058,11 @@
                 />
                 <File
                     RelPath = "Win32\Targets\OutputDebugString.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\PerfCounterTarget.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

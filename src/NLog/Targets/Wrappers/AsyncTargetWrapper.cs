@@ -48,6 +48,27 @@ using NLog.Internal;
 namespace NLog.Targets.Wrappers
 {
     /// <summary>
+    /// The action to be taken when the queue overflows
+    /// </summary>
+    public enum AsyncTargetWrapperOverflowAction
+    {
+        /// <summary>
+        /// Do no action - accept another item into the queue.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Discard the overflowing item.
+        /// </summary>
+        Discard,
+
+        /// <summary>
+        /// Block until there's more room in the queue.
+        /// </summary>
+        Block,
+    }
+
+    /// <summary>
     /// A target wrapper that provides asynchronous, buffered execution of target writes.
     /// </summary>
     /// <example>
@@ -275,27 +296,6 @@ namespace NLog.Targets.Wrappers
                 }
             }
             InternalLogger.Debug("After flush. Requests in queue: {0}", _lazyWriterRequestQueue.RequestCount);
-        }
-
-        /// <summary>
-        /// The action to be taken when the queue overflows
-        /// </summary>
-        public enum AsyncTargetWrapperOverflowAction
-        {
-            /// <summary>
-            /// Do no action - accept another item into the queue.
-            /// </summary>
-            None,
-
-            /// <summary>
-            /// Discard the overflowing item.
-            /// </summary>
-            Discard,
-
-            /// <summary>
-            /// Block until there's more room in the queue.
-            /// </summary>
-            Block,
         }
 
         /// <summary>
