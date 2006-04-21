@@ -69,11 +69,6 @@
                     Project = "{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
-                <Reference
-                    Name = "NLog.UnitTests"
-                    Project = "{1653EE05-2720-4A85-BF14-74C4493787B1}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
             </References>
         </Build>
         <Files>

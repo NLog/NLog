@@ -179,7 +179,7 @@ namespace NLog.Targets
         [System.ComponentModel.DefaultValue("UTF8")]
         public string Encoding
         {
-            get { return _encoding.EncodingName; }
+            get { return _encoding.WebName; }
             set { _encoding = System.Text.Encoding.GetEncoding(value); }
         }
 

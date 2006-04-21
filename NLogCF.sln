@@ -3,14 +3,11 @@ Project("{20D4826A-C6FA-45DB-90F4-C717570B9F32}") = "NLog", "src\NLog\NLog.csdpr
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{20D4826A-C6FA-45DB-90F4-C717570B9F32}") = "NLog.CFTest", "src\NLog.CFTest\NLog.CFTest.csdproj", "{F8DA3276-560A-490C-AF75-E27307887CA3}"
+Project("{20D4826A-C6FA-45DB-90F4-C717570B9F32}") = "NLog.CFTest", "tests\NLog.CFTest\NLog.CFTest.csdproj", "{F8DA3276-560A-490C-AF75-E27307887CA3}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
-		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
-	EndGlobalSection
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
 		Release = Release
@@ -32,5 +29,8 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
 	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
 	EndGlobalSection
 EndGlobal

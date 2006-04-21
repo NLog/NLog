@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETCF_1_0
+
 using System;
 using System.Messaging;
 using System.Text;
@@ -116,7 +118,7 @@ namespace NLog.Win32.Targets
         /// </summary>
         public string Encoding
         {
-            get { return _encoding.EncodingName; }
+            get { return _encoding.WebName; }
             set { _encoding = System.Text.Encoding.GetEncoding(value); }
         }
 
@@ -215,3 +217,5 @@ namespace NLog.Win32.Targets
         }
 	}
 }
+
+#endif

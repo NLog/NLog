@@ -29,7 +29,7 @@
     <property name="binary_snapshot.name" value="nlog-${nlog.package.name}-bin.zip" />
     <property name="nlogc_snapshot.name" value="nlogc-${nlog.package.name}-bin.zip" />
     <property name="binary_compact_snapshot.name" value="nlog-compact-${nlog.package.name}-bin.zip" />
-    <property name="webtest.dir" value="${nant.project.basedir}/webtest" />
+    <property name="webtest.dir" value="${project::get-base-directory()}/webtest" />
 
     <property name="clover.enabled" value="false" />
     <property name="clover.home" value="D:\Apps\CloverNLog" />
@@ -37,10 +37,10 @@
     <target name="configure">
         <call target="configure-${framework::get-target-framework()}" />
         <property name="buildsubdir" value="${framework::get-target-framework()}${if(clover.enabled,'-clover','')}${if(nlog.debug,'-debug','')}" />
-        <property name="nlog.dir" value="${nant.project.basedir}/build/${buildsubdir}/bin" unless="${property::exists('nlog.dir')}" />
-        <property name="nlogc.dir" value="${nant.project.basedir}/build/${buildsubdir}/nlogc" unless="${property::exists('nlogc.dir')}" />
+        <property name="nlog.dir" value="${project::get-base-directory()}/build/${buildsubdir}/bin" unless="${property::exists('nlog.dir')}" />
+        <property name="nlogc.dir" value="${project::get-base-directory()}/build/${buildsubdir}/nlogc" unless="${property::exists('nlogc.dir')}" />
         <property name="nlog.help.dir" value="build/${buildsubdir}/help" unless="${property::exists('nlog.help.dir')}" />
-        <property name="nunit2.report.dir" value="${nant.project.basedir}/build/${buildsubdir}/test_results" />
+        <property name="nunit2.report.dir" value="${project::get-base-directory()}/build/${buildsubdir}/test_results" />
         <property name="clover.report.dir" value="build/${buildsubdir}/clover_report" />
         <property name="clover.build.dir" value="build/${buildsubdir}/clover" />
         <property name="web.dir" value="build/${buildsubdir}/web" unless="${property::exists('web.dir')}" />
@@ -105,6 +105,7 @@
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
                 <include name="System.Data.dll" />
+                <include name="System.Messaging.dll" />
                 <include name="System.Windows.Forms.dll" />
                 <include name="System.Web.dll" />
                 <include name="System.Web.Services.dll" />
@@ -195,7 +196,7 @@
         </uptodate>
         <if test="${not nlogc.uptodate}">
             <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\7.0\Setup\VS\ProductDir" />
-            <exec program="build_nlogc_net-1.0.bat" workingdir="${nant.project.basedir}" commandline="${string::replace(nlog.dir,'/','\')} ${string::replace(nlogc.dir,'/','\')}">
+            <exec program="build_nlogc_net-1.0.bat" workingdir="${project::get-base-directory()}" commandline="${string::replace(nlog.dir,'/','\')} ${string::replace(nlogc.dir,'/','\')}">
                 <environment>
                     <variable name="VS_DIR" value="${visualstudio.dir}" />
                     <variable name="VC_DIR" value="${path::combine(visualstudio.dir,'VC7')}" />
@@ -226,7 +227,7 @@
         </uptodate>
         <if test="${not nlogc.uptodate}">
             <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\7.1\Setup\VS\ProductDir" />
-            <exec program="build_nlogc_net-1.1.bat" workingdir="${nant.project.basedir}" commandline="${string::replace(nlog.dir,'/','\')} ${string::replace(nlogc.dir,'/','\')}">
+            <exec program="build_nlogc_net-1.1.bat" workingdir="${project::get-base-directory()}" commandline="${string::replace(nlog.dir,'/','\')} ${string::replace(nlogc.dir,'/','\')}">
                 <environment>
                     <variable name="VS_DIR" value="${visualstudio.dir}" />
                     <variable name="VC_DIR" value="${path::combine(visualstudio.dir,'VC7')}" />
@@ -248,7 +249,7 @@
         <if test="${not nlogc.uptodate}">
             <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VS\ProductDir" />
             <readregistry property="visualc.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VC\ProductDir" />
-            <exec program="build_nlogc_net-2.0.bat" workingdir="${nant.project.basedir}" commandline="${string::replace(nlog.dir,'/','\')} ${string::replace(nlogc.dir,'/','\')}">
+            <exec program="build_nlogc_net-2.0.bat" workingdir="${project::get-base-directory()}" commandline="${string::replace(nlog.dir,'/','\')} ${string::replace(nlogc.dir,'/','\')}">
                 <environment>
                     <variable name="VS_DIR" value="${visualstudio.dir}" />
                     <variable name="VC_DIR" value="${visualc.dir}" />
@@ -442,7 +443,7 @@
 
     <target name="updateversion">
         <foreach item="Line" in="Nlog.version" delim=";" property="nlog.version">
-            <exec workingdir="${nant.project.basedir}" program="tools/ReplaceVersion.exe" commandline=". ${nlog.version}" />
+            <exec workingdir="${project::get-base-directory()}" program="tools/ReplaceVersion.exe" commandline=". ${nlog.version}" />
         </foreach>
     </target>
 
@@ -477,13 +478,13 @@
     </target>
 
     <target name="doc" depends="configure, build, xmldoc, website, helpwebsite">
-        <copy file="${nant.project.basedir}/web/syntax.xsl" tofile="build/${buildsubdir}/syntax.xsl" overwrite="true" />
+        <copy file="${project::get-base-directory()}/web/syntax.xsl" tofile="build/${buildsubdir}/syntax.xsl" overwrite="true" />
         <xmlpoke file="build/${buildsubdir}/syntax.xsl" xpath="//xsl:param[@name='external-base']" value="file://${webbuild.dir}">
             <namespaces>
                 <namespace prefix="xsl" uri="http://www.w3.org/1999/XSL/Transform" />
             </namespaces>
         </xmlpoke>
-        <copy file="${nant.project.basedir}/NLog-${framework::get-target-framework()}.ndoc" tofile="build/${buildsubdir}/NLog.ndoc" />
+        <copy file="${project::get-base-directory()}/NLog-${framework::get-target-framework()}.ndoc" tofile="build/${buildsubdir}/NLog.ndoc" />
         <copy todir="build/${buildsubdir}/help/examples">
             <fileset basedir="build/${buildsubdir}/helpweb/examples">
                 <include name="**/*" />
@@ -589,7 +590,7 @@
             </sourcefiles>
         </uptodate>
         <if test="${not xmldoc.uptodate}">
-            <copy file="${nant.project.basedir}/NLog-${framework::get-target-framework()}.ndoc" tofile="build/${buildsubdir}/NLog.ndoc" />
+            <copy file="${project::get-base-directory()}/NLog-${framework::get-target-framework()}.ndoc" tofile="build/${buildsubdir}/NLog.ndoc" />
             <exec program="${ndoc.console.exe}" workingdir="build/${buildsubdir}" commandline="-documenter=XML -project=./NLog.ndoc" />
         </if>
         <echo message="Getting target, filter and layout renderer names from build/${buildsubdir}/doc.xml ..." />
@@ -597,7 +598,7 @@
             <code><![CDATA[
                 public static void ScriptMain(Project project) {
                     System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
-                    doc.Load(project.ExpandProperties("${nant.project.basedir}/build/${buildsubdir}/doc.xml", Location.UnknownLocation));
+                    doc.Load(project.ExpandProperties("${project::get-base-directory()}/build/${buildsubdir}/doc.xml", Location.UnknownLocation));
                     string targets = "";
                     string layoutRenderers = "";
                     string filters = "";
@@ -631,7 +632,7 @@
     </target>
 
     <target name="website" depends="configure">
-        <property name="webbuild.dir" value="${path::combine(nant.project.basedir,web.dir)}" />
+        <property name="webbuild.dir" value="${path::combine(project::get-base-directory(),web.dir)}" />
         <property name="web.buildmode" value="web" />
         <property name="web.sourceforge" value="1" />
         <call target="buildwebsite" />
@@ -639,7 +640,7 @@
     </target>
 
     <target name="helpwebsite" depends="configure">
-        <property name="webbuild.dir" value="${path::combine(nant.project.basedir,helpweb.dir)}" />
+        <property name="webbuild.dir" value="${path::combine(project::get-base-directory(),helpweb.dir)}" />
         <property name="web.buildmode" value="help" />
         <property name="web.sourceforge" value="0" />
         <call target="buildwebsite" />
@@ -918,7 +919,7 @@
     </target>
 
     <target name="setup_unittest_website">
-        <mkiisdir dirpath="${nant.project.basedir}/nlogtest" vdirname="nlogtest" 
+        <mkiisdir dirpath="${project::get-base-directory()}/nlogtest" vdirname="nlogtest" 
             authntlm="false" 
             authanonymous="true" 
             authbasic="false" 

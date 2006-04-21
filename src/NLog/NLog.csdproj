@@ -24,7 +24,7 @@
                     BaseAddress = "0"
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
-                    DefineConstants = "DEBUG;TRACE;NETCF"
+                    DefineConstants = "DEBUG;TRACE;NETCF;NETCF_1_0"
                     DocumentationFile = ""
                     DebugSymbols = "true"
                     FileAlignment = "4096"
@@ -42,7 +42,7 @@
                     BaseAddress = "0"
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
-                    DefineConstants = "TRACE;NETCF"
+                    DefineConstants = "TRACE;NETCF;NETCF_1_0"
                     DocumentationFile = ""
                     DebugSymbols = "false"
                     FileAlignment = "4096"
@@ -402,7 +402,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Config\RuntimeFramework.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Config\RuntimeOS.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Config\SimpleConfigurator.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Config\SupportedRuntimeAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -411,6 +426,7 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
+                <Folder RelPath = "DotNet\" />
                 <File
                     RelPath = "Filters\ConditionBasedFilter.cs"
                     SubType = "Code"
@@ -438,11 +454,6 @@
                 />
                 <File
                     RelPath = "Filters\WhenNotEqual.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Internal\AsyncRequestQueue.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -522,6 +533,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Internal\PlatformDetector.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Internal\PropertyHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -573,6 +589,40 @@
                 />
                 <File
                     RelPath = "Internal\UdpNetworkSender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FileAppenders\CountingSingleProcessFileAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FileAppenders\IFileAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FileAppenders\IFileAppenderFactory.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FileAppenders\IFileCreator.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FileAppenders\MutexMultiProcessFileAppender.cs"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FileAppenders\RetryingMultiProcessFileAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FileAppenders\SingleProcessFileAppender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -892,6 +942,7 @@
                 />
                 <File
                     RelPath = "Targets\Wrappers\AsyncTargetWrapper.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -941,6 +992,95 @@
                 />
                 <File
                     RelPath = "Web\NLogHttpModule.cs"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\ASPHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\LayoutRenderers\ASPApplication.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\LayoutRenderers\ASPRequest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\LayoutRenderers\ASPSession.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\LayoutRenderers\Registry.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\LayoutRenderers\WindowsIdentity.cs"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ASPResponse.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ColoredConsole.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ConsoleOutputColor.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ConsoleRowHighlightingRule.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ConsoleRowHighlightingRuleCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ConsoleWin32Api.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ConsoleWordHighlightingRule.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ConsoleWordHighlightingRuleCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\EventLog.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\MSMQ.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\OutputDebugString.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\PerfCounterTarget.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
             </Include>
