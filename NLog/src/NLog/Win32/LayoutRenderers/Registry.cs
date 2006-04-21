@@ -46,6 +46,7 @@ namespace NLog.Win32.LayoutRenderers
     /// A value from the Registry.
     /// </summary>
     [LayoutRenderer("registry")]
+    [SupportedRuntime(RuntimeOS.Win32)]
     public class RegistryLayoutRenderer: LayoutRenderer
     {
         private string _value = null;
@@ -148,7 +149,7 @@ namespace NLog.Win32.LayoutRenderers
         /// <remarks>
         /// This function always returns 32.
         /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
             return 32;
         }
@@ -159,7 +160,7 @@ namespace NLog.Win32.LayoutRenderers
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event. Ignored.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             using(RegistryKey key = _rootKey.OpenSubKey(_subKey))
             {

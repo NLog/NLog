@@ -64,7 +64,8 @@ namespace NLog.Win32.Targets
     /// in future releases.
     /// </remarks>
     [Target("EventLog")]
-	public class EventLogTarget : Target
+    [SupportedRuntime(RuntimeOS.WindowsNT)]
+    public class EventLogTarget : Target
 	{
         private string _machineName = ".";
         private string _sourceName;
@@ -174,7 +175,7 @@ namespace NLog.Win32.Targets
         /// Writes the specified logging event to the event log. 
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        protected override void Write(LogEventInfo logEvent)
+        protected internal override void Write(LogEventInfo logEvent)
         {
             UpdateEventLogSource();
             if (!_operational)

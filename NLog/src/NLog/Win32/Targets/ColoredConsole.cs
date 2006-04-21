@@ -88,6 +88,7 @@ namespace NLog.Win32.Targets
     /// <img src="examples/targets/ColoredConsole/ColoredConsoleTargetRowHighlighting.gif" />
     /// </example>
     [Target("ColoredConsole")]
+    [SupportedRuntime(RuntimeOS.Win32)]
     public sealed class ColoredConsoleTarget: Target
     {
         private bool _errorStream = false;
@@ -190,7 +191,7 @@ namespace NLog.Win32.Targets
         /// and words based on a set of defined rules.
         /// </summary>
         /// <param name="logEvent">Log event.</param>
-        protected override void Write(LogEventInfo logEvent)
+        protected internal override void Write(LogEventInfo logEvent)
         {
             IntPtr hConsole = ConsoleWin32Api.GetStdHandle(ErrorStream ? ConsoleWin32Api.STD_ERROR_HANDLE : ConsoleWin32Api.STD_OUTPUT_HANDLE);
 

@@ -44,6 +44,7 @@ namespace NLog.Win32.LayoutRenderers
     /// ASP Application variable.
     /// </summary>
     [LayoutRenderer("asp-application")]
+    [SupportedRuntime(RuntimeOS.Win32)]
     public class ASPApplicationValueLayoutRenderer: LayoutRenderer
     {
         private string _appVariable;
@@ -74,7 +75,7 @@ namespace NLog.Win32.LayoutRenderers
         /// <remarks>
         /// Because ASP target uses COM Interop which is quite expensive, this method always returns 64.
         /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
             return 64;
         }
@@ -84,7 +85,7 @@ namespace NLog.Win32.LayoutRenderers
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             ASPHelper.IApplicationObject app = ASPHelper.GetApplicationObject();
             if (app != null)

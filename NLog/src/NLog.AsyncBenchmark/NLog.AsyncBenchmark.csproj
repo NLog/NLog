@@ -84,16 +84,6 @@
                     Project = "{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
-                <Reference
-                    Name = "NLog.DotNet"
-                    Project = "{55D1C193-FD9D-4E22-9A09-1AD62C863651}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
-                    Name = "NLog.Win32"
-                    Project = "{9BC14989-8F2D-48BB-A613-B63BB08492F3}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
             </References>
         </Build>
         <Files>

@@ -52,11 +52,6 @@ namespace NLog
         {
             // load default targets, filters and layout renderers.
             _extensionAssemblies.Add(typeof(NLog.LogManager).Assembly);
-
-            if (InternalLogger.LoadExtensions)
-			{
-				FindPlatformSpecificAssemblies(_extensionAssemblies);
-			}
         }
 
         /// <summary>
@@ -66,80 +61,6 @@ namespace NLog
         public static ArrayList GetExtensionAssemblies()
         {
             return _extensionAssemblies;
-        }
-
-        private static void FindPlatformSpecificAssemblies(ArrayList result)
-        {
-            InternalLogger.Info("Registering platform specific extensions...");
-#if NETCF
-            RegisterPlatformSpecificExtensions(result, "NLog.CompactFramework");
-#else 
-            if (Type.GetType("System.MonoType", false) != null)
-            {
-                RegisterPlatformSpecificExtensions(result, "NLog.Mono");
-            }
-            else
-            {
-                RegisterPlatformSpecificExtensions(result, "NLog.DotNet");
-            }
-
-            PlatformID platform = System.Environment.OSVersion.Platform;
-
-            if (platform == PlatformID.Win32NT || platform == PlatformID.Win32Windows)
-            {
-                RegisterPlatformSpecificExtensions(result, "NLog.Win32");
-            }
-
-            if ((int)platform == 128 || (int)platform == 4)
-            {
-                // mono-1.0 used '128' here, net-2.0 and mono-2.0 use '4'
-                RegisterPlatformSpecificExtensions(result, "NLog.Unix");
-            }
-#endif 
-            
-        }
-
-        private static void RegisterPlatformSpecificExtensions(ArrayList result, string name)
-        {
-            string embeddedResourceName = "EmbeddedAssembly." + name + ".dll";
-
-            System.IO.Stream embeddedAssemblyStream = typeof(LogManager).Assembly.GetManifestResourceStream(embeddedResourceName);
-            if (embeddedAssemblyStream != null)
-            {
-                InternalLogger.Info("Loading assembly from resources: {0}", embeddedResourceName);
-                byte[] assemblyBytes = new byte[embeddedAssemblyStream.Length];
-                embeddedAssemblyStream.Read(assemblyBytes, 0, assemblyBytes.Length);
-                embeddedAssemblyStream.Close();
-
-                Assembly asm = Assembly.Load(assemblyBytes);
-                InternalLogger.Info("Loaded {0} from resources", asm.FullName);
-                result.Add(asm);
-                return;
-            }
-
-            InternalLogger.Debug("RegisterPlatformSpecificExtensions('{0}')", name);
-            AssemblyName nlogAssemblyName = typeof(LogManager).Assembly.GetName();
-            AssemblyName newAssemblyName = new AssemblyName();
-            newAssemblyName.Name = name;
-            newAssemblyName.CultureInfo = nlogAssemblyName.CultureInfo;
-            newAssemblyName.Flags = nlogAssemblyName.Flags;
-            newAssemblyName.SetPublicKey(nlogAssemblyName.GetPublicKey());
-            newAssemblyName.Version = nlogAssemblyName.Version;
-
-            try
-            {
-                InternalLogger.Info("Registering platform specific extensions from assembly '{0}'", newAssemblyName);
-                Assembly asm = Assembly.Load(newAssemblyName);
-                InternalLogger.Info("Loaded {0}", asm.FullName);
-                result.Add(asm);
-                InternalLogger.Info("Registered platform specific extensions from assembly '{0}'.", newAssemblyName);
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Error("Could not load platform specific extensions: {0}", ex);
-                //if (LogManager.ThrowExceptions)
-                //    throw;
-            }
         }
     }
 }

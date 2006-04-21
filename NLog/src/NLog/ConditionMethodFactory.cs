@@ -38,6 +38,7 @@ using System.Reflection;
 using System.Globalization;
 
 using NLog.Internal;
+using NLog.Config;
 
 namespace NLog
 {
@@ -52,7 +53,7 @@ namespace NLog
         {
             foreach (Assembly a in ExtensionUtils.GetExtensionAssemblies())
             {
-                AddConditionMethodsFromAssembly(a, "");
+                AddConditionMethodsFromAssembly(typeof(LogManager).Assembly, "");
             }
         }
 
@@ -82,13 +83,19 @@ namespace NLog
                 {
                     if (t.IsDefined(typeof(ConditionMethodsAttribute), false))
                     {
-                        foreach (MethodInfo mi in t.GetMethods(BindingFlags.Public | BindingFlags.Static))
+                        if (PlatformDetector.IsSupportedOnCurrentRuntime(t))
                         {
-                            ConditionMethodAttribute[] malist = (ConditionMethodAttribute[])mi.GetCustomAttributes(typeof(ConditionMethodAttribute), false);
-
-                            foreach (ConditionMethodAttribute ma in malist)
+                            foreach (MethodInfo mi in t.GetMethods(BindingFlags.Public | BindingFlags.Static))
                             {
-                                AddConditionMethod(ma.Name, mi);
+                                ConditionMethodAttribute[] malist = (ConditionMethodAttribute[])mi.GetCustomAttributes(typeof(ConditionMethodAttribute), false);
+
+                                foreach (ConditionMethodAttribute ma in malist)
+                                {
+                                    if (PlatformDetector.IsSupportedOnCurrentRuntime(mi))
+                                    {
+                                        AddConditionMethod(ma.Name, mi);
+                                    }
+                                }
                             }
                         }
                     }

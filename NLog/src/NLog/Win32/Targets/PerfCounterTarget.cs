@@ -73,7 +73,7 @@ namespace NLog.Win32.Targets
             }
         }
         
-        protected override void Write(LogEventInfo logEvent)
+        protected internal override void Write(LogEventInfo logEvent)
         {
             if (!_operational) return;
             if (_perfCounter == null) InitializePerfCounter();

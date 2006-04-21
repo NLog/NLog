@@ -32,20 +32,50 @@
 // 
 
 using System;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Security.Permissions;
 
-[assembly: AssemblyTitle("NLog.Win32")]
-[assembly: AssemblyDescription("NLog - .NET-specific logging support")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("NLog - http://www.nlog-project.org/")]
-[assembly: AssemblyProduct("NLog - .NET Logging Library")]
-[assembly: AssemblyCopyright("Copyright (c) 2004-2006 by Jaroslaw Kowalski")]
-[assembly: AssemblyCulture("")]
+using NLog.Config;
+using NLog.Targets;
 
-[assembly: AssemblyVersion("0.9.5.0")]
+namespace NLog.Win32.Targets
+{
+    /// <summary>
+    /// Outputs logging messages through the ASP Response object.
+    /// </summary>
+    [Target("ASPResponse")]
+    [SupportedRuntime(RuntimeOS.Win32)]
+    public sealed class ASPResponseTarget: Target
+    {
+        private bool _addComments;
 
-[assembly: CLSCompliant(true)]
-[assembly: ComVisible(false)]
+        /// <summary>
+        /// Add &lt;!-- --&gt; comments around all written texts.
+        /// </summary>
+        public bool AddComments
+        {
+            get { return _addComments; }
+            set { _addComments = value; }
+        }
+     
+        /// <summary>
+        /// Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
+        {
+            ASPHelper.IResponse response = ASPHelper.GetResponseObject();
+            if (response != null)
+            {
+                if (AddComments)
+                {
+                    response.Write("<!-- " + CompiledLayout.GetFormattedMessage(logEvent) + "-->");
+                }
+                else
+                {
+                    response.Write(CompiledLayout.GetFormattedMessage(logEvent));
+                }
+                Marshal.ReleaseComObject(response);
+            }
+        }
+    }
+}

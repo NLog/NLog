@@ -55,7 +55,6 @@ namespace NLog.Internal
         static bool _logToConsoleError = false;
 #endif
         static string _logFile = null;
-        static bool _loadExtensions = true;
 
         /// <summary>
         /// Internal log level.
@@ -107,15 +106,6 @@ namespace NLog.Internal
 #endif
                 _logFile = Path.Combine(baseDir, value);
             }
-        }
-
-        /// <summary>
-        /// Defines whether the platform specific extensions are loaded at startup.
-        /// </summary>
-        public static bool LoadExtensions
-        {
-            get { return _loadExtensions; }
-            set { _loadExtensions = value; }
         }
 
 #if !NETCF
@@ -191,12 +181,6 @@ namespace NLog.Internal
                 {
                     // ignore
                 }
-            }
-
-            setting = GetSetting("nlog.internalLoadExtensions", "NLOG_INTERNAL_LOAD_EXTENSIONS");
-            if (setting != null)
-            {
-                _loadExtensions = Convert.ToBoolean(setting);
             }
 
             Info("NLog internal logger initialized.");

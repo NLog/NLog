@@ -151,7 +151,7 @@ namespace NLog.Targets.Wrappers
 
         private bool _stopLazyWriterThread = false;
         private Thread _lazyWriterThread = null;
-        private AsyncRequestQueue _lazyWriterRequestQueue = new AsyncRequestQueue(10000, AsyncRequestQueue.OverflowAction.Discard);
+        private AsyncRequestQueue _lazyWriterRequestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
 
         /// <summary>
         /// Checks whether lazy writer thread is requested to stop.
@@ -177,26 +177,26 @@ namespace NLog.Targets.Wrappers
             get { return _lazyWriterThread; }
         }
 
-		/// <summary>
-		/// The action to be taken when the lazy writer thread request queue count
-		/// exceeds the set limit.
-		/// </summary>
-		[System.ComponentModel.DefaultValue("Discard")]
-		public AsyncRequestQueue.OverflowAction OverflowAction
-		{
-			get { return _lazyWriterRequestQueue.OnOverflow; }
-			set { _lazyWriterRequestQueue.OnOverflow = value; }
-		}
+        /// <summary>
+        /// The action to be taken when the lazy writer thread request queue count
+        /// exceeds the set limit.
+        /// </summary>
+        [System.ComponentModel.DefaultValue("Discard")]
+        public AsyncTargetWrapperOverflowAction OverflowAction
+        {
+            get { return _lazyWriterRequestQueue.OnOverflow; }
+            set { _lazyWriterRequestQueue.OnOverflow = value; }
+        }
 
-		/// <summary>
-		/// The limit on the number of requests in the lazy writer thread request queue.
-		/// </summary>
-		[System.ComponentModel.DefaultValue(10000)]
-		public int QueueLimit
-		{
-			get { return _lazyWriterRequestQueue.RequestLimit; }
-			set { _lazyWriterRequestQueue.RequestLimit = value; }
-		}
+        /// <summary>
+        /// The limit on the number of requests in the lazy writer thread request queue.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(10000)]
+        public int QueueLimit
+        {
+            get { return _lazyWriterRequestQueue.RequestLimit; }
+            set { _lazyWriterRequestQueue.RequestLimit = value; }
+        }
 
         /// <summary>
         /// Starts the lazy writer thread which periodically writes
@@ -211,7 +211,7 @@ namespace NLog.Targets.Wrappers
             }
 
             _stopLazyWriterThread = false;
-			_lazyWriterRequestQueue.Clear();
+            _lazyWriterRequestQueue.Clear();
             Internal.InternalLogger.Debug("Starting logging thread.");
             _lazyWriterThread = new Thread(new ThreadStart(LazyWriterThreadProc));
             _lazyWriterThread.IsBackground = true;
@@ -239,7 +239,7 @@ namespace NLog.Targets.Wrappers
             }
             _lazyWriterRequestQueue.Clear();
         }
-        
+
         /// <summary>
         /// Waits for the lazy writer thread to finish writing messages.
         /// </summary>
@@ -276,6 +276,171 @@ namespace NLog.Targets.Wrappers
             }
             InternalLogger.Debug("After flush. Requests in queue: {0}", _lazyWriterRequestQueue.RequestCount);
         }
+
+        /// <summary>
+        /// The action to be taken when the queue overflows
+        /// </summary>
+        public enum AsyncTargetWrapperOverflowAction
+        {
+            /// <summary>
+            /// Do no action - accept another item into the queue.
+            /// </summary>
+            None,
+
+            /// <summary>
+            /// Discard the overflowing item.
+            /// </summary>
+            Discard,
+
+            /// <summary>
+            /// Block until there's more room in the queue.
+            /// </summary>
+            Block,
+        }
+
+        /// <summary>
+        /// Asynchronous request queue
+        /// </summary>
+        public class AsyncRequestQueue
+        {
+            private Queue _queue = new Queue();
+            private int _batchedItems = 0;
+            private AsyncTargetWrapperOverflowAction _overflowAction = AsyncTargetWrapperOverflowAction.Discard;
+            private int _requestLimit = 10000;
+
+            /// <summary>
+            /// Creates a new instance of <see cref="AsyncRequestQueue"/> and
+            /// sets the request limit and overflow action.
+            /// </summary>
+            /// <param name="requestLimit">Request limit.</param>
+            /// <param name="overflowAction">The overflow action.</param>
+            public AsyncRequestQueue(int requestLimit, AsyncTargetWrapperOverflowAction overflowAction)
+            {
+                _requestLimit = requestLimit;
+                _overflowAction = overflowAction;
+            }
+
+            /// <summary>
+            /// The request limit.
+            /// </summary>
+            public int RequestLimit
+            {
+                get { return _requestLimit; }
+                set { _requestLimit = value; }
+            }
+
+            /// <summary>
+            /// Action to be taken when there's no more room in
+            /// the queue and another request is enqueued.
+            /// </summary>
+            public AsyncTargetWrapperOverflowAction OnOverflow
+            {
+                get { return _overflowAction; }
+                set { _overflowAction = value; }
+            }
+
+            /// <summary>
+            /// Enqueues another item. If the queue is overflown the appropriate
+            /// action is taken as specified by <see cref="OnOverflow"/>.
+            /// </summary>
+            /// <param name="o">The item to be queued.</param>
+            public void Enqueue(object o)
+            {
+                lock (this)
+                {
+                    if (_queue.Count >= RequestLimit)
+                    {
+                        switch (OnOverflow)
+                        {
+                            case AsyncTargetWrapperOverflowAction.Discard:
+                                return;
+
+                            case AsyncTargetWrapperOverflowAction.None:
+                                break;
+
+                            case AsyncTargetWrapperOverflowAction.Block:
+                                while (_queue.Count >= RequestLimit)
+                                {
+                                    InternalLogger.Debug("Blocking...");
+                                    if (System.Threading.Monitor.Wait(this))
+                                    {
+                                        InternalLogger.Debug("Entered critical section.");
+                                    }
+                                    else
+                                    {
+                                        InternalLogger.Debug("Failed to enter critical section.");
+                                    }
+                                }
+                                InternalLogger.Debug("Limit ok.");
+                                break;
+                        }
+                    }
+                    _queue.Enqueue(o);
+                }
+            }
+
+            /// <summary>
+            /// Dequeues a maximum of <c>count</c> items from the queue
+            /// and adds returns the <see cref="ArrayList"/> containing them.
+            /// </summary>
+            /// <param name="count">Maximum number of items to be dequeued.</param>
+            public ArrayList DequeueBatch(int count)
+            {
+                ArrayList target = new ArrayList();
+                lock (this)
+                {
+                    for (int i = 0; i < count; ++i)
+                    {
+                        if (_queue.Count <= 0)
+                            break;
+
+                        object o = _queue.Dequeue();
+
+                        target.Add(o);
+                    }
+                    System.Threading.Monitor.PulseAll(this);
+                }
+                _batchedItems = target.Count;
+                return target;
+            }
+
+            /// <summary>
+            /// Notifies the queue that the request batch has been processed.
+            /// </summary>
+            /// <param name="batch">The batch.</param>
+            public void BatchProcessed(ArrayList batch)
+            {
+                _batchedItems = 0;
+            }
+
+            /// <summary>
+            /// Clears the queue.
+            /// </summary>
+            public void Clear()
+            {
+                lock (this)
+                {
+                    _queue.Clear();
+                }
+            }
+
+            /// <summary>
+            /// Number of requests currently in the queue.
+            /// </summary>
+            public int RequestCount
+            {
+                get { return _queue.Count; }
+            }
+
+            /// <summary>
+            /// Number of requests currently being processed (in the queue + batched)
+            /// </summary>
+            public int UnprocessedRequestCount
+            {
+                get { return _queue.Count + _batchedItems; }
+            }
+        }
+
     }
 }
 

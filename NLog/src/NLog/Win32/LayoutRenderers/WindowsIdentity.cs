@@ -32,6 +32,7 @@
 // 
 
 #if !(NETCF)
+using NLog.Config;
 using System;
 using System.Text;
 using System.Security.Principal;
@@ -42,6 +43,7 @@ namespace NLog.Win32.LayoutRenderers
     /// Thread Windows identity information (username)
     /// </summary>
     [LayoutRenderer("windows-identity")]
+    [SupportedRuntime(RuntimeOS.Windows)]
     public class WindowsIdentityLayoutRenderer: LayoutRenderer
     {
         private bool _includeDomain = true;
@@ -90,7 +92,7 @@ namespace NLog.Win32.LayoutRenderers
         /// expensive to calculate this function should return a rough estimate
         /// that's big enough in most cases, but not too big, in order to conserve memory.
         /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
             return 32;
         }
@@ -100,7 +102,7 @@ namespace NLog.Win32.LayoutRenderers
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
             if (currentIdentity != null)
