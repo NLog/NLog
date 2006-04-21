@@ -32,22 +32,34 @@
 // 
 
 using System;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Security.Permissions;
 
+using NLog.Targets;
+using NLog.Config;
 
-[assembly: AssemblyTitle("NLog.Win32")]
-[assembly: AssemblyDescription("NLog - Win32-specific logging support")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("NLog - http://www.nlog-project.org/")]
-[assembly: AssemblyProduct("NLog - .NET Logging Library")]
-[assembly: AssemblyCopyright("Copyright (c) 2004-2006 by Jaroslaw Kowalski")]
-[assembly: AssemblyCulture("")]
+namespace NLog.Win32.Targets
+{
+    /// <summary>
+    /// Outputs logging messages through the <c>OutputDebugString()</c> Win32 API.
+    /// </summary>
+    [Target("OutputDebugString")]
+    [SupportedRuntime(RuntimeOS.Win32)]
+    public sealed class OutputDebugStringTarget: Target
+    {
+        /// <summary>
+        /// Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
+        {
+            OutputDebugString(CompiledLayout.GetFormattedMessage(logEvent));
+        }
 
-[assembly: AssemblyVersion("0.9.5.0")]
-
-[assembly: CLSCompliant(true)]
-[assembly: ComVisible(false)]
-
+        /// <summary>
+        /// Stub for OutputDebugString native method
+        /// </summary>
+        /// <param name="message">the string to output</param>
+        [DllImport("Kernel32.dll")]
+        private static extern void OutputDebugString(string message);
+    }
+}

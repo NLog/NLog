@@ -74,11 +74,6 @@
                     Project = "{1653EE05-2720-4A85-BF14-74C4493787B1}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
-                <Reference
-                    Name = "NLog.Win32"
-                    Project = "{9BC14989-8F2D-48BB-A613-B63BB08492F3}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
             </References>
         </Build>
         <Files>

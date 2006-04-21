@@ -40,6 +40,7 @@ using System.Globalization;
 
 using NLog.Internal;
 using NLog.LayoutRenderers;
+using NLog.Config;
 
 namespace NLog
 {
@@ -87,7 +88,10 @@ namespace NLog
                     {
                         foreach (LayoutRendererAttribute attr in attributes)
                         {
-                            AddLayoutRenderer(prefix + attr.FormatString, t);
+                            if (PlatformDetector.IsSupportedOnCurrentRuntime(t))
+                            {
+                                AddLayoutRenderer(prefix + attr.FormatString, t);
+                            }
                         }
                     }
                 }
@@ -114,7 +118,7 @@ namespace NLog
         /// </remarks>
         public static void AddLayoutRenderer(string name, Type t)
         {
-            InternalLogger.Debug("AddLayoutRenderer('{0}','{1}')", name, t.FullName);
+            InternalLogger.Debug("Registering layout renderer {0} for type '{1}')", name, t.FullName);
             _targets[name.ToLower()] = t;
         }
 

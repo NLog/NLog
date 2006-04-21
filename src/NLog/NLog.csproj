@@ -94,6 +94,11 @@
                     AssemblyName = "System.Windows.Forms"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\system.windows.forms.dll"
                 />
+                <Reference
+                    Name = "System.Messaging"
+                    AssemblyName = "System.Messaging"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Messaging.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -369,7 +374,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Config\RuntimeFramework.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Config\RuntimeOS.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Config\SimpleConfigurator.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Config\SupportedRuntimeAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -405,11 +425,6 @@
                 />
                 <File
                     RelPath = "Filters\WhenNotEqual.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Internal\AsyncRequestQueue.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -485,6 +500,11 @@
                 />
                 <File
                     RelPath = "Internal\NetworkSender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\PlatformDetector.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -950,6 +970,91 @@
                 />
                 <File
                     RelPath = "Web\NLogHttpModule.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\ASPHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\LayoutRenderers\ASPApplication.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\LayoutRenderers\ASPRequest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\LayoutRenderers\ASPSession.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\LayoutRenderers\Registry.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\LayoutRenderers\WindowsIdentity.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ASPResponse.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ColoredConsole.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ConsoleOutputColor.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ConsoleRowHighlightingRule.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ConsoleRowHighlightingRuleCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ConsoleWin32Api.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ConsoleWordHighlightingRule.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\ConsoleWordHighlightingRuleCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\EventLog.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\MSMQ.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Win32\Targets\OutputDebugString.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

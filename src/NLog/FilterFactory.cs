@@ -85,7 +85,10 @@ namespace NLog
                     {
                         foreach (FilterAttribute attr in attributes)
                         {
-                            AddFilter(prefix + attr.Name, t);
+                            if (PlatformDetector.IsSupportedOnCurrentRuntime(t))
+                            {
+                                AddFilter(prefix + attr.Name, t);
+                            }
                         }
                     }
                 }
@@ -112,7 +115,7 @@ namespace NLog
         /// </remarks>
         public static void AddFilter(string name, Type t)
         {
-            InternalLogger.Debug("AddFilter('{0}','{1}')", name, t.FullName);
+            InternalLogger.Debug("Registering filter {0} for type '{1}')", name, t.FullName);
             _filters[name.ToLower(CultureInfo.InvariantCulture)] = t;
         }
 

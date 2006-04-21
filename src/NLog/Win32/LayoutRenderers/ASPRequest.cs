@@ -36,6 +36,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Reflection;
 
+using NLog.Config;
 using NLog.LayoutRenderers;
 
 namespace NLog.Win32.LayoutRenderers
@@ -44,6 +45,7 @@ namespace NLog.Win32.LayoutRenderers
     /// ASP Request variable
     /// </summary>
     [LayoutRenderer("asp-request")]
+    [SupportedRuntime(RuntimeOS.Win32)]
     public class ASPRequestValueLayoutRenderer: LayoutRenderer
     {
         private string _queryStringKey;
@@ -137,7 +139,7 @@ namespace NLog.Win32.LayoutRenderers
         /// <remarks>
         /// Because ASP target uses COM Interop which is quite expensive, this method always returns 64.
         /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
             return 64;
         }
@@ -165,7 +167,7 @@ namespace NLog.Win32.LayoutRenderers
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             ASPHelper.IRequest request = ASPHelper.GetRequestObject();
             if (request != null)

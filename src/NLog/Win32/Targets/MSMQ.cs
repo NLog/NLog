@@ -62,7 +62,8 @@ namespace NLog.Win32.Targets
     /// <cs src="examples/targets/MSMQ/MSMQTarget.cs" />
     /// </example>
     [Target("MSMQ")]
-	public class MSMQTarget : Target
+    [SupportedRuntime(RuntimeOS.WindowsNT)]
+    public class MSMQTarget : Target
 	{
         private Layout _queue;
         private Layout _label;
@@ -155,7 +156,7 @@ namespace NLog.Win32.Targets
         /// parameter.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        protected override void Write(LogEventInfo logEvent)
+        protected internal override void Write(LogEventInfo logEvent)
         {
             if (_queue == null)
                 return;

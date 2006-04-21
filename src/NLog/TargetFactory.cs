@@ -94,7 +94,10 @@ namespace NLog
                     {
                         foreach (TargetAttribute attr in attributes)
                         {
-                            AddTarget(prefix + attr.Name, t);
+                            if (PlatformDetector.IsSupportedOnCurrentRuntime(t))
+                            {
+                                AddTarget(prefix + attr.Name, t);
+                            }
                         }
                     }
                 }
@@ -126,7 +129,7 @@ namespace NLog
         {
             string hashKey = targetName.ToLower(CultureInfo.InvariantCulture);
 
-            InternalLogger.Debug("AddTarget('{0}','{1}')", targetName, targetType.FullName);
+            InternalLogger.Debug("Registering target {0} for type '{1}')", targetName, targetType);
             _targets[hashKey] = targetType;
         }
 

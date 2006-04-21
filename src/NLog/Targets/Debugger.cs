@@ -59,6 +59,9 @@ namespace NLog.Targets
     [Target("Debugger")]
     public sealed class DebuggerTarget: Target
     {
+        static DebuggerTarget()
+        {
+        }
         /// <summary>
         /// Writes the specified logging event to the attached debugger.
         /// </summary>

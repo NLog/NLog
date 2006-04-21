@@ -15,7 +15,7 @@ class Example
         AsyncTargetWrapper wrapper = new AsyncTargetWrapper();
         wrapper.WrappedTarget = target;
         wrapper.QueueLimit = 5000;
-        wrapper.OverflowAction = "discard";
+        wrapper.OverflowAction = AsyncTargetWrapperOverflowAction;
 
         NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(wrapper, LogLevel.Debug);
 

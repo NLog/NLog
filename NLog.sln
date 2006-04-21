@@ -1,8 +1,4 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Win32", "src\NLog.Win32\NLog.Win32.csproj", "{9BC14989-8F2D-48BB-A613-B63BB08492F3}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Benchmark", "src\NLog.Benchmark\NLog.Benchmark.csproj", "{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
@@ -12,10 +8,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests", "src\NLog.
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.AsyncBenchmark", "src\NLog.AsyncBenchmark\NLog.AsyncBenchmark.csproj", "{F666E83B-3806-4F90-A577-809AA8EEED0E}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.DotNet", "src\NLog.DotNet\NLog.DotNet.csproj", "{55D1C193-FD9D-4E22-9A09-1AD62C863651}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -41,10 +33,6 @@ Global
 		Release = Release
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
-		{9BC14989-8F2D-48BB-A613-B63BB08492F3}.Debug.ActiveCfg = Debug|.NET
-		{9BC14989-8F2D-48BB-A613-B63BB08492F3}.Debug.Build.0 = Debug|.NET
-		{9BC14989-8F2D-48BB-A613-B63BB08492F3}.Release.ActiveCfg = Release|.NET
-		{9BC14989-8F2D-48BB-A613-B63BB08492F3}.Release.Build.0 = Release|.NET
 		{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}.Debug.ActiveCfg = Debug|.NET
 		{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}.Debug.Build.0 = Debug|.NET
 		{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}.Release.ActiveCfg = Release|.NET
@@ -57,10 +45,6 @@ Global
 		{F666E83B-3806-4F90-A577-809AA8EEED0E}.Debug.Build.0 = Debug|.NET
 		{F666E83B-3806-4F90-A577-809AA8EEED0E}.Release.ActiveCfg = Release|.NET
 		{F666E83B-3806-4F90-A577-809AA8EEED0E}.Release.Build.0 = Release|.NET
-		{55D1C193-FD9D-4E22-9A09-1AD62C863651}.Debug.ActiveCfg = Debug|.NET
-		{55D1C193-FD9D-4E22-9A09-1AD62C863651}.Debug.Build.0 = Debug|.NET
-		{55D1C193-FD9D-4E22-9A09-1AD62C863651}.Release.ActiveCfg = Release|.NET
-		{55D1C193-FD9D-4E22-9A09-1AD62C863651}.Release.Build.0 = Release|.NET
 		{8812AE40-15E0-4A88-8FDB-453D9D7A5EFD}.Debug.ActiveCfg = Debug|.NET
 		{8812AE40-15E0-4A88-8FDB-453D9D7A5EFD}.Debug.Build.0 = Debug|.NET
 		{8812AE40-15E0-4A88-8FDB-453D9D7A5EFD}.Release.ActiveCfg = Release|.NET

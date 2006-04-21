@@ -32,47 +32,69 @@
 // 
 
 using System;
+using System.Text;
 using System.Runtime.InteropServices;
 
-using NLog.Targets;
+using NLog.LayoutRenderers;
+using NLog.Config;
 
-namespace NLog.Win32.Targets
+namespace NLog.Win32.LayoutRenderers
 {
     /// <summary>
-    /// Outputs logging messages through the ASP Response object.
+    /// ASP Session variable.
     /// </summary>
-    [Target("ASPResponse")]
-    public sealed class ASPResponseTarget: Target
+    [LayoutRenderer("asp-session")]
+    [SupportedRuntime(RuntimeOS.Win32)]
+    public class ASPSessionValueLayoutRenderer: LayoutRenderer
     {
-        private bool _addComments;
+        private string _sessionVariable = null;
 
         /// <summary>
-        /// Add &lt;!-- --&gt; comments around all written texts.
+        /// Session variable name.
         /// </summary>
-        public bool AddComments
+        [RequiredParameter]
+        public string Variable
         {
-            get { return _addComments; }
-            set { _addComments = value; }
-        }
-     
-        /// <summary>
-        /// Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        protected override void Write(LogEventInfo logEvent)
-        {
-            ASPHelper.IResponse response = ASPHelper.GetResponseObject();
-            if (response != null)
+            get
             {
-                if (AddComments)
+                return _sessionVariable;
+            }
+            set
+            {
+                _sessionVariable = value;
+            }
+        }
+
+        /// <summary>
+        /// Returns the estimated number of characters that are needed to
+        /// hold the rendered value for the specified logging event.
+        /// </summary>
+        /// <param name="logEvent">Logging event information.</param>
+        /// <returns>The number of characters.</returns>
+        /// <remarks>
+        /// Because ASP target uses COM Interop which is quite expensive, this method always returns 64.
+        /// </remarks>
+        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        {
+            return 64;
+        }
+
+        /// <summary>
+        /// Renders the specified ASP Session variable and appends it to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="logEvent">Logging event.</param>
+        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            ASPHelper.ISessionObject session = ASPHelper.GetSessionObject();
+            if (session != null)
+            {
+                if (Variable != null)
                 {
-                    response.Write("<!-- " + CompiledLayout.GetFormattedMessage(logEvent) + "-->");
+                    object variableValue = session.GetValue(Variable);
+                    builder.Append(Convert.ToString(variableValue));
                 }
-                else
-                {
-                    response.Write(CompiledLayout.GetFormattedMessage(logEvent));
-                }
-                Marshal.ReleaseComObject(response);
+                Marshal.ReleaseComObject(session);
             }
         }
     }

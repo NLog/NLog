@@ -22,6 +22,7 @@
     <property name="csc.warninglevel" value="4" />
 
     <property name="nlog.package.name" value="${tstamp.date}" unless="${property::exists('nlog.package.name')}" />
+    <property name="ilmerge.version" value="1" />
 
     <property name="installer.name" value="nlog-installer-${nlog.package.name}.exe" />
     <property name="source_snapshot.name" value="nlog-${nlog.package.name}-src.zip" />
@@ -96,8 +97,8 @@
 
     <target name="NLog" depends="configure">
         <csc target="library" output="${nlog.dir}/NLog.dll" doc="${nlog.dir}/NLog.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLog">
-                <include name="**/*.cs" />
+            <sources basedir="src">
+                <include name="NLog/**/*.cs" />
             </sources>
             <references>
                 <include name="mscorlib.dll" />
@@ -108,30 +109,6 @@
                 <include name="System.Web.dll" />
                 <include name="System.Web.Services.dll" />
             </references>
-        </csc>
-    </target>
-
-    <target name="EmbedDlls" depends="configure">
-        <delete file="${nlog.dir}/NLog.dll" />
-
-        <csc target="library" output="${nlog.dir}/NLog.dll" doc="${nlog.dir}/NLog.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLog">
-                <include name="**/*.cs" />
-            </sources>
-            <references>
-                <include name="mscorlib.dll" />
-                <include name="System.dll" />
-                <include name="System.Xml.dll" />
-                <include name="System.Data.dll" />
-                <include name="System.Windows.Forms.dll" />
-                <include name="System.Web.dll" />
-                <include name="System.Web.Services.dll" />
-            </references>
-            <resources basedir="${nlog.dir}" prefix="EmbeddedAssembly" dynamicprefix="true">
-                <include name="NLog.Win32.dll" />
-                <include name="NLog.Unix.dll" />
-                <include name="NLog.DotNet.dll" />
-            </resources>
         </csc>
     </target>
 
@@ -163,41 +140,6 @@
         </csc>
     </target>
 
-    <target name="NLog.Win32" depends="NLog">
-        <csc target="library" output="${nlog.dir}/NLog.Win32.dll" doc="${nlog.dir}/NLog.Win32.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLog.Win32">
-                <include name="**/*.cs" />
-            </sources>
-            <references>
-                <include name="${nlog.dir}/NLog.dll" />
-            </references>
-        </csc>
-    </target>
-
-    <target name="NLog.DotNet" depends="NLog">
-        <!-- don't build it yet - we don't have anything .NET-specific -->
-        <csc target="library" output="${nlog.dir}/NLog.DotNet.dll" doc="${nlog.dir}/NLog.DotNet.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLog.DotNet">
-                <include name="**/*.cs" />
-            </sources>
-            <references>
-                <include name="${nlog.dir}/NLog.dll" />
-            </references>
-        </csc>
-    </target>
-
-    <target name="NLog.Mono" depends="NLog">
-        <!-- don't build it yet - we don't have anything Mono-specific -->
-        <csc target="library" output="${nlog.dir}/NLog.Mono.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLog.Mono">
-                <include name="**/*.cs" />
-            </sources>
-            <references>
-                <include name="${nlog.dir}/NLog.dll" />
-            </references>
-        </csc>
-    </target>
-
     <target name="NLog.UnitTests" depends="NLog">
         <copy file="${nant.location}/lib/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/nunit.framework.dll" tofile="${nlog.dir}/nunit.framework.dll" />
         <csc target="library" output="${nlog.dir}/NLog.UnitTests.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
@@ -220,17 +162,6 @@
             <references>
                 <include name="${nlog.dir}/NLog.dll" />
                 <include name="${nlog.dir}/nunit.framework.dll" />
-            </references>
-        </csc>
-    </target>
-
-    <target name="NLog.Unix" depends="NLog">
-        <csc target="library" output="${nlog.dir}/NLog.Unix.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLog.Unix">
-                <include name="**/*.cs" />
-            </sources>
-            <references>
-                <include name="${nlog.dir}/NLog.dll" />
             </references>
         </csc>
     </target>
@@ -409,7 +340,7 @@
         </nunit2>
     </target>
 
-    <target name="webtest" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.UnitTests.Web">
+    <target name="webtest" depends="NLog, NLog.ComInterop, NLog.UnitTests.Web">
         <!-- stop IIS on local machine -->
         
         <echo message="Stopping IIS..." />
@@ -420,7 +351,6 @@
         <copy todir="${webtest.dir}/bin" verbose="true">
             <fileset basedir="${nlog.dir}">
                 <include name="NLog.dll" />
-                <include name="NLog.Win32.dll" />
                 <include name="NLog.ComInterop.dll" />
                 <include name="cloverruntime.dll" />
             </fileset>
@@ -481,7 +411,7 @@
 
     </target>
 
-    <target name="dowebtest" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.UnitTests.Web">
+    <target name="dowebtest" depends="NLog, NLog.ComInterop, NLog.UnitTests.Web">
         <echo message="Running tests..." />
 
         <nunit2 failonerror="false">
@@ -512,8 +442,12 @@
         <property name="nlog.define" value="${nlog.define};MONO;MONO_1_0" />
     </target>
     <target name="configure-net-1.0" />
-    <target name="configure-net-1.1" />
-    <target name="configure-net-2.0" />
+    <target name="configure-net-1.1">
+        <property name="ilmerge.version" value="1.1" />
+    </target>
+    <target name="configure-net-2.0">
+        <property name="ilmerge.version" value="2" />
+    </target>
 
     <target name="configure-netcf-1.0">
         <property name="nlog.define" value="${nlog.define};NETCF;NETCF_1_0" />
@@ -523,12 +457,12 @@
         <property name="nlog.define" value="${nlog.define};NETCF;NETCF_2_0" />
     </target>
 
-    <target name="build-mono-1.0" depends="NLog, NLog.Mono" />
-    <target name="build-net-1.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLogC" />
-    <target name="build-net-1.1" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLogC" />
-    <target name="build-net-2.0" depends="NLog, NLog.Win32, NLog.ComInterop, NLog.DotNet, NLogC" />
-    <target name="build-netcf-1.0" depends="NLog, NLog.CompactFramework" />
-    <target name="build-netcf-2.0" depends="NLog, NLog.CompactFramework" />
+    <target name="build-mono-1.0" depends="NLog" />
+    <target name="build-net-1.0" depends="NLog, NLog.ComInterop, NLogC" />
+    <target name="build-net-1.1" depends="NLog, NLog.ComInterop, NLogC" />
+    <target name="build-net-2.0" depends="NLog, NLog.ComInterop, NLogC" />
+    <target name="build-netcf-1.0" depends="NLog" />
+    <target name="build-netcf-2.0" depends="NLog" />
     <target name="build-nlogc-net-1.0" depends="NLogC-1.0, NLogC-1.1, NLogC-2.0" />
     <target name="build-nlogc-net-1.1" depends="NLogC-1.1, NLogC-2.0" />
     <target name="build-nlogc-net-2.0" depends="NLogC-2.0" />
@@ -539,21 +473,6 @@
     <target name="updateversion">
         <foreach item="Line" in="Nlog.version" delim=";" property="nlog.version">
             <exec workingdir="${nant.project.basedir}" program="tools/ReplaceVersion.exe" commandline=". ${nlog.version}" />
-        </foreach>
-    </target>
-
-    <target name="publisher_policy">
-        <foreach item="Line" in="Nlog.version" delim="." property="nlog.version.major,nlog.version.minor,nlog.version.build,nlog.version.revision">
-            <copy file="src/publisher_policy.config.template" tofile="publisher_policy.config" />
-            <xmlpoke file="publisher_policy.config" xpath="/configuration/runtime/ms:assemblyBinding/ms:dependentAssembly/ms:bindingRedirect/@newVersion"
-                value="${nlog.version.major}.${nlog.version.minor}.${nlog.version.build}.${nlog.version.revision}">
-                <namespaces>
-                    <namespace prefix="ms" uri="urn:schemas-microsoft-com:asm.v1" />
-                </namespaces>
-            </xmlpoke>
-
-            <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'al.exe')}"
-                commandline="/nologo /embed:publisher_policy.config /out:Policy.${nlog.version.major}.${nlog.version.minor}.NLog.dll /keyfile:${path::combine(nant.project.basedir,'src/NLog.snk')}" />
         </foreach>
     </target>
 
@@ -1082,7 +1001,7 @@
         <exec program="nant" commandline="clover test publish_clover" />
     </target>
 
-    <target name="build_examples" depends="configure, NLog, NLog.Win32">
+    <target name="build_examples" depends="configure, NLog">
         <foreach item="File" property="file">
             <in>
                 <items basedir="examples">
@@ -1091,16 +1010,14 @@
                 </items>
             </in>
             <do>
-                <echo message="Building ${file}" />
                 <property name="basename" value="${path::get-file-name-without-extension(file)}" />
 
-                <csc target="exe" output="${nlog.dir}/${basename}.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
+                <csc target="exe" output="${nlog.dir}/${basename}.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}" failonerror="false">
                     <sources>
                         <include name="${file}" />
                     </sources>
                     <references>
                         <include name="${nlog.dir}/NLog.dll" />
-                        <include name="${nlog.dir}/NLog.Win32.dll" />
                         <include name="mscorlib.dll" />
                         <include name="System.dll" />
                         <include name="System.Xml.dll" />
