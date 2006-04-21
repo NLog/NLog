@@ -126,24 +126,10 @@
         </csc>
     </target>
 
-    <target name="NLog.CompactFramework" depends="NLog">
-        <csc target="library" output="${nlog.dir}/NLog.CompactFramework.dll" doc="${nlog.dir}/NLog.CompactFramework.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLog.CompactFramework">
-                <include name="**/*.cs" />
-            </sources>
-            <references>
-                <include name="${nlog.dir}/NLog.dll" />
-                <include name="mscorlib.dll" />
-                <include name="System.dll" />
-                <include name="System.Xml.dll" />
-            </references>
-        </csc>
-    </target>
-
     <target name="NLog.UnitTests" depends="NLog">
         <copy file="${nant.location}/lib/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/nunit.framework.dll" tofile="${nlog.dir}/nunit.framework.dll" />
         <csc target="library" output="${nlog.dir}/NLog.UnitTests.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLog.UnitTests">
+            <sources basedir="tests/NLog.UnitTests">
                 <include name="**/*.cs" />
             </sources>
             <references>
@@ -156,7 +142,7 @@
     <target name="NLog.UnitTests.Web" depends="NLog">
         <copy file="${nant.location}/lib/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/nunit.framework.dll" tofile="${nlog.dir}/nunit.framework.dll" />
         <csc target="library" output="${nlog.dir}/NLog.UnitTests.Web.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLog.UnitTests.Web">
+            <sources basedir="tests/NLog.UnitTests.Web">
                 <include name="**/*.cs" />
             </sources>
             <references>
@@ -168,7 +154,7 @@
 
     <target name="NLog.Test" depends="NLog">
         <csc target="exe" output="${nlog.dir}/NLog.Test.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLog.Test">
+            <sources basedir="tests/NLog.Test">
                 <include name="**/*.cs" />
             </sources>
             <references>
@@ -178,14 +164,14 @@
                 <include name="System.Xml.dll" />
             </references>
         </csc>
-        <copy file="src/NLog.Test/App.config" tofile="${nlog.dir}/NLog.Test.exe.config" />
-        <copy file="src/NLog.Test/Config1.nlog" tofile="${nlog.dir}/Config1.nlog" />
-        <copy file="src/NLog.Test/Config2.nlog" tofile="${nlog.dir}/Config2.nlog" />
+        <copy file="tests/NLog.Test/App.config" tofile="${nlog.dir}/NLog.Test.exe.config" />
+        <copy file="tests/NLog.Test/Config1.nlog" tofile="${nlog.dir}/Config1.nlog" />
+        <copy file="tests/NLog.Test/Config2.nlog" tofile="${nlog.dir}/Config2.nlog" />
     </target>
 
     <target name="NLog.Benchmark" depends="NLog">
         <csc target="exe" output="${nlog.dir}/NLog.Benchmark.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLog.Benchmark">
+            <sources basedir="tests/NLog.Benchmark">
                 <include name="**/*.cs" />
             </sources>
             <references>
@@ -195,7 +181,7 @@
                 <include name="System.Xml.dll" />
             </references>
         </csc>
-        <copy file="src/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark.exe.config" />
+        <copy file="tests/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark.exe.config" />
     </target>
 
     <target name="NLogC-1.0">
@@ -215,7 +201,7 @@
     <target name="NLogC">
         <call target="build-nlogc-${framework::get-target-framework()}" />
         <copy todir="${nlogc.dir}/include">
-            <fileset basedir="src/NLogC">
+            <fileset basedir="tests/NLogC">
                 <include name="NLogC.h" />
                 <include name="NLogger.h" />
             </fileset>
@@ -252,7 +238,7 @@
 
     <target name="NLog.Benchmark-log4net" depends="NLog">
         <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net.exe" define="${nlog.define},LOG4NET" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLog.Benchmark">
+            <sources basedir="tests/NLog.Benchmark">
                 <include name="**/*.cs" />
             </sources>
             <references>
@@ -262,12 +248,12 @@
                 <include name="System.Xml.dll" />
             </references>
         </csc>
-        <copy file="src/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net.exe.config" />
+        <copy file="tests/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net.exe.config" />
     </target>
 
     <target name="NLog.Benchmark-log4net-withformat" depends="NLog">
         <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe" define="${nlog.define},LOG4NET,LOG4NETWITHFORMAT" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLog.Benchmark">
+            <sources basedir="tests/NLog.Benchmark">
                 <include name="**/*.cs" />
             </sources>
             <references>
@@ -277,12 +263,12 @@
                 <include name="System.Xml.dll" />
             </references>
         </csc>
-        <copy file="src/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe.config" />
+        <copy file="tests/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe.config" />
     </target>
 
     <target name="NLog.Benchmark-log4net-with-concrete-logger" depends="NLog">
         <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net-concrete-logger.exe" define="${nlog.define},LOG4NET_WITH_FASTLOGGER" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLog.Benchmark">
+            <sources basedir="tests/NLog.Benchmark">
                 <include name="**/*.cs" />
             </sources>
             <references>
@@ -292,45 +278,7 @@
                 <include name="System.Xml.dll" />
             </references>
         </csc>
-        <copy file="src/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe.config" />
-    </target>
-
-    <target name="NLogViewer" depends="configure, NLogViewer.Interfaces, NLogViewer.NDumbsterSmtpReceiver">
-        <csc target="winexe" output="${nlog.dir}/NLogViewer.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLogViewer">
-                <include name="**/*.cs" />
-            </sources>
-            <references>
-                <include name="System.Windows.Forms.dll" />
-                <include name="${nlog.dir}/NLogViewer.Interfaces.dll" />
-            </references>
-            <resources basedir="src/NLogViewer" prefix="NLogViewer" dynamicprefix="true">
-                <include name="**/*.resx" />
-            </resources>
-        </csc>
-        <copy file="src/NLogViewer/App.config" tofile="${nlog.dir}/NLogViewer.exe.config" />
-        <copy file="src/NLogViewer/NLogViewer.exe.manifest" tofile="${nlog.dir}/NLogViewer.exe.manifest" />
-    </target>
-
-    <target name="NLogViewer.Interfaces" depends="configure">
-        <csc target="library" output="${nlog.dir}/NLogViewer.Interfaces.dll" doc="${nlog.dir}/NLogViewer.Interfaces.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLogViewer.Interfaces">
-                <include name="**/*.cs" />
-            </sources>
-        </csc>
-    </target>
-
-    <target name="NLogViewer.NDumbsterSmtpReceiver" depends="configure">
-        <copy file="external/nDumbster.dll" tofile="${nlog.dir}/nDumbster.dll" />
-        <csc target="library" output="${nlog.dir}/NLogViewer.NDumbsterSmtpReceiver.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="src/NLogViewer.NDumbsterSmtpReceiver">
-                <include name="**/*.cs" />
-            </sources>
-            <references>
-                <include name="${nlog.dir}/NLogViewer.Interfaces.dll" />
-                <include name="${nlog.dir}/nDumbster.dll" />
-            </references>
-        </csc>
+        <copy file="tests/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe.config" />
     </target>
 
     <target name="test" depends="NLog.UnitTests">
