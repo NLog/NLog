@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETCF
+
 using System;
 using System.Reflection;
 using System.Diagnostics;
@@ -116,12 +118,10 @@ namespace NLog.Win32.Targets
             set {_instanceName = value; }
         }
         
-        
-        
-        public string CounterType
+        public PerformanceCounterType CounterType
         {
-            get { return _counterType.ToString(); }
-            set { _counterType = (PerformanceCounterType) Enum.Parse(typeof(PerformanceCounterType), value, false); }
+            get { return _counterType; }
+            set { _counterType = value; }
         }
         
         private void InitializePerfCounter()
@@ -188,3 +188,5 @@ namespace NLog.Win32.Targets
 
     }
 }
+
+#endif

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETCF
+
 using System;
 using System.Text;
 using System.Runtime.InteropServices;
@@ -101,3 +103,5 @@ namespace NLog.Win32.LayoutRenderers
         }
     }
 }
+
+#endif

@@ -147,6 +147,10 @@
                     DependentUpon = "Form1.cs"
                     BuildAction = "EmbeddedResource"
                 />
+                <File
+                    RelPath = "NLog.CFTest.exe.nlog"
+                    BuildAction = "None"
+                />
             </Include>
         </Files>
     </ECSHARP>

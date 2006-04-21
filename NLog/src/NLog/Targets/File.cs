@@ -151,7 +151,7 @@ namespace NLog.Targets
         private bool _createDirs = true;
         private bool _keepFileOpen = true;
         private System.Text.Encoding _encoding = System.Text.Encoding.Default;
-#if NETCF_1_0
+#if NETCF
         private string _newLine = "\r\n";
 #else
         private string _newLine = Environment.NewLine;

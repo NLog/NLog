@@ -39,13 +39,20 @@ using System.Reflection;
 
 namespace NLog.LayoutRenderers
 {
+    public enum StackTraceFormat
+    {
+        Flat,
+        Raw,
+        DetailedFlat,
+    }
+
     /// <summary>
     /// Stack trace renderer.
     /// </summary>
     [LayoutRenderer("stacktrace",UsingLogEventInfo=true)]
     public class StackTraceLayoutRenderer: LayoutRenderer
     {
-        private string _format = "flat";
+        private StackTraceFormat _format = StackTraceFormat.Flat;
         private int _topFrames = 3;
 
         /// <summary>
@@ -55,7 +62,7 @@ namespace NLog.LayoutRenderers
         /// Allowed values are <c>raw</c>, <c>flat</c> and <c>detailedflat</c>.
         /// </remarks>
         [System.ComponentModel.DefaultValue("flat")]
-        public string Format
+        public StackTraceFormat Format
         {
             get { return _format; }
             set { _format = value; }
@@ -111,7 +118,7 @@ namespace NLog.LayoutRenderers
 
             switch (Format)
             {
-                case "raw":
+                case StackTraceFormat.Raw:
                     for (int i = startingFrame; i >= logEvent.UserStackFrameNumber; --i)
                     {
                         StackFrame f = logEvent.StackTrace.GetFrame(i);
@@ -119,7 +126,7 @@ namespace NLog.LayoutRenderers
                     }
                     break;
 
-                case "flat":
+                case StackTraceFormat.Flat:
                     for (int i = startingFrame; i >= logEvent.UserStackFrameNumber; --i)
                     {
                         StackFrame f = logEvent.StackTrace.GetFrame(i);
@@ -133,7 +140,7 @@ namespace NLog.LayoutRenderers
                     }
                     break;
 
-                case "detailedflat":
+                case StackTraceFormat.DetailedFlat:
                     for (int i = startingFrame; i >= logEvent.UserStackFrameNumber; --i)
                     {
                         StackFrame f = logEvent.StackTrace.GetFrame(i);

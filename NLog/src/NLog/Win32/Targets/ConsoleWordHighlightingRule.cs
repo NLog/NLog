@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETCF
+
 using System;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -164,3 +166,5 @@ namespace NLog.Win32.Targets
         }
     }
 }
+
+#endif

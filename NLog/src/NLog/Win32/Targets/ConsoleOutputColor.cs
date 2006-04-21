@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETCF
+
 using System;
 using System.Runtime.InteropServices;
 
@@ -126,3 +128,5 @@ namespace NLog.Win32.Targets
         NoChange = 16,
     }
 }
+
+#endif

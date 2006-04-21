@@ -53,7 +53,7 @@ namespace NLog
         {
             foreach (Assembly a in ExtensionUtils.GetExtensionAssemblies())
             {
-                AddConditionMethodsFromAssembly(typeof(LogManager).Assembly, "");
+                AddConditionMethodsFromAssembly(a, "");
             }
         }
 
