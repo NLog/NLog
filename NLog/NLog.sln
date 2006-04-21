@@ -1,21 +1,21 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Benchmark", "src\NLog.Benchmark\NLog.Benchmark.csproj", "{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Benchmark", "tests\NLog.Benchmark\NLog.Benchmark.csproj", "{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests", "src\NLog.UnitTests\NLog.UnitTests.csproj", "{1653EE05-2720-4A85-BF14-74C4493787B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests", "tests\NLog.UnitTests\NLog.UnitTests.csproj", "{1653EE05-2720-4A85-BF14-74C4493787B1}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.AsyncBenchmark", "src\NLog.AsyncBenchmark\NLog.AsyncBenchmark.csproj", "{F666E83B-3806-4F90-A577-809AA8EEED0E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.AsyncBenchmark", "tests\NLog.AsyncBenchmark\NLog.AsyncBenchmark.csproj", "{F666E83B-3806-4F90-A577-809AA8EEED0E}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.Web", "src\NLog.UnitTests.Web\NLog.UnitTests.Web.csproj", "{8812AE40-15E0-4A88-8FDB-453D9D7A5EFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.Web", "tests\NLog.UnitTests.Web\NLog.UnitTests.Web.csproj", "{8812AE40-15E0-4A88-8FDB-453D9D7A5EFD}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NLog.VBTest", "src\NLog.VBTest\NLog.VBTest.vbproj", "{2993B4C3-A0EE-43C8-84EB-97920E69B292}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NLog.VBTest", "tests\NLog.VBTest\NLog.VBTest.vbproj", "{2993B4C3-A0EE-43C8-84EB-97920E69B292}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog", "src\NLog\NLog.cspro
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Test", "src\NLog.Test\NLog.Test.csproj", "{5EC49108-97AE-40EA-B550-8960E4522718}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Test", "tests\NLog.Test\NLog.Test.csproj", "{5EC49108-97AE-40EA-B550-8960E4522718}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
