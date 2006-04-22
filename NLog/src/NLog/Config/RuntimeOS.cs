@@ -67,7 +67,7 @@ namespace NLog.Config
         WindowsCE,
 
         /// <summary>
-        /// Desktop versions of Windows
+        /// Desktop versions of Windows (95,98,ME)
         /// </summary>
         Windows,
 

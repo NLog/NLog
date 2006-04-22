@@ -35,73 +35,103 @@ using System;
 
 namespace NLog.Config
 {
+    /// <summary>
+    /// Marks classes and properties as supporting particular runtime framework 
+    /// and operating system.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class SupportedRuntimeAttribute: Attribute
     {
         private RuntimeFramework _framework = RuntimeFramework.Any;
         private RuntimeOS _os = RuntimeOS.Any;
-        private bool _exactMatch = false;
         private Version _minRuntimeVersion = null;
         private Version _maxRuntimeVersion = null;
         private Version _minOSVersion = null;
         private Version _maxOSVersion = null;
 
+        /// <summary>
+        /// Creates a new instance of <see cref="SupportedRuntimeAttribute"/>.
+        /// </summary>
         public SupportedRuntimeAttribute()
         {
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="SupportedRuntimeAttribute"/>
+        /// and sets the supported framework.
+        /// </summary>
         public SupportedRuntimeAttribute(RuntimeFramework framework)
         {
             Framework = framework;
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="SupportedRuntimeAttribute"/>
+        /// and sets the supported operating system.
+        /// </summary>
         public SupportedRuntimeAttribute(RuntimeOS operatingSystem)
         {
             OS = operatingSystem;
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="SupportedRuntimeAttribute"/>
+        /// and sets the supported framework and operating system combination.
+        /// </summary>
         public SupportedRuntimeAttribute(RuntimeFramework framework, RuntimeOS operatingSystem)
         {
             Framework = framework;
             OS = operatingSystem;
         }
 
+        /// <summary>
+        /// Supported runtime framework.
+        /// </summary>
         public RuntimeFramework Framework
         {
             get { return _framework; }
             set { _framework = value; }
         }
 
+        /// <summary>
+        /// Supported operating system.
+        /// </summary>
         public RuntimeOS OS
         {
             get { return _os; }
             set { _os = value; }
         }
 
-        public bool Exact
-        {
-            get { return _exactMatch; }
-            set { _exactMatch = value; }
-        }
-
+        /// <summary>
+        /// Minimum runtime version supported.
+        /// </summary>
         public Version MinRuntimeVersion
         {
             get { return _minRuntimeVersion; }
             set { _minRuntimeVersion = value; }
         }
 
+        /// <summary>
+        /// Maximum runtime version supported.
+        /// </summary>
         public Version MaxRuntimeVersion
         {
             get { return _maxRuntimeVersion; }
             set { _maxRuntimeVersion = value; }
         }
 
+        /// <summary>
+        /// Minimum operating system version supported.
+        /// </summary>
         public Version MinOSVersion
         {
             get { return _minOSVersion; }
             set { _minOSVersion = value; }
         }
 
+        /// <summary>
+        /// Maximum operating system version supported.
+        /// </summary>
         public Version MaxOSVersion
         {
             get { return _maxOSVersion; }

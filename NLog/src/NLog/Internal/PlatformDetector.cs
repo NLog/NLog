@@ -41,7 +41,7 @@ using NLog.Internal;
 
 namespace NLog.Internal
 {
-    public class PlatformDetector
+    internal class PlatformDetector
     {
         private static IDictionary _currentFrameworkCompatibleWith = new Hashtable();
         private static IDictionary _currentOSCompatibleWith = new Hashtable();

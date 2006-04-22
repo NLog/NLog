@@ -45,10 +45,29 @@ namespace NLog.Config
     /// </remarks>
     public enum RuntimeFramework
     {
+        /// <summary>
+        /// Any framework.
+        /// </summary>
         Any,
+
+        /// <summary>
+        /// .NET Compact Framework
+        /// </summary>
         DotNetCompactFramework,
+
+        /// <summary>
+        /// .NET Framework
+        /// </summary>
         DotNetFramework,
+
+        /// <summary>
+        /// Mono Project
+        /// </summary>
         Mono,
+
+        /// <summary>
+        /// Unknown
+        /// </summary>
         Unknown,
     }
 }

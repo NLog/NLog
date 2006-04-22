@@ -28,7 +28,8 @@
     <property name="source_snapshot.name" value="nlog-${nlog.package.name}-src.zip" />
     <property name="binary_snapshot.name" value="nlog-${nlog.package.name}-bin.zip" />
     <property name="nlogc_snapshot.name" value="nlogc-${nlog.package.name}-bin.zip" />
-    <property name="binary_compact_snapshot.name" value="nlog-compact-${nlog.package.name}-bin.zip" />
+    <property name="binary_compact10_snapshot.name" value="nlog-compact-netcf-1.0-${nlog.package.name}-bin.zip" />
+    <property name="binary_compact20_snapshot.name" value="nlog-compact-netcf-2.0-${nlog.package.name}-bin.zip" />
     <property name="webtest.dir" value="${project::get-base-directory()}/webtest" />
 
     <property name="clover.enabled" value="false" />
@@ -464,17 +465,24 @@
         <call target="source_snapshot" />
     </target>
 
-    <target name="compactdist">
+    <target name="compact10dist">
         <call target="clean" />
         <call target="fullbuild" />
-        <property name="binary_snapshot.name" value="${binary_compact_snapshot.name}" />
+        <property name="binary_snapshot.name" value="${binary_compact10_snapshot.name}" />
+        <call target="binary_snapshot" />
+    </target>
+
+    <target name="compact20dist">
+        <call target="clean" />
+        <call target="build, cleanwebsite" />
+        <property name="binary_snapshot.name" value="${binary_compact20_snapshot.name}" />
         <call target="binary_snapshot" />
     </target>
 
     <target name="fullrelease">
         <exec program="nant" commandline="-t:net-1.0 -D:nlog.package.name=${nlog.package.name} release fulldist" />
-        <exec program="nant" commandline="-t:netcf-1.0 -D:nlog.package.name=${nlog.package.name} release compactdist" />
-        <exec program="nant" commandline="-t:netcf-2.0 -D:nlog.package.name=${nlog.package.name} release compactdist" />
+        <exec program="nant" commandline="-t:netcf-1.0 -D:nlog.package.name=${nlog.package.name} release compact10dist" />
+        <exec program="nant" commandline="-t:netcf-2.0 -D:nlog.package.name=${nlog.package.name} release compact20dist" failonerror="false" />
     </target>
 
     <target name="doc" depends="configure, build, xmldoc, website, helpwebsite">
@@ -571,8 +579,8 @@
         <exec program="${scp.program}" commandline="${scp.args} ${binary_snapshot.name} ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ${nlogc_snapshot.name}..." />
         <exec program="${scp.program}" commandline="${scp.args} ${nlogc_snapshot.name} ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
-        <echo message="Uploading ${binary_compact_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.args} ${binary_compact_snapshot.name} ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
+        <echo message="Uploading ${binary_compact10_snapshot.name}..." />
+        <exec program="${scp.program}" commandline="${scp.args} ${binary_compact10_snapshot.name} ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ChangeLog..." />
         <exec program="${scp.program}" commandline="${scp.args} ChangeLog ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
     </target>
