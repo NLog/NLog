@@ -2,8 +2,6 @@
     <assemblies>
         <assembly location=".\bin\NLog.dll" documentation=".\bin\NLog.xml" />
         <assembly location=".\bin\NLog.ComInterop.dll" documentation=".\bin\NLog.ComInterop.xml" />
-        <assembly location=".\bin\NLog.Win32.dll" documentation=".\bin\NLog.Win32.xml" />
-        <assembly location=".\bin\NLog.DotNet.dll" documentation=".\bin\NLog.DotNet.xml" />
     </assemblies>
     <documenters>
         <documenter name="JavaDoc">

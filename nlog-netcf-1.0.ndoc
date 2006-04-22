@@ -1,7 +1,6 @@
 <project SchemaVersion="1.3">
     <assemblies>
         <assembly location=".\bin\NLog.dll" documentation=".\bin\NLog.xml" />
-        <assembly location=".\bin\NLog.CompactFramework.dll" documentation=".\bin\NLog.CompactFramework.xml" />
     </assemblies>
     <documenters>
         <documenter name="JavaDoc">

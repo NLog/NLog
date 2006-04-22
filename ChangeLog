@@ -1,3 +1,9 @@
+2006-04-22 Jaroslaw Kowalski <jaak@jkowalski.net>
+
+	* Merged NLog.Win32.dll, NLog.DotNet.dll, NLog.Unix.dll and NLog.Mono.dll
+	into one assembly NLog.dll
+	* Added attributes which mark support for particular runtimes and OSes
+
 2006-04-18 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Added LayoutRenderer.IsAppDomainFixed() and an optimization to turn
