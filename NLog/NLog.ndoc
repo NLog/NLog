@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<project SchemaVersion="2.0">
+    <assemblies>
+        <assembly location=".\build\doc\NLog.dll" documentation=".\build\doc\NLog.xml" />
+    </assemblies>
+    <documenters>
+        <documenter name="MSDN-Help2">
+            <property name="CollectionNamespace" value="NLog" />
+            <property name="RegisterTitleAsCollection" value="True" />
+            <property name="GenerateCollectionFiles" value="True" />
+            <property name="OutputDirectory" value=".\build\doc\help2\" />
+            <property name="HtmlHelpName" value="NLog" />
+            <property name="Title" value="NLog - A .NET Logging Library" />
+            <property name="IncrementalBuild" value="True" />
+            <property name="AdditionalContentResourceDirectory" value=".\build\doc\helpweb\" />
+            <property name="ExtensibilityStylesheet" value=".\build\doc\syntax.xsl" />
+            <property name="CopyrightText" value="Copyright (c) 2004-2006 by Jaroslaw Kowalski" />
+            <property name="CopyrightHref" value="http://www.nlog-project.org/" />
+            <property name="FeedbackEmailAddress" value="nlog-list@lists.sourceforge.net" />
+        </documenter>
+        <documenter name="MSDN-CHM">
+            <property name="IncludeFavorites" value="True" />
+            <property name="RootPageTocName" value="Welcome to NLog" />
+            <property name="RootPageFileName" value=".\build\doc\helpweb\helpindex.html" />
+            <property name="BinaryToc" value="False" />
+            <property name="OutputDirectory" value=".\build\doc\help\" />
+            <property name="HtmlHelpName" value="NLog" />
+            <property name="Title" value="NLog - A .NET Logging Library" />
+            <property name="IncrementalBuild" value="True" />
+            <property name="AdditionalContentResourceDirectory" value=".\build\doc\helpweb\" />
+            <property name="ExtensibilityStylesheet" value=".\build\doc\syntax.xsl" />
+            <property name="CopyrightText" value="Copyright (c) 2004-2006 by Jaroslaw Kowalski" />
+            <property name="CopyrightHref" value="http://www.nlog-project.org/" />
+            <property name="FeedbackEmailAddress" value="nlog-list@lists.sourceforge.net" />
+        </documenter>
+        <documenter name="XML">
+            <property name="OutputFile" value=".\build\doc\doc.xml" />
+            <property name="ShowMissingSummaries" value="True" />
+            <property name="ShowMissingParams" value="True" />
+            <property name="CopyrightText" value="Copyright (c) 2004-2006 by Jaroslaw Kowalski" />
+            <property name="CopyrightHref" value="http://www.nlog-project.org/" />
+            <property name="FeedbackEmailAddress" value="nlog-list@lists.sourceforge.net" />
+            <property name="AutoDocumentStaticClasses" value="False" />
+            <property name="AutoDocumentAbstractClasses" value="False" />
+            <property name="AutoDocumentReadOnlyFields" value="False" />
+            <property name="Preliminary" value="True" />
+            <property name="InstanceMembersDefaultToSafe" value="True" />
+        </documenter>
+    </documenters>
+</project>

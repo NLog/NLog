@@ -34,7 +34,7 @@
 using System;
 using System.Threading;
 
-namespace NLog.Internal
+namespace NLog.Internal.NetworkSenders
 {
     /// <summary>
     /// A base class for all network senders. Supports one-way sending of messages

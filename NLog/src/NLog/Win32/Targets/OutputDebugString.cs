@@ -43,7 +43,8 @@ namespace NLog.Win32.Targets
     /// Outputs logging messages through the <c>OutputDebugString()</c> Win32 API.
     /// </summary>
     [Target("OutputDebugString")]
-    [SupportedRuntime(OS=RuntimeOS.Win32)]
+    [SupportedRuntime(OS=RuntimeOS.Windows)]
+    [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
     public sealed class OutputDebugStringTarget: Target
     {
         /// <summary>
@@ -59,7 +60,7 @@ namespace NLog.Win32.Targets
         /// Stub for OutputDebugString native method
         /// </summary>
         /// <param name="message">the string to output</param>
-        [DllImport("Kernel32.dll")]
+        [DllImport("kernel32.dll")]
         private static extern void OutputDebugString(string message);
     }
 }

@@ -95,7 +95,7 @@ namespace NLog.LayoutRenderers
 			if (context.Session == null)
 				return ;
 
-            builder.Append(context.Session[Variable]);
+			builder.Append(ApplyPadding(Convert.ToString(context.Session[Variable], CultureInfo)));
         }
     }
 }

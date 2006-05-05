@@ -6,8 +6,8 @@
 
     <xsl:template match="*" mode="content">
         <xsl:if test="$target_name">
-            <xsl:apply-templates select="//class[attribute/@name='NLog.TargetAttribute' and attribute/property[@name='Name']/@value=$target_name]" mode="details">
-                <xsl:sort select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
+            <xsl:apply-templates select="//class[attribute/@id='T:NLog.TargetAttribute' and attribute/argument[position()=1]/@value=$target_name]" mode="details">
+                <xsl:sort select="attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value" />
             </xsl:apply-templates>
         </xsl:if>
         <xsl:if test="not($target_name)">
@@ -32,9 +32,9 @@
             <div class="noborder" style="width: 600px">
                 <table class="listtable">
                     <xsl:call-template name="supportmatrixheader" />
-                    <xsl:apply-templates select="//class[attribute[@name='NLog.TargetAttribute' and not(property[@name='IsWrapper' and @value='True']) and not(property[@name='IsCompound' and @value='True'])]]" mode="list">
+                    <xsl:apply-templates select="//class[attribute[@id='T:NLog.TargetAttribute' and not(property[@name='IsWrapper' and @value='True']) and not(property[@name='IsCompound' and @value='True'])]]" mode="list">
                         <xsl:sort select="../../@name" />
-                        <xsl:sort select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
+                        <xsl:sort select="attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value" />
                     </xsl:apply-templates>
                 </table>
             </div>
@@ -46,9 +46,9 @@
             <div class="noborder" style="width: 600px">
                 <table class="listtable">
                     <xsl:call-template name="supportmatrixheader" />
-                    <xsl:apply-templates select="//class[attribute[@name='NLog.TargetAttribute' and property[@name='IsWrapper' and @value='True']]]" mode="list">
+                    <xsl:apply-templates select="//class[attribute[@id='T:NLog.TargetAttribute' and property[@name='IsWrapper' and @value='True']]]" mode="list">
                         <xsl:sort select="../../@name" />
-                        <xsl:sort select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
+                        <xsl:sort select="attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value" />
                     </xsl:apply-templates>
                 </table>
             </div>
@@ -60,155 +60,21 @@
             <div class="noborder" style="width: 600px">
                 <table class="listtable">
                     <xsl:call-template name="supportmatrixheader" />
-                    <xsl:apply-templates select="//class[attribute[@name='NLog.TargetAttribute' and property[@name='IsCompound' and @value='True']]]" mode="list">
+                    <xsl:apply-templates select="//class[attribute[@id='T:NLog.TargetAttribute' and property[@name='IsCompound' and @value='True']]]" mode="list">
                         <xsl:sort select="../../@name" />
-                        <xsl:sort select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
+                        <xsl:sort select="attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value" />
                     </xsl:apply-templates>
                 </table>
             </div>
         </xsl:if>
     </xsl:template>
 
-    <xsl:template name="supportmatrixheader">
-        <tr>
-            <th rowspan="2">Name</th>
-            <th rowspan="2">Description</th>
-            <th colspan="3">.NET Framework</th>
-            <th colspan="2">.NET Compact Framework</th>
-            <th colspan="2">Mono/Windows</th>
-            <th colspan="2">Mono/Unix</th>
-        </tr>
-        <tr>
-            <th>1.0</th>
-            <th>1.1</th>
-            <th>2.0</th>
-            <th>1.0</th>
-            <th>2.0</th>
-            <th>1.0</th>
-            <th>1.0</th>
-            <th>2.0</th>
-            <th>2.0</th>
-        </tr>
-    </xsl:template>
-
-    <xsl:template match="attribute" mode="supported-runtime-matches">
-        <xsl:param name="framework" />
-        <xsl:param name="frameworkVersion" />
-        <xsl:param name="os" />
-        <xsl:param name="osVersion" />
-
-        <xsl:variable name="attrFramework" select="property[@name='Framework']/@value" />
-        <xsl:variable name="attrOS" select="property[@name='OS']/@value" />
-        <xsl:variable name="attrMinRuntimeVersion" select="property[@name='MinRuntimeVersion']/@value" />
-        <xsl:variable name="attrMaxRuntimeVersion" select="property[@name='MaxRuntimeVersion']/@value" />
-        <xsl:variable name="attrMinOSVersion" select="property[@name='MinOSVersion']/@value" />
-        <xsl:variable name="attrMaxOSVersion" select="property[@name='MaxOSVersion']/@value" />
-
-        <xsl:variable name="result">
-            <xsl:choose>
-                <xsl:when test="not($framework)">F1</xsl:when>
-                <xsl:when test="$attrFramework = 'RuntimeFramework.Any'">F1</xsl:when>
-                <xsl:when test="$attrFramework = $framework">F1</xsl:when>
-                <xsl:otherwise>F0</xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-        <xsl:choose>
-            <xsl:when test="contains($result,'0')">0</xsl:when>
-            <xsl:otherwise>1</xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
-    <xsl:template name="supported-on">
-        <xsl:param name="framework" />
-        <xsl:param name="frameworkVersion" />
-        <xsl:param name="os" />
-        <xsl:param name="osVersion" />
-
-        <xsl:variable name="supportedAttributes" select="attribute[@name='NLog.Config.SupportedRuntimeAttribute']" />
-        <xsl:variable name="notSupportedAttributes" select="attribute[@name='NLog.Config.NotSupportedRuntimeAttribute']" />
-
-        <xsl:variable name="supportedAttributeMatches">
-            <xsl:apply-templates select="$supportedAttributes" mode="supported-runtime-matches">
-                <xsl:with-param name="framework"><xsl:value-of select="$framework" /></xsl:with-param>
-                <xsl:with-param name="os"><xsl:value-of select="$os" /></xsl:with-param>
-                <xsl:with-param name="frameworkVersion"><xsl:value-of select="$frameworkVersion" /></xsl:with-param>
-                <xsl:with-param name="osVersion"><xsl:value-of select="$osVersion" /></xsl:with-param>
-            </xsl:apply-templates>
-        </xsl:variable>
-        
-        <xsl:variable name="notSupportedAttributeMatches">
-            <xsl:apply-templates select="$notSupportedAttributes" mode="supported-runtime-matches">
-                <xsl:with-param name="framework"><xsl:value-of select="$framework" /></xsl:with-param>
-                <xsl:with-param name="os"><xsl:value-of select="$os" /></xsl:with-param>
-                <xsl:with-param name="frameworkVersion"><xsl:value-of select="$frameworkVersion" /></xsl:with-param>
-                <xsl:with-param name="osVersion"><xsl:value-of select="$osVersion" /></xsl:with-param>
-            </xsl:apply-templates>
-        </xsl:variable>
-
-        <td class="support">
-            <img>
-                <xsl:attribute name="src">
-                    <xsl:choose>
-                        <xsl:when test="$supportedAttributeMatches = '' and $notSupportedAttributeMatches = ''">checkbox1.gif</xsl:when>
-                        <xsl:when test="contains($supportedAttributeMatches,'1') and not(contains($notSupportedAttributeMatches,'1'))">checkbox1.gif</xsl:when>
-                        <xsl:otherwise>checkbox0.gif</xsl:otherwise>
-                    </xsl:choose>
-                </xsl:attribute>
-            </img>
-        </td>
-    </xsl:template>
-
     <xsl:template match="class" mode="list">
-        <xsl:variable name="type_tag" select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
+        <xsl:variable name="type_tag" select="attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value" />
         <tr>
             <td class="name"><a href="target.{$type_tag}.html"><xsl:value-of select="$type_tag" /></a></td>
             <td class="description"><xsl:apply-templates select="documentation/summary" /></td>
-            <xsl:call-template name="supported-on">
-                <xsl:with-param name="framework">RuntimeFramework.DotNetFramework</xsl:with-param>
-                <xsl:with-param name="frameworkVersion">1.0</xsl:with-param>
-                <xsl:with-param name="os">RuntimeOS.Windows</xsl:with-param>
-            </xsl:call-template>
-            <xsl:call-template name="supported-on">
-                <xsl:with-param name="framework">RuntimeFramework.DotNetFramework</xsl:with-param>
-                <xsl:with-param name="frameworkVersion">1.1</xsl:with-param>
-                <xsl:with-param name="os">RuntimeOS.Windows</xsl:with-param>
-            </xsl:call-template>
-            <xsl:call-template name="supported-on">
-                <xsl:with-param name="framework">RuntimeFramework.DotNetFramework</xsl:with-param>
-                <xsl:with-param name="frameworkVersion">2.0</xsl:with-param>
-                <xsl:with-param name="os">RuntimeOS.Windows</xsl:with-param>
-            </xsl:call-template>
-            <xsl:call-template name="supported-on">
-                <xsl:with-param name="framework">RuntimeFramework.DotNetCompactFramework</xsl:with-param>
-                <xsl:with-param name="frameworkVersion">1.0</xsl:with-param>
-                <xsl:with-param name="os">RuntimeOS.WindowsCE</xsl:with-param>
-            </xsl:call-template>
-            <xsl:call-template name="supported-on">
-                <xsl:with-param name="framework">RuntimeFramework.DotNetCompactFramework</xsl:with-param>
-                <xsl:with-param name="frameworkVersion">2.0</xsl:with-param>
-                <xsl:with-param name="os">RuntimeOS.WindowsCE</xsl:with-param>
-            </xsl:call-template>
-            <xsl:call-template name="supported-on">
-                <xsl:with-param name="framework">RuntimeFramework.Mono</xsl:with-param>
-                <xsl:with-param name="frameworkVersion">1.0</xsl:with-param>
-                <xsl:with-param name="os">RuntimeOS.Windows</xsl:with-param>
-            </xsl:call-template>
-            <xsl:call-template name="supported-on">
-                <xsl:with-param name="framework">RuntimeFramework.Mono</xsl:with-param>
-                <xsl:with-param name="frameworkVersion">1.0</xsl:with-param>
-                <xsl:with-param name="os">RuntimeOS.Unix</xsl:with-param>
-            </xsl:call-template>
-            <xsl:call-template name="supported-on">
-                <xsl:with-param name="framework">RuntimeFramework.Mono</xsl:with-param>
-                <xsl:with-param name="frameworkVersion">2.0</xsl:with-param>
-                <xsl:with-param name="os">RuntimeOS.Windows</xsl:with-param>
-            </xsl:call-template>
-            <xsl:call-template name="supported-on">
-                <xsl:with-param name="framework">RuntimeFramework.Mono</xsl:with-param>
-                <xsl:with-param name="frameworkVersion">2.0</xsl:with-param>
-                <xsl:with-param name="os">RuntimeOS.Unix</xsl:with-param>
-            </xsl:call-template>
+            <xsl:call-template name="supportmatrixvalues" />
         </tr>
     </xsl:template>
 
@@ -223,7 +89,7 @@
     </xsl:template>
 
     <xsl:template match="class" mode="details">
-        <xsl:variable name="type_tag" select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
+        <xsl:variable name="type_tag" select="attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value" />
         <h3><xsl:value-of select="$type_tag" /> Target</h3>
         <hr size="1" />
         <h4>Defined in:</h4>
@@ -243,12 +109,12 @@
                 <th>Description</th>
             </tr>
             <xsl:apply-templates select="property" mode="parameter">
-                <xsl:sort select="count(attribute[@name='NLog.Config.RequiredParameterAttribute'])" order="descending" />
+                <xsl:sort select="count(attribute[@id='T:NLog.Config.RequiredParameterAttribute'])" order="descending" />
                 <xsl:sort select="@name" />
             </xsl:apply-templates>
             <xsl:if test="property[attribute/@name='NLog.Config.ArrayParameterAttribute']">
                 <xsl:apply-templates select="property" mode="parameter2">
-                    <xsl:sort select="count(attribute[@name='NLog.Config.RequiredParameterAttribute'])" order="descending" />
+                    <xsl:sort select="count(attribute[@id='T:NLog.Config.RequiredParameterAttribute'])" order="descending" />
                     <xsl:sort select="@name" />
                 </xsl:apply-templates>
             </xsl:if>
@@ -286,14 +152,14 @@
     </xsl:template>
 
     <xsl:template match="property" mode="parameter">
-        <xsl:if test="@name != 'Layout' or not(../attribute[@name='NLog.TargetAttribute']/property[@name='IgnoresLayout']/@value='True')">
+        <xsl:if test="@name != 'Layout' or not(../attribute[@id='T:NLog.TargetAttribute']/property[@name='IgnoresLayout']/@value='True')">
             <xsl:call-template name="parameter_info" />
         </xsl:if>
     </xsl:template>
 
     <xsl:template match="property[attribute/@name='NLog.Config.ArrayParameterAttribute']" mode="parameter2">
-        <xsl:variable name="itemname" select="attribute[@name='NLog.Config.ArrayParameterAttribute']/property[@name='ElementName']/@value" />
-        <xsl:variable name="itemtype" select="attribute[@name='NLog.Config.ArrayParameterAttribute']/property[@name='ItemType']/@value" />
+        <xsl:variable name="itemname" select="attribute[@id='T:NLog.Config.ArrayParameterAttribute']/property[@name='ElementName']/@value" />
+        <xsl:variable name="itemtype" select="attribute[@id='T:NLog.Config.ArrayParameterAttribute']/property[@name='ItemType']/@value" />
         <tr>
             <td valign="top" class="parametername" rowspan="2">
                 <xsl:value-of select="@name" />

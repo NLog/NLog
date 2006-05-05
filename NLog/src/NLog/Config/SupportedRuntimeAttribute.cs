@@ -39,7 +39,7 @@ namespace NLog.Config
     /// Marks classes and properties as supporting particular runtime framework 
     /// and operating system.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property,AllowMultiple=true)]
     public sealed class SupportedRuntimeAttribute: SupportedRuntimeAttributeBase
     {
         /// <summary>

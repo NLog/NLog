@@ -253,20 +253,6 @@ namespace NLog.Internal
             return RuntimeOS.Unknown;
         }
 
-        /*
-        private static void Compatibility(RuntimeFramework framework, RuntimeFramework impliesCompatibilityWith)
-        {
-            if (_currentFrameworkCompatibleWith.Contains(framework))
-                _currentFrameworkCompatibleWith[impliesCompatibilityWith] = true;
-        }
-        */
-
-        private static void Compatibility(RuntimeOS os, RuntimeOS impliesCompatibilityWith)
-        {
-            if (_currentOSCompatibleWith.Contains(os))
-                _currentOSCompatibleWith[impliesCompatibilityWith] = true;
-        }
-
         private static void FindCompatibleFrameworks()
         {
             _currentFrameworkCompatibleWith[GetCurrentRuntimeFramework()] = true;
@@ -277,10 +263,6 @@ namespace NLog.Internal
         {
             _currentOSCompatibleWith[GetCurrentRuntimeOS()] = true;
             _currentOSCompatibleWith[RuntimeOS.Any] = true;
-
-            Compatibility(RuntimeOS.WindowsNT, RuntimeOS.Windows);
-            Compatibility(RuntimeOS.Windows, RuntimeOS.Win32);
-            Compatibility(RuntimeOS.WindowsCE, RuntimeOS.Win32);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The process time in format HH:mm:ss.mmm
     /// </summary>
-    [LayoutRenderer("processtime",UsingLogEventInfo=true)]
+    [LayoutRenderer("processtime",UsingLogEventInfo=true,IgnoresPadding=true)]
     public class ProcessTimeLayoutRenderer: LayoutRenderer
     {
         /// <summary>

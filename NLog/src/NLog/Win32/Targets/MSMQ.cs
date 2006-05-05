@@ -64,8 +64,8 @@ namespace NLog.Win32.Targets
     /// <cs src="examples/targets/MSMQ/MSMQTarget.cs" />
     /// </example>
     [Target("MSMQ")]
-    [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework,MaxRuntimeVersion="1.0")]
+    [SupportedRuntime(Framework=RuntimeFramework.DotNetFramework)]
+    [SupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework,MinRuntimeVersion="2.0")]
     public class MSMQTarget : Target
 	{
         private Layout _queue;

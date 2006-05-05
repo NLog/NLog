@@ -51,6 +51,8 @@ using System.Security.Permissions;
 [assembly: AssemblyTitle("NLog for .NET Compact Framework 1.0")]
 #elif NETCF_2_0
 [assembly: AssemblyTitle("NLog for .NET Compact Framework 2.0")]
+#elif DOCUMENTATION
+[assembly: AssemblyTitle("NLog Documentation")]
 #else
 #error Cannot set AssemblyTitle
 #endif

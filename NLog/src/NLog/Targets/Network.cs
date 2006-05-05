@@ -38,6 +38,7 @@ using System.Diagnostics;
 using System.Threading;
 
 using NLog.Internal;
+using NLog.Internal.NetworkSenders;
 
 namespace NLog.Targets
 {

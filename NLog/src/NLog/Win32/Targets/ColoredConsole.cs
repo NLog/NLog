@@ -90,7 +90,8 @@ namespace NLog.Win32.Targets
     /// <img src="examples/targets/ColoredConsole/ColoredConsoleTargetRowHighlighting.gif" />
     /// </example>
     [Target("ColoredConsole")]
-    [SupportedRuntime(OS=RuntimeOS.Win32)]
+    [SupportedRuntime(OS=RuntimeOS.Windows)]
+    [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public sealed class ColoredConsoleTarget: Target
     {

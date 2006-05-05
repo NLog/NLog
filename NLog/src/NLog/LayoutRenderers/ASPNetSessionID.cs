@@ -78,7 +78,7 @@ namespace NLog.LayoutRenderers
 			if (context.Session == null)
 				return ;
 
-            builder.Append(context.Session.SessionID);
+            builder.Append(ApplyPadding(context.Session.SessionID));
         }
     }
 }

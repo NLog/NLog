@@ -106,7 +106,6 @@ urchinTracker();
 </td>
 </tr>
 </table>
-<input type="hidden" name="client" value="pub-2535373996863248"></input>
 <input type="hidden" name="forid" value="1"></input>
 <input type="hidden" name="ie" value="UTF-8"></input>
 <input type="hidden" name="oe" value="UTF-8"></input>
@@ -115,26 +114,6 @@ urchinTracker();
 </td></tr></table>
 </form>
 <!-- SiteSearch Google -->
-                </div>
-            </xsl:if>
-            <xsl:if test="$mode = 'web'">
-                <div id="googleads">
-                    <script type="text/javascript"><xsl:comment>
-                            google_ad_client = "pub-2535373996863248";
-                            google_ad_width = 120;
-                            google_ad_height = 600;
-                            google_ad_format = "120x600_as";
-                            google_ad_type = "text_image";
-                            google_ad_channel ="";
-                            google_color_border = "5290ee";
-                            google_color_bg = "FFFFFF";
-                            google_color_link = "0000FF";
-                            google_color_url = "008000";
-                            google_color_text = "000000";
-                            //</xsl:comment></script>
-                    <script type="text/javascript"
-                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                    </script>
                 </div>
             </xsl:if>
             </body>
@@ -195,6 +174,7 @@ urchinTracker();
                 </xsl:call-template>
             </xsl:when>
             <xsl:when test="$type = 'Int32'">integer</xsl:when>
+            <xsl:when test="$type = 'Int64'">long</xsl:when>
             <xsl:when test="$type = 'String'">string</xsl:when>
             <xsl:when test="$type = 'Boolean'">boolean</xsl:when>
             <xsl:otherwise>
@@ -209,7 +189,7 @@ urchinTracker();
         <tr>
             <td class="parametername">
                 <span>
-                    <xsl:if test="attribute/@name='NLog.Config.RequiredParameterAttribute'">
+                    <xsl:if test="attribute/@id='T:NLog.Config.RequiredParameterAttribute'">
                         <xsl:attribute name="class">required</xsl:attribute>
                     </xsl:if>
                     <xsl:value-of select="@name" />
@@ -218,12 +198,12 @@ urchinTracker();
             <td class="parametertype">
                 <nobr>
                     <xsl:call-template name="simple-type-name">
-                        <xsl:with-param name="type" select="@type" />
+                        <xsl:with-param name="type" select="type/@name" />
                     </xsl:call-template>
-                    <xsl:if test="attribute/@name='NLog.Config.AcceptsLayoutAttribute'">
+                    <xsl:if test="attribute/@id='T:NLog.Config.AcceptsLayoutAttribute'">
                         &#160;<a href="layoutrenderers.html"><span class="acceptslayout" title="This parameter accepts layout specification. Click here to learn more about layouts.">${}</span></a>
                     </xsl:if>
-                    <xsl:if test="attribute/@name='NLog.Config.AcceptsConditionAttribute'">
+                    <xsl:if test="attribute/@id='T:NLog.Config.AcceptsConditionAttribute'">
                         &#160;<a href="conditions.html"><span class="acceptscondition" title="This parameter accepts condition expressions. Click here to learn more about condition expressions.">[c()]</span></a>
                     </xsl:if>
                 </nobr>
@@ -233,7 +213,7 @@ urchinTracker();
                 <xsl:if test="attribute[@name='System.ComponentModel.DefaultValueAttribute']">
                     <p>Default value is: <code><xsl:value-of select="attribute[@name='System.ComponentModel.DefaultValueAttribute']/property[@name='Value']/@value" /></code>.</p>
                 </xsl:if>
-                <xsl:variable name="typename" select="concat('T:',translate(@type,'#','.'))" />
+                <xsl:variable name="typename" select="type/@id" />
                 <xsl:variable name="enumnode" select="//enumeration[@id=$typename]" />
                 <xsl:if test="$enumnode">
                     <p>
@@ -328,4 +308,166 @@ urchinTracker();
             </table>
         </div>
     </xsl:template>
+
+    <xsl:template name="supportmatrixheader">
+        <tr>
+            <th rowspan="2">Name</th>
+            <th rowspan="2">Description</th>
+            <th colspan="3">.NET Framework</th>
+            <th colspan="2">.NET CF</th>
+            <th colspan="2">Mono on Windows</th>
+            <th colspan="2">Mono on Unix</th>
+        </tr>
+        <tr>
+            <th>1.0</th>
+            <th>1.1</th>
+            <th>2.0</th>
+            <th>1.0</th>
+            <th>2.0</th>
+            <th>1.0</th>
+            <th>2.0</th>
+            <th>1.0</th>
+            <th>2.0</th>
+        </tr>
+    </xsl:template>
+
+    <!-- returns a string containing '*' character if the 'attribute' matches
+    the specified framework and OS -->
+
+    <xsl:template match="attribute" mode="supported-runtime-matches">
+        <xsl:param name="framework" />
+        <xsl:param name="frameworkVersion" />
+        <xsl:param name="os" />
+        <xsl:param name="osVersion" />
+        <xsl:param name="mode" />
+
+        <xsl:variable name="attrFramework" select="property[@name='Framework']/@value" />
+        <xsl:variable name="attrOS" select="property[@name='OS']/@value" />
+        <xsl:variable name="attrMinRuntimeVersion" select="property[@name='MinRuntimeVersion']/@value" />
+        <xsl:variable name="attrMaxRuntimeVersion" select="property[@name='MaxRuntimeVersion']/@value" />
+        <xsl:variable name="attrMinOSVersion" select="property[@name='MinOSVersion']/@value" />
+        <xsl:variable name="attrMaxOSVersion" select="property[@name='MaxOSVersion']/@value" />
+
+        <xsl:variable name="result">
+            I:
+            <xsl:value-of select="$framework" />
+            A:
+            <xsl:value-of select="$attrFramework" />
+            <xsl:choose>
+                <xsl:when test="not($framework)">F1</xsl:when>
+                <xsl:when test="not($attrFramework)">F1</xsl:when>
+                <xsl:when test="$attrFramework = 'RuntimeFramework.Any'">F1</xsl:when>
+                <xsl:when test="$attrFramework = $framework">F1</xsl:when>
+                <xsl:otherwise>F0</xsl:otherwise>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="not($os)">O1</xsl:when>
+                <xsl:when test="not($attrOS)">O1</xsl:when>
+                <xsl:when test="$os = 'RuntimeOS.AnyWindows' and $attrOS='RuntimeOS.Windows'">O1</xsl:when>
+                <xsl:when test="$os = 'RuntimeOS.AnyWindows' and $attrOS='RuntimeOS.WindowsNT'">O1</xsl:when>
+                <xsl:when test="$attrOS = 'RuntimeOS.Any'">O1</xsl:when>
+                <xsl:when test="$attrOS = $os">O1</xsl:when>
+                <xsl:otherwise>O0</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:value-of select="$result" />
+
+        <xsl:choose>
+            <xsl:when test="contains($result,'0')">N</xsl:when>
+            <xsl:otherwise>*</xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="supported-on">
+        <xsl:param name="framework" />
+        <xsl:param name="frameworkVersion" />
+        <xsl:param name="os" />
+        <xsl:param name="osVersion" />
+
+        <xsl:variable name="supportedAttributes" select="attribute[@id='T:NLog.Config.SupportedRuntimeAttribute']" />
+        <xsl:variable name="notSupportedAttributes" select="attribute[@id='T:NLog.Config.NotSupportedRuntimeAttribute']" />
+
+        <xsl:variable name="supportedAttributeMatches">
+            <xsl:apply-templates select="$supportedAttributes" mode="supported-runtime-matches">
+                <xsl:with-param name="framework"><xsl:value-of select="$framework" /></xsl:with-param>
+                <xsl:with-param name="os"><xsl:value-of select="$os" /></xsl:with-param>
+                <xsl:with-param name="frameworkVersion"><xsl:value-of select="$frameworkVersion" /></xsl:with-param>
+                <xsl:with-param name="osVersion"><xsl:value-of select="$osVersion" /></xsl:with-param>
+                <xsl:with-param name="mode">1</xsl:with-param>
+            </xsl:apply-templates>
+        </xsl:variable>
+        
+        <xsl:variable name="notSupportedAttributeMatches">
+            <xsl:apply-templates select="$notSupportedAttributes" mode="supported-runtime-matches">
+                <xsl:with-param name="framework"><xsl:value-of select="$framework" /></xsl:with-param>
+                <xsl:with-param name="os"><xsl:value-of select="$os" /></xsl:with-param>
+                <xsl:with-param name="frameworkVersion"><xsl:value-of select="$frameworkVersion" /></xsl:with-param>
+                <xsl:with-param name="osVersion"><xsl:value-of select="$osVersion" /></xsl:with-param>
+                <xsl:with-param name="mode">0</xsl:with-param>
+            </xsl:apply-templates>
+        </xsl:variable>
+
+        <td class="support">
+            <!--
+            S[<xsl:value-of select="$supportedAttributeMatches" />]
+            NS[<xsl:value-of select="$notSupportedAttributeMatches" />]
+            -->
+            <xsl:choose>
+                <xsl:when test="$supportedAttributeMatches='' and $notSupportedAttributeMatches=''"><img src="yes.gif" /></xsl:when>
+                <xsl:when test="contains($supportedAttributeMatches,'*') and not(contains($notSupportedAttributeMatches,'*'))"><img src="yes.gif" /></xsl:when>
+                <xsl:when test="$supportedAttributeMatches='' and not(contains($notSupportedAttributeMatches,'*'))"><img src="yes.gif" /></xsl:when>
+                <xsl:otherwise>&#160;</xsl:otherwise>
+            </xsl:choose>
+        </td>
+    </xsl:template>
+
+    <xsl:template name="supportmatrixvalues">
+        <xsl:call-template name="supported-on">
+            <xsl:with-param name="framework">RuntimeFramework.DotNetFramework</xsl:with-param>
+            <xsl:with-param name="frameworkVersion">1.0</xsl:with-param>
+            <xsl:with-param name="os">RuntimeOS.AnyWindows</xsl:with-param>
+        </xsl:call-template>
+        <xsl:call-template name="supported-on">
+            <xsl:with-param name="framework">RuntimeFramework.DotNetFramework</xsl:with-param>
+            <xsl:with-param name="frameworkVersion">1.1</xsl:with-param>
+            <xsl:with-param name="os">RuntimeOS.AnyWindows</xsl:with-param>
+        </xsl:call-template>
+        <xsl:call-template name="supported-on">
+            <xsl:with-param name="framework">RuntimeFramework.DotNetFramework</xsl:with-param>
+            <xsl:with-param name="frameworkVersion">2.0</xsl:with-param>
+            <xsl:with-param name="os">RuntimeOS.AnyWindows</xsl:with-param>
+        </xsl:call-template>
+        <xsl:call-template name="supported-on">
+            <xsl:with-param name="framework">RuntimeFramework.DotNetCompactFramework</xsl:with-param>
+            <xsl:with-param name="frameworkVersion">1.0</xsl:with-param>
+            <xsl:with-param name="os">RuntimeOS.WindowsCE</xsl:with-param>
+        </xsl:call-template>
+        <xsl:call-template name="supported-on">
+            <xsl:with-param name="framework">RuntimeFramework.DotNetCompactFramework</xsl:with-param>
+            <xsl:with-param name="frameworkVersion">2.0</xsl:with-param>
+            <xsl:with-param name="os">RuntimeOS.WindowsCE</xsl:with-param>
+        </xsl:call-template>
+        <xsl:call-template name="supported-on">
+            <xsl:with-param name="framework">RuntimeFramework.Mono</xsl:with-param>
+            <xsl:with-param name="frameworkVersion">1.0</xsl:with-param>
+            <xsl:with-param name="os">RuntimeOS.AnyWindows</xsl:with-param>
+        </xsl:call-template>
+        <xsl:call-template name="supported-on">
+            <xsl:with-param name="framework">RuntimeFramework.Mono</xsl:with-param>
+            <xsl:with-param name="frameworkVersion">2.0</xsl:with-param>
+            <xsl:with-param name="os">RuntimeOS.AnyWindows</xsl:with-param>
+        </xsl:call-template>
+        <xsl:call-template name="supported-on">
+            <xsl:with-param name="framework">RuntimeFramework.Mono</xsl:with-param>
+            <xsl:with-param name="frameworkVersion">1.0</xsl:with-param>
+            <xsl:with-param name="os">RuntimeOS.Unix</xsl:with-param>
+        </xsl:call-template>
+        <xsl:call-template name="supported-on">
+            <xsl:with-param name="framework">RuntimeFramework.Mono</xsl:with-param>
+            <xsl:with-param name="frameworkVersion">2.0</xsl:with-param>
+            <xsl:with-param name="os">RuntimeOS.Unix</xsl:with-param>
+        </xsl:call-template>
+    </xsl:template>
+
 </xsl:stylesheet>
