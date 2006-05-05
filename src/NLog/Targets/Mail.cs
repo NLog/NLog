@@ -40,6 +40,7 @@ using System.Diagnostics;
 using System.Reflection;
 
 using System.Web.Mail;
+using NLog.Config;
 
 namespace NLog.Targets
 {
@@ -75,6 +76,7 @@ namespace NLog.Targets
     /// <cs src="examples/targets/Mail/BufferedMailTarget.cs" />
     /// </example>
     [Target("Mail",IgnoresLayout=true)]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class MailTarget: Target
     {
         private Layout _from;

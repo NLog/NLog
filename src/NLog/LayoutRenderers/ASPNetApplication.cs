@@ -37,12 +37,15 @@ using System;
 using System.Text;
 using System.Web;
 
+using NLog.Config;
+
 namespace NLog.LayoutRenderers
 {
     /// <summary>
     /// ASP.NET Application variable.
     /// </summary>
     [LayoutRenderer("aspnet-application")]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ASPNETApplicationValueLayoutRenderer: LayoutRenderer
     {
         private string _variable = null;

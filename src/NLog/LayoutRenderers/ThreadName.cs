@@ -35,12 +35,15 @@
 using System;
 using System.Text;
 
+using NLog.Config;
+
 namespace NLog.LayoutRenderers
 {
     /// <summary>
     /// The name of the current thread.
     /// </summary>
     [LayoutRenderer("threadname")]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ThreadNameLayoutRenderer: LayoutRenderer
     {
         /// <summary>

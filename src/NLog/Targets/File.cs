@@ -170,7 +170,11 @@ namespace NLog.Targets
         private int _openFileCacheSize = 1;
         private IFileAppenderFactory _appenderFactory;
         private IFileAppender[] _recentAppenders;
+        private DateTime[] _lastWriteTime;
         private ArchiveNumberingMode _archiveNumbering = ArchiveNumberingMode.Sequence;
+        private Thread _autoClosingThread = null;
+        private bool _isClosed = false;
+        private int _openFileCacheTimeout = 1;
 
         /// <summary>
         /// Creates a new instance of <see cref="FileTarget"/>.
@@ -233,6 +237,16 @@ namespace NLog.Targets
         {
             get { return _openFileCacheSize; }
             set { _openFileCacheSize = value; }
+        }
+
+        /// <summary>
+        /// Maximum number of seconds that files are kept open.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(0)]
+        public int OpenFileCacheTimeout
+        {
+            get { return _openFileCacheTimeout; }
+            set { _openFileCacheTimeout = value; }
         }
 
         /// <summary>
@@ -647,20 +661,23 @@ namespace NLog.Targets
         {
             Array.Sort(logEvents, 0, logEvents.Length, _logEventComparer);
 
-            for (int i = 0; i < logEvents.Length; ++i)
+            lock (this)
             {
-                LogEventInfo logEvent = logEvents[i];
-                string logEventFileName = _fileNameLayout.GetFormattedMessage(logEvent);
-                string logEventText = CompiledLayout.GetFormattedMessage(logEvent) + _newLine;
-                byte[] bytes = TransformBytes(_encoding.GetBytes(logEventText));
-
-                if (ShouldAutoArchive(logEventFileName, logEvent, bytes.Length))
+                for (int i = 0; i < logEvents.Length; ++i)
                 {
-                    InvalidateCacheItem(logEventFileName);
-                    DoAutoArchive(logEventFileName, logEvent);
-                }
+                    LogEventInfo logEvent = logEvents[i];
+                    string logEventFileName = _fileNameLayout.GetFormattedMessage(logEvent);
+                    string logEventText = CompiledLayout.GetFormattedMessage(logEvent) + _newLine;
+                    byte[] bytes = TransformBytes(_encoding.GetBytes(logEventText));
 
-                WriteToFile(logEventFileName, bytes);
+                    if (ShouldAutoArchive(logEventFileName, logEvent, bytes.Length))
+                    {
+                        InvalidateCacheItem(logEventFileName);
+                        DoAutoArchive(logEventFileName, logEvent);
+                    }
+
+                    WriteToFile(logEventFileName, bytes);
+                }
             }
         }
 
@@ -688,6 +705,14 @@ namespace NLog.Targets
                     {
 #if NETCF
                         _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
+#elif MONO
+                        //
+                        // mono on Windows uses mutexes, on Unix - special appender
+                        //
+                        if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Unix))
+                            _appenderFactory = UnixMultiProcessFileAppender.TheFactory;
+                        else
+                            _appenderFactory = MutexMultiProcessFileAppender.TheFactory;
 #else
                         _appenderFactory = MutexMultiProcessFileAppender.TheFactory;
 #endif
@@ -720,8 +745,44 @@ namespace NLog.Targets
             }
 
             _recentAppenders = new IFileAppender[OpenFileCacheSize];
+            _lastWriteTime = new DateTime[OpenFileCacheSize];
+
+            if (OpenFileCacheSize > 0 && OpenFileCacheTimeout > 0)
+            {
+                _autoClosingThread = new Thread(new ThreadStart(this.AutoClosingThread));
+                _autoClosingThread.Start();
+            }
 
             // Console.Error.WriteLine("Name: {0} Factory: {1}", this.Name, _appenderFactory.GetType().FullName);
+        }
+
+        private void AutoClosingThread()
+        {
+            while (!_isClosed)
+            {
+                System.Threading.Thread.Sleep(OpenFileCacheTimeout / 2);
+                lock (this)
+                {
+                    DateTime timeToKill = DateTime.Now.AddSeconds(-OpenFileCacheTimeout);
+                    for (int i = 0; i < _recentAppenders.Length; ++i)
+                    {
+                        if (_recentAppenders[i] == null)
+                            break;
+
+                        if (_lastWriteTime[i] < timeToKill)
+                        {
+                            for (int j = i; j < _recentAppenders.Length; ++j)
+                            {
+                                if (_recentAppenders[j] == null)
+                                    break;
+                                _recentAppenders[j].Close();
+                                _recentAppenders[j] = null;
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -764,8 +825,10 @@ namespace NLog.Targets
                     for (int j = i; j > 0; --j)
                     {
                         _recentAppenders[j] = _recentAppenders[j - 1];
+                        _lastWriteTime[j] = _lastWriteTime[j - 1];
                     }
                     _recentAppenders[0] = app;
+                    _lastWriteTime[0] = DateTime.Now;
                     app.Write(bytes);
                     return;
                 }
@@ -780,10 +843,12 @@ namespace NLog.Targets
             for (int j = freeSpot; j > 0; --j)
             {
                 _recentAppenders[j] = _recentAppenders[j - 1];
+                _lastWriteTime[j] = _lastWriteTime[j - 1];
             }
 
             _recentAppenders[0] = _appenderFactory.Open(fileName, this);
             _recentAppenders[0].Write(bytes);
+            _lastWriteTime[0] = DateTime.Now;
         }
 
         /// <summary>
@@ -801,6 +866,7 @@ namespace NLog.Targets
                 if (_recentAppenders[i] == null)
                     break;
                 _recentAppenders[i].Flush();
+                _lastWriteTime[i] = DateTime.Now;
             }
         }
 
@@ -816,6 +882,7 @@ namespace NLog.Targets
                 _recentAppenders[i].Close();
                 _recentAppenders[i] = null;
             }
+            _isClosed = true;
         }
 
         private bool GetFileInfo(string fileName, out DateTime lastWriteTime, out long fileLength)
@@ -858,6 +925,7 @@ namespace NLog.Targets
                     for (int j = i; j < _recentAppenders.Length - 1; ++j)
                     {
                         _recentAppenders[j] = _recentAppenders[j + 1];
+                        _lastWriteTime[j] = _lastWriteTime[j + 1];
                     }
                     _recentAppenders[_recentAppenders.Length - 1] = null;
                     break;

@@ -37,12 +37,29 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 
-[assembly: AssemblyTitle("NLog")]
+#if DOTNET_1_0
+[assembly: AssemblyTitle("NLog for .NET 1.0")]
+#elif DOTNET_1_1
+[assembly: AssemblyTitle("NLog for .NET 1.1")]
+#elif DOTNET_2_0
+[assembly: AssemblyTitle("NLog for .NET 2.0")]
+#elif MONO_1_0
+[assembly: AssemblyTitle("NLog for Mono 1.0")]
+#elif MONO_2_0
+[assembly: AssemblyTitle("NLog for Mono 1.0")]
+#elif NETCF_1_0
+[assembly: AssemblyTitle("NLog for .NET Compact Framework 1.0")]
+#elif NETCF_2_0
+[assembly: AssemblyTitle("NLog for .NET Compact Framework 2.0")]
+#else
+#error Cannot set AssemblyTitle
+#endif
+
 [assembly: AssemblyDescription("NLog")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NLog")]
 [assembly: AssemblyProduct("NLog - .NET Logging Library")]
-[assembly: AssemblyCopyright("Copyright (c) 2004 by Jaroslaw Kowalski")]
+[assembly: AssemblyCopyright("Copyright (c) 2004-2006 by Jaroslaw Kowalski")]
 [assembly: AssemblyCulture("")]
 
 [assembly: AssemblyVersion("0.9.5.0")]

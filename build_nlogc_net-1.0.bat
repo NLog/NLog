@@ -7,7 +7,7 @@ set INCLUDE=%VC_DIR%\include
 set LIB=%VC_DIR%\lib;%DOTNETSDK_DIR%\Lib
 set NLOG_BIN_DIR=%1
 set SOURCE_DIR=src\NLogC
-set OUTPUT_DIR=%2\bin\net-1.0
+set OUTPUT_DIR=%1
 set OUTPUT_FILE=NLogC
 
 mkdir %OUTPUT_DIR%

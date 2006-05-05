@@ -46,7 +46,7 @@ namespace NLog.Win32.LayoutRenderers
     /// ASP Session variable.
     /// </summary>
     [LayoutRenderer("asp-session")]
-    [SupportedRuntime(RuntimeOS.Win32)]
+    [SupportedRuntime(OS=RuntimeOS.Win32)]
     public class ASPSessionValueLayoutRenderer: LayoutRenderer
     {
         private string _sessionVariable = null;

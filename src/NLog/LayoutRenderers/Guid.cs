@@ -36,12 +36,15 @@ using System;
 using System.Text;
 using System.Globalization;
 
+using NLog.Config;
+
 namespace NLog.LayoutRenderers
 {
     /// <summary>
     /// Globally-unique identifier (GUID).
     /// </summary>
     [LayoutRenderer("guid")]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class GuidLayoutRenderer: LayoutRenderer
     {
         private string _format = "N";

@@ -43,7 +43,7 @@ namespace NLog.Win32.Targets
     /// Outputs logging messages through the <c>OutputDebugString()</c> Win32 API.
     /// </summary>
     [Target("OutputDebugString")]
-    [SupportedRuntime(RuntimeOS.Win32)]
+    [SupportedRuntime(OS=RuntimeOS.Win32)]
     public sealed class OutputDebugStringTarget: Target
     {
         /// <summary>

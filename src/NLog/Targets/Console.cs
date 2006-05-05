@@ -34,6 +34,7 @@
 #if !NETCF
 
 using System;
+using NLog.Config;
 
 namespace NLog.Targets
 {
@@ -56,6 +57,7 @@ namespace NLog.Targets
     /// <cs src="examples/targets/Console/ConsoleTarget.cs" />
     /// </example>
     [Target("Console")]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public sealed class ConsoleTarget: Target
     {
         private bool _error = false;

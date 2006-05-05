@@ -53,6 +53,7 @@ namespace NLog.Targets.Wrappers
     /// as soon as the request ends.
     /// </summary>
     [Target("ASPNetBufferingWrapper",IgnoresLayout=true,IsWrapper=true)]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ASPNetBufferingTargetWrapper: WrapperTargetBase
     {
         private object _dataSlot = new object();

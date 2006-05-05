@@ -28,7 +28,7 @@
                     BaseAddress = "285212672"
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
-                    DefineConstants = ""
+                    DefineConstants = "DOTNET;DOTNET_1_1"
                     DocumentationFile = "NLog.xml"
                     DebugSymbols = "true"
                     FileAlignment = "4096"
@@ -48,7 +48,7 @@
                     BaseAddress = "285212672"
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
-                    DefineConstants = ""
+                    DefineConstants = "DOTNET;DOTNET_1_1"
                     DocumentationFile = "NLog.xml"
                     DebugSymbols = "false"
                     FileAlignment = "4096"
@@ -369,6 +369,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Config\NotSupportedRuntimeAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Config\RequiredParameterAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -390,6 +395,11 @@
                 />
                 <File
                     RelPath = "Config\SupportedRuntimeAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Config\SupportedRuntimeAttributeBase.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

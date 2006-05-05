@@ -37,12 +37,15 @@ using System;
 using System.Text;
 using System.Web;
 
+using NLog.Config;
+
 namespace NLog.LayoutRenderers
 {
     /// <summary>
     /// ASP.NET Session variable.
     /// </summary>
     [LayoutRenderer("aspnet-session")]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ASPNETSessionValueLayoutRenderer: LayoutRenderer
     {
         private string _variable = null;

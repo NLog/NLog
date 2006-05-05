@@ -37,12 +37,15 @@ using System;
 using System.Text;
 using System.Web;
 
+using NLog.Config;
+
 namespace NLog.LayoutRenderers
 {
     /// <summary>
     /// ASP.NET Session ID.
     /// </summary>                 
     [LayoutRenderer("aspnet-sessionid")]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ASPNETSessionIDLayoutRenderer: LayoutRenderer
     {
         /// <summary>

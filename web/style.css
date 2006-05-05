@@ -724,6 +724,15 @@ table.listtable
     padding: 2px;
 }
 
+.listtable td
+{
+    border: 1px solid #b0b0b0;
+    padding: 4px;
+    text-align: center;
+    vertical-align: center;
+    font-size: 12px;
+}
+
 .listtable td.name
 {
     border: 1px solid #b0b0b0;
@@ -738,15 +747,6 @@ table.listtable
     border: 1px solid #b0b0b0;
     padding: 4px;
     text-align: left;
-    vertical-align: top;
-    font-size: 12px;
-}
-
-.listtable td.assembly
-{
-    border: 1px solid #b0b0b0;
-    padding: 4px;
-    text-align: center;
     vertical-align: top;
     font-size: 12px;
 }

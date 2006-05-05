@@ -36,6 +36,7 @@ using System;
 using System.Web;
 
 using NLog.Targets;
+using NLog.Config;
 
 namespace NLog.Targets
 {
@@ -72,6 +73,7 @@ namespace NLog.Targets
     /// <p/>
     /// </example>
     [Target("ASPNetTrace")]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ASPNetTraceTarget: Target
     {
         /// <summary>

@@ -15,7 +15,11 @@
 
     <property name="deploy.host" value="jaak@sav.net" />
     
-    <property name="ndoc.console.exe" value="D:\Apps\NDoc\1.1\ndocconsole.exe" />
+    <property name="nlog.csc.args" value="/nowarn:1591" />
+    <property name="ndoc.path" value="D:\Apps\NDoc\1.1" />
+    <property name="ndoc2.path" value="D:\Apps\NDoc\2.0" />
+    <property name="ndoc.console.exe" value="${ndoc.path}/ndocconsole.exe" />
+    <property name="ndoc.console.args" value="-referencepath &quot;${framework::get-assembly-directory(framework::get-target-framework())}&quot;" />
     <property name="prettyprinter.exe" value="tools/PrettyPrinter.exe" />
 
     <property name="webserver.deploy.dir" value="web/www.nlog-project.org/html" />
@@ -24,12 +28,9 @@
     <property name="nlog.package.name" value="${tstamp.date}" unless="${property::exists('nlog.package.name')}" />
     <property name="ilmerge.version" value="1" />
 
-    <property name="installer.name" value="nlog-installer-${nlog.package.name}.exe" />
-    <property name="source_snapshot.name" value="nlog-${nlog.package.name}-src.zip" />
-    <property name="binary_snapshot.name" value="nlog-${nlog.package.name}-bin.zip" />
-    <property name="nlogc_snapshot.name" value="nlogc-${nlog.package.name}-bin.zip" />
-    <property name="binary_compact10_snapshot.name" value="nlog-compact-netcf-1.0-${nlog.package.name}-bin.zip" />
-    <property name="binary_compact20_snapshot.name" value="nlog-compact-netcf-2.0-${nlog.package.name}-bin.zip" />
+    <property name="installer.name" value="nlog-${nlog.package.name}${if(nlog.debug,'-debug','')}.exe" dynamic="true" />
+    <property name="source_snapshot.name" value="nlog-${nlog.package.name}-src.zip" dynamic="true" />
+    <property name="binary_snapshot.name" value="nlog-${nlog.package.name}-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" dynamic="true" />
     <property name="webtest.dir" value="${project::get-base-directory()}/webtest" />
 
     <property name="clover.enabled" value="false" />
@@ -39,7 +40,6 @@
         <call target="configure-${framework::get-target-framework()}" />
         <property name="buildsubdir" value="${framework::get-target-framework()}${if(clover.enabled,'-clover','')}${if(nlog.debug,'-debug','')}" />
         <property name="nlog.dir" value="${project::get-base-directory()}/build/${buildsubdir}/bin" unless="${property::exists('nlog.dir')}" />
-        <property name="nlogc.dir" value="${project::get-base-directory()}/build/${buildsubdir}/nlogc" unless="${property::exists('nlogc.dir')}" />
         <property name="nlog.help.dir" value="build/${buildsubdir}/help" unless="${property::exists('nlog.help.dir')}" />
         <property name="nunit2.report.dir" value="${project::get-base-directory()}/build/${buildsubdir}/test_results" />
         <property name="clover.report.dir" value="build/${buildsubdir}/clover_report" />
@@ -72,19 +72,10 @@
         <zip zipfile="${binary_snapshot.name}">
             <fileset basedir="build/${buildsubdir}">
                 <include name="bin/*" />
-                <include name="help/NLog.chm" />
             </fileset>
             <fileset basedir=".">
                 <include name="LICENSE.txt" />
                 <include name="examples/**/*" />
-            </fileset>
-        </zip>
-    </target>
-
-    <target name="nlogc_snapshot" depends="build">
-        <zip zipfile="${nlogc_snapshot.name}">
-            <fileset basedir="build/${buildsubdir}/nlogc">
-                <include name="**/*" />
             </fileset>
             <fileset basedir="src/NLogC">
                 <include name="NLogC FAQ.txt" />
@@ -97,7 +88,7 @@
     </target>
 
     <target name="NLog" depends="configure">
-        <csc target="library" output="${nlog.dir}/NLog.dll" doc="${nlog.dir}/NLog.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
+        <csc target="library" output="${nlog.dir}/NLog.dll" doc="${nlog.dir}/NLog.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}" warnaserror="true">
             <sources basedir="src">
                 <include name="NLog/**/*.cs" />
             </sources>
@@ -110,7 +101,9 @@
                 <include name="System.Windows.Forms.dll" />
                 <include name="System.Web.dll" />
                 <include name="System.Web.Services.dll" />
+                <include name="Mono.Posix.dll" />
             </references>
+            <arg value="${nlog.csc.args}"/>
         </csc>
     </target>
 
@@ -125,6 +118,7 @@
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
             </references>
+            <arg value="${nlog.csc.args}"/>
         </csc>
     </target>
 
@@ -189,7 +183,7 @@
     <target name="NLogC-1.0">
         <uptodate property="nlogc.uptodate">
             <targetfiles>
-                <include name="${nlogc.dir}/bin/net-1.0/NLogC.dll" />
+                <include name="${nlog.dir}/NLogC.dll" />
             </targetfiles>
             <sourcefiles basedir="${nlog.dir}">
                 <include name="NLog.dll" />
@@ -197,7 +191,7 @@
         </uptodate>
         <if test="${not nlogc.uptodate}">
             <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\7.0\Setup\VS\ProductDir" />
-            <exec program="build_nlogc_net-1.0.bat" workingdir="${project::get-base-directory()}" commandline="${string::replace(nlog.dir,'/','\')} ${string::replace(nlogc.dir,'/','\')}">
+            <exec program="build_nlogc_net-1.0.bat" workingdir="${project::get-base-directory()}" commandline="${string::replace(nlog.dir,'/','\')}">
                 <environment>
                     <variable name="VS_DIR" value="${visualstudio.dir}" />
                     <variable name="VC_DIR" value="${path::combine(visualstudio.dir,'VC7')}" />
@@ -209,7 +203,7 @@
 
     <target name="NLogC">
         <call target="build-nlogc-${framework::get-target-framework()}" />
-        <copy todir="${nlogc.dir}/include">
+        <copy todir="${nlog.dir}/include">
             <fileset basedir="tests/NLogC">
                 <include name="NLogC.h" />
                 <include name="NLogger.h" />
@@ -220,7 +214,7 @@
     <target name="NLogC-1.1">
         <uptodate property="nlogc.uptodate">
             <targetfiles>
-                <include name="${nlogc.dir}/bin/net-1.1/NLogC.dll" />
+                <include name="${nlog.dir}/NLogC.dll" />
             </targetfiles>
             <sourcefiles basedir="${nlog.dir}">
                 <include name="NLog.dll" />
@@ -228,7 +222,7 @@
         </uptodate>
         <if test="${not nlogc.uptodate}">
             <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\7.1\Setup\VS\ProductDir" />
-            <exec program="build_nlogc_net-1.1.bat" workingdir="${project::get-base-directory()}" commandline="${string::replace(nlog.dir,'/','\')} ${string::replace(nlogc.dir,'/','\')}">
+            <exec program="build_nlogc_net-1.1.bat" workingdir="${project::get-base-directory()}" commandline="${string::replace(nlog.dir,'/','\')}">
                 <environment>
                     <variable name="VS_DIR" value="${visualstudio.dir}" />
                     <variable name="VC_DIR" value="${path::combine(visualstudio.dir,'VC7')}" />
@@ -241,7 +235,7 @@
     <target name="NLogC-2.0">
         <uptodate property="nlogc.uptodate">
             <targetfiles>
-                <include name="${nlogc.dir}/bin/net-2.0/NLogC.dll" />
+                <include name="${nlog.dir}/NLogC.dll" />
             </targetfiles>
             <sourcefiles basedir="${nlog.dir}">
                 <include name="NLog.dll" />
@@ -250,7 +244,7 @@
         <if test="${not nlogc.uptodate}">
             <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VS\ProductDir" />
             <readregistry property="visualc.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VC\ProductDir" />
-            <exec program="build_nlogc_net-2.0.bat" workingdir="${project::get-base-directory()}" commandline="${string::replace(nlog.dir,'/','\')} ${string::replace(nlogc.dir,'/','\')}">
+            <exec program="build_nlogc_net-2.0.bat" workingdir="${project::get-base-directory()}" commandline="${string::replace(nlog.dir,'/','\')}">
                 <environment>
                     <variable name="VS_DIR" value="${visualstudio.dir}" />
                     <variable name="VC_DIR" value="${visualc.dir}" />
@@ -413,12 +407,24 @@
     <target name="configure-mono-1.0">
         <property name="nlog.define" value="${nlog.define};MONO;MONO_1_0" />
     </target>
-    <target name="configure-net-1.0" />
+    <target name="configure-mono-2.0">
+        <property name="nlog.define" value="${nlog.define};MONO;MONO_2_0" />
+        <property name="nlog.csc.args" value="/nowarn:1591,1699" />
+    </target>
+
+    <target name="configure-net-1.0">
+        <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET_1_0" />
+    </target>
+    
     <target name="configure-net-1.1">
+        <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET_1_1" />
         <property name="ilmerge.version" value="1.1" />
     </target>
     <target name="configure-net-2.0">
         <property name="ilmerge.version" value="2" />
+        <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET2;DOTNET_2_0" />
+        <property name="ndoc.console.exe" value="${ndoc2.path}/ndocconsole.exe" />
+        <property name="nlog.csc.args" value="/nowarn:1591,1699" />
     </target>
 
     <target name="configure-netcf-1.0">
@@ -427,9 +433,11 @@
 
     <target name="configure-netcf-2.0">
         <property name="nlog.define" value="${nlog.define};NETCF;NETCF_2_0" />
+        <property name="ndoc.console.exe" value="${ndoc2.path}/ndocconsole.exe" />
     </target>
 
     <target name="build-mono-1.0" depends="NLog" />
+    <target name="build-mono-2.0" depends="NLog" />
     <target name="build-net-1.0" depends="NLog, NLog.ComInterop, NLogC" />
     <target name="build-net-1.1" depends="NLog, NLog.ComInterop, NLogC" />
     <target name="build-net-2.0" depends="NLog, NLog.ComInterop, NLogC" />
@@ -448,41 +456,25 @@
         </foreach>
     </target>
 
-    <target name="installer" depends="build">
+    <target name="installer" depends="fullrelease">
         <readregistry property="nsis.dir" key="SOFTWARE\NSIS\" />
         <property name="makensis.exe" value="${nsis.dir}/makensis.exe" />
 
-        <exec program="${makensis.exe}" commandline="/DNLOGVERSION=${nlog.package.name} /DBUILDSUBDIR=${buildsubdir} tools\SetupNLog.nsi" />
+        <echo message="DEBUG: ${nlog.debug}" />
+        <exec program="${makensis.exe}" commandline="/DNLOGVERSION=${nlog.package.name} /DOPTIONALDEBUG=${if(nlog.debug,'-debug','')} tools\SetupNLog.nsi" verbose="true" />
         <move file="SetupNLog.exe" tofile="${installer.name}" overwrite="true" />
     </target>
 
-    <target name="fulldist">
-        <call target="clean" />
-        <call target="fullbuild" />
-        <call target="installer" />
-        <call target="binary_snapshot" />
-        <call target="nlogc_snapshot" />
-        <call target="source_snapshot" />
-    </target>
-
-    <target name="compact10dist">
-        <call target="clean" />
-        <call target="fullbuild" />
-        <property name="binary_snapshot.name" value="${binary_compact10_snapshot.name}" />
-        <call target="binary_snapshot" />
-    </target>
-
-    <target name="compact20dist">
-        <call target="clean" />
-        <call target="build, cleanwebsite" />
-        <property name="binary_snapshot.name" value="${binary_compact20_snapshot.name}" />
-        <call target="binary_snapshot" />
-    </target>
-
     <target name="fullrelease">
-        <exec program="nant" commandline="-t:net-1.0 -D:nlog.package.name=${nlog.package.name} release fulldist" />
-        <exec program="nant" commandline="-t:netcf-1.0 -D:nlog.package.name=${nlog.package.name} release compact10dist" />
-        <exec program="nant" commandline="-t:netcf-2.0 -D:nlog.package.name=${nlog.package.name} release compact20dist" failonerror="false" />
+        <property name="debugrelease" value="release" />
+        <property name="debugrelease" value="debug" if="${nlog.debug}" />
+        <exec program="nant" commandline="-t:net-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
+        <exec program="nant" commandline="-t:net-1.1 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
+        <exec program="nant" commandline="-t:net-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
+        <exec program="nant" commandline="-t:netcf-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
+        <exec program="nant" commandline="-t:netcf-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
+        <exec program="nant" commandline="-t:mono-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
+        <exec program="nant" commandline="-t:mono-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
     </target>
 
     <target name="doc" depends="configure, build, xmldoc, website, helpwebsite">
@@ -509,7 +501,7 @@
             </sourcefiles>
         </uptodate>
         <if test="${not help.uptodate}">
-            <exec program="${ndoc.console.exe}" workingdir="build/${buildsubdir}" commandline="-documenter=MSDN -project=.\NLog.ndoc" />
+            <exec program="${ndoc.console.exe}" verbose="true" workingdir="build/${buildsubdir}" commandline="${ndoc.console.args} -documenter=MSDN -project=.\NLog.ndoc" />
         </if>
     </target>
 
@@ -599,7 +591,7 @@
         </uptodate>
         <if test="${not xmldoc.uptodate}">
             <copy file="${project::get-base-directory()}/NLog-${framework::get-target-framework()}.ndoc" tofile="build/${buildsubdir}/NLog.ndoc" />
-            <exec program="${ndoc.console.exe}" workingdir="build/${buildsubdir}" commandline="-documenter=XML -project=./NLog.ndoc" />
+            <exec program="${ndoc.console.exe}" verbose="true" workingdir="build/${buildsubdir}" commandline="${ndoc.console.args} -documenter=XML -project=./NLog.ndoc" />
         </if>
         <echo message="Getting target, filter and layout renderer names from build/${buildsubdir}/doc.xml ..." />
         <script language="C#">
@@ -771,51 +763,6 @@
             </do>
         </foreach>
 
-        <foreach item="String" in="${nlog.targetNames}" delim="," property="t">
-            <style out="${webbuild.dir}/target.${t}.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
-                <parameters>
-                    <parameter name="build_time" value="${buildtime}" />
-                    <parameter name="external-base" value="${webbuild.dir}" />
-                    <parameter name="file_extension" value="html" />
-                    <parameter name="sourceforge" value="${web.sourceforge}" />
-                    <parameter name="page_id_override" value="documentation" />
-                    <parameter name="subpage_id_override" value="targets" />
-                    <parameter name="mode" value="${web.buildmode}" />
-                    <parameter name="target_name" value="${t}" />
-                </parameters>
-            </style>
-        </foreach>
-
-        <foreach item="String" in="${nlog.layoutRendererNames}" delim="," property="t">
-            <style out="${webbuild.dir}/lr.${t}.html" style="web/layoutrenderers.xsl" in="build/${buildsubdir}/doc.xml">
-                <parameters>
-                    <parameter name="build_time" value="${buildtime}" />
-                    <parameter name="external-base" value="${webbuild.dir}" />
-                    <parameter name="file_extension" value="html" />
-                    <parameter name="sourceforge" value="${web.sourceforge}" />
-                    <parameter name="page_id_override" value="documentation" />
-                    <parameter name="subpage_id_override" value="layoutrenderers" />
-                    <parameter name="mode" value="${web.buildmode}" />
-                    <parameter name="lr_name" value="${t}" />
-                </parameters>
-            </style>
-        </foreach>
-
-        <foreach item="String" in="${nlog.filterNames}" delim="," property="t">
-            <style out="${webbuild.dir}/filter.${t}.html" style="web/filters.xsl" in="build/${buildsubdir}/doc.xml">
-                <parameters>
-                    <parameter name="build_time" value="${buildtime}" />
-                    <parameter name="external-base" value="${webbuild.dir}" />
-                    <parameter name="file_extension" value="html" />
-                    <parameter name="sourceforge" value="${web.sourceforge}" />
-                    <parameter name="page_id_override" value="documentation" />
-                    <parameter name="subpage_id_override" value="filters" />
-                    <parameter name="mode" value="${web.buildmode}" />
-                    <parameter name="filter_name" value="${t}" />
-                </parameters>
-            </style>
-        </foreach>
-
         <style out="${webbuild.dir}/targets.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
             <parameters>
                 <parameter name="build_time" value="${buildtime}" />
@@ -863,6 +810,51 @@
                 <parameter name="mode" value="${web.buildmode}" />
             </parameters>
         </style>
+
+        <foreach item="String" in="${nlog.targetNames}" delim="," property="t">
+            <style out="${webbuild.dir}/target.${t}.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
+                <parameters>
+                    <parameter name="build_time" value="${buildtime}" />
+                    <parameter name="external-base" value="${webbuild.dir}" />
+                    <parameter name="file_extension" value="html" />
+                    <parameter name="sourceforge" value="${web.sourceforge}" />
+                    <parameter name="page_id_override" value="documentation" />
+                    <parameter name="subpage_id_override" value="targets" />
+                    <parameter name="mode" value="${web.buildmode}" />
+                    <parameter name="target_name" value="${t}" />
+                </parameters>
+            </style>
+        </foreach>
+
+        <foreach item="String" in="${nlog.layoutRendererNames}" delim="," property="t">
+            <style out="${webbuild.dir}/lr.${t}.html" style="web/layoutrenderers.xsl" in="build/${buildsubdir}/doc.xml">
+                <parameters>
+                    <parameter name="build_time" value="${buildtime}" />
+                    <parameter name="external-base" value="${webbuild.dir}" />
+                    <parameter name="file_extension" value="html" />
+                    <parameter name="sourceforge" value="${web.sourceforge}" />
+                    <parameter name="page_id_override" value="documentation" />
+                    <parameter name="subpage_id_override" value="layoutrenderers" />
+                    <parameter name="mode" value="${web.buildmode}" />
+                    <parameter name="lr_name" value="${t}" />
+                </parameters>
+            </style>
+        </foreach>
+
+        <foreach item="String" in="${nlog.filterNames}" delim="," property="t">
+            <style out="${webbuild.dir}/filter.${t}.html" style="web/filters.xsl" in="build/${buildsubdir}/doc.xml">
+                <parameters>
+                    <parameter name="build_time" value="${buildtime}" />
+                    <parameter name="external-base" value="${webbuild.dir}" />
+                    <parameter name="file_extension" value="html" />
+                    <parameter name="sourceforge" value="${web.sourceforge}" />
+                    <parameter name="page_id_override" value="documentation" />
+                    <parameter name="subpage_id_override" value="filters" />
+                    <parameter name="mode" value="${web.buildmode}" />
+                    <parameter name="filter_name" value="${t}" />
+                </parameters>
+            </style>
+        </foreach>
 
         <style destdir="${webbuild.dir}" style="web/style.xsl">
             <infiles basedir="web">

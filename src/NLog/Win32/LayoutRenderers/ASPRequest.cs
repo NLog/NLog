@@ -47,7 +47,7 @@ namespace NLog.Win32.LayoutRenderers
     /// ASP Request variable
     /// </summary>
     [LayoutRenderer("asp-request")]
-    [SupportedRuntime(RuntimeOS.Win32)]
+    [SupportedRuntime(OS=RuntimeOS.Win32)]
     public class ASPRequestValueLayoutRenderer: LayoutRenderer
     {
         private string _queryStringKey;
