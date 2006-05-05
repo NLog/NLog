@@ -125,7 +125,7 @@ SectionEnd
 Section "Documentation"
   SectionIn 1 2
   SetOutPath $INSTDIR\help
-  ;File build\${BUILDSUBDIR}\help\NLog.chm
+  File build\doc\help\NLog.chm
 SectionEnd
 
 Section "Uninstall"

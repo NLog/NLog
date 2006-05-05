@@ -32,73 +32,31 @@
 // 
 
 using System;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
 
-namespace NLog.Internal
+namespace NLog.Internal.NetworkSenders
 {
     /// <summary>
-    /// Sends messages over a TCP network connection.
+    /// Sends one-way messages over the HTTP protocol.
     /// </summary>
-	public class TcpNetworkSender : NetworkSender
+	public class HttpNetworkSender : NetworkSender
 	{
-        private Socket _socket;
-        private Encoding _encoding;
-
         /// <summary>
-        /// Creates a new instance of <see cref="TcpNetworkSender"/> and initializes
-        /// it with the specified URL. Connects to the server specified in the URL.
+        /// Creates a new instance of <see cref="HttpNetworkSender"/> and initializes
+        /// it with the specified URL.
         /// </summary>
-        /// <param name="url">URL. Must start with tcp://</param>
-        public TcpNetworkSender(string url) : base(url)
+        /// <param name="url">URL. Must start with http:// or https://</param>
+        public HttpNetworkSender(string url) : base(url)
         {
-            // tcp://hostname:port
-
-            Uri parsedUri = new Uri(url);
-#if NET_2_API
-            IPHostEntry host = Dns.GetHostEntry(parsedUri.Host);
-#else
-            IPHostEntry host = Dns.GetHostByName(parsedUri.Host);
-#endif
-            int port = parsedUri.Port;
-
-            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            _socket.Connect(new IPEndPoint(host.AddressList[0], port));
-
-            _encoding = Encoding.UTF8;
         }
 
         /// <summary>
-        /// Sends the specified text over the connected socket.
+        /// Sends the given text over HTTP.
         /// </summary>
-        /// <param name="text"></param>
+        /// <param name="text">The text to be sent.</param>
+        /// <remarks>The method uses HTTP <c>POST</c> method to connect to the server.</remarks>
         protected override void DoSend(string text)
         {
-            lock (this)
-            {
-                byte[] bytes = _encoding.GetBytes(text);
-                _socket.Send(bytes);
-            }
-        }
-
-        /// <summary>
-        /// Closes the socket.
-        /// </summary>
-        public override void Close()
-        {
-            lock (this)
-            {
-                try
-                {
-                    _socket.Close();
-                }
-                catch (Exception)
-                {
-                    // ignore errors
-                }
-                _socket = null;
-            }
+            throw new NotSupportedException("Not implemented yet");
         }
     }
 }

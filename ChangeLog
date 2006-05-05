@@ -1,5 +1,8 @@
 2006-05-05 Jaroslaw Kowalski <jaak@jkowalski.net>
 
+	* Completely rebuilt the installer.
+	* Reworked the way documentation is generated. We now use NDoc 2.0 Alpha
+	3k and there are still some minor issues.
 	* Separate compilation of NLog for all supported frameworks
 	* Cleaned up the code, now compiles with warnaserror="true"
 	

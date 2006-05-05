@@ -19,7 +19,7 @@
     <property name="ndoc.path" value="D:\Apps\NDoc\1.1" />
     <property name="ndoc2.path" value="D:\Apps\NDoc\2.0" />
     <property name="ndoc.console.exe" value="${ndoc.path}/ndocconsole.exe" />
-    <property name="ndoc.console.args" value="-referencepath &quot;${framework::get-assembly-directory(framework::get-target-framework())}&quot;" />
+    <property name="ndoc.console.args" value="-referencepath &quot;${framework::get-assembly-directory(framework::get-target-framework())}&quot;" dynamic="true" />
     <property name="prettyprinter.exe" value="tools/PrettyPrinter.exe" />
 
     <property name="webserver.deploy.dir" value="web/www.nlog-project.org/html" />
@@ -45,8 +45,6 @@
         <property name="nunit2.report.dir" value="${project::get-base-directory()}/build/${buildsubdir}/test_results" />
         <property name="clover.report.dir" value="build/${buildsubdir}/clover_report" />
         <property name="clover.build.dir" value="build/${buildsubdir}/clover" />
-        <property name="web.dir" value="build/${buildsubdir}/web" unless="${property::exists('web.dir')}" />
-        <property name="helpweb.dir" value="build/${buildsubdir}/helpweb" unless="${property::exists('helpweb.dir')}" />
 
         <echo message="Building NLog for ${framework::get-target-framework()}" />
         <echo message="Package name: ${nlog.package.name}" />
@@ -105,6 +103,79 @@
             </references>
             <arg value="${nlog.csc.args}"/>
         </csc>
+    </target>
+
+    <target name="xmldoc">
+        <mkdir dir="build/doc" />
+        
+        <property name="nant.settings.currentframework" value="net-2.0" />
+
+        <csc target="library" output="build/doc/NLog.dll" doc="build/doc/NLog.xml" warninglevel="0" define="DOCUMENTATION;NANT">
+            <sources basedir="src">
+                <include name="NLog/**/*.cs" />
+            </sources>
+            <references>
+                <include name="mscorlib.dll" />
+                <include name="System.dll" />
+                <include name="System.Xml.dll" />
+                <include name="System.Data.dll" />
+                <include name="System.Messaging.dll" />
+                <include name="System.Windows.Forms.dll" />
+                <include name="System.Web.dll" />
+                <include name="System.Web.Services.dll" />
+                <include name="Mono.Posix.dll" />
+            </references>
+        </csc>
+
+        <uptodate property="xmldoc.uptodate">
+            <targetfiles>
+                <include name="build/doc/doc.xml" />
+            </targetfiles>
+            <sourcefiles basedir="build/doc">
+                <include name="**/*.dll" />
+            </sourcefiles>
+        </uptodate>
+        <if test="${not xmldoc.uptodate}">
+            <exec program="${ndoc2.path}/ndocconsole.exe" verbose="true" workingdir="." commandline="${ndoc.console.args} -documenter=XML -project=./NLog.ndoc" />
+        </if>
+        <echo message="Getting target, filter and layout renderer names from build/doc/doc.xml ..." />
+        <script language="C#">
+            <code><![CDATA[
+                public static void ScriptMain(Project project) {
+                    System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
+                    doc.Load(project.ExpandProperties("${project::get-base-directory()}/build/doc/doc.xml", Location.UnknownLocation));
+                    string targets = "";
+                    string layoutRenderers = "";
+                    string filters = "";
+                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value"))
+                    {
+                        if (targets != "")
+                            targets += ",";
+                        targets += node.InnerText;
+                    }
+                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@id='T:NLog.LayoutRendererAttribute']/argument[position()=1]/@value"))
+                    {
+                        if (layoutRenderers != "")
+                            layoutRenderers += ",";
+                        layoutRenderers += node.InnerText;
+                    }
+                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@id='T:NLog.FilterAttribute']/argument[position()=1]/@value"))
+                    {
+                        if (filters != "")
+                            filters += ",";
+                        filters += node.InnerText;
+                    }
+
+                    project.Properties["nlog.targetNames"] = targets;
+                    project.Properties["nlog.layoutRendererNames"] = layoutRenderers;
+                    project.Properties["nlog.filterNames"] = filters;
+                  
+                }
+                ]]></code>
+        </script>
+        <echo message="Target names: ${nlog.targetNames}" />
+        <echo message="Layout renderer names: ${nlog.layoutRendererNames}" />
+        <echo message="Filter names: ${nlog.filterNames}" />
     </target>
 
     <target name="NLog.ComInterop" depends="NLog">
@@ -448,16 +519,13 @@
     <target name="build-nlogc-net-1.1" depends="NLogC-1.1, NLogC-2.0" />
     <target name="build-nlogc-net-2.0" depends="NLogC-2.0" />
 
-    <target name="fullbuild" depends="build, cleanwebsite, doc">
-    </target>
-
     <target name="updateversion">
         <foreach item="Line" in="Nlog.version" delim=";" property="nlog.version">
             <exec workingdir="${project::get-base-directory()}" program="tools/ReplaceVersion.exe" commandline=". ${nlog.version}" />
         </foreach>
     </target>
 
-    <target name="installer">
+    <target name="installer" depends="allframeworksdebugandrelease, help">
         <readregistry property="nsis.dir" key="SOFTWARE\NSIS\" />
         <property name="makensis.exe" value="${nsis.dir}/makensis.exe" />
 
@@ -486,38 +554,43 @@
         <exec program="nant" commandline="-t:mono-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
     </target>
 
-    <target name="doc" depends="configure, build, xmldoc, website, helpwebsite">
-        <copy file="${project::get-base-directory()}/web/syntax.xsl" tofile="build/${buildsubdir}/syntax.xsl" overwrite="true" />
-        <xmlpoke file="build/${buildsubdir}/syntax.xsl" xpath="//xsl:param[@name='external-base']" value="file://${webbuild.dir}">
+    <target name="help" depends="xmldoc, helpwebsite">
+        <copy file="${project::get-base-directory()}/web/syntax.xsl" tofile="build/doc/syntax.xsl" overwrite="true" />
+        <xmlpoke file="build/doc/syntax.xsl" xpath="//xsl:param[@name='external-base']" value="file://${webbuild.dir}">
             <namespaces>
                 <namespace prefix="xsl" uri="http://www.w3.org/1999/XSL/Transform" />
             </namespaces>
         </xmlpoke>
-        <copy file="${project::get-base-directory()}/NLog-${framework::get-target-framework()}.ndoc" tofile="build/${buildsubdir}/NLog.ndoc" />
-        <copy todir="build/${buildsubdir}/help/examples">
-            <fileset basedir="build/${buildsubdir}/helpweb/examples">
+        <copy todir="build/doc/help/examples">
+            <fileset basedir="build/doc/helpweb/examples">
                 <include name="**/*" />
             </fileset>
         </copy>
         <uptodate property="help.uptodate">
             <targetfiles>
-                <include name="${nlog.help.dir}/NLog.chm" />
+                <include name="build/doc/help/NLog.chm" />
+                <include name="nlog-${nlog.package.name}-help.zip" />
             </targetfiles>
-            <sourcefiles basedir="build/${buildsubdir}">
-                <include name="**/*.dll" />
-                <include name="web/**/*" />
+            <sourcefiles basedir=".">
+                <include name="build/doc/NLog.dll" />
+                <include name="build/doc/helpweb/**/*" />
                 <include name="NLog.ndoc" />
             </sourcefiles>
         </uptodate>
         <if test="${not help.uptodate}">
-            <exec program="${ndoc.console.exe}" verbose="true" workingdir="build/${buildsubdir}" commandline="${ndoc.console.args} -documenter=MSDN -project=.\NLog.ndoc" />
+            <exec program="${ndoc2.path}/ndocconsole.exe" verbose="true" workingdir="." commandline="${ndoc.console.args} -documenter=MSDN-CHM -project=.\NLog.ndoc" />
+            <zip zipfile="nlog-${nlog.package.name}-help.zip">
+                <fileset basedir="build/doc/help">
+                    <include name="NLog.chm" />
+                </fileset>
+            </zip>
         </if>
     </target>
 
     <target name="cleanwebsite" depends="xmldoc, website">
     </target>
 
-    <target name="publish_website_help" depends="doc">
+    <target name="publish_website_help">
         <zip zipfile="web.zip">
             <fileset basedir="${nlog.help.dir}">
                 <include name="**/*" />
@@ -576,78 +649,30 @@
         <exec program="${scp.program}" commandline="${scp.args} nlog-${nlog.package.name}*.* ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ChangeLog..." />
         <exec program="${scp.program}" commandline="${scp.args} ChangeLog ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
+        <echo message="Calculating MD5SUM..." />
+        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} (cd ${webserver.deploy.dir}/snapshots/${nlog.package.name}; md5sum nlog-${nlog.package.name}* > MD5SUM)" />
+        <echo message="Done." />
     </target>
 
-    <target name="publish_snapshot" depends="allframeworksdebugandrelease, source_snapshot, upload_snapshot">
+    <target name="publish_snapshot" depends="allframeworksdebugandrelease, source_snapshot, help, installer, upload_snapshot">
     </target>
 
-    <target name="xmldoc" depends="build">
-        <uptodate property="xmldoc.uptodate">
-            <targetfiles>
-                <include name="build/${buildsubdir}/doc.xml" />
-            </targetfiles>
-            <sourcefiles basedir="build/${buildsubdir}">
-                <include name="**/*.dll" />
-            </sourcefiles>
-        </uptodate>
-        <if test="${not xmldoc.uptodate}">
-            <copy file="${project::get-base-directory()}/NLog-${framework::get-target-framework()}.ndoc" tofile="build/${buildsubdir}/NLog.ndoc" />
-            <exec program="${ndoc.console.exe}" verbose="true" workingdir="build/${buildsubdir}" commandline="${ndoc.console.args} -documenter=XML -project=./NLog.ndoc" />
-        </if>
-        <echo message="Getting target, filter and layout renderer names from build/${buildsubdir}/doc.xml ..." />
-        <script language="C#">
-            <code><![CDATA[
-                public static void ScriptMain(Project project) {
-                    System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
-                    doc.Load(project.ExpandProperties("${project::get-base-directory()}/build/${buildsubdir}/doc.xml", Location.UnknownLocation));
-                    string targets = "";
-                    string layoutRenderers = "";
-                    string filters = "";
-                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value"))
-                    {
-                        if (targets != "")
-                            targets += ",";
-                        targets += node.InnerText;
-                    }
-                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@name='NLog.LayoutRendererAttribute']/property[@name='FormatString']/@value"))
-                    {
-                        if (layoutRenderers != "")
-                            layoutRenderers += ",";
-                        layoutRenderers += node.InnerText;
-                    }
-                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@name='NLog.FilterAttribute']/property[@name='Name']/@value"))
-                    {
-                        if (filters != "")
-                            filters += ",";
-                        filters += node.InnerText;
-                    }
-
-                    project.Properties["nlog.targetNames"] = targets;
-                    project.Properties["nlog.layoutRendererNames"] = layoutRenderers;
-                    project.Properties["nlog.filterNames"] = filters;
-                  
-                }
-                ]]></code>
-        </script>
-
-    </target>
-
-    <target name="website" depends="configure">
-        <property name="webbuild.dir" value="${path::combine(project::get-base-directory(),web.dir)}" />
+    <target name="website" depends="xmldoc">
+        <property name="webbuild.dir" value="${path::combine(project::get-base-directory(),'build/doc/web')}" />
         <property name="web.buildmode" value="web" />
         <property name="web.sourceforge" value="1" />
         <call target="buildwebsite" />
-        <copy file="${web.dir}/introduction.html" tofile="${web.dir}/index.html" />
+        <copy file="build/doc/web/introduction.html" tofile="build/doc/web/index.html" />
     </target>
 
-    <target name="helpwebsite" depends="configure">
-        <property name="webbuild.dir" value="${path::combine(project::get-base-directory(),helpweb.dir)}" />
+    <target name="helpwebsite" depends="xmldoc">
+        <property name="webbuild.dir" value="${path::combine(project::get-base-directory(),'build/doc/helpweb')}" />
         <property name="web.buildmode" value="help" />
         <property name="web.sourceforge" value="0" />
         <call target="buildwebsite" />
     </target>
 
-    <target name="buildwebsite" depends="configure, xmldoc">
+    <target name="buildwebsite">
         <mkdir dir="${webbuild.dir}" />
         <mkdir dir="${webbuild.dir}/examples" />
 
@@ -665,6 +690,54 @@
                 <include name="**/*" />
             </fileset>
         </copy>
+
+        <style out="${webbuild.dir}/targets.html" style="web/targets.xsl" in="build/doc/doc.xml">
+            <parameters>
+                <parameter name="build_time" value="${buildtime}" />
+                <parameter name="external-base" value="${webbuild.dir}" />
+                <parameter name="file_extension" value="html" />
+                <parameter name="sourceforge" value="${web.sourceforge}" />
+                <parameter name="page_id_override" value="documentation" />
+                <parameter name="subpage_id_override" value="targets" />
+                <parameter name="mode" value="${web.buildmode}" />
+            </parameters>
+        </style>
+
+        <style out="${webbuild.dir}/layoutrenderers.html" style="web/layoutrenderers.xsl" in="build/doc/doc.xml">
+            <parameters>
+                <parameter name="build_time" value="${buildtime}" />
+                <parameter name="external-base" value="${webbuild.dir}" />
+                <parameter name="file_extension" value="html" />
+                <parameter name="sourceforge" value="${web.sourceforge}" />
+                <parameter name="page_id_override" value="documentation" />
+                <parameter name="subpage_id_override" value="layoutrenderers" />
+                <parameter name="mode" value="${web.buildmode}" />
+            </parameters>
+        </style>
+        
+        <style out="${webbuild.dir}/filters.html" style="web/filters.xsl" in="build/doc/doc.xml">
+            <parameters>
+                <parameter name="build_time" value="${buildtime}" />
+                <parameter name="external-base" value="${webbuild.dir}" />
+                <parameter name="file_extension" value="html" />
+                <parameter name="sourceforge" value="${web.sourceforge}" />
+                <parameter name="page_id_override" value="documentation" />
+                <parameter name="subpage_id_override" value="filters" />
+                <parameter name="mode" value="${web.buildmode}" />
+            </parameters>
+        </style>
+        
+        <style out="${webbuild.dir}/conditions.html" style="web/conditions.xsl" in="build/doc/doc.xml">
+            <parameters>
+                <parameter name="build_time" value="${buildtime}" />
+                <parameter name="external-base" value="${webbuild.dir}" />
+                <parameter name="file_extension" value="html" />
+                <parameter name="sourceforge" value="${web.sourceforge}" />
+                <parameter name="page_id_override" value="documentation" />
+                <parameter name="subpage_id_override" value="conditions" />
+                <parameter name="mode" value="${web.buildmode}" />
+            </parameters>
+        </style>
 
         <!-- syntax-hilite all *.cs files -->
 
@@ -764,56 +837,8 @@
             </do>
         </foreach>
 
-        <style out="${webbuild.dir}/targets.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
-            <parameters>
-                <parameter name="build_time" value="${buildtime}" />
-                <parameter name="external-base" value="${webbuild.dir}" />
-                <parameter name="file_extension" value="html" />
-                <parameter name="sourceforge" value="${web.sourceforge}" />
-                <parameter name="page_id_override" value="documentation" />
-                <parameter name="subpage_id_override" value="targets" />
-                <parameter name="mode" value="${web.buildmode}" />
-            </parameters>
-        </style>
-
-        <style out="${webbuild.dir}/layoutrenderers.html" style="web/layoutrenderers.xsl" in="build/${buildsubdir}/doc.xml">
-            <parameters>
-                <parameter name="build_time" value="${buildtime}" />
-                <parameter name="external-base" value="${webbuild.dir}" />
-                <parameter name="file_extension" value="html" />
-                <parameter name="sourceforge" value="${web.sourceforge}" />
-                <parameter name="page_id_override" value="documentation" />
-                <parameter name="subpage_id_override" value="layoutrenderers" />
-                <parameter name="mode" value="${web.buildmode}" />
-            </parameters>
-        </style>
-        
-        <style out="${webbuild.dir}/filters.html" style="web/filters.xsl" in="build/${buildsubdir}/doc.xml">
-            <parameters>
-                <parameter name="build_time" value="${buildtime}" />
-                <parameter name="external-base" value="${webbuild.dir}" />
-                <parameter name="file_extension" value="html" />
-                <parameter name="sourceforge" value="${web.sourceforge}" />
-                <parameter name="page_id_override" value="documentation" />
-                <parameter name="subpage_id_override" value="filters" />
-                <parameter name="mode" value="${web.buildmode}" />
-            </parameters>
-        </style>
-        
-        <style out="${webbuild.dir}/conditions.html" style="web/conditions.xsl" in="build/${buildsubdir}/doc.xml">
-            <parameters>
-                <parameter name="build_time" value="${buildtime}" />
-                <parameter name="external-base" value="${webbuild.dir}" />
-                <parameter name="file_extension" value="html" />
-                <parameter name="sourceforge" value="${web.sourceforge}" />
-                <parameter name="page_id_override" value="documentation" />
-                <parameter name="subpage_id_override" value="conditions" />
-                <parameter name="mode" value="${web.buildmode}" />
-            </parameters>
-        </style>
-
         <foreach item="String" in="${nlog.targetNames}" delim="," property="t">
-            <style out="${webbuild.dir}/target.${t}.html" style="web/targets.xsl" in="build/${buildsubdir}/doc.xml">
+            <style out="${webbuild.dir}/target.${t}.html" style="web/targets.xsl" in="build/doc/doc.xml">
                 <parameters>
                     <parameter name="build_time" value="${buildtime}" />
                     <parameter name="external-base" value="${webbuild.dir}" />
@@ -828,7 +853,7 @@
         </foreach>
 
         <foreach item="String" in="${nlog.layoutRendererNames}" delim="," property="t">
-            <style out="${webbuild.dir}/lr.${t}.html" style="web/layoutrenderers.xsl" in="build/${buildsubdir}/doc.xml">
+            <style out="${webbuild.dir}/lr.${t}.html" style="web/layoutrenderers.xsl" in="build/doc/doc.xml">
                 <parameters>
                     <parameter name="build_time" value="${buildtime}" />
                     <parameter name="external-base" value="${webbuild.dir}" />
@@ -843,7 +868,7 @@
         </foreach>
 
         <foreach item="String" in="${nlog.filterNames}" delim="," property="t">
-            <style out="${webbuild.dir}/filter.${t}.html" style="web/filters.xsl" in="build/${buildsubdir}/doc.xml">
+            <style out="${webbuild.dir}/filter.${t}.html" style="web/filters.xsl" in="build/doc/doc.xml">
                 <parameters>
                     <parameter name="build_time" value="${buildtime}" />
                     <parameter name="external-base" value="${webbuild.dir}" />

@@ -65,7 +65,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Stack trace renderer.
     /// </summary>
-    [LayoutRenderer("stacktrace",UsingLogEventInfo=true)]
+    [LayoutRenderer("stacktrace",UsingLogEventInfo=true,IgnoresPadding=true)]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class StackTraceLayoutRenderer: LayoutRenderer
     {

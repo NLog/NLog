@@ -470,11 +470,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Internal\HttpNetworkSender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Internal\InternalLogger.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -506,11 +501,6 @@
                 />
                 <File
                     RelPath = "Internal\MultiFileWatcher.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Internal\NetworkSender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -550,11 +540,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Internal\TcpNetworkSender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Internal\ThreadIDHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -566,11 +551,6 @@
                 />
                 <File
                     RelPath = "Internal\TypeToPropertyInfoDictionaryAssociation.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Internal\UdpNetworkSender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -606,6 +586,26 @@
                 />
                 <File
                     RelPath = "Internal\FileAppenders\SingleProcessFileAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\NetworkSenders\HttpNetworkSender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\NetworkSenders\NetworkSender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\NetworkSenders\TcpNetworkSender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\NetworkSenders\UdpNetworkSender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

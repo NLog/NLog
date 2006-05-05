@@ -39,7 +39,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// A newline literal.
     /// </summary>
-    [LayoutRenderer("newline")]
+    [LayoutRenderer("newline",IgnoresPadding=true)]
     public class NewLine: LayoutRenderer
     {
         /// <summary>

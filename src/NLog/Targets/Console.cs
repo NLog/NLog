@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
-
 using System;
 using NLog.Config;
 
@@ -57,29 +55,34 @@ namespace NLog.Targets
     /// <cs src="examples/targets/Console/ConsoleTarget.cs" />
     /// </example>
     [Target("Console")]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public sealed class ConsoleTarget: Target
     {
+#if !NETCF
         private bool _error = false;
 
         /// <summary>
         /// Send the logging messages to the standard error instead of the standard output.
         /// </summary>
+        [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
         [System.ComponentModel.DefaultValue(false)]
         public bool Error
         {
             get { return _error; }
             set { _error = value; }
         }
+#endif
 
         /// <summary>
-        /// Writes the specified logging event to the console <see cref="System.Console.Out"/> or
-        /// <see cref="System.Console.Error" /> depending on the value of the
-        /// <see cref="ConsoleTarget.Error" /> flag.
+        /// Writes the specified logging event to the Console.Out or
+        /// Console.Error depending on the value of the Error flag.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
+        /// <remarks>
+        /// Note that the Error option is not supported on .NET Compact Framework.
+        /// </remarks>
         protected internal override void Write(LogEventInfo logEvent)
         {
+#if !NETCF
             if (Error)
             {
                 Console.Error.WriteLine(CompiledLayout.GetFormattedMessage(logEvent));
@@ -88,8 +91,9 @@ namespace NLog.Targets
             {
                 Console.Out.WriteLine(CompiledLayout.GetFormattedMessage(logEvent));
             }
+#else
+            Console.WriteLine(CompiledLayout.GetFormattedMessage(logEvent));
+#endif
         }
     }
 }
-
-#endif

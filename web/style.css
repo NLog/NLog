@@ -315,7 +315,7 @@ td.content
     font-family: Trebuchet MS, Arial, Helv;
     font-size: 13px;
     padding: 20px;
-    padding-right: 150px;
+    padding-right: 20px;
     width: 100%;
     text-align: left;
     background-color: white;
@@ -696,6 +696,16 @@ td.parametertype
 
 td.parametervalue
 {
+    border: 1px solid #b0b0b0;
+    padding: 4px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 12px;
+}
+
+td.subheader
+{
+    background-color: #ffffA0;
     border: 1px solid #b0b0b0;
     padding: 4px;
     text-align: left;

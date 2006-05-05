@@ -48,7 +48,8 @@ namespace NLog.Win32.LayoutRenderers
     /// A value from the Registry.
     /// </summary>
     [LayoutRenderer("registry")]
-    [SupportedRuntime(OS=RuntimeOS.Win32)]
+    [SupportedRuntime(OS=RuntimeOS.Windows)]
+    [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class RegistryLayoutRenderer: LayoutRenderer
     {

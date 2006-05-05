@@ -57,11 +57,6 @@ namespace NLog.Config
         Unix,
 
         /// <summary>
-        /// Any Win32 operating system (Windows CE and desktop versions)
-        /// </summary>
-        Win32,
-
-        /// <summary>
         /// Windows CE
         /// </summary>
         WindowsCE,

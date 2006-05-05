@@ -84,7 +84,7 @@ namespace NLog.LayoutRenderers
             if (!context.User.Identity.IsAuthenticated)
                 return;
             
-            builder.Append(context.User.Identity.AuthenticationType);
+            builder.Append(ApplyPadding(context.User.Identity.AuthenticationType));
         }
     }
 }
