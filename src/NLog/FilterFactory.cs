@@ -99,10 +99,6 @@ namespace NLog
             }
             
         }
-        private static void AddDefaultFilters()
-        {
-            AddFiltersFromAssembly(typeof(FilterFactory).Assembly, String.Empty);
-        }
 
         /// <summary>
         /// Registers the specified filter type to the factory under a specified name.

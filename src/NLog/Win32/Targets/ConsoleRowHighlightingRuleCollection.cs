@@ -194,11 +194,18 @@ namespace NLog.Win32.Targets
         {
             private System.Collections.IEnumerator wrapped;
 
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="collection"></param>
             public Enumerator(ConsoleRowHighlightingRuleCollection collection)
             {
                 this.wrapped = ((System.Collections.CollectionBase)collection).GetEnumerator();
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public ConsoleRowHighlightingRule Current
             {
                 get
@@ -215,11 +222,18 @@ namespace NLog.Win32.Targets
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <returns></returns>
             public bool MoveNext()
             {
                 return this.wrapped.MoveNext();
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public void Reset()
             {
                 this.wrapped.Reset();

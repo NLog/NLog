@@ -57,7 +57,7 @@ namespace NLog.Internal
             // udp://hostname:port
 
             Uri parsedUri = new Uri(url);
-#if DOTNET_2_0
+#if NET_2_API
             IPHostEntry host = Dns.GetHostEntry(parsedUri.Host);
 #else
             IPHostEntry host = Dns.GetHostByName(parsedUri.Host);

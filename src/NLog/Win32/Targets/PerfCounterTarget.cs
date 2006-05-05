@@ -76,7 +76,11 @@ namespace NLog.Win32.Targets
                 if (!_perfCounterTargets.Contains(this)) _perfCounterTargets.Add(this);
             }
         }
-        
+
+        /// <summary>
+        /// Increments the configured performance counter.
+        /// </summary>
+        /// <param name="logEvent">log event</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
             if (!_operational) return;
@@ -94,12 +98,18 @@ namespace NLog.Win32.Targets
             }
         }
         
+        /// <summary>
+        /// Whether performance counter should be automatically created.
+        /// </summary>
         public bool AutoCreate
         {
             get {return _autoCreate; }
             set {_autoCreate = value; }
         }
         
+        /// <summary>
+        /// Performance counter category.
+        /// </summary>
         [RequiredParameter]
         public string CategoryName
         {
@@ -107,6 +117,9 @@ namespace NLog.Win32.Targets
             set {_categoryName = value; }
         }
         
+        /// <summary>
+        /// Name of the performance counter.
+        /// </summary>
         [RequiredParameter]
         public string CounterName
         {
@@ -114,12 +127,18 @@ namespace NLog.Win32.Targets
             set {_counterName = value; }
         }
         
+        /// <summary>
+        /// Instance name.
+        /// </summary>
         public string InstanceName
         {
             get {return _instanceName; }
             set {_instanceName = value; }
         }
         
+        /// <summary>
+        /// Performance counter type.
+        /// </summary>
         public PerformanceCounterType CounterType
         {
             get { return _counterType; }
@@ -168,7 +187,14 @@ namespace NLog.Win32.Targets
                                 ccd.CounterType = t._counterType;  
                                 ccds.Add(ccd);                                    
                             }
+#if DOTNET_2_0
+                            PerformanceCounterCategory.Create(CategoryName,
+                                "Category created by NLog",
+                                (InstanceName != null) ? PerformanceCounterCategoryType.MultiInstance : PerformanceCounterCategoryType.SingleInstance,
+                                ccds);
+#else
                             PerformanceCounterCategory.Create(CategoryName,"Category created by NLog",ccds);
+#endif
                         }
                         else
                         {

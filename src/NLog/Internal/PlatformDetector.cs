@@ -224,8 +224,6 @@ namespace NLog.Internal
 #if NETCF
             return RuntimeFramework.DotNetCompactFramework;
 #else
-            Version v = Environment.Version;
-
             if (Type.GetType("System.MonoType", false) != null)
             {
                 return RuntimeFramework.Mono;
@@ -255,11 +253,13 @@ namespace NLog.Internal
             return RuntimeOS.Unknown;
         }
 
+        /*
         private static void Compatibility(RuntimeFramework framework, RuntimeFramework impliesCompatibilityWith)
         {
             if (_currentFrameworkCompatibleWith.Contains(framework))
                 _currentFrameworkCompatibleWith[impliesCompatibilityWith] = true;
         }
+        */
 
         private static void Compatibility(RuntimeOS os, RuntimeOS impliesCompatibilityWith)
         {

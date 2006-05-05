@@ -119,6 +119,22 @@ namespace NLog
             get { return _name; }
         }
 
+        /// <summary>
+        /// Gets the name of the logger in upper case.
+        /// </summary>
+        public string UppercaseName
+        {
+            get { return _uppercaseName; }
+        }
+
+        /// <summary>
+        /// Gets the name of the logger in lower case.
+        /// </summary>
+        public string LowercaseName
+        {
+            get { return _lowercaseName; }
+        }
+
         internal int Ordinal
         {
             get { return _ordinal; }

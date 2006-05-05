@@ -98,10 +98,17 @@ namespace NLog.Win32.Targets
             set { _backgroundColor = value; }
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="ConsoleRowHighlightingRule"/>
+        /// </summary>
         public ConsoleRowHighlightingRule()
         {
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="ConsoleRowHighlightingRule"/> and
+        /// assigns Condition, ForegroundColor and BackgroundColor properties.
+        /// </summary>
         public ConsoleRowHighlightingRule(string condition, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor)
         {
             Condition = condition;
@@ -109,6 +116,12 @@ namespace NLog.Win32.Targets
             BackgroundColor = backgroundColor;
         }
 
+        /// <summary>
+        /// Checks whether the specified log event matches the condition (if any)
+        /// </summary>
+        /// <param name="logEvent">log event</param>
+        /// <returns><see langword="true"/> if the condition is not defined or 
+        /// if it matches, <see langword="false"/> otherwise</returns>
         public bool CheckCondition(LogEventInfo logEvent)
         {
             if (_condition == null)

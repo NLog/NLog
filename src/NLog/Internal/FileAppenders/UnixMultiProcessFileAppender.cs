@@ -46,8 +46,8 @@ using NLog.Config;
 
 using NLog.Internal;
 
-using Mono.Posix;
 using Mono.Unix;
+using Mono.Unix.Native;
 
 namespace NLog.Internal.FileAppenders
 {
@@ -78,7 +78,7 @@ namespace NLog.Internal.FileAppenders
         public UnixMultiProcessFileAppender(string fileName, IFileOpener opener)
         {
             _fileName = fileName;
-            _file = new UnixStream(Syscall.open(fileName, OpenFlags.O_APPEND, (Mono.Posix.FileMode)(6 | (6 << 3) | (6 << 6))), true);
+            _file = new UnixStream(Syscall.open(fileName, OpenFlags.O_APPEND, (FilePermissions)(6 | (6 << 3) | (6 << 6))), true);
         }
 
         public string FileName
