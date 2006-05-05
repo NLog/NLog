@@ -642,9 +642,14 @@
         <solution configuration="Release" solutionfile="NLog.sln" />
     </target>
 
+    <target name="upload_web_snapshot">
+        <property name="webserver.deploy.dir" value="${webserver.deploy.dir}/snapshots/${nlog.package.name}/web" />
+        <call target="deploy-web" />
+    </target>
+
     <target name="upload_snapshot">
         <echo message="Creating a directory for ${nlog.package.name}..." />
-        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} mkdir ${webserver.deploy.dir}/snapshots/${nlog.package.name}" failonerror="false" />
+        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} mkdir -p ${webserver.deploy.dir}/snapshots/${nlog.package.name} ${webserver.deploy.dir}/snapshots/${nlog.package.name}/web" failonerror="false" />
         <echo message="Uploading nlog-${nlog.package.name}*.*..." />
         <exec program="${scp.program}" commandline="${scp.args} nlog-${nlog.package.name}*.* ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ChangeLog..." />
@@ -654,7 +659,7 @@
         <echo message="Done." />
     </target>
 
-    <target name="publish_snapshot" depends="allframeworksdebugandrelease, source_snapshot, help, installer, upload_snapshot">
+    <target name="publish_snapshot" depends="allframeworksdebugandrelease, source_snapshot, help, installer, upload_snapshot, upload_web_snapshot">
     </target>
 
     <target name="website" depends="xmldoc">
@@ -977,7 +982,7 @@
     <target name="deploy-web" depends="website">
         <delete file="web.zip" if="${file::exists('web.zip')}" />
         <zip zipfile="web.zip" stampdatetime="${datetime::now()}" includeemptydirs="true">
-            <fileset basedir="${web.dir}">
+            <fileset basedir="build/doc/web">
                 <include name="**/*" />
                 <exclude name="**/.svn" />
                 <exclude name="**/.svn/**" />

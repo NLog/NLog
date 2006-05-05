@@ -470,4 +470,8 @@ urchinTracker();
         </xsl:call-template>
     </xsl:template>
 
+    <xsl:template match="link">
+        <a href="{@href}.{$file_extension}"><xsl:apply-templates /></a>
+    </xsl:template>
+
 </xsl:stylesheet>
