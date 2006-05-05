@@ -37,12 +37,15 @@ using System;
 using System.Text;
 using System.Web;
 
+using NLog.Config;
+
 namespace NLog.LayoutRenderers
 {
     /// <summary>
     /// ASP.NET User variable
     /// </summary>
     [LayoutRenderer("aspnet-user-authtype")]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ASPNETUserAuthTypeLayoutRenderer : LayoutRenderer
     {
         /// <summary>

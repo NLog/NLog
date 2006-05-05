@@ -40,13 +40,74 @@ namespace NLog.Config
     /// and operating system.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class SupportedRuntimeAttribute: SupportedRuntimeAttributeBase
+    public class SupportedRuntimeAttributeBase: Attribute
     {
+        private RuntimeFramework _framework = RuntimeFramework.Any;
+        private RuntimeOS _os = RuntimeOS.Any;
+        private string _minRuntimeVersion = null;
+        private string _maxRuntimeVersion = null;
+        private string _minOSVersion = null;
+        private string _maxOSVersion = null;
+
         /// <summary>
-        /// Creates a new instance of <see cref="SupportedRuntimeAttribute"/>.
+        /// Creates a new instance of <see cref="SupportedRuntimeAttributeBase"/>.
         /// </summary>
-        public SupportedRuntimeAttribute()
+        protected SupportedRuntimeAttributeBase()
         {
+        }
+
+        /// <summary>
+        /// Supported runtime framework.
+        /// </summary>
+        public RuntimeFramework Framework
+        {
+            get { return _framework; }
+            set { _framework = value; }
+        }
+
+        /// <summary>
+        /// Supported operating system.
+        /// </summary>
+        public RuntimeOS OS
+        {
+            get { return _os; }
+            set { _os = value; }
+        }
+
+        /// <summary>
+        /// Minimum runtime version supported.
+        /// </summary>
+        public string MinRuntimeVersion
+        {
+            get { return _minRuntimeVersion; }
+            set { _minRuntimeVersion = value; }
+        }
+
+        /// <summary>
+        /// Maximum runtime version supported.
+        /// </summary>
+        public string MaxRuntimeVersion
+        {
+            get { return _maxRuntimeVersion; }
+            set { _maxRuntimeVersion = value; }
+        }
+
+        /// <summary>
+        /// Minimum operating system version supported.
+        /// </summary>
+        public string MinOSVersion
+        {
+            get { return _minOSVersion; }
+            set { _minOSVersion = value; }
+        }
+
+        /// <summary>
+        /// Maximum operating system version supported.
+        /// </summary>
+        public string MaxOSVersion
+        {
+            get { return _maxOSVersion; }
+            set { _maxOSVersion = value; }
         }
     }
 }

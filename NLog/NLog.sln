@@ -11,6 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Test", "tests\NLog.Tes
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.ComInterop", "src\NLog.ComInterop\NLog.ComInterop.csproj", "{B3F8E5FB-C9D4-4C12-841F-8009EB60DB3D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NLogC", "src\NLogC\NLogC.vcproj", "{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -29,6 +37,14 @@ Global
 		{5EC49108-97AE-40EA-B550-8960E4522718}.Debug.Build.0 = Debug|.NET
 		{5EC49108-97AE-40EA-B550-8960E4522718}.Release.ActiveCfg = Release|.NET
 		{5EC49108-97AE-40EA-B550-8960E4522718}.Release.Build.0 = Release|.NET
+		{B3F8E5FB-C9D4-4C12-841F-8009EB60DB3D}.Debug.ActiveCfg = Debug|.NET
+		{B3F8E5FB-C9D4-4C12-841F-8009EB60DB3D}.Debug.Build.0 = Debug|.NET
+		{B3F8E5FB-C9D4-4C12-841F-8009EB60DB3D}.Release.ActiveCfg = Release|.NET
+		{B3F8E5FB-C9D4-4C12-841F-8009EB60DB3D}.Release.Build.0 = Release|.NET
+		{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}.Debug.ActiveCfg = Debug|Win32
+		{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}.Debug.Build.0 = Debug|Win32
+		{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}.Release.ActiveCfg = Release|Win32
+		{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}.Release.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionItems) = postSolution
 		NLog.build = NLog.build

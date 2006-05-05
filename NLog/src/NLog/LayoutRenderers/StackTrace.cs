@@ -37,6 +37,8 @@ using System.Text;
 using System.Diagnostics;
 using System.Reflection;
 
+using NLog.Config;
+
 namespace NLog.LayoutRenderers
 {
     /// <summary>
@@ -64,6 +66,7 @@ namespace NLog.LayoutRenderers
     /// Stack trace renderer.
     /// </summary>
     [LayoutRenderer("stacktrace",UsingLogEventInfo=true)]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class StackTraceLayoutRenderer: LayoutRenderer
     {
         private StackTraceFormat _format = StackTraceFormat.Flat;

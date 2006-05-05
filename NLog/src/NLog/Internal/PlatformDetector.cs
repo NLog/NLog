@@ -61,22 +61,42 @@ namespace NLog.Internal
             SupportedRuntimeAttribute[] supportedRuntimes = 
                 (SupportedRuntimeAttribute[])t.GetCustomAttributes(typeof(SupportedRuntimeAttribute), true);
 
+            NotSupportedRuntimeAttribute[] notSupportedRuntimes = 
+                (NotSupportedRuntimeAttribute[])t.GetCustomAttributes(typeof(NotSupportedRuntimeAttribute), true);
+
             // no attributes defined - we default to Yes.
-            if (supportedRuntimes == null || supportedRuntimes.Length == 0)
+            if (supportedRuntimes.Length + notSupportedRuntimes.Length == 0)
                 return true;
+
+            bool supported = false;
+            if (supportedRuntimes.Length == 0)
+                supported = true;
 
             foreach (SupportedRuntimeAttribute sr in supportedRuntimes)
             {
-                if (_currentFrameworkCompatibleWith.Contains(sr.Framework)
-                    && _currentOSCompatibleWith.Contains(sr.OS))
+                if (RuntimeMatches(sr))
                 {
-                    return true;
+                    supported = true;
+                    break;
                 }
             }
 
-            InternalLogger.Debug("{0} is not supported on current runtime.", t.FullName);
+            if (supported)
+            {
+                foreach (NotSupportedRuntimeAttribute nsr in notSupportedRuntimes)
+                {
+                    if (RuntimeMatches(nsr))
+                    {
+                        supported = false;
+                        break;
+                    }
+                }
+            }
 
-            return false;
+            if (!supported)
+                InternalLogger.Debug("{0} is not supported on current runtime.", t.FullName);
+
+            return supported;
         }
 
         public static bool IsSupportedOnCurrentRuntime(MethodInfo mi)
@@ -84,22 +104,113 @@ namespace NLog.Internal
             SupportedRuntimeAttribute[] supportedRuntimes = 
                 (SupportedRuntimeAttribute[])mi.GetCustomAttributes(typeof(SupportedRuntimeAttribute), true);
 
+            NotSupportedRuntimeAttribute[] notSupportedRuntimes = 
+                (NotSupportedRuntimeAttribute[])mi.GetCustomAttributes(typeof(NotSupportedRuntimeAttribute), true);
+
             // no attributes defined - we default to Yes.
-            if (supportedRuntimes == null || supportedRuntimes.Length == 0)
+            if (supportedRuntimes.Length + notSupportedRuntimes.Length == 0)
                 return true;
+
+            bool supported = false;
+            if (supportedRuntimes.Length == 0)
+                supported = true;
 
             foreach (SupportedRuntimeAttribute sr in supportedRuntimes)
             {
-                if (_currentFrameworkCompatibleWith.Contains(sr.Framework)
-                    && _currentOSCompatibleWith.Contains(sr.OS))
+                if (RuntimeMatches(sr))
                 {
-                    return true;
+                    supported = true;
+                    break;
                 }
             }
 
-            InternalLogger.Debug("{0} is not supported on current runtime.", mi.Name);
 
+
+            if (supported)
+            {
+                foreach (NotSupportedRuntimeAttribute nsr in notSupportedRuntimes)
+                {
+                    if (RuntimeMatches(nsr))
+                    {
+                        supported = false;
+                        break;
+                    }
+                }
+            }
+
+            if (!supported)
+                InternalLogger.Debug("{0} is not supported on current runtime.", mi.ToString());
+
+            return supported;
+        }
+
+        private static bool RuntimeMatches(SupportedRuntimeAttributeBase sr)
+        {
+            if (_currentFrameworkCompatibleWith.Contains(sr.Framework) && _currentOSCompatibleWith.Contains(sr.OS))
+            {
+                if (sr.MinOSVersion != null)
+                {
+                    if (CompareVersion(Environment.OSVersion.Version, sr.MinOSVersion) < 0)
+                        return false;
+                }
+                if (sr.MaxOSVersion != null)
+                {
+                    if (CompareVersion(Environment.OSVersion.Version, sr.MaxOSVersion) > 0)
+                        return false;
+                }
+                if (sr.MinRuntimeVersion != null)
+                {
+                    if (CompareVersion(Environment.Version, sr.MinRuntimeVersion) < 0)
+                        return false;
+                }
+                if (sr.MaxRuntimeVersion != null)
+                {
+                    if (CompareVersion(Environment.Version, sr.MaxRuntimeVersion) > 0)
+                        return false;
+                }
+                return true;
+            }
             return false;
+        }
+
+        private static int CompareVersion(Version v, string v2)
+        {
+            string[] parts = v2.Split('.');
+            int result;
+
+            if (parts.Length > 0)
+            {
+                int p = Convert.ToInt32(parts[0]);
+                result = v.Major.CompareTo(p);
+                if (result != 0)
+                    return result;
+            }
+
+            if (parts.Length > 1)
+            {
+                int p = Convert.ToInt32(parts[1]);
+                result = v.Minor.CompareTo(p);
+                if (result != 0)
+                    return result;
+            }
+
+            if (parts.Length > 2)
+            {
+                int p = Convert.ToInt32(parts[2]);
+                result = v.Build.CompareTo(p);
+                if (result != 0)
+                    return result;
+            }
+
+            if (parts.Length > 3)
+            {
+                int p = Convert.ToInt32(parts[3]);
+                result = v.Revision.CompareTo(p);
+                if (result != 0)
+                    return result;
+            }
+
+            return 0;
         }
 
         static PlatformDetector()

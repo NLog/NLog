@@ -46,7 +46,7 @@ namespace NLog.Win32.LayoutRenderers
     /// ASP Application variable.
     /// </summary>
     [LayoutRenderer("asp-application")]
-    [SupportedRuntime(RuntimeOS.Win32)]
+    [SupportedRuntime(OS=RuntimeOS.Win32)]
     public class ASPApplicationValueLayoutRenderer: LayoutRenderer
     {
         private string _appVariable;

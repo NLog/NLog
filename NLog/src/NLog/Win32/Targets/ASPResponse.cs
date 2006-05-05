@@ -45,7 +45,8 @@ namespace NLog.Win32.Targets
     /// Outputs logging messages through the ASP Response object.
     /// </summary>
     [Target("ASPResponse")]
-    [SupportedRuntime(RuntimeOS.Win32)]
+    [SupportedRuntime(OS=RuntimeOS.Win32)]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public sealed class ASPResponseTarget: Target
     {
         private bool _addComments;

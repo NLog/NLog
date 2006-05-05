@@ -35,6 +35,7 @@
 
 using System;
 using System.Diagnostics;
+using NLog.Config;
 
 namespace NLog.Targets
 {
@@ -57,6 +58,7 @@ namespace NLog.Targets
     /// <cs src="examples/targets/Debugger/DebuggerTarget.cs" />
     /// </example>
     [Target("Debugger")]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public sealed class DebuggerTarget: Target
     {
         static DebuggerTarget()

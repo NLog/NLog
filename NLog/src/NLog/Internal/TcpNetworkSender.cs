@@ -56,7 +56,11 @@ namespace NLog.Internal
             // tcp://hostname:port
 
             Uri parsedUri = new Uri(url);
+#if DOTNET_2_0
+            IPHostEntry host = Dns.GetHostEntry(parsedUri.Host);
+#else
             IPHostEntry host = Dns.GetHostByName(parsedUri.Host);
+#endif
             int port = parsedUri.Port;
 
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);

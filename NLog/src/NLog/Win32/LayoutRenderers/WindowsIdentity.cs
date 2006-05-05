@@ -43,7 +43,7 @@ namespace NLog.Win32.LayoutRenderers
     /// Thread Windows identity information (username)
     /// </summary>
     [LayoutRenderer("windows-identity")]
-    [SupportedRuntime(RuntimeOS.Windows)]
+    [SupportedRuntime(OS=RuntimeOS.Windows)]
     public class WindowsIdentityLayoutRenderer: LayoutRenderer
     {
         private bool _includeDomain = true;

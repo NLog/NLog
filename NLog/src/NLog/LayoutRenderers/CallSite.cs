@@ -38,12 +38,15 @@ using System.Diagnostics;
 using System.Reflection;
 using System.IO;
 
+using NLog.Config;
+
 namespace NLog.LayoutRenderers
 {
     /// <summary>
     /// The call site (class name, method name and source information)
     /// </summary>
     [LayoutRenderer("callsite",UsingLogEventInfo=true)]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class CallSiteLayoutRenderer: LayoutRenderer
     {
         private bool _className = true;

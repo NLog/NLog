@@ -112,7 +112,11 @@ namespace NLog.Internal
 		
         static string GetSetting(string configName, string envName)
         {
+#if DOTNET_2_0
+            string setting = ConfigurationManager.AppSettings[configName];
+#else
             string setting = ConfigurationSettings.AppSettings[configName];
+#endif
             if (setting == null)
             {
                 try

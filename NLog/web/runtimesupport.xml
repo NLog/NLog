@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="documentation">
+    <h1>NLog Runtime Support</h1>
+
+    <p>
+        Single NLog.dll binary supports multiple runtimes and operating systems.
+    </p>
+</content>

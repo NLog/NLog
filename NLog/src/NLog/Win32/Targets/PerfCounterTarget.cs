@@ -53,6 +53,8 @@ namespace NLog.Win32.Targets
     ///    another counter instance (with dynamic creation of new instance). This could be done with layouts. 
     /// </remarks>
     [Target("PerfCounter")]
+    [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class PerfCounterTarget : Target
     {
         private bool _autoCreate = false;

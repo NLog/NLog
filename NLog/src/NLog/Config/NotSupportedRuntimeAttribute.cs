@@ -31,59 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
-
 using System;
-using System.Text;
-using System.Web;
 
-using NLog.Config;
-
-namespace NLog.LayoutRenderers
+namespace NLog.Config
 {
     /// <summary>
-    /// ASP.NET User variable
+    /// Marks classes and properties as NOT supporting particular runtime framework 
+    /// and operating system.
     /// </summary>
-    [LayoutRenderer("aspnet-user-identity")]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
-    public class ASPNETUserIdentityLayoutRenderer : LayoutRenderer
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class NotSupportedRuntimeAttribute: SupportedRuntimeAttributeBase
     {
         /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
+        /// Creates a new instance of <see cref="SupportedRuntimeAttribute"/>.
         /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        public NotSupportedRuntimeAttribute()
         {
-            return 64;
-        }
-
-        /// <summary>
-        /// Renders the specified ASP.NET User.Identity.Name variable and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            HttpContext context = HttpContext.Current;
-            if (context == null)
-                return ;
-
-			if (context.User == null)
-				return ;
-            
-			if (context.User.Identity == null)
-				return ;
-            
-            builder.Append(context.User.Identity.Name);
         }
     }
 }
-
-#endif

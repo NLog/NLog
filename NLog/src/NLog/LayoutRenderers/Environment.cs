@@ -46,6 +46,7 @@ namespace NLog.LayoutRenderers
     /// The environment variable.
     /// </summary>
     [LayoutRenderer("environment")]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class EnvironmentLayoutRenderer: LayoutRenderer
     {
         private string _variable = null;

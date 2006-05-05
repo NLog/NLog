@@ -37,12 +37,15 @@
 using System;
 using System.Diagnostics;
 
+using NLog.Config;
+
 namespace NLog.Targets
 {
     /// <summary>
     /// Sends logging messages through System.Diagnostics.Trace
     /// </summary>
     [Target("Trace")]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public sealed class TraceTarget: Target
     {
         /// <summary>

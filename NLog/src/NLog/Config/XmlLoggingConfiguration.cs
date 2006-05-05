@@ -54,7 +54,11 @@ namespace NLog.Config
     public class XmlLoggingConfiguration: LoggingConfiguration
     {
         private StringDictionary _visitedFile = new StringDictionary();
+#if DOTNET_2_0
+        private NameValueCollection _variables = new NameValueCollection(StringComparer.InvariantCultureIgnoreCase);
+#else
         private NameValueCollection _variables = new NameValueCollection(CaseInsensitiveHashCodeProvider.Default, CaseInsensitiveComparer.Default);
+#endif
 
         private bool _autoReload = false;
         private string _originalFileName = null;
@@ -309,7 +313,11 @@ namespace NLog.Config
         {
             get
             {
+#if DOTNET_2_0
+                object o = System.Configuration.ConfigurationManager.GetSection("nlog");
+#else
                 object o = System.Configuration.ConfigurationSettings.GetConfig("nlog");
+#endif
                 return o as LoggingConfiguration;
             }
         }

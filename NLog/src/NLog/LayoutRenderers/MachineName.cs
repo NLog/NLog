@@ -38,12 +38,15 @@ using System.Text;
 using System.IO;
 using NLog.Internal;
 
+using NLog.Config;
+
 namespace NLog.LayoutRenderers
 {
     /// <summary>
     /// The machine name that the process is running on.
     /// </summary>
     [LayoutRenderer("machinename")]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class MachineNameLayoutRenderer: LayoutRenderer
     {
         static string _machineName = GetMachineName();

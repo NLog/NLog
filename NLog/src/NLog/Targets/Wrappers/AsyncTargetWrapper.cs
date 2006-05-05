@@ -85,6 +85,7 @@ namespace NLog.Targets.Wrappers
     /// <cs src="examples/targets/AsyncWrapper/AsyncTargetWrapper.cs" />
     /// </example>
     [Target("AsyncWrapper",IsWrapper=true)]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class AsyncTargetWrapper: WrapperTargetBase
     {
         private int _batchSize = 100;

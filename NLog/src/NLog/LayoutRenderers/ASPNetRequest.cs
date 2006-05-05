@@ -37,12 +37,15 @@ using System;
 using System.Text;
 using System.Web;
 
+using NLog.Config;
+
 namespace NLog.LayoutRenderers
 {
     /// <summary>
     /// ASP.NET Request variable
     /// </summary>
     [LayoutRenderer("aspnet-request")]
+    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ASPNETRequestValueLayoutRenderer : LayoutRenderer
     {
         private string _queryStringKey;
