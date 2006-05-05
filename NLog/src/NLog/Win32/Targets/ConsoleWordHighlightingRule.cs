@@ -44,6 +44,9 @@ using NLog.Targets;
 
 namespace NLog.Win32.Targets
 {
+    /// <summary>
+    /// Highlighting rule for Win32 colorful console.
+    /// </summary>
     public class ConsoleWordHighlightingRule
     {
         private string _text;
@@ -92,6 +95,9 @@ namespace NLog.Win32.Targets
             set { _ignoreCase = value; }
         }
 
+        /// <summary>
+        /// Compiled regular expression that matches either Text or Regex property.
+        /// </summary>
         public Regex CompiledRegex
         {
             get
@@ -137,10 +143,17 @@ namespace NLog.Win32.Targets
             set { _backgroundColor = value; }
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="ConsoleWordHighlightingRule"/>
+        /// </summary>
         public ConsoleWordHighlightingRule()
         {
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="ConsoleWordHighlightingRule"/>
+        /// and sets Text, BackgroundColor and ForegroundColor properties.
+        /// </summary>
         public ConsoleWordHighlightingRule(string text, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor)
         {
             Text = text;
@@ -160,7 +173,7 @@ namespace NLog.Win32.Targets
             return result.ToString();
         }
 
-        public string ReplaceWithEscapeSequences(string message)
+        internal string ReplaceWithEscapeSequences(string message)
         {
             return CompiledRegex.Replace(message, new MatchEvaluator(this.MatchEvaluator));
         }

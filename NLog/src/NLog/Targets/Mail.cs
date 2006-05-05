@@ -39,7 +39,12 @@ using System.Text;
 using System.Diagnostics;
 using System.Reflection;
 
+#if NET_2_API
+using System.Net;
+using System.Net.Mail;
+#else
 using System.Web.Mail;
+#endif
 using NLog.Config;
 
 namespace NLog.Targets
@@ -219,8 +224,11 @@ namespace NLog.Targets
         public string SmtpAuthentication
         {
             get { return _smtpAuthentication; }
-            set { 
+            set
+            {
+#if !NET_2_API
                 AssertFieldsSupport("SmtpAuthentication");
+#endif
                 if (String.Compare(value, "none", true) == 0 || 
                     String.Compare(value, "basic", true) == 0 || 
                     String.Compare(value, "ntlm", true) == 0
@@ -237,8 +245,11 @@ namespace NLog.Targets
         public string SmtpUsername
         {
             get { return _smtpUsername; }
-            set { 
+            set
+            {
+#if !NET_2_API
                 AssertFieldsSupport("SMTPUsername");
+#endif
                 _smtpUsername = value;
             }
         }
@@ -249,8 +260,11 @@ namespace NLog.Targets
         public string SmtpPassword
         {
             get { return _smtpPassword; }
-            set { 
+            set
+            {
+#if !NET_2_API
                 AssertFieldsSupport("SMTPPassword");
+#endif
                 _smtpPassword = value;
             }
         }
@@ -263,9 +277,11 @@ namespace NLog.Targets
         {
             get { return _smtpPort; }
             set
-            { 
+            {
+#if !NET_2_API
                 if (value != 25)
                     AssertFieldsSupport("SmtpPort");
+#endif
                 _smtpPort = value; 
             }
         }
@@ -337,6 +353,20 @@ namespace NLog.Targets
 
         private void SetupMailMessage(MailMessage msg, LogEventInfo logEvent)
         {
+#if NET_2_API
+            msg.From = new MailAddress(_from.GetFormattedMessage(logEvent));
+            msg.To.Add(_to.GetFormattedMessage(logEvent));
+            if (_bcc != null)
+                msg.Bcc.Add(_bcc.GetFormattedMessage(logEvent));
+
+            if (_cc != null)
+                msg.CC.Add(_cc.GetFormattedMessage(logEvent));
+            msg.Subject = _subject.GetFormattedMessage(logEvent);
+            msg.BodyEncoding = System.Text.Encoding.UTF8;
+            msg.IsBodyHtml = HTML;
+            msg.Priority = MailPriority.Normal;
+#else
+
             msg.From = _from.GetFormattedMessage(logEvent);
             msg.To = _to.GetFormattedMessage(logEvent);
             if (_bcc != null)
@@ -348,7 +378,24 @@ namespace NLog.Targets
             msg.BodyEncoding = System.Text.Encoding.UTF8;
             msg.BodyFormat = HTML ? MailFormat.Html : MailFormat.Text;
             msg.Priority = MailPriority.Normal;
+#endif
+        }
 
+        private void SendMessage(MailMessage msg)
+        {
+#if NET_2_API
+            SmtpClient client = new SmtpClient(SmtpServer, SmtpPort);
+#if !MONO
+            // the credentials API is broken in Mono as of 2006-05-05
+
+            if (SmtpAuthentication == "ntlm")
+                client.Credentials = CredentialCache.DefaultNetworkCredentials;
+            else if (SmtpAuthentication == "basic")
+                client.Credentials = new NetworkCredential(SmtpUsername, SmtpPassword);
+#endif
+            Internal.InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, _smtpServer);
+            client.Send(msg);
+#else
             IDictionary fields = GetFieldsDictionary(msg);
             if (fields != null)
             {
@@ -367,16 +414,14 @@ namespace NLog.Targets
                     fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", "2");	
                 }
             }
-        }
-
-        private void SendMessage(MailMessage msg)
-        {
             SmtpMail.SmtpServer = _smtpServer;
             Internal.InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, _smtpServer);
 
             SmtpMail.Send(msg);
+#endif
         }
 
+#if !NET_2_API
         // .NET 1.0 doesn't support "MailMessage.Fields". We want to be portable so 
         // we detect this at runtime.
 
@@ -395,6 +440,7 @@ namespace NLog.Targets
 
             return (IDictionary)_fieldsProperty.GetValue(m, null);
         }
+#endif
     }
 }
 

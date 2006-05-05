@@ -65,7 +65,6 @@ Section ".NET 1.0 / Visual Studio.NET 2002 (supports all frameworks)"
   SectionIn 1 2 3
   SetOutPath $INSTDIR\bin\net-1.0
   File /r /x _svn "build\net-1.0${OPTIONALDEBUG}\bin\*.*"
-  File /r /x _svn "build\net-1.0${OPTIONALDEBUG}\nlogc\bin\net-1.0\*.*"
   WriteRegStr HKLM "Software\Microsoft\VisualStudio\7.0\AssemblyFolders\NLog" "" "$INSTDIR\net-1.0"
 SectionEnd
 
@@ -73,7 +72,6 @@ Section ".NET 1.1 / Visual Studio.NET 2003"
   SectionIn 1 2
   SetOutPath $INSTDIR\bin\net-1.1
   File /r /x _svn "build\net-1.1${OPTIONALDEBUG}\bin\*.*"
-  File /r /x _svn "build\net-1.1${OPTIONALDEBUG}\nlogc\bin\net-1.1\*.*"
   WriteRegStr HKLM "Software\Microsoft\VisualStudio\7.1\AssemblyFolders\NLog" "" "$INSTDIR\net-1.1"
 SectionEnd
 
@@ -81,7 +79,6 @@ Section ".NET 2.0 / Visual Studio 2005"
   SectionIn 1 2
   SetOutPath $INSTDIR\bin\net-2.0
   File /r /x _svn "build\net-2.0${OPTIONALDEBUG}\bin\*.*"
-  File /r /x _svn "build\net-2.0${OPTIONALDEBUG}\nlogc\bin\net-2.0\*.*"
   WriteRegStr HKLM "Software\Microsoft\.NETFramework\v2.0.50727\AssemblyFoldersEx\NLog" "" "$INSTDIR\net-2.0"
 SectionEnd
 

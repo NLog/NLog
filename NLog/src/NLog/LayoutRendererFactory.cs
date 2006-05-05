@@ -125,7 +125,6 @@ namespace NLog
         private static void ApplyLayoutRendererParameters(LayoutRenderer target, string parameterString)
         {
             int pos = 0;
-            Type targetType = target.GetType();
 
             while (pos < parameterString.Length)
             {
@@ -147,7 +146,6 @@ namespace NLog
                 // we've got a name - now get a value
                 //
 
-                int valueStartPos = pos;
                 StringBuilder valueBuf = new StringBuilder();
                 while (pos < parameterString.Length)
                 {

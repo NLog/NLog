@@ -148,7 +148,13 @@ namespace NLog.Win32.Targets
                         {
                             // re-create the association between Log and Source
                             EventLog.DeleteEventSource(_sourceName, _machineName);
+#if DOTNET_2_0
+                            EventSourceCreationData escd = new EventSourceCreationData(_sourceName, _logName);
+                            escd.MachineName = _machineName;
+                            EventLog.CreateEventSource(escd);
+#else
                             EventLog.CreateEventSource(_sourceName, _logName, _machineName);
+#endif
                         }
                         else
                         {
@@ -157,8 +163,14 @@ namespace NLog.Win32.Targets
                     }
                     else
                     {
+#if DOTNET_2_0
+                        EventSourceCreationData escd = new EventSourceCreationData(_sourceName, _logName);
+                        escd.MachineName = _machineName;
+                        EventLog.CreateEventSource(escd);
+#else
                         // source doesn't exist, register it.
                         EventLog.CreateEventSource(_sourceName, _logName, _machineName);
+#endif
                     }
                     // mark the configuration as operational
                     _operational = true;

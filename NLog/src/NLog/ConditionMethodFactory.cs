@@ -108,11 +108,6 @@ namespace NLog
 
         }
 
-        private static void AddDefaultConditionMethods()
-        {
-            AddConditionMethodsFromAssembly(typeof(ConditionMethodFactory).Assembly, String.Empty);
-        }
-
         /// <summary>
         /// Registers the specified condition method under a specified name.
         /// </summary>

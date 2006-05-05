@@ -47,7 +47,6 @@ namespace NLog
         private LoggerImpl() { }
         
         private const int STACK_TRACE_SKIP_METHODS = 0;
-        private static Assembly _thisAssembly = typeof(LoggerImpl).Assembly;
 
         internal static void Write(Type loggerType, string loggerName, LogLevel level, TargetWithFilterChain targets, IFormatProvider formatProvider, string message, object[]args, Exception exception)
         {

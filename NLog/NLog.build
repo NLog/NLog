@@ -28,7 +28,8 @@
     <property name="nlog.package.name" value="${tstamp.date}" unless="${property::exists('nlog.package.name')}" />
     <property name="ilmerge.version" value="1" />
 
-    <property name="installer.name" value="nlog-${nlog.package.name}${if(nlog.debug,'-debug','')}.exe" dynamic="true" />
+    <property name="installer.name" value="nlog-${nlog.package.name}-setup.exe" dynamic="true" />
+    <property name="installer.debug.name" value="nlog-${nlog.package.name}-setup-debug.exe" dynamic="true" />
     <property name="source_snapshot.name" value="nlog-${nlog.package.name}-src.zip" dynamic="true" />
     <property name="binary_snapshot.name" value="nlog-${nlog.package.name}-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" dynamic="true" />
     <property name="webtest.dir" value="${project::get-base-directory()}/webtest" />
@@ -54,8 +55,7 @@
         <mkdir dir="${nlog.dir}" />
     </target>
 
-    <target name="build" depends="configure">
-        <call target="build-${framework::get-target-framework()}" />
+    <target name="build" depends="configure, build-${framework::get-target-framework()}">
     </target>
 
     <target name="debug">
@@ -408,7 +408,7 @@
         <property name="nlog.define" value="${nlog.define};MONO;MONO_1_0" />
     </target>
     <target name="configure-mono-2.0">
-        <property name="nlog.define" value="${nlog.define};MONO;MONO_2_0" />
+        <property name="nlog.define" value="${nlog.define};MONO;MONO_2_0;NET_2_API" />
         <property name="nlog.csc.args" value="/nowarn:1591,1699" />
     </target>
 
@@ -422,7 +422,7 @@
     </target>
     <target name="configure-net-2.0">
         <property name="ilmerge.version" value="2" />
-        <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET2;DOTNET_2_0" />
+        <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET2;DOTNET_2_0;NET_2_API" />
         <property name="ndoc.console.exe" value="${ndoc2.path}/ndocconsole.exe" />
         <property name="nlog.csc.args" value="/nowarn:1591,1699" />
     </target>
@@ -432,7 +432,8 @@
     </target>
 
     <target name="configure-netcf-2.0">
-        <property name="nlog.define" value="${nlog.define};NETCF;NETCF_2_0" />
+        <property name="nlog.define" value="${nlog.define};NETCF;NETCF_2_0;NET_2_API" />
+        <property name="nlog.csc.args" value="/nowarn:1591,1699" />
         <property name="ndoc.console.exe" value="${ndoc2.path}/ndocconsole.exe" />
     </target>
 
@@ -456,16 +457,24 @@
         </foreach>
     </target>
 
-    <target name="installer" depends="fullrelease">
+    <target name="installer">
         <readregistry property="nsis.dir" key="SOFTWARE\NSIS\" />
         <property name="makensis.exe" value="${nsis.dir}/makensis.exe" />
 
-        <echo message="DEBUG: ${nlog.debug}" />
-        <exec program="${makensis.exe}" commandline="/DNLOGVERSION=${nlog.package.name} /DOPTIONALDEBUG=${if(nlog.debug,'-debug','')} tools\SetupNLog.nsi" verbose="true" />
+        <exec program="${makensis.exe}" commandline="/DNLOGVERSION=${nlog.package.name} /DOPTIONALDEBUG= tools\SetupNLog.nsi" verbose="true" />
         <move file="SetupNLog.exe" tofile="${installer.name}" overwrite="true" />
+        <exec program="${makensis.exe}" commandline="/DNLOGVERSION=${nlog.package.name}-debug /DOPTIONALDEBUG=-debug tools\SetupNLog.nsi" verbose="true" />
+        <move file="SetupNLog.exe" tofile="${installer.debug.name}" overwrite="true" />
     </target>
 
-    <target name="fullrelease">
+    <target name="allframeworksdebugandrelease">
+        <call target="debug" />
+        <call target="allframeworks" />
+        <call target="release" />
+        <call target="allframeworks" />
+    </target>
+    
+    <target name="allframeworks">
         <property name="debugrelease" value="release" />
         <property name="debugrelease" value="debug" if="${nlog.debug}" />
         <exec program="nant" commandline="-t:net-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
@@ -563,21 +572,13 @@
     <target name="upload_snapshot">
         <echo message="Creating a directory for ${nlog.package.name}..." />
         <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} mkdir ${webserver.deploy.dir}/snapshots/${nlog.package.name}" failonerror="false" />
-        <echo message="Uploading ${installer.name}..." />
-        <exec program="${scp.program}" commandline="${scp.args} ${installer.name} ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
-        <echo message="Uploading ${source_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.args} ${source_snapshot.name} ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
-        <echo message="Uploading ${binary_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.args} ${binary_snapshot.name} ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
-        <echo message="Uploading ${nlogc_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.args} ${nlogc_snapshot.name} ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
-        <echo message="Uploading ${binary_compact10_snapshot.name}..." />
-        <exec program="${scp.program}" commandline="${scp.args} ${binary_compact10_snapshot.name} ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
+        <echo message="Uploading nlog-${nlog.package.name}*.*..." />
+        <exec program="${scp.program}" commandline="${scp.args} nlog-${nlog.package.name}*.* ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ChangeLog..." />
         <exec program="${scp.program}" commandline="${scp.args} ChangeLog ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
     </target>
 
-    <target name="publish_snapshot" depends="fullrelease, upload_snapshot">
+    <target name="publish_snapshot" depends="allframeworksdebugandrelease, source_snapshot, upload_snapshot">
     </target>
 
     <target name="xmldoc" depends="build">

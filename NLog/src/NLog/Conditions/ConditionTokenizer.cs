@@ -252,13 +252,6 @@ namespace NLog.Conditions
         };
 
         static ConditionTokenType[] charIndexToTokenType = new ConditionTokenType[128];
-#if DOTNET_2_0
-        static Hashtable keywordToTokenType = 
-            new Hashtable(StringComparer.InvariantCultureIgnoreCase);
-#else
-        static Hashtable keywordToTokenType = 
-            new Hashtable(CaseInsensitiveHashCodeProvider.Default, CaseInsensitiveComparer.Default);
-#endif
         
         static ConditionTokenizer() 
         {

@@ -40,6 +40,13 @@ using NLog.Targets;
 
 namespace NLog.Win32.Targets
 {
+    /// <summary>
+    /// Colored console output color.
+    /// </summary>
+    /// <remarks>
+    /// Note that this enumeration is defined to be binary compatible with 
+    /// .NET 2.0 System.ConsoleColor + some additions
+    /// </remarks>
     public enum ConsoleOutputColor
     {
         /// <summary>

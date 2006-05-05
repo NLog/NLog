@@ -54,7 +54,7 @@ namespace NLog.Config
     public class XmlLoggingConfiguration: LoggingConfiguration
     {
         private StringDictionary _visitedFile = new StringDictionary();
-#if DOTNET_2_0
+#if NET_2_API
         private NameValueCollection _variables = new NameValueCollection(StringComparer.InvariantCultureIgnoreCase);
 #else
         private NameValueCollection _variables = new NameValueCollection(CaseInsensitiveHashCodeProvider.Default, CaseInsensitiveComparer.Default);

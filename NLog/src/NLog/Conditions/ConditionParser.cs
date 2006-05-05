@@ -222,7 +222,7 @@ namespace NLog.Conditions
 
         private ConditionExpression ParseExpression() 
         {
-            return ParseBooleanOr();
+            return ParseBooleanExpression();
         }
 
         /// <summary>

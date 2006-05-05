@@ -68,7 +68,6 @@ namespace NLog
         private LayoutRenderer[] _renderers;
         private int _needsStackTrace = 0;
         private bool _isVolatile = false;
-        private StringBuilder builder = new StringBuilder();
 
         /// <summary>
         /// The layout text
