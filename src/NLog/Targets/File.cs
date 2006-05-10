@@ -760,7 +760,7 @@ namespace NLog.Targets
         {
             while (!_isClosed)
             {
-                System.Threading.Thread.Sleep(OpenFileCacheTimeout / 2);
+                System.Threading.Thread.Sleep(1000 * OpenFileCacheTimeout / 2);
                 lock (this)
                 {
                     DateTime timeToKill = DateTime.Now.AddSeconds(-OpenFileCacheTimeout);

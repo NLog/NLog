@@ -1,3 +1,7 @@
+2006-05-10 Jaroslaw Kowalski <jaak@jkowalski.net>
+
+	* (hopefully) Fixed OpenFileCacheTimeout taking too much CPU
+
 2006-05-05 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Completely rebuilt the installer.

@@ -108,7 +108,7 @@
     <target name="xmldoc">
         <mkdir dir="build/doc" />
         
-        <property name="nant.settings.currentframework" value="net-2.0" />
+        <property name="nant.settings.currentframework" value="net-1.1" />
 
         <csc target="library" output="build/doc/NLog.dll" doc="build/doc/NLog.xml" warninglevel="0" define="DOCUMENTATION;NANT">
             <sources basedir="src">
@@ -494,7 +494,7 @@
     <target name="configure-net-2.0">
         <property name="ilmerge.version" value="2" />
         <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET2;DOTNET_2_0;NET_2_API" />
-        <property name="ndoc.console.exe" value="${ndoc2.path}/ndocconsole.exe" />
+        <property name="ndoc.console.exe" value="${ndoc.path}/ndocconsole.exe" />
         <property name="nlog.csc.args" value="/nowarn:1591,1699" />
     </target>
 
@@ -505,7 +505,7 @@
     <target name="configure-netcf-2.0">
         <property name="nlog.define" value="${nlog.define};NETCF;NETCF_2_0;NET_2_API" />
         <property name="nlog.csc.args" value="/nowarn:1591,1699" />
-        <property name="ndoc.console.exe" value="${ndoc2.path}/ndocconsole.exe" />
+        <property name="ndoc.console.exe" value="${ndoc.path}/ndocconsole.exe" />
     </target>
 
     <target name="build-mono-1.0" depends="NLog" />
