@@ -46,39 +46,38 @@ namespace NLog.Tester
 {
     public class Test
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public static void LogProc(string msg)
         {
             Console.WriteLine("logproc: {0}", msg);
         }
 
+        static void A()
+        {
+            B(3);
+        }
+
+        static void B(int a)
+        {
+            logger.Trace("ttt");
+            logger.Debug("ala ma kota");
+            logger.Info("ala ma kanarka");
+            logger.Warn("aaa");
+            logger.Error("err");
+            logger.Fatal("fff");
+        }
+
         static void Main(string[]args)
         {
-            Internal.InternalLogger.LogToConsole = true;
-            Internal.InternalLogger.LogLevel = LogLevel.Trace;
-            StopWatch sw;
-
-
-            System.Threading.Thread.CurrentThread.Name = "threadNameIsHere";
-
-            Logger p = LogManager.GetCurrentClassLogger();
-            GDC.Set("GGG", "b");
-            MDC.Set("AAA", "b");
-            MDC.Set("BBB", "C");
-
-            sw = new StopWatch();
-            sw.Start();
-            for (int i = 0; i < 2; ++i)
-            {
-                p.Trace("trace {0} ala ma kota", i);
-                p.Debug("debug {0} ala ma ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go ma쿮go kota i niewielkiego psa", i);
-                p.Info("info {0}", i);
-                p.Warn("warn {0}", i);
-                p.Error("error {0}", i);
-                p.Fatal("fatal {0}", i);
-            }
-            sw.Stop();
-            Console.WriteLine("t: {0}", sw.Seconds);
-            return;
+            logger.Trace("ttt");
+            logger.Debug("ala ma kota");
+            logger.Info("ala ma kanarka");
+            logger.Warn("aaa");
+            logger.Error("err");
+            logger.Fatal("fff");
+            A();
+            Console.WriteLine("aaa");
         }
     }
 }

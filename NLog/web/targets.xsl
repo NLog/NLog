@@ -6,8 +6,8 @@
 
     <xsl:template match="*" mode="content">
         <xsl:if test="$target_name">
-            <xsl:apply-templates select="//class[attribute/@id='T:NLog.TargetAttribute' and attribute/argument[position()=1]/@value=$target_name]" mode="details">
-                <xsl:sort select="attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value" />
+            <xsl:apply-templates select="//class[attribute/@name='NLog.TargetAttribute' and attribute/property[@name='Name']/@value=$target_name]" mode="details">
+                <xsl:sort select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
             </xsl:apply-templates>
         </xsl:if>
         <xsl:if test="not($target_name)">
@@ -29,12 +29,12 @@
             <p>
                 The following log targets are available. Click on the target name for full reference.
             </p>
-            <div class="noborder" style="width: 600px">
+            <div class="noborder">
                 <table class="listtable">
                     <xsl:call-template name="supportmatrixheader" />
-                    <xsl:apply-templates select="//class[attribute[@id='T:NLog.TargetAttribute' and not(property[@name='IsWrapper' and @value='True']) and not(property[@name='IsCompound' and @value='True'])]]" mode="list">
+                    <xsl:apply-templates select="//class[attribute[@name='NLog.TargetAttribute' and not(property[@name='IsWrapper' and @value='True']) and not(property[@name='IsCompound' and @value='True'])]]" mode="list">
                         <xsl:sort select="../../@name" />
-                        <xsl:sort select="attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value" />
+                        <xsl:sort select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
                     </xsl:apply-templates>
                 </table>
             </div>
@@ -43,12 +43,12 @@
             <p>
                 The following target wrappers are available. Click on the target name for full reference.
             </p>
-            <div class="noborder" style="width: 600px">
+            <div class="noborder">
                 <table class="listtable">
                     <xsl:call-template name="supportmatrixheader" />
-                    <xsl:apply-templates select="//class[attribute[@id='T:NLog.TargetAttribute' and property[@name='IsWrapper' and @value='True']]]" mode="list">
+                    <xsl:apply-templates select="//class[attribute[@name='NLog.TargetAttribute' and property[@name='IsWrapper' and @value='True']]]" mode="list">
                         <xsl:sort select="../../@name" />
-                        <xsl:sort select="attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value" />
+                        <xsl:sort select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
                     </xsl:apply-templates>
                 </table>
             </div>
@@ -57,12 +57,12 @@
             <p>
                 The following compound targets are available. Click on the target name for full reference.
             </p>
-            <div class="noborder" style="width: 600px">
+            <div class="noborder">
                 <table class="listtable">
                     <xsl:call-template name="supportmatrixheader" />
-                    <xsl:apply-templates select="//class[attribute[@id='T:NLog.TargetAttribute' and property[@name='IsCompound' and @value='True']]]" mode="list">
+                    <xsl:apply-templates select="//class[attribute[@name='NLog.TargetAttribute' and property[@name='IsCompound' and @value='True']]]" mode="list">
                         <xsl:sort select="../../@name" />
-                        <xsl:sort select="attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value" />
+                        <xsl:sort select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
                     </xsl:apply-templates>
                 </table>
             </div>
@@ -70,7 +70,7 @@
     </xsl:template>
 
     <xsl:template match="class" mode="list">
-        <xsl:variable name="type_tag" select="attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value" />
+        <xsl:variable name="type_tag" select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
         <tr>
             <td class="name"><a href="target.{$type_tag}.html"><xsl:value-of select="$type_tag" /></a></td>
             <td class="description"><xsl:apply-templates select="documentation/summary" /></td>
@@ -89,18 +89,11 @@
     </xsl:template>
 
     <xsl:template match="class" mode="details">
-        <xsl:variable name="type_tag" select="attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value" />
+        <xsl:variable name="type_tag" select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
         <h3><xsl:value-of select="$type_tag" /> Target</h3>
         <hr size="1" />
-        <h4>Defined in:</h4>
-        <table class="definedin" cellspacing="0">
-            <tr><td>Assembly:</td><td><xsl:value-of select="../../@name" /></td></tr>
-            <tr><td>Class name:</td><td><xsl:value-of select="substring-after(@id,'T:')" /></td></tr>
-        </table>
-        <xsl:if test="documentation/summary">
-            <h4>Summary</h4>
-            <xsl:apply-templates select="documentation/summary" /><p/>
-        </xsl:if>
+        <xsl:apply-templates select="documentation/summary" /><p/>
+        <xsl:call-template name="detailssupportmatrix" />
         <h4>Parameters (blue fields are required):</h4>
         <table cellspacing="0" cellpadding="0" class="paramtable">
             <tr>
@@ -109,12 +102,12 @@
                 <th>Description</th>
             </tr>
             <xsl:apply-templates select="property" mode="parameter">
-                <xsl:sort select="count(attribute[@id='T:NLog.Config.RequiredParameterAttribute'])" order="descending" />
+                <xsl:sort select="count(attribute[@name='NLog.Config.RequiredParameterAttribute'])" order="descending" />
                 <xsl:sort select="@name" />
             </xsl:apply-templates>
             <xsl:if test="property[attribute/@name='NLog.Config.ArrayParameterAttribute']">
                 <xsl:apply-templates select="property" mode="parameter2">
-                    <xsl:sort select="count(attribute[@id='T:NLog.Config.RequiredParameterAttribute'])" order="descending" />
+                    <xsl:sort select="count(attribute[@name='NLog.Config.RequiredParameterAttribute'])" order="descending" />
                     <xsl:sort select="@name" />
                 </xsl:apply-templates>
             </xsl:if>
@@ -152,14 +145,14 @@
     </xsl:template>
 
     <xsl:template match="property" mode="parameter">
-        <xsl:if test="@name != 'Layout' or not(../attribute[@id='T:NLog.TargetAttribute']/property[@name='IgnoresLayout']/@value='True')">
+        <xsl:if test="@name != 'Layout' or not(../attribute[@name='NLog.TargetAttribute']/property[@name='IgnoresLayout']/@value='True')">
             <xsl:call-template name="parameter_info" />
         </xsl:if>
     </xsl:template>
 
     <xsl:template match="property[attribute/@name='NLog.Config.ArrayParameterAttribute']" mode="parameter2">
-        <xsl:variable name="itemname" select="attribute[@id='T:NLog.Config.ArrayParameterAttribute']/property[@name='ElementName']/@value" />
-        <xsl:variable name="itemtype" select="attribute[@id='T:NLog.Config.ArrayParameterAttribute']/property[@name='ItemType']/@value" />
+        <xsl:variable name="itemname" select="attribute[@name='NLog.Config.ArrayParameterAttribute']/property[@name='ElementName']/@value" />
+        <xsl:variable name="itemtype" select="attribute[@name='NLog.Config.ArrayParameterAttribute']/property[@name='ItemType']/@value" />
         <tr>
             <td valign="top" class="parametername" rowspan="2">
                 <xsl:value-of select="@name" />

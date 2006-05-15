@@ -106,6 +106,7 @@ urchinTracker();
 </td>
 </tr>
 </table>
+<input type="hidden" name="client" value="pub-2535373996863248"></input>
 <input type="hidden" name="forid" value="1"></input>
 <input type="hidden" name="ie" value="UTF-8"></input>
 <input type="hidden" name="oe" value="UTF-8"></input>
@@ -114,6 +115,26 @@ urchinTracker();
 </td></tr></table>
 </form>
 <!-- SiteSearch Google -->
+                </div>
+            </xsl:if>
+            <xsl:if test="$mode = 'web'">
+                <div id="googleads">
+                    <script type="text/javascript"><xsl:comment>
+                            google_ad_client = "pub-2535373996863248";
+                            google_ad_width = 120;
+                            google_ad_height = 600;
+                            google_ad_format = "120x600_as";
+                            google_ad_type = "text_image";
+                            google_ad_channel ="";
+                            google_color_border = "5290ee";
+                            google_color_bg = "FFFFFF";
+                            google_color_link = "0000FF";
+                            google_color_url = "008000";
+                            google_color_text = "000000";
+                            //</xsl:comment></script>
+                    <script type="text/javascript"
+                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                    </script>
                 </div>
             </xsl:if>
             </body>
@@ -174,7 +195,6 @@ urchinTracker();
                 </xsl:call-template>
             </xsl:when>
             <xsl:when test="$type = 'Int32'">integer</xsl:when>
-            <xsl:when test="$type = 'Int64'">long</xsl:when>
             <xsl:when test="$type = 'String'">string</xsl:when>
             <xsl:when test="$type = 'Boolean'">boolean</xsl:when>
             <xsl:otherwise>
@@ -189,7 +209,7 @@ urchinTracker();
         <tr>
             <td class="parametername">
                 <span>
-                    <xsl:if test="attribute/@id='T:NLog.Config.RequiredParameterAttribute'">
+                    <xsl:if test="attribute/@name='NLog.Config.RequiredParameterAttribute'">
                         <xsl:attribute name="class">required</xsl:attribute>
                     </xsl:if>
                     <xsl:value-of select="@name" />
@@ -198,12 +218,12 @@ urchinTracker();
             <td class="parametertype">
                 <nobr>
                     <xsl:call-template name="simple-type-name">
-                        <xsl:with-param name="type" select="type/@name" />
+                        <xsl:with-param name="type" select="@type" />
                     </xsl:call-template>
-                    <xsl:if test="attribute/@id='T:NLog.Config.AcceptsLayoutAttribute'">
+                    <xsl:if test="attribute/@name='NLog.Config.AcceptsLayoutAttribute'">
                         &#160;<a href="layoutrenderers.html"><span class="acceptslayout" title="This parameter accepts layout specification. Click here to learn more about layouts.">${}</span></a>
                     </xsl:if>
-                    <xsl:if test="attribute/@id='T:NLog.Config.AcceptsConditionAttribute'">
+                    <xsl:if test="attribute/@name='NLog.Config.AcceptsConditionAttribute'">
                         &#160;<a href="conditions.html"><span class="acceptscondition" title="This parameter accepts condition expressions. Click here to learn more about condition expressions.">[c()]</span></a>
                     </xsl:if>
                 </nobr>
@@ -213,7 +233,7 @@ urchinTracker();
                 <xsl:if test="attribute[@name='System.ComponentModel.DefaultValueAttribute']">
                     <p>Default value is: <code><xsl:value-of select="attribute[@name='System.ComponentModel.DefaultValueAttribute']/property[@name='Value']/@value" /></code>.</p>
                 </xsl:if>
-                <xsl:variable name="typename" select="type/@id" />
+                <xsl:variable name="typename" select="concat('T:',translate(@type,'#','.'))" />
                 <xsl:variable name="enumnode" select="//enumeration[@id=$typename]" />
                 <xsl:if test="$enumnode">
                     <p>
@@ -309,6 +329,38 @@ urchinTracker();
         </div>
     </xsl:template>
 
+    <xsl:template name="detailssupportmatrix">
+        <div class="listtable">
+            <table>
+                <tr>
+                    <th rowspan="2">Class</th>
+                    <th rowspan="2">Assembly</th>
+                    <th colspan="3">.NET Framework</th>
+                    <th colspan="2">.NET CF</th>
+                    <th colspan="2">Mono on Windows</th>
+                    <th colspan="2">Mono on Unix</th>
+                </tr>
+                <tr>
+                    <th>1.0</th>
+                    <th>1.1</th>
+                    <th>2.0</th>
+                    <th>1.0</th>
+                    <th>2.0</th>
+                    <th>1.0</th>
+                    <th>2.0</th>
+                    <th>1.0</th>
+                    <th>2.0</th>
+                </tr>
+                <tr>
+                    <td><xsl:value-of select="../../@name" /></td>
+                    <td><xsl:value-of select="substring-after(@id,'T:')" /></td>
+                        
+                    <xsl:call-template name="supportmatrixvalues" />
+                </tr>
+            </table>
+        </div>
+    </xsl:template>
+
     <xsl:template name="supportmatrixheader">
         <tr>
             <th rowspan="2">Name</th>
@@ -385,8 +437,8 @@ urchinTracker();
         <xsl:param name="os" />
         <xsl:param name="osVersion" />
 
-        <xsl:variable name="supportedAttributes" select="attribute[@id='T:NLog.Config.SupportedRuntimeAttribute']" />
-        <xsl:variable name="notSupportedAttributes" select="attribute[@id='T:NLog.Config.NotSupportedRuntimeAttribute']" />
+        <xsl:variable name="supportedAttributes" select="attribute[@name='NLog.Config.SupportedRuntimeAttribute']" />
+        <xsl:variable name="notSupportedAttributes" select="attribute[@name='NLog.Config.NotSupportedRuntimeAttribute']" />
 
         <xsl:variable name="supportedAttributeMatches">
             <xsl:apply-templates select="$supportedAttributes" mode="supported-runtime-matches">
