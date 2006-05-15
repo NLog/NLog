@@ -31,6 +31,10 @@
         <xsl:apply-templates mode="xml-example" />
     </xsl:template>
 
+    <xsl:template match="link">
+        <a href="{@href}.{$file_extension}"><xsl:apply-templates /></a>
+    </xsl:template>
+
     <xsl:template match="*" mode="xml-example">
         <xsl:choose>
             <xsl:when test="count(descendant::node()) = 0">

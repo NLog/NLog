@@ -10,28 +10,28 @@
             <p>
                 The following layout renderers are available. Click on a name for full reference.
             </p>
-            <div class="noborder" style="width: 600px">
+            <div class="noborder">
                 <table class="listtable">
                     <xsl:call-template name="supportmatrixheader" />
-                    <xsl:apply-templates select="//class[attribute/@id='T:NLog.LayoutRendererAttribute']" mode="list">
+                    <xsl:apply-templates select="//class[attribute/@name='NLog.LayoutRendererAttribute']" mode="list">
                         <xsl:sort select="../../@name" />
-                        <xsl:sort select="attribute[@id='T:NLog.LayoutRendererAttribute']/argument[position()=1]/@value" />
+                        <xsl:sort select="attribute[@name='NLog.LayoutRendererAttribute']/property[@name='FormatString']/@value" />
                     </xsl:apply-templates>
                 </table>
             </div>
         </xsl:if>
         <xsl:if test="$lr_name">
-            <xsl:apply-templates select="//class[attribute/@id='T:NLog.LayoutRendererAttribute' and attribute/argument[position()=1]/@value=$lr_name]" mode="details">
+            <xsl:apply-templates select="//class[attribute/@name='NLog.LayoutRendererAttribute' and attribute/property[@name='FormatString']/@value=$lr_name]" mode="details">
                 <xsl:sort select="../../@name" />
-                <xsl:sort select="attribute[@id='T:NLog.LayoutRendererAttribute']/argument[position()=1]/@value" />
+                <xsl:sort select="attribute[@name='NLog.LayoutRendererAttribute']/property[@name='FormatString']/@value" />
             </xsl:apply-templates>
         </xsl:if>
     </xsl:template>
 
     <xsl:template match="class" mode="list">
-        <xsl:variable name="type_tag" select="attribute[@id='T:NLog.LayoutRendererAttribute']/argument[position()=1]/@value" />
+        <xsl:variable name="type_tag" select="attribute[@name='NLog.LayoutRendererAttribute']/property[@name='FormatString']/@value" />
         <tr>
-            <td class="name"><a href="lr.{$type_tag}.html">${<xsl:value-of select="$type_tag" />}</a></td>
+            <td class="name"><a href="lr.{$type_tag}.html"><xsl:value-of select="$type_tag" /></a></td>
             <td class="description"><xsl:apply-templates select="documentation/summary" /></td>
             <xsl:call-template name="supportmatrixvalues" />
         </tr>
@@ -48,14 +48,12 @@
     </xsl:template>
 
     <xsl:template match="class" mode="details">
-        <xsl:variable name="type_tag" select="attribute[@id='T:NLog.LayoutRendererAttribute']/argument[position()=1]/@value" />
+        <xsl:variable name="type_tag" select="attribute[@name='NLog.LayoutRendererAttribute']/property[@name='FormatString']/@value" />
         <h3>${<xsl:value-of select="$type_tag" />} Layout Renderer</h3>
         <hr size="1" />
-        <table class="definedin" cellspacing="0">
-            <tr><td>Class name:</td><td><xsl:value-of select="substring-after(@id,'T:')" /></td></tr>
-        </table>
-        <p><xsl:apply-templates select="documentation/summary" /></p>
-        <xsl:if test="property[not(@declaringType='T:NLog.LayoutRenderer')] or attribute[@id='T:NLog.LayoutRendererAttribute']/property[@name='IgnoresPadding']/@value">
+        <xsl:apply-templates select="documentation/summary" /><p/>
+        <xsl:call-template name="detailssupportmatrix" />
+        <xsl:if test="property[not(@declaringType='NLog.LayoutRenderer')]">
             <h4>Parameters:</h4>
             <table class="paramtable">
                 <tr>
@@ -63,26 +61,10 @@
                     <th>Type</th>
                     <th>Description</th>
                 </tr>
-                <tr>
-                    <td colspan="3" class="subheader">
-                        Parameters specific to this layout renderer
-                    </td>
-                </tr>
-                <xsl:apply-templates select="property[not(@declaringType='T:NLog.LayoutRenderer')]" mode="parameter">
-                    <xsl:sort select="count(attribute[@id='T:NLog.Config.RequiredParameterAttribute'])" order="descending" />
+                <xsl:apply-templates select="property[not(@declaringType='NLog.LayoutRenderer')]" mode="parameter">
+                    <xsl:sort select="count(attribute[@name='NLog.Config.RequiredParameterAttribute'])" order="descending" />
                     <xsl:sort select="@name" />
                 </xsl:apply-templates>
-                <xsl:if test="not(attribute[@id='T:NLog.LayoutRendererAttribute']/property[@name='IgnoresPadding']/@value='True')">
-                    <tr>
-                        <td colspan="3" class="subheader">
-                            Parameters common to all layout renderers
-                        </td>
-                    </tr>
-                    <xsl:apply-templates select="property[@declaringType='T:NLog.LayoutRenderer']" mode="parameter">
-                        <xsl:sort select="count(attribute[@id='T:NLog.Config.RequiredParameterAttribute'])" order="descending" />
-                        <xsl:sort select="@name" />
-                    </xsl:apply-templates>
-                </xsl:if>
             </table>
         </xsl:if>
         <xsl:if test="documentation/example">
@@ -117,8 +99,8 @@
         <xsl:call-template name="parameter_info" />
     </xsl:template>
 
-    <xsl:template match="property[attribute/@id='T:NLog.Config.ArrayParameterAttribute']" mode="parameter2">
-        <xsl:variable name="itemtype" select="attribute[@id='T:NLog.Config.ArrayParameterAttribute']/property[@name='ElementType']/@value" />
+    <xsl:template match="property[attribute/@name='NLog.Config.ArrayParameterAttribute']" mode="parameter2">
+        <xsl:variable name="itemtype" select="attribute[@name='NLog.Config.ArrayParameterAttribute']/property[@name='ElementType']/@value" />
         <br/>&lt;<xsl:value-of select="@name" />&gt;<br/>
         <xsl:value-of select="$itemtype" />
         <xsl:apply-templates select="//class[@name='$itemtype']" mode="parameter" />

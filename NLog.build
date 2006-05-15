@@ -16,9 +16,9 @@
     <property name="deploy.host" value="jaak@sav.net" />
     
     <property name="nlog.csc.args" value="/nowarn:1591" />
-    <property name="ndoc.path" value="D:\Apps\NDoc\1.1" />
-    <property name="ndoc2.path" value="D:\Apps\NDoc\2.0" />
-    <property name="ndoc.console.exe" value="${ndoc.path}/ndocconsole.exe" />
+    <property name="ndoc.version" value="2.0" />
+    <property name="ndoc.path" value="D:\Apps\NDoc\${ndoc.version}" dynamic="true" />
+    <property name="ndoc.console.exe" value="${ndoc.path}/ndocconsole.exe" dynamic="true" />
     <property name="ndoc.console.args" value="-referencepath &quot;${framework::get-assembly-directory(framework::get-target-framework())}&quot;" dynamic="true" />
     <property name="prettyprinter.exe" value="tools/PrettyPrinter.exe" />
 
@@ -108,7 +108,7 @@
     <target name="xmldoc">
         <mkdir dir="build/doc" />
         
-        <property name="nant.settings.currentframework" value="net-1.1" />
+        <property name="nant.settings.currentframework" value="net-2.0" />
 
         <csc target="library" output="build/doc/NLog.dll" doc="build/doc/NLog.xml" warninglevel="0" define="DOCUMENTATION;NANT">
             <sources basedir="src">
@@ -136,7 +136,7 @@
             </sourcefiles>
         </uptodate>
         <if test="${not xmldoc.uptodate}">
-            <exec program="${ndoc2.path}/ndocconsole.exe" verbose="true" workingdir="." commandline="${ndoc.console.args} -documenter=XML -project=./NLog.ndoc" />
+            <exec program="${ndoc.console.exe}" verbose="true" workingdir="." commandline="${ndoc.console.args} -documenter=XML -project=./NLog.ndoc" />
         </if>
         <echo message="Getting target, filter and layout renderer names from build/doc/doc.xml ..." />
         <script language="C#">
@@ -147,22 +147,44 @@
                     string targets = "";
                     string layoutRenderers = "";
                     string filters = "";
+
+                    // NDoc 2.0 XML layout
                     foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value"))
                     {
                         if (targets != "")
-                            targets += ",";
+                        targets += ",";
                         targets += node.InnerText;
                     }
                     foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@id='T:NLog.LayoutRendererAttribute']/argument[position()=1]/@value"))
                     {
                         if (layoutRenderers != "")
-                            layoutRenderers += ",";
+                        layoutRenderers += ",";
                         layoutRenderers += node.InnerText;
                     }
                     foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@id='T:NLog.FilterAttribute']/argument[position()=1]/@value"))
                     {
                         if (filters != "")
-                            filters += ",";
+                        filters += ",";
+                        filters += node.InnerText;
+                    }
+
+                    // NDoc 1.1 XML layout
+                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value"))
+                    {
+                        if (targets != "")
+                        targets += ",";
+                        targets += node.InnerText;
+                    }
+                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@name='NLog.LayoutRendererAttribute']/property[@name='FormatString']/@value"))
+                    {
+                        if (layoutRenderers != "")
+                        layoutRenderers += ",";
+                        layoutRenderers += node.InnerText;
+                    }
+                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@name='NLog.FilterAttribute']/property[@name='Name']/@value"))
+                    {
+                        if (filters != "")
+                        filters += ",";
                         filters += node.InnerText;
                     }
 
@@ -494,7 +516,6 @@
     <target name="configure-net-2.0">
         <property name="ilmerge.version" value="2" />
         <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET2;DOTNET_2_0;NET_2_API" />
-        <property name="ndoc.console.exe" value="${ndoc.path}/ndocconsole.exe" />
         <property name="nlog.csc.args" value="/nowarn:1591,1699" />
     </target>
 
@@ -505,7 +526,6 @@
     <target name="configure-netcf-2.0">
         <property name="nlog.define" value="${nlog.define};NETCF;NETCF_2_0;NET_2_API" />
         <property name="nlog.csc.args" value="/nowarn:1591,1699" />
-        <property name="ndoc.console.exe" value="${ndoc.path}/ndocconsole.exe" />
     </target>
 
     <target name="build-mono-1.0" depends="NLog" />
@@ -574,11 +594,11 @@
             <sourcefiles basedir=".">
                 <include name="build/doc/NLog.dll" />
                 <include name="build/doc/helpweb/**/*" />
-                <include name="NLog.ndoc" />
+                <include name="NLog-${ndoc.version}.ndoc" />
             </sourcefiles>
         </uptodate>
         <if test="${not help.uptodate}">
-            <exec program="${ndoc2.path}/ndocconsole.exe" verbose="true" workingdir="." commandline="${ndoc.console.args} -documenter=MSDN-CHM -project=.\NLog.ndoc" />
+            <exec program="${ndoc.console.exe}" verbose="true" workingdir="." commandline="${ndoc.console.args} -documenter=MSDN -project=.\NLog.ndoc" />
             <zip zipfile="nlog-${nlog.package.name}-help.zip">
                 <fileset basedir="build/doc/help">
                     <include name="NLog.chm" />
