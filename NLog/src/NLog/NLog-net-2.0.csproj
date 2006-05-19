@@ -280,10 +280,8 @@
     <Compile Include="Internal\FileAppenders\SingleProcessFileAppender.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FilterDictionary.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\HttpNetworkSender.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Internal\InternalLogger.cs">
@@ -307,9 +305,10 @@
     <Compile Include="Internal\MultiFileWatcher.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Internal\NetworkSender.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Internal\NetworkSenders\HttpNetworkSender.cs" />
+    <Compile Include="Internal\NetworkSenders\NetworkSender.cs" />
+    <Compile Include="Internal\NetworkSenders\TcpNetworkSender.cs" />
+    <Compile Include="Internal\NetworkSenders\UdpNetworkSender.cs" />
     <Compile Include="Internal\PlatformDetector.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -331,9 +330,6 @@
     <Compile Include="Internal\TargetWithFilterChain.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Internal\TcpNetworkSender.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Internal\ThreadIDHelper.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -341,9 +337,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Internal\TypeToPropertyInfoDictionaryAssociation.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\UdpNetworkSender.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Layout.cs">

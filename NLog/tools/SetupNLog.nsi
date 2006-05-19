@@ -73,6 +73,16 @@ Section ".NET 1.1 / Visual Studio.NET 2003"
   SetOutPath $INSTDIR\bin\net-1.1
   File /r /x _svn "build\net-1.1${OPTIONALDEBUG}\bin\*.*"
   WriteRegStr HKLM "Software\Microsoft\VisualStudio\7.1\AssemblyFolders\NLog" "" "$INSTDIR\net-1.1"
+
+; install schema for intellisense
+  ClearErrors
+  ReadRegStr $0 HKLM Software\Microsoft\VisualStudio\7.1\Setup\VS "VS7CommonDir"
+  IfErrors novsnet
+  DetailPrint "Visual Studio .NET 2003 installed in $0"
+  SetOutPath "$0\Packages\schemas\xml"
+  File "build\net-1.1${OPTIONALDEBUG}\bin\NLog.xsd"
+novsnet:
+
 SectionEnd
 
 Section ".NET 2.0 / Visual Studio 2005"
@@ -80,6 +90,15 @@ Section ".NET 2.0 / Visual Studio 2005"
   SetOutPath $INSTDIR\bin\net-2.0
   File /r /x _svn "build\net-2.0${OPTIONALDEBUG}\bin\*.*"
   WriteRegStr HKLM "Software\Microsoft\.NETFramework\v2.0.50727\AssemblyFoldersEx\NLog" "" "$INSTDIR\net-2.0"
+
+  ClearErrors
+  ReadRegStr $0 HKLM Software\Microsoft\VisualStudio\8.0\Setup\VS "ProductDir"
+  IfErrors novsnet
+  DetailPrint "Visual Studio .NET 2005 installed in $0"
+  SetOutPath "$0\xml\schemas"
+  File "build\net-2.0${OPTIONALDEBUG}\bin\NLog.xsd"
+novsnet:
+
 SectionEnd
 
 SectionGroupEnd
@@ -134,6 +153,18 @@ Section "Uninstall"
   DeleteRegKey HKLM "Software\Microsoft\VisualStudio\7.1\AssemblyFolders\NLog"
   DeleteRegKey HKLM "Software\Microsoft\.NETFramework\v2.0.50727\AssemblyFoldersEx\NLog"
 
+  ClearErrors
+  ReadRegStr $0 HKLM Software\Microsoft\VisualStudio\7.1\Setup\VS "VS7CommonDir"
+  IfErrors novsnet2
+  Delete "$0\Packages\schemas\xml\NLog.xsd"
+
+novsnet2:
+  ClearErrors
+  ReadRegStr $0 HKLM Software\Microsoft\VisualStudio\8.0\Setup\VS "ProductDir"
+  IfErrors novsnet3
+  Delete "$0\xml\schemas\NLog.xsd"
+
+novsnet3:
   Delete "$SMPROGRAMS\NLog\*.lnk"
   RMDir "$SMPROGRAMS\NLog"
 
