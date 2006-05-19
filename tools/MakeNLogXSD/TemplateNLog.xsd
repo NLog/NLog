@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="NLog" 
+                  targetNamespace="http://www.nlog-project.org/schemas/NLog.xsd"
+                  elementFormDefault="qualified"
+                  xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+                  xmlns:mstns="http://www.nlog-project.org/schemas/NLog.xsd"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="nlog" type="NLogConfiguration" />
+    <xs:element name="target" type="Target" abstract="true" />
+
+    <xs:complexType name="NLogConfiguration">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="targets" type="NLogTargets" />
+            <xs:element name="rules" type="NLogRules" />
+        </xs:choice>
+        <xs:attribute name="autoReload" type="xs:boolean" />
+        <xs:attribute name="throwExceptions" type="xs:boolean" />
+    </xs:complexType>
+
+    <xs:complexType name="NLogTargets">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="target" type="Target" />
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="NLogRules">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="logger" type="NLogLoggerRule" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="NLogLoggerRule">
+        <xs:attribute name="name" use="optional" />
+        <xs:attribute name="levels" type="NLogLevelList" />
+        <xs:attribute name="minlevel" type="NLogLevel" />
+        <xs:attribute name="maxlevel" type="NLogLevel" />
+        <xs:attribute name="level" type="NLogLevel" />
+        <xs:attribute name="writeTo" type="NLogTargetIDList" />
+    </xs:complexType>
+
+    <xs:simpleType name="NLogLevel">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Trace" />
+            <xs:enumeration value="Debug" />
+            <xs:enumeration value="Info" />
+            <xs:enumeration value="Warn" />
+            <xs:enumeration value="Error" />
+            <xs:enumeration value="Fatal" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="NLogLevelList">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(|Trace|Debug|Info|Warn|Error|Fatal)(,(Trace|Debug|Info|Warn|Error|Fatal))*" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="NLogInclude">
+        <xs:attribute name="file" type="NLogLayout" />
+    </xs:complexType>
+
+    <xs:simpleType name="NLogTargetIDList">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(|([a-zA-Z][a-zA-Z0-9_\-]*))(,([a-zA-Z][a-zA-Z0-9_\-]*))*" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Target">
+        <xs:attribute name="name" use="optional" />
+    </xs:complexType>
+
+    <xs:simpleType name="NLogLayout">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="((\$\{[a-zA-Z][a-zA-Z0-9\-]*(\:[a-zA-Z][a-zA-Z0-9\-]*\=([^\\\:]|\\.)*)*\})|([^\$])|(\$[^\{]))*" />
+            <xs:minLength value="1" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="NLogCondition">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <types-go-here xmlns=""/>
+</xs:schema>
