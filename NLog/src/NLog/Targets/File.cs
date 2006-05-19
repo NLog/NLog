@@ -172,9 +172,11 @@ namespace NLog.Targets
         private IFileAppender[] _recentAppenders;
         private DateTime[] _lastWriteTime;
         private ArchiveNumberingMode _archiveNumbering = ArchiveNumberingMode.Sequence;
+#if !NETCF_1_0
         private Thread _autoClosingThread = null;
-        private bool _isClosed = false;
+        private ManualResetEvent _closedEvent = null;
         private int _openFileCacheTimeout = 1;
+#endif
 
         /// <summary>
         /// Creates a new instance of <see cref="FileTarget"/>.
@@ -239,6 +241,7 @@ namespace NLog.Targets
             set { _openFileCacheSize = value; }
         }
 
+#if !NETCF_1_0
         /// <summary>
         /// Maximum number of seconds that files are kept open.
         /// </summary>
@@ -248,6 +251,7 @@ namespace NLog.Targets
             get { return _openFileCacheTimeout; }
             set { _openFileCacheTimeout = value; }
         }
+#endif
 
         /// <summary>
         /// Keep log file open instead of opening and closing it on each logging event.
@@ -747,20 +751,24 @@ namespace NLog.Targets
             _recentAppenders = new IFileAppender[OpenFileCacheSize];
             _lastWriteTime = new DateTime[OpenFileCacheSize];
 
+#if !NETCF_1_0
             if (OpenFileCacheSize > 0 && OpenFileCacheTimeout > 0)
             {
+                _closedEvent = new ManualResetEvent(false);
                 _autoClosingThread = new Thread(new ThreadStart(this.AutoClosingThread));
+                _autoClosingThread.IsBackground = true;
                 _autoClosingThread.Start();
             }
+#endif
 
             // Console.Error.WriteLine("Name: {0} Factory: {1}", this.Name, _appenderFactory.GetType().FullName);
         }
 
+#if !NETCF_1_0
         private void AutoClosingThread()
         {
-            while (!_isClosed)
+            while (!_closedEvent.WaitOne(OpenFileCacheTimeout * 500, false))
             {
-                System.Threading.Thread.Sleep(1000 * OpenFileCacheTimeout / 2);
                 lock (this)
                 {
                     DateTime timeToKill = DateTime.Now.AddSeconds(-OpenFileCacheTimeout);
@@ -783,7 +791,9 @@ namespace NLog.Targets
                     }
                 }
             }
+            _closedEvent.Close();
         }
+#endif
 
         /// <summary>
         /// Modifies the specified byte array before it gets sent to a file.
@@ -875,6 +885,16 @@ namespace NLog.Targets
         /// </summary>
         protected internal override void Close()
         {
+#if !NETCF_1_0
+            if (_closedEvent != null)
+            {
+                InternalLogger.Debug("Setting 'closed' event to stop auto-close thread.");
+                _closedEvent.Set();
+                InternalLogger.Debug("Waiting for thread to join...");
+                _autoClosingThread.Join();
+                InternalLogger.Debug("Thread has joined.");
+            }
+#endif
             for (int i = 0; i < _recentAppenders.Length; ++i)
             {
                 if (_recentAppenders[i] == null)
@@ -882,7 +902,6 @@ namespace NLog.Targets
                 _recentAppenders[i].Close();
                 _recentAppenders[i] = null;
             }
-            _isClosed = true;
         }
 
         private bool GetFileInfo(string fileName, out DateTime lastWriteTime, out long fileLength)

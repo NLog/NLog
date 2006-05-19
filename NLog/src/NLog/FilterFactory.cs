@@ -131,5 +131,13 @@ namespace NLog
             }
             throw new ArgumentException("Filter " + name + " not found.");
         }
+
+        /// <summary>
+        /// Collection of filter types added to the factory.
+        /// </summary>
+        public static ICollection FilterTypes
+        {
+            get { return _filters.Values; }
+        }
     }
 }

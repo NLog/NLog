@@ -252,6 +252,19 @@ namespace NLog.Config
                     break;
             }
 
+#if !NETCF
+            switch (GetCaseInsensitiveAttribute(configElement, "internalLogToConsoleError"))
+            {
+                case "true":
+                    InternalLogger.LogToConsoleError = true;
+                    break;
+
+                case "false":
+                    InternalLogger.LogToConsoleError = false;
+                    break;
+            }
+#endif
+
             string s = GetCaseInsensitiveAttribute(configElement, "internalLogFile");
             if (s != null)
                     InternalLogger.LogFile = s;
