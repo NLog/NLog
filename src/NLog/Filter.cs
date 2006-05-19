@@ -50,7 +50,6 @@ namespace NLog
         protected Filter(){}
 
         private FilterResult _filterResult = FilterResult.Neutral;
-        private string _action = "neutral";
 
         /// <summary>
         /// The <see cref="FilterResult"/> value that should be returned 
@@ -58,10 +57,7 @@ namespace NLog
         /// </summary>
         protected FilterResult Result
         {
-            get
-            {
-                return _filterResult;
-            }
+            get { return _filterResult; }
         }
 
         /// <summary>
@@ -71,30 +67,10 @@ namespace NLog
         /// Allowed values are <c>log</c>, <c>ignore</c>, <c>neutral</c>.
         /// </remarks>
         [RequiredParameter]
-        public string Action
+        public FilterResult Action
         {
-            get
-            {
-                return _action;
-            }
-            set
-            {
-                _action = value;
-                switch (_action.ToLower())
-                {
-                    case "log":
-                        _filterResult = FilterResult.Log;
-                        break;
-                    case "ignore":
-                        _filterResult = FilterResult.Ignore;
-                        break;
-                    case "neutral":
-                        _filterResult = FilterResult.Neutral;
-                        break;
-                    default:
-                        throw new ArgumentException("Invalid value for the 'Action' parameter. Can be log/ignore/neutral");
-                }
-            }
+            get { return _filterResult; }
+            set { _filterResult = value; }
         }
 
         /// <summary>

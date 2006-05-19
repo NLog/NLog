@@ -667,13 +667,16 @@
         <call target="deploy-web" />
     </target>
 
-    <target name="schema" depends="NLog">
+    <target name="schema" depends="NLog, xmldoc">
         <uptodate property="schema.uptodate">
             <targetfiles>
                 <include name="${nlog.dir}/NLog.xsd" />
             </targetfiles>
             <sourcefiles>
                 <include name="${nlog.dir}/NLog.dll" />
+                <include name="build/doc/doc.xml" />
+                <include name="tools/MakeNLogXSD/TemplateNLog.xsd" />
+                <include name="tools/MakeNLogXSD/Program.cs" />
             </sourcefiles>
         </uptodate>
         <if test="${not schema.uptodate}">
@@ -691,9 +694,17 @@
                     <include name="TemplateNLog.xsd" />
                 </resources>
             </csc>
-            <exec program="${nlog.dir}/MakeNLogXSD.exe" commandline="NLog.xsd" workingdir="${nlog.dir}" useruntimeengine="true" />
+            <exec program="${nlog.dir}/MakeNLogXSD.exe" 
+                commandline="NLog.xsd &quot;${nant.project.basedir}/build/doc/doc.xml&quot;"
+                workingdir="${nlog.dir}" useruntimeengine="true" />
             <delete file="${nlog.dir}/MakeNLogXSD.exe" />
         </if>
+    </target>
+
+    <target name="install-schema-vs2005" depends="schema">
+        <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VS\ProductDir" />
+        <copy file="${nlog.dir}/NLog.xsd" tofile="${visualstudio.dir}/Xml/Schemas/NLog.xsd" />
+
     </target>
 
     <target name="upload_snapshot">

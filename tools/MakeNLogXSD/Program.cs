@@ -12,12 +12,45 @@ using System.IO;
 using System.Collections;
 using System.Xml.Schema;
 using NLog.Conditions;
+using System.ComponentModel;
+using System.Globalization;
 
 namespace MakeNLogXSD
 {
     class Program
     {
         static Hashtable _typeDumped = new Hashtable();
+        static XmlDocument _docXml = new XmlDocument();
+
+        static string XmlDefaultValue(object v)
+        {
+            if (v is bool)
+            {
+                return XmlConvert.ToString((bool)v);
+            }
+            else
+            {
+                return Convert.ToString(v, CultureInfo.InvariantCulture);
+            }
+        }
+
+        static string FindAnnotation(PropertyInfo pi)
+        {
+            string xpath = "//class[@id='T:" + pi.DeclaringType.FullName + "']/property[@name='" + pi.Name + "']/documentation/summary";
+            XmlNode n = _docXml.SelectSingleNode(xpath);
+            if (n != null)
+            {
+                string suffix = "";
+
+                DefaultValueAttribute dva = (DefaultValueAttribute)Attribute.GetCustomAttribute(pi, typeof(DefaultValueAttribute));
+                if (dva != null)
+                    suffix += " Default value is: " + XmlDefaultValue(dva.Value);
+
+                return n.InnerText + suffix;
+            }
+            else
+                return null;
+        }
 
         static string SimpleTypeName(Type t)
         {
@@ -73,10 +106,11 @@ namespace MakeNLogXSD
 
             foreach (FieldInfo fi in t.GetFields())
             {
+                if (fi.Name.IndexOf("__") >= 0)
+                    continue;
                 xtw.WriteStartElement("xs:enumeration");
                 xtw.WriteAttributeString("value", fi.Name);
                 xtw.WriteEndElement();
-
             }
 
             xtw.WriteEndElement(); // xs:restriction
@@ -141,6 +175,26 @@ namespace MakeNLogXSD
                 }
             }
 
+            if (t == typeof(WrapperTargetBase))
+            {
+                xtw.WriteStartElement("xs:element");
+                xtw.WriteAttributeString("name", "target");
+                xtw.WriteAttributeString("type", "Target");
+                xtw.WriteAttributeString("minOccurs", "1");
+                xtw.WriteAttributeString("maxOccurs", "1");
+                xtw.WriteEndElement();
+            }
+
+            if (t == typeof(CompoundTargetBase))
+            {
+                xtw.WriteStartElement("xs:element");
+                xtw.WriteAttributeString("name", "target");
+                xtw.WriteAttributeString("type", "Target");
+                xtw.WriteAttributeString("minOccurs", "1");
+                xtw.WriteAttributeString("maxOccurs", "unbounded");
+                xtw.WriteEndElement();
+            }
+
             xtw.WriteEndElement();
 
             foreach (PropertyInfo pi in t.GetProperties())
@@ -168,6 +222,20 @@ namespace MakeNLogXSD
                     xtw.WriteAttributeString("type", "NLogCondition");
                 else
                     xtw.WriteAttributeString("type", SimpleTypeName(pi.PropertyType));
+                DefaultValueAttribute dva = (DefaultValueAttribute)Attribute.GetCustomAttribute(pi, typeof(DefaultValueAttribute));
+                if (dva != null)
+                    xtw.WriteAttributeString("default", XmlDefaultValue(dva.Value));
+
+                string annotation = FindAnnotation(pi);
+                if (annotation != null)
+                {
+                    xtw.WriteStartElement("xs:annotation");
+                    xtw.WriteStartElement("xs:documentation");
+                    xtw.WriteString(annotation);
+                    xtw.WriteEndElement();
+                    xtw.WriteEndElement();
+                }
+
                 typesToDump.Add(pi.PropertyType);
                 xtw.WriteEndElement();
             }
@@ -200,14 +268,15 @@ namespace MakeNLogXSD
 
         static int Main(string[] args)
         {
-            if (args.Length != 1)
+            if (args.Length != 2)
             {
-                Console.WriteLine("Usage: MakeNLogXSD outputfile.xsd");
+                Console.WriteLine("Usage: MakeNLogXSD outputfile.xsd path_to_doc.xml");
                 return 1;
             }
 
             try
             {
+                _docXml.Load(args[1]);
 
                 StringWriter sw = new StringWriter();
 
@@ -225,12 +294,15 @@ namespace MakeNLogXSD
                 {
                     DumpType(xtw, targetType);
                 }
+                foreach (Type t in FilterFactory.FilterTypes)
+                {
+                    DumpType(xtw, t);
+                }
                 xtw.Flush();
                 sw.Write("</root>");
                 sw.Flush();
 
                 XmlDocument doc2 = new XmlDocument();
-
                 doc2.LoadXml(sw.ToString());
 
                 using (Stream templateStream = Assembly.GetEntryAssembly().GetManifestResourceStream("MakeNLogXSD.TemplateNLog.xsd"))
@@ -249,6 +321,18 @@ namespace MakeNLogXSD
                         n.ParentNode.InsertBefore(importedNode, n);
                     }
                     n.ParentNode.RemoveChild(n);
+
+                    n = doc.SelectSingleNode("//filters-go-here");
+                    foreach (Type t in FilterFactory.FilterTypes)
+                    {
+                        FilterAttribute fa = (FilterAttribute)Attribute.GetCustomAttribute(t, typeof(FilterAttribute));
+                        XmlElement el = doc.CreateElement("xs:element", XmlSchema.Namespace);
+                        el.SetAttribute("name", fa.Name);
+                        el.SetAttribute("type", SimpleTypeName(t));
+                        n.ParentNode.InsertBefore(el, n);
+                    }
+                    n.ParentNode.RemoveChild(n);
+
                     Console.WriteLine("Saving schema to: {0}", args[0]);
                     doc.Save(args[0]);
                     return 0;

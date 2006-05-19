@@ -1,5 +1,6 @@
 2006-05-15 Jaroslaw Kowalski <jaak@jkowalski.net>
 
+	* Fixed File target causing delay at exit.
 	* Added generation of NLog.xsd schema for Intellisense.
 
 2006-05-15 Jaroslaw Kowalski <jaak@jkowalski.net>

@@ -11,17 +11,57 @@
 
     <xs:complexType name="NLogConfiguration">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="include" type="NLogInclude" />
+            <xs:element name="variable" type="NLogVariable" />
             <xs:element name="targets" type="NLogTargets" />
             <xs:element name="rules" type="NLogRules" />
         </xs:choice>
-        <xs:attribute name="autoReload" type="xs:boolean" />
-        <xs:attribute name="throwExceptions" type="xs:boolean" />
+        <xs:attribute name="autoReload" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Watch config file for changes and reload automatically.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="internalLogToConsole" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Print internal NLog messages to the console. Default value is: false</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="internalLogToConsoleError" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Print internal NLog messages to the console error output. Default value is: false</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="internalLogFile" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Write internal NLog messages to the specified file.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="internalLogLevel" type="NLogLevel">
+            <xs:annotation>
+                <xs:documentation>Log level threshold for internal log messages. Default value is: Info.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="globalThreshold" type="NLogLevel">
+            <xs:annotation>
+                <xs:documentation>Global log level threshold for application log messages. Messages below this level won't be logged..</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="throwExceptions" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Pass NLog internal exceptions to the application. Default value is: false.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="NLogTargets">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element name="target" type="Target" />
         </xs:choice>
+        <xs:attribute name="async" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Make all targets within this section asynchronous (creates additional threads but the calling thread isn't blocked by any target writes).</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="NLogRules">
@@ -30,13 +70,81 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="NLogExtensions">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="add" type="NLogExtensionsAdd" />
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="NLogExtensionsAdd">
+        <xs:attribute name="prefix" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Prefix for targets/layout renderers/filters/conditions loaded from this assembly.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="assemblyFile" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Load NLog extensions from the specified file (*.dll)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="assembly" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Load NLog extensions from the specified assembly. Assembly name should be fully qualified.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
     <xs:complexType name="NLogLoggerRule">
-        <xs:attribute name="name" use="optional" />
-        <xs:attribute name="levels" type="NLogLevelList" />
-        <xs:attribute name="minlevel" type="NLogLevel" />
-        <xs:attribute name="maxlevel" type="NLogLevel" />
-        <xs:attribute name="level" type="NLogLevel" />
-        <xs:attribute name="writeTo" type="NLogTargetIDList" />
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="filters" type="NLogFilters" />
+        </xs:choice>
+        <xs:attribute name="name" use="optional">
+            <xs:annotation>
+                <xs:documentation>Name of the logger. May include '*' character which acts like a wildcard. Allowed forms are: *, Name, *Name, Name* and *Name*</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        
+        <xs:attribute name="levels" type="NLogLevelList">
+            <xs:annotation>
+                <xs:documentation>Comma separated list of levels that this rule matches.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        
+        <xs:attribute name="minlevel" type="NLogLevel">
+            <xs:annotation>
+                <xs:documentation>Minimum level that this rule matches.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        
+        <xs:attribute name="maxlevel" type="NLogLevel">
+            <xs:annotation>
+                <xs:documentation>Maximum level that this rule matches.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="level" type="NLogLevel">
+            <xs:annotation>
+                <xs:documentation>Level that this rule matches.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="writeTo" type="NLogTargetIDList">
+            <xs:annotation>
+                <xs:documentation>Comma separated list of target names.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="final" type="xs:boolean" default="false">
+            <xs:annotation>
+                <xs:documentation>Ignore further rules if this one matches.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="NLogFilters">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <filters-go-here xmlns=""/>
+        </xs:choice>
     </xs:complexType>
 
     <xs:simpleType name="NLogLevel">
@@ -57,7 +165,24 @@
     </xs:simpleType>
 
     <xs:complexType name="NLogInclude">
-        <xs:attribute name="file" type="NLogLayout" />
+        <xs:attribute name="file" type="NLogLayout" use="required">
+            <xs:annotation>
+                <xs:documentation>Name of the file to be included. The name is relative to the name of the current config file.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="NLogVariable">
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Variable name.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="value" type="NLogLayout" use="required">
+            <xs:annotation>
+                <xs:documentation>Variable value.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:simpleType name="NLogTargetIDList">

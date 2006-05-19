@@ -77,7 +77,6 @@ namespace NLog.Tester
             logger.Error("err");
             logger.Fatal("fff");
             A();
-            Console.WriteLine("aaa");
         }
     }
 }
