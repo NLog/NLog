@@ -149,5 +149,13 @@ namespace NLog
             }
             throw new ArgumentException("Target " + name + " not found.");
         }
+
+        /// <summary>
+        /// Collection of target types added to the factory.
+        /// </summary>
+        public static ICollection TargetTypes
+        {
+            get { return _targets.Values; }
+        }
     }
 }

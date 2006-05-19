@@ -528,11 +528,11 @@
         <property name="nlog.csc.args" value="/nowarn:1591,1699" />
     </target>
 
-    <target name="build-mono-1.0" depends="NLog" />
-    <target name="build-mono-2.0" depends="NLog" />
-    <target name="build-net-1.0" depends="NLog, NLog.ComInterop, NLogC" />
-    <target name="build-net-1.1" depends="NLog, NLog.ComInterop, NLogC" />
-    <target name="build-net-2.0" depends="NLog, NLog.ComInterop, NLogC" />
+    <target name="build-mono-1.0" depends="NLog, schema" />
+    <target name="build-mono-2.0" depends="NLog, schema" />
+    <target name="build-net-1.0" depends="NLog, NLog.ComInterop, NLogC, schema" />
+    <target name="build-net-1.1" depends="NLog, NLog.ComInterop, NLogC, schema" />
+    <target name="build-net-2.0" depends="NLog, NLog.ComInterop, NLogC, schema" />
     <target name="build-netcf-1.0" depends="NLog" />
     <target name="build-netcf-2.0" depends="NLog" />
     <target name="build-nlogc-net-1.0" depends="NLogC-1.0, NLogC-1.1, NLogC-2.0" />
@@ -665,6 +665,35 @@
     <target name="upload_web_snapshot">
         <property name="webserver.deploy.dir" value="${webserver.deploy.dir}/snapshots/${nlog.package.name}/web" />
         <call target="deploy-web" />
+    </target>
+
+    <target name="schema" depends="NLog">
+        <uptodate property="schema.uptodate">
+            <targetfiles>
+                <include name="${nlog.dir}/NLog.xsd" />
+            </targetfiles>
+            <sourcefiles>
+                <include name="${nlog.dir}/NLog.dll" />
+            </sourcefiles>
+        </uptodate>
+        <if test="${not schema.uptodate}">
+            <csc target="exe" output="${nlog.dir}/MakeNLogXSD.exe" define="${nlog.define}" warninglevel="${csc.warninglevel}" failonerror="false">
+                <sources>
+                    <include name="tools/MakeNLogXSD/Program.cs" />
+                </sources>
+                <references>
+                    <include name="${nlog.dir}/NLog.dll" />
+                    <include name="mscorlib.dll" />
+                    <include name="System.dll" />
+                    <include name="System.Xml.dll" />
+                </references>
+                <resources basedir="tools/MakeNLogXSD" prefix="MakeNLogXSD" dynamicprefix="true">
+                    <include name="TemplateNLog.xsd" />
+                </resources>
+            </csc>
+            <exec program="${nlog.dir}/MakeNLogXSD.exe" commandline="NLog.xsd" workingdir="${nlog.dir}" useruntimeengine="true" />
+            <delete file="${nlog.dir}/MakeNLogXSD.exe" />
+        </if>
     </target>
 
     <target name="upload_snapshot">
