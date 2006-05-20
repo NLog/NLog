@@ -55,8 +55,6 @@ Section "NLog Core Files"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\NLog" "DisplayName" "NLog - A .NET Logging Library"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\NLog" "UninstallString" "$INSTDIR\Uninstall.exe"
   WriteUninstaller "$INSTDIR\Uninstall.exe"
-
-  ExecShell open '$SMPROGRAMS\NLog'
 SectionEnd ; end the section
 
 SectionGroup ".NET Framework Support"
@@ -98,6 +96,16 @@ Section ".NET 2.0 / Visual Studio 2005"
   SetOutPath "$0\xml\schemas"
   File "build\net-2.0${OPTIONALDEBUG}\bin\NLog.xsd"
 novsnet:
+
+  ClearErrors
+  ReadRegStr $0 HKCU Software\Microsoft\VisualStudio\8.0 "UserItemTemplatesLocation"
+  IfErrors novsnet2
+  ExpandEnvStrings $1 $0
+  DetailPrint "Installing Visual Studio .NET 2005 item templates in $1"
+  SetOutPath $1
+  File "*NLogConfig.zip"
+
+novsnet2:
 
 SectionEnd
 
@@ -165,9 +173,22 @@ novsnet2:
   Delete "$0\xml\schemas\NLog.xsd"
 
 novsnet3:
+  ClearErrors
+  ReadRegStr $0 HKCU Software\Microsoft\VisualStudio\8.0 "UserItemTemplatesLocation"
+  IfErrors novsnet4
+  ExpandEnvStrings $1 $0
+  Delete "$1\*NLogConfig.zip"
+
+novsnet4:
+
   Delete "$SMPROGRAMS\NLog\*.lnk"
   RMDir "$SMPROGRAMS\NLog"
 
   RMDir /r "$INSTDIR"
 SectionEnd
 ; eof
+
+Function .onInstSuccess
+  ExecShell open '$SMPROGRAMS\NLog'
+FunctionEnd
+

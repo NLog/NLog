@@ -164,6 +164,15 @@ namespace NLog
                     }
                     if (_config == null)
                     {
+                        string configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NLog.config");
+                        if (File.Exists(configFile))
+                        {
+                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                            _config = new XmlLoggingConfiguration(configFile);
+                        }
+                    }
+                    if (_config == null)
+                    {
                         string configFile = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
                         if (configFile != null) 
                         {
@@ -215,6 +224,15 @@ namespace NLog
                     if (_config == null)
                     {
                         string configFile = CompactFrameworkHelper.GetExeFileName() + ".nlog";
+                        if (File.Exists(configFile))
+                        {
+                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                            _config = new XmlLoggingConfiguration(configFile);
+                        }
+                    }
+                    if (_config == null)
+                    {
+                        string configFile = Path.Combine(Path.GetDirectoryName(CompactFrameworkHelper.GetExeFileName()), "NLog.config");
                         if (File.Exists(configFile))
                         {
                             InternalLogger.Debug("Attempting to load config from {0}", configFile);

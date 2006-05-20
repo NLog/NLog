@@ -545,7 +545,7 @@
         </foreach>
     </target>
 
-    <target name="installer" depends="allframeworksdebugandrelease, help">
+    <target name="installer" depends="allframeworksdebugandrelease, help, vs2005templates">
         <readregistry property="nsis.dir" key="SOFTWARE\NSIS\" />
         <property name="makensis.exe" value="${nsis.dir}/makensis.exe" />
 
@@ -699,6 +699,31 @@
                 workingdir="${nlog.dir}" useruntimeengine="true" />
             <delete file="${nlog.dir}/MakeNLogXSD.exe" />
         </if>
+    </target>
+
+    <target name="vs2005templates">
+        <foreach item="String" in="Empty,Typical" delim="," property="projecttype">
+            <foreach item="String" in="CSharp,VisualBasic" delim="," property="language">
+                <foreach item="Line" in="Nlog.version" delim=";" property="nlog.version">
+                    <delete dir="tmp_dir" failonerror="false" />
+                    <copy todir="tmp_dir">
+                        <fileset basedir="tools/VS2005Templates/ItemTemplates/${projecttype}NLogConfig">
+                            <include name="**/*" />
+                        </fileset>
+                        <filterchain>
+                            <replacestring from="$nlogversion$" to="${nlog.version}" />
+                            <replacestring from="$templatelanguage$" to="${language}" />
+                        </filterchain>
+                    </copy>
+                    <zip zipfile="${language}${projecttype}NLogConfig.zip">
+                        <fileset basedir="tmp_dir">
+                            <include name="**/*" />
+                        </fileset>
+                    </zip>
+                </foreach>
+            </foreach>
+        </foreach>
+        <delete dir="tmp_dir" failonerror="false" />
     </target>
 
     <target name="install-schema-vs2005" depends="schema">

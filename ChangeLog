@@ -1,3 +1,12 @@
+2006-05-20 Jaroslaw Kowalski <jaak@jkowalski.net>
+
+	* Added VS2005 item templates for NLog configuration. Updated the
+	installer.
+	* Removed some stupid Console.Write()
+	* Updated MailTarget.SmtpAuthentication to be SmtpAuthenticationMode instead 
+	of a string.
+	
+
 2006-05-15 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Fixed File target causing delay at exit.
