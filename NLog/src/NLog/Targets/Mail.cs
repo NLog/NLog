@@ -84,6 +84,27 @@ namespace NLog.Targets
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class MailTarget: Target
     {
+        /// <summary>
+        /// SMTP authentication modes.
+        /// </summary>
+        public enum SmtpAuthenticationMode
+        {
+            /// <summary>
+            /// No authentication.
+            /// </summary>
+            None,
+                
+            /// <summary>
+            /// Basic - username and password
+            /// </summary>
+            Basic,
+
+            /// <summary>
+            /// NTLM Authentication
+            /// </summary>
+            Ntlm,
+        }
+
         private Layout _from;
         private Layout _to;
         private Layout _cc;
@@ -96,7 +117,7 @@ namespace NLog.Targets
         private string _smtpServer;
         private string _smtpUsername;
         private string _smtpPassword;
-        private string _smtpAuthentication = "none";
+        private SmtpAuthenticationMode _smtpAuthentication = SmtpAuthenticationMode.None;
         private int _smtpPort = 25;
         private bool _isHtml = false;
 
@@ -212,16 +233,8 @@ namespace NLog.Targets
         /// <summary>
         /// SMTP Authentication mode.
         /// </summary>
-        /// <remarks>
-        /// Possible values are:
-        /// <ul>
-        /// <li><b>none</b> - no authentication</li>
-        /// <li><b>basic</b> - SmtpUsername and SmtpPassword are used to provide the credentials</li>
-        /// <li><b>ntlm</b> - integrated Windows authentication</li>
-        /// </ul>
-        /// </remarks>
-        [System.ComponentModel.DefaultValue("none")]
-        public string SmtpAuthentication
+        [System.ComponentModel.DefaultValue("None")]
+        public SmtpAuthenticationMode SmtpAuthentication
         {
             get { return _smtpAuthentication; }
             set
@@ -229,18 +242,12 @@ namespace NLog.Targets
 #if !NET_2_API
                 AssertFieldsSupport("SmtpAuthentication");
 #endif
-                if (String.Compare(value, "none", true) == 0 || 
-                    String.Compare(value, "basic", true) == 0 || 
-                    String.Compare(value, "ntlm", true) == 0
-                        )
-                    _smtpAuthentication = value.ToLower();
-                else
-                    throw new ArgumentException("Invalid argument to SmtpAuthentication. Allowed values are none,basic or ntlm");
+                _smtpAuthentication = value;
             }
         }
 
         /// <summary>
-        /// The username used to connect to SMTP server (used when SmtpPAuthentication is set to "basic").
+        /// The username used to connect to SMTP server (used when SmtpAuthentication is set to "basic").
         /// </summary>
         public string SmtpUsername
         {
@@ -388,9 +395,9 @@ namespace NLog.Targets
 #if !MONO
             // the credentials API is broken in Mono as of 2006-05-05
 
-            if (SmtpAuthentication == "ntlm")
+            if (SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
                 client.Credentials = CredentialCache.DefaultNetworkCredentials;
-            else if (SmtpAuthentication == "basic")
+            else if (SmtpAuthentication == SmtpAuthenticationMode.Basic)
                 client.Credentials = new NetworkCredential(SmtpUsername, SmtpPassword);
 #endif
             Internal.InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, _smtpServer);
@@ -403,13 +410,13 @@ namespace NLog.Targets
                 {
                     fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", SmtpPort);
                 }
-                if (SmtpAuthentication == "basic")
+                if (SmtpAuthentication == SmtpAuthenticationMode.Basic)
                 {
                     fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", "1");	
                     fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", SmtpUsername);
                     fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", SmtpPassword);
                 }
-                if (SmtpAuthentication == "ntlm")
+                if (SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
                 {
                     fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", "2");	
                 }

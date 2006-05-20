@@ -111,7 +111,6 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         public override void Flush(TimeSpan timeout)
         {
-            Console.Write("Flushing...");
             base.Flush (timeout);
 
             LogEventInfo[] events = _buffer.GetEventsAndClear();
