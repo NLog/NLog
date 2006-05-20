@@ -103,9 +103,59 @@ novsnet:
   ExpandEnvStrings $1 $0
   DetailPrint "Installing Visual Studio .NET 2005 item templates in $1"
   SetOutPath $1
-  File "*NLogConfig.zip"
+  File "CSharp*NLogConfig.zip"
+  File "VisualBasic*NLogConfig.zip"
 
 novsnet2:
+  ReadRegStr $0 HKCU Software\Microsoft\VisualStudio\8.0 "VisualStudioLocation"
+  IfErrors novsnet3
+  ExpandEnvStrings $1 $0
+
+  IfFileExists "$1\Code Snippets\Visual C#\My Code Snippets" 0 novsnet3
+  SetOutPath "$1\Code Snippets\Visual C#\My Code Snippets"
+  File "tools\VS2005Snippets\CSharp*.snippet"
+  SetOutPath "$1\Code Snippets\Visual Basic\My Code Snippets"
+  File "tools\VS2005Snippets\VB*.snippet"
+
+  ; VC# Express 2005 support
+novsnet3:
+  ReadRegStr $0 HKCU Software\Microsoft\VCSExpress\8.0 "VisualStudioLocation"
+  IfErrors novsnet4
+  ExpandEnvStrings $1 $0
+
+  IfFileExists "$1\Code Snippets\Visual C#\My Code Snippets" 0 novsnet4
+  SetOutPath "$1\Code Snippets\Visual C#\My Code Snippets"
+  File "tools\VS2005Snippets\CSharp*.snippet"
+
+novsnet4:
+  ClearErrors
+  ReadRegStr $0 HKCU Software\Microsoft\VCSExpress\8.0 "UserItemTemplatesLocation"
+  IfErrors novsnet5
+  ExpandEnvStrings $1 $0
+  DetailPrint "Installing Visual Studio .NET 2005 item templates in $1"
+  SetOutPath $1
+  File "CSharp*NLogConfig.zip"
+
+  ; VB.NET Express 2005 support
+novsnet5:
+  ClearErrors
+  ReadRegStr $0 HKCU Software\Microsoft\VBExpress\8.0 "UserItemTemplatesLocation"
+  IfErrors novsnet6
+  ExpandEnvStrings $1 $0
+  DetailPrint "Installing Visual Studio .NET 2005 item templates in $1"
+  SetOutPath $1
+  File "VisualBasic*NLogConfig.zip"
+
+novsnet6:
+  ReadRegStr $0 HKCU Software\Microsoft\VBExpress\8.0 "VisualStudioLocation"
+  IfErrors novsnet7
+  ExpandEnvStrings $1 $0
+
+  IfFileExists "$1\Code Snippets\Visual Basic\My Code Snippets" 0 novsnet7
+  SetOutPath "$1\Code Snippets\Visual Basic\My Code Snippets"
+  File "tools\VS2005Snippets\VB*.snippet"
+
+novsnet7:
 
 SectionEnd
 
