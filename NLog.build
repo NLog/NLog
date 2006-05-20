@@ -702,7 +702,7 @@
     </target>
 
     <target name="vs2005templates">
-        <foreach item="String" in="Empty,Typical" delim="," property="projecttype">
+        <foreach item="String" in="Empty,Typical,Console" delim="," property="projecttype">
             <foreach item="String" in="CSharp,VisualBasic" delim="," property="language">
                 <foreach item="Line" in="Nlog.version" delim=";" property="nlog.version">
                     <delete dir="tmp_dir" failonerror="false" />

@@ -1,5 +1,8 @@
 2006-05-20 Jaroslaw Kowalski <jaak@jkowalski.net>
 
+	* Added support for VC#Express and VBExpress to the installer.
+	* Added VS2005 C# and VB.NET code snippet (nlogger) to quickly
+	insert logger creation statement
 	* Added VS2005 item templates for NLog configuration. Updated the
 	installer.
 	* Removed some stupid Console.Write()
