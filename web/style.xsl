@@ -312,8 +312,8 @@ urchinTracker();
         <div class="listtable">
             <table>
                 <tr>
-                    <th rowspan="2">Class</th>
                     <th rowspan="2">Assembly</th>
+                    <th rowspan="2">Class</th>
                     <th colspan="3">.NET Framework</th>
                     <th colspan="2">.NET CF</th>
                     <th colspan="2">Mono on Windows</th>
