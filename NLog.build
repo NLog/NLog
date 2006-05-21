@@ -26,12 +26,14 @@
     <property name="csc.warninglevel" value="4" />
 
     <property name="nlog.package.name" value="${tstamp.date}" unless="${property::exists('nlog.package.name')}" />
+    <property name="nlog.release.dir" value="releases/${nlog.package.name}" />
     <property name="ilmerge.version" value="1" />
 
-    <property name="installer.name" value="nlog-${nlog.package.name}-setup.exe" dynamic="true" />
-    <property name="installer.debug.name" value="nlog-${nlog.package.name}-setup-debug.exe" dynamic="true" />
-    <property name="source_snapshot.name" value="nlog-${nlog.package.name}-src.zip" dynamic="true" />
-    <property name="binary_snapshot.name" value="nlog-${nlog.package.name}-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" dynamic="true" />
+    <property name="installer.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-setup.exe" />
+    <property name="installer.debug.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-setup-debug.exe" />
+    <property name="source_snapshot.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-src.zip" />
+    <property name="binary_snapshot.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" />
+    <property name="help_package.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-help.zip" />
     <property name="webtest.dir" value="${project::get-base-directory()}/webtest" />
 
     <property name="clover.enabled" value="false" />
@@ -51,6 +53,7 @@
         <echo message="Target dir: ${nlog.dir}" />
 
         <mkdir dir="${nlog.dir}" />
+        <mkdir dir="${nlog.release.dir}" />
     </target>
 
     <target name="build" depends="configure, build-${framework::get-target-framework()}">
@@ -107,6 +110,8 @@
 
     <target name="xmldoc">
         <mkdir dir="build/doc" />
+
+        <property name="oldframework" value="${nant.settings.currentframework}" />
         
         <property name="nant.settings.currentframework" value="net-2.0" />
 
@@ -198,6 +203,7 @@
         <echo message="Target names: ${nlog.targetNames}" />
         <echo message="Layout renderer names: ${nlog.layoutRendererNames}" />
         <echo message="Filter names: ${nlog.filterNames}" />
+        <property name="nant.settings.currentframework" value="${oldframework}" />
     </target>
 
     <target name="NLog.ComInterop" depends="NLog">
@@ -588,8 +594,7 @@
         </copy>
         <uptodate property="help.uptodate">
             <targetfiles>
-                <include name="build/doc/help/NLog.chm" />
-                <include name="nlog-${nlog.package.name}-help.zip" />
+                <include name="${help_package.name}" />
             </targetfiles>
             <sourcefiles basedir=".">
                 <include name="build/doc/NLog.dll" />
@@ -599,7 +604,7 @@
         </uptodate>
         <if test="${not help.uptodate}">
             <exec program="${ndoc.console.exe}" verbose="true" workingdir="." commandline="${ndoc.console.args} -documenter=MSDN -project=.\NLog.ndoc" />
-            <zip zipfile="nlog-${nlog.package.name}-help.zip">
+            <zip zipfile="${help_package.name}">
                 <fileset basedir="build/doc/help">
                     <include name="NLog.chm" />
                 </fileset>
@@ -736,7 +741,7 @@
         <echo message="Creating a directory for ${nlog.package.name}..." />
         <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} mkdir -p ${webserver.deploy.dir}/snapshots/${nlog.package.name} ${webserver.deploy.dir}/snapshots/${nlog.package.name}/web" failonerror="false" />
         <echo message="Uploading nlog-${nlog.package.name}*.*..." />
-        <exec program="${scp.program}" commandline="${scp.args} nlog-${nlog.package.name}*.* ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
+        <exec program="${scp.program}" commandline="${scp.args} ${nlog.release.dir}/nlog-${nlog.package.name}*.* ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ChangeLog..." />
         <exec program="${scp.program}" commandline="${scp.args} ChangeLog ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Calculating MD5SUM..." />
