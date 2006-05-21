@@ -106,7 +106,6 @@ urchinTracker();
 </td>
 </tr>
 </table>
-<input type="hidden" name="client" value="pub-2535373996863248"></input>
 <input type="hidden" name="forid" value="1"></input>
 <input type="hidden" name="ie" value="UTF-8"></input>
 <input type="hidden" name="oe" value="UTF-8"></input>
@@ -115,26 +114,6 @@ urchinTracker();
 </td></tr></table>
 </form>
 <!-- SiteSearch Google -->
-                </div>
-            </xsl:if>
-            <xsl:if test="$mode = 'web'">
-                <div id="googleads">
-                    <script type="text/javascript"><xsl:comment>
-                            google_ad_client = "pub-2535373996863248";
-                            google_ad_width = 120;
-                            google_ad_height = 600;
-                            google_ad_format = "120x600_as";
-                            google_ad_type = "text_image";
-                            google_ad_channel ="";
-                            google_color_border = "5290ee";
-                            google_color_bg = "FFFFFF";
-                            google_color_link = "0000FF";
-                            google_color_url = "008000";
-                            google_color_text = "000000";
-                            //</xsl:comment></script>
-                    <script type="text/javascript"
-                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                    </script>
                 </div>
             </xsl:if>
             </body>
