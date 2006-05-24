@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="support" subid="bug" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <h2>Wprowadzenie do śledzenia aplikacji przy pomocy NLoga</h2>
+    <div align="left">
+        <font color="#006400">
+            <i>
+                Dawno, dawno temu, kiedy na świecie nie było jeszcze debuggerów a aplikacje były w większości oparte o tekstową konsolę, programiści umieszczali w nich instrukcje <a href="http://www.cplusplus.com/ref/cstdio/printf.html">printf</a>() wypisujące komunikaty diagnostyczne na ekran. Kilka lat później świat poszedł znacznie do przodu i instrukcje printf() zostały zastąpione przez Console.WriteLine()...
+            </i>
+        </font>
+    </div>
+    <p>
+        Zapewne każdy z nas napisał kiedyś kod podobny do poniższego:
+    </p>
+    <code lang="C#">
+        <![CDATA[
+        static int Main()
+        {
+            Console.WriteLine("Program SuperApp został uruchomiony...");
+            for (int i = 0; i &lt; 100; ++i)
+            {
+                Console.WriteLine("i = {0}", i);
+                DoSomething(i);         
+            }
+            Console.WriteLine("Program SuperApp kończy działanie");
+        }]]>
+    </code>
+
+    <p>
+        Zwykle po jako-takim przetestowaniu komunikaty diagnostyczne Console.WriteLine() są usuwane.
+        Często jednak, po pewnym czasie przychodzi potrzeba ponownego włączenia śledzenia w aplikacji, dlatego też pozostawiamy
+        w kodzie instrukcje śledzące, zwykle zamieniając je na komentarze.
+    </p>
+    <p>
+        Po kilku iteracjach dochodzimy zwykle do wniosku, że obsługa śledzenia naszej aplikacji, byłaby dużo bardziej użyteczna,
+        gdyby możliwe były:
+    </p>
+    <ul>
+        <li>
+            sterowanie poziomem szczegółowości informacji diagnostycznych (np. wyświetlanie wyłącznie błędów i ostrzeżeń lub bardzo dokładne informacje przydatne do debuggowania)
+        </li>
+        <li>włączanie i wyłączanie śledzenia dla poszczególnych klas i bibliotek w trakcie działania programu, bez jego zatrzymywania</li>
+        <li>
+            zapisywanie komunikatów do pliku, systemowego dziennika zdarzeń, dołączonego debuggera, itp.
+        </li>
+        <li>wysyłanie szczególnie ważnych komunikatów mailem lub zapisywanie ich w bazie danych</li>
+        <li>i wiele innych</li>
+    </ul>
+    <p>
+        Wydaje się, że w dobie graficznych narzędzi do debuggowania użyteczność rozwiązań opartych na śledzeniu jest mniejsza,
+        ale często jest to jedyne dostępne narzędzie, które musi nam wystarczyć np. do zlokalizowania przyczyny błędu w krytycznym
+        systemie działającym na serwerze produkcyjnym bez możliwości nawet chwilowego jego wyłączenia.
+    </p>
+
+    <h2>Czym jest NLog?</h2>
+
+    <p>
+        NLog <a href="http://www.nlog-project.org/">(http://www.nlog-project.org)</a> jest
+        biblioteką na platformie .NET, która umożliwia łatwe wzbogacenie naszej
+        aplikacji o obsługę śledzenia, realizującą opisane wymagania opisane powyżej
+        a także dużo więcej.
+    </p>
+    <p>
+        Najprościej rzecz ujmując NLog umożliwia tworzenie <b>reguł </b>sterujących przepływem
+        komunikatów diagnostycznych od <b>źródła</b> do <b>celu</b>, którym może być:
+    </p>
+    <ul>
+        <li>plik</li>
+        <li>konsola tekstowa</li>
+        <li>wiadomość email</li>
+        <li>baza danych</li>
+        <li>inny komputer w sieci (protokół TCP/UDP)</li>
+        <li>kolejka komunikatów MSMQ</li>
+        <li>systemowy dziennik zdarzeń (Event Log)</li>
+        <li>
+            i inne opisane na stronie <a href="http://www.nlog-project.org/targets.html">http://www.nlog-project.org/targets.html</a>
+        </li>
+    </ul>
+    <p>
+        Dodatkowo, każdy komunikat diagnostyczny może być wzbogacony o <b>informacje kontekstowe</b>,
+        które razem z nim zostaną przesłane do celu. Mogą to być:
+    </p>
+    <ul>
+        <li>bieżąca data i godzina (w różnych formatach)</li>
+        <li>poziom ważności</li>
+        <li>nazwę źródła</li>
+        <li>informacje o metodzie, która wyemitowała komunikat diagnostyczny</li>
+        <li>zawartości zmiennych środowiskowych</li>
+        <li>informacje o wyjątku</li>
+        <li>nazwa maszyny, procesu i wątku, który emituje komunikat</li>
+        <li>
+            i wiele innych opisanych na stronie <a href="http://www.nlog-project.org/layoutrenderers.html">http://www.nlog-project.org/layoutrenderers.html</a>
+        </li>
+    </ul>
+    <p>
+        Każdy komunikat diagnostyczny ma swój poziom (log level). Wspierane są następujące poziomy
+    </p>
+    <ul>
+        <li>
+            <b>Trace </b>- Szczegółowe komunikaty diagnostyczne o potencjalnie dużej częstotliwości i objętości
+        </li>
+        <li>
+            <b>Debug </b>-Komunikaty diatnostyczne o niewielkiej częstotliwości i małej objętości
+        </li>
+        <li>
+            <b>Info </b>- Komunikaty informacyjne, zwykle niezbyt częste
+        </li>
+        <li>
+            <b>Warn </b>- Ostrzeżenia nie powodujące błędnego działania programu
+        </li>
+        <li>
+            <b>Error </b>- Błędy, zwykle takie, które objawiają się widocznym dla użytkownika komunikatem
+        </li>
+        <li>
+            <b>Fatal </b>- Błędy krytyczne, po których aplikacja zwykle kończy swoje działanie
+        </li>
+    </ul>
+    <p>
+        NLog jest rozwiązaniem open source dostępnym za darmo na licencji BSD.
+        Najnowszą wersję biblioteki można zawsze pobrać spod adresu
+        <a href="http://www.nlog-project.org/download.html">http://www.nlog-project.org/download.html</a>.
+        Dostępny jest graficzny instalator, dzięki któremu można szybko i łatwo zainstalować NLoga w wybranym 
+        miejscu, jak również (w najnowszej wersji), integracja z Visual Studio 2005 udostępniająca:
+    </p>
+    <ul>
+        <li>
+            wybór biblioteki NLog.dll z okna <code>Add Reference...</code>
+        </li>
+        <li>szablony plików konfiguracyjnych</li>
+        <li>code snippet</li>
+    </ul>
+
+    <h2>Pierwsza aplikacja wykorzystująca NLoga</h2>
+    <p>
+        Na początek przyjrzyjmy się, jak wygląda tworzenie aplikacji wykorzystującej NLog
+        z wykorzystaniem dostęnych mechanizmów integracji z Visual Studio 2005.
+    </p>
+    <p>
+        Przeanalizujemy 2 przykłady - jeden najprostszy, drugi bardziej skomplikowany,
+        które pokazują jak łatwo jest sterować konfiguracją logowania.
+    </p>
+    <p>
+        Zaczynamy od utworzenia projektu w Visual Studio i dodania w nim pliku konfiguracyjnego NLoga.
+        Będziemy się posługiwać językiem C#, ale NLog równie dobrze obsługuje VB.NET i inne
+        języki na platformie .NET.
+    </p>
+    <p>
+        Instalator NLoga dodaje do okna "Add New Item..." kilka nowych opcji pozwalających nam
+        na "szybki start". Dodajmy do projektu pusty plik konfiguracyjny NLoga (Empty NLog Configuration File).
+    </p>
+    <img src="introduction_addnewitem.gif" />
+    <p>
+        Zauważmy że automatycznie została dodana referencję do biblioteki NLog i w projekcie pojawił
+        się plik o nazwie NLog.config o poniższej treści:
+    </p>
+
+    <code lang="XML">
+        <![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+        <nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+            <targets>
+            </targets>
+
+            <rules>
+            </rules>
+        </nlog>
+        ]]>
+    </code>
+
+    <p>W oknie właściwości dla tego pliku należy zaznaczyć opcję "Copy To Output Directory":</p>
+    <img src="introduction_copytooutput.gif" />
+
+    <p>
+        W sekcji <x>
+            <targets />
+        </x> dodajmy następujący wpis definiujący wyjście na konsolę i format tego wyjścia:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <targets>
+            <target name="console" xsi:type="Console" layout="${longdate}|${level}|${message}" />
+        </targets>
+        ]]>
+    </code>
+    <p>
+        Zauważmy, że po Visual Studio podpowie nam dostępne nazwy elementów i ich atrybutów, a po wpisaniu
+        <b>xsi:</b> uzyskamy listę dostępnych celów logowania.
+    </p>
+    <img src="introduction_target_intellisense.gif" />
+
+    <p>
+        W sekcji <x>
+            <rules />
+        </x> dodajmy regułę kierującą komunikaty na poziomie Debug lub wyższym na konsolę.
+    </p>
+
+    <code lang="XML" escaped="true">
+        <rules>
+            <logger name="*" minlevel="Debug" writeTo="console" />
+        </rules>
+    </code>
+
+    <p>
+        Aby wysłać komunikat diagnostyczny posługujemy się obiektem klasy Logger, który udostępnia metody o nazwach
+        odpowiadających poziomom ważności komunikatu. Obiekty Logger tworzymy za pośrednictwem klasy LogManager,
+        najwygodniej jest w tym celu wywołać metodę LogManager.GetCurrentClassLogger(), która tworzy źródło o takiej samej
+        nazwie jak bieżąca klasa.
+    </p>
+    <p>
+        Zmodyfikujmy wygenerowany plik C# dodając na początku polecenie using NLog a w treści klasy instrukcję tworzenia
+        obiektu Logger i wypisanie przykładowego komunikatu:
+    </p>
+
+    <code lang="C#">
+        <![CDATA[
+        using System;
+        using System.Collections.Generic;
+        using System.Text;
+        using NLog;
+        
+        namespace NLogExample
+        {
+            class Program
+            {
+                private static Logger logger = LogManager.GetCurrentClassLogger();
+                
+                static void Main(string[] args)
+                {
+                    logger.Debug("Hello World!");
+                }
+            }
+        }
+        ]]>
+    </code>
+    <p>
+        Wynikiem działania programu jest wypisana na konsoli tekstowej bieżąca data, poziom logowania
+        (<font face="Courier New">Debug</font>) i komunikat <font face="Courier New">Hello World</font>.
+    </p>
+
+    <p>
+        Spróbujmy prześledzić teraz, jak to się stało:
+    </p>
+    <ol>
+        <li>
+            Metoda <a href="http://www.nlog-project.org/help/NLog.LogManager.GetCurrentClassLogger.html">LogManager.GetCurrentClassLogger();</a>
+            tworzy obiekt klasy <a href="http://www.nlog-project.org/help/NLog.Logger.html">Logger</a> reprezentujący <b>źródło</b>
+            logowania powiązane z bieżącą klasą.
+        </li>
+        <li>
+            Metoda Debug() na tym obiekcie, powoduje wysłanie zadanego komunikatu za
+            pośrednictwem wskazanego źródła z poziomem logowania Debug
+        </li>
+        <li>
+            Ponieważ poziom logowania i źródło odpowiadają zdefiniowanej regule,
+            komunikat jest formatowany zgodnie z wartością parametru layout elementu
+            <x>
+                <target />
+            </x> i wysyłany na konsolę.
+        </li>
+    </ol>
+    <h4>
+        Bardziej skomplikowana konfiguracja logowania
+    </h4>
+    <p>
+        Załóżmy że oprócz wypisywania na konsolę, chcemy jednocześnie zapisywać nasze komunikaty do pliku testowego.
+        Zdefiniujmy drugi cel logowania typu plikowego i skierujmy wszystkie komunikaty do niego. Włączmy też poziom Trace.
+        Wymaga to jedynie dodania nowego elementu <x>
+            <target />
+        </x> typu File i modyfikacji reguły <x>
+            <logger />
+        </x>
+    </p>
+    <code lang="XML">
+        <![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+        <nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+            <targets>
+                <target name="console" xsi:type="Console" layout="${longdate}|${level}|${message}" />
+                <target name="File" xsi:type="File" fileName="${basedir}/file.txt" layout="${message}" />
+            </targets>
+
+            <rules>
+                <logger name="*" minlevel="Trace" writeTo="console,file" />
+            </rules>
+        </nlog>
+        ]]>
+    </code>
+
+
+    <p>
+        Wypiszmy także nieco więcej komunikatów na różnych poziomach logowania:
+    </p>
+    <code lang="C#">
+        <![CDATA[
+        static void Main(string[] args)
+        {
+            logger.Trace("To jest komunikat techniczny na poziomie Trace");
+            logger.Debug("To jest komunikat techniczny na poziomie Debug");
+            logger.Info("To jest komunikat informacyjny na poziomie Info");
+            logger.Warn("To jest komunikat-ostrzeżenie na poziomie Warn");
+            logger.Error("To jest komunikat o błędzie na poziomie Error");
+            logger.Fatal("To jest komunikat o błędzie krytycznym na poziomie Fatal");
+        }
+    ]]>
+    </code>
+    <p>
+        Uruchomienie programu spowoduje wypisanie na do pliku file.txt następujących informacji:
+    </p>
+    <code lang="C#">
+        <![CDATA[To jest komunikat techniczny na poziomie Trace
+To jest komunikat techniczny na poziomie Debug
+To jest komunikat informacyjny na poziomie Info
+To jest komunikat-ostrzeżenie na poziomie Warn
+To jest komunikat o błędzie na poziomie Error
+To jest komunikat o błędzie krytycznym na poziomie Fatal
+]]>
+    </code>
+    <p>W tym samym czasie konsolę wypisana zostanie wiadomość w innym formacie:</p>
+    <code lang="C#">
+        <![CDATA[2006-04-28 11:49:50.1950|Trace|To jest komunikat techniczny na poziomie Trace
+2006-04-28 11:49:50.2050|Debug|To jest komunikat techniczny na poziomie Debug
+2006-04-28 11:49:50.2150|Info|To jest komunikat informacyjny na poziomie Info
+2006-04-28 11:49:50.2150|Warn|To jest komunikat-ostrzeżenie na poziomie Warn
+2006-04-28 11:49:50.2150|Error|To jest komunikat o błędzie na poziomie Error
+2006-04-28 11:49:50.2150|Fatal|To jest komunikat o błędzie krytycznym na poziomie Fatal
+]]>
+    </code>
+    <p>
+        Załóżmy, że chcemy do pliku zapisywać wszystkie informacje, a na konsolę jedynie te najistotniejsze
+        (na poziomie <b>Info</b> lub wyższym). Nic prostszego, wystarczy jedynie zmienić sekcję reguł:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+            <rules>
+                <logger name="*" minlevel="Info" writeTo="console" />
+                <logger name="*" minlevel="Trace" writeTo="file" />
+            </rules>
+        ]]>
+    </code>
+    <p>
+        Po uruchomieniu programu okaże się, że komunikaty na poziomie Trace i Debug są zawarte wyłącznie w pliku,
+        podczas gdy nie widzimy ich na konsoli.
+    </p>
+    <h2>Konfiguracja logowania</h2>
+    <p>
+        Czas teraz, aby odpowiedzieć na pytanie: jak to się stało że NLog automatycznie odczytał poprawną konfigurację?
+        Otóż, w odróżnieniu od innych narzędzi tego typu, NLog stara się maksymalnie ułatwić konfigurację stosując rozmaite
+        zachowania domyślne. NLog szuka pliku konfiguracyjnego w następujących standardowych lokalizacjach:
+    </p>
+    <ul>
+        <li>
+            standardowy plik konfiguracyjny programu (zwykle <font face="Courier New">aplikacja.exe.config)</font>
+        </li>
+        <li>
+            plik <font face="Courier New">aplikacja.exe.nlog</font> w katalogu aplikacji
+        </li>
+        <li>
+            plik <font face="Courier New">NLog.config</font> w katalogu aplikacji
+        </li>
+        <li>
+            plik <font face="Courier New">NLog.dll.nlog</font> w katalogu, w którym znajduje się plik <font face="Courier New">NLog.dll</font>
+        </li>
+        <li>
+            jeśli istnieje zmienna środowiskowa <font face="Courier New">NLOG_GLOBAL_CONFIG_FILE</font>, sprawdzane jest miejsce wskazywane przez tę zmienną<font face="Courier New"></font>
+        </li>
+    </ul>
+    <p>
+        W przypadku aplikacji ASP.NET przeszukiwane są:
+    </p>
+    <ul>
+        <li>
+            standardowy plik konfiguracyjny <font face="Courier New">web.config</font>
+        </li>
+        <li>
+            pliki <font face="Courier New">web.nlog</font> w katalogu aplikacji (obok <font face="Courier New">web.config</font>)
+        </li>
+        <li>
+            pliki <font face="Courier New">NLog.config</font> w katalogu aplikacji
+        </li>
+        <li>
+            plik <font face="Courier New">NLog.dll.nlog</font> w katalogu, w którym znajduje się plik <font face="Courier New">NLog.dll </font>(zwykle "bin")
+        </li>
+        <li>
+            jeśli istnieje zmienna środowiskowa <font face="Courier New">NLOG_GLOBAL_CONFIG_FILE</font>, sprawdzane jest miejsce wskazywane przez tę zmienną
+        </li>
+    </ul>
+    <p>
+        W środowisku .NET Compact Framework nie występuje pojęcie pliku konfiguracyjnego aplikacji (*.exe.config) ani zmienne środowiskowe, dlatego sprawdzane są tylko trzy lokalizacje:
+    </p>
+    <ul>
+        <li>
+            plik <font face="Courier New">aplikacja.exe.nlog</font> w katalogu aplikacji
+        </li>
+        <li>
+            plik <font face="Courier New">NLog.config</font> w katalogu aplikacji
+        </li>
+        <li>
+            plik <font face="Courier New">NLog.dll.nlog</font> w katalogu, w którym znajduje się plik <font face="Courier New">NLog.dll</font>
+        </li>
+    </ul>
+    <p>
+        Przeszukiwany zestaw plików został tak dobrany, aby umożliwić automatyczną konfigurację we wszystkich typowych trybach
+        działania aplikacji bez konieczności wykonywania żadnych dodatkowych czynności.
+    </p>
+    <h4>Format pliku konfiguracyjnego</h4>
+    <p>
+        Dostępne są 2 formaty konfiguracji NLoga:
+    </p>
+    <ul>
+        <li>osadzona wewnątrz pliku konfiguracyjnego aplikacji</li>
+        <li>uproszczona</li>
+    </ul>
+    <p>
+        W pierwszym przypadku posługujemy się standardowym mechanizmem sekcji konfiguracyjnych, dzięki którym nasz plik wygląda
+        jak poniżej:
+    </p>
+    <code lang="XML">
+        <![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+        <configuration>
+          <configSections>
+            <section name="nlog" type="NLog.Config.ConfigSectionHandler, NLog" />
+          </configSections>
+          <nlog>
+          </nlog>
+        </configuration>
+        ]]>
+    </code>
+    <p>
+        Format uproszczony występuje w przypadku plików z rozszerzeniem *.nlog oraz NLog.config i
+        składa się bezpośrednio z pliku XML zawierającego element <x>
+            <nlog />
+        </x> jako korzeń.
+        Użycie przestrzeni nazw jest opcjonalne, ale umożliwia działanie mechanizmu Intellisense w Visual Studio.
+    </p>
+    <code lang="XML">
+        <![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+        <nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        </nlog>
+        ]]>
+    </code>
+    <h4>Elementy konfiguracyjne</h4>
+    <p>
+        Wewnątrz elementu <x>
+            <nlog />
+        </x> można używać następujących elementów, z czego zwykle używane są dwia pierwsze elementy z poniższej listy.
+    </p>
+    <ul>
+        <li>
+            <x>targets /></x> - definiuje cele logowania
+        </li>
+        <li>
+            <x>rules /></x> - definiuje reguły kierowania komunikatów diagnostycznych
+        </li>
+        <li>
+            <x>extensions /></x> - ładuje rozszerzenia NLoga z pliku *.dll
+        </li>
+        <li>
+            <x>include /></x> - dołącza zewnętrzny plik konfiguracyjny
+        </li>
+        <li>
+            <x>variable /></x> - ustawia wartość zmiennej konfiguracyjnej
+        </li>
+    </ul>
+    <h4>Cele</h4>
+    <p>
+        Wewnątrz sekcji <x>
+            <targets />
+        </x> definiujemy cele logowania,
+        które są reprezentowane przez elementy <x>
+            <target />
+        </x>
+        Każdy cel musi mieć określone 2 atrybuty:
+    </p>
+    <ul>
+        <li>
+            <font face="Courier New">name</font> - nazwa
+        </li>
+        <li>
+            <font face="Courier New">type</font> - typ celu (w przypadku korzystania z przestrzeni nazw xsi:type)
+        </li>
+    </ul>
+    <p>
+        Dodatkowo cele zwykle akceptują inne parametry - wpływające na sposób zapisywania informacji diagnostycznej.
+        Dla każdego celu zestaw parametrów jest inny - są one szczegółowo opisane na stronie projektu
+        jak również dostępne kontekstowo w trakcie edycji pliku konfiguracyjnego dzięki Intellisense.
+    </p>
+    <p>
+        Przykładowo - cel typu "File" (plik) akceptuje parametr "fileName" definiujący nazwę pliku a cel typu "Console"
+        akceptuje parametr "error" określający czy komunikaty diagnostyczne mają być wypisywane na standardowe wyjście
+        (stdout) czy na standardowe wyjście dla błędów (stderr).
+    </p>
+    <p>
+        NLog udostępnia wiele predefiniowanych celów. Są one opisane na stronie projektu. Bardzo łatwo jest także utworzyć
+        swój własny cel - wymaga to zaledwie kilkunastu wierszy kodu i jest opisane
+        w <a href="http://www.nlog-project.org/documentation.html">dokumentacji projektu</a>.
+        Oprócz standardowych, NLog udostępnia także tzw. wrapper targets i compound targets, które modyfikują działanie
+        innych celów dodając np. logowanie asynchroniczne w osobnym wątku, buforowanie, powtarzanie w przypadku
+        wystąpienia błędów, cele zapasowe, itp. To jest jednak temat na osobny artykuł.
+    </p>
+    <h4>Reguły</h4>
+    <p>
+        Reguły sterowania logowaniem definiujemy w sekcji <x>
+            <rules />
+        </x>. Jest to prosta tabela routingu, gdzie w
+        każdej regule na podstawie nazwy źródła i poziomu logowania możemy skierować wynik do określonego celu lub
+        listy celów. Dodatkowo możemy zdecydować czy po zapisaniu mają być uwzględniane dalsze reguły czy też zakończyć
+        ich przetwarzanie.
+    </p>
+    <p>
+        Każdy wpis w tabeli routingu ma formę elementu <x>
+            <logger />
+        </x>, który przyjmuje następujące atrybuty:
+    </p>
+    <ul>
+        <li>
+            <font face="Courier New">name</font> - nazwa źródła (może zawierać symbole wieloznaczne * na początku i/lub na końcu)
+        </li>
+        <li>
+            <font face="Courier New">minlevel</font> - minimalny poziom logowania wymagany do tego aby reguła zadziałała
+        </li>
+        <li>
+            <font face="Courier New">maxlevel</font> - maksymalny poziom logowania wymagany do tego aby reguła zadziałała
+        </li>
+        <li>
+            <font face="Courier New">level</font> - poziom logowania (pojedynczy) wymagany do tego aby reguła zadziałała
+        </li>
+        <li>
+            <font face="Courier New">levels </font>- lista poziomów logowania, które aktywują regułę
+        </li>
+        <li>
+            <font face="Courier New">writeTo</font> - lista nazw celów, do których zapisać komunikat
+        </li>
+        <li>
+            <font face="Courier New">final</font> - czy reguła jest kończąca. Jeśli tak, po jej zadziałaniu nie są przetwarzane żadne dalsze reguły
+        </li>
+    </ul>
+    <p>
+        Poniżej kilka przykładów:
+    </p>
+    <ul>
+        <li>
+            <x>
+                <logger name="Name.Space.Klasa1" minlevel="Debug" writeTo="f1" />
+            </x> - komunikaty z klasy <font face="Courier New">Klasa1</font> w przestrzeni nazw <font face="Courier New">Name.Space</font> na poziomie <font face="Courier New">Debug</font> lub wyższym są zapisywane do celu "<font face="Courier New">f</font>1"
+        </li>
+        <li>
+            <x>
+                <logger name="Name.Space.Klasa1" levels="Debug,Error" writeTo="f1" />
+            </x> - komunikaty z klasy <font face="Courier New">Klasa1</font> w przestrzeni nazw <font face="Courier New">Name.Space</font> na poziomach <font face="Courier New">Debug</font> i Error zapisywane do celu "<font face="Courier New">f2</font>"
+        </li>
+        <li>
+            <x>
+                <logger
+             name="Name.Space.*" writeTo="f3,f4" />
+            </x>
+            - komunikaty ze wszystkich klas w przestrzeni nazw <font face="Courier New">Name.Space</font> niezależnie od ich poziomu są zapisywane do celów "<font face="Courier New">f3</font>" i "<font face="Courier New">f4</font>"
+        </li>
+        <li>
+            <x>
+                <logger
+             name="Name.Space.*"  minlevel="Debug" maxlevel="Error" final="true" />
+            </x>
+            - komunikaty ze wszystkich klas w przestrzeni nazw <font face="Courier New">Name.Space</font> na poziomie większym niż <font face="Courier New">Debug</font> i mniejszym niż <font face="Courier New">Error</font> (czyli <font face="Courier New">Debug,Info,Warn,Error</font>) są odrzucane (ponieważ nie podano klauzuli <font face="Courier New">writeTo</font>) i nie są przetwarzane dla nich kolejne reguły (ze względu na <font face="Courier New">final="true"</font>)
+        </li>
+    </ul>
+    <p>
+        W najprostszych aplikacjach konfiguracja logowania wygląda zwykle tak, że mamy jeden cel i jedną regułę kierującą
+        komunikaty do niego w zależności od poziomu. W miarę jak aplikacja rośnie,
+        pojawia się potrzeba dodawania kolejnych celów i reguł. W przypadku NLoga jest to wyjątkowo proste.
+    </p>
+    <h4>Informacje kontekstowe</h4>
+    <p>
+        Największą siłą NLoga w porównaniu z innymi narzędziami tego typu jest mechanizm formatów (ang. layouts).
+        Są to małe fragmenty tekstu otoczone parą nawiasów "<b>${</b>" (dolar + lewy nawias klamrowy) oraz "<b>}</b>"
+        (prawy nawias klamrowy), które potrafią wstawiać do tekstu elementy <b>informacji kontekstowej.</b>
+        Można ich używać w bardzo wielu miejscach, przykładowo do sterowania formatem informacji wyświetlanych na ekran
+        lub zapisywanych do pliku, ale także do sterowania nazwami plików!
+    </p>
+    <p>
+        Po co? Zobaczmy to na przykładzie. Załóżmy że chcemy wypisywać na konsolę tekstową następujące informacje:
+    </p>
+    <ul>
+        <li>bieżąca data i godzina</li>
+        <li>nazwa klasy i metody, która spowodowała wypisanie komunikatu diagnostycznego</li>
+        <li>
+            poziom komunikatu diagnostycznego
+        </li>
+        <li>tekst komunikatu diagnostycznego</li>
+    </ul>
+    <p>Jak to zrobić? Nic prostszego:</p>
+    <code lang="XML">
+        <![CDATA[
+        <target name="c" xsi:type="Console" layout="${longdate} ${callsite} ${level} ${message}" />
+        ]]>
+    </code>
+    <p>
+        To było proste, a teraz załóżmy, że chcemy aby komunikaty z każdego źródła trafiały do osobnego pliku. To jest równie proste:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <target name="f" xsi:type="File" fileName="${logger}.txt" />
+        ]]>
+    </code>
+
+    <p>
+        Jak widzimy, format <font face="Courier New">${logger}</font> został tutaj użyty w atrybucie
+        <font face="Courier New">fileName</font>, co sprawia że każdy komunikat diagnostyczny trafia do pliku o
+        nazwie takiej jak nazwa źródła. Powyższy przykład utworzy nam pliki:
+    </p>
+    <ul>
+        <li>Name.Space.Klasa1.txt</li>
+        <li>Name.Space.Klasa2.txt</li>
+        <li>Name.Space.Klasa3.txt</li>
+        <li>Inny.Name.Space.Klasa1.txt</li>
+        <li>Inny.Name.Space.Klasa2.txt</li>
+        <li>Inny.Name.Space.Klasa3.txt</li>
+        <li>...</li>
+    </ul>>
+    <p>Częstym wymaganiem jest przechowywanie logów z każdego dnia w osobnym pliku. To również jest trywialne:</p>
+    <code lang="XML">
+        <![CDATA[
+        <target name="f" xsi:type="File" filename="${shortdate}.txt" />
+        ]]>
+    </code>
+    <p>
+        A gdybyśmy chcieli dla każdego użytkownika naszej aplikacji zrobić osobny plik? Wystarczy poniższy fragment kodu:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <target name="f" xsi:type="File" filename="${windows-identity:domain=false}.txt" />
+        ]]>
+    </code>
+    <p>
+        Dzięki tej prostej operacji NLog utworzy nam pliki o nazwach takich jak loginy naszych użytkowników:
+    </p>
+    <ol>
+        <li>Administrator.txt</li>
+        <li>MaryManager.txt</li>
+        <li>EdwardEmployee.txt</li>
+        <li>...</li>
+    </ol>
+    <p>
+        Oczywiście możliwe są też bardziej złożone przypadki. Np. dla każdego użytkownika i daty tworzymy osobny
+        plik w katalogu takim jak data:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <target name="f" xsi:type="File" filename="${shortdate}/${windows-identity:domain=false}.txt" />
+        ]]>
+    </code>
+    <p>Powstałe pliki to:</p>
+    <ol>
+        <li>2006-01-01/Administrator.txt</li>
+        <li>2006-01-01/MaryManager.txt</li>
+        <li>2006-01-01/EdwardEmployee.txt</li>
+        <li>2006-01-02/Administrator.txt</li>
+        <li>2006-01-02/MaryManager.txt</li>
+        <li>2006-01-02/EdwardEmployee.txt</li>
+        <li>...</li>
+    </ol>
+
+    <p>
+        NLog udostępnia bardzo wiele predefiniowanych formatów. Są one opisane pod adresem <a href="http://www.nlog-project.org/layoutrenderers.html">http://www.nlog-project.org/layoutrenderers.html</a>.
+        Bardzo łatwo jest także utworzyć swój własny format - wymaga to zaledwie kilkunastu wierszy kodu i jest opisane w <a href="http://www.nlog-project.org/documentation.html">dokumentacji projektu</a>.
+    </p>
+
+    <h4>Konfiguracja programowa</h4>
+    <p>
+        Zamiast pliku konfiguracyjnego NLog może być konfigurowany przy pomocy API.
+        Pełny opis tej funkcji wykracza poza zakres artykułu. W skrócie można powiedzieć, że polega 
+        to na:
+    </p>
+    <ol>
+        <li>utworzeniu obiektu klasy LoggingConfiguration</li>
+        <li>utworzeniu jednego lub więcej celów (obiektów dziedziczących z klasy Target)</li>
+        <li>ustawienie właściwości celów</li>
+        <li>zdefiniowanie reguł</li>
+        <li>aktywowanie konfiguracji</li>
+    </ol>
+    <p>Poniżej krótki przykład definiujący jeden cel typu "konsola tekstowa z kolorowaniem" i drugi plikowy oraz
+    regułę kierującą do niego komunikaty na poziomie Debug lub wyższym:</p>
+    <code lang="C#">
+        <![CDATA[using NLog;
+using NLog.Targets;
+using NLog.Config;
+using NLog.Win32.Targets;
+
+class Example
+{
+    static void Main(string[] args)
+    {
+        // krok 1. tworzymy obiekt konfiguracji
+        
+        LoggingConfiguration config = new LoggingConfiguration();
+        
+        // krok 2. tworzymy cel(e) i dodajemy je do konfiguracji
+
+        ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget();
+        config.AddTarget("console", consoleTarget);
+        
+        FileTarget fileTarget = new FileTarget();
+        config.AddTarget("file", fileTarget);
+        
+        // krok 3 - ustawiamy właściwości celów
+        
+        consoleTarget.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${message}";
+        fileTarget.FileName = "${basedir}/file.txt";
+        fileTarget.Layout = "${message}";
+        
+        // krok 4 - definiujemy reguły
+        
+        LoggingRule rule1 = new LoggingRule("*", LogLevel.Debug, consoleTarget);
+        config.LoggingRules.Add(rule1);
+
+        LoggingRule rule2 = new LoggingRule("*", LogLevel.Debug, fileTarget);
+        config.LoggingRules.Add(rule2);
+        
+        // krok 5. aktywowanie konfiguracji
+        LogManager.Configuration = config;
+        
+        // przykłady użycia
+
+        Logger logger = LogManager.GetLogger("Example");
+        logger.Trace("trace log message");
+        logger.Debug("debug log message");
+        logger.Info("info log message");
+        logger.Warn("warn log message");
+        logger.Error("error log message");
+        logger.Fatal("fatal log message");
+    }
+}]]>
+    </code>
+    <p>
+        Wynikiem działania powyższej aplikacji jest wypisany tekst na konsoli,
+        gdzie każdy wiersz jest oznaczony kolorem wynikającym z poziomu logowania
+        i dodatkowo plik zawierający te same informacje w nieco innym formacie.
+    </p>
+    <img src="introduction_coloredconsole.gif" />
+
+    <h4>Rozwiązywanie problemów z logowaniem</h4>
+    <p>
+        Czasami zdarza się tak, że pomimo skonfigurowania, aplikacja nie zapisuje logów. Przyczyn może być wiele, 
+        najczęstszym problemem są uprawnienia, szczególnie w aplikacji webowej. Zwykle okazuje się, że serwer aplikacji
+        WWW nie ma prawa zapisu do katalogu, gdzie chcielibyśmy gromadzić logi. Ponieważ NLog "zjada" wyjątki występujące 
+        podczas logowania, aplikacja może się o tym nie dowiedzieć. Jest kilka sposobów, aby stwierdzić występowanie 
+        tego typu problemów.
+    </p>
+    <ul>
+        <li>
+            <p>
+                <x>
+                    <nlog throwExceptions="true" />
+                </x>- dodanie atrybutu throwExceptions w pliku konfiguracyjnym powoduje,
+                że NLog nie maskuje wyjątków i są one przekazywane do aplikacji. Ten atrybut jest przydatny w
+                fazie uruchamiania. Po zakończeniu konfiguracji dobrze jest włączyć maskowanie wyjątków, tak aby przypadkowe
+                problemy z logowaniem nie spowodowały awarii naszej aplikacji.
+            </p>
+            <p>
+                Korzystając z konfiguracji programowej można włączyć przekazywanie wyjątków do aplikacji przy pomocy ustawienia
+                statycznej właściwości ThrowExceptions obiektu LogManager na true.
+            </p>
+        </li>
+        <li>
+            <p>
+                <x>
+                    <nlog internalLogFile="file.txt" />
+                </x>- dodanie atrybutu internalLogFilew pliku konfiguracyjnym powoduje,
+                że NLog zapisze do wskazanego pliku wewnętrzne informacje ułatwiające debugowanie, w
+                tym wszystkie wyjątki jakie zostaną zgłoszone podczas logowania.
+            </p>
+        </li>
+        <li>
+            <x>
+                <nlog internalLogLevel="Trace|Debug|Info|Warn|Error|Fatal" />
+            </x> - sterujący poziomem wewnętrznego logowania
+        </li>
+        <li>
+            <x>
+                <nlog internalLogToConsole="false|true" />
+            </x> - wysyła zawartość wewnęrznego logu na konsolę.
+        </li>
+        <li>
+            <x>
+                <nlog internalLogToConsoleError="false|true" />
+            </x> - wysyła zawartość wewnęrznego logu na wyjście błędów konsoli.
+        </li>
+    </ul>
+
+    <h2>Co jeszcze można zrobić w NLogu?</h2>
+    <p>
+        NLog udostępnia jeszcze wiele zaawansowanych funkcji, które ze względu na objętość nie mogły
+        zostać omówione w niniejszym artykule. Każda z tych funkcji mogłaby być tematem na osobny artykuł.
+    </p>
+    <ul>
+        <li>zmienne w plikach konfiguracyjnych</li>
+        <li>dołączane pliki</li>
+        <li>
+            filtry - <a href="http://www.nlog-project.org/filters.html">http://www.nlog-project.org/filters.html</a>
+        </li>
+        <li>
+            cele opakowujące i złożone - <a href="http://sourceforge.net/mailarchive/message.php?msg_id=13149726">http://sourceforge.net/mailarchive/message.php?msg_id=13149726</a>
+        </li>
+        <li>
+            logowanie wyjątków - <a href="http://sourceforge.net/mailarchive/forum.php?thread_id=6766833&amp;forum_id=41984">http://sourceforge.net/mailarchive/forum.php?thread_id=6766833&amp;forum_id=41984</a>
+        </li>
+        <li>
+            język warunków logicznych używanych przy filtrowaniu - <a href="http://www.nlog-project.org/filters.html">http://www.nlog-project.org/conditions.html</a>
+        </li>
+        <li>
+            NLogViewer - aplikacja do podglądu logów w czasie rzeczywistym (wersja pre-alpha) -  <a href="http://viewer.nlog-project.org/">http://viewer.nlog-project.org/</a>
+        </li>
+    </ul>
+</content>
