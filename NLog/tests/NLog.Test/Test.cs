@@ -83,17 +83,6 @@ namespace NLog.Tester
             logger.Error("err");
             logger.Fatal("fff");
             A();
-            Console.WriteLine("Touching config file...");
-            File.SetLastWriteTime(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile, DateTime.Now);
-            Thread.Sleep(100);
-            File.SetLastWriteTime(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile, DateTime.Now);
-            Thread.Sleep(100);
-            File.SetLastWriteTime(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile, DateTime.Now);
-            Thread.Sleep(100);
-            File.SetLastWriteTime(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile, DateTime.Now);
-            File.SetLastWriteTime(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile, DateTime.Now);
-            Console.WriteLine("Touched.");
-            Thread.Sleep(1000);
         }
     }
 }

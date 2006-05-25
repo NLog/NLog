@@ -129,54 +129,36 @@ namespace NLog.Targets.Wrappers
             set { _timeToSleepBetweenBatches = value; }
         }
 
-        private bool _inLazyWriter = false;
+        private object _inLazyWriterMonitor = new object();
         private bool _flushAll = false;
-        private ManualResetEvent _flushFinished = new ManualResetEvent(false);
 
         private void LazyWriterTimerCallback(object state)
         {
-            lock (this)
+            lock (_inLazyWriterMonitor)
             {
-                if (_inLazyWriter)
-                    return;
-
-                _inLazyWriter = true;
-            }
-
-            try
-            {
-                do
+                try
                 {
-                    ArrayList pendingRequests = RequestQueue.DequeueBatch(BatchSize);
-
-                    try
+                    do
                     {
-                        if (pendingRequests.Count == 0)
-                            break;
+                        ArrayList pendingRequests = RequestQueue.DequeueBatch(BatchSize);
 
-                        LogEventInfo[] events = (LogEventInfo[])pendingRequests.ToArray(typeof(LogEventInfo));
-                        WrappedTarget.Write(events);
-                    }
-                    finally
-                    {
-                        RequestQueue.BatchProcessed(pendingRequests);
-                    }
-                } while (_flushAll);
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Error("Error in lazy writer timer procedure: {0}", ex);
-            }
-            finally
-            {
-                lock (this)
+                        try
+                        {
+                            if (pendingRequests.Count == 0)
+                                break;
+
+                            LogEventInfo[] events = (LogEventInfo[])pendingRequests.ToArray(typeof(LogEventInfo));
+                            WrappedTarget.Write(events);
+                        }
+                        finally
+                        {
+                            RequestQueue.BatchProcessed(pendingRequests);
+                        }
+                    } while (_flushAll);
+                }
+                catch (Exception ex)
                 {
-                    _inLazyWriter = false;
-                    if (_flushAll)
-                    {
-                        _flushFinished.Set();
-                    }
-                    _flushAll = false;
+                    InternalLogger.Error("Error in lazy writer timer procedure: {0}", ex);
                 }
             }
         }
@@ -269,10 +251,13 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         public override void Flush(TimeSpan timeout)
         {
-            InternalLogger.Info("Flushing AsyncTarget wrapper...");
-            _flushAll = true;
-            _flushFinished.WaitOne();
-            InternalLogger.Info("Finished flushing AsyncTarget wrapper. Remaining {0}", _lazyWriterRequestQueue.RequestCount);
+            _lazyWriterTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            lock (_inLazyWriterMonitor)
+            {
+                _flushAll = true;
+                LazyWriterTimerCallback(null);
+            }
+            _lazyWriterTimer.Change(TimeToSleepBetweenBatches, TimeToSleepBetweenBatches);
         }
 
         /// <summary>
