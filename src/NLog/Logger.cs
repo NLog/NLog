@@ -110,7 +110,6 @@ namespace NLog
         /// <returns><see langword="true" /> if logging is enabled for the specified level, otherwise it returns <see langword="false" />.</returns>
         public bool IsEnabled(LogLevel level)
         {
-            LogManager.CheckForConfigChanges();
             return GetTargetsForLevel(level) != null; 
         }
 
@@ -122,8 +121,7 @@ namespace NLog
         {
             get
             {
-                LogManager.CheckForConfigChanges();
-                return _isTraceEnabled; 
+                return _isTraceEnabled;
             }
         }
 
@@ -135,7 +133,6 @@ namespace NLog
         {
             get
             {
-                LogManager.CheckForConfigChanges();
                 return _isDebugEnabled; 
             }
         }
@@ -148,7 +145,6 @@ namespace NLog
         {
             get
             {
-                LogManager.CheckForConfigChanges();
                 return _isInfoEnabled; 
             }
         }
@@ -161,7 +157,6 @@ namespace NLog
         {
             get
             {
-                LogManager.CheckForConfigChanges();
                 return _isWarnEnabled;
             }
         }
@@ -174,7 +169,6 @@ namespace NLog
         {
             get
             {
-                LogManager.CheckForConfigChanges();
                 return _isErrorEnabled; 
             }
         }
@@ -187,7 +181,6 @@ namespace NLog
         {
             get
             {
-                LogManager.CheckForConfigChanges();
                 return _isFatalEnabled; 
             }
         }

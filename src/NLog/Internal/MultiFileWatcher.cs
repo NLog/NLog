@@ -107,10 +107,10 @@ namespace NLog.Internal
         {
             lock(this)
             {
+                // Console.WriteLine("OnWatcherChanged()");
                 if (!_triggerred)
                 {
                     _triggerred = true;
-                    // Console.WriteLine("OnWatcherChanged()");
                     OnChange(source, e);
                 }
             }

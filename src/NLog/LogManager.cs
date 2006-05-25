@@ -58,19 +58,6 @@ namespace NLog
         private static LogLevel _globalThreshold = LogLevel.MinLevel;
         private static bool _configLoaded = false;
         private static bool _throwExceptions = false;
-        private static bool _reloadConfigOnNextLog = false;
-
-        internal static bool ReloadConfigOnNextLog
-        {
-            get
-            {
-                return _reloadConfigOnNextLog;
-            }
-            set
-            {
-                _reloadConfigOnNextLog = value;
-            }
-        }
 
         /// <summary>
         /// Specified whether NLog should throw exceptions. By default exceptions
@@ -116,12 +103,6 @@ namespace NLog
 
         }
 
-        internal static void CheckForConfigChanges()
-        {
-            if (ReloadConfigOnNextLog)
-                ReloadConfig();
-        }
-
         /// <summary>
         /// Gets the specified named logger.
         /// </summary>
@@ -129,8 +110,6 @@ namespace NLog
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         public static Logger GetLogger(string name)
         {
-            CheckForConfigChanges();
-
             lock(typeof(LogManager))
             {
                 Logger l = _loggerCache[name];
@@ -306,11 +285,31 @@ namespace NLog
 
 #if !NETCF
         private static MultiFileWatcher _watcher = new MultiFileWatcher(new EventHandler(ConfigFileChanged));
+        private static Timer _reloadTimer = null;
+
+        const int ReconfigAfterFileChangedTimeout = 1000;
 
         private static void ConfigFileChanged(object sender, EventArgs args)
         {
-            InternalLogger.Debug("ConfigFileChanged!!!");
-            ReloadConfigOnNextLog = true;
+            InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", ReconfigAfterFileChangedTimeout);
+
+            // In the rare cases we may get multiple notifications here, 
+            // but we need to reload config onlyonce.
+            //
+            // The trick is to schedule the reload in one second after
+            // the last change notification comes in.
+
+            lock (typeof(LogManager))
+            {
+                if (_reloadTimer == null)
+                {
+                    _reloadTimer = new Timer(new TimerCallback(ReloadConfigOnTimer), null, ReconfigAfterFileChangedTimeout, Timeout.Infinite);
+                }
+                else
+                {
+                    _reloadTimer.Change(ReconfigAfterFileChangedTimeout, Timeout.Infinite);
+                }
+            }
         }
 #endif 
 
@@ -333,20 +332,35 @@ namespace NLog
             InternalLogger.Info("--- End of NLog configuration dump ---");
         }
 
-        internal static void ReloadConfig()
+#if !NETCF
+        internal static void ReloadConfigOnTimer(object state)
         {
+            InternalLogger.Info("Reloading configuration...");
             lock(typeof(LogManager))
             {
-                if (!ReloadConfigOnNextLog)
-                    return ;
+                try
+                {
+                    LoggingConfiguration newConfig = Configuration.Reload();
+                    if (newConfig != null)
+                        Configuration = newConfig;
+                    else
+                    {
+                        InternalLogger.Info("Configuration.Reload() returned null. Not reloading.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error("Error while reloading config file: {0}", ex);
+                }
 
-                InternalLogger.Debug("Reloading Config...");
-                LoggingConfiguration newConfig = Configuration.Reload();
-                if (newConfig != null)
-                    Configuration = newConfig;
-                ReloadConfigOnNextLog = false;
+                if (_reloadTimer != null)
+                {
+                    _reloadTimer.Dispose();
+                    _reloadTimer = null;
+                }
             }
         }
+#endif
 
         /// <summary>
         /// Loops through all loggers previously returned by <see cref="GetLogger" />

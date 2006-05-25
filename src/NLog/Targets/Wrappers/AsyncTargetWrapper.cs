@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
-
 using System;
 using System.Xml;
 using System.IO;
@@ -53,19 +51,21 @@ namespace NLog.Targets.Wrappers
     public enum AsyncTargetWrapperOverflowAction
     {
         /// <summary>
-        /// Do no action - accept another item into the queue.
+        /// Grow the queue.
         /// </summary>
-        None,
+        Grow,
 
         /// <summary>
         /// Discard the overflowing item.
         /// </summary>
         Discard,
 
+#if !NETCF
         /// <summary>
         /// Block until there's more room in the queue.
         /// </summary>
         Block,
+#endif
     }
 
     /// <summary>
@@ -97,7 +97,7 @@ namespace NLog.Targets.Wrappers
         public override void Initialize()
         {
             base.Initialize();
-            StartLazyWriterThread();
+            StartLazyWriterTimer();
         }
 
         /// <summary>
@@ -129,30 +129,54 @@ namespace NLog.Targets.Wrappers
             set { _timeToSleepBetweenBatches = value; }
         }
 
-        private void LazyWriterThreadProc()
+        private bool _inLazyWriter = false;
+        private bool _flushAll = false;
+        private ManualResetEvent _flushFinished = new ManualResetEvent(false);
+
+        private void LazyWriterTimerCallback(object state)
         {
-            while (!LazyWriterThreadStopRequested)
+            lock (this)
             {
-                ArrayList pendingRequests = RequestQueue.DequeueBatch(BatchSize);
+                if (_inLazyWriter)
+                    return;
 
-                if (pendingRequests.Count == 0)
-                {
-                    Thread.Sleep(TimeToSleepBetweenBatches);
-                    continue;
-                }
+                _inLazyWriter = true;
+            }
 
-                try
+            try
+            {
+                do
                 {
-                    LogEventInfo[] events = (LogEventInfo[])pendingRequests.ToArray(typeof(LogEventInfo));
-                    WrappedTarget.Write(events);
-                }
-                catch (Exception ex)
+                    ArrayList pendingRequests = RequestQueue.DequeueBatch(BatchSize);
+
+                    try
+                    {
+                        if (pendingRequests.Count == 0)
+                            break;
+
+                        LogEventInfo[] events = (LogEventInfo[])pendingRequests.ToArray(typeof(LogEventInfo));
+                        WrappedTarget.Write(events);
+                    }
+                    finally
+                    {
+                        RequestQueue.BatchProcessed(pendingRequests);
+                    }
+                } while (_flushAll);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error("Error in lazy writer timer procedure: {0}", ex);
+            }
+            finally
+            {
+                lock (this)
                 {
-                    InternalLogger.Error("Error in lazy writer thread: {0}", ex);
-                }
-                finally
-                {
-                    RequestQueue.BatchProcessed(pendingRequests);
+                    _inLazyWriter = false;
+                    if (_flushAll)
+                    {
+                        _flushFinished.Set();
+                    }
+                    _flushAll = false;
                 }
             }
         }
@@ -173,7 +197,7 @@ namespace NLog.Targets.Wrappers
         }
 
         private bool _stopLazyWriterThread = false;
-        private Thread _lazyWriterThread = null;
+        private Timer _lazyWriterTimer = null;
         private AsyncRequestQueue _lazyWriterRequestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
 
         /// <summary>
@@ -190,14 +214,6 @@ namespace NLog.Targets.Wrappers
         protected AsyncRequestQueue RequestQueue
         {
             get { return _lazyWriterRequestQueue; }
-        }
-
-        /// <summary>
-        /// The thread that is used to write log messages.
-        /// </summary>
-        protected Thread LazyWriterThread
-        {
-            get { return _lazyWriterThread; }
         }
 
         /// <summary>
@@ -225,20 +241,11 @@ namespace NLog.Targets.Wrappers
         /// Starts the lazy writer thread which periodically writes
         /// queued log messages.
         /// </summary>
-        protected virtual void StartLazyWriterThread()
+        protected virtual void StartLazyWriterTimer()
         {
-            if (_lazyWriterThread != null)
-            {
-                // already started.
-                return;
-            }
-
-            _stopLazyWriterThread = false;
             _lazyWriterRequestQueue.Clear();
-            Internal.InternalLogger.Debug("Starting logging thread.");
-            _lazyWriterThread = new Thread(new ThreadStart(LazyWriterThreadProc));
-            _lazyWriterThread.IsBackground = true;
-            _lazyWriterThread.Start();
+            Internal.InternalLogger.Debug("Starting lazy writer timer...");
+            _lazyWriterTimer = new Timer(new TimerCallback(LazyWriterTimerCallback), null, 0, this.TimeToSleepBetweenBatches);
         }
 
         /// <summary>
@@ -246,20 +253,14 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected virtual void StopLazyWriterThread()
         {
-            if (_lazyWriterThread == null)
+            if (_lazyWriterTimer == null)
                 return;
 
             Flush();
-            _stopLazyWriterThread = true;
-            if (!_lazyWriterThread.Join(3000))
-            {
-                InternalLogger.Warn("Logging thread failed to stop. Aborting.");
-                _lazyWriterThread.Abort();
-            }
-            else
-            {
-                InternalLogger.Debug("Logging thread stopped.");
-            }
+            _lazyWriterTimer.Change(0, 0);
+            _lazyWriterTimer.Dispose();
+            _lazyWriterTimer = null;
+
             _lazyWriterRequestQueue.Clear();
         }
 
@@ -268,36 +269,10 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         public override void Flush(TimeSpan timeout)
         {
-            InternalLogger.Debug("Flushing lazy writer thread. Requests in queue: {0}", _lazyWriterRequestQueue.UnprocessedRequestCount);
-
-            DateTime deadLine = DateTime.MaxValue;
-            if (timeout != TimeSpan.MaxValue)
-                deadLine = DateTime.Now.Add(timeout);
-
-            InternalLogger.Debug("Waiting until {0}", deadLine);
-
-            while (_lazyWriterRequestQueue.UnprocessedRequestCount > 0 && DateTime.Now < deadLine)
-            {
-                int before = _lazyWriterRequestQueue.UnprocessedRequestCount;
-                int after = before;
-
-                // we wait max. 5 seconds, and if there's no queue activity
-                // we give up
-                for (int i = 0; i < 100 && DateTime.Now < deadLine; ++i)
-                {
-                    Thread.Sleep(50);
-                    after = _lazyWriterRequestQueue.UnprocessedRequestCount;
-                    if (after != before)
-                        break;
-                }
-                if (after == before)
-                {
-                    InternalLogger.Debug("Aborting flush because of a possible lazy writer thread lockup. Requests in queue: {0}", _lazyWriterRequestQueue.RequestCount);
-                    // some lockup - quit the thread
-                    break;
-                }
-            }
-            InternalLogger.Debug("After flush. Requests in queue: {0}", _lazyWriterRequestQueue.RequestCount);
+            InternalLogger.Info("Flushing AsyncTarget wrapper...");
+            _flushAll = true;
+            _flushFinished.WaitOne();
+            InternalLogger.Info("Finished flushing AsyncTarget wrapper. Remaining {0}", _lazyWriterRequestQueue.RequestCount);
         }
 
         /// <summary>
@@ -357,9 +332,10 @@ namespace NLog.Targets.Wrappers
                             case AsyncTargetWrapperOverflowAction.Discard:
                                 return;
 
-                            case AsyncTargetWrapperOverflowAction.None:
+                            case AsyncTargetWrapperOverflowAction.Grow:
                                 break;
 
+#if !NETCF
                             case AsyncTargetWrapperOverflowAction.Block:
                                 while (_queue.Count >= RequestLimit)
                                 {
@@ -375,6 +351,7 @@ namespace NLog.Targets.Wrappers
                                 }
                                 InternalLogger.Debug("Limit ok.");
                                 break;
+#endif
                         }
                     }
                     _queue.Enqueue(o);
@@ -400,7 +377,9 @@ namespace NLog.Targets.Wrappers
 
                         target.Add(o);
                     }
+#if !NETCF
                     System.Threading.Monitor.PulseAll(this);
+#endif
                 }
                 _batchedItems = target.Count;
                 return target;
@@ -445,5 +424,3 @@ namespace NLog.Targets.Wrappers
 
     }
 }
-
-#endif

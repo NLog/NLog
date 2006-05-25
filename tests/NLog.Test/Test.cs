@@ -41,6 +41,9 @@ using NLog.Targets.Wrappers;
 using NLog.Conditions;
 using NLog.Targets;
 using NLog.Win32.Targets;
+using NLog.Internal;
+using System.IO;
+using System.Threading;
 
 namespace NLog.Tester
 {
@@ -70,6 +73,9 @@ namespace NLog.Tester
 
         static void Main(string[]args)
         {
+            InternalLogger.LogToConsole = true;
+            InternalLogger.LogLevel = LogLevel.Info;
+
             logger.Trace("ttt");
             logger.Debug("ala ma kota");
             logger.Info("ala ma kanarka");
@@ -77,6 +83,17 @@ namespace NLog.Tester
             logger.Error("err");
             logger.Fatal("fff");
             A();
+            Console.WriteLine("Touching config file...");
+            File.SetLastWriteTime(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile, DateTime.Now);
+            Thread.Sleep(100);
+            File.SetLastWriteTime(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile, DateTime.Now);
+            Thread.Sleep(100);
+            File.SetLastWriteTime(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile, DateTime.Now);
+            Thread.Sleep(100);
+            File.SetLastWriteTime(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile, DateTime.Now);
+            File.SetLastWriteTime(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile, DateTime.Now);
+            Console.WriteLine("Touched.");
+            Thread.Sleep(1000);
         }
     }
 }
