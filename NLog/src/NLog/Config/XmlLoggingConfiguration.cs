@@ -267,7 +267,7 @@ namespace NLog.Config
 
             string s = GetCaseInsensitiveAttribute(configElement, "internalLogFile");
             if (s != null)
-                    InternalLogger.LogFile = s;
+                InternalLogger.LogFile = s;
 
             s = GetCaseInsensitiveAttribute(configElement, "internalLogLevel");
             if (s != null)

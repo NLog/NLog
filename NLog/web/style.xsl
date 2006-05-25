@@ -155,14 +155,14 @@ urchinTracker();
         </table>
     </xsl:template>
 
-    <!--
     <xsl:template match="a[starts-with(@href,'http://') and not(starts-with(@href,'http://www.nlog-project'))]">
         <a href="http://www.nlog-project.org/external/{substring-after(@href,'http://')}">
             <xsl:apply-templates />
         </a>
-        <img class="out_link" src="out_link.gif" />
+        <xsl:if test="$mode!='plain'">
+            <img class="out_link" src="out_link.gif" />
+        </xsl:if>
     </xsl:template>
-    -->
 
     <xsl:template match="nav">
         <xsl:choose>

@@ -20,7 +20,7 @@
         <code>csc.exe /t:library /out:MyAssembly.dll /r:NLog.dll MyFirstTarget.cs</code>
     </p>
 
-    <code lang="C#" src="examples/MyFirstTarget.cs" />
+    <code lang="C#" src="examples/web/MyFirstTarget.cs" />
 
 <h5>How to use the newly created target?</h5>
 <p>
@@ -31,7 +31,7 @@
 
 <h5>Configuration file example</h5>
 
-<xml src="examples/config7.nlog" />
+<code lang="XML" src="examples/web/config7.nlog" />
 
 <h5>How to pass configuration options to the target?</h5>
 
@@ -51,6 +51,6 @@ you can use integer, string, datetime, boolean parameters.
     It should be possible to reference your EXE using the <x><extensions /></x> clause.
 </p>
 
-    <code lang="C#" src="examples/AddTarget.cs" />
+<code lang="C#" src="examples/web/AddTarget.cs" />
 </content>
 

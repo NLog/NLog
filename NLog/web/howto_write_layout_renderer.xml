@@ -26,7 +26,7 @@
         <code>csc.exe /t:library /out:MyAssembly.dll /r:NLog.dll MyFirstLayoutRenderer.cs</code>
     </p>
 
-    <code lang="C#" src="examples/MyFirstLayoutRenderer.cs" />
+    <code lang="C#" src="examples/web/MyFirstLayoutRenderer.cs" />
 
 <h5>How to use the newly created layout renderer?</h5>
 <p>
@@ -39,7 +39,7 @@
     This example causes all messages written to the console to be prepended with current hour. Simple isn't it?
 </p>
 
-<xml src="examples/config9.nlog" />
+<code lang="XML" src="examples/web/config9.nlog" />
 
 <h5>How to pass configuration options to the renderer?</h5>
 
@@ -67,6 +67,6 @@ you can use integer, string, datetime, boolean parameters.
     It should be possible to reference your EXE using the <x><extensions /></x> clause.
 </p>
 
-    <code lang="C#" src="examples/AddLayoutRenderer.cs" />
+<code lang="C#" src="examples/web/AddLayoutRenderer.cs" />
 </content>
 

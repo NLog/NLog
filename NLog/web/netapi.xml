@@ -28,7 +28,7 @@
     <p>
         The following example shows the code that uses the recommended way of creating and keeping logger instance.
     </p>
-    <code lang="C#" src="examples/getlogger.cs" />
+    <code lang="C#" src="examples/web/getlogger.cs" />
     <p>
         It's also possible to use or 
         <a href="help/NLog.LogManager.GetCurrentClassLogger.html">LogManager.GetCurrentClassLogger()</a>
@@ -37,7 +37,7 @@
         costly because internally it uses the <code>StackTrace</code> class to get the name of the
         current class.
     </p>
-    <code lang="C#" src="examples/getcurrentclasslogger.cs" />
+    <code lang="C#" src="examples/web/getcurrentclasslogger.cs" />
     <h5>Logger</h5>
     <p>
         The <a href="help/NLog.Logger.html">NLog.Logger</a> class has the following methods. Each method has a number

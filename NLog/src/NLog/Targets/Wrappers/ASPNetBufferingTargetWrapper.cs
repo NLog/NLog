@@ -130,6 +130,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         public override void Initialize()
         {
+            base.Initialize();
             NLog.Web.NLogHttpModule.BeginRequest += new EventHandler(this.OnBeginRequest);
             NLog.Web.NLogHttpModule.EndRequest += new EventHandler(this.OnEndRequest);
         }
