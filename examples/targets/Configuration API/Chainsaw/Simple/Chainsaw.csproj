@@ -2,10 +2,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AE1BBC24-C46F-4B81-85AF-8E4FFE05F384}</ProjectGuid>
+    <ProjectGuid>{D7B11859-2A1B-49F7-A7C7-83B72495BF31}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <AssemblyName>ColoredConsole.Simple</AssemblyName>
+    <AssemblyName>Chainsaw</AssemblyName>
     <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

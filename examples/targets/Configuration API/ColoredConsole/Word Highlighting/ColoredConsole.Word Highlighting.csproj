@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F7FAD9E3-719A-4316-912F-73F9F6560D5A}</ProjectGuid>
+    <ProjectGuid>{72FEDAC3-072E-4966-AB1E-63E07F884321}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
     <AssemblyName>ColoredConsole.Word Highlighting</AssemblyName>
