@@ -1,3 +1,8 @@
+2006-05-25 Jaroslaw Kowalski <jaak@jkowalski.net>
+
+	* Implemented AsyncWrapper for .NET CF using the Timer class
+	* Refactored file watching - should speed up non-logging by 100%
+
 2006-05-20 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Added support for VC#Express and VBExpress to the installer.
