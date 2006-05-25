@@ -50,7 +50,7 @@ namespace NLog.Win32.Targets
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <xml src="examples/targets/EventLog/EventLogTarget.nlog" />
+    /// <code lang="XML" src="examples/targets/EventLog/EventLogTarget.nlog" />
     /// <p>
     /// This assumes just one target and a single rule. More configuration
     /// options are described <a href="config.html">here</a>.
@@ -58,7 +58,7 @@ namespace NLog.Win32.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <cs src="examples/targets/EventLog/EventLogTarget.cs" />
+    /// <code lang="C#" src="examples/targets/EventLog/EventLogTarget.cs" />
     /// </example>
     /// <remarks>
     /// Currently there's no way to pass EventID or Category 

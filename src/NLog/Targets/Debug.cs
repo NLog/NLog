@@ -49,7 +49,7 @@ namespace NLog.Targets
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <xml src="examples/targets/Debug/DebugTarget.nlog" />
+    /// <code lang="XML" src="examples/targets/Debug/DebugTarget.nlog" />
     /// <p>
     /// This assumes just one target and a single rule. More configuration
     /// options are described <a href="config.html">here</a>.
@@ -57,7 +57,7 @@ namespace NLog.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <cs src="examples/targets/Debug/DebugTarget.cs" />
+    /// <code lang="C#" src="examples/targets/Debug/DebugTarget.cs" />
     /// </example>
     [Target("Debug")]
     public sealed class DebugTarget: Target

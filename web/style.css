@@ -15,20 +15,20 @@ h1
 h2
 {
     margin-top: 30px;
-    font-size: 16px;
+    font-size: 14pt;
     font-weight: bold;
 }
 
 h5
 {
     margin-top: 30px;
-    font-size: 13px;
+    font-size: 12pt;
     font-weight: bold;
 }
 
 h6
 {
-    font-size: 10px;
+    font-size: 10pt;
     font-weight: bold;
 }
 
@@ -109,15 +109,6 @@ li
 {
     /* font-weight: bold; */
     color: black;
-}
-
-pre.xml
-{
-    font-family: Courier New;
-    font-size: 11px;
-    padding: 4px;
-    font-color: #606060;
-    background-color: #fffff8;
 }
 
 span.keyword
@@ -313,7 +304,7 @@ td.header
 td.content
 {
     font-family: Trebuchet MS, Arial, Helv;
-    font-size: 13px;
+    font-size: 10pt;
     padding: 20px;
     padding-right: 20px;
     width: 100%;
@@ -373,106 +364,6 @@ td.newstext
     font-family: Trebuchet MS, Arial, Helv;
     font-size: 13px;
     padding: 4px;
-}
-
-body.example
-{
-    border: 0px solid black;
-}
-
-.xml-example
-{
-    background-color: #fffff0; 
-    border: 1px solid #c0c0c0; 
-    overflow: auto;
-    width: 100%;
-    display: block;
-    font-size: 12px;
-    padding: 4px;
-}
-
-.csharp-example
-{
-    font-family: Courier New;
-    background-color: #fffff0; 
-    border: 1px solid #c0c0c0; 
-    overflow: auto; 
-    width: 100%;
-    font-size: 12px;
-    padding: 4px;
-}
-
-.csharp .k
-{
-    color: #0000ff;
-}
-
-.csharp .c
-{
-    color: #008000;
-    font-style: italic;
-}
-
-.csharp .s
-{
-    color: #C00000;
-}
-
-.csharp .r
-{
-    color: #400000;
-}
-
-.jscript .k
-{
-    color: #0000ff;
-}
-
-.jscript .c
-{
-    color: #008000;
-    font-style: italic;
-}
-
-.jscript .s
-{
-    color: #400000;
-}
-
-.jscript .r
-{
-    color: #400000;
-}
-
-.xml .a
-{
-    color: #ff0000;
-}
-
-.xml .at
-{
-    color: #0000ff;
-}
-
-.xml .b
-{
-    color: #0000ff;
-}
-
-.xml .e
-{
-    color: #800000;
-}
-
-.xml .c
-{
-    color: #008000;
-    font-style: italic;
-}
-
-.xml .x
-{
-    color: #A0A000;
 }
 
 code
@@ -619,10 +510,27 @@ code.config
 
 pre.example
 {
-    background-color: #fffff0;
-    border: 1px solid #c0c0c0;
+    background-color: #f0f0f0;
+    border: 1px solid #c0c0f0;
     color: black;
     padding: 4px;
+    font-size: 9pt;
+    white-space: -moz-pre-wrap;  /* Mozilla, supported since 1999 */
+    white-space: -pre-wrap;      /* Opera 4 - 6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    white-space: pre-wrap;       /* CSS3 - Text module (Candidate Recommendation) */
+    word-wrap: break-word;       /* IE 5.5+ */
+    width: 100%;
+}
+
+pre.example code
+{
+    white-space: -moz-pre-wrap;  /* Mozilla, supported since 1999 */
+    white-space: -pre-wrap;      /* Opera 4 - 6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    white-space: pre-wrap;       /* CSS3 - Text module (Candidate Recommendation) */
+    word-wrap: break-word;       /* IE 5.5+ */
+    font-family: Arial;
 }
 
 .subexample
@@ -651,6 +559,7 @@ table.paramtable
 {
     border-collapse: collapse;
     background-color: #ffffe0;
+    width: 100%;
 }
 
 table.subparamtable
@@ -682,7 +591,7 @@ td.parametername
     padding: 4px;
     text-align: left;
     vertical-align: top;
-    font-size: 12px;
+    font-size: 9pt;
 }
 
 td.parametertype
@@ -691,16 +600,33 @@ td.parametertype
     padding: 4px;
     text-align: left;
     vertical-align: top;
-    font-size: 12px;
+    font-size: 9pt;
 }
 
 td.parametervalue
 {
     border: 1px solid #b0b0b0;
+    text-align: left;
+    vertical-align: top;
+    font-size: 9pt;
+    white-space: -moz-pre-wrap;  /* Mozilla, supported since 1999 */
+    white-space: -pre-wrap;      /* Opera 4 - 6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    white-space: pre-wrap;       /* CSS3 - Text module (Candidate Recommendation) */
+    word-wrap: break-word;       /* IE 5.5+ */
+}
+
+td.parametervalue2
+{
     padding: 4px;
     text-align: left;
     vertical-align: top;
-    font-size: 12px;
+    font-size: 9pt;
+    white-space: -moz-pre-wrap;  /* Mozilla, supported since 1999 */
+    white-space: -pre-wrap;      /* Opera 4 - 6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    white-space: pre-wrap;       /* CSS3 - Text module (Candidate Recommendation) */
+    word-wrap: break-word;       /* IE 5.5+ */
 }
 
 td.subheader
@@ -821,4 +747,9 @@ table.definedin
 img.out_link
 {
     margin-left: 4px;
+}
+
+.plaincontent
+{
+    padding: 10px;
 }

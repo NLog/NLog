@@ -49,11 +49,11 @@ namespace NLog.Win32.Targets
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <xml src="examples/targets/MSMQ/MSMQTarget.nlog" />
+    /// <code lang="XML" src="examples/targets/MSMQ/MSMQTarget.nlog" />
     /// <p>
     /// You can use a single target to write to multiple queues (similar to writing to multiple files with the File target).
     /// </p>
-    /// <xml src="examples/targets/MSMQ/MSMQTargetMultiple.nlog" />
+    /// <code lang="XML" src="examples/targets/MSMQ/MSMQTargetMultiple.nlog" />
     /// <p>
     /// The above examples assume just one target and a single rule. 
     /// More configuration options are described <a href="config.html">here</a>.
@@ -61,7 +61,7 @@ namespace NLog.Win32.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <cs src="examples/targets/MSMQ/MSMQTarget.cs" />
+    /// <code lang="C#" src="examples/targets/MSMQ/MSMQTarget.cs" />
     /// </example>
     [Target("MSMQ")]
     [SupportedRuntime(Framework=RuntimeFramework.DotNetFramework)]

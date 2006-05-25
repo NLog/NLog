@@ -12,7 +12,7 @@
     <p>
         I've decided to measure the time needed to execute the following logging statements:
     </p>
-    <cs src="examples/benchmark_nlog.cs" />
+    <code lang="C#" src="examples/benchmark_nlog.cs" />
     <p>
         The following logging configurations were examined:
         <ul>

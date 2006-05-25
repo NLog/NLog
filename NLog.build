@@ -21,6 +21,7 @@
     <property name="ndoc.console.exe" value="${ndoc.path}/ndocconsole.exe" dynamic="true" />
     <property name="ndoc.console.args" value="-referencepath &quot;${framework::get-assembly-directory(framework::get-target-framework())}&quot;" dynamic="true" />
     <property name="prettyprinter.exe" value="tools/PrettyPrinter.exe" />
+    <property name="ndocsyntax.path" value="tools/NDocSyntax.exe" />
 
     <property name="webserver.deploy.dir" value="web/www.nlog-project.org/html" />
     <property name="csc.warninglevel" value="4" />
@@ -142,6 +143,7 @@
         </uptodate>
         <if test="${not xmldoc.uptodate}">
             <exec program="${ndoc.console.exe}" verbose="true" workingdir="." commandline="${ndoc.console.args} -documenter=XML -project=./NLog.ndoc" />
+            <exec program="${ndocsyntax.path}" commandline="build/doc/doc.xml" workingdir="." />
         </if>
         <echo message="Getting target, filter and layout renderer names from build/doc/doc.xml ..." />
         <script language="C#">
@@ -756,6 +758,7 @@
         <property name="webbuild.dir" value="${path::combine(project::get-base-directory(),'build/doc/web')}" />
         <property name="web.buildmode" value="web" />
         <property name="web.sourceforge" value="1" />
+        <exec program="${ndocsyntax.path}" commandline="-outDir build\doc\webxmlwithsyntax web\*.xml" workingdir="." />
         <call target="buildwebsite" />
         <copy file="build/doc/web/introduction.html" tofile="build/doc/web/index.html" />
     </target>
@@ -834,104 +837,6 @@
             </parameters>
         </style>
 
-        <!-- syntax-hilite all *.cs files -->
-
-        <foreach item="File" property="filename">
-            <in>
-                <items basedir="${webbuild.dir}/examples">
-                    <include name="**/*.cs" />
-                </items>
-            </in>
-            <do>
-                <uptodate property="file.uptodate">
-                    <targetfiles>
-                        <include name="${filename}.html" />
-                    </targetfiles>
-                    <sourcefiles>
-                        <include name="${filename}" />
-                    </sourcefiles>
-                </uptodate>
-                <if test="${not file.uptodate}">
-                    <echo message="Syntax-highlighting ${filename}" />
-                    <exec program="${prettyprinter.exe}" commandline='-l csharp -i "${filename}" -o "${filename}.html" -s style.css' />
-                    <exec program="${prettyprinter.exe}" commandline='-l csharp -m xml -i "${filename}" -o "${filename}.xhtml" -s style.css' />
-                </if>
-            </do>
-        </foreach>
-
-        <foreach item="File" property="filename">
-            <in>
-                <items basedir="${webbuild.dir}/examples">
-                    <include name="**/*.js" />
-                    <include name="**/*.cpp" />
-                </items>
-            </in>
-            <do>
-                <copy file="web/style.css" tofile="${path::combine(path::get-directory-name(filename),'style.css')}" />
-                <uptodate property="file.uptodate">
-                    <targetfiles>
-                        <include name="${filename}.html" />
-                    </targetfiles>
-                    <sourcefiles>
-                        <include name="${filename}" />
-                    </sourcefiles>
-                </uptodate>
-                <if test="${not file.uptodate}">
-                    <echo message="Syntax-highlighting ${filename}" />
-                    <exec program="${prettyprinter.exe}" commandline='-l jscript -i "${filename}" -o "${filename}.html" -s style.css' />
-                    <exec program="${prettyprinter.exe}" commandline='-l jscript -m xml -i "${filename}" -o "${filename}.xhtml" -s style.css' />
-                </if>
-            </do>
-        </foreach>
-
-        <foreach item="File" property="filename">
-            <in>
-                <items basedir="${webbuild.dir}/examples">
-                    <include name="**/*.nlog" />
-                </items>
-            </in>
-            <do>
-                <copy file="web/style.css" tofile="${path::combine(path::get-directory-name(filename),'style.css')}" />
-                <uptodate property="file.uptodate">
-                    <targetfiles>
-                        <include name="${filename}.html" />
-                    </targetfiles>
-                    <sourcefiles>
-                        <include name="${filename}" />
-                    </sourcefiles>
-                </uptodate>
-                <if test="${not file.uptodate}">
-                    <echo message="Syntax-highlighting ${filename}" />
-                    <exec program="${prettyprinter.exe}" commandline='-l xml -i "${filename}" -o "${filename}.html" -s style.css' />
-                    <exec program="${prettyprinter.exe}" commandline='-l xml -m xml -i "${filename}" -o "${filename}.xhtml" -s style.css' />
-                </if>
-            </do>
-        </foreach>
-
-        <foreach item="File" property="filename">
-            <in>
-                <items basedir="${webbuild.dir}/examples">
-                    <include name="*.config" />
-                </items>
-            </in>
-            <do>
-                <copy file="web/style.css" tofile="${path::combine(path::get-directory-name(filename),'style.css')}" />
-                <uptodate property="file.uptodate">
-                    <targetfiles>
-                        <include name="${filename}.html" />
-                    </targetfiles>
-                    <sourcefiles>
-                        <include name="${filename}" />
-                    </sourcefiles>
-                </uptodate>
-                <if test="${not file.uptodate}">
-                    <echo message="Syntax-highlighting ${filename}" />
-                    <exec program="${prettyprinter.exe}" commandline='-l xml -i "${filename}" -o "${filename}.html" -s style.css' />
-                    <exec program="${prettyprinter.exe}" commandline='-l xml -m xml -i "${filename}" -o "${filename}.xhtml" -s style.css' />
-                </if>
-            </do>
-        </foreach>
-
         <foreach item="String" in="${nlog.targetNames}" delim="," property="t">
             <style out="${webbuild.dir}/target.${t}.html" style="web/targets.xsl" in="build/doc/doc.xml">
                 <parameters>
@@ -978,7 +883,7 @@
         </foreach>
 
         <style destdir="${webbuild.dir}" style="web/style.xsl">
-            <infiles basedir="web">
+            <infiles basedir="build/doc/webxmlwithsyntax">
                 <include name="*.xml" />
                 <exclude name="common.en.xml" />
             </infiles>

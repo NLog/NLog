@@ -46,12 +46,6 @@
     <EmbeddedResource Include="TemplateNLog.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="TemplateNLog.XSD.xsx">
-      <DependentUpon>TemplateNLog.xsd</DependentUpon>
-    </None>
-    <None Include="TemplateNLog.xsx">
-      <DependentUpon>TemplateNLog.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
