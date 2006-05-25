@@ -12,13 +12,13 @@
         assembly. It provides the following set exported functions:
     </p>
 
-    <code lang="C#" src="examples/NLogC.cpp" />
+    <code lang="C#" src="examples/web/NLogC.cpp" />
 
     <p>
         For your convenience, the following defines which use a <code>TCHAR</code> data type are available:
     </p>
     
-    <code lang="C#" src="examples/NLogCdef.cpp" />
+    <code lang="C#" src="examples/web/NLogCdef.cpp" />
 
     <p>
         Here's the short summary of what these functions do (modulo their ANSI/UNICODE variants):

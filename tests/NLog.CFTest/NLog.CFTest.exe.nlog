@@ -1,11 +1,12 @@
 <?xml version="1.0" ?>
-<nlog>
+<nlog internalLogFile="internalLog.txt" internalLogLevel="Debug">
     <!-- deploy this file to "\Program Files\NLog.CFTest" directory on your device -->
-    <appenders>
-        <appender name="messagebox" type="MessageBox" />
+    <appenders async="true">
+        <appender name="file" type="File" filename="${basedir}/file.txt" />
+        <appender name="network" type="Network" address="udp://jaakntb:5555" />
     </appenders>
 
     <rules>
-        <logger name="*" minlevel="Error" appendTo="messagebox" />
+        <logger name="*" minlevel="Error" appendTo="file,network" />
     </rules>
 </nlog>

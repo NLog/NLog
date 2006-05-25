@@ -23,6 +23,6 @@
         The following example demonstrates the use of NLog COM api for JScript.
     </p>
 
-    <js src="examples/test.js" />
+    <code lang="JScript" src="examples/web/test.js" />
 </content>
 

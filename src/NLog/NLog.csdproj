@@ -397,6 +397,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Config\NotSupportedRuntimeAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Config\RequiredParameterAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -418,6 +423,11 @@
                 />
                 <File
                     RelPath = "Config\SupportedRuntimeAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Config\SupportedRuntimeAttributeBase.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -488,11 +498,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Internal\HttpNetworkSender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Internal\InternalLogger.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -524,11 +529,6 @@
                 />
                 <File
                     RelPath = "Internal\MultiFileWatcher.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Internal\NetworkSender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -568,11 +568,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Internal\TcpNetworkSender.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Internal\ThreadIDHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -584,11 +579,6 @@
                 />
                 <File
                     RelPath = "Internal\TypeToPropertyInfoDictionaryAssociation.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Internal\UdpNetworkSender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -614,6 +604,7 @@
                 />
                 <File
                     RelPath = "Internal\FileAppenders\MutexMultiProcessFileAppender.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -623,6 +614,31 @@
                 />
                 <File
                     RelPath = "Internal\FileAppenders\SingleProcessFileAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FileAppenders\UnixMultiProcessFileAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\NetworkSenders\HttpNetworkSender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\NetworkSenders\NetworkSender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\NetworkSenders\TcpNetworkSender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\NetworkSenders\UdpNetworkSender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -643,14 +659,17 @@
                 />
                 <File
                     RelPath = "LayoutRenderers\ASPNetSessionID.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "LayoutRenderers\ASPNetUserAuthType.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "LayoutRenderers\ASPNetUserIdentity.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -835,6 +854,7 @@
                 />
                 <File
                     RelPath = "Targets\Debugger.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -844,6 +864,7 @@
                 />
                 <File
                     RelPath = "Targets\Mail.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -938,6 +959,7 @@
                 />
                 <File
                     RelPath = "Targets\Wrappers\ASPNetBufferingTargetWrapper.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -992,6 +1014,7 @@
                 />
                 <File
                     RelPath = "Web\NLogHttpModule.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -1021,6 +1044,7 @@
                 />
                 <File
                     RelPath = "Win32\LayoutRenderers\WindowsIdentity.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File

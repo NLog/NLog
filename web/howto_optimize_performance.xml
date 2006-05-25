@@ -39,6 +39,6 @@
         somewhere and reuse it without calling <code>LogManager.GetLogger()</code> again. A static member to your 
         class is quite a good idea. The following example describes it:
     </p>
-    <code lang="C#" src="examples/Performance.cs" />
+    <code lang="C#" src="examples/web/Performance.cs" />
     <p style="class: red">TODO: add more tips here</p>
 </content>
