@@ -2,10 +2,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{_PROJECT_GUID_}</ProjectGuid>
+    <ProjectGuid>{D0526912-F1E9-4D30-941F-3A229DCC9309}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <AssemblyName>_PROJECT_NAME_</AssemblyName>
+    <AssemblyName>Debug</AssemblyName>
     <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

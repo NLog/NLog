@@ -1,6 +1,14 @@
 my $targetName = shift || die;
-my $variantName = shift || die;
+my $variantName = shift;
 my $projectGuid = `uuidgen -c`;
+my $projectName = "$targetName.$variantName";
+my $projectDir = "$targetName/$variantName";
+
+if ($variantName eq "")
+{
+    $projectDir = "$targetName/Simple";
+    $projectName = "$targetName";
+}
 chomp $projectGuid;
 
 sub apply_template
@@ -15,6 +23,8 @@ sub apply_template
         s/_TARGET_/$targetName/g;
         s/_VARIANT_/$variantName/g;
         s/_PROJECT_GUID_/$projectGuid/g;
+        s/_PROJECT_NAME_/$projectName/g;
+        s/_PROJECT_DIR_/$projectDir/g;
         print OUT;
     }
     close(OUT);
@@ -22,6 +32,6 @@ sub apply_template
 }
 
 mkdir("$targetName",0666);
-mkdir("$targetName/$variantName",0666);
-apply_template("Template.sln", "$targetName/$variantName/${targetName}.${variantName}.sln");
-apply_template("Template.csproj", "$targetName/$variantName/${targetName}.${variantName}.csproj");
+mkdir("$projectDir",0666);
+apply_template("Template.sln", "$projectDir/$projectName.sln");
+apply_template("Template.csproj", "$projectDir/$projectName.csproj");

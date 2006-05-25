@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColoredConsole.Word Highlighting", "ColoredConsole.Word Highlighting.csproj", "{F7FAD9E3-719A-4316-912F-73F9F6560D5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColoredConsole.Word Highlighting", "ColoredConsole.Word Highlighting.csproj", "{72FEDAC3-072E-4966-AB1E-63E07F884321}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F7FAD9E3-719A-4316-912F-73F9F6560D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7FAD9E3-719A-4316-912F-73F9F6560D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7FAD9E3-719A-4316-912F-73F9F6560D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7FAD9E3-719A-4316-912F-73F9F6560D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72FEDAC3-072E-4966-AB1E-63E07F884321}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72FEDAC3-072E-4966-AB1E-63E07F884321}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72FEDAC3-072E-4966-AB1E-63E07F884321}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72FEDAC3-072E-4966-AB1E-63E07F884321}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

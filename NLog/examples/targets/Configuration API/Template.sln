@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_TARGET_._VARIANT_", "_TARGET_._VARIANT_.csproj", "{_PROJECT_GUID_}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_PROJECT_NAME_", "_PROJECT_NAME_.csproj", "{_PROJECT_GUID_}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

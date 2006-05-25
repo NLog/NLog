@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F21BB440-B850-46B0-9CD0-8B38FE873E90}</ProjectGuid>
+    <ProjectGuid>{29B2985C-C196-453F-848E-7195AADAC21C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
     <AssemblyName>AsyncWrapper.Wrapping File</AssemblyName>

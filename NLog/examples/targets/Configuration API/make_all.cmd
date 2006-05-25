@@ -1,5 +1,10 @@
-makeproject.pl ColoredConsole "Simple"
+makeproject.pl ColoredConsole ""
 makeproject.pl ColoredConsole "Row Highlighting"
 makeproject.pl ColoredConsole "Word Highlighting"
 makeproject.pl AsyncWrapper "Wrapping File"
+makeproject.pl Console ""
+makeproject.pl Database "MSSQL"
+makeproject.pl Chainsaw ""
+makeproject.pl Debug ""
+makeproject.pl Debugger ""
 

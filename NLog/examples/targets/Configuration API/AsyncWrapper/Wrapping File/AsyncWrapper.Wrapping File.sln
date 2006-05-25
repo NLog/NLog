@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncWrapper.Wrapping File", "AsyncWrapper.Wrapping File.csproj", "{F21BB440-B850-46B0-9CD0-8B38FE873E90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncWrapper.Wrapping File", "AsyncWrapper.Wrapping File.csproj", "{29B2985C-C196-453F-848E-7195AADAC21C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F21BB440-B850-46B0-9CD0-8B38FE873E90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F21BB440-B850-46B0-9CD0-8B38FE873E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F21BB440-B850-46B0-9CD0-8B38FE873E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F21BB440-B850-46B0-9CD0-8B38FE873E90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29B2985C-C196-453F-848E-7195AADAC21C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29B2985C-C196-453F-848E-7195AADAC21C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29B2985C-C196-453F-848E-7195AADAC21C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29B2985C-C196-453F-848E-7195AADAC21C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

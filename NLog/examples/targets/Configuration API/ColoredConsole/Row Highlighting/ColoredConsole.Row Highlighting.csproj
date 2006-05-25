@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BF312B3A-7A90-4473-908C-C32FBCB520D4}</ProjectGuid>
+    <ProjectGuid>{71F8BD46-2468-4BD6-AE5D-7C81E56CF437}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
     <AssemblyName>ColoredConsole.Row Highlighting</AssemblyName>
