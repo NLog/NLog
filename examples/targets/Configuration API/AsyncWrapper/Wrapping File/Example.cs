@@ -21,5 +21,7 @@ class Example
 
         Logger logger = LogManager.GetLogger("Example");
         logger.Debug("log message");
+
+        wrapper.Flush();
     }
 }
