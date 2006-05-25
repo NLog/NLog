@@ -50,7 +50,7 @@ namespace NLog.Targets
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <xml src="examples/targets/Network/NetworkTarget.nlog" />
+    /// <code lang="XML" src="examples/targets/Network/NetworkTarget.nlog" />
     /// <p>
     /// This assumes just one target and a single rule. More configuration
     /// options are described <a href="config.html">here</a>.
@@ -58,7 +58,7 @@ namespace NLog.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <cs src="examples/targets/Network/NetworkTarget.cs" />
+    /// <code lang="C#" src="examples/targets/Network/NetworkTarget.cs" />
     /// <p>
     /// To print the results, use any application that's able to receive messages over
     /// TCP or UDP. <a href="http://m.nu/program/util/netcat/netcat.html">NetCat</a> is

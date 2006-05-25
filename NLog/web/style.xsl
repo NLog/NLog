@@ -7,13 +7,13 @@
     <xsl:param name="sourceforge">0</xsl:param>
     <xsl:param name="log4net_comparison">0</xsl:param>
     <xsl:param name="build_time">2006-01-01</xsl:param>
-    <xsl:param name="mode">web</xsl:param>
+    <xsl:param name="mode">plain</xsl:param>
 
     <xsl:variable name="page_id" select="concat(/*[position()=1]/@id,$page_id_override)" />
     <xsl:variable name="subpage_id" select="concat(/*[position()=1]/@subid,$subpage_id_override)" />
-    <xsl:variable name="common" select="document(concat($mode,'menu.xml'))" />
+    <xsl:variable name="common" select="document(concat($mode,'.menu'))" />
     
-    <xsl:output method="html" indent="yes" />
+    <xsl:output method="html" indent="no" />
 
     <xsl:template match="/">
         <html>
@@ -25,6 +25,13 @@
                 <title>NLog - <xsl:value-of select="$common/common/navigation/nav[@href=$page_id]/@label" /></title>
             </head>
             <body width="100%">
+                <xsl:choose>
+                    <xsl:when test="$mode='plain'">
+                        <div class="plaincontent">
+                            <xsl:apply-templates select="/" mode="content" />
+                        </div>
+                    </xsl:when>
+                    <xsl:otherwise>
                 <img src="title.png" style="display: none" /> <!-- need this for CHM -->
                 <div class="titleimage" style="overflow: hidden">
                     <img src="NLog.jpg" />
@@ -82,6 +89,8 @@ urchinTracker();
                         <td class="copyright">Copyright &#169; 2004-2006 by Jaros³aw Kowalski.</td>
                     </tr>
                 </table>
+            </xsl:otherwise>
+        </xsl:choose>
          <xsl:if test="$mode = 'web'">
                 <div id="googlesearch">
                     <!-- SiteSearch Google -->
@@ -134,18 +143,27 @@ urchinTracker();
         <xsl:apply-templates select="$common/common/navigation" />
     </xsl:template>
 
+    <xsl:template match="code[@lang]">
+        <pre class="example">
+            <xsl:copy-of select="." />
+        </pre>
+    </xsl:template>
+
     <xsl:template match="navigation">
         <table border="0" cellpadding="0" cellspacing="0">
             <xsl:apply-templates select="nav" />
         </table>
     </xsl:template>
 
+    <!--
     <xsl:template match="a[starts-with(@href,'http://') and not(starts-with(@href,'http://www.nlog-project'))]">
         <a href="http://www.nlog-project.org/external/{substring-after(@href,'http://')}">
             <xsl:apply-templates />
         </a>
         <img class="out_link" src="out_link.gif" />
     </xsl:template>
+    -->
+
     <xsl:template match="nav">
         <xsl:choose>
             <xsl:when test="$page_id = @href"><tr><td class="nav_selected"><a class="nav_selected"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a><table class="submenu" width="100%"><xsl:apply-templates select="subnav" /></table></td></tr></xsl:when>
@@ -176,6 +194,7 @@ urchinTracker();
             <xsl:when test="$type = 'Int32'">integer</xsl:when>
             <xsl:when test="$type = 'String'">string</xsl:when>
             <xsl:when test="$type = 'Boolean'">boolean</xsl:when>
+            <xsl:when test="contains($type,'#')"><xsl:value-of select="substring-after($type,'#')" /></xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$type" />
             </xsl:otherwise>
@@ -207,30 +226,36 @@ urchinTracker();
                     </xsl:if>
                 </nobr>
             </td>
-            <td class="parametervalue">
-                <xsl:apply-templates select="documentation/summary" />
-                <xsl:if test="attribute[@name='System.ComponentModel.DefaultValueAttribute']">
-                    <p>Default value is: <code><xsl:value-of select="attribute[@name='System.ComponentModel.DefaultValueAttribute']/property[@name='Value']/@value" /></code>.</p>
-                </xsl:if>
-                <xsl:variable name="typename" select="concat('T:',translate(@type,'#','.'))" />
-                <xsl:variable name="enumnode" select="//enumeration[@id=$typename]" />
-                <xsl:if test="$enumnode">
-                    <p>
-                        Possible values are:
-                        <ul>
-                            <xsl:for-each select="$enumnode/field">
-                                <li><b><code><xsl:value-of select="@name" /></code></b> - <xsl:apply-templates select="documentation/summary" /></li>
-                            </xsl:for-each>
-                        </ul>
-                    </p>
-                </xsl:if>
-                <xsl:if test="documentation/remarks">
-                    <p><xsl:apply-templates select="documentation/remarks" /></p>
-                </xsl:if>
-                <xsl:if test="documentation/example">
-                    <h4>Example</h4>
-                    <p><xsl:apply-templates select="documentation/example" /></p>
-                </xsl:if>
+            <td class="parametervalue" width="100%">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="parametervalue2">
+                            <xsl:apply-templates select="documentation/summary" />
+                            <xsl:if test="attribute[@name='System.ComponentModel.DefaultValueAttribute']">
+                                <p>Default value is: <code><xsl:value-of select="attribute[@name='System.ComponentModel.DefaultValueAttribute']/property[@name='Value']/@value" /></code>.</p>
+                            </xsl:if>
+                            <xsl:variable name="typename" select="concat('T:',translate(@type,'#','.'))" />
+                            <xsl:variable name="enumnode" select="//enumeration[@id=$typename]" />
+                            <xsl:if test="$enumnode">
+                                <p>
+                                    Possible values are:
+                                    <ul>
+                                        <xsl:for-each select="$enumnode/field">
+                                            <li><b><code><xsl:value-of select="@name" /></code></b> - <xsl:apply-templates select="documentation/summary" /></li>
+                                        </xsl:for-each>
+                                    </ul>
+                                </p>
+                            </xsl:if>
+                            <xsl:if test="documentation/remarks">
+                                <p><xsl:apply-templates select="documentation/remarks" /></p>
+                            </xsl:if>
+                            <xsl:if test="documentation/example">
+                                <h4>Example</h4>
+                                <p><xsl:apply-templates select="documentation/example" /></p>
+                            </xsl:if>
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
     </xsl:template>
@@ -503,6 +528,20 @@ urchinTracker();
 
     <xsl:template match="link">
         <a href="{@href}.{$file_extension}"><xsl:apply-templates /></a>
+    </xsl:template>
+
+    <xsl:template name="last-component">
+        <xsl:param name="t" />
+        <xsl:choose>
+            <xsl:when test="contains($t,'.')"><xsl:call-template name="last-component"><xsl:with-param name="t" select="substring-after($t,'.')" /></xsl:call-template></xsl:when>
+            <xsl:otherwise><xsl:value-of select="$t" /></xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template match="see[@cref]">
+        <xsl:call-template name="last-component">
+            <xsl:with-param name="t" select="@cref" />
+        </xsl:call-template>
     </xsl:template>
 
 </xsl:stylesheet>

@@ -54,7 +54,7 @@ namespace NLog.Targets
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <xml src="examples/targets/Chainsaw/ChainsawTarget.nlog" />
+    /// <code lang="XML" src="examples/targets/Chainsaw/ChainsawTarget.nlog" />
     /// <p>
     /// This assumes just one target and a single rule. More configuration
     /// options are described <a href="config.html">here</a>.
@@ -62,7 +62,7 @@ namespace NLog.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <cs src="examples/targets/Chainsaw/ChainsawTarget.cs" />
+    /// <code lang="C#" src="examples/targets/Chainsaw/ChainsawTarget.cs" />
     /// <p>
     /// NOTE: If your receiver application is ever likely to be off-line, don't use TCP protocol
     /// or you'll get TCP timeouts and your application will crawl. 

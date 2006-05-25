@@ -77,12 +77,12 @@ namespace NLog.Targets.Wrappers
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <xml src="examples/targets/AsyncWrapper/AsyncTargetWrapper.nlog" />
+    /// <code lang="XML" src="examples/targets/AsyncWrapper/AsyncTargetWrapper.nlog" />
     /// <p>
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
-    /// <cs src="examples/targets/AsyncWrapper/AsyncTargetWrapper.cs" />
+    /// <code lang="C#" src="examples/targets/AsyncWrapper/AsyncTargetWrapper.cs" />
     /// </example>
     [Target("AsyncWrapper",IsWrapper=true)]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
@@ -96,6 +96,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         public override void Initialize()
         {
+            base.Initialize();
             StartLazyWriterThread();
         }
 

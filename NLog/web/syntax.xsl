@@ -15,18 +15,6 @@
         </div>
     </xsl:template>
 
-    <xsl:template match="cs[@src]">
-        <xsl:call-template name="external-iframe" />
-    </xsl:template>
-
-    <xsl:template match="js[@src]">
-        <xsl:call-template name="external-iframe" />
-    </xsl:template>
-
-    <xsl:template match="xml[@src]">
-        <xsl:call-template name="external-iframe" />
-    </xsl:template>
-
     <xsl:template match="x">
         <xsl:apply-templates mode="xml-example" />
     </xsl:template>

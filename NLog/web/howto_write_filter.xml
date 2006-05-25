@@ -36,7 +36,7 @@
         <code>csc.exe /t:library /out:MyAssembly.dll /r:NLog.dll MyFirstFilter.cs</code>
     </p>
 
-    <cs src="examples/MyFirstFilter.cs" />
+    <code lang="C#" src="examples/MyFirstFilter.cs" />
 
     <h5>How to use the newly created layout renderer?</h5>
     <p>
@@ -49,7 +49,7 @@
         This example causes all messages between 10:00 and 12:59 to be ignored. Simple isn't it?
     </p>
 
-    <xml src="examples/config10.nlog" />
+    <code lang="xml" src="examples/config10.nlog" />
 
     <h5>How to pass configuration options to the filter?</h5>
 
@@ -75,6 +75,6 @@
         It should be possible to reference your EXE using the <x><extensions /></x> clause.
     </p>
 
-    <cs src="examples/AddFilter.cs" />
+    <code lang="C#" src="examples/AddFilter.cs" />
 </content>
 

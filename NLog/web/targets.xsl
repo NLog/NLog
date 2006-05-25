@@ -91,6 +91,7 @@
     <xsl:template match="class" mode="details">
         <xsl:variable name="type_tag" select="attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value" />
         <h3><xsl:value-of select="$type_tag" /> Target</h3>
+       
         <hr size="1" />
         <xsl:apply-templates select="documentation/summary" /><p/>
         <xsl:call-template name="detailssupportmatrix" />

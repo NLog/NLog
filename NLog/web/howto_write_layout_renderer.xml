@@ -26,7 +26,7 @@
         <code>csc.exe /t:library /out:MyAssembly.dll /r:NLog.dll MyFirstLayoutRenderer.cs</code>
     </p>
 
-<cs src="examples/MyFirstLayoutRenderer.cs" />
+    <code lang="C#" src="examples/MyFirstLayoutRenderer.cs" />
 
 <h5>How to use the newly created layout renderer?</h5>
 <p>
@@ -67,6 +67,6 @@ you can use integer, string, datetime, boolean parameters.
     It should be possible to reference your EXE using the <x><extensions /></x> clause.
 </p>
 
-<cs src="examples/AddLayoutRenderer.cs" />
+    <code lang="C#" src="examples/AddLayoutRenderer.cs" />
 </content>
 

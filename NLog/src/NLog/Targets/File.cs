@@ -54,7 +54,7 @@ namespace NLog.Targets
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <xml src="examples/targets/File/FileTarget.nlog" />
+    /// <code lang="XML" src="examples/targets/File/FileTarget.nlog" />
     /// <p>
     /// You can use a single target to write to multiple files. The following
     /// example writes each log message to a file named after its log level, so
@@ -62,13 +62,13 @@ namespace NLog.Targets
     /// <c>Trace.log</c>, <c>Debug.log</c>, <c>Info.log</c>, <c>Warn.log</c>, 
     /// <c>Error.log</c>, <c>Fatal.log</c>
     /// </p>
-    /// <xml src="examples/targets/File/FileTargetMultiple.nlog" />
+    /// <code lang="XML" src="examples/targets/File/FileTargetMultiple.nlog" />
     /// <p>
     /// The file names can be quite complex for the most demanding scenarios. This
     /// example shows a way to create separate files for each day, user and log level.
     /// As you can see, the possibilities are endless.
     /// </p>
-    /// <xml src="examples/targets/File/FileTargetMultiple2.nlog" />
+    /// <code lang="XML" src="examples/targets/File/FileTargetMultiple2.nlog" />
     /// <p>
     /// Depending on your usage scenario it may be useful to add an <a href="target.AsyncWrapper.html">asynchronous target wrapper</a>
     /// around the file target. This way all your log messages
@@ -77,19 +77,19 @@ namespace NLog.Targets
     /// for multi-threaded server applications which run for a long time and
     /// is not recommended for quickly-finishing command line applications.
     /// </p>
-    /// <xml src="examples/targets/File/FileTargetAsync.nlog" />
+    /// <code lang="XML" src="examples/targets/File/FileTargetAsync.nlog" />
     /// <p>
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
-    /// <cs src="examples/targets/File/FileTargetAsync.cs" />
+    /// <code lang="C#" src="examples/targets/File/FileTargetAsync.cs" />
     /// <p>
     /// More configuration options are described <a href="config.html">here</a>.
     /// </p>
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <cs src="examples/targets/File/FileTarget.cs" />
+    /// <code lang="C#" src="examples/targets/File/FileTarget.cs" />
     /// </example>
     [Target("File")]
     public class FileTarget: Target, IFileOpener
@@ -167,7 +167,7 @@ namespace NLog.Targets
         private int _maxArchiveFiles = 9;
         private long _archiveAboveSize = -1;
         private ArchiveEveryMode _archiveEvery = ArchiveEveryMode.None;
-        private int _openFileCacheSize = 1;
+        private int _openFileCacheSize = 5;
         private IFileAppenderFactory _appenderFactory;
         private IFileAppender[] _recentAppenders;
         private DateTime[] _lastWriteTime;
@@ -234,7 +234,7 @@ namespace NLog.Targets
         /// a very high value. A number like 10-15 shouldn't be exceeded, because you'd
         /// be keeping a large number of files open which consumes system resources.
         /// </remarks>
-        [System.ComponentModel.DefaultValue(1)]
+        [System.ComponentModel.DefaultValue(5)]
         public int OpenFileCacheSize
         {
             get { return _openFileCacheSize; }
@@ -245,7 +245,7 @@ namespace NLog.Targets
         /// <summary>
         /// Maximum number of seconds that files are kept open.
         /// </summary>
-        [System.ComponentModel.DefaultValue(0)]
+        [System.ComponentModel.DefaultValue(1)]
         public int OpenFileCacheTimeout
         {
             get { return _openFileCacheTimeout; }
@@ -667,20 +667,46 @@ namespace NLog.Targets
 
             lock (this)
             {
+                string currentFileName = null;
+                MemoryStream ms = new MemoryStream();
+                LogEventInfo firstLogEvent = null;
+
                 for (int i = 0; i < logEvents.Length; ++i)
                 {
                     LogEventInfo logEvent = logEvents[i];
                     string logEventFileName = _fileNameLayout.GetFormattedMessage(logEvent);
+                    if (logEventFileName != currentFileName)
+                    {
+                        if (currentFileName != null)
+                        {
+                            if (ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
+                            {
+                                InvalidateCacheItem(currentFileName);
+                                DoAutoArchive(currentFileName, firstLogEvent);
+                            }
+
+                            WriteToFile(currentFileName, ms.ToArray());
+                        }
+                        currentFileName = logEventFileName;
+                        firstLogEvent = logEvent;
+                        ms.SetLength(0);
+                        ms.Position = 0;
+                    }
+
                     string logEventText = CompiledLayout.GetFormattedMessage(logEvent) + _newLine;
                     byte[] bytes = TransformBytes(_encoding.GetBytes(logEventText));
 
-                    if (ShouldAutoArchive(logEventFileName, logEvent, bytes.Length))
+                    ms.Write(bytes, 0, bytes.Length);
+                }
+                if (currentFileName != null)
+                {
+                    if (ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
                     {
-                        InvalidateCacheItem(logEventFileName);
-                        DoAutoArchive(logEventFileName, logEvent);
+                        InvalidateCacheItem(currentFileName);
+                        DoAutoArchive(currentFileName, firstLogEvent);
                     }
 
-                    WriteToFile(logEventFileName, bytes);
+                    WriteToFile(currentFileName, ms.ToArray());
                 }
             }
         }

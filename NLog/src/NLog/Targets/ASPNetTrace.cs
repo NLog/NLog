@@ -47,7 +47,7 @@ namespace NLog.Targets
     /// <p>To set up the ASP.NET Trace target in the <a href="config.html">configuration file</a>, put
     /// the following in <c>web.nlog</c> file in your web application directory.
     /// </p>
-    /// <xml src="examples/targets/ASPNetTrace/web.nlog" />
+    /// <code lang="XML" src="examples/targets/ASPNetTrace/web.nlog" />
     /// <p>
     /// This assumes just one target and a single rule. More configuration
     /// options are described <a href="config.html">here</a>.
@@ -57,7 +57,7 @@ namespace NLog.Targets
     /// piece of code in your <c>Application_OnStart()</c> handler in Global.asax.cs 
     /// or some other place that gets executed at the very beginning of your code:
     /// </p>
-    /// <cs src="examples/targets/ASPNetTrace/Global.asax.cs" />
+    /// <code lang="C#" src="examples/targets/ASPNetTrace/Global.asax.cs" />
     /// <p>
     /// Fully working C# project can be found in the <c>Examples/Targets/ASPNetTrace</c>
     /// directory along with usage instructions.

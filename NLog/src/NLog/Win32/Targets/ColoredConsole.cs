@@ -51,7 +51,7 @@ namespace NLog.Win32.Targets
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <xml src="examples/targets/ColoredConsole/ConsoleTarget.nlog" />
+    /// <code lang="XML" src="examples/targets/Configuration File/ColoredConsole/Simple/NLog.config" />
     /// <p>
     /// This assumes just one target and a single rule. More configuration
     /// options are described <a href="config.html">here</a>.
@@ -59,35 +59,35 @@ namespace NLog.Win32.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <cs src="examples/targets/ColoredConsole/ConsoleTarget.cs" />
+    /// <code lang="C#" src="examples/targets/Configuration API/ColoredConsole/Simple/Example.cs" />
     /// <p>
     /// The result is a colorful console, where each color represents a single log level.
     /// </p>
-    /// <img src="examples/targets/ColoredConsole/ColoredConsoleTarget.gif" />
+    /// <img src="examples/targets/Screenshots/ColoredConsole/Simple.gif" />
     /// <p>
     /// In addition you can configure your own word highlighting rules so that 
     /// particular words or regular expressions will be marked with 
     /// a distinguished color:
     /// </p>
-    /// <xml src="examples/targets/ColoredConsole/ColoredConsoleTargetWordHighlighting.nlog" />
+    /// <code lang="XML" src="examples/targets/Configuration File/ColoredConsole/Word Highlighting/NLog.config" />
     /// <p>Programmatic equivalent of the above configuration:</p>
-    /// <cs src="examples/targets/ColoredConsole/ColoredConsoleTargetWordHighlighting.cs" />
+    /// <code lang="C#" src="examples/targets/Configuration API/ColoredConsole/Word Highlighting/Example.cs" />
     /// <p>
     /// Here's the result:
     /// </p>
-    /// <img src="examples/targets/ColoredConsole/ColoredConsoleTargetWordHighlighting.gif" />
+    /// <img src="examples/targets/Screenshots/ColoredConsole/Word Highlighting.gif" />
     /// <p>
     /// Custom row highlighting lets you colorize the output by any <a href="conditions.html">condition</a>.
     /// This example shows how to mark all entries containing the word "serious" with white color on red background
     /// and mark all entries coming from a particular logger with yellow on blue.
     /// </p>
-    /// <xml src="examples/targets/ColoredConsole/ColoredConsoleTargetRowHighlighting.nlog" />
+    /// <code lang="XML" src="examples/targets/Configuration File/ColoredConsole/Row Highlighting/NLog.config" />
     /// <p>Programmatic equivalent of the above configuration:</p>
-    /// <cs src="examples/targets/ColoredConsole/ColoredConsoleTargetRowHighlighting.cs" />
+    /// <code lang="C#" src="examples/targets/Configuration API/ColoredConsole/Row Highlighting/Example.cs" />
     /// <p>
     /// Here's the result:
     /// </p>
-    /// <img src="examples/targets/ColoredConsole/ColoredConsoleTargetRowHighlighting.gif" />
+    /// <img src="examples/targets/Screenshots/ColoredConsole/Row Highlighting.gif" />
     /// </example>
     [Target("ColoredConsole")]
     [SupportedRuntime(OS=RuntimeOS.Windows)]
