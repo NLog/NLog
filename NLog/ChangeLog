@@ -2,6 +2,7 @@
 
 	* Prepared ready-to-run example projects for VS2005 that describe
 	most targets.
+	* Added WebService target stub.
 
 2006-05-25 Jaroslaw Kowalski <jaak@jkowalski.net>
 
