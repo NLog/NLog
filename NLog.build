@@ -33,7 +33,7 @@
     <property name="installer.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-setup.exe" />
     <property name="installer.debug.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-setup-debug.exe" />
     <property name="source_snapshot.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-src.zip" />
-    <property name="binary_snapshot.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" />
+    <property name="binary_snapshot.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" dynamic="true" />
     <property name="help_package.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-help.zip" />
     <property name="webtest.dir" value="${project::get-base-directory()}/webtest" />
 
@@ -553,7 +553,7 @@
         </foreach>
     </target>
 
-    <target name="installer" depends="allframeworksdebugandrelease, help, vs2005templates">
+    <target name="installer" depends="allframeworksdebugandrelease, clean_examples, help, vs2005templates">
         <readregistry property="nsis.dir" key="SOFTWARE\NSIS\" />
         <property name="makensis.exe" value="${nsis.dir}/makensis.exe" />
 
@@ -754,16 +754,20 @@
     <target name="publish_snapshot" depends="allframeworksdebugandrelease, source_snapshot, help, installer, upload_snapshot, upload_web_snapshot">
     </target>
 
-    <target name="website" depends="xmldoc">
+    <target name="webxmlwithsyntax">
+        <mkdir dir="build\doc\webxmlwithsyntax" />
+        <exec program="${ndocsyntax.path}" commandline="-outDir build\doc\webxmlwithsyntax web\*.xml" workingdir="." />
+    </target>
+
+    <target name="website" depends="xmldoc, webxmlwithsyntax">
         <property name="webbuild.dir" value="${path::combine(project::get-base-directory(),'build/doc/web')}" />
         <property name="web.buildmode" value="web" />
         <property name="web.sourceforge" value="1" />
-        <exec program="${ndocsyntax.path}" commandline="-outDir build\doc\webxmlwithsyntax web\*.xml" workingdir="." />
         <call target="buildwebsite" />
         <copy file="build/doc/web/introduction.html" tofile="build/doc/web/index.html" />
     </target>
 
-    <target name="helpwebsite" depends="xmldoc">
+    <target name="helpwebsite" depends="xmldoc, webxmlwithsyntax">
         <property name="webbuild.dir" value="${path::combine(project::get-base-directory(),'build/doc/helpweb')}" />
         <property name="web.buildmode" value="help" />
         <property name="web.sourceforge" value="0" />
@@ -998,29 +1002,16 @@
         <exec program="nant" commandline="clover test publish_clover" />
     </target>
 
-    <target name="build_examples" depends="configure, NLog">
-        <foreach item="File" property="file">
-            <in>
-                <items basedir="examples">
-                    <include name="targets/**/*.cs" />
-                    <exclude name="targets/**/*.asax.cs" />
-                </items>
-            </in>
-            <do>
-                <property name="basename" value="${path::get-file-name-without-extension(file)}" />
-
-                <csc target="exe" output="${nlog.dir}/${basename}.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}" failonerror="false">
-                    <sources>
-                        <include name="${file}" />
-                    </sources>
-                    <references>
-                        <include name="${nlog.dir}/NLog.dll" />
-                        <include name="mscorlib.dll" />
-                        <include name="System.dll" />
-                        <include name="System.Xml.dll" />
-                    </references>
-                </csc>
-            </do>
-        </foreach>
+    <target name="clean_examples">
+        <delete>
+            <fileset basedir="examples">
+                <include name="**/*.suo" />
+                <include name="**/bin/**/*" />
+                <include name="**/obj/**/*" />
+                <include name="**/bin" />
+                <include name="**/obj" />
+                <include name="**/*proj.user" />
+            </fileset>
+        </delete>
     </target>
 </project>
