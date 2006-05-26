@@ -83,6 +83,8 @@ namespace NLog
         protected internal virtual bool IsVolatile()
         {
             LayoutRendererAttribute attr = (LayoutRendererAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(LayoutRendererAttribute));
+            if (attr == null)
+                return false;
             return !attr.UsingLogEventInfo;
         }
 

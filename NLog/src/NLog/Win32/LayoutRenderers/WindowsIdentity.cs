@@ -44,6 +44,7 @@ namespace NLog.Win32.LayoutRenderers
     /// </summary>
     [LayoutRenderer("windows-identity")]
     [SupportedRuntime(OS=RuntimeOS.Windows)]
+    [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
     public class WindowsIdentityLayoutRenderer: LayoutRenderer
     {
         private bool _includeDomain = true;

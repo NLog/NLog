@@ -54,7 +54,7 @@ namespace NLog.Targets
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" src="examples/targets/File/FileTarget.nlog" />
+    /// <code lang="XML" src="examples/targets/Configuration File/File/Simple/NLog.config" />
     /// <p>
     /// You can use a single target to write to multiple files. The following
     /// example writes each log message to a file named after its log level, so
@@ -62,13 +62,13 @@ namespace NLog.Targets
     /// <c>Trace.log</c>, <c>Debug.log</c>, <c>Info.log</c>, <c>Warn.log</c>, 
     /// <c>Error.log</c>, <c>Fatal.log</c>
     /// </p>
-    /// <code lang="XML" src="examples/targets/File/FileTargetMultiple.nlog" />
+    /// <code lang="XML" src="examples/targets/Configuration File/File/Multiple/NLog.config" />
     /// <p>
     /// The file names can be quite complex for the most demanding scenarios. This
     /// example shows a way to create separate files for each day, user and log level.
     /// As you can see, the possibilities are endless.
     /// </p>
-    /// <code lang="XML" src="examples/targets/File/FileTargetMultiple2.nlog" />
+    /// <code lang="XML" src="examples/targets/Configuration File/File/Multiple2/NLog.config" />
     /// <p>
     /// Depending on your usage scenario it may be useful to add an <a href="target.AsyncWrapper.html">asynchronous target wrapper</a>
     /// around the file target. This way all your log messages
@@ -77,19 +77,19 @@ namespace NLog.Targets
     /// for multi-threaded server applications which run for a long time and
     /// is not recommended for quickly-finishing command line applications.
     /// </p>
-    /// <code lang="XML" src="examples/targets/File/FileTargetAsync.nlog" />
+    /// <code lang="XML" src="examples/targets/Configuration File/File/Asynchronous/NLog.config" />
     /// <p>
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
-    /// <code lang="C#" src="examples/targets/File/FileTargetAsync.cs" />
+    /// <code lang="C#" src="examples/targets/Configuration API/File/Asynchronous/Example.cs" />
     /// <p>
     /// More configuration options are described <a href="config.html">here</a>.
     /// </p>
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/File/FileTarget.cs" />
+    /// <code lang="C#" src="examples/targets/Configuration API/File/Simple/Example.cs" />
     /// </example>
     [Target("File")]
     public class FileTarget: Target, IFileOpener
