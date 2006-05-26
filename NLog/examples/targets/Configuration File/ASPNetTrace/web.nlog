@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<nlog>
+    <targets>
+        <target name="aspnet" type="ASPNetTrace" layout="${logger} ${message}" />
+    </targets>
+    <rules>
+        <logger name="*" minlevel="Debug" writeTo="aspnet" />
+    </rules>
+</nlog>
