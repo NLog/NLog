@@ -751,6 +751,16 @@
         <echo message="Done." />
     </target>
 
+    <target name="clean_all">
+        <delete>
+            <fileset basedir="build">
+                <include name="**/*" />
+                <include name="*" />
+                <exclude name="readme.txt" />
+            </fileset>
+        </delete>
+    </target>
+
     <target name="publish_snapshot" depends="allframeworksdebugandrelease, source_snapshot, help, installer, upload_snapshot, upload_web_snapshot">
     </target>
 
@@ -796,6 +806,7 @@
         <style out="${webbuild.dir}/targets.html" style="web/targets.xsl" in="build/doc/doc.xml">
             <parameters>
                 <parameter name="build_time" value="${buildtime}" />
+                <parameter name="nlog_package" value="${nlog.package.name}" />
                 <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -808,6 +819,7 @@
         <style out="${webbuild.dir}/layoutrenderers.html" style="web/layoutrenderers.xsl" in="build/doc/doc.xml">
             <parameters>
                 <parameter name="build_time" value="${buildtime}" />
+                <parameter name="nlog_package" value="${nlog.package.name}" />
                 <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -820,6 +832,7 @@
         <style out="${webbuild.dir}/filters.html" style="web/filters.xsl" in="build/doc/doc.xml">
             <parameters>
                 <parameter name="build_time" value="${buildtime}" />
+                <parameter name="nlog_package" value="${nlog.package.name}" />
                 <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -832,6 +845,7 @@
         <style out="${webbuild.dir}/conditions.html" style="web/conditions.xsl" in="build/doc/doc.xml">
             <parameters>
                 <parameter name="build_time" value="${buildtime}" />
+                <parameter name="nlog_package" value="${nlog.package.name}" />
                 <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -845,6 +859,7 @@
             <style out="${webbuild.dir}/target.${t}.html" style="web/targets.xsl" in="build/doc/doc.xml">
                 <parameters>
                     <parameter name="build_time" value="${buildtime}" />
+                    <parameter name="nlog_package" value="${nlog.package.name}" />
                     <parameter name="external-base" value="${webbuild.dir}" />
                     <parameter name="file_extension" value="html" />
                     <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -860,6 +875,7 @@
             <style out="${webbuild.dir}/lr.${t}.html" style="web/layoutrenderers.xsl" in="build/doc/doc.xml">
                 <parameters>
                     <parameter name="build_time" value="${buildtime}" />
+                    <parameter name="nlog_package" value="${nlog.package.name}" />
                     <parameter name="external-base" value="${webbuild.dir}" />
                     <parameter name="file_extension" value="html" />
                     <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -875,6 +891,7 @@
             <style out="${webbuild.dir}/filter.${t}.html" style="web/filters.xsl" in="build/doc/doc.xml">
                 <parameters>
                     <parameter name="build_time" value="${buildtime}" />
+                    <parameter name="nlog_package" value="${nlog.package.name}" />
                     <parameter name="external-base" value="${webbuild.dir}" />
                     <parameter name="file_extension" value="html" />
                     <parameter name="sourceforge" value="${web.sourceforge}" />
@@ -893,6 +910,7 @@
             </infiles>
             <parameters>
                 <parameter name="build_time" value="${buildtime}" />
+                <parameter name="nlog_package" value="${nlog.package.name}" />
                 <parameter name="external-base" value="${webbuild.dir}" />
                 <parameter name="file_extension" value="html" />
                 <parameter name="sourceforge" value="${web.sourceforge}" />
