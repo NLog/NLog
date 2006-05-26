@@ -34,7 +34,7 @@
                     </xsl:when>
                     <xsl:otherwise>
                 <img src="title.png" style="display: none" /> <!-- need this for CHM -->
-                <div class="titleimage" style="overflow: hidden">
+                <div class="titleimage" style="overflow: hidden; width: 100%">
                     <img src="NLog.jpg" />
                 </div>
                 <table class="page" cellpadding="0" cellspacing="0" style="table-layout: fixed">
@@ -98,23 +98,25 @@
 <!-- SiteSearch Google -->
                 </div>
             </xsl:if>
-            <!-- Start of StatCounter Code -->
-            <script type="text/javascript" language="javascript">
-                var sc_project=575077; 
-                var sc_partition=4; 
-                var sc_security="6fe22c9a"; 
-            </script>
+            <div id="counterCode">
+                <!-- Start of StatCounter Code -->
+                <script type="text/javascript" language="javascript">
+                    var sc_project=575077; 
+                    var sc_partition=4; 
+                    var sc_security="6fe22c9a"; 
+                </script>
 
-            <script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c5.statcounter.com/counter.php?sc_project=575077&amp;java=0&amp;security=6fe22c9a" alt="website tracking" border="0" /></a> </noscript>
-            <!-- End of StatCounter Code -->
-            <!-- Google Analytics -->
-            <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-            </script>
-            <script type="text/javascript">
-                _uacct = "UA-256960-2";
-                urchinTracker();
-            </script>
-            <!-- End of Google Analytics -->
+                <script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c5.statcounter.com/counter.php?sc_project=575077&amp;java=0&amp;security=6fe22c9a" alt="website tracking" border="0" /></a> </noscript>
+                <!-- End of StatCounter Code -->
+                <!-- Google Analytics -->
+                <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+                </script>
+                <script type="text/javascript">
+                    _uacct = "UA-256960-2";
+                    urchinTracker();
+                </script>
+                <!-- End of Google Analytics -->
+            </div>
         </body>
     </html>
 </xsl:template>
