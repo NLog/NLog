@@ -145,22 +145,22 @@ namespace NLog.Targets
 
         private void InvokeSoap11(object[] parameters)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         private void InvokeSoap12(object[] parameters)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         private void InvokeHttpGet(object[] parameters)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         private void InvokeHttpPost(object[] parameters)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
     }
 }
