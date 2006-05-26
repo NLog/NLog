@@ -57,7 +57,7 @@ namespace NLog.Targets
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" src="examples/targets/Mail/MailTarget.nlog" />
+    /// <code lang="XML" src="examples/targets/Configuration File/Mail/Simple/NLog.config" />
     /// <p>
     /// This assumes just one target and a single rule. More configuration
     /// options are described <a href="config.html">here</a>.
@@ -65,7 +65,7 @@ namespace NLog.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Mail/MailTarget.cs" />
+    /// <code lang="C#" src="examples/targets/Configuration API/Mail/Simple/Example.cs" />
     /// <p>
     /// Mail target works best when used with BufferingWrapper target
     /// which lets you send multiple logging messages in single mail
@@ -74,11 +74,11 @@ namespace NLog.Targets
     /// To set up the buffered mail target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" src="examples/targets/Mail/BufferedMailTarget.nlog" />
+    /// <code lang="XML" src="examples/targets/Configuration File/Mail/Buffered/NLog.config" />
     /// <p>
     /// To set up the buffered mail target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Mail/BufferedMailTarget.cs" />
+    /// <code lang="C#" src="examples/targets/Configuration API/Mail/Buffered/Example.cs" />
     /// </example>
     [Target("Mail",IgnoresLayout=true)]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]

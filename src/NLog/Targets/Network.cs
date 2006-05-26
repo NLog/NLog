@@ -50,7 +50,7 @@ namespace NLog.Targets
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" src="examples/targets/Network/NetworkTarget.nlog" />
+    /// <code lang="XML" src="examples/targets/Configuration File/Network/NLog.config" />
     /// <p>
     /// This assumes just one target and a single rule. More configuration
     /// options are described <a href="config.html">here</a>.
@@ -58,14 +58,14 @@ namespace NLog.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Network/NetworkTarget.cs" />
+    /// <code lang="C#" src="examples/targets/Configuration API/Network/Simple/Example.cs" />
     /// <p>
     /// To print the results, use any application that's able to receive messages over
     /// TCP or UDP. <a href="http://m.nu/program/util/netcat/netcat.html">NetCat</a> is
     /// a simple but very powerful command-line tool that can be used for that. This image
     /// demonstrates the NetCat tool receiving log messages from Network target.
     /// </p>
-    /// <img src="examples/targets/Network/Output.gif" />
+    /// <img src="examples/targets/Screenshots/Network/Output.gif" />
     /// <p>
     /// NOTE: If your receiver application is ever likely to be off-line, don't use TCP protocol
     /// or you'll get TCP timeouts and your application will crawl. 

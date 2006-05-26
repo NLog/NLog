@@ -51,7 +51,7 @@ namespace NLog.Targets
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" src="examples/targets/MessageBox/MessageBoxTarget.nlog" />
+    /// <code lang="XML" src="examples/targets/Configuration File/MessageBox/NLog.config" />
     /// <p>
     /// This assumes just one target and a single rule. More configuration
     /// options are described <a href="config.html">here</a>.
@@ -59,11 +59,11 @@ namespace NLog.Targets
     /// <p>
     /// The result is a message box:
     /// </p>
-    /// <img src="examples/targets/MessageBox/MessageBoxTarget.gif" />
+    /// <img src="examples/targets/Screenshots/MessageBox/MessageBoxTarget.gif" />
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/MessageBox/MessageBoxTarget.cs" />
+    /// <code lang="C#" src="examples/targets/Configuration API/MessageBox/Simple/Example.cs" />
     /// </example>
     [Target("MessageBox")]
     public sealed class MessageBoxTarget: Target
