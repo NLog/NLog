@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="support" subid="bug" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<content lang="en" id="documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <h2>Wprowadzenie do śledzenia aplikacji przy pomocy NLoga</h2>
     <p>Autor: Jarosław Kowalski &lt;<a href="mailto:jaak@jkowalski.net">jaak@jkowalski.net</a>&gt;</p>
     <div style="margin-left: 1cm; margin-right: 1cm">

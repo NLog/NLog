@@ -753,3 +753,19 @@ img.out_link
 {
     padding: 10px;
 }
+
+@media print
+{
+    .controls
+    {
+        display: none;
+    }
+    #googlesearch
+    {
+        display: none;
+    }
+    #counterCode
+    {
+        display: none;
+    }
+}

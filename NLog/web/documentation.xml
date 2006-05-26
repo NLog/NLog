@@ -5,6 +5,7 @@
 
     <ul>
         <li><link href="tutorial">Introduction to NLog</link></li>
+        <li><link href="wprowadzenie">Wprowadzenie do œledzenia aplikacji przy pomocy NLoga (<img src="lang_pl.gif" border="1" bordercolor="0" />)</link></li>
         <li><link href="filearchive">File Archiving Explained</link></li>
     </ul>
 
