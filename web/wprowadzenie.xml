@@ -18,15 +18,14 @@
         static int Main()
         {
             Console.WriteLine("Program SuperApp zosta³ uruchomiony...");
-            for (int i = 0; i &lt; 100; ++i)
-            {
-                Console.WriteLine("i = {0}", i);
-                DoSomething(i);         
-            }
+            DoSomething(0);
             Console.WriteLine("Program SuperApp koñczy dzia³anie");
         }]]>
     </code>
 
+    <p>Instrukcje Console.WriteLine() pe³ni¹ tu rolê instrukcji œledz¹cych, to znaczy nie pe³ni¹ ¿adnej funkcji
+        w programie poza informowaniem o jego dzia³aniu. Na ich podstawie mo¿emy siê zorientowaæ, ¿e na przyk³ad program
+        siê nie zawiesi³.</p>
     <p>
         Zwykle po jako-takim przetestowaniu komunikaty diagnostyczne Console.WriteLine() s¹ usuwane.
         Czêsto jednak, po pewnym czasie przychodzi potrzeba ponownego w³¹czenia œledzenia w aplikacji, dlatego te¿ pozostawiamy
@@ -59,7 +58,7 @@
     <p>
         NLog <a href="http://www.nlog-project.org/">(http://www.nlog-project.org)</a> jest
         bibliotek¹ na platformie .NET, która umo¿liwia ³atwe wzbogacenie naszej
-        aplikacji o obs³ugê œledzenia, realizuj¹c¹ opisane wymagania opisane powy¿ej,
+        aplikacji o obs³ugê œledzenia, realizuj¹c¹ wymagania opisane powy¿ej,
         a tak¿e du¿o wiêcej.
     </p>
     <p>
@@ -119,7 +118,7 @@
     </ul>
     <p>
         NLog jest rozwi¹zaniem open source dostêpnym za darmo na licencji BSD.
-        Najnowsz¹ wersjê biblioteki mo¿na zawsze pobraæ spod adresu
+        Najnowsz¹ wersjê biblioteki mo¿na zawsze pobraæ pod adresem
         <a href="http://www.nlog-project.org/download.html">http://www.nlog-project.org/download.html</a>.
         Dostêpny jest graficzny instalator, dziêki któremu mo¿na szybko i ³atwo zainstalowaæ NLoga w wybranym 
         miejscu, jak równie¿ (w najnowszej wersji), integracja z Visual Studio 2005 udostêpniaj¹ca:
@@ -237,7 +236,7 @@
     </p>
 
     <p>
-        Spróbujmy przeœledziæ teraz, jak to siê sta³o:
+        Spróbujmy przeœledziæ teraz poszczególne etapy przetwarzania powy¿szego komunikatu diagnostycznego:
     </p>
     <ol>
         <li>
@@ -261,8 +260,8 @@
         Bardziej skomplikowana konfiguracja logowania
     </h4>
     <p>
-        Za³ó¿my, ¿e oprócz wypisywania na konsolê, chcemy jednoczeœnie zapisywaæ nasze komunikaty do pliku testowego.
-        Chcemy rejestrowaæ informacje o bie¿¹cym stosie wywo³añ, czyli nazwy metod. Zdefiniujmy drugi cel logowania typu plikowego i skierujmy wszystkie komunikaty do niego. W³¹czmy te¿ poziom Trace.
+        Za³ó¿my, ¿e oprócz wypisywania na konsolê, chcemy jednoczeœnie zapisywaæ nasze komunikaty do pliku testowego i
+        rejestrowaæ informacje o bie¿¹cym stosie wywo³añ, czyli nazwy metod. Zdefiniujmy drugi cel logowania typu plikowego i skierujmy wszystkie komunikaty do niego. W³¹czmy te¿ poziom Trace.
         Wymaga to jedynie dodania nowego elementu <x>
             <target />
         </x> typu File, modyfikacji regu³y <x>
@@ -378,7 +377,7 @@ Program.Main Komunikat o b³êdzie krytycznym na poziomie Fatal
     <h2>Konfiguracja logowania</h2>
     <p>
         Czas teraz, aby odpowiedzieæ na pytanie: jak to siê sta³o, ¿e NLog automatycznie odczyta³ poprawn¹ konfiguracjê?
-        Otó¿, w odró¿nieniu od innych narzêdzi tego typu, NLog stara siê maksymalnie u³atwiæ konfiguracjê stosuj¹c rozmaite
+        Otó¿, w odró¿nieniu od innych narzêdzi tego typu, NLog stara siê maksymalnie u³atwiæ konfiguracjê, stosuj¹c rozmaite
         zachowania domyœlne. NLog szuka pliku konfiguracyjnego w nastêpuj¹cych standardowych lokalizacjach:
     </p>
     <ul>
@@ -629,7 +628,7 @@ Program.Main Komunikat o b³êdzie krytycznym na poziomie Fatal
         ]]>
     </code>
     <p>
-        To by³o proste, a teraz za³ó¿my, ¿e chcemy aby komunikaty z ka¿dego Ÿród³a trafia³y do osobnego pliku. To jest równie proste:
+        Za³ó¿my teraz, ¿e chcemy aby komunikaty z ka¿dego Ÿród³a trafia³y do osobnego pliku. To jest równie ³atwe:
     </p>
     <code lang="XML">
         <![CDATA[
@@ -769,6 +768,15 @@ class Example
         Wynikiem dzia³ania powy¿szej aplikacji jest wypisany tekst na konsoli,
         gdzie ka¿dy wiersz jest oznaczony kolorem wynikaj¹cym z poziomu logowania
         i dodatkowo plik zawieraj¹cy te same informacje w nieco innym formacie.
+    </p>
+
+    <h4>Rekonfiguracja</h4>
+    <p>
+        Pliki konfiguracyjne s¹ standardowo wczytywane na pocz¹tku pracy programu. W przypadku d³ugo dzia³aj¹cych 
+        procesów (np. us³ug systemowych) czêsto zachodzi potrzeba zwiêkszenia poziomu logowania w trakcie dzia³ania.
+        Aby umo¿liwiæ tak¹ rekonfiguracjê, NLog potrafi monitorowaæ plik konfiguracyjny aplikacji 
+        i wczytywaæ go ponownie po wykryciu jakiejkolwiej zmiany. Aby w³¹czyæ ten mechanizm, wystarczy dodaæ w
+        pliku konfiguracyjnym atrybut <x><nlog autoReload="true" /></x>.
     </p>
 
     <h4>Rozwi¹zywanie problemów z logowaniem</h4>
