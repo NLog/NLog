@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if DEFUNCT
-
 using System;
 using System.Collections;
 using System.Collections.Specialized;
@@ -47,52 +45,122 @@ namespace NLog.Targets
     /// <summary>
     /// Calls the specified webservice on each logging message. NOT OPERATIONAL YET.
     /// </summary>
-    
-    //[Target("WebServiceCall")]
-    public sealed class WebServiceCallTarget: MethodCallTargetBase
+    [Target("WebServiceCall")]
+    public sealed class WebServiceTarget: MethodCallTargetBase
     {
-        private GenericSoapHttpClientProtocol _client = new GenericSoapHttpClientProtocol();
-        private string _methodName = null;
+        /// <summary>
+        /// Web service protocol
+        /// </summary>
+        public enum WebServiceProtocol
+        {
+            /// <summary>
+            /// SOAP 1.1
+            /// </summary>
+            Soap11,
 
+            /// <summary>
+            /// SOAP 1.2
+            /// </summary>
+            Soap12,
+
+            /// <summary>
+            /// HTTP POST
+            /// </summary>
+            HttpPost,
+
+            /// <summary>
+            /// HTTP GET
+            /// </summary>
+            HttpGet,
+        }
+
+        private string _methodName = null;
+        private string _url = null;
+        private string _namespace = null;
+        private WebServiceProtocol _protocol = WebServiceProtocol.Soap11;
+
+        /// <summary>
+        /// Web service URL.
+        /// </summary>
         public string Url
         {
-            get
-            {
-                return _client.Url;
-            }
-            set
-            {
-                _client.Url = value;
-            }
+            get { return _url; }
+            set { _url = value; } 
         }
 
+        /// <summary>
+        /// Web service method name.
+        /// </summary>
         public string MethodName
         {
-            get
-            {
-                return _methodName;
-            }
-            set
-            {
-                _methodName = value;
-            }
+            get { return _methodName; }
+            set { _methodName = value; }
         }
 
+        /// <summary>
+        /// Web service namespace.
+        /// </summary>
+        public string Namespace
+        {
+            get { return _namespace; }
+            set { _namespace = value; }
+        }
+
+        /// <summary>
+        /// The protocol to be used when calling web service.
+        /// </summary>
+        [System.ComponentModel.DefaultValue("Soap11")]
+        public WebServiceProtocol Protocol
+        {
+            get { return _protocol; }
+            set { _protocol = value; }
+        }
+
+        /// <summary>
+        /// Invokes the web service method.
+        /// </summary>
+        /// <param name="parameters">Parameters to be passed.</param>
         protected override void DoInvoke(object[]parameters)
         {
-            _client.DoInvoke(MethodName, parameters);
+            switch (_protocol)
+            {
+                case WebServiceProtocol.Soap11:
+                    InvokeSoap11(parameters);
+                    break;
+
+                case WebServiceProtocol.Soap12:
+                    InvokeSoap12(parameters);
+                    break;
+
+                case WebServiceProtocol.HttpGet:
+                    InvokeHttpGet(parameters);
+                    break;
+
+                case WebServiceProtocol.HttpPost:
+                    InvokeHttpPost(parameters);
+                    break;
+            }
+            //_client.DoInvoke(MethodName, parameters);
         }
 
-        [System.Web.Services.WebServiceBindingAttribute(Name = "NLogService", Namespace = "http://www.nlog-project.org/targets/WebServiceCallTarget")] class GenericSoapHttpClientProtocol: SoapHttpClientProtocol
+        private void InvokeSoap11(object[] parameters)
         {
-            public GenericSoapHttpClientProtocol(){}
+            throw new NotImplementedException();
+        }
 
-            public object DoInvoke(string method, object[]parameters)
-            {
-                return Invoke(method, parameters);
-            }
+        private void InvokeSoap12(object[] parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void InvokeHttpGet(object[] parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void InvokeHttpPost(object[] parameters)
+        {
+            throw new NotImplementedException();
         }
     }
 }
-
-#endif

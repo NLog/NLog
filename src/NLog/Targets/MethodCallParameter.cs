@@ -49,6 +49,7 @@ namespace NLog.Targets
     {
         private Type _type;
         private Layout _compiledlayout;
+        private string _name;
 
         /// <summary>
         /// Constructs a new instance of <see cref="MethodCallParameter"/> and sets
@@ -60,18 +61,21 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// The name of the parameter.
+        /// </summary>
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        /// <summary>
         /// The type of the parameter.
         /// </summary>
         public string Type
         {
-            get
-            {
-                return _type.FullName;
-            }
-            set
-            {
-                _type = System.Type.GetType(value);
-            }
+            get { return _type.FullName; }
+            set { _type = System.Type.GetType(value); }
         }
 
         /// <summary>
@@ -80,14 +84,8 @@ namespace NLog.Targets
         [RequiredParameter]
         public string Layout
         {
-            get
-            {
-                return _compiledlayout.Text;
-            }
-            set
-            {
-                _compiledlayout = new Layout(value);
-            }
+            get { return _compiledlayout.Text; }
+            set { _compiledlayout = new Layout(value); }
         }
 
         /// <summary>
@@ -95,14 +93,8 @@ namespace NLog.Targets
         /// </summary>
         public Layout CompiledLayout
         {
-            get
-            {
-                return _compiledlayout;
-            }
-            set
-            {
-                _compiledlayout = value;
-            }
+            get { return _compiledlayout; }
+            set { _compiledlayout = value; }
         }
 
         internal object GetValue(LogEventInfo logEvent)

@@ -577,7 +577,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Targets\WebService.cs">
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Targets\Wrappers\ASPNetBufferingTargetWrapper.cs">
       <SubType>Code</SubType>
