@@ -8,6 +8,7 @@
     <xsl:param name="log4net_comparison">0</xsl:param>
     <xsl:param name="build_time">2006-01-01</xsl:param>
     <xsl:param name="mode">plain</xsl:param>
+    <xsl:param name="nlog_package">temp</xsl:param>
 
     <xsl:variable name="page_id" select="concat(/*[position()=1]/@id,$page_id_override)" />
     <xsl:variable name="subpage_id" select="concat(/*[position()=1]/@subid,$subpage_id_override)" />
@@ -41,48 +42,20 @@
                         <td valign="top" class="controls" rowspan="2">
                             <xsl:call-template name="controls" />
                             <p/>
-                            <xsl:if test="$sourceforge='1'">
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <!-- Start of StatCounter Code -->
-                                            <script type="text/javascript" language="javascript">
-                                                var sc_project=575077; 
-                                                var sc_partition=4; 
-                                                var sc_security="6fe22c9a"; 
-                                            </script>
-
-                                            <script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c5.statcounter.com/counter.php?sc_project=575077&amp;java=0&amp;security=6fe22c9a" alt="website tracking" border="0" /></a> </noscript>
-                                            <!-- End of StatCounter Code -->
-                                            <!-- Google Analytics -->
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-</script>
-<script type="text/javascript">
-_uacct = "UA-256960-2";
-urchinTracker();
-</script>
-<!-- End of Google Analytics -->
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="http://www.cenqua.com/clover.net"><img src="http://www.cenqua.com/images/cloverednet1.gif" width="89" height="33" border="0" alt="Code Coverage by Clover.NET"/></a>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </xsl:if>
-                            <div class="lastupdated">Last updated: <xsl:value-of select="$build_time" /></div>
+                            <xsl:comment>#include virtual="/dynamic/snippet.cgi?rectbanner"</xsl:comment>
+                            <div class="lastupdated">
+                                Last updated: <xsl:value-of select="$build_time" />
+                                <p/>
+                                This website is based on <b>NLog v<xsl:value-of select="$nlog_package" /></b>.
+                                Click <a href="http://www.nlog-project.org/snapshots/">here</a> to view the documentation 
+                                for other versions.
+                            </div>
                         </td>
                         <td valign="top" align="left" class="content">
-                            <!-- <p style="color: blue; font-weight: bold; padding: 4px; margin-bottom: 10px; border: 1px solid #ABC8E5; background-color: #DFEAF5;">THIS SITE IS UNDER CONSTRUCTION. SOME SECTIONS ARE MISSING.</p> -->
-                            <!--
-                            <xsl:if test="$mode = 'web'">
-                                <span class="underconstruction">
-                                    This web site is under construction and describes a version of NLog currently under development. Some sections may be missing or not up-to-date.
-                                </span>
-                            </xsl:if>
-                            -->
+                            <xsl:comment>#include virtual="/dynamic/snippet.cgi?vertbanner"</xsl:comment>
+                            <xsl:comment>#include virtual="/dynamic/snippet.cgi?topbanner"</xsl:comment>
                             <xsl:apply-templates select="/" mode="content" />
+                            <xsl:comment>#include virtual="/dynamic/snippet.cgi?bottombanner"</xsl:comment>
                         </td>
                     </tr>
                     <tr>
@@ -125,15 +98,36 @@ urchinTracker();
 <!-- SiteSearch Google -->
                 </div>
             </xsl:if>
-            </body>
-        </html>
-    </xsl:template>
+            <!-- Start of StatCounter Code -->
+            <script type="text/javascript" language="javascript">
+                var sc_project=575077; 
+                var sc_partition=4; 
+                var sc_security="6fe22c9a"; 
+            </script>
 
-    <xsl:template match="@* | node()">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()" />
-        </xsl:copy>
-    </xsl:template>
+            <script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c5.statcounter.com/counter.php?sc_project=575077&amp;java=0&amp;security=6fe22c9a" alt="website tracking" border="0" /></a> </noscript>
+            <!-- End of StatCounter Code -->
+            <!-- Google Analytics -->
+            <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+            </script>
+            <script type="text/javascript">
+                _uacct = "UA-256960-2";
+                urchinTracker();
+            </script>
+            <!-- End of Google Analytics -->
+        </body>
+    </html>
+</xsl:template>
+
+<xsl:template name="nlog-package-name" match="nlog-package-name">
+    <xsl:value-of select="$nlog_package" />
+</xsl:template>
+
+<xsl:template match="@* | node()">
+    <xsl:copy>
+        <xsl:apply-templates select="@* | node()" />
+    </xsl:copy>
+</xsl:template>
 
     <xsl:template match="content" mode="content">
         <xsl:apply-templates select="*" />
