@@ -262,44 +262,72 @@
     </h4>
     <p>
         Za³ó¿my, ¿e oprócz wypisywania na konsolê, chcemy jednoczeœnie zapisywaæ nasze komunikaty do pliku testowego.
-        Zdefiniujmy drugi cel logowania typu plikowego i skierujmy wszystkie komunikaty do niego. W³¹czmy te¿ poziom Trace.
+        Chcemy rejestrowaæ informacje o bie¿¹cym stosie wywo³añ, czyli nazwy metod. Zdefiniujmy drugi cel logowania typu plikowego i skierujmy wszystkie komunikaty do niego. W³¹czmy te¿ poziom Trace.
         Wymaga to jedynie dodania nowego elementu <x>
             <target />
-        </x> typu File i modyfikacji regu³y <x>
+        </x> typu File, modyfikacji regu³y <x>
             <logger />
         </x>
+        a tak¿e zmodyfikowania parametru layout.
     </p>
     <code lang="XML">
         <![CDATA[<?xml version="1.0" encoding="utf-8" ?>
-        <nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-            <targets>
-                <target name="console" xsi:type="Console" layout="${longdate}|${level}|${message}" />
-                <target name="File" xsi:type="File" fileName="${basedir}/file.txt" layout="${message}" />
-            </targets>
+    <targets>
+        <target name="console" xsi:type="ColoredConsole" layout="${date:format=HH\:mm\:ss}|${level}|${stacktrace}|${message}" />
+        <target name="file" xsi:type="File" fileName="${basedir}/file.txt" layout="${stacktrace} ${message}" />
+    </targets>
 
-            <rules>
-                <logger name="*" minlevel="Trace" writeTo="console,file" />
-            </rules>
-        </nlog>
+    <rules>
+        <logger name="*" minlevel="Trace" writeTo="console,file" />
+    </rules>
+</nlog>
         ]]>
     </code>
 
 
     <p>
-        Wypiszmy tak¿e nieco wiêcej komunikatów na ró¿nych poziomach logowania:
+        Wypiszmy tak¿e nieco wiêcej komunikatów na ró¿nych poziomach logowania. WprowadŸmy te¿ 
+        kilka dodatkowych metod, tak aby zaobserwowaæ œlad stosu:
     </p>
     <code lang="C#">
         <![CDATA[
+        static void C()
+        {
+            logger.Info("Info CCC");
+        }
+
+        static void B()
+        {
+            logger.Trace("Trace BBB");
+            logger.Debug("Debug BBB");
+            logger.Info("Info BBB");
+            C();
+            logger.Warn("Warn BBB");
+            logger.Error("Error BBB");
+            logger.Fatal("Fatal BBB");
+        }
+        static void A()
+        {
+            logger.Trace("Trace AAA");
+            logger.Debug("Debug AAA");
+            logger.Info("Info AAA");
+            B();
+            logger.Warn("Warn AAA");
+            logger.Error("Error AAA");
+            logger.Fatal("Fatal AAA");
+        }
         static void Main(string[] args)
         {
-            logger.Trace("To jest komunikat techniczny na poziomie Trace");
-            logger.Debug("To jest komunikat techniczny na poziomie Debug");
-            logger.Info("To jest komunikat informacyjny na poziomie Info");
-            logger.Warn("To jest komunikat-ostrze¿enie na poziomie Warn");
-            logger.Error("To jest komunikat o b³êdzie na poziomie Error");
-            logger.Fatal("To jest komunikat o b³êdzie krytycznym na poziomie Fatal");
+            logger.Trace("Komunikat techniczny na poziomie Trace");
+            logger.Debug("Komunikat techniczny na poziomie Debug");
+            logger.Info("Komunikat informacyjny na poziomie Info");
+            A();
+            logger.Warn("Komunikat-ostrze¿enie na poziomie Warn");
+            logger.Error("Komunikat o b³êdzie na poziomie Error");
+            logger.Fatal("Komunikat o b³êdzie krytycznym na poziomie Fatal");
         }
     ]]>
     </code>
@@ -307,24 +335,30 @@
         Uruchomienie programu spowoduje wypisanie na do pliku file.txt nastêpuj¹cych informacji:
     </p>
     <code lang="C#">
-        <![CDATA[To jest komunikat techniczny na poziomie Trace
-To jest komunikat techniczny na poziomie Debug
-To jest komunikat informacyjny na poziomie Info
-To jest komunikat-ostrze¿enie na poziomie Warn
-To jest komunikat o b³êdzie na poziomie Error
-To jest komunikat o b³êdzie krytycznym na poziomie Fatal
+        <![CDATA[
+Program.Main Komunikat techniczny na poziomie Trace
+Program.Main Komunikat techniczny na poziomie Debug
+Program.Main Komunikat informacyjny na poziomie Info
+Program.Main => Program.A Trace AAA
+Program.Main => Program.A Debug AAA
+Program.Main => Program.A Info AAA
+Program.Main => Program.A => Program.B Trace BBB
+Program.Main => Program.A => Program.B Debug BBB
+Program.Main => Program.A => Program.B Info BBB
+Program.A => Program.B => Program.C Info CCC
+Program.Main => Program.A => Program.B Warn BBB
+Program.Main => Program.A => Program.B Error BBB
+Program.Main => Program.A => Program.B Fatal BBB
+Program.Main => Program.A Warn AAA
+Program.Main => Program.A Error AAA
+Program.Main => Program.A Fatal AAA
+Program.Main Komunikat-ostrze¿enie na poziomie Warn
+Program.Main Komunikat o b³êdzie na poziomie Error
+Program.Main Komunikat o b³êdzie krytycznym na poziomie Fatal
 ]]>
     </code>
     <p>W tym samym czasie konsolê wypisana zostanie wiadomoœæ w innym formacie:</p>
-    <code lang="C#">
-        <![CDATA[2006-04-28 11:49:50.1950|Trace|To jest komunikat techniczny na poziomie Trace
-2006-04-28 11:49:50.2050|Debug|To jest komunikat techniczny na poziomie Debug
-2006-04-28 11:49:50.2150|Info|To jest komunikat informacyjny na poziomie Info
-2006-04-28 11:49:50.2150|Warn|To jest komunikat-ostrze¿enie na poziomie Warn
-2006-04-28 11:49:50.2150|Error|To jest komunikat o b³êdzie na poziomie Error
-2006-04-28 11:49:50.2150|Fatal|To jest komunikat o b³êdzie krytycznym na poziomie Fatal
-]]>
-    </code>
+    <img src="introduction_coloredconsole.gif" />
     <p>
         Za³ó¿my, ¿e chcemy do pliku zapisywaæ wszystkie informacje, a na konsolê jedynie te najistotniejsze
         (na poziomie <b>Info</b> lub wy¿szym). Nic prostszego, wystarczy jedynie zmieniæ sekcjê regu³:
@@ -736,7 +770,6 @@ class Example
         gdzie ka¿dy wiersz jest oznaczony kolorem wynikaj¹cym z poziomu logowania
         i dodatkowo plik zawieraj¹cy te same informacje w nieco innym formacie.
     </p>
-    <img src="introduction_coloredconsole.gif" />
 
     <h4>Rozwi¹zywanie problemów z logowaniem</h4>
     <p>
