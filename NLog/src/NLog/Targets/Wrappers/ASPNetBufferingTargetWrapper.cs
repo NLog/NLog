@@ -52,7 +52,52 @@ namespace NLog.Targets.Wrappers
     /// the ASP.NET Request and sends them down to the wrapped target
     /// as soon as the request ends.
     /// </summary>
-    [Target("ASPNetBufferingWrapper",IgnoresLayout=true,IsWrapper=true)]
+    /// <remarks>
+    /// <p>
+    /// Typically this target is used in cooperation with PostFilteringTargetWrapper
+    /// to provide verbose logging for failing requests and normal or no logging for
+    /// successful requests. We need to make the decision of the final filtering rule
+    /// to apply after all logs for a page have been generated.
+    /// </p>
+    /// <p>
+    /// To use this target, you need to add an entry in the httpModules section of
+    /// web.config:
+    /// </p>
+    /// <code lang="XML">
+    /// <![CDATA[<?xml version="1.0" ?>
+    /// <configuration>
+    ///   <system.web>
+    ///     <httpModules>
+    ///       <add name="NLog" type="NLog.Web.NLogHttpModule, NLog"/>
+    ///     </httpModules>
+    ///   </system.web>
+    /// </configuration>
+    /// ]]>
+    /// </code>
+    /// </remarks>
+    /// <example>
+    /// <p>To set up the ASP.NET Buffering target wrapper <a href="config.html">configuration file</a>, put
+    /// the following in <c>web.nlog</c> file in your web application directory (this assumes
+    /// that PostFilteringWrapper is used to provide the filtering and actual logs go to
+    /// a file).
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/ASPNetBufferingWrapper/web.nlog" />
+    /// <p>
+    /// This assumes just one target and a single rule. More configuration
+    /// options are described <a href="config.html">here</a>.
+    /// </p>
+    /// <p>
+    /// To configure the target programmatically, put the following
+    /// piece of code in your <c>Application_OnStart()</c> handler in Global.asax.cs 
+    /// or some other place that gets executed at the very beginning of your code:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/ASPNetBufferingWrapper/Global.asax.cs" />
+    /// <p>
+    /// Fully working C# project can be found in the <c>Examples/Targets/Configuration API/ASPNetBufferingWrapper</c>
+    /// directory along with usage instructions.
+    /// </p>
+    /// </example>
+    [Target("ASPNetBufferingWrapper", IgnoresLayout = true, IsWrapper = true)]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ASPNetBufferingTargetWrapper: WrapperTargetBase
     {

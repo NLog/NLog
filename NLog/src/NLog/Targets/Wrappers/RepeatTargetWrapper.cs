@@ -49,24 +49,37 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// A target wrapper that repeats each log event the specified number of times.
     /// </summary>
-    [Target("RepeatingWrapper",IgnoresLayout=true,IsWrapper=true)]
-    public class RepeatTargetWrapper: WrapperTargetBase
+    /// <example>
+    /// <p>This example causes each log message to be repeated 3 times.</p>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/RepeatingWrapper/NLog.config" />
+    /// <p>
+    /// The above examples assume just one target and a single rule. See below for
+    /// a programmatic configuration that's equivalent to the above config file:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/RepeatingWrapper/Simple/Example.cs" />
+    /// </example>
+    [Target("RepeatingWrapper", IgnoresLayout = true, IsWrapper = true)]
+    public class RepeatingTargetWrapper: WrapperTargetBase
     {
         private int _repeatCount = 3;
 
         /// <summary>
-        /// Creates a new instance of <see cref="RepeatTargetWrapper"/>.
+        /// Creates a new instance of <see cref="RepeatingTargetWrapper"/>.
         /// </summary>
-        public RepeatTargetWrapper()
+        public RepeatingTargetWrapper()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="RepeatTargetWrapper"/>,
+        /// Creates a new instance of <see cref="RepeatingTargetWrapper"/>,
         /// initializes the <see cref="WrapperTargetBase.WrappedTarget"/> to the specified <see cref="Target"/> value and
         /// sets the <see cref="RepeatCount"/>,
         /// </summary>
-        public RepeatTargetWrapper(Target writeTo, int repeatCount)
+        public RepeatingTargetWrapper(Target writeTo, int repeatCount)
         {
             WrappedTarget = writeTo;
             RepeatCount = repeatCount;

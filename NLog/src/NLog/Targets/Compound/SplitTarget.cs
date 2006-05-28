@@ -50,7 +50,21 @@ namespace NLog.Targets.Compound
     /// A compound target that writes logging events to all attached
     /// sub-targets.
     /// </summary>
-    [Target("SplitGroup",IgnoresLayout=true,IsCompound=true)]
+    /// <example>
+    /// <p>This example causes the messages to be written to both file1.txt or file2.txt 
+    /// </p>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/SplitGroup/NLog.config" />
+    /// <p>
+    /// The above examples assume just one target and a single rule. See below for
+    /// a programmatic configuration that's equivalent to the above config file:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/SplitGroup/Simple/Example.cs" />
+    /// </example>
+    [Target("SplitGroup", IgnoresLayout = true, IsCompound = true)]
     public class SplitTarget: CompoundTargetBase
     {
         /// <summary>

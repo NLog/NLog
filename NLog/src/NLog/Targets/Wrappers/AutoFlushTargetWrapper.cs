@@ -49,7 +49,19 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// A target wrapper that causes a flush after each write on a wrapped target.
     /// </summary>
-    [Target("AutoFlushWrapper",IgnoresLayout=true,IsWrapper=true)]
+    /// <example>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/AutoFlushWrapper/NLog.config" />
+    /// <p>
+    /// The above examples assume just one target and a single rule. See below for
+    /// a programmatic configuration that's equivalent to the above config file:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/AutoFlushWrapper/Simple/Example.cs" />
+    /// </example>
+    [Target("AutoFlushWrapper", IgnoresLayout = true, IsWrapper = true)]
     public class AutoFlushTargetWrapper: WrapperTargetBase
     {
         /// <summary>

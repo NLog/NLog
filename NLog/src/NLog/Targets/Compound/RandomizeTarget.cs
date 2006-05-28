@@ -49,7 +49,22 @@ namespace NLog.Targets.Compound
     /// <summary>
     /// A compound target writes to a randomly-chosen target among the sub-targets.
     /// </summary>
-    [Target("RandomizeGroup",IgnoresLayout=true,IsCompound=true)]
+    /// <example>
+    /// <p>This example causes the messages to be written to either file1.txt or file2.txt 
+    /// chosen randomly on a per-message basis.
+    /// </p>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/RandomizeGroup/NLog.config" />
+    /// <p>
+    /// The above examples assume just one target and a single rule. See below for
+    /// a programmatic configuration that's equivalent to the above config file:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/RandomizeGroup/Simple/Example.cs" />
+    /// </example>
+    [Target("RandomizeGroup", IgnoresLayout = true, IsCompound = true)]
     public class RandomizeTarget: CompoundTargetBase
     {
         private static Random _random = new Random();

@@ -95,6 +95,10 @@
         <hr size="1" />
         <xsl:apply-templates select="documentation/summary" /><p/>
         <xsl:call-template name="detailssupportmatrix" />
+        <xsl:if test="documentation/remarks">
+            <h4>Remarks:</h4>
+            <xsl:apply-templates select="documentation/remarks" />
+        </xsl:if>
         <h4>Parameters (blue fields are required):</h4>
         <table cellspacing="0" cellpadding="0" class="paramtable">
             <tr>
@@ -116,10 +120,6 @@
         <xsl:if test="documentation/example">
             <h4>Example:</h4>
             <xsl:apply-templates select="documentation/example" />
-        </xsl:if>
-        <xsl:if test="documentation/remarks">
-            <h4>Remarks:</h4>
-            <xsl:apply-templates select="documentation/remarks" />
         </xsl:if>
         <hr size="1" />
         <a href="targets.html">Back to the target list.</a>
