@@ -751,7 +751,7 @@
         <echo message="Done." />
     </target>
 
-    <target name="clean_all">
+    <target name="clean_all" depends="clean_examples">
         <delete>
             <fileset basedir="build">
                 <include name="**/*" />
