@@ -175,7 +175,7 @@ namespace NLog.Targets
         private Timer _autoClosingTimer = null;
         private int _openFileCacheTimeout = 1;
         private bool _first = true;
-        private bool _deleteOldFileOnStartup = true;
+        private bool _deleteOldFileOnStartup = false;
 
         /// <summary>
         /// Creates a new instance of <see cref="FileTarget"/>.
@@ -256,6 +256,7 @@ namespace NLog.Targets
         /// <remarks>
         /// This option works only when the "fileName" parameter denotes a single file.
         /// </remarks>
+        [System.ComponentModel.DefaultValue(false)]
         public bool DeleteOldFileOnStartup
         {
             get { return _deleteOldFileOnStartup; }
