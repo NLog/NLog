@@ -46,9 +46,26 @@ using System.Net;
 namespace NLog.Targets
 {
     /// <summary>
-    /// Calls the specified webservice on each logging message. NOT OPERATIONAL YET.
+    /// Calls the specified webservice on each logging message.
     /// </summary>
-    [Target("WebServiceCall")]
+    /// <example>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/WebService/NLog.config" />
+    /// <p>
+    /// This assumes just one target and a single rule. More configuration
+    /// options are described <a href="config.html">here</a>.
+    /// </p>
+    /// <p>
+    /// To set up the log target programmatically use code like this:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/WebService/Simple/Example.cs" />
+    /// <p>The example web service that works with this example is shown below</p>
+    /// <code lang="C#" src="examples/targets/Configuration API/WebService/Simple/WebService1/Service1.asmx.cs" />
+    /// </example>
+    [Target("WebService")]
     public sealed class WebServiceTarget: MethodCallTargetBase
     {
         const string soapEnvelopeNamespace = "http://schemas.xmlsoap.org/soap/envelope/";
@@ -150,7 +167,6 @@ namespace NLog.Targets
 
         private void InvokeSoap11(object[] parameters)
         {
-            WebClient client = new WebClient();
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
             request.Method = "POST";
             request.ContentType = "text/xml; charset=utf-8";
@@ -164,23 +180,23 @@ namespace NLog.Targets
 
             using (Stream s = request.GetRequestStream())
             {
-                using (XmlTextWriter xtw = new XmlTextWriter(s, System.Text.Encoding.UTF8))
+                XmlTextWriter xtw = new XmlTextWriter(s, System.Text.Encoding.UTF8);
+
+                xtw.WriteStartElement("soap", "Envelope", soapEnvelopeNamespace);
+                xtw.WriteStartElement("Body", soapEnvelopeNamespace);
+                xtw.WriteStartElement(MethodName, Namespace);
+                for (int i = 0; i < Parameters.Count; ++i)
                 {
-                    xtw.WriteStartElement("soap", "Envelope", soapEnvelopeNamespace);
-                    xtw.WriteStartElement("Body", soapEnvelopeNamespace);
-                    xtw.WriteStartElement(MethodName, Namespace);
-                    for (int i = 0; i < Parameters.Count; ++i)
-                    {
-                        xtw.WriteElementString(Parameters[i].Name, Convert.ToString(parameters[i]));
-                    }
-                    xtw.WriteEndElement();
-                    xtw.WriteEndElement();
-                    xtw.WriteEndElement();
+                    xtw.WriteElementString(Parameters[i].Name, Convert.ToString(parameters[i]));
                 }
+                xtw.WriteEndElement();
+                xtw.WriteEndElement();
+                xtw.WriteEndElement();
+                xtw.Flush();
             }
-            using (WebResponse response = request.GetResponse())
-            {
-            }
+
+            WebResponse response = request.GetResponse();
+            response.Close();
         }
 
         private void InvokeSoap12(object[] parameters)
