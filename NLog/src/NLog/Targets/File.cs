@@ -174,6 +174,8 @@ namespace NLog.Targets
         private ArchiveNumberingMode _archiveNumbering = ArchiveNumberingMode.Sequence;
         private Timer _autoClosingTimer = null;
         private int _openFileCacheTimeout = 1;
+        private bool _first = true;
+        private bool _deleteOldFileOnStartup = true;
 
         /// <summary>
         /// Creates a new instance of <see cref="FileTarget"/>.
@@ -246,6 +248,18 @@ namespace NLog.Targets
         {
             get { return _openFileCacheTimeout; }
             set { _openFileCacheTimeout = value; }
+        }
+
+        /// <summary>
+        /// Delete old log file on startup.
+        /// </summary>
+        /// <remarks>
+        /// This option works only when the "fileName" parameter denotes a single file.
+        /// </remarks>
+        public bool DeleteOldFileOnStartup
+        {
+            get { return _deleteOldFileOnStartup; }
+            set { _deleteOldFileOnStartup = value; }
         }
 
         /// <summary>
@@ -838,6 +852,19 @@ namespace NLog.Targets
 
         private void WriteToFile(string fileName, byte[] bytes)
         {
+            if (_first && DeleteOldFileOnStartup)
+            {
+                try
+                {
+                    File.Delete(fileName);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Warn("Unable to delete old log file '{0}': {1}", fileName, ex);
+                }
+            }
+            _first = false;
+
             //
             // IFileAppender.Write is the most expensive operation here
             // so the in-memory data structure doesn't have to be 
