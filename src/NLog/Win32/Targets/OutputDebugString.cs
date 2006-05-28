@@ -42,6 +42,21 @@ namespace NLog.Win32.Targets
     /// <summary>
     /// Outputs logging messages through the <c>OutputDebugString()</c> Win32 API.
     /// </summary>
+    /// <example>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/OutputDebugString/NLog.config" />
+    /// <p>
+    /// This assumes just one target and a single rule. More configuration
+    /// options are described <a href="config.html">here</a>.
+    /// </p>
+    /// <p>
+    /// To set up the log target programmatically use code like this:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/OutputDebugString/Simple/Example.cs" />
+    /// </example>
     [Target("OutputDebugString")]
     [SupportedRuntime(OS=RuntimeOS.Windows)]
     [SupportedRuntime(OS=RuntimeOS.WindowsNT)]

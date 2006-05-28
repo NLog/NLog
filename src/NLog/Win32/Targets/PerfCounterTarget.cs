@@ -45,6 +45,21 @@ namespace NLog.Win32.Targets
     /// <summary>
     /// Increments specified performance counter on each write.
     /// </summary>
+    /// <example>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/PerfCounter/NLog.config" />
+    /// <p>
+    /// This assumes just one target and a single rule. More configuration
+    /// options are described <a href="config.html">here</a>.
+    /// </p>
+    /// <p>
+    /// To set up the log target programmatically use code like this:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/PerfCounter/Simple/Example.cs" />
+    /// </example>
     /// <remarks>
     /// TODO:
     /// 1. Unable to create a category allowing multiple counter instances (.Net 2.0 API only, probably)

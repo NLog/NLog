@@ -49,7 +49,6 @@ namespace NLog.Targets
 {
     /// <summary>
     /// Sends logging messages to the remote instance of NLog Viewer. 
-    /// NOT OPERATIONAL YET.
     /// </summary>
     /// <example>
     /// <p>
