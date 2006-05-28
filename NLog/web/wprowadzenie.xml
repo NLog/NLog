@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
 <content lang="en" id="documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <h2>Wprowadzenie do śledzenia aplikacji przy pomocy NLoga</h2>
+    <h2>Wprowadzenie do śledzenia aplikacji przy pomocy bibliteki NLog</h2>
     <p>Autor: Jarosław Kowalski &lt;<a href="mailto:jaak@jkowalski.net">jaak@jkowalski.net</a>&gt;</p>
     <div style="margin-left: 1cm; margin-right: 1cm">
         <font color="#006400">
@@ -23,17 +23,16 @@
         }]]>
     </code>
 
-    <p>Instrukcje Console.WriteLine() pełnią tu rolę instrukcji śledzących, to znaczy nie pełnią żadnej funkcji
-        w programie poza informowaniem o jego działaniu. Na ich podstawie możemy się zorientować, że na przykład program
-        się nie zawiesił.</p>
-    <p>
-        Zwykle po jako-takim przetestowaniu komunikaty diagnostyczne Console.WriteLine() są usuwane.
-        Często jednak, po pewnym czasie przychodzi potrzeba ponownego włączenia śledzenia w aplikacji, dlatego też pozostawiamy
-        w kodzie instrukcje śledzące, zwykle zamieniając je na komentarze.
+    <p>Instrukcje Console.WriteLine() pełnią tu rolę instrukcji śledzących, które informują 
+        o działaniu programu. Na ich podstawie możemy się zorientować, czy program
+        działa poprawnie lub też czy się nie zawiesił. Zwykle po jako-takim przetestowaniu instrukcje Console.WriteLine() 
+        są wyłączane, aby nie spowalniać działania programu.
+        Często jednak, po pewnym czasie przychodzi potrzeba ponownego włączenia śledzenia w aplikacji, 
+        dlatego też instrukcje śledzące w kodzie zwykle zamieniamy na komentarze zamiast fizycznie je usuwać.
     </p>
     <p>
-        Po kilku iteracjach dochodzimy zwykle do wniosku, że obsługa śledzenia naszej aplikacji, byłaby dużo bardziej użyteczna,
-        gdyby możliwe były:
+        Po kilku iteracjach dochodzimy zwykle do wniosku, że obsługa śledzenia naszej aplikacji, 
+        byłaby dużo bardziej użyteczna, gdyby możliwe było:
     </p>
     <ul>
         <li>
@@ -54,7 +53,6 @@
     </p>
 
     <h2>Czym jest NLog?</h2>
-
     <p>
         NLog <a href="http://www.nlog-project.org/">(http://www.nlog-project.org)</a> jest
         biblioteką na platformie .NET, która umożliwia łatwe wzbogacenie naszej
@@ -124,9 +122,8 @@
         miejscu, jak również (w najnowszej wersji), integracja z Visual Studio 2005 udostępniająca:
     </p>
     <ul>
-        <li>
-            wybór biblioteki NLog.dll z okna <code>Add Reference...</code>
-        </li>
+        <li>wybór biblioteki NLog.dll z okna <code>Add Reference...</code></li>
+        <li>wsparcie dla kontekstowego podpowiadania składni - Intellisense podczas edycji plików konfiguracyjnych</li>
         <li>szablony plików konfiguracyjnych</li>
         <li>code snippet</li>
     </ul>
@@ -134,7 +131,7 @@
     <h2>Pierwsza aplikacja wykorzystująca NLoga</h2>
     <p>
         Na początek przyjrzyjmy się, jak wygląda tworzenie aplikacji wykorzystującej NLog
-        z wykorzystaniem dostęnych mechanizmów integracji z Visual Studio 2005.
+        przy użyciu Visual Studio 2005.
         Przeanalizujemy 2 przykłady - jeden najprostszy, drugi bardziej skomplikowany,
         które pokazują jak łatwo jest sterować konfiguracją logowania.
     </p>
@@ -297,7 +294,6 @@
         {
             logger.Info("Info CCC");
         }
-
         static void B()
         {
             logger.Trace("Trace BBB");
@@ -405,10 +401,10 @@ Program.Main Komunikat o błędzie krytycznym na poziomie Fatal
             standardowy plik konfiguracyjny <font face="Courier New">web.config</font>
         </li>
         <li>
-            pliki <font face="Courier New">web.nlog</font> w katalogu aplikacji (obok <font face="Courier New">web.config</font>)
+            plik <font face="Courier New">web.nlog</font> w katalogu aplikacji (obok <font face="Courier New">web.config</font>)
         </li>
         <li>
-            pliki <font face="Courier New">NLog.config</font> w katalogu aplikacji
+            plik <font face="Courier New">NLog.config</font> w katalogu aplikacji
         </li>
         <li>
             plik <font face="Courier New">NLog.dll.nlog</font> w katalogu, w którym znajduje się plik <font face="Courier New">NLog.dll </font>(zwykle "bin")
@@ -527,9 +523,6 @@ Program.Main Komunikat o błędzie krytycznym na poziomie Fatal
         NLog udostępnia wiele predefiniowanych celów. Są one opisane na stronie projektu. Bardzo łatwo jest także utworzyć
         swój własny cel - wymaga to zaledwie kilkunastu wierszy kodu i jest opisane
         w <a href="http://www.nlog-project.org/documentation.html">dokumentacji projektu</a>.
-        Oprócz standardowych, NLog udostępnia także tzw. wrapper targets i compound targets, które modyfikują działanie
-        innych celów dodając np. logowanie asynchroniczne w osobnym wątku, buforowanie, powtarzanie w przypadku
-        wystąpienia błędów, cele zapasowe, itp. To jest jednak temat na osobny artykuł.
     </p>
     <h4>Reguły</h4>
     <p>
@@ -657,7 +650,7 @@ Program.Main Komunikat o błędzie krytycznym na poziomie Fatal
         ]]>
     </code>
     <p>
-        A gdybyśmy chcieli dla każdego użytkownika naszej aplikacji zrobić osobny plik? Wystarczy poniższy fragment kodu:
+        Gdybyśmy chcieli dla każdego użytkownika naszej aplikacji zrobić osobny plik, wystarczy poniższy fragment kodu:
     </p>
     <code lang="XML">
         <![CDATA[
@@ -698,7 +691,131 @@ Program.Main Komunikat o błędzie krytycznym na poziomie Fatal
         Bardzo łatwo jest także utworzyć swój własny format - wymaga to zaledwie kilkunastu wierszy kodu i jest opisane w <a href="http://www.nlog-project.org/documentation.html">dokumentacji projektu</a>.
     </p>
 
-    <h4>Konfiguracja programowa</h4>
+    <h4>Pliki dołączane i zmienne</h4>
+    <p>
+        Czasami celowe może być rozbicie pliku konfiguracyjnego na kilka mniejszcych. 
+        NLog udostępnia w tym celu mechanizm plików dołączanych. Aby włączyć je do konfiguracji wystarczy użyć
+        <x><include file="nazwapliku" /></x>. Warto wspomnieć że nazwapliku może zawierać elementy
+        informacji kontekstowej, więc możliwe są zaawansowane scenariusze takie jak dołączanie różnych
+        plików na różnych maszynach, jak w poniższym przykładzie, gdzie wczytujemy plik o takiej nazwie
+        jak nazwa bieżącej maszyny:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <nlog>
+            ...
+            <include file="${basedir}/${machinename}.config" />
+            ...
+        </nlog>
+        ]]>
+    </code>
+    <p>
+        Zmienne pozwalają nam w skrócony sposób zapisywać złożone lub powtarzalne wyrażenia, takie jak nazwy plików. 
+        Aby zdefiniować zmienną posługujemy się składnią <x><variable name="var" value="xxx" /></x>. Aby użyć jej wartość posługujemy się składnią
+        identyczną jak przy informacjach kontekstowych, to znaczy: "${var}".
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <nlog>
+            <variable name="logDirectory" value="${basedir}/logs/${shortdate}" />
+
+            <targets>
+                <target name="file1" xsi:type="File" filename="${logDirectory}/file1.txt" />
+                <target name="file2" xsi:type="File" filename="${logDirectory}/file2.txt" />
+            </targets>
+        </nlog>
+        ]]>
+    </code>
+
+    <h4>Rekonfiguracja</h4>
+    <p>
+        Pliki konfiguracyjne są standardowo wczytywane na początku pracy programu. W przypadku długo działających 
+        procesów (np. usług systemowych) często zachodzi potrzeba zwiększenia poziomu logowania w trakcie działania.
+        Aby umożliwić taką rekonfigurację, NLog potrafi monitorować plik konfiguracyjny aplikacji 
+        i wczytywać go ponownie po wykryciu jakiejkolwiej zmiany. Aby włączyć ten mechanizm, wystarczy dodać w
+        pliku konfiguracyjnym atrybut <x><nlog autoReload="true" /></x>.
+    </p>
+
+    <h4>Rozwiązywanie problemów z logowaniem</h4>
+    <p>
+        Czasami zdarza się tak, że pomimo skonfigurowania, aplikacja nie zapisuje logów. Przyczyn może być wiele, 
+        najczęstszym problemem są uprawnienia, szczególnie w aplikacji webowej. Zwykle okazuje się, że serwer aplikacji
+        WWW nie ma prawa zapisu do katalogu, gdzie chcielibyśmy gromadzić logi. Ponieważ NLog "zjada" wyjątki występujące 
+        podczas logowania, aplikacja może się o tym nie dowiedzieć. Jest kilka sposobów, aby stwierdzić występowanie 
+        tego typu problemów.
+    </p>
+    <ul>
+        <li>
+            <x>
+                <nlog throwExceptions="true" />
+            </x>- dodanie atrybutu throwExceptions w pliku konfiguracyjnym powoduje,
+            że NLog nie maskuje wyjątków i są one przekazywane do aplikacji. Ten atrybut jest przydatny w
+            fazie uruchamiania. Po zakończeniu konfiguracji dobrze jest włączyć maskowanie wyjątków, tak aby przypadkowe
+            problemy z logowaniem nie spowodowały awarii naszej aplikacji.
+        </li>
+        <li>
+            <x>
+                <nlog internalLogFile="file.txt" />
+            </x>- dodanie atrybutu internalLogFilew pliku konfiguracyjnym powoduje,
+            że NLog zapisze do wskazanego pliku wewnętrzne informacje ułatwiające debugowanie, w
+            tym wszystkie wyjątki jakie zostaną zgłoszone podczas logowania.
+        </li>
+        <li>
+            <x>
+                <nlog internalLogLevel="Trace|Debug|Info|Warn|Error|Fatal" />
+            </x> - sterujący poziomem wewnętrznego logowania
+        </li>
+        <li>
+            <x>
+                <nlog internalLogToConsole="false|true" />
+            </x> - wysyła zawartość wewnętrznego logu na konsolę.
+        </li>
+        <li>
+            <x>
+                <nlog internalLogToConsoleError="false|true" />
+            </x> - wysyła zawartość wewnętrznego logu na wyjście błędów konsoli.
+        </li>
+    </ul>
+
+    <h4>Przetwarzanie asynchroniczne, cele opakowujące i złożone</h4>
+    <p>
+        Oprócz standardowych, NLog udostępnia także tzw. wrapper targets i compound targets, czyli cele opakowujące i złożone,
+        które modyfikują działanie innych celów. Mogą dodawać tym samym takie funkcje jak:
+    </p>
+    <ul>
+        <li>przetwarzanie asynchroniczne (logowanie odbywa się w osobnym wątku)</li>
+        <li>ponawianie próby w przypadku błędu</li>
+        <li>równoważenie obciążenia (load balancing)</li>
+        <li>buforowanie</li>
+        <li>filtrowanie</li>
+        <li>cele zapasowe (w przypadku awarii jedego celu przełączamy się na kolejny)</li>
+        <li>i inne opisane na stronie <a href="http://www.nlog-project.org/targets.html">http://www.nlog-project.org/targets.html</a></li>
+    </ul>
+    <p>
+        Aby zdefiniować cel złożony bądź opakowujący w pliku konfiguracjnym, zagnieżdżamy 
+        cel opakowany wewnątrz odpowiedniego celu opakowującego. Zagnieżdżanie może być wielopoziomowe,
+        więc możemy modyfikować działanie celu na więcej niż jeden sposób.
+        Przykładowo, asynchroniczne logowanie do pliku z ponawianiem próby zapisu w przypadku błędu
+        definiujemy w następujący sposób.:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <targets>
+            <target name="n" xsi:type="AsyncWrapper">
+                <target xsi:type="RetryingWrapper">
+                    <target xsi:type="File" fileName="${file}.txt" />
+                </target>
+            </target>
+        </targets>
+        ]]>
+    </code>
+    <p>
+        Ze względu na to, że przetwarzanie asynchroniczne jest dość często stosowane,
+        NLog udostępnia skróconą składnię pozwalającą włączyć to zachowanie dla wszystkich celów. Wystarczy w elemencie
+        <x><targets /></x> dodać atrybut async="true".
+    </p>
+
+    <h2>Konfiguracja programowa</h2>
     <p>
         Zamiast pliku konfiguracyjnego NLog może być konfigurowany przy pomocy API.
         Pełny opis tej funkcji wykracza poza zakres artykułu. W skrócie można powiedzieć, że polega 
@@ -769,79 +886,12 @@ class Example
         gdzie każdy wiersz jest oznaczony kolorem wynikającym z poziomu logowania
         i dodatkowo plik zawierający te same informacje w nieco innym formacie.
     </p>
-
-    <h4>Rekonfiguracja</h4>
-    <p>
-        Pliki konfiguracyjne są standardowo wczytywane na początku pracy programu. W przypadku długo działających 
-        procesów (np. usług systemowych) często zachodzi potrzeba zwiększenia poziomu logowania w trakcie działania.
-        Aby umożliwić taką rekonfigurację, NLog potrafi monitorować plik konfiguracyjny aplikacji 
-        i wczytywać go ponownie po wykryciu jakiejkolwiej zmiany. Aby włączyć ten mechanizm, wystarczy dodać w
-        pliku konfiguracyjnym atrybut <x><nlog autoReload="true" /></x>.
-    </p>
-
-    <h4>Rozwiązywanie problemów z logowaniem</h4>
-    <p>
-        Czasami zdarza się tak, że pomimo skonfigurowania, aplikacja nie zapisuje logów. Przyczyn może być wiele, 
-        najczęstszym problemem są uprawnienia, szczególnie w aplikacji webowej. Zwykle okazuje się, że serwer aplikacji
-        WWW nie ma prawa zapisu do katalogu, gdzie chcielibyśmy gromadzić logi. Ponieważ NLog "zjada" wyjątki występujące 
-        podczas logowania, aplikacja może się o tym nie dowiedzieć. Jest kilka sposobów, aby stwierdzić występowanie 
-        tego typu problemów.
-    </p>
-    <ul>
-        <li>
-            <p>
-                <x>
-                    <nlog throwExceptions="true" />
-                </x>- dodanie atrybutu throwExceptions w pliku konfiguracyjnym powoduje,
-                że NLog nie maskuje wyjątków i są one przekazywane do aplikacji. Ten atrybut jest przydatny w
-                fazie uruchamiania. Po zakończeniu konfiguracji dobrze jest włączyć maskowanie wyjątków, tak aby przypadkowe
-                problemy z logowaniem nie spowodowały awarii naszej aplikacji.
-            </p>
-            <p>
-                Korzystając z konfiguracji programowej można włączyć przekazywanie wyjątków do aplikacji przy pomocy ustawienia
-                statycznej właściwości ThrowExceptions obiektu LogManager na true.
-            </p>
-        </li>
-        <li>
-            <p>
-                <x>
-                    <nlog internalLogFile="file.txt" />
-                </x>- dodanie atrybutu internalLogFilew pliku konfiguracyjnym powoduje,
-                że NLog zapisze do wskazanego pliku wewnętrzne informacje ułatwiające debugowanie, w
-                tym wszystkie wyjątki jakie zostaną zgłoszone podczas logowania.
-            </p>
-        </li>
-        <li>
-            <x>
-                <nlog internalLogLevel="Trace|Debug|Info|Warn|Error|Fatal" />
-            </x> - sterujący poziomem wewnętrznego logowania
-        </li>
-        <li>
-            <x>
-                <nlog internalLogToConsole="false|true" />
-            </x> - wysyła zawartość wewnętrznego logu na konsolę.
-        </li>
-        <li>
-            <x>
-                <nlog internalLogToConsoleError="false|true" />
-            </x> - wysyła zawartość wewnętrznego logu na wyjście błędów konsoli.
-        </li>
-    </ul>
-
     <h2>Co jeszcze można zrobić w NLogu?</h2>
     <p>
-        NLog udostępnia jeszcze wiele zaawansowanych funkcji, które ze względu na objętość nie mogły
+        NLog udostępnia jeszcze wiele funkcji, które ze względu na objętość nie mogły
         zostać omówione w niniejszym artykule. Każda z tych funkcji mogłaby być tematem na osobny artykuł.
     </p>
     <ul>
-        <li>zmienne w plikach konfiguracyjnych</li>
-        <li>dołączane pliki</li>
-        <li>
-            filtry - <a href="http://www.nlog-project.org/filters.html">http://www.nlog-project.org/filters.html</a>
-        </li>
-        <li>
-            cele opakowujące i złożone - <a href="http://sourceforge.net/mailarchive/message.php?msg_id=13149726">http://sourceforge.net/mailarchive/message.php?msg_id=13149726</a>
-        </li>
         <li>
             logowanie wyjątków - <a href="http://sourceforge.net/mailarchive/forum.php?thread_id=6766833&amp;forum_id=41984">http://sourceforge.net/mailarchive/forum.php?thread_id=6766833&amp;forum_id=41984</a>
         </li>

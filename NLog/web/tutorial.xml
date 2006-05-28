@@ -1,205 +1,932 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="documentation" subid="tutorial">
-    <h1>Introduction to NLog</h1>
-
-    <h3>Basic concepts</h3>
-    <p>NLog is a log routing engine. It processes log messages that are output by the components of your program,
-        formats them according to your preference, filters them according to their level, source and content
-        and outputs them to one or more place based on a set of rules.</p>
-    <h5>Loggers and LogManager</h5>
-    <p>
-        To write a log message in your code you use an instance of a <code>Logger</code> which you acquire from
-        a <code>LogManager</code>. You can think of loggers as of log sources and targets as log sinks. Typically
-        there's one source for each class named after its full name including namespace, e.g. 
-        <code>MyCompany.MyProject.NameSpace.ClassName</code> but you may invent your own naming schema as well.
-    </p>
-    <h5>Log levels</h5>
-    <p>
-        Each message that you output has a level which describes its importance. 
-        There are 6 predefined logging levels. They are: <code>Trace, Debug, Info, Warn, Error, Fatal</code>. Unlike other logging frameworks
-        NLog <b>does NOT</b> support introducing more logging levels, but I believe that in this case "<i>less is more</i>".
-    </p>
-    <p>
-        The following table describes the allowed logging levels along with their recommended usage.
-    </p>
-    <div class="table">
-        <table>
-            <col width="10%" />
-            <col width="90%" />
-            <tr>
-                <th>Log Level</th>
-                <th>Meaning</th>
-            </tr>
-            <tr>
-                <td>Trace</td>
-                <td>Messages useful to programmer only, not normally enabled, even by the support team. This level can include high-volume messages like the dump of entire datasets, XML documents, detailed parameter information, etc.</td>
-            </tr>
-            <tr>
-                <td>Debug</td>
-                <td>Messages useful for debugging, not normally enabled. This level can include high-traffic messages like the ones you write at each method call.</td>
-            </tr>
-            <tr>
-                <td>Info</td>
-                <td>Normal informational messages. Typically low traffic information - like "user logged on", "user authenticated".</td>
-            </tr>
-            <tr>
-                <td>Warn</td>
-                <td>Warning messages.</td>
-            </tr>
-            <tr>
-                <td>Error</td>
-                <td>Error messages.</td>
-            </tr>
-            <tr>
-                <td>Fatal</td>
-                <td>Fatal error messages. You usually write just one such message - just before the application terminates.</td>
-            </tr>
-        </table>
+<content lang="en" id="documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <h2>Introduction to tracing applications with NLog</h2>
+    <p>Author: Jarosław Kowalski &lt;<a href="mailto:jaak@jkowalski.net">jaak@jkowalski.net</a>&gt;</p>
+    <div style="margin-left: 1cm; margin-right: 1cm">
+        <font color="#006400">
+            <i>
+                Once upon a time, when there were no debuggers in the world and software
+                was mostly console-based, programmers used to output tracing messages
+                using <a href="http://www.cplusplus.com/ref/cstdio/printf.html">printf</a>()
+                statements.
+                Few years later, the world has seen a huge advancement in technology
+                and printf() was replaced with Console.WriteLine()...
+            </i>
+        </font>
     </div>
+    <p>
+        Every one of us has surely written code similar to the following:
+    </p>
+    <code lang="C#">
+        <![CDATA[
+        static int Main()
+        {
+            Console.WriteLine("SuperApp started.");
+            DoSomething();         
+            Console.WriteLine("SuperApp finished.");
+        }]]>
+    </code>
 
-    <h5>Log routing table</h5>
-    <p>
-        A <i>routing table</i> is used to manage the log rules. It can be accessed either programmatically
-        or as an XML document either standalone or embedded in the application configuration file <code>App.config</code>.
+    <p>Console.WriteLine() statements in the above example are called "tracing statements", 
+        because they are only used to report our application's control flow and have no
+        other function. The output of Console.WriteLine() is called the program trace.
+        In this example, the tracing statements produce output that
+        tells us if the DoSomething() method has finished execution or not.
     </p>
-    <code lang="xml" src="examples/web/config6.nlog" />
+
     <p>
-        The routing table is made up of the following main parts:
-    </p>
-    <ul>
-        <li><b>targets</b> (previously called "appenders") - which specify where log output will go</li>
-        <li><b>rules</b> - which describe the way log messages are routed to reach targets</li>
-    </ul>
-    <p>
-        Each <x><rule/></x> definition consists of a logger name pattern, level specification and target information. The meaning
-        is very simple: "<i>Each time a logger name matches the pattern and level matches the level specification, write the formatted 
-            log message to the specified target</i>".
+        After giving the application some testing, we tend to remove the tracing code in
+        order to improve performance (tracing can take a lot of time). Tracing instructions are
+        usually commented out so that they can be re-enabled in the future. Unfortunately
+        this requires our program to be recompiled.
     </p>
     <p>
-        As you can see the routing table is quite clean and simple, but very powerful. 
-        Some examples of what you can use with it include:
+        Some time later, after removing hundreds of the comments and putting them back for the Nth time, we
+        get the feeling that our tracing solution is not perfect and we could benefit from:
     </p>
     <ul>
-        <li>send single log message to one or more targets (for example: both to the console and a log file)</li>
-        <li>filter logging messages by their level</li>
-        <li>filter logging messages by their logger name using wildcards</li>
+        <li>
+            the ability to control the level of detail of our trace messages (such as displaying 
+            only warnings and errors or very detailed program trace).
+        </li>
+        <li>the possibility of turning the tracing on and off for components of our proram separately,
+            without turning the application off and recompiling it.</li>
+        <li>
+            writing trace messages to the file, system log, message queue or other output
+        </li>
+        <li>being able to send particularly important messages by email or store them in a database
+            </li>
+        <li>and others...</li>
     </ul>
     <p>
-        It's also possible to use filters and final rules, and this is described below in advanced section.
+        It may seem, that in the age of graphical debuggers, the usefulness of tracing-based solutions
+        is limited. Sometimes tracing turns out to be the only tool available, which can be used 
+        to locate bug in a mission-critical system that cannot be switched off for a single minute.
     </p>
-    <h5>Layouts and layout renderers</h5>
+
+    <h2>What is NLog?</h2>
+
     <p>
-        Layouts are one of the coolest features of NLog. They let you annotate log messages with environmental information like:
+        NLog <a href="http://www.nlog-project.org/">(http://www.nlog-project.org)</a> is 
+        a .NET library, which enables you to add sophisticated tracing code to your application,
+        delivering the functionality mentioned above and much, much more.
+    </p>
+    <p>
+        NLog lets you write <b>rules</b> which control the flow
+        of diagnostic traces from their <b>sources</b> to <b>targets</b>, which could be:
     </p>
     <ul>
-        <li>date and time in various formats</li>
-        <li>stack trace information</li>
-        <li>exception information</li>
-        <li>classic ASP and ASP.NET session, request and application objects</li>
-        <li>path information (such as appdomain base directory)</li>
-        <li>log event information (logger name, log level)</li>
-        <li>process and thread information</li>
-        <li>machine name information</li>
-        <li>diagnostic contexts</li>
-        <li>counters, guids, and more</li>
+        <li>a file</li>
+        <li>text console</li>
+        <li>email message</li>
+        <li>database</li>
+        <li>other machine on the network (using TCP/UDP)</li>
+        <li>MSMQ-based message queue</li>
+        <li>Event Log</li>
+        <li>
+            and others, described in <a href="http://www.nlog-project.org/targets.html">http://www.nlog-project.org/targets.html</a>
+        </li>
     </ul>
     <p>
-        Each target has a parameter called <code>layout</code> that describes the log output formatting. By default
-        it is:
+        In addition, each tracing message can be augmented with pieces of <b>contextual information</b>,
+        which will be sent with it to the target. The contextual information can include:
+    </p>
+    <ul>
+        <li>current date and time (in various formats)</li>
+        <li>log level</li>
+        <li>soure name</li>
+        <li>stack trace/information about the method that emitted the tracing message</li>
+        <li>values of environment variables</li>
+        <li>information about exceptions</li>
+        <li>machine, process and thread names</li>
+        <li>
+            and many more, as described in <a href="http://www.nlog-project.org/layoutrenderers.html">http://www.nlog-project.org/layoutrenderers.html</a>
+        </li>
+    </ul>
+    <p>
+        Each tracing message is associated with a log level which describes its severity. NLog supports the following levels.
+    </p>
+    <ul>
+        <li>
+            <b>Trace </b>- Very detailed log messages, potentially of a high frequency and volume
+        </li>
+        <li>
+            <b>Debug </b>-Less detailed and/or less frequent debugging messages
+        </li>
+        <li>
+            <b>Info </b>- Informational messages
+        </li>
+        <li>
+            <b>Warn </b>- Warnings which don't appear to the user of the application
+        </li>
+        <li>
+            <b>Error </b>- Error messages
+        </li>
+        <li>
+            <b>Fatal </b>- Fatal error messages. After a fatal error the application usually 
+            terminates.
+        </li>
+    </ul>
+    <p>
+        NLog is a open source library distributed at no cost under the terms of
+        <a href="http://svn.nlog-project.org/repos/nlog/trunk/NLog/LICENSE.txt">BSD license</a>, which permits commercial usage with almost no obligation.
+        
+        You can download NLog binary and source code releases from
+        <a href="http://www.nlog-project.org/download.html">http://www.nlog-project.org/download.html</a>.
+        Graphical installer is also provided, which lets you install NLog in a preferred place and enable
+        integration with Visual Studio 2005 (Express editions are also supported), including:
+    </p>
+    <ul>
+        <li>configuration file templates</li>
+        <li>Intellisense for NLog config files</li>
+        <li>code snippets</li>
+        <li><code>Add Reference...</code> dialog integration</li>
+    </ul>
+
+    <h2>Our first NLog-enabled application</h2>
+    <p>
+        Let's create our first application that uses NLog using Visual Studio 2005. We'll start
+        with a simple example that only logs to the console, and we'll be adding features
+        that demonstrate how easy it is to control logging configuration in NLog.
     </p>
     <p>
-        <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        The first step is to create a Visual Studio project (in this example we'll be using C#) and 
+        add NLog configuration file using "Add New Item..." dialog. Let's add an
+        "Empty NLog Configuration File" and save it as "NLog.config":
+    </p>
+    <img src="introduction_addnewitem.gif" />
+    <p>
+        Notice how a reference to NLog.dll has automatically been added to our project. The contents of NLog.config
+        file, which we'll be modifying in this tutorial, are:
+    </p>
+
+    <code lang="XML">
+        <![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+        <nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+            <targets>
+            </targets>
+
+            <rules>
+            </rules>
+        </nlog>
+        ]]>
+    </code>
+
+    <p>You only need to do one more thing: Change "Copy To Output Directory" option for this
+        file to "Copy always". This way our configuration file will be placed in the same directory
+        as the *.exe file and NLog will be able to pick it up without any special configuration.
+    </p>
+    <img src="introduction_copytooutput.gif" />
+
+    <p>
+        It's time to configure log output. In the <x>
+            <targets />
+        </x> section we'll add a entry that defines console output and the required output layout:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <targets>
+            <target name="console" xsi:type="Console" layout="${longdate}|${level}|${message}" />
+        </targets>
+        ]]>
+    </code>
+    <p>
+        Notice how Visual Studio suggests us the possible XML element names and attribute names/values.
+        Once we type <b>xsi:</b>, we get a list of available log targets.
+    </p>
+    <img src="introduction_target_intellisense.gif" />
+
+    <p>
+        In the <x>
+            <rules />
+        </x> section we'll add a rule that routes all message whose level is Debug or higher to the console.
+        The XML is quite self-explanatory.
+    </p>
+
+    <code lang="XML" escaped="true">
+        <rules>
+            <logger name="*" minlevel="Debug" writeTo="console" />
+        </rules>
+    </code>
+
+    <p>
+        In order to send a diagnostic message, we use a Logger object, whose methods are named after supported log
+        levels (Debug(), Info(), Fatal() and so on). Logger objects can be created thanks to the LogManager class.
+        It's probably the best idea to use logger names which correspond to the class name in our application, so we'll be
+        using LogManager.GetCurrentClassLogger(), which creates a log source for our current class.
     </p>
     <p>
-        so that each log line contains the data, log level, logger name and log message. This can be extended, for example,
-        to provide some particular value from ASP.NET session state, thread id and call site (class and name of the 
-        invoking method):
+        Let's modify the wizard-generated C# file by adding "using NLog" statement at the beginning, 
+        the code to create logger and example log message. Note that you can quickly type 
+        the logger-creation statement by using the Code Snippet which is installed with NLog.
+        Just type "nlogger" and press TAB twice.
     </p>
+
+    <code lang="C#">
+        <![CDATA[
+        using System;
+        using System.Collections.Generic;
+        using System.Text;
+        using NLog;
+        
+        namespace NLogExample
+        {
+            class Program
+            {
+                private static Logger logger = LogManager.GetCurrentClassLogger();
+                
+                static void Main(string[] args)
+                {
+                    logger.Debug("Hello World!");
+                }
+            }
+        }
+        ]]>
+    </code>
     <p>
-        <code>${longdate} ${level:uppercase=true} ${logger} ${aspnet-session:variable=UserName} ${threadid} ${callsite} ${message}</code>
+        The result of running this program is a message written to the console which includes
+        the current date, log level (<font face="Courier New">Debug</font>) 
+        and the <font face="Courier New">Hello World</font> message.
     </p>
+
     <p>
-        Now, each logging message (a line in the output file) will contain all of the above useful information. Example of a real-life configuration that does just that and writes output to both a file and ASP.NET trace facility. Note how the file output is more detailed than ASP.NET trace output:
-    </p>
-    <code lang="xml" src="examples/web/config11.nlog" />
-    <p>
-        It's even possible to write each log message to a different file based on environmental properties.
-        For example, to write to a new file each day separated by the log level, just change <code>filename=""</code> to:
-    </p>
-    <p>
-        <code>filename="${basedir}/../logs/${date:format=yyyy-MM-dd}_${level}_log.txt"</code>
-    </p>
-    <p>
-        The resulting files will be named:
+        Let's see how we achieved this:
     </p>
     <ol>
-        <li><code>../logs/2005-05-29_Debug_log.txt</code></li>
-        <li><code>../logs/2005-05-29_Info_log.txt</code></li>
-        <li><code>../logs/2005-05-29_Warn_log.txt</code></li>
-        <li><code>../logs/2005-05-29_Error_log.txt</code></li>
-        <li><code>../logs/2005-05-29_Fatal_log.txt</code></li>
-        <li><code>../logs/2005-05-30_Debug_log.txt</code></li>
-        <li><code>../logs/2005-05-30_Info_log.txt</code></li>
-        <li><code>../logs/2005-05-30_Warn_log.txt</code></li>
-        <li><code>../logs/2005-05-30_Error_log.txt</code></li>
-        <li><code>../logs/2005-05-30_Fatal_log.txt</code></li>
+        <li>
+            <a href="http://www.nlog-project.org/help/NLog.LogManager.GetCurrentClassLogger.html">LogManager.GetCurrentClassLogger();</a>
+            creates an instance of <a href="http://www.nlog-project.org/help/NLog.Logger.html">Logger</a> class which represents the <b>source</b>
+            of log messages which is associated with current class.
+        </li>
+        <li>
+            Calling the Debug() method on the source object sends the diagnostic message on the Debug level.
+        </li>
+        <li>
+            Because our log level and source name match the rule defined in <x><rules /></x>
+            section, the message gets formatted according to the "layout" specification
+            and sent to the console.
+        </li>
+    </ol>
+    <h4>
+        More advanced logging scenario
+    </h4>
+    <p>
+        Let's assume, that we also want our log messages to go to a file. In addition, we want to
+        keep track of the current stack trace (names of methods that are currently executing) and
+        add some coloring to our console output.
+        Let's define another <x><target /></x> of type "File" and let's route all messages to it.
+        We'll be changing the log level to Trace as well.
+    </p>
+    <code lang="XML">
+        <![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <targets>
+        <target name="console" xsi:type="ColoredConsole" layout="${date:format=HH\:mm\:ss}|${level}|${stacktrace}|${message}" />
+        <target name="file" xsi:type="File" fileName="${basedir}/file.txt" layout="${stacktrace} ${message}" />
+    </targets>
+
+    <rules>
+        <logger name="*" minlevel="Trace" writeTo="console,file" />
+    </rules>
+</nlog>
+        ]]>
+    </code>
+
+
+    <p>
+        Here's the C# source code that emits some more log messages, additional methods are
+        introduced here to observe the stack trace feature.
+    </p>
+    <code lang="C#">
+        <![CDATA[
+        static void C()
+        {
+            logger.Info("Info CCC");
+        }
+        static void B()
+        {
+            logger.Trace("Trace BBB");
+            logger.Debug("Debug BBB");
+            logger.Info("Info BBB");
+            C();
+            logger.Warn("Warn BBB");
+            logger.Error("Error BBB");
+            logger.Fatal("Fatal BBB");
+        }
+        static void A()
+        {
+            logger.Trace("Trace AAA");
+            logger.Debug("Debug AAA");
+            logger.Info("Info AAA");
+            B();
+            logger.Warn("Warn AAA");
+            logger.Error("Error AAA");
+            logger.Fatal("Fatal AAA");
+        }
+        static void Main(string[] args)
+        {
+            logger.Trace("This is a Trace message");
+            logger.Debug("This is a Debug message");
+            logger.Info("This is an Info message");
+            A();
+            logger.Warn("This is a Warn message");
+            logger.Error("This is an Error message");
+            logger.Fatal("This is a Fatal error message");
+        }
+    ]]>
+    </code>
+    <p>
+        When we run the program, the following information will be written to the "file.txt" in the application
+        directory:
+    </p>
+    <code lang="C#">
+        <![CDATA[
+Program.Main This is a Trace message
+Program.Main This is a Debug message
+Program.Main This is an Info message
+Program.Main => Program.A Trace AAA
+Program.Main => Program.A Debug AAA
+Program.Main => Program.A Info AAA
+Program.Main => Program.A => Program.B Trace BBB
+Program.Main => Program.A => Program.B Debug BBB
+Program.Main => Program.A => Program.B Info BBB
+Program.A => Program.B => Program.C Info CCC
+Program.Main => Program.A => Program.B Warn BBB
+Program.Main => Program.A => Program.B Error BBB
+Program.Main => Program.A => Program.B Fatal BBB
+Program.Main => Program.A Warn AAA
+Program.Main => Program.A Error AAA
+Program.Main => Program.A Fatal AAA
+Program.Main This is a Warn message
+Program.Main This is an Error message
+Program.Main This is a Fatal error message
+]]>
+    </code>
+    <p>At the same time, we get this fancy colored output on the console:</p>
+    <img src="introduction_coloredconsole_en.gif" />
+    <p>
+        Now let's modify our configuration a bit. The typical requirement is to have
+        a different level of detal depending on the output. For example, we only
+        want messages whose level is Info and higher written to the console
+        and we want ALL messages to be written to the file.
+        With NLog, you only need to change the <x><rules /></x> 
+        section. No changes to the C# source code are necessary:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+            <rules>
+                <logger name="*" minlevel="Info" writeTo="console" />
+                <logger name="*" minlevel="Trace" writeTo="file" />
+            </rules>
+        ]]>
+    </code>
+    <p>
+        After running the program we find that Trace and Debug messages can only be found in the file, while
+        they aren't displayed to the console.
+    </p>
+    <h2>Logging configuration</h2>
+    <p>
+        It's now time to describe the NLog configuration mechanism. Unlike other tools, NLog attempts
+        to automatically configure itself on startup, by looking for the configuration files in some standard places. 
+        The following files are being attempted for a stand-alone *.exe application: 
+    </p>
+    <ul>
+        <li>
+            standard application configuration file (usually <font face="Courier New">applicationname.exe.config)</font>
+        </li>
+        <li>
+            <font face="Courier New">applicationname.exe.nlog</font> in application's directory
+        </li>
+        <li>
+            <font face="Courier New">NLog.nlog</font> in application's directory
+        </li>
+        <li>
+            <font face="Courier New">NLog.dll.nlog</font> in a directory where <font face="Courier New">NLog.dll</font> is located
+        </li>
+        <li>
+            file name pointed by the <font face="Courier New">NLOG_GLOBAL_CONFIG_FILE</font> environment variable (if defined)
+        </li>
+    </ul>
+    <p>
+        In case of an ASP.NET application, the following files are searched:
+    </p>
+    <ul>
+        <li>
+            standard web application file <font face="Courier New">web.config</font>
+        </li>
+        <li>
+            <font face="Courier New">web.nlog</font> located in the same directory as <font face="Courier New">web.config</font>
+        </li>
+        <li>
+            <font face="Courier New">NLog.nlog</font> in application's directory
+        </li>
+        <li>
+            <font face="Courier New">NLog.dll.nlog</font> in a directory where <font face="Courier New">NLog.dll</font> is located
+        </li>
+        <li>
+            file name pointed by the <font face="Courier New">NLOG_GLOBAL_CONFIG_FILE</font> environment variable (if defined)
+        </li>
+    </ul>
+    <p>
+        .NET Compact Framework doesn't have the notion of an application configuration file (*.exe.config) 
+        nor environmental variables, so NLog only looks in these locations:
+    </p>
+    <ul>
+        <li>
+            <font face="Courier New">applicationname.exe.nlog</font> in application's directory
+        </li>
+        <li>
+            <font face="Courier New">NLog.nlog</font> in application's directory
+        </li>
+        <li>
+            <font face="Courier New">NLog.dll.nlog</font> in a directory where <font face="Courier New">NLog.dll</font> is located
+        </li>
+    </ul>
+    <h4>Configuration file format</h4>
+    <p>
+        NLog supports two configuration file formats:
+    </p>
+    <ul>
+        <li>configuration embedded within the standard *.exe.config or web.config file</li>
+        <li>simplified configuration, stored in a separate file</li>
+    </ul>
+    <p>
+        In the first variant, we use a standard configSections mechanism, which makes our file look like this:
+    </p>
+    <code lang="XML">
+        <![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+        <configuration>
+          <configSections>
+            <section name="nlog" type="NLog.Config.ConfigSectionHandler, NLog" />
+          </configSections>
+          <nlog>
+          </nlog>
+        </configuration>
+        ]]>
+    </code>
+    <p>
+        The simplified format is the pure XML having the <x>
+            <nlog />
+        </x> element as its root.
+        The use of namespaces is optional, but it enables the Intellisense in Visual Studio.
+    </p>
+    <code lang="XML">
+        <![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+        <nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        </nlog>
+        ]]>
+    </code>
+    <p>
+        Note that NLog config file is case-insensitive when not using namespaces
+        and is case-sensitive when you use them. Intellisense only works with case-sensitive
+        configurations.
+    </p>
+    <h4>Configuration elements</h4>
+    <p>
+        You can use the following elements as children to <x>
+            <nlog />
+        </x>. The first two elements from the list are required to be present in all
+        NLog configuration files, the remaining ones are optional and can be used in 
+        advanced scenarios.
+    </p>
+    <ul>
+        <li>
+            <x><targets /></x> - defines log targets/outputs
+        </li>
+        <li>
+            <x><rules /></x> - defines log routing rules
+        </li>
+        <li>
+            <x><extensions /></x> - loads NLog extensions from the *.dll file
+        </li>
+        <li>
+            <x><include /></x> - includes external configuration file
+        </li>
+        <li>
+            <x><variable /></x> - sets the value of a configuration variable
+        </li>
+    </ul>
+    <h4>Targets</h4>
+    <p>
+        The <x>
+            <targets />
+        </x> section defines log targets/outputs. Each target is represented by
+        the <x><target /></x> element.
+        There are two attributes required for each target:
+    </p>
+    <ul>
+        <li>
+            <b>name</b> - target name
+        </li>
+        <li>
+            <b>type</b> - target type - such as "File", "Database", "Mail". When using namespaces this attribute is named <b>xsi:type</b>.
+        </li>
+    </ul>
+    <p>
+        In addition to these, targets usually accept other parameters, which influence the way diagnostic
+        traces are written. Each target has a different set of parameters, they are described in detail
+        on project's homepage and they are context-sensitive Intellisense is also available in Visual Studio.
+    </p>
+    <p>
+        For example - the "<b>File</b>" target accepts the <b>fileName</b> parameter which defines
+        output file name and the <b>Console</b> target has the <b>error</b> parameter which determines
+        whether the diagnostic traces are written to standard error (stderr) instead of standard output
+        (stdout) of the process.
+    </p>
+    <p>
+        NLog provides many predefined targets. They are described on the project's homepage. 
+        It's actually very easy to create your own target - it requires about 15-20 lines of
+        code and is described in the 
+        <a href="http://www.nlog-project.org/documentation.html">documentation</a>.
+    </p>
+    <h4>Rules</h4>
+    <p>
+        Log routing rules are defined in the <x>
+            <rules />
+        </x> section. It is a simple routing table, where we define the list of targets
+        that should be written to for each combination of source/logger name and log level.
+        Each rule can also be final, which means that no further rules are processed as soon as
+        this one matches.
+    </p>
+    <p>
+        Each routing table entry is a <x>
+            <logger />
+        </x> element, which accepts the following attributes:
+    </p>
+    <ul>
+        <li>
+            <font face="Courier New">name</font> - source/logger name (may include wildcard characters <b>*</b>)
+        </li>
+        <li>
+            <font face="Courier New">minlevel</font> - minimal log level for this rule to match
+        </li>
+        <li>
+            <font face="Courier New">maxlevel</font> - maximum log level for this rule to match
+        </li>
+        <li>
+            <font face="Courier New">level</font> - single log level for this rule to match
+        </li>
+        <li>
+            <font face="Courier New">levels </font>- comma separated list of log levels for this rule to match
+        </li>
+        <li>
+            <font face="Courier New">writeTo</font> - comma separated list of target that should be written to when this rule matches.
+        </li>
+        <li>
+            <font face="Courier New">final</font> - make this rule final. No further rules are processed when any
+            final rule matches.
+        </li>
+    </ul>
+    <p>
+        Some examples:
+    </p>
+    <ul>
+        <li>
+            <x>
+                <logger name="Name.Space.Class1" minlevel="Debug" writeTo="f1" />
+            </x> - all messages from the <font face="Courier New">Class1</font> in the <font face="Courier New">Name.Space</font> whose level is <font face="Courier New">Debug</font> or higher are written to the "<font face="Courier New">f1</font>" target.
+        </li>
+        <li>
+            <x>
+                <logger name="Name.Space.Class1" levels="Debug,Error" writeTo="f1" />
+                </x> - all messages from the <font face="Courier New">Class1</font> in the <font face="Courier New">Name.Space</font> whose level is either <font face="Courier New">Debug</font> or <font face="Courier New">Error</font> or higher are written to the "<font face="Courier New">f1</font>" target.
+        </li>
+        <li>
+            <x>
+                <logger name="Name.Space.*" writeTo="f3,f4" />
+            </x>
+            - messages from any class in the <font face="Courier New">Name.Space</font> namespace are written to both "<font face="Courier New">f3</font>" and "<font face="Courier New">f4</font>" targets regardless of their levels.
+        </li>
+        <li>
+            <x>
+                <logger name="Name.Space.*"  minlevel="Debug" maxlevel="Error" final="true" />
+            </x>
+            - messages from any class in the <font face="Courier New">Name.Space</font> namespace whose level is 
+            between <font face="Courier New">Debug</font> and <font face="Courier New">Error</font> (which makes it 
+            <font face="Courier New">Debug,Info,Warn,Error</font>) are rejected (as there's no 
+            <font face="Courier New">writeTo</font> clause) 
+            and no futher rules are processed for them (because of the <font face="Courier New">final="true"</font> setting)
+        </li>
+    </ul>
+    <p>
+        In the simplest cases the entire logging configuration consists of a single <x><target/></x> and 
+        a single <x><logger /></x> rule that routes messages to this target depending on their level.
+        As the application grows, adding more targets and rules is very simple.
+    </p>
+    <h4>Contextual information</h4>
+    <p>
+        One of NLog's strongest assets is the ability to use layouts. They include pieces of text surrounded by a pair
+        of "<b>${</b>" (dollar sign + left curly brace) and "<b>}</b>" (right curly brace). The markup denotes
+        "layout renderers" which can be used to insert pieces of <b>contextual information</b> into the text. 
+        Layouts can be used in many places, for example they can control the format of information written on the 
+        screen or sent to a file, but also to control the file names themselves. This is very powerful, 
+        which we'll see in a moment.
+    </p>
+    <p>
+        Let's assume, that we want to augment each message written to the console with:
+    </p>
+    <ul>
+        <li>current date and time</li>
+        <li>name of the class and method that emitted the log message</li>
+        <li>log level</li>
+        <li>message text</li>
+    </ul>
+    <p>This is very easy:</p>
+    <code lang="XML">
+        <![CDATA[
+        <target name="c" xsi:type="Console" layout="${longdate} ${callsite} ${level} ${message}" />
+        ]]>
+    </code>
+    <p>
+        We can make each messages for each logger go to a separate file, as in the following example:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <target name="f" xsi:type="File" fileName="${logger}.txt" />
+        ]]>
+    </code>
+
+    <p>
+        Ay you can see the <font face="Courier New">${logger}</font> layout renderer was used
+        in the <font face="Courier New">fileName</font> attribute, which causes each log message
+        to be written to the file whose name includes the logger name. The above example will
+        create the following files:
+    </p>
+    <ul>
+        <li>Name.Space.Class1.txt</li>
+        <li>Name.Space.Class2.txt</li>
+        <li>Name.Space.Class3.txt</li>
+        <li>Other.Name.Space.Class1.txt</li>
+        <li>Other.Name.Space.Class2.txt</li>
+        <li>Other.Name.Space.Class3.txt</li>
+        <li>...</li>
+    </ul>>
+    <p>It's a frequent requirement to be able to keep log files for each day separate. 
+        This is trivial, too, thanks to the ${shortdate} layout renderer:</p>
+    <code lang="XML">
+        <![CDATA[
+        <target name="f" xsi:type="File" filename="${shortdate}.txt" />
+        ]]>
+    </code>
+    <p>
+        How about givin each employee their own log file? The ${windows-identity} layout renderer will do the trick:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <target name="f" xsi:type="File" filename="${windows-identity:domain=false}.txt" />
+        ]]>
+    </code>
+    <p>
+        Thanks to this simple setting NLog will create a set of files named after our employees' logins:
+    </p>
+    <ol>
+        <li>Administrator.txt</li>
+        <li>MaryManager.txt</li>
+        <li>EdwardEmployee.txt</li>
         <li>...</li>
     </ol>
-    <p>You can probably see that the possibilities are endless. See the <link href="layoutrenderers">Layout Renderers</link> for more information.</p>
-    <h5>Logger usage</h5>
-    <p>Usage is simple. Just get an instance of a <code>Logger</code> from the <code>LogManager</code> and 
-        write your messages to it like you do with <code>Console.WriteLine()</code>. To write a message at a particular
-        level use a method that's named after the level.</p>
-    <p>The following code example shows what's available:</p>
+    <p>
+        More complex cases are of course possible. The following sample demonstrates the way of creating
+        a distinct log file for each person per day. Log files for each day are stored in a separate directory:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <target name="f" xsi:type="File" filename="${shortdate}/${windows-identity:domain=false}.txt" />
+        ]]>
+    </code>
+    <p>This creates the following files:</p>
+    <ol>
+        <li>2006-01-01/Administrator.txt</li>
+        <li>2006-01-01/MaryManager.txt</li>
+        <li>2006-01-01/EdwardEmployee.txt</li>
+        <li>2006-01-02/Administrator.txt</li>
+        <li>2006-01-02/MaryManager.txt</li>
+        <li>2006-01-02/EdwardEmployee.txt</li>
+        <li>...</li>
+    </ol>
 
-    <code lang="C#" src="examples/web/tutorial.cs" />
+    <p>
+        NLog provides many predefined layout renderers. They are described on the 
+        <a href="http://www.nlog-project.org/layoutrenderers.html">http://www.nlog-project.org/layoutrenderers.html</a> page.
+        It's very easy to create your own layout renderer. It just takes 15-20 lines of code and is described in the <a href="http://www.nlog-project.org/documentation.html">documentation</a> 
+        section of the project website.
+    </p>
 
-    <h3>Advanced concepts</h3>
-    <h5>Internal logging</h5>
+    <h4>Include files </h4>
     <p>
-        There are cases where you need to debug your logging configuration. This is usually the case where you don't 
-        get the expected log output. NLog provides a feature called internal logging. Internal logging
-        lets you write NLog-internal debugging messages to the console and/or a log file optionally specifying the
-        log level verbosity. Additionally you may want to tell NLog to throw exceptions on any error. This can
-        help you detect and fix configuration errors (mostly permission problems) easily.
+        It's sometimes desired to split the configuration file into many smaller ones.
+        NLog provides include file mechanism for that. To include an external file, you simply use
+        <x><include file="filename" /></x>. It's worth to notice that filename may
+        include layout renderers, so it's possible to include different files based on environmental properties.
+        The following configuration example demonstrates this, by loading file whose name is derived from
+        the name of the machine we're running on.
     </p>
+    <code lang="XML">
+        <![CDATA[
+        <nlog>
+            ...
+            <include file="${basedir}/${machinename}.config" />
+            ...
+        </nlog>
+        ]]>
+    </code>
     <p>
-        The following options can be used in the configuration file to enable internal debugging:
+        Variables let us write complex or repeatable expression (such as file names) in a concise manner.
+        To define a variable we use the <x><variable name="var" value="xxx" /></x> syntax.
+        Once defined, variables can be used as if they were layout renderers - by using ${var} syntax, as demonstrated in
+        the following example:
     </p>
+    <code lang="XML">
+        <![CDATA[
+        <nlog>
+            <variable name="logDirectory" value="${basedir}/logs/${shortdate}" />
+
+            <targets>
+                <target name="file1" xsi:type="File" filename="${logDirectory}/file1.txt" />
+                <target name="file2" xsi:type="File" filename="${logDirectory}/file2.txt" />
+            </targets>
+        </nlog>
+        ]]>
+    </code>
+
+    <h4>Automatic reconfiguration</h4>
     <p>
-        <x><nlog internalLogToConsole="true | false" /></x><br/>
-        <x><nlog internalLogFile="filename" /></x><br/>
-        <x><nlog internalLogLevel="Trace | Debug | Info | Warn | Error | Fatal" /></x><br/>
-        <x><nlog throwExceptions="true | false" /></x><br/>
+        Configuration file is read automatically read at program startup. In a long running process (such as a Windows 
+        service or an ASP.NET application) it's sometimes desired to temporarily increase the log level without
+        stopping the application. To allow for such reconfiguration, NLog can monitor logging
+        configuration files and re-read them each time they are modified. To enable this mechanism, you simply set
+        <x><nlog autoReload="true" /></x> in your configuration file. Note that automatic reconfiguration 
+        supports include files, so each time one of the files include is changed, the entire configuration gets reloaded.
     </p>
+
+    <h4>Troubleshooting logging</h4>
     <p>
-        More information about internal logging can be found in the <link href="howto_troubleshoot">troubleshooting</link> section and in the <link href="config">configuration</link> section.
+        Sometimes our application doesn't write anything to the log files, even though we have supposedly configured
+        logging properly. There can be many reasons for logs not being written. The most common problem are permissions, 
+        usually in an ASP.NET process, where the aspnet_wp.exe or w3wp.exe process may not have write access to the directory
+        where we want to store logs.
+        
+        Because NLog "eats" any exceptions that may occur during logging, application may not be notified about
+        any problems. There are some ways to change this behaviour.
     </p>
-    <h5>Include files</h5>
+    <ul>
+        <li>
+            <x>
+                <nlog throwExceptions="true" />
+            </x>- adding throwExceptions attribute in the config file causes NLog not to mask exceptions and pass them
+            to the calling application instead. This attribute is useful at deployment time to quickly locate any problems. 
+            It's recommended to turn throwExceptions to "false" as soon as the application is properly configured to run,
+            so that any accidental logging problems won't crash the application.
+        </li>
+        <li>
+            <x>
+                <nlog internalLogFile="file.txt" />
+            </x>- adding internalLogFile cause NLog to write its internal debugging messages to the specified file.
+            This includes any exceptions that may be thrown during logging.
+        </li>
+        <li>
+            <x>
+                <nlog internalLogLevel="Trace|Debug|Info|Warn|Error|Fatal" />
+            </x> - determines internal log level. The higher the level, the less verbose is the internal log output.
+        </li>
+        <li>
+            <x>
+                <nlog internalLogToConsole="false|true" />
+            </x> - sends internal logging messages to the console.
+        </li>
+        <li>
+            <x>
+                <nlog internalLogToConsoleError="false|true" />
+            </x> - sends internal logging messages to the console error output (stderr).
+        </li>
+    </ul>
+
+    <h4>Asynchronous processing, wrapper and compound targets</h4>
     <p>
-        If you have many applications you may want to share their logging configurations. NLog provides <x><include /></x>
-        mechanism for that. TODO - write more.
+        NLog provides wrapper and compound targets which modify other targets' behaviour by adding features like: 
     </p>
-    <h5>Automatic config-file watching</h5>
+    <ul>
+        <li>asynchronous processing (wrapped target runs in a separate thread)</li>
+        <li>retry-on-error</li>
+        <li>load balancing (round-robin targets)</li>
+        <li>buffering</li>
+        <li>filtering</li>
+        <li>backup targets (failover)</li>
+        <li>and others described on <a href="http://www.nlog-project.org/targets.html">http://www.nlog-project.org/targets.html</a></li>
+    </ul>
     <p>
-        There are cases where you need to modify the logging configuration at application runtime. Having to restart
-        your application in this case should be avoided especially on production servers.
-        NLog provides a convenient configuration attribute for this. 
-        Just put the following in the configuration file:
+        To define a wrapper or compound target in the configuration file, we
+        simply nest the wrapped target inside the wrapping target element.
+        You can even wrap a wrapper target with no limit on the depth, so we can
+        modify the behaviour of a target in more than one way.
+        For example, to add asynchronous logging with retry-on-error functionality
+        add this to your configuration file:
     </p>
-    <code lang="xml" src="examples/web/config12.nlog" />
-    <h5>Filters</h5>
-    <p>See the <link href="filters">Filter Reference</link> for more information. Tutorial will be added here soon.</p>
-    <h5>Final rules</h5>
-    <p>By default all NLog rules are additive, that is their effects add up. The rules are processed top-down 
-        from the first rule to the last one. Sometimes you want to quit rule processing. That's what the <code>final</code> attribute
-        is used for. [TODO - more to be written].
+    <code lang="XML">
+        <![CDATA[
+        <targets>
+            <target name="n" xsi:type="AsyncWrapper">
+                <target xsi:type="RetryingWrapper">
+                    <target xsi:type="File" fileName="${file}.txt" />
+                </target>
+            </target>
+        </targets>
+        ]]>
+    </code>
+    <p>
+        Because asynchronous processing is a common scenario, NLog supports a shorthand notation
+        to enable it for all targets without the need to specify explicit wrappers. You simply
+        set <x><targets async="true" /></x> and all your targets will be wrapped with the AsyncWrapper target.
     </p>
-    <!--
-    <h5>Log processing detailed</h5>
-    <p>The following picture describes log processing. </p>
-    <img style="border: 1px solid #ffe0e0" src="nlog_routing.png" />
-    <p/>
-    -->
+
+    <h2>Programmatic configuration</h2>
+    <p>
+        In certain cases you may choose not to use configuration file, but to configure NLog using the provided API.
+        Full description of this feature is beyond the scope of this article, so let's just outline the steps
+        necessary to make it work. To configure NLog in code you need to:
+    </p>
+    <ol>
+        <li>Create a LoggingConfiguration object that will hold the configuration</li>
+        <li>Create one or more targets (objects of classes inheriting from Target)</li>
+        <li>Set the properties of the targets</li>
+        <li>Define logging rules through LoggingRule objects and add them to configuration's LoggingRules</li>
+        <li>Activate the configuration by assigning the configuration object to LogManager.Configuration</li>
+    </ol>
+    <p>This sample demonstrates the programmatic creation of two targets: one is a colored console and the other
+        is a file and rules that send messages to them for messages whose level is Debug or higher.
+    </p>
+    <code lang="C#">
+        <![CDATA[using NLog;
+using NLog.Targets;
+using NLog.Config;
+using NLog.Win32.Targets;
+
+class Example
+{
+    static void Main(string[] args)
+    {
+        // Step 1. Create configuration object
+        
+        LoggingConfiguration config = new LoggingConfiguration();
+        
+        // Step 2. Create targets and add them to the configuration
+
+        ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget();
+        config.AddTarget("console", consoleTarget);
+        
+        FileTarget fileTarget = new FileTarget();
+        config.AddTarget("file", fileTarget);
+        
+        // Step 3. Set target properties
+        
+        consoleTarget.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${message}";
+        fileTarget.FileName = "${basedir}/file.txt";
+        fileTarget.Layout = "${message}";
+        
+        // Step 4. Define rules
+        
+        LoggingRule rule1 = new LoggingRule("*", LogLevel.Debug, consoleTarget);
+        config.LoggingRules.Add(rule1);
+
+        LoggingRule rule2 = new LoggingRule("*", LogLevel.Debug, fileTarget);
+        config.LoggingRules.Add(rule2);
+        
+        // Step 5. Activate the configuration
+
+        LogManager.Configuration = config;
+        
+        // przykłady użycia
+
+        Logger logger = LogManager.GetLogger("Example");
+        logger.Trace("trace log message");
+        logger.Debug("debug log message");
+        logger.Info("info log message");
+        logger.Warn("warn log message");
+        logger.Error("error log message");
+        logger.Fatal("fatal log message");
+    }
+}]]>
+    </code>
+    <h2>What else is possible with NLog?</h2>
+    <p>
+        NLog supports some more logging scenarios, which couldn't be 
+        fully described here. See the links below for more information:
+    </p>
+    <ul>
+        <li>
+            exception logging - <a href="http://sourceforge.net/mailarchive/forum.php?thread_id=6766833&amp;forum_id=41984">http://sourceforge.net/mailarchive/forum.php?thread_id=6766833&amp;forum_id=41984</a>
+        </li>
+        <li>
+            conditional expressions language - <a href="http://www.nlog-project.org/filters.html">http://www.nlog-project.org/conditions.html</a>
+        </li>
+        <li>
+            NLogViewer - real-time log viewer application (currently in pre-alpha stage) -  <a href="http://viewer.nlog-project.org/">http://viewer.nlog-project.org/</a>
+        </li>
+    </ul>
 </content>
