@@ -901,7 +901,7 @@ class Example
 
         LogManager.Configuration = config;
         
-        // przyk³ady u¿ycia
+        // Example usage
 
         Logger logger = LogManager.GetLogger("Example");
         logger.Trace("trace log message");

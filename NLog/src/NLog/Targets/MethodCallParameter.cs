@@ -61,6 +61,38 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Constructs a new instance of <see cref="MethodCallParameter"/>, sets
+        /// the type to String and initializes the Layout property.
+        /// </summary>
+        public MethodCallParameter(string layout)
+        {
+            _type = typeof(string);
+            Layout = layout;
+        }
+
+        /// <summary>
+        /// Constructs a new instance of <see cref="MethodCallParameter"/>, sets
+        /// the type to String and initializes the Name and Layout properties.
+        /// </summary>
+        public MethodCallParameter(string name, string layout)
+        {
+            _type = typeof(string);
+            Name = name;
+            Layout = layout;
+        }
+
+        /// <summary>
+        /// Constructs a new instance of <see cref="MethodCallParameter"/>, sets
+        /// the type to String and initializes the Name, Layout and Type properties.
+        /// </summary>
+        public MethodCallParameter(string name, Type type, string layout)
+        {
+            _type = type;
+            Name = name;
+            Layout = layout;
+        }
+
+        /// <summary>
         /// The name of the parameter.
         /// </summary>
         public string Name
