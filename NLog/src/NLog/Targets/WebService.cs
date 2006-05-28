@@ -180,6 +180,7 @@ namespace NLog.Targets
                 soapAction = "SOAPAction: " + Namespace + MethodName;
             else
                 soapAction = "SOAPAction: " + Namespace + "/" + MethodName;
+            request.Headers.Add(soapAction);
 
             using (Stream s = request.GetRequestStream())
             {
