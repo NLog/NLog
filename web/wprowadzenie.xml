@@ -15,7 +15,7 @@
     </p>
     <code lang="C#">
         <![CDATA[
-        static int Main()
+        static void Main()
         {
             Console.WriteLine("Program SuperApp zosta³ uruchomiony...");
             DoSomething(0);
