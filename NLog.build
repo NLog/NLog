@@ -761,7 +761,7 @@
         </delete>
     </target>
 
-    <target name="publish_snapshot" depends="allframeworksdebugandrelease, source_snapshot, help, installer, upload_snapshot, upload_web_snapshot">
+    <target name="publish_snapshot" depends="clean_all, allframeworksdebugandrelease, source_snapshot, help, installer, upload_snapshot, upload_web_snapshot">
     </target>
 
     <target name="webxmlwithsyntax">
