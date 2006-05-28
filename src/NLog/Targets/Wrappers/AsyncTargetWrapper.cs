@@ -71,8 +71,26 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// A target wrapper that provides asynchronous, buffered execution of target writes.
     /// </summary>
+    /// <remarks>
+    /// <p>
+    /// Asynchronous target wrapper allows the logger code to execute more quickly, by queueing
+    /// messages and processing them in a separate thread. You should wrap targets
+    /// that spend a non-trivial amount of time in their Write() method with asynchronous
+    /// target to speed up logging.
+    /// </p>
+    /// <p>
+    /// Because asynchronous logging is quite a common scenario, NLog supports a
+    /// shorthand notation for wrapping all targets with AsyncWrapper. Just add async="true" to
+    /// the &lt;targets/&gt; element in the configuration file.
+    /// </p>
+    /// <code lang="XML">
+    /// <![CDATA[
+    /// <targets async="true">
+    ///    ... your targets go here ...
+    /// </targets>
+    /// ]]></code>
+    /// </remarks>
     /// <example>
-    /// <p><b>TODO - write some more whys and howtos...</b></p>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:

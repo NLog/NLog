@@ -133,6 +133,7 @@
             </references>
         </csc>
 
+        <exec program="${ndocsyntax.path}" commandline="build/doc/NLog.xml" workingdir="." />
         <uptodate property="xmldoc.uptodate">
             <targetfiles>
                 <include name="build/doc/doc.xml" />
@@ -784,7 +785,7 @@
         <call target="buildwebsite" />
     </target>
 
-    <target name="buildwebsite">
+    <target name="buildwebsite" depends="clean_examples">
         <mkdir dir="${webbuild.dir}" />
         <mkdir dir="${webbuild.dir}/examples" />
 

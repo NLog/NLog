@@ -49,7 +49,19 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// A target that buffers log events and sends them in batches to the wrapped target.
     /// </summary>
-    [Target("BufferingWrapper",IgnoresLayout=true,IsWrapper=true)]
+    /// <example>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/BufferingWrapper/NLog.config" />
+    /// <p>
+    /// The above examples assume just one target and a single rule. See below for
+    /// a programmatic configuration that's equivalent to the above config file:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/BufferingWrapper/Simple/Example.cs" />
+    /// </example>
+    [Target("BufferingWrapper", IgnoresLayout = true, IsWrapper = true)]
     public class BufferingTargetWrapper: WrapperTargetBase
     {
         private LogEventInfoBuffer _buffer;

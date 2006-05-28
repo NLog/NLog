@@ -51,7 +51,22 @@ namespace NLog.Targets.Compound
     /// A compound target that forwards writes to the sub-targets in a
     /// round-robin fashion.
     /// </summary>
-    [Target("RoundRobinGroup",IgnoresLayout=true,IsCompound=true)]
+    /// <example>
+    /// <p>This example causes the messages to be written to either file1.txt or file2.txt.
+    /// Each odd message is written to file2.txt, each even message goes to file1.txt.
+    /// </p>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/RoundRobinGroup/NLog.config" />
+    /// <p>
+    /// The above examples assume just one target and a single rule. See below for
+    /// a programmatic configuration that's equivalent to the above config file:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/RoundRobinGroup/Simple/Example.cs" />
+    /// </example>
+    [Target("RoundRobinGroup", IgnoresLayout = true, IsCompound = true)]
     public class RoundRobinTarget: CompoundTargetBase
     {
         private int _currentTarget = 0;

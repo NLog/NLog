@@ -49,26 +49,40 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// A target wrapper that causes retries on wrapped target errors.
     /// </summary>
-    [Target("RetryingWrapper",IgnoresLayout=true,IsWrapper=true)]
-    public class RetryTargetWrapper: WrapperTargetBase
+    /// <example>
+    /// <p>This example causes each write attempt to be repeated 3 times, 
+    /// sleeping 1 second between attempts if first one fails.</p>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/RetryingWrapper/NLog.config" />
+    /// <p>
+    /// The above examples assume just one target and a single rule. See below for
+    /// a programmatic configuration that's equivalent to the above config file:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/RetryingWrapper/Simple/Example.cs" />
+    /// </example>
+    [Target("RetryingWrapper", IgnoresLayout = true, IsWrapper = true)]
+    public class RetryingTargetWrapper: WrapperTargetBase
     {
         private int _retryCount = 3;
         private int _retryDelayMilliseconds = 100;
 
         /// <summary>
-        /// Creates a new instance of <see cref="RetryTargetWrapper"/>.
+        /// Creates a new instance of <see cref="RetryingTargetWrapper"/>.
         /// </summary>
-        public RetryTargetWrapper()
+        public RetryingTargetWrapper()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="RetryTargetWrapper"/> and 
+        /// Creates a new instance of <see cref="RetryingTargetWrapper"/> and 
         /// initializes the <see cref="WrapperTargetBase.WrappedTarget"/>
         /// <see cref="RetryCount"/> and <see cref="RetryDelayMilliseconds"/>
         /// properties.
         /// </summary>
-        public RetryTargetWrapper(Target writeTo, int retryCount, int retryDelayMilliseconds)
+        public RetryingTargetWrapper(Target writeTo, int retryCount, int retryDelayMilliseconds)
         {
             WrappedTarget = writeTo;
             RetryCount = retryCount;

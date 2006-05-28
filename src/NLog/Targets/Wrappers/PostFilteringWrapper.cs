@@ -49,7 +49,30 @@ namespace NLog.Targets.Wrappers
     /// A target wrapper that filters buffered log entries based on a set of conditions
     /// that are evaluated on all events.
     /// </summary>
-    [Target("PostFilteringWrapper",IgnoresLayout=true,IsWrapper=true)]
+    /// <remarks>
+    /// PostFilteringWrapper must be used with some type of buffering target or wrapper, such as
+    /// AsyncTargetWrapper, BufferingWrapper or ASPNetBufferingWrapper.
+    /// </remarks>
+    /// <example>
+    /// <p>
+    /// This example works like this. If there are no Warn,Error or Fatal messages in the buffer
+    /// only Info messages are written to the file, but if there are any warnings or errors, 
+    /// the output includes detailed trace (levels &gt;= Debug). You can plug in a different type
+    /// of buffering wrapper (such as ASPNetBufferingWrapper) to achieve different
+    /// functionality.
+    /// </p>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/PostFilteringWrapper/NLog.config" />
+    /// <p>
+    /// The above examples assume just one target and a single rule. See below for
+    /// a programmatic configuration that's equivalent to the above config file:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/PostFilteringWrapper/Simple/Example.cs" />
+    /// </example>
+    [Target("PostFilteringWrapper", IgnoresLayout = true, IsWrapper = true)]
     public class PostFilteringTargetWrapper: WrapperTargetBase
     {
         private ConditionExpression _defaultFilter;

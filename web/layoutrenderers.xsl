@@ -67,13 +67,13 @@
                 </xsl:apply-templates>
             </table>
         </xsl:if>
-        <xsl:if test="documentation/example">
-            <h4>Example:</h4>
-            <xsl:apply-templates select="documentation/example" />
-        </xsl:if>
         <xsl:if test="documentation/remarks">
             <h4>Remarks:</h4>
             <xsl:apply-templates select="documentation/remarks" />
+        </xsl:if>
+        <xsl:if test="documentation/example">
+            <h4>Example:</h4>
+            <xsl:apply-templates select="documentation/example" />
         </xsl:if>
         <hr size="1" />
         <a href="layoutrenderers.html">Back to the layout renderer list.</a>

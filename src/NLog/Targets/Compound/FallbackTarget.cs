@@ -49,7 +49,21 @@ namespace NLog.Targets.Compound
     /// <summary>
     /// A compound target that provides fallback-on-error functionality.
     /// </summary>
-    [Target("FallbackGroup",IgnoresLayout=true,IsCompound=true)]
+    /// <example>
+    /// <p>This example causes the messages to be written to server1, 
+    /// and if it fails, messages go to server2.</p>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/FallbackGroup/NLog.config" />
+    /// <p>
+    /// The above examples assume just one target and a single rule. See below for
+    /// a programmatic configuration that's equivalent to the above config file:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/FallbackGroup/Simple/Example.cs" />
+    /// </example>
+    [Target("FallbackGroup", IgnoresLayout = true, IsCompound = true)]
     public class FallbackTarget: CompoundTargetBase
     {
         private int _currentTarget = 0;

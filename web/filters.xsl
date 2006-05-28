@@ -70,10 +70,6 @@
             <h4>Example:</h4>
             <xsl:apply-templates select="documentation/example" />
         </xsl:if>
-        <xsl:if test="documentation/remarks">
-            <h4>Remarks:</h4>
-            <xsl:apply-templates select="documentation/remarks" />
-        </xsl:if>
         <hr size="1" />
         <a href="filters.html">Back to the filter list.</a>
     </xsl:template>

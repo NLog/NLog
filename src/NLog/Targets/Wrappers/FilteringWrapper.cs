@@ -50,7 +50,20 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// A target wrapper that filters log entries based on a condition.
     /// </summary>
-    [Target("FilteringWrapper",IgnoresLayout=true,IsWrapper=true)]
+    /// <example>
+    /// <p>This example causes the messages not contains the string '1' to be ignored.</p>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/FilteringWrapper/NLog.config" />
+    /// <p>
+    /// The above examples assume just one target and a single rule. See below for
+    /// a programmatic configuration that's equivalent to the above config file:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/FilteringWrapper/Simple/Example.cs" />
+    /// </example>
+    [Target("FilteringWrapper", IgnoresLayout = true, IsWrapper = true)]
     public class FilteringTargetWrapper: WrapperTargetBase
     {
         private ConditionExpression _condition;
