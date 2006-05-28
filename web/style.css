@@ -531,6 +531,7 @@ pre.example code
     white-space: pre-wrap;       /* CSS3 - Text module (Candidate Recommendation) */
     word-wrap: break-word;       /* IE 5.5+ */
     font-family: Arial;
+    color: black;
 }
 
 .subexample

@@ -39,6 +39,9 @@ using System.Reflection;
 using System.Web.Services.Protocols;
 
 using NLog.Config;
+using System.IO;
+using System.Xml;
+using System.Net;
 
 namespace NLog.Targets
 {
@@ -48,6 +51,8 @@ namespace NLog.Targets
     [Target("WebServiceCall")]
     public sealed class WebServiceTarget: MethodCallTargetBase
     {
+        const string soapEnvelopeNamespace = "http://schemas.xmlsoap.org/soap/envelope/";
+
         /// <summary>
         /// Web service protocol
         /// </summary>
@@ -145,7 +150,37 @@ namespace NLog.Targets
 
         private void InvokeSoap11(object[] parameters)
         {
-            throw new NotSupportedException();
+            WebClient client = new WebClient();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+            request.Method = "POST";
+            request.ContentType = "text/xml; charset=utf-8";
+
+            string soapAction;
+
+            if (Namespace.EndsWith("/"))
+                soapAction = "SOAPAction: " + Namespace + MethodName;
+            else
+                soapAction = "SOAPAction: " + Namespace + "/" + MethodName;
+
+            using (Stream s = request.GetRequestStream())
+            {
+                using (XmlTextWriter xtw = new XmlTextWriter(s, System.Text.Encoding.UTF8))
+                {
+                    xtw.WriteStartElement("soap", "Envelope", soapEnvelopeNamespace);
+                    xtw.WriteStartElement("Body", soapEnvelopeNamespace);
+                    xtw.WriteStartElement(MethodName, Namespace);
+                    for (int i = 0; i < Parameters.Count; ++i)
+                    {
+                        xtw.WriteElementString(Parameters[i].Name, Convert.ToString(parameters[i]));
+                    }
+                    xtw.WriteEndElement();
+                    xtw.WriteEndElement();
+                    xtw.WriteEndElement();
+                }
+            }
+            using (WebResponse response = request.GetResponse())
+            {
+            }
         }
 
         private void InvokeSoap12(object[] parameters)
