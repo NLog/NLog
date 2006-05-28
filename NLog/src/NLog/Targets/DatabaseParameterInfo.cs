@@ -53,6 +53,16 @@ namespace NLog.Targets
         /// </summary>
         public DatabaseParameterInfo(){}
 
+        /// <summary>
+        /// Creates a new instance of <see cref="DatabaseParameterInfo"/>
+        /// and sets Name and Layout properties to the specified values.
+        /// </summary>
+        public DatabaseParameterInfo(string name, string layout)
+        {
+            Name = name;
+            Layout = layout;
+        }
+
         private Layout _compiledlayout;
         private string _name;
         private int _size = 0;

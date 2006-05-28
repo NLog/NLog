@@ -41,6 +41,21 @@ namespace NLog.Targets
     /// <summary>
     /// Discards logging messages optionally forcing the layouts to be calculated. Used mainly for debugging and benchmarking.
     /// </summary>
+    /// <example>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/Null/NLog.config" />
+    /// <p>
+    /// This assumes just one target and a single rule. More configuration
+    /// options are described <a href="config.html">here</a>.
+    /// </p>
+    /// <p>
+    /// To set up the log target programmatically use code like this:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/Null/Simple/Example.cs" />
+    /// </example>
     [Target("Null")]
     public sealed class NullTarget: Target
     {
