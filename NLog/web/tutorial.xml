@@ -20,7 +20,7 @@
     </p>
     <code lang="C#">
         <![CDATA[
-        static int Main()
+        static void Main()
         {
             Console.WriteLine("SuperApp started.");
             DoSomething();         
