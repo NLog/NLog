@@ -2,6 +2,7 @@
 
 	* Preliminary implementation of SOAP 1.1 for WebService target.
 	* Added deleteOldFileOnStartup to the File target
+	* Added replaceFileContentsOnEachWrite to the File target
 
 2006-05-26 Jaroslaw Kowalski <jaak@jkowalski.net>
 

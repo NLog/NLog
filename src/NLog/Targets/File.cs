@@ -176,6 +176,7 @@ namespace NLog.Targets
         private int _openFileCacheTimeout = 1;
         private bool _first = true;
         private bool _deleteOldFileOnStartup = false;
+        private bool _replaceFileContentsOnEachWrite = false;
 
         /// <summary>
         /// Creates a new instance of <see cref="FileTarget"/>.
@@ -261,6 +262,16 @@ namespace NLog.Targets
         {
             get { return _deleteOldFileOnStartup; }
             set { _deleteOldFileOnStartup = value; }
+        }
+
+        /// <summary>
+        /// Replace file contents on each write instead of appending log message at the end.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(false)]
+        public bool ReplaceFileContentsOnEachWrite
+        {
+            get { return _replaceFileContentsOnEachWrite; }
+            set { _replaceFileContentsOnEachWrite = value; }
         }
 
         /// <summary>
@@ -865,6 +876,15 @@ namespace NLog.Targets
                 }
             }
             _first = false;
+
+            if (ReplaceFileContentsOnEachWrite)
+            {
+                using (FileStream fs = File.Create(fileName))
+                {
+                    fs.Write(bytes, 0, bytes.Length);
+                }
+                return;
+            }
 
             //
             // IFileAppender.Write is the most expensive operation here
