@@ -46,8 +46,11 @@ using System.Net;
 namespace NLog.Targets
 {
     /// <summary>
-    /// Calls the specified webservice on each logging message.
+    /// Calls the specified web service on each logging message. 
     /// </summary>
+    /// <remarks>
+    /// The web service must implement a method that accepts a number of string parameters.
+    /// </remarks>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 
