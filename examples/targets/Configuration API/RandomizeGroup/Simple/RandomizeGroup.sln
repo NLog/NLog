@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomizeGroup", "RandomizeGroup.csproj", "{DE1A0AAC-8832-429D-90D2-360C11ADA8CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE1A0AAC-8832-429D-90D2-360C11ADA8CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE1A0AAC-8832-429D-90D2-360C11ADA8CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE1A0AAC-8832-429D-90D2-360C11ADA8CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE1A0AAC-8832-429D-90D2-360C11ADA8CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
