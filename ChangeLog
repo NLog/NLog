@@ -1,6 +1,7 @@
 2006-05-28 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Preliminary implementation of SOAP 1.1 for WebService target.
+	* Added deleteOldFileOnStartup to the File target
 
 2006-05-26 Jaroslaw Kowalski <jaak@jkowalski.net>
 
