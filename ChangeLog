@@ -3,6 +3,8 @@
 	* Preliminary implementation of SOAP 1.1 for WebService target.
 	* Added deleteOldFileOnStartup to the File target
 	* Added replaceFileContentsOnEachWrite to the File target
+	* We now have examples for 100% of targets, both
+	ready-to-run VS2005 projects and configuration files.
 
 2006-05-26 Jaroslaw Kowalski <jaak@jkowalski.net>
 
