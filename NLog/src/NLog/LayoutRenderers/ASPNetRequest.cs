@@ -44,6 +44,20 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// ASP.NET Request variable
     /// </summary>
+    /// <remarks>
+    /// Use this layout renderer to insert the value of the specified parameter of the
+    /// ASP.NET Request object.
+    /// </remarks>
+    /// <example>
+    /// <para>Example usage of ${aspnet-request}:</para>
+    /// <code lang="NLog Layout Renderer">
+    /// ${aspnet-request:item=v}
+    /// ${aspnet-request:querystring=v}
+    /// ${aspnet-request:form=v}
+    /// ${aspnet-request:cookie=v}
+    /// ${aspnet-request:serverVariable=v}
+    /// </code>
+    /// </example>
     [LayoutRenderer("aspnet-request")]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ASPNETRequestValueLayoutRenderer : LayoutRenderer
