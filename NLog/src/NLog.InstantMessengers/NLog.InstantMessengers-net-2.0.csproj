@@ -6,7 +6,6 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0CDDD399-95AB-472E-99C1-853902FC03C3}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NLog.InstantMessengers</RootNamespace>
     <AssemblyName>NLog.InstantMessengers</AssemblyName>
   </PropertyGroup>
@@ -34,7 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MSNTarget.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NLog\NLog-net-2.0.csproj">
