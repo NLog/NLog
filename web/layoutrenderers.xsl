@@ -49,11 +49,12 @@
 
     <xsl:template match="class" mode="details">
         <xsl:variable name="type_tag" select="attribute[@name='NLog.LayoutRendererAttribute']/property[@name='FormatString']/@value" />
+        <xsl:variable name="ignoresPadding" select="attribute[@name='NLog.LayoutRendererAttribute']/property[@name='IgnoresPadding']/@value" />
         <h3>${<xsl:value-of select="$type_tag" />} Layout Renderer</h3>
         <hr size="1" />
         <xsl:apply-templates select="documentation/summary" /><p/>
         <xsl:call-template name="detailssupportmatrix" />
-        <xsl:if test="property[not(@declaringType='NLog.LayoutRenderer')]">
+        <xsl:if test="property[not(@declaringType='NLog.LayoutRenderer')] or not($ignoresPadding='True')">
             <h4>Parameters:</h4>
             <table class="paramtable">
                 <tr>
@@ -65,6 +66,12 @@
                     <xsl:sort select="count(attribute[@name='NLog.Config.RequiredParameterAttribute'])" order="descending" />
                     <xsl:sort select="@name" />
                 </xsl:apply-templates>
+                <xsl:if test="not($ignoresPadding='True')">
+                    <xsl:apply-templates select="property[@declaringType='NLog.LayoutRenderer']" mode="parameter">
+                        <xsl:sort select="count(attribute[@name='NLog.Config.RequiredParameterAttribute'])" order="descending" />
+                        <xsl:sort select="@name" />
+                    </xsl:apply-templates>
+                </xsl:if>
             </table>
         </xsl:if>
         <xsl:if test="documentation/remarks">
