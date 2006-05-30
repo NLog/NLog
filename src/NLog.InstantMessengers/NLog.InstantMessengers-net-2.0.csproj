@@ -14,7 +14,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DOTNET;DOTNET2;DOTNET_2_0;NET_2_API</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -30,6 +30,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="XihSolutions.DotMSN, Version=2.0.1.24878, Culture=neutral, PublicKeyToken=99747dbf51b3821f">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libraries\XihSolutions.DotMSN.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MSNTarget.cs" />
