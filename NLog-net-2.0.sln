@@ -1,7 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NLog.VBTest-net-2.0", "tests\NLog.VBTest\NLog.VBTest-net-2.0.vbproj", "{2993B4C3-A0EE-43C8-84EB-97920E69B292}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog-net-2.0", "src\NLog\NLog-net-2.0.csproj", "{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Test-net-2.0", "tests\NLog.Test\NLog.Test-net-2.0.csproj", "{5EC49108-97AE-40EA-B550-8960E4522718}"
@@ -75,6 +73,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NLogC-net-2.0", "src\NLogC\NLogC-net-2.0.vcproj", "{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.InstantMessengers", "src\NLog.InstantMessengers\NLog.InstantMessengers.csproj", "{0CDDD399-95AB-472E-99C1-853902FC03C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,16 +85,6 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2993B4C3-A0EE-43C8-84EB-97920E69B292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2993B4C3-A0EE-43C8-84EB-97920E69B292}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2993B4C3-A0EE-43C8-84EB-97920E69B292}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{2993B4C3-A0EE-43C8-84EB-97920E69B292}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{2993B4C3-A0EE-43C8-84EB-97920E69B292}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{2993B4C3-A0EE-43C8-84EB-97920E69B292}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2993B4C3-A0EE-43C8-84EB-97920E69B292}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2993B4C3-A0EE-43C8-84EB-97920E69B292}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{2993B4C3-A0EE-43C8-84EB-97920E69B292}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{2993B4C3-A0EE-43C8-84EB-97920E69B292}.Release|Win32.ActiveCfg = Release|Any CPU
 		{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -135,6 +125,16 @@ Global
 		{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}.Release|Win32.ActiveCfg = Release|Win32
 		{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}.Release|Win32.Build.0 = Release|Win32
+		{0CDDD399-95AB-472E-99C1-853902FC03C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CDDD399-95AB-472E-99C1-853902FC03C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CDDD399-95AB-472E-99C1-853902FC03C3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0CDDD399-95AB-472E-99C1-853902FC03C3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0CDDD399-95AB-472E-99C1-853902FC03C3}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{0CDDD399-95AB-472E-99C1-853902FC03C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CDDD399-95AB-472E-99C1-853902FC03C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CDDD399-95AB-472E-99C1-853902FC03C3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0CDDD399-95AB-472E-99C1-853902FC03C3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0CDDD399-95AB-472E-99C1-853902FC03C3}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
