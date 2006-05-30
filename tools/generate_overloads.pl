@@ -46,6 +46,25 @@ for $level (@levels) {
         }
 
         /// <summary>
+        /// Writes the diagnostic message at the $level3 level.
+        /// </summary>$param0
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void $level(${arg0}object obj) {
+            if ($isenabled)
+                WriteToTargets($level2, "{0}", new object[] { obj } );
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the $level3 level.
+        /// </summary>$param0
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void $level(${arg0}IFormatProvider formatProvider, object obj) {
+            if ($isenabled)
+                WriteToTargets($level2, formatProvider, "{0}", new object[] { obj }, null);
+        }
+
+        /// <summary>
         /// Writes the diagnostic message and exception at the $level3 level.
         /// </summary>$param0
         /// <param name="message">A <see langword="string" /> to be written.</param>
