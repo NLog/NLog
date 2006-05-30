@@ -73,7 +73,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NLogC-net-2.0", "src\NLogC\NLogC-net-2.0.vcproj", "{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.InstantMessengers", "src\NLog.InstantMessengers\NLog.InstantMessengers.csproj", "{0CDDD399-95AB-472E-99C1-853902FC03C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.InstantMessengers-net-2.0", "src\NLog.InstantMessengers\NLog.InstantMessengers-net-2.0.csproj", "{0CDDD399-95AB-472E-99C1-853902FC03C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

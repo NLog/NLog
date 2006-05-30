@@ -109,6 +109,27 @@
         </csc>
     </target>
 
+    <target name="NLog.InstantMessengers" depends="configure, NLog">
+        <csc target="library" output="${nlog.dir}/NLog.InstantMessengers.dll" doc="${nlog.dir}/NLog.InstantMessengers.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}" warnaserror="true">
+            <sources basedir="src">
+                <include name="NLog.InstantMessengers/**/*.cs" />
+            </sources>
+            <references>
+                <include name="mscorlib.dll" />
+                <include name="System.dll" />
+                <include name="System.Xml.dll" />
+                <include name="System.Data.dll" />
+                <include name="System.Messaging.dll" />
+                <include name="System.Windows.Forms.dll" />
+                <include name="System.Web.dll" />
+                <include name="System.Web.Services.dll" />
+                <include name="Mono.Posix.dll" />
+                <include name="${nlog.dir}/NLog.dll" />
+            </references>
+            <arg value="${nlog.csc.args}"/>
+        </csc>
+    </target>
+
     <target name="xmldoc">
         <mkdir dir="build/doc" />
 
