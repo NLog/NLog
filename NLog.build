@@ -548,6 +548,7 @@
         <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET_1_1" />
         <property name="ilmerge.version" value="1.1" />
     </target>
+
     <target name="configure-net-2.0">
         <property name="ilmerge.version" value="2" />
         <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET2;DOTNET_2_0;NET_2_API" />
@@ -729,7 +730,7 @@
                 </resources>
             </csc>
             <exec program="${nlog.dir}/MakeNLogXSD.exe" 
-                commandline="NLog.xsd &quot;${nant.project.basedir}/build/doc/doc.xml&quot;"
+                commandline="NLog.xsd &quot;${nant.project.basedir}/build/doc/doc.xml&quot; NLog.InstantMessengers"
                 workingdir="${nlog.dir}" useruntimeengine="true" />
             <delete file="${nlog.dir}/MakeNLogXSD.exe" />
         </if>

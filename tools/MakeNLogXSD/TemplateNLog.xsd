@@ -11,6 +11,7 @@
 
     <xs:complexType name="NLogConfiguration">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="extensions" type="NLogExtensions" />
             <xs:element name="include" type="NLogInclude" />
             <xs:element name="variable" type="NLogVariable" />
             <xs:element name="targets" type="NLogTargets" />
