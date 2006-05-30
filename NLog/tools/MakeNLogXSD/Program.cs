@@ -268,7 +268,7 @@ namespace MakeNLogXSD
 
         static int Main(string[] args)
         {
-            if (args.Length != 2)
+            if (args.Length < 2)
             {
                 Console.WriteLine("Usage: MakeNLogXSD outputfile.xsd path_to_doc.xml");
                 return 1;
@@ -277,6 +277,21 @@ namespace MakeNLogXSD
             try
             {
                 _docXml.Load(args[1]);
+
+                for (int i = 2; i < args.Length; ++i)
+                {
+                    try
+                    {
+                        Assembly asm = Assembly.Load(args[i]);
+                        TargetFactory.AddTargetsFromAssembly(asm, "");
+                        LayoutRendererFactory.AddLayoutRenderersFromAssembly(asm, "");
+                        FilterFactory.AddFiltersFromAssembly(asm, "");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("WARNING: {0}", ex.Message);
+                    }
+                }
 
                 StringWriter sw = new StringWriter();
 
