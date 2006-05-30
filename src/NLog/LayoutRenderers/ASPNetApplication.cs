@@ -44,6 +44,29 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// ASP.NET Application variable.
     /// </summary>
+    /// <remarks>
+    /// Use this layout renderer to insert the value of the specified variable stored 
+    /// in the ASP.NET Application dictionary.
+    /// </remarks>
+    /// <example>
+    /// <para>You can set the value of an ASP.NET Application variable by using the following code:</para>
+    /// <code lang="C#">
+    /// <![CDATA[
+    /// HttpContext.Current.Application["myvariable"] = 123;
+    /// HttpContext.Current.Application["stringvariable"] = "aaa BBB";
+    /// HttpContext.Current.Application["anothervariable"] = DateTime.Now;
+    /// ]]>
+    /// </code>
+    /// <para>Example usage of ${aspnet-application}:</para>
+    /// <code lang="NLog Layout Renderer">
+    /// ${aspnet-application:variable=myvariable} - produces "123"
+    /// ${aspnet-application:variable=anothervariable} - produces "01/01/2006 00:00:00"
+    /// ${aspnet-application:variable=anothervariable:culture=pl-PL} - produces "2006-01-01 00:00:00"
+    /// ${aspnet-application:variable=myvariable:padding=5} - produces "  123"
+    /// ${aspnet-application:variable=myvariable:padding=-5} - produces "123  "
+    /// ${aspnet-application:variable=stringvariable:upperCase=true} - produces "AAA BBB"
+    /// </code>
+    /// </example>
     [LayoutRenderer("aspnet-application")]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ASPNETApplicationValueLayoutRenderer: LayoutRenderer
@@ -53,6 +76,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The variable name.
         /// </summary>
+        [RequiredParameter]
         public string Variable
         {
             get { return _variable; }

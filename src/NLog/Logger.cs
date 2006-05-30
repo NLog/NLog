@@ -203,6 +203,27 @@ namespace NLog
         }
 
         /// <summary>
+        /// Writes the diagnostic message at the specified level.
+        /// </summary>
+        /// <param name="level">the log level.</param>
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void Log(LogLevel level, object obj) {
+            if (IsEnabled(level))
+                WriteToTargets(level, "{0}", new object[] { obj } );
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the specified level.
+        /// </summary>
+        /// <param name="level">the log level.</param>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void Log(LogLevel level, IFormatProvider formatProvider, object obj) {
+            if (IsEnabled(level))
+                WriteToTargets(level, formatProvider, "{0}", new object[] { obj }, null);
+        }
+
+        /// <summary>
         /// Writes the diagnostic message and exception at the specified level.
         /// </summary>
         /// <param name="level">the log level.</param>
@@ -557,6 +578,25 @@ namespace NLog
         }
 
         /// <summary>
+        /// Writes the diagnostic message at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void Trace(object obj) {
+            if (IsTraceEnabled)
+                WriteToTargets(LogLevel.Trace, "{0}", new object[] { obj } );
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void Trace(IFormatProvider formatProvider, object obj) {
+            if (IsTraceEnabled)
+                WriteToTargets(LogLevel.Trace, formatProvider, "{0}", new object[] { obj }, null);
+        }
+
+        /// <summary>
         /// Writes the diagnostic message and exception at the <c>Trace</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
@@ -877,6 +917,25 @@ namespace NLog
         public void Debug(string message) {
             if (IsDebugEnabled)
                 WriteToTargets(LogLevel.Debug, message);
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Debug</c> level.
+        /// </summary>
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void Debug(object obj) {
+            if (IsDebugEnabled)
+                WriteToTargets(LogLevel.Debug, "{0}", new object[] { obj } );
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Debug</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void Debug(IFormatProvider formatProvider, object obj) {
+            if (IsDebugEnabled)
+                WriteToTargets(LogLevel.Debug, formatProvider, "{0}", new object[] { obj }, null);
         }
 
         /// <summary>
@@ -1203,6 +1262,25 @@ namespace NLog
         }
 
         /// <summary>
+        /// Writes the diagnostic message at the <c>Info</c> level.
+        /// </summary>
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void Info(object obj) {
+            if (IsInfoEnabled)
+                WriteToTargets(LogLevel.Info, "{0}", new object[] { obj } );
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Info</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void Info(IFormatProvider formatProvider, object obj) {
+            if (IsInfoEnabled)
+                WriteToTargets(LogLevel.Info, formatProvider, "{0}", new object[] { obj }, null);
+        }
+
+        /// <summary>
         /// Writes the diagnostic message and exception at the <c>Info</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
@@ -1523,6 +1601,25 @@ namespace NLog
         public void Warn(string message) {
             if (IsWarnEnabled)
                 WriteToTargets(LogLevel.Warn, message);
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Warn</c> level.
+        /// </summary>
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void Warn(object obj) {
+            if (IsWarnEnabled)
+                WriteToTargets(LogLevel.Warn, "{0}", new object[] { obj } );
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Warn</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void Warn(IFormatProvider formatProvider, object obj) {
+            if (IsWarnEnabled)
+                WriteToTargets(LogLevel.Warn, formatProvider, "{0}", new object[] { obj }, null);
         }
 
         /// <summary>
@@ -1849,6 +1946,25 @@ namespace NLog
         }
 
         /// <summary>
+        /// Writes the diagnostic message at the <c>Error</c> level.
+        /// </summary>
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void Error(object obj) {
+            if (IsErrorEnabled)
+                WriteToTargets(LogLevel.Error, "{0}", new object[] { obj } );
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Error</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void Error(IFormatProvider formatProvider, object obj) {
+            if (IsErrorEnabled)
+                WriteToTargets(LogLevel.Error, formatProvider, "{0}", new object[] { obj }, null);
+        }
+
+        /// <summary>
         /// Writes the diagnostic message and exception at the <c>Error</c> level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
@@ -2169,6 +2285,25 @@ namespace NLog
         public void Fatal(string message) {
             if (IsFatalEnabled)
                 WriteToTargets(LogLevel.Fatal, message);
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Fatal</c> level.
+        /// </summary>
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void Fatal(object obj) {
+            if (IsFatalEnabled)
+                WriteToTargets(LogLevel.Fatal, "{0}", new object[] { obj } );
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Fatal</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        public void Fatal(IFormatProvider formatProvider, object obj) {
+            if (IsFatalEnabled)
+                WriteToTargets(LogLevel.Fatal, formatProvider, "{0}", new object[] { obj }, null);
         }
 
         /// <summary>
