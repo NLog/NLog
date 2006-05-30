@@ -72,6 +72,7 @@ namespace NLog.Targets
     public sealed class WebServiceTarget: MethodCallTargetBase
     {
         const string soapEnvelopeNamespace = "http://schemas.xmlsoap.org/soap/envelope/";
+        const string soap12EnvelopeNamespace = "http://www.w3.org/2003/05/soap-envelope";
 
         /// <summary>
         /// Web service protocol
@@ -205,15 +206,59 @@ namespace NLog.Targets
 
         private void InvokeSoap12(object[] parameters)
         {
-            throw new NotSupportedException();
-        }
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+            request.Method = "POST";
+            request.ContentType = "text/xml; charset=utf-8";
 
-        private void InvokeHttpGet(object[] parameters)
-        {
-            throw new NotSupportedException();
+            using (Stream s = request.GetRequestStream())
+            {
+                XmlTextWriter xtw = new XmlTextWriter(s, System.Text.Encoding.UTF8);
+
+                xtw.WriteStartElement("soap12", "Envelope", soap12EnvelopeNamespace);
+                xtw.WriteStartElement("Body", soap12EnvelopeNamespace);
+                xtw.WriteStartElement(MethodName, Namespace);
+                for (int i = 0; i < Parameters.Count; ++i)
+                {
+                    xtw.WriteElementString(Parameters[i].Name, Convert.ToString(parameters[i]));
+                }
+                xtw.WriteEndElement();
+                xtw.WriteEndElement();
+                xtw.WriteEndElement();
+                xtw.Flush();
+            }
+
+            WebResponse response = request.GetResponse();
+            response.Close();
         }
 
         private void InvokeHttpPost(object[] parameters)
+        {
+            string CompleteUrl;
+
+            if (MethodName.EndsWith("/"))
+                CompleteUrl = Url + MethodName;
+            else
+                CompleteUrl = Url + "/" + MethodName;
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(CompleteUrl);
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+
+            using (Stream s = request.GetRequestStream())
+            using (StreamWriter sw = new StreamWriter(s))
+            {
+                for (int i = 0; i < Parameters.Count; ++i)
+                {
+                    sw.Write(Parameters[i].Name + "=" + System.Web.HttpUtility.UrlEncodeUnicode(Convert.ToString(parameters[i])) + ((i < (Parameters.Count - 1)) ? "&" : ""));
+                }
+                sw.Flush();
+            }
+
+            WebResponse response = request.GetResponse();
+            response.Close();
+        }
+
+        private void InvokeHttpGet(object[] parameters)
         {
             throw new NotSupportedException();
         }
