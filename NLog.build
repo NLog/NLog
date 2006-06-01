@@ -12,6 +12,7 @@
     <property name="ssh.program" value="plink" />
     <property name="scp.args" value="-q -batch" />
     <property name="ssh.args" value="-batch" />
+    <property name="benchmark.mode" value="short" />
 
     <property name="deploy.host" value="jaak@sav.net" />
     
@@ -29,6 +30,7 @@
     <property name="nlog.package.name" value="${tstamp.date}" unless="${property::exists('nlog.package.name')}" />
     <property name="nlog.release.dir" value="releases/${nlog.package.name}" />
     <property name="ilmerge.version" value="1" />
+    <property name="log4net.bin.dir" value="../log4net-1.2.10/bin" />
 
     <property name="installer.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-setup.exe" />
     <property name="installer.debug.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-setup-debug.exe" />
@@ -306,6 +308,7 @@
             </references>
         </csc>
         <copy file="tests/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark.exe.config" />
+        <exec program="${nlog.dir}/NLog.Benchmark.exe" workingdir="${nlog.dir}" commandline="Benchmark.xml ${benchmark.mode}" />
     </target>
 
     <target name="NLogC-1.0">
@@ -383,6 +386,8 @@
     </target>
 
     <target name="NLog.Benchmark-log4net" depends="NLog">
+        <copy file="${log4net.bin.dir}/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/${if(nlog.debug,'debug','release')}/log4net.dll" tofile="${nlog.dir}/log4net.dll" />
+        <delete file="${nlog.dir}/NLog.Benchmark-log4net.exe" failonerror="false" />
         <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net.exe" define="${nlog.define},LOG4NET" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="tests/NLog.Benchmark">
                 <include name="**/*.cs" />
@@ -394,11 +399,14 @@
                 <include name="System.Xml.dll" />
             </references>
         </csc>
-        <copy file="tests/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net.exe.config" />
+        <copy file="tests/NLog.Benchmark/log4net.config" tofile="${nlog.dir}/log4net.config" />
+        <exec program="${nlog.dir}/NLog.Benchmark-log4net.exe" workingdir="${nlog.dir}" commandline="Benchmark-log4net.xml ${benchmark.mode}" />
     </target>
 
     <target name="NLog.Benchmark-log4net-withformat" depends="NLog">
-        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe" define="${nlog.define},LOG4NET,LOG4NETWITHFORMAT" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
+        <copy file="${log4net.bin.dir}/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/${if(nlog.debug,'debug','release')}/log4net.dll" tofile="${nlog.dir}/log4net.dll" />
+        <delete file="${nlog.dir}/NLog.Benchmark-log4net.exe" failonerror="false" />
+        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net.exe" define="${nlog.define},LOG4NET,LOG4NETWITHFORMAT" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="tests/NLog.Benchmark">
                 <include name="**/*.cs" />
             </sources>
@@ -409,11 +417,14 @@
                 <include name="System.Xml.dll" />
             </references>
         </csc>
-        <copy file="tests/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe.config" />
+        <copy file="tests/NLog.Benchmark/log4net.config" tofile="${nlog.dir}/log4net.config" />
+        <exec program="${nlog.dir}/NLog.Benchmark-log4net.exe" workingdir="${nlog.dir}" commandline="Benchmark-log4net-withformat.xml ${benchmark.mode}" />
     </target>
 
     <target name="NLog.Benchmark-log4net-with-concrete-logger" depends="NLog">
-        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net-concrete-logger.exe" define="${nlog.define},LOG4NET_WITH_FASTLOGGER" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
+        <copy file="${log4net.bin.dir}/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/${if(nlog.debug,'debug','release')}/log4net.dll" tofile="${nlog.dir}/log4net.dll" />
+        <delete file="${nlog.dir}/NLog.Benchmark-log4net.exe" failonerror="false" />
+        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net.exe" define="${nlog.define},LOG4NET_WITH_FASTLOGGER" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="tests/NLog.Benchmark">
                 <include name="**/*.cs" />
             </sources>
@@ -424,8 +435,11 @@
                 <include name="System.Xml.dll" />
             </references>
         </csc>
-        <copy file="tests/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark-log4net-withformat.exe.config" />
+        <copy file="tests/NLog.Benchmark/log4net.config" tofile="${nlog.dir}/log4net.config" />
+        <exec program="${nlog.dir}/NLog.Benchmark-log4net.exe" workingdir="${nlog.dir}" commandline="Benchmark-log4net-concrete-logger.xml ${benchmark.mode}" />
     </target>
+
+    <target name="all-benchmarks" depends="NLog.Benchmark, NLog.Benchmark-log4net-withformat" />
 
     <target name="test" depends="NLog.UnitTests">
         <nunit2 failonerror="false">
@@ -512,24 +526,6 @@
             <formatter type="Xml" usefile="true" extension=".xml" outputdir="build/${buildsubdir}/test_results_xml" />
             <test assemblyname="${nlog.dir}/NLog.UnitTests.Web.dll" />
         </nunit2>
-    </target>
-
-    <target name="benchmark" depends="NLog.Benchmark, build">
-        <exec program="${nlog.dir}/NLog.Benchmark.exe" workingdir="${nlog.dir}" />
-    </target>
-
-    <target name="benchmark-all">
-        <exec program="nant.exe" commandline="-t:net-1.0 release benchmark" if="${framework::exists('net-1.0')}" />
-        <exec program="nant.exe" commandline="-t:net-1.1 release benchmark" if="${framework::exists('net-1.1')}" />
-        <exec program="nant.exe" commandline="-t:net-2.0 release benchmark" if="${framework::exists('net-2.0')}" />
-        <exec program="nant.exe" commandline="-t:mono-1.0 release benchmark" if="${framework::exists('mono-1.0')}" />
-    </target>
-
-    <target name="longbenchmark-all">
-        <exec program="nant.exe" commandline="-t:net-1.0 release longbenchmark" if="${framework::exists('net-1.0')}" />
-        <exec program="nant.exe" commandline="-t:net-1.1 release longbenchmark" if="${framework::exists('net-1.1')}" />
-        <exec program="nant.exe" commandline="-t:net-2.0 release longbenchmark" if="${framework::exists('net-2.0')}" />
-        <exec program="nant.exe" commandline="-t:mono-1.0 release longbenchmark" if="${framework::exists('mono-1.0')}" />
     </target>
 
     <target name="configure-mono-1.0">

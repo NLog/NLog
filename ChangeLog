@@ -1,5 +1,9 @@
+2006-05-31 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Grammar issues (thanks Ron)
+	* Added "separator" option to the ${stacktrace} layout renderer.
+
 2006-05-30 Inez Korczynski <korczynski@gmail.com>
-  * Implementation of SOAP 1.2 and POST for WebService target.
+	* Implementation of SOAP 1.2 and POST for WebService target.
 
 2006-05-28 Jaroslaw Kowalski <jaak@jkowalski.net>
 

@@ -10,13 +10,13 @@
                 was mostly console-based, programmers used to output tracing messages
                 using <a href="http://www.cplusplus.com/ref/cstdio/printf.html">printf</a>()
                 statements.
-                Few years later, the world has seen a huge advancement in technology
+                Today's world has seen huge advancement in technology
                 and printf() was replaced with Console.WriteLine()...
             </i>
         </font>
     </div>
     <p>
-        Every one of us has surely written code similar to the following:
+        We've all written code similiar to the following:
     </p>
     <code lang="C#">
         <![CDATA[
@@ -28,7 +28,7 @@
         }]]>
     </code>
 
-    <p>Console.WriteLine() statements in the above example are called "tracing statements", 
+    <p>Console.WriteLine() statements in the above example are called "tracing statements"
         because they are only used to report our application's control flow and have no
         other function. The output of Console.WriteLine() is called the program trace.
         In this example, the tracing statements produce output that
@@ -48,14 +48,14 @@
     <ul>
         <li>
             the ability to control the level of detail of our trace messages (such as displaying 
-            only warnings and errors or very detailed program trace).
+            only warnings and errors or very detailed program trace),
         </li>
         <li>the possibility of turning the tracing on and off for components of our proram separately,
-            without turning the application off and recompiling it.</li>
+            without turning the application off and recompiling it,</li>
         <li>
-            writing trace messages to the file, system log, message queue or other output
+            writing trace messages to the file, system log, message queue or other output,
         </li>
-        <li>being able to send particularly important messages by email or store them in a database
+        <li>being able to send particularly important messages by email or store them in a database,
             </li>
         <li>and others...</li>
     </ul>
@@ -194,7 +194,7 @@
         ]]>
     </code>
     <p>
-        Notice how Visual Studio suggests us the possible XML element names and attribute names/values.
+        Notice how Visual Studio suggests the possible XML element names and attribute names/values.
         Once we type <b>xsi:</b>, we get a list of available log targets.
     </p>
     <img src="introduction_target_intellisense.gif" />
@@ -215,8 +215,10 @@
     <p>
         In order to send a diagnostic message, we use a Logger object, whose methods are named after supported log
         levels (Debug(), Info(), Fatal() and so on). Logger objects can be created thanks to the LogManager class.
-        It's probably the best idea to use logger names which correspond to the class name in our application, so we'll be
-        using LogManager.GetCurrentClassLogger(), which creates a log source for our current class.
+        It's recommended that logger names correspond to the full class names
+        in the application. The LogManager object has a 
+        GetCurrentClassLogger() method that automatically creates a logger
+        based on the class its being called from.
     </p>
     <p>
         Let's modify the wizard-generated C# file by adding "using NLog" statement at the beginning, 
@@ -274,11 +276,10 @@
         More advanced logging scenario
     </h4>
     <p>
-        Let's assume, that we also want our log messages to go to a file. In addition, we want to
-        keep track of the current stack trace (names of methods that are currently executing) and
-        add some coloring to our console output.
-        Let's define another <x><target /></x> of type "File" and let's route all messages to it.
-        We'll be changing the log level to Trace as well.
+        Let's record our log messages, along with some contextual information
+        such as the the current stack trace, to both a file and the console. To
+        do this we need to defined another <target /> of type "File" and tell
+        the <logger /> node that we want write to it.
     </p>
     <code lang="XML">
         <![CDATA[<?xml version="1.0" encoding="utf-8" ?>
@@ -371,7 +372,7 @@ Program.Main This is a Fatal error message
     <img src="introduction_coloredconsole_en.gif" />
     <p>
         Now let's modify our configuration a bit. The typical requirement is to have
-        a different level of detal depending on the output. For example, we only
+        a different level of detail depending on the output. For example, we only
         want messages whose level is Info and higher written to the console
         and we want ALL messages to be written to the file.
         With NLog, you only need to change the <x><rules /></x> 
@@ -386,14 +387,14 @@ Program.Main This is a Fatal error message
         ]]>
     </code>
     <p>
-        After running the program we find that Trace and Debug messages can only be found in the file, while
-        they aren't displayed to the console.
+        After running the program we find that Trace and Debug messages are
+        only found in the file and aren't displayed on the console.
     </p>
     <h2>Logging configuration</h2>
     <p>
         It's now time to describe the NLog configuration mechanism. Unlike other tools, NLog attempts
         to automatically configure itself on startup, by looking for the configuration files in some standard places. 
-        The following files are being attempted for a stand-alone *.exe application: 
+        The following locations will be searched when executing a stand-alone *.exe application:
     </p>
     <ul>
         <li>
@@ -433,7 +434,7 @@ Program.Main This is a Fatal error message
         </li>
     </ul>
     <p>
-        .NET Compact Framework doesn't have the notion of an application configuration file (*.exe.config) 
+        The .NET Compact Framework doesn't recognize application configuration files (*.exe.config) 
         nor environmental variables, so NLog only looks in these locations:
     </p>
     <ul>
@@ -492,7 +493,7 @@ Program.Main This is a Fatal error message
         You can use the following elements as children to <x>
             <nlog />
         </x>. The first two elements from the list are required to be present in all
-        NLog configuration files, the remaining ones are optional and can be used in 
+        NLog configuration files, the remaining ones are optional and can be useful in 
         advanced scenarios.
     </p>
     <ul>
@@ -551,8 +552,10 @@ Program.Main This is a Fatal error message
             <rules />
         </x> section. It is a simple routing table, where we define the list of targets
         that should be written to for each combination of source/logger name and log level.
-        Each rule can also be final, which means that no further rules are processed as soon as
-        this one matches.
+        Rules are processed starting with the first rule in the list. When a
+        rule matches, log messages are directed to target(s) in that rule. If a
+        rule is marked as final, rules beneath the current rule are not
+        processed.
     </p>
     <p>
         Each routing table entry is a <x>
@@ -721,9 +724,10 @@ Program.Main This is a Fatal error message
     <h4>Include files </h4>
     <p>
         It's sometimes desired to split the configuration file into many smaller ones.
-        NLog provides include file mechanism for that. To include an external file, you simply use
-        <x><include file="filename" /></x>. It's worth to notice that filename may
-        include layout renderers, so it's possible to include different files based on environmental properties.
+        NLog provides an include file mechanism for that. To include an external file, you simply use
+        It's worth noting that the fileName attribute, just like most attributes in
+        NLog config file(s), may include dynamic values using the familiar
+        ${var} notation, so it's possible to include different files based on environmental properties.
         The following configuration example demonstrates this, by loading file whose name is derived from
         the name of the machine we're running on.
     </p>
@@ -757,9 +761,9 @@ Program.Main This is a Fatal error message
 
     <h4>Automatic reconfiguration</h4>
     <p>
-        Configuration file is read automatically read at program startup. In a long running process (such as a Windows 
-        service or an ASP.NET application) it's sometimes desired to temporarily increase the log level without
-        stopping the application. To allow for such reconfiguration, NLog can monitor logging
+        The configuration file is read automatically at program startup. In a long running process (such as a Windows 
+        service or an ASP.NET application) it's sometimes desirable to temporarily increase the log level without
+        stopping the application. NLog can monitor logging
         configuration files and re-read them each time they are modified. To enable this mechanism, you simply set
         <x><nlog autoReload="true" /></x> in your configuration file. Note that automatic reconfiguration 
         supports include files, so each time one of the files include is changed, the entire configuration gets reloaded.
@@ -772,8 +776,9 @@ Program.Main This is a Fatal error message
         usually in an ASP.NET process, where the aspnet_wp.exe or w3wp.exe process may not have write access to the directory
         where we want to store logs.
         
-        Because NLog "eats" any exceptions that may occur during logging, application may not be notified about
-        any problems. There are some ways to change this behaviour.
+        NLog is designed to swallow run-time exceptions that may result from
+        logging. The following settings can change this behavior and/or
+        redirect these messages.
     </p>
     <ul>
         <li>
@@ -793,7 +798,7 @@ Program.Main This is a Fatal error message
         <li>
             <x>
                 <nlog internalLogLevel="Trace|Debug|Info|Warn|Error|Fatal" />
-            </x> - determines internal log level. The higher the level, the less verbose is the internal log output.
+            </x> - determines internal log level. The higher the level, the less verbose the internal log output.
         </li>
         <li>
             <x>
@@ -821,10 +826,9 @@ Program.Main This is a Fatal error message
         <li>and others described on <a href="http://www.nlog-project.org/targets.html">http://www.nlog-project.org/targets.html</a></li>
     </ul>
     <p>
-        To define a wrapper or compound target in the configuration file, we
-        simply nest the wrapped target inside the wrapping target element.
-        You can even wrap a wrapper target with no limit on the depth, so we can
-        modify the behaviour of a target in more than one way.
+        To define a wrapper or compound target in the configuration file,
+        simply nest a target node within another target node. You can even wrap
+        a wrapper target. There are no limits on depth.
         For example, to add asynchronous logging with retry-on-error functionality
         add this to your configuration file:
     </p>
