@@ -71,14 +71,12 @@ namespace NLog.LayoutRenderers
     {
         private StackTraceFormat _format = StackTraceFormat.Flat;
         private int _topFrames = 3;
+        private string _separator = " => ";
 
         /// <summary>
         /// The output format of the stack trace.
         /// </summary>
-        /// <remarks>
-        /// Allowed values are <c>raw</c>, <c>flat</c> and <c>detailedflat</c>.
-        /// </remarks>
-        [System.ComponentModel.DefaultValue("flat")]
+        [System.ComponentModel.DefaultValue("Flat")]
         public StackTraceFormat Format
         {
             get { return _format; }
@@ -93,6 +91,16 @@ namespace NLog.LayoutRenderers
         {
             get { return _topFrames; }
             set { _topFrames = value; }
+        }
+
+        /// <summary>
+        /// Stack frame separator string.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(" => ")]
+        public string Separator
+        {
+            get { return _separator; }
+            set { _separator = value; }
         }
 
 
@@ -148,7 +156,7 @@ namespace NLog.LayoutRenderers
                     {
                         StackFrame f = logEvent.StackTrace.GetFrame(i);
                         if (!first)
-                            builder.Append(" => ");
+                            builder.Append(_separator);
 
                         builder.Append(f.GetMethod().DeclaringType.Name);
                         builder.Append(".");
@@ -162,7 +170,7 @@ namespace NLog.LayoutRenderers
                     {
                         StackFrame f = logEvent.StackTrace.GetFrame(i);
                         if (!first)
-                            builder.Append(" => ");
+                            builder.Append(_separator);
 
                         builder.Append("[");
                         builder.Append(f.GetMethod());
