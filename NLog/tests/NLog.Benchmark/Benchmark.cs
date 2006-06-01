@@ -83,6 +83,7 @@ class Bench
             _output.WriteAttributeString("name", name);
         }
         _currentTestName = name;
+        Console.Write(name);
         _stopWatch.Start();
     }
 
@@ -98,6 +99,11 @@ class Bench
             _output.WriteAttributeString("nanosecondsPerLog", Convert.ToString(_stopWatch.Nanoseconds / _repeat));
             _output.WriteEndElement();
         }
+        //Console.Write("totalTime: {0} ", Convert.ToString(TimeSpan.FromSeconds(_stopWatch.Seconds)));
+        //Console.Write("repetitions: {0} ", Convert.ToString(_repeat));
+        //Console.Write("logsPerSecond: {0} ", Convert.ToString(_repeat /_stopWatch.Seconds));
+        Console.Write("nanosecondsPerLog: {0} ", Convert.ToString(_stopWatch.Nanoseconds / _repeat));
+        Console.WriteLine();
     }
 
     public static void Main(string[]args)
@@ -117,6 +123,10 @@ class Bench
             {
                 repeat2 /= 10;
             }
+            if (args[1] == "veryshort")
+            {
+                repeat2 /= 100;
+            }
             if (args[1] == "verylong")
             {
                 repeat *= 100;
@@ -131,6 +141,7 @@ class Bench
         ILog logger3 = LogManager.GetLogger("null2");
         ILog logger4 = LogManager.GetLogger("file1");
         ILog logger5 = LogManager.GetLogger("file2");
+        ILog logger6 = LogManager.GetLogger("file3");
 #elif LOG4NET_WITH_FASTLOGGER
         log4net.Config.XmlConfigurator.Configure(new FileInfo("log4net.config"));
 
@@ -139,12 +150,14 @@ class Bench
         FastLogger logger3 = FastLoggerLogManager.GetLogger("null2");
         FastLogger logger4 = FastLoggerLogManager.GetLogger("file1");
         FastLogger logger5 = FastLoggerLogManager.GetLogger("file2");
+        FastLogger logger6 = FastLoggerLogManager.GetLogger("file3");
 #else        
         Logger logger1 = LogManager.GetLogger("nonlogger");
         Logger logger2 = LogManager.GetLogger("null1");
         Logger logger3 = LogManager.GetLogger("null2");
         Logger logger4 = LogManager.GetLogger("file1");
         Logger logger5 = LogManager.GetLogger("file2");
+        Logger logger6 = LogManager.GetLogger("file3");
 #endif
         // _output = new XmlTextWriter(Console.Out);
         for (int i = 0; i < warmup; ++i)
@@ -167,10 +180,11 @@ class Bench
         _output.Formatting = Formatting.Indented;
         _output.WriteStartElement("results");
         LogTest(logger1, "Non-logging", repeat);
-        LogTest(logger4, "File target", repeat2);
         LogTest(logger3, "Null-target without layout", repeat);
         LogTest(logger2, "Null-target with layout rendering", repeat);
+        LogTest(logger4, "File target", repeat2);
         LogTest(logger5, "Async file target", repeat2);
+        LogTest(logger6, "Buffered file target", repeat2);
 
         _output.WriteEndElement();
         _output.Close();
