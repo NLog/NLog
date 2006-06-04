@@ -1,11 +1,25 @@
-Microsoft Visual Studio Solution File, Format Version 8.00
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.AsyncBenchmark-net-2.0", "NLog.AsyncBenchmark\NLog.AsyncBenchmark-net-2.0.csproj", "{F666E83B-3806-4F90-A577-809AA8EEED0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog-net-2.0", "..\src\NLog\NLog-net-2.0.csproj", "{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}"
+EndProject
 Global
-	GlobalSection(SolutionConfiguration) = preSolution
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfiguration) = postSolution
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F666E83B-3806-4F90-A577-809AA8EEED0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F666E83B-3806-4F90-A577-809AA8EEED0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F666E83B-3806-4F90-A577-809AA8EEED0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F666E83B-3806-4F90-A577-809AA8EEED0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-	EndGlobalSection
-	GlobalSection(ExtensibilityAddIns) = postSolution
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

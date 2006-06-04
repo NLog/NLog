@@ -68,19 +68,20 @@ namespace NLog.Internal.FileAppenders
         public SingleProcessFileAppender(string fileName, IFileOpener opener)
         {
             _fileName = fileName;
-            _file = opener.Create(fileName, FileShare.ReadWrite);
+            _file = opener.Create(fileName, false);
         }
 
         public void Write(byte[] bytes)
         {
-            lock (this)
-            {
-                _file.Write(bytes, 0, bytes.Length);
-            }
+            if (_file == null)
+                return;
+            _file.Write(bytes, 0, bytes.Length);
         }
 
         public void Flush()
         {
+            if (_file == null)
+                return;
             _file.Flush();
         }
 
@@ -88,6 +89,7 @@ namespace NLog.Internal.FileAppenders
         {
             InternalLogger.Trace("Closing '{0}'", _fileName);
             _file.Close();
+            _file = null;
         }
 
         public bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)

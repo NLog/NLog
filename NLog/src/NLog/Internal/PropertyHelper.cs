@@ -67,6 +67,27 @@ namespace NLog.Internal
             return output;
         }
 
+        private static object GetEnumValue(Type enumType, string value)
+        {
+            if (enumType.IsDefined(typeof(FlagsAttribute), false))
+            {
+                ulong union = 0;
+
+                foreach (string v in value.Split(','))
+                {
+                    FieldInfo enumField = enumType.GetField(v.Trim(), BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
+                    union |= Convert.ToUInt64(enumField.GetValue(null));
+                }
+                object retval = Convert.ChangeType(union, Enum.GetUnderlyingType(enumType), CultureInfo.InvariantCulture);
+                return retval;
+            }
+            else
+            {
+                FieldInfo enumField = enumType.GetField(value, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
+                return enumField.GetValue(null);
+            }
+        }
+
         public static bool SetPropertyFromString(object o, string name, string value0, NameValueCollection variables)
         {
             string value = ExpandVariables(value0, variables);
@@ -90,8 +111,7 @@ namespace NLog.Internal
 
                 if (propInfo.PropertyType.IsEnum)
                 {
-                    FieldInfo enumField = propInfo.PropertyType.GetField(value, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
-                    newValue = enumField.GetValue(null);
+                    newValue = GetEnumValue(propInfo.PropertyType, value);
                 }
                 else
                 {
