@@ -1,36 +1,36 @@
 <?xml version="1.0" ?>
 <project SchemaVersion="1.3">
     <assemblies>
-        <assembly location=".\build\doc\NLog.dll" documentation=".\build\doc\NLog.xml" />
+        <assembly location="./build/doc/NLog.dll" documentation="./build/doc/NLog.xml" />
     </assemblies>
     <documenters>
         <documenter name="JavaDoc">
-            <property name="OutputDirectory" value="..\..\..\doc\" />
+            <property name="OutputDirectory" value="../../../doc/" />
         </documenter>
         <documenter name="LaTeX">
-            <property name="OutputDirectory" value=".\doc\" />
+            <property name="OutputDirectory" value="./doc/" />
             <property name="TextFileFullName" value="Documentation.tex" />
             <property name="TexFileBaseName" value="Documentation" />
             <property name="LatexCompiler" value="latex" />
-            <property name="TexFileFullPath" value=".\doc\Documentation.tex" />
+            <property name="TexFileFullPath" value="./doc/Documentation.tex" />
         </documenter>
         <documenter name="LinearHtml">
-            <property name="OutputDirectory" value=".\doc\" />
+            <property name="OutputDirectory" value="./doc/" />
             <property name="Title" value="An NDoc Documented Class Library" />
         </documenter>
         <documenter name="MSDN">
-            <property name="OutputDirectory" value=".\build\doc\help\" />
+            <property name="OutputDirectory" value="./build/doc/help/" />
             <property name="HtmlHelpName" value="NLog" />
             <property name="Title" value="NLog Logging Library" />
             <property name="ShowVisualBasic" value="True" />
             <property name="SdkLinksOnWeb" value="True" />
             <property name="IncludeFavorites" value="True" />
             <property name="RootPageTOCName" value="Welcome to NLog" />
-            <property name="RootPageFileName" value=".\build\doc\helpweb\helpindex.html" />
+            <property name="RootPageFileName" value="./build/doc/helpweb/helpindex.html" />
             <property name="BinaryTOC" value="False" />
             <property name="FilesToInclude" value="targets.html|filters.html|layoutrenderers.html" />
-            <property name="AdditionalContentResourceDirectory" value=".\build\doc\helpweb\" />
-            <property name="ExtensibilityStylesheet" value=".\build\doc\syntax.xsl" />
+            <property name="AdditionalContentResourceDirectory" value="./build/doc/helpweb/" />
+            <property name="ExtensibilityStylesheet" value="./build/doc/syntax.xsl" />
             <property name="ShowMissingParams" value="True" />
             <property name="ShowMissingReturns" value="True" />
             <property name="DocumentInheritedFrameworkMembers" value="False" />
@@ -41,18 +41,18 @@
             <property name="InstanceMembersDefaultToSafe" value="True" />
         </documenter>
         <documenter name="MSDN 2003">
-            <property name="OutputDirectory" value=".\doc\" />
+            <property name="OutputDirectory" value="./doc/" />
             <property name="Title" value="An NDoc Documented Class Library" />
-            <property name="ExtensibilityStylesheet" value=".\syntax.xsl" />
+            <property name="ExtensibilityStylesheet" value="./syntax.xsl" />
         </documenter>
         <documenter name="VS.NET 2003">
-            <property name="OutputDirectory" value=".\doc\" />
+            <property name="OutputDirectory" value="./doc/" />
             <property name="HtmlHelpName" value="Documentation" />
             <property name="Title" value="An NDoc documented library" />
-            <property name="ExtensibilityStylesheet" value=".\syntax.xsl" />
+            <property name="ExtensibilityStylesheet" value="./syntax.xsl" />
         </documenter>
         <documenter name="XML">
-            <property name="OutputFile" value=".\build\doc\doc.xml" />
+            <property name="OutputFile" value="./build/doc/doc.xml" />
             <property name="ShowMissingSummaries" value="True" />
             <property name="DocumentInheritedFrameworkMembers" value="False" />
             <property name="DocumentAttributes" value="True" />

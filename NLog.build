@@ -18,8 +18,9 @@
     
     <property name="nlog.csc.args" value="/nowarn:1591" />
     <property name="ndoc.version" value="2.0" />
-    <property name="ndoc.path" value="D:\Apps\NDoc\${ndoc.version}" dynamic="true" />
-    <property name="ndoc.console.exe" value="${ndoc.path}/ndocconsole.exe" dynamic="true" />
+	<property name="ndoc.basedir" value="D:\Apps\NDoc" unless="${property::exists('ndoc.basedir')}" />
+    <property name="ndoc.path" value="${ndoc.basedir}/${ndoc.version}" dynamic="true" />
+    <property name="ndoc.console.exe" value="${ndoc.path}/NDocConsole.exe" dynamic="true" />
     <property name="ndoc.console.args" value="-referencepath &quot;${framework::get-assembly-directory(framework::get-target-framework())}&quot;" dynamic="true" />
     <property name="prettyprinter.exe" value="tools/PrettyPrinter.exe" />
     <property name="ndocsyntax.path" value="tools/NDocSyntax.exe" />
@@ -143,7 +144,8 @@
 
         <property name="oldframework" value="${nant.settings.currentframework}" />
         
-        <property name="nant.settings.currentframework" value="net-2.0" />
+        <property name="nant.settings.currentframework" value="mono-2.0" failonerror="false" />
+        <property name="nant.settings.currentframework" value="net-2.0" failonerror="false" />
 
         <csc target="library" output="build/doc/NLog.dll" doc="build/doc/NLog.xml" warninglevel="0" define="DOCUMENTATION;NANT">
             <sources basedir="src">
@@ -162,7 +164,9 @@
             </references>
         </csc>
 
-        <exec program="${ndocsyntax.path}" commandline="build/doc/NLog.xml" workingdir="." />
+        <exec program="${ndocsyntax.path}" 
+              commandline="build/doc/NLog.xml" 
+              workingdir="." useruntimeengine="true" />
         <uptodate property="xmldoc.uptodate">
             <targetfiles>
                 <include name="build/doc/doc.xml" />
@@ -172,7 +176,10 @@
             </sourcefiles>
         </uptodate>
         <if test="${not xmldoc.uptodate}">
-            <exec program="${ndoc.console.exe}" verbose="true" workingdir="." commandline="${ndoc.console.args} -documenter=XML -project=./NLog.ndoc" />
+            <exec program="${ndoc.console.exe}" 
+                  verbose="true" workingdir="." 
+                  commandline="${ndoc.console.args} -documenter=XML -project=./NLog.ndoc" 
+                  useruntimeengine="true" />
             <exec program="${ndocsyntax.path}" commandline="build/doc/doc.xml" workingdir="." />
         </if>
         <echo message="Getting target, filter and layout renderer names from build/doc/doc.xml ..." />
@@ -813,8 +820,10 @@
     </target>
 
     <target name="webxmlwithsyntax">
-        <mkdir dir="build\doc\webxmlwithsyntax" />
-        <exec program="${ndocsyntax.path}" commandline="-outDir build\doc\webxmlwithsyntax web\*.xml" workingdir="." />
+        <mkdir dir="build/doc/webxmlwithsyntax" />
+        <exec program="${ndocsyntax.path}" 
+              commandline="-outDir build/doc/webxmlwithsyntax web\*.xml" 
+              workingdir="." useruntimeengine="true" />
     </target>
 
     <target name="website" depends="xmldoc, webxmlwithsyntax">
