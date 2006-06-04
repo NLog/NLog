@@ -1,3 +1,11 @@
+2006-06-04 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Fixed compilation, schema generationa and website building on Linux/Mono.
+	* Updated version number to 1.0 (preparing for the release)
+	* Optimized file appenders
+	* added support for flags-type enumerations
+	* Benchmark updates
+	* Configurable stacktrace/separator
+
 2006-05-31 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Grammar issues (thanks Ron)
 	* Added "separator" option to the ${stacktrace} layout renderer.
