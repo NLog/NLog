@@ -1162,7 +1162,7 @@ namespace NLog.Targets
             if (enableConcurrentWrite)
                 fileShare = FileShare.ReadWrite;
 
-#if NET_2_API && !MONO
+#if DOTNET_2_0
             if (EnableFileDelete)
             {
                 fileShare |= FileShare.Delete;
