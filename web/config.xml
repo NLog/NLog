@@ -33,7 +33,7 @@
         application config file (<code>applicationname.exe.config</code> - let's call it 
         <code>App.config</code>) and the other used in <code>.nlog</code> config files.</p>
     <h4>App.config file format</h4>
-    <code lang="XML" src="examples/web/App.config" />
+    <code lang="XML" src="examples/web/app.config" />
     <h4>.nlog file format</h4>
     <code lang="XML" src="examples/web/config1.nlog" />
     <h4>Configuration parameters</h4>

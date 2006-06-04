@@ -822,7 +822,7 @@
     <target name="webxmlwithsyntax">
         <mkdir dir="build/doc/webxmlwithsyntax" />
         <exec program="${ndocsyntax.path}" 
-              commandline="-outDir build/doc/webxmlwithsyntax web\*.xml" 
+              commandline="-outDir build/doc/webxmlwithsyntax web/*.xml" 
               workingdir="." useruntimeengine="true" />
     </target>
 
@@ -977,7 +977,7 @@
     </target>
     
     <target name="load-clover">
-        <loadtasks assembly="${clover.home}\CloverNAnt-0.85.dll" />
+        <loadtasks assembly="${clover.home}/CloverNAnt-0.85.dll" />
     </target>
 
     <target name="clover" depends="load-clover">
