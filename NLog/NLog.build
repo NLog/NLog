@@ -180,7 +180,9 @@
                   verbose="true" workingdir="." 
                   commandline="${ndoc.console.args} -documenter=XML -project=./NLog.ndoc" 
                   useruntimeengine="true" />
-            <exec program="${ndocsyntax.path}" commandline="build/doc/doc.xml" workingdir="." />
+            <exec program="${ndocsyntax.path}" 
+                  commandline="build/doc/doc.xml" 
+                  workingdir="." useruntimeengine="true" />
         </if>
         <echo message="Getting target, filter and layout renderer names from build/doc/doc.xml ..." />
         <script language="C#">
