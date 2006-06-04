@@ -74,7 +74,7 @@
         <property name="nlog.optimize" value="true" />
     </target>
 
-    <target name="binary_snapshot" depends="build, schema">
+    <target name="binary_snapshot" depends="build">
         <zip zipfile="${binary_snapshot.name}">
             <fileset basedir="build/${buildsubdir}">
                 <include name="bin/*" />
@@ -628,13 +628,13 @@
     <target name="allframeworks">
         <property name="debugrelease" value="release" />
         <property name="debugrelease" value="debug" if="${nlog.debug}" />
-        <exec program="nant" commandline="-t:net-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} binary_snapshot" />
-        <exec program="nant" commandline="-t:net-1.1 -D:nlog.package.name=${nlog.package.name} ${debugrelease} binary_snapshot" />
-        <exec program="nant" commandline="-t:net-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} binary_snapshot" />
-        <exec program="nant" commandline="-t:netcf-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} binary_snapshot" />
-        <exec program="nant" commandline="-t:netcf-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} binary_snapshot" />
-        <exec program="nant" commandline="-t:mono-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} binary_snapshot" />
-        <exec program="nant" commandline="-t:mono-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} binary_snapshot" />
+        <exec program="nant" commandline="-t:net-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build schema binary_snapshot" />
+        <exec program="nant" commandline="-t:net-1.1 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build schema binary_snapshot" />
+        <exec program="nant" commandline="-t:net-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build schema binary_snapshot" />
+        <exec program="nant" commandline="-t:netcf-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
+        <exec program="nant" commandline="-t:netcf-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
+        <exec program="nant" commandline="-t:mono-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build schema binary_snapshot" />
+        <exec program="nant" commandline="-t:mono-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build schema binary_snapshot" />
     </target>
 
     <target name="help" depends="xmldoc, helpwebsite">
