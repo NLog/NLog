@@ -32,66 +32,73 @@
 // 
 
 using System;
-using System.Xml;
-using System.IO;
-using System.Threading;
+using System.Text;
+using System.Reflection;
 using System.Collections;
-using System.Collections.Specialized;
 
-using NLog;
 using NLog.Config;
-
 using NLog.Internal;
+#if !NETCF
+using NLog.Internal.Win32;
+#endif
+using System.IO;
 
-namespace NLog.Internal.FileAppenders
+namespace NLog.Internal
 {
-    internal class RetryingMultiProcessFileAppender : IFileAppender
+    // optimized routines to get the size and last write time
+    // of the specified file
+    internal abstract class FileInfoHelper
     {
-        public static readonly IFileAppenderFactory TheFactory = new Factory();
+        public static readonly FileInfoHelper Helper;
 
-        public class Factory : IFileAppenderFactory
+        static FileInfoHelper()
         {
-            public IFileAppender Open(string fileName, IFileOpener opener)
+#if NETCF
+            Helper = new GenericFileInfoHelper();
+#else
+            if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Windows) ||
+                PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.WindowsNT))
             {
-                return new RetryingMultiProcessFileAppender(fileName, opener);
+                Helper = new Win32FileInfoHelper();
+            }
+            else
+            {
+                Helper = new GenericFileInfoHelper();
+            }
+#endif
+        }
+
+        public abstract bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime lastWriteTime, out long fileLength);
+    }
+
+#if !NETCF
+    internal class Win32FileInfoHelper : FileInfoHelper
+    {
+        public override bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime lastWriteTime, out long fileLength)
+        {
+            Win32FileHelper.BY_HANDLE_FILE_INFORMATION fi;
+
+            if (Win32FileHelper.GetFileInformationByHandle(fileHandle, out fi))
+            {
+                lastWriteTime = DateTime.FromFileTime(fi.ftLastWriteTime);
+                fileLength = fi.nFileSizeLow + (((long)fi.nFileSizeHigh) << 32);
+                return true;
+            }
+            else
+            {
+                lastWriteTime = DateTime.MinValue;
+                fileLength = -1;
+                return false;
             }
         }
-
-        private string _fileName;
-        private IFileOpener _opener;
-
-        public RetryingMultiProcessFileAppender(string fileName, IFileOpener opener)
+    }
+#endif
+    
+    internal class GenericFileInfoHelper : FileInfoHelper
+    {
+        public override bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime lastWriteTime, out long fileLength)
         {
-            _fileName = fileName;
-            _opener = opener;
-        }
-
-        public string FileName
-        {
-            get { return _fileName; }
-        }
-
-        public void Write(byte[] bytes)
-        {
-            using (FileStream fileStream = _opener.Create(_fileName, false))
-            {
-                fileStream.Write(bytes, 0, bytes.Length);
-            }
-        }
-
-        public void Flush()
-        {
-            // nothing to do
-        }
-
-        public void Close()
-        {
-            // nothing to do
-        }
-
-        public bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
-        {
-            FileInfo fi = new FileInfo(_fileName);
+            FileInfo fi = new FileInfo(fileName);
             if (fi.Exists)
             {
                 fileLength = fi.Length;

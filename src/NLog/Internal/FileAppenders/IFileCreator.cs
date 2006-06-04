@@ -50,6 +50,6 @@ namespace NLog.Internal.FileAppenders
     /// </summary>
     internal interface IFileOpener
     {
-        FileStream Create(string fileName, FileShare fileShare);
+        FileStream Create(string fileName, bool enableConcurrentWrite);
     }
 }

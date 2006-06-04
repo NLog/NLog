@@ -37,6 +37,7 @@ using System.Globalization;
 using System.IO;
 using System.Xml;
 using System.Runtime.InteropServices;
+using System.Security;
 
 public class StopWatch
 {
@@ -87,9 +88,9 @@ public class StopWatch
         get { return (double)1000000000 * (_stopTime - _startTime - _overhead) / _frequency; }
     }
 
-    [DllImport("kernel32.dll")]
+    [DllImport("kernel32.dll"),SuppressUnmanagedCodeSecurity]
     static extern bool QueryPerformanceCounter(out long val);
 
-    [DllImport("kernel32.dll")]
+    [DllImport("kernel32.dll"),SuppressUnmanagedCodeSecurity]
     static extern bool QueryPerformanceFrequency(out long val);
 }

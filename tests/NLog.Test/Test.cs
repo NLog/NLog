@@ -76,13 +76,18 @@ namespace NLog.Tester
             InternalLogger.LogToConsole = true;
             InternalLogger.LogLevel = LogLevel.Info;
 
-            logger.Trace("ttt");
-            logger.Debug("ala ma kota");
-            logger.Info("ala ma kanarka");
-            logger.Warn("aaa");
-            logger.Error("err");
-            logger.Fatal("fff");
-            A();
+            for (int i = 0; i < 100000; ++i)
+            {
+                logger.Trace("ttt");
+                logger.Debug("ala ma kota {0}", i);
+                logger.Info("ala ma kanarka");
+                logger.Warn("aaa");
+                logger.Error("err");
+                logger.Fatal("fff");
+                //if (i % 100 == 0)
+                //    Console.WriteLine("i: {0}", i);
+            }
+
         }
     }
 }

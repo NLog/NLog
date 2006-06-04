@@ -40,6 +40,9 @@ using System.Runtime.InteropServices;
 
 #if LOG4NET || LOG4NET_WITH_FASTLOGGER
 using log4net;
+#elif ENTLIB
+using System.Diagnostics;
+using Microsoft.Practices.EnterpriseLibrary.Logging;
 #else
 using NLog;
 #endif
@@ -70,6 +73,7 @@ public class NullAppenderWithLayout : AppenderSkeleton
 class Bench
 {
     private const int warmup = 10;
+    private const int PRIORITY_DEBUG = 2;
     private static int _repeat;
     private static string _currentTestName;
     private static XmlTextWriter _output;
@@ -83,7 +87,7 @@ class Bench
             _output.WriteAttributeString("name", name);
         }
         _currentTestName = name;
-        Console.Write(name);
+        Console.Write("{0} ", name);
         _stopWatch.Start();
     }
 
@@ -151,6 +155,13 @@ class Bench
         FastLogger logger4 = FastLoggerLogManager.GetLogger("file1");
         FastLogger logger5 = FastLoggerLogManager.GetLogger("file2");
         FastLogger logger6 = FastLoggerLogManager.GetLogger("file3");
+#elif ENTLIB
+        string logger1 = "nonlogger";
+        string logger2 = "null1";
+        string logger3 = "null2";
+        string logger4 = "file1";
+        string logger5 = "file2";
+        string logger6 = "file3";
 #else        
         Logger logger1 = LogManager.GetLogger("nonlogger");
         Logger logger2 = LogManager.GetLogger("null1");
@@ -160,21 +171,15 @@ class Bench
         Logger logger6 = LogManager.GetLogger("file3");
 #endif
         // _output = new XmlTextWriter(Console.Out);
-        for (int i = 0; i < warmup; ++i)
-        {
-            logger1.Debug("Warm up");
-            logger2.Debug("Warm up");
-            logger3.Debug("Warm up");
-            logger1.Info("Warm up");
-            logger2.Info("Warm up");
-            logger3.Info("Warm up");
-        }
 
         // warm up
         LogTest(logger1, null, 5);
         //LogTest(logger4, null, 5);
-        LogTest(logger3, null, 5);
         LogTest(logger2, null, 5);
+        LogTest(logger3, null, 5);
+        LogTest(logger4, null, 5);
+        LogTest(logger5, null, 5);
+        LogTest(logger6, null, 5);
 
         _output = new XmlTextWriter(outputFile, System.Text.Encoding.UTF8);
         _output.Formatting = Formatting.Indented;
@@ -185,6 +190,12 @@ class Bench
         LogTest(logger4, "File target", repeat2);
         LogTest(logger5, "Async file target", repeat2);
         LogTest(logger6, "Buffered file target", repeat2);
+#if NLOG
+        LogTest(LogManager.GetLogger("archive1"), "Non-concurrent archiving file target", repeat2);
+        LogTest(LogManager.GetLogger("archive2"), "Non-concurrent archiving file target (often)", repeat2);
+        LogTest(LogManager.GetLogger("archive3"), "Concurrent archiving file target", repeat2);
+        LogTest(LogManager.GetLogger("archive4"), "Concurrent archiving file target (often)", repeat2);
+#endif
 
         _output.WriteEndElement();
         _output.Close();
@@ -195,6 +206,8 @@ class Bench
             ILog logger, 
 #elif LOG4NET_WITH_FASTLOGGER
             FastLogger logger,
+#elif ENTLIB
+            string category,
 #else
             Logger logger, 
 #endif
@@ -209,11 +222,17 @@ class Bench
             _output.WriteAttributeString("repetitions", repeat.ToString());
         }
 
+        Console.WriteLine("{0}:", loggerDesc);
+
         BeginTest("No formatting");
         for (int i = 0; i < repeat; ++i)
         {
             // System.Diagnostics.Debugger.Break();
+#if ENTLIB
+            Logger.Write("This is a message without formatting.", category, PRIORITY_DEBUG, 1, TraceEventType.Verbose);
+#else
             logger.Debug("This is a message without formatting.");
+#endif
             // System.Diagnostics.Debugger.Break();
         }
         EndTest();
@@ -224,6 +243,8 @@ class Bench
             logger.DebugFormat("This is a message with {0} format parameter", 1);
 #elif LOG4NET
             logger.Debug(String.Format("This is a message with {0} format parameter", 1));
+#elif ENTLIB
+            Logger.Write(String.Format("This is a message with {0} format parameter", 1), category, PRIORITY_DEBUG, 1, TraceEventType.Verbose);
 #else
             logger.Debug("This is a message with {0} format parameter", 1);
 #endif
@@ -236,6 +257,8 @@ class Bench
             logger.DebugFormat("This is a message with {0}{1} parameters", 2, "o");
 #elif LOG4NET
             logger.Debug(String.Format("This is a message with {0}{1} parameters", 2, "o"));
+#elif ENTLIB
+            Logger.Write(String.Format("This is a message with {0}{1} format parameters", 2, "o"), category, PRIORITY_DEBUG, 1, TraceEventType.Verbose);
 #else
             logger.Debug("This is a message with {0}{1} parameters", 2, "o");
             
@@ -246,66 +269,116 @@ class Bench
         for (int i = 0; i < repeat; ++i)
         {
 #if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
-            logger.DebugFormat("This is a  {0}{1}{2} parameters", "thr", 3, 3);
+            logger.DebugFormat("This is a message with {0}{1}{2} parameters", "thr", 3, 3);
 #elif LOG4NET
-            logger.Debug(String.Format("This is a  {0}{1}{2} parameters", "thr", 3, 3));
+            logger.Debug(String.Format("This is a message with {0}{1}{2} parameters", "thr", 3, 3));
+#elif ENTLIB
+            Logger.Write(String.Format("This is a message with {0}{1}{2} format parameters", "thr", 3, 3), category, PRIORITY_DEBUG);
 #else
-            logger.Debug("This is a  {0}{1}{2} parameters", "thr", 3, 3);
+            logger.Debug("This is a message with {0}{1}{2} parameters", "thr", 3, 3);
 #endif
         }
         EndTest();
         BeginTest("No formatting, using a guard");
         for (int i = 0; i < repeat; ++i)
         {
+#if ENTLIB
+            LogEntry entry = new LogEntry();
+            entry.Message = "This is a message with no parameters.";
+            entry.Categories.Add(category);
+            entry.Priority = PRIORITY_DEBUG;
+            entry.Severity = TraceEventType.Verbose;
+            if (Logger.ShouldLog(entry))
+            {
+                Logger.Write(entry);
+            }
+#else
             if (logger.IsDebugEnabled)
             {
-                logger.Debug("This is a  no parameters");
+                logger.Debug("This is a message with no parameters");
             }
+#endif
         }
         EndTest();
         BeginTest("1 format parameter, using a guard");
         for (int i = 0; i < repeat; ++i)
         {
+#if ENTLIB
+            LogEntry entry = new LogEntry();
+            entry.Message = String.Format("This is a message with {0} parameters.", 1);
+            entry.Categories.Add(category);
+            entry.Priority = PRIORITY_DEBUG;
+            entry.Severity = TraceEventType.Verbose;
+            if (Logger.ShouldLog(entry))
+            {
+                Logger.Write(entry);
+            }
+#else
             if (logger.IsDebugEnabled)
             {
 #if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
-                logger.DebugFormat("This is a  {0} parameter", 1);
+                logger.DebugFormat("This is a message with {0} parameter", 1);
 #elif LOG4NET
-                logger.Debug(String.Format("This is a  {0} parameter", 1));
+                logger.Debug(String.Format("This is a message with {0} parameter", 1));
 #else
-                logger.Debug("This is a  {0} parameter", 1);
+                logger.Debug("This is a message with {0} parameter", 1);
 #endif
             }
+#endif
         }
         EndTest();
         BeginTest("2 format parameters, using a guard");
         for (int i = 0; i < repeat; ++i)
         {
+#if ENTLIB
+            LogEntry entry = new LogEntry();
+            entry.Message = String.Format("This is a message with {0}{1} parameters.", 2, "o");
+            entry.Categories.Add(category);
+            entry.Priority = PRIORITY_DEBUG;
+            entry.Severity = TraceEventType.Verbose;
+            if (Logger.ShouldLog(entry))
+            {
+                Logger.Write(entry);
+            }
+#else
             if (logger.IsDebugEnabled)
             {
 #if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
-                logger.DebugFormat("This is a  {0}{1} parameters", 2, "o");
+                logger.DebugFormat("This is a message with {0}{1} parameters", 2, "o");
 #elif LOG4NET
-                logger.Debug(String.Format("This is a  {0}{1} parameters", 2, "o"));
+                logger.Debug(String.Format("This is a message with {0}{1} parameters", 2, "o"));
 #else
-                logger.Debug("This is a  {0}{1} parameters", 2, "o");
+                logger.Debug("This is a message with {0}{1} parameters", 2, "o");
 #endif
             }
+#endif
         }
         EndTest();
         BeginTest("3 format parameters, using a guard");
         for (int i = 0; i < repeat; ++i)
         {
+#if ENTLIB
+            LogEntry entry = new LogEntry();
+            entry.Message = String.Format("This is a message with {0}{1}{2} parameters.", "thr", 3, 3);
+            entry.Categories.Add(category);
+            entry.Priority = PRIORITY_DEBUG;
+            entry.Severity = TraceEventType.Verbose;
+            if (Logger.ShouldLog(entry))
+            {
+                Logger.Write(entry);
+            }
+#else
             if (logger.IsDebugEnabled)
             {
 #if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
-                logger.DebugFormat("This is a  {0}{1}{2} parameters", "thr", 3, 3);
+                logger.DebugFormat("This is a message with {0}{1}{2} parameters", "thr", 3, 3);
 #elif LOG4NET
-                logger.Debug(String.Format("This is a  {0}{1}{2} parameters", "thr", 3, 3));
+                logger.Debug(String.Format("This is a message with {0}{1}{2} parameters", "thr", 3, 3));
 #else
-                logger.Debug("This is a  {0}{1}{2} parameters", "thr", 3, 3);
+                logger.Debug("This is a message with {0}{1}{2} parameters", "thr", 3, 3);
 #endif
             }
+#endif
         }
         EndTest();
         if (_output != null)

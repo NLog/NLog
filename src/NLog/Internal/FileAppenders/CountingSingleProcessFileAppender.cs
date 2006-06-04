@@ -82,17 +82,14 @@ namespace NLog.Internal.FileAppenders
                 _fileLength = 0;
             }
 
-            _file = opener.Create(fileName, FileShare.ReadWrite);
+            _file = opener.Create(fileName, false);
         }
 
         public void Write(byte[] bytes)
         {
-            lock (this)
-            {
-                _fileLength += bytes.Length;
-                _lastWriteTime = DateTime.Now;
-                _file.Write(bytes, 0, bytes.Length);
-            }
+            _fileLength += bytes.Length;
+            _lastWriteTime = DateTime.Now;
+            _file.Write(bytes, 0, bytes.Length);
         }
 
         public void Flush()

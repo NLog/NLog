@@ -79,7 +79,7 @@ namespace NLog.Internal.FileAppenders
         {
             _fileName = fileName;
             _mutex = new Mutex(false, GetMutexName(fileName));
-            _file = opener.Create(fileName, FileShare.ReadWrite);
+            _file = opener.Create(fileName, true);
         }
 
         public string FileName
@@ -89,8 +89,8 @@ namespace NLog.Internal.FileAppenders
 
         public void Write(byte[] bytes)
         {
-            lock (this)
-            {
+                if (_mutex == null)
+                    return;
                 _mutex.WaitOne();
                 try
                 {
@@ -102,14 +102,15 @@ namespace NLog.Internal.FileAppenders
                 {
                     _mutex.ReleaseMutex();
                 }
-            }
         }
 
         public void Close()
         {
             InternalLogger.Trace("Closing '{0}'", _fileName);
-            _file.Close();
             _mutex.Close();
+            _file.Close();
+            _mutex = null;
+            _file = null;
         }
 
         public void Flush()
@@ -130,19 +131,11 @@ namespace NLog.Internal.FileAppenders
 
         public bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
         {
-            FileInfo fi = new FileInfo(_fileName);
-            if (fi.Exists)
-            {
-                fileLength = fi.Length;
-                lastWriteTime = fi.LastWriteTime;
-                return true;
-            }
-            else
-            {
-                fileLength = -1;
-                lastWriteTime = DateTime.MinValue;
-                return false;
-            }
+#if NET_2_API
+            return FileInfoHelper.Helper.GetFileInfo(_fileName, _file.SafeFileHandle.DangerousGetHandle(), out lastWriteTime, out fileLength);
+#else
+            return FileInfoHelper.Helper.GetFileInfo(_fileName, _file.Handle, out lastWriteTime, out fileLength);
+#endif
         }
     }
 }

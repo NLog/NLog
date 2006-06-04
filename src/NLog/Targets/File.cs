@@ -43,6 +43,9 @@ using NLog.Config;
 
 using NLog.Internal;
 using NLog.Internal.FileAppenders;
+#if !NETCF
+using NLog.Internal.Win32;
+#endif
 
 namespace NLog.Targets
 {
@@ -171,12 +174,17 @@ namespace NLog.Targets
         private IFileAppenderFactory _appenderFactory;
         private IFileAppender[] _recentAppenders;
         private DateTime[] _lastWriteTime;
+        private DateTime[] _openTime;
         private ArchiveNumberingMode _archiveNumbering = ArchiveNumberingMode.Sequence;
         private Timer _autoClosingTimer = null;
         private int _openFileCacheTimeout = 1;
         private bool _first = true;
         private bool _deleteOldFileOnStartup = false;
         private bool _replaceFileContentsOnEachWrite = false;
+        private bool _enableFileDelete = true;
+#if !NETCF
+        private Win32FileAttributes _fileAttributes = Win32FileAttributes.Normal;
+#endif
 
         /// <summary>
         /// Creates a new instance of <see cref="FileTarget"/>.
@@ -286,6 +294,27 @@ namespace NLog.Targets
             get { return _keepFileOpen; }
             set { _keepFileOpen = value; }
         }
+
+        /// <summary>
+        /// Enable log file(s) to be deleted.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(true)]
+        public bool EnableFileDelete
+        {
+            get { return _enableFileDelete; }
+            set { _enableFileDelete = value; }
+        }
+
+#if !NETCF
+        /// <summary>
+        /// File attributes (Windows only).
+        /// </summary>
+        public Win32FileAttributes FileAttributes
+        {
+            get { return _fileAttributes; }
+            set { _fileAttributes = value; }
+        }
+#endif
 
         /// <summary>
         /// Automatically flush the file buffers after each log message.
@@ -498,7 +527,7 @@ namespace NLog.Targets
             string fileNameMask = baseNamePattern.Substring(0, firstPart) + "*" + baseNamePattern.Substring(lastPart);
 
             //Console.WriteLine("fileNameMask: {0}", fileNameMask);
-            string dirName = Path.GetDirectoryName(pattern);
+            string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             int nextNumber = -1;
             int minNumber = -1;
 
@@ -511,7 +540,16 @@ namespace NLog.Targets
                 {
                     string baseName = Path.GetFileName(s);
                     string number = baseName.Substring(firstPart, baseName.Length - trailerLength - firstPart);
-                    int num = Convert.ToInt32(number);
+                    int num;
+
+                    try
+                    {
+                        num = Convert.ToInt32(number);
+                    }
+                    catch (FormatException)
+                    {
+                        continue;
+                    }
 
                     nextNumber = Math.Max(nextNumber, num);
                     if (minNumber != -1)
@@ -563,7 +601,7 @@ namespace NLog.Targets
             if (_autoArchiveFileName == null)
             {
                 string ext = Path.GetExtension(fileName);
-                fileNamePattern = Path.ChangeExtension(fileName, ".{#}" + ext);
+                fileNamePattern = Path.ChangeExtension(fi.FullName, ".{#}" + ext);
 
             }
             else
@@ -574,11 +612,11 @@ namespace NLog.Targets
             switch (ArchiveNumbering)
             {
                 case ArchiveNumberingMode.Rolling:
-                    RecursiveRollingRename(fileName, fileNamePattern, 0);
+                    RecursiveRollingRename(fi.FullName, fileNamePattern, 0);
                     break;
 
                 case ArchiveNumberingMode.Sequence:
-                    SequentialArchive(fileName, fileNamePattern);
+                    SequentialArchive(fi.FullName, fileNamePattern);
                     break;
             }
         }
@@ -791,63 +829,49 @@ namespace NLog.Targets
                     {
                         _appenderFactory = SingleProcessFileAppender.TheFactory;
                     }
-
                 }
             }
 
             _recentAppenders = new IFileAppender[OpenFileCacheSize];
             _lastWriteTime = new DateTime[OpenFileCacheSize];
+            _openTime = new DateTime[OpenFileCacheSize];
 
-            if (OpenFileCacheSize > 0 && OpenFileCacheTimeout > 0)
+            if ((OpenFileCacheSize > 0 || EnableFileDelete) && OpenFileCacheTimeout > 0)
             {
-                _autoClosingTimer = new Timer(new TimerCallback(this.AutoClosingTimerCallback), null, OpenFileCacheTimeout, OpenFileCacheTimeout);
+                _autoClosingTimer = new Timer(new TimerCallback(this.AutoClosingTimerCallback), null, OpenFileCacheTimeout * 1000, OpenFileCacheTimeout * 1000);
             }
 
             // Console.Error.WriteLine("Name: {0} Factory: {1}", this.Name, _appenderFactory.GetType().FullName);
         }
 
-        private bool _inTimerCallback = false;
-
         private void AutoClosingTimerCallback(object state)
         {
             lock (this)
             {
-                if (_inTimerCallback)
-                    return;
-
-                _inTimerCallback = true;
-            }
-
-            try
-            {
-                DateTime timeToKill = DateTime.Now.AddSeconds(-OpenFileCacheTimeout);
-                for (int i = 0; i < _recentAppenders.Length; ++i)
+                try
                 {
-                    if (_recentAppenders[i] == null)
-                        break;
-
-                    if (_lastWriteTime[i] < timeToKill)
+                    DateTime timeToKill = DateTime.Now.AddSeconds(-OpenFileCacheTimeout);
+                    for (int i = 0; i < _recentAppenders.Length; ++i)
                     {
-                        for (int j = i; j < _recentAppenders.Length; ++j)
+                        if (_recentAppenders[i] == null)
+                            break;
+
+                        if (_openTime[i] < timeToKill)
                         {
-                            if (_recentAppenders[j] == null)
-                                break;
-                            _recentAppenders[j].Close();
-                            _recentAppenders[j] = null;
+                            for (int j = i; j < _recentAppenders.Length; ++j)
+                            {
+                                if (_recentAppenders[j] == null)
+                                    break;
+                                _recentAppenders[j].Close();
+                                _recentAppenders[j] = null;
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Warn("Exception in AutoClosingTimerCallback: {0}", ex);
-            }
-            finally
-            {
-                lock (this)
+                catch (Exception ex)
                 {
-                    _inTimerCallback = false;
+                    InternalLogger.Warn("Exception in AutoClosingTimerCallback: {0}", ex);
                 }
             }
         }
@@ -911,12 +935,16 @@ namespace NLog.Targets
                     // (MRU)
 
                     IFileAppender app = _recentAppenders[i];
+                    DateTime openTime = _openTime[i];
+
                     for (int j = i; j > 0; --j)
                     {
                         _recentAppenders[j] = _recentAppenders[j - 1];
                         _lastWriteTime[j] = _lastWriteTime[j - 1];
+                        _openTime[j] = _openTime[j - 1];
                     }
                     _recentAppenders[0] = app;
+                    _openTime[0] = openTime;
                     _lastWriteTime[0] = DateTime.Now;
                     app.Write(bytes);
                     return;
@@ -933,11 +961,13 @@ namespace NLog.Targets
             {
                 _recentAppenders[j] = _recentAppenders[j - 1];
                 _lastWriteTime[j] = _lastWriteTime[j - 1];
+                _openTime[j] = _openTime[j - 1];
             }
 
             _recentAppenders[0] = _appenderFactory.Open(fileName, this);
             _recentAppenders[0].Write(bytes);
             _lastWriteTime[0] = DateTime.Now;
+            _openTime[0] = DateTime.Now;
         }
 
         /// <summary>
@@ -1060,16 +1090,16 @@ namespace NLog.Targets
             }
         }
 
-        FileStream IFileOpener.Create(string fileName, System.IO.FileShare fileShare)
+        FileStream IFileOpener.Create(string fileName, bool enableConcurrentWrite)
         {
             int currentDelay = ConcurrentWriteAttemptDelay;
 
-            InternalLogger.Trace("Opening {0} with FileShare.{1}", fileName, fileShare);
+            InternalLogger.Trace("Opening {0} with concurrentWrite={1}", fileName, enableConcurrentWrite);
             for (int i = 0; i < ConcurrentWriteAttempts; ++i)
             {
                 try
                 {
-                    return TryCreate(fileName, fileShare);
+                    return TryCreate(fileName, enableConcurrentWrite);
                 }
                 catch (IOException)
                 {
@@ -1085,11 +1115,63 @@ namespace NLog.Targets
             throw new Exception("Should not be reached.");
         }
 
-        private FileStream TryCreate(string fileName, FileShare fileShare)
+#if !NETCF
+        private FileStream WindowsCreateFile(string fileName, bool enableConcurrentWrite)
         {
+            int fileShare = Win32FileHelper.FILE_SHARE_READ;
+
+            if (enableConcurrentWrite)
+                fileShare |= Win32FileHelper.FILE_SHARE_WRITE;
+
+            if (EnableFileDelete)
+                fileShare |= Win32FileHelper.FILE_SHARE_DELETE;
+
+            IntPtr hFile = Win32FileHelper.CreateFile(
+                fileName,
+                Win32FileHelper.FileAccess.GenericWrite,
+                fileShare,
+                IntPtr.Zero,
+                Win32FileHelper.CreationDisposition.OpenAlways,
+                _fileAttributes, IntPtr.Zero);
+
+            FileStream returnValue;
+
+#if NET_2_API
+            Microsoft.Win32.SafeHandles.SafeFileHandle safeHandle = new Microsoft.Win32.SafeHandles.SafeFileHandle(hFile, true);
+            returnValue = new FileStream(safeHandle, FileAccess.Write, BufferSize);
+#else
+            returnValue = new FileStream(hFile, FileAccess.Write, true, BufferSize);
+#endif
+            returnValue.Seek(0, SeekOrigin.End);
+            return returnValue;
+        }
+#endif
+
+        private FileStream TryCreate(string fileName, bool enableConcurrentWrite)
+        {
+#if !NETCF
+            if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.WindowsNT) ||
+                PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Windows))
+            {
+                return WindowsCreateFile(fileName, enableConcurrentWrite);
+            }
+#endif
+
+            FileShare fileShare = FileShare.Read;
+
+            if (enableConcurrentWrite)
+                fileShare = FileShare.ReadWrite;
+
+#if NET_2_API
+            if (EnableFileDelete)
+            {
+                fileShare |= FileShare.Delete;
+            }
+#endif
+
             try
             {
-                return new FileStream(fileName, FileMode.Append, FileAccess.Write, fileShare);
+                return new FileStream(fileName, FileMode.Append, FileAccess.Write, fileShare, BufferSize);
             }
             catch (DirectoryNotFoundException)
             {

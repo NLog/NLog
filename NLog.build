@@ -12,7 +12,7 @@
     <property name="ssh.program" value="plink" />
     <property name="scp.args" value="-q -batch" />
     <property name="ssh.args" value="-batch" />
-    <property name="benchmark.mode" value="short" />
+    <property name="benchmark.mode" value="veryshort" />
 
     <property name="deploy.host" value="jaak@sav.net" />
     
@@ -31,6 +31,7 @@
     <property name="nlog.release.dir" value="releases/${nlog.package.name}" />
     <property name="ilmerge.version" value="1" />
     <property name="log4net.bin.dir" value="../log4net-1.2.10/bin" />
+    <property name="enterpriselib.bin.dir" value="C:\Program Files\Microsoft Enterprise Library January 2006\bin" />
 
     <property name="installer.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-setup.exe" />
     <property name="installer.debug.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-setup-debug.exe" />
@@ -291,12 +292,10 @@
             </references>
         </csc>
         <copy file="tests/NLog.Test/App.config" tofile="${nlog.dir}/NLog.Test.exe.config" />
-        <copy file="tests/NLog.Test/Config1.nlog" tofile="${nlog.dir}/Config1.nlog" />
-        <copy file="tests/NLog.Test/Config2.nlog" tofile="${nlog.dir}/Config2.nlog" />
     </target>
 
     <target name="NLog.Benchmark" depends="NLog">
-        <csc target="exe" output="${nlog.dir}/NLog.Benchmark.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
+        <csc target="exe" output="${nlog.dir}/NLog.Benchmark.exe" define="${nlog.define};NLOG" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="tests/NLog.Benchmark">
                 <include name="**/*.cs" />
             </sources>
@@ -307,8 +306,31 @@
                 <include name="System.Xml.dll" />
             </references>
         </csc>
-        <copy file="tests/NLog.Benchmark/App.config" tofile="${nlog.dir}/NLog.Benchmark.exe.config" />
+        <copy file="tests/NLog.Benchmark/NLog.config" tofile="${nlog.dir}/NLog.Benchmark.exe.config" />
         <exec program="${nlog.dir}/NLog.Benchmark.exe" workingdir="${nlog.dir}" commandline="Benchmark.xml ${benchmark.mode}" />
+    </target>
+
+    <target name="NLog.Benchmark-LAB" depends="NLog">
+        <copy todir="${nlog.dir}">
+            <fileset basedir="${enterpriselib.bin.dir}">
+                <include name="Microsoft.Practices.*.dll" />
+                <include name="Microsoft.Practices.*.pdb" />
+            </fileset>
+        </copy>
+        <delete file="${nlog.dir}/NLog.Benchmark-log4net.exe" failonerror="false" />
+        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-lab.exe" define="${nlog.define},ENTLIB" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
+            <sources basedir="tests/NLog.Benchmark">
+                <include name="**/*.cs" />
+            </sources>
+            <references>
+                <include name="mscorlib.dll" />
+                <include name="System.dll" />
+                <include name="System.Xml.dll" />
+                <include name="${nlog.dir}/Microsoft.*.dll" />
+            </references>
+        </csc>
+        <copy file="tests/NLog.Benchmark/EntLibLAB.config" tofile="${nlog.dir}/NLog.Benchmark-lab.exe.config" />
+        <exec program="${nlog.dir}/NLog.Benchmark-lab.exe" workingdir="${nlog.dir}" commandline="Benchmark-lab.xml ${benchmark.mode}" />
     </target>
 
     <target name="NLogC-1.0">
