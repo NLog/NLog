@@ -73,7 +73,7 @@
         <property name="nlog.optimize" value="true" />
     </target>
 
-    <target name="binary_snapshot" depends="build">
+    <target name="binary_snapshot" depends="build, schema">
         <zip zipfile="${binary_snapshot.name}">
             <fileset basedir="build/${buildsubdir}">
                 <include name="bin/*" />
@@ -582,11 +582,11 @@
         <property name="nlog.csc.args" value="/nowarn:1591,1699" />
     </target>
 
-    <target name="build-mono-1.0" depends="NLog, schema" />
-    <target name="build-mono-2.0" depends="NLog, schema" />
-    <target name="build-net-1.0" depends="NLog, NLog.ComInterop, NLogC, schema" />
-    <target name="build-net-1.1" depends="NLog, NLog.ComInterop, NLogC, schema" />
-    <target name="build-net-2.0" depends="NLog, NLog.ComInterop, NLogC, schema" />
+    <target name="build-mono-1.0" depends="NLog" />
+    <target name="build-mono-2.0" depends="NLog" />
+    <target name="build-net-1.0" depends="NLog, NLog.ComInterop, NLogC" />
+    <target name="build-net-1.1" depends="NLog, NLog.ComInterop, NLogC" />
+    <target name="build-net-2.0" depends="NLog, NLog.ComInterop, NLogC" />
     <target name="build-netcf-1.0" depends="NLog" />
     <target name="build-netcf-2.0" depends="NLog" />
     <target name="build-nlogc-net-1.0" depends="NLogC-1.0, NLogC-1.1, NLogC-2.0" />
@@ -619,13 +619,13 @@
     <target name="allframeworks">
         <property name="debugrelease" value="release" />
         <property name="debugrelease" value="debug" if="${nlog.debug}" />
-        <exec program="nant" commandline="-t:net-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
-        <exec program="nant" commandline="-t:net-1.1 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
-        <exec program="nant" commandline="-t:net-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
-        <exec program="nant" commandline="-t:netcf-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
-        <exec program="nant" commandline="-t:netcf-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
-        <exec program="nant" commandline="-t:mono-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
-        <exec program="nant" commandline="-t:mono-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
+        <exec program="nant" commandline="-t:net-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} binary_snapshot" />
+        <exec program="nant" commandline="-t:net-1.1 -D:nlog.package.name=${nlog.package.name} ${debugrelease} binary_snapshot" />
+        <exec program="nant" commandline="-t:net-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} binary_snapshot" />
+        <exec program="nant" commandline="-t:netcf-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} binary_snapshot" />
+        <exec program="nant" commandline="-t:netcf-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} binary_snapshot" />
+        <exec program="nant" commandline="-t:mono-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} binary_snapshot" />
+        <exec program="nant" commandline="-t:mono-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} binary_snapshot" />
     </target>
 
     <target name="help" depends="xmldoc, helpwebsite">
@@ -806,7 +806,10 @@
         </delete>
     </target>
 
-    <target name="publish_snapshot" depends="clean_all, allframeworksdebugandrelease, source_snapshot, help, installer, upload_snapshot, upload_web_snapshot">
+    <target name="snapshot" depends="clean_all, allframeworksdebugandrelease, source_snapshot, help, installer">
+    </target>
+
+    <target name="publish_snapshot" depends="snapshot, upload_snapshot, upload_web_snapshot">
     </target>
 
     <target name="webxmlwithsyntax">
