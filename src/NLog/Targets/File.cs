@@ -44,6 +44,7 @@ using NLog.Config;
 using NLog.Internal;
 using NLog.Internal.FileAppenders;
 #if !NETCF
+using System.Runtime.InteropServices;
 using NLog.Internal.Win32;
 #endif
 
@@ -488,7 +489,7 @@ namespace NLog.Targets
             if (!File.Exists(fileName))
                 return;
 
-            string newFileName = pattern.Replace("{#}", archiveNumber.ToString());
+            string newFileName = ReplaceNumber(pattern, archiveNumber);
             if (File.Exists(fileName))
                 RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
 
@@ -1099,7 +1100,18 @@ namespace NLog.Targets
             {
                 try
                 {
-                    return TryCreate(fileName, enableConcurrentWrite);
+                    try
+                    {
+                        return TryCreate(fileName, enableConcurrentWrite);
+                    }
+                    catch (DirectoryNotFoundException)
+                    {
+                        if (!CreateDirs)
+                            throw;
+
+                        Directory.CreateDirectory(Path.GetDirectoryName(fileName));
+                        return TryCreate(fileName, enableConcurrentWrite);
+                    }
                 }
                 catch (IOException)
                 {
@@ -1134,6 +1146,9 @@ namespace NLog.Targets
                 Win32FileHelper.CreationDisposition.OpenAlways,
                 _fileAttributes, IntPtr.Zero);
 
+            if (hFile.ToInt32() == -1)
+                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+
             FileStream returnValue;
 
 #if DOTNET_2_0 || NETCF_2_0
@@ -1149,14 +1164,6 @@ namespace NLog.Targets
 
         private FileStream TryCreate(string fileName, bool enableConcurrentWrite)
         {
-#if !NETCF
-            if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.WindowsNT) ||
-                PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Windows))
-            {
-                return WindowsCreateFile(fileName, enableConcurrentWrite);
-            }
-#endif
-
             FileShare fileShare = FileShare.Read;
 
             if (enableConcurrentWrite)
@@ -1169,18 +1176,15 @@ namespace NLog.Targets
             }
 #endif
 
-            try
+#if !NETCF
+            if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.WindowsNT) ||
+                    PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Windows))
             {
-                return new FileStream(fileName, FileMode.Append, FileAccess.Write, fileShare, BufferSize);
+                return WindowsCreateFile(fileName, enableConcurrentWrite);
             }
-            catch (DirectoryNotFoundException)
-            {
-                if (!CreateDirs)
-                    throw;
+#endif
 
-                Directory.CreateDirectory(Path.GetDirectoryName(fileName));
-                return new FileStream(fileName, FileMode.Append, FileAccess.Write, fileShare);
-            }
+            return new FileStream(fileName, FileMode.Append, FileAccess.Write, fileShare, BufferSize);
         }
     }
 }
