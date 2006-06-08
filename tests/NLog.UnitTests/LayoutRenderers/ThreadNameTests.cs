@@ -59,9 +59,11 @@ namespace NLog.UnitTests.LayoutRenderers
 
             LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
-            System.Threading.Thread.CurrentThread.Name = "mythreadname";
+            if (System.Threading.Thread.CurrentThread.Name == null)
+                System.Threading.Thread.CurrentThread.Name = "mythreadname";
+
             LogManager.GetLogger("A").Debug("a");
-            AssertDebugLastMessage("debug", "mythreadname a");
+            AssertDebugLastMessage("debug", System.Threading.Thread.CurrentThread.Name + " a");
         }
     }
 }

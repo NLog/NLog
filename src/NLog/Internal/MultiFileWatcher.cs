@@ -93,8 +93,10 @@ namespace NLog.Internal
             watcher.Path = Path.GetDirectoryName(fileName);
             watcher.Filter = Path.GetFileName(fileName);
             // Console.WriteLine("watching path: {0} filter: {1}", watcher.Path, watcher.Filter);
-            watcher.NotifyFilter = NotifyFilters.LastWrite;
+            watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.CreationTime | NotifyFilters.Size | NotifyFilters.Security | NotifyFilters.Attributes;
+            watcher.Created += new FileSystemEventHandler(this.OnWatcherChanged);
             watcher.Changed += new FileSystemEventHandler(this.OnWatcherChanged);
+            watcher.Deleted += new FileSystemEventHandler(this.OnWatcherChanged);
             watcher.EnableRaisingEvents = true;
 
             lock(this)

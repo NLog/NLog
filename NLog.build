@@ -263,20 +263,19 @@
     </target>
 
     <target name="NLog.UnitTests" depends="NLog">
-        <copy file="${nant.location}/lib/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/nunit.framework.dll" tofile="${nlog.dir}/nunit.framework.dll" />
         <csc target="library" output="${nlog.dir}/NLog.UnitTests.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="tests/NLog.UnitTests">
                 <include name="**/*.cs" />
             </sources>
             <references>
                 <include name="${nlog.dir}/NLog.dll" />
-                <include name="${nlog.dir}/nunit.framework.dll" />
+                <include name="${nant::get-base-directory()}/lib/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/nunit.framework.dll" />
             </references>
         </csc>
     </target>
 
     <target name="NLog.UnitTests.Web" depends="NLog">
-        <copy file="${nant.location}/lib/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/nunit.framework.dll" tofile="${nlog.dir}/nunit.framework.dll" />
+        <copy file="${nant::get-base-directory()}/lib/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/nunit.framework.dll" tofile="${nlog.dir}/nunit.framework.dll" />
         <csc target="library" output="${nlog.dir}/NLog.UnitTests.Web.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="tests/NLog.UnitTests.Web">
                 <include name="**/*.cs" />

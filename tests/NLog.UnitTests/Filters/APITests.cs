@@ -69,7 +69,7 @@ namespace NLog.UnitTests.Filters
             NLog.Filters.WhenContainsFilter wcf = (NLog.Filters.WhenContainsFilter)LogManager.Configuration.LoggingRules[0].Filters[0];
             Assert.AreEqual(wcf.Layout, "${message}");
             Assert.AreEqual(wcf.Substring, "zzz");
-            Assert.AreEqual("Ignore", wcf.Action);
+            Assert.AreEqual(FilterResult.Ignore, wcf.Action);
         }
     }
 }
