@@ -10,7 +10,7 @@
   <TemplateContent>
     <References>
       <Reference>
-        <Assembly>NLog, Version=$nlogversion$, Culture=neutral, PublicKeyToken=5120E14C03D0593C</Assembly>
+        <Assembly>NLog</Assembly>
       </Reference>
     </References>
     <ProjectItem SubType="" TargetFileName="NLog.config" ReplaceParameters="true">NLog.config</ProjectItem>
