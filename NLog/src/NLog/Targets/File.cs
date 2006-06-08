@@ -1136,7 +1136,7 @@ namespace NLog.Targets
 
             FileStream returnValue;
 
-#if DOTNET2 || NETCF_2_0
+#if DOTNET_2_0 || NETCF_2_0
             Microsoft.Win32.SafeHandles.SafeFileHandle safeHandle = new Microsoft.Win32.SafeHandles.SafeFileHandle(hFile, true);
             returnValue = new FileStream(safeHandle, FileAccess.Write, BufferSize);
 #else
