@@ -412,6 +412,12 @@ namespace NLog
                         break;
                 }
             }
+            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            {
+                TargetWithFilterChain tfc = targetsByLevel[i];
+                if (tfc != null)
+                    tfc.PrecalculateNeedsStackTrace();
+            }
         }
 
         internal static LoggerConfiguration GetConfigurationForLogger(string name, LoggingConfiguration config)

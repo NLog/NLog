@@ -45,11 +45,13 @@ namespace NLog.Internal
         private Target _target;
         private FilterCollection _filterChain;
         private TargetWithFilterChain _next;
+        private int _needsStackTrace = 0;
 
         public TargetWithFilterChain(Target a, FilterCollection filterChain)
         {
             _target = a;
             _filterChain = filterChain;
+            _needsStackTrace = 0;
         }
 
         public Target Target
@@ -58,6 +60,12 @@ namespace NLog.Internal
             {
                 return _target;
             }
+        }
+
+        public int NeedsStackTrace
+        {
+            get { return _needsStackTrace; }
+            set { _needsStackTrace = value; }
         }
 
         public FilterCollection FilterChain
@@ -78,6 +86,32 @@ namespace NLog.Internal
             {
                 _next = value;
             }
+        }
+
+        public void PrecalculateNeedsStackTrace()
+        {
+            _needsStackTrace = 0;
+
+            for (TargetWithFilterChain awf = this; awf != null; awf = awf.Next)
+            {
+                if (_needsStackTrace >= 2)
+                    break;
+                Target app = awf.Target;
+
+                int nst = app.NeedsStackTrace();
+                _needsStackTrace = Math.Max(_needsStackTrace, nst);
+
+                FilterCollection filterChain = awf.FilterChain;
+
+                for (int i = 0; i < filterChain.Count; ++i)
+                {
+                    Filter filter = filterChain[i];
+
+                    nst = filter.NeedsStackTrace();
+                    _needsStackTrace = Math.Max(_needsStackTrace, nst);
+                }
+            }
+
         }
     }
 }

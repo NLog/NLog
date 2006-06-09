@@ -12,7 +12,7 @@
     <property name="ssh.program" value="plink" />
     <property name="scp.args" value="-q -batch" />
     <property name="ssh.args" value="-batch" />
-    <property name="benchmark.mode" value="veryshort" />
+    <property name="benchmark.mode" value="veryveryshort" />
 
     <property name="deploy.host" value="jaak@sav.net" />
     
@@ -24,6 +24,7 @@
     <property name="ndoc.console.args" value="-referencepath &quot;${framework::get-assembly-directory(framework::get-target-framework())}&quot;" dynamic="true" />
     <property name="prettyprinter.exe" value="tools/PrettyPrinter.exe" />
     <property name="ndocsyntax.path" value="tools/NDocSyntax.exe" />
+    <property name="benchmark.loop.unroll" value="4" />
 
     <property name="webserver.deploy.dir" value="web/www.nlog-project.org/html" />
     <property name="csc.warninglevel" value="4" />
@@ -303,9 +304,11 @@
     </target>
 
     <target name="NLog.Benchmark" depends="NLog">
+        <exec program="perl" commandline="tests/NLog.Benchmark/unroll_loop.pl tests/NLog.Benchmark/Benchmark.cs tests/NLog.Benchmark/Benchmark.Unrolled.cs ${benchmark.loop.unroll}" />
         <csc target="exe" output="${nlog.dir}/NLog.Benchmark.exe" define="${nlog.define};NLOG" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="tests/NLog.Benchmark">
                 <include name="**/*.cs" />
+                <exclude name="Benchmark.cs" />
             </sources>
             <references>
                 <include name="${nlog.dir}/NLog.dll" />
@@ -326,9 +329,11 @@
             </fileset>
         </copy>
         <delete file="${nlog.dir}/NLog.Benchmark-log4net.exe" failonerror="false" />
+        <exec program="perl" commandline="tests/NLog.Benchmark/unroll_loop.pl tests/NLog.Benchmark/Benchmark.cs tests/NLog.Benchmark/Benchmark.Unrolled.cs ${benchmark.loop.unroll}" />
         <csc target="exe" output="${nlog.dir}/NLog.Benchmark-lab.exe" define="${nlog.define},ENTLIB" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="tests/NLog.Benchmark">
                 <include name="**/*.cs" />
+                <exclude name="Benchmark.cs" />
             </sources>
             <references>
                 <include name="mscorlib.dll" />
@@ -436,9 +441,11 @@
     <target name="NLog.Benchmark-log4net-withformat" depends="NLog">
         <copy file="${log4net.bin.dir}/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/${if(nlog.debug,'debug','release')}/log4net.dll" tofile="${nlog.dir}/log4net.dll" />
         <delete file="${nlog.dir}/NLog.Benchmark-log4net.exe" failonerror="false" />
+        <exec program="perl" commandline="tests/NLog.Benchmark/unroll_loop.pl tests/NLog.Benchmark/Benchmark.cs tests/NLog.Benchmark/Benchmark.Unrolled.cs ${benchmark.loop.unroll}" />
         <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net.exe" define="${nlog.define},LOG4NET,LOG4NETWITHFORMAT" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="tests/NLog.Benchmark">
                 <include name="**/*.cs" />
+                <exclude name="Benchmark.cs" />
             </sources>
             <references>
                 <include name="${nlog.dir}/log4net.dll" />
