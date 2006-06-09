@@ -74,6 +74,7 @@ class Bench
 {
     private const int warmup = 10;
     private const int PRIORITY_DEBUG = 2;
+    private const int UNROLL_COUNT = 1;
     private static int _repeat;
     private static string _currentTestName;
     private static XmlTextWriter _output;
@@ -98,15 +99,15 @@ class Bench
         if (_output != null)
         {
             _output.WriteAttributeString("totalTime", Convert.ToString(TimeSpan.FromSeconds(_stopWatch.Seconds)));
-            _output.WriteAttributeString("repetitions", Convert.ToString(_repeat));
-            _output.WriteAttributeString("logsPerSecond", Convert.ToString(_repeat /_stopWatch.Seconds));
-            _output.WriteAttributeString("nanosecondsPerLog", Convert.ToString(_stopWatch.Nanoseconds / _repeat));
+            _output.WriteAttributeString("repetitions", Convert.ToString(_repeat * UNROLL_COUNT));
+            _output.WriteAttributeString("logsPerSecond", Convert.ToString(_repeat * UNROLL_COUNT /_stopWatch.Seconds));
+            _output.WriteAttributeString("nanosecondsPerLog", Convert.ToString(_stopWatch.Nanoseconds / (_repeat * UNROLL_COUNT)));
             _output.WriteEndElement();
         }
         //Console.Write("totalTime: {0} ", Convert.ToString(TimeSpan.FromSeconds(_stopWatch.Seconds)));
         //Console.Write("repetitions: {0} ", Convert.ToString(_repeat));
         //Console.Write("logsPerSecond: {0} ", Convert.ToString(_repeat /_stopWatch.Seconds));
-        Console.Write("nanosecondsPerLog: {0} ", Convert.ToString(_stopWatch.Nanoseconds / _repeat));
+        Console.Write("nanosecondsPerLog: {0} ", Convert.ToString(_stopWatch.Nanoseconds / (_repeat * UNROLL_COUNT)));
         Console.WriteLine();
     }
 
@@ -129,6 +130,11 @@ class Bench
             }
             if (args[1] == "veryshort")
             {
+                repeat2 /= 100;
+            }
+            if (args[1] == "veryveryshort")
+            {
+                repeat /= 100;
                 repeat2 /= 100;
             }
             if (args[1] == "verylong")
@@ -187,6 +193,7 @@ class Bench
         LogTest(logger1, "Non-logging", repeat);
         LogTest(logger3, "Null-target without layout", repeat);
         LogTest(logger2, "Null-target with layout rendering", repeat);
+#if WITHLONGTESTS
         LogTest(logger4, "File target", repeat2);
         LogTest(logger5, "Async file target", repeat2);
         LogTest(logger6, "Buffered file target", repeat2);
@@ -195,6 +202,7 @@ class Bench
         LogTest(LogManager.GetLogger("archive2"), "Non-concurrent archiving file target (often)", repeat2);
         LogTest(LogManager.GetLogger("archive3"), "Concurrent archiving file target", repeat2);
         LogTest(LogManager.GetLogger("archive4"), "Concurrent archiving file target (often)", repeat2);
+#endif
 #endif
 
         _output.WriteEndElement();
@@ -215,6 +223,10 @@ class Bench
     {
         _repeat = repeat;
 
+#if ENTLIB
+        LogEntry entry;
+#endif
+
         if (_output != null)
         {
             _output.WriteStartElement("test");
@@ -227,6 +239,7 @@ class Bench
         BeginTest("No formatting");
         for (int i = 0; i < repeat; ++i)
         {
+// BEGIN_UNROLL            
             // System.Diagnostics.Debugger.Break();
 #if ENTLIB
             Logger.Write("This is a message without formatting.", category, PRIORITY_DEBUG, 1, TraceEventType.Verbose);
@@ -234,11 +247,13 @@ class Bench
             logger.Debug("This is a message without formatting.");
 #endif
             // System.Diagnostics.Debugger.Break();
+// END_UNROLL
         }
         EndTest();
         BeginTest("1 format parameter");
         for (int i = 0; i < repeat; ++i)
         {
+// BEGIN_UNROLL            
 #if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
             logger.DebugFormat("This is a message with {0} format parameter", 1);
 #elif LOG4NET
@@ -248,11 +263,13 @@ class Bench
 #else
             logger.Debug("This is a message with {0} format parameter", 1);
 #endif
+// END_UNROLL
         }
         EndTest();
         BeginTest("2 format parameters");
         for (int i = 0; i < repeat; ++i)
         {
+// BEGIN_UNROLL            
 #if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
             logger.DebugFormat("This is a message with {0}{1} parameters", 2, "o");
 #elif LOG4NET
@@ -261,13 +278,14 @@ class Bench
             Logger.Write(String.Format("This is a message with {0}{1} format parameters", 2, "o"), category, PRIORITY_DEBUG, 1, TraceEventType.Verbose);
 #else
             logger.Debug("This is a message with {0}{1} parameters", 2, "o");
-            
 #endif
+// END_UNROLL
         }
         EndTest();
         BeginTest("3 format parameters");
         for (int i = 0; i < repeat; ++i)
         {
+// BEGIN_UNROLL            
 #if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
             logger.DebugFormat("This is a message with {0}{1}{2} parameters", "thr", 3, 3);
 #elif LOG4NET
@@ -277,13 +295,15 @@ class Bench
 #else
             logger.Debug("This is a message with {0}{1}{2} parameters", "thr", 3, 3);
 #endif
+// END_UNROLL
         }
         EndTest();
         BeginTest("No formatting, using a guard");
         for (int i = 0; i < repeat; ++i)
         {
+// BEGIN_UNROLL            
 #if ENTLIB
-            LogEntry entry = new LogEntry();
+            entry = new LogEntry();
             entry.Message = "This is a message with no parameters.";
             entry.Categories.Add(category);
             entry.Priority = PRIORITY_DEBUG;
@@ -298,13 +318,15 @@ class Bench
                 logger.Debug("This is a message with no parameters");
             }
 #endif
+// END_UNROLL
         }
         EndTest();
         BeginTest("1 format parameter, using a guard");
         for (int i = 0; i < repeat; ++i)
         {
+// BEGIN_UNROLL            
 #if ENTLIB
-            LogEntry entry = new LogEntry();
+            entry = new LogEntry();
             entry.Message = String.Format("This is a message with {0} parameters.", 1);
             entry.Categories.Add(category);
             entry.Priority = PRIORITY_DEBUG;
@@ -325,13 +347,15 @@ class Bench
 #endif
             }
 #endif
+// END_UNROLL
         }
         EndTest();
         BeginTest("2 format parameters, using a guard");
         for (int i = 0; i < repeat; ++i)
         {
+// BEGIN_UNROLL
 #if ENTLIB
-            LogEntry entry = new LogEntry();
+            entry = new LogEntry();
             entry.Message = String.Format("This is a message with {0}{1} parameters.", 2, "o");
             entry.Categories.Add(category);
             entry.Priority = PRIORITY_DEBUG;
@@ -352,13 +376,15 @@ class Bench
 #endif
             }
 #endif
+// END_UNROLL
         }
         EndTest();
         BeginTest("3 format parameters, using a guard");
         for (int i = 0; i < repeat; ++i)
         {
+// BEGIN_UNROLL
 #if ENTLIB
-            LogEntry entry = new LogEntry();
+            entry = new LogEntry();
             entry.Message = String.Format("This is a message with {0}{1}{2} parameters.", "thr", 3, 3);
             entry.Categories.Add(category);
             entry.Priority = PRIORITY_DEBUG;
@@ -379,6 +405,7 @@ class Bench
 #endif
             }
 #endif
+// END_UNROLL
         }
         EndTest();
         if (_output != null)
