@@ -49,19 +49,7 @@ namespace NLog.UnitTests
         [Test]
         public void GetCurrentClassLoggerTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='abc' /></targets>
-                <rules>
-                    <logger name='NLog.UnitTests.GetLoggerTests' minlevel='Info' appendTo='debug' />
-                </rules>
-            </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
-            logger.Info("message");
-            AssertDebugLastMessage("debug", "abc");
+            Assert.AreEqual("NLog.UnitTests.GetLoggerTests", logger.Name);
         }
     }
 }

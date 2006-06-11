@@ -691,7 +691,7 @@
         <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} dos2unix web_install.sh &amp;&amp; /bin/bash web_install.sh ${webserver.deploy.dir}/help" workingdir="." />
     </target>
 
-    <target name="publish_clover" depends="clover-html-report">
+    <target name="publish_clover" depends="clover">
         <zip zipfile="clover.zip">
             <fileset basedir="${clover.report.dir}">
                 <include name="**/*" />
@@ -991,6 +991,7 @@
     <target name="clover" depends="load-clover">
         <property name="clover.enabled" value="true" />
         <call target="configure" />
+        <call target="clean" />
         <delete file="${clover.build.dir}/clover.cdb" failonerror="false" />
         <clover-setup 
             initstring="${clover.build.dir}/clover.cdb"
@@ -1002,29 +1003,13 @@
                 <exclude name="NLog.UnitTests.Web/**/*" />
             </fileset>
         </clover-setup>
-    </target>
-
-    <target name="clover-html-report" depends="load-clover">
-        <property name="clover.enabled" value="true" />
-        <call target="configure" />
-        <clover-setup 
-            initstring="${clover.build.dir}/clover.cdb"
-            builddir="${clover.build.dir}"
-            enabled="${clover.enabled}"
-            flushinterval="100"
-            />
+        <call target="build" />
+        <call target="nunit2report" />
         <clover-report>
             <current title="NLog Coverage" output="${clover.report.dir}">
                 <format type="html" />
             </current>
         </clover-report>
-    </target>
-
-    <target name="coverage_test">
-        <call target="clover" />
-        <call target="test" />
-        <call target="webtest" />
-        <call target="clover-html-report" />
     </target>
 
     <target name="load-nunit2report">

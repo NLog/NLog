@@ -178,6 +178,7 @@
     <Compile Include="RoutingTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Targets\FileTargetTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Internal\" />

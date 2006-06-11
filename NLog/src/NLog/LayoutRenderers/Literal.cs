@@ -39,9 +39,21 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// A string literal.
     /// </summary>
+    /// <remarks>
+    /// This is used to escape '${' sequence 
+    /// as ;${literal:text=${}'
+    /// </remarks>
+    [LayoutRenderer("literal", UsingLogEventInfo=true, IgnoresPadding=true)]
     public class LiteralLayoutRenderer: LayoutRenderer
     {
         private string _txt;
+
+        /// <summary>
+        /// Creates a new instance of <see cref="LiteralLayoutRenderer"/>.
+        /// </summary>
+        public LiteralLayoutRenderer()
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LiteralLayoutRenderer"/> and sets the
@@ -80,7 +92,10 @@ namespace NLog.LayoutRenderers
             builder.Append(_txt);
         }
 
-        internal string Text
+        /// <summary>
+        /// Literal text.
+        /// </summary>
+        public string Text
         {
             get { return _txt; }
             set { _txt = value; }
