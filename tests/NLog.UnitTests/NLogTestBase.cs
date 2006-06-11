@@ -34,6 +34,8 @@
 using System;
 
 using NUnit.Framework;
+using System.Text;
+using System.IO;
 
 namespace NLog.UnitTests
 {
@@ -61,6 +63,34 @@ namespace NLog.UnitTests
         {
             NLog.Targets.DebugTarget debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
             return debugTarget.LastMessage;
+        }
+
+        public void AssertFileContents(string fileName, string contents, Encoding encoding)
+        {
+            FileInfo fi = new FileInfo(fileName);
+            if (!fi.Exists)
+                Assert.Fail("File '" + fileName + "' doesn't exist.");
+
+            byte[] encodedBuf = encoding.GetBytes(contents);
+            Assert.AreEqual(encodedBuf.Length, fi.Length, "File length is incorrect.");
+            byte[] buf = new byte[(int)fi.Length];
+            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            {
+                fs.Read(buf, 0, buf.Length);
+            }
+
+            for (int i = 0; i < buf.Length; ++i)
+            {
+                Assert.AreEqual(encodedBuf[i], buf[i], "File contents are different at position: #" + i);
+            }
+        }
+
+        public string StringRepeat(int times, string s)
+        {
+            StringBuilder sb = new StringBuilder(s.Length * times);
+            for (int i = 0; i < times; ++i)
+                sb.Append(s);
+            return sb.ToString();
         }
     }
 }

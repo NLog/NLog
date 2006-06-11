@@ -150,6 +150,37 @@ namespace NLog.Targets
             Minute
         }
 
+        /// <summary>
+        /// Line ending mode.
+        /// </summary>
+        public enum LineEndingMode
+        {
+            /// <summary>
+            /// Insert platform-dependent end-of-line sequence after each line.
+            /// </summary>
+            Default,
+
+            /// <summary>
+            /// Insert CR LF sequence (ASCII 13, ASCII 10) after each line.
+            /// </summary>
+            CRLF,
+
+            /// <summary>
+            /// Insert CR character (ASCII 13) after each line.
+            /// </summary>
+            CR,
+
+            /// <summary>
+            /// Insert LF character (ASCII 10) after each line.
+            /// </summary>
+            LF,
+
+            /// <summary>
+            /// Don't insert any line ending.
+            /// </summary>
+            None,
+        }
+
         private Random _random = new Random();
         private Layout _fileNameLayout;
         private bool _createDirs = true;
@@ -160,6 +191,8 @@ namespace NLog.Targets
 #else
         private string _newLine = Environment.NewLine;
 #endif
+        private LineEndingMode _lineEndingMode = LineEndingMode.Default;
+
         private bool _autoFlush = true;
         private bool _concurrentWrites = true;
         private bool _networkWrites = false;
@@ -316,6 +349,44 @@ namespace NLog.Targets
             set { _fileAttributes = value; }
         }
 #endif
+
+        /// <summary>
+        /// Line ending mode.
+        /// </summary>
+        public LineEndingMode LineEnding
+        {
+            get { return _lineEndingMode; }
+            set
+            {
+                _lineEndingMode = value; 
+                switch (value)
+                {
+                    case LineEndingMode.CR:
+                        _newLine = "\r";
+                        break;
+
+                    case LineEndingMode.LF:
+                        _newLine = "\n";
+                        break;
+
+                    case LineEndingMode.CRLF:
+                        _newLine = "\r\n";
+                        break;
+
+                    case LineEndingMode.Default:
+#if NETCF
+                        _newLine = "\r\n";
+#else
+                        _newLine = Environment.NewLine;
+#endif
+                        break;
+
+                    case LineEndingMode.None:
+                        _newLine = "";
+                        break;
+                }
+            }
+        }
 
         /// <summary>
         /// Automatically flush the file buffers after each log message.

@@ -273,5 +273,22 @@ namespace NLog
             //Console.WriteLine("Precalculating {0}", this.Text);
             GetFormattedMessage(logEvent);
         }
+
+        /// <summary>
+        /// Escapes the passed text so that it can
+        /// be used literally in all places where
+        /// layout is normally expected without being
+        /// treated as layout.
+        /// </summary>
+        /// <param name="text">The text to be escaped.</param>
+        /// <returns>The escaped text.</returns>
+        /// <remarks>
+        /// Escaping is done by replacing all occurences of
+        /// '${' with '${literal:text=${}'
+        /// </remarks>
+        public static string Escape(string text)
+        {
+            return text.Replace("${", "${literal:text=${}");
+        }
     }
 }
