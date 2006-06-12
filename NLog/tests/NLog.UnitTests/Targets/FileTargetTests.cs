@@ -59,6 +59,7 @@ namespace NLog.UnitTests.Targets
                 ft.FileName = Layout.Escape(tempFile);
                 ft.LineEnding = FileTarget.LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
+                ft.OpenFileCacheTimeout = 0;
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
@@ -132,6 +133,7 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
+                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
             }
@@ -161,10 +163,11 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
+                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
-                    Directory.Delete(tempPath);
+                    Directory.Delete(tempPath, true);
             }
         }
 
@@ -237,6 +240,7 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
+                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -312,6 +316,7 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
+                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -367,6 +372,7 @@ namespace NLog.UnitTests.Targets
             {
                 //if (File.Exists(tempFile))
                 //    File.Delete(tempFile);
+                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }

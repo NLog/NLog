@@ -265,13 +265,13 @@
     <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Internal\FileAppenders\IFileAppender.cs">
+    <Compile Include="Internal\FileAppenders\BaseFileAppender.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Internal\FileAppenders\IFileAppenderFactory.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Internal\FileAppenders\IFileCreator.cs">
+    <Compile Include="Internal\FileAppenders\ICreateFile.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Internal\FileAppenders\MutexMultiProcessFileAppender.cs">

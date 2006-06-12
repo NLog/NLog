@@ -45,54 +45,51 @@ using NLog.Internal;
 
 namespace NLog.Internal.FileAppenders
 {
-    internal class SingleProcessFileAppender : IFileAppender
+    internal class SingleProcessFileAppender : BaseFileAppender
     {
         private FileStream _file;
-        private string _fileName;
 
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
         class Factory : IFileAppenderFactory
         {
-            public IFileAppender Open(string fileName, IFileOpener opener)
+            public BaseFileAppender Open(string fileName, ICreateFileParameters parameters)
             {
-                return new SingleProcessFileAppender(fileName, opener);
+                return new SingleProcessFileAppender(fileName, parameters);
             }
         }
 
-        public string FileName
+        public SingleProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
-            get { return _fileName; }
+            _file = CreateFileStream(false);
         }
 
-        public SingleProcessFileAppender(string fileName, IFileOpener opener)
-        {
-            _fileName = fileName;
-            _file = opener.Create(fileName, false);
-        }
-
-        public void Write(byte[] bytes)
+        public override void Write(byte[] bytes)
         {
             if (_file == null)
                 return;
             _file.Write(bytes, 0, bytes.Length);
+            FileTouched();
         }
 
-        public void Flush()
+        public override void Flush()
         {
             if (_file == null)
                 return;
             _file.Flush();
+            FileTouched();
         }
 
-        public void Close()
+        public override void Close()
         {
-            InternalLogger.Trace("Closing '{0}'", _fileName);
+            if (_file == null)
+                return;
+            InternalLogger.Trace("Closing '{0}'", FileName);
             _file.Close();
             _file = null;
         }
 
-        public bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
+        public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
         {
             throw new NotSupportedException("SimpleProcessFileAppender doesn't support GetFileInfo");
         }

@@ -47,6 +47,6 @@ namespace NLog.Internal.FileAppenders
 {
     internal interface IFileAppenderFactory
     {
-        IFileAppender Open(string fileName, IFileOpener opener);
+        BaseFileAppender Open(string fileName, ICreateFileParameters parameters);
     }
 }

@@ -76,7 +76,7 @@ namespace NLog.Tester
             InternalLogger.LogToConsole = true;
             InternalLogger.LogLevel = LogLevel.Info;
 
-            for (int i = 0; i < 100000; ++i)
+            for (int i = 0; i < 100; ++i)
             {
                 logger.Trace("ttt");
                 logger.Debug("ala ma kota {0}", i);

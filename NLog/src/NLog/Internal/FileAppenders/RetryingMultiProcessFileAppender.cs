@@ -45,53 +45,44 @@ using NLog.Internal;
 
 namespace NLog.Internal.FileAppenders
 {
-    internal class RetryingMultiProcessFileAppender : IFileAppender
+    internal class RetryingMultiProcessFileAppender : BaseFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
         public class Factory : IFileAppenderFactory
         {
-            public IFileAppender Open(string fileName, IFileOpener opener)
+            public BaseFileAppender Open(string fileName, ICreateFileParameters parameters)
             {
-                return new RetryingMultiProcessFileAppender(fileName, opener);
+                return new RetryingMultiProcessFileAppender(fileName, parameters);
             }
         }
 
-        private string _fileName;
-        private IFileOpener _opener;
-
-        public RetryingMultiProcessFileAppender(string fileName, IFileOpener opener)
+        public RetryingMultiProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
-            _fileName = fileName;
-            _opener = opener;
         }
 
-        public string FileName
+        public override void Write(byte[] bytes)
         {
-            get { return _fileName; }
-        }
-
-        public void Write(byte[] bytes)
-        {
-            using (FileStream fileStream = _opener.Create(_fileName, false))
+            using (FileStream fileStream = CreateFileStream(false))
             {
                 fileStream.Write(bytes, 0, bytes.Length);
             }
+            FileTouched();
         }
 
-        public void Flush()
+        public override void Flush()
         {
             // nothing to do
         }
 
-        public void Close()
+        public override void Close()
         {
             // nothing to do
         }
 
-        public bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
+        public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
         {
-            FileInfo fi = new FileInfo(_fileName);
+            FileInfo fi = new FileInfo(FileName);
             if (fi.Exists)
             {
                 fileLength = fi.Length;

@@ -60,7 +60,7 @@ namespace NLog.Internal.FileAppenders
     /// processes are trying to write to the same file, because setting the file
     /// pointer to the end of the file and appending can be made one operation.
     /// </remarks>
-    internal class UnixMultiProcessFileAppender : IFileAppender
+    internal class UnixMultiProcessFileAppender : BaseFileAppender
     {
         private UnixStream _file;
         private string _fileName;
@@ -69,13 +69,13 @@ namespace NLog.Internal.FileAppenders
 
         public class Factory : IFileAppenderFactory
         {
-            public IFileAppender Open(string fileName, IFileOpener opener)
+            public BaseFileAppender Open(string fileName, ICreateFileParameters parameters)
             {
-                return new UnixMultiProcessFileAppender(fileName, opener);
+                return new UnixMultiProcessFileAppender(fileName, parameters);
             }
         }
 
-        public UnixMultiProcessFileAppender(string fileName, IFileOpener opener)
+        public UnixMultiProcessFileAppender(string fileName, ICreateFileParameters parameters)
         {
             _fileName = fileName;
             int fd = Syscall.open(fileName, OpenFlags.O_CREAT | OpenFlags.O_WRONLY | OpenFlags.O_APPEND, (FilePermissions)(6 | (6 << 3) | (6 << 6)));
@@ -85,7 +85,14 @@ namespace NLog.Internal.FileAppenders
                     throw new DirectoryNotFoundException(fileName);
                 UnixMarshal.ThrowExceptionForLastError();
             }
-            _file = new UnixStream(fd, true);
+            try
+            {
+                _file = new UnixStream(fd, true);
+            }
+            finally
+            {
+                Syscall.close(fd);
+            }
         }
 
         public string FileName
@@ -95,14 +102,19 @@ namespace NLog.Internal.FileAppenders
 
         public void Write(byte[] bytes)
         {
+            if (_file == null)
+                return;
             _file.Write(bytes, 0, bytes.Length);
             _file.Flush();
         }
 
         public void Close()
         {
+            if (_file == null)
+                return;
             InternalLogger.Trace("Closing '{0}'", _fileName);
             _file.Close();
+            _file = null;
         }
 
         public void Flush()
