@@ -893,6 +893,14 @@ namespace NLog.Targets
                     {
 #if NETCF
                         _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
+#elif MONO
+                        //
+                        // mono on Windows uses mutexes, on Unix - special appender
+                        //
+                        if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Unix))
+                            _appenderFactory = UnixMultiProcessFileAppender.TheFactory;
+                        else
+                            _appenderFactory = MutexMultiProcessFileAppender.TheFactory;
 #else
                         _appenderFactory = MutexMultiProcessFileAppender.TheFactory;
 #endif

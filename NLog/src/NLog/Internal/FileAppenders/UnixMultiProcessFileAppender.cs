@@ -78,7 +78,14 @@ namespace NLog.Internal.FileAppenders
         public UnixMultiProcessFileAppender(string fileName, IFileOpener opener)
         {
             _fileName = fileName;
-            _file = new UnixStream(Syscall.open(fileName, OpenFlags.O_APPEND, (FilePermissions)(6 | (6 << 3) | (6 << 6))), true);
+            int fd = Syscall.open(fileName, OpenFlags.O_CREAT | OpenFlags.O_WRONLY | OpenFlags.O_APPEND, (FilePermissions)(6 | (6 << 3) | (6 << 6)));
+            if (fd == -1)
+            {
+                if (Stdlib.GetLastError() == Errno.ENOENT)
+                    throw new DirectoryNotFoundException(fileName);
+                UnixMarshal.ThrowExceptionForLastError();
+            }
+            _file = new UnixStream(fd, true);
         }
 
         public string FileName
@@ -88,10 +95,8 @@ namespace NLog.Internal.FileAppenders
 
         public void Write(byte[] bytes)
         {
-            lock (this)
-            {
-                _file.Write(bytes, 0, bytes.Length);
-            }
+            _file.Write(bytes, 0, bytes.Length);
+            _file.Flush();
         }
 
         public void Close()
