@@ -59,61 +59,79 @@ namespace NLog.Internal.FileAppenders
     /// On Win32 we need to maintain some synchronization between processes
     /// (global named mutex is used for this)
     /// </remarks>
-    internal class MutexMultiProcessFileAppender : IFileAppender
+    internal class MutexMultiProcessFileAppender : BaseFileAppender
     {
         private Mutex _mutex;
         private FileStream _file;
-        private string _fileName;
 
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
         public class Factory : IFileAppenderFactory
         {
-            public IFileAppender Open(string fileName, IFileOpener opener)
+            public BaseFileAppender Open(string fileName, ICreateFileParameters parameters)
             {
-                return new MutexMultiProcessFileAppender(fileName, opener);
+                return new MutexMultiProcessFileAppender(fileName, parameters);
             }
         }
 
-        public MutexMultiProcessFileAppender(string fileName, IFileOpener opener)
+        public MutexMultiProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
-            _fileName = fileName;
-            _mutex = new Mutex(false, GetMutexName(fileName));
-            _file = opener.Create(fileName, true);
-        }
-
-        public string FileName
-        {
-            get { return _fileName; }
-        }
-
-        public void Write(byte[] bytes)
-        {
-                if (_mutex == null)
-                    return;
-                _mutex.WaitOne();
-                try
+            try
+            {
+                _mutex = new Mutex(false, GetMutexName(fileName));
+                _file = CreateFileStream(true);
+            }
+            catch
+            {
+                if (_mutex != null)
                 {
-                    _file.Seek(0, SeekOrigin.End);
-                    _file.Write(bytes, 0, bytes.Length);
-                    _file.Flush();
+                    _mutex.Close();
+                    _mutex = null;
                 }
-                finally
+                if (_file != null)
                 {
-                    _mutex.ReleaseMutex();
+                    _file.Close();
+                    _file = null;
                 }
+                throw;
+            }
         }
 
-        public void Close()
+        public override void Write(byte[] bytes)
         {
-            InternalLogger.Trace("Closing '{0}'", _fileName);
-            _mutex.Close();
-            _file.Close();
+            if (_mutex == null)
+                return;
+            _mutex.WaitOne();
+            try
+            {
+                _file.Seek(0, SeekOrigin.End);
+                _file.Write(bytes, 0, bytes.Length);
+                _file.Flush();
+                FileTouched();
+            }
+            finally
+            {
+                _mutex.ReleaseMutex();
+            }
+        }
+
+        public override void Close()
+        {
+            InternalLogger.Trace("Closing '{0}'", FileName);
+            if (_mutex != null)
+            {
+                _mutex.Close();
+            }
+            if (_file != null)
+            {
+                _file.Close();
+            }
             _mutex = null;
             _file = null;
+            FileTouched();
         }
 
-        public void Flush()
+        public override void Flush()
         {
             // do nothing, the stream is always flushed
         }
@@ -129,12 +147,12 @@ namespace NLog.Internal.FileAppenders
             return "filelock-mutex-" + canonicalName;
         }
 
-        public bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
+        public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
         {
 #if NET_2_API
-            return FileInfoHelper.Helper.GetFileInfo(_fileName, _file.SafeFileHandle.DangerousGetHandle(), out lastWriteTime, out fileLength);
+            return FileInfoHelper.Helper.GetFileInfo(FileName, _file.SafeFileHandle.DangerousGetHandle(), out lastWriteTime, out fileLength);
 #else
-            return FileInfoHelper.Helper.GetFileInfo(_fileName, _file.Handle, out lastWriteTime, out fileLength);
+            return FileInfoHelper.Helper.GetFileInfo(FileName, _file.Handle, out lastWriteTime, out fileLength);
 #endif
         }
     }

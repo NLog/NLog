@@ -45,67 +45,69 @@ using NLog.Internal;
 
 namespace NLog.Internal.FileAppenders
 {
-    internal class CountingSingleProcessFileAppender : IFileAppender
+    internal class CountingSingleProcessFileAppender : BaseFileAppender
     {
         private FileStream _file;
         private string _fileName;
         private long _fileLength;
-        private DateTime _lastWriteTime;
 
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
         class Factory : IFileAppenderFactory
         {
-            public IFileAppender Open(string fileName, IFileOpener opener)
+            public BaseFileAppender Open(string fileName, ICreateFileParameters parameters)
             {
-                return new CountingSingleProcessFileAppender(fileName, opener);
+                return new CountingSingleProcessFileAppender(fileName, parameters);
             }
         }
 
-        public string FileName
-        {
-            get { return _fileName; }
-        }
-
-        public CountingSingleProcessFileAppender(string fileName, IFileOpener opener)
+        public CountingSingleProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
             _fileName = fileName;
             FileInfo fi = new FileInfo(fileName);
             if (fi.Exists)
             {
-                _lastWriteTime = fi.LastWriteTime;
+                FileTouched(fi.LastWriteTime);
                 _fileLength = fi.Length;
             }
             else
             {
-                _lastWriteTime = DateTime.Now;
+                FileTouched();
                 _fileLength = 0;
             }
 
-            _file = opener.Create(fileName, false);
+            _file = CreateFileStream(false);
         }
 
-        public void Write(byte[] bytes)
+        public override void Write(byte[] bytes)
         {
+            if (_file == null)
+                return;
             _fileLength += bytes.Length;
-            _lastWriteTime = DateTime.Now;
             _file.Write(bytes, 0, bytes.Length);
+            FileTouched();
         }
 
-        public void Flush()
+        public override void Flush()
         {
+            if (_file == null)
+                return;
             _file.Flush();
+            FileTouched();
         }
 
-        public void Close()
+        public override void Close()
         {
+            if (_file == null)
+                return;
             //InternalLogger.Trace("Closing '{0}'", _fileName);
             _file.Close();
+            _file = null;
         }
 
-        public bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
+        public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
         {
-            lastWriteTime = _lastWriteTime;
+            lastWriteTime = LastWriteTime;
             fileLength = _fileLength;
             return true;
         }
