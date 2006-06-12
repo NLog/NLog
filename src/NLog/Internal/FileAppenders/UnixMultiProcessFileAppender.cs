@@ -63,7 +63,6 @@ namespace NLog.Internal.FileAppenders
     internal class UnixMultiProcessFileAppender : BaseFileAppender
     {
         private UnixStream _file;
-        private string _fileName;
 
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
@@ -75,56 +74,60 @@ namespace NLog.Internal.FileAppenders
             }
         }
 
-        public UnixMultiProcessFileAppender(string fileName, ICreateFileParameters parameters)
+        public UnixMultiProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
-            _fileName = fileName;
             int fd = Syscall.open(fileName, OpenFlags.O_CREAT | OpenFlags.O_WRONLY | OpenFlags.O_APPEND, (FilePermissions)(6 | (6 << 3) | (6 << 6)));
             if (fd == -1)
             {
-                if (Stdlib.GetLastError() == Errno.ENOENT)
-                    throw new DirectoryNotFoundException(fileName);
-                UnixMarshal.ThrowExceptionForLastError();
+                if (Stdlib.GetLastError() == Errno.ENOENT && parameters.CreateDirs)
+                {
+                    string dirName = Path.GetDirectoryName(fileName);
+                    if (!Directory.Exists(dirName) && parameters.CreateDirs)
+                        Directory.CreateDirectory(dirName);
+                    
+                    fd = Syscall.open(fileName, OpenFlags.O_CREAT | OpenFlags.O_WRONLY | OpenFlags.O_APPEND, (FilePermissions)(6 | (6 << 3) | (6 << 6)));
+                }
             }
+            if (fd == -1)
+                UnixMarshal.ThrowExceptionForLastError();
+
             try
             {
                 _file = new UnixStream(fd, true);
             }
-            finally
+            catch
             {
                 Syscall.close(fd);
+                throw;
             }
         }
 
-        public string FileName
-        {
-            get { return _fileName; }
-        }
-
-        public void Write(byte[] bytes)
+        public override void Write(byte[] bytes)
         {
             if (_file == null)
                 return;
             _file.Write(bytes, 0, bytes.Length);
-            _file.Flush();
+            FileTouched();
         }
 
-        public void Close()
+        public override void Close()
         {
             if (_file == null)
                 return;
-            InternalLogger.Trace("Closing '{0}'", _fileName);
+            InternalLogger.Trace("Closing '{0}'", FileName);
             _file.Close();
             _file = null;
+            FileTouched();
         }
 
-        public void Flush()
+        public override void Flush()
         {
             // do nothing, the stream is always flushed
         }
 
-        public bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
+        public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
         {
-            FileInfo fi = new FileInfo(_fileName);
+            FileInfo fi = new FileInfo(FileName);
             if (fi.Exists)
             {
                 fileLength = fi.Length;

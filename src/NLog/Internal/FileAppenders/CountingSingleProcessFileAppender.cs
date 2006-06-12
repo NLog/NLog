@@ -48,7 +48,6 @@ namespace NLog.Internal.FileAppenders
     internal class CountingSingleProcessFileAppender : BaseFileAppender
     {
         private FileStream _file;
-        private string _fileName;
         private long _fileLength;
 
         public static readonly IFileAppenderFactory TheFactory = new Factory();
@@ -63,7 +62,6 @@ namespace NLog.Internal.FileAppenders
 
         public CountingSingleProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
-            _fileName = fileName;
             FileInfo fi = new FileInfo(fileName);
             if (fi.Exists)
             {
