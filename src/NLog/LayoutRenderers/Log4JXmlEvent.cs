@@ -65,7 +65,7 @@ namespace NLog.LayoutRenderers
 #if NETCF
             AppInfo = ".NET CF Application";
 #else
-            AppInfo = String.Format("{0}({1})", AppDomain.CurrentDomain.FriendlyName, NLog.Internal.ThreadIDHelper.CurrentProcessID);
+            AppInfo = String.Format("{0}({1})", AppDomain.CurrentDomain.FriendlyName, NLog.Internal.ThreadIDHelper.Instance.CurrentProcessID);
 #endif
         }
 
@@ -177,7 +177,7 @@ namespace NLog.LayoutRenderers
             xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpper());
             xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - _log4jDateBase).TotalMilliseconds));
 #if !NETCF
-            xtw.WriteAttributeString("thread", NLog.Internal.ThreadIDHelper.CurrentThreadID.ToString());
+            xtw.WriteAttributeString("thread", NLog.Internal.ThreadIDHelper.Instance.CurrentThreadID.ToString());
 #else
             xtw.WriteElementString("thread", "");
 #endif

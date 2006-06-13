@@ -48,14 +48,131 @@ namespace NLog.Internal
     /// <summary>
     /// Returns details about current process and thread in a portable manner.
     /// </summary>
-    public sealed class ThreadIDHelper
+    public abstract class ThreadIDHelper
+    {
+        public readonly static ThreadIDHelper Instance;
+
+        static ThreadIDHelper()
+        {
+#if NETCF
+            Instance = new Win32ThreadIDHelper();
+#else
+            if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Windows)
+             || PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.WindowsCE)
+             || PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.WindowsNT)
+             )
+            {
+                Instance = new Win32ThreadIDHelper();
+            }
+            else
+            {
+                Instance = new PortableThreadIDHelper();
+            }
+#endif
+        }        
+        
+        /// <summary>
+        /// Returns current unmanaged thread ID.
+        /// </summary>
+        public abstract int CurrentUnmanagedThreadID { get; }
+        
+        /// <summary>
+        /// Returns current thread ID.
+        /// </summary>
+        public abstract int CurrentThreadID { get; }
+        
+        /// <summary>
+        /// Returns current process ID.
+        /// </summary>
+        public abstract int CurrentProcessID { get; }
+
+        /// <summary>
+        /// Returns current process name.
+        /// </summary>
+        public abstract string CurrentProcessName { get; } 
+
+        /// <summary>
+        /// Returns current process name (excluding filename extension, if any).
+        /// </summary>
+        public abstract string CurrentProcessBaseName { get; }
+        
+        /// <summary>
+        /// Returns the base directory where process EXE file resides.
+        /// </summary>
+        public abstract string CurrentProcessDirectory { get; }
+    }
+
+#if !NETCF
+    internal class PortableThreadIDHelper : ThreadIDHelper
+    {
+        private int _currentProcessID;
+        private string _currentProcessName;
+        private string _currentProcessBaseName;
+        private string _currentProcessDirectoryName;
+
+        public PortableThreadIDHelper()
+        {
+            _currentProcessID = System.Diagnostics.Process.GetCurrentProcess().Id;
+            Assembly entryAssembly = Assembly.GetEntryAssembly();
+            _currentProcessName = "";
+            if (entryAssembly != null)
+            {
+                _currentProcessName = entryAssembly.Location;
+            }
+            else
+            {
+                _currentProcessName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "unknown");
+            }
+            _currentProcessBaseName = Path.GetFileNameWithoutExtension(_currentProcessName);
+            _currentProcessDirectoryName = Path.GetDirectoryName(_currentProcessName);
+        }
+
+        public override int CurrentThreadID
+        {
+            get {
+#if NET_2_API
+                return System.Threading.Thread.CurrentThread.ManagedThreadId;
+#else
+                return AppDomain.GetCurrentThreadId();
+#endif
+            }
+        }
+
+        public override int CurrentUnmanagedThreadID
+        {
+            get { return CurrentThreadID; }
+        }
+
+        public override int CurrentProcessID
+        {
+            get { return _currentProcessID; }
+        }
+
+        public override string CurrentProcessName
+        {
+            get { return _currentProcessName; }
+        }
+
+        public override string CurrentProcessBaseName
+        {
+            get { return _currentProcessBaseName; }
+        }
+        
+        public override string CurrentProcessDirectory
+        {
+            get { return _currentProcessDirectoryName; }
+        }
+    }
+#endif
+
+    internal class Win32ThreadIDHelper : ThreadIDHelper
     {
         private static int _currentProcessID;
         private static string _currentProcessName;
         private static string _currentProcessBaseName;
         private static string _currentProcessDirectoryName;
 
-        static ThreadIDHelper()
+        public Win32ThreadIDHelper()
         {
             _currentProcessID = GetCurrentProcessId();
             StringBuilder sb = new StringBuilder(512);
@@ -84,42 +201,40 @@ namespace NLog.Internal
         [DllImport("coredll.dll", SetLastError=true)]
         private static extern uint GetModuleFileName([In] IntPtr hModule, [Out] StringBuilder lpFilename, [In] int nSize);
 #endif
-        /// <summary>
-        /// Returns current unmanaged thread ID.
-        /// </summary>
-        public static int CurrentThreadID
+        public override int CurrentUnmanagedThreadID
         {
             get { return GetCurrentThreadId(); }
         }
 
-        /// <summary>
-        /// Returns current process ID.
-        /// </summary>
-        public static int CurrentProcessID
+        public override int CurrentThreadID
+        {
+            get {
+#if NETCF
+                return CurrentUnmanagedThreadID;
+#elif NET_2_API
+                return System.Threading.Thread.CurrentThread.ManagedThreadId;
+#else
+                return AppDomain.GetCurrentThreadId();
+#endif
+            }
+        }
+        
+        public override int CurrentProcessID
         {
             get { return _currentProcessID; }
         }
 
-        /// <summary>
-        /// Returns current process name.
-        /// </summary>
-        public static string CurrentProcessName
+        public override string CurrentProcessName
         {
             get { return _currentProcessName; }
         }
 
-        /// <summary>
-        /// Returns current process name (excluding filename extension, if any).
-        /// </summary>
-        public static string CurrentProcessBaseName
+        public override string CurrentProcessBaseName
         {
             get { return _currentProcessBaseName; }
         }
         
-        /// <summary>
-        /// Returns the base directory where process EXE file resides.
-        /// </summary>
-        public static string CurrentProcessDirectory
+        public override string CurrentProcessDirectory
         {
             get { return _currentProcessDirectoryName; }
         }

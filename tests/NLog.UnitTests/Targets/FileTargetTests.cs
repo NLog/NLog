@@ -449,7 +449,7 @@ namespace NLog.UnitTests.Targets
                 // such as ${threadid} are properly cached and not recalculated
                 // in logging threads.
 
-                string threadID = NLog.Internal.ThreadIDHelper.CurrentThreadID.ToString();
+                string threadID = NLog.Internal.ThreadIDHelper.Instance.CurrentThreadID.ToString();
 
                 SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(ft, 1000, AsyncTargetWrapperOverflowAction.Grow), LogLevel.Debug);
 
