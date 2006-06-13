@@ -264,7 +264,7 @@
     </target>
 
     <target name="NLog.UnitTests" depends="NLog">
-	<copy file="${nant::get-base-directory()}/lib/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/nunit.framework.dll" tofile="${nlog.dir}/nunit.framework.dll" />
+        <copy file="${nant::get-base-directory()}/lib/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/nunit.framework.dll" tofile="${nlog.dir}/nunit.framework.dll" />
         <csc target="library" output="${nlog.dir}/NLog.UnitTests.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="tests/NLog.UnitTests">
                 <include name="**/*.cs" />
@@ -273,6 +273,11 @@
                 <include name="${nlog.dir}/NLog.dll" />
                 <include name="${nlog.dir}/nunit.framework.dll" />
             </references>
+        </csc>
+        <csc target="exe" output="${nlog.dir}/Runner.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
+            <sources basedir="tools">
+                <include name="Runner.cs" />
+            </sources>
         </csc>
     </target>
 
