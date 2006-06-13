@@ -113,16 +113,7 @@ namespace NLog.Internal
         public PortableThreadIDHelper()
         {
             _currentProcessID = System.Diagnostics.Process.GetCurrentProcess().Id;
-            Assembly entryAssembly = Assembly.GetEntryAssembly();
-            _currentProcessName = "";
-            if (entryAssembly != null)
-            {
-                _currentProcessName = entryAssembly.Location;
-            }
-            else
-            {
-                _currentProcessName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "unknown");
-            }
+            _currentProcessName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
             _currentProcessBaseName = Path.GetFileNameWithoutExtension(_currentProcessName);
             _currentProcessDirectoryName = Path.GetDirectoryName(_currentProcessName);
         }
