@@ -178,6 +178,7 @@
     <Compile Include="RoutingTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Targets\ConcurrentFileTests.cs" />
     <Compile Include="Targets\FileTargetTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -187,7 +188,6 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy /b $(ProjectDir)..\..\tools\Runner.exe $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>

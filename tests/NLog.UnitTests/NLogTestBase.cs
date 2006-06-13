@@ -36,6 +36,8 @@ using System;
 using NUnit.Framework;
 using System.Text;
 using System.IO;
+using System.Diagnostics;
+using System.Threading;
 
 namespace NLog.UnitTests
 {
@@ -91,6 +93,42 @@ namespace NLog.UnitTests
             for (int i = 0; i < times; ++i)
                 sb.Append(s);
             return sb.ToString();
+        }
+
+        protected Process SpawnMethod(string methodName, params string[] p)
+        {
+            string assemblyName = this.GetType().Assembly.FullName;
+            string typename = this.GetType().FullName;
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("\"{0}\" \"{1}\" \"{2}\"", assemblyName, typename, methodName);
+            foreach (string s in p)
+            {
+                sb.Append(" ");
+                sb.Append("\"");
+                sb.Append(s);
+                sb.Append("\"");
+            }
+
+            Process proc = new Process();
+            proc.StartInfo.Arguments = sb.ToString();
+            proc.StartInfo.FileName = "Runner.exe";
+            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+            proc.StartInfo.RedirectStandardInput = true;
+            proc.StartInfo.RedirectStandardOutput = true;
+            proc.Start();
+            return proc;
+        }
+
+        protected Mutex[] syncMutexes;
+
+        protected void InitSyncMutexes(int count)
+        {
+            syncMutexes = new Mutex[count];
+            for (int i = 0; i < count; ++i)
+            {
+                syncMutexes[i] = new Mutex(false, "nlog-syncmutex-" + i);
+            }
         }
     }
 }
