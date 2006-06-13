@@ -45,6 +45,7 @@ using NLog.Targets.Wrappers;
 using NLog.LayoutRenderers;
 using System.Diagnostics;
 using System.Threading;
+using System.Collections;
 
 namespace NLog.UnitTests.Targets
 {
@@ -65,16 +66,14 @@ namespace NLog.UnitTests.Targets
             SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
         }
 
-        public void Process(string threadName)
+        public void Process(string threadName, string numLogsString)
         {
             System.Threading.Thread.CurrentThread.Name = threadName;
             ConfigureSharedFile();
-            for (int i = 0; i < 10; ++i)
+            int numLogs = Convert.ToInt32(numLogsString);
+            for (int i = 0; i < numLogs; ++i)
             {
-                string line = Console.ReadLine();
-                Assert.AreEqual("go!" + i, line);
-                logger.Debug("log{0}", i);
-                Console.WriteLine("done!" + i);
+                logger.Debug("{0}", i);
             }
         }
 
@@ -88,33 +87,38 @@ namespace NLog.UnitTests.Targets
 
             StringBuilder expectedOutput = new StringBuilder();
 
-            using (Process p1 = SpawnMethod("Process", "p1"))
+            int numProcesses = 3;
+            int numLogs = 100;
+            Process[] processes = new Process[numProcesses];
+
+            for (int i = 0; i < numProcesses; ++i)
             {
-                using (Process p2 = SpawnMethod("Process", "p2"))
+                processes[i] = SpawnMethod("Process", i.ToString(), numLogs.ToString());
+            }
+            for (int i = 0; i < numProcesses; ++i)
+            {
+                processes[i].WaitForExit();
+                processes[i].Dispose();
+                processes[i] = null;
+            }
+
+            int[] maxNumber = new int[numProcesses];
+
+            using (StreamReader sr = File.OpenText(logFile))
+            {
+                string line;
+
+                while ((line = sr.ReadLine()) != null)
                 {
-                    using (Process p3 = SpawnMethod("Process", "p3"))
-                    {
-                        for (int i = 0; i < 10; ++i)
-                        {
-                            p1.StandardInput.WriteLine("go!" + i);
-                            Assert.AreEqual("done!" + i, p1.StandardOutput.ReadLine());
-                            p2.StandardInput.WriteLine("go!" + i);
-                            Assert.AreEqual("done!" + i, p2.StandardOutput.ReadLine());
-                            p3.StandardInput.WriteLine("go!" + i);
-                            Assert.AreEqual("done!" + i, p3.StandardOutput.ReadLine());
+                    string[] tokens = line.Split(' ');
+                    int thread = Convert.ToInt32(tokens[0]);
+                    int number = Convert.ToInt32(tokens[1]);
 
-                            expectedOutput.AppendFormat("p1 log{0}\n", i);
-                            expectedOutput.AppendFormat("p2 log{0}\n", i);
-                            expectedOutput.AppendFormat("p3 log{0}\n", i); 
-                        }
-
-                        p3.WaitForExit();
-                        p2.WaitForExit();
-                        p1.WaitForExit();
-                    }
+                    Assert.AreEqual(maxNumber[thread], number);
+                    maxNumber[thread]++;
                 }
             }
-            AssertFileContents(logFile, expectedOutput.ToString(), Encoding.ASCII);
+            //AssertFileContents(logFile, expectedOutput.ToString(), Encoding.ASCII);
         }
     }
 }
