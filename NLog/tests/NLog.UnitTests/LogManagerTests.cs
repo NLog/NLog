@@ -85,5 +85,40 @@ namespace NLog.UnitTests
             }
             LogManager.ThrowExceptions = false;
         }
+
+        public void GlobalThresholdTest()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(@"
+                <nlog globalThreshold='Info'>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' appendTo='debug' />
+                    </rules>
+                </nlog>");
+
+            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
+
+            Assert.AreEqual(LogLevel.Info, LogManager.GlobalThreshold);
+
+            // nothing gets logged because of globalThreshold
+            LogManager.GetLogger("A").Debug("xxx");
+            AssertDebugLastMessage("debug", "");
+
+            // lower the threshold
+            LogManager.GlobalThreshold = LogLevel.Trace;
+
+            LogManager.GetLogger("A").Debug("yyy");
+            AssertDebugLastMessage("debug", "yyy");
+
+            // raise the threshold
+            LogManager.GlobalThreshold = LogLevel.Info;
+
+            // this should be yyy, meaning that the target is in place
+            // only rules have been modified.
+
+            LogManager.GetLogger("A").Debug("zzz");
+            AssertDebugLastMessage("debug", "yyy");
+        }
     }
 }

@@ -43,6 +43,7 @@ using System.Net;
 using System.Net.Sockets;
 
 using NLog.Config;
+using System.Threading;
 
 namespace NLog.Targets.Wrappers
 {
@@ -65,6 +66,8 @@ namespace NLog.Targets.Wrappers
     public class BufferingTargetWrapper: WrapperTargetBase
     {
         private LogEventInfoBuffer _buffer;
+        private Timer _flushTimer;
+        private int _flushTimeout = -1;
 
         /// <summary>
         /// Creates a new instance of the <see cref="BufferingTargetWrapper"/> and initializes <see cref="BufferSize"/> to 100.
@@ -93,6 +96,18 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
+        /// Creates a new instance of the <see cref="BufferingTargetWrapper"/>, 
+        /// initializes <see cref="BufferSize"/>, <see cref="WrapperTargetBase.WrappedTarget"/> 
+        /// and <see cref="FlushTimeout"/> to the specified values.
+        /// </summary>
+        public BufferingTargetWrapper(Target writeTo, int bufferSize, int flushTimeout)
+        {
+            WrappedTarget = writeTo;
+            BufferSize = bufferSize;
+            FlushTimeout = flushTimeout;
+        }
+
+        /// <summary>
         /// Number of log events to be buffered.
         /// </summary>
         [System.ComponentModel.DefaultValue(100)]
@@ -103,18 +118,48 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
+        /// Flush the contents of buffer if there's no write in the specified period of time
+        /// (milliseconds). Use -1 to disable timed flushes.
+        /// </summary>
+        [System.ComponentModel.DefaultValue(-1)]
+        public int FlushTimeout
+        {
+            get { return _flushTimeout; }
+            set { _flushTimeout = value; }
+        }
+
+        /// <summary>
+        /// Initializes the target.
+        /// </summary>
+        public override void Initialize()
+        {
+            base.Initialize();
+            _flushTimer = new Timer(new TimerCallback(this.FlushCallback), null, -1, -1);
+        }
+
+        /// <summary>
         /// Adds the specified log event to the buffer and flushes
         /// the buffer in case the buffer gets full.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            WrappedTarget.PrecalculateVolatileLayouts(logEvent);
-            int count = _buffer.Append(logEvent);
-            if (count >= BufferSize)
+            lock (this)
             {
-                LogEventInfo[] events = _buffer.GetEventsAndClear();
-                WrappedTarget.Write(events);
+                WrappedTarget.PrecalculateVolatileLayouts(logEvent);
+                int count = _buffer.Append(logEvent);
+                if (count >= BufferSize)
+                {
+                    LogEventInfo[] events = _buffer.GetEventsAndClear();
+                    WrappedTarget.Write(events);
+                }
+                else
+                {
+                    if (FlushTimeout > 0 && _flushTimer != null)
+                    {
+                        _flushTimer.Change(FlushTimeout, -1);
+                    }
+                }
             }
         }
 
@@ -125,10 +170,13 @@ namespace NLog.Targets.Wrappers
         {
             base.Flush (timeout);
 
-            LogEventInfo[] events = _buffer.GetEventsAndClear();
-            if (events.Length > 0)
+            lock (this)
             {
-                WrappedTarget.Write(events);
+                LogEventInfo[] events = _buffer.GetEventsAndClear();
+                if (events.Length > 0)
+                {
+                    WrappedTarget.Write(events);
+                }
             }
         }
 
@@ -139,6 +187,20 @@ namespace NLog.Targets.Wrappers
         {
             Flush(TimeSpan.FromSeconds(3));
             base.Close ();
+            _flushTimer.Dispose();
+            _flushTimer = null;
+        }
+
+        void FlushCallback(object state)
+        {
+            lock (this)
+            {
+                LogEventInfo[] events = _buffer.GetEventsAndClear();
+                if (events.Length > 0)
+                {
+                    WrappedTarget.Write(events);
+                }
+            }
         }
    }
 }

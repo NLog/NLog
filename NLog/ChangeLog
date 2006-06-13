@@ -1,3 +1,8 @@
+2006-06-13 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added BufferedWrapper.FlushTimeout
+	* Added some unit tests
+	* Fixed AsyncWrapper not closing files on termination.
+
 2006-06-11 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added FileTarget.LineEnding
 	* Added some unit tests

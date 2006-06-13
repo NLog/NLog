@@ -45,7 +45,10 @@ using NLog.Config;
 
 namespace NLog.Internal
 {
-    internal sealed class ThreadIDHelper
+    /// <summary>
+    /// Returns details about current process and thread in a portable manner.
+    /// </summary>
+    public sealed class ThreadIDHelper
     {
         private static int _currentProcessID;
         private static string _currentProcessName;
@@ -81,26 +84,41 @@ namespace NLog.Internal
         [DllImport("coredll.dll", SetLastError=true)]
         private static extern uint GetModuleFileName([In] IntPtr hModule, [Out] StringBuilder lpFilename, [In] int nSize);
 #endif
+        /// <summary>
+        /// Returns current unmanaged thread ID.
+        /// </summary>
         public static int CurrentThreadID
         {
             get { return GetCurrentThreadId(); }
         }
 
+        /// <summary>
+        /// Returns current process ID.
+        /// </summary>
         public static int CurrentProcessID
         {
             get { return _currentProcessID; }
         }
 
+        /// <summary>
+        /// Returns current process name.
+        /// </summary>
         public static string CurrentProcessName
         {
             get { return _currentProcessName; }
         }
 
+        /// <summary>
+        /// Returns current process name (excluding filename extension, if any).
+        /// </summary>
         public static string CurrentProcessBaseName
         {
             get { return _currentProcessBaseName; }
         }
         
+        /// <summary>
+        /// Returns the base directory where process EXE file resides.
+        /// </summary>
         public static string CurrentProcessDirectory
         {
             get { return _currentProcessDirectoryName; }

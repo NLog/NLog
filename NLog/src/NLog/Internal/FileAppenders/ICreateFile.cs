@@ -42,7 +42,9 @@ using NLog;
 using NLog.Config;
 
 using NLog.Internal;
+#if !NETCF
 using NLog.Internal.Win32;
+#endif
 
 namespace NLog.Internal.FileAppenders
 {
@@ -57,6 +59,8 @@ namespace NLog.Internal.FileAppenders
         bool CreateDirs { get; }
         bool EnableFileDelete { get; }
         int BufferSize { get; }
+#if !NETCF
         Win32FileAttributes FileAttributes { get; }
+#endif
     }
 }
