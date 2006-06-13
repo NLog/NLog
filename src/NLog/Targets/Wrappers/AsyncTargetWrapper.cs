@@ -110,6 +110,37 @@ namespace NLog.Targets.Wrappers
         private int _timeToSleepBetweenBatches = 50;
 
         /// <summary>
+        /// Creates a new instance of <see cref="AsyncTargetWrapper"/>.
+        /// </summary>
+        public AsyncTargetWrapper()
+        {
+        }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="AsyncTargetWrapper"/>
+        /// which wraps the specified target.
+        /// </summary>
+        /// <param name="wrappedTarget">The target to be wrapped.</param>
+        public AsyncTargetWrapper(Target wrappedTarget)
+        {
+            WrappedTarget = wrappedTarget;
+        }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="AsyncTargetWrapper"/>
+        /// which wraps the specified target.
+        /// </summary>
+        /// <param name="wrappedTarget">The target to be wrapped.</param>
+        /// <param name="queueLimit">Maximum number of requests in the queue.</param>
+        /// <param name="overflowAction">The action to be taken when the queue overflows.</param>
+        public AsyncTargetWrapper(Target wrappedTarget, int queueLimit, AsyncTargetWrapperOverflowAction overflowAction)
+        {
+            WrappedTarget = wrappedTarget;
+            QueueLimit = queueLimit;
+            OverflowAction = overflowAction;
+        }
+
+        /// <summary>
         /// Initializes the target by starting the lazy writer thread.
         /// </summary>
         public override void Initialize()
@@ -124,6 +155,7 @@ namespace NLog.Targets.Wrappers
         protected internal override void Close()
         {
             StopLazyWriterThread();
+            base.Close();
         }
 
         /// <summary>
@@ -196,17 +228,8 @@ namespace NLog.Targets.Wrappers
             RequestQueue.Enqueue(logEvent);
         }
 
-        private bool _stopLazyWriterThread = false;
         private Timer _lazyWriterTimer = null;
         private AsyncRequestQueue _lazyWriterRequestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
-
-        /// <summary>
-        /// Checks whether lazy writer thread is requested to stop.
-        /// </summary>
-        protected bool LazyWriterThreadStopRequested
-        {
-            get { return _stopLazyWriterThread; }
-        }
 
         /// <summary>
         /// The queue of lazy writer thread requests.

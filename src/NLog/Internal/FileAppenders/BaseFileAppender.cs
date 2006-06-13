@@ -43,7 +43,9 @@ using NLog.Config;
 
 using NLog.Internal;
 using System.Runtime.InteropServices;
+#if !NETCF
 using NLog.Internal.Win32;
+#endif
 
 namespace NLog.Internal.FileAppenders
 {

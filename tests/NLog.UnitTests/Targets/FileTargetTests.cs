@@ -41,6 +41,8 @@ using NUnit.Framework;
 using NLog.Targets;
 using System.IO;
 using System.Text;
+using NLog.Targets.Wrappers;
+using NLog.LayoutRenderers;
 
 namespace NLog.UnitTests.Targets
 {
@@ -325,7 +327,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Test]
-        public void MutliFileWrite()
+        public void MultiFileWrite()
         {
             // create the file in a not-existent
             // directory which forces creation
@@ -367,6 +369,118 @@ namespace NLog.UnitTests.Targets
 
                 AssertFileContents(Path.Combine(tempPath, "Fatal.txt"),
                     StringRepeat(250, "eee\n"), Encoding.ASCII);
+            }
+            finally
+            {
+                //if (File.Exists(tempFile))
+                //    File.Delete(tempFile);
+                LogManager.Configuration = null;
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
+        [Test]
+        public void BufferedMultiFileWrite()
+        {
+            // create the file in a not-existent
+            // directory which forces creation
+            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            try
+            {
+                FileTarget ft = new FileTarget();
+                ft.FileName = Path.Combine(tempPath, "${level}.txt");
+                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.Layout = "${message}";
+
+                SimpleConfigurator.ConfigureForTargetLogging(new BufferingTargetWrapper(ft,10), LogLevel.Debug);
+
+                for (int i = 0; i < 250; ++i)
+                {
+                    logger.Trace("@@@");
+                    logger.Debug("aaa");
+                    logger.Info("bbb");
+                    logger.Warn("ccc");
+                    logger.Error("ddd");
+                    logger.Fatal("eee");
+                }
+
+                LogManager.Configuration = null;
+
+                Assert.IsFalse(File.Exists(Path.Combine(tempPath, "Trace.txt")));
+
+                AssertFileContents(Path.Combine(tempPath, "Debug.txt"),
+                    StringRepeat(250, "aaa\n"), Encoding.ASCII);
+
+                AssertFileContents(Path.Combine(tempPath, "Info.txt"),
+                    StringRepeat(250, "bbb\n"), Encoding.ASCII);
+
+                AssertFileContents(Path.Combine(tempPath, "Warn.txt"),
+                    StringRepeat(250, "ccc\n"), Encoding.ASCII);
+
+                AssertFileContents(Path.Combine(tempPath, "Error.txt"),
+                    StringRepeat(250, "ddd\n"), Encoding.ASCII);
+
+                AssertFileContents(Path.Combine(tempPath, "Fatal.txt"),
+                    StringRepeat(250, "eee\n"), Encoding.ASCII);
+            }
+            finally
+            {
+                //if (File.Exists(tempFile))
+                //    File.Delete(tempFile);
+                LogManager.Configuration = null;
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
+        [Test]
+        public void AsyncMultiFileWrite()
+        {
+            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            try
+            {
+                FileTarget ft = new FileTarget();
+                ft.FileName = Path.Combine(tempPath, "${level}.txt");
+                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.Layout = "${message} ${threadid}";
+
+                // this also checks that thread-volatile layouts
+                // such as ${threadid} are properly cached and not recalculated
+                // in logging threads.
+
+                string threadID = NLog.Internal.ThreadIDHelper.CurrentThreadID.ToString();
+
+                SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(ft, 1000, AsyncTargetWrapperOverflowAction.Grow), LogLevel.Debug);
+
+                for (int i = 0; i < 250; ++i)
+                {
+                    logger.Trace("@@@");
+                    logger.Debug("aaa");
+                    logger.Info("bbb");
+                    logger.Warn("ccc");
+                    logger.Error("ddd");
+                    logger.Fatal("eee");
+                }
+
+                LogManager.Configuration = null;
+
+                Assert.IsFalse(File.Exists(Path.Combine(tempPath, "Trace.txt")));
+
+                AssertFileContents(Path.Combine(tempPath, "Debug.txt"),
+                    StringRepeat(250, "aaa " + threadID +"\n"), Encoding.ASCII);
+
+                AssertFileContents(Path.Combine(tempPath, "Info.txt"),
+                    StringRepeat(250, "bbb " + threadID + "\n"), Encoding.ASCII);
+
+                AssertFileContents(Path.Combine(tempPath, "Warn.txt"),
+                    StringRepeat(250, "ccc " + threadID + "\n"), Encoding.ASCII);
+
+                AssertFileContents(Path.Combine(tempPath, "Error.txt"),
+                    StringRepeat(250, "ddd " + threadID + "\n"), Encoding.ASCII);
+
+                AssertFileContents(Path.Combine(tempPath, "Fatal.txt"),
+                    StringRepeat(250, "eee " + threadID + "\n"), Encoding.ASCII);
             }
             finally
             {
