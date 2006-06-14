@@ -43,6 +43,8 @@ using NLog.Targets;
 using System.IO;
 using System.Threading;
 
+using NLog.Internal;
+
 namespace NLog.UnitTests
 {
     [TestFixture]
@@ -123,12 +125,30 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "yyy");
         }
 
+        private int _reloadCounter = 0;
+
+        private void OnConfigReloaded(bool success, Exception ex)
+        {
+            Console.WriteLine("OnConfigReloaded success={0}", success);
+            _reloadCounter++;
+        }
+
+        private void WaitForConfigReload(int counter)
+        {
+            while (_reloadCounter < counter)
+            {
+                System.Threading.Thread.Sleep(100);
+            }
+        }
+
         [Test]
         public void AutoReloadTest()
         {
             string fileName = Path.GetTempFileName();
             try
             {
+                _reloadCounter = 0;
+                LogManager.ConfigurationReloaded += new LoggingConfigurationReloaded(OnConfigReloaded);
                 using (StreamWriter fs = File.CreateText(fileName))
                 {
                     fs.Write(@"<nlog autoReload='true'>
@@ -144,6 +164,8 @@ namespace NLog.UnitTests
                 logger.Debug("aaa");
                 AssertDebugLastMessage("debug", "aaa");
 
+                InternalLogger.Info("Rewriting test file...");
+
                 // now write the file again
                 using (StreamWriter fs = File.CreateText(fileName))
                 {
@@ -155,8 +177,8 @@ namespace NLog.UnitTests
                 </nlog>");
                 }
 
-                // give the reloader some time to pick up the changes.
-                Thread.Sleep(1500);
+                InternalLogger.Info("Rewritten.");
+                WaitForConfigReload(1);
 
                 logger.Debug("aaa");
                 AssertDebugLastMessage("debug", "xxx aaa");
@@ -172,7 +194,7 @@ namespace NLog.UnitTests
                 </nlog>");
                 }
 
-                Thread.Sleep(1500);
+                WaitForConfigReload(2);
                 logger.Debug("bbb");
                 AssertDebugLastMessage("debug", "xxx bbb");
 
@@ -186,13 +208,14 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
                 }
-                Thread.Sleep(1500);
+                WaitForConfigReload(3);
                 logger.Debug("ccc");
                 AssertDebugLastMessage("debug", "zzz ccc");
 
             }
             finally
             {
+                LogManager.ConfigurationReloaded -= new LoggingConfigurationReloaded(OnConfigReloaded);
                 LogManager.Configuration = null;
                 if (File.Exists(fileName))
                     File.Delete(fileName);
