@@ -49,6 +49,17 @@ using NLog.Targets;
 namespace NLog
 {
     /// <summary>
+    /// Represents a method that's invoked each time a logging configuration changes.
+    /// </summary>
+    public delegate void LoggingConfigurationChanged(LoggingConfiguration oldConfig, LoggingConfiguration newConfig);
+
+    /// <summary>
+    /// Represents a method that's invoked each time a logging configuration gets reloaded
+    /// to signal either success or failure.
+    /// </summary>
+    public delegate void LoggingConfigurationReloaded(bool succeeded, Exception ex);
+    
+    /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
     /// </summary>
     public sealed class LogManager
@@ -58,6 +69,16 @@ namespace NLog
         private static LogLevel _globalThreshold = LogLevel.MinLevel;
         private static bool _configLoaded = false;
         private static bool _throwExceptions = false;
+
+        /// <summary>
+        /// Occurs when logging <see cref="Configuration" /> changes.
+        /// </summary>
+        public static event LoggingConfigurationChanged ConfigurationChanged;
+
+        /// <summary>
+        /// Occurs when logging <see cref="Configuration" /> gets reloaded.
+        /// </summary>
+        public static event LoggingConfigurationReloaded ConfigurationReloaded;
 
         /// <summary>
         /// Specified whether NLog should throw exceptions. By default exceptions
@@ -272,7 +293,8 @@ namespace NLog
                         }
 #endif 
                     }
-
+                    if (ConfigurationChanged != null)
+                        ConfigurationChanged(oldConfig, value);
                 }
             }
         }
@@ -288,7 +310,7 @@ namespace NLog
             InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", ReconfigAfterFileChangedTimeout);
 
             // In the rare cases we may get multiple notifications here, 
-            // but we need to reload config onlyonce.
+            // but we need to reload config only once.
             //
             // The trick is to schedule the reload in one second after
             // the last change notification comes in.
@@ -297,7 +319,7 @@ namespace NLog
             {
                 if (_reloadTimer == null)
                 {
-                    _reloadTimer = new Timer(new TimerCallback(ReloadConfigOnTimer), null, ReconfigAfterFileChangedTimeout, Timeout.Infinite);
+                    _reloadTimer = new Timer(new TimerCallback(ReloadConfigOnTimer), Configuration, ReconfigAfterFileChangedTimeout, Timeout.Infinite);
                 }
                 else
                 {
@@ -329,30 +351,42 @@ namespace NLog
 #if !NETCF
         internal static void ReloadConfigOnTimer(object state)
         {
+            LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
+
             InternalLogger.Info("Reloading configuration...");
             lock(typeof(LogManager))
             {
-                try
-                {
-                    LoggingConfiguration newConfig = Configuration.Reload();
-                    if (newConfig != null)
-                        Configuration = newConfig;
-                    else
-                    {
-                        InternalLogger.Info("Configuration.Reload() returned null. Not reloading.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error("Error while reloading config file: {0}", ex);
-                    _watcher.StopWatching();
-                    _watcher.Watch(Configuration.FileNamesToWatch);
-                }
-
                 if (_reloadTimer != null)
                 {
                     _reloadTimer.Dispose();
                     _reloadTimer = null;
+                }
+
+                _watcher.StopWatching();
+                try
+                {
+                    if (Configuration != configurationToReload)
+                    {
+                        throw new Exception("Config changed in between. Not reloading.");
+                    }
+
+                    LoggingConfiguration newConfig = configurationToReload.Reload();
+                    if (newConfig != null)
+                    {
+                        Configuration = newConfig;
+                        if (ConfigurationReloaded != null)
+                            ConfigurationReloaded(true, null);
+                    }
+                    else
+                    {
+                        throw new Exception("Configuration.Reload() returned null. Not reloading.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _watcher.Watch(configurationToReload.FileNamesToWatch);
+                    if (ConfigurationReloaded != null)
+                        ConfigurationReloaded(false, ex);
                 }
             }
         }
