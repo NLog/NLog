@@ -136,7 +136,8 @@ namespace NLog
             }
 
             string value = builder.ToString();
-            logEvent.AddCachedLayoutValue(this, value);
+            if (logEvent != LogEventInfo.Empty)
+                logEvent.AddCachedLayoutValue(this, value);
             return value;
         }
 
@@ -286,6 +287,31 @@ namespace NLog
         public static string Escape(string text)
         {
             return text.Replace("${", "${literal:text=${}");
+        }
+
+        /// <summary>
+        /// Evaluates the specified text by expadinging all layout renderers.
+        /// </summary>
+        /// <param name="text">The text to be evaluated.</param>
+        /// <param name="logEvent">Log event to be used for evaluation</param>
+        /// <returns>The input text with all occurences of ${} replaced with
+        /// values provided by the appropriate layout renderers.</returns>
+        public static string Evaluate(string text, LogEventInfo logEvent)
+        {
+            Layout l = new Layout(text);
+            return l.GetFormattedMessage(logEvent);
+        }
+
+        /// <summary>
+        /// Evaluates the specified text by expadinging all layout renderers
+        /// in <see cref="LogEventInfo.Empty" /> context.
+        /// </summary>
+        /// <param name="text">The text to be evaluated.</param>
+        /// <returns>The input text with all occurences of ${} replaced with
+        /// values provided by the appropriate layout renderers.</returns>
+        public static string Evaluate(string text)
+        {
+            return Evaluate(text, LogEventInfo.Empty);
         }
     }
 }

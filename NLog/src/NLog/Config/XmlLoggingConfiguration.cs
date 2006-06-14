@@ -196,9 +196,7 @@ namespace NLog.Config
 
         private void IncludeFileFromElement(XmlElement includeElement, string baseDirectory)
         {
-            Layout layout = new Layout(GetCaseInsensitiveAttribute(includeElement, "file"));
-
-            string newFileName = layout.GetFormattedMessage(LogEventInfo.Empty);
+            string newFileName = Layout.Evaluate(GetCaseInsensitiveAttribute(includeElement, "file"));
             newFileName = Path.Combine(baseDirectory, newFileName);
 
             try

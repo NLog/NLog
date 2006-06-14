@@ -104,7 +104,7 @@ namespace NLog
 
         private static LayoutRenderer CreateUnknownLayoutRenderer(string name, string parameters)
         {
-            return new LiteralLayoutRenderer("[unknown layout renderer:" + name + ":" + parameters + "]");
+            return new LiteralLayoutRenderer("");
         }
 
         /// <summary>
