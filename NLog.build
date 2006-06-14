@@ -485,15 +485,23 @@
     <target name="all-benchmarks" depends="NLog.Benchmark, NLog.Benchmark-log4net-withformat" />
 
     <target name="test" depends="NLog.UnitTests">
-        <nunit2 failonerror="false">
-            <formatter type="Xml" usefile="true" extension=".xml" outputdir="build/${buildsubdir}/test_results_xml" />
-            <test assemblyname="${nlog.dir}/NLog.UnitTests.dll" />
-        </nunit2>
+        <if test="${framework::get-family(framework::get-target-framework())=='net'}">
+            <nunit2 failonerror="false">
+                <formatter type="Xml" usefile="true" extension=".xml" outputdir="build/${buildsubdir}/test_results_xml" />
+                <test assemblyname="${nlog.dir}/NLog.UnitTests.dll" />
+            </nunit2>
+        </if>
+
+        <if test="${framework::get-family(framework::get-target-framework())=='mono'}">
+            <mkdir dir="build/${buildsubdir}/test_results_xml" />
+            <exec workingdir="${nlog.dir}" program="nunit-console" verbose="true" 
+                commandline="NLog.UnitTests.dll /labels /xml=${project::get-base-directory()}/build/${buildsubdir}/test_results_xml/NLog.UnitTests.dll-results.xml" />
+        </if>
     </target>
 
     <target name="webtest" depends="NLog, NLog.ComInterop, NLog.UnitTests.Web">
         <!-- stop IIS on local machine -->
-        
+
         <echo message="Stopping IIS..." />
         <exec program="iisreset.exe" commandline="/stop" />
 
