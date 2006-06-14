@@ -48,12 +48,10 @@ namespace NLog
         
         private const int STACK_TRACE_SKIP_METHODS = 0;
 
-        internal static void Write(Type loggerType, string loggerName, LogLevel level, TargetWithFilterChain targets, IFormatProvider formatProvider, string message, object[]args, Exception exception)
+        internal static void Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent)
         {
             if (targets == null)
                 return;
-
-            LogEventInfo logMessage = new LogEventInfo(DateTime.Now, level, loggerName, formatProvider, message, args, exception, null);
 
 #if !NETCF            
             bool needTrace = false;
@@ -67,7 +65,7 @@ namespace NLog
                 needTraceSources = true;
 
             StackTrace stackTrace = null;
-            if (needTrace)
+            if (needTrace && !logEvent.HasStackTrace)
             {
                 int firstUserFrame = 0;
                 stackTrace = new StackTrace(STACK_TRACE_SKIP_METHODS, needTraceSources);
@@ -86,7 +84,7 @@ namespace NLog
                             break;
                     }
                 }
-                logMessage.SetStackTrace(stackTrace, firstUserFrame);
+                logEvent.SetStackTrace(stackTrace, firstUserFrame);
             }
 #endif 
             for (TargetWithFilterChain awf = targets; awf != null; awf = awf.Next)
@@ -101,7 +99,7 @@ namespace NLog
                     for (int i = 0; i < filterChain.Count; ++i)
                     {
                         Filter f = filterChain[i];
-                        result = f.Check(logMessage);
+                        result = f.Check(logEvent);
                         if (result != FilterResult.Neutral)
                             break;
                     }
@@ -109,7 +107,7 @@ namespace NLog
                     {
                         if (InternalLogger.IsDebugEnabled)
                         {
-                            InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", loggerName, level);
+                            InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", logEvent.LoggerName, logEvent.Level);
                         }
                         continue;
                     }
@@ -125,7 +123,7 @@ namespace NLog
 
                 try
                 {
-                    app.Write(logMessage);
+                    app.Write(logEvent);
                 }
                 catch (Exception ex)
                 {
