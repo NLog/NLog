@@ -117,10 +117,7 @@ namespace NLog.Config
         public bool Final
         {
             get { return _final; }
-            set 
-            { 
-                _final = value; 
-            }
+            set { _final = value; }
         }
 
         /// <summary>
