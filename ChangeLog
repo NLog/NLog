@@ -1,4 +1,6 @@
 2006-06-14 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* fixed autoReload to keep monitoring the file if the reloaded file
+	has an error
 	* added Logger.Log(LogEventInfo) overload
 	* added Logger.Log(Type,LogEventInfo) overload
 	* added LoggerReconfiguredDelegate and Logger.LoggerReconfigured event

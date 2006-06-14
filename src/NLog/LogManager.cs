@@ -312,18 +312,18 @@ namespace NLog
             if (!InternalLogger.IsDebugEnabled)
                 return;
 
-            InternalLogger.Info("--- NLog configuration dump. ---");
-            InternalLogger.Info("Targets:");
+            InternalLogger.Debug("--- NLog configuration dump. ---");
+            InternalLogger.Debug("Targets:");
             foreach (Target target in config._targets.Values)
             {
                 InternalLogger.Info("{0}", target);
             }
-            InternalLogger.Info("Rules:");
+            InternalLogger.Debug("Rules:");
             foreach (LoggingRule rule in config.LoggingRules)
             {
                 InternalLogger.Info("{0}", rule);
             }
-            InternalLogger.Info("--- End of NLog configuration dump ---");
+            InternalLogger.Debug("--- End of NLog configuration dump ---");
         }
 
 #if !NETCF
@@ -345,6 +345,8 @@ namespace NLog
                 catch (Exception ex)
                 {
                     InternalLogger.Error("Error while reloading config file: {0}", ex);
+                    _watcher.StopWatching();
+                    _watcher.Watch(Configuration.FileNamesToWatch);
                 }
 
                 if (_reloadTimer != null)
