@@ -60,14 +60,8 @@ namespace NLog.LayoutRenderers
         [System.ComponentModel.DefaultValue(true)]
         public bool ClassName
         {
-            get
-            {
-                return _className;
-            }
-            set
-            {
-                _className = value;
-            }
+            get { return _className; }
+            set { _className = value; }
         }
 
         /// <summary>
@@ -76,14 +70,8 @@ namespace NLog.LayoutRenderers
         [System.ComponentModel.DefaultValue(true)]
         public bool MethodName
         {
-            get
-            {
-                return _methodName;
-            }
-            set
-            {
-                _methodName = value;
-            }
+            get { return _methodName; }
+            set { _methodName = value; }
         }
 
         /// <summary>
@@ -92,14 +80,8 @@ namespace NLog.LayoutRenderers
         [System.ComponentModel.DefaultValue(false)]
         public bool FileName
         {
-            get
-            {
-                return _sourceFile;
-            }
-            set
-            {
-                _sourceFile = value;
-            }
+            get { return _sourceFile; }
+            set { _sourceFile = value; }
         }
 
         /// <summary>
@@ -108,14 +90,8 @@ namespace NLog.LayoutRenderers
         [System.ComponentModel.DefaultValue(true)]
         public bool IncludeSourcePath
         {
-            get
-            {
-                return _includeSourcePath;
-            }
-            set
-            {
-                _includeSourcePath = value;
-            }
+            get { return _includeSourcePath; }
+            set { _includeSourcePath = value; }
         }
 
         /// <summary>

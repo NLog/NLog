@@ -58,14 +58,8 @@ namespace NLog.Win32.LayoutRenderers
         [RequiredParameter]
         public string Variable
         {
-            get
-            {
-                return _sessionVariable;
-            }
-            set
-            {
-                _sessionVariable = value;
-            }
+            get { return _sessionVariable; }
+            set { _sessionVariable = value; }
         }
 
         /// <summary>

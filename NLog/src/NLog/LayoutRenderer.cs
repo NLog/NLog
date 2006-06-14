@@ -108,10 +108,7 @@ namespace NLog
         /// </summary>
         public int Padding
         {
-            get
-            {
-                return _padding;
-            }
+            get { return _padding; }
             set
             {
                 _padding = value;
@@ -124,10 +121,7 @@ namespace NLog
         /// </summary>
         public int AbsolutePadding
         {
-            get
-            {
-                return _absolutePadding;
-            }
+            get { return _absolutePadding; }
         }
 
         /// <summary>
@@ -135,14 +129,8 @@ namespace NLog
         /// </summary>
         public char PadCharacter
         {
-            get
-            {
-                return _padCharacter;
-            }
-            set
-            {
-                _padCharacter = value;
-            }
+            get { return _padCharacter; }
+            set { _padCharacter = value; }
         }
 
         /// <summary>
@@ -151,14 +139,8 @@ namespace NLog
         [System.ComponentModel.DefaultValue(false)]
         public bool FixedLength
         {
-            get
-            {
-                return _fixedLength;
-            }
-            set
-            {
-                _fixedLength = value;
-            }
+            get { return _fixedLength; }
+            set { _fixedLength = value; }
         }
 
         /// <summary>
@@ -167,14 +149,8 @@ namespace NLog
         [System.ComponentModel.DefaultValue(false)]
         public bool UpperCase
         {
-            get
-            {
-                return _upperCase;
-            }
-            set
-            {
-                _upperCase = value;
-            }
+            get { return _upperCase; }
+            set { _upperCase = value; }
         }
 
         /// <summary>
@@ -183,14 +159,8 @@ namespace NLog
         [System.ComponentModel.DefaultValue(false)]
         public bool LowerCase
         {
-            get
-            {
-                return _lowerCase;
-            }
-            set
-            {
-                _lowerCase = value;
-            }
+            get { return _lowerCase; }
+            set { _lowerCase = value; }
         }
 
         /// <summary>
@@ -198,14 +168,8 @@ namespace NLog
         /// </summary>
         public string Culture
         {
-            get
-            {
-                return _cultureInfo.Name;
-            }
-            set
-            {
-                _cultureInfo = new CultureInfo(value);
-            }
+            get { return _cultureInfo.Name; }
+            set { _cultureInfo = new CultureInfo(value); }
         }
 
         /// <summary>
@@ -213,14 +177,8 @@ namespace NLog
         /// </summary>
         public CultureInfo CultureInfo
         {
-            get
-            {
-                return _cultureInfo;
-            }
-            set
-            {
-                _cultureInfo = value;
-            }
+            get { return _cultureInfo; }
+            set { _cultureInfo = value; }
         }
 
         /// <summary>

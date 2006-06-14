@@ -99,10 +99,7 @@ namespace NLog.Targets
         [System.ComponentModel.DefaultValue("sqlserver")]
         public string DBProvider
         {
-            get
-            {
-                return _connectionType.FullName;
-            }
+            get { return _connectionType.FullName; }
             set
             {
                 switch (value)
@@ -135,14 +132,8 @@ namespace NLog.Targets
         /// </summary>
         public string ConnectionString
         {
-            get
-            {
-                return _connectionString;
-            }
-            set
-            {
-                _connectionString = value;
-            }
+            get { return _connectionString; }
+            set { _connectionString = value; }
         }
 
         /// <summary>
@@ -151,14 +142,8 @@ namespace NLog.Targets
         [System.ComponentModel.DefaultValue(true)]
         public bool KeepConnection
         {
-            get
-            {
-                return _keepConnection;
-            }
-            set
-            {
-                _keepConnection = value;
-            }
+            get { return _keepConnection; }
+            set { _keepConnection = value; }
         }
 
         /// <summary>
@@ -172,10 +157,7 @@ namespace NLog.Targets
                 return _useTransaction;
             
             }
-            set
-            {
-                _useTransaction = value;
-            }
+            set { _useTransaction = value; }
         }
 
         /// <summary>
@@ -186,14 +168,8 @@ namespace NLog.Targets
         [AcceptsLayout]
         public string DBHost
         {
-            get
-            {
-                return _dbHostLayout.Text;
-            }
-            set
-            {
-                _dbHostLayout = new Layout(value);
-            }
+            get { return _dbHostLayout.Text; }
+            set { _dbHostLayout = new Layout(value); }
         }
 
         /// <summary>
@@ -203,14 +179,8 @@ namespace NLog.Targets
         /// </summary>
         public Layout DBHostLayout
         {
-            get
-            {
-                return _dbHostLayout;
-            }
-            set
-            {
-                _dbHostLayout = value;
-            }
+            get { return _dbHostLayout; }
+            set { _dbHostLayout = value; }
         }
 
         /// <summary>
@@ -221,14 +191,8 @@ namespace NLog.Targets
         [AcceptsLayout]
         public string DBUserName
         {
-            get
-            {
-                return _dbUserNameLayout.Text;
-            }
-            set
-            {
-                _dbUserNameLayout = new Layout(value);
-            }
+            get { return _dbUserNameLayout.Text; }
+            set { _dbUserNameLayout = new Layout(value); }
         }
 
         /// <summary>
@@ -238,14 +202,8 @@ namespace NLog.Targets
         /// </summary>
         public Layout DBUserNameLayout
         {
-            get
-            {
-                return _dbUserNameLayout;
-            }
-            set
-            {
-                _dbUserNameLayout = value;
-            }
+            get { return _dbUserNameLayout; }
+            set { _dbUserNameLayout = value; }
         }
 
         /// <summary>
@@ -256,14 +214,8 @@ namespace NLog.Targets
         [AcceptsLayout]
         public string DBPassword
         {
-            get
-            {
-                return _dbPasswordLayout.Text;
-            }
-            set
-            {
-                _dbPasswordLayout = new Layout(value);
-            }
+            get { return _dbPasswordLayout.Text; }
+            set { _dbPasswordLayout = new Layout(value); }
         }
 
         /// <summary>
@@ -273,14 +225,8 @@ namespace NLog.Targets
         /// </summary>
         public Layout DBPasswordLayout
         {
-            get
-            {
-                return _dbPasswordLayout;
-            }
-            set
-            {
-                _dbPasswordLayout = value;
-            }
+            get { return _dbPasswordLayout; }
+            set { _dbPasswordLayout = value; }
         }
 
         /// <summary>
@@ -291,14 +237,8 @@ namespace NLog.Targets
         [AcceptsLayout]
         public string DBDatabase
         {
-            get
-            {
-                return _dbDatabaseLayout.Text;
-            }
-            set
-            {
-                _dbDatabaseLayout = new Layout(value);
-            }
+            get { return _dbDatabaseLayout.Text; }
+            set { _dbDatabaseLayout = new Layout(value); }
         }
 
         /// <summary>
@@ -308,14 +248,8 @@ namespace NLog.Targets
         /// </summary>
         public Layout DBDatabaseLayout
         {
-            get
-            {
-                return _dbDatabaseLayout;
-            }
-            set
-            {
-                _dbDatabaseLayout = value;
-            }
+            get { return _dbDatabaseLayout; }
+            set { _dbDatabaseLayout = value; }
         }
 
         /// <summary>
@@ -333,14 +267,8 @@ namespace NLog.Targets
         [RequiredParameter]
         public string CommandText
         {
-            get
-            {
-                return _compiledCommandTextLayout.Text;
-            }
-            set
-            {
-                _compiledCommandTextLayout = new Layout(value);
-            }
+            get { return _compiledCommandTextLayout.Text; }
+            set { _compiledCommandTextLayout = new Layout(value); }
         }
 
         /// <summary>
@@ -356,14 +284,8 @@ namespace NLog.Targets
         /// </remarks>
         public Layout CommandTextLayout
         {
-            get
-            {
-                return _compiledCommandTextLayout;
-            }
-            set
-            {
-                _compiledCommandTextLayout = value;
-            }
+            get { return _compiledCommandTextLayout; }
+            set { _compiledCommandTextLayout = value; }
         }
 
         /// <summary>
@@ -373,10 +295,7 @@ namespace NLog.Targets
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
         public DatabaseParameterInfoCollection Parameters
         {
-            get
-            {
-                return _parameters;
-            }
+            get { return _parameters; }
         }
 
         /// <summary>

@@ -72,10 +72,7 @@ namespace NLog.Targets
         /// </summary>
         public string ClassName
         {
-            get
-            {
-                return _className;
-            }
+            get { return _className; }
             set
             {
                 _className = value;
@@ -88,10 +85,7 @@ namespace NLog.Targets
         /// </summary>
         public string MethodName
         {
-            get
-            {
-                return _methodName;
-            }
+            get { return _methodName; }
             set
             {
                 _methodName = value;
@@ -101,14 +95,8 @@ namespace NLog.Targets
 
         private MethodInfo Method
         {
-            get
-            {
-                return _methodInfo;
-            }
-            set
-            {
-                _methodInfo = value;
-            }
+            get { return _methodInfo; }
+            set { _methodInfo = value; }
         }
 
         private void UpdateMethodInfo()

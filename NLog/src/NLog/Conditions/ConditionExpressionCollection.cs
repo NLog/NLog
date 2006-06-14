@@ -164,14 +164,8 @@ namespace NLog.Conditions
         /// </summary>
         public virtual ConditionExpression this[int index]
         {
-            get
-            {
-                return (ConditionExpression)this.List[index];
-            }
-            set
-            {
-                this.List[index] = value;
-            }
+            get { return (ConditionExpression)this.List[index]; }
+            set { this.List[index] = value; }
         }
 
         /// <summary>
@@ -206,10 +200,7 @@ namespace NLog.Conditions
             /// </summary>
             public ConditionExpression Current
             {
-                get
-                {
-                    return (ConditionExpression)(this.wrapped.Current);
-                }
+                get { return (ConditionExpression)(this.wrapped.Current); }
             }
 
             /// <summary>
@@ -217,10 +208,7 @@ namespace NLog.Conditions
             /// </summary>
             object System.Collections.IEnumerator.Current
             {
-                get
-                {
-                    return (ConditionExpression)(this.wrapped.Current);
-                }
+                get { return (ConditionExpression)(this.wrapped.Current); }
             }
 
             /// <summary>

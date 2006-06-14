@@ -56,14 +56,8 @@ namespace NLog.Win32.LayoutRenderers
         [System.ComponentModel.DefaultValue(true)]
         public bool Domain
         {
-            get
-            {
-                return _includeDomain;
-            }
-            set
-            {
-                _includeDomain = value;
-            }
+            get { return _includeDomain; }
+            set { _includeDomain = value; }
         }
 
         /// <summary>
@@ -72,14 +66,8 @@ namespace NLog.Win32.LayoutRenderers
         [System.ComponentModel.DefaultValue(true)]
         public bool UserName
         {
-            get
-            {
-                return _includeUserName;
-            }
-            set
-            {
-                _includeUserName = value;
-            }
+            get { return _includeUserName; }
+            set { _includeUserName = value; }
         }
 
         /// <summary>

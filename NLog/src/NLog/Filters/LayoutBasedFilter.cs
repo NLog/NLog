@@ -57,14 +57,8 @@ namespace NLog.Filters
         [RequiredParameter]
         public string Layout
         {
-            get
-            {
-                return _compiledlayout.Text;
-            }
-            set
-            {
-                _compiledlayout = new Layout(value);
-            }
+            get { return _compiledlayout.Text; }
+            set { _compiledlayout = new Layout(value); }
         }
 
         /// <summary>
@@ -72,10 +66,7 @@ namespace NLog.Filters
         /// </summary>
         protected Layout CompiledLayout
         {
-            get
-            {
-                return _compiledlayout;
-            }
+            get { return _compiledlayout; }
         }
 
         /// <summary>

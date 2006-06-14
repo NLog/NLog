@@ -186,10 +186,7 @@ namespace NLog.Targets
         [ArrayParameter(typeof(NLogViewerParameterInfo), "parameter")]
         public NLogViewerParameterInfoCollection Parameters
         {
-            get
-            {
-                return _parameters;
-            }
+            get { return _parameters; }
         }
 
         /// <summary>

@@ -61,14 +61,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public string File
         {
-            get
-            {
-                return _fileName;
-            }
-            set
-            {
-                _fileName = value;
-            }
+            get { return _fileName; }
+            set { _fileName = value; }
         }
 
         /// <summary>
@@ -76,14 +70,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public string Dir
         {
-            get
-            {
-                return _directoryName;
-            }
-            set
-            {
-                _directoryName = value;
-            }
+            get { return _directoryName; }
+            set { _directoryName = value; }
         }
 
         /// <summary>
@@ -104,10 +92,7 @@ namespace NLog.LayoutRenderers
 
         private string NLogDir
         {
-            get
-            {
-                return _nlogDir;
-            }
+            get { return _nlogDir; }
         }
 
         /// <summary>

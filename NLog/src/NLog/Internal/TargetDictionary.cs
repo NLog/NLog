@@ -67,14 +67,8 @@ namespace NLog.Internal
         /// </param>
         public virtual Target this[string key]
         {
-            get
-            {
-                return (Target)this.Dictionary[key];
-            }
-            set
-            {
-                this.Dictionary[key] = value;
-            }
+            get { return (Target)this.Dictionary[key]; }
+            set { this.Dictionary[key] = value; }
         }
 
         /// <summary>
@@ -157,10 +151,7 @@ namespace NLog.Internal
         /// </summary>
         public virtual System.Collections.ICollection Keys
         {
-            get
-            {
-                return this.Dictionary.Keys;
-            }
+            get { return this.Dictionary.Keys; }
         }
 
         /// <summary>
@@ -168,10 +159,7 @@ namespace NLog.Internal
         /// </summary>
         public virtual System.Collections.ICollection Values
         {
-            get
-            {
-                return this.Dictionary.Values;
-            }
+            get { return this.Dictionary.Values; }
         }
     }
 }

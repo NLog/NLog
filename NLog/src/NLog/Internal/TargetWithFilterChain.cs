@@ -56,10 +56,7 @@ namespace NLog.Internal
 
         public Target Target
         {
-            get
-            {
-                return _target;
-            }
+            get { return _target; }
         }
 
         public int NeedsStackTrace
@@ -70,22 +67,13 @@ namespace NLog.Internal
 
         public FilterCollection FilterChain
         {
-            get
-            {
-                return _filterChain;
-            }
+            get { return _filterChain; }
         }
 
         public TargetWithFilterChain Next
         {
-            get
-            {
-                return _next;
-            }
-            set
-            {
-                _next = value;
-            }
+            get { return _next; }
+            set { _next = value; }
         }
 
         public void PrecalculateNeedsStackTrace()

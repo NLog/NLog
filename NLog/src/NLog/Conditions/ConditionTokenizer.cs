@@ -55,30 +55,18 @@ namespace NLog.Conditions
 
         public int TokenPosition
         {
-            get 
-            {
-                return _tokenPosition;
-            }
+            get { return _tokenPosition; }
         }
 
         public ConditionTokenType TokenType
         {
-            get 
-            {
-                return _tokenType;
-            }
-            set 
-            {
-                _tokenType = value;
-            }
+            get { return _tokenType; }
+            set { _tokenType = value; }
         }
 
         public string TokenValue
         {
-            get 
-            {
-                return _tokenValue;
-            }
+            get { return _tokenValue; }
         }
 
         public string StringTokenValue

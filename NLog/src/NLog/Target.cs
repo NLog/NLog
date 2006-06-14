@@ -109,14 +109,8 @@ namespace NLog
         [RequiredParameter]
         public string Name
         {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
+            get { return _name; }
+            set { _name = value; }
         }
 
         /// <summary>
@@ -127,14 +121,8 @@ namespace NLog
         [System.ComponentModel.DefaultValue("${longdate}|${level:uppercase=true}|${logger}|${message}")]
         public string Layout
         {
-            get
-            {
-                return _compiledlayout.Text;
-            }
-            set
-            {
-                _compiledlayout = new Layout(value);
-            }
+            get { return _compiledlayout.Text; }
+            set { _compiledlayout = new Layout(value); }
         }
 
         /// <summary>
@@ -142,14 +130,8 @@ namespace NLog
         /// </summary>
         protected Layout CompiledLayout
         {
-            get
-            {
-                return _compiledlayout;
-            }
-            set
-            {
-                _compiledlayout = value;
-            }
+            get { return _compiledlayout; }
+            set { _compiledlayout = value; }
         }
 
         /// <summary>

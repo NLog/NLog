@@ -50,14 +50,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public string Format
         {
-            get
-            {
-                return _format;
-            }
-            set
-            {
-                _format = value;
-            }
+            get { return _format; }
+            set { _format = value; }
         }
 
         /// <summary>

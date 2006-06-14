@@ -49,10 +49,7 @@ namespace System.Collections
 
         public IDictionary Dictionary
         {
-            get
-            {
-                return _hashtable;
-            }
+            get { return _hashtable; }
         }
 
         public void Clear()

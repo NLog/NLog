@@ -58,14 +58,8 @@ namespace NLog.Win32.LayoutRenderers
         [RequiredParameter]
         public string Variable
         {
-            get
-            {
-                return _appVariable;
-            }
-            set
-            {
-                _appVariable = value;
-            }
+            get { return _appVariable; }
+            set { _appVariable = value; }
 
         }
 

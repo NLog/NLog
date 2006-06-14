@@ -57,14 +57,8 @@ namespace NLog.LayoutRenderers
         [System.ComponentModel.DefaultValue(":")]
         public string Separator
         {
-            get
-            {
-                return _separator;
-            }
-            set
-            {
-                _separator = value;
-            }
+            get { return _separator; }
+            set { _separator = value; }
         }
 
         /// <summary>
@@ -73,14 +67,8 @@ namespace NLog.LayoutRenderers
         [System.ComponentModel.DefaultValue(true)]
         public bool Name
         {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
+            get { return _name; }
+            set { _name = value; }
         }
 
         /// <summary>
@@ -89,14 +77,8 @@ namespace NLog.LayoutRenderers
         [System.ComponentModel.DefaultValue(true)]
         public bool AuthType
         {
-            get
-            {
-                return _authType;
-            }
-            set
-            {
-                _authType = value;
-            }
+            get { return _authType; }
+            set { _authType = value; }
         }
 
         /// <summary>
@@ -105,14 +87,8 @@ namespace NLog.LayoutRenderers
         [System.ComponentModel.DefaultValue(true)]
         public bool IsAuthenticated
         {
-            get
-            {
-                return _isAuthenticated;
-            }
-            set
-            {
-                _isAuthenticated = value;
-            }
+            get { return _isAuthenticated; }
+            set { _isAuthenticated = value; }
         }
 
         /// <summary>
@@ -122,14 +98,8 @@ namespace NLog.LayoutRenderers
         [System.ComponentModel.DefaultValue(false)]
         public bool FSNormalize
         {
-            get
-            {
-                return _fsNormalize;
-            }
-            set
-            {
-                _fsNormalize = value;
-            }
+            get { return _fsNormalize; }
+            set { _fsNormalize = value; }
         }
         
         /// <summary>

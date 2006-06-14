@@ -62,10 +62,7 @@ namespace NLog.Config
         /// </summary>
         public Type ItemType
         {
-            get
-            {
-                return _itemType;
-            }
+            get { return _itemType; }
         }
 
         /// <summary>
@@ -73,10 +70,7 @@ namespace NLog.Config
         /// </summary>
         public string ElementName
         {
-            get
-            {
-                return _elementName;
-            }
+            get { return _elementName; }
         }
     }
 }

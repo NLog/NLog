@@ -58,10 +58,7 @@ namespace NLog
         /// </summary>
         public string Name
         {
-            get
-            {
-                return _name;
-            }
+            get { return _name; }
         }
     }
 }

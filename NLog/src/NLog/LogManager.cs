@@ -65,14 +65,8 @@ namespace NLog
         /// </summary>
         public static bool ThrowExceptions
         {
-            get
-            {
-                return _throwExceptions;
-            }
-            set
-            {
-                _throwExceptions = value;
-            }
+            get { return _throwExceptions; }
+            set { _throwExceptions = value; }
         }
 
         private LogManager(){}

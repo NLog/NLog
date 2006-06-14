@@ -111,10 +111,7 @@ namespace NLog
         /// </summary>
         public DateTime TimeStamp
         {
-            get
-            {
-                return _timeStamp;
-            }
+            get { return _timeStamp; }
         }
 
         /// <summary>
@@ -122,10 +119,7 @@ namespace NLog
         /// </summary>
         public LogLevel Level
         {
-            get
-            {
-                return _level;
-            }
+            get { return _level; }
         }
 
 #if !NETCF
@@ -143,10 +137,7 @@ namespace NLog
         /// </summary>
         public StackFrame UserStackFrame
         {
-            get
-            {
-                return (_stackTrace != null) ? _stackTrace.GetFrame(_userStackFrame): null;
-            }
+            get { return (_stackTrace != null) ? _stackTrace.GetFrame(_userStackFrame): null; }
         }
 
         /// <summary>
@@ -155,10 +146,7 @@ namespace NLog
         /// </summary>
         public int UserStackFrameNumber
         {
-            get
-            {
-                return _userStackFrame;
-            }
+            get { return _userStackFrame; }
         }
 
         /// <summary>
@@ -166,10 +154,7 @@ namespace NLog
         /// </summary>
         public StackTrace StackTrace
         {
-            get
-            {
-                return _stackTrace;
-            }
+            get { return _stackTrace; }
         }
 #endif 
         /// <summary>
@@ -177,10 +162,7 @@ namespace NLog
         /// </summary>
         public Exception Exception
         {
-            get
-            {
-                return _exception;
-            }
+            get { return _exception; }
         }
 
         /// <summary>
@@ -188,10 +170,7 @@ namespace NLog
         /// </summary>
         public string LoggerName
         {
-            get
-            {
-                return _loggerName;
-            }
+            get { return _loggerName; }
         }
 
         /// <summary>
@@ -214,10 +193,7 @@ namespace NLog
         /// </summary>
         public string Message
         {
-            get
-            {
-                return _message;
-            }
+            get { return _message; }
         }
 
         /// <summary>
@@ -226,10 +202,7 @@ namespace NLog
         /// </summary>
         public object[] Parameters
         {
-            get
-            {
-                return _parameters;
-            }
+            get { return _parameters; }
         }
 
         /// <summary>
@@ -238,10 +211,7 @@ namespace NLog
         /// </summary>
         public IFormatProvider FormatProvider
         {
-            get
-            {
-                return _formatProvider;
-            }
+            get { return _formatProvider; }
         }
 
         /// <summary>

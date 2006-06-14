@@ -92,10 +92,7 @@ namespace NLog.Config
         /// </summary>
         public TargetCollection Targets
         {
-            get
-            {
-                return _targets;
-            }
+            get { return _targets; }
         }
 
         /// <summary>
@@ -103,10 +100,7 @@ namespace NLog.Config
         /// </summary>
         public LoggingRuleCollection ChildRules
         {
-            get
-            {
-                return _childRules;
-            }
+            get { return _childRules; }
         }
 
         /// <summary>
@@ -114,10 +108,7 @@ namespace NLog.Config
         /// </summary>
         public FilterCollection Filters
         {
-            get
-            {
-                return _filters;
-            }
+            get { return _filters; }
         }
 
         /// <summary>
@@ -125,13 +116,10 @@ namespace NLog.Config
         /// </summary>
         public bool Final
         {
-            get
-            {
-                return _final;
-            }
-            set
-            {
-                _final = value;
+            get { return _final; }
+            set 
+            { 
+                _final = value; 
             }
         }
 
@@ -208,10 +196,7 @@ namespace NLog.Config
         /// </remarks>
         public string LoggerNamePattern
         {
-            get
-            {
-                return _loggerNamePattern;
-            }
+            get { return _loggerNamePattern; }
             set
             {
                 _loggerNamePattern = value;

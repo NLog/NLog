@@ -62,10 +62,7 @@ namespace NLog.LayoutRenderers
         [RequiredParameter]
         public string Category
         {
-            get
-            {
-                return _categoryName;
-            }
+            get { return _categoryName; }
             set
             {
                 _categoryName = value;
@@ -79,10 +76,7 @@ namespace NLog.LayoutRenderers
         [RequiredParameter]
         public string Counter
         {
-            get
-            {
-                return _counterName;
-            }
+            get { return _counterName; }
             set
             {
                 _counterName = value;
@@ -95,10 +89,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public string Instance
         {
-            get
-            {
-                return _instanceName;
-            }
+            get { return _instanceName; }
             set
             {
                 _instanceName = value;
@@ -111,10 +102,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public string MachineName
         {
-            get
-            {
-                return _machineName;
-            }
+            get { return _machineName; }
             set
             {
                 _machineName = value;

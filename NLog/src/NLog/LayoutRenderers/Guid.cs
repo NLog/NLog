@@ -55,14 +55,8 @@ namespace NLog.LayoutRenderers
         [System.ComponentModel.DefaultValue("N")]
         public string Format
         {
-            get
-            {
-                return _format;
-            }
-            set
-            {
-                _format = value;
-            }
+            get { return _format; }
+            set { _format = value; }
         }
 
         /// <summary>

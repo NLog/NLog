@@ -95,58 +95,37 @@ namespace NLog.ComInterop
 
         bool ILogger.IsTraceEnabled
         {
-            get
-            {
-                return _logger.IsTraceEnabled;
-            }
+            get { return _logger.IsTraceEnabled; }
         }
 
         bool ILogger.IsDebugEnabled
         {
-            get
-            {
-                return _logger.IsDebugEnabled;
-            }
+            get { return _logger.IsDebugEnabled; }
         }
 
         bool ILogger.IsInfoEnabled
         {
-            get
-            {
-                return _logger.IsInfoEnabled;
-            }
+            get { return _logger.IsInfoEnabled; }
         }
 
         bool ILogger.IsWarnEnabled
         {
-            get
-            {
-                return _logger.IsWarnEnabled;
-            }
+            get { return _logger.IsWarnEnabled; }
         }
 
         bool ILogger.IsErrorEnabled
         {
-            get
-            {
-                return _logger.IsErrorEnabled;
-            }
+            get { return _logger.IsErrorEnabled; }
         }
 
         bool ILogger.IsFatalEnabled
         {
-            get
-            {
-                return _logger.IsFatalEnabled;
-            }
+            get { return _logger.IsFatalEnabled; }
         }
 
         string ILogger.LoggerName
         {
-            get
-            {
-                return _loggerName;
-            }
+            get { return _loggerName; }
             set
             {
                 _loggerName = value;

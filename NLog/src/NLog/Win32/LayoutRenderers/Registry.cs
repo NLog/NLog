@@ -64,14 +64,8 @@ namespace NLog.Win32.LayoutRenderers
         /// </summary>
         public string Value
         {
-            get
-            {
-                return _value;
-            }
-            set
-            {
-                _value = value;
-            }
+            get { return _value; }
+            set { _value = value; }
         }
 
         /// <summary>
@@ -79,14 +73,8 @@ namespace NLog.Win32.LayoutRenderers
         /// </summary>
         public string DefaultValue
         {
-            get
-            {
-                return _defaultValue;
-            }
-            set
-            {
-                _defaultValue = value;
-            }
+            get { return _defaultValue; }
+            set { _defaultValue = value; }
         }
 
         /// <summary>
@@ -104,10 +92,7 @@ namespace NLog.Win32.LayoutRenderers
         [RequiredParameter]
         public string Key
         {
-            get
-            {
-                return _key;
-            }
+            get { return _key; }
             set
             {
                 _key = value;

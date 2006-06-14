@@ -170,14 +170,8 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         public virtual FilteringRule this[int index]
         {
-            get
-            {
-                return (FilteringRule)this.List[index];
-            }
-            set
-            {
-                this.List[index] = value;
-            }
+            get { return (FilteringRule)this.List[index]; }
+            set { this.List[index] = value; }
         }
 
         /// <summary>
@@ -212,10 +206,7 @@ namespace NLog.Targets.Wrappers
             /// </summary>
             public FilteringRule Current
             {
-                get
-                {
-                    return (FilteringRule)(this.wrapped.Current);
-                }
+                get { return (FilteringRule)(this.wrapped.Current); }
             }
 
             /// <summary>
@@ -223,10 +214,7 @@ namespace NLog.Targets.Wrappers
             /// </summary>
             object System.Collections.IEnumerator.Current
             {
-                get
-                {
-                    return (FilteringRule)(this.wrapped.Current);
-                }
+                get { return (FilteringRule)(this.wrapped.Current); }
             }
 
             /// <summary>

@@ -50,6 +50,9 @@ namespace NLog.Internal
     /// </summary>
     public abstract class ThreadIDHelper
     {
+        /// <summary>
+        /// Singleton instance.
+        /// </summary>
         public readonly static ThreadIDHelper Instance;
 
         static ThreadIDHelper()

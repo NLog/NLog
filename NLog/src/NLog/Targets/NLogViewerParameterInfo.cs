@@ -62,14 +62,8 @@ namespace NLog.Targets
         [RequiredParameter]
         public string Name
         {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
+            get { return _name; }
+            set { _name = value; }
         }
 
         /// <summary>
@@ -79,14 +73,8 @@ namespace NLog.Targets
         [AcceptsLayout]
         public string Layout
         {
-            get
-            {
-                return _compiledlayout.Text;
-            }
-            set
-            {
-                _compiledlayout = new Layout(value);
-            }
+            get { return _compiledlayout.Text; }
+            set { _compiledlayout = new Layout(value); }
         }
 
         /// <summary>
@@ -94,14 +82,8 @@ namespace NLog.Targets
         /// </summary>
         public Layout CompiledLayout
         {
-            get
-            {
-                return _compiledlayout;
-            }
-            set
-            {
-                _compiledlayout = value;
-            }
+            get { return _compiledlayout; }
+            set { _compiledlayout = value; }
         }
     }
 }

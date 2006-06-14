@@ -164,14 +164,8 @@ namespace NLog
         /// </summary>
         public virtual Filter this[int index]
         {
-            get
-            {
-                return (Filter)this.List[index];
-            }
-            set
-            {
-                this.List[index] = value;
-            }
+            get { return (Filter)this.List[index]; }
+            set { this.List[index] = value; }
         }
 
         /// <summary>
@@ -206,10 +200,7 @@ namespace NLog
             /// </summary>
             public Filter Current
             {
-                get
-                {
-                    return (Filter)(this.wrapped.Current);
-                }
+                get { return (Filter)(this.wrapped.Current); }
             }
 
             /// <summary>
@@ -217,10 +208,7 @@ namespace NLog
             /// </summary>
             object System.Collections.IEnumerator.Current
             {
-                get
-                {
-                    return (Filter)(this.wrapped.Current);
-                }
+                get { return (Filter)(this.wrapped.Current); }
             }
 
             /// <summary>

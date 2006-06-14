@@ -54,14 +54,8 @@ namespace NLog.LayoutRenderers
         [System.ComponentModel.DefaultValue(1)]
         public int Value
         {
-            get
-            {
-                return _value;
-            }
-            set
-            {
-                _value = value;
-            }
+            get { return _value; }
+            set { _value = value; }
         }
 
         /// <summary>
@@ -70,14 +64,8 @@ namespace NLog.LayoutRenderers
         [System.ComponentModel.DefaultValue(1)]
         public int Increment
         {
-            get
-            {
-                return _increment;
-            }
-            set
-            {
-                _increment = value;
-            }
+            get { return _increment; }
+            set { _increment = value; }
         }
 
         /// <summary>
@@ -85,14 +73,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public string Sequence
         {
-            get
-            {
-                return _sequence;
-            }
-            set
-            {
-                _sequence = value;
-            }
+            get { return _sequence; }
+            set { _sequence = value; }
         }
 
         /// <summary>
