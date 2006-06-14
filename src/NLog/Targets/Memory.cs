@@ -75,10 +75,7 @@ namespace NLog.Targets
         /// </summary>
         public ArrayList Logs
         {
-            get
-            {
-                return _logs;
-            }
+            get { return _logs; }
         }
     }
 }

@@ -164,14 +164,8 @@ namespace NLog
         /// </summary>
         public virtual Target this[int index]
         {
-            get
-            {
-                return (Target)this.List[index];
-            }
-            set
-            {
-                this.List[index] = value;
-            }
+            get { return (Target)this.List[index]; }
+            set { this.List[index] = value; }
         }
 
         /// <summary>
@@ -206,18 +200,12 @@ namespace NLog
             /// </summary>
             public Target Current
             {
-                get
-                {
-                    return (Target)(this.wrapped.Current);
-                }
+                get { return (Target)(this.wrapped.Current); }
             }
 
             object System.Collections.IEnumerator.Current
             {
-                get
-                {
-                    return (Target)(this.wrapped.Current);
-                }
+                get { return (Target)(this.wrapped.Current); }
             }
 
             /// <summary>

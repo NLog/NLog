@@ -67,14 +67,8 @@ namespace NLog.Targets
         [System.ComponentModel.DefaultValue(false)]
         public bool FormatMessage
         {
-            get
-            {
-                return _formatMessage;
-            }
-            set
-            {
-                _formatMessage = value;
-            }
+            get { return _formatMessage; }
+            set { _formatMessage = value; }
         }
 
         /// <summary>

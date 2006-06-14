@@ -60,10 +60,7 @@ namespace NLog
         /// </summary>
         public string FormatString
         {
-            get
-            {
-                return _formatString;
-            }
+            get { return _formatString; }
         }
 
         /// <summary>

@@ -62,14 +62,8 @@ namespace NLog.Win32.LayoutRenderers
         /// </summary>
         public string Item
         {
-            get
-            {
-                return _item;
-            }
-            set
-            {
-                _item = value;
-            }
+            get { return _item; }
+            set { _item = value; }
         }
 
 
@@ -78,14 +72,8 @@ namespace NLog.Win32.LayoutRenderers
         /// </summary>
         public string QueryString
         {
-            get
-            {
-                return _queryStringKey;
-            }
-            set
-            {
-                _queryStringKey = value;
-            }
+            get { return _queryStringKey; }
+            set { _queryStringKey = value; }
         }
 
         /// <summary>
@@ -93,14 +81,8 @@ namespace NLog.Win32.LayoutRenderers
         /// </summary>
         public string Form
         {
-            get
-            {
-                return _formKey;
-            }
-            set
-            {
-                _formKey = value;
-            }
+            get { return _formKey; }
+            set { _formKey = value; }
         }
 
         /// <summary>
@@ -108,14 +90,8 @@ namespace NLog.Win32.LayoutRenderers
         /// </summary>
         public string Cookie
         {
-            get
-            {
-                return _cookie;
-            }
-            set
-            {
-                _cookie = value;
-            }
+            get { return _cookie; }
+            set { _cookie = value; }
         }
 
         /// <summary>
@@ -123,14 +99,8 @@ namespace NLog.Win32.LayoutRenderers
         /// </summary>
         public string ServerVariable
         {
-            get
-            {
-                return _serverVariable;
-            }
-            set
-            {
-                _serverVariable = value;
-            }
+            get { return _serverVariable; }
+            set { _serverVariable = value; }
         }
 
         /// <summary>

@@ -166,14 +166,8 @@ namespace NLog.Win32.Targets
         /// </summary>
         public virtual ConsoleRowHighlightingRule this[int index]
         {
-            get
-            {
-                return (ConsoleRowHighlightingRule) this.List[index];
-            }
-            set
-            {
-                this.List[index] = value;
-            }
+            get { return (ConsoleRowHighlightingRule) this.List[index]; }
+            set { this.List[index] = value; }
         }
 
         /// <summary>
@@ -208,18 +202,12 @@ namespace NLog.Win32.Targets
             /// </summary>
             public ConsoleRowHighlightingRule Current
             {
-                get
-                {
-                    return (ConsoleRowHighlightingRule) (this.wrapped.Current);
-                }
+                get { return (ConsoleRowHighlightingRule) (this.wrapped.Current); }
             }
 
             object System.Collections.IEnumerator.Current
             {
-                get
-                {
-                    return (ConsoleRowHighlightingRule) (this.wrapped.Current);
-                }
+                get { return (ConsoleRowHighlightingRule) (this.wrapped.Current); }
             }
 
             /// <summary>

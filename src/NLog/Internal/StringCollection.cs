@@ -167,14 +167,8 @@ namespace System.Collections.Specialized
         /// </summary>
         public virtual String this[int index]
         {
-            get
-            {
-                return (String)this.List[index];
-            }
-            set
-            {
-                this.List[index] = value;
-            }
+            get { return (String)this.List[index]; }
+            set { this.List[index] = value; }
         }
 
         /// <summary>
@@ -202,18 +196,12 @@ namespace System.Collections.Specialized
 
             public String Current
             {
-                get
-                {
-                    return (String)(this.wrapped.Current);
-                }
+                get { return (String)(this.wrapped.Current); }
             }
 
             object System.Collections.IEnumerator.Current
             {
-                get
-                {
-                    return (String)(this.wrapped.Current);
-                }
+                get { return (String)(this.wrapped.Current); }
             }
 
             public bool MoveNext()

@@ -69,14 +69,8 @@ namespace NLog.Config
         /// </summary>
         public bool AutoReload
         {
-            get
-            {
-                return _autoReload;
-            }
-            set
-            {
-                _autoReload = value;
-            }
+            get { return _autoReload; }
+            set { _autoReload = value; }
         }
 
         /// <summary>

@@ -61,14 +61,8 @@ namespace NLog.Internal
         /// </summary>
         public static LogLevel LogLevel
         {
-            get
-            {
-                return _logLevel;
-            }
-            set
-            {
-                _logLevel = value;
-            }
+            get { return _logLevel; }
+            set { _logLevel = value; }
         }
 
         /// <summary>
@@ -250,10 +244,7 @@ namespace NLog.Internal
         /// </summary>
         public static bool IsTraceEnabled
         {
-            get
-            {
-                return LogLevel.Trace >= _logLevel;
-            }
+            get { return LogLevel.Trace >= _logLevel; }
         }
 
         /// <summary>
@@ -261,50 +252,35 @@ namespace NLog.Internal
         /// </summary>
         public static bool IsDebugEnabled
         {
-            get
-            {
-                return LogLevel.Debug >= _logLevel;
-            }
+            get { return LogLevel.Debug >= _logLevel; }
         }
         /// <summary>
         /// Returns true when internal log level includes Info messages
         /// </summary>
         public static bool IsInfoEnabled
         {
-            get
-            {
-                return LogLevel.Info >= _logLevel;
-            }
+            get { return LogLevel.Info >= _logLevel; }
         }
         /// <summary>
         /// Returns true when internal log level includes Warn messages
         /// </summary>
         public static bool IsWarnEnabled
         {
-            get
-            {
-                return LogLevel.Warn >= _logLevel;
-            }
+            get { return LogLevel.Warn >= _logLevel; }
         }
         /// <summary>
         /// Returns true when internal log level includes Error messages
         /// </summary>
         public static bool IsErrorEnabled
         {
-            get
-            {
-                return LogLevel.Error >= _logLevel;
-            }
+            get { return LogLevel.Error >= _logLevel; }
         }
         /// <summary>
         /// Returns true when internal log level includes Fatal messages
         /// </summary>
         public static bool IsFatalEnabled
         {
-            get
-            {
-                return LogLevel.Fatal >= _logLevel;
-            }
+            get { return LogLevel.Fatal >= _logLevel; }
         }
 
         /// <summary>

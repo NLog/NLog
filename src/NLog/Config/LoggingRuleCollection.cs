@@ -168,14 +168,8 @@ namespace NLog.Config
         /// </summary>
         public virtual LoggingRule this[int index]
         {
-            get
-            {
-                return (LoggingRule)this.List[index];
-            }
-            set
-            {
-                this.List[index] = value;
-            }
+            get { return (LoggingRule)this.List[index]; }
+            set { this.List[index] = value; }
         }
 
         /// <summary>
@@ -210,10 +204,7 @@ namespace NLog.Config
             /// </summary>
             public LoggingRule Current
             {
-                get
-                {
-                    return (LoggingRule)(this.wrapped.Current);
-                }
+                get { return (LoggingRule)(this.wrapped.Current); }
             }
 
             /// <summary>
@@ -221,10 +212,7 @@ namespace NLog.Config
             /// </summary>
             object System.Collections.IEnumerator.Current
             {
-                get
-                {
-                    return (LoggingRule)(this.wrapped.Current);
-                }
+                get { return (LoggingRule)(this.wrapped.Current); }
             }
 
             /// <summary>

@@ -69,10 +69,7 @@ namespace NLog
         /// </summary>
         public string Name
         {
-            get
-            {
-                return _loggerName;
-            }
+            get { return _loggerName; }
         }
 
         internal void WriteToTargets(LogLevel level, IFormatProvider formatProvider, string message, object[]args, Exception exception)
@@ -119,10 +116,7 @@ namespace NLog
         /// <returns><see langword="true" /> if logging is enabled for the <c>Trace</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsTraceEnabled
         {
-            get
-            {
-                return _isTraceEnabled;
-            }
+            get { return _isTraceEnabled; }
         }
 
         /// <summary>
@@ -155,10 +149,7 @@ namespace NLog
         /// <returns><see langword="true" /> if logging is enabled for the <c>Warn</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsWarnEnabled
         {
-            get
-            {
-                return _isWarnEnabled;
-            }
+            get { return _isWarnEnabled; }
         }
 
         /// <summary>

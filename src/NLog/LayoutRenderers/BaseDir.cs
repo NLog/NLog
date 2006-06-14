@@ -65,14 +65,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public string File
         {
-            get
-            {
-                return _fileName;
-            }
-            set
-            {
-                _fileName = value;
-            }
+            get { return _fileName; }
+            set { _fileName = value; }
         }
 
         /// <summary>
@@ -80,14 +74,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public string Dir
         {
-            get
-            {
-                return _directoryName;
-            }
-            set
-            {
-                _directoryName = value;
-            }
+            get { return _directoryName; }
+            set { _directoryName = value; }
         }
         /// <summary>
         /// Returns the estimated number of characters that are needed to

@@ -170,14 +170,8 @@ namespace NLog.Targets
         /// </summary>
         public virtual DatabaseParameterInfo this[int index]
         {
-            get
-            {
-                return (DatabaseParameterInfo)this.List[index];
-            }
-            set
-            {
-                this.List[index] = value;
-            }
+            get { return (DatabaseParameterInfo)this.List[index]; }
+            set { this.List[index] = value; }
         }
 
         /// <summary>
@@ -212,10 +206,7 @@ namespace NLog.Targets
             /// </summary>
             public DatabaseParameterInfo Current
             {
-                get
-                {
-                    return (DatabaseParameterInfo)(this.wrapped.Current);
-                }
+                get { return (DatabaseParameterInfo)(this.wrapped.Current); }
             }
 
             /// <summary>
@@ -223,10 +214,7 @@ namespace NLog.Targets
             /// </summary>
             object System.Collections.IEnumerator.Current
             {
-                get
-                {
-                    return (DatabaseParameterInfo)(this.wrapped.Current);
-                }
+                get { return (DatabaseParameterInfo)(this.wrapped.Current); }
             }
 
             /// <summary>

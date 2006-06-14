@@ -61,14 +61,8 @@ namespace NLog.Filters
         [RequiredParameter]
         public string Substring
         {
-            get
-            {
-                return _substring;
-            }
-            set
-            {
-                _substring = value;
-            }
+            get { return _substring; }
+            set { _substring = value; }
         }
 
         private bool _ignoreCase = false;

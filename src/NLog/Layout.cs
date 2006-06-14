@@ -74,10 +74,7 @@ namespace NLog
         /// </summary>
         public string Text
         {
-            get
-            {
-                return _layoutText;
-            }
+            get { return _layoutText; }
             set
             {
                 _layoutText = value;

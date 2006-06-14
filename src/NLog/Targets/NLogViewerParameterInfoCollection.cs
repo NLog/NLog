@@ -170,14 +170,8 @@ namespace NLog.Targets
         /// </summary>
         public virtual NLogViewerParameterInfo this[int index]
         {
-            get
-            {
-                return (NLogViewerParameterInfo)this.List[index];
-            }
-            set
-            {
-                this.List[index] = value;
-            }
+            get { return (NLogViewerParameterInfo)this.List[index]; }
+            set { this.List[index] = value; }
         }
 
         /// <summary>
@@ -212,10 +206,7 @@ namespace NLog.Targets
             /// </summary>
             public NLogViewerParameterInfo Current
             {
-                get
-                {
-                    return (NLogViewerParameterInfo)(this.wrapped.Current);
-                }
+                get { return (NLogViewerParameterInfo)(this.wrapped.Current); }
             }
 
             /// <summary>
@@ -223,10 +214,7 @@ namespace NLog.Targets
             /// </summary>
             object System.Collections.IEnumerator.Current
             {
-                get
-                {
-                    return (NLogViewerParameterInfo)(this.wrapped.Current);
-                }
+                get { return (NLogViewerParameterInfo)(this.wrapped.Current); }
             }
 
             /// <summary>

@@ -51,14 +51,8 @@ namespace NLog.LayoutRenderers
         [RequiredParameter]
         public string Item
         {
-            get
-            {
-                return _item;
-            }
-            set
-            {
-                _item = value;
-            }
+            get { return _item; }
+            set { _item = value; }
         }
 
         /// <summary>

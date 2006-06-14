@@ -95,10 +95,7 @@ namespace NLog.Config
         /// </summary>
         public LoggingRuleCollection LoggingRules
         {
-            get
-            {
-                return _loggingRules;
-            }
+            get { return _loggingRules; }
         }
 
         /// <summary>
@@ -106,10 +103,7 @@ namespace NLog.Config
         /// </summary>
         public virtual ICollection FileNamesToWatch
         {
-            get
-            {
-                return null;
-            }
+            get { return null; }
         }
 
         /// <summary>

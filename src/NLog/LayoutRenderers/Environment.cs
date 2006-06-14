@@ -57,14 +57,8 @@ namespace NLog.LayoutRenderers
         [RequiredParameter]
         public string Variable
         {
-            get
-            {
-                return _variable;
-            }
-            set
-            {
-                _variable = value;
-            }
+            get { return _variable; }
+            set { _variable = value; }
         }
 
         /// <summary>

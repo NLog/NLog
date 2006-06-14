@@ -169,14 +169,8 @@ namespace NLog.Targets
         /// </summary>
         public virtual MethodCallParameter this[int index]
         {
-            get
-            {
-                return (MethodCallParameter)this.List[index];
-            }
-            set
-            {
-                this.List[index] = value;
-            }
+            get { return (MethodCallParameter)this.List[index]; }
+            set { this.List[index] = value; }
         }
 
         /// <summary>
@@ -211,10 +205,7 @@ namespace NLog.Targets
             /// </summary>
             public MethodCallParameter Current
             {
-                get
-                {
-                    return (MethodCallParameter)(this.wrapped.Current);
-                }
+                get { return (MethodCallParameter)(this.wrapped.Current); }
             }
 
             /// <summary>
@@ -222,10 +213,7 @@ namespace NLog.Targets
             /// </summary>
             object System.Collections.IEnumerator.Current
             {
-                get
-                {
-                    return (MethodCallParameter)(this.wrapped.Current);
-                }
+                get { return (MethodCallParameter)(this.wrapped.Current); }
             }
 
             /// <summary>

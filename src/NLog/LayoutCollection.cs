@@ -164,14 +164,8 @@ namespace NLog
         /// </summary>
         public virtual Layout this[int index]
         {
-            get
-            {
-                return (Layout)this.List[index];
-            }
-            set
-            {
-                this.List[index] = value;
-            }
+            get { return (Layout)this.List[index]; }
+            set { this.List[index] = value; }
         }
 
         /// <summary>
@@ -206,10 +200,7 @@ namespace NLog
             /// </summary>
             public Layout Current
             {
-                get
-                {
-                    return (Layout)(this.wrapped.Current);
-                }
+                get { return (Layout)(this.wrapped.Current); }
             }
 
             /// <summary>
@@ -217,10 +208,7 @@ namespace NLog
             /// </summary>
             object System.Collections.IEnumerator.Current
             {
-                get
-                {
-                    return (Layout)(this.wrapped.Current);
-                }
+                get { return (Layout)(this.wrapped.Current); }
             }
 
             /// <summary>

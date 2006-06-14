@@ -53,14 +53,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public int TopFrames
         {
-            get
-            {
-                return _topFrames;
-            }
-            set
-            {
-                _topFrames = value;
-            }
+            get { return _topFrames; }
+            set { _topFrames = value; }
         }
 
         /// <summary>
@@ -68,14 +62,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public int BottomFrames
         {
-            get
-            {
-                return _bottomFrames;
-            }
-            set
-            {
-                _bottomFrames = value;
-            }
+            get { return _bottomFrames; }
+            set { _bottomFrames = value; }
         }
 
         /// <summary>
@@ -83,14 +71,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public string Separator
         {
-            get
-            {
-                return _separator;
-            }
-            set
-            {
-                _separator = value;
-            }
+            get { return _separator; }
+            set { _separator = value; }
         }
 
         /// <summary>

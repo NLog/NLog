@@ -88,10 +88,7 @@ namespace NLog.Targets
         [ArrayParameter(typeof(MethodCallParameter), "parameter")]
         public MethodCallParameterCollection Parameters
         {
-            get
-            {
-                return _parameters;
-            }
+            get { return _parameters; }
         }
     }
 }

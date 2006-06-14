@@ -75,14 +75,8 @@ namespace NLog.Targets
         [RequiredParameter]
         public string Name
         {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
+            get { return _name; }
+            set { _name = value; }
         }
 
         /// <summary>
@@ -92,14 +86,8 @@ namespace NLog.Targets
         [AcceptsLayout]
         public string Layout
         {
-            get
-            {
-                return _compiledlayout.Text;
-            }
-            set
-            {
-                _compiledlayout = new Layout(value);
-            }
+            get { return _compiledlayout.Text; }
+            set { _compiledlayout = new Layout(value); }
         }
 
         /// <summary>
@@ -107,14 +95,8 @@ namespace NLog.Targets
         /// </summary>
         public Layout CompiledLayout
         {
-            get
-            {
-                return _compiledlayout;
-            }
-            set
-            {
-                _compiledlayout = value;
-            }
+            get { return _compiledlayout; }
+            set { _compiledlayout = value; }
         }
 
         /// <summary>
@@ -123,14 +105,8 @@ namespace NLog.Targets
         [System.ComponentModel.DefaultValue(0)]
         public int Size
         {
-            get
-            {
-                return _size;
-            }
-            set
-            {
-                _size = value;
-            }
+            get { return _size; }
+            set { _size = value; }
         }
 
         /// <summary>
@@ -139,14 +115,8 @@ namespace NLog.Targets
         [System.ComponentModel.DefaultValue(0)]
         public byte Precision
         {
-            get
-            {
-                return _precision;
-            }
-            set
-            {
-                _precision = value;
-            }
+            get { return _precision; }
+            set { _precision = value; }
         }
 
         /// <summary>
@@ -155,14 +125,8 @@ namespace NLog.Targets
         [System.ComponentModel.DefaultValue(0)]
         public byte Scale
         {
-            get
-            {
-                return _scale;
-            }
-            set
-            {
-                _scale = value;
-            }
+            get { return _scale; }
+            set { _scale = value; }
         }
     }
 }

@@ -71,14 +71,8 @@ namespace NLog.Filters
         [RequiredParameter]
         public string CompareTo
         {
-            get
-            {
-                return _compareTo;
-            }
-            set
-            {
-                _compareTo = value;
-            }
+            get { return _compareTo; }
+            set { _compareTo = value; }
         }
 
         /// <summary>

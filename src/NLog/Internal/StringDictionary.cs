@@ -64,14 +64,8 @@ namespace System.Collections.Specialized
         /// </param>
         public virtual String this[string key]
         {
-            get
-            {
-                return (String)this.Dictionary[key];
-            }
-            set
-            {
-                this.Dictionary[key] = value;
-            }
+            get { return (String)this.Dictionary[key]; }
+            set { this.Dictionary[key] = value; }
         }
 
         /// <summary>
@@ -154,10 +148,7 @@ namespace System.Collections.Specialized
         /// </summary>
         public virtual System.Collections.ICollection Keys
         {
-            get
-            {
-                return this.Dictionary.Keys;
-            }
+            get { return this.Dictionary.Keys; }
         }
 
         /// <summary>
@@ -165,10 +156,7 @@ namespace System.Collections.Specialized
         /// </summary>
         public virtual System.Collections.ICollection Values
         {
-            get
-            {
-                return this.Dictionary.Values;
-            }
+            get { return this.Dictionary.Values; }
         }
     }
 }
