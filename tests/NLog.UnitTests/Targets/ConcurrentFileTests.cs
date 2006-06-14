@@ -54,7 +54,7 @@ namespace NLog.UnitTests.Targets
 	{
         private Logger logger = LogManager.GetCurrentClassLogger();
 
-        private void ConfigureSharedFile()
+        private void ConfigureSharedFile(string mode)
         {
             FileTarget ft = new FileTarget();
             ft.FileName = "${basedir}/file.txt";
@@ -63,13 +63,31 @@ namespace NLog.UnitTests.Targets
             ft.OpenFileCacheTimeout = 10;
             ft.OpenFileCacheSize = 1;
             ft.LineEnding = FileTarget.LineEndingMode.LF;
-            SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+            switch (mode)
+            {
+                case "async":
+                    SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(ft, 100, AsyncTargetWrapperOverflowAction.Grow), LogLevel.Debug);
+                    break;
+
+                case "buffered":
+                    SimpleConfigurator.ConfigureForTargetLogging(new BufferingTargetWrapper(ft, 100), LogLevel.Debug);
+                    break;
+
+                case "buffered_timed_flush":
+                    SimpleConfigurator.ConfigureForTargetLogging(new BufferingTargetWrapper(ft, 100, 10), LogLevel.Debug);
+                    break;
+
+                default:
+                    SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+                    break;
+            }
         }
 
-        public void Process(string threadName, string numLogsString)
+        public void Process(string threadName, string numLogsString, string mode)
         {
             System.Threading.Thread.CurrentThread.Name = threadName;
-            ConfigureSharedFile();
+            ConfigureSharedFile(mode);
             int numLogs = Convert.ToInt32(numLogsString);
             for (int i = 0; i < numLogs; ++i)
             {
@@ -77,8 +95,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
-        public void ConcurrentTest1()
+        private void DoConcurrentTest(int numProcesses, int numLogs, string mode)
         {
             string logFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "file.txt");
 
@@ -87,13 +104,11 @@ namespace NLog.UnitTests.Targets
 
             StringBuilder expectedOutput = new StringBuilder();
 
-            int numProcesses = 3;
-            int numLogs = 100;
             Process[] processes = new Process[numProcesses];
 
             for (int i = 0; i < numProcesses; ++i)
             {
-                processes[i] = SpawnMethod("Process", i.ToString(), numLogs.ToString());
+                processes[i] = SpawnMethod("Process", i.ToString(), numLogs.ToString(), mode);
             }
             for (int i = 0; i < numProcesses; ++i)
             {
@@ -118,7 +133,37 @@ namespace NLog.UnitTests.Targets
                     maxNumber[thread]++;
                 }
             }
-            //AssertFileContents(logFile, expectedOutput.ToString(), Encoding.ASCII);
+        }
+
+        private void DoConcurrentTest(string mode)
+        {
+            DoConcurrentTest(2, 10000, mode);
+            DoConcurrentTest(5, 4000, mode);
+            DoConcurrentTest(10, 2000, mode);
+        }
+
+        [Test]
+        public void SimpleConcurrentTest()
+        {
+            DoConcurrentTest("");
+        }
+
+        [Test]
+        public void AsyncConcurrentTest()
+        {
+            DoConcurrentTest(2, 100, "async");
+        }
+
+        [Test]
+        public void BufferedConcurrentTest()
+        {
+            DoConcurrentTest(2, 100, "buffered");
+        }
+
+        [Test]
+        public void BufferedTimedFlushConcurrentTest()
+        {
+            DoConcurrentTest(2, 100, "buffered_timed_flush");
         }
     }
 }
