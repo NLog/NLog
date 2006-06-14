@@ -123,19 +123,9 @@ namespace NLog.UnitTests
             proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
             proc.StartInfo.RedirectStandardInput = true;
             proc.StartInfo.RedirectStandardOutput = true;
+            proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             proc.Start();
             return proc;
-        }
-
-        protected Mutex[] syncMutexes;
-
-        protected void InitSyncMutexes(int count)
-        {
-            syncMutexes = new Mutex[count];
-            for (int i = 0; i < count; ++i)
-            {
-                syncMutexes[i] = new Mutex(false, "nlog-syncmutex-" + i);
-            }
         }
     }
 }

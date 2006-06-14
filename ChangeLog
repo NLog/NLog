@@ -1,3 +1,8 @@
+2006-06-14 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* added Logger.Log(LogEventInfo) overload
+	* added Logger.Log(Type,LogEventInfo) overload
+	* added LoggerReconfiguredDelegate and Logger.LoggerReconfigured event
+
 2006-06-13 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added BufferedWrapper.FlushTimeout
 	* Added some unit tests

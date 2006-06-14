@@ -70,12 +70,11 @@ namespace NLog
         /// An empty event - for rendering layouts where logging
         /// event is not otherwise available.
         /// </summary>
-        public static readonly LogEventInfo Empty = new LogEventInfo(DateTime.Now, LogLevel.Debug, String.Empty, CultureInfo.InvariantCulture, String.Empty, null, null, null);
+        public static readonly LogEventInfo Empty = new LogEventInfo(LogLevel.Off, String.Empty, CultureInfo.InvariantCulture, String.Empty, null, null, null);
 
         /// <summary>
         /// Creates a new instance of <see cref="LogEventInfo"/> and assigns its fields.
         /// </summary>
-        /// <param name="ts">Logging timestamp.</param>
         /// <param name="level">Log level</param>
         /// <param name="loggerName">Logger name</param>
         /// <param name="formatProvider"><see cref="IFormatProvider"/> object</param>
@@ -83,9 +82,9 @@ namespace NLog
         /// <param name="parameters">Parameter array.</param>
         /// <param name="exception">Exception information.</param>
         /// <param name="callContext">Call context information dictionary (not interpreted by NLog, suitable for passing call-level context parameters)</param>
-        public LogEventInfo(DateTime ts, LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters, Exception exception, IDictionary callContext)
+        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters, Exception exception, IDictionary callContext)
         {
-            _timeStamp = ts;
+            _timeStamp = DateTime.Now;
             _level = level;
             _loggerName = loggerName;
             _message = message;
@@ -107,24 +106,34 @@ namespace NLog
         } 
 
         /// <summary>
-        /// Gets the timestamp of the logging event.
+        /// Gets or sets the timestamp of the logging event.
         /// </summary>
         public DateTime TimeStamp
         {
             get { return _timeStamp; }
+            set { _timeStamp = value; }
         }
 
         /// <summary>
-        /// Gets the level of the logging event.
+        /// Gets or sets the level of the logging event.
         /// </summary>
         public LogLevel Level
         {
             get { return _level; }
+            set { _level = value; }
         }
 
 #if !NETCF
         private StackTrace _stackTrace;
         private int _userStackFrame;
+
+        /// <summary>
+        /// Returns true if stack trace has been set for this event.
+        /// </summary>
+        public bool HasStackTrace
+        {
+            get { return _stackTrace != null; }
+        }
 
         internal void SetStackTrace(StackTrace stackTrace, int userStackFrame)
         {
@@ -158,19 +167,21 @@ namespace NLog
         }
 #endif 
         /// <summary>
-        /// Gets the exception information.
+        /// Gets or sets the exception information.
         /// </summary>
         public Exception Exception
         {
             get { return _exception; }
+            set { _exception = value; }
         }
 
         /// <summary>
-        /// Gets the logger name.
+        /// Gets or sets the logger name.
         /// </summary>
         public string LoggerName
         {
             get { return _loggerName; }
+            set { _loggerName = value; }
         }
 
         /// <summary>
@@ -194,6 +205,7 @@ namespace NLog
         public string Message
         {
             get { return _message; }
+            set { _message = value; }
         }
 
         /// <summary>
@@ -203,6 +215,7 @@ namespace NLog
         public object[] Parameters
         {
             get { return _parameters; }
+            set { _parameters = value; }
         }
 
         /// <summary>
@@ -212,6 +225,7 @@ namespace NLog
         public IFormatProvider FormatProvider
         {
             get { return _formatProvider; }
+            set { _formatProvider = value; }
         }
 
         /// <summary>
