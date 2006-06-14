@@ -1,4 +1,5 @@
 2006-06-14 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* added <include file="..." ignoreErrors="true|false" />
 	* fixed autoReload to keep monitoring the file if the reloaded file
 	has an error
 	* added Logger.Log(LogEventInfo) overload

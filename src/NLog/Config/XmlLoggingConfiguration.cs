@@ -200,14 +200,26 @@ namespace NLog.Config
 
             string newFileName = layout.GetFormattedMessage(LogEventInfo.Empty);
             newFileName = Path.Combine(baseDirectory, newFileName);
-            if (File.Exists(newFileName))
+
+            try
             {
-                InternalLogger.Debug("Including file '{0}'", newFileName);
-                ConfigureFromFile(newFileName);
+                if (File.Exists(newFileName))
+                {
+                    InternalLogger.Debug("Including file '{0}'", newFileName);
+                    ConfigureFromFile(newFileName);
+                }
+                else
+                {
+                    throw new FileNotFoundException("Included file not found: " + newFileName);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                throw new FileNotFoundException("Included file not found: " + newFileName);
+                InternalLogger.Error("Error when including '{0}' {1}", newFileName, ex);
+
+                if (String.Compare(GetCaseInsensitiveAttribute(includeElement, "ignoreErrors"), "true", true) == 0)
+                    return;
+                throw;
             }
         }
 
