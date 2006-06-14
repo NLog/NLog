@@ -55,7 +55,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 
@@ -80,7 +80,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=3}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 
@@ -106,7 +106,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=3:fixedlength=true}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 
@@ -131,7 +131,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=-3:padcharacter=x}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 
@@ -156,7 +156,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=-3:padcharacter=x:fixedlength=true}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 

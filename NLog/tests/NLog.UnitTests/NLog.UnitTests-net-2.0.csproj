@@ -101,6 +101,7 @@
     <Compile Include="CaseSensitivityTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LayoutRenderers\ExceptionTests.cs" />
     <Compile Include="LogManagerTests.cs" />
     <Compile Include="Filters\APITests.cs">
       <SubType>Code</SubType>
@@ -134,9 +135,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LayoutRenderers\EnvironmentTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\ExceptionTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LayoutRenderers\LiteralTests.cs">

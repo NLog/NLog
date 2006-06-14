@@ -53,7 +53,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message} ${counter} ${counter}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Info' appendTo='debug' />
+                    <logger name='*' minlevel='Info' writeTo='debug' />
                 </rules>
             </nlog>");
 
@@ -79,7 +79,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message} ${counter:value=1:increment=3} ${counter}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Info' appendTo='debug' />
+                    <logger name='*' minlevel='Info' writeTo='debug' />
                 </rules>
             </nlog>");
 
@@ -109,9 +109,9 @@ namespace NLog.UnitTests.LayoutRenderers
                     <target name='debug3' type='Debug' layout='${message} ${counter:sequence=aaa}' />
                 </targets>
                 <rules>
-                    <logger name='debug1' minlevel='Debug' appendTo='debug1' />
-                    <logger name='debug2' minlevel='Debug' appendTo='debug2' />
-                    <logger name='debug3' minlevel='Debug' appendTo='debug3' />
+                    <logger name='debug1' minlevel='Debug' writeTo='debug1' />
+                    <logger name='debug2' minlevel='Debug' writeTo='debug2' />
+                    <logger name='debug3' minlevel='Debug' writeTo='debug3' />
                 </rules>
             </nlog>");
 
