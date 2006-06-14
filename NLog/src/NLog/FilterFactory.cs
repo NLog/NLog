@@ -111,7 +111,7 @@ namespace NLog
         /// </remarks>
         public static void AddFilter(string name, Type t)
         {
-            InternalLogger.Debug("Registering filter {0} for type '{1}')", name, t.FullName);
+            InternalLogger.Trace("Registering filter {0} for type '{1}')", name, t.FullName);
             _filters[name.ToLower(CultureInfo.InvariantCulture)] = t;
         }
 

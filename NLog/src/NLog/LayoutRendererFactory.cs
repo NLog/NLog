@@ -118,7 +118,7 @@ namespace NLog
         /// </remarks>
         public static void AddLayoutRenderer(string name, Type t)
         {
-            InternalLogger.Debug("Registering layout renderer {0} for type '{1}')", name, t.FullName);
+            InternalLogger.Trace("Registering layout renderer {0} for type '{1}')", name, t.FullName);
             _targets[name.ToLower()] = t;
         }
 

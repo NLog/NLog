@@ -42,7 +42,6 @@ namespace NLog.Internal
     internal class MultiFileWatcher: IDisposable
     {
         private ArrayList _watchers = new ArrayList();
-        private bool _triggerred = false;
 
         public MultiFileWatcher(){}
 
@@ -67,13 +66,12 @@ namespace NLog.Internal
             {
                 foreach (FileSystemWatcher watcher in _watchers)
                 {
-                    //Console.WriteLine("releasing watch path: {0} filter: {1}", watcher.Path, watcher.Filter);
+                    InternalLogger.Info("Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
                     watcher.EnableRaisingEvents = false;
                     watcher.Dispose();
                     //Console.WriteLine("aa");
                 }
                 _watchers.Clear();
-                _triggerred = false;
             }
         }
 
@@ -92,12 +90,12 @@ namespace NLog.Internal
             FileSystemWatcher watcher = new FileSystemWatcher();
             watcher.Path = Path.GetDirectoryName(fileName);
             watcher.Filter = Path.GetFileName(fileName);
-            // Console.WriteLine("watching path: {0} filter: {1}", watcher.Path, watcher.Filter);
             watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.CreationTime | NotifyFilters.Size | NotifyFilters.Security | NotifyFilters.Attributes;
             watcher.Created += new FileSystemEventHandler(this.OnWatcherChanged);
             watcher.Changed += new FileSystemEventHandler(this.OnWatcherChanged);
             watcher.Deleted += new FileSystemEventHandler(this.OnWatcherChanged);
             watcher.EnableRaisingEvents = true;
+            InternalLogger.Info("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
 
             lock(this)
             {
@@ -109,12 +107,8 @@ namespace NLog.Internal
         {
             lock(this)
             {
-                // Console.WriteLine("OnWatcherChanged()");
-                if (!_triggerred)
-                {
-                    _triggerred = true;
+                if (OnChange != null)
                     OnChange(source, e);
-                }
             }
         }
 

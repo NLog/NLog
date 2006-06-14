@@ -129,7 +129,7 @@ namespace NLog
         {
             string hashKey = targetName.ToLower(CultureInfo.InvariantCulture);
 
-            InternalLogger.Debug("Registering target {0} for type '{1}')", targetName, targetType);
+            InternalLogger.Trace("Registering target {0} for type '{1}')", targetName, targetType);
             _targets[hashKey] = targetType;
         }
 

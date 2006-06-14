@@ -40,6 +40,8 @@ using NLog.Config;
 
 using NUnit.Framework;
 using NLog.Targets;
+using System.IO;
+using System.Threading;
 
 namespace NLog.UnitTests
 {
@@ -119,6 +121,82 @@ namespace NLog.UnitTests
 
             LogManager.GetLogger("A").Debug("zzz");
             AssertDebugLastMessage("debug", "yyy");
+        }
+
+        [Test]
+        public void AutoReloadTest()
+        {
+            string fileName = Path.GetTempFileName();
+            try
+            {
+                using (StreamWriter fs = File.CreateText(fileName))
+                {
+                    fs.Write(@"<nlog autoReload='true'>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+                LogManager.Configuration = new XmlLoggingConfiguration(fileName);
+                AssertDebugCounter("debug", 0);
+                Logger logger = LogManager.GetLogger("A");
+                logger.Debug("aaa");
+                AssertDebugLastMessage("debug", "aaa");
+
+                // now write the file again
+                using (StreamWriter fs = File.CreateText(fileName))
+                {
+                    fs.Write(@"<nlog autoReload='true'>
+                    <targets><target name='debug' type='Debug' layout='xxx ${message}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+
+                // give the reloader some time to pick up the changes.
+                Thread.Sleep(1500);
+
+                logger.Debug("aaa");
+                AssertDebugLastMessage("debug", "xxx aaa");
+
+                // write the file again, this time make an error
+                using (StreamWriter fs = File.CreateText(fileName))
+                {
+                    fs.Write(@"<nlog autoReload='true'>
+                    <targets><tar get name='debug' type='Debug' layout='xxx ${message}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+
+                Thread.Sleep(1500);
+                logger.Debug("bbb");
+                AssertDebugLastMessage("debug", "xxx bbb");
+
+                // write the corrected file again
+                using (StreamWriter fs = File.CreateText(fileName))
+                {
+                    fs.Write(@"<nlog autoReload='true'>
+                    <targets><target name='debug' type='Debug' layout='zzz ${message}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+                Thread.Sleep(1500);
+                logger.Debug("ccc");
+                AssertDebugLastMessage("debug", "zzz ccc");
+
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(fileName))
+                    File.Delete(fileName);
+            }
         }
     }
 }

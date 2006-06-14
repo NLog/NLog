@@ -115,7 +115,7 @@ namespace NLog
         /// <param name="mi"><see cref="MethodInfo" /> of the method to be registered.</param>
         public static void AddConditionMethod(string name, MethodInfo mi)
         {
-            InternalLogger.Debug("AddConditionMethods('{0}','{1}')", name, mi);
+            InternalLogger.Trace("AddConditionMethod('{0}','{1}')", name, mi);
             _conditionMethods[name.ToLower(CultureInfo.InvariantCulture)] = mi;
         }
 
