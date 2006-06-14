@@ -95,7 +95,7 @@ namespace NLog.UnitTests
                 <nlog globalThreshold='Info'>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' minlevel='Debug' appendTo='debug' />
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
                     </rules>
                 </nlog>");
 
@@ -134,7 +134,7 @@ namespace NLog.UnitTests
                     fs.Write(@"<nlog autoReload='true'>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' minlevel='Debug' appendTo='debug' />
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -150,7 +150,7 @@ namespace NLog.UnitTests
                     fs.Write(@"<nlog autoReload='true'>
                     <targets><target name='debug' type='Debug' layout='xxx ${message}' /></targets>
                     <rules>
-                        <logger name='*' minlevel='Debug' appendTo='debug' />
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -167,7 +167,7 @@ namespace NLog.UnitTests
                     fs.Write(@"<nlog autoReload='true'>
                     <targets><tar get name='debug' type='Debug' layout='xxx ${message}' /></targets>
                     <rules>
-                        <logger name='*' minlevel='Debug' appendTo='debug' />
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -182,7 +182,7 @@ namespace NLog.UnitTests
                     fs.Write(@"<nlog autoReload='true'>
                     <targets><target name='debug' type='Debug' layout='zzz ${message}' /></targets>
                     <rules>
-                        <logger name='*' minlevel='Debug' appendTo='debug' />
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -218,7 +218,7 @@ namespace NLog.UnitTests
                     fs.Write(@"<nlog>
                     <include file='included.nlog' />
                     <rules>
-                        <logger name='*' minlevel='Debug' appendTo='debug' />
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -276,7 +276,7 @@ namespace NLog.UnitTests
                     <include file='included-notpresent.nlog' />
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' minlevel='Debug' appendTo='debug' />
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }

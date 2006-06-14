@@ -54,7 +54,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 
@@ -74,7 +74,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${basedir:dir=..} ${message}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 
@@ -94,7 +94,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${basedir:file=a.txt} ${message}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 

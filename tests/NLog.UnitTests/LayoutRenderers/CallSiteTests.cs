@@ -54,7 +54,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:filename=true} ${message}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 
@@ -78,7 +78,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite} ${message}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 
@@ -98,7 +98,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false} ${message}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 
@@ -118,7 +118,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=3:fixedlength=true} ${message}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 
@@ -138,7 +138,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=16:fixedlength=true} ${message}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 

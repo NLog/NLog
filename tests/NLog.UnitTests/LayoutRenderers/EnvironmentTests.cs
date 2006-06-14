@@ -53,7 +53,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${environment:variable=PATH:uppercase=true}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 

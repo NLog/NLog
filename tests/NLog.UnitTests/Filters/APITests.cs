@@ -56,7 +56,7 @@ namespace NLog.UnitTests.Filters
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug'>
+                    <logger name='*' minlevel='Debug' writeTo='debug'>
                     <filters>
                         <whenContains layout='${message}' substring='zzz' action='Ignore' />
                     </filters>

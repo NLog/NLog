@@ -59,7 +59,7 @@ namespace NLog.UnitTests
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' levels='' appendTo='debug' />
+                        <logger name='*' levels='' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -69,7 +69,7 @@ namespace NLog.UnitTests
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' levels='Trace' appendTo='debug' />
+                        <logger name='*' levels='Trace' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -229,7 +229,7 @@ namespace NLog.UnitTests
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' levels='' appendTo='debug' />
+                        <logger name='*' levels='' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -239,7 +239,7 @@ namespace NLog.UnitTests
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' levels='Debug' appendTo='debug' />
+                        <logger name='*' levels='Debug' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -399,7 +399,7 @@ namespace NLog.UnitTests
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' levels='' appendTo='debug' />
+                        <logger name='*' levels='' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -409,7 +409,7 @@ namespace NLog.UnitTests
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' levels='Info' appendTo='debug' />
+                        <logger name='*' levels='Info' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -569,7 +569,7 @@ namespace NLog.UnitTests
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' levels='' appendTo='debug' />
+                        <logger name='*' levels='' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -579,7 +579,7 @@ namespace NLog.UnitTests
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' levels='Warn' appendTo='debug' />
+                        <logger name='*' levels='Warn' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -739,7 +739,7 @@ namespace NLog.UnitTests
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' levels='' appendTo='debug' />
+                        <logger name='*' levels='' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -749,7 +749,7 @@ namespace NLog.UnitTests
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' levels='Error' appendTo='debug' />
+                        <logger name='*' levels='Error' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -909,7 +909,7 @@ namespace NLog.UnitTests
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' levels='' appendTo='debug' />
+                        <logger name='*' levels='' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -919,7 +919,7 @@ namespace NLog.UnitTests
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' levels='Fatal' appendTo='debug' />
+                        <logger name='*' levels='Fatal' writeTo='debug' />
                     </rules>
                 </nlog>");
                 }
@@ -1083,7 +1083,7 @@ namespace NLog.UnitTests
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' levels='' appendTo='debug' />
+                        <logger name='*' levels='' writeTo='debug' />
                     </rules>
                 </nlog>");
                     }
@@ -1093,7 +1093,7 @@ namespace NLog.UnitTests
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
-                        <logger name='*' levels='" + level.Name + @"' appendTo='debug' />
+                        <logger name='*' levels='" + level.Name + @"' writeTo='debug' />
                             </rules>
                                   </nlog>");
                               }

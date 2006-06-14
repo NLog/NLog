@@ -52,7 +52,7 @@ namespace NLog.UnitTests
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Info' appendTo='debug' />
+                    <logger name='*' minlevel='Info' writeTo='debug' />
                 </rules>
             </nlog>");
 
@@ -89,11 +89,11 @@ namespace NLog.UnitTests
                     <target name='debug5' type='Debug' layout='${message}' />
                 </targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug1' />
-                    <logger name='*' minlevel='Info' appendTo='debug2' />
-                    <logger name='*' minlevel='Warn' appendTo='debug3' />
-                    <logger name='*' minlevel='Error' appendTo='debug4' />
-                    <logger name='*' minlevel='Fatal' appendTo='debug5' />
+                    <logger name='*' minlevel='Debug' writeTo='debug1' />
+                    <logger name='*' minlevel='Info' writeTo='debug2' />
+                    <logger name='*' minlevel='Warn' writeTo='debug3' />
+                    <logger name='*' minlevel='Error' writeTo='debug4' />
+                    <logger name='*' minlevel='Fatal' writeTo='debug5' />
                 </rules>
             </nlog>");
 
@@ -133,10 +133,10 @@ namespace NLog.UnitTests
                     <target name='debug4' type='Debug' layout='${message}' />
                 </targets>
                 <rules>
-                    <logger name='A' minlevel='Info' appendTo='debug1' />
-                    <logger name='A*' minlevel='Info' appendTo='debug2' />
-                    <logger name='*A*' minlevel='Info' appendTo='debug3' />
-                    <logger name='*A' minlevel='Info' appendTo='debug4' />
+                    <logger name='A' minlevel='Info' writeTo='debug1' />
+                    <logger name='A*' minlevel='Info' writeTo='debug2' />
+                    <logger name='*A*' minlevel='Info' writeTo='debug3' />
+                    <logger name='*A' minlevel='Info' writeTo='debug4' />
                 </rules>
             </nlog>");
 
@@ -166,12 +166,12 @@ namespace NLog.UnitTests
                     <target name='debug4' type='Debug' layout='${message}' />
                 </targets>
                 <rules>
-                    <logger name='A' minlevel='Info' appendTo='debug1' />
-                    <logger name='A' minlevel='Info' appendTo='debug2' />
-                    <logger name='B' minlevel='Info' appendTo='debug1,debug2' />
-                    <logger name='C' minlevel='Info' appendTo='debug1,debug2,debug3' />
-                    <logger name='D' minlevel='Info' appendTo='debug1,debug2' />
-                    <logger name='D' minlevel='Info' appendTo='debug3,debug4' />
+                    <logger name='A' minlevel='Info' writeTo='debug1' />
+                    <logger name='A' minlevel='Info' writeTo='debug2' />
+                    <logger name='B' minlevel='Info' writeTo='debug1,debug2' />
+                    <logger name='C' minlevel='Info' writeTo='debug1,debug2,debug3' />
+                    <logger name='D' minlevel='Info' writeTo='debug1,debug2' />
+                    <logger name='D' minlevel='Info' writeTo='debug3,debug4' />
                 </rules>
             </nlog>");
 

@@ -33,7 +33,7 @@
 
 using System;
 using System.Xml;
-using System.Reflection;
+using System.Globalization;
 
 using NLog;
 using NLog.Config;
@@ -46,21 +46,23 @@ namespace NLog.UnitTests.LayoutRenderers
 	public class ExceptionTests : NLogTestBase
 	{
         [Test]
-        public void ExceptionTest()
+        public void Test1()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception:format=message}' />
-                    <target name='debug2' type='Debug' layout='${exception:format=type}' />
-                    <target name='debug3' type='Debug' layout='${exception:format=shorttype}' />
-                    <target name='debug4' type='Debug' layout='${exception:format=tostring}' />
-                    <target name='debug5' type='Debug' layout='${exception:format=stacktrace}' />
-                    <target name='debug6' type='Debug' layout='${exception:format=method}' />
+                    <target name='debug1' type='Debug' layout='${exception}' />
+                    <target name='debug2' type='Debug' layout='${exception:format=stacktrace}' />
+                    <target name='debug3' type='Debug' layout='${exception:format=type}' />
+                    <target name='debug4' type='Debug' layout='${exception:format=shorttype}' />
+                    <target name='debug5' type='Debug' layout='${exception:format=tostring}' />
+                    <target name='debug6' type='Debug' layout='${exception:format=message}' />
+                    <target name='debug7' type='Debug' layout='${exception:format=method}' />
+                    <target name='debug8' type='Debug' layout='${exception:format=message,shorttype:separator=*}' />
                 </targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' appendTo='debug1,debug2,debug3,debug4,debug5,debug6' />
+                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8' />
                 </rules>
             </nlog>");
 
@@ -68,17 +70,19 @@ namespace NLog.UnitTests.LayoutRenderers
 
             try
             {
-                throw new ArgumentException("exceptionmsg");
+                throw new Exception("Test exception");
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
-                LogManager.GetLogger("d").DebugException("zzz", ex);
-                AssertDebugLastMessage("debug1", "exceptionmsg");
-                AssertDebugLastMessage("debug2", "System.ArgumentException");
-                AssertDebugLastMessage("debug3", "ArgumentException");
-                AssertDebugLastMessage("debug4", ex.ToString());
-                AssertDebugLastMessage("debug5", ex.StackTrace);
-                AssertDebugLastMessage("debug6", System.Reflection.MethodBase.GetCurrentMethod().ToString());
+                LogManager.GetCurrentClassLogger().ErrorException("msg", ex);
+                AssertDebugLastMessage("debug1", "Test exception");
+                AssertDebugLastMessage("debug2", ex.StackTrace);
+                AssertDebugLastMessage("debug3", typeof(Exception).FullName);
+                AssertDebugLastMessage("debug4", typeof(Exception).Name);
+                AssertDebugLastMessage("debug5", ex.ToString());
+                AssertDebugLastMessage("debug6", "Test exception");
+                AssertDebugLastMessage("debug7", ex.TargetSite.ToString());
+                AssertDebugLastMessage("debug8", "Test exception*Exception");
             }
         }
     }
