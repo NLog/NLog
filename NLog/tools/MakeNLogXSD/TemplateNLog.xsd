@@ -171,6 +171,11 @@
                 <xs:documentation>Name of the file to be included. The name is relative to the name of the current config file.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="ignoreErrors" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+                <xs:documentation>Ignore any errors in the include file.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 
     <xs:complexType name="NLogVariable">

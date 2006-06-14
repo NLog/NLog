@@ -198,5 +198,99 @@ namespace NLog.UnitTests
                     File.Delete(fileName);
             }
         }
+
+        [Test]
+        public void IncludeTest()
+        {
+            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempPath);
+            try
+            {
+                using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "included.nlog")))
+                {
+                    fs.Write(@"<nlog>
+                        <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                </nlog>");
+                }
+
+                using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "main.nlog")))
+                {
+                    fs.Write(@"<nlog>
+                    <include file='included.nlog' />
+                    <rules>
+                        <logger name='*' minlevel='Debug' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+
+                LogManager.Configuration = new XmlLoggingConfiguration(Path.Combine(tempPath, "main.nlog"));
+                LogManager.GetLogger("A").Debug("aaa");
+                AssertDebugLastMessage("debug", "aaa");
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
+        [Test]
+        [ExpectedException(typeof(FileNotFoundException))]
+        public void IncludeNotExistingTest()
+        {
+            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempPath);
+
+            try
+            {
+                using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "main.nlog")))
+                {
+                    fs.Write(@"<nlog>
+                    <include file='included.nlog' />
+                </nlog>");
+                }
+
+                LogManager.Configuration = new XmlLoggingConfiguration(Path.Combine(tempPath, "main.nlog"));
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
+        [Test]
+        [ExpectedException(typeof(FileNotFoundException))]
+        public void IncludeNotExistingIgnoredTest()
+        {
+            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempPath);
+
+            try
+            {
+                using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "main.nlog")))
+                {
+                    fs.Write(@"<nlog>
+                    <include file='included-notpresent.nlog' />
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' appendTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+
+                LogManager.Configuration = new XmlLoggingConfiguration(Path.Combine(tempPath, "main.nlog"));
+                LogManager.GetLogger("A").Debug("aaa");
+                AssertDebugLastMessage("debug", "aaa");
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
     }
 }
