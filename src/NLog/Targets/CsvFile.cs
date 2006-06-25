@@ -55,8 +55,25 @@ namespace NLog.Targets
 {
     /// <summary>
     /// File target that can produce *.csv (Comma Separated Values) files.
+    /// This is an extension to the <a href="target.File.html">File</a> Target.
     /// </summary>
-    [Target("CSVFile",IgnoresLayout=true)]
+    /// <example>
+    /// <p>
+    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// use the following syntax:
+    /// </p>
+    /// <code lang="XML" src="examples/targets/Configuration File/CSVFile/NLog.config" />
+    /// <p>
+    /// This assumes just one target and a single rule. More configuration
+    /// options are described <a href="config.html">here</a>.
+    /// </p>
+    /// <p>
+    /// To set up the log target programmatically use code like this:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/CSVFile/Simple/Example.cs" />
+    /// <p>More examples can be found in <a href="target.File.html">File</a> Target reference.</p>
+    /// </example>
+    [Target("CSVFile", IgnoresLayout = true)]
     public class CsvFileTarget: FileTarget
     {
         /// <summary>
