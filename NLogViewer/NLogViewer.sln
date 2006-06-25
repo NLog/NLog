@@ -1,37 +1,31 @@
-Microsoft Visual Studio Solution File, Format Version 8.00
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogViewer", "src\NLogViewer\NLogViewer.csproj", "{E82961D7-4727-4330-913B-576C55E0A102}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogViewer.Interfaces", "src\NLogViewer.Interfaces\NLogViewer.Interfaces.csproj", "{0EC214BD-71C7-47A8-900A-2909265FD164}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogViewer.NDumbsterSmtpReceiver", "src\NLogViewer.NDumbsterSmtpReceiver\NLogViewer.NDumbsterSmtpReceiver.csproj", "{DF3699DA-0D87-4EEF-803A-72678C231D92}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Global
-	GlobalSection(SolutionConfiguration) = preSolution
-		Debug = Debug
-		Release = Release
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfiguration) = postSolution
-		{E82961D7-4727-4330-913B-576C55E0A102}.Debug.ActiveCfg = Debug|.NET
-		{E82961D7-4727-4330-913B-576C55E0A102}.Debug.Build.0 = Debug|.NET
-		{E82961D7-4727-4330-913B-576C55E0A102}.Release.ActiveCfg = Release|.NET
-		{E82961D7-4727-4330-913B-576C55E0A102}.Release.Build.0 = Release|.NET
-		{0EC214BD-71C7-47A8-900A-2909265FD164}.Debug.ActiveCfg = Debug|.NET
-		{0EC214BD-71C7-47A8-900A-2909265FD164}.Debug.Build.0 = Debug|.NET
-		{0EC214BD-71C7-47A8-900A-2909265FD164}.Release.ActiveCfg = Release|.NET
-		{0EC214BD-71C7-47A8-900A-2909265FD164}.Release.Build.0 = Release|.NET
-		{DF3699DA-0D87-4EEF-803A-72678C231D92}.Debug.ActiveCfg = Debug|.NET
-		{DF3699DA-0D87-4EEF-803A-72678C231D92}.Debug.Build.0 = Debug|.NET
-		{DF3699DA-0D87-4EEF-803A-72678C231D92}.Release.ActiveCfg = Release|.NET
-		{DF3699DA-0D87-4EEF-803A-72678C231D92}.Release.Build.0 = Release|.NET
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E82961D7-4727-4330-913B-576C55E0A102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E82961D7-4727-4330-913B-576C55E0A102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E82961D7-4727-4330-913B-576C55E0A102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E82961D7-4727-4330-913B-576C55E0A102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EC214BD-71C7-47A8-900A-2909265FD164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EC214BD-71C7-47A8-900A-2909265FD164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EC214BD-71C7-47A8-900A-2909265FD164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EC214BD-71C7-47A8-900A-2909265FD164}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF3699DA-0D87-4EEF-803A-72678C231D92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF3699DA-0D87-4EEF-803A-72678C231D92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF3699DA-0D87-4EEF-803A-72678C231D92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF3699DA-0D87-4EEF-803A-72678C231D92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-	EndGlobalSection
-	GlobalSection(ExtensibilityAddIns) = postSolution
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

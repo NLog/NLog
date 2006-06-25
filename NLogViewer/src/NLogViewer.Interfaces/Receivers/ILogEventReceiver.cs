@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Specialized;
+using NLogViewer.Parsers;
 
 namespace NLogViewer.Receivers
 {
@@ -12,5 +13,6 @@ namespace NLogViewer.Receivers
         void Start();
         void Stop();
         bool IsRunning { get; }
+        string StatusText { get; }
     }
 }

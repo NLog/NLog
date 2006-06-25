@@ -37,27 +37,37 @@ using System.Reflection;
 using System.Collections.Specialized;
 using System.IO;
 
+using System.Collections.Generic;
+
 using NLogViewer.Configuration;
+using NLogViewer.Parsers;
 
 namespace NLogViewer.Receivers
 {
 	public class LogReceiverFactory
 	{
-        private static StringToLogEventReceiverInfoMap _name2receiver = new StringToLogEventReceiverInfoMap();
-        private static LogEventReceiverInfoCollection _receivers = new LogEventReceiverInfoCollection();
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+        private static Dictionary<string, LogEventReceiverInfo> _name2receiver = new Dictionary<string, LogEventReceiverInfo>();
+        private static List<LogEventReceiverInfo> _receivers = new List<LogEventReceiverInfo>();
 
-        public static LogEventReceiverInfoCollection Receivers
+        public static IList<LogEventReceiverInfo> Receivers
         {
             get { return _receivers; }
         }
 
         static LogReceiverFactory()
         {
-            AddReceiversFromAssembly(typeof(LogReceiverFactory).Assembly);
-            foreach (string assemblyName in NLogViewerConfiguration.Configuration.ExtensionAssemblies)
+            try
             {
-                Assembly extensionAssembly = Assembly.Load(assemblyName);
-                AddReceiversFromAssembly(extensionAssembly);
+                AddReceiversFromAssembly(typeof(LogReceiverFactory).Assembly);
+                foreach (string assemblyName in NLogViewerConfiguration.Configuration.ExtensionAssemblies)
+                {
+                    Assembly extensionAssembly = Assembly.Load(assemblyName);
+                    AddReceiversFromAssembly(extensionAssembly);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -82,27 +92,21 @@ namespace NLogViewer.Receivers
                 ri.Description = attr.Description;
                 ri.Type = t;
                 AddReceiverInfo(ri);
-                Log.Write("Adding receiver to factory {0} ({1})", ri, t.AssemblyQualifiedName);
+                logger.Debug("Adding receiver to factory {0} ({1})", ri, t.AssemblyQualifiedName);
             }
         }
 
-        public static ILogEventReceiver CreateLogReceiver(string type, ReceiverParameterCollection parameters)
+        public static ILogEventReceiver CreateLogReceiver(string type, NameValueCollection configParameters)
         {
-            LogEventReceiverInfo ri = _name2receiver[type];
-            if (ri == null)
+            if (!_name2receiver.ContainsKey(type))
                 throw new ArgumentException("Unknown receiver type: " + type);
 
+            LogEventReceiverInfo ri = _name2receiver[type];
             object o = Activator.CreateInstance(ri.Type);
             ILogEventReceiver receiver = (ILogEventReceiver)o;
 
-            // prepare configuration parameters
-            NameValueCollection configParameters = new NameValueCollection();
-            foreach (ReceiverParameter p in parameters)
-            {
-                configParameters[p.Name] = p.Value;
-            }
-
-            receiver.Configure(configParameters);
+            if (configParameters != null)
+                receiver.Configure(configParameters);
             return receiver;
         }
 	}

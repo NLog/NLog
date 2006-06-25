@@ -41,16 +41,33 @@ using System.Collections.Specialized;
 using System.Reflection;
 using System.Globalization;
 
-using NLogViewer.Configuration;
 using NLogViewer.Events;
+using NLogViewer.Parsers;
+using System.ComponentModel;
 
 namespace NLogViewer.Receivers
 {
-	public abstract class LogEventReceiverSkeleton : ILogEventReceiver
+	public abstract class LogEventReceiverSkeleton : ILogEventReceiver, ILogEventParserWithParser
 	{
         private ILogEventProcessor _processor = null;
         private Thread _inputThread = null;
-        private bool _quitThread;
+        private volatile bool _quitThread;
+        private volatile string _statusText = "Idle";
+
+        private ILogEventParser _parser;
+
+        [Browsable(false)]
+        public ILogEventParser Parser
+        {
+            get { return _parser; }
+            set { _parser = value; }
+        }
+
+        [Browsable(false)]
+        public string StatusText
+        {
+            get { return _statusText; }
+        }
 
 		public LogEventReceiverSkeleton()
 		{
@@ -72,34 +89,43 @@ namespace NLogViewer.Receivers
 
         public virtual void Start()
         {
+            _statusText = "Starting...";
             _quitThread = false;
             _inputThread = new Thread(new ThreadStart(InputThread));
             _inputThread.IsBackground = true;
             _inputThread.Start();
+            _statusText = "Started";
         }
 
         public virtual void Stop()
         {
             if (_inputThread != null)
             {
+                _statusText = "Stopping...";
                 _quitThread = true;
                 if (!_inputThread.Join(2000))
                 {
                     _inputThread.Abort();
                 }
+                _statusText = "Stopped";
             }
         }
 
-        public virtual bool IsRunning
+        bool ILogEventReceiver.IsRunning
         {
-            get { return _inputThread.IsAlive; }
+            get
+            {
+                if (_inputThread == null)
+                    return false;
+                return _inputThread.IsAlive;
+            }
         }
 
         public abstract void InputThread();
 
-        public bool QuitInputThread
+        public bool InputThreadQuitRequested()
         {
-            get { return _quitThread; }
+            return _quitThread;
         }
 
         public void EventReceived(LogEvent logEvent)

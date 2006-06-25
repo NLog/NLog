@@ -42,8 +42,8 @@ using System.Security.Permissions;
 [assembly: AssemblyDescription("NLog")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NLog")]
-[assembly: AssemblyProduct("NLog - .NET Logging Library")]
-[assembly: AssemblyCopyright("Copyright (c) 2004,2005 by Jaroslaw Kowalski")]
+[assembly: AssemblyProduct("NLogViewer")]
+[assembly: AssemblyCopyright("Copyright (c) 2004-2006 by Jaroslaw Kowalski")]
 [assembly: AssemblyCulture("")]
 
 [assembly: AssemblyVersion("0.9.0.0")]

@@ -4,15 +4,16 @@ using System.Xml;
 using nDumbster.smtp;
 using System.Collections.Specialized;
 
-using NLogViewer.Configuration;
 using NLogViewer.Receivers;
 using NLogViewer.Events;
+using System.Text;
+using NLogViewer.Parsers;
 
 namespace NLogViewer.Receivers
 {
     [LogEventReceiver("SMTP", 
-        "SMTP Event Receiver based on NDumbster", 
-        "Receives XML events from the mock SMTP server")]
+        "SMTP Receiver", 
+        "Receives events using a mock SMTP server")]
     public class NDumbsterSmtpEventReceiver : LogEventReceiverSkeleton
     {
         private SimpleSmtpServer _smtpServer = null;
@@ -35,10 +36,9 @@ namespace NLogViewer.Receivers
             base.Start ();
         }
 
-
         public override void InputThread()
         {
-            while (!QuitInputThread)
+            while (!InputThreadQuitRequested())
             {
                 System.Threading.Thread.Sleep(TimeSpan.FromMilliseconds(100));
 
@@ -46,24 +46,19 @@ namespace NLogViewer.Receivers
                 {
                     foreach(SmtpMessage message in _smtpServer.ReceivedEmail)
                     {
-                        NLogViewerTrace.Write("Received mail: {0}", message.Body);
-                        StringReader sr = new StringReader(message.Body);
-                        XmlTextReader reader = new XmlTextReader(sr);
-                        reader.Namespaces = false;
-                        LogEvent logEventInfo;
-                        reader.Read();
-                        logEventInfo = LogEvent.ParseLog4JEvent(reader);
-                        logEventInfo.ReceivedTime = DateTime.Now;
-					
-                        foreach (string header in message.Headers.AllKeys)
+                        byte[] bytes = Encoding.UTF8.GetBytes(message.Body);
+                        MemoryStream ms = new MemoryStream(bytes);
+                        using (ILogEventParserInstance context = Parser.Begin(ms))
                         {
-                            LogEventProperty lep = new LogEventProperty();
-                            lep.Name = header;
-                            lep.Value = message.Headers[header];
-                            logEventInfo.Properties.Add(lep);
-                        }
+                            LogEvent logEvent = context.ReadNext();
 
-                        EventReceived(logEventInfo);
+                            foreach (string header in message.Headers.AllKeys)
+                            {
+                                logEvent.Properties[header] = message.Headers[header];
+                            }
+
+                            EventReceived(logEvent);
+                        }
                     }
 
                     _smtpServer.ClearReceivedEmail();

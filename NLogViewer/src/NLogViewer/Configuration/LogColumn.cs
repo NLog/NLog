@@ -50,10 +50,26 @@ namespace NLogViewer.Configuration
             this.Width = width;
         }
 
+        public LogColumn(string name, int width, bool visible)
+        {
+            this.Name = name;
+            this.Width = width;
+            this.Visible = visible;
+        }
+
         [XmlAttribute("name")]
         public string Name;
 
         [XmlAttribute("width")]
         public int Width;
+
+        [XmlAttribute("visible")]
+        [System.ComponentModel.DefaultValue(true)]
+        public bool Visible = true;
+
+        public override string ToString()
+        {
+            return Name;
+        }
 	}
 }
