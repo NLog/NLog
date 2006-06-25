@@ -97,6 +97,13 @@ namespace NLog.Internal.NetworkSenders
         }
 
         /// <summary>
+        /// Flushes any buffers.
+        /// </summary>
+        public virtual void Flush()
+        {
+        }
+
+        /// <summary>
         /// The address of the network endpoint.
         /// </summary>
         public string Address

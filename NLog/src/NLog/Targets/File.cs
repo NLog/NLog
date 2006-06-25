@@ -348,6 +348,13 @@ namespace NLog.Targets
 #endif
 
         /// <summary>
+        /// Gets the characters that are appended after each line.
+        /// </summary>
+        protected string NewLineChars
+        {
+            get { return _newLine; }
+        }
+        /// <summary>
         /// Line ending mode.
         /// </summary>
         public LineEndingMode LineEnding
@@ -756,6 +763,16 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Formats the log event for write.
+        /// </summary>
+        /// <param name="logEvent">The log event to be formatted.</param>
+        /// <returns>A string representation of the log event.</returns>
+        protected virtual string GetFormattedMessage(LogEventInfo logEvent)
+        {
+            return CompiledLayout.GetFormattedMessage(logEvent);
+        }
+
+        /// <summary>
         /// Writes the specified logging event to a file specified in the FileName 
         /// parameter.
         /// </summary>
@@ -765,7 +782,7 @@ namespace NLog.Targets
             lock (this)
             {
                 string fileName = _fileNameLayout.GetFormattedMessage(logEvent);
-                string renderedText = CompiledLayout.GetFormattedMessage(logEvent) + _newLine;
+                string renderedText = GetFormattedMessage(logEvent) + NewLineChars;
                 byte[] bytes = TransformBytes(_encoding.GetBytes(renderedText));
 
                 if (ShouldAutoArchive(fileName, logEvent, bytes.Length))
@@ -821,7 +838,8 @@ namespace NLog.Targets
                         ms.Position = 0;
                     }
 
-                    string logEventText = CompiledLayout.GetFormattedMessage(logEvent) + _newLine;
+                    string logEventText = GetFormattedMessage(logEvent) + NewLineChars;
+
                     byte[] bytes = TransformBytes(_encoding.GetBytes(logEventText));
 
                     ms.Write(bytes, 0, bytes.Length);

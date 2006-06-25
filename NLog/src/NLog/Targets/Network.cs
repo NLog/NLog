@@ -139,54 +139,85 @@ namespace NLog.Targets
         /// <param name="text">The text to be sent.</param>
         protected void NetworkSend(string address, string text)
         {
-            NetworkSender sender;
-            bool keep;
-
             lock (this)
             {
-                keep = KeepConnection;
-                
-                
-                if (_sender != null)
+                if (KeepConnection)
                 {
-                    if (_sender.Address != address)
+                    if (_sender != null)
                     {
+                        if (_sender.Address != address)
+                        {
+                            _sender.Close();
+                            _sender = null;
+                        }
+                    };
+                    if (_sender == null)
+                    {
+                        _sender = NetworkSender.Create(address);
+                    }
+
+                    try
+                    {
+                        _sender.Send(text);
+                    }
+                    catch (Exception ex)
+                    {
+                        InternalLogger.Error("Error when sending {0}", ex);
                         _sender.Close();
                         _sender = null;
+                        throw;
                     }
-                };
-
-                if (_sender != null)
-                {
-                    sender = _sender;
                 }
                 else
                 {
-                    sender = NetworkSender.Create(address);
-                    if (keep)
-                        _sender = sender;
+                    NetworkSender sender = NetworkSender.Create(address);
+
+                    try
+                    {
+                        sender.Send(text);
+                    }
+                    finally
+                    {
+                        sender.Close();
+                    }
                 }
             }
+        }
 
-            try
+        /// <summary>
+        /// Flushes any buffers.
+        /// </summary>
+        /// <param name="timeout">Flush timeout.</param>
+        public override void Flush(TimeSpan timeout)
+        {
+            lock (this)
             {
-                sender.Send(text);
+                if (_sender != null)
+                    _sender.Flush();
             }
-            catch (Exception)
-            {
-                lock (this)
-                {
-                    sender.Close();
-                    sender = null;
-                    _sender = null;
-                }
-            }
+        }
 
-            if (!keep && sender != null)
+        /// <summary>
+        /// Closes the target.
+        /// </summary>
+        protected internal override void Close()
+        {
+            base.Close();
+            lock (this)
             {
-                sender.Close();
-                sender = null;
+                if (_sender != null)
+                    _sender.Close();
             }
+        }
+
+        /// <summary>
+        /// Adds all layouts used by this target to the specified collection.
+        /// </summary>
+        /// <param name="layouts">The collection to add layouts to.</param>
+        public override void PopulateLayouts(LayoutCollection layouts)
+        {
+            base.PopulateLayouts(layouts);
+            layouts.Add(AddressLayout);
         }
 
         /// <summary>

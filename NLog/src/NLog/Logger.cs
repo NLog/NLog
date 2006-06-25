@@ -54,16 +54,25 @@ namespace NLog
     [CLSCompliant(true)]
     public class Logger
     {
-        private LoggerConfiguration _configuration;
         private string _loggerName;
         private Type _loggerType = typeof(Logger);
+#if !NETCF_1_0
+        private volatile LoggerConfiguration _configuration;
+        private volatile bool _isTraceEnabled;
+        private volatile bool _isDebugEnabled;
+        private volatile bool _isInfoEnabled;
+        private volatile bool _isWarnEnabled;
+        private volatile bool _isErrorEnabled;
+        private volatile bool _isFatalEnabled;
+#else
+        private LoggerConfiguration _configuration;
         private bool _isTraceEnabled;
         private bool _isDebugEnabled;
         private bool _isInfoEnabled;
         private bool _isWarnEnabled;
         private bool _isErrorEnabled;
         private bool _isFatalEnabled;
-
+#endif
         /// <summary>
         /// Occurs when logger configuration changes.
         /// </summary>
@@ -92,19 +101,19 @@ namespace NLog
 
         internal void WriteToTargets(LogLevel level, IFormatProvider formatProvider, string message, object[]args, Exception exception)
         {
-            LogEventInfo logMessage = new LogEventInfo(level, this.Name, formatProvider, message, args, exception, null);
+            LogEventInfo logMessage = new LogEventInfo(level, this.Name, formatProvider, message, args, exception);
             LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), logMessage);
         }
 
         internal void WriteToTargets(LogLevel level, string message)
         {
-            LogEventInfo logMessage = new LogEventInfo(level, this.Name, null, message, null, null, null);
+            LogEventInfo logMessage = new LogEventInfo(level, this.Name, null, message, null, null);
             LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), logMessage);
         }
 
         internal void WriteToTargets(LogLevel level, string message, object[]args)
         {
-            LogEventInfo logMessage = new LogEventInfo(level, this.Name, null, message, args, null, null);
+            LogEventInfo logMessage = new LogEventInfo(level, this.Name, null, message, args, null);
             LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), logMessage);
         }
 

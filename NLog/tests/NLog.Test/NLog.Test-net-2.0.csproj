@@ -76,6 +76,10 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\NLog.InstantMessengers\NLog.InstantMessengers-net-2.0.csproj">
+      <Project>{0CDDD399-95AB-472E-99C1-853902FC03C3}</Project>
+      <Name>NLog.InstantMessengers-net-2.0</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\NLog\NLog-net-2.0.csproj">
       <Name>NLog-net-2.0</Name>
       <Project>{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}</Project>
