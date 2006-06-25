@@ -44,6 +44,7 @@ using NLog.Targets;
 using NLog.Filters;
 using NLog.LayoutRenderers;
 using NLog.Internal;
+using NLog.Targets.Wrappers;
 
 namespace NLog.Config
 {
@@ -534,6 +535,7 @@ namespace NLog.Config
                 return ;
 
             bool asyncWrap = 0 == String.Compare(GetCaseInsensitiveAttribute(element, "async"), "true", true);
+            XmlElement defaultWrapperElement = null;
 
             foreach (XmlNode n in element.ChildNodes)
             {
@@ -541,10 +543,19 @@ namespace NLog.Config
                 
                 if (targetElement == null)
                     continue;
+
+                if (0 == String.Compare(targetElement.LocalName, "default-wrapper"))
+                {
+                    defaultWrapperElement = targetElement;
+                    continue;
+                }
                 
                 if (0 == String.Compare(targetElement.LocalName, "target", true) || 
                     0 == String.Compare(targetElement.LocalName, "appender", true) ||
-                    0 == String.Compare(targetElement.LocalName, "wrapper", true))
+                    0 == String.Compare(targetElement.LocalName, "wrapper", true) ||
+                    0 == String.Compare(targetElement.LocalName, "wrapper-target", true) ||
+                    0 == String.Compare(targetElement.LocalName, "compound-target", true)
+                    )
                 {
                     string type = GetCaseInsensitiveAttribute(targetElement, "type");
                     Target newTarget = TargetFactory.CreateTarget(type);
@@ -563,6 +574,29 @@ namespace NLog.Config
                             newTarget = atw;
                         }
 #endif
+                        if (defaultWrapperElement != null)
+                        {
+                            string wrapperType = GetCaseInsensitiveAttribute(defaultWrapperElement, "type");
+                            Target wrapperTargetInstance = TargetFactory.CreateTarget(wrapperType);
+                            WrapperTargetBase wtb = wrapperTargetInstance as WrapperTargetBase;
+                            if (wtb == null)
+                                throw new Exception("Target type specified on <default-wrapper /> is not a wrapper.");
+                            ConfigureTargetFromXmlElement(wrapperTargetInstance, defaultWrapperElement);
+                            while (wtb.WrappedTarget != null)
+                            {
+                                wtb = wtb.WrappedTarget as WrapperTargetBase;
+                                if (wtb == null)
+                                    throw new Exception("Child target type specified on <default-wrapper /> is not a wrapper.");
+                            }
+                            wtb.WrappedTarget = newTarget;
+                            wrapperTargetInstance.Name = newTarget.Name;
+                            newTarget.Name = newTarget.Name + "_wrapped";
+
+                            InternalLogger.Debug("Wrapping target '{0}' with '{1}' and renaming to '{2}", wrapperTargetInstance.Name, wrapperTargetInstance.GetType().Name, newTarget.Name);
+                            newTarget = wrapperTargetInstance;
+                        }
+
+                        InternalLogger.Info("Adding target {0}", newTarget);
                         AddTarget(newTarget.Name, newTarget);
                     }
                 }
@@ -619,7 +653,7 @@ namespace NLog.Config
                     XmlElement el = (XmlElement)node;
                     string name = el.LocalName;
 
-                    if ((name == "target" || name == "wrapper") && compound != null)
+                    if ((name == "target" || name == "wrapper" || name == "wrapper-target" || name == "compound-target") && compound != null)
                     {
                         string type = GetCaseInsensitiveAttribute(el, "type");
                         Target newTarget = TargetFactory.CreateTarget(type);
@@ -636,7 +670,7 @@ namespace NLog.Config
                         continue;
                     }
 
-                    if ((name == "target" || name == "wrapper") && wrapper != null)
+                    if ((name == "target" || name == "wrapper" || name == "wrapper-target" || name == "compound-target") && wrapper != null)
                     {
                         string type = GetCaseInsensitiveAttribute(el, "type");
                         Target newTarget = TargetFactory.CreateTarget(type);

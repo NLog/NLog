@@ -97,5 +97,13 @@ namespace NLog.Targets.Wrappers
             WrappedTarget.Initialize();
         }
 
+        /// <summary>
+        /// Returns the text representation of the object. Used for diagnostics.
+        /// </summary>
+        /// <returns>A string that describes the target.</returns>
+        public override string ToString()
+        {
+            return ((this.Name != null) ? this.Name : "unnamed") + ":" + this.GetType().Name + "(" + ((WrappedTarget != null) ? WrappedTarget.ToString() : "null") + ")";
+        }
     }
 }

@@ -196,10 +196,7 @@ namespace NLog
         /// <returns>A string that describes the target.</returns>
         public override string ToString()
         {
-            if (Name != null)
-                return String.Format("{0}: {1}", Name, this.GetType().FullName);
-            else
-                return this.GetType().FullName;
+            return ((this.Name != null) ? this.Name : "unnamed") + ":" + this.GetType().Name;
         }
 
         /// <summary>

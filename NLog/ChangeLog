@@ -1,3 +1,7 @@
+2006-06-25 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* implemented <targets><default-wrapper /> </targets> that wraps all
+	targets in <targets> section with the specified wrapper.
+
 2006-06-23 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* fixed some race conditions in the Network target
 	* added NetworkTarget.Close()
