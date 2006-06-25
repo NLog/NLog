@@ -183,6 +183,20 @@ namespace MakeNLogXSD
                 xtw.WriteAttributeString("minOccurs", "1");
                 xtw.WriteAttributeString("maxOccurs", "1");
                 xtw.WriteEndElement();
+
+                xtw.WriteStartElement("xs:element");
+                xtw.WriteAttributeString("name", "wrapper-target");
+                xtw.WriteAttributeString("type", "WrapperTargetBase");
+                xtw.WriteAttributeString("minOccurs", "1");
+                xtw.WriteAttributeString("maxOccurs", "1");
+                xtw.WriteEndElement();
+
+                xtw.WriteStartElement("xs:element");
+                xtw.WriteAttributeString("name", "compound-target");
+                xtw.WriteAttributeString("type", "CompoundTargetBase");
+                xtw.WriteAttributeString("minOccurs", "1");
+                xtw.WriteAttributeString("maxOccurs", "1");
+                xtw.WriteEndElement();
             }
 
             if (t == typeof(CompoundTargetBase))
@@ -192,6 +206,20 @@ namespace MakeNLogXSD
                 xtw.WriteAttributeString("type", "Target");
                 xtw.WriteAttributeString("minOccurs", "1");
                 xtw.WriteAttributeString("maxOccurs", "unbounded");
+                xtw.WriteEndElement();
+
+                xtw.WriteStartElement("xs:element");
+                xtw.WriteAttributeString("name", "wrapper-target");
+                xtw.WriteAttributeString("type", "WrapperTargetBase");
+                xtw.WriteAttributeString("minOccurs", "1");
+                xtw.WriteAttributeString("maxOccurs", "1");
+                xtw.WriteEndElement();
+
+                xtw.WriteStartElement("xs:element");
+                xtw.WriteAttributeString("name", "compound-target");
+                xtw.WriteAttributeString("type", "CompoundTargetBase");
+                xtw.WriteAttributeString("minOccurs", "1");
+                xtw.WriteAttributeString("maxOccurs", "1");
                 xtw.WriteEndElement();
             }
 
