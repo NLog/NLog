@@ -61,8 +61,8 @@ namespace NLogViewer.Receivers
         [Description("The port to listen on")]
         public int Port
         {
-            get { return _port; }
-            set { _port = value; }
+            get { return Convert.ToInt32(Parameters["Port"]); }
+            set { Parameters["Port"] = value.ToString(); }
         }
 
         [Description("List of Addresses to listen on")]

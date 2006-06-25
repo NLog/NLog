@@ -250,15 +250,15 @@ namespace NLogViewer
 
                     _totalEvents++;
 
-                    LogEventAttributeToNode(logEvent["Logger"], _loggersTreeNode, _logger2NodeCache, '.');
-                    LogEventAttributeToNode(logEvent["Level"], _levelsTreeNode, _level2NodeCache, (char)0);
-                    LogEventAttributeToNode(logEvent["SourceAssembly"], _assembliesTreeNode, _assembly2NodeCache, (char)0);
-                    TreeNode node = LogEventAttributeToNode(logEvent["SourceType"], _classesTreeNode, _class2NodeCache, '.');
+                    LogEventAttributeToNode((string)logEvent["Logger"], _loggersTreeNode, _logger2NodeCache, '.');
+                    LogEventAttributeToNode((string)logEvent["Level"], _levelsTreeNode, _level2NodeCache, (char)0);
+                    LogEventAttributeToNode((string)logEvent["SourceAssembly"], _assembliesTreeNode, _assembly2NodeCache, (char)0);
+                    TreeNode node = LogEventAttributeToNode((string)logEvent["SourceType"], _classesTreeNode, _class2NodeCache, '.');
                     // LogEventAttributeToNode(logEvent.SourceMethod, node, 
-                    LogEventAttributeToNode(logEvent["Thread"], _threadsTreeNode, _thread2NodeCache, (char)0);
-                    LogEventAttributeToNode(logEvent["SourceApplication"], _applicationsTreeNode, _application2NodeCache, (char)0);
-                    LogEventAttributeToNode(logEvent["SourceMachine"], _machinesTreeNode, _machine2NodeCache, (char)0);
-                    LogEventAttributeToNode(logEvent["SourceFile"], _filesTreeNode, _file2NodeCache, (char)'\\');
+                    LogEventAttributeToNode((string)logEvent["Thread"], _threadsTreeNode, _thread2NodeCache, (char)0);
+                    LogEventAttributeToNode((string)logEvent["SourceApplication"], _applicationsTreeNode, _application2NodeCache, (char)0);
+                    LogEventAttributeToNode((string)logEvent["SourceMachine"], _machinesTreeNode, _machine2NodeCache, (char)0);
+                    LogEventAttributeToNode((string)logEvent["SourceFile"], _filesTreeNode, _file2NodeCache, (char)'\\');
                 }
                 TabPanel.listViewLogMessages.VirtualListSize = _filteredEvents.Count;
                 TabPanel.listViewLogMessages.Invalidate();
@@ -350,6 +350,32 @@ namespace NLogViewer
         public void UpdateFonts()
         {
             TabPanel.UpdateFonts();
+        }
+
+        public bool Save(IWin32Window parent)
+        {
+            if (Config.FileName == null)
+                return SaveAs(parent);
+            Config.Save(Config.FileName);
+            return true;
+        }
+
+        public bool SaveAs(IWin32Window parent)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "NLogViewer Sessions (*.nlv)|*.nlv|All Files (*.*)|*.*";
+                if (Config.FileName != null)
+                    sfd.FileName = Config.FileName;
+                if (sfd.ShowDialog(parent) == DialogResult.OK)
+                {
+                    Config.Name = Path.GetFileNameWithoutExtension(sfd.FileName);
+                    TabPage.Text = Config.Name;
+                    Config.Save(sfd.FileName);
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

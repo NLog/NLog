@@ -54,7 +54,7 @@ namespace NLogViewer.Events
             set { _id = value; }
         }
 
-        public string this[string key]
+        public object this[string key]
         {
             get { return Convert.ToString(Properties[key]); }
             set { Properties[key] = value; }

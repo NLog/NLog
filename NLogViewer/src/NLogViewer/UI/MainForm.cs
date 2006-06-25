@@ -295,6 +295,7 @@ namespace NLogViewer.UI
             this.toolStripMenuItemOpenSession.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.toolStripMenuItemOpenSession.Size = new System.Drawing.Size(202, 22);
             this.toolStripMenuItemOpenSession.Text = "Open Session...";
+            this.toolStripMenuItemOpenSession.Click += new System.EventHandler(this.toolStripMenuItemOpenSession_Click);
             // 
             // toolStripMenuItemSaveSession
             // 
@@ -303,12 +304,14 @@ namespace NLogViewer.UI
             this.toolStripMenuItemSaveSession.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.toolStripMenuItemSaveSession.Size = new System.Drawing.Size(202, 22);
             this.toolStripMenuItemSaveSession.Text = "Save Session";
+            this.toolStripMenuItemSaveSession.Click += new System.EventHandler(this.toolStripMenuItemSaveSession_Click);
             // 
             // toolStripMenuItemSaveSessionAs
             // 
             this.toolStripMenuItemSaveSessionAs.Name = "toolStripMenuItemSaveSessionAs";
             this.toolStripMenuItemSaveSessionAs.Size = new System.Drawing.Size(202, 22);
             this.toolStripMenuItemSaveSessionAs.Text = "Save Session As...";
+            this.toolStripMenuItemSaveSessionAs.Click += new System.EventHandler(this.toolStripMenuItemSaveSessionAs_Click);
             // 
             // toolStripSeparator5
             // 
@@ -644,6 +647,7 @@ namespace NLogViewer.UI
             this.Text = "NLog Viewer";
             this.Closed += new System.EventHandler(this.MainForm_Closed);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPageNLogViewerTrace.ResumeLayout(false);
@@ -694,18 +698,6 @@ namespace NLogViewer.UI
             return Path.Combine(_baseConfigurationPath, "Logs");
         }
 
-        private string CreateInstanceFileName(string baseDir)
-        {
-            for (int i = 0; i < 10000; ++i)
-            {
-                string fileName = String.Format("{0:0000}", i);
-                string fullName = Path.Combine(baseDir, fileName) + ".loginstance";
-                if (!File.Exists(fullName))
-                    return fullName;
-            }
-            return Path.Combine(baseDir, Guid.NewGuid().ToString("N"));
-        }
-
         private void timer1_Tick(object sender, System.EventArgs e)
         {
             for (int i = 0; i < _sessions.Count; ++i)
@@ -745,8 +737,9 @@ namespace NLogViewer.UI
                     SessionConfiguration lici = new SessionConfiguration();
                     lici.ReceiverType = "FILE";
                     lici.ReceiverParameters["FileName"] = ofd.FileName;
-                    lici.Name = Path.GetFileName(ofd.FileName);
+                    lici.Name = "Unnamed";
                     lici.Resolve();
+                    lici.Dirty = true;
 
                     Session instance = new Session(lici);
                     instance.CreateTab(this);
@@ -966,6 +959,70 @@ namespace NLogViewer.UI
         private void toolStripMenuItemNewSessionLogFile_Click(object sender, EventArgs e)
         {
             OpenLogFile(sender, e);
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            foreach (Session s in _sessions)
+            {
+                if (s.Config.Dirty)
+                {
+                    switch (MessageBox.Show(this,
+                        "Session '" + s.Config.Name + "' has unsaved changes. Save before exit?",
+                        "NLogViewer",
+                        MessageBoxButtons.YesNoCancel))
+                    {
+                        case DialogResult.Yes:
+                            if (!s.Save(this))
+                            {
+                                e.Cancel = true;
+                                return;
+                            }
+                            break;
+
+                        case DialogResult.Cancel:
+                            e.Cancel = true;
+                            return;
+                    }
+                }
+            }
+        }
+
+        private void toolStripMenuItemOpenSession_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "NLogViewer Sessions (*.nlv)|*.nlv|All Files (*.*)|*.*";
+                if (ofd.ShowDialog(this) == DialogResult.OK)
+                {
+                    SessionConfiguration sc = SessionConfiguration.Load(ofd.FileName);
+                    Session instance = new Session(sc);
+
+                    instance.CreateTab(this);
+                    _sessions.Add(instance);
+                    ReloadTabPages();
+                    instance.Start();
+                    tabControl1.SelectedTab = instance.TabPage;
+                }
+            }
+        }
+
+        private void toolStripMenuItemSaveSession_Click(object sender, EventArgs e)
+        {
+            Session li = SelectedSession;
+            if (li == null)
+                return;
+
+            li.Save(this);
+        }
+
+        private void toolStripMenuItemSaveSessionAs_Click(object sender, EventArgs e)
+        {
+            Session li = SelectedSession;
+            if (li == null)
+                return;
+
+            li.SaveAs(this);
         }
 	}
 }

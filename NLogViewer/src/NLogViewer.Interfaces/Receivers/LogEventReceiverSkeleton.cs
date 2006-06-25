@@ -53,6 +53,7 @@ namespace NLogViewer.Receivers
         private Thread _inputThread = null;
         private volatile bool _quitThread;
         private volatile string _statusText = "Idle";
+        private NameValueCollection _parameters;
 
         private ILogEventParser _parser;
 
@@ -69,23 +70,14 @@ namespace NLogViewer.Receivers
             get { return _statusText; }
         }
 
+        protected NameValueCollection Parameters
+        {
+            get { return _parameters; }
+        }
+
 		public LogEventReceiverSkeleton()
 		{
 		}
-
-        public virtual void Configure(NameValueCollection parameters)
-        {
-            foreach (string name in parameters.Keys)
-            {
-                PropertyInfo pi = this.GetType().GetProperty(name);
-                if (pi == null)
-                    return;
-
-                // NLogViewerTrace.Write("Setting {0} to {1}", 
-                object value = Convert.ChangeType(parameters[name], pi.PropertyType, CultureInfo.InvariantCulture);
-                pi.SetValue(this, value, null);
-            }
-        }
 
         public virtual void Start()
         {
@@ -145,6 +137,11 @@ namespace NLogViewer.Receivers
         public void Disconnect()
         {
             _processor = null;
+        }
+
+        public void Configure(NameValueCollection parameters)
+        {
+            _parameters = parameters;
         }
     }
 }

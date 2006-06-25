@@ -489,14 +489,14 @@ namespace NLogViewer.UI
             foreach (LogColumn lc in _session.Config.Columns)
             {
                 if (lc.Visible)
-                    item.SubItems.Add(logEvent[lc.Name]);
+                    item.SubItems.Add(Convert.ToString(logEvent[lc.Name]));
             }
             //item.Font = new Font("Tahoma", SystemInformation.IconSize.Height);
-            item.ImageIndex = GlobalImageList.Instance.GetImageForLevel(logEvent["Level"]);
+            item.ImageIndex = GlobalImageList.Instance.GetImageForLevel(Convert.ToString(logEvent["Level"]));
             
             if (true)
             {
-                switch (logEvent["Level"][0])
+                switch (Convert.ToString(logEvent["Level"])[0])
                 {
                     case 'T':
                         item.ForeColor = Color.Gray;
@@ -542,6 +542,7 @@ namespace NLogViewer.UI
         private void SessionTabPage_Load(object sender, EventArgs e)
         {
             listViewLogMessages.SmallImageList = GlobalImageList.Instance.ImageList;
+            UpdateSortArrows();
         }
 
         private void clearToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -556,14 +557,14 @@ namespace NLogViewer.UI
 
         public void LogEventSelected(LogEvent evt)
         {
-            textBoxSelectedMessageText.Text = evt["Text"];
+            textBoxSelectedMessageText.Text = Convert.ToString(evt["Text"]);
             ListViewItem item;
 
             listviewSelectedLogEventProperties.Items.Clear();
 
             foreach (string key in evt.Properties.Keys)
             {
-                item = new ListViewItem(new string[] { key, evt[key] });
+                item = new ListViewItem(new string[] { key, Convert.ToString(evt[key]) });
                 listviewSelectedLogEventProperties.Items.Add(item);
             }
         }
@@ -591,7 +592,7 @@ namespace NLogViewer.UI
             }
             else
             {
-                _session.Config.SortAscending = true;
+                _session.Config.SortAscending = false;
                 _session.Config.OrderBy = columnName;
             }
             UpdateSortArrows();
