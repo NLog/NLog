@@ -123,7 +123,7 @@ namespace NLog.Targets
         /// Column delimiter.
         /// </summary>
         [System.ComponentModel.DefaultValue("Auto")]
-        public ColumnDelimiterMode ColumnDelimiter
+        public ColumnDelimiterMode Delimiter
         {
             get { return _columnDelimiter; }
             set { _columnDelimiter = value; }
@@ -220,7 +220,7 @@ namespace NLog.Targets
         public override void Initialize()
         {
             base.Initialize();
-            switch (ColumnDelimiter)
+            switch (Delimiter)
             {
                 case ColumnDelimiterMode.Auto:
                     _actualColumnDelimiter = CultureInfo.CurrentCulture.TextInfo.ListSeparator;
