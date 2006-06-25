@@ -115,7 +115,7 @@ namespace NLog.Internal.Win32
         /// <summary>
         /// The system writes through any intermediate cache and goes directly to disk. 
         /// </summary>
-        Write_Through = unchecked((int)0x80000000),
+        WriteThrough = unchecked((int)0x80000000),
 
         /// <summary>
         /// The system opens a file with no system caching

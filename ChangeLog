@@ -1,3 +1,9 @@
+2006-06-23 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* fixed some race conditions in the Network target
+	* added NetworkTarget.Close()
+	* added CSVFile target which does proper CSV formatting (multi-line and
+	special character quoting)
+
 2006-06-14 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* added <include file="..." ignoreErrors="true|false" />
 	* fixed autoReload to keep monitoring the file if the reloaded file

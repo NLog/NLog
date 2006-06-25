@@ -75,11 +75,12 @@ namespace NLog
         /// </summary>
         public static event LoggingConfigurationChanged ConfigurationChanged;
 
+#if !NETCF
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
         public static event LoggingConfigurationReloaded ConfigurationReloaded;
-
+#endif
         /// <summary>
         /// Specified whether NLog should throw exceptions. By default exceptions
         /// are not thrown under any circumstances.

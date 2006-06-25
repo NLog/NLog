@@ -32,62 +32,67 @@
 // 
 
 using System;
-using System.Runtime.InteropServices;
+using System.Collections;
+using System.Collections.Specialized;
+using System.Diagnostics;
+using System.Reflection;
+using System.Globalization;
 
-using NLog;
 using NLog.Config;
-using NLog.Targets.Compound;
-using NLog.Targets.Wrappers;
-using NLog.Conditions;
-using NLog.Targets;
-using NLog.Win32.Targets;
-using NLog.Internal;
-using System.IO;
-using System.Threading;
 
-namespace NLog.Tester
+namespace NLog.Targets
 {
-    public class Test
+    /// <summary>
+    /// A column in the CSV File
+    /// </summary>
+    public class CsvFileColumn
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private Layout _compiledlayout;
+        private string _name;
 
-        public static void LogProc(string msg)
+        /// <summary>
+        /// Constructs a new instance of <see cref="CsvFileColumn"/>.
+        /// </summary>
+        public CsvFileColumn()
         {
-            Console.WriteLine("logproc: {0}", msg);
         }
 
-        static void A()
+        /// <summary>
+        /// Constructs a new instance of <see cref="CsvFileColumn"/> and
+        /// initializes Name and Layout properties.
+        /// </summary>
+        public CsvFileColumn(string name, string layout)
         {
-            B(3);
+            Name = name;
+            Layout = layout;
         }
 
-        static void B(int a)
+        /// <summary>
+        /// The name of the column.
+        /// </summary>
+        public string Name
         {
-            logger.Trace("ttt");
-            logger.Debug("ala ma kota");
-            logger.Info("ala ma kanarka");
-            logger.Warn("aaa");
-            logger.Error("err");
-            logger.Fatal("fff");
+            get { return _name; }
+            set { _name = value; }
         }
 
-        static void Main(string[]args)
+        /// <summary>
+        /// The layout that should be written in the column.
+        /// </summary>
+        [RequiredParameter]
+        public string Layout
         {
-            InternalLogger.LogToConsole = true;
-            InternalLogger.LogLevel = LogLevel.Info;
+            get { return _compiledlayout.Text; }
+            set { _compiledlayout = new Layout(value); }
+        }
 
-            for (int i = 0; i < 10000; ++i)
-            {
-                logger.Trace("ttt");
-                logger.Debug("ala ma kota {0}", i);
-                logger.Info("ala ma kanarka");
-                logger.Warn("aaa");
-                logger.Error("err");
-                logger.Fatal("fff");
-                //if (i % 100 == 0)
-                //    Console.WriteLine("i: {0}", i);
-            }
-
+        /// <summary>
+        /// The compiled layout that should be written in the column.
+        /// </summary>
+        public Layout CompiledLayout
+        {
+            get { return _compiledlayout; }
+            set { _compiledlayout = value; }
         }
     }
 }

@@ -524,6 +524,10 @@
     <Compile Include="Targets\Console.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Targets\CsvQuotingMode.cs" />
+    <Compile Include="Targets\CsvFileColumnCollection.cs" />
+    <Compile Include="Targets\CsvFileColumn.cs" />
+    <Compile Include="Targets\CsvFile.cs" />
     <Compile Include="Targets\Database.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -32,45 +32,36 @@
 // 
 
 using System;
+using System.Collections;
+using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Security.Permissions;
+using System.Globalization;
 
-#if DOTNET_1_0
-[assembly: AssemblyTitle("NLog Instant Messenger Support for .NET 1.0")]
-#elif DOTNET_1_1
-[assembly: AssemblyTitle("NLog Instant Messenger Support for .NET 1.1")]
-#elif DOTNET_2_0
-[assembly: AssemblyTitle("NLog Instant Messenger Support for .NET 2.0")]
-#elif MONO_1_0
-[assembly: AssemblyTitle("NLog Instant Messenger Support for Mono 1.0")]
-#elif MONO_2_0
-[assembly: AssemblyTitle("NLog Instant Messenger Support for Mono 1.0")]
-#elif NETCF_1_0
-[assembly: AssemblyTitle("NLog Instant Messenger Support for .NET Compact Framework 1.0")]
-#elif NETCF_2_0
-[assembly: AssemblyTitle("NLog Instant Messenger Support for .NET Compact Framework 2.0")]
-#elif DOCUMENTATION
-[assembly: AssemblyTitle("NLog Documentation")]
-#else
-#error Cannot set AssemblyTitle
-#endif
+using NLog.Config;
 
-[assembly: AssemblyDescription("NLog")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("NLog")]
-[assembly: AssemblyProduct("NLog - .NET Logging Library")]
-[assembly: AssemblyCopyright("Copyright (c) 2004-2006 by Jaroslaw Kowalski")]
-[assembly: AssemblyCulture("")]
+namespace NLog.Targets
+{
+    /// <summary>
+    /// Specifies allowes quoting modes when writing to CSV files.
+    /// </summary>
+    public enum CsvQuotingMode
+    {
+        /// <summary>
+        /// Quote all column.
+        /// </summary>
+        All,
 
-[assembly: AssemblyVersion("0.9.5.0")]
+        /// <summary>
+        /// Quote nothing.
+        /// </summary>
+        Nothing,
 
-[assembly: CLSCompliant(true)]
-[assembly: ComVisible(false)]
+        /// <summary>
+        /// Quote only whose values contain the quote symbol or
+        /// the separator.
+        /// </summary>
+        Auto
+    }
 
-#if !NETCF
-//[assembly: ReflectionPermission(SecurityAction.RequestMinimum, MemberAccess = true, TypeInformation = true)]
-//[assembly: SecurityPermission(SecurityAction.RequestMinimum, Flags = SecurityPermissionFlag.Execution)]
-//[assembly: FileIOPermission(SecurityAction.RequestMinimum, Unrestricted = true)]
-#endif
+}

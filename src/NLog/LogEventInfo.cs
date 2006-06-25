@@ -70,7 +70,38 @@ namespace NLog
         /// An empty event - for rendering layouts where logging
         /// event is not otherwise available.
         /// </summary>
-        public static readonly LogEventInfo Empty = new LogEventInfo(LogLevel.Off, String.Empty, CultureInfo.InvariantCulture, String.Empty, null, null, null);
+        public static readonly LogEventInfo Empty = new LogEventInfo(LogLevel.Off, String.Empty, String.Empty);
+
+        /// <summary>
+        /// Creates a new instance of <see cref="LogEventInfo"/>.
+        /// </summary>
+        public LogEventInfo()
+        {
+        }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="LogEventInfo"/> and assigns its fields.
+        /// </summary>
+        /// <param name="level">Log level</param>
+        /// <param name="loggerName">Logger name</param>
+        /// <param name="message">Log message including parameter placeholders</param>
+        public LogEventInfo(LogLevel level, string loggerName, string message)
+            : this(level, loggerName, null, message, null, null)
+        {
+        }
+
+        /// <summary>
+        /// Creates a new instance of <see cref="LogEventInfo"/> and assigns its fields.
+        /// </summary>
+        /// <param name="level">Log level</param>
+        /// <param name="loggerName">Logger name</param>
+        /// <param name="formatProvider"><see cref="IFormatProvider"/> object</param>
+        /// <param name="message">Log message including parameter placeholders</param>
+        /// <param name="parameters">Parameter array.</param>
+        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters) 
+            : this(level, loggerName, formatProvider, message, parameters, null)
+        {
+        }
 
         /// <summary>
         /// Creates a new instance of <see cref="LogEventInfo"/> and assigns its fields.
@@ -81,8 +112,7 @@ namespace NLog
         /// <param name="message">Log message including parameter placeholders</param>
         /// <param name="parameters">Parameter array.</param>
         /// <param name="exception">Exception information.</param>
-        /// <param name="callContext">Call context information dictionary (not interpreted by NLog, suitable for passing call-level context parameters)</param>
-        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters, Exception exception, IDictionary callContext)
+        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters, Exception exception)
         {
             _timeStamp = DateTime.Now;
             _level = level;
@@ -93,7 +123,6 @@ namespace NLog
             _exception = exception;
             _layoutCache = null;
             _sequenceID = Interlocked.Increment(ref _globalSequenceID);
-            _callContext = callContext;
             _formattedMessage = null;
 
             if (NeedToPreformatMessage(parameters))
@@ -243,19 +272,16 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the specified call context value.
+        /// Gets the dictionary of call context properties.
         /// </summary>
-        /// <param name="key">The key value</param>
-        /// <returns>Call context value corresponding to the specified key.</returns>
-        /// <remarks>
-        /// NLog doesn't interpret the call context values in any way. They are
-        /// intented to be used within layout renderers and targets.
-        /// </remarks>
-        public object CallContext(object key)
+        public IDictionary CallContext
         {
-            if (_callContext == null)
-                return null;
-            return _callContext[key];
+            get
+            {
+                if (_callContext == null)
+                    _callContext = new HybridDictionary();
+                return _callContext;
+            }
         }
 
         /// <summary>
