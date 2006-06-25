@@ -92,7 +92,7 @@
 	3k and there are still some minor issues.
 	* Separate compilation of NLog for all supported frameworks
 	* Cleaned up the code, now compiles with warnaserror="true"
-	
+
 2006-04-22 Jaroslaw Kowalski <jaak@jkowalski.net>
 
 	* Merged NLog.Win32.dll, NLog.DotNet.dll, NLog.Unix.dll and NLog.Mono.dll
