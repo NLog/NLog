@@ -43,11 +43,11 @@ using NLog.Config;
 
 using NLog.Internal;
 using NLog.Internal.FileAppenders;
+using System.Text;
+using System.Globalization;
 #if !NETCF
 using System.Runtime.InteropServices;
 using NLog.Internal.Win32;
-using System.Text;
-using System.Globalization;
 using System.ComponentModel;
 #endif
 
@@ -141,7 +141,7 @@ namespace NLog.Targets
         /// <summary>
         /// Quote Character
         /// </summary>
-        [DefaultValue("\"")]
+        [System.ComponentModel.DefaultValue("\"")]
         public string QuoteChar
         {
             get { return _quoteChar; }
