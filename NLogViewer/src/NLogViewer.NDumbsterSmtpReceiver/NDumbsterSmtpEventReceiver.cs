@@ -54,7 +54,7 @@ namespace NLogViewer.Receivers
 
                             foreach (string header in message.Headers.AllKeys)
                             {
-                                logEvent.Properties[header] = message.Headers[header];
+                                logEvent[header] = message.Headers[header];
                             }
 
                             EventReceived(logEvent);

@@ -103,7 +103,7 @@ namespace NLogViewer.Parsers
         {
             LogEvent ev = new LogEvent();
             ev["Logger"] = reader.GetAttribute("logger");
-            ev["Level"] = reader.GetAttribute("level");
+            ev["Level"] = LogLevelMap.GetLevelForName(reader.GetAttribute("level"));
             ev["Thread"] = reader.GetAttribute("thread");
             ev.Properties["Time"] = _log4jDateBase.AddMilliseconds(Convert.ToDouble(reader.GetAttribute("timestamp"))).ToLocalTime();
 

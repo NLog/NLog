@@ -251,8 +251,8 @@ namespace NLogViewer
 
                     _totalEvents++;
 
+                    // LogEventAttributeToNode(logEvent["Level"], _levelsTreeNode, _level2NodeCache, (char)0);
                     LogEventAttributeToNode((string)logEvent["Logger"], _loggersTreeNode, _logger2NodeCache, '.');
-                    LogEventAttributeToNode((string)logEvent["Level"], _levelsTreeNode, _level2NodeCache, (char)0);
                     LogEventAttributeToNode((string)logEvent["SourceAssembly"], _assembliesTreeNode, _assembly2NodeCache, (char)0);
                     TreeNode node = LogEventAttributeToNode((string)logEvent["SourceType"], _classesTreeNode, _class2NodeCache, '.');
                     // LogEventAttributeToNode(logEvent.SourceMethod, node, 

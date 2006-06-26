@@ -114,6 +114,9 @@
     <Content Include="Levels\Error.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Levels\LevelOrder.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Levels\Warn.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -149,6 +152,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppPreferences.cs" />
+    <Compile Include="LogLevelMap.cs" />
     <Compile Include="GlobalImageList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -204,6 +208,7 @@
     <Compile Include="UI\IntroDialog.Designer.cs">
       <DependentUpon>IntroDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogLevel.cs" />
     <Compile Include="UI\OptionsDialog.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,0 +1,6 @@
+Trace;#a0a0a0;Default
+Debug;#808080;Default
+Info;Black;Default
+Warn;Red;Default
+Error;Yellow;Red
+Fatal;White;Violet

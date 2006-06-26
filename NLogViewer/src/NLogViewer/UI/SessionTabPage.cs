@@ -493,37 +493,17 @@ namespace NLogViewer.UI
                     item.SubItems.Add(Convert.ToString(logEvent[lc.Name]));
             }
             //item.Font = new Font("Tahoma", SystemInformation.IconSize.Height);
-            item.ImageIndex = GlobalImageList.Instance.GetImageForLevel(Convert.ToString(logEvent["Level"]));
-            
-            if (true)
+            LogLevel level = logEvent["Level"] as LogLevel;
+            if (level != null)
             {
-                switch (Convert.ToString(logEvent["Level"])[0])
-                {
-                    case 'T':
-                        item.ForeColor = Color.Gray;
-                        break;
-
-                    case 'D':
-                        item.ForeColor = Color.Navy;
-                        break;
-
-                    case 'I':
-                        item.ForeColor = Color.Black;
-                        break;
-
-                    case 'W':
-                        item.ForeColor = Color.Brown;
-                        break;
-
-                    case 'E':
-                        item.ForeColor = Color.Red;
-                        break;
-
-                    case 'F':
-                        item.ForeColor = Color.Orange;
-                        break;
-                }
+                item.ImageIndex = level.ImageIndex;
+                if (level.Color != Color.Empty)
+                    item.ForeColor = level.Color;
+                if (level.BackColor != Color.Empty)
+                    item.BackColor = level.BackColor;
             }
+            else
+                item.ImageIndex = -1;
 
             return item;
         }
