@@ -20,11 +20,6 @@ namespace NLogViewer.UI
             checkBox1.Checked = AppPreferences.ShowWelcomeScreenOnStartup;
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -56,6 +51,12 @@ namespace NLogViewer.UI
         {
             AppPreferences.ShowWelcomeScreenOnStartup = checkBox1.Checked;
 
+        }
+
+        private void buttonBrowse_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Retry;
+            Close();
         }
     }
 }

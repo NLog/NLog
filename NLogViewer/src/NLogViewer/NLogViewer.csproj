@@ -204,6 +204,12 @@
     <Compile Include="UI\IntroDialog.Designer.cs">
       <DependentUpon>IntroDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\OptionsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\OptionsDialog.Designer.cs">
+      <DependentUpon>OptionsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SessionTabPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -272,6 +278,10 @@
     <EmbeddedResource Include="UI\IntroDialog.resx">
       <SubType>Designer</SubType>
       <DependentUpon>IntroDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\OptionsDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OptionsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\SessionTabPage.resx">
       <DependentUpon>SessionTabPage.cs</DependentUpon>

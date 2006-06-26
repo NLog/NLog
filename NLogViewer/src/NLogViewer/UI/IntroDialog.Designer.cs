@@ -37,7 +37,7 @@ namespace NLogViewer.UI
             this.buttonCancel = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonBrowse = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -144,16 +144,16 @@ namespace NLogViewer.UI
             this.checkBox1.UseVisualStyleBackColor = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // button3
+            // buttonBrowse
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(345, 317);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(89, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Browse...";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonBrowse.Location = new System.Drawing.Point(345, 317);
+            this.buttonBrowse.Name = "buttonBrowse";
+            this.buttonBrowse.Size = new System.Drawing.Size(89, 23);
+            this.buttonBrowse.TabIndex = 5;
+            this.buttonBrowse.Text = "Browse...";
+            this.buttonBrowse.UseVisualStyleBackColor = true;
+            this.buttonBrowse.Click += new System.EventHandler(this.buttonBrowse_Click);
             // 
             // IntroDialog
             // 
@@ -163,7 +163,7 @@ namespace NLogViewer.UI
             this.ClientSize = new System.Drawing.Size(446, 395);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.buttonBrowse);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button2);
@@ -191,6 +191,6 @@ namespace NLogViewer.UI
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonBrowse;
     }
 }

@@ -68,9 +68,10 @@ namespace NLogViewer
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "ArrowColUp.ico");
-            this.imageList1.Images.SetKeyName(1, "ArrowColDown.ico");
+            this.imageList1.TransparentColor = System.Drawing.Color.Fuchsia;
+            this.imageList1.Images.SetKeyName(0, "");
+            this.imageList1.Images.SetKeyName(1, "");
+            this.imageList1.Images.SetKeyName(2, "");
             // 
             // GlobalImageList
             // 

@@ -59,6 +59,7 @@ namespace NLogViewer.UI
             _session = instance;
 			InitializeComponent();
             listViewLogMessages.SmallImageList = GlobalImageList.Instance.ImageList;
+            treeView.ImageList = GlobalImageList.Instance.ImageList;
             listViewLogMessages.Font = AppPreferences.LogMessagesFont;
 		}
 
@@ -595,6 +596,8 @@ namespace NLogViewer.UI
                 _session.Config.SortAscending = false;
                 _session.Config.OrderBy = columnName;
             }
+            _session.NewSortOrder();
+            listViewLogMessages.Invalidate();
             UpdateSortArrows();
         }
 
@@ -604,7 +607,7 @@ namespace NLogViewer.UI
             {
                 if (ch.Text == _session.Config.OrderBy)
                 {
-                    ch.ImageIndex = _session.Config.SortAscending ? 0 : 1;
+                    ch.ImageIndex = _session.Config.SortAscending ? 1 : 2;
                 }
                 else
                 {

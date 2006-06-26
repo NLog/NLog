@@ -84,7 +84,7 @@ namespace NLogViewer
 
         private CyclicBuffer<LogEvent> _bufferedEvents;
         private List<LogEvent> _newEvents = new List<LogEvent>();
-        private SortedList<LogEvent, LogEvent> _filteredEvents = new SortedList<LogEvent, LogEvent>(new ItemComparer());
+        private SortedList<LogEvent, LogEvent> _filteredEvents;
         private bool _haveNewEvents = false;
 
         delegate void AddTreeNodeDelegate(TreeNode parentNode, TreeNode childNode);
@@ -95,6 +95,7 @@ namespace NLogViewer
         {
             _config = config;
             _bufferedEvents = new CyclicBuffer<LogEvent>(config.MaxLogEntries);
+            NewSortOrder();
             _receiver = LogReceiverFactory.CreateLogReceiver(config.ReceiverType, config.ReceiverParameters);
             if (_receiver is ILogEventParserWithParser)
             {
@@ -325,13 +326,48 @@ namespace NLogViewer
        
         class ItemComparer : IComparer<LogEvent>
         {
-            public ItemComparer()
+            private string _column;
+            private bool _ascending;
+
+            public ItemComparer(string column, bool ascending)
             {
+                _column = column;
+                _ascending = ascending;
             }
 
             public int Compare(LogEvent x, LogEvent y)
             {
-                return -(x.ID - y.ID);
+                object v1 = x.Properties[_column];
+                object v2 = y.Properties[_column];
+
+                if (v1 == null)
+                {
+                    if (v2 != null)
+                        return _ascending ? -1 : 1;
+                }
+                else
+                {
+                    if (v2 == null)
+                        return _ascending ? 1 : -1;
+                }
+
+                if (v1 != null)
+                {
+                    int result = ((IComparable)v1).CompareTo(v2);
+                    if (result != 0)
+                    {
+                        if (_ascending)
+                            return result;
+                        else
+                            return -result;
+                    }
+                }
+
+                // by default order by ID
+                if (_ascending)
+                    return (x.ID - y.ID);
+                else
+                    return -(x.ID - y.ID);
             }
         }
 
@@ -376,6 +412,49 @@ namespace NLogViewer
                 }
             }
             return false;
+        }
+
+        public void NewSortOrder()
+        {
+            lock (this)
+            {
+                SortedList<LogEvent, LogEvent> newFilteredEvents = new SortedList<LogEvent, LogEvent>(new ItemComparer(Config.OrderBy, Config.SortAscending));
+
+                if (_filteredEvents != null)
+                {
+                    foreach (LogEvent ev in _filteredEvents.Keys)
+                    {
+                        newFilteredEvents.Add(ev, ev);
+                    }
+                }
+                _filteredEvents = newFilteredEvents;
+            }
+        }
+
+        public bool Close()
+        {
+            if (IsRunning)
+                Stop();
+
+            if (Config.Dirty)
+            {
+                switch (MessageBox.Show(TabPanel,
+                    "Session '" + Config.Name + "' has unsaved changes. Save before exit?",
+                    "NLogViewer",
+                    MessageBoxButtons.YesNoCancel))
+                {
+                    case DialogResult.Yes:
+                        if (!Save(TabPanel))
+                            return false;
+                        break;
+
+                    case DialogResult.Cancel:
+                        return false;
+
+                }
+            }
+            _mainForm.RemoveSession(this);
+            return true;
         }
     }
 }

@@ -103,6 +103,10 @@ namespace NLogViewer.UI
         private ToolStripMenuItem toolStripMenuItem2;
         private ToolStripSeparator toolStripSeparator5;
         private ToolStripMenuItem toolStripMenuItemRecentSessions;
+        private ToolStripMenuItem toolsToolStripMenuItem;
+        private ToolStripMenuItem optionsToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItemCloseSession;
+        private ToolStripMenuItem toolStripMenuItemCloseAllSessions;
         private List<Session> _sessions = new List<Session>();
 
 		public MainForm()
@@ -153,6 +157,8 @@ namespace NLogViewer.UI
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonNewLiveLogReceiver = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonOpen = new System.Windows.Forms.ToolStripButton();
@@ -182,6 +188,8 @@ namespace NLogViewer.UI
             this.toolStripButtonChooseColumns = new System.Windows.Forms.ToolStripButton();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.toolStripMenuItemCloseSession = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemCloseAllSessions = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPageNLogViewerTrace.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -238,7 +246,8 @@ namespace NLogViewer.UI
             this.menuStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.viewToolStripMenuItem});
+            this.viewToolStripMenuItem,
+            this.toolsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -255,6 +264,8 @@ namespace NLogViewer.UI
             this.toolStripMenuItemOpenSession,
             this.toolStripMenuItemSaveSession,
             this.toolStripMenuItemSaveSessionAs,
+            this.toolStripMenuItemCloseSession,
+            this.toolStripMenuItemCloseAllSessions,
             this.toolStripSeparator5,
             this.toolStripMenuItemRecentSessions,
             this.toolStripMenuItem3,
@@ -295,7 +306,7 @@ namespace NLogViewer.UI
             this.toolStripMenuItemOpenSession.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.toolStripMenuItemOpenSession.Size = new System.Drawing.Size(202, 22);
             this.toolStripMenuItemOpenSession.Text = "Open Session...";
-            this.toolStripMenuItemOpenSession.Click += new System.EventHandler(this.toolStripMenuItemOpenSession_Click);
+            this.toolStripMenuItemOpenSession.Click += new System.EventHandler(this.OpenSession);
             // 
             // toolStripMenuItemSaveSession
             // 
@@ -351,6 +362,21 @@ namespace NLogViewer.UI
             this.alwaysOnTopToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.alwaysOnTopToolStripMenuItem.Text = "&Always on Top";
             this.alwaysOnTopToolStripMenuItem.Click += new System.EventHandler(this.alwaysOnTopToolStripMenuItem_Click);
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionsToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.toolsToolStripMenuItem.Text = "&Tools";
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.optionsToolStripMenuItem.Text = "&Options...";
+            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -636,6 +662,20 @@ namespace NLogViewer.UI
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "App.ico");
             // 
+            // toolStripMenuItemCloseSession
+            // 
+            this.toolStripMenuItemCloseSession.Name = "toolStripMenuItemCloseSession";
+            this.toolStripMenuItemCloseSession.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItemCloseSession.Text = "Close Session";
+            this.toolStripMenuItemCloseSession.Click += new System.EventHandler(this.toolStripMenuItemCloseSession_Click);
+            // 
+            // toolStripMenuItemCloseAllSessions
+            // 
+            this.toolStripMenuItemCloseAllSessions.Name = "toolStripMenuItemCloseAllSessions";
+            this.toolStripMenuItemCloseAllSessions.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItemCloseAllSessions.Text = "Close All Sessions";
+            this.toolStripMenuItemCloseAllSessions.Click += new System.EventHandler(this.toolStripMenuItemCloseAllSessions_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -727,6 +767,27 @@ namespace NLogViewer.UI
         {
         }
 
+        private string GetUniqueSessionName()
+        {
+            for (int i = 1; i < 1000; ++i)
+            {
+                string proposedName = "Session" + i;
+                bool conflict = false;
+
+                foreach (Session s in _sessions)
+                {
+                    if (s.Config.Name == proposedName)
+                    {
+                        conflict = true;
+                        break;
+                    }
+                }
+                if (!conflict)
+                    return proposedName;
+            }
+            throw new Exception("Too much sessions.");
+        }
+
         private void OpenLogFile(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -736,8 +797,8 @@ namespace NLogViewer.UI
                 {
                     SessionConfiguration lici = new SessionConfiguration();
                     lici.ReceiverType = "FILE";
-                    lici.ReceiverParameters["FileName"] = ofd.FileName;
-                    lici.Name = "Unnamed";
+                    lici.ReceiverParametersArray.Add(new ConfigurationParameter("FileName", ofd.FileName));
+                    lici.Name = GetUniqueSessionName();
                     lici.Resolve();
                     lici.Dirty = true;
 
@@ -882,6 +943,10 @@ namespace NLogViewer.UI
                         case DialogResult.No:
                             NewLiveLogReceiver_Clicked(null, null);
                             break;
+
+                        case DialogResult.Retry:
+                            OpenSession(null, null);
+                            break;
                     }
                 }
             }
@@ -963,32 +1028,17 @@ namespace NLogViewer.UI
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            foreach (Session s in _sessions)
+            foreach (Session s in new List<Session>(_sessions))
             {
-                if (s.Config.Dirty)
+                if (!s.Close())
                 {
-                    switch (MessageBox.Show(this,
-                        "Session '" + s.Config.Name + "' has unsaved changes. Save before exit?",
-                        "NLogViewer",
-                        MessageBoxButtons.YesNoCancel))
-                    {
-                        case DialogResult.Yes:
-                            if (!s.Save(this))
-                            {
-                                e.Cancel = true;
-                                return;
-                            }
-                            break;
-
-                        case DialogResult.Cancel:
-                            e.Cancel = true;
-                            return;
-                    }
+                    e.Cancel = true;
+                    return;
                 }
             }
         }
 
-        private void toolStripMenuItemOpenSession_Click(object sender, EventArgs e)
+        private void OpenSession(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
@@ -1023,6 +1073,40 @@ namespace NLogViewer.UI
                 return;
 
             li.SaveAs(this);
+        }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (OptionsDialog od = new OptionsDialog())
+            {
+                if (od.ShowDialog(this) == DialogResult.OK)
+                {
+                }
+            }
+        }
+
+        private void toolStripMenuItemCloseSession_Click(object sender, EventArgs e)
+        {
+            Session li = SelectedSession;
+            if (li == null)
+                return;
+
+            li.Close();
+        }
+
+        private void toolStripMenuItemCloseAllSessions_Click(object sender, EventArgs e)
+        {
+            foreach (Session s in _sessions)
+            {
+                if (!s.Close())
+                    return;
+            }
+        }
+
+        public void RemoveSession(Session s)
+        {
+            _sessions.Remove(s);
+            ReloadTabPages();
         }
 	}
 }
