@@ -4,8 +4,8 @@
     <h1>NLog Documentation</h1>
 
     <ul>
-        <li><link href="tutorial">Introduction to NLog</link></li>
-        <li><link href="wprowadzenie">Wprowadzenie do œledzenia aplikacji przy pomocy NLoga (<img src="lang_pl.gif" border="1" bordercolor="0" />)</link></li>
+        <li><link href="tutorial">Tutorial - Introduction to NLog</link></li>
+        <li><link href="wprowadzenie">Wprowadzenie do œledzenia aplikacji przy pomocy NLoga (Tutorial in Polish)</link></li>
         <li><link href="visualstudio">Visual Studio Support</link></li>
         <li><link href="netapi">.NET API</link> - native API Reference</li>
         <li><link href="capi">C/C++ API</link> - a wrapper API to be used in legacy COM applications</li>

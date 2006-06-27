@@ -31,63 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#ifndef __NLOGGER_H
-#define __NLOGGER_H
+using namespace ::System::Runtime::InteropServices;
+using namespace ::System::Runtime::CompilerServices;
+using namespace ::System::Reflection;
 
-#include <stdarg.h>
-
-#include "NLogC.h"
-
-class NLogger
-{
-    const char *_loggerName;
-
-public:
-    NLogger(const char *loggerName)
-    {
-        _loggerName = loggerName;
-    }
-
-    void Debug(const char *logMessage, ...)
-    {
-        va_list args;
-
-        va_start(args, logMessage);
-        NLog_LogVA(NLOG_DEBUG, _loggerName, logMessage, args);
-        va_end(args);
-    }
-    void Info(const char *logMessage, ...)
-    {
-        va_list args;
-
-        va_start(args, logMessage);
-        NLog_LogVA(NLOG_INFO, _loggerName, logMessage, args);
-        va_end(args);
-    }
-    void Warn(const char *logMessage, ...)
-    {
-        va_list args;
-
-        va_start(args, logMessage);
-        NLog_LogVA(NLOG_WARN, _loggerName, logMessage, args);
-        va_end(args);
-    }
-    void Error(const char *logMessage, ...)
-    {
-        va_list args;
-
-        va_start(args, logMessage);
-        NLog_LogVA(NLOG_ERROR, _loggerName, logMessage, args);
-        va_end(args);
-    }
-    void Fatal(const char *logMessage, ...)
-    {
-        va_list args;
-
-        va_start(args, logMessage);
-        NLog_LogVA(NLOG_FATAL, _loggerName, logMessage, args);
-        va_end(args);
-    }
-};
-
-#endif // __NLOGC_H
+[assembly: AssemblyTitle("NLog for Unmanaged C/C++")];
+[assembly: AssemblyDescription("NLog")];
+[assembly: AssemblyConfiguration("")];
+[assembly: AssemblyCompany("NLog")];
+[assembly: AssemblyProduct("NLog - .NET Logging Library")];
+[assembly: AssemblyCopyright("Copyright (c) 2004-2006 by Jaroslaw Kowalski")];
+[assembly: AssemblyCulture("")];
+[assembly: AssemblyVersion("1.0.0.0")];
