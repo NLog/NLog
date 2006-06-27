@@ -3,6 +3,95 @@
 <content lang="en" id="releasenotes">
     <h1>Release Notes</h1>
     <table width="100%">
+        <tr class="releasenote">
+            <td class="newsdate">2005-06-27</td>
+            <td class="newstext">
+                <p><b>NLog 1.0 Release Candidate 1 has been released!</b></p>
+                <p>
+                    After 2 years of work, we're proud to announce the availability of NLog 1.0 Release Candidate 1.
+                </p>
+                <p>
+                    Packaging changes:
+                </p>
+                <ul>
+                    <li>Separate compilation of NLog for all supported frameworks. Starting with NLog v1.0 there will be releases
+                        for each supported platform (currently 7!), both debug and release.
+                    </li>
+                    <li>Merged NLog.Win32.dll, NLog.DotNet.dll, NLog.Unix.dll and NLog.Mono.dll into one assembly NLog.dll</li>
+                    <li>Added generation of NLog.xsd schema for Visual Studio Intellisense.</li>
+                    <li>Prepared ready-to-run example projects for VS2005 that describe most targets.</li>
+                    <li>Compilation, schema generation a and website building are supported on Linux/Mono. All unit tests pass.</li>
+                    <li>Added support for VC#Express and VBExpress to the installer.</li>
+                    <li>Added VS2005 C# and VB.NET code snippet (nlogger) to quickly insert logger creation statement</li>
+                    <li>Added VS2005 item templates for NLog configuration. NLog now looks for "NLog.config" in addition to other config file names.</li>
+                </ul>
+                <p>
+                   Changes to the logging infrastructure:
+                </p>
+                <ul>
+                    <li>BREAKING CHANGE - Completely restructured the way File target works.
+                        The new structure is based on Streams instead of StreamWriters and enables 
+                        archiving (kind of similar to "rolling file appender" from log4net world, 
+                        but supporting multiple files at a time!). It also speeds up things a lot.</li>
+                    <li>Refactored file watching - should speed up non-logging by 100%</li>
+                    <li>BREAKING CHANGE - removed some properties which accepted strings. Replaced with enums for type safety.</li>
+                    <li>
+                        Added attributes which mark support for particular runtimes and OSes. 
+                        They are used for generating documentation and disabling particular targets/layout renderers at runtime.
+                    </li>
+                    <li>Optimization to defer calling String.Format() until it's really needed.</li>
+                    <li>Added LayoutRenderer.IsAppDomainFixed() and an optimization to turn such 
+                        things into literals. So if you use "${basedir}/log.txt" this gets converted 
+                        into a literal which takes no time to recalculate.</li>
+                    <li>Added LoggingConfiguration.GetConfiguredNamedTargets() API</li>
+                    <li>Added Layout.Escape() which escapes ${ with ${literal:text=${}</li>
+                    <li>Added Logger.Log(LogEventInfo) overload</li>
+                    <li>Added Logger.Log(Type,LogEventInfo) overload - useful for wrapping NLog.Logger</li>
+                    <li>Added LoggerReconfiguredDelegate and Logger.LoggerReconfigured events</li>
+                    <li>
+                        Added InternalLogger.LogToConsoleError and their config file and 
+                        environment variable counterparts to send log output to Console.Error.
+                    </li>
+                    <li>Added support for flags-type enumerations.</li>
+                    <li>Added &lt;include file="..." ignoreErrors="true|false" /&gt;</li>
+                    <li>Fixed autoReload to keep monitoring the file if the reloaded file has an error</li>
+                    <li>Added <x><default-wrapper /></x> that wraps all targets in <x><targets /></x> section with the specified wrapper. The usage is:
+                        <code lang="XML">
+                            <![CDATA[
+                            <targets>
+                                <default-wrapper type="AsyncWrapper" />
+                                <target name="f" type="File" />
+                                <target name="n" type="Network" />
+                            </targets>
+                            ]]>
+                        </code>
+
+                        This creates "f" which is actually a AsyncWrapper(File) and "n" which is 
+                        AsyncWrapper(Network). Note that the original target names are renamed as 
+                        "f_wrapped" and "n_wrapped" respectively.
+                    </li>
+                </ul>
+                <p>
+                   New additions:
+                </p>
+                <ul>
+                    <li>Implemented AsyncWrapper for .NET CF using the Timer class</li>
+                    <li>Added WebService target supporting SOAP 1.1, SOAP 1.2, HTTP GET and HTTP POST web service calls.</li>
+                    <li>Added CSVFile target which does proper CSV (comma-separated values) formatting (multi-line and 
+                        special character quoting). This enables you to analyze your log files in MS 
+                        Excel.</li>
+                    <li>Added caching to File target to optimize the number file open/close operations.</li>
+                    <li>
+                        Added an option for multiple processes to append to the same OPEN file in a synchronized manner. 
+                        Unixes get this for free, but Win32 requires you to use mutexes to synchronize file access. 
+                        This gives a nice performance boost.
+                    </li>
+                    <li>Added deleteOldFileOnStartup to the File target</li>
+                    <li>Added replaceFileContentsOnEachWrite to the File target</li>
+                    <li>Added FileTarget.LineEnding</li>
+                </ul>
+            </td>
+        </tr>
         <tr class="altreleasenote">
             <td class="newsdate">2006-02-20</td>
             <td class="newstext">

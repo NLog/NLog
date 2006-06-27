@@ -6,18 +6,10 @@
     <ul>
         <li><link href="tutorial">Introduction to NLog</link></li>
         <li><link href="wprowadzenie">Wprowadzenie do œledzenia aplikacji przy pomocy NLoga (<img src="lang_pl.gif" border="1" bordercolor="0" />)</link></li>
-        <li><link href="filearchive">File Archiving Explained</link></li>
-    </ul>
-
-    <h3>API Reference</h3>
-    <ul>
-        <li><link href="netapi">.NET API</link> - native API</li>
+        <li><link href="visualstudio">Visual Studio Support</link></li>
+        <li><link href="netapi">.NET API</link> - native API Reference</li>
         <li><link href="capi">C/C++ API</link> - a wrapper API to be used in legacy COM applications</li>
         <li><link href="comapi">COM API</link> - a wrapper API to be used in legacy C/C++ applications</li>
-    </ul>
-
-    <h3>Reference documents</h3>
-    <ul>
         <li><link href="targets">Log Target Reference</link></li>
         <li><link href="layoutrenderers">Layout Renderer Reference</link></li>
         <li><link href="filters">Filter Reference</link></li>

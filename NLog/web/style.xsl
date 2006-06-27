@@ -7,7 +7,7 @@
     <xsl:param name="sourceforge">0</xsl:param>
     <xsl:param name="log4net_comparison">0</xsl:param>
     <xsl:param name="build_time">2006-01-01</xsl:param>
-    <xsl:param name="mode">web</xsl:param>
+    <xsl:param name="mode">plain</xsl:param>
     <xsl:param name="nlog_package">temp</xsl:param>
 
     <xsl:variable name="page_id" select="concat(/*[position()=1]/@id,$page_id_override)" />
