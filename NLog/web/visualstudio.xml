@@ -3,7 +3,7 @@
 <content lang="en" id="documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <h3>Visual Studio Integration</h3>
     <p>
-        NLog is integrated with Visual Studio 2005 (including Visual C# and Visual Basic.NET Express Editions). 
+        NLog integrates with Visual Studio 2005 (including Visual C# and Visual Basic.NET Express Editions). 
         Integration with Visual Studio.NET 2002 and 2003 is also supported, but not all features are available.
         Click on one of the following features for an example:
     </p>
@@ -29,9 +29,9 @@
         ]]>
     </code>
     <p>
-        The other change necessary is turning <x><target type="" /></x> into <x><target xsi:type="" /></x>. Once you do this, 
+        The other change necessary is turning <x><target type="TypeName" /></x> into <x><target xsi:type="TypeName" /></x>. Once you do this, 
         you really good support for Intellisense and config file validation in Visual Studio as demonstrated 
-        in <a href="http://www.nlog-project.org/demos/NLogDemo1.html">this movie (22 MB Flash Movie)</a>.
+        in <a href="http://www.nlog-project.org/demos/NLogDemo1.html">this movie</a> (22 MB Flash - broadband connection recommended).</a>.
     </p>
     
     <a name="addreference" />
