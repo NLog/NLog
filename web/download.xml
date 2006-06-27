@@ -6,7 +6,16 @@
         NLog is an open source software, so the source code is available to public and everyone 
         can join the project to improve it. Source and binary packages are available.
     </p>
-    <h3>Binary packages</h3>
+    <p>
+        You should choose the version of NLog that most closely matches your target runtime. If you're targeting multiple frameworks in a single binary release, choose the version compiled with .NET Framework 1.0 (generic), which runs on all versions of .NET Framework and Mono.
+    </p>
+    <p>
+        Versions compiled for specific platforms may support additional targets, layout renderers, filters, conditions and platform-specific optimizations. See the documentation for more information.
+    </p>
+    <p>
+        Debug versions are provided for troubleshooting logging issues. For normal usage, you should download Release version. 
+    </p>
+
     <h5>Released Packages</h5>
     <p>
         NLog source and binary packages can be downloaded from the <a href="http://sourceforge.net/project/showfiles.php?group_id=116456">sourceforge file release system</a>.
@@ -16,7 +25,7 @@
         For your convenience the source and binary snapshots (including the windows installer)
         are available <a href="http://www.nlog-project.org/snapshots/">here</a>. They are occasionally generated between
         releases and primarily meant for testing.</p>
-    <h3>Building NLog from source</h3>
+    <h5>Building NLog from source</h5>
     <p>
         NLog can be built with either Visual Studio.NET 2003 or <a href="http://nant.sourceforge.net/">NAnt</a>. If you
         decide to use NAnt - make sure to use one of the latest nightly builds 

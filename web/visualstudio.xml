@@ -31,7 +31,7 @@
     <p>
         The other change necessary is turning <x><target type="TypeName" /></x> into <x><target xsi:type="TypeName" /></x>. Once you do this, 
         you really good support for Intellisense and config file validation in Visual Studio as demonstrated 
-        in <a href="http://www.nlog-project.org/demos/NLogDemo1.html">this movie</a> (22 MB Flash - broadband connection recommended).</a>.
+        in <a href="http://www.nlog-project.org/demos/NLogDemo1.html">this movie</a> (22 MB Flash - broadband connection recommended).
     </p>
     
     <a name="addreference" />
