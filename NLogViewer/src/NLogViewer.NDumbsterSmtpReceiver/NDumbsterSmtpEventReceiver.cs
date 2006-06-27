@@ -16,6 +16,7 @@ namespace NLogViewer.Receivers
         "Receives events using a mock SMTP server")]
     public class NDumbsterSmtpEventReceiver : LogEventReceiverSkeleton
     {
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         private SimpleSmtpServer _smtpServer = null;
         private int _port = SimpleSmtpServer.DEFAULT_SMTP_PORT;
 
@@ -31,7 +32,7 @@ namespace NLogViewer.Receivers
 
         public override void Start()
         {
-            NLogViewerTrace.Write("Starting SMTP server on port {0}", _port);
+            logger.Info("Starting SMTP server on port {0}", _port);
             _smtpServer = SimpleSmtpServer.Start(_port);
             base.Start ();
         }
@@ -68,7 +69,7 @@ namespace NLogViewer.Receivers
 
         public override void Stop()
         {
-            NLogViewerTrace.Write("Stopping SMTP Server on port {0}", _port);
+            logger.Info("Stopping SMTP Server on port {0}", _port);
             base.Stop ();
             if (_smtpServer != null)
             {

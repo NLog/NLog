@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Collections.Generic;
 using Microsoft.Win32;
+using System.Collections;
 
 namespace NLogViewer
 {
@@ -37,6 +38,52 @@ namespace NLogViewer
             {
                 SettingsKey.SetValue("LogMessageFontFamily", value.FontFamily.Name);
                 SettingsKey.SetValue("LogMessageFontSize", value.Size);
+            }
+        }
+
+        // cannot be >9 or you have to change GetRecentFileList
+        const int MaxRecentFileNames = 9;
+
+        public static List<string> GetRecentFileList()
+        {
+            List<string> returnValue = new List<string>();
+
+            using (RegistryKey recentFilesKey = SettingsKey.CreateSubKey("RecentFiles"))
+            {
+                ArrayList valueNames = new ArrayList(recentFilesKey.GetValueNames());
+                valueNames.Sort();
+                foreach (string s in valueNames)
+                {
+                    if (s.StartsWith("File"))
+                    {
+                        string rfn = (string)recentFilesKey.GetValue(s, "");
+                        if (rfn == "")
+                            continue;
+                        returnValue.Add(rfn);
+                        if (returnValue.Count >= MaxRecentFileNames)
+                            break;
+                    }
+                }
+            }
+            return returnValue;
+        }
+
+        public static void AddToRecentFileList(string fileName)
+        {
+            List<string> currentRecentFiles = GetRecentFileList();
+            using (RegistryKey recentFilesKey = SettingsKey.CreateSubKey("RecentFiles"))
+            {
+                recentFilesKey.SetValue("File1", fileName);
+                int pos = 2;
+                foreach (string s in currentRecentFiles)
+                {
+                    if (s == fileName)
+                        continue;
+                    recentFilesKey.SetValue("File" + pos, s);
+                    pos++;
+                    if (pos > MaxRecentFileNames)
+                        break;
+                }
             }
         }
 	}

@@ -150,7 +150,6 @@ namespace NLogViewer
             treeView.Nodes.Add(_filesTreeNode);
             treeView.Nodes.Add(_applicationsTreeNode);
             treeView.Nodes.Add(_machinesTreeNode);
-            treeView.Dock = DockStyle.Left;
             page.Text = Config.Name;
             TabPanel.ReloadColumns();
         }
@@ -313,7 +312,7 @@ namespace NLogViewer
         public void ProcessLogEvent(LogEvent logEvent)
         {
             logEvent.ID = Interlocked.Increment(ref _globalEventID);
-            logEvent["SequenceID"] = Convert.ToString(logEvent.ID);
+            logEvent["ID"] = logEvent.ID;
 
             lock (this)
             {
@@ -388,12 +387,22 @@ namespace NLogViewer
             TabPanel.UpdateFonts();
         }
 
+        private bool CaptureParametersAndSaveConfig(string fileName)
+        {
+            Config.ReceiverParameters = ConfigurationParameter.CaptureConfigurationParameters(_receiver);
+            if (_receiver is ILogEventParserWithParser)
+            {
+                Config.ParserParameters = ConfigurationParameter.CaptureConfigurationParameters(((ILogEventParserWithParser)_receiver).Parser);
+            }
+            AppPreferences.AddToRecentFileList(fileName);
+            return Config.Save(fileName);
+        }
+
         public bool Save(IWin32Window parent)
         {
             if (Config.FileName == null)
                 return SaveAs(parent);
-            Config.Save(Config.FileName);
-            return true;
+            return CaptureParametersAndSaveConfig(Config.FileName);
         }
 
         public bool SaveAs(IWin32Window parent)
@@ -407,8 +416,7 @@ namespace NLogViewer
                 {
                     Config.Name = Path.GetFileNameWithoutExtension(sfd.FileName);
                     TabPage.Text = Config.Name;
-                    Config.Save(sfd.FileName);
-                    return true;
+                    return CaptureParametersAndSaveConfig(sfd.FileName);
                 }
             }
             return false;

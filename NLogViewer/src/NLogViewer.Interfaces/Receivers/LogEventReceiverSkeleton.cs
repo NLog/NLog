@@ -44,6 +44,7 @@ using System.Globalization;
 using NLogViewer.Events;
 using NLogViewer.Parsers;
 using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace NLogViewer.Receivers
 {
@@ -53,11 +54,12 @@ namespace NLogViewer.Receivers
         private Thread _inputThread = null;
         private volatile bool _quitThread;
         private volatile string _statusText = "Idle";
-        private NameValueCollection _parameters;
+        private NameValueCollection _parameters = new NameValueCollection();
 
         private ILogEventParser _parser;
 
         [Browsable(false)]
+        [XmlIgnore]
         public ILogEventParser Parser
         {
             get { return _parser; }
@@ -65,14 +67,10 @@ namespace NLogViewer.Receivers
         }
 
         [Browsable(false)]
+        [XmlIgnore]
         public string StatusText
         {
             get { return _statusText; }
-        }
-
-        protected NameValueCollection Parameters
-        {
-            get { return _parameters; }
         }
 
 		public LogEventReceiverSkeleton()

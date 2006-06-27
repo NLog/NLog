@@ -93,9 +93,6 @@
     <Compile Include="Events\LogEvent.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NLogViewerTrace.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Parsers\ILogEventParserInstance.cs" />
     <Compile Include="Receivers\ILogEventReceiverWithParser.cs" />
     <Compile Include="Parsers\ILogEventParser.cs" />

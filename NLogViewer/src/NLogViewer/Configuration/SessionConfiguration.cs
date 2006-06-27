@@ -40,6 +40,7 @@ using System.Collections;
 using System.IO;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Windows.Forms;
 
 namespace NLogViewer.Configuration
 {
@@ -68,6 +69,12 @@ namespace NLogViewer.Configuration
         [XmlElement("max-log-entries")]
         public int MaxLogEntries = 10000;
 
+        [XmlElement("show-tree")]
+        public bool ShowTree = true;
+
+        [XmlElement("show-details")]
+        public bool ShowDetails = true;
+
         [XmlElement("sort-by")]
         public string OrderBy = "ID";
 
@@ -77,22 +84,16 @@ namespace NLogViewer.Configuration
         [XmlElement("receiver-type")]
         public string ReceiverType;
 
-        [XmlIgnore]
-        public NameValueCollection ReceiverParameters = new NameValueCollection();
-
         [XmlArray("receiver-parameters")]
         [XmlArrayItem("param", typeof(ConfigurationParameter))]
-        public List<ConfigurationParameter> ReceiverParametersArray = new List<ConfigurationParameter>();
+        public List<ConfigurationParameter> ReceiverParameters = new List<ConfigurationParameter>();
 
         [XmlElement("parser-type")]
         public string ParserType = "XML";
 
-        [XmlIgnore]
-        public NameValueCollection ParserParameters = new NameValueCollection();
-
         [XmlArray("parser-parameters")]
         [XmlArrayItem("param", typeof(ConfigurationParameter))]
-        public List<ConfigurationParameter> ParserParametersArray = new List<ConfigurationParameter>();
+        public List<ConfigurationParameter> ParserParameters = new List<ConfigurationParameter>();
 
         [XmlArray("loggers")]
         [XmlArrayItem("logger", typeof(LoggerConfig))]
@@ -123,8 +124,6 @@ namespace NLogViewer.Configuration
 
         public void Resolve()
         {
-            ReceiverParameters = ConvertToNVC(ReceiverParametersArray);
-            ParserParameters = ConvertToNVC(ParserParametersArray);
             if (Columns.Count == 0)
             {
                 Columns.Add(new LogColumn("ID", 120));
@@ -141,15 +140,24 @@ namespace NLogViewer.Configuration
 
         private static XmlSerializer _serializer = new XmlSerializer(typeof(SessionConfiguration));
 
-        public void Save(string fileName)
+        public bool Save(string fileName)
         {
-            using (FileStream fs = File.Create(fileName))
+            try
             {
-                XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
-                ns.Add("", "");
-                _serializer.Serialize(fs, this, ns);
-                FileName = fileName;
-                Dirty = false;
+                using (FileStream fs = File.Create(fileName))
+                {
+                    XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+                    ns.Add("", "");
+                    _serializer.Serialize(fs, this, ns);
+                    FileName = fileName;
+                    Dirty = false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message);
+                return false;
             }
         }
 
@@ -162,26 +170,6 @@ namespace NLogViewer.Configuration
                 c.Resolve();
                 return c;
             }
-        }
-
-        private static List<ConfigurationParameter> ConvertToList(NameValueCollection nvc)
-        {
-            List<ConfigurationParameter> retval = new List<ConfigurationParameter>();
-            foreach (string k in nvc.Keys)
-            {
-                retval.Add(new ConfigurationParameter(k, nvc[k]));
-            }
-            return retval;
-        }
-
-        private static NameValueCollection ConvertToNVC(List<ConfigurationParameter> par)
-        {
-            NameValueCollection nvc = new NameValueCollection();
-            foreach (ConfigurationParameter cp in par)
-            {
-                nvc[cp.Name] = cp.Value;
-            }
-            return nvc;
         }
     }
 }

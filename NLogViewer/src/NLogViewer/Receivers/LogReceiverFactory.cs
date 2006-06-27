@@ -96,7 +96,7 @@ namespace NLogViewer.Receivers
             }
         }
 
-        public static ILogEventReceiver CreateLogReceiver(string type, NameValueCollection configParameters)
+        public static ILogEventReceiver CreateLogReceiver(string type, List<ConfigurationParameter> parameters)
         {
             if (!_name2receiver.ContainsKey(type))
                 throw new ArgumentException("Unknown receiver type: " + type);
@@ -105,8 +105,7 @@ namespace NLogViewer.Receivers
             object o = Activator.CreateInstance(ri.Type);
             ILogEventReceiver receiver = (ILogEventReceiver)o;
 
-            if (configParameters != null)
-                receiver.Configure(configParameters);
+            ConfigurationParameter.ApplyConfigurationParameters(receiver, parameters);
             return receiver;
         }
 	}

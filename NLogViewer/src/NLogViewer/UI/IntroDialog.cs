@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace NLogViewer.UI
 {
@@ -18,6 +19,22 @@ namespace NLogViewer.UI
         private void IntroDialog_Load(object sender, EventArgs e)
         {
             checkBox1.Checked = AppPreferences.ShowWelcomeScreenOnStartup;
+            foreach (string s in AppPreferences.GetRecentFileList())
+            {
+                try
+                {
+                    ListViewItem lvi = new ListViewItem();
+                    lvi.Text = Path.GetFileNameWithoutExtension(s);
+                    lvi.SubItems.Add(s);
+                    lvi.SubItems.Add(Convert.ToString(File.GetLastWriteTime(s)));
+                    listViewRecentFiles.Items.Add(lvi);
+                }
+                catch
+                {
+                    // ignore 
+                }
+            }
+            listViewRecentFiles.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

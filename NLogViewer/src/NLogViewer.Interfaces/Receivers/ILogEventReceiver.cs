@@ -6,7 +6,6 @@ namespace NLogViewer.Receivers
 {
     public interface ILogEventReceiver
     {
-        void Configure(NameValueCollection parameters);
         void Connect(ILogEventProcessor processor);
         void Disconnect();
 

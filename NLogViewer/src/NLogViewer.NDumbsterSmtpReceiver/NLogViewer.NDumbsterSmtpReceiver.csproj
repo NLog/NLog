@@ -78,6 +78,7 @@
       <Name>nDumbster</Name>
       <HintPath>..\..\external\nDumbster.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=0.9.5.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL" />
     <Reference Include="System">
       <Name>System</Name>
     </Reference>

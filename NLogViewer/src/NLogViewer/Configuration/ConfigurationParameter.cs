@@ -35,6 +35,9 @@
 using System;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Globalization;
 
 namespace NLogViewer.Configuration
 {
@@ -73,5 +76,40 @@ namespace NLogViewer.Configuration
         /// </summary>
         [XmlAttribute("value")]
         public string Value;
-	}
+
+        public static void ApplyConfigurationParameters(object target, List<ConfigurationParameter> parameters)
+        {
+            Type targetType = target.GetType();
+
+            foreach (ConfigurationParameter cp in parameters)
+            {
+                PropertyInfo pi = targetType.GetProperty(cp.Name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.FlattenHierarchy | BindingFlags.Instance);
+                if (pi != null)
+                {
+                    object typedValue = Convert.ChangeType(cp.Value, pi.PropertyType, CultureInfo.InvariantCulture);
+                    pi.SetValue(target, typedValue, null);
+                }
+            }
+        }
+
+        public static List<ConfigurationParameter> CaptureConfigurationParameters(object target)
+        {
+            List<ConfigurationParameter> result = new List<ConfigurationParameter>();
+            Type targetType = target.GetType();
+
+            foreach (PropertyInfo pi in targetType.GetProperties(BindingFlags.Public | BindingFlags.FlattenHierarchy | BindingFlags.Instance))
+            {
+                if (pi.IsDefined(typeof(XmlIgnoreAttribute), true))
+                    continue;
+
+                object v = pi.GetValue(target, null);
+                if (v != null)
+                {
+                    string stringValue = Convert.ToString(v, CultureInfo.InvariantCulture);
+                    result.Add(new ConfigurationParameter(pi.Name, stringValue));
+                }
+            }
+            return result;
+        }
+    }
 }

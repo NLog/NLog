@@ -51,8 +51,8 @@ namespace NLogViewer.Receivers
 {
     public abstract class NetworkBaseReceiver : LogEventReceiverSkeleton
     {
-        private int _port = 4001;
         private List<string> _listenOn;
+        private int _port;
 
         public NetworkBaseReceiver()
         {
@@ -61,8 +61,8 @@ namespace NLogViewer.Receivers
         [Description("The port to listen on")]
         public int Port
         {
-            get { return Convert.ToInt32(Parameters["Port"]); }
-            set { Parameters["Port"] = value.ToString(); }
+            get { return _port; }
+            set { _port = value; }
         }
 
         [Description("List of Addresses to listen on")]

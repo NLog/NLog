@@ -59,8 +59,8 @@ namespace NLogViewer.Receivers
 
         public string FileName
         {
-            get { return Parameters["FileName"]; }
-            set { Parameters["FileName"] = value; }
+            get { return _fileName; }
+            set { _fileName = value; }
         }
 
         public override void InputThread()
