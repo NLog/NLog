@@ -151,6 +151,7 @@ namespace NLogViewer.UI
             this.tabControl1.Visible = false;
             this.tabControl1.DoubleClick += new System.EventHandler(this.tabControl1_DoubleClick);
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyDown);
             // 
             // timer1
             // 
@@ -322,7 +323,7 @@ namespace NLogViewer.UI
             // introDialog1
             // 
             this.introDialog1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("introDialog1.BackgroundImage")));
-            this.introDialog1.Location = new System.Drawing.Point(61, 253);
+            this.introDialog1.Location = new System.Drawing.Point(170, 138);
             this.introDialog1.Name = "introDialog1";
             this.introDialog1.Size = new System.Drawing.Size(446, 395);
             this.introDialog1.TabIndex = 8;
@@ -694,6 +695,16 @@ namespace NLogViewer.UI
             Session s = SelectedSession;
             if (s != null)
                 s.Close();
+        }
+
+        private void tabControl1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F4 && e.Control)
+            {
+                Session s = SelectedSession;
+                if (s != null)
+                    s.Close();
+            }
         }
 	}
 }

@@ -199,7 +199,6 @@ namespace NLogViewer.UI
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.Red;
             this.splitContainer1.Panel1.Controls.Add(this.treeView);
             // 
             // splitContainer1.Panel2
