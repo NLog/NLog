@@ -12,7 +12,7 @@
     <property name="ssh.program" value="plink" />
     <property name="scp.args" value="-q -batch" />
     <property name="ssh.args" value="-batch" />
-    <property name="benchmark.mode" value="veryveryshort" />
+    <property name="benchmark.mode" value="short" />
 
     <property name="deploy.host" value="jaak@sav.net" />
     
@@ -347,7 +347,7 @@
         </if>
     </target>
 
-    <target name="NLogC">
+    <target name="NLogC" depends="NLog">
         <call target="build-nlogc-${framework::get-target-framework()}" />
         <copy todir="${nlog.dir}/include">
             <fileset basedir="tests/NLogC">
