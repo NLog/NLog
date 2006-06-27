@@ -35,7 +35,7 @@
     <h3>Recent News</h3>
     <p>2006-06-27: <b style="color: red">NLog 1.0 Release Candidate 1 is available</b>. Release notes can be found <link href="releasenotes">here</link>. The highlights of this release are:
         <ul>
-            <li><link href="visualstudio">Visual Studio 2005 Integration</link>. Flash screencast (22 MB) is <a href="http://www.nlog-project.org/">here</a>.</li>
+            <li><link href="visualstudio">Visual Studio 2005 Integration</link>. Flash screencast (22 MB) is <a href="http://www.nlog-project.org/demos/NLogDemo1.html">here</a>.</li>
             <li>Ready-to-run <a href="http://svn.nlog-project.org/repos/nlog/trunk/NLog/examples/targets/">example projects for VS2005</a>.</li>
             <li>Optimized <a href="target.File.html">File</a> target that can write to multiple files at once from multiple processes while keeping the files open.</li>
             <li>Automatic <a href="target.File.html">archiving of log files</a></li>
