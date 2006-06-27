@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="documentation" subid="filearchive">
-    <h1>File Archiving</h1>
+<content lang="en" id="documentation" >
+    <h3>Visual Studio Integration</h3>
     <p>
-        TODO - write me
+        TODO - write me.
     </p>
 </content>
-

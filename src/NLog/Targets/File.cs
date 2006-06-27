@@ -94,6 +94,27 @@ namespace NLog.Targets
     /// To set up the log target programmatically use code like this:
     /// </p>
     /// <code lang="C#" src="examples/targets/Configuration API/File/Simple/Example.cs" />
+    /// <p>
+    /// File target can also do file archiving, meaning that the log file is automatically
+    /// moved to another place based on its size and time. This example demonstrates 
+    /// file archiving based on size. Files after 10000 bytes are moved to a separate folder
+    /// and renamed log.00000.txt, log.00001.txt and so on.
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/File/Archive1/Example.cs" />
+    /// <p>
+    /// File archiving can also be done on date/time changes. For example, to create a new 
+    /// archive file every minute use this code:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/File/Archive2/Example.cs" />
+    /// <p>
+    /// You can combine both methods as demonstrated here:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/File/Archive3/Example.cs" />
+    /// <p>
+    /// Note that file archiving works even when you use a single target instance
+    /// to write to multiple files, such as putting each log level in a separate place:
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/File/Archive4/Example.cs" />
     /// </example>
     [Target("File")]
     public class FileTarget: Target, ICreateFileParameters
@@ -459,7 +480,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Automatically <a href="filearchive.html">archive log files</a> that exceed the specified size in bytes.
+        /// Automatically archive log files that exceed the specified size in bytes.
         /// </summary>
         /// <remarks>
         /// Caution: Enabling this option can considerably slow down your file 
@@ -474,11 +495,11 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Automatically <a href="filearchive.html">archive log files</a> every time the specified time passes.
+        /// Automatically archive log files every time the specified time passes.
         /// Possible options are: <c>year</c>, <c>month</c>, <c>day</c>, <c>hour</c>, <c>minute</c>. Files are 
         /// moved to the archive as part of the write operation if the current period of time changes. For example
         /// if the current <c>hour</c> changes from 10 to 11, the first write that will occur
-        /// on or after 11:00 will trigger the <a href="filearchive.html">archiving</a>.
+        /// on or after 11:00 will trigger the archiving.
         /// </summary>
         /// <remarks>
         /// <p>
@@ -495,8 +516,11 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// The name of the file to be used for an archive. It may contain a special placeholder {#####}
-        /// that will be replaced with a sequence of numbers depending on the archiving strategy.
+        /// The name of the file to be used for an archive. 
+        /// It may contain a special placeholder {#####}
+        /// that will be replaced with a sequence of numbers depending on 
+        /// the archiving strategy. The number of hash characters used determines
+        /// the number of numerical digits to be used for numbering files.
         /// </summary>
         [AcceptsLayout]
         public string ArchiveFileName
@@ -545,7 +569,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Determines the way <a href="filearchive.html">file archives</a> are numbered. 
+        /// Determines the way file archives are numbered. 
         /// </summary>
         public ArchiveNumberingMode ArchiveNumbering
         {

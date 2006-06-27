@@ -20,7 +20,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		web\documentation.xml = web\documentation.xml
 		web\download.xml = web\download.xml
 		web\faq.xml = web\faq.xml
-		web\filearchive.xml = web\filearchive.xml
 		web\filters.xsl = web\filters.xsl
 		web\forum.xml = web\forum.xml
 		web\help.menu = web\help.menu
