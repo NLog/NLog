@@ -45,6 +45,7 @@ using System.Xml;
 using NLogViewer.UI;
 using NLogViewer.Configuration;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 
 namespace NLogViewer.UI
 {
@@ -59,8 +60,6 @@ namespace NLogViewer.UI
         private string _baseConfigurationPath;
         private System.Windows.Forms.Timer timer1;
         private MenuStrip menuStrip1;
-        private Panel panel1;
-        private ToolStripContainer toolStripContainer1;
         private ToolStripMenuItem viewToolStripMenuItem;
         private ToolStripMenuItem alwaysOnTopToolStripMenuItem;
         private NotifyIcon notifyIcon1;
@@ -80,6 +79,7 @@ namespace NLogViewer.UI
         private ToolStripMenuItem optionsToolStripMenuItem;
         private ToolStripMenuItem toolStripMenuItemCloseSession;
         private ToolStripMenuItem toolStripMenuItemCloseAllSessions;
+        private IntroDialog introDialog1;
         private List<Session> _sessions = new List<Session>();
 
 		public MainForm()
@@ -132,28 +132,24 @@ namespace NLogViewer.UI
             this.alwaysOnTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.introDialog1 = new NLogViewer.UI.IntroDialog();
             this.menuStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.toolStripContainer1.ContentPanel.SuspendLayout();
-            this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
-            this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.HotTrack = true;
-            this.tabControl1.Location = new System.Drawing.Point(2, 2);
+            this.tabControl1.Location = new System.Drawing.Point(12, 46);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(6, 6);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(688, 438);
+            this.tabControl1.Size = new System.Drawing.Size(373, 201);
             this.tabControl1.TabIndex = 6;
+            this.tabControl1.Visible = false;
+            this.tabControl1.DoubleClick += new System.EventHandler(this.tabControl1_DoubleClick);
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // timer1
@@ -163,7 +159,6 @@ namespace NLogViewer.UI
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -312,38 +307,6 @@ namespace NLogViewer.UI
             this.optionsToolStripMenuItem.Text = "&Options...";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.tabControl1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(2);
-            this.panel1.Size = new System.Drawing.Size(692, 442);
-            this.panel1.TabIndex = 2;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // toolStripContainer1
-            // 
-            // 
-            // toolStripContainer1.ContentPanel
-            // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.panel1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(692, 442);
-            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer1.LeftToolStripPanelVisible = false;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(692, 466);
-            this.toolStripContainer1.TabIndex = 10;
-            this.toolStripContainer1.Text = "toolStripContainer1";
-            // 
-            // toolStripContainer1.TopToolStripPanel
-            // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.menuStrip1);
-            this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            // 
             // notifyIcon1
             // 
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
@@ -356,13 +319,24 @@ namespace NLogViewer.UI
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "App.ico");
             // 
+            // introDialog1
+            // 
+            this.introDialog1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("introDialog1.BackgroundImage")));
+            this.introDialog1.Location = new System.Drawing.Point(61, 253);
+            this.introDialog1.Name = "introDialog1";
+            this.introDialog1.Size = new System.Drawing.Size(446, 395);
+            this.introDialog1.TabIndex = 8;
+            // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(692, 466);
-            this.Controls.Add(this.toolStripContainer1);
+            this.Controls.Add(this.introDialog1);
+            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(458, 420);
             this.Name = "MainForm";
             this.Text = "NLog Viewer";
             this.Closed += new System.EventHandler(this.MainForm_Closed);
@@ -371,13 +345,8 @@ namespace NLogViewer.UI
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
-            this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
-            this.toolStripContainer1.TopToolStripPanel.PerformLayout();
-            this.toolStripContainer1.ResumeLayout(false);
-            this.toolStripContainer1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 		#endregion
@@ -390,6 +359,32 @@ namespace NLogViewer.UI
         private void MainForm_Load(object sender, System.EventArgs e)
         {
             this.TopMost = viewToolStripMenuItem.Checked = AppPreferences.AlwaysOnTop;
+            introDialog1.buttonBrowse.Click += new EventHandler(OpenSession);
+            introDialog1.buttonOpenLogFile.Click += new EventHandler(OpenLogFile);
+            introDialog1.buttonOpen.Click += new EventHandler(buttonOpen_Click);
+            introDialog1.listViewRecentFiles.DoubleClick += new EventHandler(listViewRecentFiles_DoubleClick);
+            ReloadTabPages();
+        }
+
+        void buttonOpen_Click(object sender, EventArgs e)
+        {
+            LoadSelectedRecentFiles();
+        }
+
+        void LoadSelectedRecentFiles()
+        {
+            foreach (ListViewItem lvi in introDialog1.listViewRecentFiles.SelectedItems)
+            {
+                string filename = lvi.Tag as string;
+                if (filename != null)
+                    OpenSession(filename, false);
+            }
+            ReloadTabPages();
+        }
+
+        void listViewRecentFiles_DoubleClick(object sender, EventArgs e)
+        {
+            LoadSelectedRecentFiles();
         }
 
         private void LoadLogs()
@@ -398,10 +393,23 @@ namespace NLogViewer.UI
 
         private void ReloadTabPages()
         {
-            this.tabControl1.TabPages.Clear();
-            foreach (Session i in _sessions)
+            if (_sessions.Count == 0)
             {
-                this.tabControl1.TabPages.Add(i.TabPage);
+                this.introDialog1.Dock = DockStyle.Fill;
+                this.introDialog1.Visible = true;
+                this.introDialog1.ReloadRecentFiles();
+                this.tabControl1.Visible = false;
+            }
+            else
+            {
+                this.introDialog1.Visible = false;
+                this.tabControl1.Dock = DockStyle.Fill;
+                this.tabControl1.TabPages.Clear();
+                foreach (Session i in _sessions)
+                {
+                    this.tabControl1.TabPages.Add(i.TabPage);
+                }
+                this.tabControl1.Visible = true;
             }
         }
 
@@ -504,6 +512,9 @@ namespace NLogViewer.UI
             {
                 Session currentLogInstance = null;
 
+                if (!tabControl1.Visible)
+                    return null;
+
                 if (tabControl1.SelectedTab != null)
                     currentLogInstance = tabControl1.SelectedTab.Tag as Session;
                 return currentLogInstance;
@@ -514,9 +525,11 @@ namespace NLogViewer.UI
         private void UpdateUIForSelectedTab()
         {
             Session currentLogInstance = null;
-
-            if (tabControl1.SelectedTab != null)
-                currentLogInstance = tabControl1.SelectedTab.Tag as Session;
+            if (tabControl1.Visible)
+            {
+                if (tabControl1.SelectedTab != null)
+                    currentLogInstance = tabControl1.SelectedTab.Tag as Session;
+            }
             if (currentLogInstance == null)
             {
                 this.Text = "NLog Viewer";
@@ -539,28 +552,6 @@ namespace NLogViewer.UI
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            if (AppPreferences.ShowWelcomeScreenOnStartup)
-            {
-                using (IntroDialog intro = new IntroDialog())
-                {
-                    switch (intro.ShowDialog(this))
-                    {
-                        // open log file
-
-                        case DialogResult.Yes:
-                            OpenLogFile(null, null);
-                            break;
-
-                        case DialogResult.No:
-                            NewLiveLogReceiver_Clicked(null, null);
-                            break;
-
-                        case DialogResult.Retry:
-                            OpenSession(null, null);
-                            break;
-                    }
-                }
-            }
         }
 
         private void menuStrip1_MenuActivate(object sender, EventArgs e)
@@ -569,6 +560,8 @@ namespace NLogViewer.UI
 
             toolStripMenuItemSaveSession.Enabled = (li != null);
             toolStripMenuItemSaveSessionAs.Enabled = (li != null);
+            toolStripMenuItemCloseSession.Enabled = (li != null);
+            toolStripMenuItemCloseAllSessions.Enabled = (li != null);
 
             toolStripMenuItemRecentSessions.DropDownItems.Clear();
 
@@ -584,6 +577,9 @@ namespace NLogViewer.UI
                 toolStripMenuItemRecentSessions.DropDownItems.Add(newItem);
                 pos++;
             }
+
+
+            toolStripMenuItemRecentSessions.Enabled = (pos > 1);
         }
 
         private void recentItem_Click(object sender, EventArgs e)
@@ -612,12 +608,18 @@ namespace NLogViewer.UI
 
         private void OpenSession(string fileName)
         {
+            OpenSession(fileName, true);
+        }
+
+        private void OpenSession(string fileName, bool reloadTabPages)
+        {
             SessionConfiguration sc = SessionConfiguration.Load(fileName);
             Session instance = new Session(sc);
 
             instance.CreateTab(this);
             _sessions.Add(instance);
-            ReloadTabPages();
+            if (reloadTabPages)
+                ReloadTabPages();
             instance.Start();
             tabControl1.SelectedTab = instance.TabPage;
             AppPreferences.AddToRecentFileList(fileName);
@@ -674,7 +676,7 @@ namespace NLogViewer.UI
 
         private void toolStripMenuItemCloseAllSessions_Click(object sender, EventArgs e)
         {
-            foreach (Session s in _sessions)
+            foreach (Session s in new ArrayList(_sessions))
             {
                 if (!s.Close())
                     return;
@@ -685,6 +687,13 @@ namespace NLogViewer.UI
         {
             _sessions.Remove(s);
             ReloadTabPages();
+        }
+
+        private void tabControl1_DoubleClick(object sender, EventArgs e)
+        {
+            Session s = SelectedSession;
+            if (s != null)
+                s.Close();
         }
 	}
 }

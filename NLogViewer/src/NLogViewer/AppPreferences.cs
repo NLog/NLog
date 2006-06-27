@@ -20,12 +20,6 @@ namespace NLogViewer
             set { SettingsKey.SetValue("AlwaysOnTop", value); }
         }
 
-        public static bool ShowWelcomeScreenOnStartup
-        {
-            get { return Convert.ToBoolean(SettingsKey.GetValue("ShowWelcomeScreenOnStartup", true)); }
-            set { SettingsKey.SetValue("ShowWelcomeScreenOnStartup", value); }
-        }
-
         public static Font LogMessagesFont
         {
             get

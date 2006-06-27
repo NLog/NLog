@@ -28,20 +28,9 @@ namespace NLogViewer.UI
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkBoxShowWelcomeScreenOnStartup = new System.Windows.Forms.CheckBox();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // checkBoxShowWelcomeScreenOnStartup
-            // 
-            this.checkBoxShowWelcomeScreenOnStartup.AutoSize = true;
-            this.checkBoxShowWelcomeScreenOnStartup.Location = new System.Drawing.Point(13, 13);
-            this.checkBoxShowWelcomeScreenOnStartup.Name = "checkBoxShowWelcomeScreenOnStartup";
-            this.checkBoxShowWelcomeScreenOnStartup.Size = new System.Drawing.Size(186, 17);
-            this.checkBoxShowWelcomeScreenOnStartup.TabIndex = 0;
-            this.checkBoxShowWelcomeScreenOnStartup.Text = "Show Welcome screen on startup";
-            this.checkBoxShowWelcomeScreenOnStartup.UseVisualStyleBackColor = true;
             // 
             // buttonCancel
             // 
@@ -72,18 +61,15 @@ namespace NLogViewer.UI
             this.ClientSize = new System.Drawing.Size(321, 206);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.checkBoxShowWelcomeScreenOnStartup);
             this.Name = "OptionsDialog";
             this.Text = "OptionsDialog";
             this.Load += new System.EventHandler(this.OptionsDialog_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.CheckBox checkBoxShowWelcomeScreenOnStartup;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonOK;
 

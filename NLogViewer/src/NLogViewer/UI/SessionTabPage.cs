@@ -145,6 +145,7 @@ namespace NLogViewer.UI
             this.toolStripButtonStart = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonStop = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonProperties = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonClear = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonFilter = new System.Windows.Forms.ToolStripSplitButton();
@@ -160,7 +161,6 @@ namespace NLogViewer.UI
             this.toolStripButtonShowTree = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonShowDetails = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.toolStripButtonProperties = new System.Windows.Forms.ToolStripButton();
             this.splitContainerTop.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -188,7 +188,7 @@ namespace NLogViewer.UI
             this.splitContainerTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerTop.Location = new System.Drawing.Point(0, 0);
             this.splitContainerTop.Name = "splitContainerTop";
-            this.splitContainerTop.Size = new System.Drawing.Size(656, 317);
+            this.splitContainerTop.Size = new System.Drawing.Size(656, 200);
             this.splitContainerTop.TabIndex = 1;
             // 
             // splitContainer1
@@ -205,7 +205,7 @@ namespace NLogViewer.UI
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listViewLogMessages);
-            this.splitContainer1.Size = new System.Drawing.Size(656, 317);
+            this.splitContainer1.Size = new System.Drawing.Size(656, 200);
             this.splitContainer1.SplitterDistance = 218;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -214,7 +214,7 @@ namespace NLogViewer.UI
             this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView.Location = new System.Drawing.Point(0, 0);
             this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(218, 317);
+            this.treeView.Size = new System.Drawing.Size(218, 200);
             this.treeView.TabIndex = 0;
             // 
             // listViewLogMessages
@@ -227,7 +227,7 @@ namespace NLogViewer.UI
             this.listViewLogMessages.Location = new System.Drawing.Point(0, 0);
             this.listViewLogMessages.MultiSelect = false;
             this.listViewLogMessages.Name = "listViewLogMessages";
-            this.listViewLogMessages.Size = new System.Drawing.Size(434, 317);
+            this.listViewLogMessages.Size = new System.Drawing.Size(434, 200);
             this.listViewLogMessages.TabIndex = 2;
             this.listViewLogMessages.UseCompatibleStateImageBehavior = false;
             this.listViewLogMessages.View = System.Windows.Forms.View.Details;
@@ -247,7 +247,7 @@ namespace NLogViewer.UI
             this.panelSelectedItemMessage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSelectedItemMessage.Location = new System.Drawing.Point(0, 0);
             this.panelSelectedItemMessage.Name = "panelSelectedItemMessage";
-            this.panelSelectedItemMessage.Size = new System.Drawing.Size(434, 72);
+            this.panelSelectedItemMessage.Size = new System.Drawing.Size(434, 189);
             this.panelSelectedItemMessage.TabIndex = 1;
             // 
             // textBoxSelectedMessageText
@@ -259,7 +259,7 @@ namespace NLogViewer.UI
             this.textBoxSelectedMessageText.Name = "textBoxSelectedMessageText";
             this.textBoxSelectedMessageText.ReadOnly = true;
             this.textBoxSelectedMessageText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxSelectedMessageText.Size = new System.Drawing.Size(434, 49);
+            this.textBoxSelectedMessageText.Size = new System.Drawing.Size(434, 166);
             this.textBoxSelectedMessageText.TabIndex = 3;
             this.textBoxSelectedMessageText.WordWrap = false;
             // 
@@ -282,7 +282,7 @@ namespace NLogViewer.UI
             this.panelSelectedItemProperties.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSelectedItemProperties.Location = new System.Drawing.Point(0, 0);
             this.panelSelectedItemProperties.Name = "panelSelectedItemProperties";
-            this.panelSelectedItemProperties.Size = new System.Drawing.Size(218, 72);
+            this.panelSelectedItemProperties.Size = new System.Drawing.Size(218, 189);
             this.panelSelectedItemProperties.TabIndex = 0;
             // 
             // listviewSelectedLogEventProperties
@@ -297,7 +297,7 @@ namespace NLogViewer.UI
             this.listviewSelectedLogEventProperties.GridLines = true;
             this.listviewSelectedLogEventProperties.Location = new System.Drawing.Point(0, 23);
             this.listviewSelectedLogEventProperties.Name = "listviewSelectedLogEventProperties";
-            this.listviewSelectedLogEventProperties.Size = new System.Drawing.Size(218, 49);
+            this.listviewSelectedLogEventProperties.Size = new System.Drawing.Size(218, 166);
             this.listviewSelectedLogEventProperties.TabIndex = 0;
             this.listviewSelectedLogEventProperties.UseCompatibleStateImageBehavior = false;
             this.listviewSelectedLogEventProperties.View = System.Windows.Forms.View.Details;
@@ -409,7 +409,7 @@ namespace NLogViewer.UI
             // clearToolStripMenuItem
             // 
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.clearToolStripMenuItem.Text = "&Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
@@ -478,7 +478,7 @@ namespace NLogViewer.UI
             // splitContainerBottom.Panel2
             // 
             this.splitContainerBottom.Panel2.Controls.Add(this.panelSelectedItemMessage);
-            this.splitContainerBottom.Size = new System.Drawing.Size(656, 72);
+            this.splitContainerBottom.Size = new System.Drawing.Size(656, 189);
             this.splitContainerBottom.SplitterDistance = 218;
             this.splitContainerBottom.TabIndex = 3;
             // 
@@ -498,7 +498,7 @@ namespace NLogViewer.UI
             // 
             this.mainSplitContainer.Panel2.Controls.Add(this.splitContainerBottom);
             this.mainSplitContainer.Size = new System.Drawing.Size(656, 393);
-            this.mainSplitContainer.SplitterDistance = 317;
+            this.mainSplitContainer.SplitterDistance = 200;
             this.mainSplitContainer.TabIndex = 1;
             // 
             // toolStrip1
@@ -574,6 +574,15 @@ namespace NLogViewer.UI
             this.toolStripButtonRefresh.Name = "toolStripButtonRefresh";
             this.toolStripButtonRefresh.Size = new System.Drawing.Size(23, 22);
             this.toolStripButtonRefresh.Text = "Refresh";
+            // 
+            // toolStripButtonProperties
+            // 
+            this.toolStripButtonProperties.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonProperties.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonProperties.Image")));
+            this.toolStripButtonProperties.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonProperties.Name = "toolStripButtonProperties";
+            this.toolStripButtonProperties.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonProperties.Text = "Receiver Properties";
             // 
             // toolStripSeparator4
             // 
@@ -712,15 +721,6 @@ namespace NLogViewer.UI
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            // 
-            // toolStripButtonProperties
-            // 
-            this.toolStripButtonProperties.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonProperties.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonProperties.Image")));
-            this.toolStripButtonProperties.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonProperties.Name = "toolStripButtonProperties";
-            this.toolStripButtonProperties.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonProperties.Text = "Receiver Properties";
             // 
             // SessionTabPage
             // 

@@ -9,21 +9,22 @@ using System.IO;
 
 namespace NLogViewer.UI
 {
-    public partial class IntroDialog : Form
+    public partial class IntroDialog : UserControl
     {
         public IntroDialog()
         {
             InitializeComponent();
         }
 
-        private void IntroDialog_Load(object sender, EventArgs e)
+        public void ReloadRecentFiles()
         {
-            checkBox1.Checked = AppPreferences.ShowWelcomeScreenOnStartup;
+            listViewRecentFiles.Items.Clear();
             foreach (string s in AppPreferences.GetRecentFileList())
             {
                 try
                 {
                     ListViewItem lvi = new ListViewItem();
+                    lvi.Tag = s;
                     lvi.Text = Path.GetFileNameWithoutExtension(s);
                     lvi.SubItems.Add(s);
                     lvi.SubItems.Add(Convert.ToString(File.GetLastWriteTime(s)));
@@ -35,6 +36,12 @@ namespace NLogViewer.UI
                 }
             }
             listViewRecentFiles.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            buttonOpen.Enabled = false;
+        }
+
+        private void IntroDialog_Load(object sender, EventArgs e)
+        {
+            ReloadRecentFiles();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -44,36 +51,7 @@ namespace NLogViewer.UI
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Yes;
-            Close();
-        }
-
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.No;
-            Close();
-        }
-
-        private void IntroDialog_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            AppPreferences.ShowWelcomeScreenOnStartup = checkBox1.Checked;
-
-        }
-
-        private void buttonBrowse_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Retry;
-            Close();
+            buttonOpen.Enabled = listViewRecentFiles.SelectedItems.Count > 0;
         }
     }
 }

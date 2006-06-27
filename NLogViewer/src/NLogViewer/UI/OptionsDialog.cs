@@ -17,14 +17,12 @@ namespace NLogViewer.UI
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            AppPreferences.ShowWelcomeScreenOnStartup = checkBoxShowWelcomeScreenOnStartup.Checked;
             DialogResult = DialogResult.OK;
             Close();
         }
 
         private void OptionsDialog_Load(object sender, EventArgs e)
         {
-            checkBoxShowWelcomeScreenOnStartup.Checked = AppPreferences.ShowWelcomeScreenOnStartup;
         }
     }
 }

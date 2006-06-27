@@ -190,6 +190,7 @@
     <Compile Include="Receivers\UdpReceiver.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LogLevel.cs" />
     <Compile Include="UI\ChangeBufferSizeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,20 +204,10 @@
       <DependentUpon>ChooseColumnsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\IntroDialog.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\IntroDialog.Designer.cs">
       <DependentUpon>IntroDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LogLevel.cs" />
-    <Compile Include="UI\OptionsDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\OptionsDialog.Designer.cs">
-      <DependentUpon>OptionsDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\SessionTabPage.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\LogReceiverPropertyPage.cs">
       <SubType>UserControl</SubType>
@@ -232,6 +223,12 @@
     </Compile>
     <Compile Include="UI\NewReceiverDialog.Designer.cs">
       <DependentUpon>NewReceiverDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OptionsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\OptionsDialog.Designer.cs">
+      <DependentUpon>OptionsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\SelectEncodingPropertyPage.cs">
       <SubType>UserControl</SubType>
@@ -250,6 +247,9 @@
     </Compile>
     <Compile Include="UI\SelectLogReceiverPropertyPage.Designer.cs">
       <DependentUpon>SelectLogReceiverPropertyPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SessionTabPage.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\WizardForm.cs">
       <SubType>Form</SubType>
@@ -273,51 +273,52 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ChangeBufferSizeDialog.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>ChangeBufferSizeDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ChooseColumnsDialog.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>ChooseColumnsDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\IntroDialog.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>IntroDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LogReceiverPropertyPage.resx">
+      <DependentUpon>LogReceiverPropertyPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\NewReceiverDialog.resx">
+      <DependentUpon>NewReceiverDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\OptionsDialog.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>OptionsDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SelectEncodingPropertyPage.resx">
+      <DependentUpon>SelectEncodingPropertyPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SelectLogParserPropertyPage.resx">
+      <DependentUpon>SelectLogParserPropertyPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SelectLogReceiverPropertyPage.resx">
+      <DependentUpon>SelectLogReceiverPropertyPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\SessionTabPage.resx">
       <DependentUpon>SessionTabPage.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\LogReceiverPropertyPage.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>LogReceiverPropertyPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\NewReceiverDialog.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>NewReceiverDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\SelectEncodingPropertyPage.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>SelectEncodingPropertyPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\SelectLogParserPropertyPage.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>SelectLogParserPropertyPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\SelectLogReceiverPropertyPage.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>SelectLogReceiverPropertyPage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\WizardForm.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>WizardForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
