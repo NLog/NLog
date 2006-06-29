@@ -57,6 +57,7 @@
     <xs:complexType name="NLogTargets">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element name="default-wrapper" type="WrapperTargetBase" />
+            <xs:element name="default-target-parameters" type="Target" />
             <xs:element name="target" type="Target" />
             <xs:element name="wrapper-target" type="WrapperTargetBase" />
             <xs:element name="compound-target" type="CompoundTargetBase" />

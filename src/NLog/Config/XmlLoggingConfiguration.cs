@@ -536,6 +536,7 @@ namespace NLog.Config
 
             bool asyncWrap = 0 == String.Compare(GetCaseInsensitiveAttribute(element, "async"), "true", true);
             XmlElement defaultWrapperElement = null;
+            Hashtable typeNameToDefaultTargetParametersElement = new Hashtable();
 
             foreach (XmlNode n in element.ChildNodes)
             {
@@ -544,9 +545,16 @@ namespace NLog.Config
                 if (targetElement == null)
                     continue;
 
-                if (0 == String.Compare(targetElement.LocalName, "default-wrapper"))
+                if (0 == String.Compare(targetElement.LocalName, "default-wrapper", true))
                 {
                     defaultWrapperElement = targetElement;
+                    continue;
+                }
+
+                if (0 == String.Compare(targetElement.LocalName, "default-target-parameters", true))
+                {
+                    string type = GetCaseInsensitiveAttribute(targetElement, "type");
+                    typeNameToDefaultTargetParametersElement[type] = targetElement;
                     continue;
                 }
                 
@@ -561,6 +569,9 @@ namespace NLog.Config
                     Target newTarget = TargetFactory.CreateTarget(type);
                     if (newTarget != null)
                     {
+                        XmlElement defaultParametersElement = typeNameToDefaultTargetParametersElement[type] as XmlElement;
+                        if (defaultParametersElement != null)
+                            ConfigureTargetFromXmlElement(newTarget, defaultParametersElement);
                         ConfigureTargetFromXmlElement(newTarget, targetElement);
 #if !NETCF                        
                         if (asyncWrap)

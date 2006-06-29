@@ -404,7 +404,7 @@ Program.Main This is a Fatal error message
             <font face="Courier New">applicationname.exe.nlog</font> in application's directory
         </li>
         <li>
-            <font face="Courier New">NLog.nlog</font> in application's directory
+            <font face="Courier New">NLog.config</font> in application's directory
         </li>
         <li>
             <font face="Courier New">NLog.dll.nlog</font> in a directory where <font face="Courier New">NLog.dll</font> is located
@@ -424,7 +424,7 @@ Program.Main This is a Fatal error message
             <font face="Courier New">web.nlog</font> located in the same directory as <font face="Courier New">web.config</font>
         </li>
         <li>
-            <font face="Courier New">NLog.nlog</font> in application's directory
+            <font face="Courier New">NLog.config</font> in application's directory
         </li>
         <li>
             <font face="Courier New">NLog.dll.nlog</font> in a directory where <font face="Courier New">NLog.dll</font> is located
@@ -442,7 +442,7 @@ Program.Main This is a Fatal error message
             <font face="Courier New">applicationname.exe.nlog</font> in application's directory
         </li>
         <li>
-            <font face="Courier New">NLog.nlog</font> in application's directory
+            <font face="Courier New">NLog.config</font> in application's directory
         </li>
         <li>
             <font face="Courier New">NLog.dll.nlog</font> in a directory where <font face="Courier New">NLog.dll</font> is located

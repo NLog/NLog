@@ -5,180 +5,541 @@
     <p>NLog can be configured in many ways, both <a href="#api">programmatically</a> and using config <a href="#file">files</a>. 
         This document describes the available configuration options.</p>
     <a name="file" />
-    <h3>Configuration files</h3>
-    <p>NLog attempts to automatically configure itself on first use by reading one or more configuration files.</p>
-    <p>The files are (in the following order):</p>
-    <ol>
-        <li>standard application config file (<code>applicationname.exe.config</code>).</li>
-        <li><code>applicationname.exe.nlog</code> - application specific config file.</li>
-        <li><code>NLog.dll.nlog</code> - shared config file for all applications that use NLog.dll. This isn't used when NLog.dll is loaded from the GAC.</li>
-        <li>the file pointed by <code>NLOG_GLOBAL_CONFIG_FILE</code> environment variables - shared config file for all applications having the environment variable defined (including service processes). In this scenario NLog.dll assembly can be installed in the GAC.</li>
-    </ol>
-    <p>For ASP.NET Web applications the order is (<code>~/</code> means the base directory of the application):</p>
-    <ol>
-        <li><code>~/web.config</code></li>
-        <li><code>~/web.nlog</code></li>
-        <li><code>~/bin/NLog.dll.nlog</code> (provided that you're not using NLog.dll installed in the GAC).</li>
-        <li>the file pointed by <code>NLOG_GLOBAL_CONFIG_FILE</code> environment variables - shared config file for all applications having the environment variable defined (including service processes). In this scenario NLog.dll assembly can be installed in the GAC.</li>
-    </ol>
-    <p>Under .NET Compact Framework the config search path is limited to:</p>
-    <ol>
-        <li><code>applicationname.exe.nlog</code> - application specific config file.</li>
-        <li><code>NLog.dll.nlog</code> - shared config file for all applications that use NLog.dll.</li>
-    </ol>
-    <p>Each config file can use <x><include file="filename" /></x> to include other config files
-        which lets you easily manage logging rules in a central place and reference them instead of copying.</p>
-    <h3>Configuration file syntax</h3>
-    <p>There are two variant of the configuration file syntax: one used in
-        application config file (<code>applicationname.exe.config</code> - let's call it 
-        <code>App.config</code>) and the other used in <code>.nlog</code> config files.</p>
-    <h4>App.config file format</h4>
-    <code lang="XML" src="examples/web/app.config" />
-    <h4>.nlog file format</h4>
-    <code lang="XML" src="examples/web/config1.nlog" />
-    <h4>Configuration parameters</h4>
-    <p>The following configuration parameters can be set in the config file.</p>
-    <h5><x><nlog autoReload="true | false" /></x></h5>
+    <h2>Logging configuration</h2>
     <p>
-        The <code>autoReload</code> attribute of the <code>nlog</code> tag determines 
-        whether the LogManager should watch each config file for changes and reload 
-        them them each time a change is detected. This is a boolean value which can be 
-        either <code>true</code> or <code>false</code>.
+        NLog attempts
+        to automatically configure itself on startup, by looking for the configuration files in some standard places. 
+        The following locations will be searched when executing a stand-alone *.exe application:
     </p>
-
-    <h5><x><nlog internalLogToConsole="true | false" /></x></h5>
-    <p>
-        The <code>internalLogToConsole</code> attribute of the <code>nlog</code> tag 
-        determines whether NLog debugging functions output their diagnostic messages
-        to the console. This is a boolean value which can be either <code>true</code> 
-        or <code>false</code>.
-    </p>
-
-    <h5><x><nlog internalLogFile="filename" /></x></h5>
-    <p>
-        The <code>internalLogFile</code> attribute is the name of the file
-        that NLog will write internal diagnostic messages to.
-    </p>
-
-    <h5><x><nlog internalLogLevel="Trace | Debug | Info | Warn | Error | Fatal" /></x></h5>
-    <p>
-        The <code>internalLogLevel</code> attribute is the internal logging level which can be either
-        <code>Trace,Debug,Info,Warn,Error</code> or <code>Fatal</code>.
-    </p>
-
-    <h5><x><nlog globalThreshold="Trace | Debug | Info | Warn | Error | Fatal" /></x></h5>
-    <p>
-        The <code>globalThreshold</code> attribute sets the global log level. Log messages
-        below this level will not be logged, regardless of any <x><logger /></x> settings.
-        Possible values are: <code>Trace,Debug,Info,Warn,Error</code> or <code>Fatal</code>.
-        This is a config-file equivalent of <code>LogManager.GlobalThreshold</code> property.
-    </p>
-
-    <h5><x><include file="filename" /></x></h5>
-    <p>
-        The <x><include file="filename" /></x> element causes NLog configuration file parser
-        to process the contents of another configuration file. The contents of this included file are processed
-        before the of current file and each file is processed only once even if there are multiple 
-        <x><include file="filename" /></x> elements pointing at the file.</p>
-
-    <p>This feature can be used to keep a central repository of logging rules and target definitions which
-        can then be included in all places where they are needed.</p>
-
-    <p>The <code>file</code> parameter may include <link href="layoutrenderers">layout renderers</link> 
-        which lets you load the  configuration files based on some environment characteristics like machine name,
-        enviroment variables, registry.</p>
-    <p>
-        The following configuration file includes a configuration file that's specific to the machine the 
-        component is running on, e.g. when running on a 
-        <b>FRODO</b> machine this will include frodo.config.nlog, when running on <b>BILBO</b> it 
-        will include bilbo.config.nlog. This technique is very useful in a multi-server environment because you
-        can store each server's configuration file in a version control system and NLog will take care of using
-        the proper one after deployment.</p>
-    <code lang="XML" src="examples/web/config2.nlog" />
-
-    <h5><x><extensions /></x></h5>
-    <p>
-        The <x><extensions /></x> element causes NLog to load additional targets, layout renderers and filters
-        from an external assembly. This is required for the targets from anything other than NLog.dll and NLog.*.dll assemblies to be available.
-        The following configuration syntax is used to load extensions:
-    </p>
-    <code lang="XML" src="examples/web/config4.nlog" />
-    <p>
-        NLog recognizes the operating system and CLI runtime and loads the DLLs which are part of NLog 
-        distibution automatically. The following table describes NLog behaviour:</p>
-
-    <div class="table">
-
-        <table border="1" cellpadding="0">
-            <tr>
-                <th>Platform</th>
-                <th>Assemblies automatically loaded</th>
-            </tr>
-            <tr>
-                <td>Microsoft .NET Framework 1.x, 2.x</td>
-                <td><code>NLog.dll, NLog.Win32.dll, NLog.DotNet.dll</code></td>
-            </tr>
-            <tr>
-                <td>Mono on Windows</td>
-                <td><code>NLog.dll, NLog.Win32.dll, NLog.Mono.dll</code></td>
-            </tr>
-            <tr>
-                <td>Mono on Unix/Linux</td>
-                <td><code>NLog.dll, NLog.Unix.dll, NLog.Mono.dll</code></td>
-            </tr>
-            <tr>
-                <td>.NET Compact Framework 1.0</td>
-                <td><code>NLog.dll, NLog.CompactFramework.dll</code></td>
-            </tr>
-        </table>
-
-    </div>
-
-    <h5><x><targets /></x> or <x><appenders /></x></h5>
-    <p>
-        The <x><targets/></x> element defines named targets (previously called "appenders"). Once you've defined the target
-        you can reference it in the <a href="#rules">&lt;rules/&gt;</a> section.</p>
-    <p>The following syntax is used to define targets:</p>
-    <code lang="XML" src="examples/web/config5.nlog" />
-    <p>The parameter specification depends on the target type. Click <link href="targets">here</link> for the reference.</p>
-    <h5><x><rules /></x></h5>
-    <p>
-        The <x><rules/></x> element defines the log routing policy. It consists of one or more
-        <x><logger/></x> elements that determine the action to be taken each time a log message is emitted.
-    </p>
-    <p><x><logger/></x> element has the following options:</p>
     <ul>
-        <li><code>name</code> - the logger name pattern - loggers whose name matches the pattern will be affected by this rule. The name pattern is a string with wildcards.<p/>The following options are accepted:
-            <ul>
-                <li><code>name="*"</code> - matches all loggers - this is the default</li>
-                <li><code>name="abc"</code> - matches the logger named 'abc'</li>
-                <li><code>name="abc*"</code> - matches all loggers whose names start with 'abc'</li>
-                <li><code>name="*abc"</code> - matches all loggers whose names end with 'abc'</li>
-                <li><code>name="*abc*"</code> - matches all loggers whose names contain the 'abc' substring</li>
-                <li><code>name=""</code> - matches nothing - can be used to temporarily disable the rule</li>
-                <p/>
-        </ul></li>
-        <li><code>level</code> - the log level - log events that match this log level will be affected by the rule. The <code>level</code> value can be either of <code>Debug,Info,Warn,Error,Fatal</code>.<p/></li>
-        <li><code>minlevel</code> - the minimum log level - log events that match this or higher log level will be affected by the rule. The <code>minlevel</code> value can be either of <code>Debug,Info,Warn,Error,Fatal</code>.<p/></li>
-        <li><code>maxlevel</code> - the maximum log level - log events that match this or lower log level will be affected by the rule. The <code>maxlevel</code> value can be either of <code>Debug,Info,Warn,Error,Fatal</code>.<p/></li>
-        <li><code>levels</code> - the log levels - log events that match any of specified the log levels will be affected by the rule. The <code>levels</code> value can be a sequence of the valid log levels (<code>Debug,Info,Warn,Error,Fatal</code>) separated by commas.<p/></li>
-        <li><code>appendTo</code> or <code>writeTo</code> - the list of targets to be written to when the log event passes the above tests. The <code>writeTo</code> is a list of target names separated by commas.<p/></li>
-        <li><code>final</code> - determines whether any of the following rules will be processed. If this attribute value is "true" and the log event passes all the above tests, no more targets will be written to.</li>
+        <li>
+            standard application configuration file (usually <font face="Courier New">applicationname.exe.config)</font>
+        </li>
+        <li>
+            <font face="Courier New">applicationname.exe.nlog</font> in application's directory
+        </li>
+        <li>
+            <font face="Courier New">NLog.config</font> in application's directory
+        </li>
+        <li>
+            <font face="Courier New">NLog.dll.nlog</font> in a directory where <font face="Courier New">NLog.dll</font> is located
+        </li>
+        <li>
+            file name pointed by the <font face="Courier New">NLOG_GLOBAL_CONFIG_FILE</font> environment variable (if defined)
+        </li>
     </ul>
-    <p>In addition, <x><logger/></x> supports <x><filters/></x> child element that can be used 
-        to specify filters. See the <link href="filters">Filter Reference</link> for more information.</p>
-    The following example shows various routing options:
-    <code lang="XML" src="examples/web/config3.nlog" />
-    <a name="api" />
-    <h3>Programmatic configuration</h3>
     <p>
-        The API for programmatic configuration isn't established yet. Future releases of NLog will fix this by creating
-        and documenting a standard set of interfaces to be used for configuration.
+        In case of an ASP.NET application, the following files are searched:
+    </p>
+    <ul>
+        <li>
+            standard web application file <font face="Courier New">web.config</font>
+        </li>
+        <li>
+            <font face="Courier New">web.nlog</font> located in the same directory as <font face="Courier New">web.config</font>
+        </li>
+        <li>
+            <font face="Courier New">NLog.config</font> in application's directory
+        </li>
+        <li>
+            <font face="Courier New">NLog.dll.nlog</font> in a directory where <font face="Courier New">NLog.dll</font> is located
+        </li>
+        <li>
+            file name pointed by the <font face="Courier New">NLOG_GLOBAL_CONFIG_FILE</font> environment variable (if defined)
+        </li>
+    </ul>
+    <p>
+        The .NET Compact Framework doesn't recognize application configuration files (*.exe.config) 
+        nor environmental variables, so NLog only looks in these locations:
+    </p>
+    <ul>
+        <li>
+            <font face="Courier New">applicationname.exe.nlog</font> in application's directory
+        </li>
+        <li>
+            <font face="Courier New">NLog.config</font> in application's directory
+        </li>
+        <li>
+            <font face="Courier New">NLog.dll.nlog</font> in a directory where <font face="Courier New">NLog.dll</font> is located
+        </li>
+    </ul>
+    <h4>Configuration file format</h4>
+    <p>
+        NLog supports two configuration file formats:
+    </p>
+    <ul>
+        <li>configuration embedded within the standard *.exe.config or web.config file</li>
+        <li>simplified configuration, stored in a separate file</li>
+    </ul>
+    <p>
+        In the first variant, we use a standard configSections mechanism, which makes our file look like this:
+    </p>
+    <code lang="XML">
+        <![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+        <configuration>
+          <configSections>
+            <section name="nlog" type="NLog.Config.ConfigSectionHandler, NLog" />
+          </configSections>
+          <nlog>
+          </nlog>
+        </configuration>
+        ]]>
+    </code>
+    <p>
+        The simplified format is the pure XML having the <x>
+            <nlog />
+        </x> element as its root.
+        The use of namespaces is optional, but it enables the Intellisense in Visual Studio.
+    </p>
+    <code lang="XML">
+        <![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+        <nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        </nlog>
+        ]]>
+    </code>
+    <p>
+        Note that NLog config file is case-insensitive when not using namespaces
+        and is case-sensitive when you use them. Intellisense only works with case-sensitive
+        configurations.
+    </p>
+    <h4>Configuration elements</h4>
+    <p>
+        You can use the following elements as children to <x>
+            <nlog />
+        </x>. The first two elements from the list are required to be present in all
+        NLog configuration files, the remaining ones are optional and can be useful in 
+        advanced scenarios.
+    </p>
+    <ul>
+        <li>
+            <x><targets /></x> - defines log targets/outputs
+        </li>
+        <li>
+            <x><rules /></x> - defines log routing rules
+        </li>
+        <li>
+            <x><extensions /></x> - loads NLog extensions from the *.dll file
+        </li>
+        <li>
+            <x><include /></x> - includes external configuration file
+        </li>
+        <li>
+            <x><variable /></x> - sets the value of a configuration variable
+        </li>
+    </ul>
+    <h4>Targets</h4>
+    <p>
+        The <x><targets /></x> section defines log targets/outputs. Each target is represented by a <x><target /></x> element.
+        There are two attributes required for each target:
+    </p>
+    <ul>
+        <li>
+            <b>name</b> - target name
+        </li>
+        <li>
+            <b>type</b> - target type - such as "File", "Database", "Mail". When using namespaces this attribute is named <b>xsi:type</b>.
+        </li>
+    </ul>
+    <p>
+        In addition to these attributes, targets usually accept other parameters, which influence the way diagnostic
+        traces are written. Each target has a different set of parameters, they are described in detail
+        on project's homepage and they are context-sensitive. Intellisense is also available in Visual Studio.
     </p>
     <p>
-        The entire configuration is kept in an instance of <code>LoggingConfiguration</code> class. 
-        You create a new configuration by creating an instance of this class and assigning it to 
-        <code>LogManager.Configuration</code>. Consult the sources for more information.
+        For example - the "<b>File</b>" target accepts the <b>fileName</b> parameter which defines
+        output file name and the <b>Console</b> target has the <b>error</b> parameter which determines
+        whether the diagnostic traces are written to standard error (stderr) instead of standard output
+        (stdout) of the process.
     </p>
+    <p>
+        This example demonstrates a <x><targets /></x> section which defines multiple targets: two files, one network target and 
+        OutputDebugString target:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <targets>
+            <target name="f1" xsi:type="File" fileName="file1.txt" />
+            <target name="f2" xsi:type="File" fileName="file2.txt" />
+            <target name="n1" xsi:type="Network" address="tcp://localhost:4001" />
+            <target name="ds" xsi:type="OutputDebugString" />
+        </targets>
+        ]]>
+    </code>
+    <p>
+        NLog provides many predefined targets. They are described on the project's homepage. 
+        It's actually very easy to create your own target - it requires about 15-20 lines of
+        code and is described in the 
+        <a href="http://www.nlog-project.org/documentation.html">documentation</a>.
+    </p>
+    <h4>Rules</h4>
+    <p>
+        Log routing rules are defined in the <x>
+            <rules />
+        </x> section. It is a simple routing table, where we define the list of targets
+        that should be written to for each combination of source/logger name and log level.
+        Rules are processed starting with the first rule in the list. When a
+        rule matches, log messages are directed to target(s) in that rule. If a
+        rule is marked as final, rules beneath the current rule are not
+        processed.
+    </p>
+    <p>
+        Each routing table entry is a <x>
+            <logger />
+        </x> element, which accepts the following attributes:
+    </p>
+    <ul>
+        <li>
+            <font face="Courier New">name</font> - source/logger name (may include wildcard characters <b>*</b>)
+        </li>
+        <li>
+            <font face="Courier New">minlevel</font> - minimal log level for this rule to match
+        </li>
+        <li>
+            <font face="Courier New">maxlevel</font> - maximum log level for this rule to match
+        </li>
+        <li>
+            <font face="Courier New">level</font> - single log level for this rule to match
+        </li>
+        <li>
+            <font face="Courier New">levels </font>- comma separated list of log levels for this rule to match
+        </li>
+        <li>
+            <font face="Courier New">writeTo</font> - comma separated list of target that should be written to when this rule matches.
+        </li>
+        <li>
+            <font face="Courier New">final</font> - make this rule final. No further rules are processed when any
+            final rule matches.
+        </li>
+    </ul>
+    <p>
+        Some examples:
+    </p>
+    <ul>
+        <li>
+            <x>
+                <logger name="Name.Space.Class1" minlevel="Debug" writeTo="f1" />
+            </x> - all messages from the <font face="Courier New">Class1</font> in the <font face="Courier New">Name.Space</font> whose level is <font face="Courier New">Debug</font> or higher are written to the "<font face="Courier New">f1</font>" target.
+        </li>
+        <li>
+            <x>
+                <logger name="Name.Space.Class1" levels="Debug,Error" writeTo="f1" />
+                </x> - all messages from the <font face="Courier New">Class1</font> in the <font face="Courier New">Name.Space</font> whose level is either <font face="Courier New">Debug</font> or <font face="Courier New">Error</font> or higher are written to the "<font face="Courier New">f1</font>" target.
+        </li>
+        <li>
+            <x>
+                <logger name="Name.Space.*" writeTo="f3,f4" />
+            </x>
+            - messages from any class in the <font face="Courier New">Name.Space</font> namespace are written to both "<font face="Courier New">f3</font>" and "<font face="Courier New">f4</font>" targets regardless of their levels.
+        </li>
+        <li>
+            <x>
+                <logger name="Name.Space.*"  minlevel="Debug" maxlevel="Error" final="true" />
+            </x>
+            - messages from any class in the <font face="Courier New">Name.Space</font> namespace whose level is 
+            between <font face="Courier New">Debug</font> and <font face="Courier New">Error</font> (which makes it 
+            <font face="Courier New">Debug,Info,Warn,Error</font>) are rejected (as there's no 
+            <font face="Courier New">writeTo</font> clause) 
+            and no futher rules are processed for them (because of the <font face="Courier New">final="true"</font> setting)
+        </li>
+    </ul>
+    <p>
+        In the simplest cases the entire logging configuration consists of a single <x><target/></x> and 
+        a single <x><logger /></x> rule that routes messages to this target depending on their level.
+        As the application grows, adding more targets and rules is very simple.
+    </p>
+    <h4>Contextual information</h4>
+    <p>
+        One of NLog's strongest assets is the ability to use layouts. They include pieces of text surrounded by a pair
+        of "<b>${</b>" (dollar sign + left curly brace) and "<b>}</b>" (right curly brace). The markup denotes
+        "layout renderers" which can be used to insert pieces of <b>contextual information</b> into the text. 
+        Layouts can be used in many places, for example they can control the format of information written on the 
+        screen or sent to a file, but also to control the file names themselves. This is very powerful, 
+        which we'll see in a moment.
+    </p>
+    <p>
+        Let's assume, that we want to augment each message written to the console with:
+    </p>
+    <ul>
+        <li>current date and time</li>
+        <li>name of the class and method that emitted the log message</li>
+        <li>log level</li>
+        <li>message text</li>
+    </ul>
+    <p>This is very easy:</p>
+    <code lang="XML">
+        <![CDATA[
+        <target name="c" xsi:type="Console" layout="${longdate} ${callsite} ${level} ${message}" />
+        ]]>
+    </code>
+    <p>
+        We can make each messages for each logger go to a separate file, as in the following example:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <target name="f" xsi:type="File" fileName="${logger}.txt" />
+        ]]>
+    </code>
+
+    <p>
+        Ay you can see the <font face="Courier New">${logger}</font> layout renderer was used
+        in the <font face="Courier New">fileName</font> attribute, which causes each log message
+        to be written to the file whose name includes the logger name. The above example will
+        create the following files:
+    </p>
+    <ul>
+        <li>Name.Space.Class1.txt</li>
+        <li>Name.Space.Class2.txt</li>
+        <li>Name.Space.Class3.txt</li>
+        <li>Other.Name.Space.Class1.txt</li>
+        <li>Other.Name.Space.Class2.txt</li>
+        <li>Other.Name.Space.Class3.txt</li>
+        <li>...</li>
+    </ul>>
+    <p>It's a frequent requirement to be able to keep log files for each day separate. 
+        This is trivial, too, thanks to the ${shortdate} layout renderer:</p>
+    <code lang="XML">
+        <![CDATA[
+        <target name="f" xsi:type="File" fileName="${shortdate}.txt" />
+        ]]>
+    </code>
+    <p>
+        How about givin each employee their own log file? The ${windows-identity} layout renderer will do the trick:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <target name="f" xsi:type="File" fileName="${windows-identity:domain=false}.txt" />
+        ]]>
+    </code>
+    <p>
+        Thanks to this simple setting NLog will create a set of files named after our employees' logins:
+    </p>
+    <ol>
+        <li>Administrator.txt</li>
+        <li>MaryManager.txt</li>
+        <li>EdwardEmployee.txt</li>
+        <li>...</li>
+    </ol>
+    <p>
+        More complex cases are of course possible. The following sample demonstrates the way of creating
+        a distinct log file for each person per day. Log files for each day are stored in a separate directory:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <target name="f" xsi:type="File" fileName="${shortdate}/${windows-identity:domain=false}.txt" />
+        ]]>
+    </code>
+    <p>This creates the following files:</p>
+    <ol>
+        <li>2006-01-01/Administrator.txt</li>
+        <li>2006-01-01/MaryManager.txt</li>
+        <li>2006-01-01/EdwardEmployee.txt</li>
+        <li>2006-01-02/Administrator.txt</li>
+        <li>2006-01-02/MaryManager.txt</li>
+        <li>2006-01-02/EdwardEmployee.txt</li>
+        <li>...</li>
+    </ol>
+
+    <p>
+        NLog provides many predefined layout renderers. They are described on the 
+        <a href="http://www.nlog-project.org/layoutrenderers.html">http://www.nlog-project.org/layoutrenderers.html</a> page.
+        It's very easy to create your own layout renderer. It just takes 15-20 lines of code and is described in the <a href="http://www.nlog-project.org/documentation.html">documentation</a> 
+        section of the project website.
+    </p>
+
+    <h4>Include files </h4>
+    <p>
+        It's sometimes desired to split the configuration file into many smaller ones.
+        NLog provides an include file mechanism for that. To include an external file, you simply use
+        It's worth noting that the fileName attribute, just like most attributes in
+        NLog config file(s), may include dynamic values using the familiar
+        ${var} notation, so it's possible to include different files based on environmental properties.
+        The following configuration example demonstrates this, by loading file whose name is derived from
+        the name of the machine we're running on.
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <nlog>
+            ...
+            <include file="${basedir}/${machinename}.config" />
+            ...
+        </nlog>
+        ]]>
+    </code>
+    <p>
+        Variables let us write complex or repeatable expression (such as file names) in a concise manner.
+        To define a variable we use the <x><variable name="var" value="xxx" /></x> syntax.
+        Once defined, variables can be used as if they were layout renderers - by using ${var} syntax, as demonstrated in
+        the following example:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <nlog>
+            <variable name="logDirectory" value="${basedir}/logs/${shortdate}" />
+
+            <targets>
+                <target name="file1" xsi:type="File" fileName="${logDirectory}/file1.txt" />
+                <target name="file2" xsi:type="File" fileName="${logDirectory}/file2.txt" />
+            </targets>
+        </nlog>
+        ]]>
+    </code>
+
+    <h4>Automatic reconfiguration</h4>
+    <p>
+        The configuration file is read automatically at program startup. In a long running process (such as a Windows 
+        service or an ASP.NET application) it's sometimes desirable to temporarily increase the log level without
+        stopping the application. NLog can monitor logging
+        configuration files and re-read them each time they are modified. To enable this mechanism, you simply set
+        <x><nlog autoReload="true" /></x> in your configuration file. Note that automatic reconfiguration 
+        supports include files, so each time one of the files include is changed, the entire configuration gets reloaded.
+    </p>
+
+    <h4>Troubleshooting logging</h4>
+    <p>
+        Sometimes our application doesn't write anything to the log files, even though we have supposedly configured
+        logging properly. There can be many reasons for logs not being written. The most common problem are permissions, 
+        usually in an ASP.NET process, where the aspnet_wp.exe or w3wp.exe process may not have write access to the directory
+        where we want to store logs.
+        
+        NLog is designed to swallow run-time exceptions that may result from
+        logging. The following settings can change this behavior and/or
+        redirect these messages.
+    </p>
+    <ul>
+        <li>
+            <x>
+                <nlog throwExceptions="true" />
+            </x>- adding throwExceptions attribute in the config file causes NLog not to mask exceptions and pass them
+            to the calling application instead. This attribute is useful at deployment time to quickly locate any problems. 
+            It's recommended to turn throwExceptions to "false" as soon as the application is properly configured to run,
+            so that any accidental logging problems won't crash the application.
+        </li>
+        <li>
+            <x>
+                <nlog internalLogFile="file.txt" />
+            </x>- adding internalLogFile cause NLog to write its internal debugging messages to the specified file.
+            This includes any exceptions that may be thrown during logging.
+        </li>
+        <li>
+            <x>
+                <nlog internalLogLevel="Trace|Debug|Info|Warn|Error|Fatal" />
+            </x> - determines internal log level. The higher the level, the less verbose the internal log output.
+        </li>
+        <li>
+            <x>
+                <nlog internalLogToConsole="false|true" />
+            </x> - sends internal logging messages to the console.
+        </li>
+        <li>
+            <x>
+                <nlog internalLogToConsoleError="false|true" />
+            </x> - sends internal logging messages to the console error output (stderr).
+        </li>
+    </ul>
+
+    <h4>Asynchronous processing, wrapper and compound targets</h4>
+    <p>
+        NLog provides wrapper and compound targets which modify other targets' behaviour by adding features like: 
+    </p>
+    <ul>
+        <li>asynchronous processing (wrapped target runs in a separate thread)</li>
+        <li>retry-on-error</li>
+        <li>load balancing (round-robin targets)</li>
+        <li>buffering</li>
+        <li>filtering</li>
+        <li>backup targets (failover)</li>
+        <li>and others described on <a href="http://www.nlog-project.org/targets.html">http://www.nlog-project.org/targets.html</a></li>
+    </ul>
+    <p>
+        To define a wrapper or compound target in the configuration file,
+        simply nest a target node within another target node. You can even wrap
+        a wrapper target. There are no limits on depth.
+        For example, to add asynchronous logging with retry-on-error functionality
+        add this to your configuration file:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <targets>
+            <target name="n" xsi:type="AsyncWrapper">
+                <target xsi:type="RetryingWrapper">
+                    <target xsi:type="File" fileName="${file}.txt" />
+                </target>
+            </target>
+        </targets>
+        ]]>
+    </code>
+    <p>
+        Because asynchronous processing is a common scenario, NLog supports a shorthand notation
+        to enable it for all targets without the need to specify explicit wrappers. You simply
+        set <x><targets async="true" /></x> and all your targets will be wrapped with the AsyncWrapper target.
+    </p>
+
+    <h4>Default wrappers</h4>
+    <p>
+        Sometimes we require ALL targets to be wrapped in the same way, for example to add buffering and/or retrying. NLog provides
+        <x><default-wrapper /></x> syntax for that. You simply put this element in the <x><targets /></x> section and all your targets
+        will be automatically wrapped with the specified wrapper. Note that <x><default-wrapper /></x> applies to the single <x><targets /></x> 
+        section only and you can have multiple sections so you can define groups of targets that are wrapped in a similar manner.
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <nlog>
+            <targets>
+                <default-wrapper xsi:type="BufferingWrapper" bufferSize="100" />
+                <target name="f1" xsi:type="File" fileName="f1.txt" />
+                <target name="f2" xsi:type="File" fileName="f2.txt" />
+            </targets>
+
+            <targets>
+                <default-wrapper xsi:type="AsyncWrapper">
+                    <wrapper xsi:type="RetryingWrapper" />
+                </default-wrapper>
+
+                <target name="n1" xsi:type="Network" address="tcp://localhost:4001" />
+                <target name="n2" xsi:type="Network" address="tcp://localhost:4002" />
+                <target name="n3" xsi:type="Network" address="tcp://localhost:4003" />
+            </targets>
+        </nlog>
+        ]]>
+    </code>
+    <p>
+        In the above example we've defined two <u>buffered</u> File targets and three <u>asynchronous and retrying</u> Network
+        targets.
+    </p>
+
+    <h4>Default target parameters</h4>
+    <p>
+        Similar to default wrappers NLog provides <x><default-target-parameters /></x> which enables you to specify default values
+        of target parameters. For example, if you don't want files to be kept open, you can either add keepFileOpen="false" to
+        each target, as in the following example:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <nlog>
+            <targets>
+                <target name="f1" xsi:type="File" fileName="f1.txt" keepFileOpen="false" />
+                <target name="f2" xsi:type="File" fileName="f2.txt" keepFileOpen="false" />
+                <target name="f3" xsi:type="File" fileName="f3.txt" keepFileOpen="false" />
+            </targets>
+        </nlog>
+        ]]>
+    </code>
+    <p>
+        Alternatively you can specify a single <x><default-target-parameters /></x> that applies to all targets in the <x><targets /></x> section. Default
+        parameters are defined on a per-type basis and are applied BEFORE the actual attributes defined in the XML file:
+    </p>
+    <code lang="XML">
+        <![CDATA[
+        <nlog>
+            <targets>
+                <default-target-parameters xsi:type="File" keepFileOpen="false" />
+                <target name="f1" xsi:type="File" fileName="f1.txt" />
+                <target name="f2" xsi:type="File" fileName="f2.txt" />
+                <target name="f3" xsi:type="File" fileName="f3.txt" />
+            </targets>
+        </nlog>
+        ]]>
+    </code>
 </content>
 
