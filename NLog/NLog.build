@@ -114,7 +114,7 @@
         </csc>
     </target>
 
-    <target name="xmldoc">
+    <target name="xmldoc" depends="configure">
         <mkdir dir="build/doc" />
 
         <property name="oldframework" value="${nant.settings.currentframework}" />
@@ -666,9 +666,9 @@
     <target name="cleanwebsite" depends="xmldoc, website">
     </target>
 
-    <target name="publish_website_help">
+    <target name="publish_website_help" depends="help">
         <zip zipfile="web.zip">
-            <fileset basedir="${nlog.help.dir}">
+            <fileset basedir="build/doc/help">
                 <include name="**/*" />
                 <exclude name="**/NLog.chm" />
             </fileset>
@@ -680,15 +680,15 @@
     </target>
 
     <target name="publish_clover" depends="clover">
-        <zip zipfile="clover.zip">
+        <zip zipfile="web.zip">
             <fileset basedir="${clover.report.dir}">
                 <include name="**/*" />
             </fileset>
         </zip>
-        <echo message="Uploading the zipped coverage results..." />
-        <exec program="${scp.program}" commandline="${scp.args} clover.zip ${deploy.host}:${deploy.dir}" />
-        <echo message="Unpacking the zipped coverage results..." />
-        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} ${deploy.dir}/unpack_clover.sh" />
+        <echo message="Uploading web.zip and tools/web_install.sh to ${deploy.host}..." />
+        <exec program="${scp.program}" commandline="${scp.args} web.zip tools/web_install.sh ${deploy.host}:." workingdir="." />
+        <echo message="Spawning web_install.sh..." />
+        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} dos2unix web_install.sh &amp;&amp; /bin/bash web_install.sh ${webserver.deploy.dir}/clover" workingdir="." />
         <echo message="Coverage results deployed." />
     </target>
 
@@ -1022,15 +1022,15 @@
     </target>
 
     <target name="publish_nunit2report" depends="nunit2report">
-        <zip zipfile="nunit2report.zip">
+        <zip zipfile="web.zip">
             <fileset basedir="${nunit2.report.dir}">
                 <include name="**/*" />
             </fileset>
         </zip>
-        <echo message="Uploading the zipped nunit2report results..." />
-        <exec program="${scp.program}" commandline="${scp.args} nunit2report.zip ${deploy.host}:${deploy.dir}" />
-        <echo message="Unpacking the zipped nunit2report results..." />
-        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} ${deploy.dir}/unpack_nunit2report.sh" />
+        <echo message="Uploading web.zip and tools/web_install.sh to ${deploy.host}..." />
+        <exec program="${scp.program}" commandline="${scp.args} web.zip tools/web_install.sh ${deploy.host}:." workingdir="." />
+        <echo message="Spawning web_install.sh..." />
+        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} dos2unix web_install.sh &amp;&amp; /bin/bash web_install.sh ${webserver.deploy.dir}/nunit2report" workingdir="." />
         <echo message="NUnit2report results deployed." />
     </target>
 
