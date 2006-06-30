@@ -385,6 +385,8 @@
     <Compile Include="LayoutRenderers\CallSite.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LayoutRenderers\SpecialFolder.cs" />
+    <Compile Include="LayoutRenderers\TempDir.cs" />
     <Compile Include="LayoutRenderers\QPC.cs" />
     <Compile Include="LayoutRenderers\Counter.cs">
       <SubType>Code</SubType>

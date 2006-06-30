@@ -164,8 +164,18 @@ namespace NLog
         }
 
         /// <summary>
-        /// The culture name to be used for rendering.
+        /// The culture name to be used for rendering. 
         /// </summary>
+        /// <example>
+        /// The format for culture names is described in <a href="http://rfc.net/rfc1766.html">RFC 1766</a> and at <a href="http://msdn2.microsoft.com/en-us/library/system.globalization.cultureinfo.cultureinfo.aspx">MSDN</a>. 
+        /// Some examples of valid culture names are:
+        /// <ul>
+        /// <li><b>en-US</b> - English (United States)</li>
+        /// <li><b>en-UK</b> - English (United Kingdom)</li>
+        /// <li><b>pl-PL</b> - Polish</li>
+        /// <li><b>ar-SA</b> - Arabic (Saudi Arabia)</li>
+        /// </ul>
+        /// </example>
         public string Culture
         {
             get { return _cultureInfo.Name; }
