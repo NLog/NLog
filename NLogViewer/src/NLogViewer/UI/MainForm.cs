@@ -46,6 +46,8 @@ using NLogViewer.UI;
 using NLogViewer.Configuration;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
+using NLogViewer.Receivers;
+using NLogViewer.Parsers;
 
 namespace NLogViewer.UI
 {
@@ -65,9 +67,6 @@ namespace NLogViewer.UI
         private NotifyIcon notifyIcon1;
         private ImageList imageList1;
         private ToolStripMenuItem fileToolStripMenuItem;
-        private ToolStripMenuItem toolStripMenuItem1;
-        private ToolStripMenuItem toolStripMenuItemNewSessionLogReceiver;
-        private ToolStripMenuItem toolStripMenuItemNewSessionLogFile;
         private ToolStripMenuItem toolStripMenuItemOpenSession;
         private ToolStripMenuItem toolStripMenuItemSaveSession;
         private ToolStripMenuItem toolStripMenuItemSaveSessionAs;
@@ -80,6 +79,8 @@ namespace NLogViewer.UI
         private ToolStripMenuItem toolStripMenuItemCloseSession;
         private ToolStripMenuItem toolStripMenuItemCloseAllSessions;
         private IntroDialog introDialog1;
+        private ToolStripMenuItem toolStripMenuItemNewLiveLogReceiver;
+        private ToolStripMenuItem toolStripMenuItemOpenLogFile;
         private List<Session> _sessions = new List<Session>();
 
 		public MainForm()
@@ -116,9 +117,8 @@ namespace NLogViewer.UI
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemNewSessionLogReceiver = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemNewSessionLogFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemNewLiveLogReceiver = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemOpenLogFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemOpenSession = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemSaveSession = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemSaveSessionAs = new System.Windows.Forms.ToolStripMenuItem();
@@ -176,7 +176,8 @@ namespace NLogViewer.UI
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
+            this.toolStripMenuItemNewLiveLogReceiver,
+            this.toolStripMenuItemOpenLogFile,
             this.toolStripMenuItemOpenSession,
             this.toolStripMenuItemSaveSession,
             this.toolStripMenuItemSaveSessionAs,
@@ -190,37 +191,29 @@ namespace NLogViewer.UI
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.fileToolStripMenuItem.Text = "&Session";
             // 
-            // toolStripMenuItem1
+            // toolStripMenuItemNewLiveLogReceiver
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemNewSessionLogReceiver,
-            this.toolStripMenuItemNewSessionLogFile});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(202, 22);
-            this.toolStripMenuItem1.Text = "&New Session";
+            this.toolStripMenuItemNewLiveLogReceiver.Name = "toolStripMenuItemNewLiveLogReceiver";
+            this.toolStripMenuItemNewLiveLogReceiver.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.toolStripMenuItemNewLiveLogReceiver.Size = new System.Drawing.Size(244, 22);
+            this.toolStripMenuItemNewLiveLogReceiver.Text = "New &Live Log Receiver...";
+            this.toolStripMenuItemNewLiveLogReceiver.Click += new System.EventHandler(this.NewLiveLogReceiver_Clicked);
             // 
-            // toolStripMenuItemNewSessionLogReceiver
+            // toolStripMenuItemOpenLogFile
             // 
-            this.toolStripMenuItemNewSessionLogReceiver.Name = "toolStripMenuItemNewSessionLogReceiver";
-            this.toolStripMenuItemNewSessionLogReceiver.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.toolStripMenuItemNewSessionLogReceiver.Size = new System.Drawing.Size(218, 22);
-            this.toolStripMenuItemNewSessionLogReceiver.Text = "&Live Log Receiver...";
-            // 
-            // toolStripMenuItemNewSessionLogFile
-            // 
-            this.toolStripMenuItemNewSessionLogFile.Name = "toolStripMenuItemNewSessionLogFile";
-            this.toolStripMenuItemNewSessionLogFile.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.O)));
-            this.toolStripMenuItemNewSessionLogFile.Size = new System.Drawing.Size(218, 22);
-            this.toolStripMenuItemNewSessionLogFile.Text = "Log &File...";
-            this.toolStripMenuItemNewSessionLogFile.Click += new System.EventHandler(this.toolStripMenuItemNewSessionLogFile_Click);
+            this.toolStripMenuItemOpenLogFile.Name = "toolStripMenuItemOpenLogFile";
+            this.toolStripMenuItemOpenLogFile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.toolStripMenuItemOpenLogFile.Size = new System.Drawing.Size(244, 22);
+            this.toolStripMenuItemOpenLogFile.Text = "&Open Log File...";
+            this.toolStripMenuItemOpenLogFile.Click += new System.EventHandler(this.OpenLogFile);
             // 
             // toolStripMenuItemOpenSession
             // 
             this.toolStripMenuItemOpenSession.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemOpenSession.Image")));
             this.toolStripMenuItemOpenSession.Name = "toolStripMenuItemOpenSession";
-            this.toolStripMenuItemOpenSession.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.toolStripMenuItemOpenSession.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItemOpenSession.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.O)));
+            this.toolStripMenuItemOpenSession.Size = new System.Drawing.Size(244, 22);
             this.toolStripMenuItemOpenSession.Text = "Open Session...";
             this.toolStripMenuItemOpenSession.Click += new System.EventHandler(this.OpenSession);
             // 
@@ -228,53 +221,54 @@ namespace NLogViewer.UI
             // 
             this.toolStripMenuItemSaveSession.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemSaveSession.Image")));
             this.toolStripMenuItemSaveSession.Name = "toolStripMenuItemSaveSession";
-            this.toolStripMenuItemSaveSession.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.toolStripMenuItemSaveSession.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItemSaveSession.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.S)));
+            this.toolStripMenuItemSaveSession.Size = new System.Drawing.Size(244, 22);
             this.toolStripMenuItemSaveSession.Text = "Save Session";
             this.toolStripMenuItemSaveSession.Click += new System.EventHandler(this.toolStripMenuItemSaveSession_Click);
             // 
             // toolStripMenuItemSaveSessionAs
             // 
             this.toolStripMenuItemSaveSessionAs.Name = "toolStripMenuItemSaveSessionAs";
-            this.toolStripMenuItemSaveSessionAs.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItemSaveSessionAs.Size = new System.Drawing.Size(244, 22);
             this.toolStripMenuItemSaveSessionAs.Text = "Save Session As...";
             this.toolStripMenuItemSaveSessionAs.Click += new System.EventHandler(this.toolStripMenuItemSaveSessionAs_Click);
             // 
             // toolStripMenuItemCloseSession
             // 
             this.toolStripMenuItemCloseSession.Name = "toolStripMenuItemCloseSession";
-            this.toolStripMenuItemCloseSession.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItemCloseSession.Size = new System.Drawing.Size(244, 22);
             this.toolStripMenuItemCloseSession.Text = "Close Session";
             this.toolStripMenuItemCloseSession.Click += new System.EventHandler(this.toolStripMenuItemCloseSession_Click);
             // 
             // toolStripMenuItemCloseAllSessions
             // 
             this.toolStripMenuItemCloseAllSessions.Name = "toolStripMenuItemCloseAllSessions";
-            this.toolStripMenuItemCloseAllSessions.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItemCloseAllSessions.Size = new System.Drawing.Size(244, 22);
             this.toolStripMenuItemCloseAllSessions.Text = "Close All Sessions";
             this.toolStripMenuItemCloseAllSessions.Click += new System.EventHandler(this.toolStripMenuItemCloseAllSessions_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(199, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(241, 6);
             // 
             // toolStripMenuItemRecentSessions
             // 
             this.toolStripMenuItemRecentSessions.Name = "toolStripMenuItemRecentSessions";
-            this.toolStripMenuItemRecentSessions.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItemRecentSessions.Size = new System.Drawing.Size(244, 22);
             this.toolStripMenuItemRecentSessions.Text = "&Recent Sessions";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(199, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(241, 6);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(244, 22);
             this.toolStripMenuItem2.Text = "&Exit";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.FileExit);
             // 
@@ -323,7 +317,7 @@ namespace NLogViewer.UI
             // introDialog1
             // 
             this.introDialog1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("introDialog1.BackgroundImage")));
-            this.introDialog1.Location = new System.Drawing.Point(170, 138);
+            this.introDialog1.Location = new System.Drawing.Point(183, 75);
             this.introDialog1.Name = "introDialog1";
             this.introDialog1.Size = new System.Drawing.Size(446, 395);
             this.introDialog1.TabIndex = 8;
@@ -364,6 +358,7 @@ namespace NLogViewer.UI
             introDialog1.buttonOpenLogFile.Click += new EventHandler(OpenLogFile);
             introDialog1.buttonOpen.Click += new EventHandler(buttonOpen_Click);
             introDialog1.listViewRecentFiles.DoubleClick += new EventHandler(listViewRecentFiles_DoubleClick);
+            introDialog1.buttonNewLiveReceiver.Click += new EventHandler(NewLiveLogReceiver_Clicked);
             ReloadTabPages();
         }
 
@@ -503,7 +498,25 @@ namespace NLogViewer.UI
         {
             using (NewReceiverDialog dlg = new NewReceiverDialog())
             {
-                dlg.ShowDialog(this);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    SessionConfiguration lici = new SessionConfiguration();
+                    lici.ReceiverType = LogReceiverFactory.FindReceiverByType(dlg.Receiver.GetType()).Name;
+                    lici.ReceiverParameters = ConfigurationParameter.CaptureConfigurationParameters(dlg.Receiver);
+                    if (dlg.Parser != null)
+                        lici.ParserType = LogEventParserFactory.FindParserByType(dlg.Parser.GetType()).Name;
+                    lici.ParserParameters = ConfigurationParameter.CaptureConfigurationParameters(dlg.Parser);
+                    lici.Name = GetUniqueSessionName();
+                    lici.Resolve();
+                    lici.Dirty = true;
+
+                    Session instance = new Session(lici);
+                    instance.CreateTab(this);
+                    _sessions.Add(instance);
+                    ReloadTabPages();
+                    instance.Start();
+                    tabControl1.SelectedTab = instance.TabPage;
+                }
             }
         }
 

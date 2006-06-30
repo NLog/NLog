@@ -76,8 +76,11 @@ namespace NLogViewer.UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label1);
+            this.Label1 = "Choose Receiver Type";
+            this.Label2 = "Your log data will be received using the specified method.";
             this.Name = "SelectLogReceiverPropertyPage";
             this.Size = new System.Drawing.Size(335, 150);
+            this.Title = "Select Log Receiver";
             this.Load += new System.EventHandler(this.SelectLogReceiverPropertyPage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

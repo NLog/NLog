@@ -14,7 +14,7 @@ namespace NLogViewer.Receivers
     [LogEventReceiver("SMTP", 
         "SMTP Receiver", 
         "Receives events using a mock SMTP server")]
-    public class NDumbsterSmtpEventReceiver : LogEventReceiverSkeleton
+    public class NDumbsterSmtpEventReceiver : LogEventReceiverWithParserSkeleton
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         private SimpleSmtpServer _smtpServer = null;

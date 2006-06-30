@@ -7,7 +7,7 @@ using NLogViewer.Events;
 
 namespace NLogViewer.Parsers
 {
-    public interface ILogEventParserWithParser
+    public interface ILogEventReceiverWithParser
     {
         ILogEventParser Parser { get; set; }
     }

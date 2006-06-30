@@ -53,7 +53,9 @@ namespace NLogViewer
                         string rfn = (string)recentFilesKey.GetValue(s, "");
                         if (rfn == "")
                             continue;
-                        returnValue.Add(rfn);
+
+                        if (File.Exists(rfn))
+                            returnValue.Add(rfn);
                         if (returnValue.Count >= MaxRecentFileNames)
                             break;
                     }

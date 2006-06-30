@@ -11,7 +11,14 @@ namespace NLogViewer.Receivers
 
         void Start();
         void Stop();
-        bool IsRunning { get; }
+        void Pause();
+        void Resume();
+        void Refresh();
+        bool CanStart();
+        bool CanStop();
+        bool CanPause();
+        bool CanResume();
+        bool CanRefresh();
         string StatusText { get; }
     }
 }

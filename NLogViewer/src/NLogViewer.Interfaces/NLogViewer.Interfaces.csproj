@@ -79,6 +79,7 @@
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
@@ -90,10 +91,14 @@
     <Compile Include="AssemblySign.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Configuration\IWizardPropertyPage.cs" />
+    <Compile Include="Configuration\IWizardPage.cs" />
+    <Compile Include="Configuration\IWizardConfigurable.cs" />
     <Compile Include="Events\LogEvent.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Parsers\ILogEventParserInstance.cs" />
+    <Compile Include="Receivers\LogEventReceiverWithParserSkeleton.cs" />
     <Compile Include="Receivers\ILogEventReceiverWithParser.cs" />
     <Compile Include="Parsers\ILogEventParser.cs" />
     <Compile Include="Parsers\LogEventParserAttribute.cs" />

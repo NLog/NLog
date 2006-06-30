@@ -72,6 +72,7 @@ namespace NLogViewer.UI
         private ToolStripLabel toolStripLabelStatus;
         private ToolStripContainer toolStripContainer1;
         private ToolStripButton toolStripButtonProperties;
+        private ToolStripButton toolStripButtonPause;
         private LogEvent _selectedLogEvent = null;
 
 		public SessionTabPage(Session instance)
@@ -143,6 +144,7 @@ namespace NLogViewer.UI
             this.toolStripLabelStatus0 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabelStatus = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButtonStart = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonPause = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonStop = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonProperties = new System.Windows.Forms.ToolStripButton();
@@ -340,6 +342,7 @@ namespace NLogViewer.UI
             // 
             // timer1
             // 
+            this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // statusStrip1
@@ -507,6 +510,7 @@ namespace NLogViewer.UI
             this.toolStripLabelStatus0,
             this.toolStripLabelStatus,
             this.toolStripButtonStart,
+            this.toolStripButtonPause,
             this.toolStripButtonStop,
             this.toolStripButtonRefresh,
             this.toolStripButtonProperties,
@@ -527,7 +531,7 @@ namespace NLogViewer.UI
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(595, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(649, 25);
             this.toolStrip1.TabIndex = 2;
             // 
             // toolStripLabelStatus0
@@ -547,13 +551,21 @@ namespace NLogViewer.UI
             // toolStripButtonStart
             // 
             this.toolStripButtonStart.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonStart.Enabled = false;
             this.toolStripButtonStart.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonStart.Image")));
             this.toolStripButtonStart.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonStart.Name = "toolStripButtonStart";
             this.toolStripButtonStart.Size = new System.Drawing.Size(23, 22);
             this.toolStripButtonStart.Text = "Start/Continue";
             this.toolStripButtonStart.Click += new System.EventHandler(this.toolStripButtonStart_Click);
+            // 
+            // toolStripButtonPause
+            // 
+            this.toolStripButtonPause.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonPause.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonPause.Image")));
+            this.toolStripButtonPause.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonPause.Name = "toolStripButtonPause";
+            this.toolStripButtonPause.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonPause.Text = "Pause";
             // 
             // toolStripButtonStop
             // 
@@ -582,6 +594,7 @@ namespace NLogViewer.UI
             this.toolStripButtonProperties.Name = "toolStripButtonProperties";
             this.toolStripButtonProperties.Size = new System.Drawing.Size(23, 22);
             this.toolStripButtonProperties.Text = "Receiver Properties";
+            this.toolStripButtonProperties.Click += new System.EventHandler(this.toolStripButtonProperties_Click);
             // 
             // toolStripSeparator4
             // 
@@ -765,6 +778,13 @@ namespace NLogViewer.UI
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            toolStripButtonStart.Enabled = _session.Receiver.CanStart() || _session.Receiver.CanResume();
+            toolStripButtonStop.Enabled = _session.Receiver.CanStop();
+            toolStripButtonPause.Enabled = _session.Receiver.CanPause();
+            toolStripButtonRefresh.Enabled = _session.Receiver.CanRefresh();
+            IWizardConfigurable wc = _session.Receiver as IWizardConfigurable;
+            if (wc != null)
+                toolStripButtonRefresh.Enabled = wc != null;
         }
 
         private ListViewItem LogEventToListViewItem(LogEvent logEvent)
@@ -1018,6 +1038,14 @@ namespace NLogViewer.UI
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _session.Clear();
+        }
+
+        private void toolStripButtonProperties_Click(object sender, EventArgs e)
+        {
+            using (ReceiverPropertiesDialog rpd = new ReceiverPropertiesDialog(_session.Receiver))
+            {
+                rpd.ShowDialog(this);
+            }
         }
     }
 }

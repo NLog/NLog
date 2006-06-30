@@ -48,23 +48,13 @@ using System.Xml.Serialization;
 
 namespace NLogViewer.Receivers
 {
-	public abstract class LogEventReceiverSkeleton : ILogEventReceiver, ILogEventParserWithParser
-	{
+    public abstract class LogEventReceiverSkeleton : ILogEventReceiver
+    {
         private ILogEventProcessor _processor = null;
         private Thread _inputThread = null;
         private volatile bool _quitThread;
         private volatile string _statusText = "Idle";
         private NameValueCollection _parameters = new NameValueCollection();
-
-        private ILogEventParser _parser;
-
-        [Browsable(false)]
-        [XmlIgnore]
-        public ILogEventParser Parser
-        {
-            get { return _parser; }
-            set { _parser = value; }
-        }
 
         [Browsable(false)]
         [XmlIgnore]
@@ -73,9 +63,9 @@ namespace NLogViewer.Receivers
             get { return _statusText; }
         }
 
-		public LogEventReceiverSkeleton()
-		{
-		}
+        public LogEventReceiverSkeleton()
+        {
+        }
 
         public virtual void Start()
         {
@@ -98,16 +88,6 @@ namespace NLogViewer.Receivers
                     _inputThread.Abort();
                 }
                 _statusText = "Stopped";
-            }
-        }
-
-        bool ILogEventReceiver.IsRunning
-        {
-            get
-            {
-                if (_inputThread == null)
-                    return false;
-                return _inputThread.IsAlive;
             }
         }
 
@@ -140,6 +120,47 @@ namespace NLogViewer.Receivers
         public void Configure(NameValueCollection parameters)
         {
             _parameters = parameters;
+        }
+
+        public virtual void Pause()
+        {
+        }
+
+        public virtual void Resume()
+        {
+        }
+
+        public virtual bool CanStart()
+        {
+            if (_inputThread == null)
+                return true;
+            return !_inputThread.IsAlive;
+        }
+
+        public virtual bool CanStop()
+        {
+            if (_inputThread == null)
+                return false;
+            return _inputThread.IsAlive;
+        }
+
+        public virtual bool CanPause()
+        {
+            return false;
+        }
+
+        public virtual bool CanResume()
+        {
+            return false;
+        }
+
+        public virtual void Refresh()
+        {
+        }
+
+        public bool CanRefresh()
+        {
+            return false;
         }
     }
 }

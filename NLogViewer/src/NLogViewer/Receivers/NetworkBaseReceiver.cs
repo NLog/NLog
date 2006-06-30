@@ -49,7 +49,7 @@ using System.Collections.Generic;
 
 namespace NLogViewer.Receivers
 {
-    public abstract class NetworkBaseReceiver : LogEventReceiverSkeleton
+    public abstract class NetworkBaseReceiver : LogEventReceiverWithParserSkeleton
     {
         private List<string> _listenOn;
         private int _port;

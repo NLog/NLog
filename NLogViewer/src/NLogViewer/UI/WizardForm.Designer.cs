@@ -44,18 +44,18 @@ namespace NLogViewer.UI
             this.wizardButtonNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.wizardButtonNext.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.wizardButtonNext.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.wizardButtonNext.Location = new System.Drawing.Point(404, 311);
+            this.wizardButtonNext.Location = new System.Drawing.Point(417, 417);
             this.wizardButtonNext.Name = "wizardButtonNext";
             this.wizardButtonNext.Size = new System.Drawing.Size(75, 23);
             this.wizardButtonNext.TabIndex = 5;
-            this.wizardButtonNext.Text = "&Next";
+            this.wizardButtonNext.Text = "&Next >";
             this.wizardButtonNext.Click += new System.EventHandler(this.wizardButtonNext_Click);
             // 
             // wizardButtonFinish
             // 
             this.wizardButtonFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.wizardButtonFinish.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.wizardButtonFinish.Location = new System.Drawing.Point(485, 311);
+            this.wizardButtonFinish.Location = new System.Drawing.Point(498, 417);
             this.wizardButtonFinish.Name = "wizardButtonFinish";
             this.wizardButtonFinish.Size = new System.Drawing.Size(75, 23);
             this.wizardButtonFinish.TabIndex = 6;
@@ -66,11 +66,11 @@ namespace NLogViewer.UI
             // 
             this.wizardButtonBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.wizardButtonBack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.wizardButtonBack.Location = new System.Drawing.Point(323, 311);
+            this.wizardButtonBack.Location = new System.Drawing.Point(336, 417);
             this.wizardButtonBack.Name = "wizardButtonBack";
             this.wizardButtonBack.Size = new System.Drawing.Size(75, 23);
             this.wizardButtonBack.TabIndex = 7;
-            this.wizardButtonBack.Text = "&Back";
+            this.wizardButtonBack.Text = "< &Back";
             this.wizardButtonBack.Click += new System.EventHandler(this.wizardButtonBack_Click);
             // 
             // wizardButtonCancel
@@ -79,7 +79,7 @@ namespace NLogViewer.UI
             this.wizardButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.wizardButtonCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.wizardButtonCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.wizardButtonCancel.Location = new System.Drawing.Point(242, 311);
+            this.wizardButtonCancel.Location = new System.Drawing.Point(255, 417);
             this.wizardButtonCancel.Name = "wizardButtonCancel";
             this.wizardButtonCancel.Size = new System.Drawing.Size(75, 23);
             this.wizardButtonCancel.TabIndex = 8;
@@ -93,7 +93,7 @@ namespace NLogViewer.UI
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.wizardContentPanel.Location = new System.Drawing.Point(12, 71);
             this.wizardContentPanel.Name = "wizardContentPanel";
-            this.wizardContentPanel.Size = new System.Drawing.Size(548, 231);
+            this.wizardContentPanel.Size = new System.Drawing.Size(561, 337);
             this.wizardContentPanel.TabIndex = 9;
             // 
             // panel2
@@ -105,7 +105,7 @@ namespace NLogViewer.UI
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(572, 65);
+            this.panel2.Size = new System.Drawing.Size(585, 65);
             this.panel2.TabIndex = 10;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -131,11 +131,10 @@ namespace NLogViewer.UI
             // 
             // WizardForm
             // 
-            this.AcceptButton = this.wizardButtonNext;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.wizardButtonCancel;
-            this.ClientSize = new System.Drawing.Size(572, 346);
+            this.ClientSize = new System.Drawing.Size(585, 452);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.wizardContentPanel);
             this.Controls.Add(this.wizardButtonNext);

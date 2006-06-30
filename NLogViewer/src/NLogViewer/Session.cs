@@ -97,9 +97,9 @@ namespace NLogViewer
             _bufferedEvents = new CyclicBuffer<LogEvent>(config.MaxLogEntries);
             NewSortOrder();
             _receiver = LogReceiverFactory.CreateLogReceiver(config.ReceiverType, config.ReceiverParameters);
-            if (_receiver is ILogEventParserWithParser)
+            if (_receiver is ILogEventReceiverWithParser)
             {
-                ((ILogEventParserWithParser)_receiver).Parser = LogEventParserFactory.CreateLogParser(config.ParserType, config.ParserParameters);
+                ((ILogEventReceiverWithParser)_receiver).Parser = LogEventParserFactory.CreateLogParser(config.ParserType, config.ParserParameters);
             }
             _receiver.Connect(this);
             _addTreeNodeDelegate = new AddTreeNodeDelegate(this.AddTreeNode);
@@ -108,6 +108,11 @@ namespace NLogViewer
         public SessionConfiguration Config
         {
             get { return _config; }
+        }
+
+        public ILogEventReceiver Receiver
+        {
+            get { return _receiver; }
         }
 
         public LogEvent GetDisplayedItemForIndex(int pos)
@@ -162,11 +167,6 @@ namespace NLogViewer
         public void Stop()
         {
             _receiver.Stop();
-        }
-
-        public bool IsRunning
-        {
-            get { return _receiver.IsRunning; }
         }
 
         public string StatusText
@@ -246,6 +246,18 @@ namespace NLogViewer
                     if (TryFilters(logEvent))
                     {
                         _filteredEvents.Add(logEvent, logEvent);
+                    }
+
+                    foreach (string s in logEvent.Properties.Keys)
+                    {
+                        if (!_config.ContainsColumn(s))
+                        {
+                            LogColumn lc = new LogColumn();
+                            lc.Name = s;
+                            lc.Visible = false;
+                            lc.Width = 100;
+                            _config.Columns.Add(lc);
+                        }
                     }
 
                     _totalEvents++;
@@ -390,9 +402,9 @@ namespace NLogViewer
         private bool CaptureParametersAndSaveConfig(string fileName)
         {
             Config.ReceiverParameters = ConfigurationParameter.CaptureConfigurationParameters(_receiver);
-            if (_receiver is ILogEventParserWithParser)
+            if (_receiver is ILogEventReceiverWithParser)
             {
-                Config.ParserParameters = ConfigurationParameter.CaptureConfigurationParameters(((ILogEventParserWithParser)_receiver).Parser);
+                Config.ParserParameters = ConfigurationParameter.CaptureConfigurationParameters(((ILogEventReceiverWithParser)_receiver).Parser);
             }
             AppPreferences.AddToRecentFileList(fileName);
             return Config.Save(fileName);
@@ -441,7 +453,7 @@ namespace NLogViewer
 
         public bool Close()
         {
-            if (IsRunning)
+            if (_receiver.CanStop())
                 Stop();
 
             if (Config.Dirty)

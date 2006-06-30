@@ -108,5 +108,15 @@ namespace NLogViewer.Receivers
             ConfigurationParameter.ApplyConfigurationParameters(receiver, parameters);
             return receiver;
         }
+
+        public static LogEventReceiverInfo FindReceiverByType(Type t)
+        {
+            foreach (LogEventReceiverInfo leri in _name2receiver.Values)
+            {
+                if (t == leri.Type)
+                    return leri;
+            }
+            return null;
+        }
 	}
 }

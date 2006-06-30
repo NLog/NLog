@@ -80,6 +80,7 @@
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing">
       <Name>System.Drawing</Name>
     </Reference>
@@ -162,6 +163,25 @@
     <Compile Include="EntryPoint.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Receivers\DatabaseReceiver.cs" />
+    <Compile Include="Receivers\UI\ConnectionStringBuilderDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Receivers\UI\ConnectionStringBuilderDialog.Designer.cs">
+      <DependentUpon>ConnectionStringBuilderDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Receivers\UI\DatabaseReceiverPropertyPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Receivers\UI\DatabaseReceiverPropertyPage.Designer.cs">
+      <DependentUpon>DatabaseReceiverPropertyPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Receivers\UI\FileReceiverPropertyPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Receivers\UI\FileReceiverPropertyPage.Designer.cs">
+      <DependentUpon>FileReceiverPropertyPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Session.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -203,6 +223,12 @@
     <Compile Include="UI\ChooseColumnsDialog.Designer.cs">
       <DependentUpon>ChooseColumnsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\LogParserPropertyPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\LogParserPropertyPage.Designer.cs">
+      <DependentUpon>LogParserPropertyPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\IntroDialog.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -230,6 +256,12 @@
     <Compile Include="UI\OptionsDialog.Designer.cs">
       <DependentUpon>OptionsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ReceiverPropertiesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReceiverPropertiesDialog.Designer.cs">
+      <DependentUpon>ReceiverPropertiesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SelectEncodingPropertyPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -250,6 +282,12 @@
     </Compile>
     <Compile Include="UI\SessionTabPage.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\SummaryPropertyPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\SummaryPropertyPage.Designer.cs">
+      <DependentUpon>SummaryPropertyPage.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\WizardForm.cs">
       <SubType>Form</SubType>
@@ -272,12 +310,28 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Receivers\UI\ConnectionStringBuilderDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ConnectionStringBuilderDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receivers\UI\DatabaseReceiverPropertyPage.resx">
+      <DependentUpon>DatabaseReceiverPropertyPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Receivers\UI\FileReceiverPropertyPage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FileReceiverPropertyPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\ChangeBufferSizeDialog.resx">
       <DependentUpon>ChangeBufferSizeDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ChooseColumnsDialog.resx">
       <DependentUpon>ChooseColumnsDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LogParserPropertyPage.resx">
+      <DependentUpon>LogParserPropertyPage.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\IntroDialog.resx">
@@ -300,6 +354,10 @@
       <DependentUpon>OptionsDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReceiverPropertiesDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ReceiverPropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\SelectEncodingPropertyPage.resx">
       <DependentUpon>SelectEncodingPropertyPage.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -315,6 +373,10 @@
     <EmbeddedResource Include="UI\SessionTabPage.resx">
       <DependentUpon>SessionTabPage.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SummaryPropertyPage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SummaryPropertyPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\WizardForm.resx">
       <DependentUpon>WizardForm.cs</DependentUpon>

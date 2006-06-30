@@ -109,5 +109,15 @@ namespace NLogViewer.Parsers
 
             return parser;
         }
-	}
+
+        public static LogEventParserInfo FindParserByType(Type t)
+        {
+            foreach (LogEventParserInfo lepi in _name2parser.Values)
+            {
+                if (t == lepi.Type)
+                    return lepi;
+            }
+            return null;
+        }
+    }
 }

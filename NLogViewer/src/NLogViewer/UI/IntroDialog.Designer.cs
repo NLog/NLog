@@ -82,7 +82,7 @@ namespace NLogViewer.UI
             this.buttonNewLiveReceiver.Padding = new System.Windows.Forms.Padding(8);
             this.buttonNewLiveReceiver.Size = new System.Drawing.Size(206, 78);
             this.buttonNewLiveReceiver.TabIndex = 2;
-            this.buttonNewLiveReceiver.Text = "&Receive Live Log Events";
+            this.buttonNewLiveReceiver.Text = "&New Live Log Receiver";
             this.buttonNewLiveReceiver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonNewLiveReceiver.UseVisualStyleBackColor = false;
             // 

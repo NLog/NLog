@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Text;
 using System.Windows.Forms;
+using NLogViewer.Configuration;
 
 namespace NLogViewer.UI
 {
@@ -16,7 +17,7 @@ namespace NLogViewer.UI
         private Dictionary<int, bool> pagesActivated = new Dictionary<int, bool>();
         protected bool _bAllowBack = true;
         public event PageIndexChangedDelegate PageIndexChanged;
-        public List<WizardPage> Pages = new List<WizardPage>();
+        public List<IWizardPage> Pages = new List<IWizardPage>();
 
         public WizardForm()
         {
@@ -24,7 +25,6 @@ namespace NLogViewer.UI
             PageIndexChanged += new PageIndexChangedDelegate(EnablePrevNextButton);
             PageIndexChanged += new PageIndexChangedDelegate(DisplayCurrentPage);
         }
-
 
         /// <summary>
         /// This method is used to calculate the offset of the next displayed page.
@@ -67,10 +67,16 @@ namespace NLogViewer.UI
                 else
                     wizardButtonBack.Enabled = false;
             if (pageNumber == Pages.Count - 1)
+            {
                 wizardButtonNext.Enabled = false;
+                AcceptButton = wizardButtonFinish;
+            }
             else
+            {
                 wizardButtonNext.Enabled = true;
-
+                AcceptButton = null;
+                //AcceptButton = wizardButtonNext;
+            }
         }
         protected virtual void DisplayCurrentPage(int pageNumber)
         {
@@ -79,28 +85,35 @@ namespace NLogViewer.UI
             {
                 for (int i = 0; i < Pages.Count; ++i)
                 {
-
-                    if (i == pageNumber)
-                    {
-                        Pages[i].Show();
-                    }
-                    else
-                    {
-                        Pages[i].Hide();
-                    }
+                    Pages[i].Control.Hide();
                 }
                 if (!wizardContentPanel.Visible)
                     wizardContentPanel.Show();
-
-                Text = Pages[pageNumber].Text;
 
                 if (!pagesActivated.ContainsKey(pageNumber))
                 {
                     pagesActivated[pageNumber] = true;
                     ActivatePage(pageNumber);
                 }
+                Text = Pages[pageNumber].Title;
+                label1.Text = Pages[pageNumber].Label1;
+                label2.Text = Pages[pageNumber].Label2;
+                Pages[pageNumber].Control.Show();
+
                 EnablePrevNextButton(pageNumber);
             }
+        }
+
+        protected void ReplacePage(int index, IWizardPage newPage)
+        {
+            if (Pages[index] != null)
+            {
+                wizardContentPanel.Controls.Remove(Pages[index].Control);
+                Pages[index].Control.Dispose();
+            }
+            newPage.Control.Parent = wizardContentPanel;
+            newPage.Control.Dock = DockStyle.Fill;
+            Pages[index] = newPage;
         }
 
         private void wizardButtonFinish_Click(object sender, System.EventArgs e)
@@ -161,11 +174,11 @@ namespace NLogViewer.UI
 
         protected void InitializeWizard()
         {
-            foreach (WizardPage wp in Pages)
+            foreach (IWizardPage wp in Pages)
             {
-                wp.Parent = wizardContentPanel;
-                wp.Dock = DockStyle.Fill;
-                wp.Hide();
+                wp.Control.Parent = wizardContentPanel;
+                wp.Control.Dock = DockStyle.Fill;
+                wp.Control.Hide();
             }
             wizardContentPanel.Show();
 
@@ -210,7 +223,7 @@ namespace NLogViewer.UI
 
         public T FindPage<T>() where T : Control
         {
-            foreach (Control c in Pages)
+            foreach (IWizardPage c in Pages)
             {
                 if (c is T)
                     return (T)c;

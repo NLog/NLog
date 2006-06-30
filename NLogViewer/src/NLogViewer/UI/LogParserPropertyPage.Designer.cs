@@ -1,6 +1,6 @@
 namespace NLogViewer.UI
 {
-    partial class LogReceiverPropertyPage
+    partial class LogParserPropertyPage
     {
         /// <summary> 
         /// Required designer variable.
@@ -52,17 +52,14 @@ namespace NLogViewer.UI
             this.propertyGrid1.TabIndex = 1;
             this.propertyGrid1.ToolbarVisible = false;
             // 
-            // LogReceiverPropertyPage
+            // LogParserPropertyPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.propertyGrid1);
             this.Controls.Add(this.label1);
-            this.Label1 = "Configure your log receiver";
-            this.Label2 = "Set options that control how your receiver works.";
-            this.Name = "LogReceiverPropertyPage";
+            this.Name = "LogParserPropertyPage";
             this.Size = new System.Drawing.Size(400, 218);
-            this.Load += new System.EventHandler(this.LogReceiverPropertyPage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

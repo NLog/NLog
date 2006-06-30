@@ -10,7 +10,7 @@
     <xsl:variable name="common" select="document(concat($mode,'menu.xml'))" />
     
     <xsl:output method="xml" 
-        indent="no" 
+        indent="yes" 
         doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN" 
         doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />
 

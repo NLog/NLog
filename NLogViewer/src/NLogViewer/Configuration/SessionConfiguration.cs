@@ -146,9 +146,7 @@ namespace NLogViewer.Configuration
             {
                 using (FileStream fs = File.Create(fileName))
                 {
-                    XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
-                    ns.Add("", "");
-                    _serializer.Serialize(fs, this, ns);
+                    _serializer.Serialize(fs, this);
                     FileName = fileName;
                     Dirty = false;
                 }
@@ -170,6 +168,16 @@ namespace NLogViewer.Configuration
                 c.Resolve();
                 return c;
             }
+        }
+
+        public bool ContainsColumn(string name)
+        {
+            foreach (LogColumn lc in Columns)
+            {
+                if (lc.Name == name)
+                    return true;
+            }
+            return false;
         }
     }
 }

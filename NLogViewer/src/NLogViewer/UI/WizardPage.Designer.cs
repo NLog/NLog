@@ -1,3 +1,4 @@
+using NLogViewer.Configuration;
 namespace NLogViewer.UI
 {
     partial class WizardPage

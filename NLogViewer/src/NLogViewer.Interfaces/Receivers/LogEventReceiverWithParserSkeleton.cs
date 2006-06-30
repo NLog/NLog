@@ -33,67 +33,31 @@
 // 
 
 using System;
-using System.Net;
-using System.Net.Sockets;
-using System.Xml;
+using System.Threading;
+using System.Text;
 using System.IO;
-using System.Xml.Serialization;
-using System.Windows.Forms;
+using System.Collections;
 using System.Collections.Specialized;
+using System.Reflection;
+using System.Globalization;
 
-using NLogViewer.Configuration;
 using NLogViewer.Events;
 using NLogViewer.Parsers;
 using System.ComponentModel;
-using System.Drawing.Design;
-using System.Windows.Forms.Design;
-using NLogViewer.Receivers.UI;
+using System.Xml.Serialization;
 
 namespace NLogViewer.Receivers
 {
-    [LogEventReceiver("FILE", "File Receiver", "Reads from a file")]
-    public class FileReceiver : LogEventReceiverWithParserSkeleton, IWizardConfigurable
-    {
-        private string _fileName;
+	public abstract class LogEventReceiverWithParserSkeleton : LogEventReceiverSkeleton, ILogEventReceiverWithParser
+	{
+        private ILogEventParser _parser;
 
-        public FileReceiver()
+        [Browsable(false)]
+        [XmlIgnore]
+        public ILogEventParser Parser
         {
-        }
-
-        [Editor(typeof(FileNameEditor), typeof(UITypeEditor))]
-        public string FileName
-        {
-            get { return _fileName; }
-            set { _fileName = value; }
-        }
-
-        public override void InputThread()
-        {
-            try
-            {
-                using (FileStream stream = File.OpenRead(FileName))
-                {
-                    using (ILogEventParserInstance parserInstance = Parser.Begin(stream))
-                    {
-                        while (!InputThreadQuitRequested())
-                        {
-                            LogEvent logEventInfo = parserInstance.ReadNext();
-                            if (logEventInfo == null)
-                                break;
-                            EventReceived(logEventInfo);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        public IWizardPage GetWizardPage()
-        {
-            return new FileReceiverPropertyPage(this);
+            get { return _parser; }
+            set { _parser = value; }
         }
     }
 }

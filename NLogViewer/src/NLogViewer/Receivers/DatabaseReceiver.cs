@@ -48,39 +48,74 @@ using System.ComponentModel;
 using System.Drawing.Design;
 using System.Windows.Forms.Design;
 using NLogViewer.Receivers.UI;
+using System.Data;
 
 namespace NLogViewer.Receivers
 {
-    [LogEventReceiver("FILE", "File Receiver", "Reads from a file")]
-    public class FileReceiver : LogEventReceiverWithParserSkeleton, IWizardConfigurable
+    [LogEventReceiver("DATABASE", "Database Receiver", "Receives log events by executing an SQL query on a database")]
+    public class DatabaseReceiver : LogEventReceiverSkeleton, IWizardConfigurable
     {
-        private string _fileName;
+        private string _connectionString;
+        private string _connectionType;
+        private string _query;
+        private IsolationLevel _isolationLevel;
 
-        public FileReceiver()
+        public string ConnectionType
         {
+            get { return _connectionType; }
+            set { _connectionType = value; }
         }
 
-        [Editor(typeof(FileNameEditor), typeof(UITypeEditor))]
-        public string FileName
+        public string ConnectionString
         {
-            get { return _fileName; }
-            set { _fileName = value; }
+            get { return _connectionString; }
+            set { _connectionString = value; }
+        }
+
+        public IsolationLevel IsolationLevel
+        {
+            get { return _isolationLevel; }
+            set { _isolationLevel = value; }
+        }
+
+        public string Query
+        {
+            get { return _query; }
+            set { _query = value; }
+        }
+
+        public DatabaseReceiver()
+        {
         }
 
         public override void InputThread()
         {
             try
             {
-                using (FileStream stream = File.OpenRead(FileName))
+                Type connectionType = Type.GetType(ConnectionType, true);
+                using (IDbConnection conn = (IDbConnection)Activator.CreateInstance(connectionType))
                 {
-                    using (ILogEventParserInstance parserInstance = Parser.Begin(stream))
+                    conn.ConnectionString = ConnectionString;
+                    conn.Open();
+
+                    using (IDbTransaction tran = conn.BeginTransaction())
                     {
-                        while (!InputThreadQuitRequested())
+                        using (IDbCommand cmd = conn.CreateCommand())
                         {
-                            LogEvent logEventInfo = parserInstance.ReadNext();
-                            if (logEventInfo == null)
-                                break;
-                            EventReceived(logEventInfo);
+                            cmd.Transaction = tran;
+                            cmd.CommandText = Query;
+                            using (IDataReader reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    LogEvent le = new LogEvent();
+                                    for (int i = 0; i < reader.FieldCount; ++i)
+                                    {
+                                        le.Properties[reader.GetName(i)] = reader.GetValue(i);
+                                    }
+                                    EventReceived(le);
+                                }
+                            }
                         }
                     }
                 }
@@ -93,7 +128,7 @@ namespace NLogViewer.Receivers
 
         public IWizardPage GetWizardPage()
         {
-            return new FileReceiverPropertyPage(this);
+            return new DatabaseReceiverPropertyPage(this);
         }
     }
 }

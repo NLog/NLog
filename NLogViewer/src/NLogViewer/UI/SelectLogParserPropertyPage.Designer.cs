@@ -59,6 +59,7 @@ namespace NLogViewer.UI
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeaderName
             // 
@@ -76,6 +77,8 @@ namespace NLogViewer.UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label1);
+            this.Label1 = "Select Log Parser";
+            this.Label2 = "Select a parser that will be used to analyze stream of incoming data";
             this.Name = "SelectLogParserPropertyPage";
             this.Size = new System.Drawing.Size(406, 204);
             this.Load += new System.EventHandler(this.SelectLogParserPropertyPage_Load);

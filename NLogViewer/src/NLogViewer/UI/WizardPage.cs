@@ -5,12 +5,15 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using NLogViewer.Configuration;
 
 namespace NLogViewer.UI
 {
-    public partial class WizardPage : UserControl
+    public partial class WizardPage : UserControl, IWizardPage
     {
         private string _title;
+        private string _label1;
+        private string _label2;
 
         public WizardPage()
         {
@@ -23,6 +26,18 @@ namespace NLogViewer.UI
             set { _title = value; }
         }
 
+        public string Label1
+        {
+            get { return _label1; }
+            set { _label1 = value; }
+        }
+
+        public string Label2
+        {
+            get { return _label2; }
+            set { _label2 = value; }
+        }
+
         public virtual void ActivatePage()
         {
         }
@@ -30,6 +45,14 @@ namespace NLogViewer.UI
         public virtual bool ValidatePage()
         {
             return true;
+        }
+
+        Control IWizardPage.Control
+        {
+            get
+            {
+                return this;
+            }
         }
     }
 }

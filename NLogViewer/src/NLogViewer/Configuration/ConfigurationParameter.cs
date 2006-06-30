@@ -59,26 +59,28 @@ namespace NLogViewer.Configuration
         /// <summary>
         /// Creates a new instance of <see cref="ConfigurationParameter"/> and sets the parameter name and value.
         /// </summary>
-        public ConfigurationParameter(string name, string value)
+        public ConfigurationParameter(string name, object value)
         {
             this.Name = name;
-            this.Value = value;
+            this.TypedValue = value;
         }
 
         /// <summary>
         /// ConfigurationParameter name.
         /// </summary>
-        [XmlAttribute("name")]
+        [XmlElement("name")]
         public string Name;
 
         /// <summary>
         /// ConfigurationParameter value.
         /// </summary>
-        [XmlAttribute("value")]
-        public string Value;
+        [XmlElement("value")]
+        public object TypedValue;
 
         public static void ApplyConfigurationParameters(object target, List<ConfigurationParameter> parameters)
         {
+            if (parameters == null)
+                return;
             Type targetType = target.GetType();
 
             foreach (ConfigurationParameter cp in parameters)
@@ -86,8 +88,7 @@ namespace NLogViewer.Configuration
                 PropertyInfo pi = targetType.GetProperty(cp.Name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.FlattenHierarchy | BindingFlags.Instance);
                 if (pi != null)
                 {
-                    object typedValue = Convert.ChangeType(cp.Value, pi.PropertyType, CultureInfo.InvariantCulture);
-                    pi.SetValue(target, typedValue, null);
+                    pi.SetValue(target, cp.TypedValue, null);
                 }
             }
         }
@@ -95,18 +96,20 @@ namespace NLogViewer.Configuration
         public static List<ConfigurationParameter> CaptureConfigurationParameters(object target)
         {
             List<ConfigurationParameter> result = new List<ConfigurationParameter>();
-            Type targetType = target.GetType();
-
-            foreach (PropertyInfo pi in targetType.GetProperties(BindingFlags.Public | BindingFlags.FlattenHierarchy | BindingFlags.Instance))
+            if (target != null)
             {
-                if (pi.IsDefined(typeof(XmlIgnoreAttribute), true))
-                    continue;
+                Type targetType = target.GetType();
 
-                object v = pi.GetValue(target, null);
-                if (v != null)
+                foreach (PropertyInfo pi in targetType.GetProperties(BindingFlags.Public | BindingFlags.FlattenHierarchy | BindingFlags.Instance))
                 {
-                    string stringValue = Convert.ToString(v, CultureInfo.InvariantCulture);
-                    result.Add(new ConfigurationParameter(pi.Name, stringValue));
+                    if (pi.IsDefined(typeof(XmlIgnoreAttribute), true))
+                        continue;
+
+                    object v = pi.GetValue(target, null);
+                    if (v != null)
+                    {
+                        result.Add(new ConfigurationParameter(pi.Name, v));
+                    }
                 }
             }
             return result;

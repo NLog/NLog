@@ -6,25 +6,22 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using NLogViewer.Receivers;
+using NLogViewer.Parsers;
 using NLogViewer.Configuration;
 
 namespace NLogViewer.UI
 {
-    public partial class LogReceiverPropertyPage : WizardPage, IWizardPropertyPage<ILogEventReceiver>
+    public partial class LogParserPropertyPage : WizardPage, IWizardPropertyPage<ILogEventParser>
     {
-        public LogReceiverPropertyPage()
+        public LogParserPropertyPage()
         {
             InitializeComponent();
         }
 
-        public ILogEventReceiver TargetObject
+        public ILogEventParser TargetObject
         {
-            get { return propertyGrid1.SelectedObject as ILogEventReceiver; }
+            get { return propertyGrid1.SelectedObject as ILogEventParser; }
             set { propertyGrid1.SelectedObject = value; }
-        }
-
-        private void LogReceiverPropertyPage_Load(object sender, EventArgs e)
-        {
         }
     }
 }
