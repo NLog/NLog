@@ -1,7 +1,6 @@
 2006-06-30 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* added ${tempdir} and ${specialfolder}
 
-
 2006-06-29 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* implemented <targets><default-target-parametes /> </targets> that
 	specifies default values for all targets in the section
