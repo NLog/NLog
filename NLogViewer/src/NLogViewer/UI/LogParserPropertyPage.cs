@@ -23,5 +23,10 @@ namespace NLogViewer.UI
             get { return propertyGrid1.SelectedObject as ILogEventParser; }
             set { propertyGrid1.SelectedObject = value; }
         }
+
+        private void propertyGrid1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

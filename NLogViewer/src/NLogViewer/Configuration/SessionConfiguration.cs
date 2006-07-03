@@ -41,10 +41,14 @@ using System.IO;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Windows.Forms;
+using System.Runtime.Serialization.Formatters.Soap;
+
+using NLogViewer.Receivers;
 
 namespace NLogViewer.Configuration
 {
     [XmlRoot("nlogviewer-session")]
+    [Serializable]
 	public class SessionConfiguration
 	{
         private bool _dirty;
@@ -113,6 +117,10 @@ namespace NLogViewer.Configuration
             }
         }
 
+        public SessionConfiguration()
+        {
+        }
+
         public void AddLoggerConfig(LoggerConfig lc)
         {
             lock (this)
@@ -154,13 +162,15 @@ namespace NLogViewer.Configuration
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR: " + ex.Message);
+                MessageBox.Show("ERROR: " + ex.ToString());
                 return false;
             }
         }
 
         public static SessionConfiguration Load(string fileName)
         {
+            //SoapFormatter formatter = new SoapFormatter();
+
             using (FileStream fs = File.OpenRead(fileName))
             {
                 SessionConfiguration c = (SessionConfiguration)_serializer.Deserialize(fs);

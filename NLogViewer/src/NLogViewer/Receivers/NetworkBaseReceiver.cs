@@ -46,12 +46,12 @@ using NLogViewer.Configuration;
 using NLogViewer.Events;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace NLogViewer.Receivers
 {
     public abstract class NetworkBaseReceiver : LogEventReceiverWithParserSkeleton
     {
-        private List<string> _listenOn;
         private int _port;
 
         public NetworkBaseReceiver()
@@ -63,13 +63,6 @@ namespace NLogViewer.Receivers
         {
             get { return _port; }
             set { _port = value; }
-        }
-
-        [Description("List of Addresses to listen on")]
-        public List<string> ListenOn
-        {
-            get { return _listenOn; }
-            set { _listenOn = value; }
         }
     }
 }

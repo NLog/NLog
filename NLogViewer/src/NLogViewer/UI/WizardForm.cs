@@ -26,26 +26,29 @@ namespace NLogViewer.UI
             PageIndexChanged += new PageIndexChangedDelegate(DisplayCurrentPage);
         }
 
-        /// <summary>
-        /// This method is used to calculate the offset of the next displayed page.
-        /// This method can be overrided to have a different behavior
-        /// </summary>
-        /// <param name="piCurrentPage">Index of displayed page</param>
-        /// <returns>New index of the displayed page</returns>
-        public virtual int ForwardOffset(int piCurrentPage)
+        protected virtual bool ShouldSkipPage(int page)
         {
-            return ++piCurrentPage;
+            return false;
         }
-        /// <summary>
-        /// This method is used to calculate the offset of the previous displayed page.
-        /// This method can be overrided to have a different behavior
-        /// </summary>
-        /// <param name="piCurrentPage">Index of displayed page</param>
-        /// <returns>New index of the displayed page</returns>
-        public virtual int PreviousOffset(int piCurrentPage)
+
+        public virtual int ForwardOffset(int currentPage)
         {
-            return --piCurrentPage;
+            int nextPage = currentPage + 1;
+            while (ShouldSkipPage(nextPage))
+                nextPage++;
+
+            return nextPage;
         }
+
+        public virtual int PreviousOffset(int currentPage)
+        {
+            int prevPage = currentPage - 1;
+            while (ShouldSkipPage(prevPage))
+                prevPage--;
+
+            return prevPage;
+        }
+
         private void wizardButtonNext_Click(object sender, System.EventArgs e)
         {
             if (ValidatePage(_iCurrentPage))
@@ -66,6 +69,7 @@ namespace NLogViewer.UI
                     wizardButtonBack.Enabled = true;
                 else
                     wizardButtonBack.Enabled = false;
+
             if (pageNumber == Pages.Count - 1)
             {
                 wizardButtonNext.Enabled = false;
@@ -77,7 +81,25 @@ namespace NLogViewer.UI
                 AcceptButton = null;
                 //AcceptButton = wizardButtonNext;
             }
+            AcceptButton = null;
+            if (NextButtonIsDefault(pageNumber))
+            {
+                if (pageNumber == Pages.Count - 1)
+                {
+                    AcceptButton = wizardButtonFinish;
+                }
+                else
+                {
+                    AcceptButton = wizardButtonNext;
+                }
+            }
         }
+
+        protected virtual bool NextButtonIsDefault(int pageNumber)
+        {
+            return Pages[pageNumber].NextButtonIsDefault;
+        }
+
         protected virtual void DisplayCurrentPage(int pageNumber)
         {
             _iCurrentPage = pageNumber;
@@ -99,6 +121,7 @@ namespace NLogViewer.UI
                 label1.Text = Pages[pageNumber].Label1;
                 label2.Text = Pages[pageNumber].Label2;
                 Pages[pageNumber].Control.Show();
+                Pages[pageNumber].Control.Focus();
 
                 EnablePrevNextButton(pageNumber);
             }
@@ -205,9 +228,9 @@ namespace NLogViewer.UI
         {
             if (pagesActivated != null)
             {
-                if (pagesActivated.Count > pageNumber)
+                if (pageNumber < Pages.Count)
                 {
-                    for (int i = pageNumber; i < pagesActivated.Count; i++)
+                    for (int i = pageNumber; i < Pages.Count; i++)
                         pagesActivated[i] = false;
                 }
             }

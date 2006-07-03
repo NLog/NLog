@@ -13,6 +13,13 @@ namespace NLogViewer.UI
 {
     public partial class NewReceiverDialog : NLogViewer.UI.WizardForm
     {
+        const int PAGE_SELECT_RECEIVER = 0;
+        const int PAGE_RECEIVER_PROPERTIES = 1;
+        const int PAGE_SELECT_PARSER = 2;
+        const int PAGE_PARSER_PROPERTIES = 3;
+        const int PAGE_SELECT_ENCODING = 4;
+        const int PAGE_SUMMARY = 5;
+
         private ILogEventReceiver _receiver = null;
         private ILogEventParser _parser = null;
 
@@ -23,63 +30,100 @@ namespace NLogViewer.UI
 
         private void NewReceiverDialog_Load(object sender, EventArgs e)
         {
-            Pages.Add(new SelectLogReceiverPropertyPage());
+            SelectLogReceiverPropertyPage page0 = new SelectLogReceiverPropertyPage();
+            page0.ReceiverChanged += new EventHandler(page0_ReceiverChanged);
+            Pages.Add(page0);
             Pages.Add(new LogReceiverPropertyPage());
-            Pages.Add(new SelectLogParserPropertyPage());
+            SelectLogParserPropertyPage page2 = new SelectLogParserPropertyPage();
+            page2.ParserChanged += new EventHandler(page2_ParserChanged);
+            Pages.Add(page2);
             Pages.Add(new LogParserPropertyPage());
+            Pages.Add(new SelectEncodingPropertyPage());
             Pages.Add(new SummaryPropertyPage());
             InitializeWizard();
+        }
+
+        void page2_ParserChanged(object sender, EventArgs e)
+        {
+            if (((SelectLogParserPropertyPage)sender).SelectedLogParser != null)
+            {
+                _parser = LogEventParserFactory.CreateLogParser(
+                    ((SelectLogParserPropertyPage)sender).SelectedLogParser.Name, null);
+
+                if (_parser is IWizardConfigurable)
+                    ReplacePage(PAGE_PARSER_PROPERTIES, ((IWizardConfigurable)_parser).GetWizardPage());
+                else
+                    ReplacePage(PAGE_PARSER_PROPERTIES, new LogParserPropertyPage());
+
+                IWizardPropertyPage<ILogEventParser> pp = Pages[PAGE_PARSER_PROPERTIES] as IWizardPropertyPage<ILogEventParser>;
+                if (pp != null)
+                    pp.TargetObject = _parser;
+            }
+            else
+            {
+                _parser = null;
+            }
+            UnActivatePage(PAGE_PARSER_PROPERTIES);
+        }
+
+        void page0_ReceiverChanged(object sender, EventArgs e)
+        {
+            if (((SelectLogReceiverPropertyPage)sender).SelectedLogReceiver != null)
+            {
+                _receiver = LogReceiverFactory.CreateLogReceiver(
+                    ((SelectLogReceiverPropertyPage)sender).SelectedLogReceiver.Name, null);
+
+                if (_receiver is IWizardConfigurable)
+                    ReplacePage(PAGE_RECEIVER_PROPERTIES, ((IWizardConfigurable)_receiver).GetWizardPage());
+                else
+                    ReplacePage(PAGE_RECEIVER_PROPERTIES, new LogReceiverPropertyPage());
+
+                IWizardPropertyPage<ILogEventReceiver> pp = Pages[PAGE_RECEIVER_PROPERTIES] as IWizardPropertyPage<ILogEventReceiver>;
+                if (pp != null)
+                    pp.TargetObject = _receiver;
+            }
+            else
+            {
+                _receiver = null;
+            }
+            UnActivatePage(PAGE_RECEIVER_PROPERTIES);
         }
 
         protected override void ActivatePage(int pageNumber)
         {
             switch (pageNumber)
             {
-                case 1:
-                    // log receiver property page
-
-                    ILogEventReceiver receiver = LogReceiverFactory.CreateLogReceiver(
-                        FindPage<SelectLogReceiverPropertyPage>().SelectedLogReceiver.Name, null);
-
-                    if (receiver is IWizardConfigurable)
-                    {
-                        ReplacePage(1, ((IWizardConfigurable)receiver).GetWizardPage());
-                    }
-                    else
-                    {
-                        ReplacePage(1, new LogReceiverPropertyPage());
-                    }
-
-                    IWizardPropertyPage<ILogEventReceiver> pp = Pages[1] as IWizardPropertyPage<ILogEventReceiver>;
-                    if (pp != null)
-                        pp.TargetObject = receiver;
-
-                    _receiver = receiver;
+                case PAGE_SELECT_RECEIVER:
                     break;
 
-                case 2:
-                    // select log parser
+                case PAGE_RECEIVER_PROPERTIES:
                     break;
 
-                case 3:
-                    // log parser property page
+                case PAGE_SELECT_PARSER:
+                    break;
 
+                case PAGE_PARSER_PROPERTIES:
                     ILogEventParser parser = LogEventParserFactory.CreateLogParser(
                         FindPage<SelectLogParserPropertyPage>().SelectedLogParser.Name, null);
 
                     if (parser is IWizardConfigurable)
                     {
-                        Pages[3] = ((IWizardConfigurable)parser).GetWizardPage();
+                        ReplacePage(3, ((IWizardConfigurable)parser).GetWizardPage());
                     }
                     else
                     {
-                        Pages[3] = new LogParserPropertyPage();
+                        ReplacePage(3, new LogParserPropertyPage());
                     }
 
-                    FindPage<LogParserPropertyPage>().TargetObject = parser;
+                    IWizardPropertyPage<ILogEventParser> ppp = Pages[3] as IWizardPropertyPage<ILogEventParser>;
+                    if (ppp != null)
+                        ppp.TargetObject = parser;
                     break;
 
-                case 4:
+                case PAGE_SELECT_ENCODING:
+                    break;
+
+                case PAGE_SUMMARY:
                     SummaryPropertyPage summaryPage = FindPage<SummaryPropertyPage>();
                     DisplaySummary(summaryPage);
                     break;
@@ -87,25 +131,21 @@ namespace NLogViewer.UI
             }
         }
 
-        public override int ForwardOffset(int currentPage)
+        protected override bool ShouldSkipPage(int page)
         {
-            if (currentPage == 1)
+            if (!(_receiver is ILogEventReceiverWithParser))
             {
-                if (!(_receiver is ILogEventReceiverWithParser))
-                    return 4;
+                if (page == PAGE_SELECT_PARSER)
+                    return true;
+                if (page == PAGE_PARSER_PROPERTIES)
+                    return true;
             }
-            return base.ForwardOffset(currentPage);
-        }
-
-        public override int PreviousOffset(int currentPage)
-        {
-            if (currentPage == 4)
+            if (!(_parser is ILogEventParserWithEncoding))
             {
-                if (!(_receiver is ILogEventReceiverWithParser))
-                    return 1;
+                if (page == PAGE_SELECT_ENCODING)
+                    return true;
             }
-
-            return base.PreviousOffset(currentPage);
+            return false;
         }
 
         public ILogEventReceiver Receiver

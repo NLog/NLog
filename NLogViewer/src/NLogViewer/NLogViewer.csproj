@@ -48,6 +48,7 @@
     <WarningLevel>4</WarningLevel>
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -84,6 +85,7 @@
     <Reference Include="System.Drawing">
       <Name>System.Drawing</Name>
     </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms">
       <Name>System.Windows.Forms</Name>
     </Reference>
@@ -142,6 +144,7 @@
     <Compile Include="Configuration\LoggerConfigCollection.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Configuration\SerializableDictionary.cs" />
     <Compile Include="Configuration\SessionConfiguration.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -162,6 +165,18 @@
     </Compile>
     <Compile Include="EntryPoint.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parsers\UI\AddRegexCaptureGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parsers\UI\AddRegexCaptureGroup.Designer.cs">
+      <DependentUpon>AddRegexCaptureGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parsers\UI\RegexLogEventParserPropertyPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Parsers\UI\RegexLogEventParserPropertyPage.Designer.cs">
+      <DependentUpon>RegexLogEventParserPropertyPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Receivers\DatabaseReceiver.cs" />
     <Compile Include="Receivers\UI\ConnectionStringBuilderDialog.cs">
@@ -304,6 +319,14 @@
     <EmbeddedResource Include="GlobalImageList.resx">
       <SubType>Designer</SubType>
       <DependentUpon>GlobalImageList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parsers\UI\AddRegexCaptureGroup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AddRegexCaptureGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parsers\UI\RegexLogEventParserPropertyPage.resx">
+      <DependentUpon>RegexLogEventParserPropertyPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>

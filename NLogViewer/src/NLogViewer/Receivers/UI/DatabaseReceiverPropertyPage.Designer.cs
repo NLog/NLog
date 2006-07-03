@@ -164,9 +164,10 @@ namespace NLogViewer.Receivers.UI
             this.Controls.Add(this.textBoxConnectionType);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
-            this.Label1 = "Configure your log receiver";
+            this.Label1 = "Configure Your Log Receiver";
             this.Label2 = "Set options that control how your receiver works.";
             this.Name = "DatabaseReceiverPropertyPage";
+            this.NextButtonIsDefault = false;
             this.Size = new System.Drawing.Size(400, 360);
             this.Load += new System.EventHandler(this.DatabaseReceiverPropertyPage_Load);
             this.ResumeLayout(false);

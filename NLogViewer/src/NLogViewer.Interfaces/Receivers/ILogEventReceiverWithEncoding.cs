@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 
 using NLogViewer.Events;
+using System.Text;
 
 namespace NLogViewer.Parsers
 {
-    public interface ILogEventParser
+    public interface ILogEventParserWithEncoding
     {
-        ILogEventParserInstance Begin(Stream stream);
+        Encoding Encoding { get; set; }
     }
 }

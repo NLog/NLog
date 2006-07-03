@@ -14,6 +14,7 @@ namespace NLogViewer.UI
         private string _title;
         private string _label1;
         private string _label2;
+        private bool _nextButtonIsDefault = true;
 
         public WizardPage()
         {
@@ -36,6 +37,13 @@ namespace NLogViewer.UI
         {
             get { return _label2; }
             set { _label2 = value; }
+        }
+
+        [System.ComponentModel.DefaultValue(true)]
+        public bool NextButtonIsDefault
+        {
+            get { return _nextButtonIsDefault; }
+            set { _nextButtonIsDefault = value; }
         }
 
         public virtual void ActivatePage()

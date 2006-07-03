@@ -38,7 +38,8 @@ using System.Xml.Serialization;
 
 namespace NLogViewer.Configuration
 {
-	public class LogColumn
+    [Serializable]
+    public class LogColumn
 	{
         public LogColumn()
         {

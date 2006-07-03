@@ -13,6 +13,8 @@ namespace NLogViewer.UI
     {
         private LogEventParserInfo _selectedLogParser;
 
+        public event EventHandler ParserChanged;
+
         public SelectLogParserPropertyPage()
         {
             InitializeComponent();
@@ -46,6 +48,8 @@ namespace NLogViewer.UI
             {
                 _selectedLogParser = null;
             }
+            if (ParserChanged != null)
+                ParserChanged(this, new EventArgs());
         }
 
         public override bool ValidatePage()

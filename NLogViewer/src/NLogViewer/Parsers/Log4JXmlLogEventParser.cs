@@ -57,11 +57,6 @@ namespace NLogViewer.Parsers
             return new Context(xtr);
         }
 
-        public void Configure(NameValueCollection parameters)
-        {
-        }
-
-
         private static void ParseLog4JProperties(LogEvent ev, XmlTextReader reader, string namePrefix)
         {
             if (reader.IsEmptyElement)

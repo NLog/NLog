@@ -5,7 +5,8 @@ namespace NLogViewer.Configuration
     /// <summary>
     /// A dictionary with keys of type String and values of type LoggerConfig
     /// </summary>
-    public class StringToLoggerConfigMap: System.Collections.DictionaryBase
+    [Serializable]
+    public class StringToLoggerConfigMap : System.Collections.DictionaryBase
     {
         /// <summary>
         /// Initializes a new empty instance of the StringToLoggerConfigMap class

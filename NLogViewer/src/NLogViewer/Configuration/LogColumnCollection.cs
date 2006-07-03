@@ -5,6 +5,7 @@ namespace NLogViewer.Configuration
     /// <summary>
     /// A collection of elements of type LogColumn
     /// </summary>
+    [Serializable]
     public class LogColumnCollection: System.Collections.CollectionBase
     {
         /// <summary>

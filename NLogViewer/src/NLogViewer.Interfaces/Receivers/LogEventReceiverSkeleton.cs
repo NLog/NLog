@@ -54,7 +54,6 @@ namespace NLogViewer.Receivers
         private Thread _inputThread = null;
         private volatile bool _quitThread;
         private volatile string _statusText = "Idle";
-        private NameValueCollection _parameters = new NameValueCollection();
 
         [Browsable(false)]
         [XmlIgnore]
@@ -115,11 +114,6 @@ namespace NLogViewer.Receivers
         public void Disconnect()
         {
             _processor = null;
-        }
-
-        public void Configure(NameValueCollection parameters)
-        {
-            _parameters = parameters;
         }
 
         public virtual void Pause()

@@ -98,6 +98,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Parsers\ILogEventParserInstance.cs" />
+    <Compile Include="Receivers\ILogEventReceiverWithEncoding.cs" />
     <Compile Include="Receivers\LogEventReceiverWithParserSkeleton.cs" />
     <Compile Include="Receivers\ILogEventReceiverWithParser.cs" />
     <Compile Include="Parsers\ILogEventParser.cs" />

@@ -47,7 +47,8 @@ namespace NLogViewer.Configuration
     /// <remarks>
     /// The parameters are uninterpreted (name,value) string pairs.
     /// </remarks>
-	public class ConfigurationParameter
+    [Serializable]
+    public class ConfigurationParameter
 	{
         /// <summary>
         /// Creates a new instance of <see cref="ConfigurationParameter"/>.

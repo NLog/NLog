@@ -12,15 +12,19 @@ using System.Collections.Specialized;
 namespace NLogViewer.Parsers
 {
     [LogEventParser("CSV", "Comma Separated", "NOT IMPLEMENTED - Comma Separated Values")]
-    public class CsvLogEventParser : ILogEventParser
+    public class CsvLogEventParser : ILogEventParser, ILogEventParserWithEncoding
     {
         public ILogEventParserInstance Begin(Stream stream)
         {
             throw new NotImplementedException();
         }
 
-        public void Configure(NameValueCollection parameters)
+        private Encoding _encoding = Encoding.UTF8;
+
+        public Encoding Encoding
         {
+            get { return _encoding; }
+            set { _encoding = value; }
         }
     }
 }

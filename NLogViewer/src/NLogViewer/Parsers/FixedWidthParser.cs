@@ -12,15 +12,19 @@ using System.Collections.Specialized;
 namespace NLogViewer.Parsers
 {
     [LogEventParser("FIXED", "Fixed Width", "NOT IMPLEMENTED - Fixed Width Columns")]
-    public class FixedWidthLogEventParser : ILogEventParser
+    public class FixedWidthLogEventParser : ILogEventParser, ILogEventParserWithEncoding
     {
         public ILogEventParserInstance Begin(Stream stream)
         {
             throw new NotImplementedException();
         }
 
-        public void Configure(NameValueCollection parameters)
+        private Encoding _encoding = Encoding.UTF8;
+
+        public Encoding Encoding
         {
+            get { return _encoding; }
+            set { _encoding = value; }
         }
     }
 }

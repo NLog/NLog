@@ -38,9 +38,9 @@ namespace NLogViewer.UI
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 13);
+            this.label1.Size = new System.Drawing.Size(109, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Configure Log Receiver:";
+            this.label1.Text = "Configure Log Parser:";
             // 
             // propertyGrid1
             // 
@@ -51,6 +51,7 @@ namespace NLogViewer.UI
             this.propertyGrid1.Size = new System.Drawing.Size(400, 205);
             this.propertyGrid1.TabIndex = 1;
             this.propertyGrid1.ToolbarVisible = false;
+            this.propertyGrid1.Click += new System.EventHandler(this.propertyGrid1_Click);
             // 
             // LogParserPropertyPage
             // 
@@ -58,6 +59,8 @@ namespace NLogViewer.UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.propertyGrid1);
             this.Controls.Add(this.label1);
+            this.Label1 = "Configure Log Parser";
+            this.Label2 = "Set log parser parameters";
             this.Name = "LogParserPropertyPage";
             this.Size = new System.Drawing.Size(400, 218);
             this.ResumeLayout(false);

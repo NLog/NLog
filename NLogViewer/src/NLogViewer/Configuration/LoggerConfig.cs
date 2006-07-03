@@ -39,7 +39,8 @@ using System.Drawing;
 
 namespace NLogViewer.Configuration
 {
-	public class LoggerConfig
+    [Serializable]
+    public class LoggerConfig
 	{
         [XmlAttribute("name")]
         public string Name;

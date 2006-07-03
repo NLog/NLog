@@ -62,6 +62,7 @@ namespace NLogViewer.Receivers.UI
             this.buttonBrowse.TabIndex = 2;
             this.buttonBrowse.Text = "Browse...";
             this.buttonBrowse.UseVisualStyleBackColor = true;
+            this.buttonBrowse.Click += new System.EventHandler(this.buttonBrowse_Click);
             // 
             // FileReceiverPropertyPage
             // 
@@ -70,6 +71,8 @@ namespace NLogViewer.Receivers.UI
             this.Controls.Add(this.buttonBrowse);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
+            this.Label1 = "Configure Your Log Receiver";
+            this.Label2 = "Locate your log file";
             this.Name = "FileReceiverPropertyPage";
             this.Size = new System.Drawing.Size(320, 179);
             this.Load += new System.EventHandler(this.FileReceiverPropertyPage_Load);

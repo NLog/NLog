@@ -468,7 +468,7 @@ namespace NLogViewer.UI
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.Filter = "Log files (*.log;*.txt)|*.log;*.txt|All files (*.*)|*.*";
+                ofd.Filter = "Log files (*.log;*.txt;*.csv)|*.log;*.txt;*.csv|All files (*.*)|*.*";
                 if (DialogResult.OK == ofd.ShowDialog())
                 {
                     SessionConfiguration lici = new SessionConfiguration();

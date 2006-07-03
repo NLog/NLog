@@ -13,6 +13,8 @@ namespace NLogViewer.UI
     {
         private LogEventReceiverInfo _selectedLogReceiver;
 
+        public event EventHandler ReceiverChanged;
+
         public SelectLogReceiverPropertyPage()
         {
             _selectedLogReceiver = null;
@@ -47,6 +49,9 @@ namespace NLogViewer.UI
             {
                 _selectedLogReceiver = null;
             }
+            EventArgs args = new EventArgs();
+            if (ReceiverChanged != null)
+                ReceiverChanged(this, args);
         }
 
         public override bool ValidatePage()

@@ -11,6 +11,7 @@ namespace NLogViewer.Configuration
         string Label1 { get; set; }
         string Label2 { get; set; }
         Control Control { get; }
+        bool NextButtonIsDefault { get; }
         void ActivatePage();
         bool ValidatePage();
     }

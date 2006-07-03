@@ -44,5 +44,17 @@ namespace NLogViewer.Receivers.UI
             }
             return true;
         }
+
+        private void buttonBrowse_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Log files (*.log;*.txt;*.csv)|*.log;*.txt;*.csv|All files (*.*)|*.*";
+                if (DialogResult.OK == ofd.ShowDialog())
+                {
+                    textBox1.Text = ofd.FileName;
+                }
+            }
+        }
     }
 }
