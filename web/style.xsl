@@ -21,6 +21,8 @@
             <head>
                 <link rel="stylesheet" href="style.css" type="text/css" />
                 <link rel="stylesheet" href="syntax.css" type="text/css" />
+                <link rel="icon" href="http://www.nlog-project.org/favicon.ico" type="image/x-icon" />
+                <link rel="shortcut icon" href="http://www.nlog-project.org/favicon.ico" type="image/x-icon" /> 
                 <meta name="generator" content="NAnt 0.85 style task" />
                 <meta name="keywords" content="NLog logging tracing debugging library easy simple C# .NET log4net log4j Logger C/C++ COM" />
                 <title>NLog - <xsl:value-of select="$common/common/navigation/nav[@href=$page_id]/@label" /></title>
