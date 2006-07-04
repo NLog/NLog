@@ -1,3 +1,9 @@
+2006-07-04 Marcin Krupinski <yoszek@gmail.com>
+	* added FormControl target that logs to Text property of any
+	Windows.Forms.Control
+	* added RichTextBox target with row- and word coloring that 
+	logs to RichTextBox
+
 2006-06-30 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* added ${tempdir} and ${specialfolder}
 
@@ -129,7 +135,7 @@
 
 2006-03-27 Jaroslaw Kowalski <jaak@jkowalski.net>
 
-    * Updated .NET CF project file
+	* Updated .NET CF project file
 
 2006-03-21 Jaroslaw Kowalski <jaak@jkowalski.net>
 
