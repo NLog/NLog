@@ -180,8 +180,8 @@ namespace NLog.Targets
             set { Renderer.IncludeNDC = value; }
         }
         /// <summary>
-        /// The collection of paramters. Each parameter contains a mapping
-        /// between NLog layout and a database named or positional parameter.
+        /// The collection of parameters. Each parameter contains a mapping
+        /// between NLog layout and a named parameter.
         /// </summary>
         [ArrayParameter(typeof(NLogViewerParameterInfo), "parameter")]
         public NLogViewerParameterInfoCollection Parameters
