@@ -77,6 +77,7 @@
     <Reference Include="System.Data">
       <Name>system.data</Name>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Messaging">
       <Name>System.Messaging</Name>
     </Reference>
@@ -248,6 +249,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Internal\FileInfoHelper.cs" />
+    <Compile Include="Internal\FormHelper.cs" />
     <Compile Include="Internal\Win32\Win32FileAttributes.cs" />
     <Compile Include="Internal\Win32\Win32FileHelper.cs" />
     <Compile Include="Internal\DictionaryBase.cs">
@@ -548,6 +550,7 @@
     <Compile Include="Targets\File.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Targets\FormControl.cs" />
     <Compile Include="Targets\Mail.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -584,6 +587,11 @@
     <Compile Include="Targets\Null.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Targets\RichTextBox.cs" />
+    <Compile Include="Targets\RichTextBoxRowColoringRule.cs" />
+    <Compile Include="Targets\RichTextBoxRowColoringRuleCollection.cs" />
+    <Compile Include="Targets\RichTextBoxWordColoringRule.cs" />
+    <Compile Include="Targets\RichTextBoxWordColoringRuleCollection.cs" />
     <Compile Include="Targets\Trace.cs">
       <SubType>Code</SubType>
     </Compile>
