@@ -19,7 +19,7 @@ namespace NLogViewer.UI
         public void ReloadRecentFiles()
         {
             listViewRecentFiles.Items.Clear();
-            foreach (string s in AppPreferences.GetRecentFileList())
+            foreach (string s in AppPreferences.RecentSessions.GetList())
             {
                 try
                 {

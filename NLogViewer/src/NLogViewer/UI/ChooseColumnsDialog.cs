@@ -26,6 +26,7 @@ namespace NLogViewer.UI
 
         private List<CheckBox> _checkboxes = new List<CheckBox>();
         private List<TextBox> _widths = new List<TextBox>();
+        private List<ComboBox> _combos = new List<ComboBox>();
 
         private void ChooseColumnsDialog_Load(object sender, EventArgs e)
         {
@@ -45,6 +46,17 @@ namespace NLogViewer.UI
                 tb.Dock = DockStyle.Fill;
                 _widths.Add(tb);
                 tableLayoutPanel1.Controls.Add(tb);
+
+                ComboBox combo = new ComboBox();
+                combo.DropDownStyle = ComboBoxStyle.DropDownList;
+                combo.Items.Add(LogColumnGrouping.None);
+                combo.Items.Add(LogColumnGrouping.Flat);
+                combo.Items.Add(LogColumnGrouping.Hierarchy);
+                combo.Items.Add(LogColumnGrouping.FileSystem);
+                combo.SelectedItem = lc.Grouping;
+                combo.Dock = DockStyle.Fill;
+                _combos.Add(combo);
+                tableLayoutPanel1.Controls.Add(combo);
             }
         }
 

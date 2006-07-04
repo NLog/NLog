@@ -16,12 +16,12 @@ namespace NLogViewer.Parsers
     [LogEventParser("REGEX", "Regular Expression", "Regular Expression")]
     public class RegexLogEventParser : ILogEventParser, IWizardConfigurable, ILogEventParserWithEncoding
     {
-        private string _expression;
+        private string _expression = @"^(?<IPAddress>\d+.\d+.\d+.\d+)";
         private Regex _compiledRegex;
 
         private Encoding _encoding = Encoding.UTF8;
 
-        public Encoding Encoding
+        Encoding ILogEventParserWithEncoding.Encoding
         {
             get { return _encoding; }
             set { _encoding = value; }
@@ -39,24 +39,44 @@ namespace NLogViewer.Parsers
 
         class Instance : ILogEventParserInstance
         {
-            public LogEvent ReadNext()
+            private StreamReader _reader;
+            private RegexLogEventParser _parser;
+
+            public Instance(Stream stream, RegexLogEventParser parser)
             {
-                throw new Exception("The method or operation is not implemented.");
+                _parser = parser;
+                _reader = new StreamReader(stream, parser._encoding);
             }
 
-            #region IDisposable Members
+            public LogEvent ReadNext()
+            {
+                string line = _reader.ReadLine();
+                if (line == null)
+                    return null;
+
+                Match match = _parser._compiledRegex.Match(line);
+                if (!match.Success)
+                    return null;
+
+                LogEvent le = new LogEvent();
+                string[] names = _parser._compiledRegex.GetGroupNames();
+                for (int i = 1; i < names.Length; ++i)
+                {
+                    string v = match.Groups[i].Value;
+                    le.Properties[names[i]] = v;
+                }
+
+                return le;
+            }
 
             public void Dispose()
             {
-                throw new Exception("The method or operation is not implemented.");
             }
-
-            #endregion
         }
 
         public ILogEventParserInstance Begin(Stream stream)
         {
-            throw new NotImplementedException();
+            return new Instance(stream, this);
         }
 
         public IWizardPage GetWizardPage()

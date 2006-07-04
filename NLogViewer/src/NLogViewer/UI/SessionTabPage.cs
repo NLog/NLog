@@ -782,6 +782,7 @@ namespace NLogViewer.UI
             toolStripButtonStop.Enabled = _session.Receiver.CanStop();
             toolStripButtonPause.Enabled = _session.Receiver.CanPause();
             toolStripButtonRefresh.Enabled = _session.Receiver.CanRefresh();
+            toolStripLabelStatus.Text = _session.Receiver.StatusText;
             IWizardConfigurable wc = _session.Receiver as IWizardConfigurable;
             if (wc != null)
                 toolStripButtonRefresh.Enabled = wc != null;

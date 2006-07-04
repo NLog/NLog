@@ -56,9 +56,11 @@ namespace NLogViewer.UI
 	/// </summary>
 	public class MainForm : System.Windows.Forms.Form
     {
+        private string[] _args;
+
+
         private System.Windows.Forms.TabControl tabControl1;
         private System.ComponentModel.IContainer components;
-
         private string _baseConfigurationPath;
         private System.Windows.Forms.Timer timer1;
         private MenuStrip menuStrip1;
@@ -81,6 +83,8 @@ namespace NLogViewer.UI
         private IntroDialog introDialog1;
         private ToolStripMenuItem toolStripMenuItemNewLiveLogReceiver;
         private ToolStripMenuItem toolStripMenuItemOpenLogFile;
+        private Button buttonCloseActiveTab;
+        private ToolTip toolTip1;
         private List<Session> _sessions = new List<Session>();
 
 		public MainForm()
@@ -89,7 +93,12 @@ namespace NLogViewer.UI
 			InitializeComponent();
 		}
 
-		/// <summary>
+        public MainForm(string[] args) : this()
+        {
+            _args = args;
+        }
+
+        /// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -134,7 +143,9 @@ namespace NLogViewer.UI
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.buttonCloseActiveTab = new System.Windows.Forms.Button();
             this.introDialog1 = new NLogViewer.UI.IntroDialog();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -314,10 +325,28 @@ namespace NLogViewer.UI
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "App.ico");
             // 
+            // buttonCloseActiveTab
+            // 
+            this.buttonCloseActiveTab.AccessibleDescription = "AAA";
+            this.buttonCloseActiveTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCloseActiveTab.BackColor = System.Drawing.Color.Transparent;
+            this.buttonCloseActiveTab.FlatAppearance.BorderSize = 0;
+            this.buttonCloseActiveTab.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCloseActiveTab.Image = ((System.Drawing.Image)(resources.GetObject("buttonCloseActiveTab.Image")));
+            this.buttonCloseActiveTab.Location = new System.Drawing.Point(668, 24);
+            this.buttonCloseActiveTab.Name = "buttonCloseActiveTab";
+            this.buttonCloseActiveTab.Size = new System.Drawing.Size(24, 24);
+            this.buttonCloseActiveTab.TabIndex = 9;
+            this.buttonCloseActiveTab.TabStop = false;
+            this.buttonCloseActiveTab.UseMnemonic = false;
+            this.buttonCloseActiveTab.UseVisualStyleBackColor = true;
+            this.buttonCloseActiveTab.Click += new System.EventHandler(this.buttonCloseActiveTab_Click);
+            this.buttonCloseActiveTab.MouseHover += new System.EventHandler(this.buttonCloseActiveTab_MouseHover);
+            // 
             // introDialog1
             // 
             this.introDialog1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("introDialog1.BackgroundImage")));
-            this.introDialog1.Location = new System.Drawing.Point(183, 75);
+            this.introDialog1.Location = new System.Drawing.Point(198, 103);
             this.introDialog1.Name = "introDialog1";
             this.introDialog1.Size = new System.Drawing.Size(446, 395);
             this.introDialog1.TabIndex = 8;
@@ -326,6 +355,7 @@ namespace NLogViewer.UI
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(692, 466);
+            this.Controls.Add(this.buttonCloseActiveTab);
             this.Controls.Add(this.introDialog1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
@@ -360,6 +390,10 @@ namespace NLogViewer.UI
             introDialog1.listViewRecentFiles.DoubleClick += new EventHandler(listViewRecentFiles_DoubleClick);
             introDialog1.buttonNewLiveReceiver.Click += new EventHandler(NewLiveLogReceiver_Clicked);
             ReloadTabPages();
+            foreach (string fn in _args)
+            {
+                OpenSession(fn);
+            }
         }
 
         void buttonOpen_Click(object sender, EventArgs e)
@@ -394,6 +428,7 @@ namespace NLogViewer.UI
                 this.introDialog1.Dock = DockStyle.Fill;
                 this.introDialog1.Visible = true;
                 this.introDialog1.ReloadRecentFiles();
+                this.buttonCloseActiveTab.Visible = false;
                 this.tabControl1.Visible = false;
             }
             else
@@ -405,6 +440,7 @@ namespace NLogViewer.UI
                 {
                     this.tabControl1.TabPages.Add(i.TabPage);
                 }
+                this.buttonCloseActiveTab.Visible = true;
                 this.tabControl1.Visible = true;
             }
         }
@@ -581,7 +617,7 @@ namespace NLogViewer.UI
 
             int pos = 1;
 
-            foreach (string s in AppPreferences.GetRecentFileList())
+            foreach (string s in AppPreferences.RecentSessions.GetList())
             {
                 ToolStripMenuItem newItem = new ToolStripMenuItem();
                 newItem.Text = "&" + pos + ". " + s;
@@ -636,7 +672,7 @@ namespace NLogViewer.UI
                 ReloadTabPages();
             instance.Start();
             tabControl1.SelectedTab = instance.TabPage;
-            AppPreferences.AddToRecentFileList(fileName);
+            AppPreferences.RecentSessions.AddToList(fileName);
         }
 
         private void OpenSession(object sender, EventArgs e)
@@ -718,6 +754,18 @@ namespace NLogViewer.UI
                 if (s != null)
                     s.Close();
             }
+        }
+
+        private void buttonCloseActiveTab_Click(object sender, EventArgs e)
+        {
+            Session s = SelectedSession;
+            if (s != null)
+                s.Close();
+        }
+
+        private void buttonCloseActiveTab_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Close Active Session", buttonCloseActiveTab);
         }
 	}
 }

@@ -406,7 +406,7 @@ namespace NLogViewer
             {
                 Config.ParserParameters = ConfigurationParameter.CaptureConfigurationParameters(((ILogEventReceiverWithParser)_receiver).Parser);
             }
-            AppPreferences.AddToRecentFileList(fileName);
+            AppPreferences.RecentSessions.AddToList(fileName);
             return Config.Save(fileName);
         }
 

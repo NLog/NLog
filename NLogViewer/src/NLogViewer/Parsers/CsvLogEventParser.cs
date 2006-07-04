@@ -21,7 +21,7 @@ namespace NLogViewer.Parsers
 
         private Encoding _encoding = Encoding.UTF8;
 
-        public Encoding Encoding
+        Encoding ILogEventParserWithEncoding.Encoding
         {
             get { return _encoding; }
             set { _encoding = value; }

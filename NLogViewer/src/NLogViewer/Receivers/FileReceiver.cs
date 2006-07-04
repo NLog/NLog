@@ -55,6 +55,7 @@ namespace NLogViewer.Receivers
     public class FileReceiver : LogEventReceiverWithParserSkeleton, IWizardConfigurable
     {
         private string _fileName;
+        private bool _monitorChanges = true;
 
         public FileReceiver()
         {
@@ -67,16 +68,23 @@ namespace NLogViewer.Receivers
             set { _fileName = value; }
         }
 
+        public bool MonitorChanges
+        {
+            get { return _monitorChanges; }
+            set { _monitorChanges = value; }
+        }
+
         public override void InputThread()
         {
             try
             {
-                using (FileStream stream = File.OpenRead(FileName))
+                using (FileStream stream = new FileStream(FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     using (ILogEventParserInstance parserInstance = Parser.Begin(stream))
                     {
                         while (!InputThreadQuitRequested())
                         {
+                            long startingPos = stream.Position;
                             LogEvent logEventInfo = parserInstance.ReadNext();
                             if (logEventInfo == null)
                                 break;

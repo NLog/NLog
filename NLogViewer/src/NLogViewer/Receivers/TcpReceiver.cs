@@ -88,8 +88,9 @@ namespace NLogViewer.Receivers
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                RaiseError(ex);
             }
             finally
             {
@@ -137,7 +138,7 @@ namespace NLogViewer.Receivers
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Exception: {0}", ex.ToString());
+                    _receiver.RaiseError(ex);
                 }
                 finally
                 {

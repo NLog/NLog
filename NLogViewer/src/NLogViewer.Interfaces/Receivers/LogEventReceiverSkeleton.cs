@@ -156,5 +156,12 @@ namespace NLogViewer.Receivers
         {
             return false;
         }
+
+        public event ReceiverErrorHandler Error;
+
+        public void RaiseError(Exception ex)
+        {
+            Error(this, new ReceiverErrorEventArgs(ex));
+        }
     }
 }

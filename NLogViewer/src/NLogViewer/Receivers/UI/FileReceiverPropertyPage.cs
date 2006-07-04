@@ -27,7 +27,13 @@ namespace NLogViewer.Receivers.UI
 
         private void FileReceiverPropertyPage_Load(object sender, EventArgs e)
         {
-
+            textBox1.Text = _receiver.FileName;
+            foreach (string s in AppPreferences.RecentFiles.GetList())
+            {
+                listView1.Items.Add(s);
+            }
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            checkBoxMonitorFileForChanges.Checked = _receiver.MonitorChanges;
         }
 
         public override bool ValidatePage()
@@ -42,6 +48,9 @@ namespace NLogViewer.Receivers.UI
                 MessageBox.Show("File '" + textBox1.Text + "' does not exist.");
                 return false;
             }
+            _receiver.FileName = textBox1.Text;
+            _receiver.MonitorChanges = checkBoxMonitorFileForChanges.Checked;
+            AppPreferences.RecentFiles.AddToList(textBox1.Text);
             return true;
         }
 
@@ -54,6 +63,14 @@ namespace NLogViewer.Receivers.UI
                 {
                     textBox1.Text = ofd.FileName;
                 }
+            }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                textBox1.Text = listView1.SelectedItems[0].Text;
             }
         }
     }

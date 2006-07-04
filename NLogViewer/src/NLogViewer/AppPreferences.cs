@@ -12,7 +12,15 @@ namespace NLogViewer
 {
 	public class AppPreferences
 	{
-        private static RegistryKey SettingsKey = Registry.CurrentUser.CreateSubKey("Software\\NLogViewer");
+        private static RegistryKey SettingsKey;
+
+        static AppPreferences()
+        {
+            SettingsKey = Registry.CurrentUser.CreateSubKey("Software\\NLogViewer");
+            RecentSessions = new LruManager(SettingsKey, "RecentSessions", true);
+            RecentFiles = new LruManager(SettingsKey, "RecentFiles", true);
+            RecentRegexes = new LruManager(SettingsKey, "RecentRegexes", false);
+        }
 
         public static bool AlwaysOnTop
         {
@@ -35,52 +43,8 @@ namespace NLogViewer
             }
         }
 
-        // cannot be >9 or you have to change GetRecentFileList
-        const int MaxRecentFileNames = 9;
-
-        public static List<string> GetRecentFileList()
-        {
-            List<string> returnValue = new List<string>();
-
-            using (RegistryKey recentFilesKey = SettingsKey.CreateSubKey("RecentFiles"))
-            {
-                ArrayList valueNames = new ArrayList(recentFilesKey.GetValueNames());
-                valueNames.Sort();
-                foreach (string s in valueNames)
-                {
-                    if (s.StartsWith("File"))
-                    {
-                        string rfn = (string)recentFilesKey.GetValue(s, "");
-                        if (rfn == "")
-                            continue;
-
-                        if (File.Exists(rfn))
-                            returnValue.Add(rfn);
-                        if (returnValue.Count >= MaxRecentFileNames)
-                            break;
-                    }
-                }
-            }
-            return returnValue;
-        }
-
-        public static void AddToRecentFileList(string fileName)
-        {
-            List<string> currentRecentFiles = GetRecentFileList();
-            using (RegistryKey recentFilesKey = SettingsKey.CreateSubKey("RecentFiles"))
-            {
-                recentFilesKey.SetValue("File1", fileName);
-                int pos = 2;
-                foreach (string s in currentRecentFiles)
-                {
-                    if (s == fileName)
-                        continue;
-                    recentFilesKey.SetValue("File" + pos, s);
-                    pos++;
-                    if (pos > MaxRecentFileNames)
-                        break;
-                }
-            }
-        }
+        public static readonly LruManager RecentSessions;
+        public static readonly LruManager RecentFiles;
+        public static readonly LruManager RecentRegexes;
 	}
 }

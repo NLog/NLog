@@ -35,47 +35,15 @@
 using System;
 using System.Xml;
 using System.Xml.Serialization;
-using System.ComponentModel;
 
 namespace NLogViewer.Configuration
 {
     [Serializable]
-    public class LogColumn
+    public enum LogColumnGrouping
 	{
-        public LogColumn()
-        {
-        }
-
-        public LogColumn(string name, int width)
-        {
-            this.Name = name;
-            this.Width = width;
-        }
-
-        public LogColumn(string name, int width, bool visible)
-        {
-            this.Name = name;
-            this.Width = width;
-            this.Visible = visible;
-        }
-
-        [XmlAttribute("name")]
-        public string Name;
-
-        [XmlAttribute("width")]
-        public int Width;
-
-        [XmlAttribute("grouping")]
-        [DefaultValue(LogColumnGrouping.Flat)]
-        public LogColumnGrouping Grouping = LogColumnGrouping.Flat;
-
-        [XmlAttribute("visible")]
-        [System.ComponentModel.DefaultValue(true)]
-        public bool Visible = true;
-
-        public override string ToString()
-        {
-            return Name;
-        }
+        None,
+        Flat,
+        Hierarchy,
+        FileSystem,
 	}
 }

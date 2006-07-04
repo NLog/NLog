@@ -132,6 +132,7 @@
     <Compile Include="Configuration\ConfigSectionHandler.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Configuration\LogColumnGrouping.cs" />
     <Compile Include="Configuration\LogColumn.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -156,6 +157,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppPreferences.cs" />
+    <Compile Include="LruManager.cs" />
     <Compile Include="LogLevelMap.cs" />
     <Compile Include="GlobalImageList.cs">
       <SubType>UserControl</SubType>
