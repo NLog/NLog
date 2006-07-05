@@ -21,7 +21,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\NLogC"
+				AdditionalIncludeDirectories="..\..\src\NLogC"
 				PreprocessorDefinitions="WIN32;_DEBUG"
 				MinimalRebuild="FALSE"
 				BasicRuntimeChecks="0"
@@ -31,15 +31,17 @@
 				DebugInformationFormat="3"/>
 			<Tool
 				Name="VCCustomBuildTool"
-				CommandLine="copy /b $(ProjectDir)..\NLogC\$(ConfigurationName)\NLogC.dll $(OutDir)
-copy /b $(ProjectDir)..\NLog\bin\$(ConfigurationName)\NLog.dll $(OutDir)
-copy /b $(ProjectDir)config.nlog $(TargetPath).nlog"
+				CommandLine="copy /b $(ProjectDir)..\..\src\NLogC\$(ConfigurationName)\NLogC.dll $(OutDir)
+rem copy /b $(ProjectDir)..\..\src\NLog\bin\$(ConfigurationName)\NLog.dll $(OutDir)
+copy /b $(ProjectDir)config.nlog $(TargetPath).nlog
+"
 				Outputs="$(OutDir)\NLog.dll"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="..\NLogC\Debug\NLogC.lib"
+				AdditionalDependencies="NLogC.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				LinkIncremental="2"
+				AdditionalLibraryDirectories="&quot;..\..\src\NLogC\$(ConfigurationName)&quot;"
 				GenerateDebugInformation="TRUE"
 				AssemblyDebug="1"/>
 			<Tool
@@ -72,7 +74,7 @@ copy /b $(ProjectDir)config.nlog $(TargetPath).nlog"
 			ManagedExtensions="FALSE">
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\NLogC"
+				AdditionalIncludeDirectories="..\..\src\NLogC"
 				PreprocessorDefinitions="WIN32;NDEBUG"
 				MinimalRebuild="FALSE"
 				RuntimeLibrary="0"
@@ -81,15 +83,17 @@ copy /b $(ProjectDir)config.nlog $(TargetPath).nlog"
 				DebugInformationFormat="3"/>
 			<Tool
 				Name="VCCustomBuildTool"
-				CommandLine="copy /b $(ProjectDir)..\NLogC\$(ConfigurationName)\NLogC.dll $(OutDir)
-copy /b $(ProjectDir)..\NLog\bin\$(ConfigurationName)\NLog.dll $(OutDir)
-copy /b $(ProjectDir)config.nlog $(TargetPath).nlog"
+				CommandLine="copy /b $(ProjectDir)..\..\src\NLogC\$(ConfigurationName)\NLogC.dll $(OutDir)
+rem copy /b $(ProjectDir)..\..\src\NLog\bin\$(ConfigurationName)\NLog.dll $(OutDir)
+copy /b $(ProjectDir)config.nlog $(TargetPath).nlog
+"
 				Outputs="$(OutDir)\NLog.dll"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="..\NLogC\Release\NLogC.lib"
+				AdditionalDependencies="NLogC.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				LinkIncremental="1"
+				AdditionalLibraryDirectories="&quot;..\..\src\NLogC\$(ConfigurationName)&quot;"
 				GenerateDebugInformation="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -114,6 +118,12 @@ copy /b $(ProjectDir)config.nlog $(TargetPath).nlog"
 		</Configuration>
 	</Configurations>
 	<References>
+		<ProjectReference
+			ReferencedProjectIdentifier="{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}"
+			Name="NLog"/>
+		<ProjectReference
+			ReferencedProjectIdentifier="{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}"
+			Name="NLogC"/>
 	</References>
 	<Files>
 		<Filter

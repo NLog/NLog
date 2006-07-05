@@ -99,6 +99,11 @@
                     AssemblyName = "System.Messaging"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Messaging.dll"
                 />
+                <Reference
+                    Name = "System.Drawing"
+                    AssemblyName = "System.Drawing"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -465,8 +470,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Internal\FileInfoHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Internal\FilterDictionary.cs"
                     SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FormHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\HttpUtility.cs"
                     BuildAction = "Compile"
                 />
                 <File
@@ -555,22 +574,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Internal\FileAppenders\BaseFileAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Internal\FileAppenders\CountingSingleProcessFileAppender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Internal\FileAppenders\IFileAppender.cs"
+                    RelPath = "Internal\FileAppenders\ICreateFile.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Internal\FileAppenders\IFileAppenderFactory.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Internal\FileAppenders\IFileCreator.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -586,6 +605,11 @@
                 />
                 <File
                     RelPath = "Internal\FileAppenders\SingleProcessFileAppender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\FileAppenders\UnixMultiProcessFileAppender.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -606,6 +630,16 @@
                 />
                 <File
                     RelPath = "Internal\NetworkSenders\UdpNetworkSender.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\Win32\Win32FileAttributes.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Internal\Win32\Win32FileHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

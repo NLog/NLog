@@ -52,6 +52,7 @@ enum NLogLevel
 
 extern "C" {
 
+NLOGC_API int NLog_InitA(const char *nlogDllFileName);
 NLOGC_API int NLog_ConfigureFromFileA(const char *fileName);
 NLOGC_API void NLog_LogA(NLogLevel level, const char *loggerName, const char *logMessage, ...); 
 NLOGC_API void NLog_TraceA(const char *loggerName, const char *logMessage, ...); 
@@ -62,6 +63,7 @@ NLOGC_API void NLog_ErrorA(const char *loggerName, const char *logMessage, ...);
 NLOGC_API void NLog_FatalA(const char *loggerName, const char *logMessage, ...); 
 NLOGC_API void NLog_LogVA(NLogLevel level, const char *loggerName, const char *logMessage, va_list args);
 
+NLOGC_API int NLog_InitW(const wchar_t *nlogDllFileName);
 NLOGC_API int NLog_ConfigureFromFileW(const wchar_t *fileName);
 NLOGC_API void NLog_LogW(NLogLevel level, const wchar_t *loggerName, const wchar_t *logMessage, ...); 
 NLOGC_API void NLog_TraceW(const wchar_t *loggerName, const wchar_t *logMessage, ...); 
@@ -72,10 +74,13 @@ NLOGC_API void NLog_ErrorW(const wchar_t *loggerName, const wchar_t *logMessage,
 NLOGC_API void NLog_FatalW(const wchar_t *loggerName, const wchar_t *logMessage, ...); 
 NLOGC_API void NLog_LogVW(NLogLevel level, const wchar_t *loggerName, const wchar_t *logMessage, va_list args); 
 
+NLOGC_API int NLog_InitLocal();
+
 }
 
 #ifdef UNICODE
 
+#define NLog_Init NLog_InitW
 #define NLog_Log NLog_LogW
 #define NLog_Trace NLog_TraceW
 #define NLog_Debug NLog_DebugW
@@ -87,6 +92,7 @@ NLOGC_API void NLog_LogVW(NLogLevel level, const wchar_t *loggerName, const wcha
 
 #else
 
+#define NLog_Init NLog_InitA
 #define NLog_Log NLog_LogA
 #define NLog_Trace NLog_TraceA
 #define NLog_Debug NLog_DebugA
