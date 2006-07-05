@@ -1,3 +1,6 @@
+2006-07-04 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added NLog_Init() and NLog_InitLocal() APIs to NLogC
+
 2006-07-04 Marcin Krupinski <yoszek@gmail.com>
 	* added FormControl target that logs to Text property of any
 	Windows.Forms.Control
