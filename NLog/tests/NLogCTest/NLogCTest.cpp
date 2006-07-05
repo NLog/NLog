@@ -4,6 +4,7 @@
 
 int main()
 {
+    NLog_InitLocal();
     NLog_ConfigureFromFile("config.nlog");
     int repeatCount = 500000;
     int t0, t1;
