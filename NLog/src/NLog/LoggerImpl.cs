@@ -90,11 +90,11 @@ namespace NLog
             for (TargetWithFilterChain awf = targets; awf != null; awf = awf.Next)
             {
                 Target app = awf.Target;
+                FilterResult result = FilterResult.Neutral;
 
                 try
                 {
                     FilterCollection filterChain = awf.FilterChain;
-                    FilterResult result = FilterResult.Neutral;
 
                     for (int i = 0; i < filterChain.Count; ++i)
                     {
@@ -103,12 +103,14 @@ namespace NLog
                         if (result != FilterResult.Neutral)
                             break;
                     }
-                    if (result == FilterResult.Ignore)
+                    if ((result == FilterResult.Ignore) || (result == FilterResult.IgnoreFinal))
                     {
                         if (InternalLogger.IsDebugEnabled)
                         {
                             InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", logEvent.LoggerName, logEvent.Level);
                         }
+                        if (result == FilterResult.IgnoreFinal)
+                            return;
                         continue;
                     }
                 }
@@ -133,6 +135,8 @@ namespace NLog
                     else
                         continue;
                 }
+                if (result == FilterResult.LogFinal)
+                    return;
             }
         }
     }

@@ -52,5 +52,15 @@ namespace NLog
         /// The message should not be logged.
         /// </summary>
         Ignore, 
+
+        /// <summary>
+        /// The message should be logged and processing should be finished.
+        /// </summary>
+        LogFinal, 
+
+        /// <summary>
+        /// The message should not be logged and processing should be finished.
+        /// </summary>
+        IgnoreFinal, 
     }
 }
