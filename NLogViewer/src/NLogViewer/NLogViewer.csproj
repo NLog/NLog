@@ -146,13 +146,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Configuration\SerializableDictionary.cs" />
-    <Compile Include="Configuration\SessionConfiguration.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Configuration\NLogViewerConfiguration.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Configuration\ConfigurationParameter.cs" />
     <Compile Include="Configuration\StringToLoggerConfigMap.cs">
       <SubType>Code</SubType>
     </Compile>

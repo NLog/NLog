@@ -11,17 +11,17 @@ namespace NLogViewer.UI
 {
     public partial class ChooseColumnsDialog : Form
     {
-        private SessionConfiguration _configuration;
+        private Session _session;
 
         public ChooseColumnsDialog()
         {
             InitializeComponent();
         }
 
-        public SessionConfiguration Configuration
+        public Session Session
         {
-            get { return _configuration; }
-            set { _configuration = value; }
+            get { return _session; }
+            set { _session = value; }
         }
 
         private List<CheckBox> _checkboxes = new List<CheckBox>();
@@ -30,7 +30,7 @@ namespace NLogViewer.UI
 
         private void ChooseColumnsDialog_Load(object sender, EventArgs e)
         {
-            foreach (LogColumn lc in Configuration.Columns)
+            foreach (LogColumn lc in Session.Columns)
             {
                 CheckBox cb = new CheckBox();
                 cb.Text = lc.Name;
@@ -118,7 +118,7 @@ namespace NLogViewer.UI
                 }
             }
 
-            Configuration.Columns = lcc;
+            Session.Columns = lcc;
 
             DialogResult = DialogResult.OK;
             Close();

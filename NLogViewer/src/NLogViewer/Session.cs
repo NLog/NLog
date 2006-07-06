@@ -46,13 +46,14 @@ using NLogViewer.UI;
 using NLogViewer.Events;
 using System.Collections.Generic;
 using NLogViewer.Parsers;
+using System.Xml.Serialization;
+using System.Xml;
 
 namespace NLogViewer
 {
+    [XmlRoot("parameters")]
     public class Session : ILogEventProcessor
     {
-        private SessionConfiguration _config;
-        private ILogEventReceiver _receiver;
         private MainForm _mainForm;
         private TabPage _tabPage;
         private SessionTabPage _tabPanel;
@@ -91,28 +92,8 @@ namespace NLogViewer
         private AddTreeNodeDelegate _addTreeNodeDelegate;
         private long _totalEvents = 0;
 
-        public Session(SessionConfiguration config)
+        public Session()
         {
-            _config = config;
-            _bufferedEvents = new CyclicBuffer<LogEvent>(config.MaxLogEntries);
-            NewSortOrder();
-            _receiver = LogReceiverFactory.CreateLogReceiver(config.ReceiverType, config.ReceiverParameters);
-            if (_receiver is ILogEventReceiverWithParser)
-            {
-                ((ILogEventReceiverWithParser)_receiver).Parser = LogEventParserFactory.CreateLogParser(config.ParserType, config.ParserParameters);
-            }
-            _receiver.Connect(this);
-            _addTreeNodeDelegate = new AddTreeNodeDelegate(this.AddTreeNode);
-        }
-
-        public SessionConfiguration Config
-        {
-            get { return _config; }
-        }
-
-        public ILogEventReceiver Receiver
-        {
-            get { return _receiver; }
         }
 
         public LogEvent GetDisplayedItemForIndex(int pos)
@@ -155,23 +136,23 @@ namespace NLogViewer
             treeView.Nodes.Add(_filesTreeNode);
             treeView.Nodes.Add(_applicationsTreeNode);
             treeView.Nodes.Add(_machinesTreeNode);
-            page.Text = Config.Name;
+            page.Text = Name;
             TabPanel.ReloadColumns();
         }
 
         public void Start()
         {
-            _receiver.Start();
+            Receiver.Start();
         }
 
         public void Stop()
         {
-            _receiver.Stop();
+            Receiver.Stop();
         }
 
         public string StatusText
         {
-            get { return _receiver.StatusText; }
+            get { return Receiver.StatusText; }
         }
 
         public TabPage TabPage
@@ -250,13 +231,13 @@ namespace NLogViewer
 
                     foreach (string s in logEvent.Properties.Keys)
                     {
-                        if (!_config.ContainsColumn(s))
+                        if (!ContainsColumn(s))
                         {
                             LogColumn lc = new LogColumn();
                             lc.Name = s;
                             lc.Visible = false;
                             lc.Width = 100;
-                            _config.Columns.Add(lc);
+                            Columns.Add(lc);
                         }
                     }
 
@@ -401,20 +382,15 @@ namespace NLogViewer
 
         private bool CaptureParametersAndSaveConfig(string fileName)
         {
-            Config.ReceiverParameters = ConfigurationParameter.CaptureConfigurationParameters(_receiver);
-            if (_receiver is ILogEventReceiverWithParser)
-            {
-                Config.ParserParameters = ConfigurationParameter.CaptureConfigurationParameters(((ILogEventReceiverWithParser)_receiver).Parser);
-            }
             AppPreferences.RecentSessions.AddToList(fileName);
-            return Config.Save(fileName);
+            return Save(fileName);
         }
 
         public bool Save(IWin32Window parent)
         {
-            if (Config.FileName == null)
+            if (FileName == null)
                 return SaveAs(parent);
-            return CaptureParametersAndSaveConfig(Config.FileName);
+            return CaptureParametersAndSaveConfig(FileName);
         }
 
         public bool SaveAs(IWin32Window parent)
@@ -422,12 +398,12 @@ namespace NLogViewer
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
                 sfd.Filter = "NLogViewer Sessions (*.nlv)|*.nlv|All Files (*.*)|*.*";
-                if (Config.FileName != null)
-                    sfd.FileName = Config.FileName;
+                if (FileName != null)
+                    sfd.FileName = FileName;
                 if (sfd.ShowDialog(parent) == DialogResult.OK)
                 {
-                    Config.Name = Path.GetFileNameWithoutExtension(sfd.FileName);
-                    TabPage.Text = Config.Name;
+                    Name = Path.GetFileNameWithoutExtension(sfd.FileName);
+                    TabPage.Text = Name;
                     return CaptureParametersAndSaveConfig(sfd.FileName);
                 }
             }
@@ -438,7 +414,7 @@ namespace NLogViewer
         {
             lock (this)
             {
-                SortedList<LogEvent, LogEvent> newFilteredEvents = new SortedList<LogEvent, LogEvent>(new ItemComparer(Config.OrderBy, Config.SortAscending));
+                SortedList<LogEvent, LogEvent> newFilteredEvents = new SortedList<LogEvent, LogEvent>(new ItemComparer(OrderBy, SortAscending));
 
                 if (_filteredEvents != null)
                 {
@@ -453,13 +429,13 @@ namespace NLogViewer
 
         public bool Close()
         {
-            if (_receiver.CanStop())
+            if (Receiver.CanStop())
                 Stop();
 
-            if (Config.Dirty)
+            if (Dirty)
             {
                 switch (MessageBox.Show(TabPanel,
-                    "Session '" + Config.Name + "' has unsaved changes. Save before exit?",
+                    "Session '" + Name + "' has unsaved changes. Save before exit?",
                     "NLogViewer",
                     MessageBoxButtons.YesNoCancel))
                 {
@@ -475,6 +451,202 @@ namespace NLogViewer
             }
             _mainForm.RemoveSession(this);
             return true;
+        }
+        private bool _dirty;
+
+        [XmlIgnore]
+        public string FileName;
+
+        [XmlElement("name")]
+        public string Name;
+
+        [XmlArray("columns")]
+        [XmlArrayItem("column")]
+        public LogColumnCollection Columns = new LogColumnCollection();
+
+        [XmlIgnore]
+        public bool Dirty
+        {
+            get { return _dirty; }
+            set { _dirty = value; }
+        }
+
+        [XmlElement("max-log-entries")]
+        public int MaxLogEntries = 10000;
+
+        [XmlElement("show-tree")]
+        public bool ShowTree = true;
+
+        [XmlElement("show-details")]
+        public bool ShowDetails = true;
+
+        [XmlElement("sort-by")]
+        public string OrderBy = "ID";
+
+        [XmlElement("sort-ascending")]
+        public bool SortAscending = false;
+
+        [XmlElement("receiver-type")]
+        public string ReceiverType;
+
+        [XmlElement("parser-type")]
+        public string ParserType = "XML";
+
+        /*
+        [XmlArray("receiver-parameters")]
+        [XmlArrayItem("param", typeof(ConfigurationParameter))]
+        public List<ConfigurationParameter> ReceiverParameters = new List<ConfigurationParameter>();
+
+        [XmlArray("parser-parameters")]
+        [XmlArrayItem("param", typeof(ConfigurationParameter))]
+        public List<ConfigurationParameter> ParserParameters = new List<ConfigurationParameter>();
+         * 
+        */
+
+        [XmlArray("loggers")]
+        [XmlArrayItem("logger", typeof(LoggerConfig))]
+        public LoggerConfigCollection Loggers = new LoggerConfigCollection();
+
+        private ILogEventReceiver _receiver;
+
+        [XmlIgnore]
+        public ILogEventReceiver Receiver
+        {
+            get { return _receiver; }
+            set { _receiver = value; }
+        }
+
+        [XmlIgnore]
+        public ILogEventParser Parser
+        {
+            get
+            {
+                ILogEventReceiverWithParser rp = Receiver as ILogEventReceiverWithParser;
+                if (rp == null)
+                    return null;
+                return rp.Parser;
+            }
+            set
+            {
+                ILogEventReceiverWithParser rp = Receiver as ILogEventReceiverWithParser;
+                if (rp != null)
+                    rp.Parser = value;
+            }
+        }
+
+        private StringToLoggerConfigMap _loggerName2LoggerConfig;
+
+        public LoggerConfig GetLoggerConfig(string loggerName)
+        {
+            lock (this)
+            {
+                if (_loggerName2LoggerConfig == null)
+                {
+                    _loggerName2LoggerConfig = new StringToLoggerConfigMap();
+                }
+                return (LoggerConfig)_loggerName2LoggerConfig[loggerName];
+            }
+        }
+
+        public void AddLoggerConfig(LoggerConfig lc)
+        {
+            lock (this)
+            {
+                _loggerName2LoggerConfig[lc.Name] = lc;
+                Loggers.Add(lc);
+            }
+        }
+
+        public void Resolve()
+        {
+            if (Columns.Count == 0)
+            {
+                Columns.Add(new LogColumn("ID", 120));
+                Columns.Add(new LogColumn("Time", 120));
+                Columns.Add(new LogColumn("Logger", 200));
+                Columns.Add(new LogColumn("Level", 50));
+                Columns.Add(new LogColumn("Text", 300));
+
+                // invisible columns at the end
+
+                Columns.Add(new LogColumn("Received Time", 120, false));
+            }
+            _bufferedEvents = new CyclicBuffer<LogEvent>(MaxLogEntries);
+            NewSortOrder();
+            _addTreeNodeDelegate = new AddTreeNodeDelegate(this.AddTreeNode);
+            Receiver.Connect(this);
+        }
+
+        private static XmlSerializer _serializer = new XmlSerializer(typeof(Session));
+
+        public bool Save(string fileName)
+        {
+            try
+            {
+                XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+                ns.Add("", "");
+                using (FileStream fs = File.Create(fileName))
+                {
+                    XmlTextWriter xtw = new XmlTextWriter(fs, Encoding.UTF8);
+                    xtw.Formatting = Formatting.Indented;
+                    xtw.WriteStartDocument();
+                    xtw.WriteStartElement("nlog-viewer");
+                    _serializer.Serialize(xtw, this, ns);
+                    XmlSerializer s1 = new XmlSerializer(Receiver.GetType());
+                    s1.Serialize(xtw, Receiver, ns);
+                    if (Receiver is ILogEventReceiverWithParser)
+                    {
+                        XmlSerializer s2 = new XmlSerializer(Parser.GetType());
+                        s2.Serialize(xtw, Parser, ns);
+                    }
+                    xtw.WriteEndElement();
+                    xtw.Flush();
+                    FileName = fileName;
+                    Dirty = false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.ToString());
+                return false;
+            }
+        }
+
+        public static Session Load(string fileName)
+        {
+            //SoapFormatter formatter = new SoapFormatter();
+
+            using (FileStream fs = File.OpenRead(fileName))
+            {
+                XmlTextReader xtr = new XmlTextReader(fs);
+                xtr.ReadStartElement("nlog-viewer");
+
+                Session c = (Session)_serializer.Deserialize(xtr);
+                c.FileName = fileName;
+
+                XmlSerializer s1 = new XmlSerializer(LogReceiverFactory.GetReceiverType(c.ReceiverType));
+                c.Receiver = (ILogEventReceiver)s1.Deserialize(xtr);
+
+                if (c.Receiver is ILogEventReceiverWithParser)
+                {
+                    XmlSerializer s2 = new XmlSerializer(LogEventParserFactory.GetParserType(c.ParserType));
+                    c.Parser = (ILogEventParser)s2.Deserialize(xtr);
+                }
+                xtr.ReadEndElement();
+                c.Resolve();
+                return c;
+            }
+        }
+
+        public bool ContainsColumn(string name)
+        {
+            foreach (LogColumn lc in Columns)
+            {
+                if (lc.Name == name)
+                    return true;
+            }
+            return false;
         }
     }
 }

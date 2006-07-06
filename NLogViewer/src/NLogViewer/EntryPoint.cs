@@ -10,11 +10,11 @@ namespace NLogViewer
 	{
         static void Register()
         {
-            using (RegistryKey reg = Registry.ClassesRoot.CreateSubKey(".nlv"))
+            using (RegistryKey reg = Registry.CurrentUser.CreateSubKey("Software\\Classes\\.nlv"))
             {
                 reg.SetValue(null, "NLogViewerSessionFile");
             }
-            using (RegistryKey regNLogViewerSessionFile = Registry.ClassesRoot.CreateSubKey("NLogViewerSessionFile\\shell\\Open\\Command"))
+            using (RegistryKey regNLogViewerSessionFile = Registry.CurrentUser.CreateSubKey("Software\\Classes\\NLogViewerSessionFile\\shell\\Open\\Command"))
             {
                 string path = String.Format("\"{0}\" \"%1\"", typeof(EntryPoint).Assembly.Location);
                 regNLogViewerSessionFile.SetValue(null, path);

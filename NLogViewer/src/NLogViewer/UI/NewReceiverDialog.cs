@@ -48,7 +48,7 @@ namespace NLogViewer.UI
             if (((SelectLogParserPropertyPage)sender).SelectedLogParser != null)
             {
                 _parser = LogEventParserFactory.CreateLogParser(
-                    ((SelectLogParserPropertyPage)sender).SelectedLogParser.Name, null);
+                    ((SelectLogParserPropertyPage)sender).SelectedLogParser.Name);
 
                 if (_parser is IWizardConfigurable)
                     ReplacePage(PAGE_PARSER_PROPERTIES, ((IWizardConfigurable)_parser).GetWizardPage());
@@ -71,7 +71,7 @@ namespace NLogViewer.UI
             if (((SelectLogReceiverPropertyPage)sender).SelectedLogReceiver != null)
             {
                 _receiver = LogReceiverFactory.CreateLogReceiver(
-                    ((SelectLogReceiverPropertyPage)sender).SelectedLogReceiver.Name, null);
+                    ((SelectLogReceiverPropertyPage)sender).SelectedLogReceiver.Name);
 
                 if (_receiver is IWizardConfigurable)
                     ReplacePage(PAGE_RECEIVER_PROPERTIES, ((IWizardConfigurable)_receiver).GetWizardPage());
@@ -104,7 +104,7 @@ namespace NLogViewer.UI
 
                 case PAGE_PARSER_PROPERTIES:
                     ILogEventParser parser = LogEventParserFactory.CreateLogParser(
-                        FindPage<SelectLogParserPropertyPage>().SelectedLogParser.Name, null);
+                        FindPage<SelectLogParserPropertyPage>().SelectedLogParser.Name);
 
                     if (parser is IWizardConfigurable)
                     {

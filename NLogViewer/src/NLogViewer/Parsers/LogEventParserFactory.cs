@@ -97,7 +97,7 @@ namespace NLogViewer.Parsers
             }
         }
 
-        public static ILogEventParser CreateLogParser(string type, List<ConfigurationParameter> parameters)
+        public static ILogEventParser CreateLogParser(string type)
         {
             if (!_name2parser.ContainsKey(type))
                 throw new ArgumentException("Unknown parser type: " + type);
@@ -105,7 +105,6 @@ namespace NLogViewer.Parsers
             LogEventParserInfo ri = _name2parser[type];
             object o = Activator.CreateInstance(ri.Type);
             ILogEventParser parser = (ILogEventParser)o;
-            ConfigurationParameter.ApplyConfigurationParameters(parser, parameters);
 
             return parser;
         }
@@ -118,6 +117,15 @@ namespace NLogViewer.Parsers
                     return lepi;
             }
             return null;
+        }
+
+        public static Type GetParserType(string type)
+        {
+            if (!_name2parser.ContainsKey(type))
+                throw new ArgumentException("Unknown parser type: " + type);
+
+            LogEventParserInfo ri = _name2parser[type];
+            return ri.Type;
         }
     }
 }

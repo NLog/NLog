@@ -488,7 +488,7 @@ namespace NLogViewer.UI
 
                 foreach (Session s in _sessions)
                 {
-                    if (s.Config.Name == proposedName)
+                    if (s.Name == proposedName)
                     {
                         conflict = true;
                         break;
@@ -507,14 +507,15 @@ namespace NLogViewer.UI
                 ofd.Filter = "Log files (*.log;*.txt;*.csv)|*.log;*.txt;*.csv|All files (*.*)|*.*";
                 if (DialogResult.OK == ofd.ShowDialog())
                 {
-                    SessionConfiguration lici = new SessionConfiguration();
-                    lici.ReceiverType = "FILE";
-                    lici.ReceiverParameters.Add(new ConfigurationParameter("FileName", ofd.FileName));
-                    lici.Name = GetUniqueSessionName();
-                    lici.Resolve();
-                    lici.Dirty = true;
-
-                    Session instance = new Session(lici);
+                    Session instance = new Session();
+                    instance.ReceiverType = "FILE";
+                    instance.Name = GetUniqueSessionName();
+                    instance.Resolve();
+                    instance.Dirty = true;
+                    FileReceiver fr = new FileReceiver();
+                    fr.FileName = ofd.FileName;
+                    instance.Receiver = fr;
+                    instance.Parser = new Log4JXmlLogEventParser();
                     instance.CreateTab(this);
                     _sessions.Add(instance);
                     ReloadTabPages();
@@ -536,17 +537,15 @@ namespace NLogViewer.UI
             {
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
-                    SessionConfiguration lici = new SessionConfiguration();
-                    lici.ReceiverType = LogReceiverFactory.FindReceiverByType(dlg.Receiver.GetType()).Name;
-                    lici.ReceiverParameters = ConfigurationParameter.CaptureConfigurationParameters(dlg.Receiver);
+                    Session instance = new Session();
+                    instance.ReceiverType = LogReceiverFactory.FindReceiverByType(dlg.Receiver.GetType()).Name;
                     if (dlg.Parser != null)
-                        lici.ParserType = LogEventParserFactory.FindParserByType(dlg.Parser.GetType()).Name;
-                    lici.ParserParameters = ConfigurationParameter.CaptureConfigurationParameters(dlg.Parser);
-                    lici.Name = GetUniqueSessionName();
-                    lici.Resolve();
-                    lici.Dirty = true;
-
-                    Session instance = new Session(lici);
+                        instance.ParserType = LogEventParserFactory.FindParserByType(dlg.Parser.GetType()).Name;
+                    instance.Name = GetUniqueSessionName();
+                    instance.Resolve();
+                    instance.Dirty = true;
+                    instance.Receiver = dlg.Receiver;
+                    instance.Parser = dlg.Parser;
                     instance.CreateTab(this);
                     _sessions.Add(instance);
                     ReloadTabPages();
@@ -586,7 +585,7 @@ namespace NLogViewer.UI
             }
             else
             {
-                this.Text = String.Format("{0} - NLog Viewer", currentLogInstance.Config.Name);
+                this.Text = String.Format("{0} - NLog Viewer", currentLogInstance.Name);
             }
         }
 
@@ -663,8 +662,8 @@ namespace NLogViewer.UI
 
         private void OpenSession(string fileName, bool reloadTabPages)
         {
-            SessionConfiguration sc = SessionConfiguration.Load(fileName);
-            Session instance = new Session(sc);
+            fileName = Path.GetFullPath(fileName);
+            Session instance = Session.Load(fileName);
 
             instance.CreateTab(this);
             _sessions.Add(instance);

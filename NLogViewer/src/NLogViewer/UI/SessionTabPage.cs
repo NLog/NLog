@@ -793,7 +793,7 @@ namespace NLogViewer.UI
             ListViewItem item = new ListViewItem();
             item.Tag = logEvent;
             item.Text = "";
-            foreach (LogColumn lc in _session.Config.Columns)
+            foreach (LogColumn lc in _session.Columns)
             {
                 if (lc.Visible)
                     item.SubItems.Add(Convert.ToString(logEvent[lc.Name]));
@@ -831,9 +831,9 @@ namespace NLogViewer.UI
             listViewLogMessages.SmallImageList = GlobalImageList.Instance.ImageList;
             UpdateSortArrows();
 
-            if (!_session.Config.ShowDetails)
+            if (!_session.ShowDetails)
                 toolStripButtonShowDetails_Click(null, null);
-            if (!_session.Config.ShowTree)
+            if (!_session.ShowTree)
                 toolStripButtonShowTree_Click(null, null);
         }
 
@@ -878,14 +878,14 @@ namespace NLogViewer.UI
             ColumnHeader column = listViewLogMessages.Columns[e.Column];
             string columnName = column.Text;
 
-            if (_session.Config.OrderBy == columnName)
+            if (_session.OrderBy == columnName)
             {
-                _session.Config.SortAscending = !_session.Config.SortAscending;
+                _session.SortAscending = !_session.SortAscending;
             }
             else
             {
-                _session.Config.SortAscending = false;
-                _session.Config.OrderBy = columnName;
+                _session.SortAscending = false;
+                _session.OrderBy = columnName;
             }
             _session.NewSortOrder();
             listViewLogMessages.Invalidate();
@@ -896,9 +896,9 @@ namespace NLogViewer.UI
         {
             foreach (ColumnHeader ch in listViewLogMessages.Columns)
             {
-                if (ch.Text == _session.Config.OrderBy)
+                if (ch.Text == _session.OrderBy)
                 {
-                    ch.ImageIndex = _session.Config.SortAscending ? 1 : 2;
+                    ch.ImageIndex = _session.SortAscending ? 1 : 2;
                 }
                 else
                 {
@@ -924,7 +924,7 @@ namespace NLogViewer.UI
             int oldSize = listViewLogMessages.VirtualListSize;
 
             listViewLogMessages.VirtualListSize = 0;
-            foreach (LogColumn lc in _session.Config.Columns)
+            foreach (LogColumn lc in _session.Columns)
             {
                 if (lc.Visible)
                 {
@@ -943,7 +943,7 @@ namespace NLogViewer.UI
         {
             using (ChooseColumnsDialog dlg = new ChooseColumnsDialog())
             {
-                dlg.Configuration = _session.Config;
+                dlg.Session = _session;
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
                     ReloadColumns();
@@ -981,13 +981,13 @@ namespace NLogViewer.UI
             logger.Debug("Moving '{0}' from {1} to {2}", lc.Name, e.OldDisplayIndex, e.NewDisplayIndex);
             if (e.NewDisplayIndex > e.OldDisplayIndex)
             {
-                _session.Config.Columns.Insert(e.NewDisplayIndex, lc);
-                _session.Config.Columns.RemoveAt(e.OldDisplayIndex - 1);
+                _session.Columns.Insert(e.NewDisplayIndex, lc);
+                _session.Columns.RemoveAt(e.OldDisplayIndex - 1);
             }
             else
             {
-                _session.Config.Columns.RemoveAt(e.OldDisplayIndex - 1);
-                _session.Config.Columns.Insert(e.NewDisplayIndex - 1, lc);
+                _session.Columns.RemoveAt(e.OldDisplayIndex - 1);
+                _session.Columns.Insert(e.NewDisplayIndex - 1, lc);
             }
 
             e.Cancel = true;
@@ -999,16 +999,16 @@ namespace NLogViewer.UI
             toolStripButtonShowDetails.Checked = !toolStripButtonShowDetails.Checked;
             mainSplitContainer.Panel2Collapsed = !toolStripButtonShowDetails.Checked;
 
-            _session.Config.ShowDetails = toolStripButtonShowDetails.Checked;
-            _session.Config.Dirty = true;
+            _session.ShowDetails = toolStripButtonShowDetails.Checked;
+            _session.Dirty = true;
         }
 
         private void toolStripButtonShowTree_Click(object sender, EventArgs e)
         {
             toolStripButtonShowTree.Checked = !toolStripButtonShowTree.Checked;
             splitContainer1.Panel1Collapsed = !toolStripButtonShowTree.Checked;
-            _session.Config.ShowTree = toolStripButtonShowTree.Checked;
-            _session.Config.Dirty = true;
+            _session.ShowTree = toolStripButtonShowTree.Checked;
+            _session.Dirty = true;
         }
 
         private void toolStripButtonChooseColumns_Click(object sender, EventArgs e)
