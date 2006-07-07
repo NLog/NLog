@@ -32,50 +32,67 @@
 // 
 
 using System;
-using System.Runtime.InteropServices;
+using System.Collections;
+using System.Collections.Specialized;
+using System.Diagnostics;
+using System.Reflection;
+using System.Globalization;
 
-using NLog.Targets;
 using NLog.Config;
 
-namespace NLog.Win32.Targets
+namespace NLog.Layouts
 {
     /// <summary>
-    /// Outputs logging messages through the <c>OutputDebugString()</c> Win32 API.
+    /// A column in the CSV
     /// </summary>
-    /// <example>
-    /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
-    /// use the following syntax:
-    /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/OutputDebugString/NLog.config" />
-    /// <p>
-    /// This assumes just one target and a single rule. More configuration
-    /// options are described <a href="config.html">here</a>.
-    /// </p>
-    /// <p>
-    /// To set up the log target programmatically use code like this:
-    /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/OutputDebugString/Simple/Example.cs" />
-    /// </example>
-    [Target("OutputDebugString")]
-    [SupportedRuntime(OS=RuntimeOS.Windows)]
-    [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
-    public sealed class OutputDebugStringTarget: TargetWithLayout
+    public class CsvColumn
     {
+        private Layout _compiledlayout;
+        private string _name;
+
         /// <summary>
-        /// Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
+        /// Constructs a new instance of <see cref="CsvColumn"/>.
         /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        public CsvColumn()
         {
-            OutputDebugString(CompiledLayout.GetFormattedMessage(logEvent));
         }
 
         /// <summary>
-        /// Stub for OutputDebugString native method
+        /// Constructs a new instance of <see cref="CsvColumn"/> and
+        /// initializes Name and Layout properties.
         /// </summary>
-        /// <param name="message">the string to output</param>
-        [DllImport("kernel32.dll")]
-        private static extern void OutputDebugString(string message);
+        public CsvColumn(string name, string layout)
+        {
+            Name = name;
+            Layout = layout;
+        }
+
+        /// <summary>
+        /// The name of the column.
+        /// </summary>
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        /// <summary>
+        /// The layout that should be written in the column.
+        /// </summary>
+        [RequiredParameter]
+        public string Layout
+        {
+            get { return _compiledlayout.Text; }
+            set { _compiledlayout = new Layout(value); }
+        }
+
+        /// <summary>
+        /// The compiled layout that should be written in the column.
+        /// </summary>
+        public Layout CompiledLayout
+        {
+            get { return _compiledlayout; }
+            set { _compiledlayout = value; }
+        }
     }
 }

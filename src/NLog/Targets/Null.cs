@@ -57,7 +57,7 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/Null/Simple/Example.cs" />
     /// </example>
     [Target("Null")]
-    public sealed class NullTarget: Target
+    public sealed class NullTarget: TargetWithLayout
     {
         private bool _formatMessage = false;
 

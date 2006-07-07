@@ -69,6 +69,10 @@ namespace MakeNLogXSD
             if (ta != null)
                 return ta.Name;
 
+            LayoutAttribute la = (LayoutAttribute)Attribute.GetCustomAttribute(t, typeof(LayoutAttribute));
+            if (la != null)
+                return la.Name;
+
             return t.Name;
         }
 
@@ -146,11 +150,14 @@ namespace MakeNLogXSD
             xtw.WriteStartElement("xs:complexType");
             xtw.WriteAttributeString("name", SimpleTypeName(t));
 
-            if (t.BaseType != typeof(object))
+            if (t.BaseType != typeof(object) || t.GetInterface("NLog.ILayout") != null)
             {
                 xtw.WriteStartElement("xs:complexContent");
                 xtw.WriteStartElement("xs:extension");
-                xtw.WriteAttributeString("base", SimpleTypeName(t.BaseType));
+                if (t.BaseType != typeof(object))
+                    xtw.WriteAttributeString("base", SimpleTypeName(t.BaseType));
+                else
+                    xtw.WriteAttributeString("base", "ILayout");
             }
 
             xtw.WriteStartElement("xs:choice");
@@ -233,10 +240,7 @@ namespace MakeNLogXSD
                 if (pi.IsDefined(typeof(ArrayParameterAttribute), false))
                     continue;
 
-                if (pi.PropertyType == typeof(Target) || pi.PropertyType == typeof(TargetCollection))
-                    continue;
-
-                if (pi.PropertyType == typeof(Layout) || pi.PropertyType == typeof(ConditionExpression))
+                if (!pi.PropertyType.IsValueType && !pi.PropertyType.IsEnum && pi.PropertyType != typeof(string))
                     continue;
 
                 if (!pi.CanWrite)
@@ -268,6 +272,7 @@ namespace MakeNLogXSD
                 xtw.WriteEndElement();
             }
 
+            /*
             if (typeof(Target).IsAssignableFrom(t))
             {
                 TargetAttribute ta = (TargetAttribute)Attribute.GetCustomAttribute(t, typeof(TargetAttribute));
@@ -279,8 +284,9 @@ namespace MakeNLogXSD
                     xtw.WriteEndElement();
                 }
             }
+           */
 
-            if (t.BaseType != typeof(object))
+            if (t.BaseType != typeof(object) || t.GetInterface("NLog.ILayout") != null)
             {
                 xtw.WriteEndElement(); // xs:extension
                 xtw.WriteEndElement(); // xs:complexContent
@@ -314,6 +320,7 @@ namespace MakeNLogXSD
                         TargetFactory.AddTargetsFromAssembly(asm, "");
                         LayoutRendererFactory.AddLayoutRenderersFromAssembly(asm, "");
                         FilterFactory.AddFiltersFromAssembly(asm, "");
+                        LayoutFactory.AddLayoutsFromAssembly(asm, "");
                     }
                     catch (Exception ex)
                     {
@@ -331,13 +338,18 @@ namespace MakeNLogXSD
 
                 _typeDumped[typeof(object)] = 1;
                 _typeDumped[typeof(Target)] = 1;
-                _typeDumped[typeof(Layout)] = 1;
+                _typeDumped[typeof(TargetWithLayout)] = 1;
+                _typeDumped[typeof(ILayout)] = 1;
 
                 foreach (Type targetType in NLog.TargetFactory.TargetTypes)
                 {
                     DumpType(xtw, targetType);
                 }
                 foreach (Type t in FilterFactory.FilterTypes)
+                {
+                    DumpType(xtw, t);
+                }
+                foreach (Type t in LayoutFactory.LayoutTypes)
                 {
                     DumpType(xtw, t);
                 }

@@ -1,4 +1,29 @@
-2006-07-05 Maciej Figatowski <maciej.figatowski@atm.com.pl>
+2006-07-07 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* BREAKING CHANGE - Added NLog.ILayout which Layout implements to 
+	allow other	layout types (such as CSV-escaped, HTML-colored, 
+	XML-escaped, ANSI-colored) to be implemented
+	NLog.Layout became sealed.
+	* BREAKING CHANGE - Added NLog.TargetWithLayout, removed Layout
+	and CompiledLayout from NLog.Target
+	* BREAKING CHANGE - Removed CSVFile target, converted examples to File + CsvLayout
+	* Added pluggable layouts (CSV, Log4JXml), LayoutFactory and
+	LayoutAttribute. The syntax is:
+
+	<target xsi:type="File">
+		<layout xsi:type="CSVLayout">
+			<column name="message" layout="${message}" />
+			<column name="level" layout="${level}" />
+		</layout>
+	</target>
+
+	Of course the old syntax is still supported for simple layouts:
+
+	<target xsi:type="File" layout="${message}" />
+	* BREAKING CHANGE - FileTarget.KeepFileOpen is back to the default
+	of false. Thankfully we now have <default-target-parameters /> so this 
+	can be easily overriden.
+
+2006-07-05 Maciej Figatowski <mfigatow@sav.net>
 	* Added FilterResult.IgnoreFinal and FilterResult.LogFinal
 	which suppress processing of further rules if the filter
 	matches.

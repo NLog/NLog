@@ -39,7 +39,7 @@ namespace NLog
 {
     // CLOVER:OFF
     /// <summary>
-    /// A collection of elements of type Layout
+    /// A collection of elements of type ILayout
     /// </summary>
     public class LayoutCollection: System.Collections.CollectionBase
     {
@@ -58,7 +58,7 @@ namespace NLog
         /// <param name="items">
         /// The array whose elements are to be added to the new LayoutCollection.
         /// </param>
-        public LayoutCollection(Layout[]items)
+        public LayoutCollection(ILayout[]items)
         {
             this.AddRange(items);
         }
@@ -81,9 +81,9 @@ namespace NLog
         /// <param name="items">
         /// The array whose elements are to be added to the end of this LayoutCollection.
         /// </param>
-        public virtual void AddRange(Layout[]items)
+        public virtual void AddRange(ILayout[]items)
         {
-            foreach (Layout item in items)
+            foreach (ILayout item in items)
             {
                 this.List.Add(item);
             }
@@ -97,34 +97,34 @@ namespace NLog
         /// </param>
         public virtual void AddRange(LayoutCollection items)
         {
-            foreach (Layout item in items)
+            foreach (ILayout item in items)
             {
                 this.List.Add(item);
             }
         }
 
         /// <summary>
-        /// Adds an instance of type Layout to the end of this LayoutCollection.
+        /// Adds an instance of type ILayout to the end of this LayoutCollection.
         /// </summary>
         /// <param name="value">
-        /// The Layout to be added to the end of this LayoutCollection.
+        /// The ILayout to be added to the end of this LayoutCollection.
         /// </param>
-        public virtual void Add(Layout value)
+        public virtual void Add(ILayout value)
         {
             this.List.Add(value);
         }
 
         /// <summary>
-        /// Determines whether a specfic Layout value is in this LayoutCollection.
+        /// Determines whether a specfic ILayout value is in this LayoutCollection.
         /// </summary>
         /// <param name="value">
-        /// The Layout value to locate in this LayoutCollection.
+        /// The ILayout value to locate in this LayoutCollection.
         /// </param>
         /// <returns>
         /// true if value is found in this LayoutCollection;
         /// false otherwise.
         /// </returns>
-        public virtual bool Contains(Layout value)
+        public virtual bool Contains(ILayout value)
         {
             return this.List.Contains(value);
         }
@@ -134,13 +134,13 @@ namespace NLog
         /// in this LayoutCollection
         /// </summary>
         /// <param name="value">
-        /// The Layout value to locate in the LayoutCollection.
+        /// The ILayout value to locate in the LayoutCollection.
         /// </param>
         /// <returns>
         /// The zero-based index of the first occurrence of the _ELEMENT value if found;
         /// -1 otherwise.
         /// </returns>
-        public virtual int IndexOf(Layout value)
+        public virtual int IndexOf(ILayout value)
         {
             return this.List.IndexOf(value);
         }
@@ -149,32 +149,32 @@ namespace NLog
         /// Inserts an element into the LayoutCollection at the specified index
         /// </summary>
         /// <param name="index">
-        /// The index at which the Layout is to be inserted.
+        /// The index at which the ILayout is to be inserted.
         /// </param>
         /// <param name="value">
-        /// The Layout to insert.
+        /// The ILayout to insert.
         /// </param>
-        public virtual void Insert(int index, Layout value)
+        public virtual void Insert(int index, ILayout value)
         {
             this.List.Insert(index, value);
         }
 
         /// <summary>
-        /// Gets or sets the Layout at the given index in this LayoutCollection.
+        /// Gets or sets the ILayout at the given index in this LayoutCollection.
         /// </summary>
-        public virtual Layout this[int index]
+        public virtual ILayout this[int index]
         {
-            get { return (Layout)this.List[index]; }
+            get { return (ILayout)this.List[index]; }
             set { this.List[index] = value; }
         }
 
         /// <summary>
-        /// Removes the first occurrence of a specific Layout from this LayoutCollection.
+        /// Removes the first occurrence of a specific ILayout from this LayoutCollection.
         /// </summary>
         /// <param name="value">
-        /// The Layout value to remove from this LayoutCollection.
+        /// The ILayout value to remove from this LayoutCollection.
         /// </param>
-        public virtual void Remove(Layout value)
+        public virtual void Remove(ILayout value)
         {
             this.List.Remove(value);
         }
@@ -198,9 +198,9 @@ namespace NLog
             /// <summary>
             /// 
             /// </summary>
-            public Layout Current
+            public ILayout Current
             {
-                get { return (Layout)(this.wrapped.Current); }
+                get { return (ILayout)(this.wrapped.Current); }
             }
 
             /// <summary>
@@ -208,7 +208,7 @@ namespace NLog
             /// </summary>
             object System.Collections.IEnumerator.Current
             {
-                get { return (Layout)(this.wrapped.Current); }
+                get { return (ILayout)(this.wrapped.Current); }
             }
 
             /// <summary>

@@ -74,7 +74,7 @@ namespace NLog.Targets
     /// </example>
     [Target("ASPNetTrace")]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
-    public class ASPNetTraceTarget: Target
+    public class ASPNetTraceTarget: TargetWithLayout
     {
         /// <summary>
         /// Writes the specified logging event to the ASP.NET Trace facility. Log entries

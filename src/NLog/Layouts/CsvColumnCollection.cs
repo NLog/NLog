@@ -40,18 +40,18 @@ using System.Globalization;
 
 using NLog.Config;
 
-namespace NLog.Targets
+namespace NLog.Layouts
 {
     // CLOVER:OFF
     /// <summary>
     /// A collection of elements of type CsvFileColumn
     /// </summary>
-    public class CsvFileColumnCollection: System.Collections.CollectionBase
+    public class CsvColumnCollection: System.Collections.CollectionBase
     {
         /// <summary>
         /// Initializes a new empty instance of the CsvFileColumnCollection class.
         /// </summary>
-        public CsvFileColumnCollection()
+        public CsvColumnCollection()
         {
             // empty
         }
@@ -63,7 +63,7 @@ namespace NLog.Targets
         /// <param name="items">
         /// The array whose elements are to be added to the new CsvFileColumnCollection.
         /// </param>
-        public CsvFileColumnCollection(CsvFileColumn[]items)
+        public CsvColumnCollection(CsvColumn[]items)
         {
             this.AddRange(items);
         }
@@ -75,7 +75,7 @@ namespace NLog.Targets
         /// <param name="items">
         /// The CsvFileColumnCollection whose elements are to be added to the new CsvFileColumnCollection.
         /// </param>
-        public CsvFileColumnCollection(CsvFileColumnCollection items)
+        public CsvColumnCollection(CsvColumnCollection items)
         {
             this.AddRange(items);
         }
@@ -86,9 +86,9 @@ namespace NLog.Targets
         /// <param name="items">
         /// The array whose elements are to be added to the end of this CsvFileColumnCollection.
         /// </param>
-        public virtual void AddRange(CsvFileColumn[]items)
+        public virtual void AddRange(CsvColumn[]items)
         {
-            foreach (CsvFileColumn item in items)
+            foreach (CsvColumn item in items)
             {
                 this.List.Add(item);
             }
@@ -100,9 +100,9 @@ namespace NLog.Targets
         /// <param name="items">
         /// The CsvFileColumnCollection whose elements are to be added to the end of this CsvFileColumnCollection.
         /// </param>
-        public virtual void AddRange(CsvFileColumnCollection items)
+        public virtual void AddRange(CsvColumnCollection items)
         {
-            foreach (CsvFileColumn item in items)
+            foreach (CsvColumn item in items)
             {
                 this.List.Add(item);
             }
@@ -114,7 +114,7 @@ namespace NLog.Targets
         /// <param name="value">
         /// The CsvFileColumn to be added to the end of this CsvFileColumnCollection.
         /// </param>
-        public virtual void Add(CsvFileColumn value)
+        public virtual void Add(CsvColumn value)
         {
             this.List.Add(value);
         }
@@ -129,7 +129,7 @@ namespace NLog.Targets
         /// true if value is found in this CsvFileColumnCollection;
         /// false otherwise.
         /// </returns>
-        public virtual bool Contains(CsvFileColumn value)
+        public virtual bool Contains(CsvColumn value)
         {
             return this.List.Contains(value);
         }
@@ -145,7 +145,7 @@ namespace NLog.Targets
         /// The zero-based index of the first occurrence of the _ELEMENT value if found;
         /// -1 otherwise.
         /// </returns>
-        public virtual int IndexOf(CsvFileColumn value)
+        public virtual int IndexOf(CsvColumn value)
         {
             return this.List.IndexOf(value);
         }
@@ -159,7 +159,7 @@ namespace NLog.Targets
         /// <param name="value">
         /// The CsvFileColumn to insert.
         /// </param>
-        public virtual void Insert(int index, CsvFileColumn value)
+        public virtual void Insert(int index, CsvColumn value)
         {
             this.List.Insert(index, value);
         }
@@ -167,9 +167,9 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the CsvFileColumn at the given index in this CsvFileColumnCollection.
         /// </summary>
-        public virtual CsvFileColumn this[int index]
+        public virtual CsvColumn this[int index]
         {
-            get { return (CsvFileColumn)this.List[index]; }
+            get { return (CsvColumn)this.List[index]; }
             set { this.List[index] = value; }
         }
 
@@ -179,7 +179,7 @@ namespace NLog.Targets
         /// <param name="value">
         /// The CsvFileColumn value to remove from this CsvFileColumnCollection.
         /// </param>
-        public virtual void Remove(CsvFileColumn value)
+        public virtual void Remove(CsvColumn value)
         {
             this.List.Remove(value);
         }
@@ -195,7 +195,7 @@ namespace NLog.Targets
             /// 
             /// </summary>
             /// <param name="collection"></param>
-            public Enumerator(CsvFileColumnCollection collection)
+            public Enumerator(CsvColumnCollection collection)
             {
                 this.wrapped = ((System.Collections.CollectionBase)collection).GetEnumerator();
             }
@@ -203,9 +203,9 @@ namespace NLog.Targets
             /// <summary>
             /// 
             /// </summary>
-            public CsvFileColumn Current
+            public CsvColumn Current
             {
-                get { return (CsvFileColumn)(this.wrapped.Current); }
+                get { return (CsvColumn)(this.wrapped.Current); }
             }
 
             /// <summary>
@@ -213,7 +213,7 @@ namespace NLog.Targets
             /// </summary>
             object System.Collections.IEnumerator.Current
             {
-                get { return (CsvFileColumn)(this.wrapped.Current); }
+                get { return (CsvColumn)(this.wrapped.Current); }
             }
 
             /// <summary>
@@ -240,9 +240,9 @@ namespace NLog.Targets
         /// <returns>
         /// An object that implements System.Collections.IEnumerator.
         /// </returns>        
-        public new virtual CsvFileColumnCollection.Enumerator GetEnumerator()
+        public new virtual CsvColumnCollection.Enumerator GetEnumerator()
         {
-            return new CsvFileColumnCollection.Enumerator(this);
+            return new CsvColumnCollection.Enumerator(this);
         }
     }
 }

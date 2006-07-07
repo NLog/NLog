@@ -59,7 +59,7 @@ namespace NLog.Targets
     /// </example>
     [Target("Debugger")]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
-    public sealed class DebuggerTarget: Target
+    public sealed class DebuggerTarget: TargetWithLayout
     {
         static DebuggerTarget()
         {

@@ -39,13 +39,15 @@ using NLog.Internal;
 using NLog.LayoutRenderers;
 
 using System.Threading;
+using NLog.Config;
 
 namespace NLog
 {
     /// <summary>
     /// Represents a string with embedded placeholders that can render contextual information.
     /// </summary>
-    public class Layout
+    [Layout("SimpleLayout")]
+    public sealed class Layout : ILayout
     {
         /// <summary>
         /// Creates a new instance of the <see cref="Layout"/> and sets it to empty string.
@@ -72,6 +74,7 @@ namespace NLog
         /// <summary>
         /// The layout text
         /// </summary>
+        [AcceptsLayout]
         public string Text
         {
             get { return _layoutText; }
@@ -312,6 +315,13 @@ namespace NLog
         public static string Evaluate(string text)
         {
             return Evaluate(text, LogEventInfo.Empty);
+        }
+
+        /// <summary>
+        /// Initializes the layout.
+        /// </summary>
+        public void Initialize()
+        {
         }
     }
 }

@@ -70,7 +70,6 @@ namespace NLog.Internal.NetworkSenders
         /// <remarks>
         /// If the url starts with <c>tcp://</c> - a new <see cref="TcpNetworkSender" /> is created.<br/>
         /// If the url starts with <c>udp://</c> - a new <see cref="UdpNetworkSender" /> is created.<br/>
-        /// If the url starts with <c>http://</c> or <c>https://</c>- a new <see cref="HttpNetworkSender" /> is created.<br/>
         /// </remarks>
         public static NetworkSender Create(string url)
         {
@@ -81,10 +80,6 @@ namespace NLog.Internal.NetworkSenders
             if (url.StartsWith("udp://"))
             {
                 return new UdpNetworkSender(url);
-            }
-            if (url.StartsWith("http://") || url.StartsWith("https://"))
-            {
-                return new HttpNetworkSender(url);
             }
             throw new ArgumentException("Unrecognized network address", "url");
         }
@@ -114,18 +109,18 @@ namespace NLog.Internal.NetworkSenders
         /// <summary>
         /// Send the given text over the specified protocol.
         /// </summary>
-        /// <param name="text">Text to be sent.</param>
-        public void Send(string text)
+        /// <param name="bytes">Bytes to be sent.</param>
+        public void Send(byte[] bytes)
         {
-            DoSend(text);
+            DoSend(bytes);
         }
 
         /// <summary>
         /// Actually sends the given text over the specified protocol.
         /// </summary>
-        /// <param name="text">The text to be sent.</param>
+        /// <param name="bytes">The bytes to be sent.</param>
         /// <remarks>To be overridden in inheriting classes.</remarks>
-        protected abstract void DoSend(string text);
+        protected abstract void DoSend(byte[] bytes);
 
         /// <summary>
         /// Closes the sender and releases any unmanaged resources.

@@ -93,7 +93,7 @@ namespace NLog.Win32.Targets
     [SupportedRuntime(OS=RuntimeOS.Windows)]
     [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
-    public sealed class ColoredConsoleTarget: Target
+    public sealed class ColoredConsoleTarget: TargetWithLayout
     {
         private bool _errorStream = false;
         private bool _useDefaultRowHighlightingRules = true;

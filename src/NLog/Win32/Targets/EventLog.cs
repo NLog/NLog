@@ -67,7 +67,7 @@ namespace NLog.Win32.Targets
     /// </remarks>
     [Target("EventLog")]
     [SupportedRuntime(OS=RuntimeOS.WindowsNT,Framework=RuntimeFramework.DotNetFramework)]
-    public class EventLogTarget : Target
+    public class EventLogTarget : TargetWithLayout
 	{
         private string _machineName = ".";
         private string _sourceName;

@@ -57,7 +57,7 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/Memory/Simple/Example.cs" />
     /// </example>
     [Target("Memory")]
-    public sealed class MemoryTarget: Target
+    public sealed class MemoryTarget: TargetWithLayout
     {
         private ArrayList _logs = new ArrayList();
 

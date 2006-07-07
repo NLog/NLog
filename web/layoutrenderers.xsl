@@ -102,6 +102,10 @@
         <!-- ignore -->
     </xsl:template>
 
+    <xsl:template match="property[@type='NLog.ILayout']" mode="parameter">
+        <!-- ignore -->
+    </xsl:template>
+
     <xsl:template match="property" mode="parameter">
         <xsl:call-template name="parameter_info" />
     </xsl:template>

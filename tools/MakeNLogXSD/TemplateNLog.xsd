@@ -201,8 +201,22 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:complexType name="Target">
+    <xs:complexType name="Target" abstract="true">
         <xs:attribute name="name" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="ILayout" abstract="true">
+    </xs:complexType>
+
+    <xs:complexType name="TargetWithLayout">
+        <xs:complexContent>
+            <xs:extension base="Target">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="layout" type="ILayout" minOccurs="0" maxOccurs="1"/>
+                </xs:choice>
+                <xs:attribute name="layout" type="NLogLayout" use="optional" />
+            </xs:extension>
+        </xs:complexContent>
     </xs:complexType>
 
     <xs:simpleType name="NLogLayout">

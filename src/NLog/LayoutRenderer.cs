@@ -64,7 +64,7 @@ namespace NLog
         /// <summary>
         /// Determines whether stack trace information should be gathered
         /// during log event processing. By default it calls <see cref="NLog.Layout.NeedsStackTrace" /> on
-        /// <see cref="Target.CompiledLayout" />.
+        /// <see cref="TargetWithLayout.CompiledLayout" />.
         /// </summary>
         /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
         protected internal virtual int NeedsStackTrace()

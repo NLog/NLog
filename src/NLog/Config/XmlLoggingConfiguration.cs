@@ -495,6 +495,8 @@ namespace NLog.Config
                             TargetFactory.AddTargetsFromAssembly(asm, prefix);
                             LayoutRendererFactory.AddLayoutRenderersFromAssembly(asm, prefix);
                             FilterFactory.AddFiltersFromAssembly(asm, prefix);
+                            LayoutFactory.AddLayoutsFromAssembly(asm, prefix);
+                            ConditionMethodFactory.AddConditionMethodsFromAssembly(asm, prefix);
                         }
                         catch (Exception ex)
                         {
@@ -513,9 +515,12 @@ namespace NLog.Config
                         {
                             InternalLogger.Info("Loading assemblyName: {0}", assemblyName);
                             Assembly asm = Assembly.Load(assemblyName);
+
                             TargetFactory.AddTargetsFromAssembly(asm, prefix);
                             LayoutRendererFactory.AddLayoutRenderersFromAssembly(asm, prefix);
                             FilterFactory.AddFiltersFromAssembly(asm, prefix);
+                            LayoutFactory.AddLayoutsFromAssembly(asm, prefix);
+                            ConditionMethodFactory.AddConditionMethodsFromAssembly(asm, prefix);
                         }
                         catch (Exception ex)
                         {
@@ -640,11 +645,45 @@ namespace NLog.Config
             }
         }
 
+        private void ConfigureLayoutFromXmlElement(ILayout layout, XmlElement element)
+        {
+            Type layoutType = layout.GetType();
+
+            foreach (XmlAttribute attrib in element.Attributes)
+            {
+                string name = attrib.LocalName;
+                string value = attrib.InnerText;
+
+                if (0 == String.Compare(name, "type", true))
+                    continue;
+
+                PropertyHelper.SetPropertyFromString(layout, name, value, _variables);
+            }
+            foreach (XmlNode node in element.ChildNodes)
+            {
+                if (node is XmlElement)
+                {
+                    XmlElement el = (XmlElement)node;
+                    string name = el.LocalName;
+
+                    if (PropertyHelper.IsArrayProperty(layoutType, name))
+                    {
+                        PropertyHelper.AddArrayItemFromElement(layout, el, _variables);
+                        continue;
+                    }
+
+                    PropertyHelper.SetPropertyFromString(layout, name, el.InnerText, _variables);
+                }
+            }
+
+        }
+
         private void ConfigureTargetFromXmlElement(Target target, XmlElement element)
         {
             Type targetType = target.GetType();
             NLog.Targets.Compound.CompoundTargetBase compound = target as NLog.Targets.Compound.CompoundTargetBase;
             NLog.Targets.Wrappers.WrapperTargetBase wrapper = target as NLog.Targets.Wrappers.WrapperTargetBase;
+            TargetWithLayout targetWithLayout = target as TargetWithLayout;
 
             foreach (XmlAttribute attrib in element.Attributes)
             {
@@ -705,12 +744,19 @@ namespace NLog.Config
                     if (PropertyHelper.IsArrayProperty(targetType, name))
                     {
                         PropertyHelper.AddArrayItemFromElement(target, el, _variables);
+                        continue;
                     }
-                    else
+
+                    if (name == "layout" && HasCaseInsensitiveAttribute(el, "type") && targetWithLayout != null)
                     {
-                        string value = el.InnerXml;
-                        PropertyHelper.SetPropertyFromString(target, name, value, _variables);
+                        ILayout layout = LayoutFactory.CreateLayout(GetCaseInsensitiveAttribute(el, "type"));
+                        ConfigureLayoutFromXmlElement(layout, el);
+                        targetWithLayout.CompiledLayout = layout;
+                        continue;
                     }
+
+                    string value = el.InnerText;
+                    PropertyHelper.SetPropertyFromString(target, name, value, _variables);
                 }
             }
         }

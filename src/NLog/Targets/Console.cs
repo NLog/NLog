@@ -55,7 +55,7 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/Console/Simple/Example.cs" />
     /// </example>
     [Target("Console")]
-    public sealed class ConsoleTarget: Target
+    public sealed class ConsoleTarget: TargetWithLayout
     {
 #if !NETCF
         private bool _error = false;

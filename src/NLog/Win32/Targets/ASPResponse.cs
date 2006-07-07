@@ -47,7 +47,7 @@ namespace NLog.Win32.Targets
     [Target("ASPResponse")]
     [SupportedRuntime(OS=RuntimeOS.Windows,Framework=RuntimeFramework.DotNetFramework)]
     [SupportedRuntime(OS=RuntimeOS.WindowsNT,Framework=RuntimeFramework.DotNetFramework)]
-    public sealed class ASPResponseTarget: Target
+    public sealed class ASPResponseTarget: TargetWithLayout
     {
         private bool _addComments;
 

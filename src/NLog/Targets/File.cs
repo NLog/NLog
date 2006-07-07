@@ -115,9 +115,19 @@ namespace NLog.Targets
     /// to write to multiple files, such as putting each log level in a separate place:
     /// </p>
     /// <code lang="C#" src="examples/targets/Configuration API/File/Archive4/Example.cs" />
+    /// <p>
+    /// You can write texts using alternative layouts, such as CSV (comma-separated values).
+    /// This example writes files which are properly CSV-quoted (can handle messages with line breaks
+    /// and quotes)
+    /// </p>
+    /// <code lang="C#" src="examples/targets/Configuration API/File/CSV/Example.cs" />
+    /// <para>
+    /// This is the configuration file version:
+    /// </para>
+    /// <code lang="XML" src="examples/targets/Configuration File/File/CSV/NLog.config" />
     /// </example>
     [Target("File")]
-    public class FileTarget: Target, ICreateFileParameters
+    public class FileTarget: TargetWithLayout, ICreateFileParameters
     {
         /// <summary>
         /// Specifies the way archive numbering is performed.
@@ -204,7 +214,7 @@ namespace NLog.Targets
 
         private Layout _fileNameLayout;
         private bool _createDirs = true;
-        private bool _keepFileOpen = true;
+        private bool _keepFileOpen = false;
         private System.Text.Encoding _encoding = System.Text.Encoding.Default;
 #if NETCF
         private string _newLine = "\r\n";
@@ -340,7 +350,7 @@ namespace NLog.Targets
         /// <remarks>
         /// Setting this property to <c>True</c> helps improve performance.
         /// </remarks>
-        [System.ComponentModel.DefaultValue(true)]
+        [System.ComponentModel.DefaultValue(false)]
         public bool KeepFileOpen
         {
             get { return _keepFileOpen; }
@@ -797,6 +807,17 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Gets the bytes to be written to the file.
+        /// </summary>
+        /// <param name="logEvent">log event</param>
+        /// <returns>array of bytes that are ready to be written</returns>
+        protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
+        {
+            string renderedText = GetFormattedMessage(logEvent) + NewLineChars;
+            return TransformBytes(_encoding.GetBytes(renderedText));
+        }
+
+        /// <summary>
         /// Writes the specified logging event to a file specified in the FileName 
         /// parameter.
         /// </summary>
@@ -806,8 +827,7 @@ namespace NLog.Targets
             lock (this)
             {
                 string fileName = _fileNameLayout.GetFormattedMessage(logEvent);
-                string renderedText = GetFormattedMessage(logEvent) + NewLineChars;
-                byte[] bytes = TransformBytes(_encoding.GetBytes(renderedText));
+                byte[] bytes = GetBytesToWrite(logEvent);
 
                 if (ShouldAutoArchive(fileName, logEvent, bytes.Length))
                 {
@@ -862,10 +882,7 @@ namespace NLog.Targets
                         ms.Position = 0;
                     }
 
-                    string logEventText = GetFormattedMessage(logEvent) + NewLineChars;
-
-                    byte[] bytes = TransformBytes(_encoding.GetBytes(logEventText));
-
+                    byte[] bytes = GetBytesToWrite(logEvent);
                     ms.Write(bytes, 0, bytes.Length);
                 }
                 if (currentFileName != null)

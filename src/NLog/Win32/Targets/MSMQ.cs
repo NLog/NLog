@@ -66,7 +66,7 @@ namespace NLog.Win32.Targets
     [Target("MSMQ")]
     [SupportedRuntime(Framework=RuntimeFramework.DotNetFramework)]
     [SupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework,MinRuntimeVersion="2.0")]
-    public class MSMQTarget : Target
+    public class MSMQTarget : TargetWithLayout
 	{
         private Layout _queue;
         private Layout _label;
