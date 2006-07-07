@@ -331,7 +331,7 @@ namespace NLog.Config
         {
             get
             {
-#if DOTNET_2_0
+#if NET_2_API
                 object o = System.Configuration.ConfigurationManager.GetSection("nlog");
 #else
                 object o = System.Configuration.ConfigurationSettings.GetConfig("nlog");
