@@ -153,7 +153,7 @@
         </table>
     </xsl:template>
 
-    <xsl:template match="a[starts-with(@href,'http://') and not(starts-with(@href,'http://www.nlog-project'))]">
+    <xsl:template match="a[starts-with(@href,'http://') and not(starts-with(@href,'http://www.nlog-project')) and not(@nomangle)]">
         <a href="http://www.nlog-project.org/external/{substring-after(@href,'http://')}">
             <xsl:apply-templates />
         </a>
