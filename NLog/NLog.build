@@ -104,6 +104,7 @@
                 <include name="System.dll" />
                 <include name="System.Xml.dll" />
                 <include name="System.Data.dll" />
+                <include name="System.Configuration.dll" />
                 <include name="System.Messaging.dll" />
                 <include name="System.Windows.Forms.dll" />
                 <include name="System.Web.dll" />
@@ -313,7 +314,7 @@
             </references>
         </csc>
         <copy file="tests/NLog.Benchmark/NLog.config" tofile="${nlog.dir}/NLog.Benchmark.exe.config" />
-        <exec program="${nlog.dir}/NLog.Benchmark.exe" workingdir="${nlog.dir}" commandline="Benchmark.xml ${benchmark.mode}" />
+        <exec program="${nlog.dir}/NLog.Benchmark.exe" workingdir="${nlog.dir}" commandline="Benchmark.xml ${benchmark.mode}" useruntimeengine="true" />
     </target>
 
     <target name="NLog.Benchmark-LAB" depends="NLog">
