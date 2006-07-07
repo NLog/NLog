@@ -66,7 +66,7 @@ namespace NLog.Targets
     /// </example>
     [Target("FormControl")]
     [SupportedRuntime(Framework=RuntimeFramework.DotNetFramework, MinRuntimeVersion="1.1")]
-    public sealed class FormControlTarget : Target
+    public sealed class FormControlTarget : TargetWithLayout
     {
         private string _controlName;
         private bool _append = true;

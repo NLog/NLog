@@ -53,7 +53,6 @@ namespace NLog
         /// </remarks>
         protected Target()
         {
-            Layout = "${longdate}|${level:uppercase=true}|${logger}|${message}";
         }
 
         /// <summary>
@@ -99,7 +98,6 @@ namespace NLog
         }
 
         private LayoutCollection _allLayouts = null;
-        private Layout _compiledlayout;
         private int _needsStackTrace = -1;
         private string _name;
 
@@ -111,27 +109,6 @@ namespace NLog
         {
             get { return _name; }
             set { _name = value; }
-        }
-
-        /// <summary>
-        /// The text to be rendered.
-        /// </summary>
-        [RequiredParameter]
-        [AcceptsLayout]
-        [System.ComponentModel.DefaultValue("${longdate}|${level:uppercase=true}|${logger}|${message}")]
-        public string Layout
-        {
-            get { return _compiledlayout.Text; }
-            set { _compiledlayout = new Layout(value); }
-        }
-
-        /// <summary>
-        /// The compiled layout to be rendered.
-        /// </summary>
-        protected Layout CompiledLayout
-        {
-            get { return _compiledlayout; }
-            set { _compiledlayout = value; }
         }
 
         /// <summary>
@@ -258,8 +235,6 @@ namespace NLog
         /// <param name="layouts">The collection to add layouts to.</param>
         public virtual void PopulateLayouts(LayoutCollection layouts)
         {
-            if (this.CompiledLayout != null)
-                layouts.Add(this.CompiledLayout);
         }
 
         /// <summary>

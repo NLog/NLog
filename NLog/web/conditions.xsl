@@ -90,6 +90,10 @@
         <!-- ignore -->
     </xsl:template>
 
+    <xsl:template match="property[@type='NLog.ILayout']" mode="parameter">
+        <!-- ignore -->
+    </xsl:template>
+
     <xsl:template match="c">
         <code><xsl:apply-templates /></code>
     </xsl:template>

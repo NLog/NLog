@@ -2,18 +2,23 @@ using System;
 
 using NLog;
 using NLog.Targets;
+using NLog.Layouts;
 
 class Example
 {
     static void Main(string[] args)
     {
-        CsvFileTarget target = new CsvFileTarget();
+        FileTarget target = new FileTarget();
         target.FileName = "${basedir}/file.csv";
 
-        target.Columns.Add(new CsvFileColumn("time", "${longdate}"));
-        target.Columns.Add(new CsvFileColumn("message", "${message}"));
-        target.Columns.Add(new CsvFileColumn("logger", "${logger}"));
-        target.Columns.Add(new CsvFileColumn("level", "${level}"));
+        CsvLayout layout = new CsvLayout();
+
+        layout.Columns.Add(new CsvColumn("time", "${longdate}"));
+        layout.Columns.Add(new CsvColumn("message", "${message}"));
+        layout.Columns.Add(new CsvColumn("logger", "${logger}"));
+        layout.Columns.Add(new CsvColumn("level", "${level}"));
+
+        target.CompiledLayout = layout;
 
         NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
 

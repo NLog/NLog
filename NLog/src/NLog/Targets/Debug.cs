@@ -60,7 +60,7 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/Debug/Simple/Example.cs" />
     /// </example>
     [Target("Debug")]
-    public sealed class DebugTarget: Target
+    public sealed class DebugTarget: TargetWithLayout
     {
         private int _counter = 0;
         private string _lastMessage = String.Empty;

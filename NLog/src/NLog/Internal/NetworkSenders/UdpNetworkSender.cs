@@ -44,7 +44,6 @@ namespace NLog.Internal.NetworkSenders
 	public class UdpNetworkSender : NetworkSender
 	{
         private Socket _socket;
-        private Encoding _encoding;
         private IPEndPoint _endpoint;
 
         /// <summary>
@@ -66,18 +65,17 @@ namespace NLog.Internal.NetworkSenders
 
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             _endpoint = new IPEndPoint(host.AddressList[0], port);
-            _encoding = Encoding.UTF8;
         }
 
         /// <summary>
         /// Sends the specified text as a UDP datagram.
         /// </summary>
-        /// <param name="text"></param>
-        protected override void DoSend(string text)
+        /// <param name="bytes">The bytes to be sent.</param>
+        protected override void DoSend(byte[] bytes)
         {
             lock (this)
             {
-                _socket.SendTo(_encoding.GetBytes(text), _endpoint);
+                _socket.SendTo(bytes, _endpoint);
             }
         }
 

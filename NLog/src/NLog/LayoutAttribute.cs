@@ -32,36 +32,33 @@
 // 
 
 using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Reflection;
-using System.Globalization;
 
-using NLog.Config;
-
-namespace NLog.Targets
+namespace NLog
 {
     /// <summary>
-    /// Specifies allowes quoting modes when writing to CSV files.
+    /// Marks class as a layout renderer and assigns a format string to it.
     /// </summary>
-    public enum CsvQuotingMode
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class LayoutAttribute: Attribute
     {
-        /// <summary>
-        /// Quote all column.
-        /// </summary>
-        All,
+        private string _name;
 
         /// <summary>
-        /// Quote nothing.
+        /// Creates a new instance of <see cref="LayoutAttribute"/>
+        /// and assigns the <see cref="Name"/> to the specified value.
         /// </summary>
-        Nothing,
+        /// <param name="name">layout name</param>
+        public LayoutAttribute(string name)
+        {
+            _name = name;
+        }
 
         /// <summary>
-        /// Quote only whose values contain the quote symbol or
-        /// the separator.
+        /// The layout name.
         /// </summary>
-        Auto
+        public string Name
+        {
+            get { return _name; }
+        }
     }
-
 }

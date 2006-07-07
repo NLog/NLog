@@ -32,67 +32,62 @@
 // 
 
 using System;
+using System.Text;
 using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Reflection;
-using System.Globalization;
 
-using NLog.Config;
+using NLog.Internal;
+using NLog.LayoutRenderers;
 
-namespace NLog.Targets
+using System.Threading;
+
+namespace NLog
 {
     /// <summary>
-    /// A column in the CSV File
+    /// Abstract interface that layouts must implement.
     /// </summary>
-    public class CsvFileColumn
+    public interface ILayout
     {
-        private Layout _compiledlayout;
-        private string _name;
+        /// <summary>
+        /// Renders the layout for the specified logging event by invoking layout renderers.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        /// <returns>The rendered layout.</returns>
+        string GetFormattedMessage(LogEventInfo logEvent);
 
         /// <summary>
-        /// Constructs a new instance of <see cref="CsvFileColumn"/>.
+        /// Returns the value indicating whether a stack trace and/or the source file
+        /// information should be gathered during layout processing.
         /// </summary>
-        public CsvFileColumn()
-        {
-        }
+        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
+        int NeedsStackTrace();
 
         /// <summary>
-        /// Constructs a new instance of <see cref="CsvFileColumn"/> and
-        /// initializes Name and Layout properties.
+        /// Returns the value indicating whether this layout includes any volatile 
+        /// layout renderers.
         /// </summary>
-        public CsvFileColumn(string name, string layout)
-        {
-            Name = name;
-            Layout = layout;
-        }
+        /// <returns><see langword="true" /> when the layout includes at least 
+        /// one volatile renderer, <see langword="false"/> otherwise.</returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained 
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
+        bool IsVolatile();
 
         /// <summary>
-        /// The name of the column.
+        /// Precalculates the layout for the specified log event and stores the result
+        /// in per-log event cache.
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        /// <param name="logEvent">The log event.</param>
+        /// <remarks>
+        /// Calling this method enables you to store the log event in a buffer
+        /// and/or potentially evaluate it in another thread even though the 
+        /// layout may contain thread-dependent renderer.
+        /// </remarks>
+        void Precalculate(LogEventInfo logEvent);
 
         /// <summary>
-        /// The layout that should be written in the column.
+        /// Initializes the layout.
         /// </summary>
-        [RequiredParameter]
-        public string Layout
-        {
-            get { return _compiledlayout.Text; }
-            set { _compiledlayout = new Layout(value); }
-        }
-
-        /// <summary>
-        /// The compiled layout that should be written in the column.
-        /// </summary>
-        public Layout CompiledLayout
-        {
-            get { return _compiledlayout; }
-            set { _compiledlayout = value; }
-        }
+        void Initialize();
     }
 }

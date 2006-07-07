@@ -32,50 +32,36 @@
 // 
 
 using System;
-using System.Runtime.InteropServices;
+using System.Collections;
+using System.Collections.Specialized;
+using System.Diagnostics;
+using System.Reflection;
+using System.Globalization;
 
-using NLog.Targets;
 using NLog.Config;
 
-namespace NLog.Win32.Targets
+namespace NLog.Layouts
 {
     /// <summary>
-    /// Outputs logging messages through the <c>OutputDebugString()</c> Win32 API.
+    /// Specifies allowes CSV quoting modes.
     /// </summary>
-    /// <example>
-    /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
-    /// use the following syntax:
-    /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/OutputDebugString/NLog.config" />
-    /// <p>
-    /// This assumes just one target and a single rule. More configuration
-    /// options are described <a href="config.html">here</a>.
-    /// </p>
-    /// <p>
-    /// To set up the log target programmatically use code like this:
-    /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/OutputDebugString/Simple/Example.cs" />
-    /// </example>
-    [Target("OutputDebugString")]
-    [SupportedRuntime(OS=RuntimeOS.Windows)]
-    [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
-    public sealed class OutputDebugStringTarget: TargetWithLayout
+    public enum CsvQuotingMode
     {
         /// <summary>
-        /// Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
+        /// Quote all column.
         /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
-        {
-            OutputDebugString(CompiledLayout.GetFormattedMessage(logEvent));
-        }
+        All,
 
         /// <summary>
-        /// Stub for OutputDebugString native method
+        /// Quote nothing.
         /// </summary>
-        /// <param name="message">the string to output</param>
-        [DllImport("kernel32.dll")]
-        private static extern void OutputDebugString(string message);
+        Nothing,
+
+        /// <summary>
+        /// Quote only whose values contain the quote symbol or
+        /// the separator.
+        /// </summary>
+        Auto
     }
+
 }

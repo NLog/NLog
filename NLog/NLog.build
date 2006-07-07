@@ -168,6 +168,7 @@
                     string targets = "";
                     string layoutRenderers = "";
                     string filters = "";
+                    string layouts = "";
 
                     // NDoc 2.0 XML layout
                     foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value"))
@@ -189,6 +190,13 @@
                         filters += node.InnerText;
                     }
 
+                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@id='T:NLog.LayoutAttribute']/argument[position()=1]/@value"))
+                    {
+                        if (layouts != "")
+                            layouts += ",";
+                        layouts += node.InnerText;
+                    }
+
                     // NDoc 1.1 XML layout
                     foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value"))
                     {
@@ -208,10 +216,17 @@
                         filters += ",";
                         filters += node.InnerText;
                     }
+                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@name='NLog.LayoutAttribute']/property[@name='Name']/@value"))
+                    {
+                        if (layouts != "")
+                            layouts += ",";
+                        layouts += node.InnerText;
+                    }
 
                     project.Properties["nlog.targetNames"] = targets;
                     project.Properties["nlog.layoutRendererNames"] = layoutRenderers;
                     project.Properties["nlog.filterNames"] = filters;
+                    project.Properties["nlog.layoutNames"] = layouts;
                   
                 }
                 ]]></code>
@@ -882,6 +897,19 @@
             </parameters>
         </style>
         
+        <style out="${webbuild.dir}/layouts.html" style="web/layouts.xsl" in="build/doc/doc.xml">
+            <parameters>
+                <parameter name="build_time" value="${buildtime}" />
+                <parameter name="nlog_package" value="${nlog.package.name}" />
+                <parameter name="external-base" value="${webbuild.dir}" />
+                <parameter name="file_extension" value="html" />
+                <parameter name="sourceforge" value="${web.sourceforge}" />
+                <parameter name="page_id_override" value="documentation" />
+                <parameter name="subpage_id_override" value="layouts" />
+                <parameter name="mode" value="${web.buildmode}" />
+            </parameters>
+        </style>
+        
         <style out="${webbuild.dir}/filters.html" style="web/filters.xsl" in="build/doc/doc.xml">
             <parameters>
                 <parameter name="build_time" value="${buildtime}" />
@@ -936,6 +964,22 @@
                     <parameter name="subpage_id_override" value="layoutrenderers" />
                     <parameter name="mode" value="${web.buildmode}" />
                     <parameter name="lr_name" value="${t}" />
+                </parameters>
+            </style>
+        </foreach>
+
+        <foreach item="String" in="${nlog.layoutNames}" delim="," property="t">
+            <style out="${webbuild.dir}/layout.${t}.html" style="web/layouts.xsl" in="build/doc/doc.xml">
+                <parameters>
+                    <parameter name="build_time" value="${buildtime}" />
+                    <parameter name="nlog_package" value="${nlog.package.name}" />
+                    <parameter name="external-base" value="${webbuild.dir}" />
+                    <parameter name="file_extension" value="html" />
+                    <parameter name="sourceforge" value="${web.sourceforge}" />
+                    <parameter name="page_id_override" value="documentation" />
+                    <parameter name="subpage_id_override" value="layouts" />
+                    <parameter name="mode" value="${web.buildmode}" />
+                    <parameter name="l_name" value="${t}" />
                 </parameters>
             </style>
         </foreach>

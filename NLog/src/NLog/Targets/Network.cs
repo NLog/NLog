@@ -39,6 +39,7 @@ using System.Threading;
 
 using NLog.Internal;
 using NLog.Internal.NetworkSenders;
+using System.Text;
 
 namespace NLog.Targets
 {
@@ -79,16 +80,20 @@ namespace NLog.Targets
     /// </p>
     /// </example>
     [Target("Network")]
-    public class NetworkTarget: Target
+    public class NetworkTarget: TargetWithLayout
     {
         private bool _newline = false;
         private bool _keepConnection = true;
         private Layout _addressLayout = null;
         private NetworkSender _sender = null;
+        private Encoding _encoding = System.Text.Encoding.UTF8;
 
         /// <summary>
-        /// The network address. Can be tcp://host:port, udp://host:port, http://host:port or https://host:port
+        /// The network address. Can be tcp://host:port or udp://host:port
         /// </summary>
+        /// <remarks>
+        /// For HTTP Support use the WebService target.
+        /// </remarks>
         public string Address
         {
             get { return _addressLayout.Text; }
@@ -133,11 +138,24 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Encoding
+        /// </summary>
+        /// <remarks>
+        /// Can be any encoding name supported by System.Text.Encoding.GetEncoding() e.g. <c>windows-1252</c>, <c>iso-8859-2</c>.
+        /// </remarks>
+        [System.ComponentModel.DefaultValue("utf-8")]
+        public string Encoding
+        {
+            get { return _encoding.WebName; }
+            set { _encoding = System.Text.Encoding.GetEncoding(value); }
+        }
+
+        /// <summary>
         /// Sends the provided text to the specified address.
         /// </summary>
         /// <param name="address">The address. Can be tcp://host:port, udp://host:port, http://host:port or https://host:port</param>
-        /// <param name="text">The text to be sent.</param>
-        protected void NetworkSend(string address, string text)
+        /// <param name="bytes">The bytes to be sent.</param>
+        protected virtual void NetworkSend(string address, byte[] bytes)
         {
             lock (this)
             {
@@ -158,7 +176,7 @@ namespace NLog.Targets
 
                     try
                     {
-                        _sender.Send(text);
+                        _sender.Send(bytes);
                     }
                     catch (Exception ex)
                     {
@@ -174,7 +192,7 @@ namespace NLog.Targets
 
                     try
                     {
-                        sender.Send(text);
+                        sender.Send(bytes);
                     }
                     finally
                     {
@@ -227,14 +245,24 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
+            NetworkSend(AddressLayout.GetFormattedMessage(logEvent), GetBytesToWrite(logEvent));
+        }
+
+        /// <summary>
+        /// Gets the bytes to be written.
+        /// </summary>
+        /// <param name="logEvent">Log event</param>
+        /// <returns>Byte array.</returns>
+        protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
+        {
+            string text;
+
             if (NewLine)
-            {
-                NetworkSend(AddressLayout.GetFormattedMessage(logEvent), CompiledLayout.GetFormattedMessage(logEvent) + "\r\n");
-            }
+                text = CompiledLayout.GetFormattedMessage(logEvent) + "\r\n";
             else
-            {
-                NetworkSend(AddressLayout.GetFormattedMessage(logEvent), CompiledLayout.GetFormattedMessage(logEvent));
-            }
+                text = CompiledLayout.GetFormattedMessage(logEvent);
+
+            return _encoding.GetBytes(text);
         }
     }
 }

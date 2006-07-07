@@ -2,10 +2,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3E60C8D1-7A69-48C0-92BD-D3FF86E464AC}</ProjectGuid>
+    <ProjectGuid>{B55FBAF5-21E0-4375-8515-0FF9622D581E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <AssemblyName>CSVFile</AssemblyName>
+    <AssemblyName>File.CSV</AssemblyName>
     <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

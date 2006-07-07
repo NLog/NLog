@@ -38,7 +38,7 @@
                     </xsl:apply-templates>
                 </table>
             </div>
-            <a name="wrappers" />
+            <a name="wrappers"></a>
             <h3>Target Wrappers</h3>
             <p>
                 The following target wrappers are available. Click on the target name for full reference.
@@ -52,7 +52,7 @@
                     </xsl:apply-templates>
                 </table>
             </div>
-            <a name="compound" />
+            <a name="compound"></a>
             <h3>Compound Targets</h3>
             <p>
                 The following compound targets are available. Click on the target name for full reference.
@@ -138,6 +138,10 @@
     </xsl:template>
 
     <xsl:template match="property[@type='NLog.Layout']" mode="parameter">
+        <!-- ignore -->
+    </xsl:template>
+
+    <xsl:template match="property[@type='NLog.ILayout']" mode="parameter">
         <!-- ignore -->
     </xsl:template>
 

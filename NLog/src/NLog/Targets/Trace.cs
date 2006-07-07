@@ -61,7 +61,7 @@ namespace NLog.Targets
     /// </example>
     [Target("Trace")]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
-    public sealed class TraceTarget: Target
+    public sealed class TraceTarget: TargetWithLayout
     {
         /// <summary>
         /// Writes the specified logging event to the <see cref="System.Diagnostics.Trace"/> facility.

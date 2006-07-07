@@ -3,7 +3,7 @@ using NLog;
 namespace MyNamespace
 {
     [Target("MyFirst")]
-    public sealed class MyFirstTarget: Target
+    public sealed class MyFirstTarget: TargetWithLayout
     {
         private string _host = "localhost";
 

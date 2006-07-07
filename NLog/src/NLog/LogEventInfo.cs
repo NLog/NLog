@@ -293,7 +293,7 @@ namespace NLog
             get { return _sequenceID; }
         }
 
-        internal string GetCachedLayoutValue(Layout layout)
+        internal string GetCachedLayoutValue(ILayout layout)
         {
             if (_layoutCache == null)
                 return null;
@@ -301,7 +301,7 @@ namespace NLog
             return result;
         }
 
-        internal void AddCachedLayoutValue(Layout layout, string value)
+        internal void AddCachedLayoutValue(ILayout layout, string value)
         {
             if (_layoutCache == null)
                 _layoutCache = new HybridDictionary();

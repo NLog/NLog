@@ -1,80 +1,15 @@
-// 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
-// 
-// All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
-// are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
-// * Redistributions in binary form must reproduce the above copyright notice,
-//   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
-//   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
-// THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-using System;
-using System.Xml;
-using System.IO;
-using System.Threading;
-using System.Collections;
-using System.Collections.Specialized;
-
-using NLog;
-using NLog.Config;
-
-using NLog.Internal;
-using NLog.Internal.FileAppenders;
+using NLog.LayoutRenderers;
 using System.Text;
+using NLog.Config;
 using System.Globalization;
-#if !NETCF
-using System.Runtime.InteropServices;
-using NLog.Internal.Win32;
-using System.ComponentModel;
-#endif
-
-namespace NLog.Targets
+using System;
+namespace NLog.Layouts
 {
     /// <summary>
-    /// File target that can produce *.csv (Comma Separated Values) files.
-    /// This is an extension to the <a href="target.File.html">File</a> Target.
+    /// A specialized layout that renders CSV-formatted events.
     /// </summary>
-    /// <example>
-    /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
-    /// use the following syntax:
-    /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/CSVFile/NLog.config" />
-    /// <p>
-    /// This assumes just one target and a single rule. More configuration
-    /// options are described <a href="config.html">here</a>.
-    /// </p>
-    /// <p>
-    /// To set up the log target programmatically use code like this:
-    /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/CSVFile/Simple/Example.cs" />
-    /// <p>More examples can be found in <a href="target.File.html">File</a> Target reference.</p>
-    /// </example>
-    [Target("CSVFile", IgnoresLayout = true)]
-    public class CsvFileTarget: FileTarget
+    [Layout("CSVLayout")]
+    public class CsvLayout : ILayout
     {
         /// <summary>
         /// Specifies allowed column delimiters.
@@ -118,7 +53,7 @@ namespace NLog.Targets
         }
 
 
-        private CsvFileColumnCollection _columns = new CsvFileColumnCollection();
+        private CsvColumnCollection _columns = new CsvColumnCollection();
         private ColumnDelimiterMode _columnDelimiter = ColumnDelimiterMode.Auto;
         private CsvQuotingMode _quotingMode = CsvQuotingMode.Auto;
         private char[] _quotableCharacters;
@@ -130,8 +65,8 @@ namespace NLog.Targets
         /// <summary>
         /// Array of parameters to be passed.
         /// </summary>
-        [ArrayParameter(typeof(CsvFileColumn), "column")]
-        public CsvFileColumnCollection Columns
+        [ArrayParameter(typeof(CsvColumn), "column")]
+        public CsvColumnCollection Columns
         {
             get { return _columns; }
         }
@@ -179,13 +114,17 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent">The log event to be formatted.</param>
         /// <returns>A string representation of the log event.</returns>
-        protected override string GetFormattedMessage(LogEventInfo logEvent)
+        public string GetFormattedMessage(LogEventInfo logEvent)
         {
+            string cachedValue = logEvent.GetCachedLayoutValue(this);
+            if (cachedValue != null)
+                return cachedValue;
+
             StringBuilder sb = new StringBuilder();
 
             bool first = true;
 
-            foreach (CsvFileColumn col in Columns)
+            foreach (CsvColumn col in Columns)
             {
                 if (!first)
                 {
@@ -228,15 +167,16 @@ namespace NLog.Targets
                     sb.Append(QuoteChar);
             }
 
+            if (logEvent != LogEventInfo.Empty)
+                logEvent.AddCachedLayoutValue(this, sb.ToString());
             return sb.ToString();
         }
 
         /// <summary>
-        /// Initializes the target.
+        /// Initializes the layout.
         /// </summary>
-        public override void Initialize()
+        public void Initialize()
         {
-            base.Initialize();
             switch (Delimiter)
             {
                 case ColumnDelimiterMode.Auto:
@@ -267,8 +207,59 @@ namespace NLog.Targets
                     _actualColumnDelimiter = _customColumnDelimiter;
                     break;
             }
-            _quotableCharacters = (QuoteChar + NewLineChars + _actualColumnDelimiter).ToCharArray();
+            _quotableCharacters = (QuoteChar + "\r\n" + _actualColumnDelimiter).ToCharArray();
             _doubleQuoteChar = _quoteChar + _quoteChar;
+        }
+
+        /// <summary>
+        /// Returns the value indicating whether a stack trace and/or the source file
+        /// information should be gathered during layout processing.
+        /// </summary>
+        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
+        public int NeedsStackTrace()
+        {
+            int nst = 0;
+
+            foreach (CsvColumn cc in _columns)
+            {
+                nst = Math.Max(nst, cc.CompiledLayout.NeedsStackTrace());
+            }
+            return nst;
+        }
+
+        /// <summary>
+        /// Returns the value indicating whether this layout includes any volatile 
+        /// layout renderers.
+        /// </summary>
+        /// <returns><see langword="true" /> when the layout includes at least 
+        /// one volatile renderer, <see langword="false"/> otherwise.</returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained 
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
+        public bool IsVolatile()
+        {
+            foreach (CsvColumn cc in _columns)
+            {
+                if (cc.CompiledLayout.IsVolatile())
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Precalculates the layout for the specified log event and stores the result
+        /// in per-log event cache.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
+        /// <remarks>
+        /// Calling this method enables you to store the log event in a buffer
+        /// and/or potentially evaluate it in another thread even though the 
+        /// layout may contain thread-dependent renderer.
+        /// </remarks>
+        public void Precalculate(LogEventInfo logEvent)
+        {
+            GetFormattedMessage(logEvent);
         }
     }
 }

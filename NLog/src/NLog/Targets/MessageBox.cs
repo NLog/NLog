@@ -66,7 +66,7 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/MessageBox/Simple/Example.cs" />
     /// </example>
     [Target("MessageBox")]
-    public sealed class MessageBoxTarget: Target
+    public sealed class MessageBoxTarget: TargetWithLayout
     {
         private Layout _caption = null;
 

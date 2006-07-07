@@ -81,7 +81,7 @@ namespace NLog.Targets
     /// </example>
     [Target("RichTextBox")]
     [SupportedRuntime(Framework = RuntimeFramework.DotNetFramework, MinRuntimeVersion = "1.1")]
-    public sealed class RichTextBoxTarget : Target
+    public sealed class RichTextBoxTarget : TargetWithLayout
     {
         private string _controlName;
         private string _formName;

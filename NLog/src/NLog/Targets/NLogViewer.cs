@@ -44,6 +44,7 @@ using System.Net.Sockets;
 
 using NLog.Config;
 using NLog.LayoutRenderers;
+using NLog.Layouts;
 
 namespace NLog.Targets
 {
@@ -75,11 +76,20 @@ namespace NLog.Targets
     public class NLogViewerTarget: NetworkTarget
     {
         private NLogViewerParameterInfoCollection _parameters = new NLogViewerParameterInfoCollection();
-        private Log4JXmlEventLayoutRenderer _log4jrenderer;
+        private Log4JXmlEventLayout _layout = new Log4JXmlEventLayout();
 
         private Log4JXmlEventLayoutRenderer Renderer
         {
-            get { return _log4jrenderer; }
+            get { return Layout.Renderer; }
+        }
+
+        /// <summary>
+        /// An instance of <see cref="Log4JXmlEventLayout"/> that is used to format log messages.
+        /// </summary>
+        public new Log4JXmlEventLayout Layout
+        {
+            get { return _layout; }
+            set { _layout = value; }
         }
 
         /// <summary>
@@ -97,15 +107,8 @@ namespace NLog.Targets
         /// </summary>
         public NLogViewerTarget()
         {
-            Layout = "${log4jxmlevent}";
-
-            if (CompiledLayout.Renderers.Length != 1)
-                throw new InvalidOperationException("Assertion failed.");
-            _log4jrenderer = CompiledLayout.Renderers[0] as Log4JXmlEventLayoutRenderer;
-            if (_log4jrenderer == null)
-                throw new InvalidOperationException("Assertion failed #2.");
-
             Renderer.Parameters = _parameters;
+            NewLine = false;
         }
 
         /// <summary>
@@ -187,15 +190,6 @@ namespace NLog.Targets
         public NLogViewerParameterInfoCollection Parameters
         {
             get { return _parameters; }
-        }
-
-        /// <summary>
-        /// Constructs an XML packet including the logging event information and sends it over the network.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        protected internal override void Write(LogEventInfo logEvent)
-        {
-            NetworkSend(AddressLayout.GetFormattedMessage(logEvent), CompiledLayout.GetFormattedMessage(logEvent));
         }
     }
 }

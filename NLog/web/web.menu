@@ -14,6 +14,7 @@
             <subnav href="tutorial" label="Introduction to NLog" />
             <subnav href="api" label="API Reference" />
             <subnav href="targets" label="Targets" />
+            <subnav href="layouts" label="Layouts" />
             <subnav href="layoutrenderers" label="Layout Renderers" />
             <subnav href="filters" label="Filters" />
             <subnav href="conditions" label="Conditions" />

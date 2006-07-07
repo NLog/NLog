@@ -32,31 +32,65 @@
 // 
 
 using System;
+using System.Text;
+using System.Collections;
 
-namespace NLog.Internal.NetworkSenders
+using NLog.Config;
+
+namespace NLog
 {
     /// <summary>
-    /// Sends one-way messages over the HTTP protocol.
+    /// Represents target that supports string formatting using layouts.
     /// </summary>
-	public class HttpNetworkSender : NetworkSender
-	{
+    public abstract class TargetWithLayout : Target
+    {
+        private ILayout _compiledlayout;
+
         /// <summary>
-        /// Creates a new instance of <see cref="HttpNetworkSender"/> and initializes
-        /// it with the specified URL.
+        /// Creates a new instance of <see cref="TargetWithLayout" />
         /// </summary>
-        /// <param name="url">URL. Must start with http:// or https://</param>
-        public HttpNetworkSender(string url) : base(url)
+        protected TargetWithLayout()
         {
+            Layout = "${longdate}|${level:uppercase=true}|${logger}|${message}";
         }
 
         /// <summary>
-        /// Sends the given text over HTTP.
+        /// The text to be rendered.
         /// </summary>
-        /// <param name="text">The text to be sent.</param>
-        /// <remarks>The method uses HTTP <c>POST</c> method to connect to the server.</remarks>
-        protected override void DoSend(string text)
+        [RequiredParameter]
+        [AcceptsLayout]
+        [System.ComponentModel.DefaultValue("${longdate}|${level:uppercase=true}|${logger}|${message}")]
+        public string Layout
         {
-            throw new NotSupportedException("Not implemented yet");
+            get { return Convert.ToString(_compiledlayout); }
+            set { _compiledlayout = new Layout(value); }
         }
-    }
+
+        /// <summary>
+        /// The compiled layout, can be an instance of <see cref="Layout"/> or other layout type.
+        /// </summary>
+        public ILayout CompiledLayout
+        {
+            get { return _compiledlayout; }
+            set { _compiledlayout = value; }
+        }
+
+        /// <summary>
+        /// Adds all layouts used by this target to the specified collection.
+        /// </summary>
+        /// <param name="layouts">The collection to add layouts to.</param>
+        public override void PopulateLayouts(LayoutCollection layouts)
+        {
+            if (this.CompiledLayout != null)
+                layouts.Add(this.CompiledLayout);
+        }
+
+        /// <summary>
+        /// Initializes the target.
+        /// </summary>
+        public override void Initialize()
+        {
+            this.CompiledLayout.Initialize();
+        }
+   }
 }

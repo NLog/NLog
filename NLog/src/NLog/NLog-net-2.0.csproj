@@ -209,6 +209,8 @@
     <Compile Include="Config\XmlLoggingConfiguration.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LayoutFactory.cs" />
+    <Compile Include="LayoutAttribute.cs" />
     <Compile Include="Filter.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -245,6 +247,7 @@
     <Compile Include="GDC.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ILayout.cs" />
     <Compile Include="Internal\CompactFrameworkHelper.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -311,7 +314,6 @@
     <Compile Include="Internal\MultiFileWatcher.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Internal\NetworkSenders\HttpNetworkSender.cs" />
     <Compile Include="Internal\NetworkSenders\NetworkSender.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSender.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSender.cs" />
@@ -471,6 +473,8 @@
     <Compile Include="LayoutRenderers\Ticks.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Layouts\CsvLayout.cs" />
+    <Compile Include="Layouts\Log4JXmlEventLayout.cs" />
     <Compile Include="LogEventInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -528,10 +532,9 @@
     <Compile Include="Targets\Console.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\CsvQuotingMode.cs" />
-    <Compile Include="Targets\CsvFileColumnCollection.cs" />
-    <Compile Include="Targets\CsvFileColumn.cs" />
-    <Compile Include="Targets\CsvFile.cs" />
+    <Compile Include="Layouts\CsvQuotingMode.cs" />
+    <Compile Include="Layouts\CsvColumnCollection.cs" />
+    <Compile Include="Layouts\CsvColumn.cs" />
     <Compile Include="Targets\Database.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -630,6 +633,7 @@
     <Compile Include="Targets\Wrappers\WrapperTargetBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TargetWithLayout.cs" />
     <Compile Include="Web\NLogHttpModule.cs">
       <SubType>Code</SubType>
     </Compile>
