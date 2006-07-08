@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="news">
+    <base href="http://www.nlog-project.org" />
+    <h1>Page Not Found</h1>
+    <p>
+        The page you're looking for is not available. Locate your content using the menu.
+    </p>
+</content>

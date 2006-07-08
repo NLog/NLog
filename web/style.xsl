@@ -7,14 +7,14 @@
     <xsl:param name="sourceforge">0</xsl:param>
     <xsl:param name="log4net_comparison">0</xsl:param>
     <xsl:param name="build_time">2006-01-01</xsl:param>
-    <xsl:param name="mode">plain</xsl:param>
+    <xsl:param name="mode">web</xsl:param>
     <xsl:param name="nlog_package">temp</xsl:param>
 
     <xsl:variable name="page_id" select="concat(/*[position()=1]/@id,$page_id_override)" />
     <xsl:variable name="subpage_id" select="concat(/*[position()=1]/@subid,$subpage_id_override)" />
     <xsl:variable name="common" select="document(concat($mode,'.menu'))" />
     
-    <xsl:output method="html" indent="no" />
+    <xsl:output method="xml" indent="no" />
 
     <xsl:template match="/">
         <html>
@@ -540,6 +540,32 @@
         <xsl:call-template name="last-component">
             <xsl:with-param name="t" select="@cref" />
         </xsl:call-template>
+    </xsl:template>
+
+    <xsl:template match="faq-index">
+        <ol>
+            <xsl:for-each select="//faq">
+                <li><a href="#faq{generate-id(.)}"><xsl:apply-templates select="faq-question" /></a></li>
+            </xsl:for-each>
+        </ol>
+    </xsl:template>
+
+    <xsl:template match="faq">
+        <hr />
+        <a name="faq{generate-id}"></a>
+        <p>
+            <b><xsl:apply-templates select="faq-question" /></b>
+            <br/>
+            <xsl:apply-templates select="faq-answer" />
+        </p>
+    </xsl:template>
+
+    <xsl:template match="faq-question">
+        <xsl:apply-templates />
+    </xsl:template>
+
+    <xsl:template match="faq-answer">
+        <xsl:apply-templates />
     </xsl:template>
 
 </xsl:stylesheet>
