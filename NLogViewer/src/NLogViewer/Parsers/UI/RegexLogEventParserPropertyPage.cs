@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using NLogViewer.UI;
 using System.IO;
 using NLogViewer.Parsers;
+using System.Xml;
 
 namespace NLogViewer.Parsers.UI
 {
@@ -33,7 +34,16 @@ namespace NLogViewer.Parsers.UI
                 MessageBox.Show("You must provide a regular expression.");
                 return false;
             }
-            return true;
+            try
+            {
+                _parser.Expression = textBox1.Text;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "ERROR: " + ex);
+                return false;
+            }
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -43,7 +53,26 @@ namespace NLogViewer.Parsers.UI
 
         private void RegexLogEventParserPropertyPage_Load(object sender, EventArgs e)
         {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
 
+                doc.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Regexes.xml"));
+                foreach (XmlElement el in doc.SelectNodes("//regex"))
+                {
+                    ListViewItem lvi = new ListViewItem();
+                    lvi.Text = el.SelectSingleNode("name").InnerText;
+                    lvi.SubItems.Add(el.SelectSingleNode("expression").InnerText);
+                    lvi.Tag = el.SelectSingleNode("expression").InnerText;
+                    listView1.Items.Add(lvi);
+                }
+                listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message);
+                // ignore
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -59,6 +88,19 @@ namespace NLogViewer.Parsers.UI
                 {
                     textBox1.AppendText("(<" + dlg.CaptureGroupName + ">:" + dlg.RegularExpression + ")");
                 }
+            }
+        }
+
+        private void listView1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            foreach (ListViewItem lvi in listView1.SelectedItems)
+            {
+                textBox1.Text = (string)lvi.Tag;
             }
         }
     }

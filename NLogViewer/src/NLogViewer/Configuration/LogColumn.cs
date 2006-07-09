@@ -59,23 +59,64 @@ namespace NLogViewer.Configuration
             this.Visible = visible;
         }
 
+        private string _name;
+
         [XmlAttribute("name")]
-        public string Name;
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                if (value == null || value.Length == 0)
+                    throw new ArgumentException("Name cannot be empty.");
+                _name = value;
+            }
+        }
+
+        private int _width;
 
         [XmlAttribute("width")]
-        public int Width;
+        public int Width
+        {
+            get { return _width; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("Width must be a positive integer.");
+                _width = value;
+            }
+        }
+
+
+        private LogColumnGrouping _grouping = LogColumnGrouping.Flat;
 
         [XmlAttribute("grouping")]
         [DefaultValue(LogColumnGrouping.Flat)]
-        public LogColumnGrouping Grouping = LogColumnGrouping.Flat;
+        public LogColumnGrouping Grouping
+        {
+            get { return _grouping; }
+            set { _grouping = value; }
+        }
+
+        private bool _visible = true;
 
         [XmlAttribute("visible")]
         [System.ComponentModel.DefaultValue(true)]
-        public bool Visible = true;
 
+        public bool Visible
+        {
+            get { return _visible; }
+            set { _visible = value; }
+        }
+	
         public override string ToString()
         {
             return Name;
+        }
+
+        public LogColumn Clone()
+        {
+            return (LogColumn)MemberwiseClone();
         }
 	}
 }

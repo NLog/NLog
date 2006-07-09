@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<regexes>
+    <regex>
+        <name>Apache HTTPD Common Log Format</name>
+        <expression>^(?&lt;IPAddress&gt;\d+.\d+.\d+.\d+) (?&lt;RemoteLogName&gt;[^ ]*) (?&lt;RemoteUser&gt;[^ ]*) \[(?&lt;TimeStamp&gt;.*)\] "(?&lt;RequestMethod&gt;[^ ]*?) (?&lt;RequestUrl&gt;.*?) (?&lt;Protocol&gt;[^ ]*?)" (?&lt;ResponseCode&gt;[^ ]*?) (?&lt;ResponseBytes&gt;[^ ]*?)</expression>
+    </regex>    
+    <regex>
+        <name>Apache HTTPD Combined Log Format</name>
+        <expression>^(?&lt;IPAddress&gt;\d+.\d+.\d+.\d+) (?&lt;RemoteLogName&gt;[^ ]*) (?&lt;RemoteUser&gt;[^ ]*) \[(?&lt;TimeStamp&gt;.*)\] "(?&lt;RequestMethod&gt;[^ ]*?) (?&lt;RequestUrl&gt;.*?) (?&lt;Protocol&gt;[^ ]*?)" (?&lt;ResponseCode&gt;[^ ]*?) (?&lt;ResponseBytes&gt;[^ ]*?) "(?&lt;Referer&gt;.*?)" "(?&lt;UserAgent&gt;.*?)"</expression>
+    </regex>    
+    <regex>
+        <name>Apache HTTPD Combined Log Format + mod_usertrack cookie</name>
+        <expression>^(?&lt;IPAddress&gt;\d+.\d+.\d+.\d+) (?&lt;RemoteLogName&gt;[^ ]*) (?&lt;RemoteUser&gt;[^ ]*) \[(?&lt;TimeStamp&gt;.*)\] "(?&lt;RequestMethod&gt;[^ ]*?) (?&lt;RequestUrl&gt;.*?) (?&lt;Protocol&gt;[^ ]*?)" (?&lt;ResponseCode&gt;[^ ]*?) (?&lt;ResponseBytes&gt;[^ ]*?) "(?&lt;Referer&gt;.*?)" "(?&lt;UserAgent&gt;.*?)" "(?&lt;SessionID&gt;.*?)"</expression>
+    </regex>    
+</regexes>

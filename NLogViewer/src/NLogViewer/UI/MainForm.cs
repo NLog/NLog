@@ -542,10 +542,10 @@ namespace NLogViewer.UI
                     if (dlg.Parser != null)
                         instance.ParserType = LogEventParserFactory.FindParserByType(dlg.Parser.GetType()).Name;
                     instance.Name = GetUniqueSessionName();
-                    instance.Resolve();
                     instance.Dirty = true;
                     instance.Receiver = dlg.Receiver;
                     instance.Parser = dlg.Parser;
+                    instance.Resolve();
                     instance.CreateTab(this);
                     _sessions.Add(instance);
                     ReloadTabPages();

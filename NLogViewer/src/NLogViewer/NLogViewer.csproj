@@ -105,6 +105,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Properties\DataSources\NLogViewer.Configuration.LogColumn.datasource" />
+    <None Include="Properties\DataSources\Session.datasource" />
     <Content Include="App.ico" />
     <Content Include="Icons\OpenLogFile.ico" />
     <Content Include="Icons\ReceiveLiveLogs.ico" />
@@ -121,6 +123,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Levels\Warn.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RegExes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Compile Include="AssemblyInfo.cs">
