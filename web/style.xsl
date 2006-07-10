@@ -19,6 +19,7 @@
     <xsl:template match="/">
         <html>
             <head>
+                <xsl:apply-templates select="//base" />
                 <link rel="stylesheet" href="style.css" type="text/css" />
                 <link rel="stylesheet" href="syntax.css" type="text/css" />
                 <link rel="icon" href="http://www.nlog-project.org/favicon.ico" type="image/x-icon" />
@@ -58,6 +59,7 @@
                             <xsl:comment>#include virtual="/dynamic/snippet.cgi?topbanner"</xsl:comment>
                             <xsl:apply-templates select="/" mode="content" />
                             <xsl:comment>#include virtual="/dynamic/snippet.cgi?bottombanner"</xsl:comment>
+                            <xsl:apply-templates select="/content/last-changed-date" mode="lastchangeddate" /> 
                         </td>
                     </tr>
                     <tr>
@@ -552,7 +554,7 @@
 
     <xsl:template match="faq">
         <hr />
-        <a name="faq{generate-id}"></a>
+        <a name="faq{generate-id(.)}"></a>
         <p>
             <b><xsl:apply-templates select="faq-question" /></b>
             <br/>
@@ -566,6 +568,14 @@
 
     <xsl:template match="faq-answer">
         <xsl:apply-templates />
+    </xsl:template>
+
+    <xsl:template match="last-changed-date">
+    </xsl:template>
+
+    <xsl:template match="last-changed-date" mode="lastchangeddate">
+        <xsl:variable name="lastUpdated"><xsl:value-of select="substring(.,18,20)" /></xsl:variable>
+        <xsl:if test="string-length($lastUpdated)=20">Last updated: <xsl:value-of select="$lastUpdated" /></xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>

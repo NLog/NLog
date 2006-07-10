@@ -11,5 +11,6 @@
         The source snapshots are automatically generated on each day and 
         are available <a href="http://svn.nlog-project.org/snapshots/">here</a>.
     </p>
+    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>
 

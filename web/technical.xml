@@ -9,4 +9,5 @@
         <li><a href="/clover/index.html">Latest code coverage results generated using Clover.NET (this is just a beginning of any serious unit testing so the coverage isn't very good)</a></li>
         <li><a href="/nunit2report/">Latest NUnit testing results generated using NUnit2Report</a></li>
     </ol>
+    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>

@@ -9,4 +9,5 @@
         <li><link href="mailinglists">Mailing Lists</link> and <a href="http://www.nabble.com/NLog-Forum-f6167.html">Forum</a> where you can ask questions about NLog usage.</li>
         <li><a href="http://trac.nlog-project.org/nlog/">TRAC interface</a> where you can report bugs and feature requests.</li>
     </ul>
+    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>

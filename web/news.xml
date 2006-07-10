@@ -13,4 +13,5 @@
          </tr>
         <tr><td class="newsdate">2005-03-08</td><td class="newstext">NLog 0.5 beta 1 has been released!. This work is based on 6 months of testing and should be production-ready. Download it <a href="http://sourceforge.net/project/showfiles.php?group_id=116456">here</a>.</td></tr>
     </table>
+    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>

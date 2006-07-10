@@ -67,4 +67,5 @@
     <code lang="C#">
         private static Logger logger = LogManager.GetCurrentClassLogger();
     </code>
+    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>

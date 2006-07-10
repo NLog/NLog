@@ -25,4 +25,5 @@
     <p>
         To build NLog using NAnt, just type <code>nant</code> at the command prompt. To rebuild NLog using VS.NET, open the solution file (<code>NLog.sln</code>) and run <code>Build|Rebuild Solution</code>.
     </p>
+    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>
