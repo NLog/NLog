@@ -75,5 +75,6 @@
         The C/C++ API as-is is meant primarily to be wrapped by your own high-level logging API (every programmer has one, hasn't he?).
         An example of such an API implemented as C++ class is provided in <code>src/NLogC/NLogger.h</code>.
     </p>
+    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>
 

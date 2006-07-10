@@ -3,4 +3,5 @@
 <content lang="en" id="website">
     <h1>NLog website</h1>
     <p>NLog website is located <a href="http://www.nlog-project.org/">here</a>. To report a bug, use the TRAC interface available <a href="http://trac.sav.net/nlog">here</a>.</p>
+    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>

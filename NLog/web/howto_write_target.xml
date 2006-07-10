@@ -56,5 +56,6 @@ you can use integer, string, datetime, boolean parameters.
 </p>
 
 <code lang="C#" src="examples/web/AddTarget.cs" />
+    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>
 

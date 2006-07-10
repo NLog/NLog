@@ -22,4 +22,5 @@
     <p>
         The logging API is modelled after log4net with some extensions that help it achieve great speed as described <link href="netapi">here</link>.
     </p>
+    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>

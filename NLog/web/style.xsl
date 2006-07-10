@@ -7,7 +7,7 @@
     <xsl:param name="sourceforge">0</xsl:param>
     <xsl:param name="log4net_comparison">0</xsl:param>
     <xsl:param name="build_time">2006-01-01</xsl:param>
-    <xsl:param name="mode">plain</xsl:param>
+    <xsl:param name="mode">web</xsl:param>
     <xsl:param name="nlog_package">temp</xsl:param>
 
     <xsl:variable name="page_id" select="concat(/*[position()=1]/@id,$page_id_override)" />
@@ -19,6 +19,7 @@
     <xsl:template match="/">
         <html>
             <head>
+                <xsl:apply-templates select="//base" />
                 <link rel="stylesheet" href="style.css" type="text/css" />
                 <link rel="stylesheet" href="syntax.css" type="text/css" />
                 <link rel="icon" href="http://www.nlog-project.org/favicon.ico" type="image/x-icon" />
@@ -58,6 +59,7 @@
                             <xsl:comment>#include virtual="/dynamic/snippet.cgi?topbanner"</xsl:comment>
                             <xsl:apply-templates select="/" mode="content" />
                             <xsl:comment>#include virtual="/dynamic/snippet.cgi?bottombanner"</xsl:comment>
+                            <xsl:apply-templates select="/content/last-changed-date" mode="lastchangeddate" /> 
                         </td>
                     </tr>
                     <tr>
@@ -540,6 +542,40 @@
         <xsl:call-template name="last-component">
             <xsl:with-param name="t" select="@cref" />
         </xsl:call-template>
+    </xsl:template>
+
+    <xsl:template match="faq-index">
+        <ol>
+            <xsl:for-each select="//faq">
+                <li><a href="#faq{generate-id(.)}"><xsl:apply-templates select="faq-question" /></a></li>
+            </xsl:for-each>
+        </ol>
+    </xsl:template>
+
+    <xsl:template match="faq">
+        <hr />
+        <a name="faq{generate-id(.)}"></a>
+        <p>
+            <b><xsl:apply-templates select="faq-question" /></b>
+            <br/>
+            <xsl:apply-templates select="faq-answer" />
+        </p>
+    </xsl:template>
+
+    <xsl:template match="faq-question">
+        <xsl:apply-templates />
+    </xsl:template>
+
+    <xsl:template match="faq-answer">
+        <xsl:apply-templates />
+    </xsl:template>
+
+    <xsl:template match="last-changed-date">
+    </xsl:template>
+
+    <xsl:template match="last-changed-date" mode="lastchangeddate">
+        <xsl:variable name="lastUpdated"><xsl:value-of select="substring(.,18,20)" /></xsl:variable>
+        <xsl:if test="string-length($lastUpdated)=20">Last updated: <xsl:value-of select="$lastUpdated" /></xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>
