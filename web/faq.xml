@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
 <content lang="en" id="faq">
-    <h1>FAQ</h1>
-    <p>To be written.</p>
+    <h1>Frequently Asked Questions</h1>
+    <faq-index />
+
+    <faq>
+        <faq-question>How do I properly log exceptions?</faq-question>
+        <faq-answer>
+            <p>
+                Exceptions require special treatment in NLog.
+                You need to call a Logger method which takes Exception as its second argument. The method names match available log levels:
+            </p>
+
+            <ul>
+                <li><b>TraceException()</b></li>
+                <li><b>DebugException()</b></li>
+                <li><b>InfoException()</b></li>
+                <li><b>WarnException()</b></li>
+                <li><b>ErrorException()</b></li>
+                <li><b>FatalException()</b></li>
+                <li><b>LogException()</b> - takes log level as a parameter</li>
+            </ul>
+
+            <p>
+                Typically you call one of these methods in the <code>catch</code> handler:
+            </p>
+
+            <code lang="C#">
+                <![CDATA[
+                try
+                {
+                    // some code which may throw
+                }
+                catch (MyException ex)
+                {
+                    logger.ErrorException("Got exception.", ex);
+                }
+                ]]>
+            </code>
+            <p>
+                To write the details of the exception, use the <code>${exception}</code>&#160;<a href="lr.exception.html">layout renderer</a> in
+                your layout. Depending on the desired output you may want to specify different value for the "format" argument. The
+                following example displays the result of calling <code>ToString()</code> on the exception object.
+            </p>
+            <code lang="XML">
+                <![CDATA[
+                <nlog>
+                    <targets>
+                        <target name="f" type="File" layout="${longdate} ${message} ${exception:format=tostring}" />
+                    </targets>
+                    <rules>
+                        <logger name="*" writeTo="f" />
+                    </rules>
+                </nlog>
+                ]]>
+            </code>
+        </faq-answer>
+    </faq>
+    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>

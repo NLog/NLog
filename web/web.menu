@@ -7,27 +7,10 @@
             <subnav href="http://www.nlog-project.org/snapshots/" noext="true" label="Snapshots" />
             <subnav href="subversion" label="SVN Repository" />
         </nav>
-        <nav href="releasenotes" label="Release Notes" />
-        <!-- <nav href="configexamples" label="Configuration Examples" /> -->
-        <!-- <nav href="benchmark" label="Benchmark" /> -->
-        <nav href="documentation" label="Documentation">
-            <subnav href="tutorial" label="Introduction to NLog" />
-            <subnav href="api" label="API Reference" />
-            <subnav href="targets" label="Targets" />
-            <subnav href="layouts" label="Layouts" />
-            <subnav href="layoutrenderers" label="Layout Renderers" />
-            <subnav href="filters" label="Filters" />
-            <subnav href="conditions" label="Conditions" />
-            <subnav href="config" label="Configuration File" />
-            <subnav href="howto" label="How To..." />
-        </nav>
-        <nav href="support" label="Support">
-            <subnav href="http://www.nabble.com/NLog-Forum-f6167.html" noext="true" label="Forum" />
-            <subnav href="http://trac.nlog-project.org/nlog/" noext="true" label="Bugs" />
-            <subnav href="mailinglists" label="Mailing Lists" />
-        </nav>
-        <!-- <nav href="technical" label="Technical Information" /> -->
-        <!-- <nav href="faq" label="FAQ" /> -->
-        <nav href="links" label="Links" />
+        <nav href="documentation" label="Documentation" />
+        <nav href="faq" label="FAQ" />
+        <nav href="http://www.nabble.com/NLog-Forum-f6167.html" noext="true" label="Forum" />
+        <nav href="http://trac.nlog-project.org/nlog/" noext="true" label="Issue Tracker" />
+        <nav href="mailinglists" label="Mailing Lists" />
     </navigation>
 </common>

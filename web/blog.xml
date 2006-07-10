@@ -3,4 +3,5 @@
 <content lang="en" id="blog">
     <h1>Blog</h1>
     <p>For my blog where I'll be talking about NLog and <a href="http://www.sooda.org/">Sooda</a> click <a href="http://blog.jkowalski.net/">here</a>.</p>
+    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>

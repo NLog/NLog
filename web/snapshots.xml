@@ -2,5 +2,6 @@
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
 <content lang="en" id="download" subid="snapshots">
     <h1>Snapshots</h1>
+    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>
 

@@ -902,4 +902,5 @@ class Example
             NLogViewer - aplikacja do podgl¹du logów w czasie rzeczywistym (wersja pre-alpha) -  <a href="http://viewer.nlog-project.org/">http://viewer.nlog-project.org/</a>
         </li>
     </ul>
+    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>
