@@ -1,4 +1,5 @@
 2006-07-14 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added proper camelCasing to the web build process
 	* Fix for multiple email addresses being passed in To,CC and BCC fields
 	under .NET 2.0 (reported by Pawel Parzychowski)
 
