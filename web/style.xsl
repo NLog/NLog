@@ -203,6 +203,91 @@
 
     <xsl:include href="syntax.xsl" />
 
+    <!--
+        static string MakeCamelCase(string s)
+        {
+            if (s.Length < 1)
+                return s.ToLower();
+
+            int firstLower = s.Length;
+            for (int i = 0; i < s.Length; ++i)
+            {
+                if (Char.IsLower(s[i]))
+                {
+                    firstLower = i;
+                    break;
+                }
+            }
+
+            if (firstLower == 0)
+                return s;
+
+            // DBType
+            if (firstLower != 1 && firstLower != s.Length)
+                firstLower = firstLower - 1;
+            return s.Substring(0, firstLower).ToLower() + s.Substring(firstLower);
+        }
+
+        -->
+
+    <xsl:template name="isLower">
+        <xsl:param name="char" />
+        <xsl:variable name="lowerCase" select="translate($char,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')" />
+
+        <xsl:choose>
+            <xsl:when test="$char=$lowerCase">1</xsl:when>
+            <xsl:otherwise>0</xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="firstLower">
+        <xsl:param name="text" />
+        <xsl:param name="pos">0</xsl:param>
+
+        <xsl:variable name="isLower">
+            <xsl:call-template name="isLower">
+                <xsl:with-param name="char" select="substring($text,$pos+1,$pos+1)"></xsl:with-param>
+            </xsl:call-template>
+        </xsl:variable>
+
+        <xsl:choose>
+            <xsl:when test="$isLower=1"><xsl:value-of select="$pos" /></xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="firstLower">
+                    <xsl:with-param name="text" select="$text" />
+                    <xsl:with-param name="pos" select="$pos + 1" />
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="camelCase">
+        <xsl:param name="text" />
+        <xsl:variable name="textLength" select="string-length($text)" />
+
+        <xsl:variable name="firstLower"><xsl:call-template name="firstLower">
+                <xsl:with-param name="text" select="$text" />
+        </xsl:call-template></xsl:variable>
+        <xsl:choose>
+            <xsl:when test="$textLength &lt;= 1"><xsl:value-of  select="translate($text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')" /></xsl:when>
+            <xsl:when test="$firstLower = 0"><xsl:value-of select="$text" /></xsl:when>
+            <xsl:when test="$firstLower = 1 or $firstLower = $textLength">
+                <xsl:value-of select="translate(substring($text,1,$firstLower),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')" />
+                <xsl:value-of select="substring($text,$firstLower+1)" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="translate(substring($text,1,$firstLower - 1),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')" />
+                <xsl:value-of select="substring($text,$firstLower)" />
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template match="camel">
+        <xsl:call-template name="camelCase">
+            <xsl:with-param name="text"><xsl:apply-templates /></xsl:with-param>
+        </xsl:call-template>
+    </xsl:template>
+
     <xsl:template name="parameter_info">
         <tr>
             <td class="parametername">
@@ -210,7 +295,9 @@
                     <xsl:if test="attribute/@name='NLog.Config.RequiredParameterAttribute'">
                         <xsl:attribute name="class">required</xsl:attribute>
                     </xsl:if>
-                    <xsl:value-of select="@name" />
+                    <xsl:call-template name="camelCase">
+                        <xsl:with-param name="text" select="@name" />
+                    </xsl:call-template>
                 </span>
             </td>
             <td class="parametertype">
