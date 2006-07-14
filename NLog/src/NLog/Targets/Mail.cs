@@ -109,7 +109,7 @@ namespace NLog.Targets
         private Layout _to;
         private Layout _cc;
         private Layout _bcc;
-        private Layout _subject;
+        private Layout _subject = new Layout("Message from NLog on ${machinename}");
         private Layout _header;
         private Layout _footer;
         private Layout _body = new Layout("${message}");
@@ -167,6 +167,7 @@ namespace NLog.Targets
         /// <summary>
         /// Mail subject.
         /// </summary>
+        [System.ComponentModel.DefaultValue("Message from NLog on ${machinename}")]
         public string Subject
         {
             get { return _subject.Text; }
@@ -362,12 +363,25 @@ namespace NLog.Targets
         {
 #if NET_2_API
             msg.From = new MailAddress(_from.GetFormattedMessage(logEvent));
-            msg.To.Add(_to.GetFormattedMessage(logEvent));
+            foreach (string mail in _to.GetFormattedMessage(logEvent).Split(';'))
+            {
+                msg.To.Add(mail);
+            }
             if (_bcc != null)
-                msg.Bcc.Add(_bcc.GetFormattedMessage(logEvent));
+            {
+                foreach (string mail in _bcc.GetFormattedMessage(logEvent).Split(';'))
+                {
+                        msg.Bcc.Add(mail);
+                }
+            }
 
             if (_cc != null)
-                msg.CC.Add(_cc.GetFormattedMessage(logEvent));
+            {
+                foreach (string mail in _cc.GetFormattedMessage(logEvent).Split(';'))
+                {
+                        msg.CC.Add(mail);
+                }
+            }
             msg.Subject = _subject.GetFormattedMessage(logEvent);
             msg.BodyEncoding = System.Text.Encoding.UTF8;
             msg.IsBodyHtml = HTML;

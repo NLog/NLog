@@ -58,8 +58,8 @@
                             <xsl:comment>#include virtual="/dynamic/snippet.cgi?vertbanner"</xsl:comment>
                             <xsl:comment>#include virtual="/dynamic/snippet.cgi?topbanner"</xsl:comment>
                             <xsl:apply-templates select="/" mode="content" />
-                            <xsl:comment>#include virtual="/dynamic/snippet.cgi?bottombanner"</xsl:comment>
                             <xsl:apply-templates select="/content/last-changed-date" mode="lastchangeddate" /> 
+                            <xsl:comment>#include virtual="/dynamic/snippet.cgi?bottombanner"</xsl:comment>
                         </td>
                     </tr>
                     <tr>
@@ -575,7 +575,7 @@
 
     <xsl:template match="last-changed-date" mode="lastchangeddate">
         <xsl:variable name="lastUpdated"><xsl:value-of select="substring(.,18,20)" /></xsl:variable>
-        <xsl:if test="string-length($lastUpdated)=20">Last updated: <xsl:value-of select="$lastUpdated" /></xsl:if>
+        <xsl:if test="string-length($lastUpdated)=20"><p style="font-size: 80%">Last updated: <xsl:value-of select="$lastUpdated" /></p></xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>
