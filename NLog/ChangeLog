@@ -1,3 +1,7 @@
+2006-07-17 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Synchronized Visual Studio solutions to source code directories. Now
+	part of the build process.
+
 2006-07-14 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added proper camelCasing to the web build process
 	* Fix for multiple email addresses being passed in To,CC and BCC fields
