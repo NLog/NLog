@@ -827,7 +827,7 @@
         </delete>
     </target>
 
-    <target name="snapshot" depends="clean_all, allframeworksdebugandrelease, source_snapshot, help, installer">
+    <target name="snapshot" depends="clean_all, sync-vs-projects, allframeworksdebugandrelease, source_snapshot, help, installer">
     </target>
 
     <target name="publish_snapshot" depends="snapshot, upload_snapshot, upload_web_snapshot">
@@ -1103,6 +1103,47 @@
     <target name="sourceforge_release">
         <exec program="nant" commandline="publish_nunit2report" />
         <exec program="nant" commandline="clover test publish_clover" />
+    </target>
+
+    <target name="sync-vs-projects">
+        <csc target="library" output="build/SyncVSProjectItems.dll">
+            <sources basedir="tools">
+                <include name="SyncVSProjectItems.cs" />
+            </sources>
+            <references>
+                <include name="${nant::get-base-directory()}/NAnt.Core.dll" />
+            </references>
+        </csc>
+        <loadtasks assembly="build/SyncVSProjectItems.dll" />
+        <sync-vs-project-items>
+            <project-files basedir="src/NLog">
+                <include name="*.csproj" />
+                <include name="*.csdproj" />
+            </project-files>
+            <source-files basedir="src/NLog">
+                <include name="**/*.cs" />
+            </source-files>
+        </sync-vs-project-items>
+
+        <sync-vs-project-items>
+            <project-files basedir="src/NLog.ComInterop">
+                <include name="*.csproj" />
+                <include name="*.csdproj" />
+            </project-files>
+            <source-files basedir="src/NLog.ComInterop">
+                <include name="**/*.cs" />
+            </source-files>
+        </sync-vs-project-items>
+
+        <sync-vs-project-items>
+            <project-files basedir="tests/NLog.Test">
+                <include name="*.csproj" />
+                <include name="*.csdproj" />
+            </project-files>
+            <source-files basedir="tests/NLog.Test">
+                <include name="**/*.cs" />
+            </source-files>
+        </sync-vs-project-items>
     </target>
 
     <target name="clean_examples">
