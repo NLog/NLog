@@ -6,26 +6,23 @@
         NLog is an open source software, so the source code is available to public and everyone 
         can join the project to improve it. Source and binary packages are available.
     </p>
-    <p>
-        You should choose the version of NLog that most closely matches your target runtime. If you're targeting multiple frameworks in a single binary release, choose the version compiled with .NET Framework 1.0 (generic), which runs on all versions of .NET Framework and Mono.
-    </p>
-    <p>
-        Versions compiled for specific platforms may support additional targets, layout renderers, filters, conditions and platform-specific optimizations. See the documentation for more information.
-    </p>
-    <p>
-        Debug versions are provided for troubleshooting logging issues. For normal usage, you should download Release version. 
-    </p>
+    <ul>
+        <li><a href="http://sourceforge.net/project/showfiles.php?group_id=116456">Download official packages from SourceForge.net</a></li>
+        <li><a href="http://www.nlog-project.org/snapshots/">Development snapshots</a> (updated more frequently, primarily meant for testing, usually as stable as the released packages)</li>
+        <li><a href="#subversion">Subversion repository</a> - to get the most up-to-date source code and build it yourself</li>
+    </ul>
 
-    <h5>Released Packages</h5>
+    <h3>Downloading source code from Subversion repository</h3>
     <p>
-        NLog source and binary packages can be downloaded from the <a href="http://sourceforge.net/project/showfiles.php?group_id=116456">sourceforge file release system</a>.
+        To get the source code from Subversion repository point your subversion client at:<br/>
+        <a nomangle="1" href="http://svn.nlog-project.org/repos/nlog/trunk/NLog">http://svn.nlog-project.org/repos/nlog/trunk/NLog</a>
     </p>
-    <h5>Snapshots</h5>
     <p>
-        For your convenience the source and binary snapshots (including the windows installer)
-        are available <a href="http://www.nlog-project.org/snapshots/">here</a>. They are occasionally generated between
-        releases and primarily meant for testing.</p>
-    <h5>Building NLog from source</h5>
+        The repository is available to everybody in read-only mode. Write access is available <link href="mailinglists">on request</link>. Source code snapshots (in ZIP format) are automatically generated 
+        on each commit and are available <a href="http://svn.nlog-project.org/snapshots/">here</a>. 
+    </p>    
+
+    <h3>Building NLog from source</h3>
     <p>
         NLog can be built with either Visual Studio.NET 2003 or <a href="http://nant.sourceforge.net/">NAnt</a>. If you
         decide to use NAnt - make sure to use one of the latest nightly builds 
