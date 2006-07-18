@@ -61,7 +61,7 @@
         <faq-question>How do I configure logging for a component?</faq-question>
         <faq-answer>
             <p>
-If you can configure NLogging on the client-side (by providing the appropriate configuration file in application's directory, you can
+If you can configure logging on the client-side (by providing the appropriate configuration file in application's directory), you can
 follow the <link href="tutorial">tutorial</link>.
 </p>
 
