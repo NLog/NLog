@@ -70,7 +70,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		web\yes.gif = web\yes.gif
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NLogC.vs2005", "src\NLogC\NLogC-net-2.0.vcproj", "{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NLogC.vs2005", "src\NLogC\NLogC.vs2005.vcproj", "{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeNLogXSD.vs2005", "tools\MakeNLogXSD\MakeNLogXSD.vs2005.csproj", "{BB32EC17-234D-477D-AC37-96EB19A52018}"
 EndProject
