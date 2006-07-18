@@ -105,6 +105,14 @@
             </fileset>
         </delete>
         <delete verbose="true">
+            <fileset basedir="tools">
+                <include name="*/bin/**" />
+                <include name="*/obj/**" />
+                <include name="*/bin" />
+                <include name="*/obj" />
+            </fileset>
+        </delete>
+        <delete verbose="true">
             <fileset basedir="tests">
                 <include name="*/bin/**" />
                 <include name="*/obj/**" />
@@ -755,7 +763,21 @@
     </target>
 
     <target name="sln">
+        <call target="clean" />
+
         <solution configuration="Release" solutionfile="NLog.vs2003.sln" />
+        <solution configuration="Debug" solutionfile="NLog.vs2003.sln" />
+        <solution configuration="Release" solutionfile="tests/NLogTests.vs2003.sln" />
+        <solution configuration="Debug" solutionfile="tests/NLogTests.vs2003.sln" />
+
+        <call target="clean" />
+
+        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Debug /t:Rebuild NLog.vs2005.sln" />
+        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Release /t:Rebuild NLog.vs2005.sln" />
+        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Debug /t:Rebuild tests\NLogTests.vs2005.sln" />
+        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Release /t:Rebuild tests\NLogTests.vs2005.sln" />
+
+        <call target="clean" />
     </target>
 
     <target name="upload_web_snapshot">
