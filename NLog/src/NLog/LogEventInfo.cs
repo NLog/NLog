@@ -310,22 +310,15 @@ namespace NLog
 
         private void CalcFormattedMessage()
         {
-            try
-            {
-                if (_parameters == null || _parameters.Length == 0)
-                    _formattedMessage = _message;
-                else if (_formatProvider != null)
-                    _formattedMessage = String.Format(_formatProvider, _message, _parameters);
-                else
-                    _formattedMessage = String.Format(_message, _parameters);
-            }
-            catch (Exception)
-            {
-                if (LogManager.ThrowExceptions)
-                    throw;
-                else
-                    _formattedMessage = _message;
-            }
+            _formattedMessage = _message;
+
+            if (_parameters == null || _parameters.Length == 0)
+                return;
+
+            if (_formatProvider != null)
+                _formattedMessage = String.Format(_formatProvider, _message, _parameters);
+            else
+                _formattedMessage = String.Format(_message, _parameters);
         }
 
         private bool NeedToPreformatMessage(object[] parameters)

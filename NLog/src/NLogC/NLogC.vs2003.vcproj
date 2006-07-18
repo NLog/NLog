@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.10"
-	Name="NLogC"
+	Name="NLogC.vs2003"
 	ProjectGUID="{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}"
 	Keyword="Win32Proj">
 	<Platforms>

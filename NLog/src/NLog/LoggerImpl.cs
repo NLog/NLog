@@ -48,7 +48,7 @@ namespace NLog
         
         private const int STACK_TRACE_SKIP_METHODS = 0;
 
-        internal static void Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent)
+        internal static void Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
         {
             if (targets == null)
                 return;
@@ -117,7 +117,7 @@ namespace NLog
                 catch (Exception ex)
                 {
                     InternalLogger.Error("FilterChain exception: {0}", ex);
-                    if (LogManager.ThrowExceptions)
+                    if (factory.ThrowExceptions)
                         throw;
                     else
                         continue;
@@ -130,7 +130,7 @@ namespace NLog
                 catch (Exception ex)
                 {
                     InternalLogger.Error("Target exception: {0}", ex);
-                    if (LogManager.ThrowExceptions)
+                    if (factory.ThrowExceptions)
                         throw;
                     else
                         continue;

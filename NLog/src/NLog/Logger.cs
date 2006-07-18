@@ -55,6 +55,7 @@ namespace NLog
     public class Logger
     {
         private string _loggerName;
+        private LogFactory _factory;
         private Type _loggerType = typeof(Logger);
 #if !NETCF_1_0
         private volatile LoggerConfiguration _configuration;
@@ -85,9 +86,10 @@ namespace NLog
             return _configuration.GetTargetsForLevel(level);
         }
 
-        internal Logger(string name, LoggerConfiguration configuration)
+        internal Logger(string name, LoggerConfiguration configuration, LogFactory factory)
         {
             _loggerName = name;
+            _factory = factory;
             SetConfiguration(configuration);
         }
 
@@ -99,32 +101,40 @@ namespace NLog
             get { return _loggerName; }
         }
 
+        /// <summary>
+        /// Gets the factory that created this logger.
+        /// </summary>
+        public LogFactory Factory
+        {
+            get { return _factory; }
+        }
+
         internal void WriteToTargets(LogLevel level, IFormatProvider formatProvider, string message, object[]args, Exception exception)
         {
             LogEventInfo logMessage = new LogEventInfo(level, this.Name, formatProvider, message, args, exception);
-            LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), logMessage);
+            LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), logMessage, _factory);
         }
 
         internal void WriteToTargets(LogLevel level, string message)
         {
             LogEventInfo logMessage = new LogEventInfo(level, this.Name, null, message, null, null);
-            LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), logMessage);
+            LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), logMessage, _factory);
         }
 
         internal void WriteToTargets(LogLevel level, string message, object[]args)
         {
             LogEventInfo logMessage = new LogEventInfo(level, this.Name, null, message, args, null);
-            LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), logMessage);
+            LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), logMessage, _factory);
         }
 
         internal void WriteToTargets(LogEventInfo logEvent)
         {
-            LoggerImpl.Write(_loggerType, GetTargetsForLevel(logEvent.Level), logEvent);
+            LoggerImpl.Write(_loggerType, GetTargetsForLevel(logEvent.Level), logEvent, _factory);
         }
 
         internal void WriteToTargets(Type wrapperType, LogEventInfo logEvent)
         {
-            LoggerImpl.Write(wrapperType, GetTargetsForLevel(logEvent.Level), logEvent);
+            LoggerImpl.Write(wrapperType, GetTargetsForLevel(logEvent.Level), logEvent, _factory);
         }
 
         internal void SetConfiguration(LoggerConfiguration configuration)

@@ -2,17 +2,17 @@
     <ECSHARP>
         <Build>
             <Settings
-                DeploymentDevice = "Same as device of consuming project"
+                DeploymentDevice = "Pocket PC Emulator"
                 ReferencePath = ""
             >
-                <Platform Name = "Windows CE" />
+                <Platform Name = "Pocket PC" />
                 <Config
-                    Name = "Debug|Windows CE"
+                    Name = "Debug|Pocket PC"
                     EnableASPDebugging = "false"
                     EnableASPXDebugging = "false"
                     EnableUnmanagedDebugging = "false"
                     EnableSQLServerDebugging = "false"
-                    RemoteDebugEnabled = "true"
+                    RemoteDebugEnabled = "false"
                     RemoteDebugMachine = ""
                     StartAction = "Project"
                     StartArguments = ""
@@ -20,17 +20,17 @@
                     StartProgram = ""
                     StartURL = ""
                     StartWorkingDirectory = ""
-                    StartWithIE = "true"
+                    StartWithIE = "false"
                     SelectedDevice = "Pocket PC Emulator"
                     DeploymentPlatform = "Pocket PC"
                 />
                 <Config
-                    Name = "Release|Windows CE"
+                    Name = "Release|Pocket PC"
                     EnableASPDebugging = "false"
                     EnableASPXDebugging = "false"
                     EnableUnmanagedDebugging = "false"
                     EnableSQLServerDebugging = "false"
-                    RemoteDebugEnabled = "true"
+                    RemoteDebugEnabled = "false"
                     RemoteDebugMachine = ""
                     StartAction = "Project"
                     StartArguments = ""
@@ -38,9 +38,9 @@
                     StartProgram = ""
                     StartURL = ""
                     StartWorkingDirectory = ""
-                    StartWithIE = "true"
-                    SelectedDevice = "Same as device of consuming project"
-                    DeploymentPlatform = "Windows CE"
+                    StartWithIE = "false"
+                    SelectedDevice = "Pocket PC Emulator"
+                    DeploymentPlatform = "Pocket PC"
                 />
             </Settings>
         </Build>
@@ -48,7 +48,7 @@
             CopyProjectDestinationFolder = ""
             CopyProjectUncPath = ""
             CopyProjectOption = "0"
-            ProjectView = "ShowAllFiles"
+            ProjectView = "ProjectFiles"
         />
     </ECSHARP>
 </VisualStudioProject>

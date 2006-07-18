@@ -101,14 +101,16 @@ namespace NLog.Win32.Targets
             if (_perfCounter == null) InitializePerfCounter();
             if (_perfCounter == null) return; //not operational
             
+            bool ok = false;
+
             try 
             {
                 _perfCounter.Increment();
+                ok = true;
             }
-            catch(Exception ex) 
+            finally
             {
-                _operational = false;
-                if (LogManager.ThrowExceptions) throw ex;
+                _operational = ok;
             }
         }
         

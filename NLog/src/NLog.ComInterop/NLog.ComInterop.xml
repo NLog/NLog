@@ -4,49 +4,6 @@
         <name>NLog.ComInterop</name>
     </assembly>
     <members>
-        <member name="T:NLog.ComInterop.LogManager">
-            <summary>
-            NLog COM Interop LogManager implementation
-            </summary>
-        </member>
-        <member name="T:NLog.ComInterop.ILogManager">
-            <summary>
-            NLog COM Interop LogManager interface
-            </summary>
-        </member>
-        <member name="M:NLog.ComInterop.ILogManager.LoadConfigFromFile(System.String)">
-            <summary>
-            Loads NLog configuration from the specified file.
-            </summary>
-            <param name="fileName">The name of the file to load NLog configuration from</param>
-        </member>
-        <member name="M:NLog.ComInterop.ILogManager.GetLogger(System.String)">
-            <summary>
-            Creates the specified logger object and assigns a LoggerName to it.
-            </summary>
-            <param name="name">Logger name</param>
-            <returns>The new logger instance.</returns>
-        </member>
-        <member name="P:NLog.ComInterop.ILogManager.InternalLogToConsole">
-            <summary>
-            Internal log to the console.
-            </summary>
-        </member>
-        <member name="P:NLog.ComInterop.ILogManager.InternalLogFile">
-            <summary>
-            Internal log file.
-            </summary>
-        </member>
-        <member name="P:NLog.ComInterop.ILogManager.InternalLogLevel">
-            <summary>
-            The name of the internal log level.
-            </summary>
-        </member>
-        <member name="T:NLog.ComInterop.Logger">
-            <summary>
-            NLog COM Interop logger implementation
-            </summary>
-        </member>
         <member name="T:NLog.ComInterop.ILogger">
             <summary>
             NLog COM Interop logger interface
@@ -135,6 +92,49 @@
         <member name="P:NLog.ComInterop.ILogger.LoggerName">
             <summary>
             The logger name.
+            </summary>
+        </member>
+        <member name="T:NLog.ComInterop.ILogManager">
+            <summary>
+            NLog COM Interop LogManager interface
+            </summary>
+        </member>
+        <member name="M:NLog.ComInterop.ILogManager.LoadConfigFromFile(System.String)">
+            <summary>
+            Loads NLog configuration from the specified file.
+            </summary>
+            <param name="fileName">The name of the file to load NLog configuration from</param>
+        </member>
+        <member name="M:NLog.ComInterop.ILogManager.GetLogger(System.String)">
+            <summary>
+            Creates the specified logger object and assigns a LoggerName to it.
+            </summary>
+            <param name="name">Logger name</param>
+            <returns>The new logger instance.</returns>
+        </member>
+        <member name="P:NLog.ComInterop.ILogManager.InternalLogToConsole">
+            <summary>
+            Internal log to the console.
+            </summary>
+        </member>
+        <member name="P:NLog.ComInterop.ILogManager.InternalLogFile">
+            <summary>
+            Internal log file.
+            </summary>
+        </member>
+        <member name="P:NLog.ComInterop.ILogManager.InternalLogLevel">
+            <summary>
+            The name of the internal log level.
+            </summary>
+        </member>
+        <member name="T:NLog.ComInterop.Logger">
+            <summary>
+            NLog COM Interop logger implementation
+            </summary>
+        </member>
+        <member name="T:NLog.ComInterop.LogManager">
+            <summary>
+            NLog COM Interop LogManager implementation
             </summary>
         </member>
     </members>
