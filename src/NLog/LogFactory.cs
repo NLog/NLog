@@ -103,6 +103,14 @@ namespace NLog
         }
 
         /// <summary>
+        /// Creates a new instance of <see cref="LogFactory"/> and sets the initial configuration.
+        /// </summary>
+        public LogFactory(LoggingConfiguration config) : this()
+        {
+            Configuration = config;
+        }
+
+        /// <summary>
         /// Creates a logger that discards all log messages.
         /// </summary>
         /// <returns></returns>
@@ -112,6 +120,21 @@ namespace NLog
             return new Logger("", new LoggerConfiguration(targetsByLevel), this);
 
         }
+
+#if !NETCF
+        /// <summary>
+        /// Gets the logger named after the currently-being-initialized class.
+        /// </summary>
+        /// <returns>The logger.</returns>
+        /// <remarks>This is a slow-running method. 
+        /// Make sure you're not doing this in a loop.</remarks>
+        public Logger GetCurrentClassLogger()
+        {
+            StackFrame frame = new StackFrame(1, false);
+
+            return GetLogger(frame.GetMethod().DeclaringType.FullName);
+        }
+#endif
 
         /// <summary>
         /// Gets the specified named logger.
