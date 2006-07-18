@@ -1,9 +1,9 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{20D4826A-C6FA-45DB-90F4-C717570B9F32}") = "NLog", "src\NLog\NLog.csdproj", "{4125C120-539F-4C80-B3D2-35FFF271998A}"
+Project("{20D4826A-C6FA-45DB-90F4-C717570B9F32}") = "NLog.vs2003", "src\NLog\NLog.vs2003.csdproj", "{4125C120-539F-4C80-B3D2-35FFF271998A}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{20D4826A-C6FA-45DB-90F4-C717570B9F32}") = "NLog.CFTest", "tests\NLog.CFTest\NLog.CFTest.csdproj", "{F8DA3276-560A-490C-AF75-E27307887CA3}"
+Project("{20D4826A-C6FA-45DB-90F4-C717570B9F32}") = "NLog.CFTest.vs2003", "tests\NLog.CFTest\NLog.CFTest.vs2003.csdproj", "{F8DA3276-560A-490C-AF75-E27307887CA3}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject

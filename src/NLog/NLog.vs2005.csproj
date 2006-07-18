@@ -691,12 +691,14 @@
     <Compile Include="Win32\Targets\PerfCounterTarget.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LogFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DotNet\" />
     <Folder Include="Mono\" />
     <Folder Include="Unix\" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
   <ItemGroup />
   <ItemGroup />

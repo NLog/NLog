@@ -1,13 +1,13 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NLogC", "src\NLogC\NLogC.vcproj", "{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NLogC.vs2003", "src\NLogC\NLogC.vs2003.vcproj", "{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog", "src\NLog\NLog.csproj", "{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.vs2003", "src\NLog\NLog.vs2003.csproj", "{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NLogCTest", "tests\NLogCTest\NLogCTest.vcproj", "{3A3B8573-0A64-414D-9E8D-9F1982004299}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NLogCTest.vs2003", "tests\NLogCTest\NLogCTest.vs2003.vcproj", "{3A3B8573-0A64-414D-9E8D-9F1982004299}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject

@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="NLogC-net-2.0"
+	Name="NLogC.vs2005"
 	ProjectGUID="{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}"
 	RootNamespace="NLogC"
 	Keyword="Win32Proj"
@@ -184,7 +184,7 @@
 		/>
 		<ProjectReference
 			ReferencedProjectIdentifier="{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}"
-			RelativePathToProject=".\src\NLog\NLog-net-2.0.csproj"
+			RelativePathToProject=".\src\NLog\NLog.vs2005.csproj"
 		/>
 	</References>
 	<Files>

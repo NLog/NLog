@@ -37,9 +37,9 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog\NLog-net-2.0.csproj">
+    <ProjectReference Include="..\..\src\NLog\NLog.vs2005.csproj">
       <Project>{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}</Project>
-      <Name>NLog-net-2.0</Name>
+      <Name>NLog.vs2005</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

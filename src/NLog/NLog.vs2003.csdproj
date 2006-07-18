@@ -1,19 +1,24 @@
 <VisualStudioProject>
-  <CSHARP ProjectType="Local" ProductVersion="7.10.3077" SchemaVersion="2.0" ProjectGuid="{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}">
+  <ECSHARP ProjectType="Local" ProductVersion="7.10.3077" SchemaVersion="1.0" ProjectGuid="{4125C120-539F-4C80-B3D2-35FFF271998A}">
     <Build>
-      <Settings ApplicationIcon="" AssemblyKeyContainerName="" AssemblyName="NLog" AssemblyOriginatorKeyFile="" DefaultClientScript="JScript" DefaultHTMLPageLayout="Grid" DefaultTargetSchema="IE50" DelaySign="false" OutputType="Library" PreBuildEvent="" PostBuildEvent="" RootNamespace="NLog" RunPostBuildEvent="OnBuildSuccess" StartupObject="">
-        <Config Name="Debug" AllowUnsafeBlocks="false" BaseAddress="285212672" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="DOTNET;DOTNET_1_1" DocumentationFile="NLog.xml" DebugSymbols="true" FileAlignment="4096" IncrementalBuild="false" NoStdLib="false" NoWarn="" Optimize="false" OutputPath="bin\Debug\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
-        <Config Name="Release" AllowUnsafeBlocks="false" BaseAddress="285212672" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="DOTNET;DOTNET_1_1" DocumentationFile="NLog.xml" DebugSymbols="false" FileAlignment="4096" IncrementalBuild="false" NoStdLib="false" NoWarn="1591" Optimize="false" OutputPath="bin\Release\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
+      <Settings ApplicationIcon="" AssemblyKeyContainerName="" AssemblyName="NLog" AssemblyOriginatorKeyFile="" DelaySign="false" OutputType="Library" OutputFileFolder="\Program Files\NLog" RootNamespace="NLog" StartupObject="">
+        <Platform Name="Windows CE" />
+        <Config Name="Debug|Windows CE" AllowUnsafeBlocks="false" BaseAddress="0" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="DEBUG;TRACE;NETCF;NETCF_1_0" DocumentationFile="" DebugSymbols="true" FileAlignment="4096" IncrementalBuild="false" Optimize="false" OutputPath="bin\DebugCF\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
+        <Config Name="Release|Windows CE" AllowUnsafeBlocks="false" BaseAddress="0" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="TRACE;NETCF;NETCF_1_0" DocumentationFile="" DebugSymbols="false" FileAlignment="4096" IncrementalBuild="false" Optimize="true" OutputPath="bin\ReleaseCF\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
       </Settings>
       <References>
-        <Reference Name="System.XML" AssemblyName="System.Xml" HintPath="C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll" />
-        <Reference Name="System" AssemblyName="System" HintPath="C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll" />
-        <Reference Name="system.data" AssemblyName="System.Data" HintPath="C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\system.data.dll" />
-        <Reference Name="system.web" AssemblyName="System.Web" HintPath="C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\system.web.dll" />
-        <Reference Name="system.web.services" AssemblyName="System.Web.Services" HintPath="C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\system.web.services.dll" />
-        <Reference Name="system.windows.forms" AssemblyName="System.Windows.Forms" HintPath="C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\system.windows.forms.dll" />
-        <Reference Name="System.Messaging" AssemblyName="System.Messaging" HintPath="C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Messaging.dll" />
-        <Reference Name="System.Drawing" AssemblyName="System.Drawing" HintPath="C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll" />
+        <Reference Platform="Windows CE" Name="MSCorLib" AssemblyName="mscorlib" Private="False" />
+        <Reference Platform="Windows CE" Name="System" AssemblyName="System" Private="False" />
+        <Reference Platform="Windows CE" Name="System.Drawing" AssemblyName="System.Drawing" Private="False" />
+        <Reference Platform="Windows CE" Name="System.Windows.Forms" AssemblyName="System.Windows.Forms" Private="False" />
+        <Reference Platform="Windows CE" Name="System.XML" AssemblyName="System.Xml" Private="False" />
+        <Reference Platform="Windows CE" Name="System.Data" AssemblyName="System.Data" Private="False" />
+        <Reference Platform="Windows CE" Name="System.Web.Services" AssemblyName="System.Web.Services" />
+        <Reference Platform="Windows CE-Designer" Name="System.CF.Design" AssemblyName="System.CF.Design" Private="False" />
+        <Reference Platform="Windows CE-Designer" Name="System.CF.Design.UI" AssemblyName="System.CF.Design.UI" Private="False" />
+        <Reference Platform="Windows CE-Designer" Name="System.CF.Windows.Forms" AssemblyName="System.CF.Windows.Forms" Private="False" />
+        <Reference Platform="Windows CE-Designer" Name="System.CF.Drawing" AssemblyName="System.CF.Drawing" Private="False" />
+        <Reference Platform="Windows CE-Designer" Name="System" AssemblyName="System" Private="False" />
       </References>
     </Build>
     <Files>
@@ -50,11 +55,24 @@
         <File RelPath="TargetCollection.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="TargetFactory.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="TargetWithLayout.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Config\AcceptsConditionAttribute.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Config\AcceptsLayoutAttribute.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Config\ArrayParameterAttribute.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Config\ConfigSectionHandler.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Config\LoggingConfiguration.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionAndExpression.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionExpression.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionExpressionCollection.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionLayoutExpression.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionLevelExpression.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionLiteralExpression.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionLoggerNameExpression.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionMessageExpression.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionMethodExpression.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionMethods.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionNotExpression.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionOrExpression.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionParseException.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionParser.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionRelationalExpression.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionRelationalOperator.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionTokenizer.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Conditions\ConditionTokenType.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Config\LoggingRule.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Config\LoggingRuleCollection.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Config\NotSupportedRuntimeAttribute.cs" SubType="Code" BuildAction="Compile" />
@@ -154,7 +172,6 @@
         <File RelPath="Layouts\CsvLayout.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Layouts\CsvQuotingMode.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Layouts\Log4JXmlEventLayout.cs" SubType="Code" BuildAction="Compile" />
-        <Folder RelPath="Mono\" />
         <File RelPath="Targets\ASPNetTrace.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Targets\Chainsaw.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Targets\Console.cs" SubType="Code" BuildAction="Compile" />
@@ -200,7 +217,6 @@
         <File RelPath="Targets\Wrappers\RepeatTargetWrapper.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Targets\Wrappers\RetryTargetWrapper.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Targets\Wrappers\WrapperTargetBase.cs" SubType="Code" BuildAction="Compile" />
-        <Folder RelPath="Unix\" />
         <File RelPath="Web\NLogHttpModule.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Win32\ASPHelper.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Win32\LayoutRenderers\ASPApplication.cs" SubType="Code" BuildAction="Compile" />
@@ -220,25 +236,13 @@
         <File RelPath="Win32\Targets\MSMQ.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Win32\Targets\OutputDebugString.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Win32\Targets\PerfCounterTarget.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionParser.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionOrExpression.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionLoggerNameExpression.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionMethodExpression.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionAndExpression.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionTokenType.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionTokenizer.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionRelationalExpression.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionMethods.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionRelationalOperator.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionLayoutExpression.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionLiteralExpression.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionMessageExpression.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionExpression.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionExpressionCollection.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionNotExpression.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionParseException.cs" SubType="Code" BuildAction="Compile" />
-        <File RelPath="Conditions\ConditionLevelExpression.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Config\ConfigSectionHandler.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Config\ArrayParameterAttribute.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Config\AcceptsConditionAttribute.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Config\AcceptsLayoutAttribute.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Config\LoggingConfiguration.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LogFactory.cs" SubType="Code" BuildAction="Compile" />
       </Include>
     </Files>
-  </CSHARP>
+  </ECSHARP>
 </VisualStudioProject>
