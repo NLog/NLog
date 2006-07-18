@@ -1,4 +1,6 @@
 2006-07-18 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added ImpersonatingWrapper which temporarily changes the credentials
+	for the duration of the write.
 	* Moved the implementation of LogManager to a reusable LogFactory while
 	maintaining its public interface. You can now easily have a private
 	LogManager for an assembly.

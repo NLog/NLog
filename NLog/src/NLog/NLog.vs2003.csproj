@@ -239,6 +239,7 @@
         <File RelPath="Conditions\ConditionParseException.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Conditions\ConditionLevelExpression.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="LogFactory.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Targets\Wrappers\ImpersonatingWrapper.cs" SubType="Code" BuildAction="Compile" />
       </Include>
     </Files>
   </CSHARP>

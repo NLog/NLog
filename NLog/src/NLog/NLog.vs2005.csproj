@@ -1,4 +1,4 @@
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>8.0.50727</ProductVersion>
@@ -612,6 +612,7 @@
     <Compile Include="Targets\Wrappers\BufferingTargetWrapper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Targets\Wrappers\ImpersonatingWrapper.cs" />
     <Compile Include="Targets\Wrappers\FilteringRule.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -693,19 +694,19 @@
     </Compile>
     <Compile Include="LogFactory.cs" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup />
   <ItemGroup>
     <Folder Include="DotNet\" />
     <Folder Include="Mono\" />
     <Folder Include="Unix\" />
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup />
-  <ItemGroup />
-  <ItemGroup />
-  <ItemGroup />
-  <ItemGroup />
-  <ItemGroup />
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
