@@ -242,6 +242,7 @@
         <File RelPath="Config\AcceptsLayoutAttribute.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Config\LoggingConfiguration.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="LogFactory.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Targets\Wrappers\ImpersonatingWrapper.cs" SubType="Code" BuildAction="Compile" />
       </Include>
     </Files>
   </ECSHARP>
