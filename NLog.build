@@ -92,6 +92,30 @@
 
     <target name="clean" depends="configure">
         <delete dir="build/${buildsubdir}" failonerror="false" />
+        <delete verbose="true">
+            <fileset basedir="src">
+                <include name="*/bin/**" />
+                <include name="*/obj/**" />
+                <include name="*/bin" />
+                <include name="*/obj" />
+                <include name="NLogC/Debug/**" />
+                <include name="NLogC/Release/**" />
+                <include name="NLogC/Debug" />
+                <include name="NLogC/Release" />
+            </fileset>
+        </delete>
+        <delete verbose="true">
+            <fileset basedir="tests">
+                <include name="*/bin/**" />
+                <include name="*/obj/**" />
+                <include name="*/bin" />
+                <include name="*/obj" />
+                <include name="NLogCTest/Debug/**" />
+                <include name="NLogCTest/Release/**" />
+                <include name="NLogCTest/Debug" />
+                <include name="NLogCTest/Release" />
+            </fileset>
+        </delete>
     </target>
 
     <target name="NLog" depends="configure">
@@ -731,7 +755,7 @@
     </target>
 
     <target name="sln">
-        <solution configuration="Release" solutionfile="NLog.sln" />
+        <solution configuration="Release" solutionfile="NLog.vs2003.sln" />
     </target>
 
     <target name="upload_web_snapshot">
