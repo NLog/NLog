@@ -1,3 +1,8 @@
+2006-07-18 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Moved the implementation of LogManager to a reusable LogFactory while
+	maintaining its public interface. You can now easily have a private
+	LogManager for an assembly.
+
 2006-07-17 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Synchronized Visual Studio solutions to source code directories. Now
 	part of the build process.
