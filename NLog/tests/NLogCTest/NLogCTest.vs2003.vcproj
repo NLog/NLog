@@ -32,7 +32,7 @@
 			<Tool
 				Name="VCCustomBuildTool"
 				CommandLine="copy /b $(ProjectDir)..\..\src\NLogC\$(ConfigurationName)\NLogC.dll $(OutDir)
-rem copy /b $(ProjectDir)..\..\src\NLog\bin\$(ConfigurationName)\NLog.dll $(OutDir)
+copy /b $(ProjectDir)..\..\src\NLog\bin\$(ConfigurationName)\NLog.dll $(OutDir)
 copy /b $(ProjectDir)config.nlog $(TargetPath).nlog
 "
 				Outputs="$(OutDir)\NLog.dll"/>
@@ -84,7 +84,7 @@ copy /b $(ProjectDir)config.nlog $(TargetPath).nlog
 			<Tool
 				Name="VCCustomBuildTool"
 				CommandLine="copy /b $(ProjectDir)..\..\src\NLogC\$(ConfigurationName)\NLogC.dll $(OutDir)
-rem copy /b $(ProjectDir)..\..\src\NLog\bin\$(ConfigurationName)\NLog.dll $(OutDir)
+copy /b $(ProjectDir)..\..\src\NLog\bin\$(ConfigurationName)\NLog.dll $(OutDir)
 copy /b $(ProjectDir)config.nlog $(TargetPath).nlog
 "
 				Outputs="$(OutDir)\NLog.dll"/>

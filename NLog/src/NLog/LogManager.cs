@@ -40,6 +40,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Security;
 using System.Text;
+using System.Runtime.CompilerServices;
 using System.Globalization;
 
 using NLog.Config;
@@ -93,6 +94,7 @@ namespace NLog
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger()
         {
             StackFrame frame = new StackFrame(1, false);

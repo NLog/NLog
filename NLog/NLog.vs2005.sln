@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+﻿Microsoft Visual Studio Solution File, Format Version 9.00
+# SharpDevelop 2.0.0.1591
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.vs2005", "src\NLog\NLog.vs2005.csproj", "{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Test.vs2005", "tests\NLog.Test\NLog.Test.vs2005.csproj", "{5EC49108-97AE-40EA-B550-8960E4522718}"
@@ -58,6 +58,14 @@ Global
 		{BB32EC17-234D-477D-AC37-96EB19A52018}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{BB32EC17-234D-477D-AC37-96EB19A52018}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{BB32EC17-234D-477D-AC37-96EB19A52018}.Release|Win32.ActiveCfg = Release|Any CPU
+		{BB32EC17-234D-477D-AC37-96EB19A52018}.Debug|Win32.Build.0 = Debug|Win32
+		{BB32EC17-234D-477D-AC37-96EB19A52018}.Release|Win32.Build.0 = Release|Win32
+		{B3F8E5FB-C9D4-4C12-841F-8009EB60DB3D}.Debug|Win32.Build.0 = Debug|Win32
+		{B3F8E5FB-C9D4-4C12-841F-8009EB60DB3D}.Release|Win32.Build.0 = Release|Win32
+		{5EC49108-97AE-40EA-B550-8960E4522718}.Debug|Win32.Build.0 = Debug|Win32
+		{5EC49108-97AE-40EA-B550-8960E4522718}.Release|Win32.Build.0 = Release|Win32
+		{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}.Debug|Win32.Build.0 = Debug|Win32
+		{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

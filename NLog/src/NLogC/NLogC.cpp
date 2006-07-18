@@ -209,7 +209,7 @@ public:
     {
         if (args->Name->StartsWith("NLog,"))
         {
-            return Assembly::LoadFile(_path);
+            return Assembly::LoadFrom(_path);
         }
         else
         {

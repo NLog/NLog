@@ -93,6 +93,12 @@
     <target name="clean" depends="configure">
         <delete dir="build/${buildsubdir}" failonerror="false" />
         <delete verbose="true">
+            <fileset basedir=".">
+                <include name="**/*.suo" />
+                <include name="**/*.ncb" />
+            </fileset>
+        </delete>
+        <delete verbose="true">
             <fileset basedir="src">
                 <include name="*/bin/**" />
                 <include name="*/obj/**" />
@@ -374,29 +380,7 @@
         <exec program="${nlog.dir}/NLog.Benchmark-lab.exe" workingdir="${nlog.dir}" commandline="Benchmark-lab.xml ${benchmark.mode}" />
     </target>
 
-    <target name="NLogC-1.0">
-        <uptodate property="nlogc.uptodate">
-            <targetfiles>
-                <include name="${nlog.dir}/NLogC.dll" />
-            </targetfiles>
-            <sourcefiles basedir="${nlog.dir}">
-                <include name="NLog.dll" />
-            </sourcefiles>
-        </uptodate>
-        <if test="${not nlogc.uptodate}">
-            <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\7.0\Setup\VS\ProductDir" />
-            <exec program="build_nlogc_net-1.0.bat" workingdir="${project::get-base-directory()}" commandline="${string::replace(nlog.dir,'/','\')}">
-                <environment>
-                    <variable name="VS_DIR" value="${visualstudio.dir}" />
-                    <variable name="VC_DIR" value="${path::combine(visualstudio.dir,'VC7')}" />
-                    <variable name="DOTNETSDK_DIR" value="${path::combine(framework::get-sdk-directory('net-1.0'),'..')}" />
-                </environment>
-            </exec>
-        </if>
-    </target>
-
-    <target name="NLogC" depends="NLog">
-        <call target="build-nlogc-${framework::get-target-framework()}" />
+    <target name="NLogC" depends="NLog, NLogC-${framework::get-target-framework()}">
         <copy todir="${nlog.dir}/include">
             <fileset basedir="tests/NLogC">
                 <include name="NLogC.h" />
@@ -405,48 +389,90 @@
         </copy>
     </target>
 
-    <target name="NLogC-1.1">
-        <uptodate property="nlogc.uptodate">
-            <targetfiles>
-                <include name="${nlog.dir}/NLogC.dll" />
-            </targetfiles>
-            <sourcefiles basedir="${nlog.dir}">
-                <include name="NLog.dll" />
-            </sourcefiles>
-        </uptodate>
-        <if test="${not nlogc.uptodate}">
-            <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\7.1\Setup\VS\ProductDir" />
-            <exec program="build_nlogc_net-1.1.bat" workingdir="${project::get-base-directory()}" commandline="${string::replace(nlog.dir,'/','\')}">
-                <environment>
-                    <variable name="VS_DIR" value="${visualstudio.dir}" />
-                    <variable name="VC_DIR" value="${path::combine(visualstudio.dir,'VC7')}" />
-                    <variable name="DOTNETSDK_DIR" value="${path::combine(framework::get-sdk-directory('net-1.1'),'..')}" />
-                </environment>
-            </exec>
-        </if>
+    <target name="NLogC-compile">
+        <path id="build.path.include">
+            <pathelement dir="${visualc.dir}/INCLUDE" />
+        </path>
+
+        <path id="build.path.lib">
+            <pathelement dir="${visualc.dir}/LIB" />
+            <pathelement dir="${path::combine(framework::get-sdk-directory(framework::get-target-framework()),'..')}/LIB" />
+        </path>
+
+        <path id="build.path">
+            <pathelement dir="${visualstudio.dir}/Common7/IDE" />
+            <pathelement dir="${visualc.dir}/BIN" />
+        </path>
+
+        <setenv verbose="true">
+            <variable name="INCLUDE">
+                <path refid="build.path.include" />
+            </variable>
+            <variable name="LIB">
+                <path refid="build.path.lib" />
+            </variable>
+            <variable name="PATH">
+                <path refid="build.path" />
+            </variable>
+        </setenv>
+
+        <delete dir="${nlog.dir}/obj" if="${directory::exists(nlog.dir + '/obj')}" />
+        <mkdir dir="${nlog.dir}/obj" />
+
+        <cl outputdir="${nlog.dir}/obj" options='/D "_CRT_SECURE_NO_DEPRECATE" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "NLOGC_EXPORTS" /D "_WINDLL" /D "_MBCS" /FD /GS /W3 /c /Wp64 /Zi /TP ${nlogc.compile.extraoptions}'>
+            <sources basedir="src/NLogC">
+                <include name="**/*.cpp" />
+            </sources>
+            <forcedusingfiles>
+                <include name="${framework::get-framework-directory(framework::get-target-framework())}/mscorlib.dll" />
+                <include name="${nlog.dir}/NLog.dll" />
+            </forcedusingfiles>
+        </cl>
+        <link output="${nlog.dir}/NLogC.dll" 
+            pdbfile="${nlog.dir}/NLogC.pdb" 
+            options="/nologo /INCREMENTAL:NO /NOLOGO /DLL /DEBUG /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /MACHINE:X86 /FIXED:No /NOENTRY /NODEFAULTLIB:nochkclr.obj /INCLUDE:__DllMainCRTStartup@12">
+            <sources basedir="${nlog.dir}/obj">
+                <include name="*.obj" />
+            </sources>
+        </link>
+        <delete dir="${nlog.dir}/obj" />
     </target>
 
-    <target name="NLogC-2.0">
-        <uptodate property="nlogc.uptodate">
-            <targetfiles>
-                <include name="${nlog.dir}/NLogC.dll" />
-            </targetfiles>
-            <sourcefiles basedir="${nlog.dir}">
-                <include name="NLog.dll" />
-            </sourcefiles>
-        </uptodate>
-        <if test="${not nlogc.uptodate}">
-            <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VS\ProductDir" />
-            <readregistry property="visualc.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VC\ProductDir" />
-            <exec program="build_nlogc_net-2.0.bat" workingdir="${project::get-base-directory()}" commandline="${string::replace(nlog.dir,'/','\')}">
-                <environment>
-                    <variable name="VS_DIR" value="${visualstudio.dir}" />
-                    <variable name="VC_DIR" value="${visualc.dir}" />
-                    <variable name="DOTNETSDK_DIR" value="${path::combine(framework::get-sdk-directory('net-2.0'),'..')}" />
-                </environment>
-            </exec>
+    <target name="NLogC-net-1.0">
+        <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\7.0\Setup\VS\ProductDir" />
+        <readregistry property="visualc.dir" key="SOFTWARE\Microsoft\VisualStudio\7.0\Setup\VC\ProductDir" failonerror="false" />
+        <if test="${not property::exists('visualc.dir')}">
+            <property name="visualc.dir" value="${visualstudio.dir}\VC7" />
         </if>
+        <property name="nlogc.compile.extraoptions" value="/clr" />
+        <call target="NLogC-compile" />
     </target>
+
+    <target name="NLogC-net-1.1">
+        <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\7.1\Setup\VS\ProductDir" />
+        <readregistry property="visualc.dir" key="SOFTWARE\Microsoft\VisualStudio\7.1\Setup\VC\ProductDir" failonerror="false" />
+        <if test="${not property::exists('visualc.dir')}">
+            <property name="visualc.dir" value="${visualstudio.dir}\VC7" />
+        </if>
+        <property name="nlogc.compile.extraoptions" value="/clr" />
+        <call target="NLogC-compile" />
+    </target>
+
+    <target name="NLogC-net-2.0" depends="configure">
+        <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VS\ProductDir" />
+        <readregistry property="visualc.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VC\ProductDir" failonerror="false" />
+        <if test="${not property::exists('visualc.dir')}">
+            <property name="visualc.dir" value="${visualstudio.dir}\VC" />
+        </if>
+        <property name="nlogc.compile.extraoptions" value="/clr:oldsyntax" />
+        <call target="NLogC-compile" />
+    </target>
+
+    <!-- unsupported platforms -->
+    <target name="NLogC-mono-1.0" />
+    <target name="NLogC-mono-2.0" />
+    <target name="NLogC-netcf-1.0" />
+    <target name="NLogC-netcf-2.0" />
 
     <target name="NLog.Benchmark-log4net" depends="NLog">
         <copy file="${log4net.bin.dir}/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/${if(nlog.debug,'debug','release')}/log4net.dll" tofile="${nlog.dir}/log4net.dll" />
@@ -640,9 +666,6 @@
     <target name="build-net-2.0" depends="NLog, NLog.ComInterop, NLogC" />
     <target name="build-netcf-1.0" depends="NLog" />
     <target name="build-netcf-2.0" depends="NLog" />
-    <target name="build-nlogc-net-1.0" depends="NLogC-1.0, NLogC-1.1, NLogC-2.0" />
-    <target name="build-nlogc-net-1.1" depends="NLogC-1.1, NLogC-2.0" />
-    <target name="build-nlogc-net-2.0" depends="NLogC-2.0" />
 
     <target name="updateversion">
         <foreach item="Line" in="Nlog.version" delim=";" property="nlog.version">
@@ -820,6 +843,7 @@
     </target>
 
     <target name="vs2005templates">
+        <mkdir dir="build/templates" />
         <foreach item="String" in="Empty,Typical,Console" delim="," property="projecttype">
             <foreach item="String" in="CSharp,VisualBasic" delim="," property="language">
                 <foreach item="Line" in="Nlog.version" delim=";" property="nlog.version">
@@ -833,7 +857,7 @@
                             <replacestring from="$templatelanguage$" to="${language}" />
                         </filterchain>
                     </copy>
-                    <zip zipfile="${language}${projecttype}NLogConfig.zip">
+                    <zip zipfile="build/templates/${language}${projecttype}NLogConfig.zip">
                         <fileset basedir="tmp_dir">
                             <include name="**/*" />
                         </fileset>

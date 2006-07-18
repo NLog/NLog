@@ -103,8 +103,8 @@ novsnet:
   ExpandEnvStrings $1 $0
   DetailPrint "Installing Visual Studio .NET 2005 item templates in $1"
   SetOutPath $1
-  File "CSharp*NLogConfig.zip"
-  File "VisualBasic*NLogConfig.zip"
+  File "build\templates\CSharp*NLogConfig.zip"
+  File "build\templates\VisualBasic*NLogConfig.zip"
 
 novsnet2:
   ReadRegStr $0 HKCU Software\Microsoft\VisualStudio\8.0 "VisualStudioLocation"
