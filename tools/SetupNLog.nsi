@@ -134,7 +134,7 @@ novsnet4:
   ExpandEnvStrings $1 $0
   DetailPrint "Installing Visual Studio .NET 2005 item templates in $1"
   SetOutPath $1
-  File "CSharp*NLogConfig.zip"
+  File "build\templates\CSharp*NLogConfig.zip"
 
   ; VB.NET Express 2005 support
 novsnet5:
@@ -144,7 +144,7 @@ novsnet5:
   ExpandEnvStrings $1 $0
   DetailPrint "Installing Visual Studio .NET 2005 item templates in $1"
   SetOutPath $1
-  File "VisualBasic*NLogConfig.zip"
+  File "build\templates\VisualBasic*NLogConfig.zip"
 
 novsnet6:
   ReadRegStr $0 HKCU Software\Microsoft\VBExpress\8.0 "VisualStudioLocation"
