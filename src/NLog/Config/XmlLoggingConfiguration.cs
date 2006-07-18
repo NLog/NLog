@@ -79,11 +79,30 @@ namespace NLog.Config
         /// class and reads the configuration from the specified config file.
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
-        public XmlLoggingConfiguration(string fileName)
+        public XmlLoggingConfiguration(string fileName) : this(fileName, false)
+        {
+        }
+
+        /// <summary>
+        /// Constructs a new instance of <see cref="XmlLoggingConfiguration" />
+        /// class and reads the configuration from the specified config file.
+        /// </summary>
+        /// <param name="fileName">Configuration file to be read.</param>
+        /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
+        public XmlLoggingConfiguration(string fileName, bool ignoreErrors)
         {
             InternalLogger.Info("Configuring from {0}...", fileName);
             _originalFileName = fileName;
-            ConfigureFromFile(fileName);
+            try
+            {
+                ConfigureFromFile(fileName);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error("Error {0}...", ex);
+                if (!ignoreErrors)
+                    throw;
+            }
         }
 
         /// <summary>
@@ -92,20 +111,40 @@ namespace NLog.Config
         /// </summary>
         /// <param name="configElement"><see cref="XmlElement" /> containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files).</param>
-        public XmlLoggingConfiguration(XmlElement configElement, string fileName)
+        public XmlLoggingConfiguration(XmlElement configElement, string fileName) : this(configElement, fileName, false)
         {
-            if (fileName != null)
-            {
-                InternalLogger.Info("Configuring from an XML element in {0}...", fileName);
-                string key = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
-                _visitedFile[key] = key;
+        }
 
-                _originalFileName = fileName;
-                ConfigureFromXmlElement(configElement, Path.GetDirectoryName(fileName));
-            }
-            else
+        /// <summary>
+        /// Constructs a new instance of <see cref="XmlLoggingConfiguration" />
+        /// class and reads the configuration from the specified XML element.
+        /// </summary>
+        /// <param name="configElement"><see cref="XmlElement" /> containing the configuration section.</param>
+        /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files).</param>
+        /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
+        public XmlLoggingConfiguration(XmlElement configElement, string fileName, bool ignoreErrors)
+        {
+            try
             {
-                ConfigureFromXmlElement(configElement, null);
+                if (fileName != null)
+                {
+                    InternalLogger.Info("Configuring from an XML element in {0}...", fileName);
+                    string key = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
+                    _visitedFile[key] = key;
+
+                    _originalFileName = fileName;
+                    ConfigureFromXmlElement(configElement, Path.GetDirectoryName(fileName));
+                }
+                else
+                {
+                    ConfigureFromXmlElement(configElement, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error("Error {0}...", ex);
+                if (!ignoreErrors)
+                    throw;
             }
         }
 
