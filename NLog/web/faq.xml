@@ -57,5 +57,90 @@
             </code>
         </faq-answer>
     </faq>
+    <faq>
+        <faq-question>How do I configure logging for a component?</faq-question>
+        <faq-answer>
+            <p>
+If you can configure NLogging on the client-side (by providing the appropriate configuration file in application's directory, you can
+follow the <link href="tutorial">tutorial</link>.
+</p>
+
+<p>
+However, if you do not control the clients, or they are
+not all local, or you wish a solution encapsulated to your
+component or assembly, you may wish to configure logging
+locally in your component assembly.
+</p>
+
+<p>
+    The solution is to create a log manager just for your component that will manage its own loggers. You need to load the configuration
+    file by hand and/or configure logging programmatically but your configuration will be independent from application's config.
+</p>
+
+<p>The following solution is usable for components not in the GAC. (Components in the GAC need to implement below method GetNLogConfigFilepath in some
+    application-dependent fashion.)</p>
+
+<code lang="C#">
+    internal class MyLogManager
+    {
+        // A Logger dispenser for the current assembly
+        public static readonly LogFactory Instance
+                = new LogFactory(new XmlLoggingConfiguration(GetNLogConfigFilePath()));
+
+        //
+        // Use a config file located next to our current assembly dll
+        // eg, if the running assembly is c:\path\to\MyComponent.dll
+        // the config filepath will be c:\path\to\MyComponent.nlog
+        //
+        // WARNING: This will not be appropriate for assemblies in the GAC
+        //
+        private static string GetNLogConfigFilePath()
+        {
+            // Use name of current assembly to construct NLog config filename
+
+            Assembly thisAssembly = Assembly.GetExecutingAssembly();
+
+            return Path.ChangeExtension(thisAssembly.Location, ".nlog");
+        }
+    }
+</code>
+
+Then create loggers with:
+
+<code lang="C#">
+    Logger logger = MyLogManager.Instance.GetLogger("name");
+</code>
+
+or
+
+<code lang="C#">
+    Logger logger = MyLogManager.Instance.GetCurrentClassLogger();
+</code>
+
+<p>
+    The loggers are independent from the ones created with NLog
+    LogManager, and thus you can have safe private logging. That is,
+    this will not interfere with other assemblies or the application
+    exe itself using NLog.
+</p>
+
+<p>
+    If you want multiple assemblies to share this MyLogManager -
+    just make it a public class and get others to use it.
+</p>
+
+<p>
+    You need to make sure that the configuration is properly
+closed when the process terminates (set
+MyLogManager.Instance.Configuration to null) or you may
+lose some log output.
+
+You may want to hook AppDomain.ProcessExit and
+AppDomain.DomainUnload events to turn off logging automatically.
+
+See the code of <a href="http://svn.nlog-project.org/repos/nlog/trunk/NLog/src/NLog/LogManager.cs">LogManager.cs</a> for details.
+</p>
+        </faq-answer>
+    </faq>
     <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>
