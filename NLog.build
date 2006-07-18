@@ -1144,6 +1144,16 @@
                 <include name="**/*.cs" />
             </source-files>
         </sync-vs-project-items>
+
+        <sync-vs-project-items>
+            <project-files basedir="tests/NLog.UnitTests">
+                <include name="*.csproj" />
+                <include name="*.csdproj" />
+            </project-files>
+            <source-files basedir="tests/NLog.UnitTests">
+                <include name="**/*.cs" />
+            </source-files>
+        </sync-vs-project-items>
     </target>
 
     <target name="clean_examples">
