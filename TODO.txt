@@ -1,6 +1,0 @@
-Things to do:
-
-* Make all appenders work as advertised - 70%
-* Document public API - 0%
-* Add unit tests - 0%
-* Add some more tutorials to the website - 20%
