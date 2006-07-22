@@ -207,6 +207,10 @@ namespace NLog
         /// </summary>
         protected internal virtual void Close()
         {
+            foreach (ILayout l in GetLayouts())
+            {
+                l.Close();
+            }
         }
 
         /// <summary>
@@ -243,6 +247,10 @@ namespace NLog
         /// </summary>
         public virtual void Initialize()
         {
+            foreach (ILayout l in GetLayouts())
+            {
+                l.Initialize();
+            }
         }
     }
 }

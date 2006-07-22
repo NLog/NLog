@@ -190,6 +190,7 @@ namespace NLog.Targets.Wrappers
                 {
                     do
                     {
+                        // Console.WriteLine("q: {0}", RequestQueue.RequestCount);
                         ArrayList pendingRequests = RequestQueue.DequeueBatch(BatchSize);
 
                         try
@@ -404,7 +405,8 @@ namespace NLog.Targets.Wrappers
                         target.Add(o);
                     }
 #if !NETCF
-                    System.Threading.Monitor.PulseAll(this);
+                    if (OnOverflow == AsyncTargetWrapperOverflowAction.Block)
+                        System.Threading.Monitor.PulseAll(this);
 #endif
                 }
                 _batchedItems = target.Count;

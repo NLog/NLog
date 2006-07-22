@@ -240,6 +240,9 @@
         <File RelPath="Conditions\ConditionLevelExpression.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="LogFactory.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Targets\Wrappers\ImpersonatingWrapper.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Internal\CurrentTimeGetter.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LayoutRenderers\ProcessInfo.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LayoutRenderers\GC.cs" SubType="Code" BuildAction="Compile" />
       </Include>
     </Files>
   </CSHARP>

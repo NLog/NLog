@@ -80,7 +80,7 @@
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
-                    Name = "NLog"
+                    Name = "NLog.vs2003"
                     Project = "{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />

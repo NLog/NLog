@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.vs2005", "..\src\NLog\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.vs2005", "NLog.UnitTests\NLog.UnitTests.vs2005.csproj", "{1653EE05-2720-4A85-BF14-74C4493787B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Benchmark.vs2005", "NLog.Benchmark\NLog.Benchmark.vs2005.csproj", "{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

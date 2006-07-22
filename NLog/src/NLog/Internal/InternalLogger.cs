@@ -206,7 +206,7 @@ namespace NLog.Internal
                     formattedMessage = String.Format(formatProvider, message, args);
 
                 StringBuilder builder = new StringBuilder(message.Length + 32);
-                builder.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
+                builder.Append(CurrentTimeGetter.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
                 builder.Append(" ");
                 builder.Append(level.ToString());
                 builder.Append(" ");

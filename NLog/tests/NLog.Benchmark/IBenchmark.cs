@@ -31,28 +31,26 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if LOG4NET_WITH_FASTLOGGER
+using System;
+using System.Threading;
+using System.Globalization;
+using System.IO;
+using System.Xml;
+using System.Runtime.InteropServices;
 
-using log4net.Core;
-using System.Reflection;
-
-public sealed class FastLoggerLogManager
+namespace NLog.Benchmark
 {
-    private static readonly WrapperMap s_wrapperMap = new WrapperMap(
-            new WrapperCreationHandler(WrapperCreationHandler));
-    private FastLoggerLogManager()
+    public interface IBenchmark
     {
-
-    }
-    public static FastLogger GetLogger(string name)
-    {
-        return (FastLogger)s_wrapperMap.GetWrapper(
-                LoggerManager.GetLogger(Assembly.GetCallingAssembly(), name));
-    }
-    private static ILoggerWrapper WrapperCreationHandler(ILogger logger)
-    {
-        return new FastLogger(logger);
+        string Name { get; }
+        string[] References { get; }
+        string Header { get; }
+        string Footer { get; }
+        string Init { get; }
+        string Flush { get; }
+        string CreateSource(string variableName, string name);
+        string WriteUnformatted(string loggerVariable, string level, string text);
+        string WriteFormatted(string loggerVariable, string level, string text, string par);
+        string GuardedWrite(string loggerVariable, string level, string text, string par);
     }
 }
-
-#endif

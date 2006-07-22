@@ -114,7 +114,7 @@ namespace NLog
         /// <param name="exception">Exception information.</param>
         public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters, Exception exception)
         {
-            _timeStamp = DateTime.Now;
+            _timeStamp = CurrentTimeGetter.Now;
             _level = level;
             _loggerName = loggerName;
             _message = message;
@@ -331,15 +331,22 @@ namespace NLog
             if (parameters.Length == 0)
                 return false;
             
-            if (parameters.Length > 4)
+            if (parameters.Length > 3)
             {
                 // too many parameters, too costly to check
                 return true;
             }
 
-            for (int i = 0; i < parameters.Length; ++i)
+            if (!IsSafeToDeferFormatting(parameters[0]))
+                return true;
+            if (parameters.Length >= 2)
             {
-                if (!IsSafeToDeferFormatting(parameters[i]))
+                if (!IsSafeToDeferFormatting(parameters[1]))
+                    return true;
+            }
+            if (parameters.Length >= 3)
+            {
+                if (!IsSafeToDeferFormatting(parameters[2]))
                     return true;
             }
             return false;
@@ -352,11 +359,9 @@ namespace NLog
             if (value == null)
                 return true;
 
-            //
-            // types from mscorlib.dll are considered safe since they
-            // have no chance of overriding ToString to include logging code
-            // 
-            return value.GetType().Assembly == _mscorlibAssembly;
+            return (value.GetType().IsPrimitive || value is string);
+
+            //return value.GetType().Assembly == _mscorlibAssembly;
         }
     }
 }

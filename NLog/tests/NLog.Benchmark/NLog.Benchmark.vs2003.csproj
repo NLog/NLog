@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "Exe"
                 PreBuildEvent = ""
-                PostBuildEvent = ""
+                PostBuildEvent = 'copy "$(ProjectDir)\*.config" "$(TargetDir)"&#xd;&#xa;copy "$(ProjectDir)\*.xsl" "$(TargetDir)"&#xd;&#xa;copy "$(ProjectDir)\*.png" "$(TargetDir)"'
                 RootNamespace = "NLog.Benchmark"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
@@ -74,16 +74,41 @@
                     AssemblyName = "System.Xml"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
+                <Reference
+                    Name = "System"
+                    AssemblyName = "System"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
+                />
             </References>
         </Build>
         <Files>
             <Include>
                 <File
-                    RelPath = "app.config"
+                    RelPath = "Benchmark.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IBenchmark.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Log4NetBenchmark.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Log4NetWithFastLoggerBenchmark.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NLog.config"
                     BuildAction = "None"
                 />
                 <File
-                    RelPath = "Benchmark.cs"
+                    RelPath = "NLogBenchmark.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

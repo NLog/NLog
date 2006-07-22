@@ -70,6 +70,7 @@ namespace NLog
         private LayoutRenderer[] _renderers;
         private int _needsStackTrace = 0;
         private bool _isVolatile = false;
+        private string _fixedText;
 
         /// <summary>
         /// The layout text
@@ -82,7 +83,20 @@ namespace NLog
             {
                 _layoutText = value;
                 _renderers = CompileLayout(_layoutText, out _needsStackTrace, out _isVolatile);
+                if (_renderers.Length == 1 && _renderers[0] is LiteralLayoutRenderer)
+                    _fixedText = ((LiteralLayoutRenderer)(_renderers[0])).Text;
+                else
+                    _fixedText = null;
             }
+        }
+
+        /// <summary>
+        /// Returns true if this layout produces a value that doesn't change for a particular
+        /// AppDomain.
+        /// </summary>
+        public bool IsAppDomainFixed
+        {
+            get { return _fixedText != null; }
         }
 
         /// <summary>
@@ -93,10 +107,8 @@ namespace NLog
         /// <returns>The rendered layout.</returns>
         public string GetFormattedMessage(LogEventInfo logEvent)
         {
-            if (_renderers.Length == 1 && _renderers[0] is LiteralLayoutRenderer)
-            {
-                return ((LiteralLayoutRenderer)(_renderers[0])).Text;
-            }
+            if (_fixedText != null)
+                return _fixedText;
 
             string cachedValue = logEvent.GetCachedLayoutValue(this);
             if (cachedValue != null)
@@ -321,6 +333,17 @@ namespace NLog
         /// Initializes the layout.
         /// </summary>
         public void Initialize()
+        {
+            foreach (LayoutRenderer lr in Renderers)
+            {
+                lr.Initialize();
+            }
+        }
+
+        /// <summary>
+        /// Closes the layout;
+        /// </summary>
+        public void Close()
         {
         }
     }

@@ -76,6 +76,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected internal override void Close()
         {
+            base.Close();
             WrappedTarget.Close();
         }
 

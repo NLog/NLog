@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.vs2003", "NL
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Benchmark.vs2003", "NLog.Benchmark\NLog.Benchmark.vs2003.csproj", "{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -37,6 +41,10 @@ Global
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Debug.Build.0 = Debug|.NET
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Release.ActiveCfg = Release|.NET
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Release.Build.0 = Release|.NET
+		{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}.Debug.ActiveCfg = Debug|.NET
+		{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}.Debug.Build.0 = Debug|.NET
+		{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}.Release.ActiveCfg = Release|.NET
+		{842A5DA9-BA2B-4934-8ED6-2E6495F7476D}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
