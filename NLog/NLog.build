@@ -349,7 +349,13 @@
                 <include name="System.Xml.dll" />
             </references>
         </csc>
-        <copy file="tests/NLog.Benchmark/NLog.config" tofile="${nlog.dir}/NLog.config" />
+        <copy todir="${nlog.dir}">
+            <fileset basedir="tests/NLog.Benchmark">
+                <include name="NLog.config" />
+                <include name="*.png" />
+                <include name="*.xsl" />
+            </fileset>
+        </copy>
         <property name="log4netbinary" value="${log4net.bin.dir}/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/${if(nlog.debug,'debug','release')}/log4net.dll" />
         <if test="${file::exists(log4netbinary)}">
             <copy file="${log4netbinary}" tofile="${nlog.dir}/log4net.dll" />
