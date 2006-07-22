@@ -253,5 +253,19 @@ namespace NLog
         {
             return false;
         }
+
+        /// <summary>
+        /// Initializes the layout renderer.
+        /// </summary>
+        public virtual void Initialize()
+        {
+        }
+
+        /// <summary>
+        /// Closes the layout renderer.
+        /// </summary>
+        public virtual void Close()
+        {
+        }
     }
 }

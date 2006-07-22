@@ -47,7 +47,7 @@ using NLog.Config;
 namespace NLog.Internal
 {
     /// <summary>
-    /// A cyclick buffer of <see cref="LogEventInfo"/> object.
+    /// A cyclic buffer of <see cref="LogEventInfo"/> object.
     /// </summary>
     public class LogEventInfoBuffer
     {

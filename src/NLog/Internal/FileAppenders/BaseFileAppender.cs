@@ -79,7 +79,7 @@ namespace NLog.Internal.FileAppenders
 
         protected void FileTouched()
         {
-            _lastWriteTime = DateTime.Now;
+            _lastWriteTime = CurrentTimeGetter.Now;
         }
 
         protected void FileTouched(DateTime dt)
@@ -91,7 +91,7 @@ namespace NLog.Internal.FileAppenders
         {
             _fileName = fileName;
             _createParameters = createParameters;
-            _openTime = DateTime.Now;
+            _openTime = CurrentTimeGetter.Now;
             _lastWriteTime = DateTime.MinValue;
         }
 

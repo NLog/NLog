@@ -1,3 +1,15 @@
+2006-07-22 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* New NLog.Benchmark that uses code generation and compilation to
+	create more "clean" environment.
+	* Added ${gc} which can be used to get the GC statistics (very limited)
+	* Added ${processinfo} which can be used to extract the performance
+	information about the current process (possibly others in the future as
+	well)
+	* Added ${gc} which can be used to get the GC statistics (very limited)
+	* Added Initialize() and Close() to the LayoutRender class
+	* Added optimized CurrentTimeGetter which is way faster than DateTime.Now
+	* Some small optimizations
+
 2006-07-18 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added ImpersonatingWrapper which temporarily changes the credentials
 	for the duration of the write.

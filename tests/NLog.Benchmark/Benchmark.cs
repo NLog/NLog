@@ -38,380 +38,339 @@ using System.IO;
 using System.Xml;
 using System.Runtime.InteropServices;
 
-#if LOG4NET || LOG4NET_WITH_FASTLOGGER
-using log4net;
-#elif ENTLIB
-using System.Diagnostics;
-using Microsoft.Practices.EnterpriseLibrary.Logging;
-#else
-using NLog;
-#endif
+using System.Text;
+using System.CodeDom.Compiler;
 
-#if LOG4NET || LOG4NET_WITH_FASTLOGGER
+//
+// distribution - taken from some development sample
+// 
+// Debug - 20000
+// Info - 6500
+// Warn - 100
+// Error - 10
+// Fatal - 0
+//
 
-using log4net.Core;
-using log4net.Appender;
-
-public class NullAppender : AppenderSkeleton
+namespace NLog.Benchmark
 {
-    override protected void Append(LoggingEvent loggingEvent) 
+    class Program
     {
-    }
-}
+        private static double _overhead = 0.0;
+        private static double _maxmax = 0.0;
 
-public class NullAppenderWithLayout : AppenderSkeleton
-{
-    override protected void Append(LoggingEvent loggingEvent) 
-    {
-        string s = RenderLoggingEvent(loggingEvent);
-        // ignore s
-    }
-}
-
-#endif
-
-class Bench
-{
-    private const int warmup = 10;
-    private const int PRIORITY_DEBUG = 2;
-    private const int UNROLL_COUNT = 1;
-    private static int _repeat;
-    private static string _currentTestName;
-    private static XmlTextWriter _output;
-    private static StopWatch _stopWatch = new StopWatch();
-
-    public static void BeginTest(string name)
-    {
-        if (_output != null)
+        private static string GenerateTestSourceCode(IBenchmark bench)
         {
-            _output.WriteStartElement("timing");
-            _output.WriteAttributeString("name", name);
-        }
-        _currentTestName = name;
-        Console.Write("{0} ", name);
-        _stopWatch.Start();
-    }
+            StringWriter sw = new StringWriter();
 
-    public static void EndTest()
-    {
-        //LogManager.Configuration.FlushAllTargets();
-        _stopWatch.Stop();
-        if (_output != null)
-        {
-            _output.WriteAttributeString("totalTime", Convert.ToString(TimeSpan.FromSeconds(_stopWatch.Seconds)));
-            _output.WriteAttributeString("repetitions", Convert.ToString(_repeat * UNROLL_COUNT));
-            _output.WriteAttributeString("logsPerSecond", Convert.ToString(_repeat * UNROLL_COUNT /_stopWatch.Seconds));
-            _output.WriteAttributeString("nanosecondsPerLog", Convert.ToString(_stopWatch.Nanoseconds / (_repeat * UNROLL_COUNT)));
-            _output.WriteEndElement();
-        }
-        //Console.Write("totalTime: {0} ", Convert.ToString(TimeSpan.FromSeconds(_stopWatch.Seconds)));
-        //Console.Write("repetitions: {0} ", Convert.ToString(_repeat));
-        //Console.Write("logsPerSecond: {0} ", Convert.ToString(_repeat /_stopWatch.Seconds));
-        Console.Write("nanosecondsPerLog: {0} ", Convert.ToString(_stopWatch.Nanoseconds / (_repeat * UNROLL_COUNT)));
-        Console.WriteLine();
-    }
+            sw.WriteLine("using System;");
 
-    public static void Main(string[]args)
-    {
-        int repeat = 1000000;
-        int repeat2 = 100000;
-        string outputFile = args[0];
-        Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-        if (args.Length > 1)
-        {
-            if (args[1] == "long")
-            {
-                repeat *= 10;
-                repeat2 *= 10;
-            }
-            if (args[1] == "short")
-            {
-                repeat2 /= 10;
-            }
-            if (args[1] == "veryshort")
-            {
-                repeat2 /= 100;
-            }
-            if (args[1] == "veryveryshort")
-            {
-                repeat /= 100;
-                repeat2 /= 100;
-            }
-            if (args[1] == "verylong")
-            {
-                repeat *= 100;
-                repeat2 *= 10;
-            }
-        }
-#if LOG4NET
-        log4net.Config.XmlConfigurator.Configure(new FileInfo("log4net.config"));
+            sw.WriteLine(bench.Header);
 
-        ILog logger1 = LogManager.GetLogger("nonlogger");
-        ILog logger2 = LogManager.GetLogger("null1");
-        ILog logger3 = LogManager.GetLogger("null2");
-        ILog logger4 = LogManager.GetLogger("file1");
-        ILog logger5 = LogManager.GetLogger("file2");
-        ILog logger6 = LogManager.GetLogger("file3");
-#elif LOG4NET_WITH_FASTLOGGER
-        log4net.Config.XmlConfigurator.Configure(new FileInfo("log4net.config"));
+            sw.WriteLine("public class TheBenchmark {");
+            sw.WriteLine("static TheBenchmark() {");
+            sw.WriteLine("}");
+            sw.WriteLine(bench.CreateSource("logger1", "nosuchlogger"));
+            sw.WriteLine(bench.CreateSource("logger2", "null1"));
+            sw.WriteLine(bench.CreateSource("logger3", "null2"));
+            sw.WriteLine(bench.CreateSource("logger4", "file1"));
+            sw.WriteLine(bench.CreateSource("logger5", "file3"));
+            sw.WriteLine(bench.CreateSource("logger6", "file2"));
 
-        FastLogger logger1 = FastLoggerLogManager.GetLogger("nonlogger");
-        FastLogger logger2 = FastLoggerLogManager.GetLogger("null1");
-        FastLogger logger3 = FastLoggerLogManager.GetLogger("null2");
-        FastLogger logger4 = FastLoggerLogManager.GetLogger("file1");
-        FastLogger logger5 = FastLoggerLogManager.GetLogger("file2");
-        FastLogger logger6 = FastLoggerLogManager.GetLogger("file3");
-#elif ENTLIB
-        string logger1 = "nonlogger";
-        string logger2 = "null1";
-        string logger3 = "null2";
-        string logger4 = "file1";
-        string logger5 = "file2";
-        string logger6 = "file3";
-#else        
-        Logger logger1 = LogManager.GetLogger("nonlogger");
-        Logger logger2 = LogManager.GetLogger("null1");
-        Logger logger3 = LogManager.GetLogger("null2");
-        Logger logger4 = LogManager.GetLogger("file1");
-        Logger logger5 = LogManager.GetLogger("file2");
-        Logger logger6 = LogManager.GetLogger("file3");
-#endif
-        // _output = new XmlTextWriter(Console.Out);
-
-        // warm up
-        LogTest(logger1, null, 5);
-        //LogTest(logger4, null, 5);
-        LogTest(logger2, null, 5);
-        LogTest(logger3, null, 5);
-        LogTest(logger4, null, 5);
-        LogTest(logger5, null, 5);
-        LogTest(logger6, null, 5);
-
-        _output = new XmlTextWriter(outputFile, System.Text.Encoding.UTF8);
-        _output.Formatting = Formatting.Indented;
-        _output.WriteStartElement("results");
-        LogTest(logger1, "Non-logging", repeat);
-        LogTest(logger3, "Null-target without layout", repeat);
-        LogTest(logger2, "Null-target with layout rendering", repeat);
-#if WITHLONGTESTS
-        LogTest(logger4, "File target", repeat2);
-        LogTest(logger5, "Async file target", repeat2);
-        LogTest(logger6, "Buffered file target", repeat2);
-#if NLOG
-        LogTest(LogManager.GetLogger("archive1"), "Non-concurrent archiving file target", repeat2);
-        LogTest(LogManager.GetLogger("archive2"), "Non-concurrent archiving file target (often)", repeat2);
-        LogTest(LogManager.GetLogger("archive3"), "Concurrent archiving file target", repeat2);
-        LogTest(LogManager.GetLogger("archive4"), "Concurrent archiving file target (often)", repeat2);
-#endif
-#endif
-
-        _output.WriteEndElement();
-        _output.Close();
-    }
-
-    private static void LogTest(
-#if LOG4NET
-            ILog logger, 
-#elif LOG4NET_WITH_FASTLOGGER
-            FastLogger logger,
-#elif ENTLIB
-            string category,
-#else
-            Logger logger, 
-#endif
-            string loggerDesc, int repeat)
-    {
-        _repeat = repeat;
-
-#if ENTLIB
-        LogEntry entry;
-#endif
-
-        if (_output != null)
-        {
-            _output.WriteStartElement("test");
-            _output.WriteAttributeString("logger", loggerDesc);
-            _output.WriteAttributeString("repetitions", repeat.ToString());
+            sw.WriteLine("public static void Init() {");
+            //sw.WriteLine("Console.WriteLine(\"Init\");");
+            sw.WriteLine(bench.Init);
+            sw.WriteLine("} // Init()");
+            sw.WriteLine("public static void Flush() {");
+            //sw.WriteLine("Console.WriteLine(\"Flushing\");");
+            sw.WriteLine(bench.Flush);
+            //sw.WriteLine("Console.WriteLine(\"Flushed\");");
+            sw.WriteLine("} // Flush()");
+            sw.WriteLine("public static void DoNothing() {");
+            sw.WriteLine("} // DoNothing()");
+            sw.WriteLine("public static void NoLogging() {");
+            sw.WriteLine(bench.WriteUnformatted("logger1", "Debug", "Lorem Ipsum"));
+            sw.WriteLine(bench.WriteUnformatted("logger1", "Info", "Lorem Ipsum"));
+            sw.WriteLine(bench.WriteUnformatted("logger1", "Warn", "Lorem Ipsum"));
+            sw.WriteLine(bench.WriteUnformatted("logger1", "Error", "Lorem Ipsum"));
+            sw.WriteLine(bench.WriteUnformatted("logger1", "Fatal", "Lorem Ipsum"));
+            sw.WriteLine("}");
+            sw.WriteLine("public static void NoLoggingWithFormatting1() {");
+            sw.WriteLine(bench.WriteFormatted("logger1", "Debug", "Lorem Ipsum", "1"));
+            sw.WriteLine(bench.WriteFormatted("logger1", "Info", "Lorem Ipsum", "2"));
+            sw.WriteLine(bench.WriteFormatted("logger1", "Warn", "Lorem Ipsum", "3"));
+            sw.WriteLine(bench.WriteFormatted("logger1", "Error", "Lorem Ipsum", "4"));
+            sw.WriteLine(bench.WriteFormatted("logger1", "Fatal", "Lorem Ipsum", "5"));
+            sw.WriteLine("}");
+            sw.WriteLine("public static void NoLoggingWithFormatting2() {");
+            sw.WriteLine(bench.WriteFormatted("logger1", "Debug", "Lorem Ipsum", "1,2"));
+            sw.WriteLine(bench.WriteFormatted("logger1", "Info", "Lorem Ipsum", "2,3"));
+            sw.WriteLine(bench.WriteFormatted("logger1", "Warn", "Lorem Ipsum", "3,4"));
+            sw.WriteLine(bench.WriteFormatted("logger1", "Error", "Lorem Ipsum", "4,5"));
+            sw.WriteLine(bench.WriteFormatted("logger1", "Fatal", "Lorem Ipsum", "5,6"));
+            sw.WriteLine("}");
+            sw.WriteLine("public static void NoLoggingWithFormatting3() {");
+            sw.WriteLine(bench.WriteFormatted("logger1", "Debug", "Lorem Ipsum", "true,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger1", "Info", "Lorem Ipsum", "1,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger1", "Warn", "Lorem Ipsum", "false,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger1", "Error", "Lorem Ipsum", "1,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger1", "Fatal", "Lorem Ipsum", "true,2,\"test\""));
+            sw.WriteLine("}");
+            sw.WriteLine("public static void GuardedNoLogging() {");
+            sw.WriteLine(bench.GuardedWrite("logger1", "Debug", "Lorem Ipsum", "true,2,\"test\""));
+            sw.WriteLine(bench.GuardedWrite("logger1", "Info", "Lorem Ipsum", "1,2,\"test\""));
+            sw.WriteLine(bench.GuardedWrite("logger1", "Warn", "Lorem Ipsum", "false,2,\"test\""));
+            sw.WriteLine(bench.GuardedWrite("logger1", "Error", "Lorem Ipsum", "1,2,\"test\""));
+            sw.WriteLine(bench.GuardedWrite("logger1", "Fatal", "Lorem Ipsum", "true,2,\"test\""));
+            sw.WriteLine("}");
+            sw.WriteLine("public static void NullLoggingWithoutFormatting() {");
+            sw.WriteLine(bench.WriteUnformatted("logger2", "Debug", "Lorem Ipsum"));
+            sw.WriteLine(bench.WriteUnformatted("logger2", "Info", "Lorem Ipsum"));
+            sw.WriteLine(bench.WriteUnformatted("logger2", "Warn", "Lorem Ipsum"));
+            sw.WriteLine(bench.WriteUnformatted("logger2", "Error", "Lorem Ipsum"));
+            sw.WriteLine(bench.WriteUnformatted("logger2", "Fatal", "Lorem Ipsum"));
+            sw.WriteLine("}");
+            sw.WriteLine("public static void NullLoggingWithFormatting1() {");
+            sw.WriteLine(bench.WriteFormatted("logger2", "Debug", "Lorem Ipsum", "1"));
+            sw.WriteLine(bench.WriteFormatted("logger2", "Info", "Lorem Ipsum", "2"));
+            sw.WriteLine(bench.WriteFormatted("logger2", "Warn", "Lorem Ipsum", "3"));
+            sw.WriteLine(bench.WriteFormatted("logger2", "Error", "Lorem Ipsum", "4"));
+            sw.WriteLine(bench.WriteFormatted("logger2", "Fatal", "Lorem Ipsum", "5"));
+            sw.WriteLine("}");
+            sw.WriteLine("public static void NullLoggingWithFormatting3() {");
+            sw.WriteLine(bench.WriteFormatted("logger2", "Debug", "Lorem Ipsum", "true,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger2", "Info", "Lorem Ipsum", "1,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger2", "Warn", "Lorem Ipsum", "false,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger2", "Error", "Lorem Ipsum", "1,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger2", "Fatal", "Lorem Ipsum", "true,2,\"test\""));
+            sw.WriteLine("}");
+            sw.WriteLine("public static void NoRenderingLoggingWithoutFormatting() {");
+            sw.WriteLine(bench.WriteUnformatted("logger3", "Debug", "Lorem Ipsum"));
+            sw.WriteLine(bench.WriteUnformatted("logger3", "Info", "Lorem Ipsum"));
+            sw.WriteLine(bench.WriteUnformatted("logger3", "Warn", "Lorem Ipsum"));
+            sw.WriteLine(bench.WriteUnformatted("logger3", "Error", "Lorem Ipsum"));
+            sw.WriteLine(bench.WriteUnformatted("logger3", "Fatal", "Lorem Ipsum"));
+            sw.WriteLine("}");
+            sw.WriteLine("public static void NoRenderingLoggingWithFormatting1() {");
+            sw.WriteLine(bench.WriteFormatted("logger3", "Debug", "Lorem Ipsum", "1"));
+            sw.WriteLine(bench.WriteFormatted("logger3", "Info", "Lorem Ipsum", "2"));
+            sw.WriteLine(bench.WriteFormatted("logger3", "Warn", "Lorem Ipsum", "3"));
+            sw.WriteLine(bench.WriteFormatted("logger3", "Error", "Lorem Ipsum", "4"));
+            sw.WriteLine(bench.WriteFormatted("logger3", "Fatal", "Lorem Ipsum", "5"));
+            sw.WriteLine("}");
+            sw.WriteLine("public static void NoRenderingLoggingWithFormatting3() {");
+            sw.WriteLine(bench.WriteFormatted("logger3", "Debug", "Lorem Ipsum", "true,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger3", "Info", "Lorem Ipsum", "1,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger3", "Warn", "Lorem Ipsum", "false,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger3", "Error", "Lorem Ipsum", "1,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger3", "Fatal", "Lorem Ipsum", "true,2,\"test\""));
+            sw.WriteLine("}");
+            sw.WriteLine("public static void SimpleFile() {");
+            sw.WriteLine(bench.WriteFormatted("logger4", "Debug", "Lorem Ipsum", "true,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger4", "Info", "Lorem Ipsum", "1,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger4", "Warn", "Lorem Ipsum", "false,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger4", "Error", "Lorem Ipsum", "1,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger4", "Fatal", "Lorem Ipsum", "true,2,\"test\""));
+            sw.WriteLine("}");
+            sw.WriteLine("public static void BufferedFile() {");
+            sw.WriteLine(bench.WriteFormatted("logger5", "Debug", "Lorem Ipsum", "true,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger5", "Info", "Lorem Ipsum", "1,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger5", "Warn", "Lorem Ipsum", "false,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger5", "Error", "Lorem Ipsum", "1,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger5", "Fatal", "Lorem Ipsum", "true,2,\"test\""));
+            sw.WriteLine("}");
+            sw.WriteLine("public static void AsyncFile() {");
+            sw.WriteLine(bench.WriteFormatted("logger6", "Debug", "Lorem Ipsum", "true,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger6", "Info", "Lorem Ipsum", "1,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger6", "Warn", "Lorem Ipsum", "false,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger6", "Error", "Lorem Ipsum", "1,2,\"test\""));
+            sw.WriteLine(bench.WriteFormatted("logger6", "Fatal", "Lorem Ipsum", "true,2,\"test\""));
+            sw.WriteLine("}");
+            sw.WriteLine("}");
+            return sw.ToString();
         }
 
-        Console.WriteLine("{0}:", loggerDesc);
+        delegate void RunDelegate();
 
-        BeginTest("No formatting");
-        for (int i = 0; i < repeat; ++i)
+        private static double TimeCode(RunDelegate init, RunDelegate run, RunDelegate flush, int count)
         {
-// BEGIN_UNROLL            
-            // System.Diagnostics.Debugger.Break();
-#if ENTLIB
-            Logger.Write("This is a message without formatting.", category, PRIORITY_DEBUG, 1, TraceEventType.Verbose);
-#else
-            logger.Debug("This is a message without formatting.");
-#endif
-            // System.Diagnostics.Debugger.Break();
-// END_UNROLL
-        }
-        EndTest();
-        BeginTest("1 format parameter");
-        for (int i = 0; i < repeat; ++i)
-        {
-// BEGIN_UNROLL            
-#if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
-            logger.DebugFormat("This is a message with {0} format parameter", 1);
-#elif LOG4NET
-            logger.Debug(String.Format("This is a message with {0} format parameter", 1));
-#elif ENTLIB
-            Logger.Write(String.Format("This is a message with {0} format parameter", 1), category, PRIORITY_DEBUG, 1, TraceEventType.Verbose);
-#else
-            logger.Debug("This is a message with {0} format parameter", 1);
-#endif
-// END_UNROLL
-        }
-        EndTest();
-        BeginTest("2 format parameters");
-        for (int i = 0; i < repeat; ++i)
-        {
-// BEGIN_UNROLL            
-#if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
-            logger.DebugFormat("This is a message with {0}{1} parameters", 2, "o");
-#elif LOG4NET
-            logger.Debug(String.Format("This is a message with {0}{1} parameters", 2, "o"));
-#elif ENTLIB
-            Logger.Write(String.Format("This is a message with {0}{1} format parameters", 2, "o"), category, PRIORITY_DEBUG, 1, TraceEventType.Verbose);
-#else
-            logger.Debug("This is a message with {0}{1} parameters", 2, "o");
-#endif
-// END_UNROLL
-        }
-        EndTest();
-        BeginTest("3 format parameters");
-        for (int i = 0; i < repeat; ++i)
-        {
-// BEGIN_UNROLL            
-#if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
-            logger.DebugFormat("This is a message with {0}{1}{2} parameters", "thr", 3, 3);
-#elif LOG4NET
-            logger.Debug(String.Format("This is a message with {0}{1}{2} parameters", "thr", 3, 3));
-#elif ENTLIB
-            Logger.Write(String.Format("This is a message with {0}{1}{2} format parameters", "thr", 3, 3), category, PRIORITY_DEBUG);
-#else
-            logger.Debug("This is a message with {0}{1}{2} parameters", "thr", 3, 3);
-#endif
-// END_UNROLL
-        }
-        EndTest();
-        BeginTest("No formatting, using a guard");
-        for (int i = 0; i < repeat; ++i)
-        {
-// BEGIN_UNROLL            
-#if ENTLIB
-            entry = new LogEntry();
-            entry.Message = "This is a message with no parameters.";
-            entry.Categories.Add(category);
-            entry.Priority = PRIORITY_DEBUG;
-            entry.Severity = TraceEventType.Verbose;
-            if (Logger.ShouldLog(entry))
+            int unrollCount = 10;
+            if (init != null)
+                init();
+            run();
+            run();
+            run();
+            StopWatch sw = new StopWatch();
+            sw.Start();
+
+            for (int i = 0; i < count; ++i)
             {
-                Logger.Write(entry);
+                run();
+                run();
+                run();
+                run();
+                run();
+                run();
+                run();
+                run();
+                run();
+                run();
             }
-#else
-            if (logger.IsDebugEnabled)
-            {
-                logger.Debug("This is a message with no parameters");
-            }
-#endif
-// END_UNROLL
+            if (flush != null)
+                flush();
+            sw.Stop();
+            return sw.Nanoseconds / (count * unrollCount);
         }
-        EndTest();
-        BeginTest("1 format parameter, using a guard");
-        for (int i = 0; i < repeat; ++i)
+
+        private static void TimeAndDiscardUnusual(RunDelegate init, RunDelegate run, RunDelegate flush, int count, int samples, out double min, out double max, out double avg)
         {
-// BEGIN_UNROLL            
-#if ENTLIB
-            entry = new LogEntry();
-            entry.Message = String.Format("This is a message with {0} parameters.", 1);
-            entry.Categories.Add(category);
-            entry.Priority = PRIORITY_DEBUG;
-            entry.Severity = TraceEventType.Verbose;
-            if (Logger.ShouldLog(entry))
+            double[] times = new double[samples];
+
+            for (int i = 0; i < times.Length; ++i)
             {
-                Logger.Write(entry);
+                times[i] = TimeCode(init, run, flush, count) - _overhead;
             }
-#else
-            if (logger.IsDebugEnabled)
+
+            Array.Sort(times);
+
+            // discard lowest 20% and highest 20%
+
+            int startAt = times.Length * 20 / 100;
+            int endAt = times.Length * 80 / 100;
+
+            max = times[startAt];
+            min = times[startAt];
+            avg = 0.0;
+            int cnt = 0;
+
+            for (int i = startAt; i < endAt; ++i)
             {
-#if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
-                logger.DebugFormat("This is a message with {0} parameter", 1);
-#elif LOG4NET
-                logger.Debug(String.Format("This is a message with {0} parameter", 1));
-#else
-                logger.Debug("This is a message with {0} parameter", 1);
-#endif
+                max = Math.Max(max, times[i]);
+                min = Math.Min(min, times[i]);
+                avg += times[i];
+                cnt++;
             }
-#endif
-// END_UNROLL
+
+            avg /= cnt;
         }
-        EndTest();
-        BeginTest("2 format parameters, using a guard");
-        for (int i = 0; i < repeat; ++i)
+
+        private static void TimeAndDisplay(string name, XmlTextWriter xtw, RunDelegate init, RunDelegate run, RunDelegate flush, int count, int divider)
         {
-// BEGIN_UNROLL
-#if ENTLIB
-            entry = new LogEntry();
-            entry.Message = String.Format("This is a message with {0}{1} parameters.", 2, "o");
-            entry.Categories.Add(category);
-            entry.Priority = PRIORITY_DEBUG;
-            entry.Severity = TraceEventType.Verbose;
-            if (Logger.ShouldLog(entry))
-            {
-                Logger.Write(entry);
-            }
-#else
-            if (logger.IsDebugEnabled)
-            {
-#if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
-                logger.DebugFormat("This is a message with {0}{1} parameters", 2, "o");
-#elif LOG4NET
-                logger.Debug(String.Format("This is a message with {0}{1} parameters", 2, "o"));
-#else
-                logger.Debug("This is a message with {0}{1} parameters", 2, "o");
-#endif
-            }
-#endif
-// END_UNROLL
+            double min, max, avg;
+
+            TimeAndDiscardUnusual(init, run, flush, count, 10, out min, out max, out avg);
+            max /= divider;
+            min /= divider;
+            avg /= divider;
+            Console.WriteLine("{0}: min={1}ns max={2}ns avg={3}ns", name, Math.Round(min, 3), Math.Round(max, 3), Math.Round(avg, 3));
+            xtw.WriteStartElement("test");
+            xtw.WriteAttributeString("name", name);
+            xtw.WriteAttributeString("min", Convert.ToInt32(min).ToString());
+            xtw.WriteAttributeString("max", Convert.ToInt32(max).ToString());
+            xtw.WriteAttributeString("avg", Convert.ToInt32(avg).ToString());
+            xtw.WriteEndElement();
+            _maxmax = Math.Max(_maxmax, max);
         }
-        EndTest();
-        BeginTest("3 format parameters, using a guard");
-        for (int i = 0; i < repeat; ++i)
+
+        public static int Main(string[] args)
         {
-// BEGIN_UNROLL
-#if ENTLIB
-            entry = new LogEntry();
-            entry.Message = String.Format("This is a message with {0}{1}{2} parameters.", "thr", 3, 3);
-            entry.Categories.Add(category);
-            entry.Priority = PRIORITY_DEBUG;
-            entry.Severity = TraceEventType.Verbose;
-            if (Logger.ShouldLog(entry))
+            try
             {
-                Logger.Write(entry);
+                XmlTextWriter xtw = new XmlTextWriter("results.xml", Encoding.UTF8);
+                xtw.Formatting = Formatting.Indented;
+
+                xtw.WriteProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href=\"Graph.xsl\"");
+
+                xtw.WriteStartElement("results");
+                DoBenchmark(xtw, new NLogBenchmark());
+                DoBenchmark(xtw, new Log4NetBenchmark());
+                //DoBenchmark(xtw, new Log4NetWithFastLoggerBenchmark());
+                xtw.WriteStartElement("scale");
+                xtw.WriteAttributeString("max", Convert.ToInt32(_maxmax).ToString());
+                xtw.WriteEndElement();
+                xtw.WriteEndElement();
+                xtw.Close();
+                return 0;
             }
-#else
-            if (logger.IsDebugEnabled)
+            catch (Exception ex)
             {
-#if LOG4NETWITHFORMAT || LOG4NET_WITH_FASTLOGGER
-                logger.DebugFormat("This is a message with {0}{1}{2} parameters", "thr", 3, 3);
-#elif LOG4NET
-                logger.Debug(String.Format("This is a message with {0}{1}{2} parameters", "thr", 3, 3));
-#else
-                logger.Debug("This is a message with {0}{1}{2} parameters", "thr", 3, 3);
-#endif
+                Console.WriteLine("ERROR: {0}", ex);
+                return 1;
             }
-#endif
-// END_UNROLL
         }
-        EndTest();
-        if (_output != null)
+
+        private static void DoBenchmark(XmlTextWriter xtw, IBenchmark b)
         {
-            _output.WriteEndElement();
-            _output.Flush();
+            Microsoft.CSharp.CSharpCodeProvider provider = new Microsoft.CSharp.CSharpCodeProvider();
+
+            Console.WriteLine("Benchmark: {0}", b.Name);
+
+            if (File.Exists("BenchmarkAssembly." + b.Name + ".dll"))
+                File.Delete("BenchmarkAssembly." + b.Name + ".dll");
+
+            CompilerParameters options = new CompilerParameters();
+            options.OutputAssembly = "BenchmarkAssembly." + b.Name + ".dll";
+            options.GenerateInMemory = true;
+            options.GenerateExecutable = false;
+            foreach (string s in b.References)
+                options.ReferencedAssemblies.Add(s);
+            options.CompilerOptions = "/optimize+";
+            //options.IncludeDebugInformation = true;
+
+            string sourceCode = GenerateTestSourceCode(b);
+            
+            CompilerResults results = provider.CreateCompiler().CompileAssemblyFromSource(options, sourceCode);
+            foreach (CompilerError ce in results.Errors)
+            {
+                Console.WriteLine("ERROR in line {0}: {1}", ce.Line, ce.ErrorText);
+            }
+            if (results.Errors.Count > 0)
+            {
+                Console.WriteLine("Errors in generated code for " + b.Name + " Ignoring.");
+                return;
+            }
+
+            using (StreamWriter sw = File.CreateText("BenchmarkAssembly." + b.Name + ".cs"))
+            {
+                sw.Write(sourceCode);
+            }
+
+            //Console.WriteLine("Compiled to assembly: {0}", results.CompiledAssembly.FullName);
+            xtw.WriteStartElement("framework");
+            xtw.WriteAttributeString("name", b.Name);
+
+            Type t = results.CompiledAssembly.GetType("TheBenchmark");
+
+            double min, max, avg;
+
+            TimeAndDiscardUnusual(null, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "DoNothing"), null, 100000, 10, out min, out max, out avg);
+            _overhead = min;
+
+            Console.WriteLine("overhead: {0}", _overhead);
+
+            RunDelegate init = (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "Init");
+            RunDelegate flush = (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "Flush");
+
+            init();
+
+            TimeAndDisplay("Guarded no logging", xtw, null, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "GuardedNoLogging"), null, 100000, 5);
+            TimeAndDisplay("Unguarded no logging", xtw, null, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "NoLogging"), null, 100000, 5);
+            TimeAndDisplay("Unguarded no logging with formatting 1", xtw, null, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "NoLoggingWithFormatting1"), null, 10000, 5);
+            TimeAndDisplay("Unguarded no logging with formatting 2", xtw, null, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "NoLoggingWithFormatting2"), null, 10000, 5);
+            TimeAndDisplay("Unguarded no logging with formatting 3", xtw, null, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "NoLoggingWithFormatting3"), null, 10000, 5);
+            TimeAndDisplay("Null target without rendering", xtw, init, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "NoRenderingLoggingWithoutFormatting"), flush, 10000, 5);
+            TimeAndDisplay("Null target without rendering 1", xtw, init, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "NoRenderingLoggingWithFormatting1"), flush, 10000, 5);
+            TimeAndDisplay("Null target without rendering 3", xtw, init, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "NoRenderingLoggingWithFormatting3"), flush, 10000, 5);
+            TimeAndDisplay("Null target with rendering", xtw, init, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "NullLoggingWithoutFormatting"), flush, 1000, 5);
+            TimeAndDisplay("Null target with rendering 1", xtw, init, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "NullLoggingWithFormatting1"), flush, 1000, 5);
+            TimeAndDisplay("Null target with rendering 3", xtw, init, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "NullLoggingWithFormatting3"), flush, 1000, 5);
+            TimeAndDisplay("Simple file", xtw, init, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "SimpleFile"), flush, 10, 5);
+            //TimeAndDisplay("Buffered file", xtw, init, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "BufferedFile"), flush, 100, 5);
+            //TimeAndDisplay("Asynchronous File without a flush", xtw, init, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "AsyncFile"), null, 100, 5);
+            //flush();
+            //TimeAndDisplay("Asynchronous File with a flush", xtw, init, (RunDelegate)Delegate.CreateDelegate(typeof(RunDelegate), t, "AsyncFile"), flush, 5000, 5);
+
+            xtw.WriteEndElement();
         }
     }
+
 }

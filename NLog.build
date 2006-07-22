@@ -338,11 +338,9 @@
     </target>
 
     <target name="NLog.Benchmark" depends="NLog">
-        <exec program="perl" commandline="tests/NLog.Benchmark/unroll_loop.pl tests/NLog.Benchmark/Benchmark.cs tests/NLog.Benchmark/Benchmark.Unrolled.cs ${benchmark.loop.unroll}" />
         <csc target="exe" output="${nlog.dir}/NLog.Benchmark.exe" define="${nlog.define};NLOG" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="tests/NLog.Benchmark">
-                <include name="**/*.cs" />
-                <exclude name="Benchmark.cs" />
+                <include name="*.cs" />
             </sources>
             <references>
                 <include name="${nlog.dir}/NLog.dll" />
@@ -351,7 +349,12 @@
                 <include name="System.Xml.dll" />
             </references>
         </csc>
-        <copy file="tests/NLog.Benchmark/NLog.config" tofile="${nlog.dir}/NLog.Benchmark.exe.config" />
+        <copy file="tests/NLog.Benchmark/NLog.config" tofile="${nlog.dir}/NLog.config" />
+        <property name="log4netbinary" value="${log4net.bin.dir}/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/${if(nlog.debug,'debug','release')}/log4net.dll" />
+        <if test="${file::exists(log4netbinary)}">
+            <copy file="${log4netbinary}" tofile="${nlog.dir}/log4net.dll" />
+            <copy file="tests/NLog.Benchmark/log4net.config" tofile="${nlog.dir}/log4net.config" />
+        </if>
         <exec program="${nlog.dir}/NLog.Benchmark.exe" workingdir="${nlog.dir}" commandline="Benchmark.xml ${benchmark.mode}" useruntimeengine="true" />
     </target>
 
@@ -788,10 +791,16 @@
     <target name="sln">
         <call target="clean" />
 
+
+        <property name="oldframework" value="${nant.settings.currentframework}" />
+        
+        <property name="nant.settings.currentframework" value="net-1.1" failonerror="false" />
+
         <solution configuration="Release" solutionfile="NLog.vs2003.sln" />
         <solution configuration="Debug" solutionfile="NLog.vs2003.sln" />
         <solution configuration="Release" solutionfile="tests/NLogTests.vs2003.sln" />
         <solution configuration="Debug" solutionfile="tests/NLogTests.vs2003.sln" />
+        <property name="nant.settings.currentframework" value="${oldframework}" failonerror="false" />
 
         <call target="clean" />
 

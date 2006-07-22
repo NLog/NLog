@@ -209,6 +209,9 @@ namespace NLog.Layouts
             }
             _quotableCharacters = (QuoteChar + "\r\n" + _actualColumnDelimiter).ToCharArray();
             _doubleQuoteChar = _quoteChar + _quoteChar;
+
+            foreach (CsvColumn c in Columns)
+                c.CompiledLayout.Initialize();
         }
 
         /// <summary>
@@ -260,6 +263,15 @@ namespace NLog.Layouts
         public void Precalculate(LogEventInfo logEvent)
         {
             GetFormattedMessage(logEvent);
+        }
+
+        /// <summary>
+        /// Closes the layout.
+        /// </summary>
+        public void Close()
+        {
+            foreach (CsvColumn c in Columns)
+                c.CompiledLayout.Close();
         }
     }
 }

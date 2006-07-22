@@ -852,6 +852,13 @@ namespace NLog.Targets
         /// </remarks>
         protected internal override void Write(LogEventInfo[] logEvents)
         {
+            if (_fileNameLayout.IsAppDomainFixed)
+            {
+                foreach (LogEventInfo lei in logEvents)
+                    Write(lei);
+                return;
+            }
+
             Array.Sort(logEvents, 0, logEvents.Length, _logEventComparer);
 
             lock (this)
@@ -1121,6 +1128,7 @@ namespace NLog.Targets
         /// </summary>
         protected internal override void Close()
         {
+            base.Close();
             lock (this)
             {
                 if (_autoClosingTimer != null)

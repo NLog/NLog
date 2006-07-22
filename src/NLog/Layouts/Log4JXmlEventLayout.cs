@@ -83,5 +83,12 @@ namespace NLog.Layouts
         public void Initialize()
         {
         }
+
+        /// <summary>
+        /// Closes the layout.
+        /// </summary>
+        public void Close()
+        {
+        }
     }
 }

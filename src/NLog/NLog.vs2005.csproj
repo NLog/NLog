@@ -1,4 +1,4 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>8.0.50727</ProductVersion>
@@ -209,6 +209,7 @@
     <Compile Include="Config\XmlLoggingConfiguration.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Internal\CurrentTimeGetter.cs" />
     <Compile Include="LayoutFactory.cs" />
     <Compile Include="LayoutAttribute.cs" />
     <Compile Include="Filter.cs">
@@ -389,6 +390,8 @@
     <Compile Include="LayoutRenderers\CallSite.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LayoutRenderers\GC.cs" />
+    <Compile Include="LayoutRenderers\ProcessInfo.cs" />
     <Compile Include="LayoutRenderers\SpecialFolder.cs" />
     <Compile Include="LayoutRenderers\TempDir.cs" />
     <Compile Include="LayoutRenderers\QPC.cs" />
@@ -707,6 +710,7 @@
     <Folder Include="Mono\" />
     <Folder Include="Unix\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

@@ -89,5 +89,10 @@ namespace NLog
         /// Initializes the layout.
         /// </summary>
         void Initialize();
+
+        /// <summary>
+        /// Closes the layout.
+        /// </summary>
+        void Close();
     }
 }

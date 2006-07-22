@@ -31,52 +31,58 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if LOG4NET_WITH_FASTLOGGER
 using System;
-using System.Globalization;
-using log4net.Core;
+using System.Text;
+using System.Reflection;
+using System.Collections;
 
-public sealed class FastLogger : LoggerWrapperImpl
+using NLog.Config;
+using NLog.Internal;
+using System.Runtime.InteropServices;
+
+namespace NLog
 {
-    private readonly static Type declaringType = typeof(FastLogger);
-    public FastLogger(ILogger logger) : base(logger)
+    internal class CurrentTimeGetter
     {
+        delegate DateTime GetDelegate();
 
-    }
+        private static GetDelegate _getDelegate;
 
-    public bool IsDebugEnabled
-    {
-        get { return Logger.IsEnabledFor(Level.Debug); }
-    }
-    
-    public void Debug(string message)
-    {
-        Logger.Log(declaringType, Level.Debug, message, null);
-    }
-    public void DebugFormat(string format, params object[] args)
-    {
-        if (Logger.IsEnabledFor(Level.Debug))
+        static CurrentTimeGetter()
         {
-            Logger.Log(declaringType, Level.Debug, String.Format(CultureInfo.InvariantCulture, format, args), null);
+            // _getDelegate = new GetDelegate(NonOptimizedGet);
+            _getDelegate = new GetDelegate(ThrottledGet);
         }
-    }
-    
-    public bool IsInfoEnabled
-    {
-        get { return Logger.IsEnabledFor(Level.Info); }
-    }
-    
-    public void Info(string message)
-    {
-        Logger.Log(declaringType, Level.Info, message, null);
-    }
-    public void InfoFormat(string format, params object[] args)
-    {
-        if (Logger.IsEnabledFor(Level.Info))
+
+        public static DateTime Now
         {
-            Logger.Log(declaringType, Level.Info, String.Format(CultureInfo.InvariantCulture, format, args), null);
+            get { return _getDelegate(); }
+        }
+
+        private static int _lastTicks = -1;
+        private static DateTime _lastDateTime = DateTime.MinValue;
+
+        static DateTime NonOptimizedGet()
+        {
+            return DateTime.Now;
+        }
+
+        static DateTime ThrottledGet()
+        {
+            int t = Environment.TickCount;
+
+            if (t != _lastTicks)
+            {
+                DateTime dt = DateTime.Now;
+
+                _lastTicks = t;
+                _lastDateTime = dt;
+                return dt;
+            }
+            else
+            {
+                return _lastDateTime;
+            }
         }
     }
 }
-
-#endif
