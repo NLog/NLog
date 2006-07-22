@@ -104,14 +104,27 @@ namespace NLogViewer.Receivers
                         {
                             cmd.Transaction = tran;
                             cmd.CommandText = Query;
-                            using (IDataReader reader = cmd.ExecuteReader())
+                            using (IDataReader reader = cmd.ExecuteReader(CommandBehavior.SequentialAccess))
                             {
+                                int[] ordinal2logeventordinal = null;
+
                                 while (reader.Read())
                                 {
-                                    LogEvent le = new LogEvent();
+                                    LogEvent le = CreateLogEvent();
+
+                                    if (ordinal2logeventordinal == null)
+                                    {
+                                        ordinal2logeventordinal = new int[reader.FieldCount];
+
+                                        for (int i = 0; i < reader.FieldCount; ++i)
+                                        {
+                                            ordinal2logeventordinal[i] = le.Columns.GetOrAllocateOrdinal(reader.GetName(i));
+                                        }
+                                    }
+
                                     for (int i = 0; i < reader.FieldCount; ++i)
                                     {
-                                        le.Properties[reader.GetName(i)] = reader.GetValue(i);
+                                        le[ordinal2logeventordinal[i]] = reader.GetValue(i);
                                     }
                                     EventReceived(le);
                                 }

@@ -32,10 +32,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Reflection;
+using System;
+using System.Xml;
+using System.ComponentModel;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 
-#if NANT
-[assembly: AssemblyKeyFile("src/NLog.snk")]
-#else 
-[assembly: AssemblyKeyFile("../../../NLog.snk")]
-#endif
+namespace NLogViewer.Events
+{
+    /// <summary>
+    /// Represents the log event columns.
+    /// </summary>
+	public interface ILogEventColumns
+	{
+        int GetOrAllocateOrdinal(string name);
+        int Count { get; }
+    }
+}

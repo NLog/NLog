@@ -47,6 +47,17 @@ namespace NLogViewer.Events
 	public class LogEvent
 	{
         private int _id;
+        private ILogEventColumns _columns;
+        private object[] _properties;
+
+        public LogEvent(ILogEventColumns columns)
+        {
+            _columns = columns;
+            int initialCapacity = columns.Count;
+            if (initialCapacity < 8)
+                initialCapacity = 8;
+            _properties = new object[initialCapacity];
+        }
 
         public int ID
         {
@@ -54,12 +65,53 @@ namespace NLogViewer.Events
             set { _id = value; }
         }
 
-        public object this[string key]
+        public ILogEventColumns Columns
         {
-            get { return Properties[key]; }
-            set { Properties[key] = value; }
+            get { return _columns; }
         }
 
-        public Hashtable Properties = new Hashtable();
+        public object this[string key]
+        {
+            get { return _properties[GetOrdinal(key)]; }
+            set { _properties[GetOrdinal(key)] = value; }
+        }
+
+        public object this[int ordinal]
+        {
+            get { MakeRoom(ordinal); return _properties[ordinal]; }
+            set { MakeRoom(ordinal);  _properties[ordinal] = value; }
+        }
+
+        public int GetOrdinal(string name)
+        {
+            int pos = _columns.GetOrAllocateOrdinal(name);
+            MakeRoom(pos);
+            return pos;
+        }
+
+        private void MakeRoom(int pos)
+        {
+            if (pos >= _properties.Length)
+            {
+                int newCapacity = pos + 8; // allocate some in advance
+                object[] newTable = new object[newCapacity];
+                Array.Copy(_properties, newTable, _properties.Length);
+                _properties = newTable;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return _id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            LogEvent other = obj as LogEvent;
+            if (other == null)
+                return false;
+
+            return ID == other.ID;
+        }
     }
 }

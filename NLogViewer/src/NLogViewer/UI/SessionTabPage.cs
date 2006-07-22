@@ -854,9 +854,9 @@ namespace NLogViewer.UI
 
             listviewSelectedLogEventProperties.Items.Clear();
 
-            foreach (string key in evt.Properties.Keys)
+            foreach (LogColumn lc in _session.Columns)
             {
-                item = new ListViewItem(new string[] { key, Convert.ToString(evt[key]) });
+                item = new ListViewItem(new string[] { lc.Name, Convert.ToString(evt[lc.Ordinal]) });
                 listviewSelectedLogEventProperties.Items.Add(item);
             }
         }

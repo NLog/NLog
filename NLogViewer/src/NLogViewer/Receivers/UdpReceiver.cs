@@ -81,8 +81,9 @@ namespace NLogViewer.Receivers
                                     MemoryStream ms = new MemoryStream(buffer, 0, got);
                                     using (ILogEventParserInstance parserInstance = Parser.Begin(ms))
                                     {
-                                        LogEvent logEventInfo = parserInstance.ReadNext();
-                                        EventReceived(logEventInfo);
+                                        LogEvent logEventInfo = CreateLogEvent();
+                                        if (parserInstance.ReadNext(logEventInfo))
+                                            EventReceived(logEventInfo);
                                     }
                                 }
                                 catch (Exception ex)

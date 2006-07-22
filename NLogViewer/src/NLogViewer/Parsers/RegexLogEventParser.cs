@@ -48,25 +48,24 @@ namespace NLogViewer.Parsers
                 _reader = new StreamReader(stream, parser._encoding);
             }
 
-            public LogEvent ReadNext()
+            public bool ReadNext(LogEvent le)
             {
                 string line = _reader.ReadLine();
                 if (line == null)
-                    return null;
+                    return false;
 
                 Match match = _parser._compiledRegex.Match(line);
                 if (!match.Success)
-                    return null;
+                    return false;
 
-                LogEvent le = new LogEvent();
                 string[] names = _parser._compiledRegex.GetGroupNames();
                 for (int i = 1; i < names.Length; ++i)
                 {
                     string v = match.Groups[i].Value;
-                    le.Properties[names[i]] = v;
+                    le[names[i]] = v;
                 }
 
-                return le;
+                return true;
             }
 
             public void Dispose()

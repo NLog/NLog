@@ -23,18 +23,24 @@ namespace NLogViewer.Parsers
                 _xtr = xtr;
             }
 
-            public LogEvent ReadNext()
+            public bool ReadNext(LogEvent logEvent)
             {
                 while (_xtr.Read())
                 {
                     if (_xtr.NodeType == XmlNodeType.Element && _xtr.LocalName == "log4j:event")
                     {
-                        LogEvent logEvent = ParseLog4JEvent(_xtr);
-                        logEvent.Properties["Received Time"] = DateTime.Now;
-                        return logEvent;
+                        if (ParseLog4JEvent(_xtr, logEvent))
+                        {
+                            logEvent["Received Time"] = DateTime.Now;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                 }
-                return null;
+                return false;
             }
 
             public void Dispose()
@@ -87,20 +93,19 @@ namespace NLogViewer.Parsers
                         continue;
                     }
 
-                    ev.Properties[namePrefix + name] = value;
+                    ev[namePrefix + name] = value;
                 }
             }
         }
 
         private static DateTime _log4jDateBase = new DateTime(1970, 1, 1);
 
-        private static LogEvent ParseLog4JEvent(XmlTextReader reader)
+        private static bool ParseLog4JEvent(XmlTextReader reader, LogEvent ev)
         {
-            LogEvent ev = new LogEvent();
             ev["Logger"] = reader.GetAttribute("logger");
             ev["Level"] = LogLevelMap.GetLevelForName(reader.GetAttribute("level"));
             ev["Thread"] = reader.GetAttribute("thread");
-            ev.Properties["Time"] = _log4jDateBase.AddMilliseconds(Convert.ToDouble(reader.GetAttribute("timestamp"))).ToLocalTime();
+            ev["Time"] = _log4jDateBase.AddMilliseconds(Convert.ToDouble(reader.GetAttribute("timestamp"))).ToLocalTime();
 
             // System.Windows.Forms.MessageBox.Show(reader.ReadOuterXml());
             // Log.Write(reader.ReadOuterXml());
@@ -110,7 +115,7 @@ namespace NLogViewer.Parsers
                 if (reader.NodeType == XmlNodeType.EndElement)
                 {
                     if (reader.LocalName == "log4j:event")
-                        return ev;
+                        return true;
                 }
                 if (reader.NodeType == XmlNodeType.Element)
                 {
@@ -143,7 +148,7 @@ namespace NLogViewer.Parsers
                 }
             }
 
-            return ev;
+            return true;
         }
     }
 }

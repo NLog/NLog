@@ -52,8 +52,10 @@ using System.Xml;
 namespace NLogViewer
 {
     [XmlRoot("parameters")]
-    public class Session : ILogEventProcessor
+    public class Session : ILogEventProcessor, ILogEventColumns
     {
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         private MainForm _mainForm;
         private TabPage _tabPage;
         private SessionTabPage _tabPanel;
@@ -85,7 +87,7 @@ namespace NLogViewer
 
         private CyclicBuffer<LogEvent> _bufferedEvents;
         private List<LogEvent> _newEvents = new List<LogEvent>();
-        private SortedList<LogEvent, LogEvent> _filteredEvents;
+        private FastSortedList<LogEvent> _filteredEvents;
         private bool _haveNewEvents = false;
 
         delegate void AddTreeNodeDelegate(TreeNode parentNode, TreeNode childNode);
@@ -100,7 +102,7 @@ namespace NLogViewer
         {
             lock (this)
             {
-                return _filteredEvents.Keys[pos];
+                return _filteredEvents[pos];
             }
         }
 
@@ -218,6 +220,8 @@ namespace NLogViewer
 
             if (logEventsToProcess != null)
             {
+                logger.Info("Processing start {0} items.", logEventsToProcess.Count);
+                int t0 = Environment.TickCount;
                 foreach (LogEvent logEvent in logEventsToProcess)
                 {
                     LogEvent removedEvent = _bufferedEvents.AddAndRemoveLast(logEvent);
@@ -226,23 +230,12 @@ namespace NLogViewer
 
                     if (TryFilters(logEvent))
                     {
-                        _filteredEvents.Add(logEvent, logEvent);
-                    }
-
-                    foreach (string s in logEvent.Properties.Keys)
-                    {
-                        if (!ContainsColumn(s))
-                        {
-                            LogColumn lc = new LogColumn();
-                            lc.Name = s;
-                            lc.Visible = false;
-                            lc.Width = 100;
-                            Columns.Add(lc);
-                        }
+                        _filteredEvents.Add(logEvent);
                     }
 
                     _totalEvents++;
 
+#if A
                     // LogEventAttributeToNode(logEvent["Level"], _levelsTreeNode, _level2NodeCache, (char)0);
                     LogEventAttributeToNode((string)logEvent["Logger"], _loggersTreeNode, _logger2NodeCache, '.');
                     LogEventAttributeToNode((string)logEvent["SourceAssembly"], _assembliesTreeNode, _assembly2NodeCache, (char)0);
@@ -252,7 +245,15 @@ namespace NLogViewer
                     LogEventAttributeToNode((string)logEvent["SourceApplication"], _applicationsTreeNode, _application2NodeCache, (char)0);
                     LogEventAttributeToNode((string)logEvent["SourceMachine"], _machinesTreeNode, _machine2NodeCache, (char)0);
                     LogEventAttributeToNode((string)logEvent["SourceFile"], _filesTreeNode, _file2NodeCache, (char)'\\');
+#endif
                 }
+                int t1 = Environment.TickCount;
+                int ips = -1;
+                if (t1 > t0)
+                {
+                    ips = 1000 * logEventsToProcess.Count / (t1 - t0);
+                }
+                logger.Info("Processing finished {0} items. Total {1} ips: {2} time: {3}.", _filteredEvents.Count, logEventsToProcess.Count, ips, t1 - t0);
                 TabPanel.listViewLogMessages.VirtualListSize = _filteredEvents.Count;
                 TabPanel.listViewLogMessages.Invalidate();
                 UpdateStatusBar();
@@ -318,10 +319,10 @@ namespace NLogViewer
        
         class ItemComparer : IComparer<LogEvent>
         {
-            private string _column;
+            private int _column;
             private bool _ascending;
 
-            public ItemComparer(string column, bool ascending)
+            public ItemComparer(int column, bool ascending)
             {
                 _column = column;
                 _ascending = ascending;
@@ -329,8 +330,8 @@ namespace NLogViewer
 
             public int Compare(LogEvent x, LogEvent y)
             {
-                object v1 = x.Properties[_column];
-                object v2 = y.Properties[_column];
+                object v1 = x[_column];
+                object v2 = y[_column];
 
                 if (v1 == null)
                 {
@@ -414,13 +415,13 @@ namespace NLogViewer
         {
             lock (this)
             {
-                SortedList<LogEvent, LogEvent> newFilteredEvents = new SortedList<LogEvent, LogEvent>(new ItemComparer(OrderBy, SortAscending));
+                FastSortedList<LogEvent> newFilteredEvents = new FastSortedList<LogEvent>(new ItemComparer(GetOrAllocateOrdinal(OrderBy), SortAscending));
 
                 if (_filteredEvents != null)
                 {
-                    foreach (LogEvent ev in _filteredEvents.Keys)
+                    foreach (LogEvent ev in _filteredEvents)
                     {
-                        newFilteredEvents.Add(ev, ev);
+                        newFilteredEvents.Add(ev);
                     }
                 }
                 _filteredEvents = newFilteredEvents;
@@ -492,17 +493,6 @@ namespace NLogViewer
         [XmlElement("parser-type")]
         public string ParserType = "XML";
 
-        /*
-        [XmlArray("receiver-parameters")]
-        [XmlArrayItem("param", typeof(ConfigurationParameter))]
-        public List<ConfigurationParameter> ReceiverParameters = new List<ConfigurationParameter>();
-
-        [XmlArray("parser-parameters")]
-        [XmlArrayItem("param", typeof(ConfigurationParameter))]
-        public List<ConfigurationParameter> ParserParameters = new List<ConfigurationParameter>();
-         * 
-        */
-
         [XmlArray("loggers")]
         [XmlArrayItem("logger", typeof(LoggerConfig))]
         public LoggerConfigCollection Loggers = new LoggerConfigCollection();
@@ -571,6 +561,11 @@ namespace NLogViewer
 
                 Columns.Add(new LogColumn("Received Time", 120, false));
             }
+
+            // initialize the ordinals
+            for (int i = 0; i < Columns.Count; ++i)
+                Columns[i].Ordinal = i;
+
             _bufferedEvents = new CyclicBuffer<LogEvent>(MaxLogEntries);
             NewSortOrder();
             _addTreeNodeDelegate = new AddTreeNodeDelegate(this.AddTreeNode);
@@ -647,6 +642,33 @@ namespace NLogViewer
                     return true;
             }
             return false;
+        }
+
+        public int GetOrAllocateOrdinal(string name)
+        {
+            for (int i = 0; i < Columns.Count; ++i)
+            {
+                if (Columns[i].Name == name)
+                    return Columns[i].Ordinal;
+            }
+
+            LogColumn lc = new LogColumn();
+            lc.Name = name;
+            lc.Visible = false;
+            lc.Width = 100;
+            lc.Ordinal = Columns.Count;
+            Columns.Add(lc);
+            return lc.Ordinal;
+        }
+
+        int ILogEventColumns.Count
+        {
+            get { return Columns.Count; }
+        }
+
+        public LogEvent CreateLogEvent()
+        {
+            return new LogEvent(this);
         }
     }
 }

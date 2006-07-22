@@ -51,14 +51,17 @@ namespace NLogViewer.Receivers
                         MemoryStream ms = new MemoryStream(bytes);
                         using (ILogEventParserInstance context = Parser.Begin(ms))
                         {
-                            LogEvent logEvent = context.ReadNext();
+                            LogEvent logEvent = CreateLogEvent();
 
-                            foreach (string header in message.Headers.AllKeys)
+                            if (context.ReadNext(logEvent))
                             {
-                                logEvent[header] = message.Headers[header];
-                            }
+                                foreach (string header in message.Headers.AllKeys)
+                                {
+                                    logEvent[header] = message.Headers[header];
+                                }
 
-                            EventReceived(logEvent);
+                                EventReceived(logEvent);
+                            }
                         }
                     }
 

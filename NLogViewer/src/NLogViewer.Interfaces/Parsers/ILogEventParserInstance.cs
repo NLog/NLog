@@ -9,6 +9,6 @@ namespace NLogViewer.Parsers
 {
     public interface ILogEventParserInstance : IDisposable
     {
-        LogEvent ReadNext();
+        bool ReadNext(LogEvent logEvent);
     }
 }

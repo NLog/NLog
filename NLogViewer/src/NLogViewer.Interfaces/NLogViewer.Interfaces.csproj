@@ -94,6 +94,7 @@
     <Compile Include="Configuration\IWizardPropertyPage.cs" />
     <Compile Include="Configuration\IWizardPage.cs" />
     <Compile Include="Configuration\IWizardConfigurable.cs" />
+    <Compile Include="Events\ILogEventColumns.cs" />
     <Compile Include="Events\LogEvent.cs">
       <SubType>Code</SubType>
     </Compile>

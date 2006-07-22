@@ -125,8 +125,11 @@ namespace NLogViewer.Receivers
                                 bool pollResult = _socket.Poll(100000, SelectMode.SelectRead);
                                 if (ns.DataAvailable || pollResult)
                                 {
-                                    LogEvent logEvent = parserInstance.ReadNext();
-                                    _receiver.EventReceived(logEvent);
+                                    LogEvent logEvent = _receiver.CreateLogEvent();
+                                    if (parserInstance.ReadNext(logEvent))
+                                    {
+                                        _receiver.EventReceived(logEvent);
+                                    }
                                 }
                             }
                         }

@@ -41,6 +41,7 @@ namespace NLogViewer.UI
         private void button1_Click(object sender, EventArgs e)
         {
             Session.Columns = _lcc;
+            Session.Dirty = true;
             DialogResult = DialogResult.OK;
             Close();
         }

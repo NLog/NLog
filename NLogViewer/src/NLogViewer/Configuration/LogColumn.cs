@@ -114,6 +114,9 @@ namespace NLogViewer.Configuration
             return Name;
         }
 
+        [XmlIgnore]
+        public int Ordinal;
+
         public LogColumn Clone()
         {
             return (LogColumn)MemberwiseClone();

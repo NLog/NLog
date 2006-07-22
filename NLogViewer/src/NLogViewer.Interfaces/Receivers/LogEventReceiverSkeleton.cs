@@ -163,5 +163,10 @@ namespace NLogViewer.Receivers
         {
             Error(this, new ReceiverErrorEventArgs(ex));
         }
+
+        protected LogEvent CreateLogEvent()
+        {
+            return _processor.CreateLogEvent();
+        }
     }
 }

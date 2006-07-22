@@ -85,8 +85,9 @@ namespace NLogViewer.Receivers
                         while (!InputThreadQuitRequested())
                         {
                             long startingPos = stream.Position;
-                            LogEvent logEventInfo = parserInstance.ReadNext();
-                            if (logEventInfo == null)
+                            LogEvent logEventInfo = CreateLogEvent();
+
+                            if (!parserInstance.ReadNext(logEventInfo))
                                 break;
                             EventReceived(logEventInfo);
                         }

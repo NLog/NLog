@@ -5,6 +5,7 @@ namespace NLogViewer.Receivers
 {
 	public interface ILogEventProcessor
 	{
+        LogEvent CreateLogEvent();
         void ProcessLogEvent(LogEvent theEvent);
 	}
 }
