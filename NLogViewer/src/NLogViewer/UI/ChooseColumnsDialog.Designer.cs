@@ -35,11 +35,14 @@ namespace NLogViewer.UI
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.buttonHideAll = new System.Windows.Forms.Button();
             this.buttonShowAll = new System.Windows.Forms.Button();
+            this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewComboBoxColumn2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.logColumnBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sessionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.visibleDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.widthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.logColumnBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sessionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupingDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logColumnBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessionBindingSource)).BeginInit();
@@ -84,7 +87,8 @@ namespace NLogViewer.UI
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.visibleDataGridViewCheckBoxColumn,
             this.nameDataGridViewTextBoxColumn,
-            this.widthDataGridViewTextBoxColumn});
+            this.widthDataGridViewTextBoxColumn,
+            this.groupingDataGridViewCheckBoxColumn});
             this.dataGridView1.DataSource = this.logColumnBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 42);
             this.dataGridView1.Name = "dataGridView1";
@@ -118,6 +122,33 @@ namespace NLogViewer.UI
             this.buttonShowAll.UseVisualStyleBackColor = true;
             this.buttonShowAll.Click += new System.EventHandler(this.buttonShowAll_Click);
             // 
+            // dataGridViewComboBoxColumn1
+            // 
+            this.dataGridViewComboBoxColumn1.DataPropertyName = "Grouping";
+            this.dataGridViewComboBoxColumn1.HeaderText = "Grouping";
+            this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
+            this.dataGridViewComboBoxColumn1.Width = 492;
+            // 
+            // dataGridViewComboBoxColumn2
+            // 
+            this.dataGridViewComboBoxColumn2.DataPropertyName = "Grouping";
+            this.dataGridViewComboBoxColumn2.HeaderText = "Grouping";
+            this.dataGridViewComboBoxColumn2.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
+            this.dataGridViewComboBoxColumn2.Name = "dataGridViewComboBoxColumn2";
+            this.dataGridViewComboBoxColumn2.Width = 492;
+            // 
+            // logColumnBindingSource
+            // 
+            this.logColumnBindingSource.DataSource = typeof(NLogViewer.Configuration.LogColumn);
+            // 
+            // sessionBindingSource
+            // 
+            this.sessionBindingSource.DataSource = typeof(NLogViewer.Session);
+            // 
             // visibleDataGridViewCheckBoxColumn
             // 
             this.visibleDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -140,13 +171,11 @@ namespace NLogViewer.UI
             this.widthDataGridViewTextBoxColumn.HeaderText = "Width";
             this.widthDataGridViewTextBoxColumn.Name = "widthDataGridViewTextBoxColumn";
             // 
-            // logColumnBindingSource
+            // groupingDataGridViewCheckBoxColumn
             // 
-            this.logColumnBindingSource.DataSource = typeof(NLogViewer.Configuration.LogColumn);
-            // 
-            // sessionBindingSource
-            // 
-            this.sessionBindingSource.DataSource = typeof(NLogViewer.Session);
+            this.groupingDataGridViewCheckBoxColumn.DataPropertyName = "Grouping";
+            this.groupingDataGridViewCheckBoxColumn.HeaderText = "Grouping";
+            this.groupingDataGridViewCheckBoxColumn.Name = "groupingDataGridViewCheckBoxColumn";
             // 
             // ChooseColumnsDialog
             // 
@@ -178,8 +207,11 @@ namespace NLogViewer.UI
         private System.Windows.Forms.BindingSource logColumnBindingSource;
         private System.Windows.Forms.Button buttonHideAll;
         private System.Windows.Forms.Button buttonShowAll;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn visibleDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn widthDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn groupingDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn2;
     }
 }

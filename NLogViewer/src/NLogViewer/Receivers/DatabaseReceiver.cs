@@ -58,7 +58,7 @@ namespace NLogViewer.Receivers
         private string _connectionString;
         private string _connectionType;
         private string _query;
-        private IsolationLevel _isolationLevel;
+        private IsolationLevel _isolationLevel = IsolationLevel.ReadCommitted;
 
         public string ConnectionType
         {
@@ -98,7 +98,7 @@ namespace NLogViewer.Receivers
                     conn.ConnectionString = ConnectionString;
                     conn.Open();
 
-                    using (IDbTransaction tran = conn.BeginTransaction())
+                    using (IDbTransaction tran = conn.BeginTransaction(_isolationLevel))
                     {
                         using (IDbCommand cmd = conn.CreateCommand())
                         {
@@ -124,7 +124,8 @@ namespace NLogViewer.Receivers
 
                                     for (int i = 0; i < reader.FieldCount; ++i)
                                     {
-                                        le[ordinal2logeventordinal[i]] = reader.GetValue(i);
+                                        if (!reader.IsDBNull(i))
+                                            le[ordinal2logeventordinal[i]] = reader.GetValue(i);
                                     }
                                     EventReceived(le);
                                 }

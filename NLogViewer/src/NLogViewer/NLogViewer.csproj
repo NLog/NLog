@@ -74,7 +74,10 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL" />
+    <Reference Include="NLog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\external\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="PowerCollections, Version=1.0.2141.24679, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\external\PowerCollections.dll</HintPath>
@@ -284,6 +287,9 @@
     </Compile>
     <Compile Include="UI\ReceiverPropertiesDialog.Designer.cs">
       <DependentUpon>ReceiverPropertiesDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SafeListView.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\SelectEncodingPropertyPage.cs">
       <SubType>UserControl</SubType>

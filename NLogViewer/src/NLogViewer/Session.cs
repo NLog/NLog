@@ -65,14 +65,9 @@ namespace NLogViewer
             get { return _tabPanel; }
         }
 
-        private TreeNode _threadsTreeNode;
-        private TreeNode _assembliesTreeNode;
-        private TreeNode _classesTreeNode;
-        private TreeNode _loggersTreeNode;
-        private TreeNode _levelsTreeNode;
-        private TreeNode _applicationsTreeNode;
-        private TreeNode _machinesTreeNode;
-        private TreeNode _filesTreeNode;
+        private int _columnOrdinalID;
+        private int _columnOrdinalReceivedDate;
+        private int _columnOrdinalLevel;
 
         private Hashtable _logger2NodeCache = new Hashtable();
         private Hashtable _level2NodeCache = new Hashtable();
@@ -91,7 +86,6 @@ namespace NLogViewer
         private bool _haveNewEvents = false;
 
         delegate void AddTreeNodeDelegate(TreeNode parentNode, TreeNode childNode);
-        private AddTreeNodeDelegate _addTreeNodeDelegate;
         private long _totalEvents = 0;
 
         public Session()
@@ -120,24 +114,6 @@ namespace NLogViewer
             page.Controls.Add(tabPanel);
             _tabPanel = tabPanel;
 
-            _loggersTreeNode = new TreeNode("Loggers");
-            _levelsTreeNode = new TreeNode("Levels");
-            _threadsTreeNode = new TreeNode("Threads");
-            _assembliesTreeNode = new TreeNode("Assemblies");
-            _classesTreeNode = new TreeNode("Classes");
-            _applicationsTreeNode = new TreeNode("Applications");
-            _machinesTreeNode = new TreeNode("Machines");
-            _filesTreeNode = new TreeNode("Files");
-
-            TreeView treeView = _tabPanel.treeView;
-            treeView.Nodes.Add(_loggersTreeNode);
-            treeView.Nodes.Add(_levelsTreeNode);
-            treeView.Nodes.Add(_threadsTreeNode);
-            treeView.Nodes.Add(_assembliesTreeNode);
-            treeView.Nodes.Add(_classesTreeNode);
-            treeView.Nodes.Add(_filesTreeNode);
-            treeView.Nodes.Add(_applicationsTreeNode);
-            treeView.Nodes.Add(_machinesTreeNode);
             page.Text = Name;
             TabPanel.ReloadColumns();
         }
@@ -162,47 +138,14 @@ namespace NLogViewer
             get { return _tabPage; }
         }
 
-        private TreeNode LogEventAttributeToNode(string attributeValue, TreeNode rootNode, Hashtable cache, char separatorChar)
-        {
-            if (attributeValue == null)
-                return null;
-
-            object o = cache[attributeValue];
-            if (o != null)
-            {
-                return (TreeNode)o;
-            }
-
-            TreeNode parentNode;
-
-            string baseName;
-            int rightmostDot = -1;
-            if (separatorChar != 0)
-                rightmostDot = attributeValue.LastIndexOf(separatorChar);
-            if (rightmostDot < 0)
-            {
-                parentNode = rootNode;
-                baseName = attributeValue;
-            }
-            else
-            {
-                string parentLoggerName = attributeValue.Substring(0, rightmostDot);
-                baseName = attributeValue.Substring(rightmostDot + 1);
-                parentNode = LogEventAttributeToNode(parentLoggerName, rootNode, cache, separatorChar);
-            }
-
-            TreeNode newNode = new TreeNode(baseName);
-            cache[attributeValue] = newNode;
-            TabPanel.treeView.Invoke(_addTreeNodeDelegate, new object[] { parentNode, newNode });
-            return newNode;
-        }
-
+#if A
         private void AddTreeNode(TreeNode parentNode, TreeNode childNode)
         {
             parentNode.Nodes.Add(childNode);
             //if (parentNode.Parent == null || parentNode.Parent.Parent == null)
             //    parentNode.Expand();
         }
+#endif
 
         private void ProcessNewEvents()
         {
@@ -235,7 +178,13 @@ namespace NLogViewer
 
                     _totalEvents++;
 
-#if A
+                    for (int i = 0; i < Columns.Count; ++i)
+                    {
+                        if (Columns[i].Grouping != LogColumnGrouping.None)
+                            TabPanel.ApplyGrouping(Columns[i], logEvent[i]);
+                    }
+
+                    /*
                     // LogEventAttributeToNode(logEvent["Level"], _levelsTreeNode, _level2NodeCache, (char)0);
                     LogEventAttributeToNode((string)logEvent["Logger"], _loggersTreeNode, _logger2NodeCache, '.');
                     LogEventAttributeToNode((string)logEvent["SourceAssembly"], _assembliesTreeNode, _assembly2NodeCache, (char)0);
@@ -245,7 +194,7 @@ namespace NLogViewer
                     LogEventAttributeToNode((string)logEvent["SourceApplication"], _applicationsTreeNode, _application2NodeCache, (char)0);
                     LogEventAttributeToNode((string)logEvent["SourceMachine"], _machinesTreeNode, _machine2NodeCache, (char)0);
                     LogEventAttributeToNode((string)logEvent["SourceFile"], _filesTreeNode, _file2NodeCache, (char)'\\');
-#endif
+                     * */
                 }
                 int t1 = Environment.TickCount;
                 int ips = -1;
@@ -306,7 +255,8 @@ namespace NLogViewer
         public void ProcessLogEvent(LogEvent logEvent)
         {
             logEvent.ID = Interlocked.Increment(ref _globalEventID);
-            logEvent["ID"] = logEvent.ID;
+            logEvent[_columnOrdinalID] = logEvent.ID;
+            logEvent[_columnOrdinalReceivedDate] = DateTime.Now;
 
             lock (this)
             {
@@ -552,23 +502,19 @@ namespace NLogViewer
             if (Columns.Count == 0)
             {
                 Columns.Add(new LogColumn("ID", 120));
-                Columns.Add(new LogColumn("Time", 120));
-                Columns.Add(new LogColumn("Logger", 200));
-                Columns.Add(new LogColumn("Level", 50));
-                Columns.Add(new LogColumn("Text", 300));
-
-                // invisible columns at the end
-
-                Columns.Add(new LogColumn("Received Time", 120, false));
+                Columns.Add(new LogColumn("Received Time", 120, true));
             }
 
             // initialize the ordinals
             for (int i = 0; i < Columns.Count; ++i)
                 Columns[i].Ordinal = i;
 
+            _columnOrdinalID = GetOrAllocateOrdinal("ID");
+            _columnOrdinalReceivedDate = GetOrAllocateOrdinal("Received Time");
+            _columnOrdinalLevel = GetOrAllocateOrdinal("Level");
+
             _bufferedEvents = new CyclicBuffer<LogEvent>(MaxLogEntries);
             NewSortOrder();
-            _addTreeNodeDelegate = new AddTreeNodeDelegate(this.AddTreeNode);
             Receiver.Connect(this);
         }
 
@@ -654,10 +600,12 @@ namespace NLogViewer
 
             LogColumn lc = new LogColumn();
             lc.Name = name;
-            lc.Visible = false;
+            lc.Visible = Columns.Count < 20;
             lc.Width = 100;
             lc.Ordinal = Columns.Count;
             Columns.Add(lc);
+            if (lc.Visible && TabPanel != null)
+                TabPanel.ReloadColumns();
             return lc.Ordinal;
         }
 

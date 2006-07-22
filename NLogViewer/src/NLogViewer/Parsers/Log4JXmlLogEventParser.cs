@@ -31,7 +31,6 @@ namespace NLogViewer.Parsers
                     {
                         if (ParseLog4JEvent(_xtr, logEvent))
                         {
-                            logEvent["Received Time"] = DateTime.Now;
                             return true;
                         }
                         else

@@ -4,14 +4,14 @@
         <name>NLogViewer.Interfaces</name>
     </assembly>
     <members>
-        <member name="T:NLogViewer.Events.LogEvent">
-            <summary>
-            Represents the log event.
-            </summary>
-        </member>
         <member name="T:NLogViewer.Events.ILogEventColumns">
             <summary>
             Represents the log event columns.
+            </summary>
+        </member>
+        <member name="T:NLogViewer.Events.LogEvent">
+            <summary>
+            Represents the log event.
             </summary>
         </member>
     </members>

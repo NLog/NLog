@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using NLogViewer.Events;
 using System.Collections.Generic;
 using NLogViewer.Configuration;
+using System.IO;
 
 namespace NLogViewer.UI
 {
@@ -21,7 +22,7 @@ namespace NLogViewer.UI
         private System.Windows.Forms.Panel splitContainerTop;
         private System.Windows.Forms.Panel panelSelectedItemMessage;
         private System.Windows.Forms.Panel panelSelectedItemProperties;
-        public System.Windows.Forms.ListView listviewSelectedLogEventProperties;
+        public NLogViewer.UI.SafeListView listviewSelectedLogEventProperties;
         public System.Windows.Forms.TextBox textBoxSelectedMessageText;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -47,7 +48,7 @@ namespace NLogViewer.UI
         private ToolStripMenuItem resetToDefaultsToolStripMenuItem;
         private SplitContainer splitContainer1;
         public TreeView treeView;
-        public ListView listViewLogMessages;
+        public NLogViewer.UI.SafeListView listViewLogMessages;
         private SplitContainer splitContainerBottom;
         private SplitContainer mainSplitContainer;
         private ToolStrip toolStrip1;
@@ -73,6 +74,7 @@ namespace NLogViewer.UI
         private ToolStripContainer toolStripContainer1;
         private ToolStripButton toolStripButtonProperties;
         private ToolStripButton toolStripButtonPause;
+        public ToolTip baloonToolTip;
         private LogEvent _selectedLogEvent = null;
 
 		public SessionTabPage(Session instance)
@@ -82,6 +84,7 @@ namespace NLogViewer.UI
             listViewLogMessages.SmallImageList = GlobalImageList.Instance.ImageList;
             treeView.ImageList = GlobalImageList.Instance.ImageList;
             listViewLogMessages.Font = AppPreferences.LogMessagesFont;
+            // treeView.Sorted = true;
 		}
 
 		/// <summary> 
@@ -111,14 +114,10 @@ namespace NLogViewer.UI
             this.splitContainerTop = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView = new System.Windows.Forms.TreeView();
-            this.listViewLogMessages = new System.Windows.Forms.ListView();
             this.panelSelectedItemMessage = new System.Windows.Forms.Panel();
             this.textBoxSelectedMessageText = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panelSelectedItemProperties = new System.Windows.Forms.Panel();
-            this.listviewSelectedLogEventProperties = new System.Windows.Forms.ListView();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.buttonPreviousEvent = new System.Windows.Forms.Button();
             this.buttonNextEvent = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -163,6 +162,11 @@ namespace NLogViewer.UI
             this.toolStripButtonShowTree = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonShowDetails = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.baloonToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.listViewLogMessages = new NLogViewer.UI.SafeListView();
+            this.listviewSelectedLogEventProperties = new NLogViewer.UI.SafeListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.splitContainerTop.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -218,29 +222,6 @@ namespace NLogViewer.UI
             this.treeView.Size = new System.Drawing.Size(218, 200);
             this.treeView.TabIndex = 0;
             // 
-            // listViewLogMessages
-            // 
-            this.listViewLogMessages.AllowColumnReorder = true;
-            this.listViewLogMessages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewLogMessages.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.listViewLogMessages.FullRowSelect = true;
-            this.listViewLogMessages.GridLines = true;
-            this.listViewLogMessages.Location = new System.Drawing.Point(0, 0);
-            this.listViewLogMessages.MultiSelect = false;
-            this.listViewLogMessages.Name = "listViewLogMessages";
-            this.listViewLogMessages.Size = new System.Drawing.Size(434, 200);
-            this.listViewLogMessages.TabIndex = 2;
-            this.listViewLogMessages.UseCompatibleStateImageBehavior = false;
-            this.listViewLogMessages.View = System.Windows.Forms.View.Details;
-            this.listViewLogMessages.VirtualMode = true;
-            this.listViewLogMessages.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.listViewLogMessages_ColumnWidthChanged);
-            this.listViewLogMessages.ItemActivate += new System.EventHandler(this.listViewLogMessages_ItemActivate);
-            this.listViewLogMessages.VirtualItemsSelectionRangeChanged += new System.Windows.Forms.ListViewVirtualItemsSelectionRangeChangedEventHandler(this.listViewLogMessages_VirtualItemsSelectionRangeChanged);
-            this.listViewLogMessages.SelectedIndexChanged += new System.EventHandler(this.listViewLogMessages_SelectedIndexChanged);
-            this.listViewLogMessages.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewLogMessages_ColumnClick);
-            this.listViewLogMessages.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.listViewLogMessages_RetrieveVirtualItem);
-            this.listViewLogMessages.ColumnReordered += new System.Windows.Forms.ColumnReorderedEventHandler(this.listViewLogMessages_ColumnReordered);
-            // 
             // panelSelectedItemMessage
             // 
             this.panelSelectedItemMessage.Controls.Add(this.textBoxSelectedMessageText);
@@ -286,33 +267,6 @@ namespace NLogViewer.UI
             this.panelSelectedItemProperties.Size = new System.Drawing.Size(218, 189);
             this.panelSelectedItemProperties.TabIndex = 0;
             // 
-            // listviewSelectedLogEventProperties
-            // 
-            this.listviewSelectedLogEventProperties.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.listviewSelectedLogEventProperties.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.listviewSelectedLogEventProperties.FullRowSelect = true;
-            this.listviewSelectedLogEventProperties.GridLines = true;
-            this.listviewSelectedLogEventProperties.Location = new System.Drawing.Point(0, 23);
-            this.listviewSelectedLogEventProperties.Name = "listviewSelectedLogEventProperties";
-            this.listviewSelectedLogEventProperties.Size = new System.Drawing.Size(218, 166);
-            this.listviewSelectedLogEventProperties.TabIndex = 0;
-            this.listviewSelectedLogEventProperties.UseCompatibleStateImageBehavior = false;
-            this.listviewSelectedLogEventProperties.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 100;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Value";
-            this.columnHeader2.Width = 500;
-            // 
             // buttonPreviousEvent
             // 
             this.buttonPreviousEvent.Image = ((System.Drawing.Image)(resources.GetObject("buttonPreviousEvent.Image")));
@@ -343,6 +297,7 @@ namespace NLogViewer.UI
             // timer1
             // 
             this.timer1.Enabled = true;
+            this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // statusStrip1
@@ -531,7 +486,7 @@ namespace NLogViewer.UI
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(649, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(618, 25);
             this.toolStrip1.TabIndex = 2;
             // 
             // toolStripLabelStatus0
@@ -734,6 +689,60 @@ namespace NLogViewer.UI
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             // 
+            // baloonToolTip
+            // 
+            this.baloonToolTip.IsBalloon = true;
+            // 
+            // listViewLogMessages
+            // 
+            this.listViewLogMessages.AllowColumnReorder = true;
+            this.listViewLogMessages.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewLogMessages.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewLogMessages.FullRowSelect = true;
+            this.listViewLogMessages.GridLines = true;
+            this.listViewLogMessages.Location = new System.Drawing.Point(0, 0);
+            this.listViewLogMessages.MultiSelect = false;
+            this.listViewLogMessages.Name = "listViewLogMessages";
+            this.listViewLogMessages.Size = new System.Drawing.Size(434, 200);
+            this.listViewLogMessages.TabIndex = 2;
+            this.listViewLogMessages.UseCompatibleStateImageBehavior = false;
+            this.listViewLogMessages.View = System.Windows.Forms.View.Details;
+            this.listViewLogMessages.VirtualMode = true;
+            this.listViewLogMessages.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.listViewLogMessages_ColumnWidthChanged);
+            this.listViewLogMessages.ItemActivate += new System.EventHandler(this.listViewLogMessages_ItemActivate);
+            this.listViewLogMessages.VirtualItemsSelectionRangeChanged += new System.Windows.Forms.ListViewVirtualItemsSelectionRangeChangedEventHandler(this.listViewLogMessages_VirtualItemsSelectionRangeChanged);
+            this.listViewLogMessages.SelectedIndexChanged += new System.EventHandler(this.listViewLogMessages_SelectedIndexChanged);
+            this.listViewLogMessages.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewLogMessages_ColumnClick);
+            this.listViewLogMessages.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.listViewLogMessages_RetrieveVirtualItem);
+            this.listViewLogMessages.ColumnReordered += new System.Windows.Forms.ColumnReorderedEventHandler(this.listViewLogMessages_ColumnReordered);
+            // 
+            // listviewSelectedLogEventProperties
+            // 
+            this.listviewSelectedLogEventProperties.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listviewSelectedLogEventProperties.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.listviewSelectedLogEventProperties.FullRowSelect = true;
+            this.listviewSelectedLogEventProperties.GridLines = true;
+            this.listviewSelectedLogEventProperties.Location = new System.Drawing.Point(0, 23);
+            this.listviewSelectedLogEventProperties.Name = "listviewSelectedLogEventProperties";
+            this.listviewSelectedLogEventProperties.Size = new System.Drawing.Size(218, 166);
+            this.listviewSelectedLogEventProperties.TabIndex = 0;
+            this.listviewSelectedLogEventProperties.UseCompatibleStateImageBehavior = false;
+            this.listviewSelectedLogEventProperties.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Name";
+            this.columnHeader1.Width = 100;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Value";
+            this.columnHeader2.Width = 500;
+            // 
             // SessionTabPage
             // 
             this.ContextMenuStrip = this.contextMenuStrip1;
@@ -773,7 +782,14 @@ namespace NLogViewer.UI
 
         private void listViewLogMessages_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
         {
-            e.Item = LogEventToListViewItem(_session.GetDisplayedItemForIndex(e.ItemIndex));
+            try
+            {
+                e.Item = LogEventToListViewItem(_session.GetDisplayedItemForIndex(e.ItemIndex));
+            }
+            catch (Exception)
+            {
+                e.Item = new ListViewItem();
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -1047,6 +1063,95 @@ namespace NLogViewer.UI
             {
                 rpd.ShowDialog(this);
             }
+        }
+
+        class GroupCache
+        {
+            public TreeNode RootNode;
+            private Hashtable _objectValue2TreeNodeCache = new Hashtable();
+
+            class NodeCache
+            {
+                public TreeNode Node;
+                public string BaseText;
+                public int Count;
+            }
+
+            public TreeNode LogEventAttributeToNode(string attributeValue, TreeNode rootNode, char separatorChar)
+            {
+                if (attributeValue == null)
+                    return null;
+
+                NodeCache nc = _objectValue2TreeNodeCache[attributeValue] as NodeCache;
+                if (nc != null)
+                {
+                    //nc.Node.Text = nc.BaseText; // +" (" + nc.Count++ + ")";
+                    return nc.Node;
+                }
+
+                TreeNode parentNode;
+
+                string baseName;
+                int rightmostDot = -1;
+                if (separatorChar != 0)
+                    rightmostDot = attributeValue.LastIndexOf(separatorChar);
+                if (rightmostDot < 0)
+                {
+                    parentNode = rootNode;
+                    baseName = attributeValue;
+                }
+                else
+                {
+                    string parentLoggerName = attributeValue.Substring(0, rightmostDot);
+                    baseName = attributeValue.Substring(rightmostDot + 1);
+                    parentNode = LogEventAttributeToNode(parentLoggerName, rootNode, separatorChar);
+                }
+
+                TreeNode newNode = new TreeNode(baseName);
+                nc = new NodeCache();
+                nc.BaseText = baseName;
+                nc.Node = newNode;
+                nc.Count = 1;
+                _objectValue2TreeNodeCache[attributeValue] = nc;
+                parentNode.Nodes.Add(newNode);
+                return newNode;
+            }
+
+        }
+
+        Dictionary<int, GroupCache> _grouping = new Dictionary<int,GroupCache>();
+
+        public void ApplyGrouping(LogColumn column, object value)
+        {
+            GroupCache gc;
+            if (!_grouping.ContainsKey(column.Ordinal))
+            {
+                gc = new GroupCache();
+
+                TreeNode newRoot = new TreeNode();
+                gc.RootNode = newRoot;
+                newRoot.Text = column.Name;
+                treeView.Nodes.Add(newRoot);
+                _grouping[column.Ordinal] = gc;
+            }
+            else
+            {
+                gc = _grouping[column.Ordinal];
+            }
+
+            char separator = (char)0;
+
+            switch (column.Grouping)
+            {
+                case LogColumnGrouping.Hierarchy:
+                    separator = '.';
+                    break;
+
+                case LogColumnGrouping.FileSystem:
+                    separator = Path.DirectorySeparatorChar;
+                    break;
+            }
+            gc.LogEventAttributeToNode(Convert.ToString(value), gc.RootNode, separator);
         }
     }
 }

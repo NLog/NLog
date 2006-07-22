@@ -282,18 +282,18 @@
   <data name="toolStripButtonFitColumnWidths.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
 </value>
   </data>
   <data name="toolStripButtonChooseColumns.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -333,6 +333,9 @@
         FCfR/L7s/yEaVRbck8P4A+TVnbkE5SQTAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="baloonToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>454, 17</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>56</value>
   </metadata>

@@ -17,6 +17,11 @@ namespace NLogViewer.UI
         public ChooseColumnsDialog()
         {
             InitializeComponent();
+            this.groupingDataGridViewCheckBoxColumn.Items.AddRange(new object[] {
+                LogColumnGrouping.Flat,
+                LogColumnGrouping.FileSystem,
+                LogColumnGrouping.Hierarchy,
+                LogColumnGrouping.None});
         }
 
         public Session Session

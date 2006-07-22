@@ -88,10 +88,10 @@ namespace NLogViewer.Configuration
         }
 
 
-        private LogColumnGrouping _grouping = LogColumnGrouping.Flat;
+        private LogColumnGrouping _grouping = LogColumnGrouping.None;
 
         [XmlAttribute("grouping")]
-        [DefaultValue(LogColumnGrouping.Flat)]
+        [DefaultValue(LogColumnGrouping.None)]
         public LogColumnGrouping Grouping
         {
             get { return _grouping; }
