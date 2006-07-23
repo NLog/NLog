@@ -352,16 +352,12 @@ namespace NLog
             return false;
         }
 
-        private static Assembly _mscorlibAssembly = typeof(Object).Assembly;
-
         private bool IsSafeToDeferFormatting(object value)
         {
             if (value == null)
                 return true;
 
             return (value.GetType().IsPrimitive || value is string);
-
-            //return value.GetType().Assembly == _mscorlibAssembly;
         }
     }
 }
