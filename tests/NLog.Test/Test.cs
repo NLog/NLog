@@ -74,7 +74,7 @@ namespace NLog.Tester
         static void Main(string[]args)
         {
             InternalLogger.LogToConsole = true;
-            InternalLogger.LogLevel = LogLevel.Info;
+            InternalLogger.LogLevel = LogLevel.Debug;
 
             for (int i = 0; i < 10000; ++i)
             {

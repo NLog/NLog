@@ -4,6 +4,14 @@ namespace NLog.Benchmark
 {
     class Log4NetWithFastLoggerBenchmark : Log4NetBenchmark
     {
+        protected override string ConfigFile
+        {
+            get
+            {
+                return "Log4NetWithFastLogger.config";
+            }
+        }
+
         public override string Header
         {
             get

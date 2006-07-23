@@ -38,6 +38,7 @@ using System.Messaging;
 using System.Text;
 
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.Win32.Targets
 {
@@ -67,9 +68,9 @@ namespace NLog.Win32.Targets
     [SupportedRuntime(Framework=RuntimeFramework.DotNetFramework)]
     [SupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework,MinRuntimeVersion="2.0")]
     public class MSMQTarget : TargetWithLayout
-	{
+    {
         private Layout _queue;
-        private Layout _label;
+        private Layout _label = new Layout("NLog");
         private bool _createIfNotExists;
         private Encoding _encoding = System.Text.Encoding.UTF8;
         private bool _useXmlEncoding;
@@ -98,6 +99,7 @@ namespace NLog.Win32.Targets
         /// By default no label is associated.
         /// </remarks>
         [AcceptsLayout]
+        [DefaultValue("NLog")]
         public string Label
         {
             get { return _label.Text; }

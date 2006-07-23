@@ -281,9 +281,9 @@ namespace NLog.Benchmark
                 xtw.WriteProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href=\"Graph.xsl\"");
 
                 xtw.WriteStartElement("results");
-                DoBenchmark(xtw, new NLogBenchmark());
+                // DoBenchmark(xtw, new Log4NetWithFastLoggerBenchmark());
                 DoBenchmark(xtw, new Log4NetBenchmark());
-                //DoBenchmark(xtw, new Log4NetWithFastLoggerBenchmark());
+                DoBenchmark(xtw, new NLogBenchmark());
                 xtw.WriteStartElement("scale");
                 xtw.WriteAttributeString("max", Convert.ToInt32(_maxmax).ToString());
                 xtw.WriteEndElement();
@@ -318,6 +318,11 @@ namespace NLog.Benchmark
 
             string sourceCode = GenerateTestSourceCode(b);
             
+            using (StreamWriter sw = File.CreateText("BenchmarkAssembly." + b.Name + ".cs"))
+            {
+                sw.Write(sourceCode);
+            }
+
             CompilerResults results = provider.CreateCompiler().CompileAssemblyFromSource(options, sourceCode);
             foreach (CompilerError ce in results.Errors)
             {
@@ -327,11 +332,6 @@ namespace NLog.Benchmark
             {
                 Console.WriteLine("Errors in generated code for " + b.Name + " Ignoring.");
                 return;
-            }
-
-            using (StreamWriter sw = File.CreateText("BenchmarkAssembly." + b.Name + ".cs"))
-            {
-                sw.Write(sourceCode);
             }
 
             //Console.WriteLine("Compiled to assembly: {0}", results.CompiledAssembly.FullName);

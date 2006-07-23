@@ -389,6 +389,10 @@
         <exec program="${nlog.dir}/NLog.Benchmark-lab.exe" workingdir="${nlog.dir}" commandline="Benchmark-lab.xml ${benchmark.mode}" />
     </target>
 
+    <target name="pfiles">
+        <property name="nlog.dir" value="${environment::get-folder-path('ProgramFiles')}\NLog\bin\${framework::get-target-framework()}" unless="${property::exists('nlog.dir')}" />
+    </target>
+
     <target name="NLogC" depends="NLog, NLogC-${framework::get-target-framework()}">
         <copy todir="${nlog.dir}/include">
             <fileset basedir="tests/NLogC">

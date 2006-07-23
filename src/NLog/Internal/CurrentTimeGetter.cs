@@ -50,7 +50,8 @@ namespace NLog
 
         static CurrentTimeGetter()
         {
-            // _getDelegate = new GetDelegate(NonOptimizedGet);
+            // this is to keep Mono compiler quiet
+            _getDelegate = new GetDelegate(NonOptimizedGet);
             _getDelegate = new GetDelegate(ThrottledGet);
         }
 

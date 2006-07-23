@@ -4,6 +4,11 @@ namespace NLog.Benchmark
 {
     class Log4NetBenchmark : IBenchmark
     {
+        protected virtual string ConfigFile
+        {
+            get { return "log4net.config"; }
+        }
+
         protected string Log4NetCommonHeader
         {
             get { 
@@ -14,6 +19,8 @@ using log4net.Core;
 using log4net.Appender;
 using log4net.Util;
 using System.Threading;
+
+[assembly: XmlConfigurator(ConfigFile=""" + ConfigFile + @""")]
 
 public class NullAppender : AppenderSkeleton
 {
@@ -26,8 +33,7 @@ public class NullAppenderWithLayout : AppenderSkeleton
 {
     override protected void Append(LoggingEvent loggingEvent) 
     {
-        string s = RenderLoggingEvent(loggingEvent);
-        // ignore s
+        RenderLoggingEvent(loggingEvent);
     }
 }
 
@@ -191,8 +197,7 @@ public sealed class AsyncAppender : IAppender, IBulkAppender, IOptionHandler, IA
         public virtual string Header
         {
             get { 
-                return Log4NetCommonHeader + @"
-[assembly: XmlConfigurator(ConfigFile=""log4net.config"")]";
+                return Log4NetCommonHeader;
             }
         }
 
