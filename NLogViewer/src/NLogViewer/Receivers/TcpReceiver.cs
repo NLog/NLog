@@ -78,6 +78,11 @@ namespace NLogViewer.Receivers
 
                     while (!InputThreadQuitRequested())
                     {
+                        if (IsPaused())
+                        {
+                            Thread.Sleep(100);
+                            continue;
+                        }
                         if (mainSocket.Poll(1000000, SelectMode.SelectRead))
                         {
                             Socket childSocket = mainSocket.Accept();
@@ -122,6 +127,11 @@ namespace NLogViewer.Receivers
                         {
                             while (!_receiver.InputThreadQuitRequested())
                             {
+                                if (_receiver.IsPaused())
+                                {
+                                    Thread.Sleep(100);
+                                    continue;
+                                }
                                 bool pollResult = _socket.Poll(100000, SelectMode.SelectRead);
                                 if (ns.DataAvailable || pollResult)
                                 {

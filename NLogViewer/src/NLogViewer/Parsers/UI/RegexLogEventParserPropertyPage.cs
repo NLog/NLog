@@ -9,6 +9,7 @@ using NLogViewer.UI;
 using System.IO;
 using NLogViewer.Parsers;
 using System.Xml;
+using System.Text.RegularExpressions;
 
 namespace NLogViewer.Parsers.UI
 {
@@ -73,22 +74,7 @@ namespace NLogViewer.Parsers.UI
                 MessageBox.Show(this, ex.Message);
                 // ignore
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            contextMenuStrip1.Show(button1, 0, button1.Height);
-        }
-
-        private void toolStripMenuItemAddCaptureGroup_Click(object sender, EventArgs e)
-        {
-            using (AddRegexCaptureGroup dlg = new AddRegexCaptureGroup())
-            {
-                if (dlg.ShowDialog(this) == DialogResult.OK)
-                {
-                    textBox1.AppendText("(<" + dlg.CaptureGroupName + ">:" + dlg.RegularExpression + ")");
-                }
-            }
+            textBox1_TextChanged(null, null);
         }
 
         private void listView1_Enter(object sender, EventArgs e)
@@ -101,6 +87,33 @@ namespace NLogViewer.Parsers.UI
             foreach (ListViewItem lvi in listView1.SelectedItems)
             {
                 textBox1.Text = (string)lvi.Tag;
+            }
+        }
+
+        private void toolStripMenuItemClear_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (textBox1.Text != "")
+                {
+                    Regex re = new Regex(textBox1.Text);
+                }
+                else
+                {
+                    throw new Exception("Regular expression is empty.");
+                }
+                textBoxStatus.BackColor = Color.FromArgb(200, 255, 200);
+                textBoxStatus.Text = "Regular expression is valid";
+            }
+            catch (Exception ex)
+            {
+                textBoxStatus.BackColor = Color.FromArgb(255, 200, 200);
+                textBoxStatus.Text = ex.Message;
             }
         }
     }

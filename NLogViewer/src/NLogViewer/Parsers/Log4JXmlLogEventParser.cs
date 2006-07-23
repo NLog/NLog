@@ -133,6 +133,8 @@ namespace NLogViewer.Parsers
                             continue;
 
                         default:
+                            continue;
+
                         case "log4j:locationinfo":
                             ev["SourceType"] = reader.GetAttribute("class");
                             ev["SourceMethod"] = reader.GetAttribute("method");
@@ -142,6 +144,10 @@ namespace NLogViewer.Parsers
 
                         case "nlog:locationinfo":
                             ev["SourceAssembly"] = reader.GetAttribute("assembly");
+                            break;
+
+                        case "nlog:eventSequenceNumber":
+                            ev["SequenceNumber"] = reader.ReadElementContentAsString();
                             break;
                     }
                 }

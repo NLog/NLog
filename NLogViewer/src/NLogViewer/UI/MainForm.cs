@@ -431,6 +431,15 @@ namespace NLogViewer.UI
                 this.buttonCloseActiveTab.Visible = false;
                 this.tabControl1.Visible = false;
             }
+            else if (_sessions.Count == 1 && false)
+            {
+                this.introDialog1.Visible = false;
+                this.tabControl1.Visible = false;
+                //_sessions[0].TabPanel.Parent = this;
+                this.Controls.Add(_sessions[0].TabPanel);
+                this.Controls.SetChildIndex(_sessions[0].TabPanel, 0);
+                this.buttonCloseActiveTab.Visible = false;
+            }
             else
             {
                 this.introDialog1.Visible = false;
@@ -438,6 +447,7 @@ namespace NLogViewer.UI
                 this.tabControl1.TabPages.Clear();
                 foreach (Session i in _sessions)
                 {
+                    i.TabPanel.Parent = i.TabPage;
                     this.tabControl1.TabPages.Add(i.TabPage);
                 }
                 this.buttonCloseActiveTab.Visible = true;

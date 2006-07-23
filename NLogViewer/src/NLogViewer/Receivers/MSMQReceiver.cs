@@ -40,76 +40,64 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Windows.Forms;
 using System.Collections.Specialized;
+using System.Messaging;
 
 using NLogViewer.Configuration;
 using NLogViewer.Events;
 using NLogViewer.Parsers;
-using System.Threading;
-using System.Text;
+using System.ComponentModel;
 
 namespace NLogViewer.Receivers
 {
-    [LogEventReceiver("UDP", "UDP Receiver", "Receives events over the network using the UDP protocol")]
-    public class UdpReceiver : NetworkBaseReceiver
+    [LogEventReceiver("MSMQ", "MSMQ Receiver", "Receives events from the MSMQ Queue")]
+    public class MsmqReceiver : LogEventReceiverWithParserSkeleton
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-        public UdpReceiver()
+        private string _queueName = ".\\private$\\NLogViewer";
+
+        public MsmqReceiver()
         {
-            Port = 4000;
         }
 
-        protected override bool SupportsPauseResume()
+        [DefaultValue(".\\private$\\NLogViewer")]
+        public string QueueName
         {
-            return true;
+            get { return _queueName; }
+            set { _queueName = value; }
         }
 
         public override void InputThread()
         {
             try
             {
-                using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp))
+                using (MessageQueue mq = new MessageQueue(QueueName))
                 {
-                    socket.Bind(new IPEndPoint(IPAddress.Any, this.Port));
-                    logger.Debug("UDP listening on port {0}", this.Port);
-
-                    IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
-                    EndPoint senderRemote = (EndPoint)sender;
-                    byte[] buffer = new byte[65536];
-
                     while (!InputThreadQuitRequested())
                     {
-                        if (IsPaused())
+                        System.Messaging.Message msg;
+
+                        try
                         {
-                            Thread.Sleep(100);
+                            msg = mq.Receive(TimeSpan.FromMilliseconds(100));
+                        }
+                        catch (Exception ex)
+                        {
                             continue;
                         }
-                        if (socket.Poll(100000, SelectMode.SelectRead))
+
+                        using (Stream s = msg.BodyStream)
                         {
-                            int got = socket.ReceiveFrom(buffer, ref senderRemote);
-                            if (got > 0)
+                            using (ILogEventParserInstance parserInstance = Parser.Begin(s))
                             {
-                                MemoryStream ms = new MemoryStream(buffer, 0, got);
-                                try
-                                {
-                                    using (ILogEventParserInstance parserInstance = Parser.Begin(ms))
-                                    {
-                                        LogEvent logEventInfo = CreateLogEvent();
-                                        if (parserInstance.ReadNext(logEventInfo))
-                                            EventReceived(logEventInfo);
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show(Encoding.ASCII.GetString(ms.ToArray()));
-                                    //ex.ToString() );
-                                }
-                                // _listView.Items.Insert(0, System.Text.Encoding.Default.GetString(buffer, 0, got));
+                                LogEvent logEventInfo = CreateLogEvent();
+                                if (parserInstance.ReadNext(logEventInfo))
+                                    EventReceived(logEventInfo);
                             }
                         }
                     }
                 }
             }
-            catch (Exception)
+            finally
             {
             }
         }

@@ -72,8 +72,8 @@ namespace NLogViewer.Events
 
         public object this[string key]
         {
-            get { return _properties[GetOrdinal(key)]; }
-            set { _properties[GetOrdinal(key)] = value; }
+            get { return this[GetOrdinal(key)]; }
+            set { this[GetOrdinal(key)] = value; }
         }
 
         public object this[int ordinal]

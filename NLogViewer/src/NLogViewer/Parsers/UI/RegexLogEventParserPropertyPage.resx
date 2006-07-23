@@ -117,20 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAA
-        CxMBAJqcGAAAASRJREFUOE9j/P//PwNFAGQAJZgizWDXE2N72ZwX/2Obz6tgU0uUAcUzn/73Kzv6Xz96
-        ozq6IXADQLYUTHv0P6Pv1v/41osoOGvC7f/Zs77/145YB8IoLoEbUDTjyf9lh3//n7fv7/9Zu//+n7L9
-        3/++zf/+t6//979x9f//+XN//A9sfophCNyAnEn3/k/f+ed/xdK//4sX/v6fM+fn/9Sp3/7HTfjyP7Ln
-        0//glqf/fapv/HfMOwY2BOYVuAGp3df/d274+z9mwvf/YR1vULB//b3/HmUX/zvlHflvGLbov4rnNGMM
-        A4Ch/F/ZfdJ/Ve9Z/9X9F6FgzZDV/+2z9v/XCliAopnoaFT1nftfw28uhmaiDQA6Gatmog3Al9iISkiD
-        2wAAqDaxIkHvLEAAAAAASUVORK5CYII=
-</value>
-  </data>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
 </root>

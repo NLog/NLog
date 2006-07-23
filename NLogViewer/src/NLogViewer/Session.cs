@@ -598,6 +598,7 @@ namespace NLogViewer
                     return Columns[i].Ordinal;
             }
 
+            Dirty = true;
             LogColumn lc = new LogColumn();
             lc.Name = name;
             lc.Visible = Columns.Count < 20;
@@ -617,6 +618,16 @@ namespace NLogViewer
         public LogEvent CreateLogEvent()
         {
             return new LogEvent(this);
+        }
+
+        public void Pause()
+        {
+            Receiver.Pause();
+        }
+
+        public void Resume()
+        {
+            Receiver.Resume();
         }
     }
 }

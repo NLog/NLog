@@ -116,14 +116,6 @@ namespace NLogViewer.Receivers
             _processor = null;
         }
 
-        public virtual void Pause()
-        {
-        }
-
-        public virtual void Resume()
-        {
-        }
-
         public virtual bool CanStart()
         {
             if (_inputThread == null)
@@ -136,16 +128,6 @@ namespace NLogViewer.Receivers
             if (_inputThread == null)
                 return false;
             return _inputThread.IsAlive;
-        }
-
-        public virtual bool CanPause()
-        {
-            return false;
-        }
-
-        public virtual bool CanResume()
-        {
-            return false;
         }
 
         public virtual void Refresh()
@@ -167,6 +149,40 @@ namespace NLogViewer.Receivers
         protected LogEvent CreateLogEvent()
         {
             return _processor.CreateLogEvent();
+        }
+
+        protected virtual bool SupportsPauseResume()
+        {
+            return false;
+        }
+
+        public virtual bool CanPause()
+        {
+            return CanStop() && !_paused && SupportsPauseResume();
+        }
+
+        public virtual bool CanResume()
+        {
+            return _paused;
+        }
+
+        private bool _paused = false;
+
+        public virtual void Pause()
+        {
+            _paused = true;
+            _statusText = "Paused";
+        }
+
+        public virtual void Resume()
+        {
+            _paused = false;
+            _statusText = "Running";
+        }
+
+        public bool IsPaused()
+        {
+            return _paused;
         }
     }
 }
