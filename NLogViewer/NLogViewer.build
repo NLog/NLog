@@ -43,7 +43,7 @@
         <property name="nlog.optimize" value="true" />
     </target>
 
-    <target name="NLogViewer" depends="configure, NLogViewer.Interfaces, NLogViewer.NDumbsterSmtpReceiver">
+    <target name="NLogViewer" depends="configure, external, NLogViewer.Interfaces, NLogViewer.NDumbsterSmtpReceiver">
         <csc target="winexe" output="${nlogviewer.dir}/NLogViewer.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLogViewer">
                 <include name="**/*.cs" />
@@ -51,13 +51,20 @@
             <references>
                 <include name="System.Windows.Forms.dll" />
                 <include name="${nlogviewer.dir}/NLogViewer.Interfaces.dll" />
+                <include name="${nlogviewer.dir}/NLog.dll" />
+                <include name="${nlogviewer.dir}/PowerCollections.dll" />
             </references>
             <resources basedir="src/NLogViewer" prefix="NLogViewer" dynamicprefix="true">
                 <include name="**/*.resx" />
             </resources>
         </csc>
         <copy file="src/NLogViewer/App.config" tofile="${nlogviewer.dir}/NLogViewer.exe.config" />
-        <copy file="src/NLogViewer/NLogViewer.exe.manifest" tofile="${nlogviewer.dir}/NLogViewer.exe.manifest" />
+        <copy todir="${nlogviewer.dir}">
+            <fileset basedir="src/NLogViewer">
+                <include name="Levels/*" />
+                <include name="regexes.xml" />
+            </fileset>
+        </copy>
     </target>
 
     <target name="NLogViewer.Interfaces" depends="configure">
@@ -68,8 +75,16 @@
         </csc>
     </target>
 
-    <target name="NLogViewer.NDumbsterSmtpReceiver" depends="configure">
-        <copy file="external/nDumbster.dll" tofile="${nlogviewer.dir}/nDumbster.dll" />
+    <target name="external" depends="configure">
+        <copy todir="${nlogviewer.dir}">
+            <fileset basedir="external">
+                <include name="*.dll" />
+                <include name="*.pdb" />
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="NLogViewer.NDumbsterSmtpReceiver" depends="external">
         <csc target="library" output="${nlogviewer.dir}/NLogViewer.NDumbsterSmtpReceiver.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLogViewer.NDumbsterSmtpReceiver">
                 <include name="**/*.cs" />
@@ -77,6 +92,7 @@
             <references>
                 <include name="${nlogviewer.dir}/NLogViewer.Interfaces.dll" />
                 <include name="${nlogviewer.dir}/nDumbster.dll" />
+                <include name="${nlogviewer.dir}/NLog.dll" />
             </references>
         </csc>
     </target>
