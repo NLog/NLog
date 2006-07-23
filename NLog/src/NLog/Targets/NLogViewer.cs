@@ -76,7 +76,6 @@ namespace NLog.Targets
     public class NLogViewerTarget: NetworkTarget
     {
         private NLogViewerParameterInfoCollection _parameters = new NLogViewerParameterInfoCollection();
-        private Log4JXmlEventLayout _layout = new Log4JXmlEventLayout();
 
         private Log4JXmlEventLayoutRenderer Renderer
         {
@@ -88,8 +87,8 @@ namespace NLog.Targets
         /// </summary>
         public new Log4JXmlEventLayout Layout
         {
-            get { return _layout; }
-            set { _layout = value; }
+            get { return base.CompiledLayout as Log4JXmlEventLayout; }
+            set { CompiledLayout = value; }
         }
 
         /// <summary>
@@ -107,6 +106,7 @@ namespace NLog.Targets
         /// </summary>
         public NLogViewerTarget()
         {
+            CompiledLayout = new Log4JXmlEventLayout();
             Renderer.Parameters = _parameters;
             NewLine = false;
         }
