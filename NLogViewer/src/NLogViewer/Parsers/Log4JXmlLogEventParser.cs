@@ -78,6 +78,8 @@ namespace NLogViewer.Parsers
                 if (reader.NodeType == XmlNodeType.Element && reader.LocalName == "log4j:data")
                 {
                     string name = reader.GetAttribute("name");
+                    if (name == "")
+                        continue;
                     string value = reader.GetAttribute("value");
 
                     if (name == "log4japp")

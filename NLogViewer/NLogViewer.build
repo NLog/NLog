@@ -50,6 +50,7 @@
             </sources>
             <references>
                 <include name="System.Windows.Forms.dll" />
+                <include name="System.Drawing.dll" />
                 <include name="${nlogviewer.dir}/NLogViewer.Interfaces.dll" />
                 <include name="${nlogviewer.dir}/NLog.dll" />
                 <include name="${nlogviewer.dir}/PowerCollections.dll" />
@@ -72,6 +73,9 @@
             <sources basedir="src/NLogViewer.Interfaces">
                 <include name="**/*.cs" />
             </sources>
+            <references>
+                <include name="System.Windows.Forms.dll" />
+            </references>
         </csc>
     </target>
 
@@ -138,16 +142,10 @@
         </style>
     </target>
     
-    <target name="configure-mono-1.0">
-        <property name="nlog.define" value="${nlog.define};MONO;MONO_1_0" />
+    <target name="configure-mono-2.0">
+        <property name="nlog.define" value="${nlog.define};MONO;MONO_2_0" />
     </target>
-    <target name="configure-net-1.0" />
-    <target name="configure-net-1.1" />
     <target name="configure-net-2.0" />
-
-    <target name="configure-netcf-1.0">
-        <property name="nlog.define" value="${nlog.define};NETCF;NETCF_1_0" />
-    </target>
 
     <target name="deploy-web" depends="website">
         <delete file="web.zip" if="${file::exists('web.zip')}" />
