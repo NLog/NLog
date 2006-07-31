@@ -1,0 +1,21 @@
+[OPTIONS]
+Auto Index=Yes
+Compatibility=1.1 or later
+Compiled file=NLog-Sandcastle-July-CTP.chm
+Contents file=Test.hhc
+Default topic=html\helpindex.html
+Display compile progress=No
+Index file=html\helpindex.html
+Language=0x409 English (United States)
+Title=NLog Documentation
+
+
+[FILES]
+art\*.gif
+html\*.htm
+html\*.html
+scripts\*.js
+styles\*.css
+
+[INFOTYPES]
+
