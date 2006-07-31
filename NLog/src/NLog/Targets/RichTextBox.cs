@@ -182,10 +182,10 @@ namespace NLog.Targets
             
             string logMessage = CompiledLayout.GetFormattedMessage(logEvent);
 
-            SendTheMessageToRichTextBox(logMessage, matchingRule);
+            FindRichTextBoxAndSendTheMessage(logMessage, matchingRule);
         }
 
-        private void SendTheMessageToRichTextBox(string logMessage, RichTextBoxRowColoringRule rule)
+        private void FindRichTextBoxAndSendTheMessage(string logMessage, RichTextBoxRowColoringRule rule)
         {
             Form form = null;
             bool createdForm = false;
@@ -212,6 +212,13 @@ namespace NLog.Targets
             else if (rtbx == null && !createdForm)
                 return;
 
+            rtbx.Invoke(new DelSendTheMessageToRichTextBox(SendTheMessageToRichTextBox), new object[] { rtbx, logMessage, rule });
+        }
+
+        private delegate void DelSendTheMessageToRichTextBox(RichTextBox rtbx, string logMessage, RichTextBoxRowColoringRule rule);
+
+        private void SendTheMessageToRichTextBox(RichTextBox rtbx, string logMessage, RichTextBoxRowColoringRule rule)
+        {
             int startIndex = rtbx.Text.Length;
             rtbx.SelectionStart = startIndex;
 #if DOTNET_2_0

@@ -107,11 +107,11 @@ namespace NLog.Targets
         protected internal override void Write(LogEventInfo logEvent)
         {
             string logMessage = CompiledLayout.GetFormattedMessage(logEvent);
-
-            SendTheMessageToControl(logMessage);
+            
+            FindControlAndSendTheMessage(logMessage);
         }
 
-        private void SendTheMessageToControl(string logMessage)
+        private void FindControlAndSendTheMessage(string logMessage)
         {
             Form form = null;
 
@@ -130,6 +130,13 @@ namespace NLog.Targets
             if (ctrl == null)
                 return;
 
+            ctrl.Invoke(new DelSendTheMessageToFormControl(SendTheMessageToFormControl), new object[] { ctrl, logMessage });
+        }
+
+        private delegate void DelSendTheMessageToFormControl(Control ctrl, string logMessage);
+
+        private void SendTheMessageToFormControl(Control ctrl, string logMessage)
+        {
             if (Append)
                 ctrl.Text += logMessage;
             else
