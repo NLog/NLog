@@ -18,6 +18,7 @@
     
     <property name="nlog.csc.args" value="/nowarn:1591" />
     <property name="ndoc.version" value="2.0" />
+    <property name="sandcastle.dir" value="c:\program files\sandcastle" />
 	<property name="ndoc.basedir" value="D:\Apps\NDoc" unless="${property::exists('ndoc.basedir')}" />
     <property name="ndoc.path" value="${ndoc.basedir}/${ndoc.version}" dynamic="true" />
     <property name="ndoc.console.exe" value="${ndoc.path}/NDocConsole.exe" dynamic="true" />
@@ -713,6 +714,49 @@
         <exec program="nant" commandline="-t:netcf-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
         <exec program="nant" commandline="-t:mono-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build schema binary_snapshot" />
         <exec program="nant" commandline="-t:mono-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build schema binary_snapshot" />
+    </target>
+
+    <target name="sandcastle-help" depends="xmldoc,helpwebsite">
+        <mkdir dir="build/doc/sandcastle" />
+        <copy file="build/doc/NLog.xml" tofile="build/doc/sandcastle/comments.xml" />
+        <copy file="${sandcastle.dir}/Presentation/Configuration/Sandcastle.config" tofile="build/doc/sandcastle/Sandcastle.config">
+            <filterchain>
+                <replacestring from="&quot;..\..\" to="&quot;${sandcastle.dir}\" />
+                <replacestring from="&quot;..\" to="&quot;${sandcastle.dir}\Examples\" />
+            </filterchain>
+        </copy>
+        <exec program="${sandcastle.dir}/ProductionTools/MRefBuilder.exe" commandline="../NLog.dll /out:reflection.xml" workingdir="build/doc/sandcastle" />
+        <exec program="${sandcastle.dir}/ProductionTools/XslTransform.exe" 
+            commandline="&quot;${sandcastle.dir}/ProductionTransforms/AddOverloads.xsl&quot; reflection.xml /out:reflection2.xml"
+            workingdir="build/doc/sandcastle" />
+        <exec program="${sandcastle.dir}/ProductionTools/XslTransform.exe" 
+            commandline="&quot;${sandcastle.dir}/ProductionTransforms/AddGuidFileNames.xsl&quot; reflection2.xml /out:reflection.xml"
+            workingdir="build/doc/sandcastle" />
+        <exec program="${sandcastle.dir}/ProductionTools/XslTransform.exe" 
+            commandline="&quot;${sandcastle.dir}/ProductionTransforms/ReflectionToManifest.xsl&quot; reflection.xml /out:manifest.xml"
+            workingdir="build/doc/sandcastle" />
+        <mkdir dir="build/doc/sandcastle/Output" />
+        <mkdir dir="build/doc/sandcastle/Output/html" />
+        <copy todir="build/doc/sandcastle/Output">
+            <fileset basedir="${sandcastle.dir}/Presentation">
+                <include name="art/*" />
+                <include name="scripts/*" />
+                <include name="styles/*" />
+            </fileset>
+        </copy>
+        <copy todir="build/doc/sandcastle/Output/html">
+            <fileset basedir="build/doc/helpweb">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+        <exec program="${sandcastle.dir}/ProductionTools/BuildAssembler.exe" 
+            commandline="manifest.xml /config:Sandcastle.config"
+            workingdir="build/doc/sandcastle" />
+        <exec program="${sandcastle.dir}/ProductionTools/XslTransform.exe" 
+            commandline="&quot;${sandcastle.dir}/ProductionTransforms/ReflectionToChmContents.xsl&quot; reflection.xml /arg:html=Output\html /out:Output\test.hhc"
+            workingdir="build/doc/sandcastle" />
+        <copy file="NLog.hhp" tofile="build/doc/sandcastle/Output/NLog.hhp" />
+        <exec program="C:\Program Files\HTML Help Workshop\hhc.exe" commandline="NLog.hhp" workingdir="build/doc/sandcastle/Output" />
     </target>
 
     <target name="help" depends="xmldoc, helpwebsite">

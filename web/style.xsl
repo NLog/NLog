@@ -14,7 +14,7 @@
     <xsl:variable name="subpage_id" select="concat(/*[position()=1]/@subid,$subpage_id_override)" />
     <xsl:variable name="common" select="document(concat($mode,'.menu'))" />
     
-    <xsl:output method="xml" indent="no" />
+    <xsl:output method="xml" indent="no" omit-xml-declaration="yes" />
 
     <xsl:template match="/">
         <html>
@@ -26,6 +26,7 @@
                 <link rel="shortcut icon" href="http://www.nlog-project.org/favicon.ico" type="image/x-icon" /> 
                 <meta name="generator" content="NAnt 0.85 style task" />
                 <meta name="keywords" content="NLog logging tracing debugging library easy simple C# .NET log4net log4j Logger C/C++ COM" />
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <title>NLog - <xsl:value-of select="$common/common/navigation/nav[@href=$page_id]/@label" /></title>
             </head>
             <body width="100%">
