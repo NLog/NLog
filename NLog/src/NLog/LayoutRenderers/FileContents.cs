@@ -33,29 +33,23 @@
 
 using System;
 using System.Text;
-using System.Globalization;
+using System.IO;
+using NLog.Internal;
 using System.ComponentModel;
 using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// A date and time in the specified format.
+    /// Contents of the specified file.
     /// </summary>
-    [LayoutRenderer("date",UsingLogEventInfo=true)]
-    public class DateLayoutRenderer: LayoutRenderer
+    [LayoutRenderer("file-contents")]
+    public class FileContentsLayoutRenderer: LayoutRenderer
     {
-        private string _format = "G";
-
-        /// <summary>
-        /// The date format. Can be any argument accepted by DateTime.ToString(format)
-        /// </summary>
-        [DefaultParameter]
-        public string Format
-        {
-            get { return _format; }
-            set { _format = value; }
-        }
+        private Layout _fileName;
+        private System.Text.Encoding _encoding = System.Text.Encoding.Default;
+        private string _lastFileName = "";
+        private string _fileContents;
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -70,17 +64,57 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
-            return 32;
+            return 8;
+        }
+
+        [DefaultParameter]
+        public Layout FileName
+        {
+            get { return _fileName; }
+            set { _fileName = value; }
+        }
+
+        public string Encoding
+        {
+            get { return _encoding.WebName; }
+            set { _encoding = System.Text.Encoding.GetEncoding(value); }
         }
 
         /// <summary>
-        /// Renders the current date and appends it to the specified <see cref="StringBuilder" />.
+        /// Renders the current log level and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(ApplyPadding(logEvent.TimeStamp.ToString(Format, CultureInfo)));
+            lock (this)
+            {
+                string fileName = _fileName.GetFormattedMessage(logEvent);
+
+                if (fileName != _lastFileName)
+                {
+                    ReadFileContents(fileName);
+                    _lastFileName = fileName;
+                }
+            }
+            builder.Append(_fileContents);
+        }
+
+        private void ReadFileContents(string fileName)
+        {
+            _fileContents = "";
+
+            try
+            {
+                using (StreamReader sr = new StreamReader(fileName, _encoding))
+                {
+                    _fileContents = sr.ReadToEnd();
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn("Cannot read file {0}: {1}", FileName, ex);
+            }
         }
     }
 }

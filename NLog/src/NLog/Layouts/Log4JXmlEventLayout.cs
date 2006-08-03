@@ -32,8 +32,7 @@ namespace NLog.Layouts
             StringBuilder sb = new StringBuilder(_renderer.GetEstimatedBufferSize(logEvent));
 
             _renderer.Append(sb, logEvent);
-            if (logEvent != LogEventInfo.Empty)
-                logEvent.AddCachedLayoutValue(this, sb.ToString());
+            logEvent.AddCachedLayoutValue(this, sb.ToString());
             return sb.ToString();
         }
 
@@ -89,6 +88,11 @@ namespace NLog.Layouts
         /// </summary>
         public void Close()
         {
+        }
+
+        public void PopulateLayouts(LayoutCollection layouts)
+        {
+            layouts.Add(this);
         }
     }
 }

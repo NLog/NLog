@@ -32,31 +32,20 @@
 // 
 
 using System;
-using System.Xml;
-using System.Reflection;
 
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.Config
 {
-    [TestFixture]
-	public class EnvironmentTests : NLogTestBase
-	{
-        [Test]
-        public void EnvironmentTest()
+    /// <summary>
+    /// Attribute used to mark the default parameters for layout renderers.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Property)]
+    public sealed class DefaultParameterAttribute: Attribute
+    {
+        /// <summary>
+        /// Creates a new DefaultParameterAttribute object.
+        /// </summary>
+        public DefaultParameterAttribute()
         {
-            Layout l = new Layout("${environment:variable=PATH}");
-            AssertLayoutRendererOutput(l, System.Environment.GetEnvironmentVariable("PATH"));
-        }
-
-        [Test]
-        public void EnvironmentSimpleTest()
-        {
-            Layout l = new Layout("${environment:PATH}");
-            AssertLayoutRendererOutput(l, System.Environment.GetEnvironmentVariable("PATH"));
         }
     }
 }

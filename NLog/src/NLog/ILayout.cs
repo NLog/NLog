@@ -94,5 +94,10 @@ namespace NLog
         /// Closes the layout.
         /// </summary>
         void Close();
+
+        /// <summary>
+        /// Populates all sub-layouts used by this layout.
+        /// </summary>
+        void PopulateLayouts(LayoutCollection layouts);
     }
 }

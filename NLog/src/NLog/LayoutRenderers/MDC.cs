@@ -34,6 +34,7 @@
 using System;
 using System.Text;
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.LayoutRenderers
 {
@@ -49,6 +50,7 @@ namespace NLog.LayoutRenderers
         /// Name of the item.
         /// </summary>
         [RequiredParameter]
+        [DefaultParameter]
         public string Item
         {
             get { return _item; }

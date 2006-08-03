@@ -38,6 +38,7 @@ using System.IO;
 
 using NLog.Internal;
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.LayoutRenderers
 {
@@ -69,6 +70,7 @@ namespace NLog.LayoutRenderers
         /// properties: Message, Type, ShortType, ToString, Method, StackTrace.
         /// This parameter value is case-insensitive.
         /// </summary>
+        [DefaultParameter]
         public string Format
         {
             get { return _format; }

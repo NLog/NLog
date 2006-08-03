@@ -127,7 +127,7 @@ namespace NLog.Targets
     /// <code lang="XML" src="examples/targets/Configuration File/File/CSV/NLog.config" />
     /// </example>
     [Target("File")]
-    public class FileTarget: TargetWithLayout, ICreateFileParameters
+    public class FileTarget: TargetWithLayoutHeaderAndFooter, ICreateFileParameters
     {
         /// <summary>
         /// Specifies the way archive numbering is performed.
@@ -239,7 +239,7 @@ namespace NLog.Targets
         private BaseFileAppender[] _recentAppenders;
         private ArchiveNumberingMode _archiveNumbering = ArchiveNumberingMode.Sequence;
         private Timer _autoClosingTimer = null;
-        private int _openFileCacheTimeout = 1;
+        private int _openFileCacheTimeout = -1;
         private bool _first = true;
         private bool _deleteOldFileOnStartup = false;
         private bool _replaceFileContentsOnEachWrite = false;
@@ -312,9 +312,9 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Maximum number of seconds that files are kept open.
+        /// Maximum number of seconds that files are kept open. If this number is negative.
         /// </summary>
-        [System.ComponentModel.DefaultValue(1)]
+        [System.ComponentModel.DefaultValue(-1)]
         public int OpenFileCacheTimeout
         {
             get { return _openFileCacheTimeout; }
@@ -793,7 +793,7 @@ namespace NLog.Targets
         public override void PopulateLayouts(LayoutCollection layouts)
         {
             base.PopulateLayouts (layouts);
-            layouts.Add(_fileNameLayout);
+            _fileNameLayout.PopulateLayouts(layouts);
         }
 
         /// <summary>

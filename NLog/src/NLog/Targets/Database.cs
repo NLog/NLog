@@ -341,16 +341,16 @@ namespace NLog.Targets
         {
             base.PopulateLayouts (layouts);
 
-            if (DBHostLayout != null) layouts.Add(DBHostLayout);
-            if (DBUserNameLayout != null) layouts.Add(DBUserNameLayout);
-            if (DBDatabaseLayout != null) layouts.Add(DBDatabaseLayout);
-            if (DBPasswordLayout != null) layouts.Add(DBPasswordLayout);
-            if (CommandTextLayout != null) layouts.Add(CommandTextLayout);
+            if (DBHostLayout != null) DBHostLayout.PopulateLayouts(layouts);
+            if (DBUserNameLayout != null) DBUserNameLayout.PopulateLayouts(layouts);
+            if (DBDatabaseLayout != null) DBDatabaseLayout.PopulateLayouts(layouts);
+            if (DBPasswordLayout != null) DBPasswordLayout.PopulateLayouts(layouts);
+            if (CommandTextLayout != null) CommandTextLayout.PopulateLayouts(layouts);
 
             for (int i = 0; i < Parameters.Count; ++i)
             {
                 if (Parameters[i].CompiledLayout != null)
-                    layouts.Add(Parameters[i].CompiledLayout);
+                    Parameters[i].CompiledLayout.PopulateLayouts(layouts);
             }
         }
 

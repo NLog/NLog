@@ -40,6 +40,7 @@ using System.Xml;
 
 using NLog.Internal;
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.Internal
 {
@@ -88,6 +89,17 @@ namespace NLog.Internal
             }
         }
 
+        public static bool SetPropertyFromElement(object o, XmlElement el, NameValueCollection variables)
+        {
+            if (AddArrayItemFromElement(o, el, variables))
+                return true;
+
+            if (SetLayoutFromElement(o, el, variables))
+                return true;
+
+            return SetPropertyFromString(o, el.LocalName, el.InnerText, variables);
+        }
+
         public static bool SetPropertyFromString(object o, string name, string value0, NameValueCollection variables)
         {
             string value = ExpandVariables(value0, variables);
@@ -127,9 +139,11 @@ namespace NLog.Internal
             }
         }
 
-        public static void AddArrayItemFromElement(object o, XmlElement el, NameValueCollection variables)
+        public static bool AddArrayItemFromElement(object o, XmlElement el, NameValueCollection variables)
         {
             string name = el.Name;
+            if (!IsArrayProperty(o.GetType(), name))
+                return false;
             PropertyInfo propInfo = GetPropertyInfo(o, name);
             if (propInfo == null)
                 throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
@@ -137,39 +151,13 @@ namespace NLog.Internal
             IList propertyValue = (IList)propInfo.GetValue(o, null);
             Type elementType = GetArrayItemType(propInfo);
             object arrayItem = FactoryHelper.CreateInstance(elementType);
-
-            foreach (XmlAttribute attrib in el.Attributes)
-            {
-                string childName = attrib.LocalName;
-                string childValue = attrib.InnerText;
-
-                PropertyHelper.SetPropertyFromString(arrayItem, childName, childValue, variables);
-            }
-
-            foreach (XmlNode node in el.ChildNodes)
-            {
-                if (node is XmlElement)
-                {
-                    XmlElement el2 = (XmlElement)node;
-                    string childName = el2.Name;
-
-                    if (IsArrayProperty(elementType, childName))
-                    {
-                        PropertyHelper.AddArrayItemFromElement(arrayItem, el2, variables);
-                    }
-                    else
-                    {
-                        string childValue = el2.InnerXml;
-
-                        PropertyHelper.SetPropertyFromString(arrayItem, childName, childValue, variables);
-                    }
-                }
-            }
-
+            ConfigureObjectFromAttributes(arrayItem, el.Attributes, variables, true);
+            ConfigureObjectFromElement(arrayItem, el, variables);
             propertyValue.Add(arrayItem);
+            return true;
         }
 
-        private static PropertyInfo GetPropertyInfo(object o, string propertyName)
+        internal static PropertyInfo GetPropertyInfo(object o, string propertyName)
         {
             PropertyInfo propInfo = o.GetType().GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
             if (propInfo != null)
@@ -190,9 +178,12 @@ namespace NLog.Internal
 
         private static PropertyInfo GetPropertyInfo(Type targetType, string propertyName)
         {
-            PropertyInfo propInfo = targetType.GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-            if (propInfo != null)
-                return propInfo;
+            if (propertyName != "")
+            {
+                PropertyInfo propInfo = targetType.GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                if (propInfo != null)
+                    return propInfo;
+            }
 
             lock(_parameterInfoCache)
             {
@@ -221,6 +212,8 @@ namespace NLog.Internal
                 {
                     retVal[propInfo.Name.ToLower()] = propInfo;
                 }
+                if (propInfo.IsDefined(typeof(DefaultParameterAttribute), false))
+                    retVal[""] = propInfo;
             }
             return retVal;
         }
@@ -253,6 +246,147 @@ namespace NLog.Internal
             {
                 return true;
             }
+        }
+
+        public static bool IsLayoutProperty(Type t, string name)
+        {
+            PropertyInfo propInfo = GetPropertyInfo(t, name);
+            if (propInfo == null)
+                throw new NotSupportedException("Parameter " + name + " not supported on " + t.Name);
+
+            if (typeof(ILayout).IsAssignableFrom(propInfo.PropertyType))
+                return true;
+
+            if (0 == String.Compare(name, "layout", true) && typeof(TargetWithLayout).IsAssignableFrom(propInfo.DeclaringType))
+                return true;
+
+            return false;
+        }
+
+        public static bool EqualsCI(string p1, string p2)
+        {
+            return String.Compare(p1, p2, true) == 0;
+        }
+
+        public static string GetCaseInsensitiveAttribute(XmlElement element, string name, NameValueCollection variables)
+        {
+            // first try a case-sensitive match
+            string s = element.GetAttribute(name);
+            if (s != null && s != "")
+                return PropertyHelper.ExpandVariables(s, variables);
+
+            // then look through all attributes and do a case-insensitive compare
+            // this isn't very fast, but we don't need ultra speed here
+
+            foreach (XmlAttribute a in element.Attributes)
+            {
+                if (EqualsCI(a.LocalName, name))
+                    return PropertyHelper.ExpandVariables(a.Value, variables);
+            }
+
+            return null;
+        }
+
+        public static bool HasCaseInsensitiveAttribute(XmlElement element, string name)
+        {
+            // first try a case-sensitive match
+            if (element.HasAttribute(name))
+                return true;
+
+            // then look through all attributes and do a case-insensitive compare
+            // this isn't very fast, but we don't need ultra speed here because usually we have about
+            // 3 attributes per element
+
+            foreach (XmlAttribute a in element.Attributes)
+            {
+                if (EqualsCI(a.LocalName, name))
+                    return true;
+            }
+
+            return false;
+        }
+
+        public static bool SetLayoutFromElement(object o, XmlElement el, NameValueCollection variables)
+        {
+            string name = el.LocalName;
+            if (!IsLayoutProperty(o.GetType(), name))
+                return false;
+
+            PropertyInfo targetPropertyInfo = o.GetType().GetProperty(name, BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy | BindingFlags.IgnoreCase);
+
+            if (targetPropertyInfo != null && typeof(ILayout).IsAssignableFrom(targetPropertyInfo.PropertyType))
+            {
+                ILayout layout = LayoutFactory.CreateLayout(GetCaseInsensitiveAttribute(el, "type", variables));
+                ConfigureObjectFromAttributes(layout, el.Attributes, variables, true);
+                ConfigureObjectFromElement(layout, el, variables);
+                targetPropertyInfo.SetValue(o, layout, null);
+                return true;
+            }
+
+            if (name == "layout" && (o is TargetWithLayout))
+            {
+                if (HasCaseInsensitiveAttribute(el, "type"))
+                {
+                    ILayout layout = LayoutFactory.CreateLayout(GetCaseInsensitiveAttribute(el, "type", variables));
+                    ConfigureObjectFromAttributes(layout, el.Attributes, variables, true);
+                    ConfigureObjectFromElement(layout, el, variables);
+                    ((TargetWithLayout)o).CompiledLayout = layout;
+                }
+                else
+                {
+                    ((TargetWithLayout)o).Layout = el.InnerText;
+                }
+                return true;
+            }
+
+            return false;
+        }
+
+        public static void ConfigureObjectFromAttributes(object targetObject, XmlAttributeCollection attrs, NameValueCollection variables, bool ignoreType)
+        {
+            foreach (XmlAttribute attrib in attrs)
+            {
+                string childName = attrib.LocalName;
+                string childValue = attrib.InnerText;
+
+                if (ignoreType && 0 == String.Compare(childName, "type", true))
+                    continue;
+
+                PropertyHelper.SetPropertyFromString(targetObject, childName, childValue, variables);
+            }
+        }
+
+        public static void ConfigureObjectFromElement(object targetObject, XmlElement el, NameValueCollection variables)
+        {
+            foreach (XmlElement el2 in GetChildElements(el))
+            {
+                SetPropertyFromElement(targetObject, el2, variables);
+            }
+        }
+
+        internal static XmlNode[] GetChildElements(XmlElement element)
+        {
+            ArrayList list = new ArrayList();
+            foreach (XmlNode n in element.ChildNodes)
+            {
+                if (n is XmlElement)
+                    list.Add(n);
+            }
+            return (XmlElement[])list.ToArray(typeof(XmlElement));
+        }
+
+        internal static XmlNode[] GetChildElements(XmlElement element, string localName)
+        {
+            ArrayList list = new ArrayList();
+            foreach (XmlNode n in element.ChildNodes)
+            {
+                if (0 != String.Compare(localName, n.LocalName, true))
+                    continue;
+
+                if (n is XmlElement)
+                    list.Add(n);
+            }
+            return (XmlElement[])list.ToArray(typeof(XmlElement));
         }
     }
 }

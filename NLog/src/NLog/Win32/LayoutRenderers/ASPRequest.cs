@@ -40,6 +40,7 @@ using System.Reflection;
 
 using NLog.Config;
 using NLog.LayoutRenderers;
+using System.ComponentModel;
 
 namespace NLog.Win32.LayoutRenderers
 {
@@ -60,6 +61,7 @@ namespace NLog.Win32.LayoutRenderers
         /// <summary>
         /// The item name. The QueryString, Form, Cookies, or ServerVariables collection variables having the specified name are rendered.
         /// </summary>
+        [DefaultParameter]
         public string Item
         {
             get { return _item; }

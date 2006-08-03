@@ -32,31 +32,23 @@
 // 
 
 using System;
-using System.Xml;
-using System.Reflection;
+using System.Text;
+using System.Collections;
 
-using NLog;
-using NLog.Config;
+using NLog.Internal;
+using NLog.LayoutRenderers;
 
-using NUnit.Framework;
+using System.Threading;
 
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog
 {
-    [TestFixture]
-	public class EnvironmentTests : NLogTestBase
-	{
-        [Test]
-        public void EnvironmentTest()
-        {
-            Layout l = new Layout("${environment:variable=PATH}");
-            AssertLayoutRendererOutput(l, System.Environment.GetEnvironmentVariable("PATH"));
-        }
-
-        [Test]
-        public void EnvironmentSimpleTest()
-        {
-            Layout l = new Layout("${environment:PATH}");
-            AssertLayoutRendererOutput(l, System.Environment.GetEnvironmentVariable("PATH"));
-        }
+    /// <summary>
+    /// Layout with header and footer.
+    /// </summary>
+    public interface ILayoutWithHeaderAndFooter
+    {
+        ILayout Layout { get; set; }
+        ILayout Header { get; set; }
+        ILayout Footer { get; set; }
     }
 }

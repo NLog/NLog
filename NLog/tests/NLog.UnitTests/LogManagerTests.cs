@@ -142,6 +142,7 @@ namespace NLog.UnitTests
         }
 
         [Test]
+        [Category("LongRunning")]
         public void AutoReloadTest()
         {
             string fileName = Path.GetTempFileName();
@@ -259,7 +260,7 @@ namespace NLog.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(FileNotFoundException))]
+        [ExpectedException(typeof(NLogConfigurationException))]
         public void IncludeNotExistingTest()
         {
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -285,7 +286,7 @@ namespace NLog.UnitTests
         }
 
         [Test]
-        [ExpectedException(typeof(FileNotFoundException))]
+        [ExpectedException(typeof(NLogConfigurationException))]
         public void IncludeNotExistingIgnoredTest()
         {
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());

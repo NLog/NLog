@@ -73,10 +73,10 @@ namespace NLog.Tester
 
         static void Main(string[]args)
         {
-            InternalLogger.LogToConsole = true;
-            InternalLogger.LogLevel = LogLevel.Debug;
+            //InternalLogger.LogToConsole = true;
+            //InternalLogger.LogLevel = LogLevel.Debug;
 
-            for (int i = 0; i < 10000; ++i)
+            for (int i = 0; i < 1; ++i)
             {
                 logger.Trace("ttt");
                 logger.Debug("ala ma kota {0}", i);

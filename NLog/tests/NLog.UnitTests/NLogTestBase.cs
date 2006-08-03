@@ -127,5 +127,11 @@ namespace NLog.UnitTests
             proc.Start();
             return proc;
         }
+
+        protected void AssertLayoutRendererOutput(Layout l, string expected)
+        {
+            string actual = l.GetFormattedMessage(new LogEventInfo(LogLevel.Info, "loggername", "message"));
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

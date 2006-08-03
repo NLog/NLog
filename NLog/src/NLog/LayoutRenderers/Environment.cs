@@ -55,6 +55,7 @@ namespace NLog.LayoutRenderers
         /// Name of the environment variable.
         /// </summary>
         [RequiredParameter]
+        [DefaultParameter]
         public string Variable
         {
             get { return _variable; }

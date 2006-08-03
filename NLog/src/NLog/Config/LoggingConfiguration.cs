@@ -155,7 +155,7 @@ namespace NLog.Config
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error("Error while closing target: {0} {1}", target.Name, ex); 
+                    InternalLogger.Error("Error while initializing target: {0} {1}", target.Name, ex); 
                 }
             }
         }

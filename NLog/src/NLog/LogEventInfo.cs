@@ -67,16 +67,15 @@ namespace NLog
         private int _sequenceID;
 
         /// <summary>
-        /// An empty event - for rendering layouts where logging
-        /// event is not otherwise available.
-        /// </summary>
-        public static readonly LogEventInfo Empty = new LogEventInfo(LogLevel.Off, String.Empty, String.Empty);
-
-        /// <summary>
         /// Creates a new instance of <see cref="LogEventInfo"/>.
         /// </summary>
         public LogEventInfo()
         {
+        }
+
+        public static LogEventInfo CreateNullEvent()
+        {
+            return new LogEventInfo(LogLevel.Off, "", "");
         }
 
         /// <summary>

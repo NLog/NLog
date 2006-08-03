@@ -82,7 +82,7 @@ namespace NLog.Targets
     /// </example>
     [Target("Mail",IgnoresLayout=true)]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
-    public class MailTarget: Target
+    public class MailTarget: TargetWithLayoutHeaderAndFooter
     {
         /// <summary>
         /// SMTP authentication modes.
@@ -110,9 +110,6 @@ namespace NLog.Targets
         private Layout _cc;
         private Layout _bcc;
         private Layout _subject = new Layout("Message from NLog on ${machinename}");
-        private Layout _header;
-        private Layout _footer;
-        private Layout _body = new Layout("${message}");
         private Encoding _encoding = System.Text.Encoding.UTF8;
         private string _smtpServer;
         private string _smtpUsername;
@@ -120,12 +117,14 @@ namespace NLog.Targets
         private SmtpAuthenticationMode _smtpAuthentication = SmtpAuthenticationMode.None;
         private int _smtpPort = 25;
         private bool _isHtml = false;
+        private bool _newLines = false;
 
         /// <summary>
         /// Creates a new instance of <see cref="MailTarget"/>.
         /// </summary>
         public MailTarget()
         {
+            Body = "${message}${newline}";
         }
 
         /// <summary>
@@ -164,6 +163,12 @@ namespace NLog.Targets
             set { _bcc = new Layout(value); }
         }
 
+        public bool AddNewLines
+        {
+            get { return _newLines; }
+            set { _newLines = value; }
+        }
+
         /// <summary>
         /// Mail subject.
         /// </summary>
@@ -175,31 +180,13 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Header of the mail message body.
-        /// </summary>
-        public string Header
-        {
-            get { return _header.Text; }
-            set { _header = new Layout(value); }
-        }
-
-        /// <summary>
-        /// Footer of the mail message body.
-        /// </summary>
-        public string Footer
-        {
-            get { return _footer.Text; }
-            set { _footer = new Layout(value); }
-        }
-
-        /// <summary>
         /// Mail message body (repeated for each log message send in one mail)
         /// </summary>
         [System.ComponentModel.DefaultValue("${message}")]
         public string Body
         {
-            get { return _body.Text; }
-            set { _body = new Layout(value); }
+            get { return base.Layout; }
+            set { base.Layout = value; }
         }
 
         /// <summary>
@@ -301,14 +288,11 @@ namespace NLog.Targets
         public override void PopulateLayouts(LayoutCollection layouts)
         {
             base.PopulateLayouts (layouts);
-            if (_from != null) layouts.Add(_from);
-            if (_to != null) layouts.Add(_to);
-            if (_cc != null) layouts.Add(_cc);
-            if (_bcc != null) layouts.Add(_bcc);
-            if (_subject != null) layouts.Add(_subject);
-            if (_header != null) layouts.Add(_header);
-            if (_footer != null) layouts.Add(_footer);
-            if (_body != null) layouts.Add(_body);
+            if (_from != null) _from.PopulateLayouts(layouts);
+            if (_to != null) _to.PopulateLayouts(layouts);
+            if (_cc != null) _cc.PopulateLayouts(layouts);
+            if (_bcc != null) _bcc.PopulateLayouts(layouts);
+            if (_subject != null) _subject.PopulateLayouts(layouts);
         }
 
         /// <summary>
@@ -339,17 +323,24 @@ namespace NLog.Targets
 
             // unbuffered case, create a local buffer, append header, body and footer
             StringBuilder bodyBuffer = new StringBuilder();
-            if (_header != null)
-                bodyBuffer.Append(_header.GetFormattedMessage(lastEvent));
-            if (_body != null)
+            if (CompiledHeader != null)
             {
-                for (int i = 0; i < events.Length; ++i)
-                {
-                    bodyBuffer.Append(_body.GetFormattedMessage(events[i]));
-                }
+                bodyBuffer.Append(CompiledHeader.GetFormattedMessage(lastEvent));
+                if (AddNewLines)
+                    bodyBuffer.Append("\n");
             }
-            if (_footer != null)
-                bodyBuffer.Append(_footer.GetFormattedMessage(lastEvent));
+            for (int i = 0; i < events.Length; ++i)
+            {
+                bodyBuffer.Append(CompiledLayout.GetFormattedMessage(events[i]));
+                if (AddNewLines)
+                    bodyBuffer.Append("\n");
+            }
+            if (CompiledFooter != null)
+            {
+                bodyBuffer.Append(CompiledFooter.GetFormattedMessage(lastEvent));
+                if (AddNewLines)
+                    bodyBuffer.Append("\n");
+            }
 
             bodyText = bodyBuffer.ToString();
 

@@ -3,7 +3,8 @@
     <DefaultName>NLog.config</DefaultName>
     <Name>Console NLog Configuration File</Name>
     <Description>Console NLog configuration file</Description>
-    <ProjectType>$templatelanguage$</ProjectType>
+    <ProjectType>$projecttype$</ProjectType>
+    <ProjectSubType>$projectsubtype$</ProjectSubType>
     <SortOrder>10</SortOrder>
     <Icon>__TemplateIcon.ico</Icon>
   </TemplateData>

@@ -40,6 +40,8 @@ using NLog.LayoutRenderers;
 
 using System.Threading;
 using NLog.Config;
+using System.IO;
+using System.Reflection;
 
 namespace NLog
 {
@@ -66,6 +68,11 @@ namespace NLog
             Text = txt;
         }
 
+        internal Layout(LayoutRenderer[] renderers, string text)
+        {
+            SetRenderers(renderers, text);
+        }
+
         private string _layoutText;
         private LayoutRenderer[] _renderers;
         private int _needsStackTrace = 0;
@@ -79,14 +86,16 @@ namespace NLog
         public string Text
         {
             get { return _layoutText; }
-            set
-            {
-                _layoutText = value;
-                _renderers = CompileLayout(_layoutText, out _needsStackTrace, out _isVolatile);
-                if (_renderers.Length == 1 && _renderers[0] is LiteralLayoutRenderer)
-                    _fixedText = ((LiteralLayoutRenderer)(_renderers[0])).Text;
-                else
-                    _fixedText = null;
+            set { 
+                LayoutRenderer[] renderers;
+                string txt;
+                
+                renderers = LayoutParser.CompileLayout(
+                    new LayoutParser.Tokenizer(value), 
+                    false,
+                    out txt);
+
+                SetRenderers(renderers, txt);
             }
         }
 
@@ -151,91 +160,8 @@ namespace NLog
             }
 
             string value = builder.ToString();
-            if (logEvent != LogEventInfo.Empty)
-                logEvent.AddCachedLayoutValue(this, value);
+            logEvent.AddCachedLayoutValue(this, value);
             return value;
-        }
-
-        private static LayoutRenderer[] CompileLayout(string s, out int needsStackTrace, out bool isVolatile)
-        {
-            ArrayList result = new ArrayList();
-            needsStackTrace = 0;
-            isVolatile = false;
-
-            int startingPos = 0;
-            int pos = s.IndexOf("${", startingPos);
-
-            while (pos >= 0)
-            {
-                if (pos != startingPos)
-                {
-                    result.Add(new LiteralLayoutRenderer(s.Substring(startingPos, pos - startingPos)));
-                }
-                int pos2 = s.IndexOf("}", pos + 2);
-                if (pos2 >= 0)
-                {
-                    startingPos = pos2 + 1;
-                    string item = s.Substring(pos + 2, pos2 - pos - 2);
-                    int paramPos = item.IndexOf(':');
-                    string LayoutRenderer = item;
-                    string LayoutRendererParams = null;
-                    if (paramPos >= 0)
-                    {
-                        LayoutRendererParams = LayoutRenderer.Substring(paramPos + 1);
-                        LayoutRenderer = LayoutRenderer.Substring(0, paramPos);
-                    }
-
-                    LayoutRenderer newLayoutRenderer = LayoutRendererFactory.CreateLayoutRenderer(LayoutRenderer, LayoutRendererParams);
-                    int nst = newLayoutRenderer.NeedsStackTrace();
-                    if (nst > needsStackTrace)
-                        needsStackTrace = nst;
-                    if (newLayoutRenderer.IsVolatile())
-                        isVolatile = true;
-
-                    if (newLayoutRenderer.IsAppDomainFixed())
-                        newLayoutRenderer = ConvertToLiteral(newLayoutRenderer);
-
-                    result.Add(newLayoutRenderer);
-                    pos = s.IndexOf("${", startingPos);
-                }
-                else
-                {
-                    break;
-                }
-            }
-            if (startingPos != s.Length)
-            {
-                result.Add(new LiteralLayoutRenderer(s.Substring(startingPos, s.Length - startingPos)));
-            }
-
-            MergeLiterals(result);
-
-            return (LayoutRenderer[])result.ToArray(typeof(LayoutRenderer));
-        }
-
-        private static void MergeLiterals(ArrayList list)
-        {
-            for (int i = 0; i + 1 < list.Count;)
-            {
-                LiteralLayoutRenderer lr1 = list[i] as LiteralLayoutRenderer;
-                LiteralLayoutRenderer lr2 = list[i + 1] as LiteralLayoutRenderer;
-                if (lr1 != null && lr2 != null)
-                {
-                    lr1.Text += lr2.Text;
-                    list.RemoveAt(i + 1);
-                }
-                else
-                {
-                    i++;
-                }
-            }
-        }
-
-        private static LayoutRenderer ConvertToLiteral(LayoutRenderer renderer)
-        {
-            StringBuilder sb = new StringBuilder();
-            renderer.Append(sb, LogEventInfo.Empty);
-            return new LiteralLayoutRenderer(sb.ToString());
         }
 
         /// <summary>
@@ -269,6 +195,29 @@ namespace NLog
         public LayoutRenderer[] Renderers
         {
             get { return _renderers; }
+        }
+
+        internal void SetRenderers(LayoutRenderer[] renderers, string text)
+        {
+            _renderers = renderers;
+            if (_renderers.Length == 1 && _renderers[0] is LiteralLayoutRenderer)
+                _fixedText = ((LiteralLayoutRenderer)(_renderers[0])).Text;
+            else
+                _fixedText = null;
+
+            _layoutText = text;
+
+            _isVolatile = false;
+            _needsStackTrace = 0;
+
+            foreach (LayoutRenderer lr in renderers)
+            {
+                int nst = lr.NeedsStackTrace();
+                if (nst > _needsStackTrace)
+                    _needsStackTrace = nst;
+                if (lr.IsVolatile())
+                    _isVolatile = true;
+            }
         }
 
         /// <summary>
@@ -319,14 +268,14 @@ namespace NLog
 
         /// <summary>
         /// Evaluates the specified text by expadinging all layout renderers
-        /// in <see cref="LogEventInfo.Empty" /> context.
+        /// in new <see cref="LogEventInfo" /> context.
         /// </summary>
         /// <param name="text">The text to be evaluated.</param>
         /// <returns>The input text with all occurences of ${} replaced with
         /// values provided by the appropriate layout renderers.</returns>
         public static string Evaluate(string text)
         {
-            return Evaluate(text, LogEventInfo.Empty);
+            return Evaluate(text, LogEventInfo.CreateNullEvent());
         }
 
         /// <summary>
@@ -345,6 +294,16 @@ namespace NLog
         /// </summary>
         public void Close()
         {
+        }
+
+        public void PopulateLayouts(LayoutCollection layouts)
+        {
+            layouts.Add(this);
+        }
+
+        public override string ToString()
+        {
+            return Text;
         }
     }
 }

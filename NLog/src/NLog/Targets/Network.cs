@@ -153,7 +153,7 @@ namespace NLog.Targets
         /// <summary>
         /// Sends the provided text to the specified address.
         /// </summary>
-        /// <param name="address">The address. Can be tcp://host:port, udp://host:port, http://host:port or https://host:port</param>
+        /// <param name="address">The address. Can be tcp://host:port, udp://host:port, http://host:port</param>
         /// <param name="bytes">The bytes to be sent.</param>
         protected virtual void NetworkSend(string address, byte[] bytes)
         {
@@ -235,7 +235,7 @@ namespace NLog.Targets
         public override void PopulateLayouts(LayoutCollection layouts)
         {
             base.PopulateLayouts(layouts);
-            layouts.Add(AddressLayout);
+            AddressLayout.PopulateLayouts(layouts);
         }
 
         /// <summary>

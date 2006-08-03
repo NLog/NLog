@@ -149,15 +149,21 @@ namespace MakeNLogXSD
 
             xtw.WriteStartElement("xs:complexType");
             xtw.WriteAttributeString("name", SimpleTypeName(t));
+            if (t.IsAbstract)
+                xtw.WriteAttributeString("abstract", "true");
 
             if (t.BaseType != typeof(object) || t.GetInterface("NLog.ILayout") != null)
             {
                 xtw.WriteStartElement("xs:complexContent");
                 xtw.WriteStartElement("xs:extension");
                 if (t.BaseType != typeof(object))
+                {
                     xtw.WriteAttributeString("base", SimpleTypeName(t.BaseType));
+                }
                 else
+                {
                     xtw.WriteAttributeString("base", "ILayout");
+                }
             }
 
             xtw.WriteStartElement("xs:choice");
@@ -179,6 +185,18 @@ namespace MakeNLogXSD
                     xtw.WriteAttributeString("maxOccurs", "unbounded");
                     xtw.WriteEndElement();
                     typesToDump.Add(apa.ItemType);
+                }
+                else if (pi.PropertyType.IsValueType || pi.PropertyType.IsEnum || pi.PropertyType == typeof(string) || typeof(ILayout).IsAssignableFrom(pi.PropertyType))
+                {
+                    if (pi.CanWrite && pi.CanRead && ((pi.GetSetMethod().Attributes & MethodAttributes.ReuseSlot) == 0) && (pi.Name != "Layout" || !typeof(TargetWithLayout).IsAssignableFrom(pi.DeclaringType)))
+                    {
+                        xtw.WriteStartElement("xs:element");
+                        xtw.WriteAttributeString("name", MakeCamelCase(pi.Name));
+                        xtw.WriteAttributeString("type", SimpleTypeName(pi.PropertyType));
+                        xtw.WriteAttributeString("minOccurs", "0");
+                        xtw.WriteAttributeString("maxOccurs", "1");
+                        xtw.WriteEndElement();
+                    }
                 }
             }
 
@@ -339,7 +357,9 @@ namespace MakeNLogXSD
                 _typeDumped[typeof(object)] = 1;
                 _typeDumped[typeof(Target)] = 1;
                 _typeDumped[typeof(TargetWithLayout)] = 1;
+                _typeDumped[typeof(TargetWithLayoutHeaderAndFooter)] = 1;
                 _typeDumped[typeof(ILayout)] = 1;
+                _typeDumped[typeof(ILayoutWithHeaderAndFooter)] = 1;
 
                 foreach (Type targetType in NLog.TargetFactory.TargetTypes)
                 {
