@@ -908,8 +908,9 @@
     <target name="vs2005templates">
         <mkdir dir="build/templates" />
         <foreach item="String" in="Empty,Typical,Console" delim="," property="projecttype">
-            <foreach item="String" in="CSharp,VisualBasic" delim="," property="language">
+            <foreach item="String" in="CSharp,VisualBasic,JSharp" delim="," property="language">
                 <foreach item="Line" in="Nlog.version" delim=";" property="nlog.version">
+                    <!-- standard version -->
                     <delete dir="tmp_dir" failonerror="false" />
                     <copy todir="tmp_dir">
                         <fileset basedir="tools/VS2005Templates/ItemTemplates/${projecttype}NLogConfig">
@@ -917,10 +918,29 @@
                         </fileset>
                         <filterchain>
                             <replacestring from="$nlogversion$" to="${nlog.version}" />
-                            <replacestring from="$templatelanguage$" to="${language}" />
+                            <replacestring from="$projecttype$" to="${language}" />
+                            <replacestring from="$projectsubtype$" to="" />
                         </filterchain>
                     </copy>
                     <zip zipfile="build/templates/${language}${projecttype}NLogConfig.zip">
+                        <fileset basedir="tmp_dir">
+                            <include name="**/*" />
+                        </fileset>
+                    </zip>
+
+                    <!-- web standard version -->
+                    <delete dir="tmp_dir" failonerror="false" />
+                    <copy todir="tmp_dir">
+                        <fileset basedir="tools/VS2005Templates/ItemTemplates/${projecttype}NLogConfig">
+                            <include name="**/*" />
+                        </fileset>
+                        <filterchain>
+                            <replacestring from="$nlogversion$" to="${nlog.version}" />
+                            <replacestring from="$projecttype$" to="Web" />
+                            <replacestring from="$projectsubtype$" to="${language}" />
+                        </filterchain>
+                    </copy>
+                    <zip zipfile="build/templates/Web${language}${projecttype}NLogConfig.zip">
                         <fileset basedir="tmp_dir">
                             <include name="**/*" />
                         </fileset>

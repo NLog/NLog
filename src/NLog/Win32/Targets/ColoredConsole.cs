@@ -93,7 +93,7 @@ namespace NLog.Win32.Targets
     [SupportedRuntime(OS=RuntimeOS.Windows)]
     [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
-    public sealed class ColoredConsoleTarget: TargetWithLayout
+    public sealed class ColoredConsoleTarget: TargetWithLayoutHeaderAndFooter
     {
         private bool _errorStream = false;
         private bool _useDefaultRowHighlightingRules = true;
@@ -197,6 +197,11 @@ namespace NLog.Win32.Targets
         /// <param name="logEvent">Log event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
+            Output(logEvent, CompiledLayout.GetFormattedMessage(logEvent));
+        }
+
+        private void Output(LogEventInfo logEvent, string message)
+        {
             IntPtr hConsole = ConsoleWin32Api.GetStdHandle(ErrorStream ? ConsoleWin32Api.STD_ERROR_HANDLE : ConsoleWin32Api.STD_OUTPUT_HANDLE);
 
             ConsoleWin32Api.CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -229,7 +234,6 @@ namespace NLog.Win32.Targets
                 matchingRule = ConsoleRowHighlightingRule.Default;
 
             ushort newColor = ColorFromForegroundAndBackground(csbi.wAttributes, matchingRule.ForegroundColor, matchingRule.BackgroundColor);
-            string message = CompiledLayout.GetFormattedMessage(logEvent);
 
             message = message.Replace("\a","\a\a");
 
@@ -356,6 +360,26 @@ namespace NLog.Win32.Targets
             }
 
             return newColor;
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            if (CompiledHeader != null)
+            {
+                LogEventInfo lei = LogEventInfo.CreateNullEvent();
+                Output(lei, CompiledHeader.GetFormattedMessage(lei));
+            }
+        }
+
+        protected internal override void Close()
+        {
+            if (CompiledFooter != null)
+            {
+                LogEventInfo lei = LogEventInfo.CreateNullEvent();
+                Output(lei, CompiledFooter.GetFormattedMessage(lei));
+            }
+            base.Close();
         }
     }
 }

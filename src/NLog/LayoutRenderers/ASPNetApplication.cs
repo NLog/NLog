@@ -38,6 +38,7 @@ using System.Text;
 using System.Web;
 
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.LayoutRenderers
 {
@@ -77,6 +78,7 @@ namespace NLog.LayoutRenderers
         /// The variable name.
         /// </summary>
         [RequiredParameter]
+        [DefaultParameter]
         public string Variable
         {
             get { return _variable; }

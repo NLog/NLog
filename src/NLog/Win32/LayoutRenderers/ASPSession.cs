@@ -39,6 +39,7 @@ using System.Runtime.InteropServices;
 
 using NLog.LayoutRenderers;
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.Win32.LayoutRenderers
 {
@@ -56,6 +57,7 @@ namespace NLog.Win32.LayoutRenderers
         /// Session variable name.
         /// </summary>
         [RequiredParameter]
+        [DefaultParameter]
         public string Variable
         {
             get { return _sessionVariable; }

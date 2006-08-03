@@ -147,6 +147,7 @@ namespace NLog.LayoutRenderers
         /// The property to retrieve.
         /// </summary>
         [DefaultValue("Id")]
+        [DefaultParameter]
         public ProcessInfoProperty Property
         {
             get { return _property; }

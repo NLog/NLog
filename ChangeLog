@@ -1,3 +1,58 @@
+2006-08-03 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* MANY CHANGES TO CLEAN UP APIs AND ENSURE EXTENSIBILITY - MAY TAKE SOME TIME TO STABILIZE AGAIN
+
+	* Added ${file-contents} layout renderer which inserts file contents.
+	* Added [DefaultParameter] attribute which allows for nameless parameters
+	to layout renderers:
+
+	${aspnet-application}
+	${aspnet-request}
+	${aspnet-session}
+	${date}
+	${environment}
+	${file-contents}
+	${gdc}
+	${mdc}
+	${process-info}
+	${special-folder}
+	${asp-application}
+	${asp-request}
+	${asp-session}
+
+	* Added ILayoutWithHeaderAndFooter.cs for layouts that support
+	header/footer (such as CSV Layout, more to come)
+	* The following targets have been enhanced to support headers/footers:
+
+	Console
+	ColoredConsole
+	Debugger
+
+	* Added NLogConfigurationException which is thrown instead of CLR
+	exceptions when the configuration fails 
+	* Simplified XmlLoggingConfiguration by splitting large methods and moving
+	common functionality to PropertyHelper
+	* Added Layouts/LayoutWithHeaderAndFooter.cs and
+	TargetWithLayoutHeaderAndFooter.cs
+	* Added MailTarget.AddNewLines to insert new lines between
+	header/lines/footer
+	* Added PopulateLayouts() method to ILayout
+	* BREAKING CHANGE: Changed the default value of
+	FileTarget.OpenFileCacheTimeout to -1
+	* Added support for nested layout renderers. Used in ${file-contents}
+
+	${file-contents:fileName=${basedir}/aaa.txt}
+
+	This required a large rewrite of the parsing engine. Hopefully the test cases
+	cover all possible situations.
+	* Removed LogEventInfo.Empty and replaced with
+	LogEventInfo.CreateNullEvent()
+	* Added CsvLayout.WithHeader which can be used to disable CSV header.
+	* Added VJSharp and Web item templates. Updated the installer to support
+	VWD Express 2005.
+	* Enhanced XSD Schema generation by properly generating abstract and
+	layout properties.
+	* Some more unit tests.
+
 2006-07-31 Maarten Claes <m.claes@farcourier.com>
 	* Changed RichTextBox Target to be thread safe. Uses delegate to log
 	to RichTextBox

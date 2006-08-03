@@ -36,22 +36,23 @@ using System.Text;
 using System.Collections;
 
 using NLog.Config;
+using NLog.Layouts;
 
 namespace NLog
 {
     /// <summary>
     /// Represents target that supports string formatting using layouts.
     /// </summary>
-    public abstract class TargetWithLayout : Target
+    public abstract class TargetWithLayoutHeaderAndFooter : TargetWithLayout
     {
-        private ILayout _compiledlayout;
-
         /// <summary>
         /// Creates a new instance of <see cref="TargetWithLayout" />
         /// </summary>
-        protected TargetWithLayout()
+        protected TargetWithLayoutHeaderAndFooter()
         {
-            Layout = "${longdate}|${level:uppercase=true}|${logger}|${message}";
+            LayoutWithHeaderAndFooter h = new LayoutWithHeaderAndFooter();
+            h.Layout = new Layout("${longdate}|${level:uppercase=true}|${logger}|${message}");
+            CompiledLayout = h;
         }
 
         /// <summary>
@@ -60,19 +61,72 @@ namespace NLog
         [RequiredParameter]
         [AcceptsLayout]
         [System.ComponentModel.DefaultValue("${longdate}|${level:uppercase=true}|${logger}|${message}")]
-        public virtual string Layout
+        public override string Layout
         {
-            get { return Convert.ToString(_compiledlayout); }
-            set { _compiledlayout = new Layout(value); }
+            get { return Convert.ToString(CompiledLayoutWithHeaderAndFooter.Layout); }
+            set
+            {
+                if (CompiledLayoutWithHeaderAndFooter != null)
+                    CompiledLayoutWithHeaderAndFooter.Layout = new Layout(value);
+            }
         }
 
         /// <summary>
-        /// The compiled layout, can be an instance of <see cref="Layout"/> or other layout type.
+        /// Header
         /// </summary>
-        public virtual ILayout CompiledLayout
+        [AcceptsLayout]
+        public string Header
         {
-            get { return _compiledlayout; }
-            set { _compiledlayout = value; }
+            get { return Convert.ToString(CompiledHeader); }
+            set { CompiledHeader = new Layout(value); }
+        }
+
+        /// <summary>
+        /// Footer
+        /// </summary>
+        [AcceptsLayout]
+        public string Footer
+        {
+            get { return Convert.ToString(CompiledFooter); }
+            set { CompiledFooter = new Layout(value); }
+        }
+
+
+        public ILayout CompiledHeader
+        {
+            get
+            {
+                ILayoutWithHeaderAndFooter h = CompiledLayoutWithHeaderAndFooter;
+                if (h != null)
+                    return h.Header;
+                return null;
+            }
+            set
+            {
+                ILayoutWithHeaderAndFooter h = CompiledLayoutWithHeaderAndFooter;
+                h.Header = value;
+            }
+        }
+
+        public ILayout CompiledFooter
+        {
+            get
+            {
+                ILayoutWithHeaderAndFooter h = CompiledLayoutWithHeaderAndFooter;
+                if (h != null)
+                    return h.Footer;
+                return null;
+            }
+            set
+            {
+                ILayoutWithHeaderAndFooter h = CompiledLayoutWithHeaderAndFooter;
+                h.Footer = value;
+            }
+        }
+
+        public ILayoutWithHeaderAndFooter CompiledLayoutWithHeaderAndFooter
+        {
+            get { return base.CompiledLayout as ILayoutWithHeaderAndFooter; }
         }
 
         /// <summary>
@@ -81,8 +135,7 @@ namespace NLog
         /// <param name="layouts">The collection to add layouts to.</param>
         public override void PopulateLayouts(LayoutCollection layouts)
         {
-            if (this.CompiledLayout != null)
-                this.CompiledLayout.PopulateLayouts(layouts);
+            this.CompiledLayout.PopulateLayouts(layouts);
         }
 
         /// <summary>

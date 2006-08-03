@@ -208,7 +208,13 @@
     <xs:complexType name="ILayout" abstract="true">
     </xs:complexType>
 
-    <xs:complexType name="TargetWithLayout">
+    <xs:complexType name="ILayoutWithHeaderAndFooter" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="ILayout" />
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TargetWithLayout" abstract="true">
         <xs:complexContent>
             <xs:extension base="Target">
                 <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -219,6 +225,32 @@
         </xs:complexContent>
     </xs:complexType>
 
+    <xs:complexType name="TargetWithLayoutHeaderAndFooter" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="TargetWithLayout">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="header" type="ILayout" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="footer" type="ILayout" minOccurs="0" maxOccurs="1" />
+                </xs:choice>
+                <xs:attribute name="layout" type="NLogLayout" default="${longdate}|${level:uppercase=true}|${logger}|${message}">
+                    <xs:annotation>
+                        <xs:documentation> The text to be rendered.  Default value is: ${longdate}|${level:uppercase=true}|${logger}|${message}</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="header" type="NLogLayout">
+                    <xs:annotation>
+                        <xs:documentation> Header </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="footer" type="NLogLayout">
+                    <xs:annotation>
+                        <xs:documentation> Footer </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
     <xs:simpleType name="NLogLayout">
         <xs:restriction base="xs:string">
             <xs:pattern value="((\$\{[a-zA-Z][a-zA-Z0-9\-]*(\:[a-zA-Z][a-zA-Z0-9\-]*\=([^\\\:]|\\.)*)*\})|([^\$])|(\$[^\{]))*" />

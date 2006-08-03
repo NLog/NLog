@@ -38,6 +38,7 @@ using System.Text;
 using System.Web;
 
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.LayoutRenderers
 {
@@ -76,6 +77,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Session variable name.
         /// </summary>
+        [DefaultParameter]
         public string Variable
         {
             get { return _variable; }

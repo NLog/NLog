@@ -1,4 +1,4 @@
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>8.0.50727</ProductVersion>
@@ -39,7 +39,7 @@
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <NoStdLib>false</NoStdLib>
-    <NoWarn>1699</NoWarn>
+    <NoWarn>1591,1699</NoWarn>
     <Optimize>false</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
@@ -176,6 +176,7 @@
     <Compile Include="Config\ConfigSectionHandler.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Config\DefaultParameterAttribute.cs" />
     <Compile Include="Config\LoggingConfiguration.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -185,6 +186,7 @@
     <Compile Include="Config\LoggingRuleCollection.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Config\NLogConfigurationException.cs" />
     <Compile Include="Config\NotSupportedRuntimeAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -209,6 +211,10 @@
     <Compile Include="Config\XmlLoggingConfiguration.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LayoutParser.cs" />
+    <Compile Include="LayoutRenderers\FileContents.cs" />
+    <Compile Include="TargetWithLayoutHeaderAndFooter.cs" />
+    <Compile Include="Layouts\LayoutWithHeaderAndFooter.cs" />
     <Compile Include="Internal\CurrentTimeGetter.cs" />
     <Compile Include="LayoutFactory.cs" />
     <Compile Include="LayoutAttribute.cs" />
@@ -696,7 +702,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LogFactory.cs" />
+    <Compile Include="ILayoutWithHeaderAndFooter.cs" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
   <ItemGroup />
   <ItemGroup />
   <ItemGroup />
@@ -710,7 +719,6 @@
     <Folder Include="Mono\" />
     <Folder Include="Unix\" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

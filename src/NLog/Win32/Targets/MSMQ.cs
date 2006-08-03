@@ -152,8 +152,8 @@ namespace NLog.Win32.Targets
         public override void PopulateLayouts(LayoutCollection layouts)
         {
             base.PopulateLayouts (layouts);
-            layouts.Add(_queue);
-            layouts.Add(_label);
+            _queue.PopulateLayouts(layouts);
+            _label.PopulateLayouts(layouts);
         }
 
         /// <summary>

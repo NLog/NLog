@@ -59,7 +59,7 @@ namespace NLog.Targets
     /// </example>
     [Target("Debugger")]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
-    public sealed class DebuggerTarget: TargetWithLayout
+    public sealed class DebuggerTarget: TargetWithLayoutHeaderAndFooter
     {
         static DebuggerTarget()
         {
@@ -74,6 +74,24 @@ namespace NLog.Targets
             {
                 Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, CompiledLayout.GetFormattedMessage(logEvent) + "\n");
             }
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            if (CompiledHeader != null)
+            {
+                Debugger.Log(LogLevel.Off.Ordinal, "", CompiledHeader.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + "\n");
+            }
+        }
+
+        protected internal override void Close()
+        {
+            if (CompiledFooter != null)
+            {
+                Debugger.Log(LogLevel.Off.Ordinal, "", CompiledFooter.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + "\n");
+            }
+            base.Close();
         }
     }
 }

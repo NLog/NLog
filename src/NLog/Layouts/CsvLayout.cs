@@ -9,7 +9,7 @@ namespace NLog.Layouts
     /// A specialized layout that renders CSV-formatted events.
     /// </summary>
     [Layout("CSVLayout")]
-    public class CsvLayout : ILayout
+    public class CsvLayout : ILayout, ILayoutWithHeaderAndFooter
     {
         /// <summary>
         /// Specifies allowed column delimiters.
@@ -61,6 +61,13 @@ namespace NLog.Layouts
         private string _doubleQuoteChar;
         private string _customColumnDelimiter;
         private string _actualColumnDelimiter;
+        private ILayout _thisHeader;
+        private bool _withHeader = true;
+
+        public CsvLayout()
+        {
+            _thisHeader = new CsvHeaderLayout(this);
+        }
 
         /// <summary>
         /// Array of parameters to be passed.
@@ -69,6 +76,12 @@ namespace NLog.Layouts
         public CsvColumnCollection Columns
         {
             get { return _columns; }
+        }
+
+        public bool WithHeader
+        {
+            get { return _withHeader; }
+            set { _withHeader = value; }
         }
 
         /// <summary>
@@ -167,8 +180,7 @@ namespace NLog.Layouts
                     sb.Append(QuoteChar);
             }
 
-            if (logEvent != LogEventInfo.Empty)
-                logEvent.AddCachedLayoutValue(this, sb.ToString());
+            logEvent.AddCachedLayoutValue(this, sb.ToString());
             return sb.ToString();
         }
 
@@ -211,7 +223,9 @@ namespace NLog.Layouts
             _doubleQuoteChar = _quoteChar + _quoteChar;
 
             foreach (CsvColumn c in Columns)
+            {
                 c.CompiledLayout.Initialize();
+            }
         }
 
         /// <summary>
@@ -272,6 +286,134 @@ namespace NLog.Layouts
         {
             foreach (CsvColumn c in Columns)
                 c.CompiledLayout.Close();
+        }
+
+        /// <summary>
+        /// Gets the header.
+        /// </summary>
+        /// <param name="logEvent">The log event to be formatted.</param>
+        /// <returns>A string representation of the log event.</returns>
+        public string GetHeader(LogEventInfo logEvent)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            bool first = true;
+
+            foreach (CsvColumn col in Columns)
+            {
+                if (!first)
+                {
+                    sb.Append(_actualColumnDelimiter);
+                }
+
+                first = false;
+
+                bool useQuoting;
+                string text = col.Name;
+
+                switch (Quoting)
+                {
+                    case CsvQuotingMode.Nothing:
+                        useQuoting = false;
+                        break;
+
+                    case CsvQuotingMode.All:
+                        useQuoting = true;
+                        break;
+
+                    default:
+                    case CsvQuotingMode.Auto:
+                        if (text.IndexOfAny(_quotableCharacters) >= 0)
+                            useQuoting = true;
+                        else
+                            useQuoting = false;
+                        break;
+                }
+
+                if (useQuoting)
+                    sb.Append(QuoteChar);
+
+                if (useQuoting)
+                    sb.Append(text.Replace(QuoteChar, _doubleQuoteChar));
+                else
+                    sb.Append(text);
+
+                if (useQuoting)
+                    sb.Append(QuoteChar);
+            }
+
+            return sb.ToString();
+        }
+
+        public ILayout Layout
+        {
+            get { return this; }
+            set { throw new Exception("Cannot modify the layout of CsvLayout"); }
+        }
+
+        public ILayout Header
+        {
+            get
+            {
+                if (WithHeader)
+                    return _thisHeader;
+                else
+                    return null;
+            }
+            set { throw new Exception("Cannot modify the header of CsvLayout"); }
+        }
+
+        public ILayout Footer
+        {
+            get { return null; }
+            set { throw new Exception("Cannot modify the footer of CsvLayout"); }
+        }
+
+        class CsvHeaderLayout : ILayout
+        {
+            private CsvLayout _parent;
+
+            public CsvHeaderLayout(CsvLayout parent)
+            {
+                _parent = parent;
+            }
+
+            public string GetFormattedMessage(LogEventInfo logEvent)
+            {
+                return _parent.GetHeader(logEvent);
+            }
+
+            public int NeedsStackTrace()
+            {
+                return 0;
+            }
+
+            public bool IsVolatile()
+            {
+                return false;
+            }
+
+            public void Precalculate(LogEventInfo logEvent)
+            {
+            }
+
+            public void Initialize()
+            {
+            }
+
+            public void Close()
+            {
+            }
+
+            public void PopulateLayouts(LayoutCollection layouts)
+            {
+                throw new Exception("The method or operation is not implemented.");
+            }
+        }
+
+        public void PopulateLayouts(LayoutCollection layouts)
+        {
+            layouts.Add(this);
         }
     }
 }

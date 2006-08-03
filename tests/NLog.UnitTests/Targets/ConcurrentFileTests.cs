@@ -50,7 +50,8 @@ using System.Collections;
 namespace NLog.UnitTests.Targets
 {
     [TestFixture]
-	public class ConcurrentFileTargetTests : NLogTestBase
+    [Category("LongRunning")]
+    public class ConcurrentFileTargetTests : NLogTestBase
 	{
         private Logger logger = LogManager.GetCurrentClassLogger();
 

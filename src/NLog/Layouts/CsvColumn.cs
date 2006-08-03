@@ -79,6 +79,7 @@ namespace NLog.Layouts
         /// <summary>
         /// The layout that should be written in the column.
         /// </summary>
+        [AcceptsLayout]
         [RequiredParameter]
         public string Layout
         {

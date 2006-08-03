@@ -55,7 +55,7 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/Console/Simple/Example.cs" />
     /// </example>
     [Target("Console")]
-    public sealed class ConsoleTarget: TargetWithLayout
+    public sealed class ConsoleTarget: TargetWithLayoutHeaderAndFooter
     {
 #if !NETCF
         private bool _error = false;
@@ -82,18 +82,41 @@ namespace NLog.Targets
         /// </remarks>
         protected internal override void Write(LogEventInfo logEvent)
         {
+            Output(CompiledLayout.GetFormattedMessage(logEvent));
+        }
+
+        private void Output(string s)
+        {
 #if !NETCF
             if (Error)
             {
-                Console.Error.WriteLine(CompiledLayout.GetFormattedMessage(logEvent));
+                Console.Error.WriteLine(s);
             }
             else
             {
-                Console.Out.WriteLine(CompiledLayout.GetFormattedMessage(logEvent));
+                Console.Out.WriteLine(s);
             }
 #else
-            Console.WriteLine(CompiledLayout.GetFormattedMessage(logEvent));
+            Console.WriteLine(s);
 #endif
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            if (CompiledHeader != null)
+            {
+                Output(CompiledHeader.GetFormattedMessage(LogEventInfo.CreateNullEvent()));
+            }
+        }
+
+        protected internal override void Close()
+        {
+            if (CompiledFooter != null)
+            {
+                Output(CompiledFooter.GetFormattedMessage(LogEventInfo.CreateNullEvent()));
+            }
+            base.Close();
         }
     }
 }

@@ -36,6 +36,7 @@ using System;
 using System.Text;
 using System.IO;
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.LayoutRenderers
 {
@@ -66,6 +67,7 @@ namespace NLog.LayoutRenderers
         /// <li><b>System</b> - System directory</li>
         /// </ul>
         /// </remarks>
+        [DefaultParameter]
         public System.Environment.SpecialFolder Folder
         {
             get { return _folder; }

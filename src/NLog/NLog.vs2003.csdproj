@@ -246,6 +246,13 @@
         <File RelPath="Internal\CurrentTimeGetter.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="LayoutRenderers\ProcessInfo.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="LayoutRenderers\GC.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="ILayoutWithHeaderAndFooter.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Config\NLogConfigurationException.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LayoutParser.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LayoutRenderers\FileContents.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Config\DefaultParameterAttribute.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Layouts\LayoutWithHeaderAndFooter.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="TargetWithLayoutHeaderAndFooter.cs" SubType="Code" BuildAction="Compile" />
       </Include>
     </Files>
   </ECSHARP>

@@ -32,31 +32,45 @@
 // 
 
 using System;
-using System.Xml;
-using System.Reflection;
+#if !NETCF
+using System.Runtime.Serialization;
+#endif
 
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.Config 
 {
-    [TestFixture]
-	public class EnvironmentTests : NLogTestBase
-	{
-        [Test]
-        public void EnvironmentTest()
-        {
-            Layout l = new Layout("${environment:variable=PATH}");
-            AssertLayoutRendererOutput(l, System.Environment.GetEnvironmentVariable("PATH"));
-        }
+    /// <summary>
+    /// Exception during configuration
+    /// </summary>
+#if !NETCF
+    [Serializable]
+#endif
+    public class NLogConfigurationException : ApplicationException 
+    {
+        /// <summary>
+        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
+        /// </summary>
+        public NLogConfigurationException() {}
 
-        [Test]
-        public void EnvironmentSimpleTest()
-        {
-            Layout l = new Layout("${environment:PATH}");
-            AssertLayoutRendererOutput(l, System.Environment.GetEnvironmentVariable("PATH"));
-        }
+        /// <summary>
+        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
+        /// </summary>
+        /// <param name="desc">Error message</param>
+        public NLogConfigurationException(string desc) : base(desc) {}
+
+        /// <summary>
+        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
+        /// </summary>
+        /// <param name="desc">Error message</param>
+        /// <param name="inner">Inner exception</param>
+        public NLogConfigurationException(string desc, Exception inner) : base(desc, inner) {}
+
+#if !NETCF
+        /// <summary>
+        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
+        /// </summary>
+        /// <param name="info">Serialization info</param>
+        /// <param name="context">Streaming context</param>
+        protected NLogConfigurationException(SerializationInfo info, StreamingContext context) : base(info, context) {}
+#endif
     }
 }

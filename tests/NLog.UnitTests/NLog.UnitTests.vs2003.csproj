@@ -47,6 +47,8 @@
         <File RelPath="LayoutRenderers\GDCTests.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Targets\ConcurrentFileTests.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="LogManagerTests.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LayoutConfigurationTests.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="TargetConfigurationTests.cs" SubType="Code" BuildAction="Compile" />
       </Include>
     </Files>
   </CSHARP>

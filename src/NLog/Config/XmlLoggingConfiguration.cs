@@ -101,7 +101,7 @@ namespace NLog.Config
             {
                 InternalLogger.Error("Error {0}...", ex);
                 if (!ignoreErrors)
-                    throw;
+                    throw new NLogConfigurationException("Exception occured when loading configuration from '" + fileName + "'", ex);
             }
         }
 
@@ -144,7 +144,7 @@ namespace NLog.Config
             {
                 InternalLogger.Error("Error {0}...", ex);
                 if (!ignoreErrors)
-                    throw;
+                    throw new NLogConfigurationException("Exception occured when loading configuration from XML Element in " + fileName, ex);
             }
         }
 
@@ -183,7 +183,7 @@ namespace NLog.Config
 
             XmlDocument doc = new XmlDocument();
             doc.Load(fileName);
-            if (0 == String.Compare(doc.DocumentElement.LocalName, "configuration", true))
+            if (EqualsCI(doc.DocumentElement.LocalName,"configuration"))
             {
                 foreach (XmlElement el in doc.DocumentElement.GetElementsByTagName("nlog"))
                 {
@@ -196,42 +196,19 @@ namespace NLog.Config
             }
         }
 
+        private static bool EqualsCI(string p1, string p2)
+        {
+            return PropertyHelper.EqualsCI(p1, p2);
+        }
+
         private string GetCaseInsensitiveAttribute(XmlElement element, string name)
         {
-            // first try a case-sensitive match
-            string s = element.GetAttribute(name);
-            if (s != null && s != "")
-                return PropertyHelper.ExpandVariables(s, _variables);
-
-            // then look through all attributes and do a case-insensitive compare
-            // this isn't very fast, but we don't need ultra speed here
-
-            foreach (XmlAttribute a in element.Attributes)
-            {
-                if (0 == String.Compare(a.LocalName, name, true))
-                    return PropertyHelper.ExpandVariables(a.Value, _variables);
-            }
-
-            return null;
+            return PropertyHelper.GetCaseInsensitiveAttribute(element, name, _variables);
         }
 
         private static bool HasCaseInsensitiveAttribute(XmlElement element, string name)
         {
-            // first try a case-sensitive match
-            if (element.HasAttribute(name))
-                return true;
-
-            // then look through all attributes and do a case-insensitive compare
-            // this isn't very fast, but we don't need ultra speed here because usually we have about
-            // 3 attributes per element
-
-            foreach (XmlAttribute a in element.Attributes)
-            {
-                if (0 == String.Compare(a.LocalName, name, true))
-                    return true;
-            }
-
-            return false;
+            return PropertyHelper.HasCaseInsensitiveAttribute(element, name);
         }
 
         private void IncludeFileFromElement(XmlElement includeElement, string baseDirectory)
@@ -255,9 +232,9 @@ namespace NLog.Config
             {
                 InternalLogger.Error("Error when including '{0}' {1}", newFileName, ex);
 
-                if (String.Compare(GetCaseInsensitiveAttribute(includeElement, "ignoreErrors"), "true", true) == 0)
+                if (EqualsCI(GetCaseInsensitiveAttribute(includeElement, "ignoreErrors"), "true"))
                     return;
-                throw;
+                throw new NLogConfigurationException("Error when including: " + newFileName, ex);
             }
         }
 
@@ -321,12 +298,8 @@ namespace NLog.Config
             if (s != null)
                 LogManager.GlobalThreshold = LogLevel.FromString(s);
 
-            foreach (XmlNode node in configElement.ChildNodes)
+            foreach (XmlElement el in PropertyHelper.GetChildElements(configElement))
             {
-                XmlElement el = node as XmlElement;
-                if (el == null)
-                    continue;
-
                 switch (el.LocalName.ToLower())
                 {
                     case "extensions":
@@ -393,15 +366,8 @@ namespace NLog.Config
             if (element == null)
                 return ;
 
-            foreach (XmlNode n1 in element.ChildNodes)
+            foreach (XmlElement el in PropertyHelper.GetChildElements(element, "logger"))
             {
-                XmlElement el = n1 as XmlElement;
-                if (el == null)
-                    continue;
-
-                if (0 != String.Compare(el.LocalName, "logger", true))
-                    continue;
-                
                 XmlElement ruleElement = el;
 
                 LoggingRule rule = new LoggingRule();
@@ -427,7 +393,7 @@ namespace NLog.Config
                         }
                         else
                         {
-                            throw new Exception("Target " + targetName + " not found.");
+                            throw new NLogConfigurationException("Target " + targetName + " not found.");
                         }
                     }
                 }
@@ -479,17 +445,9 @@ namespace NLog.Config
                     }
                 }
 
-                foreach (XmlNode n in ruleElement.ChildNodes)
+                foreach (XmlElement el2 in PropertyHelper.GetChildElements(ruleElement,"filters"))
                 {
-                    if (n is XmlElement)
-                    {
-                        el = (XmlElement)n;
-
-                        if (0 == String.Compare(el.LocalName, "filters", true))
-                        {
-                            ConfigureRuleFiltersFromXmlElement(rule, el);
-                        }
-                    }
+                    ConfigureRuleFiltersFromXmlElement(rule, el2);
                 }
 
                 ConfigureRulesFromElement(config, rule.ChildRules, ruleElement);
@@ -503,13 +461,9 @@ namespace NLog.Config
             if (element == null)
                 return ;
 
-            foreach (XmlNode node in element.ChildNodes)
+            foreach (XmlElement targetElement in PropertyHelper.GetChildElements(element))
             {
-                XmlElement targetElement = node as XmlElement;
-                if (targetElement == null)
-                    continue;
-
-                if (0 == String.Compare(targetElement.LocalName, "add", true))
+                if (EqualsCI(targetElement.LocalName,"add"))
                 {
                     string assemblyFile = GetCaseInsensitiveAttribute(targetElement, "assemblyFile");
                     string extPrefix = GetCaseInsensitiveAttribute(targetElement, "prefix");
@@ -541,7 +495,7 @@ namespace NLog.Config
                         {
                             InternalLogger.Error("Error loading extensions: {0}", ex);
                             if (LogManager.ThrowExceptions)
-                                throw;
+                                throw new NLogConfigurationException("Error loading extensions: " + assemblyFile, ex);
                         }
                         continue;
                     };
@@ -565,7 +519,7 @@ namespace NLog.Config
                         {
                             InternalLogger.Error("Error loading extensions: {0}", ex);
                             if (LogManager.ThrowExceptions)
-                                throw;
+                                throw new NLogConfigurationException("Error loading extensions: " + assemblyName, ex);
                         }
                         continue;
                     };
@@ -573,87 +527,85 @@ namespace NLog.Config
 
             }
         }
+
+        private Target WrapWithAsyncTarget(Target t)
+        {
+            NLog.Targets.Wrappers.AsyncTargetWrapper atw = new NLog.Targets.Wrappers.AsyncTargetWrapper();
+            atw.WrappedTarget = t;
+            atw.Name = t.Name;
+            t.Name = t.Name + "_wrapped";
+            InternalLogger.Debug("Wrapping target '{0}' with AsyncTargetWrapper and renaming to '{1}", atw.Name, t.Name);
+            return atw;
+        }
+
+        private Target WrapWithDefaultWrapper(Target t, XmlElement defaultWrapperElement)
+        {
+            string wrapperType = GetCaseInsensitiveAttribute(defaultWrapperElement, "type");
+            Target wrapperTargetInstance = TargetFactory.CreateTarget(wrapperType);
+            WrapperTargetBase wtb = wrapperTargetInstance as WrapperTargetBase;
+            if (wtb == null)
+                throw new NLogConfigurationException("Target type specified on <default-wrapper /> is not a wrapper.");
+            ConfigureTargetFromXmlElement(wrapperTargetInstance, defaultWrapperElement);
+            while (wtb.WrappedTarget != null)
+            {
+                wtb = wtb.WrappedTarget as WrapperTargetBase;
+                if (wtb == null)
+                    throw new NLogConfigurationException("Child target type specified on <default-wrapper /> is not a wrapper.");
+            }
+            wtb.WrappedTarget = t;
+            wrapperTargetInstance.Name = t.Name;
+            t.Name = t.Name + "_wrapped";
+
+            InternalLogger.Debug("Wrapping target '{0}' with '{1}' and renaming to '{2}", wrapperTargetInstance.Name, wrapperTargetInstance.GetType().Name, t.Name);
+            return wrapperTargetInstance;
+        }
+
         private void ConfigureTargetsFromElement(XmlElement element)
         {
             if (element == null)
                 return ;
 
-            bool asyncWrap = 0 == String.Compare(GetCaseInsensitiveAttribute(element, "async"), "true", true);
+            bool asyncWrap = EqualsCI(GetCaseInsensitiveAttribute(element, "async"),"true");
             XmlElement defaultWrapperElement = null;
             Hashtable typeNameToDefaultTargetParametersElement = new Hashtable();
 
-            foreach (XmlNode n in element.ChildNodes)
+            foreach (XmlElement targetElement in PropertyHelper.GetChildElements(element))
             {
-                XmlElement targetElement = n as XmlElement;
-                
-                if (targetElement == null)
-                    continue;
+                string name = targetElement.LocalName.ToLower();
+                string type = GetCaseInsensitiveAttribute(targetElement, "type");
 
-                if (0 == String.Compare(targetElement.LocalName, "default-wrapper", true))
+                switch (name)
                 {
-                    defaultWrapperElement = targetElement;
-                    continue;
-                }
+                    case "default-wrapper":
+                        defaultWrapperElement = targetElement;
+                        break;
 
-                if (0 == String.Compare(targetElement.LocalName, "default-target-parameters", true))
-                {
-                    string type = GetCaseInsensitiveAttribute(targetElement, "type");
-                    typeNameToDefaultTargetParametersElement[type] = targetElement;
-                    continue;
-                }
-                
-                if (0 == String.Compare(targetElement.LocalName, "target", true) || 
-                    0 == String.Compare(targetElement.LocalName, "appender", true) ||
-                    0 == String.Compare(targetElement.LocalName, "wrapper", true) ||
-                    0 == String.Compare(targetElement.LocalName, "wrapper-target", true) ||
-                    0 == String.Compare(targetElement.LocalName, "compound-target", true)
-                    )
-                {
-                    string type = GetCaseInsensitiveAttribute(targetElement, "type");
-                    Target newTarget = TargetFactory.CreateTarget(type);
-                    if (newTarget != null)
-                    {
+                    case "default-target-parameters":
+                        typeNameToDefaultTargetParametersElement[type] = targetElement;
+                        break;
+
+                    case "target":
+                    case "appender":
+                    case "wrapper":
+                    case "wrapper-target":
+                    case "compound-target":
+                        Target newTarget = TargetFactory.CreateTarget(type);
+
                         XmlElement defaultParametersElement = typeNameToDefaultTargetParametersElement[type] as XmlElement;
                         if (defaultParametersElement != null)
                             ConfigureTargetFromXmlElement(newTarget, defaultParametersElement);
-                        ConfigureTargetFromXmlElement(newTarget, targetElement);
-#if !NETCF                        
-                        if (asyncWrap)
-                        {
-                            NLog.Targets.Wrappers.AsyncTargetWrapper atw = new NLog.Targets.Wrappers.AsyncTargetWrapper();
-                            atw.WrappedTarget = newTarget;
-                            atw.Name = newTarget.Name;
-                            newTarget.Name = newTarget.Name + "_wrapped";
-                            
-                            InternalLogger.Debug("Wrapping target '{0}' with AsyncTargetWrapper and renaming to '{1}", atw.Name, newTarget.Name);
-                            newTarget = atw;
-                        }
-#endif
-                        if (defaultWrapperElement != null)
-                        {
-                            string wrapperType = GetCaseInsensitiveAttribute(defaultWrapperElement, "type");
-                            Target wrapperTargetInstance = TargetFactory.CreateTarget(wrapperType);
-                            WrapperTargetBase wtb = wrapperTargetInstance as WrapperTargetBase;
-                            if (wtb == null)
-                                throw new Exception("Target type specified on <default-wrapper /> is not a wrapper.");
-                            ConfigureTargetFromXmlElement(wrapperTargetInstance, defaultWrapperElement);
-                            while (wtb.WrappedTarget != null)
-                            {
-                                wtb = wtb.WrappedTarget as WrapperTargetBase;
-                                if (wtb == null)
-                                    throw new Exception("Child target type specified on <default-wrapper /> is not a wrapper.");
-                            }
-                            wtb.WrappedTarget = newTarget;
-                            wrapperTargetInstance.Name = newTarget.Name;
-                            newTarget.Name = newTarget.Name + "_wrapped";
 
-                            InternalLogger.Debug("Wrapping target '{0}' with '{1}' and renaming to '{2}", wrapperTargetInstance.Name, wrapperTargetInstance.GetType().Name, newTarget.Name);
-                            newTarget = wrapperTargetInstance;
-                        }
+                        ConfigureTargetFromXmlElement(newTarget, targetElement);
+
+                        if (asyncWrap)
+                            newTarget = WrapWithAsyncTarget(newTarget);
+
+                        if (defaultWrapperElement != null)
+                            newTarget = WrapWithDefaultWrapper(newTarget, defaultWrapperElement);
 
                         InternalLogger.Info("Adding target {0}", newTarget);
                         AddTarget(newTarget.Name, newTarget);
-                    }
+                        break;
                 }
             }
         }
@@ -663,86 +615,30 @@ namespace NLog.Config
             if (element == null)
                 return ;
 
-            foreach (XmlNode node in element.ChildNodes)
+            foreach (XmlElement el in PropertyHelper.GetChildElements(element))
             {
-                if (node is XmlElement)
-                {
-                    string name = node.LocalName;
+                string name = el.LocalName;
 
-                    Filter filter = FilterFactory.CreateFilter(name);
-
-                    foreach (XmlAttribute attrib in((XmlElement)node).Attributes)
-                    {
-                        string attribName = attrib.LocalName;
-                        string attribValue = attrib.InnerText;
-
-                        PropertyHelper.SetPropertyFromString(filter, attribName, attribValue, _variables);
-                    }
-
-                    rule.Filters.Add(filter);
-                }
+                Filter filter = FilterFactory.CreateFilter(name);
+                PropertyHelper.ConfigureObjectFromAttributes(filter, el.Attributes, _variables, false);
+                rule.Filters.Add(filter);
             }
-        }
-
-        private void ConfigureLayoutFromXmlElement(ILayout layout, XmlElement element)
-        {
-            Type layoutType = layout.GetType();
-
-            foreach (XmlAttribute attrib in element.Attributes)
-            {
-                string name = attrib.LocalName;
-                string value = attrib.InnerText;
-
-                if (0 == String.Compare(name, "type", true))
-                    continue;
-
-                PropertyHelper.SetPropertyFromString(layout, name, value, _variables);
-            }
-            foreach (XmlNode node in element.ChildNodes)
-            {
-                if (node is XmlElement)
-                {
-                    XmlElement el = (XmlElement)node;
-                    string name = el.LocalName;
-
-                    if (PropertyHelper.IsArrayProperty(layoutType, name))
-                    {
-                        PropertyHelper.AddArrayItemFromElement(layout, el, _variables);
-                        continue;
-                    }
-
-                    PropertyHelper.SetPropertyFromString(layout, name, el.InnerText, _variables);
-                }
-            }
-
         }
 
         private void ConfigureTargetFromXmlElement(Target target, XmlElement element)
         {
-            Type targetType = target.GetType();
             NLog.Targets.Compound.CompoundTargetBase compound = target as NLog.Targets.Compound.CompoundTargetBase;
             NLog.Targets.Wrappers.WrapperTargetBase wrapper = target as NLog.Targets.Wrappers.WrapperTargetBase;
-            TargetWithLayout targetWithLayout = target as TargetWithLayout;
 
-            foreach (XmlAttribute attrib in element.Attributes)
+            PropertyHelper.ConfigureObjectFromAttributes(target, element.Attributes, _variables, true);
+
+            foreach (XmlElement el in PropertyHelper.GetChildElements(element))
             {
-                string name = attrib.LocalName;
-                string value = attrib.InnerText;
+                string name = el.LocalName;
 
-                if (0 == String.Compare(name, "type", true))
-                    continue;
-
-                PropertyHelper.SetPropertyFromString(target, name, value, _variables);
-            }
-
-            foreach (XmlNode node in element.ChildNodes)
-            {
-                if (node is XmlElement)
+                if (compound != null)
                 {
-                    XmlElement el = (XmlElement)node;
-                    string name = el.LocalName;
-
-                    if ((name == "target" || name == "wrapper" || name == "wrapper-target" || name == "compound-target") && compound != null)
+                    if ((name == "target" || name == "wrapper" || name == "wrapper-target" || name == "compound-target"))
                     {
                         string type = GetCaseInsensitiveAttribute(el, "type");
                         Target newTarget = TargetFactory.CreateTarget(type);
@@ -758,8 +654,11 @@ namespace NLog.Config
                         }
                         continue;
                     }
+                }
 
-                    if ((name == "target" || name == "wrapper" || name == "wrapper-target" || name == "compound-target") && wrapper != null)
+                if (wrapper != null)
+                {
+                    if ((name == "target" || name == "wrapper" || name == "wrapper-target" || name == "compound-target"))
                     {
                         string type = GetCaseInsensitiveAttribute(el, "type");
                         Target newTarget = TargetFactory.CreateTarget(type);
@@ -773,30 +672,15 @@ namespace NLog.Config
                             }
                             if (wrapper.WrappedTarget != null)
                             {
-                                throw new Exception("Wrapped target already defined.");
+                                throw new NLogConfigurationException("Wrapped target already defined.");
                             }
                             wrapper.WrappedTarget = newTarget;
                         }
                         continue;
                     }
-
-                    if (PropertyHelper.IsArrayProperty(targetType, name))
-                    {
-                        PropertyHelper.AddArrayItemFromElement(target, el, _variables);
-                        continue;
-                    }
-
-                    if (name == "layout" && HasCaseInsensitiveAttribute(el, "type") && targetWithLayout != null)
-                    {
-                        ILayout layout = LayoutFactory.CreateLayout(GetCaseInsensitiveAttribute(el, "type"));
-                        ConfigureLayoutFromXmlElement(layout, el);
-                        targetWithLayout.CompiledLayout = layout;
-                        continue;
-                    }
-
-                    string value = el.InnerText;
-                    PropertyHelper.SetPropertyFromString(target, name, value, _variables);
                 }
+
+                PropertyHelper.SetPropertyFromElement(target, el, _variables);
             }
         }
     }

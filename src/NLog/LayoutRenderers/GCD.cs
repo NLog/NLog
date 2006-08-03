@@ -34,6 +34,7 @@
 using System;
 using System.Text;
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.LayoutRenderers
 {
@@ -41,7 +42,7 @@ namespace NLog.LayoutRenderers
     /// Global Diagnostics Context item. Provided for compatibility with log4net.
     /// </summary>
     [LayoutRenderer("gdc")]
-    public class GDCLayoutRenderer: LayoutRenderer
+    public class GDCLayoutRenderer : LayoutRenderer
     {
         private string _item;
 
@@ -49,6 +50,7 @@ namespace NLog.LayoutRenderers
         /// Name of the item.
         /// </summary>
         [RequiredParameter]
+        [DefaultParameter]
         public string Item
         {
             get { return _item; }

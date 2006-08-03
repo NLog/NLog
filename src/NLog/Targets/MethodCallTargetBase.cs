@@ -79,7 +79,7 @@ namespace NLog.Targets
         {
             base.PopulateLayouts (layouts);
             for (int i = 0; i < Parameters.Count; ++i)
-                layouts.Add(Parameters[i].CompiledLayout);
+                Parameters[i].CompiledLayout.PopulateLayouts(layouts);
         }
 
         /// <summary>

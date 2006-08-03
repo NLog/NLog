@@ -85,7 +85,7 @@ namespace NLog.Targets
         /// <summary>
         /// An instance of <see cref="Log4JXmlEventLayout"/> that is used to format log messages.
         /// </summary>
-        public new Log4JXmlEventLayout Layout
+        protected new Log4JXmlEventLayout Layout
         {
             get { return base.CompiledLayout as Log4JXmlEventLayout; }
             set { CompiledLayout = value; }
@@ -147,7 +147,7 @@ namespace NLog.Targets
         {
             base.PopulateLayouts (layouts);
             for (int i = 0; i < Parameters.Count; ++i)
-                layouts.Add(Parameters[i].CompiledLayout);
+                Parameters[i].CompiledLayout.PopulateLayouts(layouts);
         }
 
         /// <summary>

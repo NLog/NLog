@@ -95,7 +95,7 @@ namespace NLog.Targets
         public override void PopulateLayouts(LayoutCollection layouts)
         {
             base.PopulateLayouts (layouts);
-            layouts.Add(_caption);
+            _caption.PopulateLayouts(layouts);
         }
 
         /// <summary>

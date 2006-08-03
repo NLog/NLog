@@ -82,7 +82,7 @@ namespace NLog.Conditions
         /// <param name="layouts">The collection to add layouts to.</param>
         public override void PopulateLayouts(LayoutCollection layouts)
         {
-            layouts.Add(_layout);
+            _layout.PopulateLayouts(layouts);
         }
     }
 }
