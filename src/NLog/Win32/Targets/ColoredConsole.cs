@@ -362,6 +362,9 @@ namespace NLog.Win32.Targets
             return newColor;
         }
 
+        /// <summary>
+        /// Initializes the target.
+        /// </summary>
         public override void Initialize()
         {
             base.Initialize();
@@ -372,6 +375,9 @@ namespace NLog.Win32.Targets
             }
         }
 
+        /// <summary>
+        /// Closes the target and releases any unmanaged resources.
+        /// </summary>
         protected internal override void Close()
         {
             if (CompiledFooter != null)

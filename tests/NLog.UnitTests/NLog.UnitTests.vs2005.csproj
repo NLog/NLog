@@ -179,6 +179,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Targets\ConcurrentFileTests.cs" />
+    <Compile Include="Targets\EventLogTests.cs" />
     <Compile Include="Targets\FileTargetTests.cs" />
   </ItemGroup>
   <ItemGroup>

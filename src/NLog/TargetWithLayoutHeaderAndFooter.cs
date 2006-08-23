@@ -92,6 +92,13 @@ namespace NLog
         }
 
 
+        /// <summary>
+        /// Compiled header.
+        /// </summary>
+        /// <value>The compiled header.</value>
+        /// <remarks>
+        /// The header can be of any layout type.
+        /// </remarks>
         public ILayout CompiledHeader
         {
             get
@@ -108,6 +115,13 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Compiled footer.
+        /// </summary>
+        /// <value>The compiled footer.</value>
+        /// <remarks>
+        /// The header can be of any layout type.
+        /// </remarks>
         public ILayout CompiledFooter
         {
             get
@@ -124,6 +138,10 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Gets the compiled layout with header and footer.
+        /// </summary>
+        /// <value>The compiled layout with header and footer.</value>
         public ILayoutWithHeaderAndFooter CompiledLayoutWithHeaderAndFooter
         {
             get { return base.CompiledLayout as ILayoutWithHeaderAndFooter; }

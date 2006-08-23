@@ -86,7 +86,14 @@ namespace NLog
             return _configuration.GetTargetsForLevel(level);
         }
 
-        internal Logger(string name, LoggerConfiguration configuration, LogFactory factory)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Logger"/> class.
+        /// </summary>
+        protected internal Logger()
+        {
+        }
+
+        internal void Initialize(string name, LoggerConfiguration configuration, LogFactory factory)
         {
             _loggerName = name;
             _factory = factory;

@@ -39,7 +39,7 @@
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <NoStdLib>false</NoStdLib>
-    <NoWarn>1591,1699</NoWarn>
+    <NoWarn>1699</NoWarn>
     <Optimize>false</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
@@ -703,7 +703,9 @@
     </Compile>
     <Compile Include="LogFactory.cs" />
     <Compile Include="ILayoutWithHeaderAndFooter.cs" />
+    <Compile Include="LayoutRenderers\EventContext.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
   <ItemGroup />
   <ItemGroup />

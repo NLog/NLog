@@ -163,6 +163,10 @@ namespace NLog.Targets
             set { _bcc = new Layout(value); }
         }
 
+        /// <summary>
+        /// Whether to add new lines between log entries.
+        /// </summary>
+        /// <value><c>true</c> if new lines should be added; otherwise, <c>false</c>.</value>
         public bool AddNewLines
         {
             get { return _newLines; }

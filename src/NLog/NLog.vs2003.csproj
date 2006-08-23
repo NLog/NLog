@@ -250,6 +250,7 @@
         <File RelPath="Config\DefaultParameterAttribute.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Layouts\LayoutWithHeaderAndFooter.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="TargetWithLayoutHeaderAndFooter.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LayoutRenderers\EventContext.cs" SubType="Code" BuildAction="Compile" />
       </Include>
     </Files>
   </CSHARP>

@@ -64,6 +64,9 @@ namespace NLog.Layouts
         private ILayout _thisHeader;
         private bool _withHeader = true;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CsvLayout"/> class.
+        /// </summary>
         public CsvLayout()
         {
             _thisHeader = new CsvHeaderLayout(this);
@@ -78,6 +81,10 @@ namespace NLog.Layouts
             get { return _columns; }
         }
 
+        /// <summary>
+        /// Whether CVS should include header.
+        /// </summary>
+        /// <value><c>true</c> if CVS should include header; otherwise, <c>false</c>.</value>
         public bool WithHeader
         {
             get { return _withHeader; }
@@ -345,12 +352,20 @@ namespace NLog.Layouts
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Main layout (can be repeated multiple times)
+        /// </summary>
+        /// <value></value>
         public ILayout Layout
         {
             get { return this; }
             set { throw new Exception("Cannot modify the layout of CsvLayout"); }
         }
 
+        /// <summary>
+        /// Header
+        /// </summary>
+        /// <value></value>
         public ILayout Header
         {
             get
@@ -363,6 +378,10 @@ namespace NLog.Layouts
             set { throw new Exception("Cannot modify the header of CsvLayout"); }
         }
 
+        /// <summary>
+        /// Footer
+        /// </summary>
+        /// <remarks>CSV has no footer.</remarks>
         public ILayout Footer
         {
             get { return null; }
@@ -373,44 +392,96 @@ namespace NLog.Layouts
         {
             private CsvLayout _parent;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="CsvHeaderLayout"/> class.
+            /// </summary>
+            /// <param name="parent">The parent.</param>
             public CsvHeaderLayout(CsvLayout parent)
             {
                 _parent = parent;
             }
 
+            /// <summary>
+            /// Renders the layout for the specified logging event by invoking layout renderers.
+            /// </summary>
+            /// <param name="logEvent">The logging event.</param>
+            /// <returns>The rendered layout.</returns>
             public string GetFormattedMessage(LogEventInfo logEvent)
             {
                 return _parent.GetHeader(logEvent);
             }
 
+            /// <summary>
+            /// Returns the value indicating whether a stack trace and/or the source file
+            /// information should be gathered during layout processing.
+            /// </summary>
+            /// <returns>
+            /// 0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace
+            /// </returns>
             public int NeedsStackTrace()
             {
                 return 0;
             }
 
+            /// <summary>
+            /// Returns the value indicating whether this layout includes any volatile
+            /// layout renderers.
+            /// </summary>
+            /// <returns>
+            /// 	<see langword="true"/> when the layout includes at least
+            /// one volatile renderer, <see langword="false"/> otherwise.
+            /// </returns>
+            /// <remarks>
+            /// Volatile layout renderers are dependent on information not contained
+            /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+            /// </remarks>
             public bool IsVolatile()
             {
                 return false;
             }
 
+            /// <summary>
+            /// Precalculates the layout for the specified log event and stores the result
+            /// in per-log event cache.
+            /// </summary>
+            /// <param name="logEvent">The log event.</param>
+            /// <remarks>
+            /// Calling this method enables you to store the log event in a buffer
+            /// and/or potentially evaluate it in another thread even though the
+            /// layout may contain thread-dependent renderer.
+            /// </remarks>
             public void Precalculate(LogEventInfo logEvent)
             {
             }
 
+            /// <summary>
+            /// Initializes the layout.
+            /// </summary>
             public void Initialize()
             {
             }
 
+            /// <summary>
+            /// Closes the layout.
+            /// </summary>
             public void Close()
             {
             }
 
+            /// <summary>
+            /// Add this layout and all sub-layouts to the specified collection..
+            /// </summary>
+            /// <param name="layouts">The collection of layouts.</param>
             public void PopulateLayouts(LayoutCollection layouts)
             {
                 throw new Exception("The method or operation is not implemented.");
             }
         }
 
+        /// <summary>
+        /// Add this layout and all sub-layouts to the specified collection..
+        /// </summary>
+        /// <param name="layouts">The collection of layouts.</param>
         public void PopulateLayouts(LayoutCollection layouts)
         {
             layouts.Add(this);

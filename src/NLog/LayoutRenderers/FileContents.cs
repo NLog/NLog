@@ -67,6 +67,9 @@ namespace NLog.LayoutRenderers
             return 8;
         }
 
+        /// <summary>
+        /// Name of the file.
+        /// </summary>
         [DefaultParameter]
         public Layout FileName
         {
@@ -74,6 +77,10 @@ namespace NLog.LayoutRenderers
             set { _fileName = value; }
         }
 
+        /// <summary>
+        /// File encoding.
+        /// </summary>
+        /// <value>The encoding.</value>
         public string Encoding
         {
             get { return _encoding.WebName; }

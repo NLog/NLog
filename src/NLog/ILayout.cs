@@ -96,8 +96,9 @@ namespace NLog
         void Close();
 
         /// <summary>
-        /// Populates all sub-layouts used by this layout.
+        /// Add this layout and all sub-layouts to the specified collection..
         /// </summary>
+        /// <param name="layouts">The collection of layouts.</param>
         void PopulateLayouts(LayoutCollection layouts);
     }
 }

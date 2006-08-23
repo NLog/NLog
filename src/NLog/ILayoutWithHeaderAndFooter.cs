@@ -47,8 +47,19 @@ namespace NLog
     /// </summary>
     public interface ILayoutWithHeaderAndFooter
     {
+        /// <summary>
+        /// Main layout (can be repeated multiple times)
+        /// </summary>
         ILayout Layout { get; set; }
+
+        /// <summary>
+        /// Header
+        /// </summary>
         ILayout Header { get; set; }
+
+        /// <summary>
+        /// Footer
+        /// </summary>
         ILayout Footer { get; set; }
     }
 }

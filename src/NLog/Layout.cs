@@ -296,11 +296,21 @@ namespace NLog
         {
         }
 
+        /// <summary>
+        /// Add this layout and all sub-layouts to the specified collection..
+        /// </summary>
+        /// <param name="layouts">The collection of layouts.</param>
         public void PopulateLayouts(LayoutCollection layouts)
         {
             layouts.Add(this);
         }
 
+        /// <summary>
+        /// Returns a <see cref="T:System.String"></see> that represents the current <see cref="T:System.Object"></see>.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"></see> that represents the current <see cref="T:System.Object"></see>.
+        /// </returns>
         public override string ToString()
         {
             return Text;

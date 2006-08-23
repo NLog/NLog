@@ -65,7 +65,7 @@ namespace NLog
     /// </summary>
     public class LogFactory
     {
-        private LoggerDictionary _loggerCache = new LoggerDictionary();
+        private Hashtable _loggerCache = new Hashtable();
         private LoggingConfiguration _config;
         private LogLevel _globalThreshold = LogLevel.MinLevel;
         private bool _configLoaded = false;
@@ -118,8 +118,9 @@ namespace NLog
         public Logger CreateNullLogger()
         {
             TargetWithFilterChain[]targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
-            return new Logger("", new LoggerConfiguration(targetsByLevel), this);
-
+            Logger newLogger = new Logger();
+            newLogger.Initialize("", new LoggerConfiguration(targetsByLevel), this);
+            return newLogger;
         }
 
 #if !NETCF
@@ -136,7 +137,82 @@ namespace NLog
 
             return GetLogger(frame.GetMethod().DeclaringType.FullName);
         }
+
+        /// <summary>
+        /// Gets the logger named after the currently-being-initialized class.
+        /// </summary>
+        /// <param name="loggerType">type of the logger to create. The type must inherit from NLog.Logger</param>
+        /// <returns>The logger.</returns>
+        /// <remarks>This is a slow-running method. 
+        /// Make sure you're not doing this in a loop.</remarks>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public Logger GetCurrentClassLogger(Type loggerType)
+        {
+            StackFrame frame = new StackFrame(1, false);
+
+            return GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
+        }
 #endif
+
+        class LoggerCacheKey
+        {
+            private Type _loggerConcreteType;
+            private string _name;
+
+            public LoggerCacheKey(Type loggerConcreteType, string name)
+            {
+                _loggerConcreteType = loggerConcreteType;
+                _name = name;
+            }
+
+            public override int GetHashCode()
+            {
+                return _loggerConcreteType.GetHashCode() ^ _name.GetHashCode();
+            }
+
+            public override bool Equals(object o)
+            {
+                LoggerCacheKey lck2 = (LoggerCacheKey)o;
+                if (lck2 == null)
+                    return false;
+
+                return (ConcreteType == lck2.ConcreteType) && (lck2.Name == Name);
+            }
+
+            public Type ConcreteType
+            {
+                get { return _loggerConcreteType; }
+            }
+
+            public string Name
+            {
+                get { return _name; }
+            }
+        }
+
+        private Logger GetLogger(LoggerCacheKey cacheKey)
+        {
+            lock(this)
+            {
+                Logger l = (Logger)_loggerCache[cacheKey];
+                if (l != null)
+                    return l;
+
+                //Activator.CreateInstance(cacheKey.ConcreteType);
+                Logger newLogger;
+
+                if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(Logger))
+                    newLogger = (Logger)FactoryHelper.CreateInstance(cacheKey.ConcreteType);
+                else
+                    newLogger = new Logger();
+
+                if (cacheKey.ConcreteType != null)
+                    
+                newLogger.Initialize(cacheKey.Name, GetConfigurationForLogger(cacheKey.Name, Configuration), this);
+                _loggerCache[cacheKey] = newLogger;
+                return newLogger;
+            }
+        }
 
         /// <summary>
         /// Gets the specified named logger.
@@ -145,16 +221,19 @@ namespace NLog
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name)
         {
-            lock(this)
-            {
-                Logger l = _loggerCache[name];
-                if (l != null)
-                    return l;
+            return GetLogger(new LoggerCacheKey(typeof(Logger),name));
+        }
 
-                Logger newLogger = new Logger(name, GetConfigurationForLogger(name, Configuration), this);
-                _loggerCache[name] = newLogger;
-                return newLogger;
-            }
+        /// <summary>
+        /// Gets the specified named logger.
+        /// </summary>
+        /// <param name="name">name of the logger</param>
+        /// <param name="loggerType">type of the logger to create. The type must inherit from NLog.Logger</param>
+        /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the 
+        /// same argument aren't guaranteed to return the same logger reference.</returns>
+        public Logger GetLogger(string name, Type loggerType)
+        {
+            return GetLogger(new LoggerCacheKey(loggerType,name));
         }
 
         /// <summary>
@@ -413,7 +492,7 @@ namespace NLog
 #endif
 
         /// <summary>
-        /// Loops through all loggers previously returned by <see cref="GetLogger" />
+        /// Loops through all loggers previously returned by GetLogger
         /// and recalculates their target and filter list. Useful after modifying the configuration programmatically
         /// to ensure that all loggers have been properly configured.
         /// </summary>
@@ -596,4 +675,40 @@ namespace NLog
             }
         }
     }
+
+#if NET_2_API
+    /// <summary>
+    /// Specialized LogFactory that can return instances of custom logger types.
+    /// </summary>
+    /// <typeparam name="LoggerType">The type of the logger to be returned. Must inherit from <see cref="Logger"/>.</typeparam>
+    public class LogFactory<LoggerType> : LogFactory where LoggerType : Logger
+    {
+        /// <summary>
+        /// Gets the logger.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>An instance of <typeparamref name="LoggerType"/>.</returns>
+        public new LoggerType GetLogger(string name)
+        {
+            return (LoggerType)base.GetLogger(name, typeof(LoggerType));
+        }
+
+#if !NETCF
+        /// <summary>
+        /// Gets the logger named after the currently-being-initialized class.
+        /// </summary>
+        /// <returns>The logger.</returns>
+        /// <remarks>This is a slow-running method. 
+        /// Make sure you're not doing this in a loop.</remarks>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public new LoggerType GetCurrentClassLogger()
+        {
+            StackFrame frame = new StackFrame(1, false);
+
+            return GetLogger(frame.GetMethod().DeclaringType.FullName);
+        }
+#endif
+    
+    }
+#endif
 }
