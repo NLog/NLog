@@ -101,6 +101,21 @@ namespace NLog
 
             return _globalFactory.GetLogger(frame.GetMethod().DeclaringType.FullName);
         }
+
+        /// <summary>
+        /// Gets the logger named after the currently-being-initialized class.
+        /// </summary>
+        /// <param name="loggerType">the logger class. The class must inherit from <see cref="Logger" /></param>
+        /// <returns>The logger.</returns>
+        /// <remarks>This is a slow-running method. 
+        /// Make sure you're not doing this in a loop.</remarks>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static Logger GetCurrentClassLogger(Type loggerType)
+        {
+            StackFrame frame = new StackFrame(1, false);
+
+            return _globalFactory.GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
+        }
 #endif
 
         /// <summary>
@@ -121,6 +136,17 @@ namespace NLog
         public static Logger GetLogger(string name)
         {
             return _globalFactory.GetLogger(name);
+        }
+
+        /// <summary>
+        /// Gets the specified named logger.
+        /// </summary>
+        /// <param name="name">name of the logger</param>
+        /// <param name="name">the logger class. The class must inherit from <see cref="Logger" /></param>
+        /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
+        public static Logger GetLogger(string name, Type loggerType)
+        {
+            return _globalFactory.GetLogger(name, loggerType);
         }
 
         /// <summary>

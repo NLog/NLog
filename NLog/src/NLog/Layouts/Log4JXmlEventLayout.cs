@@ -90,6 +90,10 @@ namespace NLog.Layouts
         {
         }
 
+        /// <summary>
+        /// Add this layout and all sub-layouts to the specified collection..
+        /// </summary>
+        /// <param name="layouts">The collection of layouts.</param>
         public void PopulateLayouts(LayoutCollection layouts)
         {
             layouts.Add(this);

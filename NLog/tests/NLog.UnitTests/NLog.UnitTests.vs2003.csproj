@@ -49,6 +49,7 @@
         <File RelPath="LogManagerTests.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="LayoutConfigurationTests.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="TargetConfigurationTests.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="Targets\EventLogTests.cs" SubType="Code" BuildAction="Compile" />
       </Include>
     </Files>
   </CSHARP>

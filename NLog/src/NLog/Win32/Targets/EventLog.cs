@@ -36,6 +36,7 @@
 using System;
 using System.Diagnostics;
 using System.Text;
+using System.Globalization;
 
 using NLog.Internal;
 using NLog.Config;
@@ -60,11 +61,6 @@ namespace NLog.Win32.Targets
     /// </p>
     /// <code lang="C#" src="examples/targets/Configuration API/EventLog/Simple/Example.cs" />
     /// </example>
-    /// <remarks>
-    /// Currently there's no way to pass EventID or Category 
-    /// event log parameters. This issue may be addressed
-    /// in future releases.
-    /// </remarks>
     [Target("EventLog")]
     [SupportedRuntime(OS=RuntimeOS.WindowsNT,Framework=RuntimeFramework.DotNetFramework)]
     public class EventLogTarget : TargetWithLayout
@@ -74,6 +70,8 @@ namespace NLog.Win32.Targets
         private string _logName = "Application";
         private bool _needEventLogSourceUpdate;
         private bool _operational;
+        private Layout _eventID = null;
+        private Layout _category = null;
 
         /// <summary>
         /// Creates a new instance of <see cref="EventLogTarget"/> and 
@@ -95,6 +93,26 @@ namespace NLog.Win32.Targets
                 _machineName = value; 
                 _needEventLogSourceUpdate = true;
             }
+        }
+
+        /// <summary>
+        /// Layout that renders event ID.
+        /// </summary>
+        [AcceptsLayout]
+        public string EventID
+        {
+            get { return Convert.ToString(_eventID); }
+            set { _eventID = new Layout(value); }
+        }
+
+        /// <summary>
+        /// Layout that renders event Category.
+        /// </summary>
+        [AcceptsLayout]
+        public string Category
+        {
+            get { return Convert.ToString(_category); }
+            set { _category = new Layout(value); }
         }
 
         /// <summary>
@@ -217,7 +235,21 @@ namespace NLog.Win32.Targets
                 entryType = EventLogEntryType.Information;
             }
 
-            EventLog.WriteEntry(_sourceName, message, entryType);
+            int eventID = 0;
+
+            if (_eventID != null)
+            {
+                eventID = Convert.ToInt32(_eventID.GetFormattedMessage(logEvent), CultureInfo.InvariantCulture);
+            }
+
+            short category = 0;
+
+            if (_category != null)
+            {
+                category = Convert.ToInt16(_category.GetFormattedMessage(logEvent), CultureInfo.InvariantCulture);
+            }
+
+            EventLog.WriteEntry(_sourceName, message, entryType, eventID, category);
         }
 	}
 }

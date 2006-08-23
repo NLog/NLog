@@ -32,70 +32,61 @@
 // 
 
 using System;
-using System.Net;
-using System.Net.Sockets;
 using System.Text;
+using NLog.Config;
+using System.ComponentModel;
 
-namespace NLog.Internal.NetworkSenders
+namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// Sends messages over the network as UDP datagrams.
+    /// Log event context data
     /// </summary>
-	public class UdpNetworkSender : NetworkSender
-	{
-        private Socket _socket;
-        private IPEndPoint _endpoint;
+    [LayoutRenderer("event-context")]
+    public class EventContextLayoutRenderer : LayoutRenderer
+    {
+        private string _item;
 
         /// <summary>
-        /// Creates a new instance of <see cref="UdpNetworkSender"/> and initializes
-        /// it with the specified URL.
+        /// Name of the item.
         /// </summary>
-        /// <param name="url">URL. Must start with udp://</param>
-        public UdpNetworkSender(string url) : base(url)
+        [RequiredParameter]
+        [DefaultParameter]
+        public string Item
         {
-            // udp://hostname:port
+            get { return _item; }
+            set { _item = value; }
+        }
 
-            Uri parsedUri = new Uri(url);
-#if NET_2_API
-            IPHostEntry host = Dns.GetHostEntry(parsedUri.Host);
+        /// <summary>
+        /// Returns the estimated number of characters that are needed to
+        /// hold the rendered value for the specified logging event.
+        /// </summary>
+        /// <param name="logEvent">Logging event information.</param>
+        /// <returns>The number of characters.</returns>
+        /// <remarks>
+        /// If the exact number is not known or
+        /// expensive to calculate this function should return a rough estimate
+        /// that's big enough in most cases, but not too big, in order to conserve memory.
+        /// </remarks>
+        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        {
+            return 32;
+        }
+
+        /// <summary>
+        /// Renders the specified log event context item and appends it to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="logEvent">Logging event.</param>
+        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+#if NETCF_1_0
+            string msg = Convert.ToString(logEvent.Context[Item]);
 #else
-            IPHostEntry host = Dns.GetHostByName(parsedUri.Host);
+            string msg = Convert.ToString(logEvent.Context[Item], CultureInfo);
 #endif
-            int port = parsedUri.Port;
 
-            _endpoint = new IPEndPoint(host.AddressList[0], port);
-            _socket = new Socket(_endpoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
-        }
-
-        /// <summary>
-        /// Sends the specified text as a UDP datagram.
-        /// </summary>
-        /// <param name="bytes">The bytes to be sent.</param>
-        protected override void DoSend(byte[] bytes)
-        {
-            lock (this)
-            {
-                _socket.SendTo(bytes, _endpoint);
-            }
-        }
-
-        /// <summary>
-        /// Closes the socket.
-        /// </summary>
-        public override void Close()
-        {
-            lock (this)
-            {
-                try
-                {
-                    _socket.Close();
-                }
-                catch (Exception)
-                {
-                    // ignore errors
-                }
-                _socket = null;
-            }
+            builder.Append(ApplyPadding(msg));
         }
     }
 }

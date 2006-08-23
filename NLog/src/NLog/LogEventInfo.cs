@@ -63,7 +63,7 @@ namespace NLog
         private object[] _parameters;
         private IFormatProvider _formatProvider;
         private IDictionary _layoutCache;
-        private IDictionary _callContext;
+        private IDictionary _eventContext;
         private int _sequenceID;
 
         /// <summary>
@@ -73,6 +73,10 @@ namespace NLog
         {
         }
 
+        /// <summary>
+        /// Creates the null event.
+        /// </summary>
+        /// <returns></returns>
         public static LogEventInfo CreateNullEvent()
         {
             return new LogEventInfo(LogLevel.Off, "", "");
@@ -271,15 +275,15 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the dictionary of call context properties.
+        /// Gets the dictionary of per-event context properties.
         /// </summary>
-        public IDictionary CallContext
+        public IDictionary Context
         {
             get
             {
-                if (_callContext == null)
-                    _callContext = new HybridDictionary();
-                return _callContext;
+                if (_eventContext == null)
+                    _eventContext = new HybridDictionary();
+                return _eventContext;
             }
         }
 
