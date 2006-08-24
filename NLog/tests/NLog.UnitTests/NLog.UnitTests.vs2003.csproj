@@ -50,6 +50,8 @@
         <File RelPath="LayoutConfigurationTests.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="TargetConfigurationTests.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="Targets\EventLogTests.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LayoutRenderers\Rot13Tests.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="LayoutRenderers\EventContextTests.cs" SubType="Code" BuildAction="Compile" />
       </Include>
     </Files>
   </CSHARP>

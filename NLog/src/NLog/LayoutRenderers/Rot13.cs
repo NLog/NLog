@@ -41,15 +41,15 @@ using NLog.Config;
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// Contents of the specified file.
+    /// Decodes text "encrypted" with ROT-13.
     /// </summary>
-    [LayoutRenderer("file-contents")]
-    public class FileContentsLayoutRenderer: LayoutRenderer
+    /// <remarks>
+    /// See <a href="http://en.wikipedia.org/wiki/ROT13">http://en.wikipedia.org/wiki/ROT13</a>.
+    /// </remarks>
+    [LayoutRenderer("rot13")]
+    public class Rot13LayoutRenderer: LayoutRenderer
     {
-        private Layout _fileName;
-        private System.Text.Encoding _encoding = System.Text.Encoding.Default;
-        private string _lastFileName = "";
-        private string _fileContents;
+        private Layout _inner;
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -64,64 +64,71 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
-            return 8;
+            return 30;
         }
 
         /// <summary>
-        /// Name of the file.
+        /// The text to be decoded.
         /// </summary>
         [DefaultParameter]
-        public Layout FileName
+        public Layout Text
         {
-            get { return _fileName; }
-            set { _fileName = value; }
+            get { return _inner; }
+            set { _inner = value; }
         }
-
         /// <summary>
-        /// File encoding.
-        /// </summary>
-        /// <value>The encoding.</value>
-        public string Encoding
-        {
-            get { return _encoding.WebName; }
-            set { _encoding = System.Text.Encoding.GetEncoding(value); }
-        }
-
-        /// <summary>
-        /// Renders the contents of the specified file and appends it to the specified <see cref="StringBuilder" />.
+        /// Renders the inner message, decrypts it with ROT-13 and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            lock (this)
-            {
-                string fileName = _fileName.GetFormattedMessage(logEvent);
-
-                if (fileName != _lastFileName)
-                {
-                    ReadFileContents(fileName);
-                    _lastFileName = fileName;
-                }
-            }
-            builder.Append(_fileContents);
+            string msg = _inner.GetFormattedMessage(logEvent);
+            builder.Append(ApplyPadding(DecodeRot13(msg)));
         }
 
-        private void ReadFileContents(string fileName)
-        {
-            _fileContents = "";
 
-            try
+        /// <summary>
+        /// Determines whether stack trace information should be gathered
+        /// during log event processing. By default it calls <see cref="NLog.Layout.NeedsStackTrace"/> on
+        /// <see cref="TargetWithLayout.CompiledLayout"/>.
+        /// </summary>
+        /// <returns>
+        /// 0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace
+        /// </returns>
+        protected internal override int NeedsStackTrace()
+        {
+            return Math.Max(base.NeedsStackTrace(), _inner.NeedsStackTrace());
+        }
+
+        /// <summary>
+        /// Encodes/Decodes ROT-13-encoded string.
+        /// </summary>
+        /// <param name="s">The string to be encoded/decoded</param>
+        /// <returns>Encoded/Decoded text</returns>
+        public static string DecodeRot13(string s)
+        {
+            char[] chars = s.ToCharArray();
+            for (int i = 0; i < chars.Length; ++i)
             {
-                using (StreamReader sr = new StreamReader(fileName, _encoding))
-                {
-                    _fileContents = sr.ReadToEnd();
-                }
+                chars[i] = DecodeRot13Char(chars[i]);
             }
-            catch (Exception ex)
-            {
-                InternalLogger.Warn("Cannot read file {0}: {1}", FileName, ex);
-            }
+
+            return new string(chars);
+        }
+
+        private static char DecodeRot13Char(char c)
+        {
+            if (c >= 'A' && c <= 'M')
+                return (char)('N' + (c - 'A'));
+            if (c >= 'a' && c <= 'm')
+                return (char)('n' + (c - 'a'));
+            if (c >= 'N' && c <= 'Z')
+                return (char)('A' + (c - 'N'));
+            if (c >= 'n' && c <= 'z')
+                return (char)('a' + (c - 'n'));
+
+            return c;
         }
     }
 }

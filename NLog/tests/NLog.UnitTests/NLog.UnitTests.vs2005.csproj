@@ -101,6 +101,8 @@
     <Compile Include="CaseSensitivityTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LayoutRenderers\Rot13Tests.cs" />
+    <Compile Include="LayoutRenderers\EventContextTests.cs" />
     <Compile Include="TargetConfigurationTests.cs" />
     <Compile Include="LayoutConfigurationTests.cs" />
     <Compile Include="LayoutRenderers\ExceptionTests.cs" />

@@ -187,31 +187,5 @@ namespace NLog.UnitTests
             AssertDebugCounter("debug3", 2);
             AssertDebugCounter("debug4", 1);
         }
-
-        [Test]
-        public void Bug1()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
-            <nlog>
-                <targets>
-                    <target name='debug1' type='Debug' layout='${message}' />
-                    <target name='debug2' type='Debug' layout='${message}' />
-                    <target name='debug3' type='Debug' layout='${message}' />
-                    <target name='debug4' type='Debug' layout='${message}' />
-                </targets>
-                <rules>
-                      <logger name='*' minlevel='Debug' writeTo='debug1' />
-                      <logger name='*' minlevel='Trace' writeTo='debug2' />
-                      <logger name='*' maxlevel='Trace' writeTo='debug3' />
-                </rules>
-            </nlog>");
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-            LogManager.GetLogger("A").Info("message");
-            AssertDebugCounter("debug1", 1);
-            AssertDebugCounter("debug2", 1);
-            AssertDebugCounter("debug3", 1);
-            AssertDebugCounter("debug4", 1);
-        }
     }
 }
