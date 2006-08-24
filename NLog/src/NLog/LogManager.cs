@@ -142,7 +142,7 @@ namespace NLog
         /// Gets the specified named logger.
         /// </summary>
         /// <param name="name">name of the logger</param>
-        /// <param name="name">the logger class. The class must inherit from <see cref="Logger" /></param>
+        /// <param name="loggerType">the logger class. The class must inherit from <see cref="Logger" /></param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         public static Logger GetLogger(string name, Type loggerType)
         {
@@ -160,7 +160,7 @@ namespace NLog
 
 
         /// <summary>
-        /// Loops through all loggers previously returned by <see cref="GetLogger" />
+        /// Loops through all loggers previously returned by GetLogger.
         /// and recalculates their target and filter list. Useful after modifying the configuration programmatically
         /// to ensure that all loggers have been properly configured.
         /// </summary>
