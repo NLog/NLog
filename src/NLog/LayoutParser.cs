@@ -66,12 +66,29 @@ namespace NLog
         private static string ParseParameterName(Tokenizer sr)
         {
             int ch;
+            int nestLevel = 0;
 
             StringBuilder nameBuf = new StringBuilder();
             while ((ch = sr.Peek()) != -1)
             {
-                if (ch == '=' || ch == '}' || ch == ':')
+                if ((ch == '=' || ch == '}' || ch == ':') && nestLevel == 0)
                     break;
+                if (ch == '$')
+                {
+                    sr.Read();
+                    nameBuf.Append('$');
+                    if (sr.Peek() == '{')
+                    {
+                        nameBuf.Append('{');
+                        nestLevel++;
+                        sr.Read();
+                    }
+                    continue;
+                }
+                if (ch == '}')
+                {
+                    nestLevel--;
+                }
                 if (ch == '\\')
                 {
                     // skip the backslash
@@ -162,8 +179,15 @@ namespace NLog
                     PropertyInfo pi = PropertyHelper.GetPropertyInfo(lr, "");
                     if (pi != null)
                     {
-                        string value = parameterName;
-                        PropertyHelper.SetPropertyFromString(lr, pi.Name, value, null);
+                        if (typeof(Layout) == pi.PropertyType)
+                        {
+                            pi.SetValue(lr, new Layout(parameterName), null);
+                        }
+                        else
+                        {
+                            string value = parameterName;
+                            PropertyHelper.SetPropertyFromString(lr, pi.Name, value, null);
+                        }
                     }
                     else
                     {

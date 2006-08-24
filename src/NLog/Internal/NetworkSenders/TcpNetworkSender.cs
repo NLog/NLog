@@ -62,7 +62,11 @@ namespace NLog.Internal.NetworkSenders
 #endif
             int port = parsedUri.Port;
 
+#if NETCF_1_0
+            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+#else
             _socket = new Socket(host.AddressList[0].AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+#endif
             _socket.Connect(new IPEndPoint(host.AddressList[0], port));
         }
 

@@ -1,3 +1,26 @@
+2006-08-24 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added infrastructure to create your own logger types inheriting from
+	Logger: 
+
+		LogManager.GetLogger(string name, Type type) and 
+		LogManager.GetCurrentClassLogger(Type type)
+		LogFactory.GetLogger(string name, Type type) and 
+		LogFactory.GetCurrentClassLogger(Type type)
+
+	* Added ${event-context} layout renderer that extracts information from
+	LogEventInfo.Context
+	* Added eventID and categoryID parameters to EventLog targets.
+	* Added LogManager<LoggerType> that manages logger instances of LoggerType
+	where LoggerType : Logger
+	* Added missing code documentation 
+	* Fixed Network target to work properly with IPV6
+	* Added example ${rot13} layout renderer - that demonstrates how 
+	wrapper layout renderers can be written.
+	* Added support for DEFAULT nested layout parameters. You can now write:
+
+	${file-contents:${basedir}/file.txt}
+	${rot13:URYYB}
+
 2006-08-03 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* MANY CHANGES TO CLEAN UP APIs AND ENSURE EXTENSIBILITY - MAY TAKE SOME TIME TO STABILIZE AGAIN
 

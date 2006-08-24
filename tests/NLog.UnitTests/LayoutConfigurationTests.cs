@@ -168,5 +168,27 @@ namespace NLog.UnitTests
             Assert.AreEqual("${basedir}/aaa.txt", fc.FileName.Text);
 
         }
+
+        [Test]
+        public void DoubleNestedLayoutWithDefaultLayoutParametersTest()
+        {
+            Layout l = new Layout("${file-contents:${basedir}/${file-contents:${basedir}/aaa.txt}/aaa.txt}");
+            Assert.AreEqual(1, l.Renderers.Length);
+            FileContentsLayoutRenderer lr = l.Renderers[0] as FileContentsLayoutRenderer;
+            Assert.IsNotNull(lr);
+            Assert.IsInstanceOfType(typeof(Layout), lr.FileName);
+            Assert.AreEqual("${basedir}/${file-contents:${basedir}/aaa.txt}/aaa.txt", lr.FileName.Text);
+            Assert.AreEqual(3, lr.FileName.Renderers.Length);
+            Assert.IsInstanceOfType(typeof(LiteralLayoutRenderer), lr.FileName.Renderers[0]);
+            Assert.IsInstanceOfType(typeof(FileContentsLayoutRenderer), lr.FileName.Renderers[1]);
+            Assert.IsInstanceOfType(typeof(LiteralLayoutRenderer), lr.FileName.Renderers[2]);
+
+            LiteralLayoutRenderer lr1 = (LiteralLayoutRenderer)lr.FileName.Renderers[0];
+            FileContentsLayoutRenderer fc = (FileContentsLayoutRenderer)lr.FileName.Renderers[1];
+            LiteralLayoutRenderer lr2 = (LiteralLayoutRenderer)lr.FileName.Renderers[2];
+
+            Assert.AreEqual("${basedir}/aaa.txt", fc.FileName.Text);
+
+        }
     }
 }

@@ -212,6 +212,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LayoutParser.cs" />
+    <Compile Include="LayoutRenderers\Rot13.cs" />
     <Compile Include="LayoutRenderers\FileContents.cs" />
     <Compile Include="TargetWithLayoutHeaderAndFooter.cs" />
     <Compile Include="Layouts\LayoutWithHeaderAndFooter.cs" />
