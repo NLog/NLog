@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>NLog Examples</title>
+        <style type="text/css">
+            body
+            {
+                font-family: Tahoma;
+                font-size: 10pt;
+            }
+        </style>
+    </head>
+    <body>
+        <p>
+            This directory contains examples of extending functionality of loggers. This is needed to pass 
+            extra per-call context information to the logging engine. For example, you can pass log event ID 
+            that will be written to the Event Log.
+        </p>
+        <p>
+            There are 2 methods of extending loggers:
+        </p>
+        <ul>
+            <li><b>wrapping loggers</b> - the code that wraps Logger is located in the <a href="LoggerWrapper/">LoggerWrapper</a> directory.</li>
+            <li><b>inheriting from loggers</b> - the code that extends the Logger class by inheriting from it can be found in the <a href="InheritFromLogger/">InheritFromLogger</a> directory.</li>
+        </ul>
+        <p>
+            Both methods construct a <code>LogEventInfo</code> object and pass it to the Log() method of the logger. It is important
+            to also pass the declaring type of the method that is invoked by user code, otherwise the <a href="http://www.nlog-project.org/lr.callsite.html">${callsite}</a> 
+            and <a href="http://www.nlog-project.org/lr.stacktrace.html">${stacktrace}</a> layout renderers won't work properly.
+        </p>
+        <p>
+            The examples also demonstrate is the technique of passing additional per-log context information. This is
+            done by adding items to the <code>LogEvent.Context</code> dictionary. This context data can be retrieved 
+            and used in layouts with the <code>${event-context}</code> layout renderer.
+        </p>
+        <p>
+            The examples are compatible with <a href="http://www.microsoft.com/vstudio">Visual Studio 2005</a> and can be built with <a href="http://msdn2.microsoft.com/en-us/library/wea2sca5.aspx">MSBuild</a>.
+        </p>
+    </body>
+</html>
