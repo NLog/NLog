@@ -1,3 +1,6 @@
+2006-08-25 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added examples of inheriting from Logger class and wrapping it
+
 2006-08-24 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added infrastructure to create your own logger types inheriting from
 	Logger: 
