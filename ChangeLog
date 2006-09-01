@@ -1,3 +1,6 @@
+2006-09-01 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Fixed File target for Windows 98
+
 2006-08-25 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added examples of inheriting from Logger class and wrapping it
 
