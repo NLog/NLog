@@ -147,7 +147,7 @@ namespace NLog.Internal.FileAppenders
             if (allowConcurrentWrite)
                 fileShare |= Win32FileHelper.FILE_SHARE_WRITE;
 
-            if (_createParameters.EnableFileDelete)
+            if (_createParameters.EnableFileDelete && PlatformDetector.GetCurrentRuntimeOS() == RuntimeOS.WindowsNT)
                 fileShare |= Win32FileHelper.FILE_SHARE_DELETE;
 
             IntPtr hFile = Win32FileHelper.CreateFile(
