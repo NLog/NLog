@@ -46,6 +46,20 @@
     <property name="clover.enabled" value="false" />
     <property name="clover.home" value="D:\Apps\CloverNLog" />
 
+    <target name="detectversion">
+        <foreach item="Line" in="NLog.version" delim="." property="tmp1,tmp2,tmp3,tmp4">
+            <property name="nlog.version.major" value="${tmp1}" />
+            <property name="nlog.version.minor" value="${tmp2}" />
+            <property name="nlog.version.revision" value="${tmp3}" />
+            <property name="nlog.version.build" value="${tmp4}" />
+        </foreach>
+
+        <if test="${file::exists('NLog_Source.txt')}">
+        </if>
+
+        <echo message="NLog Version: ${nlog.version.major}.${nlog.version.minor}.${nlog.version.revision}.${nlog.version.build}" />
+    </target>
+
     <target name="configure">
         <call target="configure-${framework::get-target-framework()}" />
         <property name="buildsubdir" value="${framework::get-target-framework()}${if(clover.enabled,'-clover','')}${if(nlog.debug,'-debug','')}" />
