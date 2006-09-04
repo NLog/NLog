@@ -46,7 +46,7 @@ using System.Security.Permissions;
 #elif MONO_1_0
 [assembly: AssemblyTitle("NLog for Mono 1.0")]
 #elif MONO_2_0
-[assembly: AssemblyTitle("NLog for Mono 1.0")]
+[assembly: AssemblyTitle("NLog for Mono 2.0")]
 #elif NETCF_1_0
 [assembly: AssemblyTitle("NLog for .NET Compact Framework 1.0")]
 #elif NETCF_2_0
@@ -61,8 +61,6 @@ using System.Security.Permissions;
 [assembly: AssemblyProduct("NLog - .NET Logging Library")]
 [assembly: AssemblyCopyright("Copyright (c) 2004-2006 by Jaroslaw Kowalski")]
 [assembly: AssemblyCulture("")]
-
-[assembly: AssemblyVersion("1.0.0.0")]
 
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]

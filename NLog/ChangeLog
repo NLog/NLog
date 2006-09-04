@@ -1,3 +1,8 @@
+2006-09-04 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Build number is synchronized with SVN number (hopefully)
+	* Fixed LayoutRenderer.ApplyPadding() null handling
+	* First attempt at publisher policy generation
+
 2006-09-01 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Fixed File target for Windows 98
 

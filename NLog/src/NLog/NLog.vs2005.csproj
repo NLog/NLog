@@ -211,6 +211,7 @@
     <Compile Include="Config\XmlLoggingConfiguration.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AssemblyBuildInfo.cs" />
     <Compile Include="LayoutParser.cs" />
     <Compile Include="LayoutRenderers\Rot13.cs" />
     <Compile Include="LayoutRenderers\FileContents.cs" />
@@ -724,8 +725,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
+    <PreBuildEvent>"$(ProjectDir)..\..\tools\UpdateBuildNumber.exe" "$(ProjectDir)..\..\NLog.version" "$(ProjectDir)AssemblyBuildInfo.cs" "$(ProjectDir)..\..\build\NLog.buildversion"</PreBuildEvent>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
