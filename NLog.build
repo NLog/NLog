@@ -138,6 +138,7 @@
 
     <target name="update-build-number">
         <exec program="tools/UpdateBuildNumber.exe" commandline="NLog.version src/NLog/AssemblyBuildInfo.cs build/NLog.buildversion" useruntimeengine="true" />
+        <exec program="tools/UpdateBuildNumber.exe" commandline="NLog.version src/NLog.ComInterop/AssemblyBuildInfo.cs build/NLog.buildversion" useruntimeengine="true" />
         <foreach item="Line" in="build/NLog.buildversion" delim="." property="tmp1,tmp2,tmp3,tmp4">
             <property name="nlog.version.major" value="${tmp1}" />
             <property name="nlog.version.minor" value="${tmp2}" />
