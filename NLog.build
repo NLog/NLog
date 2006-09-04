@@ -849,11 +849,17 @@
         <echo message="Coverage results deployed." />
     </target>
 
-    <target name="source_snapshot">
+    <target name="source_snapshot" depends="update-build-number">
         <delete dir="build/source_snapshot" if="${directory::exists('build/source_snapshot')}" />
         <property name="snapshot.dir" value="build/source_snapshot/NLog-${nlog.package.name}" />
         <mkdir dir="build/source_snapshot" if="${not directory::exists('build/source_snapshot')}" />
         <exec program="svn" commandline="export . ${snapshot.dir}" />
+        <copy file="build/NLog.buildversion" tofile="${snapshot.dir}/NLog.version" />
+        <copy todir="${snapshot.dir}">
+            <fileset basedir=".">
+                <include name="src/**/AssemblyBuildInfo.cs" />
+            </fileset>
+        </copy>
         <zip zipfile="${source_snapshot.name}">
             <fileset basedir="build/source_snapshot">
                 <include name="**/*" />
