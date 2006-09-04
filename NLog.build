@@ -47,17 +47,6 @@
     <property name="clover.home" value="D:\Apps\CloverNLog" />
 
     <target name="detectversion">
-        <foreach item="Line" in="NLog.version" delim="." property="tmp1,tmp2,tmp3,tmp4">
-            <property name="nlog.version.major" value="${tmp1}" />
-            <property name="nlog.version.minor" value="${tmp2}" />
-            <property name="nlog.version.revision" value="${tmp3}" />
-            <property name="nlog.version.build" value="${tmp4}" />
-        </foreach>
-
-        <if test="${file::exists('NLog_Source.txt')}">
-        </if>
-
-        <echo message="NLog Version: ${nlog.version.major}.${nlog.version.minor}.${nlog.version.revision}.${nlog.version.build}" />
     </target>
 
     <target name="configure">
@@ -147,7 +136,19 @@
         </delete>
     </target>
 
-    <target name="NLog" depends="configure">
+    <target name="update-build-number">
+        <exec program="tools/UpdateBuildNumber.exe" commandline="NLog.version src/NLog/AssemblyBuildInfo.cs build/NLog.buildversion" useruntimeengine="true" />
+        <foreach item="Line" in="build/NLog.buildversion" delim="." property="tmp1,tmp2,tmp3,tmp4">
+            <property name="nlog.version.major" value="${tmp1}" />
+            <property name="nlog.version.minor" value="${tmp2}" />
+            <property name="nlog.version.revision" value="${tmp3}" />
+            <property name="nlog.version.build" value="${tmp4}" />
+        </foreach>
+
+        <property name="nlog.version" value="${nlog.version.major}.${nlog.version.minor}.${nlog.version.revision}.${nlog.version.build}" />
+    </target>
+
+    <target name="NLog" depends="configure, update-build-number">
         <csc target="library" output="${nlog.dir}/NLog.dll" doc="${nlog.dir}/NLog.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}" warnaserror="true">
             <sources basedir="src">
                 <include name="NLog/**/*.cs" />
@@ -695,25 +696,23 @@
     <target name="build-netcf-1.0" depends="NLog" />
     <target name="build-netcf-2.0" depends="NLog" />
 
-    <target name="updateversion">
-        <foreach item="Line" in="Nlog.version" delim=";" property="nlog.version">
-            <exec workingdir="${project::get-base-directory()}" program="tools/ReplaceVersion.exe" commandline=". ${nlog.version}" />
-        </foreach>
-    </target>
+    <target name="publisher-policy" depends="update-build-number">
+        <copy file="src/publisher_policy.config.template" tofile="publisher_policy.config" />
+        <xmlpoke file="publisher_policy.config" xpath="/configuration/runtime/ms:assemblyBinding/ms:dependentAssembly/ms:bindingRedirect/@oldVersion"
+            value="${nlog.version.major}.${nlog.version.minor}.0.0-${nlog.version.major}.${nlog.version.minor}.${nlog.version.revision}.${int::parse(nlog.version.build) - 1}">
+            <namespaces>
+                <namespace prefix="ms" uri="urn:schemas-microsoft-com:asm.v1" />
+            </namespaces>
+        </xmlpoke>
+        <xmlpoke file="publisher_policy.config" xpath="/configuration/runtime/ms:assemblyBinding/ms:dependentAssembly/ms:bindingRedirect/@newVersion"
+            value="${nlog.version.major}.${nlog.version.minor}.${nlog.version.revision}.${nlog.version.build}">
+            <namespaces>
+                <namespace prefix="ms" uri="urn:schemas-microsoft-com:asm.v1" />
+            </namespaces>
+        </xmlpoke>
 
-    <target name="publisher_policy">
-        <foreach item="Line" in="Nlog.version" delim="." property="nlog.version.major,nlog.version.minor,nlog.version.build,nlog.version.revision">
-            <copy file="src/publisher_policy.config.template" tofile="publisher_policy.config" />
-            <xmlpoke file="publisher_policy.config" xpath="/configuration/runtime/ms:assemblyBinding/ms:dependentAssembly/ms:bindingRedirect/@newVersion"
-                value="${nlog.version.major}.${nlog.version.minor}.${nlog.version.build}.${nlog.version.revision}">
-                <namespaces>
-                    <namespace prefix="ms" uri="urn:schemas-microsoft-com:asm.v1" />
-                </namespaces>
-            </xmlpoke>
-
-            <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'al.exe')}"
-                commandline="/nologo /embed:publisher_policy.config /out:Policy.${nlog.version.major}.${nlog.version.minor}.NLog.dll /keyfile:${path::combine(nant.project.basedir,'src/NLog.snk')}" />
-        </foreach>
+        <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'al.exe')}"
+            commandline="/nologo /embed:publisher_policy.config /out:Policy.${nlog.version.major}.${nlog.version.minor}.NLog.dll /keyfile:${path::combine(nant.project.basedir,'src/NLog.snk')}" />
     </target>
 
     <target name="installer" depends="allframeworksdebugandrelease, clean_examples, help, vs2005templates">
@@ -938,43 +937,41 @@
         <mkdir dir="build/templates" />
         <foreach item="String" in="Empty,Typical,Console" delim="," property="projecttype">
             <foreach item="String" in="CSharp,VisualBasic,JSharp" delim="," property="language">
-                <foreach item="Line" in="Nlog.version" delim=";" property="nlog.version">
-                    <!-- standard version -->
-                    <delete dir="tmp_dir" failonerror="false" />
-                    <copy todir="tmp_dir">
-                        <fileset basedir="tools/VS2005Templates/ItemTemplates/${projecttype}NLogConfig">
-                            <include name="**/*" />
-                        </fileset>
-                        <filterchain>
-                            <replacestring from="$nlogversion$" to="${nlog.version}" />
-                            <replacestring from="$projecttype$" to="${language}" />
-                            <replacestring from="$projectsubtype$" to="" />
-                        </filterchain>
-                    </copy>
-                    <zip zipfile="build/templates/${language}${projecttype}NLogConfig.zip">
-                        <fileset basedir="tmp_dir">
-                            <include name="**/*" />
-                        </fileset>
-                    </zip>
+                <!-- standard version -->
+                <delete dir="tmp_dir" failonerror="false" />
+                <copy todir="tmp_dir">
+                    <fileset basedir="tools/VS2005Templates/ItemTemplates/${projecttype}NLogConfig">
+                        <include name="**/*" />
+                    </fileset>
+                    <filterchain>
+                        <replacestring from="$nlogversion$" to="${nlog.version}" />
+                        <replacestring from="$projecttype$" to="${language}" />
+                        <replacestring from="$projectsubtype$" to="" />
+                    </filterchain>
+                </copy>
+                <zip zipfile="build/templates/${language}${projecttype}NLogConfig.zip">
+                    <fileset basedir="tmp_dir">
+                        <include name="**/*" />
+                    </fileset>
+                </zip>
 
-                    <!-- web standard version -->
-                    <delete dir="tmp_dir" failonerror="false" />
-                    <copy todir="tmp_dir">
-                        <fileset basedir="tools/VS2005Templates/ItemTemplates/${projecttype}NLogConfig">
-                            <include name="**/*" />
-                        </fileset>
-                        <filterchain>
-                            <replacestring from="$nlogversion$" to="${nlog.version}" />
-                            <replacestring from="$projecttype$" to="Web" />
-                            <replacestring from="$projectsubtype$" to="${language}" />
-                        </filterchain>
-                    </copy>
-                    <zip zipfile="build/templates/Web${language}${projecttype}NLogConfig.zip">
-                        <fileset basedir="tmp_dir">
-                            <include name="**/*" />
-                        </fileset>
-                    </zip>
-                </foreach>
+                <!-- web standard version -->
+                <delete dir="tmp_dir" failonerror="false" />
+                <copy todir="tmp_dir">
+                    <fileset basedir="tools/VS2005Templates/ItemTemplates/${projecttype}NLogConfig">
+                        <include name="**/*" />
+                    </fileset>
+                    <filterchain>
+                        <replacestring from="$nlogversion$" to="${nlog.version}" />
+                        <replacestring from="$projecttype$" to="Web" />
+                        <replacestring from="$projectsubtype$" to="${language}" />
+                    </filterchain>
+                </copy>
+                <zip zipfile="build/templates/Web${language}${projecttype}NLogConfig.zip">
+                    <fileset basedir="tmp_dir">
+                        <include name="**/*" />
+                    </fileset>
+                </zip>
             </foreach>
         </foreach>
         <delete dir="tmp_dir" failonerror="false" />

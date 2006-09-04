@@ -216,6 +216,8 @@ namespace NLog
         /// <returns>Padded, trimmed, and case-converted string.</returns>
         protected string ApplyPadding(string s)
         {
+            if (s == null)
+                s = String.Empty;
             if (Padding != 0)
             {
                 if (Padding > 0)

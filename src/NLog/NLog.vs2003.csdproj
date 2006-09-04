@@ -255,6 +255,7 @@
         <File RelPath="TargetWithLayoutHeaderAndFooter.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="LayoutRenderers\EventContext.cs" SubType="Code" BuildAction="Compile" />
         <File RelPath="LayoutRenderers\Rot13.cs" SubType="Code" BuildAction="Compile" />
+        <File RelPath="AssemblyBuildInfo.cs" SubType="Code" BuildAction="Compile" />
       </Include>
     </Files>
   </ECSHARP>

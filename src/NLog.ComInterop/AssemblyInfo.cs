@@ -54,8 +54,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright (c) 2004-2006 by Jaroslaw Kowalski")]
 [assembly: AssemblyCulture("")]
 
-[assembly: AssemblyVersion("1.0.0.0")]
-
 [assembly: Guid("fb84adc2-a04b-4ff3-8a20-7c069c3cfa6f")]
 
 [assembly: CLSCompliant(true)]
