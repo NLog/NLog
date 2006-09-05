@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using System.Xml;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace UpdateBuildNumber
 {
@@ -13,24 +14,100 @@ namespace UpdateBuildNumber
         {
             string[] svnDirs = { ".svn", "_svn" };
 
+            // try to determine the revision without spawning external EXE
+
             foreach (string wd in svnDirs)
             {
-                string f = Path.Combine(Path.Combine(workingDir, wd), "entries");
-                if (!File.Exists(f))
+                string dir = Path.Combine(workingDir, wd);
+                if (!Directory.Exists(dir))
                     continue;
 
-                XmlDocument doc = new XmlDocument();
-                doc.Load(f);
 
-                foreach (XmlElement el in doc.DocumentElement.ChildNodes)
+                string f = Path.Combine(dir, "entries");
+
+                // pre-1.4 XML format
+                try
                 {
-                    if (el.GetAttribute("name") == String.Empty)
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(f);
+
+                    foreach (XmlElement el in doc.DocumentElement.ChildNodes)
                     {
-                        return Convert.ToInt32(el.GetAttribute("revision"));
+                        if (el.GetAttribute("name") == String.Empty)
+                        {
+                            return Convert.ToInt32(el.GetAttribute("revision"));
+                        }
+                    }
+                }
+                catch
+                {
+                    // ignore errors
+                }
+
+                try
+                {
+                    // subversion 1.4 format
+                    using (StreamReader sr = File.OpenText(f))
+                    {
+                        string version = sr.ReadLine().Trim();
+                        if (version == "8")
+                        {
+                            if (sr.ReadLine().Trim() == "")
+                            {
+                                if (sr.ReadLine().Trim() == "dir")
+                                {
+                                    string rev = sr.ReadLine().Trim();
+                                    return Convert.ToInt32(rev);
+                                }
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                }
+            }
+
+            try
+            {
+                using (Process p = new Process())
+                {
+                    // Console.WriteLine("Spawning 'svnversion' in {0}", workingDir);
+                    p.StartInfo.WorkingDirectory = workingDir;
+                    p.StartInfo.UseShellExecute = false;
+                    p.StartInfo.Arguments = ".";
+                    p.StartInfo.RedirectStandardOutput = true;
+                    p.StartInfo.FileName = "svnversion";
+                    p.StartInfo.CreateNoWindow = true;
+                    p.Start();
+                    p.WaitForExit();
+                    if (p.ExitCode == 0)
+                    {
+                        StringBuilder digits = new StringBuilder();
+                        string line = p.StandardOutput.ReadLine();
+                        foreach (char c in line)
+                        {
+                            if (!Char.IsDigit(c))
+                                break;
+
+                            digits.Append(c);
+                        }
+
+                        if (digits.Length > 0)
+                            return Convert.ToInt32(digits.ToString());
+                        else
+                            return 0;
+                    }
+                    else
+                    {
+                        throw new Exception("Process 'svnversion' has exited with error exit code: " + p.ExitCode);
                     }
                 }
             }
-            return 0;
+            catch (Exception ex)
+            {
+                throw new Exception("Cannot determine working copy revision.", ex);
+            }
         }
 
         static int Main(string[] args)
