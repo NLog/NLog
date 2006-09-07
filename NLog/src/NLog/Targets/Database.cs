@@ -69,9 +69,9 @@ namespace NLog.Targets
     {
         private Assembly _system_data_assembly = typeof(IDbConnection).Assembly;
         private Type _connectionType = null;
-        private string _connectionString = null;
         private bool _keepConnection = true;
         private bool _useTransaction = false;
+        private Layout _connectionString = null;
         private Layout _dbHostLayout = new Layout(".");
         private Layout _dbUserNameLayout = null;
         private Layout _dbPasswordLayout = null;
@@ -130,10 +130,11 @@ namespace NLog.Targets
         /// The connection string. When provided, it overrides the values
         /// specified in DBHost, DBUserName, DBPassword, DBDatabase.
         /// </summary>
+        [AcceptsLayout]
         public string ConnectionString
         {
-            get { return _connectionString; }
-            set { _connectionString = value; }
+            get { return Convert.ToString(_connectionString); }
+            set { _connectionString = new Layout(value); }
         }
 
         /// <summary>
@@ -168,7 +169,7 @@ namespace NLog.Targets
         [AcceptsLayout]
         public string DBHost
         {
-            get { return _dbHostLayout.Text; }
+            get { return Convert.ToString(_dbHostLayout); }
             set { _dbHostLayout = new Layout(value); }
         }
 
@@ -191,7 +192,7 @@ namespace NLog.Targets
         [AcceptsLayout]
         public string DBUserName
         {
-            get { return _dbUserNameLayout.Text; }
+            get { return Convert.ToString(_dbUserNameLayout); }
             set { _dbUserNameLayout = new Layout(value); }
         }
 
@@ -214,7 +215,7 @@ namespace NLog.Targets
         [AcceptsLayout]
         public string DBPassword
         {
-            get { return _dbPasswordLayout.Text; }
+            get { return Convert.ToString(_dbPasswordLayout); }
             set { _dbPasswordLayout = new Layout(value); }
         }
 
@@ -237,7 +238,7 @@ namespace NLog.Targets
         [AcceptsLayout]
         public string DBDatabase
         {
-            get { return _dbDatabaseLayout.Text; }
+            get { return Convert.ToString(_dbDatabaseLayout); }
             set { _dbDatabaseLayout = new Layout(value); }
         }
 
@@ -267,7 +268,7 @@ namespace NLog.Targets
         [RequiredParameter]
         public string CommandText
         {
-            get { return _compiledCommandTextLayout.Text; }
+            get { return Convert.ToString(_compiledCommandTextLayout); }
             set { _compiledCommandTextLayout = new Layout(value); }
         }
 
@@ -403,7 +404,7 @@ namespace NLog.Targets
                 return _connectionStringCache;
 
             if (_connectionString != null)
-                return _connectionString;
+                return _connectionString.GetFormattedMessage(logEvent);
 
             StringBuilder sb = new StringBuilder();
 
