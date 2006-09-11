@@ -1007,6 +1007,8 @@
         <exec program="${scp.program}" commandline="${scp.args} ${nlog.release.dir}/nlog-${nlog.package.name}*.* ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Uploading ChangeLog..." />
         <exec program="${scp.program}" commandline="${scp.args} ChangeLog ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
+        <echo message="Uploading NLog.buildversion..." />
+        <exec program="${scp.program}" commandline="${scp.args} build/NLog.buildversion ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
         <echo message="Calculating MD5SUM..." />
         <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} (cd ${webserver.deploy.dir}/snapshots/${nlog.package.name}; md5sum nlog-${nlog.package.name}* > MD5SUM)" />
         <echo message="Creating 'latest' link..." />
