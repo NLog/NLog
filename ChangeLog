@@ -1,3 +1,6 @@
+2006-09-11 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added publisher policy generation
+
 2006-09-07 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Enabled DatabaseTarget.ConnectionString to include
 	layouts.

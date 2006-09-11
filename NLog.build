@@ -689,31 +689,42 @@
         <property name="nlog.csc.args" value="/nowarn:1591,1699" />
     </target>
 
-    <target name="build-mono-1.0" depends="NLog" />
-    <target name="build-mono-2.0" depends="NLog" />
-    <target name="build-net-1.0" depends="NLog, NLog.ComInterop, NLogC" />
-    <target name="build-net-1.1" depends="NLog, NLog.ComInterop, NLogC" />
-    <target name="build-net-2.0" depends="NLog, NLog.ComInterop, NLogC" />
+    <target name="build-mono-1.0" depends="NLog, publisher-policy" />
+    <target name="build-mono-2.0" depends="NLog, publisher-policy" />
+    <target name="build-net-1.0" depends="NLog, NLog.ComInterop, NLogC, publisher-policy" />
+    <target name="build-net-1.1" depends="NLog, NLog.ComInterop, NLogC, publisher-policy" />
+    <target name="build-net-2.0" depends="NLog, NLog.ComInterop, NLogC, publisher-policy" />
     <target name="build-netcf-1.0" depends="NLog" />
     <target name="build-netcf-2.0" depends="NLog" />
 
-    <target name="publisher-policy" depends="update-build-number">
-        <copy file="src/publisher_policy.config.template" tofile="publisher_policy.config" />
-        <xmlpoke file="publisher_policy.config" xpath="/configuration/runtime/ms:assemblyBinding/ms:dependentAssembly/ms:bindingRedirect/@oldVersion"
-            value="${nlog.version.major}.${nlog.version.minor}.0.0-${nlog.version.major}.${nlog.version.minor}.${nlog.version.revision}.${int::parse(nlog.version.build) - 1}">
-            <namespaces>
-                <namespace prefix="ms" uri="urn:schemas-microsoft-com:asm.v1" />
-            </namespaces>
-        </xmlpoke>
-        <xmlpoke file="publisher_policy.config" xpath="/configuration/runtime/ms:assemblyBinding/ms:dependentAssembly/ms:bindingRedirect/@newVersion"
-            value="${nlog.version.major}.${nlog.version.minor}.${nlog.version.revision}.${nlog.version.build}">
-            <namespaces>
-                <namespace prefix="ms" uri="urn:schemas-microsoft-com:asm.v1" />
-            </namespaces>
-        </xmlpoke>
+    <target name="publisher-policy" depends="configure, update-build-number">
+        <uptodate property="publisherpolicy.uptodate">
+            <targetfiles>
+                <include name="${nlog.dir}/Policy.${nlog.version.major}.${nlog.version.minor}.NLog.dll" />
+            </targetfiles>
+            <sourcefiles basedir=".">
+                <include name="src/NLog/AssemblyBuildInfo.cs" />
+            </sourcefiles>
+        </uptodate>
+        <if test="${not publisherpolicy.uptodate}">
+            <copy file="src/publisher_policy.config.template" tofile="${nlog.dir}/Policy.${nlog.version.major}.${nlog.version.minor}.NLog.xml" />
+            <xmlpoke file="${nlog.dir}/Policy.${nlog.version.major}.${nlog.version.minor}.NLog.xml" xpath="/configuration/runtime/ms:assemblyBinding/ms:dependentAssembly/ms:bindingRedirect/@oldVersion"
+                value="${nlog.version.major}.${nlog.version.minor}.0.0-${nlog.version.major}.${nlog.version.minor}.${nlog.version.revision}.${int::parse(nlog.version.build) - 1}">
+                <namespaces>
+                    <namespace prefix="ms" uri="urn:schemas-microsoft-com:asm.v1" />
+                </namespaces>
+            </xmlpoke>
+            <xmlpoke file="${nlog.dir}/Policy.${nlog.version.major}.${nlog.version.minor}.NLog.xml" xpath="/configuration/runtime/ms:assemblyBinding/ms:dependentAssembly/ms:bindingRedirect/@newVersion"
+                value="${nlog.version.major}.${nlog.version.minor}.${nlog.version.revision}.${nlog.version.build}">
+                <namespaces>
+                    <namespace prefix="ms" uri="urn:schemas-microsoft-com:asm.v1" />
+                </namespaces>
+            </xmlpoke>
 
-        <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'al.exe')}"
-            commandline="/nologo /embed:publisher_policy.config /out:Policy.${nlog.version.major}.${nlog.version.minor}.NLog.dll /keyfile:${path::combine(nant.project.basedir,'src/NLog.snk')}" />
+            <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'al')}"
+                commandline="/nologo /link:Policy.${nlog.version.major}.${nlog.version.minor}.NLog.xml /out:Policy.${nlog.version.major}.${nlog.version.minor}.NLog.dll /keyfile:${path::combine(project::get-base-directory(),'src/NLog.snk')} /version:1.0.0.0"
+                workingdir="${nlog.dir}" />
+        </if>
     </target>
 
     <target name="installer" depends="allframeworksdebugandrelease, clean_examples, help, vs2005templates">
@@ -934,7 +945,7 @@
                 </resources>
             </csc>
             <exec program="${nlog.dir}/MakeNLogXSD.exe" 
-                commandline="NLog.xsd &quot;${nant.project.basedir}/build/doc/doc.xml&quot;"
+                commandline="NLog.xsd &quot;${project::get-base-directory()}/build/doc/doc.xml&quot;"
                 workingdir="${nlog.dir}" useruntimeengine="true" />
             <delete file="${nlog.dir}/MakeNLogXSD.exe" />
         </if>
