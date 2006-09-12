@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <xsl:param name="external-base">file://D:/Work/NLog/build/net-1.1-debug/helpweb</xsl:param>
+    <xsl:param name="external-base">../build/net-1.1-debug/web</xsl:param>
 
     <xsl:template name="external-iframe">
         <div class="embeddedsource">
             <div class="sourcecode">
-                <!-- <xsl:value-of select="concat($external-base,'/',@src,'.xhtml')" /> -->
                 <xsl:copy-of select="document(concat($external-base,'/',@src,'.xhtml'))" />
             </div>
             <div class="downloadlink">
                 <a href="{@src}">Download this file</a>
             </div>
         </div>
+    </xsl:template>
+
+    <xsl:template match="cs[@src]">
+        <xsl:call-template name="external-iframe" />
+    </xsl:template>
+
+    <xsl:template match="js[@src]">
+        <xsl:call-template name="external-iframe" />
+    </xsl:template>
+
+    <xsl:template match="xml[@src]">
+        <xsl:call-template name="external-iframe" />
     </xsl:template>
 
     <xsl:template match="x">

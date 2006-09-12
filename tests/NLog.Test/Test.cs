@@ -76,7 +76,7 @@ namespace NLog.Tester
             //InternalLogger.LogToConsole = true;
             //InternalLogger.LogLevel = LogLevel.Debug;
 
-            for (int i = 0; i < 1; ++i)
+            for (int i = 0; i < 3; ++i)
             {
                 logger.Trace("ttt");
                 logger.Debug("ala ma kota {0}", i);
@@ -84,10 +84,7 @@ namespace NLog.Tester
                 logger.Warn("aaa");
                 logger.Error("err");
                 logger.Fatal("fff");
-                //if (i % 100 == 0)
-                //    Console.WriteLine("i: {0}", i);
             }
-
         }
     }
 }

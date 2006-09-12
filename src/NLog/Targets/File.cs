@@ -240,10 +240,11 @@ namespace NLog.Targets
         private ArchiveNumberingMode _archiveNumbering = ArchiveNumberingMode.Sequence;
         private Timer _autoClosingTimer = null;
         private int _openFileCacheTimeout = -1;
-        private bool _first = true;
         private bool _deleteOldFileOnStartup = false;
         private bool _replaceFileContentsOnEachWrite = false;
         private bool _enableFileDelete = true;
+        private Hashtable _initializedFiles = new Hashtable();
+        private int _initializedFilesCounter = 0;
 #if !NETCF
         private Win32FileAttributes _fileAttributes = Win32FileAttributes.Normal;
 #endif
@@ -835,7 +836,7 @@ namespace NLog.Targets
                     DoAutoArchive(fileName, logEvent);
                 }
 
-                WriteToFile(fileName, bytes);
+                WriteToFile(fileName, bytes, false);
             }
         }
 
@@ -877,11 +878,12 @@ namespace NLog.Targets
                         {
                             if (ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
                             {
+                                WriteFooterAndUninitialize(currentFileName);
                                 InvalidateCacheItem(currentFileName);
                                 DoAutoArchive(currentFileName, firstLogEvent);
                             }
 
-                            WriteToFile(currentFileName, ms.ToArray());
+                            WriteToFile(currentFileName, ms.ToArray(), false);
                         }
                         currentFileName = logEventFileName;
                         firstLogEvent = logEvent;
@@ -896,11 +898,12 @@ namespace NLog.Targets
                 {
                     if (ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
                     {
+                        WriteFooterAndUninitialize(currentFileName);
                         InvalidateCacheItem(currentFileName);
                         DoAutoArchive(currentFileName, firstLogEvent);
                     }
 
-                    WriteToFile(currentFileName, ms.ToArray());
+                    WriteToFile(currentFileName, ms.ToArray(), false);
                 }
             }
         }
@@ -1027,28 +1030,52 @@ namespace NLog.Targets
             return bytes;
         }
 
-        private void WriteToFile(string fileName, byte[] bytes)
+        private void WriteToFile(string fileName, byte[] bytes, bool justData)
         {
-            if (_first && DeleteOldFileOnStartup)
-            {
-                try
-                {
-                    File.Delete(fileName);
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Warn("Unable to delete old log file '{0}': {1}", fileName, ex);
-                }
-            }
-            _first = false;
-
             if (ReplaceFileContentsOnEachWrite)
             {
                 using (FileStream fs = File.Create(fileName))
                 {
+                    byte[] headerBytes = GetHeaderBytes();
+                    byte[] footerBytes = GetFooterBytes();
+
+                    if (headerBytes != null)
+                        fs.Write(headerBytes, 0, headerBytes.Length);
                     fs.Write(bytes, 0, bytes.Length);
+                    if (footerBytes != null)
+                        fs.Write(footerBytes, 0, footerBytes.Length);
                 }
                 return;
+            }
+
+            bool writeHeader = false;
+
+            if (!justData)
+            {
+                if (!_initializedFiles.Contains(fileName))
+                {
+                    if (DeleteOldFileOnStartup)
+                    {
+                        try
+                        {
+                            File.Delete(fileName);
+                        }
+                        catch (Exception ex)
+                        {
+                            InternalLogger.Warn("Unable to delete old log file '{0}': {1}", fileName, ex);
+                        }
+                    }
+                    _initializedFiles[fileName] = DateTime.Now;
+                    _initializedFilesCounter++;
+                    writeHeader = true;
+
+                    if (_initializedFilesCounter >= 100)
+                    {
+                        _initializedFilesCounter = 0;
+                        CleanupInitializedFiles();
+                    }
+                }
+                _initializedFiles[fileName] = DateTime.Now;
             }
 
             //
@@ -1060,7 +1087,7 @@ namespace NLog.Targets
             // performance should be equivalent to the one of the hashtable.
             //
 
-            BaseFileAppender newAppender;
+            BaseFileAppender appenderToWrite = null;
             int freeSpot = _recentAppenders.Length - 1;
 
             for (int i = 0; i < _recentAppenders.Length; ++i)
@@ -1083,26 +1110,112 @@ namespace NLog.Targets
                     for (int j = i; j > 0; --j)
                         _recentAppenders[j] = _recentAppenders[j - 1];
                     _recentAppenders[0] = app;
-                    app.Write(bytes);
-                    return;
+                    appenderToWrite = app;
+                    break;
                 }
             }
 
-            newAppender = _appenderFactory.Open(fileName, this);
-
-            if (_recentAppenders[freeSpot] != null)
+            if (appenderToWrite == null)
             {
-                _recentAppenders[freeSpot].Close();
-                _recentAppenders[freeSpot] = null;
+                BaseFileAppender newAppender = _appenderFactory.Open(fileName, this);
+
+                if (_recentAppenders[freeSpot] != null)
+                {
+                    _recentAppenders[freeSpot].Close();
+                    _recentAppenders[freeSpot] = null;
+                }
+
+                for (int j = freeSpot; j > 0; --j)
+                {
+                    _recentAppenders[j] = _recentAppenders[j - 1];
+                }
+
+                _recentAppenders[0] = newAppender;
+                appenderToWrite = newAppender;
             }
 
-            for (int j = freeSpot; j > 0; --j)
+            if (writeHeader && !justData)
             {
-                _recentAppenders[j] = _recentAppenders[j - 1];
+                byte[] headerBytes = GetHeaderBytes();
+                if (headerBytes != null)
+                {
+                    appenderToWrite.Write(headerBytes);
+                }
             }
 
-            _recentAppenders[0] = newAppender;
-            _recentAppenders[0].Write(bytes);
+            appenderToWrite.Write(bytes);
+        }
+
+        private byte[] GetHeaderBytes()
+        {
+            if (CompiledHeader == null)
+                return null;
+
+            string renderedText = CompiledHeader.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + NewLineChars;
+            return TransformBytes(_encoding.GetBytes(renderedText));
+        }
+
+        private byte[] GetFooterBytes()
+        {
+            if (CompiledFooter == null)
+                return null;
+
+            string renderedText = CompiledFooter.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + NewLineChars;
+            return TransformBytes(_encoding.GetBytes(renderedText));
+        }
+
+        /// <summary>
+        /// Removes records of initialized files that have not been 
+        /// accessed in the last two days.
+        /// </summary>
+        /// <remarks>
+        /// Files are marked 'initialized' for the purpose of writing footers when the logging finishes.
+        /// </remarks>
+        public void CleanupInitializedFiles()
+        {
+            CleanupInitializedFiles(DateTime.Now.AddDays(-2));
+        }
+
+        /// <summary>
+        /// Removes records of initialized files that have not been 
+        /// accessed after the specified date.
+        /// </summary>
+        /// <remarks>
+        /// Files are marked 'initialized' for the purpose of writing footers when the logging finishes.
+        /// </remarks>
+        public void CleanupInitializedFiles(DateTime cleanupThreshold)
+        {
+            // clean up files that are two days old
+
+            ArrayList filesToUninitialize = new ArrayList();
+
+            foreach (DictionaryEntry de in _initializedFiles)
+            {
+                string fileName = (string)de.Key;
+                DateTime lastWriteTime = (DateTime)de.Value;
+                if (lastWriteTime < cleanupThreshold)
+                {
+                    filesToUninitialize.Add(fileName);
+                }
+            }
+
+            foreach (string fileName in filesToUninitialize)
+            {
+                WriteFooterAndUninitialize(fileName);
+            }
+        }
+
+        private void WriteFooterAndUninitialize(string fileName)
+        {
+            byte[] footerBytes = GetFooterBytes();
+            if (footerBytes != null)
+            {
+                if (File.Exists(fileName))
+                {
+                    WriteToFile(fileName, footerBytes, true);
+                }
+            }
+            _initializedFiles.Remove(fileName);
         }
 
         /// <summary>
@@ -1129,8 +1242,14 @@ namespace NLog.Targets
         protected internal override void Close()
         {
             base.Close();
+
             lock (this)
             {
+                foreach (string fileName in new ArrayList(_initializedFiles.Keys))
+                {
+                    WriteFooterAndUninitialize(fileName);
+                }
+
                 if (_autoClosingTimer != null)
                 {
                     _autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);

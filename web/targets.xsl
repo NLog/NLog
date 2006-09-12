@@ -13,6 +13,10 @@
         <xsl:if test="not($target_name)">
             <h1>Log Targets</h1>
             <p>
+                Targets represents possible log outputs. You can define one or more targets in the <link href="config">configuration file</link>
+                with the <x><target /></x> directive. When defining a target you need to specify its name and type.
+            </p>
+            <p>
                 The following types of targets are supported by NLog:
             </p>
             <ul>
@@ -27,7 +31,21 @@
 
             <h3>Regular Targets</h3>
             <p>
-                The following log targets are available. Click on the target name for full reference.
+                Regular targets are responsible for writing log output to persistent media, such as <a href="target.File.html">files</a>,
+                <a href="target.Database.html">databases</a>, <a href="target.Network.html">network receivers</a> or <a href="target.MSMQ">message queues</a>. 
+                Each target has its own set of type-specific configuration parameters which are passed as XML attributes or elements.
+            </p>
+            <p>
+                The following example defines a single file target with a file name of 'file.txt': 
+            </p>
+            <pre class="XML">
+                <span style="color:#0000ff">&lt;</span><span style="color:#800000">targets</span><span style="color:#0000ff">&gt;</span>&#160;
+&#160;&#160;&#160;&#160;<span style="color:#0000ff">&lt;</span><span style="color:#800000">target</span>&#160;<span style="color:#ff0000">name</span><span style="color:#0000ff">=</span><span style="color:#0000ff">"n"</span>&#160;<span style="color:#ff0000">type</span><span style="color:#0000ff">=</span><span style="color:#0000ff">"File"</span>&#160;<span style="color:#ff0000">fileName</span><span style="color:#0000ff">=</span><span style="color:#0000ff">"file.txt"</span><span style="color:#0000ff">/&gt;</span>&#160;
+<span style="color:#0000ff">&lt;/</span><span style="color:#800000">targets</span><span style="color:#0000ff">&gt;</span> &#160;
+</pre>
+            
+            <p>
+                The following log targets are available. Click on a target name for a reference of possible target parameters.
             </p>
             <div class="noborder">
                 <table class="listtable">
@@ -41,7 +59,15 @@
             <a name="wrappers"></a>
             <h3>Target Wrappers</h3>
             <p>
-                The following target wrappers are available. Click on the target name for full reference.
+                Target wrappers are used to modify the behavior of other targets by adding features such as:
+            </p>
+            <ul>
+                <li>asynchronous processing (wrapped target runs in a separate thread)</li>
+                <li>retry-on-error</li>
+                <li>buffering</li>
+            </ul>
+            <p>
+                The following target wrappers are available. Click on a target name for full reference.
             </p>
             <div class="noborder">
                 <table class="listtable">

@@ -1037,6 +1037,9 @@
         <exec program="${ndocsyntax.path}" 
               commandline="-outDir build/doc/webxmlwithsyntax web/*.xml" 
               workingdir="." useruntimeengine="true" />
+        <exec program="${ndocsyntax.path}" 
+              commandline="-outDir build/doc/webxmlwithsyntax web/*.xsl" 
+              workingdir="." useruntimeengine="true" />
     </target>
 
     <target name="website" depends="xmldoc, webxmlwithsyntax">

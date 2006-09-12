@@ -1,3 +1,9 @@
+2006-09-12 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Implemented headers and footers for the File target.
+	CAUTION: NLog automatically writes footers for files that have not been
+	written for 2 days (48 hours). This is done do conserve memory for
+	long-running processes that create lots of log files.
+
 2006-09-11 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added publisher policy generation
 
