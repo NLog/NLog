@@ -40,6 +40,7 @@ using System.Threading;
 using NLog.Internal;
 using NLog.Internal.NetworkSenders;
 using System.Text;
+using System.ComponentModel;
 
 namespace NLog.Targets
 {
@@ -87,6 +88,28 @@ namespace NLog.Targets
         private Layout _addressLayout = null;
         private NetworkSender _sender = null;
         private Encoding _encoding = System.Text.Encoding.UTF8;
+        private OverflowAction _onOverflow = OverflowAction.Split;
+
+        /// <summary>
+        /// Action that should be taken if the message overflows.
+        /// </summary>
+        public enum OverflowAction
+        {
+            /// <summary>
+            /// Report an error.
+            /// </summary>
+            Error,
+
+            /// <summary>
+            /// Split the message into smaller pieces.
+            /// </summary>
+            Split,
+
+            /// <summary>
+            /// Discard the entire message
+            /// </summary>
+            Discard
+        }
 
         /// <summary>
         /// The network address. Can be tcp://host:port or udp://host:port
@@ -137,6 +160,29 @@ namespace NLog.Targets
             set { _newline = value; }
         }
 
+        private int _maxMessageSize = 65000;
+
+        /// <summary>
+        /// Maximum message size in bytes.
+        /// </summary>
+        [DefaultValue(65000)]
+        public int MaxMessageSize
+        {
+            get { return _maxMessageSize; }
+            set { _maxMessageSize = value; }
+        }
+	
+
+        /// <summary>
+        /// Action that should be taken if the message is larger than
+        /// maxMessageSize
+        /// </summary>
+        public OverflowAction OnOverflow
+        {
+            get { return _onOverflow; }
+            set { _onOverflow = value; }
+        }
+
         /// <summary>
         /// Encoding
         /// </summary>
@@ -176,7 +222,7 @@ namespace NLog.Targets
 
                     try
                     {
-                        _sender.Send(bytes);
+                        ChunkedSend(_sender, bytes);
                     }
                     catch (Exception ex)
                     {
@@ -192,7 +238,7 @@ namespace NLog.Targets
 
                     try
                     {
-                        sender.Send(bytes);
+                        ChunkedSend(sender, bytes);
                     }
                     finally
                     {
@@ -263,6 +309,30 @@ namespace NLog.Targets
                 text = CompiledLayout.GetFormattedMessage(logEvent);
 
             return _encoding.GetBytes(text);
+        }
+
+        private void ChunkedSend(NetworkSender sender, byte[] buffer)
+        {
+            int tosend = buffer.Length;
+            int pos = 0;
+
+            while (tosend > 0)
+            {
+                int chunksize = tosend;
+                if (chunksize > MaxMessageSize)
+                {
+                    if (OnOverflow == OverflowAction.Discard)
+                        return;
+
+                    if (OnOverflow == OverflowAction.Error)
+                        throw new OverflowException("Attempted to send a message larger than MaxMessageSize(" + MaxMessageSize + "). Actual size was: " + buffer.Length + ". Adjust OnOverflow and MaxMessageSize parameters accordingly.");
+
+                    chunksize = MaxMessageSize;
+                }
+                sender.Send(buffer, pos, chunksize);
+                tosend -= chunksize;
+                pos += chunksize;
+            }
         }
     }
 }

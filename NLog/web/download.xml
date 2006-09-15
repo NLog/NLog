@@ -9,27 +9,20 @@
     <ul>
         <li><a href="http://sourceforge.net/project/showfiles.php?group_id=116456">Download official packages from SourceForge.net</a></li>
         <li><a href="http://www.nlog-project.org/snapshots/">Development snapshots</a> (updated more frequently, primarily meant for testing, usually as stable as the released packages)</li>
-        <li><a href="#subversion">Subversion repository</a> - to get the most up-to-date source code and build it yourself</li>
+        <li><a nomangle="1" href="http://svn.nlog-project.org/repos/nlog/trunk/NLog">Subversion repository</a> - to get the most up-to-date source code and build it yourself</li>
     </ul>
 
-    <h3>Downloading source code from Subversion repository</h3>
     <p>
-        To get the source code from Subversion repository point your subversion client at:<br/>
-        <a nomangle="1" href="http://svn.nlog-project.org/repos/nlog/trunk/NLog">http://svn.nlog-project.org/repos/nlog/trunk/NLog</a>
-    </p>
-    <p>
-        The repository is available to everybody in read-only mode. Write access is available <link href="mailinglists">on request</link>. Source code snapshots (in ZIP format) are automatically generated 
-        on each commit and are available <a href="http://svn.nlog-project.org/snapshots/">here</a>. 
+        Subversion is available to everybody in read-only mode. Write access is available <link href="mailinglists">on request</link>. 
+        Source code snapshots (in ZIP format) are automatically generated on each commit and are available <a href="http://svn.nlog-project.org/snapshots/">here</a>. 
     </p>    
 
-    <h3>Building NLog from source</h3>
     <p>
-        NLog can be built with either Visual Studio.NET 2003 or <a href="http://nant.sourceforge.net/">NAnt</a>. If you
-        decide to use NAnt - make sure to use one of the latest nightly builds 
-        available <a href="http://nant.sourceforge.net/nightly/latest/">here</a> or NAnt 0.85 version when it becomes available.
-    </p>
-    <p>
-        To build NLog using NAnt, just type <code>nant</code> at the command prompt. To rebuild NLog using VS.NET, open the solution file (<code>NLog.sln</code>) and run <code>Build|Rebuild Solution</code>.
+        NLog can be built with either Visual Studio.NET 2003, Visual Studio 2005 or <a href="http://nant.sourceforge.net/">NAnt 0.85</a>.
+        To build NLog using NAnt, just type <code>nant</code> at the command prompt. 
+        To rebuild NLog using VS.NET, open the solution file that matches the Visual Studio 
+        version you use (<code>NLog.vs2003.sln</code> or <code>NLog.vs2005.sln</code>) 
+        and run <code>Build|Rebuild Solution</code>.
     </p>
     <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>

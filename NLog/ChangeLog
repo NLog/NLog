@@ -1,3 +1,7 @@
+2006-09-15 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added MaxMessageSize (default: 65000) and OnOverflow (default:Split) to
+	the Network target
+
 2006-09-12 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Implemented headers and footers for the File target.
 	CAUTION: NLog automatically writes footers for files that have not been
