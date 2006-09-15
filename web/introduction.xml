@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
 <content lang="en" id="introduction">
-    <h3>What is NLog?</h3>
+    <h1>Introduction to NLog</h1>
     <p>
         NLog is a .NET logging library designed with simplicity and flexibility in mind. With NLog you 
         can process diagnostic messages emitted from any .NET language, augment them with 

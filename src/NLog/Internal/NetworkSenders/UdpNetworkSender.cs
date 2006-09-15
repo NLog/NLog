@@ -71,11 +71,14 @@ namespace NLog.Internal.NetworkSenders
         /// Sends the specified text as a UDP datagram.
         /// </summary>
         /// <param name="bytes">The bytes to be sent.</param>
-        protected override void DoSend(byte[] bytes)
+        /// <param name="offset">Offset in buffer</param>
+        /// <param name="length">Number of bytes to send</param>
+        /// <remarks>To be overridden in inheriting classes.</remarks>
+        protected override void DoSend(byte[] bytes, int offset, int length)
         {
             lock (this)
             {
-                _socket.SendTo(bytes, _endpoint);
+                _socket.SendTo(bytes, offset, length, SocketFlags.None, _endpoint);
             }
         }
 

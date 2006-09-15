@@ -74,11 +74,14 @@ namespace NLog.Internal.NetworkSenders
         /// Sends the specified text over the connected socket.
         /// </summary>
         /// <param name="bytes">The bytes to be sent.</param>
-        protected override void DoSend(byte[] bytes)
+        /// <param name="offset">Offset in buffer</param>
+        /// <param name="length">Number of bytes to send</param>
+        /// <remarks>To be overridden in inheriting classes.</remarks>
+        protected override void DoSend(byte[] bytes, int offset, int length)
         {
             lock (this)
             {
-                _socket.Send(bytes);
+                _socket.Send(bytes, offset, length, SocketFlags.None);
             }
         }
 
