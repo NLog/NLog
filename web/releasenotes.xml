@@ -4,6 +4,186 @@
     <h1>Release Notes</h1>
     <table width="100%">
         <tr class="releasenote">
+            <td class="newsdate">2006-09-18</td>
+            <td class="newstext">
+                <b style="font-size: 150%; color: red">NLog 1.0 has been released.!</b>
+                <p>
+                    After 2 years of work, we're proud to announce the availability of NLog 1.0. NLog is a logging library designed
+                    with simplicity and flexibility in mind. See <a href="http://www.nlog-project.org">http://www.nlog-project.org</a> for more
+                    information about NLog.
+                </p>
+                <p>
+                    Source, binary packages and installer packages are available for 
+                    download from: <a href="http://www.nlog-project.org/download.html">http://www.nlog-project.org/download.html</a>
+                </p>
+                <p>
+                    Tutorial and reference documentation are available at:
+                    <a href="http://www.nlog-project.org/documentation.html">http://www.nlog-project.org/documentation.html</a>
+                </p>
+                <p>
+                    The following people have contributed to NLog by submitting code or bug reports:
+                </p>
+                <ul>
+                    <li>Jaroslaw Kowalski <code>&lt;jaak at jkowalski dot net&gt;</code></li>
+                    <li>Marcin Krupinski <code>&lt;yoszek at gmail dot com&gt;</code></li>
+                    <li>Inez Korczynski <code>&lt;korczynski at gmail dot com&gt;</code></li>
+                    <li>Rafal Gwizdala <code>&lt;gwrafal at poczta dot onet dot pl&gt;</code></li>
+                    <li>Yuri Mamrukov <code>&lt;yvm at att dot net&gt;</code></li>
+                    <li>Maciej Figatowski <code>&lt;mfigatow at sav dot net&gt;</code></li>
+                    <li>Perry Rapp <code>&lt;lifelines_3_0_18 at hotmail dot com&gt;</code></li>
+                    <li>Maarten Claes <code>&lt;m.claes at farcourier dot com&gt;</code></li>
+                </ul>
+                <p>
+                    The focus of this relase is future compatibility. Code has been added to ensure
+                    that the development of NLog will progress without breaking existing code.
+                    The following paragraphs describe changes that made after 1.0 RC1 release. 
+                </p>
+                <p>
+                    Breaking API changes:
+                </p>
+                <ul>
+                    <li>Added NLog.ILayout which Layout implements to allow other layout types 
+                        (such as CSV-escaped, HTML-colored,    XML-escaped, ANSI-colored) to be implemented.</li>
+                    <li>NLog.Layout became sealed.</li>
+                    <li>FileTarget.KeepFileOpen is back to the default
+                        of false. we now have <x><default-target-parameters /></x> so this default can be easily overriden.</li>
+                    <li>Added NLog.TargetWithLayout, removed Layout and CompiledLayout from NLog.Target</li>
+                    <li>Removed CSVFile target, converted examples to File + CsvLayout</li>
+                    <li>Removed LogEventInfo.Empty and replaced with LogEventInfo.CreateNullEvent()</li>
+                    <li>Changed the default value of FileTarget.OpenFileCacheTimeout to -1</li>
+                </ul>
+                <p>
+                    Packaging changes:
+                </p>
+                <ul>
+                    <li>Added publisher policy generation and established NLog versioning policy. See <a href="http://blog.jkowalski.net/?p=55">http://blog.jkowalski.net/?p=55</a> 
+                        for more information about NLog versioning policy.</li>
+                    <li>Build number is synchronized with SVN number.</li>
+                    <li>Added VJSharp and Web item templates. Updated the installer to support VWD Express 2005.</li>
+                    <li>Synchronized Visual Studio solutions to source code directories. Now part of the build process.</li>
+                    <li>New NLog.Benchmark that uses code generation and compilation to	create more "clean" environment.</li>
+                </ul>
+                <p>
+                    Changes to the logging infrastructure:
+                </p>
+                <ul>
+                    <li>Added <x><targets><default-target-parametes /> </targets></x> that specifies default values for all targets in the section</li>
+                    <li>Added Initialize() and Close() to the LayoutRender class</li>
+                    <li>Added optimized CurrentTimeGetter which is way faster than DateTime.Now</li>
+                    <li>Fixed LayoutRenderer.ApplyPadding() null handling</li>
+                    <li>Added infrastructure to create your own logger types inheriting from Logger:
+
+                        <code lang="C#">
+                            LogManager.GetLogger(string name, Type type)
+                            LogManager.GetCurrentClassLogger(Type type)
+                            LogFactory.GetLogger(string name, Type type)
+                            LogFactory.GetCurrentClassLogger(Type type)
+                        </code>
+                    </li>
+                    <li>Added PopulateLayouts() method to ILayout</li>
+                    <li>Added ${event-context} layout renderer that extracts information from LogEventInfo.Context</li>
+                    <li>Added LogManager&lt;LoggerType&gt; that manages logger instances of LoggerType where LoggerType : Logger</li>
+                    <li>Added support for nested layout renderers. Used in ${file-contents}:
+                        <code lang="C#">
+                            ${file-contents:fileName=${basedir}/aaa.txt}
+                        </code>
+                    </li>
+                    <li>Added support for DEFAULT nested layout parameters. You can now write:
+                        <code lang="C#">
+                            ${file-contents:${basedir}/file.txt}
+                            ${rot13:URYYB}
+                        </code>
+                    </li>
+                    <li>Added pluggable layouts (CSV, Log4JXml), LayoutFactory and  LayoutAttribute. The syntax is:
+                        <code lang="XML">
+                            <![CDATA[
+                            <target xsi:type="File">
+                                <layout xsi:type="CSVLayout">
+                                    <column name="message" layout="${message}" />
+                                    <column name="level" layout="${level}" />
+                                </layout>
+                            </target>
+                            ]]>
+                        </code>
+                        <p>
+                            Of course the old syntax is still supported for simple layouts:
+                        </p>
+
+                        <code lang="XML">
+                            <![CDATA[
+                            <target xsi:type="File" layout="${message}" />
+                            ]]>
+                        </code>
+                    </li>
+                    <li>Added ILayoutWithHeaderAndFooter for layouts that support   header/footer (such as CSV Layout, more to come)</li>
+                    <li>Enhanced XSD Schema generation by properly generating abstract and layout properties.</li>
+                    <li>Added FilterResult.IgnoreFinal and FilterResult.LogFinala which suppress processing of further rules 
+                        if the filter matches.</li>
+                    <li>Added NLogConfigurationException which is thrown instead of CLR exceptions when the configuration fails</li>
+                    <li>Simplified XmlLoggingConfiguration by splitting large methods and moving common functionality to PropertyHelper</li>
+                    <li>Added [DefaultParameter] attribute which allows for nameless parameters	to layout renderers:
+                        <code lang="NLog Layout Renderer">
+                            ${aspnet-application}
+                            ${aspnet-request}
+                            ${aspnet-session}
+                            ${date}
+                            ${environment}
+                            ${file-contents}
+                            ${gdc}
+                            ${mdc}
+                            ${process-info}
+                            ${special-folder}
+                            ${asp-application}
+                            ${asp-request}
+                            ${asp-session}
+                        </code>
+                    </li>
+                    <li>Moved the implementation of LogManager to a reusable LogFactory while maintaining its public interface. 
+                        You can now easily have a private LogManager for an assembly.</li>
+                </ul>
+                <p>
+                    New additions:
+                </p>
+                <ul>
+                    <li>Added MaxMessageSize (default: 65000) and OnOverflow (default:Split) to
+                        the Network target</li>
+                    <li>Implemented headers and footers for the File target.
+                        <b>CAUTION</b> NLog automatically writes footers for files that have not been
+                        written for 2 days (48 hours). This is done do conserve memory for
+                        long-running processes that create lots of log files.</li>
+                    <li>Enabled DatabaseTarget.ConnectionString to include layouts.</li>
+                    <li>Added eventID and categoryID parameters to EventLog targets.</li>
+                    <li>Added ${file-contents} layout renderer which inserts file contents.</li>
+                    <li>Added MailTarget.AddNewLines to insert new lines between header/lines/footer</li>
+                    <li>Added FormControl target that logs to Text property of any Windows.Forms.Control</li>
+                    <li>Added RichTextBox target with row- and word coloring that  logs to RichTextBox</li>
+                    <li>Added ${tempdir} and ${specialfolder}</li>
+                    <li>Added ${gc} which can be used to get the GC statistics (very limited)</li>
+                    <li>Added ${processinfo} which can be used to extract the performance information about the current process (possibly others in the future as well)</li>
+                    <li>Added ImpersonatingWrapper which temporarily changes the credentials for the duration of the write.</li>
+                    <li>Added NLog_Init() and NLog_InitLocal() APIs to NLogC</li>
+                </ul>
+                <p>
+                    Bug fixes:
+                </p>
+                <ul>
+                    <li>Fixed File target for Windows 98</li>
+                    <li>Fixed Network target to work properly with IPV6</li>
+                    <li>Changed RichTextBox Target to be thread safe. Uses delegate to log to RichTextBox</li>
+                </ul>
+                <p>
+                    Documentation updates:
+                </p>
+                <ul>
+                    <li>Added examples of inheriting from Logger class and wrapping it</li>
+                    <li>Added missing code documentation</li>
+                    <li>Added example ${rot13} layout renderer - that demonstrates how wrapper layout renderers can be written.</li>
+                    <li>Added proper camelCasing to the web build process</li>
+                    <li>Fix for multiple email addresses being passed in To,CC and BCC fields under .NET 2.0 (reported by Pawel Parzychowski)</li>
+                </ul>
+            </td>
+        </tr>
+        <tr class="releasenote">
             <td class="newsdate">2006-06-27</td>
             <td class="newstext">
                 <p><b>NLog 1.0 Release Candidate 1 is available!</b></p>
