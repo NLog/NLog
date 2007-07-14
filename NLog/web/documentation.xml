@@ -14,8 +14,8 @@
     <h3>Reference</h3>
     <ul>
         <li><link href="netapi">.NET API</link> - native API</li>
-        <li><link href="capi">C/C++ API</link> - a wrapper API to be used in legacy COM applications</li>
-        <li><link href="comapi">COM API</link> - a wrapper API to be used in legacy C/C++ applications</li>
+        <li><link href="capi">C/C++ API</link> - a wrapper API to be used in legacy C/C++ applications</li>
+        <li><link href="comapi">COM API</link> - a wrapper API to be used in legacy COM applications</li>
     </ul>
     <ul>
         <li><link href="targets">Targets</link> - this is where trace output goes</li>

@@ -154,6 +154,7 @@
 
     <xs:simpleType name="NLogLevel">
         <xs:restriction base="xs:string">
+            <xs:enumeration value="Off" />
             <xs:enumeration value="Trace" />
             <xs:enumeration value="Debug" />
             <xs:enumeration value="Info" />
