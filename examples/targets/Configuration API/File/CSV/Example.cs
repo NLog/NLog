@@ -18,7 +18,7 @@ class Example
         layout.Columns.Add(new CsvColumn("logger", "${logger}"));
         layout.Columns.Add(new CsvColumn("level", "${level}"));
 
-        target.CompiledLayout = layout;
+        target.Layout = layout;
 
         NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
 
