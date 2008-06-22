@@ -627,10 +627,6 @@
   <ItemGroup>
     <None Include="NLog.snk" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mono\" />
-    <Folder Include="Unix\" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(ProjectDir)..\..\tools\RewriteBuildNumber.exe" "$(ProjectDir)..\..\NLog.version" "$(ProjectDir)AssemblyBuildInfo.cs" "$(ProjectDir)..\..\build\NLog.buildversion"</PreBuildEvent>

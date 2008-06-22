@@ -10,20 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeNLogXSD", "tools\MakeNL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeNLogDoc", "tools\MakeNLogDoc\MakeNLogDoc.csproj", "{773C477E-2626-432D-B959-325B3B146744}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdHoc1", "tests\AdHoc1\AdHoc1.csproj", "{F78A9125-184A-47C2-AFF1-A7BB934F032F}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VBTest", "Test\VBTest\VBTest.vbproj", "{0C3041FD-D31F-4EAC-8B32-7ED977288C6C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C08C3E16-E837-40C5-BFBC-7A845A80F128}"
-	ProjectSection(SolutionItems) = preProject
-		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
-		NLog.vsmdi = NLog.vsmdi
-	EndProjectSection
-EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = NLog.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -96,30 +83,6 @@ Global
 		{773C477E-2626-432D-B959-325B3B146744}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{773C477E-2626-432D-B959-325B3B146744}.Release|Win32.ActiveCfg = Release|Any CPU
 		{773C477E-2626-432D-B959-325B3B146744}.Release|x86.ActiveCfg = Release|Any CPU
-		{F78A9125-184A-47C2-AFF1-A7BB934F032F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F78A9125-184A-47C2-AFF1-A7BB934F032F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F78A9125-184A-47C2-AFF1-A7BB934F032F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{F78A9125-184A-47C2-AFF1-A7BB934F032F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{F78A9125-184A-47C2-AFF1-A7BB934F032F}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{F78A9125-184A-47C2-AFF1-A7BB934F032F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F78A9125-184A-47C2-AFF1-A7BB934F032F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F78A9125-184A-47C2-AFF1-A7BB934F032F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F78A9125-184A-47C2-AFF1-A7BB934F032F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F78A9125-184A-47C2-AFF1-A7BB934F032F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{F78A9125-184A-47C2-AFF1-A7BB934F032F}.Release|Win32.ActiveCfg = Release|Any CPU
-		{F78A9125-184A-47C2-AFF1-A7BB934F032F}.Release|x86.ActiveCfg = Release|Any CPU
-		{0C3041FD-D31F-4EAC-8B32-7ED977288C6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C3041FD-D31F-4EAC-8B32-7ED977288C6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C3041FD-D31F-4EAC-8B32-7ED977288C6C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0C3041FD-D31F-4EAC-8B32-7ED977288C6C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0C3041FD-D31F-4EAC-8B32-7ED977288C6C}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{0C3041FD-D31F-4EAC-8B32-7ED977288C6C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0C3041FD-D31F-4EAC-8B32-7ED977288C6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C3041FD-D31F-4EAC-8B32-7ED977288C6C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0C3041FD-D31F-4EAC-8B32-7ED977288C6C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{0C3041FD-D31F-4EAC-8B32-7ED977288C6C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{0C3041FD-D31F-4EAC-8B32-7ED977288C6C}.Release|Win32.ActiveCfg = Release|Any CPU
-		{0C3041FD-D31F-4EAC-8B32-7ED977288C6C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
