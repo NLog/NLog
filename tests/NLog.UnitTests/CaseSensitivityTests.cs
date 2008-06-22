@@ -89,7 +89,7 @@ namespace NLog.UnitTests
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
-            <nlog>
+            <nlog throwExceptions='true'>
                 <TARGETS><TARGET NAME='DEBUG' TYPE='DEBUG' LAYOUT='${MESSAGE}' /></TARGETS>
                 <RULES>
                     <LOGGER NAME='*' MINLEVEL='INFO' APPENDTO='DEBUG'>

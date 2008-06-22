@@ -32,45 +32,32 @@
 // 
 
 using System;
-#if !NET_CF
-using System.Runtime.Serialization;
-#endif
+using System.Globalization;
+using System.Diagnostics;
+using System.Threading;
+using System.Reflection;
 
-namespace NLog.Config
+using System.Collections;
+using System.Collections.Specialized;
+using NLog.Layouts;
+using NLog.Internal;
+using System.Collections.Generic;
+
+namespace NLog
 {
-    /// <summary>
-    /// Exception during configuration
-    /// </summary>
-#if !NET_CF && !SILVERLIGHT
-    [Serializable]
-#endif
-    public class NLogConfigurationException : Exception
+    public class UnformattedLogEventInfoWithException : UnformattedLogEventInfo
     {
-        /// <summary>
-        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
-        /// </summary>
-        public NLogConfigurationException() {}
+        private Exception _exception;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
-        /// </summary>
-        /// <param name="desc">Error message</param>
-        public NLogConfigurationException(string desc) : base(desc) {}
+        public UnformattedLogEventInfoWithException(LogLevel level, string loggerName, string message, Exception exception)
+            : base(level, loggerName, message)
+        {
+            _exception = exception;
+        }
 
-        /// <summary>
-        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
-        /// </summary>
-        /// <param name="desc">Error message</param>
-        /// <param name="inner">Inner exception</param>
-        public NLogConfigurationException(string desc, Exception inner) : base(desc, inner) {}
-
-#if !NET_CF && !SILVERLIGHT
-        /// <summary>
-        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
-        /// </summary>
-        /// <param name="info">Serialization info</param>
-        /// <param name="context">Streaming context</param>
-        protected NLogConfigurationException(SerializationInfo info, StreamingContext context) : base(info, context) {}
-#endif
+        public override Exception Exception
+        {
+            get { return _exception; }
+        }
     }
 }

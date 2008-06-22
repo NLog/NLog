@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
     /// <summary>
     /// Relational operators used in conditions.

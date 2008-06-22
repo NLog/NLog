@@ -41,7 +41,7 @@ using System.Collections.Generic;
 using NLog.Config;
 using NLog.Layouts;
 
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
     /// <summary>
     /// Condition method invocation expression (represented by <b>method(p1,p2,p3)</b> syntax).

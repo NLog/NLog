@@ -42,7 +42,7 @@ using System.Xml.Serialization;
 using System.Collections.Generic;
 using NLog.Layouts;
 
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
     /// <summary>
     /// Condition relational (<b>==</b>, <b>!=</b>, <b>&lt;</b>, <b>&lt;=</b>, 

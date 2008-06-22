@@ -38,7 +38,7 @@ using System.Xml.Serialization;
 using System.Collections.Generic;
 using NLog.Layouts;
 
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
     /// <summary>
     /// Base class for representing nodes in condition expression trees.

@@ -34,7 +34,7 @@
 using System.Collections.Generic;
 using NLog.Layouts;
 
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
     /// <summary>
     /// Condition <b>and</b> expression.

@@ -37,7 +37,7 @@ using System.Text;
 using System.Collections;
 using NLog.Config;
 
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
     /// <summary>
     /// A bunch of utility methods (mostly predicates) which can be used in

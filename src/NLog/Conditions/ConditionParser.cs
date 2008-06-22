@@ -40,7 +40,7 @@ using NLog.Conditions;
 using System.Collections.Generic;
 using NLog.Layouts;
 
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
     /// <summary>
     /// Condition parser. Turns a string representation of condition expression

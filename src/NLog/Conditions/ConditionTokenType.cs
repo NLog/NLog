@@ -36,7 +36,7 @@ using System.IO;
 using System.Text;
 using System.Collections;
 
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
     /// <summary>
     /// Token types for condition expressions.

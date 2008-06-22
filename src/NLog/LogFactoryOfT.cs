@@ -32,45 +32,55 @@
 // 
 
 using System;
-#if !NET_CF
-using System.Runtime.Serialization;
-#endif
+using System.Collections;
+using System.Xml;
+using System.IO;
+using System.Reflection;
+using System.Threading;
+using System.Diagnostics;
+using System.Security;
+using System.Text;
+using System.Globalization;
+using System.Runtime.CompilerServices;
 
-namespace NLog.Config
+using NLog.Config;
+using NLog.Internal;
+using NLog.Targets;
+using System.Collections.Generic;
+
+namespace NLog
 {
     /// <summary>
-    /// Exception during configuration
+    /// Specialized LogFactory that can return instances of custom logger types.
     /// </summary>
-#if !NET_CF && !SILVERLIGHT
-    [Serializable]
-#endif
-    public class NLogConfigurationException : Exception
+    /// <typeparam name="T">The type of the logger to be returned. Must inherit from <see cref="Logger"/>.</typeparam>
+    public class LogFactory<T> : LogFactory where T : Logger
     {
         /// <summary>
-        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
+        /// Gets the logger.
         /// </summary>
-        public NLogConfigurationException() {}
+        /// <param name="name">The name.</param>
+        /// <returns>An instance of <typeparamref name="LoggerType"/>.</returns>
+        public new T GetLogger(string name)
+        {
+            return (T)base.GetLogger(name, typeof(T));
+        }
 
+#if !NET_CF
         /// <summary>
-        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
+        /// Gets the logger named after the currently-being-initialized class.
         /// </summary>
-        /// <param name="desc">Error message</param>
-        public NLogConfigurationException(string desc) : base(desc) {}
+        /// <returns>The logger.</returns>
+        /// <remarks>This is a slow-running method. 
+        /// Make sure you're not doing this in a loop.</remarks>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public new T GetCurrentClassLogger()
+        {
+            StackFrame frame = new StackFrame(1, false);
 
-        /// <summary>
-        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
-        /// </summary>
-        /// <param name="desc">Error message</param>
-        /// <param name="inner">Inner exception</param>
-        public NLogConfigurationException(string desc, Exception inner) : base(desc, inner) {}
-
-#if !NET_CF && !SILVERLIGHT
-        /// <summary>
-        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
-        /// </summary>
-        /// <param name="info">Serialization info</param>
-        /// <param name="context">Streaming context</param>
-        protected NLogConfigurationException(SerializationInfo info, StreamingContext context) : base(info, context) {}
+            return GetLogger(frame.GetMethod().DeclaringType.FullName);
+        }
 #endif
+    
     }
 }

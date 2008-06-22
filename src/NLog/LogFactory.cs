@@ -679,40 +679,4 @@ namespace NLog
             }
         }
     }
-
-#if NET_2_API
-    /// <summary>
-    /// Specialized LogFactory that can return instances of custom logger types.
-    /// </summary>
-    /// <typeparam name="LoggerType">The type of the logger to be returned. Must inherit from <see cref="Logger"/>.</typeparam>
-    public class LogFactory<LoggerType> : LogFactory where LoggerType : Logger
-    {
-        /// <summary>
-        /// Gets the logger.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns>An instance of <typeparamref name="LoggerType"/>.</returns>
-        public new LoggerType GetLogger(string name)
-        {
-            return (LoggerType)base.GetLogger(name, typeof(LoggerType));
-        }
-
-#if !NET_CF
-        /// <summary>
-        /// Gets the logger named after the currently-being-initialized class.
-        /// </summary>
-        /// <returns>The logger.</returns>
-        /// <remarks>This is a slow-running method. 
-        /// Make sure you're not doing this in a loop.</remarks>
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public new LoggerType GetCurrentClassLogger()
-        {
-            StackFrame frame = new StackFrame(1, false);
-
-            return GetLogger(frame.GetMethod().DeclaringType.FullName);
-        }
-#endif
-    
-    }
-#endif
 }

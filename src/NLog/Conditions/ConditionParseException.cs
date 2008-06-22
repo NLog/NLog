@@ -36,7 +36,7 @@ using System;
 using System.Runtime.Serialization;
 #endif
 
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
     /// <summary>
     /// Exception during parsing of condition expression

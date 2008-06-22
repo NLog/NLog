@@ -95,9 +95,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Conditions\ConditionMethodAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -186,6 +183,8 @@
     <Compile Include="Config\IFactory.cs" />
     <Compile Include="Config\Factory.cs" />
     <Compile Include="Config\NameAttributeBase.cs" />
+    <Compile Include="LogFactoryOfT.cs" />
+    <Compile Include="FormattedLogEventInfo.cs" />
     <Compile Include="Internal\NativeMethods.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSender.cs">
       <SubType>Code</SubType>
@@ -193,10 +192,11 @@
     <Compile Include="Layouts\Layout.cs" />
     <Compile Include="Layouts\LayoutConverter.cs" />
     <Compile Include="Layouts\LayoutParser.cs" />
-    <Compile Include="LayoutRenderers\Rot13.cs" />
-    <Compile Include="LayoutRenderers\FileContents.cs" />
+    <Compile Include="LayoutRenderers\Rot13LayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\FileContentsLayoutRenderer.cs" />
     <Compile Include="Config\NLogFactories.cs" />
     <Compile Include="LogMessageDelegate.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Targets\TargetWithLayoutHeaderAndFooter.cs" />
     <Compile Include="Layouts\LayoutWithHeaderAndFooter.cs" />
     <Compile Include="Internal\CurrentTimeGetter.cs" />
@@ -216,16 +216,16 @@
     <Compile Include="Filters\LayoutBasedFilter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Filters\WhenContains.cs">
+    <Compile Include="Filters\WhenContainsFilter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Filters\WhenEqual.cs">
+    <Compile Include="Filters\WhenEqualFilter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Filters\WhenNotContains.cs">
+    <Compile Include="Filters\WhenNotContainsFilter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Filters\WhenNotEqual.cs">
+    <Compile Include="Filters\WhenNotEqualFilter.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GDC.cs">
@@ -269,7 +269,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
-    <Compile Include="Internal\HttpUtility.cs" />
     <Compile Include="Internal\InternalLogger.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -305,114 +304,114 @@
     <Compile Include="LayoutRenderers\LayoutRendererAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ASPNetApplication.cs">
+    <Compile Include="LayoutRenderers\ASPNETApplicationValueLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ASPNetRequest.cs">
+    <Compile Include="LayoutRenderers\ASPNETRequestValueLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ASPNetSession.cs">
+    <Compile Include="LayoutRenderers\ASPNETSessionValueLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ASPNetSessionID.cs">
+    <Compile Include="LayoutRenderers\ASPNETSessionIDLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ASPNetUserAuthType.cs">
+    <Compile Include="LayoutRenderers\ASPNETUserAuthTypeLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ASPNetUserIdentity.cs">
+    <Compile Include="LayoutRenderers\ASPNETUserIdentityLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\BaseDir.cs">
+    <Compile Include="LayoutRenderers\BaseDirLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\CallSite.cs">
+    <Compile Include="LayoutRenderers\CallSiteLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\GC.cs" />
-    <Compile Include="LayoutRenderers\ProcessInfo.cs" />
-    <Compile Include="LayoutRenderers\SpecialFolder.cs" />
-    <Compile Include="LayoutRenderers\TempDir.cs" />
-    <Compile Include="LayoutRenderers\QPC.cs" />
-    <Compile Include="LayoutRenderers\Counter.cs">
+    <Compile Include="LayoutRenderers\GCLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\ProcessInfoLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\SpecialFolderLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\TempDirLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\QpcLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\CounterLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\Date.cs">
+    <Compile Include="LayoutRenderers\DateLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\Environment.cs">
+    <Compile Include="LayoutRenderers\EnvironmentLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\Exception.cs">
+    <Compile Include="LayoutRenderers\ExceptionLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\GCD.cs">
+    <Compile Include="LayoutRenderers\GDCLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\Guid.cs">
+    <Compile Include="LayoutRenderers\GuidLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\Identity.cs">
+    <Compile Include="LayoutRenderers\IdentityLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\Level.cs">
+    <Compile Include="LayoutRenderers\LevelLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\Literal.cs">
+    <Compile Include="LayoutRenderers\LiteralLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\Log4JXmlEvent.cs">
+    <Compile Include="LayoutRenderers\Log4JXmlEventLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\LoggerName.cs">
+    <Compile Include="LayoutRenderers\LoggerNameLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\LongDate.cs">
+    <Compile Include="LayoutRenderers\LongDateLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\MachineName.cs">
+    <Compile Include="LayoutRenderers\MachineNameLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\MDC.cs">
+    <Compile Include="LayoutRenderers\MDCLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\Message.cs">
+    <Compile Include="LayoutRenderers\MessageLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\NDC.cs">
+    <Compile Include="LayoutRenderers\NDCLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LayoutRenderers\NewLine.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\NLogDir.cs">
+    <Compile Include="LayoutRenderers\NLogDirLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\PerformanceCounter.cs">
+    <Compile Include="LayoutRenderers\PerformanceCounterLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ProcessID.cs">
+    <Compile Include="LayoutRenderers\ProcessIDLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ProcessName.cs">
+    <Compile Include="LayoutRenderers\ProcessNameLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ProcessTime.cs">
+    <Compile Include="LayoutRenderers\ProcessTimeLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ShortDate.cs">
+    <Compile Include="LayoutRenderers\ShortDateLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\StackTrace.cs">
+    <Compile Include="LayoutRenderers\StackTraceLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ThreadID.cs">
+    <Compile Include="LayoutRenderers\ThreadIDLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ThreadName.cs">
+    <Compile Include="LayoutRenderers\ThreadNameLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\Ticks.cs">
+    <Compile Include="LayoutRenderers\TicksLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Layouts\CsvLayout.cs" />
@@ -444,10 +443,10 @@
     <Compile Include="Targets\TargetAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\ASPNetTrace.cs">
+    <Compile Include="Targets\ASPNetTraceTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\Chainsaw.cs">
+    <Compile Include="Targets\ChainsawTarget.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Targets\Compound\CompoundTargetBase.cs">
@@ -465,37 +464,37 @@
     <Compile Include="Targets\Compound\SplitTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\Console.cs">
+    <Compile Include="Targets\ConsoleTarget.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Layouts\CsvQuotingMode.cs" />
     <Compile Include="Layouts\CsvColumn.cs" />
-    <Compile Include="Targets\Database.cs">
+    <Compile Include="Targets\DatabaseTarget.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Targets\DatabaseParameterInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\Debug.cs">
+    <Compile Include="Targets\DebugTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\Debugger.cs">
+    <Compile Include="Targets\DebuggerTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\File.cs">
+    <Compile Include="Targets\FileTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\FormControl.cs" />
-    <Compile Include="Targets\Mail.cs">
+    <Compile Include="Targets\FormControlTarget.cs" />
+    <Compile Include="Targets\MailTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\Memory.cs">
+    <Compile Include="Targets\MemoryTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\MessageBox.cs">
+    <Compile Include="Targets\MessageBoxTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\MethodCall.cs">
+    <Compile Include="Targets\MethodCallTarget.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Targets\MethodCallParameter.cs">
@@ -504,29 +503,30 @@
     <Compile Include="Targets\MethodCallTargetBase.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\Network.cs">
+    <Compile Include="Targets\NetworkTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\NLogViewer.cs">
+    <Compile Include="Targets\NLogViewerTarget.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Targets\NLogViewerParameterInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\Null.cs">
+    <Compile Include="Targets\NullTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\RichTextBox.cs" />
+    <Compile Include="Targets\RichTextBoxTarget.cs" />
     <Compile Include="Targets\RichTextBoxRowColoringRule.cs" />
     <Compile Include="Targets\RichTextBoxWordColoringRule.cs" />
-    <Compile Include="Targets\Trace.cs">
+    <Compile Include="Targets\TraceTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\WebService.cs">
+    <Compile Include="Targets\WebServiceTarget.cs">
     </Compile>
     <Compile Include="Targets\Wrappers\ASPNetBufferingTargetWrapper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Targets\Wrappers\AsyncRequestQueueOfT.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapper.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -536,51 +536,53 @@
     <Compile Include="Targets\Wrappers\BufferingTargetWrapper.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\Wrappers\ImpersonatingWrapper.cs" />
+    <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\FilteringRule.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\Wrappers\FilteringWrapper.cs">
+    <Compile Include="Targets\Wrappers\FilteringTargetWrapper.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\Wrappers\PostFilteringWrapper.cs">
+    <Compile Include="Targets\Wrappers\PostFilteringTargetWrapper.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\Wrappers\RepeatTargetWrapper.cs">
+    <Compile Include="Targets\Wrappers\RepeatingTargetWrapper.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\Wrappers\RetryTargetWrapper.cs">
+    <Compile Include="Targets\Wrappers\RetryingTargetWrapper.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Targets\Wrappers\WrapperTargetBase.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Targets\TargetWithLayout.cs" />
+    <Compile Include="UnformattedLogEventInfo.cs" />
+    <Compile Include="UnformattedLogEventInfoWithException.cs" />
     <Compile Include="Web\NLogHttpModule.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Win32\ASPHelper.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Win32\LayoutRenderers\ASPApplication.cs">
+    <Compile Include="Win32\LayoutRenderers\ASPApplicationValueLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Win32\LayoutRenderers\ASPRequest.cs">
+    <Compile Include="Win32\LayoutRenderers\ASPRequestValueLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Win32\LayoutRenderers\ASPSession.cs">
+    <Compile Include="Win32\LayoutRenderers\ASPSessionValueLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Win32\LayoutRenderers\Registry.cs">
+    <Compile Include="Win32\LayoutRenderers\RegistryLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Win32\LayoutRenderers\WindowsIdentity.cs">
+    <Compile Include="Win32\LayoutRenderers\WindowsIdentityLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Win32\Targets\ASPResponse.cs">
+    <Compile Include="Win32\Targets\ASPResponseTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Win32\Targets\ColoredConsole.cs">
+    <Compile Include="Win32\Targets\ColoredConsoleTarget.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Win32\Targets\ConsoleOutputColor.cs">
@@ -592,20 +594,20 @@
     <Compile Include="Win32\Targets\ConsoleWordHighlightingRule.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Win32\Targets\EventLog.cs">
+    <Compile Include="Win32\Targets\EventLogTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Win32\Targets\MSMQ.cs">
+    <Compile Include="Win32\Targets\MSMQTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Win32\Targets\OutputDebugString.cs">
+    <Compile Include="Win32\Targets\OutputDebugStringTarget.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Win32\Targets\PerfCounterTarget.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LogFactory.cs" />
-    <Compile Include="LayoutRenderers\EventContext.cs" />
+    <Compile Include="LayoutRenderers\EventContextLayoutRenderer.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
@@ -618,9 +620,6 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup />
-  <ItemGroup>
-    <None Include="NLog.snk" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(ProjectDir)..\..\tools\RewriteBuildNumber.exe" "$(ProjectDir)..\..\NLog.version" "$(ProjectDir)AssemblyBuildInfo.cs" "$(ProjectDir)..\..\build\NLog.buildversion"</PreBuildEvent>
