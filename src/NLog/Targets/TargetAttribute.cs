@@ -35,44 +35,51 @@ using System;
 using NLog.Internal;
 using NLog.Config;
 
-namespace NLog.Config
+namespace NLog.Targets
 {
     /// <summary>
-    /// Marks class as a layout renderer and assigns a format string to it.
+    /// Marks class as a logging target and assigns a name to it.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class LayoutRendererAttribute: NameAttributeBase
+    public sealed class TargetAttribute: NameAttributeBase
     {
-        private bool _ignoresPadding = false;
-        private bool _usingLogEventInfo = false;
+        private bool _ignoresLayout = false;
+        private bool _isCompound = false;
+        private bool _isWrapper = false;
 
         /// <summary>
-        /// Creates a new instance of <see cref="LayoutRendererAttribute"/>
-        /// and assigns the <see cref="FormatString"/> to the specified value.
+        /// Creates a new instance of the TargetAttribute class and sets the name.
         /// </summary>
-        /// <param name="formatString"></param>
-        public LayoutRendererAttribute(string name) : base(name)
+        /// <param name="name"></param>
+        public TargetAttribute(string name) : base(name)
         {
         }
 
         /// <summary>
-        /// Marks the specified layout renderer as ignoring padding (used mostly for
-        /// documentation generation).
+        /// Determines whether the target ignores layout specification.
         /// </summary>
-        public bool IgnoresPadding
+        public bool IgnoresLayout
         {
-            get { return _ignoresPadding; }
-            set { _ignoresPadding = value; }
+            get { return _ignoresLayout; }
+            set { _ignoresLayout = value; }
         }
 
         /// <summary>
-        /// Marks the specified layout renderer as relying purely on the contents
-        /// of <see cref="LogEventInfo"/> only and not on any other information (such as thread-
+        /// Marks the target as 'wrapper' target (used to generate the target summary documentation page);
         /// </summary>
-        public bool UsingLogEventInfo
+        public bool IsWrapper
         {
-            get { return _usingLogEventInfo; }
-            set { _usingLogEventInfo = value; }
+            get { return _isWrapper; }
+            set { _isWrapper = value; }
+        }
+
+        /// <summary>
+        /// Marks the target as 'compound' target (used to generate the target summary documentation page);
+        /// </summary>
+        public bool IsCompound
+        {
+            get { return _isCompound; }
+            set { _isCompound = value; }
         }
     }
 }

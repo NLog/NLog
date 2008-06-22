@@ -16,6 +16,7 @@ using System.ComponentModel;
 using System.Globalization;
 using NLog.Layouts;
 using NLog.Targets;
+using NLog.Filters;
 
 namespace MakeNLogXSD
 {

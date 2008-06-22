@@ -36,6 +36,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using NLog.Config;
+using System.Collections.Generic;
 
 namespace NLog.Targets
 {
@@ -60,7 +61,8 @@ namespace NLog.Targets
     [Target("Memory")]
     public sealed class MemoryTarget: TargetWithLayout
     {
-        private ArrayList _logs = new ArrayList();
+        private ICollection<string> _logs = new List<string>();
+        private object _lockObject = new object();
 
         /// <summary>
         /// Renders the logging event message and adds it to the internal ArrayList of log messages.
@@ -68,13 +70,18 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            _logs.Add(Layout.GetFormattedMessage(logEvent));
+            string msg = Layout.GetFormattedMessage(logEvent);
+
+            lock (_lockObject)
+            {
+                _logs.Add(msg);
+            }
         }
 
         /// <summary>
         /// Returns the list of logs gathered in the <see cref="MemoryTarget"/>.
         /// </summary>
-        public ArrayList Logs
+        public ICollection<string> Logs
         {
             get { return _logs; }
         }

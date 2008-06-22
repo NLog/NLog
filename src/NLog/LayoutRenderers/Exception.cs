@@ -39,6 +39,7 @@ using System.IO;
 using NLog.Internal;
 using NLog.Config;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace NLog.LayoutRenderers
 {
@@ -90,7 +91,7 @@ namespace NLog.LayoutRenderers
             sb.Append(ex.Message);
         }
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
         private void AppendMethod(StringBuilder sb, Exception ex) {
             sb.Append(ex.TargetSite.ToString());
         }
@@ -119,7 +120,7 @@ namespace NLog.LayoutRenderers
         private void CompileFormat(string format)
         {
             string[] parts = format.Replace(" ","").Split(',');
-            ArrayList dataTargets = new ArrayList();
+            List<ExceptionDataTarget> dataTargets = new List<ExceptionDataTarget>();
             
             foreach (string s in parts)
             {
@@ -141,7 +142,7 @@ namespace NLog.LayoutRenderers
                         dataTargets.Add(new ExceptionDataTarget(AppendToString));
                         break;
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
                    case "stacktrace":
                         dataTargets.Add(new ExceptionDataTarget(AppendStackTrace));
                         break;
@@ -156,7 +157,7 @@ namespace NLog.LayoutRenderers
                     
                 }
             }
-            _exceptionDataTargets = (ExceptionDataTarget[])dataTargets.ToArray(typeof(ExceptionDataTarget));
+            _exceptionDataTargets = dataTargets.ToArray();
         }
 
         /// <summary>

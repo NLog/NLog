@@ -152,7 +152,7 @@ namespace NLog.Targets.Wrappers
 
             // apply the condition to the buffer
 
-            ArrayList resultBuffer = new ArrayList();
+            List<LogEventInfo> resultBuffer = new List<LogEventInfo>();
 
             for (int i = 0; i < logEvents.Length; ++i)
             {
@@ -166,7 +166,7 @@ namespace NLog.Targets.Wrappers
 
             if (resultBuffer.Count > 0)
             {
-                WrappedTarget.Write((LogEventInfo[])resultBuffer.ToArray(typeof(LogEventInfo)));
+                WrappedTarget.Write(resultBuffer.ToArray());
             }
         }
 

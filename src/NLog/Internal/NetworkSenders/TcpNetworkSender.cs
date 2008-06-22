@@ -35,6 +35,8 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
+using System.IO;
 
 namespace NLog.Internal.NetworkSenders
 {
@@ -44,6 +46,10 @@ namespace NLog.Internal.NetworkSenders
 	public class TcpNetworkSender : NetworkSender
 	{
         private Socket _socket;
+#if SILVERLIGHT
+        private AutoResetEvent _syncHandle = new AutoResetEvent(false);
+        private SocketError _lastError;
+#endif
 
         /// <summary>
         /// Creates a new instance of <see cref="TcpNetworkSender"/> and initializes
@@ -55,11 +61,21 @@ namespace NLog.Internal.NetworkSenders
             // tcp://hostname:port
 
             Uri parsedUri = new Uri(url);
+#if SILVERLIGHT
+            SocketAsyncEventArgs sea = new SocketAsyncEventArgs();
+            sea.RemoteEndPoint = new DnsEndPoint(parsedUri.Host, parsedUri.Port);
+            sea.Completed += AsyncCompleted;
+            _socket.ConnectAsync(sea);
+            _syncHandle.WaitOne();
+            if (_lastError != SocketError.Success)
+                throw new IOException("Cannot connect to host " + url);
+#else
             IPHostEntry host = Dns.GetHostEntry(parsedUri.Host);
             int port = parsedUri.Port;
 
             _socket = new Socket(host.AddressList[0].AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             _socket.Connect(new IPEndPoint(host.AddressList[0], port));
+#endif
         }
 
         /// <summary>
@@ -73,9 +89,27 @@ namespace NLog.Internal.NetworkSenders
         {
             lock (this)
             {
+#if SILVERLIGHT
+                SocketAsyncEventArgs sea = new SocketAsyncEventArgs();
+                sea.SetBuffer(bytes, offset, length);
+                sea.Completed += AsyncCompleted;
+                _socket.SendAsync(sea);
+                _syncHandle.WaitOne();
+                if (_lastError != SocketError.Success)
+                    throw new IOException("Network send error");
+#else
                 _socket.Send(bytes, offset, length, SocketFlags.None);
+#endif
             }
         }
+
+#if SILVERLIGHT
+        private void AsyncCompleted(object sender, SocketAsyncEventArgs e)
+        {
+            _syncHandle.Set();
+            _lastError = e.SocketError;
+        }
+#endif
 
         /// <summary>
         /// Closes the socket.

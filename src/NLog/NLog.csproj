@@ -21,15 +21,11 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <StartupObject>
     </StartupObject>
-    <ReferenceSystemWeb Condition="'$(Platform)' == '...'">false</ReferenceSystemWeb>
-    <ReferenceSystemWeb Condition="'$(ReferenceSystemWeb)' == ''">true</ReferenceSystemWeb>
-    <ReferenceSystemConfiguration Condition="'$(Platform)' == '.NET 1.0'">false</ReferenceSystemConfiguration>
-    <ReferenceSystemConfiguration Condition="'$(Platform)' == '.NET 1.1'">false</ReferenceSystemConfiguration>
-    <ReferenceSystemConfiguration Condition="'$(ReferenceSystemConfiguration)' == ''">true</ReferenceSystemConfiguration>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
+    <IntermediateOutputPath>obj\Debug\</IntermediateOutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -52,13 +48,15 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
+    <IntermediateOutputPath>obj\Release\</IntermediateOutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>NET_2_0</DefineConstants>
-    <DocumentationFile>NLog.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <DebugSymbols>false</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <NoStdLib>false</NoStdLib>
@@ -71,14 +69,11 @@
     <DebugType>none</DebugType>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Silverlight_2' ">
-    <OutputPath>bin\SL2\Debug\</OutputPath>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
-    <Reference Include="System.Configuration" Condition="'$(ReferenceSystemConfiguration)'=='true'" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data">
       <Name>system.data</Name>
     </Reference>
@@ -86,7 +81,7 @@
     <Reference Include="System.Messaging">
       <Name>System.Messaging</Name>
     </Reference>
-    <Reference Include="System.Web" Condition="'$(ReferenceSystemWeb)'=='true'">
+    <Reference Include="System.Web">
       <Name>system.web</Name>
     </Reference>
     <Reference Include="System.Web.Services">
@@ -103,13 +98,10 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AssemblySign.cs">
+    <Compile Include="Conditions\ConditionMethodAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Config\ConditionMethodAttribute.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Config\ConditionMethodsAttribute.cs">
+    <Compile Include="Conditions\ConditionMethodsAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Conditions\ConditionAndExpression.cs">
@@ -195,6 +187,9 @@
     <Compile Include="Config\Factory.cs" />
     <Compile Include="Config\NameAttributeBase.cs" />
     <Compile Include="Internal\NativeMethods.cs" />
+    <Compile Include="Internal\NetworkSenders\UdpNetworkSender.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Layouts\Layout.cs" />
     <Compile Include="Layouts\LayoutConverter.cs" />
     <Compile Include="Layouts\LayoutParser.cs" />
@@ -205,11 +200,11 @@
     <Compile Include="Targets\TargetWithLayoutHeaderAndFooter.cs" />
     <Compile Include="Layouts\LayoutWithHeaderAndFooter.cs" />
     <Compile Include="Internal\CurrentTimeGetter.cs" />
-    <Compile Include="Config\LayoutAttribute.cs" />
+    <Compile Include="Layouts\LayoutAttribute.cs" />
     <Compile Include="Filters\Filter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Config\FilterAttribute.cs">
+    <Compile Include="Filters\FilterAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Filters\FilterResult.cs">
@@ -289,7 +284,6 @@
     </Compile>
     <Compile Include="Internal\NetworkSenders\NetworkSender.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSender.cs" />
-    <Compile Include="Internal\NetworkSenders\UdpNetworkSender.cs" />
     <Compile Include="Internal\PlatformDetector.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -308,7 +302,7 @@
     <Compile Include="LayoutRenderers\LayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Config\LayoutRendererAttribute.cs">
+    <Compile Include="LayoutRenderers\LayoutRendererAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LayoutRenderers\ASPNetApplication.cs">
@@ -447,7 +441,7 @@
     <Compile Include="Targets\Target.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Config\TargetAttribute.cs">
+    <Compile Include="Targets\TargetAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Targets\ASPNetTrace.cs">

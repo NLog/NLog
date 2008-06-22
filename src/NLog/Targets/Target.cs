@@ -46,6 +46,13 @@ namespace NLog.Targets
     /// </summary>
     public abstract class Target
     {
+        private bool _initialized = false;
+
+        public bool Initialized
+        {
+            get { return _initialized; }
+        }
+
         /// <summary>
         /// Creates a new instance of the logging target and initializes
         /// default layout.
@@ -207,10 +214,13 @@ namespace NLog.Targets
         /// </summary>
         protected internal virtual void Close()
         {
+            if (!_initialized)
+                throw new InvalidOperationException("Called Close() without Initialize()");
             foreach (Layout l in GetLayouts())
             {
                 l.Close();
             }
+            _initialized = false;
         }
 
         /// <summary>
@@ -245,6 +255,7 @@ namespace NLog.Targets
         /// </summary>
         public virtual void Initialize()
         {
+            _initialized = true;
             foreach (Layout l in GetLayouts())
             {
                 l.Initialize();

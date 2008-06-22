@@ -41,10 +41,10 @@ namespace NLog.Config
     /// <summary>
     /// Exception during configuration
     /// </summary>
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
     [Serializable]
 #endif
-    public class NLogConfigurationException : ApplicationException 
+    public class NLogConfigurationException : Exception
     {
         /// <summary>
         /// Creates a new instance of <see cref="NLogConfigurationException"/>.
@@ -64,7 +64,7 @@ namespace NLog.Config
         /// <param name="inner">Inner exception</param>
         public NLogConfigurationException(string desc, Exception inner) : base(desc, inner) {}
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
         /// <summary>
         /// Creates a new instance of <see cref="NLogConfigurationException"/>.
         /// </summary>

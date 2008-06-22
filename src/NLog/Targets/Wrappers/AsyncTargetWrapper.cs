@@ -43,6 +43,7 @@ using NLog.Config;
 
 using NLog.Internal;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace NLog.Targets.Wrappers
 {
@@ -191,15 +192,14 @@ namespace NLog.Targets.Wrappers
                     do
                     {
                         // Console.WriteLine("q: {0}", RequestQueue.RequestCount);
-                        ArrayList pendingRequests = RequestQueue.DequeueBatch(BatchSize);
+                        List<LogEventInfo> pendingRequests = RequestQueue.DequeueBatch(BatchSize);
 
                         try
                         {
                             if (pendingRequests.Count == 0)
                                 break;
 
-                            LogEventInfo[] events = (LogEventInfo[])pendingRequests.ToArray(typeof(LogEventInfo));
-                            WrappedTarget.Write(events);
+                            WrappedTarget.Write(pendingRequests.ToArray());
                         }
                         finally
                         {
@@ -230,12 +230,12 @@ namespace NLog.Targets.Wrappers
         }
 
         private Timer _lazyWriterTimer = null;
-        private AsyncRequestQueue _lazyWriterRequestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
+        private AsyncRequestQueue<LogEventInfo> _lazyWriterRequestQueue = new AsyncRequestQueue<LogEventInfo>(10000, AsyncTargetWrapperOverflowAction.Discard);
 
         /// <summary>
         /// The queue of lazy writer thread requests.
         /// </summary>
-        protected AsyncRequestQueue RequestQueue
+        protected AsyncRequestQueue<LogEventInfo> RequestQueue
         {
             get { return _lazyWriterRequestQueue; }
         }
@@ -305,9 +305,9 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Asynchronous request queue
         /// </summary>
-        public class AsyncRequestQueue
+        public class AsyncRequestQueue<T>
         {
-            private Queue _queue = new Queue();
+            private Queue<T> _queue = new Queue<T>();
             private int _batchedItems = 0;
             private AsyncTargetWrapperOverflowAction _overflowAction = AsyncTargetWrapperOverflowAction.Discard;
             private int _requestLimit = 10000;
@@ -348,7 +348,7 @@ namespace NLog.Targets.Wrappers
             /// action is taken as specified by <see cref="OnOverflow"/>.
             /// </summary>
             /// <param name="o">The item to be queued.</param>
-            public void Enqueue(object o)
+            public void Enqueue(T o)
             {
                 lock (this)
                 {
@@ -390,9 +390,9 @@ namespace NLog.Targets.Wrappers
             /// and adds returns the <see cref="ArrayList"/> containing them.
             /// </summary>
             /// <param name="count">Maximum number of items to be dequeued.</param>
-            public ArrayList DequeueBatch(int count)
+            public List<T> DequeueBatch(int count)
             {
-                ArrayList target = new ArrayList();
+                List<T> target = new List<T>(count);
                 lock (this)
                 {
                     for (int i = 0; i < count; ++i)
@@ -400,7 +400,7 @@ namespace NLog.Targets.Wrappers
                         if (_queue.Count <= 0)
                             break;
 
-                        object o = _queue.Dequeue();
+                        T o = _queue.Dequeue();
 
                         target.Add(o);
                     }
@@ -417,7 +417,7 @@ namespace NLog.Targets.Wrappers
             /// Notifies the queue that the request batch has been processed.
             /// </summary>
             /// <param name="batch">The batch.</param>
-            public void BatchProcessed(ArrayList batch)
+            public void BatchProcessed(ICollection<T> batch)
             {
                 _batchedItems = 0;
             }

@@ -78,7 +78,7 @@ namespace NLog
         /// </summary>
         public event LoggingConfigurationChanged ConfigurationChanged;
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -99,7 +99,7 @@ namespace NLog
         /// </summary>
         public LogFactory()
         {
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
             _watcher = new MultiFileWatcher(new EventHandler(ConfigFileChanged));
 #endif
         }
@@ -251,7 +251,37 @@ namespace NLog
                         return _config;
 
                     _configLoaded = true;
-#if !NET_CF
+#if NET_CF
+                    if (_config == null)
+                    {
+                        string configFile = CompactFrameworkHelper.GetExeFileName() + ".nlog";
+                        if (File.Exists(configFile))
+                        {
+                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                            _config = new XmlLoggingConfiguration(configFile);
+                        }
+                    }
+                    if (_config == null)
+                    {
+                        string configFile = Path.Combine(Path.GetDirectoryName(CompactFrameworkHelper.GetExeFileName()), "NLog.config");
+                        if (File.Exists(configFile))
+                        {
+                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                            _config = new XmlLoggingConfiguration(configFile);
+                        }
+                    }
+                    if (_config == null)
+                    {
+                        string configFile = typeof(LogFactory).Assembly.GetName().CodeBase + ".nlog";
+                        if (File.Exists(configFile))
+                        {
+                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                            _config = new XmlLoggingConfiguration(configFile);
+                        }
+                    }
+#elif SILVERLIGHT
+                    // no auto-initialization for Silverlight
+#else
                     if (_config == null)
                     {
                         // try to load default configuration
@@ -315,34 +345,6 @@ namespace NLog
                         Dump(_config);
                         _watcher.Watch(_config.FileNamesToWatch);
                     }
-#else
-                    if (_config == null)
-                    {
-                        string configFile = CompactFrameworkHelper.GetExeFileName() + ".nlog";
-                        if (File.Exists(configFile))
-                        {
-                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
-                            _config = new XmlLoggingConfiguration(configFile);
-                        }
-                    }
-                    if (_config == null)
-                    {
-                        string configFile = Path.Combine(Path.GetDirectoryName(CompactFrameworkHelper.GetExeFileName()), "NLog.config");
-                        if (File.Exists(configFile))
-                        {
-                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
-                            _config = new XmlLoggingConfiguration(configFile);
-                        }
-                    }
-                    if (_config == null)
-                    {
-                        string configFile = typeof(LogFactory).Assembly.GetName().CodeBase + ".nlog";
-                        if (File.Exists(configFile))
-                        {
-                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
-                            _config = new XmlLoggingConfiguration(configFile);
-                        }
-                    }
 #endif 
                     if (_config != null)
                     {
@@ -354,7 +356,7 @@ namespace NLog
 
             set
             {
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
                 try
                 {
                     _watcher.StopWatching();
@@ -383,7 +385,7 @@ namespace NLog
 
                         _config.InitializeAll();
                         ReconfigExistingLoggers(_config);
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
                         try
                         {
                             _watcher.Watch(_config.FileNamesToWatch);
@@ -400,7 +402,7 @@ namespace NLog
             }
         }
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
         private MultiFileWatcher _watcher;
         private Timer _reloadTimer = null;
 
@@ -449,7 +451,7 @@ namespace NLog
             InternalLogger.Debug("--- End of NLog configuration dump ---");
         }
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
         internal void ReloadConfigOnTimer(object state)
         {
             LoggingConfiguration configurationToReload = (LoggingConfiguration)state;

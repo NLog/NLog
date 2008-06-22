@@ -43,6 +43,7 @@ using NLog.Config;
 using System.IO;
 using System.Reflection;
 using NLog.Layouts;
+using System.Collections.Generic;
 
 namespace NLog.Layouts
 {
@@ -204,7 +205,7 @@ namespace NLog.Layouts
 
         internal static LayoutRenderer[] CompileLayout(Tokenizer sr, bool isNested, out string text)
         {
-            ArrayList result = new ArrayList();
+            List<LayoutRenderer> result = new List<LayoutRenderer>();
             StringBuilder literalBuf = new StringBuilder();
 
             int ch;
@@ -249,11 +250,11 @@ namespace NLog.Layouts
             MergeLiterals(result);
             text = sr.Substring(p0, p1);
 
-            return (LayoutRenderer[])result.ToArray(typeof(LayoutRenderer));
+            return result.ToArray();
         }
         
 
-        private static void MergeLiterals(ArrayList list)
+        private static void MergeLiterals(List<LayoutRenderer> list)
         {
             for (int i = 0; i + 1 < list.Count;)
             {

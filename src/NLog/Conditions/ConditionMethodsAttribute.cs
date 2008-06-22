@@ -32,22 +32,19 @@
 // 
 
 using System;
-using NLog.Internal;
 
-namespace NLog.Config
+namespace NLog.Conditions
 {
     /// <summary>
-    /// Marks class as a layout renderer and assigns a name to it
+    /// Marks the class as containing condition methods.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
-    public sealed class FilterAttribute: NameAttributeBase
+    [AttributeUsage(AttributeTargets.Class,AllowMultiple=true)]
+    public sealed class ConditionMethodsAttribute: Attribute
     {
         /// <summary>
-        /// Creates a new instance of <see cref="FilterAttribute"/> and assigns
-        /// a name to it.
+        /// Creates a new instance of <see cref="ConditionMethodsAttribute"/>.
         /// </summary>
-        /// <param name="name"></param>
-        public FilterAttribute(string name) : base(name)
+        public ConditionMethodsAttribute()
         {
         }
     }

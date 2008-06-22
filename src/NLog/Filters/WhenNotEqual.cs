@@ -88,7 +88,7 @@ namespace NLog.Filters
         /// </returns>
         protected internal override FilterResult Check(LogEventInfo logEvent)
         {
-            if (0 != String.Compare(Layout.GetFormattedMessage(logEvent), CompareTo, IgnoreCase, CultureInfo.InvariantCulture))
+            if (0 != String.Compare(Layout.GetFormattedMessage(logEvent), CompareTo, IgnoreCase ? StringComparison.InvariantCultureIgnoreCase : StringComparison.InvariantCulture))
                 return Result;
             else
                 return FilterResult.Neutral;

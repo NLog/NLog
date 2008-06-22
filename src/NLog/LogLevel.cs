@@ -219,7 +219,7 @@ namespace NLog
             // case insensitive search
             for (int i = 0; i < _levelByOrdinal.Length; ++i)
             {
-                if (0 == String.Compare(_levelByOrdinal[i].Name, s, true))
+                if (0 == String.Compare(_levelByOrdinal[i].Name, s, StringComparison.InvariantCultureIgnoreCase))
                     return _levelByOrdinal[i];
             }
             throw new ArgumentException("Unknown log level: " + s);

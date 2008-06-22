@@ -35,7 +35,6 @@ using System;
 using System.Text;
 using System.Diagnostics;
 using System.Reflection;
-using System.Data;
 using System.Collections;
 
 using NLog.Internal;

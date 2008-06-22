@@ -43,7 +43,7 @@ using NLog.Config;
 
 using NLog.Internal;
 using System.Runtime.InteropServices;
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 using NLog.Internal.Win32;
 #endif
 
@@ -139,7 +139,7 @@ namespace NLog.Internal.FileAppenders
         }
 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
         private FileStream WindowsCreateFile(string fileName, bool allowConcurrentWrite)
         {
             int fileShare = Win32FileHelper.FILE_SHARE_READ;
@@ -177,12 +177,14 @@ namespace NLog.Internal.FileAppenders
             if (allowConcurrentWrite)
                 fileShare = FileShare.ReadWrite;
 
+#if !NET_CF
             if (_createParameters.EnableFileDelete && PlatformDetector.GetCurrentRuntimeOS() != RuntimeOS.Windows)
             {
                 fileShare |= FileShare.Delete;
             }
+#endif
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
             if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.WindowsNT) ||
                     PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Windows))
             {

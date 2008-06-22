@@ -37,6 +37,7 @@ using System.Runtime.InteropServices;
 
 using NLog.Internal;
 using NLog.Config;
+using System.Threading;
 
 namespace NLog.LayoutRenderers
 {
@@ -69,7 +70,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(ApplyPadding(ThreadIDHelper.Instance.CurrentThreadID.ToString()));
+            builder.Append(ApplyPadding(Thread.CurrentThread.ManagedThreadId.ToString()));
         }
     }
 }

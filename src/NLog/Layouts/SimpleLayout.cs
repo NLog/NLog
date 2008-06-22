@@ -119,8 +119,9 @@ namespace NLog.Layouts
             if (_fixedText != null)
                 return _fixedText;
 
-            string cachedValue = logEvent.GetCachedLayoutValue(this);
-            if (cachedValue != null)
+            string cachedValue;
+
+            if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
                 return cachedValue;
 
             int size = 0;

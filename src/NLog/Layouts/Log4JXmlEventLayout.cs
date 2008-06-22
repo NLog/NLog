@@ -28,8 +28,9 @@ namespace NLog.Layouts
         /// <returns>The rendered layout.</returns>
         public override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            string cachedValue = logEvent.GetCachedLayoutValue(this);
-            if (cachedValue != null)
+            string cachedValue;
+
+            if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
                 return cachedValue;
 
             StringBuilder sb = new StringBuilder(_renderer.GetEstimatedBufferSize(logEvent));

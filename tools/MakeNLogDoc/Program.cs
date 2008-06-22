@@ -7,6 +7,7 @@ using System.Xml;
 using NLog.Config;
 using System.ComponentModel;
 using NLog.Layouts;
+using NLog.Targets;
 
 namespace MakeNLogDoc
 {

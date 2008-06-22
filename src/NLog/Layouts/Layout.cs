@@ -47,9 +47,15 @@ namespace NLog.Layouts
     /// <summary>
     /// Abstract interface that layouts must implement.
     /// </summary>
-    [TypeConverter(typeof(LayoutConverter))]
     public abstract class Layout
     {
+        private bool _initialized = false;
+
+        public bool Initialized
+        {
+            get { return _initialized; }
+        }
+
         /// <summary>
         /// Renders the layout for the specified logging event by invoking layout renderers.
         /// </summary>
@@ -96,6 +102,7 @@ namespace NLog.Layouts
         /// </summary>
         public virtual void Initialize()
         {
+            _initialized = true;
         }
 
         /// <summary>
@@ -103,6 +110,9 @@ namespace NLog.Layouts
         /// </summary>
         public virtual void Close()
         {
+            if (!_initialized)
+                throw new InvalidOperationException("Called Close() without Initialize()");
+            _initialized = false;
         }
 
         /// <summary>

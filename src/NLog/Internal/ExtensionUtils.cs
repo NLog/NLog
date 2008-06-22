@@ -37,6 +37,7 @@ using System.Reflection;
 using System.Collections;
 
 using NLog.Config;
+using System.Collections.Generic;
 
 namespace NLog.Internal
 {
@@ -45,7 +46,7 @@ namespace NLog.Internal
     /// </summary>
     public class ExtensionUtils
     {
-        private static ArrayList _extensionAssemblies = new ArrayList();
+        private static List<Assembly> _extensionAssemblies = new List<Assembly>();
 
         static ExtensionUtils()
         {
@@ -62,7 +63,7 @@ namespace NLog.Internal
         /// Gets the list of loaded NLog extension assemblies.
         /// </summary>
         /// <returns>An <see cref="ArrayList"/> containing all NLog extension assemblies that have been loaded.</returns>
-        public static ArrayList GetExtensionAssemblies()
+        public static ICollection<Assembly> GetExtensionAssemblies()
         {
             return _extensionAssemblies;
         }

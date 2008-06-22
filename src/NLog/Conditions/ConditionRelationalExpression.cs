@@ -127,7 +127,7 @@ namespace NLog.Conditions
             if (v1 == null || v2 == null)
                 return null;
 
-            IComparer comparer = Comparer.Default;
+            StringComparer comparer = StringComparer.InvariantCulture;
             PromoteTypes(ref v1, ref v2);
             switch (op)
             {

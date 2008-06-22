@@ -91,18 +91,10 @@ namespace NLog.Internal
         public static string LogFile
         {
             get { return _logFile; }
-            set
-            {
-#if !NET_CF
-                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-#else
-                string baseDir = CompactFrameworkHelper.GetExeBaseDir();
-#endif
-                _logFile = Path.Combine(baseDir, value);
-            }
+            set { _logFile = value; }
         }
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 		
         static string GetSetting(string configName, string envName)
         {

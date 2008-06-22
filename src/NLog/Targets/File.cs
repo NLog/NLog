@@ -43,14 +43,14 @@ using NLog.Config;
 
 using NLog.Internal;
 using NLog.Internal.FileAppenders;
-#if !NET_CF
+using NLog.Layouts;
+using System.ComponentModel;
+using System.Collections.Generic;
+#if !NET_CF && !SILVERLIGHT
 using System.Runtime.InteropServices;
 using NLog.Internal.Win32;
-using System.Collections.Generic;
-using System.ComponentModel;
-using NLog.Layouts;
-using System.Text;
 #endif
+using System.Text;
 
 namespace NLog.Targets
 {
@@ -219,7 +219,12 @@ namespace NLog.Targets
         private Layout _fileName;
         private bool _createDirs = true;
         private bool _keepFileOpen = false;
-        private System.Text.Encoding _encoding = System.Text.Encoding.Default;
+#if SILVERLIGHT
+        private System.Text.Encoding _encoding = Encoding.UTF8;
+#else
+        private System.Text.Encoding _encoding = Encoding.Default;
+#endif
+
 #if NET_CF
         private string _newLine = "\r\n";
 #else
@@ -247,9 +252,9 @@ namespace NLog.Targets
         private bool _deleteOldFileOnStartup = false;
         private bool _replaceFileContentsOnEachWrite = false;
         private bool _enableFileDelete = true;
-        private Hashtable _initializedFiles = new Hashtable();
+        private Dictionary<string,DateTime> _initializedFiles = new Dictionary<string,DateTime>();
         private int _initializedFilesCounter = 0;
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
         private Win32FileAttributes _fileAttributes = Win32FileAttributes.Normal;
 #endif
 
@@ -371,7 +376,7 @@ namespace NLog.Targets
             set { _enableFileDelete = value; }
         }
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
         /// <summary>
         /// File attributes (Windows only).
         /// </summary>
@@ -639,7 +644,7 @@ namespace NLog.Targets
             int nextNumber = -1;
             int minNumber = -1;
 
-            Hashtable number2name = new Hashtable();
+            Dictionary<int,string> number2name = new Dictionary<int,string>();
 
             try
             {
@@ -684,8 +689,9 @@ namespace NLog.Targets
                 int minNumberToKeep = nextNumber - _maxArchiveFiles + 1;
                 for (int i = minNumber; i < minNumberToKeep; ++i)
                 {
-                    string s = (string)number2name[i];
-                    if (s != null)
+                    string s;
+
+                    if (number2name.TryGetValue(i, out s))
                     {
                         File.Delete(s);
                     }
@@ -928,7 +934,7 @@ namespace NLog.Targets
                     }
                     else if (ConcurrentWrites)
                     {
-#if NET_CF
+#if NET_CF || SILVERLIGHT
                         _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
                         //
@@ -955,7 +961,7 @@ namespace NLog.Targets
                     }
                     else if (ConcurrentWrites)
                     {
-#if NET_CF
+#if NET_CF || SILVERLIGHT
                         _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
                         //
@@ -1050,7 +1056,7 @@ namespace NLog.Targets
 
             if (!justData)
             {
-                if (!_initializedFiles.Contains(fileName))
+                if (!_initializedFiles.ContainsKey(fileName))
                 {
                     if (DeleteOldFileOnStartup)
                     {
@@ -1185,12 +1191,12 @@ namespace NLog.Targets
         {
             // clean up files that are two days old
 
-            ArrayList filesToUninitialize = new ArrayList();
+            List<string> filesToUninitialize = new List<string>();
 
-            foreach (DictionaryEntry de in _initializedFiles)
+            foreach (KeyValuePair<string, DateTime> de in _initializedFiles)
             {
-                string fileName = (string)de.Key;
-                DateTime lastWriteTime = (DateTime)de.Value;
+                string fileName = de.Key;
+                DateTime lastWriteTime = de.Value;
                 if (lastWriteTime < cleanupThreshold)
                 {
                     filesToUninitialize.Add(fileName);
@@ -1243,7 +1249,7 @@ namespace NLog.Targets
 
             lock (this)
             {
-                foreach (string fileName in new ArrayList(_initializedFiles.Keys))
+                foreach (string fileName in new List<string>(_initializedFiles.Keys))
                 {
                     WriteFooterAndUninitialize(fileName);
                 }

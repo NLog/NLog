@@ -157,7 +157,6 @@ namespace NLog.Config
                 try
                 {
                     target.Initialize();
-                
                 }
                 catch (Exception ex)
                 {

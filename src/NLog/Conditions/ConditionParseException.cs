@@ -41,7 +41,7 @@ namespace NLog.Conditions
     /// <summary>
     /// Exception during parsing of condition expression
     /// </summary>
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
     [Serializable]
 #endif
     public class ConditionParseException : Exception 
@@ -64,7 +64,7 @@ namespace NLog.Conditions
         /// <param name="inner">Inner exception</param>
         public ConditionParseException(string desc, Exception inner) : base(desc, inner) {}
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
         /// <summary>
         /// Creates a new instance of <see cref="ConditionParseException"/>.
         /// </summary>

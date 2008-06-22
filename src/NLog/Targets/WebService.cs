@@ -36,7 +36,6 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Reflection;
-using System.Web.Services.Protocols;
 
 using NLog.Config;
 using System.IO;

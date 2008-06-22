@@ -48,7 +48,11 @@ namespace NLog.LayoutRenderers
     public class FileContentsLayoutRenderer: LayoutRenderer
     {
         private Layout _fileName;
-        private System.Text.Encoding _encoding = System.Text.Encoding.Default;
+#if SILVERLIGHT
+        private System.Text.Encoding _encoding = Encoding.UTF8;
+#else
+        private System.Text.Encoding _encoding = Encoding.Default;
+#endif
         private string _lastFileName = "";
         private string _fileContents;
 

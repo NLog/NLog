@@ -9,6 +9,7 @@ using NLog.Filters;
 
 using NLog.Config;
 using NLog.LayoutRenderers;
+using NLog.Conditions;
 
 namespace NLog.Config
 {

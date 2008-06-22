@@ -38,7 +38,7 @@ using System.Collections;
 
 using NLog.Config;
 using NLog.Internal;
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 using NLog.Internal.Win32;
 #endif
 using System.IO;
@@ -53,7 +53,7 @@ namespace NLog.Internal
 
         static FileInfoHelper()
         {
-#if NET_CF
+#if NET_CF || SILVERLIGHT
             Helper = new GenericFileInfoHelper();
 #else
             if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Windows) ||
@@ -71,7 +71,7 @@ namespace NLog.Internal
         public abstract bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime lastWriteTime, out long fileLength);
     }
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
     internal class Win32FileInfoHelper : FileInfoHelper
     {
         public override bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime lastWriteTime, out long fileLength)

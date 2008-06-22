@@ -65,7 +65,7 @@ namespace NLog
             remove { _globalFactory.ConfigurationChanged -= value; }
         }
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -235,7 +235,7 @@ namespace NLog
             set { _globalFactory.GlobalThreshold = value; }
         }
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
         private static void SetupTerminationEvents()
         {
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(TurnOffLogging);
@@ -254,7 +254,7 @@ namespace NLog
 #endif
         static LogManager()
         {
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
             try
             {
                 SetupTerminationEvents();

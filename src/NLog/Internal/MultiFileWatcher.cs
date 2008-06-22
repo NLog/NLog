@@ -36,12 +36,13 @@
 using System;
 using System.Collections;
 using System.IO;
+using System.Collections.Generic;
 
 namespace NLog.Internal
 {
     internal class MultiFileWatcher: IDisposable
     {
-        private ArrayList _watchers = new ArrayList();
+        private List<FileSystemWatcher> _watchers = new List<FileSystemWatcher>();
 
         public MultiFileWatcher(){}
 
@@ -69,7 +70,6 @@ namespace NLog.Internal
                     InternalLogger.Info("Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
                     watcher.EnableRaisingEvents = false;
                     watcher.Dispose();
-                    //Console.WriteLine("aa");
                 }
                 _watchers.Clear();
             }

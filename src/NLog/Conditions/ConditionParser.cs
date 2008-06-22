@@ -106,25 +106,25 @@ namespace NLog.Conditions
             {
                 string keyword = tokenizer.EatKeyword();
 
-                if (0 == String.Compare(keyword, "level", true, CultureInfo.InvariantCulture))
+                if (0 == String.Compare(keyword, "level", StringComparison.InvariantCultureIgnoreCase))
                     return new ConditionLevelExpression();
 
-                if (0 == String.Compare(keyword, "logger", true, CultureInfo.InvariantCulture))
+                if (0 == String.Compare(keyword, "logger", StringComparison.InvariantCultureIgnoreCase))
                     return new ConditionLoggerNameExpression();
 
-                if (0 == String.Compare(keyword, "message", true, CultureInfo.InvariantCulture))
+                if (0 == String.Compare(keyword, "message", StringComparison.InvariantCultureIgnoreCase))
                     return new ConditionMessageExpression();
 
-                if (0 == String.Compare(keyword, "loglevel", true, CultureInfo.InvariantCulture))
+                if (0 == String.Compare(keyword, "loglevel", StringComparison.InvariantCultureIgnoreCase))
                 {
                     tokenizer.Expect(ConditionTokenType.Dot);
                     return new ConditionLiteralExpression(LogLevel.FromString(tokenizer.EatKeyword()));
                 }
 
-                if (0 == String.Compare(keyword, "true", true, CultureInfo.InvariantCulture))
+                if (0 == String.Compare(keyword, "true", StringComparison.InvariantCultureIgnoreCase))
                     return new ConditionLiteralExpression(true);
 
-                if (0 == String.Compare(keyword, "false", true, CultureInfo.InvariantCulture))
+                if (0 == String.Compare(keyword, "false", StringComparison.InvariantCultureIgnoreCase))
                     return new ConditionLiteralExpression(false);
 
                 if (tokenizer.TokenType == ConditionTokenType.LeftParen)

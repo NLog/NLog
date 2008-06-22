@@ -57,8 +57,8 @@ namespace NLog.Config
     /// </summary>
     public class XmlLoggingConfiguration: LoggingConfiguration
     {
-        private StringDictionary _visitedFile = new StringDictionary();
-        private NameValueCollection _variables = new NameValueCollection(StringComparer.InvariantCultureIgnoreCase);
+        private Dictionary<string,bool> _visitedFile = new Dictionary<string,bool>();
+        private Dictionary<string, string> _variables = new Dictionary<string, string>(EqualityComparer<string>.Default);
 
         private bool _autoReload = false;
         private string _originalFileName = null;
@@ -129,7 +129,7 @@ namespace NLog.Config
                 {
                     InternalLogger.Info("Configuring from an XML element in {0}...", fileName);
                     string key = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
-                    _visitedFile[key] = key;
+                    _visitedFile[key] = true;
 
                     _originalFileName = fileName;
                     ConfigureFromXmlElement(configElement, Path.GetDirectoryName(fileName));
@@ -178,7 +178,7 @@ namespace NLog.Config
             if (_visitedFile.ContainsKey(key))
                 return ;
 
-            _visitedFile[key] = key;
+            _visitedFile[key] = true;
 
             XmlDocument doc = new XmlDocument();
             doc.Load(fileName);

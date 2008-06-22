@@ -66,6 +66,8 @@ namespace NLog.LayoutRenderers
         {
 #if NET_CF
             AppInfo = ".NET CF Application";
+#elif SILVERLIGHT
+            AppInfo = "Silverlight Application";
 #else
             AppInfo = String.Format("{0}({1})", AppDomain.CurrentDomain.FriendlyName, NLog.Internal.ThreadIDHelper.Instance.CurrentProcessID);
 #endif
@@ -170,24 +172,20 @@ namespace NLog.LayoutRenderers
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             StringWriter sw = new StringWriter(builder);
-            XmlTextWriter xtw = new XmlTextWriter(sw);
-            if (IndentXml)
-                xtw.Formatting = Formatting.Indented;
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = IndentXml;
+            XmlWriter xtw = XmlWriter.Create(sw, settings);
 
             xtw.WriteStartElement("log4j:event");
             xtw.WriteAttributeString("logger", logEvent.LoggerName);
             xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpper());
             xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - _log4jDateBase).TotalMilliseconds));
-#if !NET_CF
-            xtw.WriteAttributeString("thread", NLog.Internal.ThreadIDHelper.Instance.CurrentThreadID.ToString());
-#else
-            xtw.WriteElementString("thread", "");
-#endif
+            xtw.WriteAttributeString("thread", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString());
 
             xtw.WriteElementString("log4j:message", logEvent.FormattedMessage);
             if (IncludeNDC)
             {
-                xtw.WriteElementString("log4j:NDC", NDC.GetAllMessages(" "));
+                xtw.WriteElementString("log4j:NDC", String.Join(" ", NDC.GetAllMessages()));
             }
 #if !NET_CF
             if (IncludeCallSite || IncludeSourceInfo)
@@ -218,7 +216,7 @@ namespace NLog.LayoutRenderers
             xtw.WriteStartElement("log4j:properties");
             if (IncludeMDC)
             {
-                foreach (System.Collections.DictionaryEntry entry in MDC.GetThreadDictionary())
+                foreach (KeyValuePair<string,string> entry in MDC.ThreadDictionary)
                 {
                     xtw.WriteStartElement("log4j:data");
                     xtw.WriteAttributeString("name", Convert.ToString(entry.Key));
@@ -243,7 +241,9 @@ namespace NLog.LayoutRenderers
             xtw.WriteStartElement("log4j:data");
             xtw.WriteAttributeString("name", "log4jmachinename");
 #if NET_CF
-                xtw.WriteAttributeString("value", "netcf");
+            xtw.WriteAttributeString("value", "netcf");
+#elif SILVERLIGHT
+            xtw.WriteAttributeString("value", "silverlight");
 #else
             xtw.WriteAttributeString("value", NLog.LayoutRenderers.MachineNameLayoutRenderer.MachineName);
 #endif

@@ -99,21 +99,38 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string msg;
+            string[] messages = NDC.GetAllMessages();
+            int startPos = 0;
+            int endPos = messages.Length;
 
             if (TopFrames !=  - 1)
             {
-                msg = NDC.GetTopMessages(TopFrames, Separator);
+                endPos = Math.Min(TopFrames, messages.Length);
             }
             else if (BottomFrames !=  - 1)
             {
-                msg = NDC.GetBottomMessages(BottomFrames, Separator);
+                startPos = messages.Length - Math.Min(BottomFrames, messages.Length);
             }
-            else
+
+            int totalLength = 0;
+            int separatorLength = 0;
+
+            for (int i = endPos - 1; i >= startPos; --i)
             {
-                msg = NDC.GetAllMessages(Separator);
+                totalLength += separatorLength + messages[i].Length;
+                separatorLength = this.Separator.Length;
             }
-            builder.Append(ApplyPadding(msg));
+
+            string separator = String.Empty;
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = endPos - 1; i >= startPos; --i)
+            {
+                sb.Append(separator);
+                sb.Append(messages[i]);
+                separator = this.Separator;
+            }
+            builder.Append(ApplyPadding(sb.ToString()));
         }
     }
 }

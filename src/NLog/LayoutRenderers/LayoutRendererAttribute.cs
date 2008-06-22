@@ -32,20 +32,47 @@
 // 
 
 using System;
+using NLog.Internal;
+using NLog.Config;
 
-namespace NLog.Config
+namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// Marks the class as containing condition methods.
+    /// Marks class as a layout renderer and assigns a format string to it.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class,AllowMultiple=true)]
-    public sealed class ConditionMethodsAttribute: Attribute
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class LayoutRendererAttribute: NameAttributeBase
     {
+        private bool _ignoresPadding = false;
+        private bool _usingLogEventInfo = false;
+
         /// <summary>
-        /// Creates a new instance of <see cref="ConditionMethodsAttribute"/>.
+        /// Creates a new instance of <see cref="LayoutRendererAttribute"/>
+        /// and assigns the <see cref="FormatString"/> to the specified value.
         /// </summary>
-        public ConditionMethodsAttribute()
+        /// <param name="formatString"></param>
+        public LayoutRendererAttribute(string name) : base(name)
         {
+        }
+
+        /// <summary>
+        /// Marks the specified layout renderer as ignoring padding (used mostly for
+        /// documentation generation).
+        /// </summary>
+        public bool IgnoresPadding
+        {
+            get { return _ignoresPadding; }
+            set { _ignoresPadding = value; }
+        }
+
+        /// <summary>
+        /// Marks the specified layout renderer as relying purely on the contents
+        /// of <see cref="LogEventInfo"/> only and not on any other information (such as thread-
+        /// </summary>
+        public bool UsingLogEventInfo
+        {
+            get { return _usingLogEventInfo; }
+            set { _usingLogEventInfo = value; }
         }
     }
 }

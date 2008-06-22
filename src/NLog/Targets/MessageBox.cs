@@ -70,7 +70,7 @@ namespace NLog.Targets
     [Target("MessageBox")]
     public sealed class MessageBoxTarget: TargetWithLayout
     {
-        private Layout _caption = null;
+        private Layout _caption = "";
 
         /// <summary>
         /// Creates a new instance of the <see cref="MessageBoxTarget"/>.
@@ -107,7 +107,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            MessageBox.Show(Layout.GetFormattedMessage(logEvent), _caption.GetFormattedMessage(logEvent));
+            MessageBox.Show(Layout.GetFormattedMessage(logEvent), Caption.GetFormattedMessage(logEvent));
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace NLog.Targets
                 sb.Append("\n");
             }
 
-            MessageBox.Show(sb.ToString(), _caption.GetFormattedMessage(lastLogEvent));
+            MessageBox.Show(sb.ToString(), Caption.GetFormattedMessage(lastLogEvent));
         }
     }
 }

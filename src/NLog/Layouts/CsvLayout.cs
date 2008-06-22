@@ -138,8 +138,9 @@ namespace NLog.Layouts
         /// <returns>A string representation of the log event.</returns>
         public override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            string cachedValue = logEvent.GetCachedLayoutValue(this);
-            if (cachedValue != null)
+            string cachedValue;
+
+            if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
                 return cachedValue;
 
             StringBuilder sb = new StringBuilder();

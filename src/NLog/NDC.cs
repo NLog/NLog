@@ -35,6 +35,7 @@ using System;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Text;
+using System.Collections.Generic;
 
 namespace NLog
 {
@@ -54,9 +55,9 @@ namespace NLog
         /// <returns>An instance of the object that implements IDisposable that returns the stack to the previous level when IDisposable.Dispose() is called. To be used with C# using() statement.</returns>
         public static IDisposable Push(string text)
         {
-            StringCollection stack = GetThreadStack();
+            Stack<string> stack = ThreadStack;
             int previousCount = stack.Count;
-            stack.Add(text);
+            stack.Push(text);
             return new StackPopper(stack, previousCount);
         }
 
@@ -66,12 +67,10 @@ namespace NLog
         /// <returns>The top message which is no longer on the stack.</returns>
         public static string Pop()
         {
-            StringCollection stack = GetThreadStack();
+            Stack<string> stack = ThreadStack;
             if (stack.Count > 0)
             {
-                string retVal = (string)stack[stack.Count - 1];
-                stack.RemoveAt(stack.Count - 1);
-                return retVal;
+                return stack.Pop();
             }
             else
             {
@@ -85,10 +84,10 @@ namespace NLog
         /// <returns>The top message. </returns>
         public static string GetTopMessage()
         {
-            StringCollection stack = GetThreadStack();
+            Stack<string> stack = ThreadStack;
             if (stack.Count > 0)
             {
-                return (string)stack[stack.Count - 1];
+                return stack.Peek();
             }
             else
             {
@@ -101,119 +100,23 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            StringCollection stack = GetThreadStack();
-
-            stack.Clear();
+            ThreadStack.Clear();
         }
 
         /// <summary>
-        /// Gets all messages on the stack separated by the specified separator.
+        /// Gets all messages on the stack.
         /// </summary>
-        /// <param name="separator">The separator.</param>
-        /// <returns>Messages on the stack concatenated using the specified separator.</returns>
-        public static string GetAllMessages(string separator)
+        public static string[] GetAllMessages()
         {
-            StringCollection stack = GetThreadStack();
-            if (stack.Count == 0)
-                return String.Empty;
-
-            if (stack.Count == 1)
-                return GetTopMessage();
-
-            int totalLength = ((string)stack[0]).Length;
-            for (int i = 1; i < stack.Count; ++i)
-            {
-                totalLength += separator.Length;
-            }
-            StringBuilder sb = new StringBuilder(totalLength);
-            sb.Append((string)stack[0]);
-            for (int i = 1; i < stack.Count; ++i)
-            {
-                sb.Append(separator);
-                sb.Append((string)stack[i]);
-            }
-            return sb.ToString();
-        }
-
-        /// <summary>
-        /// Calculates the string representing <c>count</c> bottommost messages using the specified separator.
-        /// </summary>
-        /// <param name="count">Number of bottom messages to be returned</param>
-        /// <param name="separator">The separator</param>
-        /// <returns>A string representing <c>count</c> bottommost messages using the specified separator.</returns>
-        public static string GetBottomMessages(int count, string separator)
-        {
-            StringCollection stack = GetThreadStack();
-            if (count > stack.Count)
-                count = stack.Count;
-            if (count == 0)
-                return String.Empty;
-
-            if (count == 1)
-                return ((string)stack[0]);
-
-            int totalLength = ((string)stack[0]).Length;
-            for (int i = 1; i < count; ++i)
-            {
-                totalLength += separator.Length;
-            }
-            StringBuilder sb = new StringBuilder(totalLength);
-            sb.Append((string)stack[0]);
-            for (int i = 1; i < count; ++i)
-            {
-                sb.Append(separator);
-                sb.Append((string)stack[i]);
-            }
-            return sb.ToString();
-        }
-
-        /// <summary>
-        /// Calculates the string representing <c>count</c> topmost messages using the specified separator.
-        /// </summary>
-        /// <param name="count">Number of topmost messages to be returned</param>
-        /// <param name="separator">The separator</param>
-        /// <returns>A string representing <c>count</c> topmost messages using the specified separator.</returns>
-        public static string GetTopMessages(int count, string separator)
-        {
-            StringCollection stack = GetThreadStack();
-            if (count >= stack.Count)
-                return GetAllMessages(separator);
-
-            int pos0 = stack.Count - count;
-            int totalLength = ((string)stack[pos0]).Length;
-            for (int i = pos0 + 1; i < stack.Count; ++i)
-            {
-                totalLength += separator.Length;
-            }
-            StringBuilder sb = new StringBuilder(totalLength);
-            sb.Append((string)stack[pos0]);
-            for (int i = pos0 + 1; i < stack.Count; ++i)
-            {
-                sb.Append(separator);
-                sb.Append((string)stack[i]);
-            }
-            return sb.ToString();
-        }
-
-        private static StringCollection GetThreadStack()
-        {
-            StringCollection threadStack = (StringCollection)System.Threading.Thread.GetData(_dataSlot);
-
-            if (threadStack == null)
-            {
-                threadStack = new StringCollection();
-                System.Threading.Thread.SetData(_dataSlot, threadStack);
-            }
-
-            return threadStack;
+            return ThreadStack.ToArray();
         }
 
         private class StackPopper: IDisposable
         {
-            private StringCollection _stack;
+            private Stack<string> _stack;
             private int _previousCount;
 
-            public StackPopper(StringCollection stack, int previousCount)
+            public StackPopper(Stack<string> stack, int previousCount)
             {
                 _stack = stack;
                 _previousCount = previousCount;
@@ -223,11 +126,43 @@ namespace NLog
             {
                 while (_stack.Count > _previousCount)
                 {
-                    _stack.RemoveAt(_stack.Count - 1);
+                    _stack.Pop();
                 }
             }
         }
 
+#if SILVERLIGHT
+        public static Stack<string> ThreadStack
+        {
+            get
+            {
+                if (_threadStack == null)
+                    _threadStack = new Stack<string>();
+                return _threadStack;
+            }
+        }
+
+        [ThreadStatic]
+        private static Stack<string> _threadStack;
+
+#else
+        private static Stack<string> ThreadStack
+        {
+            get
+            {
+                Stack<string> threadStack = (Stack<string>)System.Threading.Thread.GetData(_dataSlot);
+
+                if (threadStack == null)
+                {
+                    threadStack = new Stack<string>();
+                    System.Threading.Thread.SetData(_dataSlot, threadStack);
+                }
+
+                return threadStack;
+            }
+        }
+
         private static LocalDataStoreSlot _dataSlot = System.Threading.Thread.AllocateDataSlot();
+#endif
     }
 }

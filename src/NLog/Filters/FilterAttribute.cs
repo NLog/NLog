@@ -35,51 +35,21 @@ using System;
 using NLog.Internal;
 using NLog.Config;
 
-namespace NLog.Config
+namespace NLog.Filters
 {
     /// <summary>
-    /// Marks class as a logging target and assigns a name to it.
+    /// Marks class as a layout renderer and assigns a name to it
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class TargetAttribute: NameAttributeBase
+    public sealed class FilterAttribute: NameAttributeBase
     {
-        private bool _ignoresLayout = false;
-        private bool _isCompound = false;
-        private bool _isWrapper = false;
-
         /// <summary>
-        /// Creates a new instance of the TargetAttribute class and sets the name.
+        /// Creates a new instance of <see cref="FilterAttribute"/> and assigns
+        /// a name to it.
         /// </summary>
         /// <param name="name"></param>
-        public TargetAttribute(string name) : base(name)
+        public FilterAttribute(string name) : base(name)
         {
-        }
-
-        /// <summary>
-        /// Determines whether the target ignores layout specification.
-        /// </summary>
-        public bool IgnoresLayout
-        {
-            get { return _ignoresLayout; }
-            set { _ignoresLayout = value; }
-        }
-
-        /// <summary>
-        /// Marks the target as 'wrapper' target (used to generate the target summary documentation page);
-        /// </summary>
-        public bool IsWrapper
-        {
-            get { return _isWrapper; }
-            set { _isWrapper = value; }
-        }
-
-        /// <summary>
-        /// Marks the target as 'compound' target (used to generate the target summary documentation page);
-        /// </summary>
-        public bool IsCompound
-        {
-            get { return _isCompound; }
-            set { _isCompound = value; }
         }
     }
 }

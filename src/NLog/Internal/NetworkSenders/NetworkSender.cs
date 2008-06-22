@@ -69,7 +69,9 @@ namespace NLog.Internal.NetworkSenders
         /// <returns>A newly created network sender.</returns>
         /// <remarks>
         /// If the url starts with <c>tcp://</c> - a new <see cref="TcpNetworkSender" /> is created.<br/>
+#if !SILVERLIGHT
         /// If the url starts with <c>udp://</c> - a new <see cref="UdpNetworkSender" /> is created.<br/>
+#endif
         /// </remarks>
         public static NetworkSender Create(string url)
         {
@@ -77,10 +79,12 @@ namespace NLog.Internal.NetworkSenders
             {
                 return new TcpNetworkSender(url);
             }
+#if !SILVERLIGHT
             if (url.StartsWith("udp://"))
             {
                 return new UdpNetworkSender(url);
             }
+#endif
             throw new ArgumentException("Unrecognized network address", "url");
         }
 

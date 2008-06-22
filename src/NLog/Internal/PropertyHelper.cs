@@ -53,7 +53,7 @@ namespace NLog.Internal
 
         private PropertyHelper(){}
 
-        public static string ExpandVariables(string input, NameValueCollection variables)
+        public static string ExpandVariables(string input, IDictionary<string, string> variables)
         {
             if (variables == null || variables.Count == 0)
                 return input;
@@ -111,18 +111,7 @@ namespace NLog.Internal
             }
         }
 
-        public static bool SetPropertyFromElement(object o, XmlElement el, NameValueCollection variables)
-        {
-            if (AddArrayItemFromElement(o, el, variables))
-                return true;
-
-            if (SetLayoutFromElement(o, el, variables))
-                return true;
-
-            return SetPropertyFromString(o, el.LocalName, el.InnerText, variables);
-        }
-
-        public static bool SetPropertyFromString(object o, string name, string value0, NameValueCollection variables)
+        public static bool SetPropertyFromString(object o, string name, string value0, IDictionary<string, string> variables)
         {
             string value = ExpandVariables(value0, variables);
 
@@ -131,7 +120,7 @@ namespace NLog.Internal
             try
             {
                 PropertyInfo propInfo;
-                
+
                 if (!TryGetPropertyInfo(o, name, out propInfo))
                 {
                     throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
@@ -161,24 +150,6 @@ namespace NLog.Internal
             }
         }
 
-        public static bool AddArrayItemFromElement(object o, XmlElement el, NameValueCollection variables)
-        {
-            string name = el.Name;
-            if (!IsArrayProperty(o.GetType(), name))
-                return false;
-            PropertyInfo propInfo;
-            if (!TryGetPropertyInfo(o, name, out propInfo))
-                throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
-
-            IList propertyValue = (IList)propInfo.GetValue(o, null);
-            Type elementType = GetArrayItemType(propInfo);
-            object arrayItem = FactoryHelper.CreateInstance(elementType);
-            ConfigureObjectFromAttributes(arrayItem, el.Attributes, variables, true);
-            ConfigureObjectFromElement(arrayItem, el, variables);
-            propertyValue.Add(arrayItem);
-            return true;
-        }
-
         internal static bool TryGetPropertyInfo(object o, string propertyName, out PropertyInfo result)
         {
             PropertyInfo propInfo = o.GetType().GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
@@ -188,10 +159,10 @@ namespace NLog.Internal
                 return true;
             }
 
-            lock(_parameterInfoCache)
+            lock (_parameterInfoCache)
             {
                 Type targetType = o.GetType();
-                Dictionary<string,PropertyInfo> cache;
+                Dictionary<string, PropertyInfo> cache;
 
                 if (!_parameterInfoCache.TryGetValue(targetType, out cache))
                 {
@@ -214,10 +185,10 @@ namespace NLog.Internal
                 }
             }
 
-            lock(_parameterInfoCache)
+            lock (_parameterInfoCache)
             {
-                Dictionary<string,PropertyInfo> cache;
-                
+                Dictionary<string, PropertyInfo> cache;
+
                 if (!_parameterInfoCache.TryGetValue(targetType, out cache))
                 {
                     cache = BuildPropertyInfoDictionary(targetType);
@@ -227,14 +198,14 @@ namespace NLog.Internal
             }
         }
 
-        private static Dictionary<string,PropertyInfo> BuildPropertyInfoDictionary(Type t)
+        private static Dictionary<string, PropertyInfo> BuildPropertyInfoDictionary(Type t)
         {
-            Dictionary<string,PropertyInfo> retVal = new Dictionary<string,PropertyInfo>();
+            Dictionary<string, PropertyInfo> retVal = new Dictionary<string, PropertyInfo>();
             foreach (PropertyInfo propInfo in t.GetProperties())
             {
                 if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
                 {
-                    ArrayParameterAttribute[]attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
+                    ArrayParameterAttribute[] attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
 
                     retVal[attributes[0].ElementName.ToLower()] = propInfo;
                 }
@@ -252,7 +223,7 @@ namespace NLog.Internal
         {
             if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
             {
-                ArrayParameterAttribute[]attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
+                ArrayParameterAttribute[] attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
 
                 return attributes[0].ItemType;
             }
@@ -265,7 +236,7 @@ namespace NLog.Internal
         public static bool IsArrayProperty(Type t, string name)
         {
             PropertyInfo propInfo;
-            
+
             if (!TryGetPropertyInfo(t, name, out propInfo))
                 throw new NotSupportedException("Parameter " + name + " not supported on " + t.Name);
 
@@ -282,17 +253,47 @@ namespace NLog.Internal
         public static bool IsLayoutProperty(Type t, string name)
         {
             PropertyInfo propInfo;
-            
+
             if (!TryGetPropertyInfo(t, name, out propInfo))
                 throw new NotSupportedException("Parameter " + name + " not supported on " + t.Name);
 
             if (typeof(Layout).IsAssignableFrom(propInfo.PropertyType))
                 return true;
 
-            if (0 == String.Compare(name, "layout", true) && typeof(TargetWithLayout).IsAssignableFrom(propInfo.DeclaringType))
+            if (0 == String.Compare(name, "layout", StringComparison.InvariantCultureIgnoreCase) && typeof(TargetWithLayout).IsAssignableFrom(propInfo.DeclaringType))
                 return true;
 
             return false;
+        }
+
+#if !SILVERLIGHT
+        public static bool SetPropertyFromElement(object o, XmlElement el, IDictionary<string, string> variables)
+        {
+            if (AddArrayItemFromElement(o, el, variables))
+                return true;
+
+            if (SetLayoutFromElement(o, el, variables))
+                return true;
+
+            return SetPropertyFromString(o, el.LocalName, el.InnerText, variables);
+        }
+
+        public static bool AddArrayItemFromElement(object o, XmlElement el, IDictionary<string, string> variables)
+        {
+            string name = el.Name;
+            if (!IsArrayProperty(o.GetType(), name))
+                return false;
+            PropertyInfo propInfo;
+            if (!TryGetPropertyInfo(o, name, out propInfo))
+                throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
+
+            IList propertyValue = (IList)propInfo.GetValue(o, null);
+            Type elementType = GetArrayItemType(propInfo);
+            object arrayItem = FactoryHelper.CreateInstance(elementType);
+            ConfigureObjectFromAttributes(arrayItem, el.Attributes, variables, true);
+            ConfigureObjectFromElement(arrayItem, el, variables);
+            propertyValue.Add(arrayItem);
+            return true;
         }
 
         public static bool EqualsCI(string p1, string p2)
@@ -300,7 +301,7 @@ namespace NLog.Internal
             return String.Compare(p1, p2, true) == 0;
         }
 
-        public static string GetCaseInsensitiveAttribute(XmlElement element, string name, NameValueCollection variables)
+        public static string GetCaseInsensitiveAttribute(XmlElement element, string name, IDictionary<string, string> variables)
         {
             // first try a case-sensitive match
             string s = element.GetAttribute(name);
@@ -338,7 +339,7 @@ namespace NLog.Internal
             return false;
         }
 
-        public static bool SetLayoutFromElement(object o, XmlElement el, NameValueCollection variables)
+        public static bool SetLayoutFromElement(object o, XmlElement el, IDictionary<string, string> variables)
         {
             string name = el.LocalName;
             if (!IsLayoutProperty(o.GetType(), name))
@@ -374,7 +375,7 @@ namespace NLog.Internal
             return false;
         }
 
-        public static void ConfigureObjectFromAttributes(object targetObject, XmlAttributeCollection attrs, NameValueCollection variables, bool ignoreType)
+        public static void ConfigureObjectFromAttributes(object targetObject, XmlAttributeCollection attrs, IDictionary<string, string> variables, bool ignoreType)
         {
             foreach (XmlAttribute attrib in attrs)
             {
@@ -388,7 +389,7 @@ namespace NLog.Internal
             }
         }
 
-        public static void ConfigureObjectFromElement(object targetObject, XmlElement el, NameValueCollection variables)
+        public static void ConfigureObjectFromElement(object targetObject, XmlElement el, IDictionary<string,string> variables)
         {
             foreach (XmlElement el2 in GetChildElements(el))
             {
@@ -416,5 +417,6 @@ namespace NLog.Internal
                 yield return el;
             }
         }
+#endif
     }
 }

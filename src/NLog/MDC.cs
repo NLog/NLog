@@ -33,6 +33,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace NLog
 {
@@ -52,9 +53,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, string value)
         {
-            IDictionary dict = GetThreadDictionary();
-
-            dict[item] = value;
+            ThreadDictionary[item] = value;
         }
 
         /// <summary>
@@ -64,13 +63,12 @@ namespace NLog
         /// <returns>The item value of String.Empty if the value is not present.</returns>
         public static string Get(string item)
         {
-            IDictionary dict = GetThreadDictionary();
+            string s;
 
-            string s = (string)dict[item];
-            if (s == null)
-                return String.Empty;
-            else
-                return s;
+            if (!ThreadDictionary.TryGetValue(item, out s))
+                s = String.Empty;
+
+            return s;
         }
 
         /// <summary>
@@ -80,9 +78,7 @@ namespace NLog
         /// <returns>A boolean indicating whether the specified item exists in current thread MDC.</returns>
         public static bool Contains(string item)
         {
-            IDictionary dict = GetThreadDictionary();
-
-            return dict.Contains(item);
+            return ThreadDictionary.ContainsKey(item);
         }
 
         /// <summary>
@@ -91,9 +87,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
-            IDictionary dict = GetThreadDictionary();
-
-            dict.Remove(item);
+            ThreadDictionary.Remove(item);
         }
 
         /// <summary>
@@ -101,24 +95,41 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            IDictionary dict = GetThreadDictionary();
-
-            dict.Clear();
+            ThreadDictionary.Clear();
         }
 
-        internal static IDictionary GetThreadDictionary()
+#if SILVERLIGHT
+        public static IDictionary<string, string> ThreadDictionary
         {
-            IDictionary threadDictionary = (IDictionary)System.Threading.Thread.GetData(_dataSlot);
-
-            if (threadDictionary == null)
+            get
             {
-                threadDictionary = new Hashtable();
-                System.Threading.Thread.SetData(_dataSlot, threadDictionary);
+                if (_threadDictionary == null)
+                    _threadDictionary = new Dictionary<string, string>();
+                return _threadDictionary;
             }
+        }
 
-            return threadDictionary;
+        [ThreadStatic]
+        private static IDictionary<string, string> _threadDictionary;
+
+#else
+        public static IDictionary<string,string> ThreadDictionary
+        {
+            get
+            {
+                IDictionary<string, string> threadDictionary = (IDictionary<string, string>)System.Threading.Thread.GetData(_dataSlot);
+
+                if (threadDictionary == null)
+                {
+                    threadDictionary = new Dictionary<string,string>();
+                    System.Threading.Thread.SetData(_dataSlot, threadDictionary);
+                }
+
+                return threadDictionary;
+            }
         }
 
         private static LocalDataStoreSlot _dataSlot = System.Threading.Thread.AllocateDataSlot();
+#endif
     }
 }

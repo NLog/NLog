@@ -35,20 +35,20 @@ using System;
 using NLog.Internal;
 using NLog.Config;
 
-namespace NLog.Config
+namespace NLog.Conditions
 {
     /// <summary>
-    /// Marks class as a layout renderer and assigns a format string to it.
+    /// Marks class as a log event Condition and assigns a name to it
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
-    public sealed class LayoutAttribute: NameAttributeBase
+    [AttributeUsage(AttributeTargets.Method,AllowMultiple=true)]
+    public sealed class ConditionMethodAttribute: NameAttributeBase
     {
         /// <summary>
-        /// Creates a new instance of <see cref="LayoutAttribute"/>
-        /// and assigns the <see cref="Name"/> to the specified value.
+        /// Creates a new instance of <see cref="ConditionMethodAttribute"/> and assigns
+        /// a name to it.
         /// </summary>
-        /// <param name="name">layout name</param>
-        public LayoutAttribute(string name) : base(name)
+        /// <param name="name"></param>
+        public ConditionMethodAttribute(string name) : base(name)
         {
         }
     }

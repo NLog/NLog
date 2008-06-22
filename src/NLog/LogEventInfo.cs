@@ -41,6 +41,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using NLog.Layouts;
 using NLog.Internal;
+using System.Collections.Generic;
 
 namespace NLog
 {
@@ -59,8 +60,8 @@ namespace NLog
         private DateTime _timeStamp;
         private LogLevel _level;
         private string _loggerName;
-        private IDictionary _layoutCache;
-        private IDictionary _eventContext;
+        private IDictionary<Layout,string> _layoutCache;
+        private IDictionary<string,object> _eventContext;
         private int _sequenceID;
 
         /// <summary>
@@ -178,12 +179,12 @@ namespace NLog
         /// <summary>
         /// Gets the dictionary of per-event context properties.
         /// </summary>
-        public IDictionary Context
+        public IDictionary<string,object> Context
         {
             get
             {
                 if (_eventContext == null)
-                    _eventContext = new HybridDictionary();
+                    _eventContext = new Dictionary<string,object>();
                 return _eventContext;
             }
         }
@@ -197,18 +198,20 @@ namespace NLog
             get { return _sequenceID; }
         }
 
-        internal string GetCachedLayoutValue(Layout layout)
+        internal bool TryGetCachedLayoutValue(Layout layout, out string result)
         {
             if (_layoutCache == null)
-                return null;
-            string result = (string)_layoutCache[layout];
-            return result;
+            {
+                result = null;
+                return true;
+            }
+            return _layoutCache.TryGetValue(layout, out result);
         }
 
         internal void AddCachedLayoutValue(Layout layout, string value)
         {
             if (_layoutCache == null)
-                _layoutCache = new HybridDictionary();
+                _layoutCache = new Dictionary<Layout, string>();
             _layoutCache[layout] = value;
         }
     }

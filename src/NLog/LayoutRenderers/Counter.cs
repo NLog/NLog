@@ -38,6 +38,7 @@ using System.Globalization;
 using System.ComponentModel;
 
 using NLog.Config;
+using System.Collections.Generic;
 
 namespace NLog.LayoutRenderers
 {
@@ -118,23 +119,16 @@ namespace NLog.LayoutRenderers
             builder.Append(ApplyPadding(v.ToString(Culture)));
         }
 
-        private static Hashtable _sequences = new Hashtable();
+        private static Dictionary<string, int> _sequences = new Dictionary<string, int>();
 
         private static int GetNextSequenceValue(string sequenceName, int defaultValue, int increment)
         {
             lock(_sequences)
             {
-                object v = _sequences[sequenceName];
                 int val;
 
-                if (v == null)
-                {
+                if (!_sequences.TryGetValue(sequenceName, out val))
                     val = defaultValue;
-                }
-                else
-                {
-                    val = (int)v;
-                }
 
                 int retVal = val;
 

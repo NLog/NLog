@@ -77,14 +77,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog\NLog.csproj">
-      <Name>NLog</Name>
-      <Project>{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-      <Private>True</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <Compile Include="StopWatch.cs">
       <SubType>Code</SubType>
@@ -99,6 +91,12 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NLog\NLog.csproj">
+      <Project>{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}</Project>
+      <Name>NLog</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

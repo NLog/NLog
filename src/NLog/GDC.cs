@@ -33,6 +33,8 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace NLog
 {
@@ -41,7 +43,7 @@ namespace NLog
     /// </summary>
     public sealed class GDC
     {
-        private static IDictionary _dict = new Hashtable();
+        private static Dictionary<string, string> _dict = new Dictionary<string, string>();
 
         private GDC(){}
 
@@ -52,7 +54,10 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, string value)
         {
-            _dict[item] = value;
+            lock (_dict)
+            {
+                _dict[item] = value;
+            }
         }
 
         /// <summary>
@@ -62,11 +67,14 @@ namespace NLog
         /// <returns>The item value of String.Empty if the value is not present.</returns>
         public static string Get(string item)
         {
-            string s = (string)_dict[item];
-            if (s == null)
-                return String.Empty;
-            else
+            lock (_dict)
+            {
+                string s;
+
+                if (!_dict.TryGetValue(item, out s))
+                    s = String.Empty;
                 return s;
+            }
         }
 
         /// <summary>
@@ -76,7 +84,10 @@ namespace NLog
         /// <returns>A boolean indicating whether the specified item exists in current thread GDC.</returns>
         public static bool Contains(string item)
         {
-            return _dict.Contains(item);
+            lock (_dict)
+            {
+                return _dict.ContainsKey(item);
+            }
         }
 
         /// <summary>
@@ -85,7 +96,10 @@ namespace NLog
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
-            _dict.Remove(item);
+            lock (_dict)
+            {
+                _dict.Remove(item);
+            }
         }
 
         /// <summary>
@@ -93,7 +107,10 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            _dict.Clear();
+            lock (_dict)
+            {
+                _dict.Clear();
+            }
         }
     }
 }

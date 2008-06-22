@@ -100,7 +100,9 @@ namespace NLog.Internal
             Form f = new Form();
             f.Name = name;
             f.Text = "NLog";
+#if !Smartphone
             f.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+#endif
             if (width > 0) f.Width = width;
             if (height > 0) f.Height = height;
             if (show) f.Show();
