@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.Text;
@@ -69,7 +69,6 @@ namespace NLog.LayoutRenderers
     /// </code>
     /// </example>
     [LayoutRenderer("aspnet-session")]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ASPNETSessionValueLayoutRenderer: LayoutRenderer
     {
         private string _variable = null;

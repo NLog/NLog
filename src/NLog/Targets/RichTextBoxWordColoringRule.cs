@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF && !MONO
+#if !NET_CF && !MONO
 
 using System;
 using System.Text;
@@ -43,6 +43,7 @@ using NLog.Config;
 using NLog.Conditions;
 using NLog.Targets;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace NLog.Targets
 {
@@ -91,7 +92,7 @@ namespace NLog.Targets
         /// <summary>
         /// Match whole words only.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool WholeWords
         {
             get { return _wholeWords; }
@@ -101,7 +102,7 @@ namespace NLog.Targets
         /// <summary>
         /// Ignore case when comparing texts.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool IgnoreCase
         {
             get { return _ignoreCase; }
@@ -140,7 +141,7 @@ namespace NLog.Targets
         /// The font color.
         /// Names are identical with KnownColor enum extended with Empty value which means that font color won't be changed
         /// </summary>
-        [System.ComponentModel.DefaultValue("Empty")]
+        [DefaultValue("Empty")]
         public string FontColor
         {
             get { return _fontColor; }
@@ -152,8 +153,7 @@ namespace NLog.Targets
         /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed
         /// Background color will be set only in .net 2.0
         /// </summary>
-        [System.ComponentModel.DefaultValue("Empty")]
-        [SupportedRuntime(Framework = RuntimeFramework.DotNetFramework, MinRuntimeVersion = "2.0")]
+        [DefaultValue("Empty")]
         public string BackgroundColor
         {
             get { return _backColor; }

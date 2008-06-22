@@ -43,6 +43,8 @@ using System.Net;
 using System.Net.Sockets;
 
 using NLog.Config;
+using System.Collections.Generic;
+using NLog.Layouts;
 
 namespace NLog.Targets.Compound
 {
@@ -52,12 +54,12 @@ namespace NLog.Targets.Compound
     /// </summary>
     public abstract class CompoundTargetBase: Target
     {
-        private TargetCollection _targets = new TargetCollection();
+        private IList<Target> _targets = new List<Target>();
 
         /// <summary>
         /// Creates a new instance of <see cref="CompoundTargetBase"/>.
         /// </summary>
-        public CompoundTargetBase()
+        protected CompoundTargetBase()
         {
         }
 
@@ -68,13 +70,14 @@ namespace NLog.Targets.Compound
         /// </summary>
         public CompoundTargetBase(params Target[] targets)
         {
-            _targets.AddRange(targets);
+            foreach (Target t in targets)
+                Targets.Add(t);
         }
 
         /// <summary>
         /// A collection of targets managed by this compound target.
         /// </summary>
-        public TargetCollection Targets
+        public IList<Target> Targets
         {
             get { return _targets; }
         }
@@ -83,7 +86,7 @@ namespace NLog.Targets.Compound
         /// Adds all layouts used by this target and sub-targets.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             base.PopulateLayouts (layouts);
             foreach (Target t in Targets)

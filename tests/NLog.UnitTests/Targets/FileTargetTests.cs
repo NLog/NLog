@@ -43,6 +43,7 @@ using System.IO;
 using System.Text;
 using NLog.Targets.Wrappers;
 using NLog.LayoutRenderers;
+using NLog.Layouts;
 
 namespace NLog.UnitTests.Targets
 {
@@ -58,7 +59,7 @@ namespace NLog.UnitTests.Targets
             try
             {
                 FileTarget ft = new FileTarget();
-                ft.FileName = Layout.Escape(tempFile);
+                ft.FileName = SimpleLayout.Escape(tempFile);
                 ft.LineEnding = FileTarget.LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
                 ft.OpenFileCacheTimeout = 0;
@@ -85,7 +86,7 @@ namespace NLog.UnitTests.Targets
             try
             {
                 FileTarget ft = new FileTarget();
-                ft.FileName = Layout.Escape(tempFile);
+                ft.FileName = SimpleLayout.Escape(tempFile);
                 ft.LineEnding = FileTarget.LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
 
@@ -103,7 +104,7 @@ namespace NLog.UnitTests.Targets
                 // DeleteOldFileOnStartup
 
                 ft = new FileTarget();
-                ft.FileName = Layout.Escape(tempFile);
+                ft.FileName = SimpleLayout.Escape(tempFile);
                 ft.LineEnding = FileTarget.LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
 
@@ -120,7 +121,7 @@ namespace NLog.UnitTests.Targets
                 // DeleteOldFileOnStartup
 
                 ft = new FileTarget();
-                ft.FileName = Layout.Escape(tempFile);
+                ft.FileName = SimpleLayout.Escape(tempFile);
                 ft.LineEnding = FileTarget.LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
                 ft.DeleteOldFileOnStartup = true;

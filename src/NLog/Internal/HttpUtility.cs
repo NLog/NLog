@@ -37,7 +37,7 @@ using System.IO;
 using System.Security.Permissions;
 using System.Text;
 
-#if NETCF
+#if NET_CF
 
 namespace System.Web
 {

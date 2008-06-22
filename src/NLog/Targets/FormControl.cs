@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF && !MONO
+#if !NET_CF && !MONO
 
 using System;
 using System.Collections;
@@ -65,7 +65,6 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/FormControl/Form1.cs" />,
     /// </example>
     [Target("FormControl")]
-    [SupportedRuntime(Framework=RuntimeFramework.DotNetFramework, MinRuntimeVersion="1.1")]
     public sealed class FormControlTarget : TargetWithLayout
     {
         private string _controlName;
@@ -106,7 +105,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            string logMessage = CompiledLayout.GetFormattedMessage(logEvent);
+            string logMessage = Layout.GetFormattedMessage(logEvent);
             
             FindControlAndSendTheMessage(logMessage);
         }
@@ -118,10 +117,9 @@ namespace NLog.Targets
             if (Form.ActiveForm != null)
                 form = Form.ActiveForm;
 
-#if DOTNET_2_0
             if (Application.OpenForms[FormName] != null)
                 form = Application.OpenForms[FormName];
-#endif
+
             if (form == null)
                 return;
 

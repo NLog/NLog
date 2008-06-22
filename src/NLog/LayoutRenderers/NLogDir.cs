@@ -34,6 +34,7 @@
 using System;
 using System.Text;
 using System.IO;
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -49,7 +50,7 @@ namespace NLog.LayoutRenderers
 
         static NLogDirLayoutRenderer()
         {
-#if !NETCF
+#if !NET_CF
             _nlogDir = Path.GetDirectoryName(typeof(LogManager).Assembly.Location);
 #else
             _nlogDir = Path.GetDirectoryName(typeof(LogManager).Assembly.GetName().CodeBase);

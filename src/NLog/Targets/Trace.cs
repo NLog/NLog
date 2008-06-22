@@ -33,7 +33,7 @@
 
 #define TRACE
 
-#if !NETCF
+#if !NET_CF
 using System;
 using System.Diagnostics;
 
@@ -60,7 +60,6 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/Trace/Simple/Example.cs" />
     /// </example>
     [Target("Trace")]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public sealed class TraceTarget: TargetWithLayout
     {
         /// <summary>
@@ -74,11 +73,11 @@ namespace NLog.Targets
         {
             if (logEvent.Level >= LogLevel.Error)
             {
-                Trace.Fail(CompiledLayout.GetFormattedMessage(logEvent));
+                Trace.Fail(Layout.GetFormattedMessage(logEvent));
             }
             else
             {
-                Trace.WriteLine(CompiledLayout.GetFormattedMessage(logEvent));
+                Trace.WriteLine(Layout.GetFormattedMessage(logEvent));
             }
         }
     }

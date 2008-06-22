@@ -90,7 +90,7 @@ namespace NLog.LayoutRenderers
             sb.Append(ex.Message);
         }
 
-#if !NETCF
+#if !NET_CF
         private void AppendMethod(StringBuilder sb, Exception ex) {
             sb.Append(ex.TargetSite.ToString());
         }
@@ -141,7 +141,7 @@ namespace NLog.LayoutRenderers
                         dataTargets.Add(new ExceptionDataTarget(AppendToString));
                         break;
 
-#if !NETCF
+#if !NET_CF
                    case "stacktrace":
                         dataTargets.Add(new ExceptionDataTarget(AppendStackTrace));
                         break;

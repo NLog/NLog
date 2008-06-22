@@ -44,6 +44,8 @@ using System.Net.Sockets;
 
 using NLog.Config;
 using NLog.Conditions;
+using System.Collections.Generic;
+using NLog.Layouts;
 
 namespace NLog.Targets.Wrappers
 {
@@ -67,6 +69,7 @@ namespace NLog.Targets.Wrappers
     public class FilteringTargetWrapper: WrapperTargetBase
     {
         private ConditionExpression _condition;
+        private static object _boxedBooleanTrue = true;
 
         /// <summary>
         /// Creates a new instance of <see cref="FilteringTargetWrapper"/>.
@@ -80,7 +83,7 @@ namespace NLog.Targets.Wrappers
         /// initializes the <see cref="WrapperTargetBase.WrappedTarget"/> and
         /// <see cref="Condition"/> properties.
         /// </summary>
-        public FilteringTargetWrapper(Target writeTo, string condition)
+        public FilteringTargetWrapper(Target writeTo, ConditionExpression condition)
         {
             WrappedTarget = writeTo;
             Condition = condition;
@@ -91,11 +94,10 @@ namespace NLog.Targets.Wrappers
         /// to the wrapped target.
         /// </summary>
         [RequiredParameter]
-        [AcceptsCondition]
-        public string Condition
+        public ConditionExpression Condition
         {
-            get { return _condition.ToString(); }
-            set { _condition = ConditionParser.ParseExpression(value); }
+            get { return _condition; }
+            set { _condition = value; }
         }
 
         /// <summary>
@@ -107,7 +109,7 @@ namespace NLog.Targets.Wrappers
         protected internal override void Write(LogEventInfo logEvent)
         {
             object v = _condition.Evaluate(logEvent);
-            if (v != null && v is bool && (bool)v)
+            if (_boxedBooleanTrue.Equals(v))
                 WrappedTarget.Write(logEvent);
         }
 
@@ -115,10 +117,11 @@ namespace NLog.Targets.Wrappers
         /// Adds all layouts used by this target to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             base.PopulateLayouts(layouts);
-            _condition.PopulateLayouts(layouts);
+            if (Condition != null)
+                Condition.PopulateLayouts(layouts);
         }
 
     }

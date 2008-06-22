@@ -36,6 +36,8 @@ using System.Text;
 
 using NLog;
 using NLog.Config;
+using System.Globalization;
+using System.ComponentModel;
 
 namespace NLog.Filters
 {
@@ -68,7 +70,7 @@ namespace NLog.Filters
         /// <summary>
         /// Ignore case when comparing strings.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool IgnoreCase
         {
             get { return _ignoreCase; }
@@ -86,7 +88,7 @@ namespace NLog.Filters
         /// </returns>
         protected internal override FilterResult Check(LogEventInfo logEvent)
         {
-            if (0 != String.Compare(CompiledLayout.GetFormattedMessage(logEvent), CompareTo, IgnoreCase))
+            if (0 != String.Compare(Layout.GetFormattedMessage(logEvent), CompareTo, IgnoreCase, CultureInfo.InvariantCulture))
                 return Result;
             else
                 return FilterResult.Neutral;

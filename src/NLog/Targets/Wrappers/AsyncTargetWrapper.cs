@@ -42,6 +42,7 @@ using NLog;
 using NLog.Config;
 
 using NLog.Internal;
+using System.ComponentModel;
 
 namespace NLog.Targets.Wrappers
 {
@@ -60,7 +61,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         Discard,
 
-#if !NETCF
+#if !NET_CF
         /// <summary>
         /// Block until there's more room in the queue.
         /// </summary>
@@ -103,7 +104,6 @@ namespace NLog.Targets.Wrappers
     /// <code lang="C#" src="examples/targets/Configuration API/AsyncWrapper/Wrapping File/Example.cs" />
     /// </example>
     [Target("AsyncWrapper",IsWrapper=true)]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class AsyncTargetWrapper: WrapperTargetBase
     {
         private int _batchSize = 100;
@@ -162,7 +162,7 @@ namespace NLog.Targets.Wrappers
         /// The number of log events that should be processed in a batch
         /// by the lazy writer thread.
         /// </summary>
-        [System.ComponentModel.DefaultValue(100)]
+        [DefaultValue(100)]
         public int BatchSize
         {
             get { return _batchSize; }
@@ -172,7 +172,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// The time in milliseconds to sleep between batches.
         /// </summary>
-        [System.ComponentModel.DefaultValue(50)]
+        [DefaultValue(50)]
         public int TimeToSleepBetweenBatches
         {
             get { return _timeToSleepBetweenBatches; }
@@ -244,7 +244,7 @@ namespace NLog.Targets.Wrappers
         /// The action to be taken when the lazy writer thread request queue count
         /// exceeds the set limit.
         /// </summary>
-        [System.ComponentModel.DefaultValue("Discard")]
+        [DefaultValue("Discard")]
         public AsyncTargetWrapperOverflowAction OverflowAction
         {
             get { return _lazyWriterRequestQueue.OnOverflow; }
@@ -254,7 +254,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// The limit on the number of requests in the lazy writer thread request queue.
         /// </summary>
-        [System.ComponentModel.DefaultValue(10000)]
+        [DefaultValue(10000)]
         public int QueueLimit
         {
             get { return _lazyWriterRequestQueue.RequestLimit; }
@@ -362,7 +362,7 @@ namespace NLog.Targets.Wrappers
                             case AsyncTargetWrapperOverflowAction.Grow:
                                 break;
 
-#if !NETCF
+#if !NET_CF
                             case AsyncTargetWrapperOverflowAction.Block:
                                 while (_queue.Count >= RequestLimit)
                                 {
@@ -404,7 +404,7 @@ namespace NLog.Targets.Wrappers
 
                         target.Add(o);
                     }
-#if !NETCF
+#if !NET_CF
                     if (OnOverflow == AsyncTargetWrapperOverflowAction.Block)
                         System.Threading.Monitor.PulseAll(this);
 #endif

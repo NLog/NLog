@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 using System;
 using System.Collections;
 using System.Collections.Specialized;
@@ -39,13 +39,12 @@ using System.Text;
 using System.Diagnostics;
 using System.Reflection;
 
-#if NET_2_API
 using System.Net;
 using System.Net.Mail;
-#else
-using System.Web.Mail;
-#endif
 using NLog.Config;
+using System.Collections.Generic;
+using System.ComponentModel;
+using NLog.Layouts;
 
 namespace NLog.Targets
 {
@@ -81,7 +80,6 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/Mail/Buffered/Example.cs" />
     /// </example>
     [Target("Mail",IgnoresLayout=true)]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class MailTarget: TargetWithLayoutHeaderAndFooter
     {
         /// <summary>
@@ -109,11 +107,11 @@ namespace NLog.Targets
         private Layout _to;
         private Layout _cc;
         private Layout _bcc;
-        private Layout _subject = new Layout("Message from NLog on ${machinename}");
+        private Layout _subject = "Message from NLog on ${machinename}";
         private Encoding _encoding = System.Text.Encoding.UTF8;
-        private string _smtpServer;
-        private string _smtpUsername;
-        private string _smtpPassword;
+        private Layout _smtpServer;
+        private Layout _smtpUsername;
+        private Layout _smtpPassword;
         private SmtpAuthenticationMode _smtpAuthentication = SmtpAuthenticationMode.None;
         private int _smtpPort = 25;
         private bool _isHtml = false;
@@ -130,37 +128,37 @@ namespace NLog.Targets
         /// <summary>
         /// Sender's email address (e.g. joe@domain.com)
         /// </summary>
-        public string From
+        public Layout From
         {
-            get { return _from.Text; }
-            set { _from = new Layout(value); }
+            get { return _from; }
+            set { _from = value; }
         }
 
         /// <summary>
         /// Recipients' email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com)
         /// </summary>
-        public string To
+        public Layout To
         {
-            get { return _to.Text; }
-            set { _to = new Layout(value); }
+            get { return _to; }
+            set { _to = value; }
         }
 
         /// <summary>
         /// CC email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com)
         /// </summary>
-        public string CC
+        public Layout CC
         {
-            get { return _cc.Text; }
-            set { _cc = new Layout(value); }
+            get { return _cc; }
+            set { _cc = value; }
         }
 
         /// <summary>
         /// BCC email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com)
         /// </summary>
-        public string BCC
+        public Layout BCC
         {
-            get { return _bcc.Text; }
-            set { _bcc = new Layout(value); }
+            get { return _bcc; }
+            set { _bcc = value; }
         }
 
         /// <summary>
@@ -176,18 +174,18 @@ namespace NLog.Targets
         /// <summary>
         /// Mail subject.
         /// </summary>
-        [System.ComponentModel.DefaultValue("Message from NLog on ${machinename}")]
-        public string Subject
+        [DefaultValue("Message from NLog on ${machinename}")]
+        public Layout Subject
         {
-            get { return _subject.Text; }
-            set { _subject = new Layout(value); }
+            get { return _subject; }
+            set { _subject = value; }
         }
 
         /// <summary>
         /// Mail message body (repeated for each log message send in one mail)
         /// </summary>
-        [System.ComponentModel.DefaultValue("${message}")]
-        public string Body
+        [DefaultValue("${message}")]
+        public Layout Body
         {
             get { return base.Layout; }
             set { base.Layout = value; }
@@ -196,17 +194,17 @@ namespace NLog.Targets
         /// <summary>
         /// Encoding to be used for sending e-mail.
         /// </summary>
-        [System.ComponentModel.DefaultValue("UTF8")]
-        public string Encoding
+        [DefaultValue("UTF8")]
+        public Encoding Encoding
         {
-            get { return _encoding.WebName; }
-            set { _encoding = System.Text.Encoding.GetEncoding(value); }
+            get { return _encoding; }
+            set { _encoding = value; }
         }
 
         /// <summary>
         /// Send message as HTML instead of plain text.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool HTML
         {
             get { return _isHtml; }
@@ -216,7 +214,7 @@ namespace NLog.Targets
         /// <summary>
         /// SMTP Server to be used for sending.
         /// </summary>
-        public string SmtpServer
+        public Layout SmtpServer
         {
             get { return _smtpServer; }
             set { _smtpServer = value; }
@@ -225,71 +223,46 @@ namespace NLog.Targets
         /// <summary>
         /// SMTP Authentication mode.
         /// </summary>
-        [System.ComponentModel.DefaultValue("None")]
+        [DefaultValue("None")]
         public SmtpAuthenticationMode SmtpAuthentication
         {
             get { return _smtpAuthentication; }
-            set
-            {
-#if !NET_2_API
-                AssertFieldsSupport("SmtpAuthentication");
-#endif
-                _smtpAuthentication = value;
-            }
+            set { _smtpAuthentication = value; }
         }
 
         /// <summary>
         /// The username used to connect to SMTP server (used when SmtpAuthentication is set to "basic").
         /// </summary>
-        public string SmtpUsername
+        public Layout SmtpUsername
         {
             get { return _smtpUsername; }
-            set
-            {
-#if !NET_2_API
-                AssertFieldsSupport("SMTPUsername");
-#endif
-                _smtpUsername = value;
-            }
+            set { _smtpUsername = value; }
         }
 
         /// <summary>
         /// The password used to authenticate against SMTP server (used when SmtpAuthentication is set to "basic").
         /// </summary>
-        public string SmtpPassword
+        public Layout SmtpPassword
         {
             get { return _smtpPassword; }
-            set
-            {
-#if !NET_2_API
-                AssertFieldsSupport("SMTPPassword");
-#endif
-                _smtpPassword = value;
-            }
+            set { _smtpPassword = value; }
         }
 
         /// <summary>
         /// The port that SMTP Server is listening on.
         /// </summary>
-        [System.ComponentModel.DefaultValue(25)]
+        [DefaultValue(25)]
         public int SmtpPort
         {
             get { return _smtpPort; }
-            set
-            {
-#if !NET_2_API
-                if (value != 25)
-                    AssertFieldsSupport("SmtpPort");
-#endif
-                _smtpPort = value; 
-            }
+            set { _smtpPort = value; }
         }
 
         /// <summary>
         /// Adds all layouts used by this target to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             base.PopulateLayouts (layouts);
             if (_from != null) _from.PopulateLayouts(layouts);
@@ -327,21 +300,21 @@ namespace NLog.Targets
 
             // unbuffered case, create a local buffer, append header, body and footer
             StringBuilder bodyBuffer = new StringBuilder();
-            if (CompiledHeader != null)
+            if (Header != null)
             {
-                bodyBuffer.Append(CompiledHeader.GetFormattedMessage(lastEvent));
+                bodyBuffer.Append(Header.GetFormattedMessage(lastEvent));
                 if (AddNewLines)
                     bodyBuffer.Append("\n");
             }
             for (int i = 0; i < events.Length; ++i)
             {
-                bodyBuffer.Append(CompiledLayout.GetFormattedMessage(events[i]));
+                bodyBuffer.Append(Layout.GetFormattedMessage(events[i]));
                 if (AddNewLines)
                     bodyBuffer.Append("\n");
             }
-            if (CompiledFooter != null)
+            if (Footer != null)
             {
-                bodyBuffer.Append(CompiledFooter.GetFormattedMessage(lastEvent));
+                bodyBuffer.Append(Footer.GetFormattedMessage(lastEvent));
                 if (AddNewLines)
                     bodyBuffer.Append("\n");
             }
@@ -351,12 +324,17 @@ namespace NLog.Targets
             MailMessage msg = new MailMessage();
             SetupMailMessage(msg, lastEvent);
             msg.Body = bodyText;
-            SendMessage(msg);
+            SmtpClient client = new SmtpClient(SmtpServer.GetFormattedMessage(lastEvent), SmtpPort);
+            if (SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
+                client.Credentials = CredentialCache.DefaultNetworkCredentials;
+            else if (SmtpAuthentication == SmtpAuthenticationMode.Basic)
+                client.Credentials = new NetworkCredential(SmtpUsername.GetFormattedMessage(lastEvent), SmtpPassword.GetFormattedMessage(lastEvent));
+            Internal.InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, _smtpServer);
+            client.Send(msg);
         }
 
         private void SetupMailMessage(MailMessage msg, LogEventInfo logEvent)
         {
-#if NET_2_API
             msg.From = new MailAddress(_from.GetFormattedMessage(logEvent));
             foreach (string mail in _to.GetFormattedMessage(logEvent).Split(';'))
             {
@@ -366,7 +344,7 @@ namespace NLog.Targets
             {
                 foreach (string mail in _bcc.GetFormattedMessage(logEvent).Split(';'))
                 {
-                        msg.Bcc.Add(mail);
+                    msg.Bcc.Add(mail);
                 }
             }
 
@@ -374,89 +352,14 @@ namespace NLog.Targets
             {
                 foreach (string mail in _cc.GetFormattedMessage(logEvent).Split(';'))
                 {
-                        msg.CC.Add(mail);
+                    msg.CC.Add(mail);
                 }
             }
             msg.Subject = _subject.GetFormattedMessage(logEvent);
             msg.BodyEncoding = System.Text.Encoding.UTF8;
             msg.IsBodyHtml = HTML;
             msg.Priority = MailPriority.Normal;
-#else
-
-            msg.From = _from.GetFormattedMessage(logEvent);
-            msg.To = _to.GetFormattedMessage(logEvent);
-            if (_bcc != null)
-                msg.Bcc = _bcc.GetFormattedMessage(logEvent);
-
-            if (_cc != null)
-                msg.Cc = _cc.GetFormattedMessage(logEvent);
-            msg.Subject = _subject.GetFormattedMessage(logEvent);
-            msg.BodyEncoding = System.Text.Encoding.UTF8;
-            msg.BodyFormat = HTML ? MailFormat.Html : MailFormat.Text;
-            msg.Priority = MailPriority.Normal;
-#endif
         }
-
-        private void SendMessage(MailMessage msg)
-        {
-#if NET_2_API
-            SmtpClient client = new SmtpClient(SmtpServer, SmtpPort);
-#if !MONO
-            // the credentials API is broken in Mono as of 2006-05-05
-
-            if (SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
-                client.Credentials = CredentialCache.DefaultNetworkCredentials;
-            else if (SmtpAuthentication == SmtpAuthenticationMode.Basic)
-                client.Credentials = new NetworkCredential(SmtpUsername, SmtpPassword);
-#endif
-            Internal.InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, _smtpServer);
-            client.Send(msg);
-#else
-            IDictionary fields = GetFieldsDictionary(msg);
-            if (fields != null)
-            {
-                if (SmtpPort != 25)
-                {
-                    fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", SmtpPort);
-                }
-                if (SmtpAuthentication == SmtpAuthenticationMode.Basic)
-                {
-                    fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", "1");	
-                    fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", SmtpUsername);
-                    fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", SmtpPassword);
-                }
-                if (SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
-                {
-                    fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", "2");	
-                }
-            }
-            SmtpMail.SmtpServer = _smtpServer;
-            Internal.InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, _smtpServer);
-
-            SmtpMail.Send(msg);
-#endif
-        }
-
-#if !NET_2_API
-        // .NET 1.0 doesn't support "MailMessage.Fields". We want to be portable so 
-        // we detect this at runtime.
-
-        private PropertyInfo _fieldsProperty = typeof(MailMessage).GetProperty("Fields");
-
-        private void AssertFieldsSupport(string fieldName)
-        {
-            if (_fieldsProperty == null)
-                throw new ArgumentException("Parameter " + fieldName + " isn't supported on this runtime version.");
-        }
-
-        private IDictionary GetFieldsDictionary(MailMessage m)
-        {
-            if (_fieldsProperty == null)
-                return null;
-
-            return (IDictionary)_fieldsProperty.GetValue(m, null);
-        }
-#endif
     }
 }
 

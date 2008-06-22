@@ -35,6 +35,9 @@ using System;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.ComponentModel;
+
+using NLog.Config;
 
 namespace NLog.Targets
 {
@@ -64,7 +67,7 @@ namespace NLog.Targets
         /// <summary>
         /// Perform layout calculation.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool FormatMessage
         {
             get { return _formatMessage; }
@@ -80,7 +83,7 @@ namespace NLog.Targets
         {
             if (_formatMessage)
             {
-                CompiledLayout.GetFormattedMessage(logEvent);
+                Layout.GetFormattedMessage(logEvent);
             }
         }
     }

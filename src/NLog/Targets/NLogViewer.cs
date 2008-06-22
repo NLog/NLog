@@ -45,6 +45,7 @@ using System.Net.Sockets;
 using NLog.Config;
 using NLog.LayoutRenderers;
 using NLog.Layouts;
+using System.Collections.Generic;
 
 namespace NLog.Targets
 {
@@ -75,7 +76,7 @@ namespace NLog.Targets
     [Target("NLogViewer", IgnoresLayout=true)]
     public class NLogViewerTarget: NetworkTarget
     {
-        private NLogViewerParameterInfoCollection _parameters = new NLogViewerParameterInfoCollection();
+        private ICollection<NLogViewerParameterInfo> _parameters = new List<NLogViewerParameterInfo>();
 
         private Log4JXmlEventLayoutRenderer Renderer
         {
@@ -87,8 +88,8 @@ namespace NLog.Targets
         /// </summary>
         protected new Log4JXmlEventLayout Layout
         {
-            get { return base.CompiledLayout as Log4JXmlEventLayout; }
-            set { CompiledLayout = value; }
+            get { return base.Layout as Log4JXmlEventLayout; }
+            set { Layout = value; }
         }
 
         /// <summary>
@@ -106,7 +107,7 @@ namespace NLog.Targets
         /// </summary>
         public NLogViewerTarget()
         {
-            CompiledLayout = new Log4JXmlEventLayout();
+            Layout = new Log4JXmlEventLayout();
             Renderer.Parameters = _parameters;
             NewLine = false;
         }
@@ -120,7 +121,7 @@ namespace NLog.Targets
             set { Renderer.AppInfo = value; }
         }
 
-#if !NETCF
+#if !NET_CF
         /// <summary>
         /// Include call site (class and method name) in the information sent over the network.
         /// </summary>
@@ -143,11 +144,11 @@ namespace NLog.Targets
         /// Adds all layouts used by this target to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             base.PopulateLayouts (layouts);
-            for (int i = 0; i < Parameters.Count; ++i)
-                Parameters[i].CompiledLayout.PopulateLayouts(layouts);
+            foreach (NLogViewerParameterInfo pi in Parameters)
+                pi.Layout.PopulateLayouts(layouts);
         }
 
         /// <summary>
@@ -187,7 +188,7 @@ namespace NLog.Targets
         /// between NLog layout and a named parameter.
         /// </summary>
         [ArrayParameter(typeof(NLogViewerParameterInfo), "parameter")]
-        public NLogViewerParameterInfoCollection Parameters
+        public ICollection<NLogViewerParameterInfo> Parameters
         {
             get { return _parameters; }
         }

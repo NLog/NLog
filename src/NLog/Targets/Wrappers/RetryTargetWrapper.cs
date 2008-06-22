@@ -43,6 +43,7 @@ using System.Net;
 using System.Net.Sockets;
 
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.Targets.Wrappers
 {
@@ -92,7 +93,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Number of retries that should be attempted on the wrapped target in case of a failure.
         /// </summary>
-        [System.ComponentModel.DefaultValue(3)]
+        [DefaultValue(3)]
         public int RetryCount
         {
             get { return _retryCount; }
@@ -102,7 +103,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// The time to wait between retries in milliseconds.
         /// </summary>
-        [System.ComponentModel.DefaultValue(100)]
+        [DefaultValue(100)]
         public int RetryDelayMilliseconds
         {
             get { return _retryDelayMilliseconds; }

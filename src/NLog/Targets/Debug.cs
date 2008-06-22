@@ -32,11 +32,8 @@
 // 
 
 using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
 
-using System.Threading;
+using NLog.Config;
 
 namespace NLog.Targets
 {
@@ -72,7 +69,7 @@ namespace NLog.Targets
         protected internal override void Write(LogEventInfo logEvent)
         {
             _counter++;
-            _lastMessage = CompiledLayout.GetFormattedMessage(logEvent);
+            _lastMessage = Layout.GetFormattedMessage(logEvent);
         }
 
         /// <summary>

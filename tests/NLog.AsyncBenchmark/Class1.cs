@@ -38,6 +38,7 @@ using System.Diagnostics;
 using System.Reflection;
 
 using NLog;
+using NLog.Targets;
 
 namespace NLog.AsyncBenchmark
 {
@@ -73,7 +74,7 @@ namespace NLog.AsyncBenchmark
                 int threads = Convert.ToInt32(args[2]);
                 string targetName = args[3];
 
-                Console.Error.WriteLine("Child #{0} running {1} threads, {2} repetitions on {3}", AppDomain.GetCurrentThreadId(), threads, repetitions, targetName);
+                Console.Error.WriteLine("Child #{0} running {1} threads, {2} repetitions on {3}", System.Threading.Thread.CurrentThread.ManagedThreadId, threads, repetitions, targetName);
                 Target t = LogManager.Configuration.FindTargetByName(targetName);
 
                 double minTime, maxTime, avgTime, timeToFlush;
@@ -94,7 +95,7 @@ namespace NLog.AsyncBenchmark
 
                 TimeTarget(t, threads, repetitions, out minTime, out maxTime, out avgTime, out timeToFlush, out gotException);
                 Console.WriteLine("{0} {1} {2} {3} {4}", minTime, maxTime, avgTime, timeToFlush, gotException ? "1" : "0");
-                Console.Error.WriteLine("Child #{0} finished.", AppDomain.GetCurrentThreadId());
+                Console.Error.WriteLine("Child #{0} finished.", System.Threading.Thread.CurrentThread.ManagedThreadId);
                 return 0;
             }
 

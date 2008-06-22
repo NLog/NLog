@@ -40,6 +40,7 @@ using System.Globalization;
 using NLog;
 using NLog.Targets;
 using NLog.Filters;
+using System.Collections.Generic;
 
 namespace NLog.Config
 {
@@ -58,9 +59,9 @@ namespace NLog.Config
         private string _loggerNameMatchArgument;
 
         private bool[]_logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
-        private TargetCollection _targets = new TargetCollection();
-        private FilterCollection _filters = new FilterCollection();
-        private LoggingRuleCollection _childRules = new LoggingRuleCollection();
+        private ICollection<Target> _targets = new List<Target>();
+        private IList<Filter> _filters = new List<Filter>();
+        private ICollection<LoggingRule> _childRules = new List<LoggingRule>();
         private bool _final = false;
 
         /// <summary>
@@ -90,7 +91,7 @@ namespace NLog.Config
         /// <summary>
         /// A collection of targets that should be written to when this rule matches.
         /// </summary>
-        public TargetCollection Targets
+        public ICollection<Target> Targets
         {
             get { return _targets; }
         }
@@ -98,7 +99,7 @@ namespace NLog.Config
         /// <summary>
         /// A collection of child rules to be evaluated when this rule matches.
         /// </summary>
-        public LoggingRuleCollection ChildRules
+        public ICollection<LoggingRule> ChildRules
         {
             get { return _childRules; }
         }
@@ -106,7 +107,7 @@ namespace NLog.Config
         /// <summary>
         /// A collection of filters to be checked before writing to targets.
         /// </summary>
-        public FilterCollection Filters
+        public IList<Filter> Filters
         {
             get { return _filters; }
         }

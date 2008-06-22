@@ -40,6 +40,8 @@ using System.Collections;
 
 using NLog.Internal;
 using NLog.Config;
+using System.ComponentModel;
+using NLog.Layouts;
 
 namespace NLog.Targets
 {
@@ -83,17 +85,7 @@ namespace NLog.Targets
         /// The layout that should be use to calcuate the value for the parameter.
         /// </summary>
         [RequiredParameter]
-        [AcceptsLayout]
-        public string Layout
-        {
-            get { return _compiledlayout.Text; }
-            set { _compiledlayout = new Layout(value); }
-        }
-
-        /// <summary>
-        /// The compiled representation of the Layout property.
-        /// </summary>
-        public Layout CompiledLayout
+        public Layout Layout
         {
             get { return _compiledlayout; }
             set { _compiledlayout = value; }
@@ -102,7 +94,7 @@ namespace NLog.Targets
         /// <summary>
         /// Database parameter size.
         /// </summary>
-        [System.ComponentModel.DefaultValue(0)]
+        [DefaultValue(0)]
         public int Size
         {
             get { return _size; }
@@ -112,7 +104,7 @@ namespace NLog.Targets
         /// <summary>
         /// Database parameter precision.
         /// </summary>
-        [System.ComponentModel.DefaultValue(0)]
+        [DefaultValue(0)]
         public byte Precision
         {
             get { return _precision; }
@@ -122,7 +114,7 @@ namespace NLog.Targets
         /// <summary>
         /// Database parameter scale.
         /// </summary>
-        [System.ComponentModel.DefaultValue(0)]
+        [DefaultValue(0)]
         public byte Scale
         {
             get { return _scale; }

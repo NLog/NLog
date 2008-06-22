@@ -38,6 +38,7 @@ using System.Security;
 using System.Runtime.InteropServices;
 
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.LayoutRenderers
 {
@@ -45,9 +46,6 @@ namespace NLog.LayoutRenderers
     /// High precision timer, based on the value returned from QueryPerformanceCounter() optionally converted to seconds.
     /// </summary>
     [LayoutRenderer("qpc")]
-    [SupportedRuntime(OS=RuntimeOS.Windows)]
-    [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
-    [SupportedRuntime(OS=RuntimeOS.WindowsCE)]
     public class QpcLayoutRenderer: LayoutRenderer
     {
         private bool _raw = false;
@@ -64,8 +62,8 @@ namespace NLog.LayoutRenderers
         /// Normalize the result by subtracting it from the result of the
         /// first call (so that it's effectively zero-based).
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
-        private bool Normalize
+        [DefaultValue(true)]
+        public bool Normalize
         {
             get { return _normalize; }
             set { _normalize = value; }
@@ -75,8 +73,8 @@ namespace NLog.LayoutRenderers
         /// Output the difference between the result of QueryPerformanceCounter 
         /// and the previous one.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
-        private bool Difference
+        [DefaultValue(false)]
+        public bool Difference
         {
             get { return _diff; }
             set { _diff = value; }
@@ -85,7 +83,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Convert the result to seconds by dividing by the result of QueryPerformanceFrequency().
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool Seconds
         {
             get { return !_raw; }
@@ -95,7 +93,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Number of decimal digits to be included in output.
         /// </summary>
-        [System.ComponentModel.DefaultValue(4)]
+        [DefaultValue(4)]
         public int Precision
         {
             get { return _precision; }
@@ -105,7 +103,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Align decimal point (emit non-significant zeros)
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool AlignDecimalPoint
         {
             get { return _alignDecimalPoint; }
@@ -196,14 +194,14 @@ namespace NLog.LayoutRenderers
             builder.Append(ApplyPadding(stringValue));
         }
 
-#if !NETCF
+#if !NET_CF
         [DllImport("kernel32.dll"), SuppressUnmanagedCodeSecurity]
 #else
         [DllImport("coredll.dll")]
 #endif
         static extern bool QueryPerformanceCounter(out ulong lpPerformanceCount);
 
-#if !NETCF
+#if !NET_CF
         [DllImport("kernel32.dll"), SuppressUnmanagedCodeSecurity]
 #else
         [DllImport("coredll.dll")]

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.Text;
@@ -47,7 +47,6 @@ namespace NLog.LayoutRenderers
     /// The performance counter.
     /// </summary>
     [LayoutRenderer("performancecounter")]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class PerformanceCounterLayoutRenderer: LayoutRenderer
     {
         private string _categoryName = null;

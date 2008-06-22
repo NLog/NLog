@@ -31,10 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !(NETCF)
+#if !(NET_CF)
 using System;
 using System.Text;
 using System.Security.Principal;
+using System.ComponentModel;
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -54,7 +56,7 @@ namespace NLog.LayoutRenderers
         /// The separator to be used when concatenating 
         /// parts of identity information.
         /// </summary>
-        [System.ComponentModel.DefaultValue(":")]
+        [DefaultValue(":")]
         public string Separator
         {
             get { return _separator; }
@@ -64,7 +66,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render Thread.CurrentPrincipal.Identity.Name.
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool Name
         {
             get { return _name; }
@@ -74,7 +76,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render Thread.CurrentPrincipal.Identity.AuthenticationType.
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool AuthType
         {
             get { return _authType; }
@@ -84,7 +86,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render Thread.CurrentPrincipal.Identity.IsAuthenticated.
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool IsAuthenticated
         {
             get { return _isAuthenticated; }
@@ -95,7 +97,7 @@ namespace NLog.LayoutRenderers
         /// When true the output of this renderer is modified so it can be used as a part of file path
         /// (illegal characters are replaced with '_')
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool FSNormalize
         {
             get { return _fsNormalize; }

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 using System;
 using System.Security;
 
@@ -39,17 +39,18 @@ namespace NLog.Internal
 {
     internal sealed class EnvironmentHelper
     {
-        private EnvironmentHelper(){}
+        private EnvironmentHelper() { }
 
         public static string GetSafeEnvironmentVariable(string name)
         {
             try
             {
                 string s = Environment.GetEnvironmentVariable(name);
-                if (s == "")
+
+                if (s == null || s.Length == 0)
                     return null;
-                else
-                    return s;
+
+                return s;
             }
             catch (SecurityException)
             {

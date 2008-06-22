@@ -40,6 +40,8 @@ using System.Reflection;
 
 using NLog.Config;
 using NLog.Targets;
+using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace NLog.LayoutRenderers
 {
@@ -55,14 +57,14 @@ namespace NLog.LayoutRenderers
         private bool _includeNLogData = true;
         private bool _indentXml = false;
         private static DateTime _log4jDateBase = new DateTime(1970, 1, 1);
-        private NLogViewerParameterInfoCollection _parameters = new NLogViewerParameterInfoCollection();
+        private ICollection<NLogViewerParameterInfo> _parameters = new List<NLogViewerParameterInfo>();
 
         /// <summary>
         /// Creates a new instance of <see cref="Log4JXmlEventLayoutRenderer"/> and initializes default values.
         /// </summary>
         public Log4JXmlEventLayoutRenderer()
         {
-#if NETCF
+#if NET_CF
             AppInfo = ".NET CF Application";
 #else
             AppInfo = String.Format("{0}({1})", AppDomain.CurrentDomain.FriendlyName, NLog.Internal.ThreadIDHelper.Instance.CurrentProcessID);
@@ -72,7 +74,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Include NLog-specific extensions to log4j schema.
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool IncludeNLogData
         {
             get { return _includeNLogData; }
@@ -113,7 +115,7 @@ namespace NLog.LayoutRenderers
             set { _appInfo = value; }
         }
 
-#if !NETCF
+#if !NET_CF
         private bool _includeCallSite = false;
         private bool _includeSourceInfo = false;
 
@@ -154,7 +156,7 @@ namespace NLog.LayoutRenderers
             set { _includeNDC = value; }
         }
 
-        internal NLogViewerParameterInfoCollection Parameters
+        internal ICollection<NLogViewerParameterInfo> Parameters
         {
             get { return _parameters; }
             set { _parameters = value; }
@@ -176,7 +178,7 @@ namespace NLog.LayoutRenderers
             xtw.WriteAttributeString("logger", logEvent.LoggerName);
             xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpper());
             xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - _log4jDateBase).TotalMilliseconds));
-#if !NETCF
+#if !NET_CF
             xtw.WriteAttributeString("thread", NLog.Internal.ThreadIDHelper.Instance.CurrentThreadID.ToString());
 #else
             xtw.WriteElementString("thread", "");
@@ -187,7 +189,7 @@ namespace NLog.LayoutRenderers
             {
                 xtw.WriteElementString("log4j:NDC", NDC.GetAllMessages(" "));
             }
-#if !NETCF
+#if !NET_CF
             if (IncludeCallSite || IncludeSourceInfo)
             {
                 System.Diagnostics.StackFrame frame = logEvent.UserStackFrame;
@@ -229,7 +231,7 @@ namespace NLog.LayoutRenderers
             {
                 xtw.WriteStartElement("log4j:data");
                 xtw.WriteAttributeString("name", parameter.Name);
-                xtw.WriteAttributeString("value", parameter.CompiledLayout.GetFormattedMessage(logEvent));
+                xtw.WriteAttributeString("value", parameter.Layout.GetFormattedMessage(logEvent));
                 xtw.WriteEndElement();
             }
 
@@ -240,7 +242,7 @@ namespace NLog.LayoutRenderers
 
             xtw.WriteStartElement("log4j:data");
             xtw.WriteAttributeString("name", "log4jmachinename");
-#if NETCF
+#if NET_CF
                 xtw.WriteAttributeString("value", "netcf");
 #else
             xtw.WriteAttributeString("value", NLog.LayoutRenderers.MachineNameLayoutRenderer.MachineName);

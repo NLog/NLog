@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.Diagnostics;
@@ -40,6 +40,10 @@ using System.Globalization;
 
 using NLog.Internal;
 using NLog.Config;
+using System.ComponentModel;
+using NLog.Layouts;
+
+using NLog.Targets;
 
 namespace NLog.Win32.Targets
 {
@@ -62,7 +66,6 @@ namespace NLog.Win32.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/EventLog/Simple/Example.cs" />
     /// </example>
     [Target("EventLog")]
-    [SupportedRuntime(OS=RuntimeOS.WindowsNT,Framework=RuntimeFramework.DotNetFramework)]
     public class EventLogTarget : TargetWithLayout
 	{
         private string _machineName = ".";
@@ -84,11 +87,11 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Machine name on which Event Log service is running.
         /// </summary>
-        [System.ComponentModel.DefaultValue(".")]
+        [DefaultValue(".")]
         public string MachineName
         {
             get { return _machineName; }
-            set 
+            set
             {
                 _machineName = value; 
                 _needEventLogSourceUpdate = true;
@@ -98,21 +101,19 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Layout that renders event ID.
         /// </summary>
-        [AcceptsLayout]
-        public string EventID
+        public Layout EventID
         {
-            get { return Convert.ToString(_eventID); }
-            set { _eventID = new Layout(value); }
+            get { return _eventID; }
+            set { _eventID = value; }
         }
 
         /// <summary>
         /// Layout that renders event Category.
         /// </summary>
-        [AcceptsLayout]
-        public string Category
+        public Layout Category
         {
-            get { return Convert.ToString(_category); }
-            set { _category = new Layout(value); }
+            get { return _category; }
+            set { _category = value; }
         }
 
         /// <summary>
@@ -135,7 +136,7 @@ namespace NLog.Win32.Targets
         /// Name of the Event Log to write to. This can be System, Application or 
         /// any user-defined name.
         /// </summary>
-        [System.ComponentModel.DefaultValue("Application")]
+        [DefaultValue("Application")]
         public string Log
         {
             get { return _logName; }
@@ -165,13 +166,9 @@ namespace NLog.Win32.Targets
                         {
                             // re-create the association between Log and Source
                             EventLog.DeleteEventSource(_sourceName, _machineName);
-#if DOTNET_2_0
                             EventSourceCreationData escd = new EventSourceCreationData(_sourceName, _logName);
                             escd.MachineName = _machineName;
                             EventLog.CreateEventSource(escd);
-#else
-                            EventLog.CreateEventSource(_sourceName, _logName, _machineName);
-#endif
                         }
                         else
                         {
@@ -180,14 +177,9 @@ namespace NLog.Win32.Targets
                     }
                     else
                     {
-#if DOTNET_2_0
                         EventSourceCreationData escd = new EventSourceCreationData(_sourceName, _logName);
                         escd.MachineName = _machineName;
                         EventLog.CreateEventSource(escd);
-#else
-                        // source doesn't exist, register it.
-                        EventLog.CreateEventSource(_sourceName, _logName, _machineName);
-#endif
                     }
                     // mark the configuration as operational
                     _operational = true;
@@ -213,7 +205,7 @@ namespace NLog.Win32.Targets
             if (!_operational)
                 return;
             
-            string message = CompiledLayout.GetFormattedMessage(logEvent);
+            string message = Layout.GetFormattedMessage(logEvent);
             if (message.Length > 16384)
             {
                 // limitation of EventLog API
@@ -237,16 +229,16 @@ namespace NLog.Win32.Targets
 
             int eventID = 0;
 
-            if (_eventID != null)
+            if (EventID != null)
             {
-                eventID = Convert.ToInt32(_eventID.GetFormattedMessage(logEvent), CultureInfo.InvariantCulture);
+                eventID = Convert.ToInt32(EventID.GetFormattedMessage(logEvent), CultureInfo.InvariantCulture);
             }
 
             short category = 0;
 
-            if (_category != null)
+            if (Category != null)
             {
-                category = Convert.ToInt16(_category.GetFormattedMessage(logEvent), CultureInfo.InvariantCulture);
+                category = Convert.ToInt16(Category.GetFormattedMessage(logEvent), CultureInfo.InvariantCulture);
             }
 
             EventLog.WriteEntry(_sourceName, message, entryType, eventID, category);

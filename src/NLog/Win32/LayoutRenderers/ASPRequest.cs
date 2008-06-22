@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.Text;
@@ -48,8 +48,6 @@ namespace NLog.Win32.LayoutRenderers
     /// ASP Request variable
     /// </summary>
     [LayoutRenderer("asp-request")]
-    [SupportedRuntime(OS=RuntimeOS.Windows)]
-    [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
     public class ASPRequestValueLayoutRenderer: LayoutRenderer
     {
         private string _queryStringKey;

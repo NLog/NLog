@@ -45,6 +45,9 @@ using NLog.Filters;
 using NLog.LayoutRenderers;
 using NLog.Internal;
 using NLog.Targets.Wrappers;
+using System.Collections.Generic;
+using NLog.Config;
+using NLog.Layouts;
 
 namespace NLog.Config
 {
@@ -55,11 +58,7 @@ namespace NLog.Config
     public class XmlLoggingConfiguration: LoggingConfiguration
     {
         private StringDictionary _visitedFile = new StringDictionary();
-#if NET_2_API
         private NameValueCollection _variables = new NameValueCollection(StringComparer.InvariantCultureIgnoreCase);
-#else
-        private NameValueCollection _variables = new NameValueCollection(CaseInsensitiveHashCodeProvider.Default, CaseInsensitiveComparer.Default);
-#endif
 
         private bool _autoReload = false;
         private string _originalFileName = null;
@@ -213,7 +212,7 @@ namespace NLog.Config
 
         private void IncludeFileFromElement(XmlElement includeElement, string baseDirectory)
         {
-            string newFileName = Layout.Evaluate(GetCaseInsensitiveAttribute(includeElement, "file"));
+            string newFileName = SimpleLayout.Evaluate(GetCaseInsensitiveAttribute(includeElement, "file"));
             newFileName = Path.Combine(baseDirectory, newFileName);
 
             try
@@ -273,7 +272,7 @@ namespace NLog.Config
                     break;
             }
 
-#if !NETCF
+#if !NET_CF
             switch (GetCaseInsensitiveAttribute(configElement, "internalLogToConsoleError"))
             {
                 case "true":
@@ -334,7 +333,7 @@ namespace NLog.Config
             _variables[name] = value;
         }
 
-#if !NETCF
+#if !NET_CF
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).
@@ -343,11 +342,7 @@ namespace NLog.Config
         {
             get
             {
-#if NET_2_API
                 object o = System.Configuration.ConfigurationManager.GetSection("nlog");
-#else
-                object o = System.Configuration.ConfigurationSettings.GetConfig("nlog");
-#endif
                 return o as LoggingConfiguration;
             }
         }
@@ -361,7 +356,7 @@ namespace NLog.Config
             return s;
         }
 
-        private void ConfigureRulesFromElement(LoggingConfiguration config, LoggingRuleCollection rules, XmlElement element)
+        private void ConfigureRulesFromElement(LoggingConfiguration config, ICollection<LoggingRule> rules, XmlElement element)
         {
             if (element == null)
                 return ;
@@ -485,11 +480,7 @@ namespace NLog.Config
                             InternalLogger.Info("Loading assemblyFile: {0}", fullFileName);
                             Assembly asm = Assembly.LoadFrom(fullFileName);
 
-                            TargetFactory.AddTargetsFromAssembly(asm, prefix);
-                            LayoutRendererFactory.AddLayoutRenderersFromAssembly(asm, prefix);
-                            FilterFactory.AddFiltersFromAssembly(asm, prefix);
-                            LayoutFactory.AddLayoutsFromAssembly(asm, prefix);
-                            ConditionMethodFactory.AddConditionMethodsFromAssembly(asm, prefix);
+                            NLogFactories.ScanAssembly(asm, prefix);
                         }
                         catch (Exception ex)
                         {
@@ -509,11 +500,7 @@ namespace NLog.Config
                             InternalLogger.Info("Loading assemblyName: {0}", assemblyName);
                             Assembly asm = Assembly.Load(assemblyName);
 
-                            TargetFactory.AddTargetsFromAssembly(asm, prefix);
-                            LayoutRendererFactory.AddLayoutRenderersFromAssembly(asm, prefix);
-                            FilterFactory.AddFiltersFromAssembly(asm, prefix);
-                            LayoutFactory.AddLayoutsFromAssembly(asm, prefix);
-                            ConditionMethodFactory.AddConditionMethodsFromAssembly(asm, prefix);
+                            NLogFactories.ScanAssembly(asm, prefix);
                         }
                         catch (Exception ex)
                         {
@@ -541,7 +528,7 @@ namespace NLog.Config
         private Target WrapWithDefaultWrapper(Target t, XmlElement defaultWrapperElement)
         {
             string wrapperType = GetCaseInsensitiveAttribute(defaultWrapperElement, "type");
-            Target wrapperTargetInstance = TargetFactory.CreateTarget(wrapperType);
+            Target wrapperTargetInstance = NLogFactories.TargetFactory.Create(wrapperType);
             WrapperTargetBase wtb = wrapperTargetInstance as WrapperTargetBase;
             if (wtb == null)
                 throw new NLogConfigurationException("Target type specified on <default-wrapper /> is not a wrapper.");
@@ -589,7 +576,7 @@ namespace NLog.Config
                     case "wrapper":
                     case "wrapper-target":
                     case "compound-target":
-                        Target newTarget = TargetFactory.CreateTarget(type);
+                        Target newTarget = NLogFactories.TargetFactory.Create(type);
 
                         XmlElement defaultParametersElement = typeNameToDefaultTargetParametersElement[type] as XmlElement;
                         if (defaultParametersElement != null)
@@ -619,7 +606,7 @@ namespace NLog.Config
             {
                 string name = el.LocalName;
 
-                Filter filter = FilterFactory.CreateFilter(name);
+                Filter filter = NLogFactories.FilterFactory.Create(name);
                 PropertyHelper.ConfigureObjectFromAttributes(filter, el.Attributes, _variables, false);
                 rule.Filters.Add(filter);
             }
@@ -641,7 +628,7 @@ namespace NLog.Config
                     if ((name == "target" || name == "wrapper" || name == "wrapper-target" || name == "compound-target"))
                     {
                         string type = GetCaseInsensitiveAttribute(el, "type");
-                        Target newTarget = TargetFactory.CreateTarget(type);
+                        Target newTarget = NLogFactories.TargetFactory.Create(type);
                         if (newTarget != null)
                         {
                             ConfigureTargetFromXmlElement(newTarget, el);
@@ -661,7 +648,7 @@ namespace NLog.Config
                     if ((name == "target" || name == "wrapper" || name == "wrapper-target" || name == "compound-target"))
                     {
                         string type = GetCaseInsensitiveAttribute(el, "type");
-                        Target newTarget = TargetFactory.CreateTarget(type);
+                        Target newTarget = NLogFactories.TargetFactory.Create(type);
                         if (newTarget != null)
                         {
                             ConfigureTargetFromXmlElement(newTarget, el);

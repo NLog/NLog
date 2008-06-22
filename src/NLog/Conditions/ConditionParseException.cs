@@ -32,7 +32,7 @@
 // 
 
 using System;
-#if !NETCF
+#if !NET_CF
 using System.Runtime.Serialization;
 #endif
 
@@ -41,7 +41,7 @@ namespace NLog.Conditions
     /// <summary>
     /// Exception during parsing of condition expression
     /// </summary>
-#if !NETCF
+#if !NET_CF
     [Serializable]
 #endif
     public class ConditionParseException : Exception 
@@ -64,7 +64,7 @@ namespace NLog.Conditions
         /// <param name="inner">Inner exception</param>
         public ConditionParseException(string desc, Exception inner) : base(desc, inner) {}
 
-#if !NETCF
+#if !NET_CF
         /// <summary>
         /// Creates a new instance of <see cref="ConditionParseException"/>.
         /// </summary>

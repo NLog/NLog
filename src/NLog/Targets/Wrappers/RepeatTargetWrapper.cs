@@ -43,6 +43,7 @@ using System.Net;
 using System.Net.Sockets;
 
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.Targets.Wrappers
 {
@@ -88,7 +89,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// The number of times to repeat each log message.
         /// </summary>
-        [System.ComponentModel.DefaultValue(3)]
+        [DefaultValue(3)]
         public int RepeatCount
         {
             get { return _repeatCount; }

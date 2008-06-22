@@ -35,6 +35,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Collections;
+using NLog.Config;
 
 namespace NLog.Conditions 
 {

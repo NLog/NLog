@@ -56,11 +56,7 @@ namespace NLog.Internal.NetworkSenders
             // udp://hostname:port
 
             Uri parsedUri = new Uri(url);
-#if NET_2_API
             IPHostEntry host = Dns.GetHostEntry(parsedUri.Host);
-#else
-            IPHostEntry host = Dns.GetHostByName(parsedUri.Host);
-#endif
             int port = parsedUri.Port;
 
             _endpoint = new IPEndPoint(host.AddressList[0], port);

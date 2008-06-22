@@ -39,6 +39,7 @@ using NLog;
 using NLog.Config;
 
 using NUnit.Framework;
+using NLog.Layouts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -48,9 +49,9 @@ namespace NLog.UnitTests.LayoutRenderers
         [Test]
         public void Test1()
         {
-            Layout l = new Layout("${event-context:aaa}");
+            Layout l = "${event-context:aaa}";
             l.Initialize();
-            LogEventInfo lei = new LogEventInfo(LogLevel.Info, "aaa", "bbb");
+            LogEventInfo lei = new UnformattedLogEventInfo(LogLevel.Info, "aaa", "bbb");
 
             // empty
             Assert.AreEqual("", l.GetFormattedMessage(lei));
@@ -59,8 +60,8 @@ namespace NLog.UnitTests.LayoutRenderers
         [Test]
         public void Test2()
         {
-            Layout l = new Layout("${event-context:aaa}");
-            LogEventInfo lei = new LogEventInfo(LogLevel.Info, "aaa", "bbb");
+            Layout l = "${event-context:aaa}";
+            LogEventInfo lei = new UnformattedLogEventInfo(LogLevel.Info, "aaa", "bbb");
             l.Initialize();
             lei.Context["aaa"] = "bbb";
 

@@ -39,6 +39,8 @@ using System.ComponentModel;
 using System.Globalization;
 
 using System.Xml.Serialization;
+using System.Collections.Generic;
+using NLog.Layouts;
 
 namespace NLog.Conditions 
 {
@@ -186,7 +188,7 @@ namespace NLog.Conditions
         /// Adds all layouts used by this expression to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             par1.PopulateLayouts(layouts);
             par2.PopulateLayouts(layouts);

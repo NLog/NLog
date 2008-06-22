@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.Xml;
@@ -149,11 +149,7 @@ namespace NLog.Internal.FileAppenders
 
         public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
         {
-#if NET_2_API
             return FileInfoHelper.Helper.GetFileInfo(FileName, _file.SafeFileHandle.DangerousGetHandle(), out lastWriteTime, out fileLength);
-#else
-            return FileInfoHelper.Helper.GetFileInfo(FileName, _file.Handle, out lastWriteTime, out fileLength);
-#endif
         }
     }
 }

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.Diagnostics;
@@ -58,7 +58,6 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/Debugger/Simple/Example.cs" />
     /// </example>
     [Target("Debugger")]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public sealed class DebuggerTarget: TargetWithLayoutHeaderAndFooter
     {
         static DebuggerTarget()
@@ -72,7 +71,7 @@ namespace NLog.Targets
         {
             if (Debugger.IsLogging())
             {
-                Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, CompiledLayout.GetFormattedMessage(logEvent) + "\n");
+                Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, Layout.GetFormattedMessage(logEvent) + "\n");
             }
         }
 
@@ -82,9 +81,9 @@ namespace NLog.Targets
         public override void Initialize()
         {
             base.Initialize();
-            if (CompiledHeader != null)
+            if (Header != null)
             {
-                Debugger.Log(LogLevel.Off.Ordinal, "", CompiledHeader.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + "\n");
+                Debugger.Log(LogLevel.Off.Ordinal, "", Header.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + "\n");
             }
         }
 
@@ -93,9 +92,9 @@ namespace NLog.Targets
         /// </summary>
         protected internal override void Close()
         {
-            if (CompiledFooter != null)
+            if (Footer != null)
             {
-                Debugger.Log(LogLevel.Off.Ordinal, "", CompiledFooter.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + "\n");
+                Debugger.Log(LogLevel.Off.Ordinal, "", Footer.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + "\n");
             }
             base.Close();
         }

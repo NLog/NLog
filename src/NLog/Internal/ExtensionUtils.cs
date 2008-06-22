@@ -37,9 +37,8 @@ using System.Reflection;
 using System.Collections;
 
 using NLog.Config;
-using NLog.Internal;
 
-namespace NLog
+namespace NLog.Internal
 {
     /// <summary>
     /// A class that loads and manages NLog extension assemblies.
@@ -52,6 +51,11 @@ namespace NLog
         {
             // load default targets, filters and layout renderers.
             _extensionAssemblies.Add(typeof(NLog.LogManager).Assembly);
+        }
+
+        // to prevent public construction
+        private ExtensionUtils()
+        {
         }
 
         /// <summary>

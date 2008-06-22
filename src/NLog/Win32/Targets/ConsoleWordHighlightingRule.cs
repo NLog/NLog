@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.Text;
@@ -41,6 +41,7 @@ using System.Runtime.InteropServices;
 using NLog.Config;
 using NLog.Conditions;
 using NLog.Targets;
+using System.ComponentModel;
 
 namespace NLog.Win32.Targets
 {
@@ -78,7 +79,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Match whole words only.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool WholeWords
         {
             get { return _wholeWords; }
@@ -88,7 +89,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Ignore case when comparing texts.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool IgnoreCase
         {
             get { return _ignoreCase; }
@@ -126,7 +127,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// The foreground color.
         /// </summary>
-        [System.ComponentModel.DefaultValue("NoChange")]
+        [DefaultValue("NoChange")]
         public ConsoleOutputColor ForegroundColor
         {
             get { return _foregroundColor; }
@@ -136,7 +137,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// The background color.
         /// </summary>
-        [System.ComponentModel.DefaultValue("NoChange")]
+        [DefaultValue("NoChange")]
         public ConsoleOutputColor BackgroundColor
         {
             get { return _backgroundColor; }

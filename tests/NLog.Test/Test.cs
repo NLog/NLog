@@ -44,6 +44,7 @@ using NLog.Win32.Targets;
 using NLog.Internal;
 using System.IO;
 using System.Threading;
+using NLog.Layouts;
 
 namespace NLog.Tester
 {
@@ -73,6 +74,18 @@ namespace NLog.Tester
 
         static void Main(string[]args)
         {
+            ConsoleTarget ct = new ConsoleTarget();
+            ct.Layout = "${message} ${longdate}";
+
+            CsvLayout csv = new CsvLayout();
+            csv.Columns.Add(new CsvColumn("msg", "${message}"));
+            csv.Columns.Add(new CsvColumn("date", "${longdate}"));
+            csv.Columns.Add(new CsvColumn("level", "${level}"));
+            csv.WithHeader = true;
+            ct.Layout = csv;
+
+            SimpleConfigurator.ConfigureForTargetLogging(ct);
+
             //InternalLogger.LogToConsole = true;
             //InternalLogger.LogLevel = LogLevel.Debug;
 

@@ -14,6 +14,8 @@ using System.Xml.Schema;
 using NLog.Conditions;
 using System.ComponentModel;
 using System.Globalization;
+using NLog.Layouts;
+using NLog.Targets;
 
 namespace MakeNLogXSD
 {
@@ -186,7 +188,7 @@ namespace MakeNLogXSD
                     xtw.WriteEndElement();
                     typesToDump.Add(apa.ItemType);
                 }
-                else if (pi.PropertyType.IsValueType || pi.PropertyType.IsEnum || pi.PropertyType == typeof(string) || typeof(ILayout).IsAssignableFrom(pi.PropertyType))
+                else if (pi.PropertyType.IsValueType || pi.PropertyType.IsEnum || pi.PropertyType == typeof(string) || typeof(Layout).IsAssignableFrom(pi.PropertyType))
                 {
                     if (pi.CanWrite && pi.CanRead && ((pi.GetSetMethod().Attributes & MethodAttributes.ReuseSlot) == 0) && (pi.Name != "Layout" || !typeof(TargetWithLayout).IsAssignableFrom(pi.DeclaringType)))
                     {
@@ -266,12 +268,7 @@ namespace MakeNLogXSD
 
                 xtw.WriteStartElement("xs:attribute");
                 xtw.WriteAttributeString("name", MakeCamelCase(pi.Name));
-                if (pi.IsDefined(typeof(AcceptsLayoutAttribute), false))
-                    xtw.WriteAttributeString("type", "NLogLayout");
-                else if (pi.IsDefined(typeof(AcceptsConditionAttribute), false))
-                    xtw.WriteAttributeString("type", "NLogCondition");
-                else
-                    xtw.WriteAttributeString("type", SimpleTypeName(pi.PropertyType));
+                xtw.WriteAttributeString("type", SimpleTypeName(pi.PropertyType));
                 DefaultValueAttribute dva = (DefaultValueAttribute)Attribute.GetCustomAttribute(pi, typeof(DefaultValueAttribute));
                 if (dva != null)
                     xtw.WriteAttributeString("default", XmlDefaultValue(dva.Value));
@@ -335,10 +332,7 @@ namespace MakeNLogXSD
                     try
                     {
                         Assembly asm = Assembly.Load(args[i]);
-                        TargetFactory.AddTargetsFromAssembly(asm, "");
-                        LayoutRendererFactory.AddLayoutRenderersFromAssembly(asm, "");
-                        FilterFactory.AddFiltersFromAssembly(asm, "");
-                        LayoutFactory.AddLayoutsFromAssembly(asm, "");
+                        NLogFactories.ScanAssembly(asm, "");
                     }
                     catch (Exception ex)
                     {
@@ -358,18 +352,17 @@ namespace MakeNLogXSD
                 _typeDumped[typeof(Target)] = 1;
                 _typeDumped[typeof(TargetWithLayout)] = 1;
                 _typeDumped[typeof(TargetWithLayoutHeaderAndFooter)] = 1;
-                _typeDumped[typeof(ILayout)] = 1;
-                _typeDumped[typeof(ILayoutWithHeaderAndFooter)] = 1;
+                _typeDumped[typeof(Layout)] = 1;
 
-                foreach (Type targetType in NLog.TargetFactory.TargetTypes)
+                foreach (Type targetType in NLogFactories.TargetFactory.RegisteredItems)
                 {
                     DumpType(xtw, targetType);
                 }
-                foreach (Type t in FilterFactory.FilterTypes)
+                foreach (Type t in NLogFactories.FilterFactory.RegisteredItems)
                 {
                     DumpType(xtw, t);
                 }
-                foreach (Type t in LayoutFactory.LayoutTypes)
+                foreach (Type t in NLogFactories.LayoutFactory.RegisteredItems)
                 {
                     DumpType(xtw, t);
                 }
@@ -398,7 +391,7 @@ namespace MakeNLogXSD
                     n.ParentNode.RemoveChild(n);
 
                     n = doc.SelectSingleNode("//filters-go-here");
-                    foreach (Type t in FilterFactory.FilterTypes)
+                    foreach (Type t in NLogFactories.FilterFactory.RegisteredItems)
                     {
                         FilterAttribute fa = (FilterAttribute)Attribute.GetCustomAttribute(t, typeof(FilterAttribute));
                         XmlElement el = doc.CreateElement("xs:element", XmlSchema.Namespace);

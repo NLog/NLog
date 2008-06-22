@@ -35,6 +35,8 @@ using System;
 using System.IO;
 
 using System.Xml.Serialization;
+using System.Collections.Generic;
+using NLog.Layouts;
 
 namespace NLog.Conditions
 {
@@ -44,16 +46,16 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionLayoutExpression : ConditionExpression
     {
-        private Layout _layout;
+        private SimpleLayout _layout;
 
         /// <summary>
         /// Creates a new instance of <see cref="ConditionLayoutExpression"/>
         /// and initializes the layout.
         /// </summary>
         /// <param name="layout"></param>
-        public ConditionLayoutExpression(string layout) 
+        public ConditionLayoutExpression(SimpleLayout layout) 
         {
-            _layout = new Layout(layout);
+            _layout = layout;
         }
 
         /// <summary>
@@ -80,7 +82,7 @@ namespace NLog.Conditions
         /// Adds all layouts used by this expression to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             _layout.PopulateLayouts(layouts);
         }

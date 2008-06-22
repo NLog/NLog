@@ -62,7 +62,6 @@ namespace NLog.UnitTests.Targets
         }
 
         [Test]
-        [Ignore]
         public void Test1()
         {
             EventLogTarget elt = new EventLogTarget();

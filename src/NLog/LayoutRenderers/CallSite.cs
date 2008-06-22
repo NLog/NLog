@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 using System;
 using System.Text;
 using System.Diagnostics;
@@ -39,6 +39,7 @@ using System.Reflection;
 using System.IO;
 
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.LayoutRenderers
 {
@@ -46,7 +47,6 @@ namespace NLog.LayoutRenderers
     /// The call site (class name, method name and source information)
     /// </summary>
     [LayoutRenderer("callsite",UsingLogEventInfo=true)]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class CallSiteLayoutRenderer: LayoutRenderer
     {
         private bool _className = true;
@@ -57,7 +57,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render the class name.
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool ClassName
         {
             get { return _className; }
@@ -67,7 +67,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render the method name.
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool MethodName
         {
             get { return _methodName; }
@@ -77,7 +77,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render the source file name and line number.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool FileName
         {
             get { return _sourceFile; }
@@ -87,7 +87,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Include source file path.
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool IncludeSourcePath
         {
             get { return _includeSourcePath; }

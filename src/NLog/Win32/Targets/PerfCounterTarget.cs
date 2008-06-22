@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.Reflection;
@@ -39,6 +39,7 @@ using System.Diagnostics;
 using System.Collections;
 using NLog.Internal;
 using NLog.Config;
+using NLog.Targets;
 
 namespace NLog.Win32.Targets
 {
@@ -68,7 +69,6 @@ namespace NLog.Win32.Targets
     ///    another counter instance (with dynamic creation of new instance). This could be done with layouts. 
     /// </remarks>
     [Target("PerfCounter")]
-    [SupportedRuntime(OS=RuntimeOS.WindowsNT,Framework=RuntimeFramework.DotNetFramework)]
     public class PerfCounterTarget : Target
     {
         private bool _autoCreate = false;
@@ -203,14 +203,10 @@ namespace NLog.Win32.Targets
                                 ccd.CounterType = t._counterType;  
                                 ccds.Add(ccd);                                    
                             }
-#if DOTNET_2_0
                             PerformanceCounterCategory.Create(CategoryName,
                                 "Category created by NLog",
                                 (InstanceName != null) ? PerformanceCounterCategoryType.MultiInstance : PerformanceCounterCategoryType.SingleInstance,
                                 ccds);
-#else
-                            PerformanceCounterCategory.Create(CategoryName,"Category created by NLog",ccds);
-#endif
                         }
                         else
                         {

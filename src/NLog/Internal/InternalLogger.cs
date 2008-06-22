@@ -51,7 +51,7 @@ namespace NLog.Internal
     {
         static LogLevel _logLevel = LogLevel.Info;
         static bool _logToConsole = false;
-#if !NETCF_1_0
+#if !NET_CF_1_0
         static bool _logToConsoleError = false;
 #endif
         static string _logFile = null;
@@ -74,7 +74,7 @@ namespace NLog.Internal
             set { _logToConsole = value; }
         }
 
-#if !NETCF_1_0
+#if !NET_CF_1_0
         /// <summary>
         /// Log internal messages to the console error stream.
         /// </summary>
@@ -93,7 +93,7 @@ namespace NLog.Internal
             get { return _logFile; }
             set
             {
-#if !NETCF
+#if !NET_CF
                 string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 #else
                 string baseDir = CompactFrameworkHelper.GetExeBaseDir();
@@ -102,15 +102,11 @@ namespace NLog.Internal
             }
         }
 
-#if !NETCF
+#if !NET_CF
 		
         static string GetSetting(string configName, string envName)
         {
-#if DOTNET_2_0
             string setting = ConfigurationManager.AppSettings[configName];
-#else
-            string setting = ConfigurationSettings.AppSettings[configName];
-#endif
             if (setting == null)
             {
                 try
@@ -140,7 +136,7 @@ namespace NLog.Internal
                 }
             }
 
-#if !NETCF_1_0
+#if !NET_CF_1_0
             setting = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR");
             if (setting != null)
             {
@@ -193,7 +189,7 @@ namespace NLog.Internal
                 return ;
 
             if (_logFile == null && !_logToConsole
-#if !NETCF_1_0
+#if !NET_CF_1_0
                 && !_logToConsoleError
 #endif
                 )
@@ -226,7 +222,7 @@ namespace NLog.Internal
                     Console.WriteLine(msg);
                 }
 
-#if !NETCF_1_0
+#if !NET_CF_1_0
                 if (_logToConsoleError)
                 {
                     Console.Error.WriteLine(msg);

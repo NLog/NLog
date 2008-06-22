@@ -48,15 +48,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [Test]
         public void EnvironmentTest()
         {
-            Layout l = new Layout("${environment:variable=PATH}");
-            AssertLayoutRendererOutput(l, System.Environment.GetEnvironmentVariable("PATH"));
+            AssertLayoutRendererOutput("${environment:variable=PATH}", System.Environment.GetEnvironmentVariable("PATH"));
         }
 
         [Test]
         public void EnvironmentSimpleTest()
         {
-            Layout l = new Layout("${environment:PATH}");
-            AssertLayoutRendererOutput(l, System.Environment.GetEnvironmentVariable("PATH"));
+            AssertLayoutRendererOutput("${environment:PATH}", System.Environment.GetEnvironmentVariable("PATH"));
         }
     }
 }

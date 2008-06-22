@@ -76,9 +76,9 @@ namespace NLog.Internal
         /// <summary>
         /// Adds the specified log event to the buffer.
         /// </summary>
-        /// <param name="e">Log event</param>
+        /// <param name="eventInfo">Log event</param>
         /// <returns>The number of items in the buffer.</returns>
-        public int Append(LogEventInfo e)
+        public int Append(LogEventInfo eventInfo)
         {
             lock (this)
             {
@@ -109,23 +109,12 @@ namespace NLog.Internal
                 // put the item
 
                 _putPointer = _putPointer % _buffer.Length;
-                _buffer[_putPointer] = e;
+                _buffer[_putPointer] = eventInfo;
                 _putPointer = _putPointer + 1;
                 _count++;
                 if (_count >= _buffer.Length)
                     _count = _buffer.Length;
                 return _count;
-
-/*
-                InternalLogger.Trace("GetPointer: {0} PutPointer: {1} Count: {2} BufferLength: {3}", _getPointer, _putPointer, _count, _buffer.Length);
-                for (int i = 0; i < _count; ++i)
-                {
-                    InternalLogger.Trace("buffer[{0}] = {1}", i, _buffer[(_getPointer + i) % _buffer.Length].Message);
-                }
-                
-*/
-
-                //Console.ReadLine();
             }
         }
 

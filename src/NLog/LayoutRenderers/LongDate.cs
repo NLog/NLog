@@ -34,6 +34,7 @@
 using System;
 using System.Text;
 using System.Globalization;
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -59,13 +60,13 @@ namespace NLog.LayoutRenderers
             return 24;
         }
 
-        private void Append2DigitsZeroPadded(StringBuilder builder, int number)
+        private static void Append2DigitsZeroPadded(StringBuilder builder, int number)
         {
             builder.Append((char)((number / 10) + '0'));
             builder.Append((char)((number % 10) + '0'));
         }
 
-        private void Append4DigitsZeroPadded(StringBuilder builder, int number)
+        private static void Append4DigitsZeroPadded(StringBuilder builder, int number)
         {
             builder.Append((char)((number / 1000 % 10) + '0'));
             builder.Append((char)((number / 100 % 10) + '0'));

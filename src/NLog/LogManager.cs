@@ -65,7 +65,7 @@ namespace NLog
             remove { _globalFactory.ConfigurationChanged -= value; }
         }
 
-#if !NETCF
+#if !NET_CF
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -87,7 +87,7 @@ namespace NLog
 
         private LogManager(){}
 
-#if !NETCF
+#if !NET_CF
         /// <summary>
         /// Gets the logger named after the currently-being-initialized class.
         /// </summary>
@@ -235,7 +235,7 @@ namespace NLog
             set { _globalFactory.GlobalThreshold = value; }
         }
 
-#if !NETCF
+#if !NET_CF
         private static void SetupTerminationEvents()
         {
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(TurnOffLogging);
@@ -254,7 +254,7 @@ namespace NLog
 #endif
         static LogManager()
         {
-#if !NETCF
+#if !NET_CF
             try
             {
                 SetupTerminationEvents();

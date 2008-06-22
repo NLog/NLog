@@ -43,9 +43,13 @@ using NLog.Config;
 
 using NLog.Internal;
 using NLog.Internal.FileAppenders;
-#if !NETCF
+#if !NET_CF
 using System.Runtime.InteropServices;
 using NLog.Internal.Win32;
+using System.Collections.Generic;
+using System.ComponentModel;
+using NLog.Layouts;
+using System.Text;
 #endif
 
 namespace NLog.Targets
@@ -212,11 +216,11 @@ namespace NLog.Targets
             None,
         }
 
-        private Layout _fileNameLayout;
+        private Layout _fileName;
         private bool _createDirs = true;
         private bool _keepFileOpen = false;
         private System.Text.Encoding _encoding = System.Text.Encoding.Default;
-#if NETCF
+#if NET_CF
         private string _newLine = "\r\n";
 #else
         private string _newLine = Environment.NewLine;
@@ -245,7 +249,7 @@ namespace NLog.Targets
         private bool _enableFileDelete = true;
         private Hashtable _initializedFiles = new Hashtable();
         private int _initializedFilesCounter = 0;
-#if !NETCF
+#if !NET_CF
         private Win32FileAttributes _fileAttributes = Win32FileAttributes.Normal;
 #endif
 
@@ -272,11 +276,10 @@ namespace NLog.Targets
         /// You can combine as many of the layout renderers as you want to produce an arbitrary log file name.
         /// </example>
         [RequiredParameter]
-        [AcceptsLayout]
-        public string FileName
+        public Layout FileName
         {
-            get { return _fileNameLayout.Text; }
-            set { _fileNameLayout = new Layout(value); }
+            get { return _fileName; }
+            set { _fileName = value; }
         }
 
         /// <summary>
@@ -286,7 +289,7 @@ namespace NLog.Targets
         /// Setting this to false may improve performance a bit, but you'll receive an error
         /// when attempting to write to a directory that's not present.
         /// </remarks>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool CreateDirs
         {
             get { return _createDirs; }
@@ -305,7 +308,7 @@ namespace NLog.Targets
         /// a very high value. A number like 10-15 shouldn't be exceeded, because you'd
         /// be keeping a large number of files open which consumes system resources.
         /// </remarks>
-        [System.ComponentModel.DefaultValue(5)]
+        [DefaultValue(5)]
         public int OpenFileCacheSize
         {
             get { return _openFileCacheSize; }
@@ -315,7 +318,7 @@ namespace NLog.Targets
         /// <summary>
         /// Maximum number of seconds that files are kept open. If this number is negative.
         /// </summary>
-        [System.ComponentModel.DefaultValue(-1)]
+        [DefaultValue(-1)]
         public int OpenFileCacheTimeout
         {
             get { return _openFileCacheTimeout; }
@@ -328,7 +331,7 @@ namespace NLog.Targets
         /// <remarks>
         /// This option works only when the "fileName" parameter denotes a single file.
         /// </remarks>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool DeleteOldFileOnStartup
         {
             get { return _deleteOldFileOnStartup; }
@@ -338,7 +341,7 @@ namespace NLog.Targets
         /// <summary>
         /// Replace file contents on each write instead of appending log message at the end.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool ReplaceFileContentsOnEachWrite
         {
             get { return _replaceFileContentsOnEachWrite; }
@@ -351,7 +354,7 @@ namespace NLog.Targets
         /// <remarks>
         /// Setting this property to <c>True</c> helps improve performance.
         /// </remarks>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool KeepFileOpen
         {
             get { return _keepFileOpen; }
@@ -361,14 +364,14 @@ namespace NLog.Targets
         /// <summary>
         /// Enable log file(s) to be deleted.
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool EnableFileDelete
         {
             get { return _enableFileDelete; }
             set { _enableFileDelete = value; }
         }
 
-#if !NETCF
+#if !NET_CF
         /// <summary>
         /// File attributes (Windows only).
         /// </summary>
@@ -410,7 +413,7 @@ namespace NLog.Targets
                         break;
 
                     case LineEndingMode.Default:
-#if NETCF
+#if NET_CF
                         _newLine = "\r\n";
 #else
                         _newLine = Environment.NewLine;
@@ -427,7 +430,7 @@ namespace NLog.Targets
         /// <summary>
         /// Automatically flush the file buffers after each log message.
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool AutoFlush
         {
             get { return _autoFlush; }
@@ -437,7 +440,7 @@ namespace NLog.Targets
         /// <summary>
         /// Log file buffer size in bytes.
         /// </summary>
-        [System.ComponentModel.DefaultValue(32768)]
+        [DefaultValue(32768)]
         public int BufferSize
         {
             get { return _bufferSize; }
@@ -449,10 +452,10 @@ namespace NLog.Targets
         /// <remarks>
         /// Can be any encoding name supported by System.Text.Encoding.GetEncoding() e.g. <c>windows-1252</c>, <c>iso-8859-2</c>.
         /// </remarks>
-        public string Encoding
+        public Encoding Encoding
         {
-            get { return _encoding.WebName; }
-            set { _encoding = System.Text.Encoding.GetEncoding(value); }
+            get { return _encoding; }
+            set { _encoding = value; }
         }
 
         /// <summary>
@@ -462,7 +465,7 @@ namespace NLog.Targets
         /// This makes multi-process logging possible. NLog uses a special technique
         /// that lets it keep the files open for writing.
         /// </remarks>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool ConcurrentWrites
         {
             get { return _concurrentWrites; }
@@ -472,7 +475,7 @@ namespace NLog.Targets
         /// <summary>
         /// Disables open-fi
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool NetworkWrites
         {
             get { return _networkWrites; }
@@ -483,7 +486,7 @@ namespace NLog.Targets
         /// The number of times the write is appended on the file before NLog
         /// discards the log message.
         /// </summary>
-        [System.ComponentModel.DefaultValue(10)]
+        [DefaultValue(10)]
         public int ConcurrentWriteAttempts
         {
             get { return _concurrentWriteAttempts; }
@@ -533,16 +536,10 @@ namespace NLog.Targets
         /// the archiving strategy. The number of hash characters used determines
         /// the number of numerical digits to be used for numbering files.
         /// </summary>
-        [AcceptsLayout]
-        public string ArchiveFileName
+        public Layout ArchiveFileName
         {
-            get 
-            { 
-                if (_autoArchiveFileName == null)
-                    return null;
-                return _autoArchiveFileName.Text;
-            }
-            set { _autoArchiveFileName = new Layout(value); }
+            get { return _autoArchiveFileName; }
+            set { _autoArchiveFileName = value; }
         }
 
         /// <summary>
@@ -562,7 +559,7 @@ namespace NLog.Targets
         /// ...<p/>
         /// and so on.
         /// </example>
-        [System.ComponentModel.DefaultValue(1)]
+        [DefaultValue(1)]
         public int ConcurrentWriteAttemptDelay
         {
             get { return _concurrentWriteAttemptDelay; }
@@ -572,7 +569,7 @@ namespace NLog.Targets
         /// <summary>
         /// Maximum number of archive files that should be kept.
         /// </summary>
-        [System.ComponentModel.DefaultValue(9)]
+        [DefaultValue(9)]
         public int MaxArchiveFiles
         {
             get { return _maxArchiveFiles; }
@@ -791,10 +788,11 @@ namespace NLog.Targets
         /// Adds all layouts used by this target to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             base.PopulateLayouts (layouts);
-            _fileNameLayout.PopulateLayouts(layouts);
+            if (FileName != null)
+                FileName.PopulateLayouts(layouts);
         }
 
         /// <summary>
@@ -804,7 +802,7 @@ namespace NLog.Targets
         /// <returns>A string representation of the log event.</returns>
         protected virtual string GetFormattedMessage(LogEventInfo logEvent)
         {
-            return CompiledLayout.GetFormattedMessage(logEvent);
+            return Layout.GetFormattedMessage(logEvent);
         }
 
         /// <summary>
@@ -827,7 +825,7 @@ namespace NLog.Targets
         {
             lock (this)
             {
-                string fileName = _fileNameLayout.GetFormattedMessage(logEvent);
+                string fileName = FileName.GetFormattedMessage(logEvent);
                 byte[] bytes = GetBytesToWrite(logEvent);
 
                 if (ShouldAutoArchive(fileName, logEvent, bytes.Length))
@@ -853,7 +851,7 @@ namespace NLog.Targets
         /// </remarks>
         protected internal override void Write(LogEventInfo[] logEvents)
         {
-            if (_fileNameLayout.IsAppDomainFixed)
+            if (FileName.IsAppDomainFixed)
             {
                 foreach (LogEventInfo lei in logEvents)
                     Write(lei);
@@ -871,7 +869,7 @@ namespace NLog.Targets
                 for (int i = 0; i < logEvents.Length; ++i)
                 {
                     LogEventInfo logEvent = logEvents[i];
-                    string logEventFileName = _fileNameLayout.GetFormattedMessage(logEvent);
+                    string logEventFileName = FileName.GetFormattedMessage(logEvent);
                     if (logEventFileName != currentFileName)
                     {
                         if (currentFileName != null)
@@ -930,7 +928,7 @@ namespace NLog.Targets
                     }
                     else if (ConcurrentWrites)
                     {
-#if NETCF
+#if NET_CF
                         _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
                         //
@@ -957,7 +955,7 @@ namespace NLog.Targets
                     }
                     else if (ConcurrentWrites)
                     {
-#if NETCF
+#if NET_CF
                         _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
                         //
@@ -1148,19 +1146,19 @@ namespace NLog.Targets
 
         private byte[] GetHeaderBytes()
         {
-            if (CompiledHeader == null)
+            if (Header == null)
                 return null;
 
-            string renderedText = CompiledHeader.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + NewLineChars;
+            string renderedText = Header.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + NewLineChars;
             return TransformBytes(_encoding.GetBytes(renderedText));
         }
 
         private byte[] GetFooterBytes()
         {
-            if (CompiledFooter == null)
+            if (Footer == null)
                 return null;
 
-            string renderedText = CompiledFooter.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + NewLineChars;
+            string renderedText = Footer.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + NewLineChars;
             return TransformBytes(_encoding.GetBytes(renderedText));
         }
 
@@ -1326,8 +1324,8 @@ namespace NLog.Targets
                 LogEventInfo le1 = (LogEventInfo)x;
                 LogEventInfo le2 = (LogEventInfo)y;
 
-                string filename1 = _fileTarget._fileNameLayout.GetFormattedMessage(le1);
-                string filename2 = _fileTarget._fileNameLayout.GetFormattedMessage(le2);
+                string filename1 = _fileTarget.FileName.GetFormattedMessage(le1);
+                string filename2 = _fileTarget.FileName.GetFormattedMessage(le2);
 
                 int val = String.CompareOrdinal(filename1, filename2);
                 if (val != 0)

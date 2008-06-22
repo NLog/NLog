@@ -35,6 +35,8 @@ using System;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Collections.Generic;
+using NLog.Layouts;
 
 namespace NLog.Conditions 
 {
@@ -54,8 +56,13 @@ namespace NLog.Conditions
         /// Adds all layouts used by this expression to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public virtual void PopulateLayouts(LayoutCollection layouts)
+        public virtual void PopulateLayouts(ICollection<Layout> layouts)
         {
+        }
+
+        public static implicit operator ConditionExpression(string text)
+        {
+            return ConditionParser.ParseExpression(text);
         }
     }
 }

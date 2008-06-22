@@ -43,6 +43,10 @@ namespace NLog.Internal
         private static Type[]EmptyTypes = new Type[0];
         private static object[]EmptyParams = new object[0];
 
+        private FactoryHelper()
+        {
+        }
+
         public static object CreateInstance(Type t)
         {
             ConstructorInfo constructor = t.GetConstructor(EmptyTypes); //t.GetConstructor(BindingFlags.Public | BindingFlags.Instance, null, Type.EmptyTypes, null);

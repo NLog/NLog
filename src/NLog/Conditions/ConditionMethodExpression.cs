@@ -37,6 +37,9 @@ using System.Text;
 using System.Reflection;
 
 using System.Xml.Serialization;
+using System.Collections.Generic;
+using NLog.Config;
+using NLog.Layouts;
 
 namespace NLog.Conditions 
 {
@@ -46,27 +49,22 @@ namespace NLog.Conditions
     internal sealed class ConditionMethodExpression : ConditionExpression
     {
         private string _name;
-        private ConditionExpressionCollection _parameters;
+        private ICollection<ConditionExpression> _parameters;
         private MethodInfo _methodInfo;
         private bool _acceptsLogEvent;
 
         public ConditionMethodExpression() {}
-        public ConditionMethodExpression(string name, ConditionExpressionCollection parameters) 
+        public ConditionMethodExpression(string name, ICollection<ConditionExpression> parameters) 
         {
             _name = name;
             _parameters = parameters;
 
-            _methodInfo = ConditionMethodFactory.CreateConditionMethod(_name);
-            if (_methodInfo == null)
-            {
-                Internal.InternalLogger.Error("Condition method: '{0}' not found", name);
-                throw new ArgumentException("Condition method not found: '" + name + "'");
-            }
+            _methodInfo = NLogFactories.ConditionMethodFactory.Create(_name);
             ParameterInfo[] formalParameters = _methodInfo.GetParameters();
             if (formalParameters.Length >= 0)
             {
                 _acceptsLogEvent = (formalParameters[0].ParameterType == typeof(LogEventInfo));
-                }
+            }
             else
             {
                 _acceptsLogEvent = false;
@@ -88,9 +86,10 @@ namespace NLog.Conditions
             int parameterOffset = _acceptsLogEvent ? 1 : 0;
 
             callParameters = new object[_parameters.Count + parameterOffset];
-            for (int i = 0; i < _parameters.Count; ++i)
+            int i = 0;
+            foreach (ConditionExpression ce in _parameters)
             {
-                callParameters[i + parameterOffset] = _parameters[i].Evaluate(context);
+                callParameters[i++ + parameterOffset] = ce.Evaluate(context);
             }
 
             if (_acceptsLogEvent)
@@ -112,11 +111,13 @@ namespace NLog.Conditions
             StringBuilder sb = new StringBuilder();
             sb.Append(_name);
             sb.Append("(");
-            for (int i = 0; i < _parameters.Count; ++i)
+            string separator = "";
+
+            foreach (ConditionExpression expr in _parameters)
             {
-                if (i != 0)
-                    sb.Append(",");
-                sb.Append(_parameters[i]);
+                sb.Append(separator);
+                sb.Append(expr);
+                separator = ",";
             }
             sb.Append(")");
             return sb.ToString();
@@ -127,7 +128,7 @@ namespace NLog.Conditions
         /// Adds all layouts used by this expression to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             foreach (ConditionExpression expr in _parameters)
             {

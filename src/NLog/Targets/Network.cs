@@ -41,6 +41,9 @@ using NLog.Internal;
 using NLog.Internal.NetworkSenders;
 using System.Text;
 using System.ComponentModel;
+using System.Collections.Generic;
+using NLog.Config;
+using NLog.Layouts;
 
 namespace NLog.Targets
 {
@@ -117,12 +120,12 @@ namespace NLog.Targets
         /// <remarks>
         /// For HTTP Support use the WebService target.
         /// </remarks>
-        public string Address
+        public Layout Address
         {
-            get { return _addressLayout.Text; }
+            get { return _addressLayout; }
             set 
             {
-                _addressLayout = new Layout(value); 
+                _addressLayout = value; 
                 if (_sender != null)
                 {
                     _sender.Close();
@@ -132,18 +135,9 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// The network address. Can be tcp://host:port, udp://host:port, http://host:port or https://host:port
-        /// </summary>
-        public Layout AddressLayout
-        {
-            get { return _addressLayout; }
-            set { _addressLayout = value; }
-        }
-
-        /// <summary>
         /// Keep connection open whenever possible.
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool KeepConnection
         {
             get { return _keepConnection; }
@@ -153,7 +147,7 @@ namespace NLog.Targets
         /// <summary>
         /// Append newline at the end of log message.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool NewLine
         {
             get { return _newline; }
@@ -189,11 +183,11 @@ namespace NLog.Targets
         /// <remarks>
         /// Can be any encoding name supported by System.Text.Encoding.GetEncoding() e.g. <c>windows-1252</c>, <c>iso-8859-2</c>.
         /// </remarks>
-        [System.ComponentModel.DefaultValue("utf-8")]
-        public string Encoding
+        [DefaultValue("utf-8")]
+        public Encoding Encoding
         {
-            get { return _encoding.WebName; }
-            set { _encoding = System.Text.Encoding.GetEncoding(value); }
+            get { return _encoding; }
+            set { _encoding = value; }
         }
 
         /// <summary>
@@ -278,10 +272,11 @@ namespace NLog.Targets
         /// Adds all layouts used by this target to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             base.PopulateLayouts(layouts);
-            AddressLayout.PopulateLayouts(layouts);
+            if (Address != null)
+                Address.PopulateLayouts(layouts);
         }
 
         /// <summary>
@@ -291,7 +286,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            NetworkSend(AddressLayout.GetFormattedMessage(logEvent), GetBytesToWrite(logEvent));
+            NetworkSend(Address.GetFormattedMessage(logEvent), GetBytesToWrite(logEvent));
         }
 
         /// <summary>
@@ -304,9 +299,9 @@ namespace NLog.Targets
             string text;
 
             if (NewLine)
-                text = CompiledLayout.GetFormattedMessage(logEvent) + "\r\n";
+                text = Layout.GetFormattedMessage(logEvent) + "\r\n";
             else
-                text = CompiledLayout.GetFormattedMessage(logEvent);
+                text = Layout.GetFormattedMessage(logEvent);
 
             return _encoding.GetBytes(text);
         }

@@ -36,5 +36,5 @@ using System.Reflection;
 #if NANT
 [assembly: AssemblyKeyFile("src/NLog.snk")]
 #else 
-[assembly: AssemblyKeyFile("../../../NLog.snk")]
+[assembly: AssemblyKeyFile("../NLog.snk")]
 #endif

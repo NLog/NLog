@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 using System;
 using System.Web;
 
@@ -73,7 +73,6 @@ namespace NLog.Targets
     /// <p/>
     /// </example>
     [Target("ASPNetTrace")]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ASPNetTraceTarget: TargetWithLayout
     {
         /// <summary>
@@ -95,11 +94,11 @@ namespace NLog.Targets
 
             if (logEvent.Level >= LogLevel.Warn)
             {
-                context.Trace.Warn(logEvent.LoggerName, CompiledLayout.GetFormattedMessage(logEvent));
+                context.Trace.Warn(logEvent.LoggerName, Layout.GetFormattedMessage(logEvent));
             }
             else
             {
-                context.Trace.Write(logEvent.LoggerName, CompiledLayout.GetFormattedMessage(logEvent));
+                context.Trace.Write(logEvent.LoggerName, Layout.GetFormattedMessage(logEvent));
             }
         }
     }

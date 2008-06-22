@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF_1_0
+#if !NET_CF_1_0
 
 using System;
 using System.Text;
@@ -48,9 +48,6 @@ namespace NLog.Win32.LayoutRenderers
     /// A value from the Registry.
     /// </summary>
     [LayoutRenderer("registry")]
-    [SupportedRuntime(OS=RuntimeOS.Windows)]
-    [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class RegistryLayoutRenderer: LayoutRenderer
     {
         private string _value = null;

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF_1_0
+#if !NET_CF_1_0
 
 using System;
 using System.Messaging;
@@ -39,6 +39,9 @@ using System.Text;
 
 using NLog.Config;
 using System.ComponentModel;
+using System.Collections.Generic;
+using NLog.Layouts;
+using NLog.Targets;
 
 namespace NLog.Win32.Targets
 {
@@ -65,12 +68,10 @@ namespace NLog.Win32.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/MSMQ/Simple/Example.cs" />
     /// </example>
     [Target("MSMQ")]
-    [SupportedRuntime(Framework=RuntimeFramework.DotNetFramework)]
-    [SupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework,MinRuntimeVersion="2.0")]
     public class MSMQTarget : TargetWithLayout
     {
         private Layout _queue;
-        private Layout _label = new Layout("NLog");
+        private Layout _label = "NLog";
         private bool _createIfNotExists;
         private Encoding _encoding = System.Text.Encoding.UTF8;
         private bool _useXmlEncoding;
@@ -85,11 +86,10 @@ namespace NLog.Win32.Targets
         /// For other available queue names, consult MSMQ documentation.
         /// </remarks>
         [RequiredParameter]
-        [AcceptsLayout]
-        public string Queue
+        public Layout Queue
         {
-            get { return _queue.Text; }
-            set { _queue = new Layout(value); }
+            get { return _queue; }
+            set { _queue = value; }
         }
 
         /// <summary>
@@ -98,18 +98,17 @@ namespace NLog.Win32.Targets
         /// <remarks>
         /// By default no label is associated.
         /// </remarks>
-        [AcceptsLayout]
         [DefaultValue("NLog")]
-        public string Label
+        public Layout Label
         {
-            get { return _label.Text; }
-            set { _label = new Layout(value); }
+            get { return _label; }
+            set { _label = value; }
         }
 
         /// <summary>
         /// Create the queue if it doesn't exists.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool CreateQueueIfNotExists
         {
             get { return _createIfNotExists; }
@@ -119,16 +118,16 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Encoding to be used when writing text to the queue.
         /// </summary>
-        public string Encoding
+        public Encoding Encoding
         {
-            get { return _encoding.WebName; }
-            set { _encoding = System.Text.Encoding.GetEncoding(value); }
+            get { return _encoding; }
+            set { _encoding = value; }
         }
 
         /// <summary>
         /// Use the XML format when serializing message.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool UseXmlEncoding
         {
             get { return _useXmlEncoding; }
@@ -138,7 +137,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Use recoverable messages (with guaranteed delivery).
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool Recoverable
         {
             get { return _recoverableMessages; }
@@ -149,7 +148,7 @@ namespace NLog.Win32.Targets
         /// Adds all layouts used by this target to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             base.PopulateLayouts (layouts);
             _queue.PopulateLayouts(layouts);
@@ -208,11 +207,11 @@ namespace NLog.Win32.Targets
 
             if (_useXmlEncoding)
             {
-                msg.Body = CompiledLayout.GetFormattedMessage(logEvent);
+                msg.Body = Layout.GetFormattedMessage(logEvent);
             }
             else
             {
-                byte[] dataBytes = _encoding.GetBytes(CompiledLayout.GetFormattedMessage(logEvent));
+                byte[] dataBytes = _encoding.GetBytes(Layout.GetFormattedMessage(logEvent));
 
                 msg.BodyStream.Write(dataBytes, 0, dataBytes.Length);
             }

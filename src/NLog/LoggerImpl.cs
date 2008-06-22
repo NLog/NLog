@@ -39,6 +39,7 @@ using System.Reflection;
 using NLog.Filters;
 using NLog.Targets;
 using NLog.Internal;
+using System.Collections.Generic;
 
 namespace NLog
 {
@@ -53,7 +54,7 @@ namespace NLog
             if (targets == null)
                 return;
 
-#if !NETCF            
+#if !NET_CF            
             bool needTrace = false;
             bool needTraceSources = false;
 
@@ -94,11 +95,8 @@ namespace NLog
 
                 try
                 {
-                    FilterCollection filterChain = awf.FilterChain;
-
-                    for (int i = 0; i < filterChain.Count; ++i)
+                    foreach (Filter f in awf.FilterChain)
                     {
-                        Filter f = filterChain[i];
                         result = f.Check(logEvent);
                         if (result != FilterResult.Neutral)
                             break;

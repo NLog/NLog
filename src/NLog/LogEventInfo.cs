@@ -39,13 +39,15 @@ using System.Reflection;
 
 using System.Collections;
 using System.Collections.Specialized;
+using NLog.Layouts;
+using NLog.Internal;
 
 namespace NLog
 {
     /// <summary>
     /// Represents the logging event.
     /// </summary>
-    public class LogEventInfo
+    public abstract class LogEventInfo
     {
         /// <summary>
         /// The date of the first log event created.
@@ -57,21 +59,9 @@ namespace NLog
         private DateTime _timeStamp;
         private LogLevel _level;
         private string _loggerName;
-        private string _message;
-        private string _formattedMessage;
-        private Exception _exception;
-        private object[] _parameters;
-        private IFormatProvider _formatProvider;
         private IDictionary _layoutCache;
         private IDictionary _eventContext;
         private int _sequenceID;
-
-        /// <summary>
-        /// Creates a new instance of <see cref="LogEventInfo"/>.
-        /// </summary>
-        public LogEventInfo()
-        {
-        }
 
         /// <summary>
         /// Creates the null event.
@@ -79,7 +69,7 @@ namespace NLog
         /// <returns></returns>
         public static LogEventInfo CreateNullEvent()
         {
-            return new LogEventInfo(LogLevel.Off, "", "");
+            return new UnformattedLogEventInfo(LogLevel.Off, String.Empty, String.Empty);
         }
 
         /// <summary>
@@ -88,50 +78,15 @@ namespace NLog
         /// <param name="level">Log level</param>
         /// <param name="loggerName">Logger name</param>
         /// <param name="message">Log message including parameter placeholders</param>
-        public LogEventInfo(LogLevel level, string loggerName, string message)
-            : this(level, loggerName, null, message, null, null)
-        {
-        }
-
-        /// <summary>
-        /// Creates a new instance of <see cref="LogEventInfo"/> and assigns its fields.
-        /// </summary>
-        /// <param name="level">Log level</param>
-        /// <param name="loggerName">Logger name</param>
-        /// <param name="formatProvider"><see cref="IFormatProvider"/> object</param>
-        /// <param name="message">Log message including parameter placeholders</param>
-        /// <param name="parameters">Parameter array.</param>
-        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters) 
-            : this(level, loggerName, formatProvider, message, parameters, null)
-        {
-        }
-
-        /// <summary>
-        /// Creates a new instance of <see cref="LogEventInfo"/> and assigns its fields.
-        /// </summary>
-        /// <param name="level">Log level</param>
-        /// <param name="loggerName">Logger name</param>
-        /// <param name="formatProvider"><see cref="IFormatProvider"/> object</param>
-        /// <param name="message">Log message including parameter placeholders</param>
-        /// <param name="parameters">Parameter array.</param>
-        /// <param name="exception">Exception information.</param>
-        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters, Exception exception)
+        protected LogEventInfo(LogLevel level, string loggerName)
         {
             _timeStamp = CurrentTimeGetter.Now;
             _level = level;
             _loggerName = loggerName;
-            _message = message;
-            _parameters = parameters;
-            _formatProvider = formatProvider;
-            _exception = exception;
             _layoutCache = null;
             _sequenceID = Interlocked.Increment(ref _globalSequenceID);
-            _formattedMessage = null;
 
-            if (NeedToPreformatMessage(parameters))
-                CalcFormattedMessage();
-
-#if !NETCF
+#if !NET_CF
             _stackTrace = null;
             _userStackFrame = 0;
 #endif 
@@ -155,7 +110,7 @@ namespace NLog
             set { _level = value; }
         }
 
-#if !NETCF
+#if !NET_CF
         private StackTrace _stackTrace;
         private int _userStackFrame;
 
@@ -201,10 +156,9 @@ namespace NLog
         /// <summary>
         /// Gets or sets the exception information.
         /// </summary>
-        public Exception Exception
+        public virtual Exception Exception
         {
-            get { return _exception; }
-            set { _exception = value; }
+            get { return null; }
         }
 
         /// <summary>
@@ -217,18 +171,95 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the logger short name.
+        /// Returns the formatted message.
         /// </summary>
-        public string LoggerShortName
+        public abstract string FormattedMessage { get; }
+
+        /// <summary>
+        /// Gets the dictionary of per-event context properties.
+        /// </summary>
+        public IDictionary Context
         {
             get
             {
-                int lastDot = _loggerName.LastIndexOf('.');
-                if (lastDot >= 0)
-                    return _loggerName.Substring(lastDot + 1);
-                else
-                    return _loggerName;
+                if (_eventContext == null)
+                    _eventContext = new HybridDictionary();
+                return _eventContext;
             }
+        }
+
+        /// <summary>
+        /// The unique identifier of log event which is automatically generated
+        /// and monotonously increasing.
+        /// </summary>
+        public int SequenceID
+        {
+            get { return _sequenceID; }
+        }
+
+        internal string GetCachedLayoutValue(Layout layout)
+        {
+            if (_layoutCache == null)
+                return null;
+            string result = (string)_layoutCache[layout];
+            return result;
+        }
+
+        internal void AddCachedLayoutValue(Layout layout, string value)
+        {
+            if (_layoutCache == null)
+                _layoutCache = new HybridDictionary();
+            _layoutCache[layout] = value;
+        }
+    }
+
+    public class UnformattedLogEventInfo : LogEventInfo
+    {
+        private string _message;
+
+        public UnformattedLogEventInfo(LogLevel level, string loggerName, string message) : base(level, loggerName)
+        {
+            _message = message;
+        }
+
+        public override string FormattedMessage
+        {
+            get { return _message; }
+        }
+    }
+
+    public class UnformattedLogEventInfoWithException : UnformattedLogEventInfo
+    {
+        private Exception _exception;
+
+        public UnformattedLogEventInfoWithException(LogLevel level, string loggerName, string message, Exception exception)
+            : base(level, loggerName, message)
+        {
+            _exception = exception;
+        }
+
+        public override Exception Exception
+        {
+            get { return _exception; }
+        }
+    }
+
+    public class FormattedLogEventInfo : LogEventInfo
+    {
+        private IFormatProvider _formatProvider;
+        private string _message;
+        private object[] _parameters;
+        private string _formattedMessage;
+
+        public FormattedLogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters)
+            : base(level, loggerName)
+        {
+            _formatProvider = formatProvider;
+            _message = message;
+            _parameters = parameters;
+
+            if (NeedToPreformatMessage(parameters))
+                CalcFormattedMessage();
         }
 
         /// <summary>
@@ -260,55 +291,14 @@ namespace NLog
             set { _formatProvider = value; }
         }
 
-        /// <summary>
-        /// Returns the formatted message.
-        /// </summary>
-        public string FormattedMessage
-        {
-            get 
-            {
-                if (_formattedMessage == null)
-                    CalcFormattedMessage();
-
-                return _formattedMessage;
-            }
-        }
-
-        /// <summary>
-        /// Gets the dictionary of per-event context properties.
-        /// </summary>
-        public IDictionary Context
+        public override string FormattedMessage
         {
             get
-            {
-                if (_eventContext == null)
-                    _eventContext = new HybridDictionary();
-                return _eventContext;
+            { 
+                if (_formattedMessage == null)
+                    CalcFormattedMessage();
+                return _formattedMessage;
             }
-        }
-
-        /// <summary>
-        /// The unique identifier of log event which is automatically generated
-        /// and monotonously increasing.
-        /// </summary>
-        public int SequenceID
-        {
-            get { return _sequenceID; }
-        }
-
-        internal string GetCachedLayoutValue(ILayout layout)
-        {
-            if (_layoutCache == null)
-                return null;
-            string result = (string)_layoutCache[layout];
-            return result;
-        }
-
-        internal void AddCachedLayoutValue(ILayout layout, string value)
-        {
-            if (_layoutCache == null)
-                _layoutCache = new HybridDictionary();
-            _layoutCache[layout] = value;
         }
 
         private void CalcFormattedMessage()
@@ -324,7 +314,7 @@ namespace NLog
                 _formattedMessage = String.Format(_message, _parameters);
         }
 
-        private bool NeedToPreformatMessage(object[] parameters)
+        internal static bool NeedToPreformatMessage(object[] parameters)
         {
             // we need to preformat message if it contains any parameters which could possibly
             // do logging in their ToString()
@@ -355,7 +345,7 @@ namespace NLog
             return false;
         }
 
-        private bool IsSafeToDeferFormatting(object value)
+        private static bool IsSafeToDeferFormatting(object value)
         {
             if (value == null)
                 return true;

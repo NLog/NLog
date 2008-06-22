@@ -33,6 +33,7 @@
 
 using System;
 using System.Text;
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -55,7 +56,7 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
-            return logEvent.Message.Length;
+            return logEvent.FormattedMessage.Length;
         }
 
         /// <summary>
@@ -65,36 +66,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (NeedPadding())
-            {
-                builder.Append(ApplyPadding(logEvent.FormattedMessage));
-            }
-            else
-            {
-                if (logEvent.Parameters == null || logEvent.Parameters.Length == 0)
-                {
-                    builder.Append(logEvent.Message);
-                }
-                else
-                {
-                    if (logEvent.FormatProvider != null)
-                    {
-#if NETCF
-                        builder.Append(String.Format(logEvent.FormatProvider, logEvent.Message, logEvent.Parameters));
-#else
-                        builder.AppendFormat(logEvent.FormatProvider, logEvent.Message, logEvent.Parameters);
-#endif
-                    }
-                    else
-                    {
-#if NETCF
-                        builder.Append(String.Format(logEvent.Message, logEvent.Parameters));
-#else
-                        builder.AppendFormat(logEvent.Message, logEvent.Parameters);
-#endif
-                    }
-                };
-            }
+            builder.Append(ApplyPadding(logEvent.FormattedMessage));
         }
     }
 }

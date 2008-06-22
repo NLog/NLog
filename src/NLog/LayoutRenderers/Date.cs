@@ -40,7 +40,7 @@ using NLog.Config;
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// A date and time in the specified format.
+    /// Current date and time.
     /// </summary>
     [LayoutRenderer("date",UsingLogEventInfo=true)]
     public class DateLayoutRenderer: LayoutRenderer

@@ -3,13 +3,15 @@ using System.Text;
 using NLog.Config;
 using System.Globalization;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 namespace NLog.Layouts
 {
     /// <summary>
     /// A specialized layout that renders CSV-formatted events.
     /// </summary>
     [Layout("CSVLayout")]
-    public class CsvLayout : ILayout, ILayoutWithHeaderAndFooter
+    public class CsvLayout : Layout
     {
         /// <summary>
         /// Specifies allowed column delimiters.
@@ -53,7 +55,7 @@ namespace NLog.Layouts
         }
 
 
-        private CsvColumnCollection _columns = new CsvColumnCollection();
+        private ICollection<CsvColumn> _columns = new List<CsvColumn>();
         private ColumnDelimiterMode _columnDelimiter = ColumnDelimiterMode.Auto;
         private CsvQuotingMode _quotingMode = CsvQuotingMode.Auto;
         private char[] _quotableCharacters;
@@ -61,7 +63,7 @@ namespace NLog.Layouts
         private string _doubleQuoteChar;
         private string _customColumnDelimiter;
         private string _actualColumnDelimiter;
-        private ILayout _thisHeader;
+        private Layout _thisHeader;
         private bool _withHeader = true;
 
         /// <summary>
@@ -76,7 +78,7 @@ namespace NLog.Layouts
         /// Array of parameters to be passed.
         /// </summary>
         [ArrayParameter(typeof(CsvColumn), "column")]
-        public CsvColumnCollection Columns
+        public ICollection<CsvColumn> Columns
         {
             get { return _columns; }
         }
@@ -94,7 +96,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Column delimiter.
         /// </summary>
-        [System.ComponentModel.DefaultValue("Auto")]
+        [DefaultValue("Auto")]
         public ColumnDelimiterMode Delimiter
         {
             get { return _columnDelimiter; }
@@ -113,7 +115,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Quote Character
         /// </summary>
-        [System.ComponentModel.DefaultValue("\"")]
+        [DefaultValue("\"")]
         public string QuoteChar
         {
             get { return _quoteChar; }
@@ -134,7 +136,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="logEvent">The log event to be formatted.</param>
         /// <returns>A string representation of the log event.</returns>
-        public string GetFormattedMessage(LogEventInfo logEvent)
+        public override string GetFormattedMessage(LogEventInfo logEvent)
         {
             string cachedValue = logEvent.GetCachedLayoutValue(this);
             if (cachedValue != null)
@@ -154,7 +156,7 @@ namespace NLog.Layouts
                 first = false;
 
                 bool useQuoting;
-                string text = col.CompiledLayout.GetFormattedMessage(logEvent);
+                string text = col.Layout.GetFormattedMessage(logEvent);
 
                 switch (Quoting)
                 {
@@ -194,8 +196,9 @@ namespace NLog.Layouts
         /// <summary>
         /// Initializes the layout.
         /// </summary>
-        public void Initialize()
+        public override void Initialize()
         {
+            base.Initialize();
             switch (Delimiter)
             {
                 case ColumnDelimiterMode.Auto:
@@ -231,7 +234,7 @@ namespace NLog.Layouts
 
             foreach (CsvColumn c in Columns)
             {
-                c.CompiledLayout.Initialize();
+                c.Layout.Initialize();
             }
         }
 
@@ -240,13 +243,13 @@ namespace NLog.Layouts
         /// information should be gathered during layout processing.
         /// </summary>
         /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
-        public int NeedsStackTrace()
+        public override int NeedsStackTrace()
         {
             int nst = 0;
 
             foreach (CsvColumn cc in _columns)
             {
-                nst = Math.Max(nst, cc.CompiledLayout.NeedsStackTrace());
+                nst = Math.Max(nst, cc.Layout.NeedsStackTrace());
             }
             return nst;
         }
@@ -261,38 +264,23 @@ namespace NLog.Layouts
         /// Volatile layout renderers are dependent on information not contained 
         /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
         /// </remarks>
-        public bool IsVolatile()
+        public override bool IsVolatile()
         {
             foreach (CsvColumn cc in _columns)
             {
-                if (cc.CompiledLayout.IsVolatile())
+                if (cc.Layout.IsVolatile())
                     return true;
             }
             return false;
         }
 
         /// <summary>
-        /// Precalculates the layout for the specified log event and stores the result
-        /// in per-log event cache.
-        /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        /// <remarks>
-        /// Calling this method enables you to store the log event in a buffer
-        /// and/or potentially evaluate it in another thread even though the 
-        /// layout may contain thread-dependent renderer.
-        /// </remarks>
-        public void Precalculate(LogEventInfo logEvent)
-        {
-            GetFormattedMessage(logEvent);
-        }
-
-        /// <summary>
         /// Closes the layout.
         /// </summary>
-        public void Close()
+        public override void Close()
         {
             foreach (CsvColumn c in Columns)
-                c.CompiledLayout.Close();
+                c.Layout.Close();
         }
 
         /// <summary>
@@ -356,7 +344,7 @@ namespace NLog.Layouts
         /// Main layout (can be repeated multiple times)
         /// </summary>
         /// <value></value>
-        public ILayout Layout
+        public Layout Layout
         {
             get { return this; }
             set { throw new Exception("Cannot modify the layout of CsvLayout"); }
@@ -366,7 +354,7 @@ namespace NLog.Layouts
         /// Header
         /// </summary>
         /// <value></value>
-        public ILayout Header
+        public Layout Header
         {
             get
             {
@@ -375,20 +363,20 @@ namespace NLog.Layouts
                 else
                     return null;
             }
-            set { throw new Exception("Cannot modify the header of CsvLayout"); }
+            set { }
         }
 
         /// <summary>
         /// Footer
         /// </summary>
         /// <remarks>CSV has no footer.</remarks>
-        public ILayout Footer
+        public Layout Footer
         {
             get { return null; }
-            set { throw new Exception("Cannot modify the footer of CsvLayout"); }
+            set { }
         }
 
-        class CsvHeaderLayout : ILayout
+        class CsvHeaderLayout : Layout
         {
             private CsvLayout _parent;
 
@@ -406,7 +394,7 @@ namespace NLog.Layouts
             /// </summary>
             /// <param name="logEvent">The logging event.</param>
             /// <returns>The rendered layout.</returns>
-            public string GetFormattedMessage(LogEventInfo logEvent)
+            public override string GetFormattedMessage(LogEventInfo logEvent)
             {
                 return _parent.GetHeader(logEvent);
             }
@@ -418,7 +406,7 @@ namespace NLog.Layouts
             /// <returns>
             /// 0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace
             /// </returns>
-            public int NeedsStackTrace()
+            public override int NeedsStackTrace()
             {
                 return 0;
             }
@@ -435,56 +423,10 @@ namespace NLog.Layouts
             /// Volatile layout renderers are dependent on information not contained
             /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
             /// </remarks>
-            public bool IsVolatile()
+            public override bool IsVolatile()
             {
                 return false;
             }
-
-            /// <summary>
-            /// Precalculates the layout for the specified log event and stores the result
-            /// in per-log event cache.
-            /// </summary>
-            /// <param name="logEvent">The log event.</param>
-            /// <remarks>
-            /// Calling this method enables you to store the log event in a buffer
-            /// and/or potentially evaluate it in another thread even though the
-            /// layout may contain thread-dependent renderer.
-            /// </remarks>
-            public void Precalculate(LogEventInfo logEvent)
-            {
-            }
-
-            /// <summary>
-            /// Initializes the layout.
-            /// </summary>
-            public void Initialize()
-            {
-            }
-
-            /// <summary>
-            /// Closes the layout.
-            /// </summary>
-            public void Close()
-            {
-            }
-
-            /// <summary>
-            /// Add this layout and all sub-layouts to the specified collection..
-            /// </summary>
-            /// <param name="layouts">The collection of layouts.</param>
-            public void PopulateLayouts(LayoutCollection layouts)
-            {
-                throw new Exception("The method or operation is not implemented.");
-            }
-        }
-
-        /// <summary>
-        /// Add this layout and all sub-layouts to the specified collection..
-        /// </summary>
-        /// <param name="layouts">The collection of layouts.</param>
-        public void PopulateLayouts(LayoutCollection layouts)
-        {
-            layouts.Add(this);
         }
     }
 }

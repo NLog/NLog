@@ -37,6 +37,8 @@ using System.Collections;
 using System.Globalization;
 
 using NLog.Conditions;
+using System.Collections.Generic;
+using NLog.Layouts;
 
 namespace NLog.Conditions 
 {
@@ -55,7 +57,7 @@ namespace NLog.Conditions
 
         private ConditionMethodExpression ParsePredicate(string functionName) 
         {
-            ConditionExpressionCollection par = new ConditionExpressionCollection();
+            ICollection<ConditionExpression> par = new List<ConditionExpression>();
 
             while (!tokenizer.IsEOF() && tokenizer.TokenType != ConditionTokenType.RightParen) 
             {
@@ -95,7 +97,7 @@ namespace NLog.Conditions
 
             if (tokenizer.TokenType == ConditionTokenType.String) 
             {
-                ConditionExpression e = new ConditionLayoutExpression(tokenizer.StringTokenValue);
+                ConditionExpression e = new ConditionLayoutExpression(new SimpleLayout(tokenizer.StringTokenValue));
                 tokenizer.GetNextToken();
                 return e;
             }
@@ -104,25 +106,25 @@ namespace NLog.Conditions
             {
                 string keyword = tokenizer.EatKeyword();
 
-                if (0 == String.Compare(keyword, "level", true))
+                if (0 == String.Compare(keyword, "level", true, CultureInfo.InvariantCulture))
                     return new ConditionLevelExpression();
 
-                if (0 == String.Compare(keyword, "logger", true))
+                if (0 == String.Compare(keyword, "logger", true, CultureInfo.InvariantCulture))
                     return new ConditionLoggerNameExpression();
 
-                if (0 == String.Compare(keyword, "message", true))
+                if (0 == String.Compare(keyword, "message", true, CultureInfo.InvariantCulture))
                     return new ConditionMessageExpression();
 
-                if (0 == String.Compare(keyword, "loglevel", true))
+                if (0 == String.Compare(keyword, "loglevel", true, CultureInfo.InvariantCulture))
                 {
                     tokenizer.Expect(ConditionTokenType.Dot);
                     return new ConditionLiteralExpression(LogLevel.FromString(tokenizer.EatKeyword()));
                 }
 
-                if (0 == String.Compare(keyword, "true", true))
+                if (0 == String.Compare(keyword, "true", true, CultureInfo.InvariantCulture))
                     return new ConditionLiteralExpression(true);
 
-                if (0 == String.Compare(keyword, "false", true))
+                if (0 == String.Compare(keyword, "false", true, CultureInfo.InvariantCulture))
                     return new ConditionLiteralExpression(false);
 
                 if (tokenizer.TokenType == ConditionTokenType.LeftParen)

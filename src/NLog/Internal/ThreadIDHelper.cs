@@ -57,7 +57,7 @@ namespace NLog.Internal
 
         static ThreadIDHelper()
         {
-#if NETCF
+#if NET_CF
             Instance = new Win32ThreadIDHelper();
 #else
             if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Windows)
@@ -105,7 +105,7 @@ namespace NLog.Internal
         public abstract string CurrentProcessDirectory { get; }
     }
 
-#if !NETCF
+#if !NET_CF
     internal class PortableThreadIDHelper : ThreadIDHelper
     {
         private int _currentProcessID;
@@ -123,12 +123,9 @@ namespace NLog.Internal
 
         public override int CurrentThreadID
         {
-            get {
-#if NET_2_API
+            get
+            {
                 return System.Threading.Thread.CurrentThread.ManagedThreadId;
-#else
-                return AppDomain.GetCurrentThreadId();
-#endif
             }
         }
 
@@ -176,7 +173,7 @@ namespace NLog.Internal
             _currentProcessDirectoryName = Path.GetDirectoryName(_currentProcessName);
         }
             
-#if !NETCF
+#if !NET_CF
         [DllImport("kernel32.dll")]
         private extern static int GetCurrentThreadId();
 
@@ -203,9 +200,9 @@ namespace NLog.Internal
         public override int CurrentThreadID
         {
             get {
-#if NETCF
+#if NET_CF
                 return CurrentUnmanagedThreadID;
-#elif NET_2_API
+#elif !NET_1_0 && !NET_1_1 && !_NET_CF_1_0
                 return System.Threading.Thread.CurrentThread.ManagedThreadId;
 #else
                 return AppDomain.GetCurrentThreadId();

@@ -41,6 +41,7 @@ using NLog.Config;
 using NUnit.Framework;
 using NLog.LayoutRenderers;
 using NLog.Targets;
+using NLog.Layouts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -62,24 +63,24 @@ namespace NLog.UnitTests.LayoutRenderers
         [Test]
         public void Test2()
         {
-            Layout l = new Layout("${rot13:HELLO}");
-            LogEventInfo lei = new LogEventInfo(LogLevel.Info, "aaa", "bbb");
+            Layout l = "${rot13:HELLO}";
+            LogEventInfo lei = new UnformattedLogEventInfo(LogLevel.Info, "aaa", "bbb");
             Assert.AreEqual("URYYB", l.GetFormattedMessage(lei));
         }
 
         [Test]
         public void Test3()
         {
-            Layout l = new Layout("${rot13:text=HELLO}");
-            LogEventInfo lei = new LogEventInfo(LogLevel.Info, "aaa", "bbb");
+            Layout l = "${rot13:text=HELLO}";
+            LogEventInfo lei = new UnformattedLogEventInfo(LogLevel.Info, "aaa", "bbb");
             Assert.AreEqual("URYYB", l.GetFormattedMessage(lei));
         }
 
         [Test]
         public void Test4()
         {
-            Layout l = new Layout("${rot13:${event-context:aaa}}");
-            LogEventInfo lei = new LogEventInfo(LogLevel.Info, "aaa", "bbb");
+            Layout l = "${rot13:${event-context:aaa}}";
+            LogEventInfo lei = new UnformattedLogEventInfo(LogLevel.Info, "aaa", "bbb");
             lei.Context["aaa"] = "HELLO";
             Assert.AreEqual("URYYB", l.GetFormattedMessage(lei));
         }

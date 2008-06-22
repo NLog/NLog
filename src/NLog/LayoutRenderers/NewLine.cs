@@ -33,6 +33,7 @@
 
 using System;
 using System.Text;
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -65,7 +66,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-#if NETCF
+#if NET_CF
             builder.Append("\n");
 #else
             builder.Append(Environment.NewLine);

@@ -37,6 +37,7 @@ using System.IO;
 using NLog.Internal;
 using System.ComponentModel;
 using NLog.Config;
+using NLog.Layouts;
 
 namespace NLog.LayoutRenderers
 {
@@ -91,7 +92,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Determines whether stack trace information should be gathered
         /// during log event processing. By default it calls <see cref="NLog.Layout.NeedsStackTrace"/> on
-        /// <see cref="TargetWithLayout.CompiledLayout"/>.
+        /// <see cref="TargetWithLayout.Layout"/>.
         /// </summary>
         /// <returns>
         /// 0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace

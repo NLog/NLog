@@ -42,6 +42,8 @@ using NLog;
 using NLog.Config;
 
 using NLog.Internal;
+using System.Collections.Generic;
+using NLog.Layouts;
 
 namespace NLog.Targets.Wrappers
 {
@@ -65,7 +67,7 @@ namespace NLog.Targets.Wrappers
         /// Adds all layouts used by this target to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             base.PopulateLayouts (layouts);
             WrappedTarget.PopulateLayouts(layouts);

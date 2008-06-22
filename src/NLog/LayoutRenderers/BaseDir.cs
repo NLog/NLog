@@ -35,6 +35,7 @@ using System;
 using System.Text;
 using System.IO;
 using NLog.Internal;
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -53,7 +54,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public BaseDirLayoutRenderer()
         {
-#if !NETCF
+#if !NET_CF
             _baseDir = AppDomain.CurrentDomain.BaseDirectory;
 #else
             _baseDir = CompactFrameworkHelper.GetExeBaseDir();

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.IO;
@@ -40,6 +40,9 @@ using System.Runtime.InteropServices;
 using NLog.Config;
 using NLog.Targets;
 using NLog.Win32.Targets;
+using NLog.Internal;
+using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace NLog.Win32.Targets
 {
@@ -90,16 +93,13 @@ namespace NLog.Win32.Targets
     /// <img src="examples/targets/Screenshots/ColoredConsole/Row Highlighting.gif" />
     /// </example>
     [Target("ColoredConsole")]
-    [SupportedRuntime(OS=RuntimeOS.Windows)]
-    [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public sealed class ColoredConsoleTarget: TargetWithLayoutHeaderAndFooter
     {
         private bool _errorStream = false;
         private bool _useDefaultRowHighlightingRules = true;
-        private ConsoleRowHighlightingRuleCollection _ConsoleRowHighlightingRules = new ConsoleRowHighlightingRuleCollection();
-        private ConsoleWordHighlightingRuleCollection _consoleWordHighlightingRules = new ConsoleWordHighlightingRuleCollection();
-        private static ConsoleRowHighlightingRuleCollection _defaultConsoleRowHighlightingRules = new ConsoleRowHighlightingRuleCollection();
+        private ICollection<ConsoleRowHighlightingRule> _consoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>();
+        private ICollection<ConsoleWordHighlightingRule> _consoleWordHighlightingRules = new List<ConsoleWordHighlightingRule>();
+        private static ICollection<ConsoleRowHighlightingRule> _defaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>();
         private ushort[] _colorStack = new ushort[10];
 
         static ColoredConsoleTarget()
@@ -115,7 +115,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Determines whether the error stream (stderr) should be used instead of the output stream (stdout).
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool ErrorStream
         {
             get { return _errorStream; }
@@ -165,7 +165,7 @@ namespace NLog.Win32.Targets
         /// </tr>
         /// </table>
         /// </remarks>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool UseDefaultRowHighlightingRules
         {
             get { return _useDefaultRowHighlightingRules; }
@@ -176,16 +176,16 @@ namespace NLog.Win32.Targets
         /// Row highlighting rules.
         /// </summary>
         [ArrayParameter(typeof(ConsoleRowHighlightingRule), "highlight-row")]
-        public ConsoleRowHighlightingRuleCollection RowHighlightingRules
+        public ICollection<ConsoleRowHighlightingRule> RowHighlightingRules
         {
-            get { return _ConsoleRowHighlightingRules; }
+            get { return _consoleRowHighlightingRules; }
         }
 
         /// <summary>
         /// Word highlighting rules.
         /// </summary>
         [ArrayParameter(typeof(ConsoleWordHighlightingRule), "highlight-word")]
-        public ConsoleWordHighlightingRuleCollection WordHighlightingRules
+        public ICollection<ConsoleWordHighlightingRule> WordHighlightingRules
         {
             get { return _consoleWordHighlightingRules; }
         }
@@ -197,15 +197,15 @@ namespace NLog.Win32.Targets
         /// <param name="logEvent">Log event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            Output(logEvent, CompiledLayout.GetFormattedMessage(logEvent));
+            Output(logEvent, Layout.GetFormattedMessage(logEvent));
         }
 
         private void Output(LogEventInfo logEvent, string message)
         {
-            IntPtr hConsole = ConsoleWin32Api.GetStdHandle(ErrorStream ? ConsoleWin32Api.STD_ERROR_HANDLE : ConsoleWin32Api.STD_OUTPUT_HANDLE);
+            IntPtr hConsole = NativeMethods.GetStdHandle(ErrorStream ? NativeMethods.STD_ERROR_HANDLE : NativeMethods.STD_OUTPUT_HANDLE);
 
-            ConsoleWin32Api.CONSOLE_SCREEN_BUFFER_INFO csbi;
-            ConsoleWin32Api.GetConsoleScreenBufferInfo(hConsole, out csbi);
+            NativeMethods.CONSOLE_SCREEN_BUFFER_INFO csbi;
+            NativeMethods.GetConsoleScreenBufferInfo(hConsole, out csbi);
 
             ConsoleRowHighlightingRule matchingRule = null;
 
@@ -247,15 +247,15 @@ namespace NLog.Win32.Targets
             else
                 ColorizeEscapeSequences(Console.Out, hConsole, message, newColor, csbi.wAttributes);
             
-            ConsoleWin32Api.CONSOLE_SCREEN_BUFFER_INFO csbi2;
-            ConsoleWin32Api.GetConsoleScreenBufferInfo(hConsole, out csbi2);
-            ConsoleWin32Api.SetConsoleTextAttribute(hConsole, csbi.wAttributes);
+            NativeMethods.CONSOLE_SCREEN_BUFFER_INFO csbi2;
+            NativeMethods.GetConsoleScreenBufferInfo(hConsole, out csbi2);
+            NativeMethods.SetConsoleTextAttribute(hConsole, csbi.wAttributes);
 
             int xsize = csbi2.dwSize.x;
             int xpos = csbi2.dwCursorPosition.x;
             uint written = 0;
-            ConsoleWin32Api.FillConsoleOutputAttribute(hConsole, newColor, xsize - xpos, csbi2.dwCursorPosition, out written);
-            ConsoleWin32Api.SetConsoleTextAttribute(hConsole, csbi.wAttributes);
+            NativeMethods.FillConsoleOutputAttribute(hConsole, newColor, xsize - xpos, csbi2.dwCursorPosition, out written);
+            NativeMethods.SetConsoleTextAttribute(hConsole, csbi.wAttributes);
             if (ErrorStream)
                 Console.Error.WriteLine();
             else
@@ -269,7 +269,7 @@ namespace NLog.Win32.Targets
                 int colorStackLength = 0;
                 _colorStack[colorStackLength++] = startingAttribute;
 
-                ConsoleWin32Api.SetConsoleTextAttribute(hConsole, startingAttribute);
+                NativeMethods.SetConsoleTextAttribute(hConsole, startingAttribute);
 
                 int p0 = 0;
 
@@ -306,9 +306,9 @@ namespace NLog.Win32.Targets
                     }
                     if (c1 == '\r' || c1 == '\n')
                     {
-                        ConsoleWin32Api.SetConsoleTextAttribute(hConsole, defaultAttribute);
+                        NativeMethods.SetConsoleTextAttribute(hConsole, defaultAttribute);
                         output.Write(c1);
-                        ConsoleWin32Api.SetConsoleTextAttribute(hConsole, _colorStack[colorStackLength - 1]);
+                        NativeMethods.SetConsoleTextAttribute(hConsole, _colorStack[colorStackLength - 1]);
                         p0 = p1 + 1;
                         continue;
                     }
@@ -317,7 +317,7 @@ namespace NLog.Win32.Targets
                         if (c2 == 'X')
                         {
                             colorStackLength--;
-                            ConsoleWin32Api.SetConsoleTextAttribute(hConsole, _colorStack[colorStackLength - 1]);
+                            NativeMethods.SetConsoleTextAttribute(hConsole, _colorStack[colorStackLength - 1]);
                             p0 = p1 + 2;
                             continue;
                         }
@@ -329,7 +329,7 @@ namespace NLog.Win32.Targets
                                 _colorStack[colorStackLength - 1], foreground, background);
 
                             _colorStack[colorStackLength++] = newColor;
-                            ConsoleWin32Api.SetConsoleTextAttribute(hConsole, newColor);
+                            NativeMethods.SetConsoleTextAttribute(hConsole, newColor);
                             p0 = p1 + 3;
                             continue;
                         }
@@ -368,10 +368,10 @@ namespace NLog.Win32.Targets
         public override void Initialize()
         {
             base.Initialize();
-            if (CompiledHeader != null)
+            if (Header != null)
             {
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();
-                Output(lei, CompiledHeader.GetFormattedMessage(lei));
+                Output(lei, Header.GetFormattedMessage(lei));
             }
         }
 
@@ -380,10 +380,10 @@ namespace NLog.Win32.Targets
         /// </summary>
         protected internal override void Close()
         {
-            if (CompiledFooter != null)
+            if (Footer != null)
             {
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();
-                Output(lei, CompiledFooter.GetFormattedMessage(lei));
+                Output(lei, Footer.GetFormattedMessage(lei));
             }
             base.Close();
         }

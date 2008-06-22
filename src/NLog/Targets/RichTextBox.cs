@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF && !MONO
+#if !NET_CF && !MONO
 
 using System;
 using System.Collections;
@@ -45,6 +45,8 @@ using System.Drawing;
 
 using NLog.Config;
 using NLog.Internal;
+using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace NLog.Targets
 {
@@ -80,15 +82,14 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/RichTextBox/WordColoring/Form1.cs" /> for WordColoring
     /// </example>
     [Target("RichTextBox")]
-    [SupportedRuntime(Framework = RuntimeFramework.DotNetFramework, MinRuntimeVersion = "1.1")]
     public sealed class RichTextBoxTarget : TargetWithLayout
     {
         private string _controlName;
         private string _formName;
         private bool _useDefaultRowColoringRules = false;
-        private RichTextBoxRowColoringRuleCollection _richTextBoxRowColoringRules = new RichTextBoxRowColoringRuleCollection();
-        private RichTextBoxWordColoringRuleCollection _richTextBoxWordColoringRules = new RichTextBoxWordColoringRuleCollection();
-        private static RichTextBoxRowColoringRuleCollection _defaultRichTextBoxRowColoringRules = new RichTextBoxRowColoringRuleCollection();
+        private ICollection<RichTextBoxRowColoringRule> _richTextBoxRowColoringRules = new List<RichTextBoxRowColoringRule>();
+        private ICollection<RichTextBoxWordColoringRule> _richTextBoxWordColoringRules = new List<RichTextBoxWordColoringRule>();
+        private static ICollection<RichTextBoxRowColoringRule> _defaultRichTextBoxRowColoringRules = new List<RichTextBoxRowColoringRule>();
 
         static RichTextBoxTarget()
         {
@@ -123,7 +124,7 @@ namespace NLog.Targets
         /// <summary>
         /// Use default coloring rules
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool UseDefaultRowColoringRules
         {
             get { return _useDefaultRowColoringRules; }
@@ -134,7 +135,7 @@ namespace NLog.Targets
         /// Row coloring rules.
         /// </summary>
         [ArrayParameter(typeof(RichTextBoxRowColoringRule), "row-coloring")]
-        public RichTextBoxRowColoringRuleCollection RowColoringRules
+        public ICollection<RichTextBoxRowColoringRule> RowColoringRules
         {
             get { return _richTextBoxRowColoringRules; }
         }
@@ -143,7 +144,7 @@ namespace NLog.Targets
         /// Word highlighting rules.
         /// </summary>
         [ArrayParameter(typeof(RichTextBoxWordColoringRule), "word-coloring")]
-        public RichTextBoxWordColoringRuleCollection WordColoringRules
+        public ICollection<RichTextBoxWordColoringRule> WordColoringRules
         {
             get { return _richTextBoxWordColoringRules; }
         }
@@ -180,7 +181,7 @@ namespace NLog.Targets
             if (matchingRule == null)
                 matchingRule = RichTextBoxRowColoringRule.Default;
             
-            string logMessage = CompiledLayout.GetFormattedMessage(logEvent);
+            string logMessage = Layout.GetFormattedMessage(logEvent);
 
             FindRichTextBoxAndSendTheMessage(logMessage, matchingRule);
         }
@@ -195,10 +196,9 @@ namespace NLog.Targets
                 form = Form.ActiveForm;
             }
 
-#if DOTNET_2_0
             if (form == null && Application.OpenForms[FormName] != null)
                 form = Application.OpenForms[FormName];
-#endif
+
             if (form == null)
             {
                 form = FormHelper.CreateForm(FormName, 0, 0, true);
@@ -221,9 +221,7 @@ namespace NLog.Targets
         {
             int startIndex = rtbx.Text.Length;
             rtbx.SelectionStart = startIndex;
-#if DOTNET_2_0
             rtbx.SelectionBackColor = GetColorFromString(rule.BackgroundColor, rtbx.BackColor);
-#endif
             rtbx.SelectionColor = GetColorFromString(rule.FontColor, rtbx.ForeColor);
             rtbx.SelectionFont = new Font(rtbx.SelectionFont, rtbx.SelectionFont.Style ^ rule.Style);
             rtbx.AppendText(logMessage + "\n");
@@ -237,9 +235,7 @@ namespace NLog.Targets
                 {
                     rtbx.SelectionStart = m.Index;
                     rtbx.SelectionLength = m.Length;
-#if DOTNET_2_0
                     rtbx.SelectionBackColor = GetColorFromString(wordRule.BackgroundColor, rtbx.BackColor);
-#endif
                     rtbx.SelectionColor = GetColorFromString(wordRule.FontColor, rtbx.ForeColor);
                     rtbx.SelectionFont = new Font(rtbx.SelectionFont, rtbx.SelectionFont.Style ^ wordRule.Style);
                 }

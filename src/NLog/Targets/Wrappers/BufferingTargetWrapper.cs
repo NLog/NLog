@@ -44,6 +44,7 @@ using System.Net.Sockets;
 
 using NLog.Config;
 using System.Threading;
+using System.ComponentModel;
 
 namespace NLog.Targets.Wrappers
 {
@@ -110,7 +111,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Number of log events to be buffered.
         /// </summary>
-        [System.ComponentModel.DefaultValue(100)]
+        [DefaultValue(100)]
         public int BufferSize
         {
             get { return _buffer.Size; }
@@ -121,7 +122,7 @@ namespace NLog.Targets.Wrappers
         /// Flush the contents of buffer if there's no write in the specified period of time
         /// (milliseconds). Use -1 to disable timed flushes.
         /// </summary>
-        [System.ComponentModel.DefaultValue(-1)]
+        [DefaultValue(-1)]
         public int FlushTimeout
         {
             get { return _flushTimeout; }

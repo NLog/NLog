@@ -31,11 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !(NETCF)
+#if !(NET_CF)
 using NLog.Config;
 using System;
 using System.Text;
 using System.Security.Principal;
+using System.ComponentModel;
+using NLog.LayoutRenderers;
 
 namespace NLog.Win32.LayoutRenderers
 {
@@ -43,8 +45,6 @@ namespace NLog.Win32.LayoutRenderers
     /// Thread Windows identity information (username)
     /// </summary>
     [LayoutRenderer("windows-identity")]
-    [SupportedRuntime(OS=RuntimeOS.Windows)]
-    [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
     public class WindowsIdentityLayoutRenderer: LayoutRenderer
     {
         private bool _includeDomain = true;
@@ -53,7 +53,7 @@ namespace NLog.Win32.LayoutRenderers
         /// <summary>
         /// Whether domain name should be included.
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool Domain
         {
             get { return _includeDomain; }
@@ -63,7 +63,7 @@ namespace NLog.Win32.LayoutRenderers
         /// <summary>
         /// Whether username should be included.
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool UserName
         {
             get { return _includeUserName; }

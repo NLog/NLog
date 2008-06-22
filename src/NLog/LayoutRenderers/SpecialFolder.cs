@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 using System;
 using System.Text;
 using System.IO;
@@ -44,7 +44,6 @@ namespace NLog.LayoutRenderers
     /// System special folder path (includes My Documents, My Music, Program Files, Desktop, and more)
     /// </summary>
     [LayoutRenderer("specialfolder")]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class SpecialFolderLayoutRenderer : LayoutRenderer
     {
         private string _fileName = null;

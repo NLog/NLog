@@ -40,6 +40,8 @@ using System.Text;
 using System.Windows.Forms;
 
 using NLog.Config;
+using System.Collections.Generic;
+using NLog.Layouts;
 
 namespace NLog.Targets
 {
@@ -81,21 +83,21 @@ namespace NLog.Targets
         /// <summary>
         /// Message box title.
         /// </summary>
-        [AcceptsLayout]
-        public string Caption
+        public Layout Caption
         {
-            get { return _caption.Text; }
-            set { _caption = new Layout(value); }
+            get { return _caption; }
+            set { _caption = value; }
         }
 
         /// <summary>
         /// Adds all layouts used by this target to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             base.PopulateLayouts (layouts);
-            _caption.PopulateLayouts(layouts);
+            if (Caption != null)
+                Caption.PopulateLayouts(layouts);
         }
 
         /// <summary>
@@ -105,7 +107,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            MessageBox.Show(CompiledLayout.GetFormattedMessage(logEvent), _caption.GetFormattedMessage(logEvent));
+            MessageBox.Show(Layout.GetFormattedMessage(logEvent), _caption.GetFormattedMessage(logEvent));
         }
 
         /// <summary>
@@ -122,7 +124,7 @@ namespace NLog.Targets
             LogEventInfo lastLogEvent = logEvents[logEvents.Length - 1];
             foreach (LogEventInfo ev in logEvents)
             {
-                sb.Append(CompiledLayout.GetFormattedMessage(ev));
+                sb.Append(Layout.GetFormattedMessage(ev));
                 sb.Append("\n");
             }
 

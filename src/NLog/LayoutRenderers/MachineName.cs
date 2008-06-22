@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.Text;
@@ -46,7 +46,6 @@ namespace NLog.LayoutRenderers
     /// The machine name that the process is running on.
     /// </summary>
     [LayoutRenderer("machinename")]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class MachineNameLayoutRenderer: LayoutRenderer
     {
         static string _machineName = GetMachineName();

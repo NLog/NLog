@@ -34,6 +34,8 @@
 using System;
 using System.Text;
 using System.Globalization;
+using System.ComponentModel;
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -48,7 +50,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render short logger name (the part after the trailing dot character).
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool ShortName
         {
             get { return _shortName; }
@@ -79,7 +81,13 @@ namespace NLog.LayoutRenderers
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (ShortName)
-                builder.Append(ApplyPadding(logEvent.LoggerShortName));
+            {
+                int lastDot = logEvent.LoggerName.LastIndexOf('.');
+                if (lastDot < 0)
+                    builder.Append(ApplyPadding(logEvent.LoggerName));
+                else
+                    builder.Append(ApplyPadding(logEvent.LoggerName.Substring(lastDot + 1)));
+            }
             else
                 builder.Append(ApplyPadding(logEvent.LoggerName));
         }

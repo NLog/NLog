@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF && !MONO
+#if !NET_CF && !MONO
 
 using System;
 using System.Text;
@@ -39,6 +39,7 @@ using System.Drawing;
 
 using NLog.Conditions;
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.Targets
 {
@@ -59,7 +60,6 @@ namespace NLog.Targets
         /// <summary>
         /// The condition that must be met in order to set the specified font color.
         /// </summary>
-        [AcceptsCondition]
         [RequiredParameter]
         public string Condition
         {
@@ -83,7 +83,7 @@ namespace NLog.Targets
         /// The font color.
         /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed
         /// </summary>
-        [System.ComponentModel.DefaultValue("Empty")]
+        [DefaultValue("Empty")]
         public string FontColor
         {
             get { return _fontColor; }
@@ -95,8 +95,7 @@ namespace NLog.Targets
         /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed
         /// Background color will be set only in .net 2.0
         /// </summary>
-        [System.ComponentModel.DefaultValue("Empty")]
-        [SupportedRuntime(Framework = RuntimeFramework.DotNetFramework, MinRuntimeVersion = "2.0")]
+        [DefaultValue("Empty")]
         public string BackgroundColor
         {
             get { return _backColor; }

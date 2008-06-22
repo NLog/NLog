@@ -36,6 +36,8 @@ using System.Text;
 using System.Runtime.InteropServices;
 
 using NLog.Internal;
+using System.ComponentModel;
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -50,7 +52,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Write the full path to the process executable.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool FullName
         {
             get { return _fullName; }

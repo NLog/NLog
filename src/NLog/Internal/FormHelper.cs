@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !MONO && !NETCF_1_0
+#if !MONO && !NET_CF_1_0
 
 using System;
 using System.Text;
@@ -107,7 +107,7 @@ namespace NLog.Internal
             return f;
         }
 
-#if !NETCF
+#if !NET_CF
         /// <summary>
         /// Creates RichTextBox and docks in parentForm
         /// </summary>

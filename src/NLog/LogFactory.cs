@@ -46,6 +46,7 @@ using System.Runtime.CompilerServices;
 using NLog.Config;
 using NLog.Internal;
 using NLog.Targets;
+using System.Collections.Generic;
 
 namespace NLog
 {
@@ -65,7 +66,7 @@ namespace NLog
     /// </summary>
     public class LogFactory
     {
-        private Hashtable _loggerCache = new Hashtable();
+        private Dictionary<LoggerCacheKey,Logger> _loggerCache = new Dictionary<LoggerCacheKey,Logger>();
         private LoggingConfiguration _config;
         private LogLevel _globalThreshold = LogLevel.MinLevel;
         private bool _configLoaded = false;
@@ -77,7 +78,7 @@ namespace NLog
         /// </summary>
         public event LoggingConfigurationChanged ConfigurationChanged;
 
-#if !NETCF
+#if !NET_CF
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -98,7 +99,7 @@ namespace NLog
         /// </summary>
         public LogFactory()
         {
-#if !NETCF
+#if !NET_CF
             _watcher = new MultiFileWatcher(new EventHandler(ConfigFileChanged));
 #endif
         }
@@ -123,7 +124,7 @@ namespace NLog
             return newLogger;
         }
 
-#if !NETCF
+#if !NET_CF
         /// <summary>
         /// Gets the logger named after the currently-being-initialized class.
         /// </summary>
@@ -194,8 +195,9 @@ namespace NLog
         {
             lock(this)
             {
-                Logger l = (Logger)_loggerCache[cacheKey];
-                if (l != null)
+                Logger l;
+
+                if (_loggerCache.TryGetValue(cacheKey, out l))
                     return l;
 
                 //Activator.CreateInstance(cacheKey.ConcreteType);
@@ -249,7 +251,7 @@ namespace NLog
                         return _config;
 
                     _configLoaded = true;
-#if !NETCF
+#if !NET_CF
                     if (_config == null)
                     {
                         // try to load default configuration
@@ -352,7 +354,7 @@ namespace NLog
 
             set
             {
-#if !NETCF
+#if !NET_CF
                 try
                 {
                     _watcher.StopWatching();
@@ -381,7 +383,7 @@ namespace NLog
 
                         _config.InitializeAll();
                         ReconfigExistingLoggers(_config);
-#if !NETCF
+#if !NET_CF
                         try
                         {
                             _watcher.Watch(_config.FileNamesToWatch);
@@ -398,7 +400,7 @@ namespace NLog
             }
         }
 
-#if !NETCF
+#if !NET_CF
         private MultiFileWatcher _watcher;
         private Timer _reloadTimer = null;
 
@@ -447,7 +449,7 @@ namespace NLog
             InternalLogger.Debug("--- End of NLog configuration dump ---");
         }
 
-#if !NETCF
+#if !NET_CF
         internal void ReloadConfigOnTimer(object state)
         {
             LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
@@ -509,7 +511,7 @@ namespace NLog
             }
         }
 
-        internal void GetTargetsByLevelForLogger(string name, LoggingRuleCollection rules, TargetWithFilterChain[]targetsByLevel, TargetWithFilterChain[]lastTargetsByLevel)
+        internal void GetTargetsByLevelForLogger(string name, ICollection<LoggingRule> rules, TargetWithFilterChain[]targetsByLevel, TargetWithFilterChain[]lastTargetsByLevel)
         {
             foreach (LoggingRule rule in rules)
             {
@@ -693,7 +695,7 @@ namespace NLog
             return (LoggerType)base.GetLogger(name, typeof(LoggerType));
         }
 
-#if !NETCF
+#if !NET_CF
         /// <summary>
         /// Gets the logger named after the currently-being-initialized class.
         /// </summary>

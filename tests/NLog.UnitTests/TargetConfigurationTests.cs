@@ -43,6 +43,7 @@ using NLog.LayoutRenderers;
 using NLog.Targets;
 using NLog.Targets.Wrappers;
 using NLog.Targets.Compound;
+using NLog.Layouts;
 
 namespace NLog.UnitTests
 {
@@ -64,9 +65,9 @@ namespace NLog.UnitTests
             DebugTarget t = c.FindTargetByName("d") as DebugTarget;
             Assert.IsNotNull(t);
             Assert.AreEqual(t.Name, "d");
-            Assert.AreEqual("${message}", t.Layout);
-            Layout l = t.CompiledLayout as Layout;
-            Assert.IsNotNull(l);
+            SimpleLayout l = t.Layout as SimpleLayout;
+            Assert.AreEqual("${message}", l.Text);
+            Assert.IsNotNull(t.Layout);
             Assert.AreEqual(1, l.Renderers.Length);
             Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), l.Renderers[0]);
         }
@@ -86,8 +87,8 @@ namespace NLog.UnitTests
             DebugTarget t = c.FindTargetByName("d") as DebugTarget;
             Assert.IsNotNull(t);
             Assert.AreEqual(t.Name, "d");
-            Assert.AreEqual("${message:padding=10} ${level}", t.Layout);
-            Layout l = t.CompiledLayout as Layout;
+            SimpleLayout l = t.Layout as SimpleLayout;
+            Assert.AreEqual("${message:padding=10} ${level}", l.Text);
             Assert.IsNotNull(l);
             Assert.AreEqual(3, l.Renderers.Length);
             Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), l.Renderers[0]);
@@ -171,10 +172,10 @@ namespace NLog.UnitTests
             Assert.AreSame(d3, rr.Targets[2]);
             Assert.AreSame(d4, rr.Targets[3]);
 
-            Assert.AreEqual(d1.Layout, "${message}1");
-            Assert.AreEqual(d2.Layout, "${message}2");
-            Assert.AreEqual(d3.Layout, "${message}3");
-            Assert.AreEqual(d4.Layout, "${message}4");
+            Assert.AreEqual(((SimpleLayout)d1.Layout).Text, "${message}1");
+            Assert.AreEqual(((SimpleLayout)d2.Layout).Text, "${message}2");
+            Assert.AreEqual(((SimpleLayout)d3.Layout).Text, "${message}3");
+            Assert.AreEqual(((SimpleLayout)d4.Layout).Text, "${message}4");
         }
     }
 }

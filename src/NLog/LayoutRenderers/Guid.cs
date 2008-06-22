@@ -31,12 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 using System;
 using System.Text;
 using System.Globalization;
 
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.LayoutRenderers
 {
@@ -44,7 +45,6 @@ namespace NLog.LayoutRenderers
     /// Globally-unique identifier (GUID).
     /// </summary>
     [LayoutRenderer("guid")]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class GuidLayoutRenderer: LayoutRenderer
     {
         private string _format = "N";
@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The GUID format as accepted by Guid.ToString() method.
         /// </summary>
-        [System.ComponentModel.DefaultValue("N")]
+        [DefaultValue("N")]
         public string Format
         {
             get { return _format; }

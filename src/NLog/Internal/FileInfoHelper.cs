@@ -38,7 +38,7 @@ using System.Collections;
 
 using NLog.Config;
 using NLog.Internal;
-#if !NETCF
+#if !NET_CF
 using NLog.Internal.Win32;
 #endif
 using System.IO;
@@ -53,7 +53,7 @@ namespace NLog.Internal
 
         static FileInfoHelper()
         {
-#if NETCF
+#if NET_CF
             Helper = new GenericFileInfoHelper();
 #else
             if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Windows) ||
@@ -71,7 +71,7 @@ namespace NLog.Internal
         public abstract bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime lastWriteTime, out long fileLength);
     }
 
-#if !NETCF
+#if !NET_CF
     internal class Win32FileInfoHelper : FileInfoHelper
     {
         public override bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime lastWriteTime, out long fileLength)

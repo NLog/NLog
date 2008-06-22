@@ -40,6 +40,7 @@ using NLog;
 using NLog.Config;
 
 using NUnit.Framework;
+using NLog.Layouts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -51,22 +52,19 @@ namespace NLog.UnitTests.LayoutRenderers
         [Test]
         public void BaseDirTest()
         {
-            Layout l = new Layout("${basedir}");
-            AssertLayoutRendererOutput(l, baseDir);
+            AssertLayoutRendererOutput("${basedir}", baseDir);
         }
 
         [Test]
         public void BaseDirCombineTest()
         {
-            Layout l = new Layout("${basedir:dir=aaa}");
-            AssertLayoutRendererOutput(l, Path.Combine(baseDir,"aaa"));
+            AssertLayoutRendererOutput("${basedir:dir=aaa}", Path.Combine(baseDir, "aaa"));
         }
 
         [Test]
         public void BaseDirFileCombineTest()
         {
-            Layout l = new Layout("${basedir:file=aaa.txt}");
-            AssertLayoutRendererOutput(l, Path.Combine(baseDir, "aaa.txt"));
+            AssertLayoutRendererOutput("${basedir:file=aaa.txt}", Path.Combine(baseDir, "aaa.txt"));
         }
     }
 }

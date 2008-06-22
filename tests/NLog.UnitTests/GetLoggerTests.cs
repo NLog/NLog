@@ -138,7 +138,7 @@ namespace NLog.UnitTests
 
             public void LogWithEventID(int eventID, string message, object[] par)
             {
-                LogEventInfo lei = new LogEventInfo(LogLevel.Info, this.Name, null, message, par);
+                LogEventInfo lei = new FormattedLogEventInfo(LogLevel.Info, this.Name, null, message, par);
                 lei.Context["EventID"] = eventID;
                 base.Log(typeof(MyLogger), lei);
             }

@@ -80,7 +80,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-#if NETCF_1_0
+#if NET_CF_1_0
             string msg = Convert.ToString(logEvent.Context[Item]);
 #else
             string msg = Convert.ToString(logEvent.Context[Item], CultureInfo);

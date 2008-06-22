@@ -37,17 +37,18 @@ using System.Text;
 
 using NLog.Targets;
 using NLog.Filters;
+using System.Collections.Generic;
 
 namespace NLog.Internal
 {
     internal class TargetWithFilterChain
     {
         private Target _target;
-        private FilterCollection _filterChain;
+        private ICollection<Filter> _filterChain;
         private TargetWithFilterChain _next;
         private int _needsStackTrace = 0;
 
-        public TargetWithFilterChain(Target a, FilterCollection filterChain)
+        public TargetWithFilterChain(Target a, ICollection<Filter> filterChain)
         {
             _target = a;
             _filterChain = filterChain;
@@ -65,7 +66,7 @@ namespace NLog.Internal
             set { _needsStackTrace = value; }
         }
 
-        public FilterCollection FilterChain
+        public ICollection<Filter> FilterChain
         {
             get { return _filterChain; }
         }
@@ -89,12 +90,8 @@ namespace NLog.Internal
                 int nst = app.NeedsStackTrace();
                 _needsStackTrace = Math.Max(_needsStackTrace, nst);
 
-                FilterCollection filterChain = awf.FilterChain;
-
-                for (int i = 0; i < filterChain.Count; ++i)
+                foreach (Filter filter in awf.FilterChain)
                 {
-                    Filter filter = filterChain[i];
-
                     nst = filter.NeedsStackTrace();
                     _needsStackTrace = Math.Max(_needsStackTrace, nst);
                 }

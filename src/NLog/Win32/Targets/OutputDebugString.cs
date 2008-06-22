@@ -58,8 +58,6 @@ namespace NLog.Win32.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/OutputDebugString/Simple/Example.cs" />
     /// </example>
     [Target("OutputDebugString")]
-    [SupportedRuntime(OS=RuntimeOS.Windows)]
-    [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
     public sealed class OutputDebugStringTarget: TargetWithLayout
     {
         /// <summary>
@@ -68,7 +66,7 @@ namespace NLog.Win32.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            OutputDebugString(CompiledLayout.GetFormattedMessage(logEvent));
+            OutputDebugString(Layout.GetFormattedMessage(logEvent));
         }
 
         /// <summary>

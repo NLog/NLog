@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.Text;
@@ -47,8 +47,6 @@ namespace NLog.Win32.LayoutRenderers
     /// ASP Application variable.
     /// </summary>
     [LayoutRenderer("asp-application")]
-    [SupportedRuntime(OS=RuntimeOS.Windows)]
-    [SupportedRuntime(OS=RuntimeOS.WindowsNT)]
     public class ASPApplicationValueLayoutRenderer: LayoutRenderer
     {
         private string _appVariable;

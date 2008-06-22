@@ -42,6 +42,7 @@ using NLog.Config;
 using System.IO;
 using System.Xml;
 using System.Net;
+using System.ComponentModel;
 
 namespace NLog.Targets
 {
@@ -135,7 +136,7 @@ namespace NLog.Targets
         /// <summary>
         /// The protocol to be used when calling web service.
         /// </summary>
-        [System.ComponentModel.DefaultValue("Soap11")]
+        [DefaultValue("Soap11")]
         public WebServiceProtocol Protocol
         {
             get { return _protocol; }
@@ -190,9 +191,11 @@ namespace NLog.Targets
                 xtw.WriteStartElement("soap", "Envelope", soapEnvelopeNamespace);
                 xtw.WriteStartElement("Body", soapEnvelopeNamespace);
                 xtw.WriteStartElement(MethodName, Namespace);
-                for (int i = 0; i < Parameters.Count; ++i)
+                int i = 0;
+                foreach (MethodCallParameter par in Parameters)
                 {
-                    xtw.WriteElementString(Parameters[i].Name, Convert.ToString(parameters[i]));
+                    xtw.WriteElementString(par.Name, Convert.ToString(parameters[i]));
+                    i++;
                 }
                 xtw.WriteEndElement();
                 xtw.WriteEndElement();
@@ -217,9 +220,11 @@ namespace NLog.Targets
                 xtw.WriteStartElement("soap12", "Envelope", soap12EnvelopeNamespace);
                 xtw.WriteStartElement("Body", soap12EnvelopeNamespace);
                 xtw.WriteStartElement(MethodName, Namespace);
-                for (int i = 0; i < Parameters.Count; ++i)
+                int i = 0;
+                foreach (MethodCallParameter par in Parameters)
                 {
-                    xtw.WriteElementString(Parameters[i].Name, Convert.ToString(parameters[i]));
+                    xtw.WriteElementString(par.Name, Convert.ToString(parameters[i]));
+                    i++;
                 }
                 xtw.WriteEndElement();
                 xtw.WriteEndElement();
@@ -247,9 +252,12 @@ namespace NLog.Targets
             using (Stream s = request.GetRequestStream())
             using (StreamWriter sw = new StreamWriter(s))
             {
-                for (int i = 0; i < Parameters.Count; ++i)
+                int i = 0;
+
+                foreach (MethodCallParameter par in Parameters)
                 {
-                    sw.Write(Parameters[i].Name + "=" + System.Web.HttpUtility.UrlEncodeUnicode(Convert.ToString(parameters[i])) + ((i < (Parameters.Count - 1)) ? "&" : ""));
+                    sw.Write(par.Name + "=" + System.Web.HttpUtility.UrlEncodeUnicode(Convert.ToString(parameters[i])) + ((i < (Parameters.Count - 1)) ? "&" : ""));
+                    i++;
                 }
                 sw.Flush();
             }

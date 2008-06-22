@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.Runtime.InteropServices;
@@ -45,8 +45,6 @@ namespace NLog.Win32.Targets
     /// Outputs logging messages through the ASP Response object.
     /// </summary>
     [Target("ASPResponse")]
-    [SupportedRuntime(OS=RuntimeOS.Windows,Framework=RuntimeFramework.DotNetFramework)]
-    [SupportedRuntime(OS=RuntimeOS.WindowsNT,Framework=RuntimeFramework.DotNetFramework)]
     public sealed class ASPResponseTarget: TargetWithLayout
     {
         private bool _addComments;
@@ -71,11 +69,11 @@ namespace NLog.Win32.Targets
             {
                 if (AddComments)
                 {
-                    response.Write("<!-- " + CompiledLayout.GetFormattedMessage(logEvent) + "-->");
+                    response.Write("<!-- " + Layout.GetFormattedMessage(logEvent) + "-->");
                 }
                 else
                 {
-                    response.Write(CompiledLayout.GetFormattedMessage(logEvent));
+                    response.Write(Layout.GetFormattedMessage(logEvent));
                 }
                 Marshal.ReleaseComObject(response);
             }

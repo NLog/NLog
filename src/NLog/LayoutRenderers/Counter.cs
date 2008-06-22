@@ -35,6 +35,9 @@ using System;
 using System.Text;
 using System.Collections;
 using System.Globalization;
+using System.ComponentModel;
+
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -51,7 +54,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The initial value of the counter
         /// </summary>
-        [System.ComponentModel.DefaultValue(1)]
+        [DefaultValue(1)]
         public int Value
         {
             get { return _value; }
@@ -61,7 +64,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The value to be added to the counter after each layout rendering.
         /// </summary>
-        [System.ComponentModel.DefaultValue(1)]
+        [DefaultValue(1)]
         public int Increment
         {
             get { return _increment; }

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.IO;
@@ -54,7 +54,6 @@ namespace NLog.Targets.Wrappers
     /// A target wrapper that impersonates another user for the duration of the write.
     /// </summary>
     [Target("ImpersonatingWrapper", IgnoresLayout = true, IsWrapper = true)]
-    [SupportedRuntime(OS = RuntimeOS.WindowsNT)]
     public class ImpersonatingTargetWrapper : WrapperTargetBase
     {
         private string _username;

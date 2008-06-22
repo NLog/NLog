@@ -31,13 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.Runtime.InteropServices;
 
 using NLog.Config;
 using NLog.Conditions;
+using System.ComponentModel;
 
 namespace NLog.Win32.Targets
 {
@@ -58,30 +59,17 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// The condition that must be met in order to set the specified foreground and background color.
         /// </summary>
-        [AcceptsCondition]
         [RequiredParameter]
-        public string Condition
+        public ConditionExpression Condition
         {
-            get 
-            { 
-                if (_condition == null)
-                    return null;
-                else
-                    return _condition.ToString();
-            }
-            set 
-            { 
-                if (value != null)
-                    _condition = ConditionParser.ParseExpression(value);
-                else
-                    _condition = null;
-            }
+            get { return _condition; }
+            set { _condition = value; }
         }
 
         /// <summary>
         /// The foreground color.
         /// </summary>
-        [System.ComponentModel.DefaultValue("NoChange")]
+        [DefaultValue("NoChange")]
         public ConsoleOutputColor ForegroundColor
         {
             get { return _foregroundColor; }
@@ -91,7 +79,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// The background color.
         /// </summary>
-        [System.ComponentModel.DefaultValue("NoChange")]
+        [DefaultValue("NoChange")]
         public ConsoleOutputColor BackgroundColor
         {
             get { return _backgroundColor; }
@@ -109,7 +97,7 @@ namespace NLog.Win32.Targets
         /// Creates a new instance of <see cref="ConsoleRowHighlightingRule"/> and
         /// assigns Condition, ForegroundColor and BackgroundColor properties.
         /// </summary>
-        public ConsoleRowHighlightingRule(string condition, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor)
+        public ConsoleRowHighlightingRule(ConditionExpression condition, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor)
         {
             Condition = condition;
             ForegroundColor = foregroundColor;
@@ -124,9 +112,9 @@ namespace NLog.Win32.Targets
         /// if it matches, <see langword="false"/> otherwise</returns>
         public bool CheckCondition(LogEventInfo logEvent)
         {
-            if (_condition == null)
+            if (Condition == null)
                 return true;
-            return true.Equals(_condition.Evaluate(logEvent));
+            return true.Equals(Condition.Evaluate(logEvent));
         }
     }
 }

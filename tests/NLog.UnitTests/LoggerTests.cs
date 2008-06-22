@@ -210,6 +210,9 @@ namespace NLog.UnitTests
                 logger.TraceException("message", new Exception("test"));
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
+                logger.Trace(delegate { return "message from lambda"; });
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
+
                 if (enabled == 0)
                     AssertDebugCounter("debug", 0);
             }
@@ -379,6 +382,9 @@ namespace NLog.UnitTests
             
                 logger.DebugException("message", new Exception("test"));
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Debug(delegate { return "message from lambda"; });
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
 
                 if (enabled == 0)
                     AssertDebugCounter("debug", 0);
@@ -550,6 +556,9 @@ namespace NLog.UnitTests
                 logger.InfoException("message", new Exception("test"));
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
+                logger.Info(delegate { return "message from lambda"; });
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
+
                 if (enabled == 0)
                     AssertDebugCounter("debug", 0);
             }
@@ -719,6 +728,9 @@ namespace NLog.UnitTests
             
                 logger.WarnException("message", new Exception("test"));
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Warn(delegate { return "message from lambda"; });
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
 
                 if (enabled == 0)
                     AssertDebugCounter("debug", 0);
@@ -890,6 +902,9 @@ namespace NLog.UnitTests
                 logger.ErrorException("message", new Exception("test"));
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
+                logger.Error(delegate { return "message from lambda"; });
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
+
                 if (enabled == 0)
                     AssertDebugCounter("debug", 0);
             }
@@ -1059,6 +1074,9 @@ namespace NLog.UnitTests
             
                 logger.FatalException("message", new Exception("test"));
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.Fatal(delegate { return "message from lambda"; });
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
 
                 if (enabled == 0)
                     AssertDebugCounter("debug", 0);
@@ -1234,6 +1252,9 @@ namespace NLog.UnitTests
                     logger.LogException(level, "message", new Exception("test"));
                     if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
+                    logger.Log(level, delegate { return "message from lambda"; });
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
+                    
                     if (enabled == 0)
                         AssertDebugCounter("debug", 0);
                 }

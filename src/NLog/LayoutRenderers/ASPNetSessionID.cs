@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.Text;
@@ -45,7 +45,6 @@ namespace NLog.LayoutRenderers
     /// ASP.NET Session ID.
     /// </summary>                 
     [LayoutRenderer("aspnet-sessionid")]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ASPNETSessionIDLayoutRenderer: LayoutRenderer
     {
         /// <summary>

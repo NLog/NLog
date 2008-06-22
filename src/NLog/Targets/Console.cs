@@ -33,6 +33,7 @@
 
 using System;
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.Targets
 {
@@ -57,14 +58,13 @@ namespace NLog.Targets
     [Target("Console")]
     public sealed class ConsoleTarget: TargetWithLayoutHeaderAndFooter
     {
-#if !NETCF
+#if !NET_CF
         private bool _error = false;
 
         /// <summary>
         /// Send the logging messages to the standard error instead of the standard output.
         /// </summary>
-        [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool Error
         {
             get { return _error; }
@@ -82,12 +82,12 @@ namespace NLog.Targets
         /// </remarks>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            Output(CompiledLayout.GetFormattedMessage(logEvent));
+            Output(Layout.GetFormattedMessage(logEvent));
         }
 
         private void Output(string s)
         {
-#if !NETCF
+#if !NET_CF
             if (Error)
             {
                 Console.Error.WriteLine(s);
@@ -107,9 +107,9 @@ namespace NLog.Targets
         public override void Initialize()
         {
             base.Initialize();
-            if (CompiledHeader != null)
+            if (Header != null)
             {
-                Output(CompiledHeader.GetFormattedMessage(LogEventInfo.CreateNullEvent()));
+                Output(Header.GetFormattedMessage(LogEventInfo.CreateNullEvent()));
             }
         }
 
@@ -118,9 +118,9 @@ namespace NLog.Targets
         /// </summary>
         protected internal override void Close()
         {
-            if (CompiledFooter != null)
+            if (Footer != null)
             {
-                Output(CompiledFooter.GetFormattedMessage(LogEventInfo.CreateNullEvent()));
+                Output(Footer.GetFormattedMessage(LogEventInfo.CreateNullEvent()));
             }
             base.Close();
         }

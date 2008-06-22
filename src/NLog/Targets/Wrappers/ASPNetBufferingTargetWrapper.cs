@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.IO;
@@ -44,6 +44,7 @@ using NLog.Internal;
 using System.Web;
 
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.Targets.Wrappers
 {
@@ -98,7 +99,6 @@ namespace NLog.Targets.Wrappers
     /// </p>
     /// </example>
     [Target("ASPNetBufferingWrapper", IgnoresLayout = true, IsWrapper = true)]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ASPNetBufferingTargetWrapper: WrapperTargetBase
     {
         private object _dataSlot = new object();
@@ -136,7 +136,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// The number of log events to be buffered.
         /// </summary>
-        [System.ComponentModel.DefaultValue(4000)]
+        [DefaultValue(4000)]
         public int BufferSize
         {
             get { return _bufferSize; }
@@ -150,7 +150,7 @@ namespace NLog.Targets.Wrappers
         /// true causes the buffer to expand until <see cref="BufferGrowLimit" /> is hit,
         /// false causes the buffer to never expand and lose the earliest entries in case of overflow.
         /// </remarks>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool GrowBufferAsNeeded
         {
             get { return _growBufferAsNeeded; }

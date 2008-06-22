@@ -40,6 +40,7 @@ using System.Collections;
 
 using NLog.Internal;
 using NLog.Config;
+using NLog.Layouts;
 
 namespace NLog.Targets
 {
@@ -53,7 +54,7 @@ namespace NLog.Targets
         /// </summary>
         public NLogViewerParameterInfo(){}
 
-        private Layout _compiledlayout;
+        private Layout _layout;
         private string _name;
 
         /// <summary>
@@ -70,20 +71,10 @@ namespace NLog.Targets
         /// The layout that should be use to calcuate the value for the parameter.
         /// </summary>
         [RequiredParameter]
-        [AcceptsLayout]
-        public string Layout
+        public Layout Layout
         {
-            get { return _compiledlayout.Text; }
-            set { _compiledlayout = new Layout(value); }
-        }
-
-        /// <summary>
-        /// The compiled representation of the Layout property.
-        /// </summary>
-        public Layout CompiledLayout
-        {
-            get { return _compiledlayout; }
-            set { _compiledlayout = value; }
+            get { return _layout; }
+            set { _layout = value; }
         }
     }
 }

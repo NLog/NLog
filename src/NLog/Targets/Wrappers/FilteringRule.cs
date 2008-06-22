@@ -61,40 +61,20 @@ namespace NLog.Targets.Wrappers
         /// Condition to be tested.
         /// </summary>
         [RequiredParameter]
-        [AcceptsCondition]
-        public string Exists
+        public ConditionExpression Exists
         {
-            get { return _exists.ToString(); }
-            set { _exists = ConditionParser.ParseExpression(value); }
+            get { return _exists; }
+            set { _exists = value; }
         }
 
         /// <summary>
         /// Resulting filter to be applied when the condition matches.
         /// </summary>
         [RequiredParameter]
-        [AcceptsCondition]
-        public string Filter
-        {
-            get { return _filter.ToString(); }
-            set { _filter = ConditionParser.ParseExpression(value); }
-        }
-
-        /// <summary>
-        /// Parsed Filter condition.
-        /// </summary>
-        public ConditionExpression FilterCondition 
+        public ConditionExpression Filter
         {
             get { return _filter; }
             set { _filter = value; }
-        }
-
-        /// <summary>
-        /// Parsed Exists condition.
-        /// </summary>
-        public ConditionExpression ExistsCondition
-        {
-            get { return _exists; }
-            set { _exists = value; }
         }
     }
 }

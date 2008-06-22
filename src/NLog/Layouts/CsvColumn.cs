@@ -31,13 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Reflection;
-using System.Globalization;
-
 using NLog.Config;
 
 namespace NLog.Layouts
@@ -47,7 +40,7 @@ namespace NLog.Layouts
     /// </summary>
     public class CsvColumn
     {
-        private Layout _compiledlayout;
+        private Layout _layout;
         private string _name;
 
         /// <summary>
@@ -79,21 +72,11 @@ namespace NLog.Layouts
         /// <summary>
         /// The layout that should be written in the column.
         /// </summary>
-        [AcceptsLayout]
         [RequiredParameter]
-        public string Layout
+        public Layout Layout
         {
-            get { return _compiledlayout.Text; }
-            set { _compiledlayout = new Layout(value); }
-        }
-
-        /// <summary>
-        /// The compiled layout that should be written in the column.
-        /// </summary>
-        public Layout CompiledLayout
-        {
-            get { return _compiledlayout; }
-            set { _compiledlayout = value; }
+            get { return _layout; }
+            set { _layout = value; }
         }
     }
 }

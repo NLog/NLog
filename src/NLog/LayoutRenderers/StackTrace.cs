@@ -31,13 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 using System;
 using System.Text;
 using System.Diagnostics;
 using System.Reflection;
 
 using NLog.Config;
+using System.ComponentModel;
 
 namespace NLog.LayoutRenderers
 {
@@ -66,7 +67,6 @@ namespace NLog.LayoutRenderers
     /// Stack trace renderer.
     /// </summary>
     [LayoutRenderer("stacktrace",UsingLogEventInfo=true,IgnoresPadding=true)]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class StackTraceLayoutRenderer: LayoutRenderer
     {
         private StackTraceFormat _format = StackTraceFormat.Flat;
@@ -76,7 +76,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The output format of the stack trace.
         /// </summary>
-        [System.ComponentModel.DefaultValue("Flat")]
+        [DefaultValue("Flat")]
         public StackTraceFormat Format
         {
             get { return _format; }
@@ -86,7 +86,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The number of top stack frames to be rendered.
         /// </summary>
-        [System.ComponentModel.DefaultValue(3)]
+        [DefaultValue(3)]
         public int TopFrames
         {
             get { return _topFrames; }
@@ -96,7 +96,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Stack frame separator string.
         /// </summary>
-        [System.ComponentModel.DefaultValue(" => ")]
+        [DefaultValue(" => ")]
         public string Separator
         {
             get { return _separator; }

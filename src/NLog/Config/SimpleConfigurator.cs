@@ -46,7 +46,7 @@ namespace NLog.Config
     /// </summary>
     public class SimpleConfigurator
     {
-#if !NETCF
+#if !NET_CF
         /// <summary>
         /// Configures NLog for console logging so that all messages above and including
         /// the <see cref="LogLevel.Info"/> level are output to the console.

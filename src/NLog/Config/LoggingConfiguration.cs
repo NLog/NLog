@@ -40,6 +40,7 @@ using System.Reflection;
 using NLog;
 using NLog.Internal;
 using NLog.Targets;
+using System.Collections.Generic;
 
 namespace NLog.Config
 {
@@ -49,9 +50,9 @@ namespace NLog.Config
     /// </summary>
     public class LoggingConfiguration
     {
-        internal TargetDictionary _targets = new TargetDictionary();
-        internal TargetCollection _aliveTargets = new TargetCollection();
-        private LoggingRuleCollection _loggingRules = new LoggingRuleCollection();
+        internal IDictionary<string, Target> _targets = new Dictionary<string, Target>();
+        internal ICollection<Target> _aliveTargets = new List<Target>();
+        private IList<LoggingRule> _loggingRules = new List<LoggingRule>();
 
         /// <summary>
         /// Creates new instance of LoggingConfiguration object.
@@ -87,13 +88,18 @@ namespace NLog.Config
         /// <returns>Found target or <see langword="null" /> when the target is not found.</returns>
         public Target FindTargetByName(string name)
         {
-            return _targets[name.ToLower(CultureInfo.InvariantCulture)];
+            Target value;
+
+            if (!_targets.TryGetValue(name.ToLower(CultureInfo.InvariantCulture), out value))
+                return null;
+
+            return value;
         }
 
         /// <summary>
         /// The collection of logging rules
         /// </summary>
-        public LoggingRuleCollection LoggingRules
+        public IList<LoggingRule> LoggingRules
         {
             get { return _loggingRules; }
         }
@@ -163,18 +169,13 @@ namespace NLog.Config
         /// <summary>
         /// Returns a collection of named targets specified in the configuration.
         /// </summary>
-        /// <returns>A <see cref="TargetCollection"/> object that contains a list of named targets.</returns>
+        /// <returns>A list of named targets.</returns>
         /// <remarks>
         /// Unnamed targets (such as those wrapped by other targets) are not returned.
         /// </remarks>
-        public TargetCollection GetConfiguredNamedTargets()
+        public IList<Target> GetConfiguredNamedTargets()
         {
-            TargetCollection tc = new TargetCollection();
-            foreach (Target t in _targets.Values)
-            {
-                tc.Add(t);
-            }
-            return tc;
+            return new List<Target>(_targets.Values);
         }
 
 

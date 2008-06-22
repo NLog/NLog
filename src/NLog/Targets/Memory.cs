@@ -35,6 +35,7 @@ using System;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using NLog.Config;
 
 namespace NLog.Targets
 {
@@ -67,7 +68,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            _logs.Add(CompiledLayout.GetFormattedMessage(logEvent));
+            _logs.Add(Layout.GetFormattedMessage(logEvent));
         }
 
         /// <summary>

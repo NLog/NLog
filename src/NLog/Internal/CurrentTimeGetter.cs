@@ -40,7 +40,7 @@ using NLog.Config;
 using NLog.Internal;
 using System.Runtime.InteropServices;
 
-namespace NLog
+namespace NLog.Internal
 {
     internal class CurrentTimeGetter
     {

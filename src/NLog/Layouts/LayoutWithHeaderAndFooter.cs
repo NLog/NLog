@@ -3,6 +3,7 @@ using System.Text;
 using NLog.Config;
 using System.Globalization;
 using System;
+using System.Collections.Generic;
 
 namespace NLog.Layouts
 {
@@ -10,11 +11,11 @@ namespace NLog.Layouts
     /// A specialized layout that supports header and footer.
     /// </summary>
     [Layout("LayoutWithHeaderAndFooter")]
-    public class LayoutWithHeaderAndFooter : ILayout, ILayoutWithHeaderAndFooter
+    public class LayoutWithHeaderAndFooter : Layout
     {
-        private ILayout _header = null;
-        private ILayout _footer = null;
-        private ILayout _layout = null;
+        private Layout _header = null;
+        private Layout _footer = null;
+        private Layout _layout = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LayoutWithHeaderAndFooter"/> class.
@@ -27,7 +28,7 @@ namespace NLog.Layouts
         /// Main layout (can be repeated multiple times)
         /// </summary>
         /// <value></value>
-        public ILayout Layout
+        public Layout Layout
         {
             get { return _layout; }
             set { _layout = value; }
@@ -37,7 +38,7 @@ namespace NLog.Layouts
         /// Header
         /// </summary>
         /// <value></value>
-        public ILayout Header
+        public Layout Header
         {
             get { return _header; }
             set { _header = value; }
@@ -47,7 +48,7 @@ namespace NLog.Layouts
         /// Footer
         /// </summary>
         /// <value></value>
-        public ILayout Footer
+        public Layout Footer
         {
             get { return _footer; }
             set { _footer = value; }
@@ -58,7 +59,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         /// <returns>The rendered layout.</returns>
-        public string GetFormattedMessage(LogEventInfo logEvent)
+        public override string GetFormattedMessage(LogEventInfo logEvent)
         {
             return _layout.GetFormattedMessage(logEvent);
         }
@@ -70,7 +71,7 @@ namespace NLog.Layouts
         /// <returns>
         /// 0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace
         /// </returns>
-        public int NeedsStackTrace()
+        public override int NeedsStackTrace()
         {
             int max = Layout.NeedsStackTrace();
             if (Header != null)
@@ -92,7 +93,7 @@ namespace NLog.Layouts
         /// Volatile layout renderers are dependent on information not contained
         /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
         /// </remarks>
-        public bool IsVolatile()
+        public override bool IsVolatile()
         {
             if (Layout.IsVolatile())
                 return true;
@@ -116,7 +117,7 @@ namespace NLog.Layouts
         /// and/or potentially evaluate it in another thread even though the
         /// layout may contain thread-dependent renderer.
         /// </remarks>
-        public void Precalculate(LogEventInfo logEvent)
+        public override void Precalculate(LogEventInfo logEvent)
         {
             Layout.Precalculate(logEvent);
             if (Header != null)
@@ -128,7 +129,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Initializes the layout.
         /// </summary>
-        public void Initialize()
+        public override void Initialize()
         {
             Layout.Initialize();
             if (Header != null)
@@ -140,7 +141,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Closes the layout.
         /// </summary>
-        public void Close()
+        public override void Close()
         {
             Layout.Close();
             if (Header != null)
@@ -153,10 +154,11 @@ namespace NLog.Layouts
         /// Add this layout and all sub-layouts to the specified collection..
         /// </summary>
         /// <param name="layouts">The collection of layouts.</param>
-        public void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             layouts.Add(this);
-            Layout.PopulateLayouts(layouts);
+            if (Layout != null)
+                Layout.PopulateLayouts(layouts);
             if (Header != null)
                 Header.PopulateLayouts(layouts);
             if (Footer != null)

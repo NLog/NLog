@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.Reflection;
@@ -47,6 +47,11 @@ namespace NLog.Internal.Win32
         public const int FILE_SHARE_READ = 1;
         public const int FILE_SHARE_WRITE = 2;
         public const int FILE_SHARE_DELETE = 4;
+
+        // to prevent construction
+        private Win32FileHelper()
+        {
+        }
 
         [Flags]
         public enum FileAccess : uint

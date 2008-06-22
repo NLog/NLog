@@ -55,18 +55,10 @@ namespace NLog.Internal.NetworkSenders
             // tcp://hostname:port
 
             Uri parsedUri = new Uri(url);
-#if NET_2_API
             IPHostEntry host = Dns.GetHostEntry(parsedUri.Host);
-#else
-            IPHostEntry host = Dns.GetHostByName(parsedUri.Host);
-#endif
             int port = parsedUri.Port;
 
-#if NETCF_1_0
-            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-#else
             _socket = new Socket(host.AddressList[0].AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-#endif
             _socket.Connect(new IPEndPoint(host.AddressList[0], port));
         }
 

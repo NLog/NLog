@@ -39,6 +39,7 @@ using System.Reflection;
 using System.Globalization;
 
 using NLog.Config;
+using NLog.Layouts;
 
 namespace NLog.Targets
 {
@@ -48,7 +49,7 @@ namespace NLog.Targets
     public class MethodCallParameter
     {
         private Type _type;
-        private Layout _compiledlayout;
+        private Layout _layout;
         private string _name;
 
         /// <summary>
@@ -114,24 +115,15 @@ namespace NLog.Targets
         /// The layout that should be use to calcuate the value for the parameter.
         /// </summary>
         [RequiredParameter]
-        public string Layout
+        public Layout Layout
         {
-            get { return _compiledlayout.Text; }
-            set { _compiledlayout = new Layout(value); }
-        }
-
-        /// <summary>
-        /// The compiled layout that should be use to calcuate the value for the parameter.
-        /// </summary>
-        public Layout CompiledLayout
-        {
-            get { return _compiledlayout; }
-            set { _compiledlayout = value; }
+            get { return _layout; }
+            set { _layout = value; }
         }
 
         internal object GetValue(LogEventInfo logEvent)
         {
-            return Convert.ChangeType(CompiledLayout.GetFormattedMessage(logEvent), _type, CultureInfo.InvariantCulture);
+            return Convert.ChangeType(Layout.GetFormattedMessage(logEvent), _type, CultureInfo.InvariantCulture);
         }
     }
 }

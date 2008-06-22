@@ -40,6 +40,9 @@ using System.Collections;
 
 using NLog.Internal;
 using NLog.Config;
+using System.Collections.Generic;
+using System.ComponentModel;
+using NLog.Layouts;
 
 namespace NLog.Targets
 {
@@ -72,12 +75,12 @@ namespace NLog.Targets
         private bool _keepConnection = true;
         private bool _useTransaction = false;
         private Layout _connectionString = null;
-        private Layout _dbHostLayout = new Layout(".");
+        private Layout _dbHostLayout = ".";
         private Layout _dbUserNameLayout = null;
         private Layout _dbPasswordLayout = null;
         private Layout _dbDatabaseLayout = null;
-        private Layout _compiledCommandTextLayout = null;
-        private DatabaseParameterInfoCollection _parameters = new DatabaseParameterInfoCollection();
+        private Layout _commandTextLayout = null;
+        private ICollection<DatabaseParameterInfo> _parameters = new List<DatabaseParameterInfo>();
         private IDbConnection _activeConnection = null;
         private string _connectionStringCache = null;
 
@@ -96,7 +99,7 @@ namespace NLog.Targets
         /// it's treated as a fully qualified type name of the data provider *Connection class.
         /// </summary>
         [RequiredParameter]
-        [System.ComponentModel.DefaultValue("sqlserver")]
+        [DefaultValue("sqlserver")]
         public string DBProvider
         {
             get { return _connectionType.FullName; }
@@ -130,17 +133,16 @@ namespace NLog.Targets
         /// The connection string. When provided, it overrides the values
         /// specified in DBHost, DBUserName, DBPassword, DBDatabase.
         /// </summary>
-        [AcceptsLayout]
-        public string ConnectionString
+        public Layout ConnectionString
         {
-            get { return Convert.ToString(_connectionString); }
-            set { _connectionString = new Layout(value); }
+            get { return _connectionString; }
+            set { _connectionString = value; }
         }
 
         /// <summary>
         /// Keep the database connection open between the log events.
         /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
+        [DefaultValue(true)]
         public bool KeepConnection
         {
             get { return _keepConnection; }
@@ -150,7 +152,7 @@ namespace NLog.Targets
         /// <summary>
         /// Use database transactions. Some data providers require this.
         /// </summary>
-        [System.ComponentModel.DefaultValue(false)]
+        [DefaultValue(false)]
         public bool UseTransactions
         {
             get
@@ -166,11 +168,10 @@ namespace NLog.Targets
         /// this value will be used to construct the "Server=" part of the
         /// connection string.
         /// </summary>
-        [AcceptsLayout]
-        public string DBHost
+        public Layout DBHost
         {
             get { return Convert.ToString(_dbHostLayout); }
-            set { _dbHostLayout = new Layout(value); }
+            set { _dbHostLayout = value; }
         }
 
         /// <summary>
@@ -189,11 +190,10 @@ namespace NLog.Targets
         /// this value will be used to construct the "User ID=" part of the
         /// connection string.
         /// </summary>
-        [AcceptsLayout]
-        public string DBUserName
+        public Layout DBUserName
         {
             get { return Convert.ToString(_dbUserNameLayout); }
-            set { _dbUserNameLayout = new Layout(value); }
+            set { _dbUserNameLayout = value; }
         }
 
         /// <summary>
@@ -212,11 +212,10 @@ namespace NLog.Targets
         /// this value will be used to construct the "Password=" part of the
         /// connection string.
         /// </summary>
-        [AcceptsLayout]
         public string DBPassword
         {
             get { return Convert.ToString(_dbPasswordLayout); }
-            set { _dbPasswordLayout = new Layout(value); }
+            set { _dbPasswordLayout = value; }
         }
 
         /// <summary>
@@ -235,11 +234,10 @@ namespace NLog.Targets
         /// this value will be used to construct the "Database=" part of the
         /// connection string.
         /// </summary>
-        [AcceptsLayout]
         public string DBDatabase
         {
             get { return Convert.ToString(_dbDatabaseLayout); }
-            set { _dbDatabaseLayout = new Layout(value); }
+            set { _dbDatabaseLayout = value; }
         }
 
         /// <summary>
@@ -264,12 +262,11 @@ namespace NLog.Targets
         /// because the latter is prone to SQL injection attacks.
         /// The layout renderers should be specified as &lt;parameters />&gt; instead.
         /// </remarks>
-        [AcceptsLayout]
         [RequiredParameter]
         public string CommandText
         {
-            get { return Convert.ToString(_compiledCommandTextLayout); }
-            set { _compiledCommandTextLayout = new Layout(value); }
+            get { return Convert.ToString(_commandTextLayout); }
+            set { _commandTextLayout = value; }
         }
 
         /// <summary>
@@ -285,8 +282,8 @@ namespace NLog.Targets
         /// </remarks>
         public Layout CommandTextLayout
         {
-            get { return _compiledCommandTextLayout; }
-            set { _compiledCommandTextLayout = value; }
+            get { return _commandTextLayout; }
+            set { _commandTextLayout = value; }
         }
 
         /// <summary>
@@ -294,7 +291,7 @@ namespace NLog.Targets
         /// between NLog layout and a database named or positional parameter.
         /// </summary>
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
-        public DatabaseParameterInfoCollection Parameters
+        public ICollection<DatabaseParameterInfo> Parameters
         {
             get { return _parameters; }
         }
@@ -338,7 +335,7 @@ namespace NLog.Targets
         /// Adds all layouts used by this target to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             base.PopulateLayouts (layouts);
 
@@ -348,11 +345,8 @@ namespace NLog.Targets
             if (DBPasswordLayout != null) DBPasswordLayout.PopulateLayouts(layouts);
             if (CommandTextLayout != null) CommandTextLayout.PopulateLayouts(layouts);
 
-            for (int i = 0; i < Parameters.Count; ++i)
-            {
-                if (Parameters[i].CompiledLayout != null)
-                    Parameters[i].CompiledLayout.PopulateLayouts(layouts);
-            }
+            foreach (DatabaseParameterInfo pi in Parameters)
+                pi.Layout.PopulateLayouts(layouts);
         }
 
         private void DoAppend(LogEventInfo logEvent)
@@ -371,7 +365,7 @@ namespace NLog.Targets
                     p.Precision = par.Precision;
                 if (par.Scale != 0)
                     p.Scale = par.Scale;
-                p.Value = par.CompiledLayout.GetFormattedMessage(logEvent);
+                p.Value = par.Layout.GetFormattedMessage(logEvent);
                 command.Parameters.Add(p);
             }
             command.ExecuteNonQuery();

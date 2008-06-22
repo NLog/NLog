@@ -37,19 +37,15 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 
-#if DOTNET_1_0
-[assembly: AssemblyTitle("NLog for .NET 1.0")]
-#elif DOTNET_1_1
-[assembly: AssemblyTitle("NLog for .NET 1.1")]
-#elif DOTNET_2_0
+#if NET_2_0
 [assembly: AssemblyTitle("NLog for .NET 2.0")]
 #elif MONO_1_0
 [assembly: AssemblyTitle("NLog for Mono 1.0")]
 #elif MONO_2_0
 [assembly: AssemblyTitle("NLog for Mono 2.0")]
-#elif NETCF_1_0
+#elif NET_CF_1_0
 [assembly: AssemblyTitle("NLog for .NET Compact Framework 1.0")]
-#elif NETCF_2_0
+#elif NET_CF_2_0
 [assembly: AssemblyTitle("NLog for .NET Compact Framework 2.0")]
 #elif DOCUMENTATION
 [assembly: AssemblyTitle("NLog Documentation")]
@@ -65,7 +61,7 @@ using System.Security.Permissions;
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]
 
-#if !NETCF
+#if !NET_CF
 //[assembly: ReflectionPermission(SecurityAction.RequestMinimum, MemberAccess = true, TypeInformation = true)]
 //[assembly: SecurityPermission(SecurityAction.RequestMinimum, Flags = SecurityPermissionFlag.Execution)]
 //[assembly: FileIOPermission(SecurityAction.RequestMinimum, Unrestricted = true)]

@@ -34,6 +34,7 @@
 using System;
 using System.Text;
 using System.Globalization;
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {

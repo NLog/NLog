@@ -39,6 +39,8 @@ using System.Reflection;
 using System.Globalization;
 
 using NLog.Config;
+using System.Collections.Generic;
+using NLog.Layouts;
 
 namespace NLog.Targets
 {
@@ -48,7 +50,7 @@ namespace NLog.Targets
     /// </summary>
     public abstract class MethodCallTargetBase: Target
     {
-        private MethodCallParameterCollection _parameters = new MethodCallParameterCollection();
+        private ICollection<MethodCallParameter> _parameters = new List<MethodCallParameter>();
 
         /// <summary>
         /// Prepares an array of parameters to be passed based on the logging event and calls DoInvoke()
@@ -57,9 +59,11 @@ namespace NLog.Targets
         protected internal override void Write(LogEventInfo logEvent)
         {
             object[]parameters = new object[Parameters.Count];
-            for (int i = 0; i < parameters.Length; ++i)
+            int i = 0;
+
+            foreach (MethodCallParameter mcp in _parameters)
             {
-                parameters[i] = Parameters[i].GetValue(logEvent);
+                parameters[i++] = mcp.GetValue(logEvent);
             }
 
             DoInvoke(parameters);
@@ -75,18 +79,20 @@ namespace NLog.Targets
         /// Adds all layouts used by this target to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             base.PopulateLayouts (layouts);
-            for (int i = 0; i < Parameters.Count; ++i)
-                Parameters[i].CompiledLayout.PopulateLayouts(layouts);
+            foreach (MethodCallParameter p in Parameters)
+            {
+                p.Layout.PopulateLayouts(layouts);
+            }
         }
 
         /// <summary>
         /// Array of parameters to be passed.
         /// </summary>
         [ArrayParameter(typeof(MethodCallParameter), "parameter")]
-        public MethodCallParameterCollection Parameters
+        public ICollection<MethodCallParameter> Parameters
         {
             get { return _parameters; }
         }

@@ -137,8 +137,8 @@
     </target>
 
     <target name="update-build-number">
-        <exec program="tools/UpdateBuildNumber.exe" commandline="NLog.version src/NLog/AssemblyBuildInfo.cs build/NLog.buildversion" useruntimeengine="true" />
-        <exec program="tools/UpdateBuildNumber.exe" commandline="NLog.version src/NLog.ComInterop/AssemblyBuildInfo.cs build/NLog.buildversion" useruntimeengine="true" />
+        <exec program="tools/RewriteBuildNumber.exe" commandline="NLog.version src/NLog/AssemblyBuildInfo.cs build/NLog.buildversion" useruntimeengine="true" />
+        <exec program="tools/RewriteBuildNumber.exe" commandline="NLog.version src/NLog.ComInterop/AssemblyBuildInfo.cs build/NLog.buildversion" useruntimeengine="true" />
         <foreach item="Line" in="build/NLog.buildversion" delim="." property="tmp1,tmp2,tmp3,tmp4">
             <property name="nlog.version.major" value="${tmp1}" />
             <property name="nlog.version.minor" value="${tmp2}" />
@@ -150,7 +150,7 @@
     </target>
 
     <target name="NLog" depends="configure, update-build-number">
-        <csc target="library" output="${nlog.dir}/NLog.dll" doc="${nlog.dir}/NLog.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}" warnaserror="true">
+        <csc target="library" output="${nlog.dir}/NLog.dll" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}" warnaserror="true">
             <sources basedir="src">
                 <include name="NLog/**/*.cs" />
             </sources>
@@ -410,7 +410,8 @@
         <property name="nlog.dir" value="${environment::get-folder-path('ProgramFiles')}\NLog\bin\${framework::get-target-framework()}" unless="${property::exists('nlog.dir')}" />
     </target>
 
-    <target name="NLogC" depends="NLog, NLogC-${framework::get-target-framework()}">
+    <target name="NLogC" depends="NLog">
+        <call target="NLogC-${framework::get-target-framework()}" failonerror="false" />
         <copy todir="${nlog.dir}/include">
             <fileset basedir="tests/NLogC">
                 <include name="NLogC.h" />
@@ -891,23 +892,10 @@
     <target name="sln">
         <call target="clean" />
 
-
-        <property name="oldframework" value="${nant.settings.currentframework}" />
-        
-        <property name="nant.settings.currentframework" value="net-1.1" failonerror="false" />
-
-        <solution configuration="Release" solutionfile="NLog.vs2003.sln" />
-        <solution configuration="Debug" solutionfile="NLog.vs2003.sln" />
-        <solution configuration="Release" solutionfile="tests/NLogTests.vs2003.sln" />
-        <solution configuration="Debug" solutionfile="tests/NLogTests.vs2003.sln" />
-        <property name="nant.settings.currentframework" value="${oldframework}" failonerror="false" />
-
-        <call target="clean" />
-
-        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Debug /t:Rebuild NLog.vs2005.sln" />
-        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Release /t:Rebuild NLog.vs2005.sln" />
-        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Debug /t:Rebuild tests\NLogTests.vs2005.sln" />
-        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Release /t:Rebuild tests\NLogTests.vs2005.sln" />
+        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Debug /t:Rebuild NLog.sln" />
+        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Release /t:Rebuild NLog.sln" />
+        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Debug /t:Rebuild tests\NLogTests.sln" />
+        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Release /t:Rebuild tests\NLogTests.sln" />
 
         <call target="clean" />
     </target>

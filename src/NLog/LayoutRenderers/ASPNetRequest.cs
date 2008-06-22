@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 
 using System;
 using System.Text;
@@ -60,7 +60,6 @@ namespace NLog.LayoutRenderers
     /// </code>
     /// </example>
     [LayoutRenderer("aspnet-request")]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ASPNETRequestValueLayoutRenderer : LayoutRenderer
     {
         private string _queryStringKey;

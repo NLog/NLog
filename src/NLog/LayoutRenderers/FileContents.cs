@@ -37,6 +37,7 @@ using System.IO;
 using NLog.Internal;
 using System.ComponentModel;
 using NLog.Config;
+using NLog.Layouts;
 
 namespace NLog.LayoutRenderers
 {
@@ -81,10 +82,10 @@ namespace NLog.LayoutRenderers
         /// File encoding.
         /// </summary>
         /// <value>The encoding.</value>
-        public string Encoding
+        public Encoding Encoding
         {
-            get { return _encoding.WebName; }
-            set { _encoding = System.Text.Encoding.GetEncoding(value); }
+            get { return _encoding; }
+            set { _encoding = value; }
         }
 
         /// <summary>

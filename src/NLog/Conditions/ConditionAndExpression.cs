@@ -31,9 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Collections;
+using System.Collections.Generic;
+using NLog.Layouts;
 
 namespace NLog.Conditions 
 {
@@ -98,7 +97,7 @@ namespace NLog.Conditions
         /// Adds all layouts used by this expression to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             Left.PopulateLayouts(layouts);
             Right.PopulateLayouts(layouts);

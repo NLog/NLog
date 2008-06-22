@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
+#if !NET_CF
 using System;
 using System.Text;
 
@@ -43,7 +43,6 @@ namespace NLog.LayoutRenderers
     /// The name of the current thread.
     /// </summary>
     [LayoutRenderer("threadname")]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
     public class ThreadNameLayoutRenderer: LayoutRenderer
     {
         /// <summary>

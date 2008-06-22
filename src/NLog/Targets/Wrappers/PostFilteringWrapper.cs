@@ -42,6 +42,8 @@ using System.Diagnostics;
 using NLog.Internal;
 using NLog.Config;
 using NLog.Conditions;
+using System.Collections.Generic;
+using NLog.Layouts;
 
 namespace NLog.Targets.Wrappers
 {
@@ -76,7 +78,7 @@ namespace NLog.Targets.Wrappers
     public class PostFilteringTargetWrapper: WrapperTargetBase
     {
         private ConditionExpression _defaultFilter;
-        private FilteringRuleCollection _rules = new FilteringRuleCollection();
+        private ICollection<FilteringRule> _rules = new List<FilteringRule>();
 
         /// <summary>
         /// Creates a new instance of <see cref="PostFilteringTargetWrapper"/>.
@@ -100,7 +102,7 @@ namespace NLog.Targets.Wrappers
         /// be applied to log events.
         /// </summary>
         [ArrayParameter(typeof(FilteringRule), "when")]
-        public FilteringRuleCollection Rules
+        public ICollection<FilteringRule> Rules
         {
             get { return _rules; }
         }
@@ -126,15 +128,15 @@ namespace NLog.Targets.Wrappers
 
             for (int i = 0; i < logEvents.Length; ++i)
             {
-                for (int j = 0; j < _rules.Count; ++j)
+                foreach (FilteringRule rule in _rules)
                 {
-                    object v = _rules[j].ExistsCondition.Evaluate(logEvents[i]);
+                    object v = rule.Exists.Evaluate(logEvents[i]);
 
                     if (v is bool && (bool)v)
                     {
                         if (InternalLogger.IsTraceEnabled)
-                            InternalLogger.Trace("Rule matched: {0}", _rules[j].ExistsCondition);
-                        resultFilter = _rules[j].FilterCondition;
+                            InternalLogger.Trace("Rule matched: {0}", rule.Exists);
+                        resultFilter = rule.Filter;
                         break;
                     }
                 }
@@ -182,13 +184,13 @@ namespace NLog.Targets.Wrappers
         /// Adds all layouts used by this target to the specified collection.
         /// </summary>
         /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             base.PopulateLayouts(layouts);
             foreach (FilteringRule fr in Rules)
             {
-                fr.FilterCondition.PopulateLayouts(layouts);
-                fr.ExistsCondition.PopulateLayouts(layouts);
+                fr.Filter.PopulateLayouts(layouts);
+                fr.Exists.PopulateLayouts(layouts);
             }
             _defaultFilter.PopulateLayouts(layouts);
         }

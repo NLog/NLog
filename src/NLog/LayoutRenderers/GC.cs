@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF && !MONO
+#if !NET_CF && !MONO
 
 using System;
 using System.Text;
@@ -49,7 +49,6 @@ namespace NLog.LayoutRenderers
     /// The information about the garbage collector.
     /// </summary>
     [LayoutRenderer("gc")]
-    [SupportedRuntime(Framework=RuntimeFramework.DotNetFramework)]
     public class GCLayoutRenderer: LayoutRenderer
     {
         /// <summary>

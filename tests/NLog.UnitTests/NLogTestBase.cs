@@ -38,6 +38,7 @@ using System.Text;
 using System.IO;
 using System.Diagnostics;
 using System.Threading;
+using NLog.Layouts;
 
 namespace NLog.UnitTests
 {
@@ -124,13 +125,14 @@ namespace NLog.UnitTests
             proc.StartInfo.RedirectStandardInput = true;
             proc.StartInfo.RedirectStandardOutput = true;
             proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            proc.StartInfo.CreateNoWindow = true;
             proc.Start();
             return proc;
         }
 
         protected void AssertLayoutRendererOutput(Layout l, string expected)
         {
-            string actual = l.GetFormattedMessage(new LogEventInfo(LogLevel.Info, "loggername", "message"));
+            string actual = l.GetFormattedMessage(new UnformattedLogEventInfo(LogLevel.Info, "loggername", "message"));
             Assert.AreEqual(expected, actual);
         }
     }

@@ -36,6 +36,7 @@ using System.Text;
 
 using NLog;
 using NLog.Config;
+using NLog.Layouts;
 
 namespace NLog.Filters
 {
@@ -49,35 +50,27 @@ namespace NLog.Filters
         /// </summary>
         protected LayoutBasedFilter(){}
 
-        private Layout _compiledlayout;
-
-        /// <summary>
-        /// The layout text;
-        /// </summary>
-        [RequiredParameter]
-        public string Layout
-        {
-            get { return _compiledlayout.Text; }
-            set { _compiledlayout = new Layout(value); }
-        }
+        private Layout _layout;
 
         /// <summary>
         /// Compiled layout.
         /// </summary>
-        protected Layout CompiledLayout
+        [RequiredParameter]
+        public Layout Layout
         {
-            get { return _compiledlayout; }
+            get { return _layout; }
+            set { _layout = value; }
         }
 
         /// <summary>
         /// Determines whether stack trace information should be gathered
         /// during log event processing. By default it calls <see cref="NLog.Layout.NeedsStackTrace" /> on
-        /// <see cref="TargetWithLayout.CompiledLayout" />.
+        /// <see cref="TargetWithLayout.Layout" />.
         /// </summary>
         /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
         public override int NeedsStackTrace()
         {
-            return CompiledLayout.NeedsStackTrace();
+            return Layout.NeedsStackTrace();
         }
     }
 }

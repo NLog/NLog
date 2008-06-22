@@ -1,0 +1,193 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1653EE05-2720-4A85-BF14-74C4493787B1}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>NLog.UnitTests</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NLog.UnitTests</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.4.7.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\..\src\NLog\NLog.csproj">
+      <Name>NLog</Name>
+      <Project>{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CaseSensitivityTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\Rot13Tests.cs" />
+    <Compile Include="LayoutRenderers\EventContextTests.cs" />
+    <Compile Include="TargetConfigurationTests.cs" />
+    <Compile Include="LayoutConfigurationTests.cs" />
+    <Compile Include="LayoutRenderers\ExceptionTests.cs" />
+    <Compile Include="LogManagerTests.cs" />
+    <Compile Include="Filters\APITests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\WhenContainsTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\WhenEqualTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\WhenNotContainsTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\WhenNotEqualTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GetLoggerTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\BaseDirTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\CallSiteTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\GDCTests.cs" />
+    <Compile Include="LayoutRenderers\CounterTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\DateTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\EnvironmentTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\LiteralTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\LoggerNameTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\LogLevelTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\LongDateTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\MDCTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\MessageTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\NDCTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\ShortDateTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\ThreadNameTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LoggerTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LogLevelTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NLogTestBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RoutingTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Targets\ConcurrentFileTests.cs" />
+    <Compile Include="Targets\EventLogTests.cs" />
+    <Compile Include="Targets\FileTargetTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Internal\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>copy /b $(ProjectDir)..\..\tools\Runner.exe $(TargetDir)</PostBuildEvent>
+  </PropertyGroup>
+</Project>
