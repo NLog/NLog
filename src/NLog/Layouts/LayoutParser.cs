@@ -44,6 +44,8 @@ using System.IO;
 using System.Reflection;
 using NLog.Layouts;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using NLog.LayoutRenderers.Wrappers;
 
 namespace NLog.Layouts
 {
@@ -143,6 +145,9 @@ namespace NLog.Layouts
             string name = ParseLayoutRendererName(sr);
             LayoutRenderer lr = NLogFactories.LayoutRendererFactory.Create(name);
 
+            Dictionary<Type, LayoutRenderer> wrappers = new Dictionary<Type, LayoutRenderer>();
+            List<LayoutRenderer> orderedWrappers = new List<LayoutRenderer>();
+
             ch = sr.Read();
             while (ch != -1 && ch != '}')
             {
@@ -150,9 +155,31 @@ namespace NLog.Layouts
                 if (sr.Peek() == '=')
                 {
                     sr.Read(); // skip the '='
-                    PropertyInfo pi;
+                    PropertyInfo pi = null;
+                    LayoutRenderer parameterTarget = lr;
 
                     if (!PropertyHelper.TryGetPropertyInfo(lr, parameterName, out pi))
+                    {
+                        Type wrapperType;
+
+                        if (NLogFactories.AmbientPropertyFactory.TryGetType(parameterName, out wrapperType))
+                        {
+                            LayoutRenderer wrapperRenderer;
+
+                            if (!wrappers.TryGetValue(wrapperType, out wrapperRenderer))
+                            {
+                                wrapperRenderer = NLogFactories.AmbientPropertyFactory.Create(parameterName);
+                                wrappers[wrapperType] = wrapperRenderer;
+                                orderedWrappers.Add(wrapperRenderer);
+                            }
+                            if (!PropertyHelper.TryGetPropertyInfo(wrapperRenderer, parameterName, out pi))
+                                pi = null;
+                            else
+                                parameterTarget = wrapperRenderer;
+                        }
+                    }
+
+                    if (pi == null)
                     {
                         ParseParameterValue(sr);
                     }
@@ -165,12 +192,12 @@ namespace NLog.Layouts
                             LayoutRenderer[] renderers = CompileLayout(sr, true, out txt);
 
                             nestedLayout.SetRenderers(renderers, txt);
-                            pi.SetValue(lr, nestedLayout, null);
+                            pi.SetValue(parameterTarget, nestedLayout, null);
                         }
                         else
                         {
                             string value = ParseParameterValue(sr);
-                            PropertyHelper.SetPropertyFromString(lr, parameterName, value, null);
+                            PropertyHelper.SetPropertyFromString(parameterTarget, parameterName, value, null);
                         }
                     }
                 }
@@ -199,6 +226,19 @@ namespace NLog.Layouts
                     }
                 }
                 ch = sr.Read();
+            }
+
+            for (int i = orderedWrappers.Count - 1; i >= 0; --i)
+            {
+                WrapperLayoutRendererBase newRenderer = (WrapperLayoutRendererBase)orderedWrappers[i];
+                InternalLogger.Trace("Wrapping {0} with {1}", lr.GetType().Name, newRenderer.GetType().Name);
+                if (lr.IsAppDomainFixed())
+                {
+                    lr = ConvertToLiteral(lr);
+                }
+                newRenderer.Inner = new SimpleLayout(new LayoutRenderer[] { lr }, "");
+
+                lr = newRenderer;
             }
             return lr;
         }

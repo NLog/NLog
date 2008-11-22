@@ -74,7 +74,7 @@ namespace NLog.Targets.Wrappers
     /// </p>
     /// <code lang="C#" src="examples/targets/Configuration API/PostFilteringWrapper/Simple/Example.cs" />
     /// </example>
-    [Target("PostFilteringWrapper", IgnoresLayout = true, IsWrapper = true)]
+    [Target("PostFilteringWrapper", IsWrapper = true)]
     public class PostFilteringTargetWrapper: WrapperTargetBase
     {
         private ConditionExpression _defaultFilter;
@@ -90,10 +90,10 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Default filter to be applied when no specific rule matches.
         /// </summary>
-        public string DefaultFilter
+        public ConditionExpression DefaultFilter
         {
-            get { return _defaultFilter.ToString(); }
-            set { _defaultFilter = ConditionParser.ParseExpression(value); }
+            get { return _defaultFilter; }
+            set { _defaultFilter = value; }
         }
 
         /// <summary>
@@ -192,7 +192,7 @@ namespace NLog.Targets.Wrappers
                 fr.Filter.PopulateLayouts(layouts);
                 fr.Exists.PopulateLayouts(layouts);
             }
-            _defaultFilter.PopulateLayouts(layouts);
+            DefaultFilter.PopulateLayouts(layouts);
         }
     }
 }

@@ -41,7 +41,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The short date in a sortable format yyyy-MM-dd
     /// </summary>
-    [LayoutRenderer("shortdate",UsingLogEventInfo=true)]
+    [LayoutRenderer("shortdate")]
     public class ShortDateLayoutRenderer: LayoutRenderer
     {
         /// <summary>
@@ -67,7 +67,12 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(ApplyPadding(logEvent.TimeStamp.ToString("yyyy-MM-dd", CultureInfo)));
+            builder.Append(logEvent.TimeStamp.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+        }
+
+        protected internal override bool IsVolatile()
+        {
+            return false;
         }
     }
 }

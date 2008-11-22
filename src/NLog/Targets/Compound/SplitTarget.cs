@@ -64,7 +64,7 @@ namespace NLog.Targets.Compound
     /// </p>
     /// <code lang="C#" src="examples/targets/Configuration API/SplitGroup/Simple/Example.cs" />
     /// </example>
-    [Target("SplitGroup", IgnoresLayout = true, IsCompound = true)]
+    [Target("SplitGroup", IsCompound = true)]
     public class SplitTarget: CompoundTargetBase
     {
         /// <summary>

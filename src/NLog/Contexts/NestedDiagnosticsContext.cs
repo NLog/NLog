@@ -37,16 +37,16 @@ using System.Collections.Specialized;
 using System.Text;
 using System.Collections.Generic;
 
-namespace NLog
+namespace NLog.Contexts
 {
     /// <summary>
     /// Nested Diagnostics Context - a thread-local structure that keeps a stack
     /// of strings and provides methods to output them in layouts
     /// Mostly for compatibility with log4net.
     /// </summary>
-    public sealed class NDC
+    public class NestedDiagnosticsContext
     {
-        private NDC(){}
+        internal NestedDiagnosticsContext() { }
 
         /// <summary>
         /// Pushes the specified text on current thread NDC.
@@ -164,5 +164,13 @@ namespace NLog
 
         private static LocalDataStoreSlot _dataSlot = System.Threading.Thread.AllocateDataSlot();
 #endif
+    }
+
+    /// <summary>
+    /// Nested Diagnostics Context - for log4net compatibility
+    /// </summary>
+    [Obsolete("Use NestedDiagnosticsContext")]
+    public class NDC : NestedDiagnosticsContext
+    {
     }
 }

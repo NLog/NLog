@@ -34,102 +34,91 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 
-namespace NLog
+namespace NLog.Contexts
 {
     /// <summary>
-    /// Mapped Diagnostics Context - a thread-local structure that keeps a dictionary
-    /// of strings and provides methods to output them in layouts. 
-    /// Mostly for compatibility with log4net.
+    /// Global Diagnostics Context - a dictionary structure to hold per-application-instance values.
     /// </summary>
-    public sealed class MDC
+    public class GlobalDiagnosticsContext
     {
-        private MDC(){}
+        private static Dictionary<string, string> _dict = new Dictionary<string, string>();
+
+        internal GlobalDiagnosticsContext(){}
 
         /// <summary>
-        /// Sets the current thread MDC item to the specified value.
+        /// Sets the Global Diagnostics Context item to the specified value.
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
         public static void Set(string item, string value)
         {
-            ThreadDictionary[item] = value;
+            lock (_dict)
+            {
+                _dict[item] = value;
+            }
         }
 
         /// <summary>
-        /// Gets the current thread MDC named item.
+        /// Gets the Global Diagnostics Context named item.
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <returns>The item value of String.Empty if the value is not present.</returns>
         public static string Get(string item)
         {
-            string s;
+            lock (_dict)
+            {
+                string s;
 
-            if (!ThreadDictionary.TryGetValue(item, out s))
-                s = String.Empty;
-
-            return s;
+                if (!_dict.TryGetValue(item, out s))
+                    s = String.Empty;
+                return s;
+            }
         }
 
         /// <summary>
-        /// Checks whether the specified item exists in current thread MDC.
+        /// Checks whether the specified item exists in the Global Diagnostics Context.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <returns>A boolean indicating whether the specified item exists in current thread MDC.</returns>
+        /// <returns>A boolean indicating whether the specified item exists in current thread GDC.</returns>
         public static bool Contains(string item)
         {
-            return ThreadDictionary.ContainsKey(item);
+            lock (_dict)
+            {
+                return _dict.ContainsKey(item);
+            }
         }
 
         /// <summary>
-        /// Removes the specified item from current thread MDC.
+        /// Removes the specified item from the Global Diagnostics Context.
         /// </summary>
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
-            ThreadDictionary.Remove(item);
+            lock (_dict)
+            {
+                _dict.Remove(item);
+            }
         }
 
         /// <summary>
-        /// Clears the content of current thread MDC.
+        /// Clears the content of the GDC.
         /// </summary>
         public static void Clear()
         {
-            ThreadDictionary.Clear();
-        }
-
-#if SILVERLIGHT
-        public static IDictionary<string, string> ThreadDictionary
-        {
-            get
+            lock (_dict)
             {
-                if (_threadDictionary == null)
-                    _threadDictionary = new Dictionary<string, string>();
-                return _threadDictionary;
+                _dict.Clear();
             }
         }
+    }
 
-        [ThreadStatic]
-        private static IDictionary<string, string> _threadDictionary;
-
-#else
-        public static IDictionary<string,string> ThreadDictionary
-        {
-            get
-            {
-                IDictionary<string, string> threadDictionary = (IDictionary<string, string>)System.Threading.Thread.GetData(_dataSlot);
-
-                if (threadDictionary == null)
-                {
-                    threadDictionary = new Dictionary<string,string>();
-                    System.Threading.Thread.SetData(_dataSlot, threadDictionary);
-                }
-
-                return threadDictionary;
-            }
-        }
-
-        private static LocalDataStoreSlot _dataSlot = System.Threading.Thread.AllocateDataSlot();
-#endif
+    /// <summary>
+    /// Global Diagnostics Context - used for log4net compatibility
+    /// </summary>
+    [Obsolete("Use GlobalDiagnosticsContext instead")]
+    public class GDC : GlobalDiagnosticsContext
+    {
     }
 }

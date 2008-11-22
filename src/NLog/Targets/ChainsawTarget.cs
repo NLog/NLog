@@ -70,7 +70,7 @@ namespace NLog.Targets
     /// so that your application threads will not be blocked by the timing-out connection attempts.
     /// </p>
     /// </example>
-    [Target("Chainsaw", IgnoresLayout=true)]
+    [Target("Chainsaw")]
     public class ChainsawTarget: NLogViewerTarget
     {
         /// <summary>

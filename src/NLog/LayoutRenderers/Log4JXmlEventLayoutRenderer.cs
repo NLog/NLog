@@ -42,13 +42,14 @@ using NLog.Config;
 using NLog.Targets;
 using System.ComponentModel;
 using System.Collections.Generic;
+using NLog.Contexts;
 
 namespace NLog.LayoutRenderers
 {
     /// <summary>
     /// XML event description compatible with log4j, Chainsaw and NLogViewer
     /// </summary>
-    [LayoutRenderer("log4jxmlevent",UsingLogEventInfo=true)]
+    [LayoutRenderer("log4jxmlevent")]
     public class Log4JXmlEventLayoutRenderer: LayoutRenderer
     {
         private string _appInfo;
@@ -185,7 +186,7 @@ namespace NLog.LayoutRenderers
             xtw.WriteElementString("log4j:message", logEvent.FormattedMessage);
             if (IncludeNDC)
             {
-                xtw.WriteElementString("log4j:NDC", String.Join(" ", NDC.GetAllMessages()));
+                xtw.WriteElementString("log4j:NDC", String.Join(" ", NestedDiagnosticsContext.GetAllMessages()));
             }
 #if !NET_CF
             if (IncludeCallSite || IncludeSourceInfo)
@@ -206,7 +207,7 @@ namespace NLog.LayoutRenderers
 
                 if (IncludeNLogData)
                 {
-                    xtw.WriteElementString("nlog:eventSequenceNumber", logEvent.SequenceID.ToString());
+                    xtw.WriteElementString("nlog:eventSequenceNumber", logEvent.SequenceId.ToString());
                     xtw.WriteStartElement("nlog:locationinfo");
                     xtw.WriteAttributeString("assembly", type.Assembly.FullName);
                     xtw.WriteEndElement();
@@ -216,7 +217,7 @@ namespace NLog.LayoutRenderers
             xtw.WriteStartElement("log4j:properties");
             if (IncludeMDC)
             {
-                foreach (KeyValuePair<string,string> entry in MDC.ThreadDictionary)
+                foreach (KeyValuePair<string,string> entry in MappedDiagnosticsContext.ThreadDictionary)
                 {
                     xtw.WriteStartElement("log4j:data");
                     xtw.WriteAttributeString("name", Convert.ToString(entry.Key));
@@ -252,6 +253,11 @@ namespace NLog.LayoutRenderers
 
             xtw.WriteEndElement();
             xtw.Flush();
+        }
+
+        protected internal override bool IsVolatile()
+        {
+            return false;
         }
     }
 }

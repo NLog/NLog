@@ -55,21 +55,13 @@ namespace NLog
                 return;
 
 #if !NET_CF            
-            bool needTrace = false;
-            bool needTraceSources = false;
-
-            int nst = targets.NeedsStackTrace;
-
-            if (nst > 0)
-                needTrace = true;
-            if (nst > 1)
-                needTraceSources = true;
+            StackTraceUsage stu = targets.GetStackTraceUsage();
 
             StackTrace stackTrace = null;
-            if (needTrace && !logEvent.HasStackTrace)
+            if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
                 int firstUserFrame = 0;
-                stackTrace = new StackTrace(STACK_TRACE_SKIP_METHODS, needTraceSources);
+                stackTrace = new StackTrace(STACK_TRACE_SKIP_METHODS, stu == StackTraceUsage.WithSource);
 
                 for (int i = 0; i < stackTrace.FrameCount; ++i)
                 {

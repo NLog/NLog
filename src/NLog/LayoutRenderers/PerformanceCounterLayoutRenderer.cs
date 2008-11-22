@@ -40,6 +40,7 @@ using System.Diagnostics;
 
 using NLog.Config;
 using NLog.Internal;
+using System.Globalization;
 
 namespace NLog.LayoutRenderers
 {
@@ -172,7 +173,7 @@ namespace NLog.LayoutRenderers
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             CreatePerformanceCounter();
-            builder.Append(ApplyPadding(_perfCounter.NextValue().ToString(CultureInfo)));
+            builder.Append(_perfCounter.NextValue().ToString(CultureInfo.InvariantCulture));
         }
     }
 }

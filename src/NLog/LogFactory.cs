@@ -251,101 +251,36 @@ namespace NLog
                         return _config;
 
                     _configLoaded = true;
-#if NET_CF
-                    if (_config == null)
-                    {
-                        string configFile = CompactFrameworkHelper.GetExeFileName() + ".nlog";
-                        if (File.Exists(configFile))
-                        {
-                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
-                            _config = new XmlLoggingConfiguration(configFile);
-                        }
-                    }
-                    if (_config == null)
-                    {
-                        string configFile = Path.Combine(Path.GetDirectoryName(CompactFrameworkHelper.GetExeFileName()), "NLog.config");
-                        if (File.Exists(configFile))
-                        {
-                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
-                            _config = new XmlLoggingConfiguration(configFile);
-                        }
-                    }
-                    if (_config == null)
-                    {
-                        string configFile = typeof(LogFactory).Assembly.GetName().CodeBase + ".nlog";
-                        if (File.Exists(configFile))
-                        {
-                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
-                            _config = new XmlLoggingConfiguration(configFile);
-                        }
-                    }
-#elif SILVERLIGHT
-                    // no auto-initialization for Silverlight
-#else
+
+#if !NET_CF && !SILVERLIGHT
                     if (_config == null)
                     {
                         // try to load default configuration
                         _config = XmlLoggingConfiguration.AppConfig;
                     }
-                    if (_config == null)
-                    {
-                        string configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NLog.config");
-                        if (File.Exists(configFile))
-                        {
-                            InternalLogger.Debug("Attempting to load config from {0}", configFile);
-                            _config = new XmlLoggingConfiguration(configFile);
-                        }
-                    }
-                    if (_config == null)
-                    {
-                        string configFile = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
-                        if (configFile != null) 
-                        {
-                            configFile = Path.ChangeExtension(configFile, ".nlog");
-                            if (File.Exists(configFile))
-                            {
-                                InternalLogger.Debug("Attempting to load config from {0}", configFile);
-                                _config = new XmlLoggingConfiguration(configFile);
-                            }
-                        }
-                    }
-                    if (_config == null)
-                    {
-                        Assembly nlogAssembly = typeof(LoggingConfiguration).Assembly;
-                        if (!nlogAssembly.GlobalAssemblyCache)
-                        {
-                            string configFile = nlogAssembly.Location + ".nlog";
-                            if (File.Exists(configFile))
-                            {
-                                InternalLogger.Debug("Attempting to load config from {0}", configFile);
-                                _config = new XmlLoggingConfiguration(configFile);
-                            }
-                        }
-                    }
+#endif
 
+#if !SILVERLIGHT
                     if (_config == null)
                     {
-                        if (EnvironmentHelper.GetSafeEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE") != null)
+                        foreach (string configFile in GetCandidateFileNames())
                         {
-                            string configFile = Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE");
                             if (File.Exists(configFile))
                             {
                                 InternalLogger.Debug("Attempting to load config from {0}", configFile);
                                 _config = new XmlLoggingConfiguration(configFile);
                             }
-                            else
-                            {
-                                InternalLogger.Warn("NLog global config file pointed by NLOG_GLOBAL_CONFIG '{0}' doesn't exist.", configFile);
-                            }
                         }
                     }
+#endif
 
+#if !NET_CF && !SILVERLIGHT
                     if (_config != null)
                     {
                         Dump(_config);
                         _watcher.Watch(_config.FileNamesToWatch);
                     }
-#endif 
+#endif
                     if (_config != null)
                     {
                         _config.InitializeAll();
@@ -431,6 +366,35 @@ namespace NLog
             }
         }
 #endif 
+
+        private IEnumerable<string> GetCandidateFileNames()
+        {
+#if NET_CF
+            yield return CompactFrameworkHelper.GetExeFileName() + ".nlog";
+            yield return Path.Combine(Path.GetDirectoryName(CompactFrameworkHelper.GetExeFileName()), "NLog.config");
+            yield return typeof(LogFactory).Assembly.GetName().CodeBase + ".nlog";
+#elif SILVERLIGHT
+            yield break;
+#else
+            // NLog.config from application directory
+            yield return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NLog.config");
+
+            // current config file with .config renamed to .nlog
+            string cf = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+            if (cf != null)
+                yield return Path.ChangeExtension(cf, ".nlog");
+
+            // NLog.dll.nlog
+            Assembly nlogAssembly = typeof(LoggingConfiguration).Assembly;
+            if (!nlogAssembly.GlobalAssemblyCache)
+                yield return nlogAssembly.Location + ".nlog";
+
+            string globalConfig = Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE");
+            if (!String.IsNullOrEmpty(globalConfig))
+                yield return globalConfig;
+#endif
+
+        }
 
         private void Dump(LoggingConfiguration config)
         {
@@ -549,7 +513,7 @@ namespace NLog
             {
                 TargetWithFilterChain tfc = targetsByLevel[i];
                 if (tfc != null)
-                    tfc.PrecalculateNeedsStackTrace();
+                    tfc.PrecalculateGetStackTraceUsage();
             }
         }
 

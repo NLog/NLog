@@ -39,6 +39,7 @@ using System.Web;
 
 using NLog.Config;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace NLog.LayoutRenderers
 {
@@ -119,7 +120,7 @@ namespace NLog.LayoutRenderers
 			if (context.Session == null)
 				return ;
 
-			builder.Append(ApplyPadding(Convert.ToString(context.Session[Variable], CultureInfo)));
+			builder.Append(Convert.ToString(context.Session[Variable], CultureInfo.InvariantCulture));
         }
     }
 }

@@ -35,6 +35,7 @@ using System;
 using System.Text;
 using NLog.Config;
 using System.ComponentModel;
+using NLog.Contexts;
 
 namespace NLog.LayoutRenderers
 {
@@ -70,7 +71,7 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
-            return GDC.Get(Item).Length;
+            return GlobalDiagnosticsContext.Get(Item).Length;
         }
 
         /// <summary>
@@ -80,8 +81,8 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string msg = GDC.Get(Item);
-            builder.Append(ApplyPadding(msg));
+            string msg = GlobalDiagnosticsContext.Get(Item);
+            builder.Append(msg);
         }
     }
 }

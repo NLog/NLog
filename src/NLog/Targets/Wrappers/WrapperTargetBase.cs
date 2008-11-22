@@ -83,12 +83,12 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Forwards the call to <see cref="WrapperTargetBase.WrappedTarget"/>.NeedsStackTrace().
+        /// Forwards the call to <see cref="WrapperTargetBase.WrappedTarget"/>.GetStackTraceUsage().
         /// </summary>
         /// <returns>The value of forwarded call</returns>
-        protected internal override int NeedsStackTrace()
+        protected internal override StackTraceUsage GetStackTraceUsage()
         {
-            return WrappedTarget.NeedsStackTrace();
+            return WrappedTarget.GetStackTraceUsage();
         }
 
         /// <summary>

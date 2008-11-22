@@ -63,7 +63,7 @@ namespace NLog.Targets.Wrappers
     /// </p>
     /// <code lang="C#" src="examples/targets/Configuration API/BufferingWrapper/Simple/Example.cs" />
     /// </example>
-    [Target("BufferingWrapper", IgnoresLayout = true, IsWrapper = true)]
+    [Target("BufferingWrapper", IsWrapper = true)]
     public class BufferingTargetWrapper: WrapperTargetBase
     {
         private LogEventInfoBuffer _buffer;

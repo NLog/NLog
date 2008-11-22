@@ -116,7 +116,7 @@ namespace NLog.LayoutRenderers
                 _value += Increment;
             }
 
-            builder.Append(ApplyPadding(v.ToString(Culture)));
+            builder.Append(v.ToString(CultureInfo.InvariantCulture));
         }
 
         private static Dictionary<string, int> _sequences = new Dictionary<string, int>();

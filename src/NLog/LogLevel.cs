@@ -41,47 +41,84 @@ namespace NLog
     public class LogLevel : IComparable
     {
         private string _name;
-        private string _uppercaseName;
-        private string _lowercaseName;
         private int _ordinal;
+
+        private static LogLevel _trace;
+        private static LogLevel _debug;
+        private static LogLevel _info;
+        private static LogLevel _warn;
+        private static LogLevel _error;
+        private static LogLevel _fatal;
+
+        private static LogLevel _off;
+        private static LogLevel _maxLevel;
+        private static LogLevel _minLevel;
 
         /// <summary>
         /// The Trace level.
         /// </summary>
-        public static readonly LogLevel Trace;
+        public static LogLevel Trace
+        {
+            get { return _trace; }
+        }
 
         /// <summary>
         /// The Debug level.
         /// </summary>
-        public static readonly LogLevel Debug;
+        public static LogLevel Debug
+        {
+            get { return _debug; }
+        }
 
         /// <summary>
         /// The Info level.
         /// </summary>
-        public static readonly LogLevel Info;
+        public static LogLevel Info
+        {
+            get { return _info; }
+        }
 
         /// <summary>
         /// The Warn level.
         /// </summary>
-        public static readonly LogLevel Warn;
+        public static LogLevel Warn
+        {
+            get { return _warn; }
+        }
 
         /// <summary>
         /// The Error level.
         /// </summary>
-        public static readonly LogLevel Error;
+        public static LogLevel Error
+        {
+            get { return _error; }
+        }
 
         /// <summary>
         /// The Fatal level.
         /// </summary>
-        public static readonly LogLevel Fatal;
+        public static LogLevel Fatal
+        {
+            get { return _fatal; }
+        }
 
         /// <summary>
         /// The Off level.
         /// </summary>
-        public static readonly LogLevel Off;
+        public static LogLevel Off
+        {
+            get { return _off; }
+        }
 
-        internal static readonly LogLevel MaxLevel;
-        internal static readonly LogLevel MinLevel;
+        internal static LogLevel MaxLevel
+        {
+            get { return _maxLevel; }
+        }
+
+        internal static LogLevel MinLevel
+        {
+            get { return _minLevel; }
+        }
 
         private static LogLevel[] _levelByOrdinal;
 
@@ -89,25 +126,23 @@ namespace NLog
         {
             int l = 0;
 
-            Trace = new LogLevel("Trace", l++);
-            Debug = new LogLevel("Debug", l++);
-            Info = new LogLevel("Info", l++);
-            Warn = new LogLevel("Warn", l++);
-            Error = new LogLevel("Error", l++);
-            Fatal = new LogLevel("Fatal", l++);
-            Off = new LogLevel("Off", l++);
+            _trace = new LogLevel("Trace", l++);
+            _debug = new LogLevel("Debug", l++);
+            _info = new LogLevel("Info", l++);
+            _warn = new LogLevel("Warn", l++);
+            _error = new LogLevel("Error", l++);
+            _fatal = new LogLevel("Fatal", l++);
+            _off = new LogLevel("Off", l++);
 
             _levelByOrdinal = new LogLevel[] { Trace, Debug, Info, Warn, Error, Fatal, Off };
-            MinLevel = _levelByOrdinal[0];
-            MaxLevel = _levelByOrdinal[_levelByOrdinal.Length - 2]; // ignore the Off level
+            _minLevel = _levelByOrdinal[0];
+            _maxLevel = _levelByOrdinal[_levelByOrdinal.Length - 2]; // ignore the Off level
         }
 
         // to be changed into public in the future.
         private LogLevel(string name, int ordinal)
         {
             _name = name;
-            _uppercaseName = name.ToUpper();
-            _lowercaseName = name.ToLower();
             _ordinal = ordinal;
         }
 
@@ -117,22 +152,6 @@ namespace NLog
         public string Name
         {
             get { return _name; }
-        }
-
-        /// <summary>
-        /// Gets the name of the logger in upper case.
-        /// </summary>
-        public string UppercaseName
-        {
-            get { return _uppercaseName; }
-        }
-
-        /// <summary>
-        /// Gets the name of the logger in lower case.
-        /// </summary>
-        public string LowercaseName
-        {
-            get { return _lowercaseName; }
         }
 
         internal int Ordinal

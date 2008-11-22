@@ -39,6 +39,7 @@ using NLog;
 using NLog.Config;
 
 using NUnit.Framework;
+using NLog.Contexts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -59,15 +60,15 @@ namespace NLog.UnitTests.LayoutRenderers
 
             LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
-            NLog.GDC.Set("myitem", "myvalue");
+            GlobalDiagnosticsContext.Set("myitem", "myvalue");
             LogManager.GetLogger("A").Debug("a");
             AssertDebugLastMessage("debug", "myvalue a");
 
-            NLog.GDC.Set("myitem", "value2");
+            GlobalDiagnosticsContext.Set("myitem", "value2");
             LogManager.GetLogger("A").Debug("b");
             AssertDebugLastMessage("debug", "value2 b");
 
-            NLog.GDC.Remove("myitem");
+            GlobalDiagnosticsContext.Remove("myitem");
             LogManager.GetLogger("A").Debug("c");
             AssertDebugLastMessage("debug", " c");
         }

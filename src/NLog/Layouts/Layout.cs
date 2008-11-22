@@ -51,7 +51,7 @@ namespace NLog.Layouts
     {
         private bool _initialized = false;
 
-        public bool Initialized
+        public bool IsInitialized
         {
             get { return _initialized; }
         }
@@ -68,7 +68,7 @@ namespace NLog.Layouts
         /// information should be gathered during layout processing.
         /// </summary>
         /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
-        public abstract int NeedsStackTrace();
+        public abstract StackTraceUsage GetStackTraceUsage();
 
         /// <summary>
         /// Returns the value indicating whether this layout includes any volatile 
@@ -111,7 +111,9 @@ namespace NLog.Layouts
         public virtual void Close()
         {
             if (!_initialized)
-                throw new InvalidOperationException("Called Close() without Initialize()");
+                InternalLogger.Warn("Called Close() without Initialize() on " + this.ToString() + "(" + this.GetHashCode() + ")");
+            else
+                InternalLogger.Trace("Closing " + this.ToString() + "(" + this.GetHashCode() + ")..." );
             _initialized = false;
         }
 
@@ -124,14 +126,19 @@ namespace NLog.Layouts
             layouts.Add(this);
         }
 
+        /// <summary>
+        /// Converts a given text to a <see cref="Layout" />.
+        /// </summary>
+        /// <param name="text">Text to be converted</param>
+        /// <returns><see cref="SimpleLayout"/> object represented by the text.</returns>
         public static implicit operator Layout(string text)
         {
             return new SimpleLayout(text);
         }
 
-        public virtual bool IsAppDomainFixed
+        public virtual bool IsAppDomainFixed()
         {
-            get { return false; }
+            return false;
         }
     }
 }

@@ -40,7 +40,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The log level.
     /// </summary>
-    [LayoutRenderer("level",UsingLogEventInfo=true)]
+    [LayoutRenderer("level")]
     public class LevelLayoutRenderer: LayoutRenderer
     {
         /// <summary>
@@ -66,7 +66,12 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(ApplyPadding(logEvent.Level.ToString()));
+            builder.Append(logEvent.Level.ToString());
+        }
+
+        protected internal override bool IsVolatile()
+        {
+            return false;
         }
     }
 }

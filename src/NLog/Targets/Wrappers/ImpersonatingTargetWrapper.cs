@@ -53,7 +53,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// A target wrapper that impersonates another user for the duration of the write.
     /// </summary>
-    [Target("ImpersonatingWrapper", IgnoresLayout = true, IsWrapper = true)]
+    [Target("ImpersonatingWrapper", IsWrapper = true)]
     public class ImpersonatingTargetWrapper : WrapperTargetBase
     {
         private string _username;

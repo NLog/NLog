@@ -8,75 +8,87 @@ using NLog.Config;
 using System.ComponentModel;
 using NLog.Layouts;
 using NLog.Targets;
+using System.Xml.Xsl;
+using System.IO;
 
 namespace MakeNLogDoc
 {
     class Program
     {
+        static bool TryGetMemberDoc(XmlDocument doc, string id, out XmlElement element)
+        {
+            element = (XmlElement)doc.SelectSingleNode("/doc/members/member[@name='" + id + "']");
+            return element != null;
+        }
+
+        static void DumpApiDocs(XmlWriter writer, string kind, IEnumerable<Type> types, XmlDocument comments)
+        {
+            foreach (Type type in types)
+            {
+                writer.WriteStartElement("type");
+                writer.WriteAttributeString("kind", kind);
+                writer.WriteAttributeString("id", type.FullName);
+                string name;
+                if (TryGetTypeNameFromNameAttribute(type, out name))
+                {
+                    writer.WriteAttributeString("name", name);
+                }
+
+                XmlElement memberDoc;
+                if (TryGetMemberDoc(comments, "T:" + type.FullName, out memberDoc))
+                {
+                    writer.WriteStartElement("doc");
+                    memberDoc.WriteContentTo(writer);
+                    writer.WriteEndElement();
+                }
+
+                foreach (PropertyInfo propInfo in type.GetProperties())
+                {
+                    writer.WriteStartElement("property");
+                    writer.WriteAttributeString("name", propInfo.Name);
+                    writer.WriteAttributeString("type", propInfo.PropertyType.FullName);
+                    writer.WriteEndElement();
+                }
+
+                writer.WriteEndElement();
+            }
+        }
+
+        private static bool TryGetTypeNameFromNameAttribute(Type type, out string name)
+        {
+            foreach (Attribute a in type.GetCustomAttributes(false))
+            {
+                NameAttributeBase nab = a as NameAttributeBase;
+                if (nab != null)
+                {
+                    name = nab.Name;
+                    return true;
+                }
+            }
+            name = null;
+            return false;
+        }
+
         static void Main(string[] args)
         {
-            string outputDirectory = ".";
-            if (args.Length > 0)
-                outputDirectory = args[0];
+            XmlDocument comments = new XmlDocument();
+            comments.Load("NLog.xml");
 
-            using (XmlTextWriter output = new XmlTextWriter(Console.Out))
-            //using (XmlWriter output = XmlWriter.Create("NLogDoc.xml"))
+            Assembly assembly = Assembly.Load("NLog");
+            using (XmlWriter writer = XmlWriter.Create("NLog.doc.xml", new XmlWriterSettings { Indent = true }))
             {
-                output.Formatting = Formatting.Indented;
-                DumpAssembly(output, typeof(Logger).Assembly);
+                writer.WriteStartElement("types");
+                DumpApiDocs(writer, "target", GetTargetTypes(assembly), comments);
+                writer.WriteEndElement();
             }
         }
 
-        static void DumpAssembly(XmlWriter output, Assembly assembly)
+        private static IEnumerable<Type> GetTargetTypes(Assembly assembly)
         {
-            output.WriteStartElement("assembly");
-
-            foreach (Type t in assembly.GetExportedTypes())
+            foreach (Type t in assembly.GetTypes())
             {
-                TargetAttribute ta = (TargetAttribute)Attribute.GetCustomAttribute(t, typeof(TargetAttribute), false);
-                if (ta != null)
-                {
-                    DumpTarget(output, t, ta);
-                }
-            }
-
-            output.WriteEndElement();
-        }
-
-        static void DumpTarget(XmlWriter output, Type t, TargetAttribute ta)
-        {
-            output.WriteStartElement("target");
-            output.WriteAttributeString("name", ta.Name);
-            output.WriteAttributeString("wrapper", XmlConvert.ToString(ta.IsWrapper));
-            output.WriteAttributeString("compound", XmlConvert.ToString(ta.IsCompound));
-            output.WriteStartElement("properties");
-            DumpProperties(output, t, new string[] { "WrappedTarget" });
-            output.WriteEndElement();
-            output.WriteEndElement();
-        }
-
-        static void DumpProperties(XmlWriter output, Type t, ICollection<string> ignoreNames)
-        {
-            foreach (PropertyInfo pi in t.GetProperties())
-            {
-                if (typeof(Layout).IsAssignableFrom(pi.PropertyType))
-                    continue;
-
-                if (ignoreNames.Contains(pi.Name))
-                    continue;
-
-                output.WriteStartElement("property");
-                output.WriteAttributeString("name", pi.Name);
-                output.WriteAttributeString("type", pi.PropertyType.Name);
-                DefaultValueAttribute defVal = (DefaultValueAttribute)Attribute.GetCustomAttribute(pi, typeof(DefaultValueAttribute));
-                if (defVal != null)
-                {
-                    output.WriteAttributeString("defaultValue", defVal.Value.ToString());
-                }
-
-                if (pi.IsDefined(typeof(RequiredParameterAttribute), false))
-                    output.WriteAttributeString("required", "true");
-                output.WriteEndElement();
+                if (t.IsDefined(typeof(TargetAttribute), false))
+                    yield return t;
             }
         }
     }

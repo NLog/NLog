@@ -70,7 +70,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(ApplyPadding(Thread.CurrentThread.ManagedThreadId.ToString()));
+            builder.Append(Thread.CurrentThread.ManagedThreadId.ToString());
         }
     }
 }

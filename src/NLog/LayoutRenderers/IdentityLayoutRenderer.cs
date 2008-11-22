@@ -134,25 +134,22 @@ namespace NLog.LayoutRenderers
                 IIdentity identity = principal.Identity;
                 if (identity != null)
                 {
-                    StringBuilder sb2 = builder;
-                    if (Padding != 0)
-                        sb2 = new StringBuilder();
-                    int sbstart = sb2.Length;
+                    int sbstart = builder.Length;
                     bool first = true;
 
                     if (_isAuthenticated)
                     {
                         if (!first)
                         {
-                            sb2.Append(_separator);
+                            builder.Append(_separator);
                         }
                         if (identity.IsAuthenticated)
                         {
-                            sb2.Append("auth");
+                            builder.Append("auth");
                         }
                         else
                         {
-                            sb2.Append("notauth");
+                            builder.Append("notauth");
                         }
                         first = false;
                     }
@@ -161,9 +158,9 @@ namespace NLog.LayoutRenderers
                     {
                         if (!first)
                         {
-                            sb2.Append(_separator);
+                            builder.Append(_separator);
                         }
-                        sb2.Append(identity.AuthenticationType);
+                        builder.Append(identity.AuthenticationType);
                         first = false;
                     }
 
@@ -171,23 +168,20 @@ namespace NLog.LayoutRenderers
                     {
                         if (!first)
                         {
-                            sb2.Append(_separator);
+                            builder.Append(_separator);
                         }
-                        sb2.Append(identity.Name);
+                        builder.Append(identity.Name);
                         first = false;
                     }
 
                     if (_fsNormalize)
                     {
-                        for (int i=sbstart; i<sb2.Length; i++)
+                        for (int i=sbstart; i<builder.Length; i++)
                         {
-                            char c = sb2[i];
-                            if (!Char.IsLetterOrDigit(c) && c != '_' && c != '-' && c != '.') sb2[i] = '_';
+                            char c = builder[i];
+                            if (!Char.IsLetterOrDigit(c) && c != '_' && c != '-' && c != '.') builder[i] = '_';
                         }
                     }
-                    
-                    if (Padding != 0)
-                        builder.Append(ApplyPadding(sb2.ToString()));
                 }
             }
         }

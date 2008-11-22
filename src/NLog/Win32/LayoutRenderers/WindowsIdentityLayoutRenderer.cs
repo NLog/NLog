@@ -133,7 +133,7 @@ namespace NLog.Win32.LayoutRenderers
                     else
                         output = currentIdentity.Name;
                 }
-                builder.Append(ApplyPadding(output));
+                builder.Append(output);
             }
         }
     }

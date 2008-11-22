@@ -48,6 +48,7 @@ using NLog.Targets.Wrappers;
 using System.Collections.Generic;
 using NLog.Config;
 using NLog.Layouts;
+using System.Diagnostics;
 
 namespace NLog.Config
 {
@@ -55,9 +56,9 @@ namespace NLog.Config
     /// A class for configuring NLog through an XML configuration file 
     /// (App.config style or App.nlog style)
     /// </summary>
-    public class XmlLoggingConfiguration: LoggingConfiguration
+    public class XmlLoggingConfiguration : LoggingConfiguration
     {
-        private Dictionary<string,bool> _visitedFile = new Dictionary<string,bool>();
+        private Dictionary<string, bool> _visitedFile = new Dictionary<string, bool>();
         private Dictionary<string, string> _variables = new Dictionary<string, string>(EqualityComparer<string>.Default);
 
         private bool _autoReload = false;
@@ -78,9 +79,22 @@ namespace NLog.Config
         /// class and reads the configuration from the specified config file.
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
-        public XmlLoggingConfiguration(string fileName) : this(fileName, false)
+        public XmlLoggingConfiguration(string fileName)
+            : this(fileName, false)
         {
         }
+
+#if !SILVERLIGHT
+        public XmlLoggingConfiguration(XmlElement element, string fileName)
+            : this(XmlReader.Create(new StringReader(element.OuterXml)), fileName)
+        {
+        }
+
+        public XmlLoggingConfiguration(XmlElement element, string fileName, bool ignoreErrors)
+            : this(XmlReader.Create(new StringReader(element.OuterXml)), fileName, ignoreErrors)
+        {
+        }
+#endif
 
         /// <summary>
         /// Constructs a new instance of <see cref="XmlLoggingConfiguration" />
@@ -106,25 +120,27 @@ namespace NLog.Config
 
         /// <summary>
         /// Constructs a new instance of <see cref="XmlLoggingConfiguration" />
-        /// class and reads the configuration from the specified XML element.
+        /// class and reads the configuration from the specified XML reader.
         /// </summary>
-        /// <param name="configElement"><see cref="XmlElement" /> containing the configuration section.</param>
+        /// <param name="reader"><see cref="XmlReader" /> containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files).</param>
-        public XmlLoggingConfiguration(XmlElement configElement, string fileName) : this(configElement, fileName, false)
+        public XmlLoggingConfiguration(XmlReader reader, string fileName)
+            : this(reader, fileName, false)
         {
         }
 
         /// <summary>
         /// Constructs a new instance of <see cref="XmlLoggingConfiguration" />
-        /// class and reads the configuration from the specified XML element.
+        /// class and reads the configuration from the specified XML reader.
         /// </summary>
-        /// <param name="configElement"><see cref="XmlElement" /> containing the configuration section.</param>
+        /// <param name="reader"><see cref="XmlReader" /> containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files).</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
-        public XmlLoggingConfiguration(XmlElement configElement, string fileName, bool ignoreErrors)
+        public XmlLoggingConfiguration(XmlReader reader, string fileName, bool ignoreErrors)
         {
             try
             {
+                reader.MoveToContent();
                 if (fileName != null)
                 {
                     InternalLogger.Info("Configuring from an XML element in {0}...", fileName);
@@ -132,11 +148,11 @@ namespace NLog.Config
                     _visitedFile[key] = true;
 
                     _originalFileName = fileName;
-                    ConfigureFromXmlElement(configElement, Path.GetDirectoryName(fileName));
+                    ParseTopLevel(reader, Path.GetDirectoryName(fileName));
                 }
                 else
                 {
-                    ConfigureFromXmlElement(configElement, null);
+                    ParseTopLevel(reader, null);
                 }
             }
             catch (Exception ex)
@@ -176,47 +192,532 @@ namespace NLog.Config
         {
             string key = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
             if (_visitedFile.ContainsKey(key))
-                return ;
+                return;
 
             _visitedFile[key] = true;
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load(fileName);
-            if (EqualsCI(doc.DocumentElement.LocalName,"configuration"))
+            using (XmlReader reader = XmlReader.Create(fileName))
             {
-                foreach (XmlElement el in doc.DocumentElement.GetElementsByTagName("nlog"))
+                reader.MoveToContent();
+                ParseTopLevel(reader, Path.GetDirectoryName(fileName));
+            }
+        }
+
+        private void ParseTopLevel(XmlReader reader, string baseDirectory)
+        {
+            switch (reader.LocalName.ToLower(CultureInfo.InvariantCulture))
+            {
+                case "configuration":
+                    ParseConfigurationElement(reader, baseDirectory);
+                    break;
+
+                case "nlog":
+                    ParseNLogElement(reader, baseDirectory);
+                    break;
+
+                default:
+                    throw new NotSupportedException("Unrecognized configuration file element: " + reader.LocalName);
+            }
+        }
+
+        private static bool MoveToNextElement(XmlReader reader)
+        {
+            while (reader.Read())
+            {
+                if (reader.NodeType == XmlNodeType.EndElement)
+                    return false;
+                if (reader.NodeType == XmlNodeType.Element)
+                    return true;
+            }
+
+            return false;
+        }
+
+        private void ParseConfigurationElement(XmlReader reader, string baseDirectory)
+        {
+            InternalLogger.Trace("ParseConfigurationElement");
+            Debug.Assert(CaseInsensitiveEquals(reader.LocalName, "configuration"));
+
+            if (!reader.IsEmptyElement)
+            {
+                while (MoveToNextElement(reader))
                 {
-                    ConfigureFromXmlElement(el, Path.GetDirectoryName(fileName));
+                    switch (reader.LocalName.ToLower(CultureInfo.InvariantCulture))
+                    {
+                        case "nlog":
+                            ParseNLogElement(reader, baseDirectory);
+                            break;
+
+                        default:
+                            reader.Skip();
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void ParseNLogElement(XmlReader reader, string baseDirectory)
+        {
+            InternalLogger.LogToConsole = true;
+            InternalLogger.LogLevel = LogLevel.Trace;
+            InternalLogger.Trace("ParseNLogElement");
+            Debug.Assert(CaseInsensitiveEquals(reader.LocalName, "nlog"));
+
+            AutoReload = GetBooleanAttribute(reader, "autoReload", false);
+            LogManager.ThrowExceptions = GetBooleanAttribute(reader, "throwExceptions", false);
+            InternalLogger.LogToConsole = GetBooleanAttribute(reader, "internalLogToConsole", false);
+#if !NET_CF
+            InternalLogger.LogToConsoleError = GetBooleanAttribute(reader, "internalLogToConsoleError", false);
+#endif
+            InternalLogger.LogFile = GetCaseInsensitiveAttribute(reader, "internalLogFile", null);
+            InternalLogger.LogLevel = LogLevel.FromString(GetCaseInsensitiveAttribute(reader, "internalLogLevel", "Off"));
+            LogManager.GlobalThreshold = LogLevel.FromString(GetCaseInsensitiveAttribute(reader, "globalThreshold", "Trace"));
+
+            if (!reader.IsEmptyElement)
+            {
+                while (MoveToNextElement(reader))
+                {
+                    switch (reader.LocalName.ToLower(CultureInfo.InvariantCulture))
+                    {
+                        case "extensions":
+                            ParseExtensionsElement(reader, baseDirectory);
+                            break;
+
+                        case "include":
+                            ParseIncludeElement(reader, baseDirectory);
+                            break;
+
+                        case "appenders":
+                        case "targets":
+                            ParseTargetsElement(reader);
+                            break;
+
+                        case "variable":
+                            ParseVariableElement(reader);
+                            break;
+
+                        case "rules":
+                            ParseRulesElement(reader, this.LoggingRules);
+                            break;
+
+                        default:
+                            InternalLogger.Warn("Skipping unknown node: {0}", reader.Name);
+                            reader.Skip();
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void ParseRulesElement(XmlReader reader, ICollection<LoggingRule> rulesCollection)
+        {
+            InternalLogger.Trace("ParseRulesElement");
+            Debug.Assert(CaseInsensitiveEquals(reader.LocalName, "rules"));
+            if (!reader.IsEmptyElement)
+            {
+                while (MoveToNextElement(reader))
+                {
+                    if (reader.LocalName.ToLower(CultureInfo.InvariantCulture) != "logger")
+                    {
+                        reader.Skip();
+                        continue;
+                    }
+
+                    ParseLoggerElement(reader, rulesCollection);
+                }
+            }
+        }
+
+        private void ParseLoggerElement(XmlReader reader, ICollection<LoggingRule> rulesCollection)
+        {
+            LoggingRule rule = new LoggingRule();
+            string namePattern = GetCaseInsensitiveAttribute(reader, "name", "*");
+            string appendTo = GetCaseInsensitiveAttribute(reader, "appendTo", null);
+            if (appendTo == null)
+                appendTo = GetCaseInsensitiveAttribute(reader, "writeTo", null);
+
+            rule.LoggerNamePattern = namePattern;
+            if (appendTo != null)
+            {
+                foreach (string t in appendTo.Split(','))
+                {
+                    string targetName = t.Trim();
+                    Target target = FindTargetByName(targetName);
+
+                    if (target != null)
+                    {
+                        rule.Targets.Add(target);
+                    }
+                    else
+                    {
+                        throw new NLogConfigurationException("Target " + targetName + " not found.");
+                    }
+                }
+            }
+            rule.Final = false;
+
+            if (GetCaseInsensitiveAttribute(reader, "final", "false") == "true")
+            {
+                rule.Final = true;
+            }
+
+            string levelString;
+
+            if (TryGetCaseInsensitiveAttribute(reader, "level", out levelString))
+            {
+                LogLevel level = LogLevel.FromString(levelString);
+                rule.EnableLoggingForLevel(level);
+            }
+            else if (TryGetCaseInsensitiveAttribute(reader, "levels", out levelString))
+            {
+                levelString = CleanWhitespace(levelString);
+
+                string[] tokens = levelString.Split(',');
+                foreach (string s in tokens)
+                {
+                    if (s != "")
+                    {
+                        LogLevel level = LogLevel.FromString(s);
+                        rule.EnableLoggingForLevel(level);
+                    }
                 }
             }
             else
             {
-                ConfigureFromXmlElement(doc.DocumentElement, Path.GetDirectoryName(fileName));
+                int minLevel = 0;
+                int maxLevel = LogLevel.MaxLevel.Ordinal;
+                string minLevelString;
+                string maxLevelString;
+
+                if (TryGetCaseInsensitiveAttribute(reader, "minLevel", out minLevelString))
+                    minLevel = LogLevel.FromString(minLevelString).Ordinal;
+
+                if (TryGetCaseInsensitiveAttribute(reader, "maxLevel", out maxLevelString))
+                    maxLevel = LogLevel.FromString(maxLevelString).Ordinal;
+
+                for (int i = minLevel; i <= maxLevel; ++i)
+                {
+                    rule.EnableLoggingForLevel(LogLevel.FromOrdinal(i));
+                }
+            }
+
+            if (!reader.IsEmptyElement)
+            {
+                while (MoveToNextElement(reader))
+                {
+                    switch (reader.LocalName.ToLower(CultureInfo.InvariantCulture))
+                    {
+                        case "filters":
+                            ParseFilters(rule, reader);
+                            break;
+
+                        case "logger":
+                            ParseLoggerElement(reader, rule.ChildRules);
+                            break;
+
+                        default:
+                            reader.Skip();
+                            break;
+                    }
+                }
+            }
+
+            rulesCollection.Add(rule);
+        }
+
+        private void ParseFilters(LoggingRule rule, XmlReader reader)
+        {
+            if (!reader.IsEmptyElement)
+            {
+                while (MoveToNextElement(reader))
+                {
+                    string name = reader.LocalName;
+
+                    Filter filter = NLogFactories.FilterFactory.Create(name);
+                    ConfigureObjectFromAttributes(filter, reader, _variables, false);
+                    rule.Filters.Add(filter);
+                }
             }
         }
 
-        private static bool EqualsCI(string p1, string p2)
+        private void ParseVariableElement(XmlReader reader)
         {
-            return PropertyHelper.EqualsCI(p1, p2);
+            reader.Skip();
         }
 
-        private string GetCaseInsensitiveAttribute(XmlElement element, string name)
+        private static string GetCaseInsensitiveAttribute(XmlReader reader, string attributeName, string defaultValue)
         {
-            return PropertyHelper.GetCaseInsensitiveAttribute(element, name, _variables);
+            string value;
+
+            if (!TryGetCaseInsensitiveAttribute(reader, attributeName, out value))
+                return defaultValue;
+            else
+                return value;
         }
 
-        private static bool HasCaseInsensitiveAttribute(XmlElement element, string name)
+        private static bool GetBooleanAttribute(XmlReader reader, string attributeName, bool defaultValue)
         {
-            return PropertyHelper.HasCaseInsensitiveAttribute(element, name);
+            string value;
+
+            if (!TryGetCaseInsensitiveAttribute(reader, attributeName, out value))
+                return defaultValue;
+
+            switch (value.ToLower(CultureInfo.InvariantCulture))
+            {
+                case "true":
+                    return true;
+
+                case "false":
+                    return false;
+
+                default:
+                    throw new NLogConfigurationException("Invalid value specified for '" + attributeName + "' attribute. Must be 'true' or 'false'");
+            }
         }
 
-        private void IncludeFileFromElement(XmlElement includeElement, string baseDirectory)
+        private static bool TryGetCaseInsensitiveAttribute(XmlReader reader, string attributeName, out string value)
         {
-            string newFileName = SimpleLayout.Evaluate(GetCaseInsensitiveAttribute(includeElement, "file"));
-            newFileName = Path.Combine(baseDirectory, newFileName);
+            if (reader.MoveToFirstAttribute())
+            {
+                do
+                {
+                    if (CaseInsensitiveEquals(reader.LocalName, attributeName))
+                    {
+                        value = reader.Value;
+                        reader.MoveToElement();
+                        return true;
+                    }
+                }
+                while (reader.MoveToNextAttribute());
+                reader.MoveToElement();
+                value = null;
+                return false;
+            }
+            else
+            {
+                value = null;
+                return false;
+            }
+        }
+
+        private void ParseTargetsElement(XmlReader reader)
+        {
+            InternalLogger.Trace("ParseTargetsElement");
+            Debug.Assert(CaseInsensitiveEquals(reader.LocalName, "targets") || CaseInsensitiveEquals(reader.LocalName, "appenders"));
+
+            bool asyncWrap = CaseInsensitiveEquals(GetCaseInsensitiveAttribute(reader, "async", "false"), "true");
+            string defaultWrapperElementXml = null;
+            Dictionary<string, string> typeNameToDefaultTargetParametersXml = new Dictionary<string, string>();
+
+            if (!reader.IsEmptyElement)
+            {
+                while (MoveToNextElement(reader))
+                {
+                    string name = reader.LocalName;
+                    string type = GetCaseInsensitiveAttribute(reader, "type", null);
+
+                    switch (name.ToLower(CultureInfo.InvariantCulture))
+                    {
+                        case "default-wrapper":
+                            defaultWrapperElementXml = reader.ReadOuterXml();
+                            break;
+
+                        case "default-target-parameters":
+                            if (type == null)
+                                throw new NLogConfigurationException("Missing 'type' attribute on <" + name + "/>.");
+                            typeNameToDefaultTargetParametersXml[type] = reader.ReadOuterXml();
+                            break;
+
+                        case "target":
+                        case "appender":
+                        case "wrapper":
+                        case "wrapper-target":
+                        case "compound-target":
+                            if (type == null)
+                                throw new NLogConfigurationException("Missing 'type' attribute on <" + name + "/>.");
+
+                            Target newTarget = NLogFactories.TargetFactory.Create(type);
+
+                            string xml;
+                            if (typeNameToDefaultTargetParametersXml.TryGetValue(type, out xml))
+                            {
+                                using (XmlReader reader1 = XmlReader.Create(new StringReader(xml)))
+                                {
+                                    ParseTargetElement(newTarget, reader1);
+                                }
+                            }
+
+                            ParseTargetElement(newTarget, reader);
+
+                            if (asyncWrap)
+                                newTarget = WrapWithAsyncTarget(newTarget);
+
+                            if (defaultWrapperElementXml != null)
+                            {
+                                using (XmlReader reader1 = XmlReader.Create(new StringReader(defaultWrapperElementXml)))
+                                {
+                                    newTarget = WrapWithDefaultWrapper(newTarget, reader1);
+                                }
+                            }
+
+                            InternalLogger.Info("Adding target {0}", newTarget);
+                            AddTarget(newTarget.Name, newTarget);
+                            break;
+
+                        default:
+                            reader.Skip();
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void ParseTargetElement(Target target, XmlReader reader)
+        {
+            InternalLogger.Trace("ParseTargetElement name={0} type={1}", reader.GetAttribute("name"), reader.GetAttribute("type"));
+
+            NLog.Targets.Compound.CompoundTargetBase compound = target as NLog.Targets.Compound.CompoundTargetBase;
+            NLog.Targets.Wrappers.WrapperTargetBase wrapper = target as NLog.Targets.Wrappers.WrapperTargetBase;
+
+            ConfigureObjectFromAttributes(target, reader, _variables, true);
+
+            if (!reader.IsEmptyElement)
+            {
+                while (MoveToNextElement(reader))
+                {
+                    string name = reader.LocalName.ToLower(CultureInfo.InvariantCulture);
+
+                    if (compound != null)
+                    {
+                        if ((name == "target" || name == "wrapper" || name == "wrapper-target" || name == "compound-target"))
+                        {
+                            string type;
+
+                            if (!TryGetCaseInsensitiveAttribute(reader, "type", out type))
+                                throw new NLogConfigurationException("Missing 'type' attribute on <" + name + " />");
+
+                            Target newTarget = NLogFactories.TargetFactory.Create(type);
+                            if (newTarget != null)
+                            {
+                                ParseTargetElement(newTarget, reader);
+                                if (newTarget.Name != null)
+                                {
+                                    // if the new target has name, register it
+                                    AddTarget(newTarget.Name, newTarget);
+                                }
+                                compound.Targets.Add(newTarget);
+                            }
+                            continue;
+                        }
+                    }
+
+                    if (wrapper != null)
+                    {
+                        if ((name == "target" || name == "wrapper" || name == "wrapper-target" || name == "compound-target"))
+                        {
+                            string type;
+
+                            if (!TryGetCaseInsensitiveAttribute(reader, "type", out type))
+                                throw new NLogConfigurationException("Missing 'type' attribute on <" + name + " />");
+
+                            Target newTarget = NLogFactories.TargetFactory.Create(type);
+                            if (newTarget != null)
+                            {
+                                ParseTargetElement(newTarget, reader);
+                                if (newTarget.Name != null)
+                                {
+                                    // if the new target has name, register it
+                                    AddTarget(newTarget.Name, newTarget);
+                                }
+                                if (wrapper.WrappedTarget != null)
+                                {
+                                    throw new NLogConfigurationException("Wrapped target already defined.");
+                                }
+                                wrapper.WrappedTarget = newTarget;
+                            }
+                            continue;
+                        }
+                    }
+
+                    SetPropertyFromElement(target, reader, _variables);
+                }
+            }
+        }
+
+        private void ParseExtensionsElement(XmlReader reader, string baseDirectory)
+        {
+            if (!reader.IsEmptyElement)
+            {
+                while (MoveToNextElement(reader))
+                {
+                    if (CaseInsensitiveEquals(reader.LocalName, "add"))
+                    {
+                        string prefix;
+
+                        if (TryGetCaseInsensitiveAttribute(reader, "prefix", out prefix))
+                        {
+                            prefix = prefix + ".";
+                        }
+                        else
+                        {
+                            prefix = null;
+                        }
+
+                        string assemblyFile;
+
+                        if (TryGetCaseInsensitiveAttribute(reader, "assemblyFile", out assemblyFile))
+                        {
+                            try
+                            {
+                                string fullFileName = Path.Combine(baseDirectory, assemblyFile);
+                                InternalLogger.Info("Loading assemblyFile: {0}", fullFileName);
+                                Assembly asm = Assembly.LoadFrom(fullFileName);
+
+                                NLogFactories.ScanAssembly(asm, prefix);
+                            }
+                            catch (Exception ex)
+                            {
+                                InternalLogger.Error("Error loading extensions: {0}", ex);
+                                if (LogManager.ThrowExceptions)
+                                    throw new NLogConfigurationException("Error loading extensions: " + assemblyFile, ex);
+                            }
+                            continue;
+                        };
+
+                        string assemblyName;
+                        if (TryGetCaseInsensitiveAttribute(reader, "assembly", out assemblyName))
+                        {
+                            try
+                            {
+                                InternalLogger.Info("Loading assemblyName: {0}", assemblyName);
+                                Assembly asm = Assembly.Load(assemblyName);
+
+                                NLogFactories.ScanAssembly(asm, prefix);
+                            }
+                            catch (Exception ex)
+                            {
+                                InternalLogger.Error("Error loading extensions: {0}", ex);
+                                if (LogManager.ThrowExceptions)
+                                    throw new NLogConfigurationException("Error loading extensions: " + assemblyName, ex);
+                            }
+                            continue;
+                        };
+                    }
+                }
+            }
+        }
+
+        private void ParseIncludeElement(XmlReader reader, string baseDirectory)
+        {
+            string newFileName;
+
+            if (!TryGetCaseInsensitiveAttribute(reader, "file", out newFileName))
+                throw new NLogConfigurationException("Missing 'file' argument for <include />");
 
             try
             {
+                newFileName = Path.Combine(baseDirectory, SimpleLayout.Evaluate(newFileName));
+
                 if (File.Exists(newFileName))
                 {
                     InternalLogger.Debug("Including file '{0}'", newFileName);
@@ -231,109 +732,127 @@ namespace NLog.Config
             {
                 InternalLogger.Error("Error when including '{0}' {1}", newFileName, ex);
 
-                if (EqualsCI(GetCaseInsensitiveAttribute(includeElement, "ignoreErrors"), "true"))
+                if (CaseInsensitiveEquals(GetCaseInsensitiveAttribute(reader, "ignoreErrors", "false"), "true"))
                     return;
                 throw new NLogConfigurationException("Error when including: " + newFileName, ex);
             }
         }
 
-        private void ConfigureFromXmlElement(XmlElement configElement, string baseDirectory)
+        private static bool CaseInsensitiveEquals(string p1, string p2)
         {
-            switch (GetCaseInsensitiveAttribute(configElement, "autoReload"))
+            return 0 == String.Compare(p1, p2, StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        private static bool SetPropertyFromElement(object o, XmlReader reader, IDictionary<string, string> variables)
+        {
+            if (AddArrayItemFromElement(o, reader, variables))
+                return true;
+
+            if (SetLayoutFromElement(o, reader, variables))
+                return true;
+
+            return PropertyHelper.SetPropertyFromString(o, reader.LocalName, reader.Value, variables);
+        }
+
+        private static string CleanWhitespace(string s)
+        {
+            s = s.Replace(" ", ""); // get rid of the whitespace
+            return s;
+        }
+
+        private static bool AddArrayItemFromElement(object o, XmlReader reader, IDictionary<string, string> variables)
+        {
+            string name = reader.Name;
+            if (!PropertyHelper.IsArrayProperty(o.GetType(), name))
+                return false;
+            PropertyInfo propInfo;
+            if (!PropertyHelper.TryGetPropertyInfo(o, name, out propInfo))
+                throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
+
+            IList propertyValue = (IList)propInfo.GetValue(o, null);
+            Type elementType = PropertyHelper.GetArrayItemType(propInfo);
+            object arrayItem = FactoryHelper.CreateInstance(elementType);
+            ConfigureObjectFromAttributes(arrayItem, reader, variables, true);
+            ConfigureObjectFromElement(arrayItem, reader, variables);
+            propertyValue.Add(arrayItem);
+            return true;
+        }
+
+        private static void ConfigureObjectFromAttributes(object targetObject, XmlReader reader, IDictionary<string, string> variables, bool ignoreType)
+        {
+            if (reader.MoveToFirstAttribute())
             {
-                case "true":
-                    AutoReload = true;
-                    break;
-
-                case "false":
-                    AutoReload = false;
-                    break;
-            }
-
-            switch (GetCaseInsensitiveAttribute(configElement, "throwExceptions"))
-            {
-                case "true":
-                    LogManager.ThrowExceptions = true;
-                    break;
-
-                case "false":
-                    LogManager.ThrowExceptions = false;
-                    break;
-            }
-
-            switch (GetCaseInsensitiveAttribute(configElement, "internalLogToConsole"))
-            {
-                case "true":
-                    InternalLogger.LogToConsole = true;
-                    break;
-
-                case "false":
-                    InternalLogger.LogToConsole = false;
-                    break;
-            }
-
-#if !NET_CF
-            switch (GetCaseInsensitiveAttribute(configElement, "internalLogToConsoleError"))
-            {
-                case "true":
-                    InternalLogger.LogToConsoleError = true;
-                    break;
-
-                case "false":
-                    InternalLogger.LogToConsoleError = false;
-                    break;
-            }
-#endif
-
-            string s = GetCaseInsensitiveAttribute(configElement, "internalLogFile");
-            if (s != null)
-                InternalLogger.LogFile = s;
-
-            s = GetCaseInsensitiveAttribute(configElement, "internalLogLevel");
-            if (s != null)
-                InternalLogger.LogLevel = LogLevel.FromString(s);
-
-            s = GetCaseInsensitiveAttribute(configElement, "globalThreshold");
-            if (s != null)
-                LogManager.GlobalThreshold = LogLevel.FromString(s);
-
-            foreach (XmlElement el in PropertyHelper.GetChildElements(configElement))
-            {
-                switch (el.LocalName.ToLower())
+                do
                 {
-                    case "extensions":
-                        AddExtensionsFromElement(el, baseDirectory);
-                        break;
+                    string childName = reader.LocalName;
+                    string childValue = reader.Value;
 
-                    case "include":
-                        IncludeFileFromElement(el, baseDirectory);
-                        break;
+                    if (ignoreType && 0 == String.Compare(childName, "type", true))
+                        continue;
 
-                    case "appenders":
-                    case "targets":
-                        ConfigureTargetsFromElement(el);
-                        break;
+                    PropertyHelper.SetPropertyFromString(targetObject, childName, childValue, variables);
+                } while (reader.MoveToNextAttribute());
+            }
+            reader.MoveToElement();
+        }
 
-                    case "variable":
-                        SetVariable(el);
-                        break;
+        internal static bool SetLayoutFromElement(object o, XmlReader reader, IDictionary<string, string> variables)
+        {
+            string name = reader.LocalName;
+            if (!PropertyHelper.IsLayoutProperty(o.GetType(), name))
+                return false;
 
-                    case "rules":
-                        ConfigureRulesFromElement(this, LoggingRules, el);
-                        break;
+            PropertyInfo targetPropertyInfo = o.GetType().GetProperty(name, BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy | BindingFlags.IgnoreCase);
+
+            if (targetPropertyInfo != null && typeof(Layout).IsAssignableFrom(targetPropertyInfo.PropertyType))
+            {
+                string layoutTypeName;
+
+                if (!TryGetCaseInsensitiveAttribute(reader, "type", out layoutTypeName))
+                {
+                    throw new NLogConfigurationException("No 'type' attributespecified for a layout parameter");
+                }
+                Layout layout = NLogFactories.LayoutFactory.Create(PropertyHelper.ExpandVariables(layoutTypeName, variables));
+                ConfigureObjectFromAttributes(layout, reader, variables, true);
+                ConfigureObjectFromElement(layout, reader, variables);
+                targetPropertyInfo.SetValue(o, layout, null);
+                return true;
+            }
+
+            if (name == "layout" && (o is TargetWithLayout))
+            {
+                string typeName;
+                
+                if (TryGetCaseInsensitiveAttribute(reader, "type", out typeName))
+                {
+                    typeName = PropertyHelper.ExpandVariables(typeName, variables);
+                    Layout layout = NLogFactories.LayoutFactory.Create(typeName);
+                    ConfigureObjectFromAttributes(layout, reader, variables, true);
+                    ConfigureObjectFromElement(layout, reader, variables);
+                    ((TargetWithLayout)o).Layout = layout;
+                }
+                else
+                {
+                    ((TargetWithLayout)o).Layout = reader.Value;
+                }
+                return true;
+            }
+
+            return false;
+        }
+
+        private static void ConfigureObjectFromElement(object targetObject, XmlReader reader, IDictionary<string, string> variables)
+        {
+            if (!reader.IsEmptyElement)
+            {
+                while (MoveToNextElement(reader))
+                {
+                    SetPropertyFromElement(targetObject, reader, variables);
                 }
             }
         }
 
-        private void SetVariable(XmlElement el)
-        {
-            string name = GetCaseInsensitiveAttribute(el, "name");
-            string value = GetCaseInsensitiveAttribute(el, "value");
-
-            _variables[name] = value;
-        }
-
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).
@@ -348,173 +867,6 @@ namespace NLog.Config
         }
 #endif
 
-        // implementation details
-
-        private static string CleanWhitespace(string s)
-        {
-            s = s.Replace(" ", ""); // get rid of the whitespace
-            return s;
-        }
-
-        private void ConfigureRulesFromElement(LoggingConfiguration config, ICollection<LoggingRule> rules, XmlElement element)
-        {
-            if (element == null)
-                return ;
-
-            foreach (XmlElement el in PropertyHelper.GetChildElements(element, "logger"))
-            {
-                XmlElement ruleElement = el;
-
-                LoggingRule rule = new LoggingRule();
-                string namePattern = GetCaseInsensitiveAttribute(ruleElement, "name");
-                if (namePattern == null)
-                    namePattern = "*";
-
-                string appendTo = GetCaseInsensitiveAttribute(ruleElement, "appendTo");
-                if (appendTo == null)
-                    appendTo = GetCaseInsensitiveAttribute(ruleElement, "writeTo");
-
-                rule.LoggerNamePattern = namePattern;
-                if (appendTo != null)
-                {
-                    foreach (string t in appendTo.Split(','))
-                    {
-                        string targetName = t.Trim();
-                        Target target = config.FindTargetByName(targetName);
-
-                        if (target != null)
-                        {
-                            rule.Targets.Add(target);
-                        }
-                        else
-                        {
-                            throw new NLogConfigurationException("Target " + targetName + " not found.");
-                        }
-                    }
-                }
-                rule.Final = false;
-
-                if (HasCaseInsensitiveAttribute(ruleElement, "final"))
-                {
-                    rule.Final = true;
-                }
-
-                if (HasCaseInsensitiveAttribute(ruleElement, "level"))
-                {
-                    LogLevel level = LogLevel.FromString(GetCaseInsensitiveAttribute(ruleElement, "level"));
-                    rule.EnableLoggingForLevel(level);
-                }
-                else if (HasCaseInsensitiveAttribute(ruleElement, "levels"))
-                {
-                    string levelsString = GetCaseInsensitiveAttribute(ruleElement, "levels");
-                    levelsString = CleanWhitespace(levelsString);
-
-                    string[]tokens = levelsString.Split(',');
-                    foreach (string s in tokens)
-                    {
-                        if (s != "")
-                        {
-                            LogLevel level = LogLevel.FromString(s);
-                            rule.EnableLoggingForLevel(level);
-                        }
-                    }
-                }
-                else
-                {
-                    int minLevel = 0;
-                    int maxLevel = LogLevel.MaxLevel.Ordinal;
-
-                    if (HasCaseInsensitiveAttribute(ruleElement, "minlevel"))
-                    {
-                        minLevel = LogLevel.FromString(GetCaseInsensitiveAttribute(ruleElement, "minlevel")).Ordinal;
-                    }
-
-                    if (HasCaseInsensitiveAttribute(ruleElement, "maxlevel"))
-                    {
-                        maxLevel = LogLevel.FromString(GetCaseInsensitiveAttribute(ruleElement, "maxlevel")).Ordinal;
-                    }
-
-                    for (int i = minLevel; i <= maxLevel; ++i)
-                    {
-                        rule.EnableLoggingForLevel(LogLevel.FromOrdinal(i));
-                    }
-                }
-
-                foreach (XmlElement el2 in PropertyHelper.GetChildElements(ruleElement,"filters"))
-                {
-                    ConfigureRuleFiltersFromXmlElement(rule, el2);
-                }
-
-                ConfigureRulesFromElement(config, rule.ChildRules, ruleElement);
-
-                rules.Add(rule);
-            }
-        }
-
-        private void AddExtensionsFromElement(XmlElement element, string baseDirectory)
-        {
-            if (element == null)
-                return ;
-
-            foreach (XmlElement targetElement in PropertyHelper.GetChildElements(element))
-            {
-                if (EqualsCI(targetElement.LocalName,"add"))
-                {
-                    string assemblyFile = GetCaseInsensitiveAttribute(targetElement, "assemblyFile");
-                    string extPrefix = GetCaseInsensitiveAttribute(targetElement, "prefix");
-                    string prefix;
-                    if (extPrefix != null && extPrefix.Length != 0)
-                    {
-                        prefix = extPrefix + ".";
-                    }
-                    else
-                    {
-                        prefix = String.Empty;
-                    }
-
-                    if (assemblyFile != null && assemblyFile.Length > 0)
-                    {
-                        try
-                        {
-                            string fullFileName = Path.Combine(baseDirectory, assemblyFile);
-                            InternalLogger.Info("Loading assemblyFile: {0}", fullFileName);
-                            Assembly asm = Assembly.LoadFrom(fullFileName);
-
-                            NLogFactories.ScanAssembly(asm, prefix);
-                        }
-                        catch (Exception ex)
-                        {
-                            InternalLogger.Error("Error loading extensions: {0}", ex);
-                            if (LogManager.ThrowExceptions)
-                                throw new NLogConfigurationException("Error loading extensions: " + assemblyFile, ex);
-                        }
-                        continue;
-                    };
-
-                    string assemblyName = GetCaseInsensitiveAttribute(targetElement, "assembly");
-
-                    if (assemblyName != null && assemblyName.Length > 0)
-                    {
-                        try
-                        {
-                            InternalLogger.Info("Loading assemblyName: {0}", assemblyName);
-                            Assembly asm = Assembly.Load(assemblyName);
-
-                            NLogFactories.ScanAssembly(asm, prefix);
-                        }
-                        catch (Exception ex)
-                        {
-                            InternalLogger.Error("Error loading extensions: {0}", ex);
-                            if (LogManager.ThrowExceptions)
-                                throw new NLogConfigurationException("Error loading extensions: " + assemblyName, ex);
-                        }
-                        continue;
-                    };
-                }
-
-            }
-        }
-
         private Target WrapWithAsyncTarget(Target t)
         {
             NLog.Targets.Wrappers.AsyncTargetWrapper atw = new NLog.Targets.Wrappers.AsyncTargetWrapper();
@@ -525,14 +877,19 @@ namespace NLog.Config
             return atw;
         }
 
-        private Target WrapWithDefaultWrapper(Target t, XmlElement defaultWrapperElement)
+        private Target WrapWithDefaultWrapper(Target t, XmlReader reader)
         {
-            string wrapperType = GetCaseInsensitiveAttribute(defaultWrapperElement, "type");
+            string wrapperType;
+
+            if (!TryGetCaseInsensitiveAttribute(reader, "type", out wrapperType))
+            {
+                // TODO - add error handling
+            }
             Target wrapperTargetInstance = NLogFactories.TargetFactory.Create(wrapperType);
             WrapperTargetBase wtb = wrapperTargetInstance as WrapperTargetBase;
             if (wtb == null)
                 throw new NLogConfigurationException("Target type specified on <default-wrapper /> is not a wrapper.");
-            ConfigureTargetFromXmlElement(wrapperTargetInstance, defaultWrapperElement);
+            ParseTargetElement(wrapperTargetInstance, reader);
             while (wtb.WrappedTarget != null)
             {
                 wtb = wtb.WrappedTarget as WrapperTargetBase;
@@ -545,130 +902,6 @@ namespace NLog.Config
 
             InternalLogger.Debug("Wrapping target '{0}' with '{1}' and renaming to '{2}", wrapperTargetInstance.Name, wrapperTargetInstance.GetType().Name, t.Name);
             return wrapperTargetInstance;
-        }
-
-        private void ConfigureTargetsFromElement(XmlElement element)
-        {
-            if (element == null)
-                return ;
-
-            bool asyncWrap = EqualsCI(GetCaseInsensitiveAttribute(element, "async"),"true");
-            XmlElement defaultWrapperElement = null;
-            Hashtable typeNameToDefaultTargetParametersElement = new Hashtable();
-
-            foreach (XmlElement targetElement in PropertyHelper.GetChildElements(element))
-            {
-                string name = targetElement.LocalName.ToLower();
-                string type = GetCaseInsensitiveAttribute(targetElement, "type");
-
-                switch (name)
-                {
-                    case "default-wrapper":
-                        defaultWrapperElement = targetElement;
-                        break;
-
-                    case "default-target-parameters":
-                        typeNameToDefaultTargetParametersElement[type] = targetElement;
-                        break;
-
-                    case "target":
-                    case "appender":
-                    case "wrapper":
-                    case "wrapper-target":
-                    case "compound-target":
-                        Target newTarget = NLogFactories.TargetFactory.Create(type);
-
-                        XmlElement defaultParametersElement = typeNameToDefaultTargetParametersElement[type] as XmlElement;
-                        if (defaultParametersElement != null)
-                            ConfigureTargetFromXmlElement(newTarget, defaultParametersElement);
-
-                        ConfigureTargetFromXmlElement(newTarget, targetElement);
-
-                        if (asyncWrap)
-                            newTarget = WrapWithAsyncTarget(newTarget);
-
-                        if (defaultWrapperElement != null)
-                            newTarget = WrapWithDefaultWrapper(newTarget, defaultWrapperElement);
-
-                        InternalLogger.Info("Adding target {0}", newTarget);
-                        AddTarget(newTarget.Name, newTarget);
-                        break;
-                }
-            }
-        }
-
-        private void ConfigureRuleFiltersFromXmlElement(LoggingRule rule, XmlElement element)
-        {
-            if (element == null)
-                return ;
-
-            foreach (XmlElement el in PropertyHelper.GetChildElements(element))
-            {
-                string name = el.LocalName;
-
-                Filter filter = NLogFactories.FilterFactory.Create(name);
-                PropertyHelper.ConfigureObjectFromAttributes(filter, el.Attributes, _variables, false);
-                rule.Filters.Add(filter);
-            }
-        }
-
-        private void ConfigureTargetFromXmlElement(Target target, XmlElement element)
-        {
-            NLog.Targets.Compound.CompoundTargetBase compound = target as NLog.Targets.Compound.CompoundTargetBase;
-            NLog.Targets.Wrappers.WrapperTargetBase wrapper = target as NLog.Targets.Wrappers.WrapperTargetBase;
-
-            PropertyHelper.ConfigureObjectFromAttributes(target, element.Attributes, _variables, true);
-
-            foreach (XmlElement el in PropertyHelper.GetChildElements(element))
-            {
-                string name = el.LocalName;
-
-                if (compound != null)
-                {
-                    if ((name == "target" || name == "wrapper" || name == "wrapper-target" || name == "compound-target"))
-                    {
-                        string type = GetCaseInsensitiveAttribute(el, "type");
-                        Target newTarget = NLogFactories.TargetFactory.Create(type);
-                        if (newTarget != null)
-                        {
-                            ConfigureTargetFromXmlElement(newTarget, el);
-                            if (newTarget.Name != null)
-                            {
-                                // if the new target has name, register it
-                                AddTarget(newTarget.Name, newTarget);
-                            }
-                            compound.Targets.Add(newTarget);
-                        }
-                        continue;
-                    }
-                }
-
-                if (wrapper != null)
-                {
-                    if ((name == "target" || name == "wrapper" || name == "wrapper-target" || name == "compound-target"))
-                    {
-                        string type = GetCaseInsensitiveAttribute(el, "type");
-                        Target newTarget = NLogFactories.TargetFactory.Create(type);
-                        if (newTarget != null)
-                        {
-                            ConfigureTargetFromXmlElement(newTarget, el);
-                            if (newTarget.Name != null)
-                            {
-                                // if the new target has name, register it
-                                AddTarget(newTarget.Name, newTarget);
-                            }
-                            if (wrapper.WrappedTarget != null)
-                            {
-                                throw new NLogConfigurationException("Wrapped target already defined.");
-                            }
-                            wrapper.WrappedTarget = newTarget;
-                        }
-                        continue;
-                    }
-                }
-
-                PropertyHelper.SetPropertyFromElement(target, el, _variables);
-            }
         }
     }
 }

@@ -39,6 +39,7 @@ using NLog;
 using NLog.Config;
 
 using NUnit.Framework;
+using NLog.Contexts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -61,19 +62,19 @@ namespace NLog.UnitTests.LayoutRenderers
 
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
-            using (NLog.NDC.Push("ala"))
+            using (NestedDiagnosticsContext.Push("ala"))
             {
                 LogManager.GetLogger("A").Debug("a");
                 AssertDebugLastMessage("debug", "ala a");
-                using (NLog.NDC.Push("ma"))
+                using (NestedDiagnosticsContext.Push("ma"))
                 {
                     LogManager.GetLogger("A").Debug("b");
                     AssertDebugLastMessage("debug", "ala ma b");
-                    using (NLog.NDC.Push("kota"))
+                    using (NestedDiagnosticsContext.Push("kota"))
                     {
                         LogManager.GetLogger("A").Debug("c");
                         AssertDebugLastMessage("debug", "ala ma kota c");
-                        using (NLog.NDC.Push("kopytko"))
+                        using (NestedDiagnosticsContext.Push("kopytko"))
                         {
                             LogManager.GetLogger("A").Debug("d");
                             AssertDebugLastMessage("debug", "ala ma kota kopytko d");
@@ -107,19 +108,19 @@ namespace NLog.UnitTests.LayoutRenderers
 
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
-            using (NLog.NDC.Push("ala"))
+            using (NestedDiagnosticsContext.Push("ala"))
             {
                 LogManager.GetLogger("A").Debug("a");
                 AssertDebugLastMessage("debug", "ala a");
-                using (NLog.NDC.Push("ma"))
+                using (NestedDiagnosticsContext.Push("ma"))
                 {
                     LogManager.GetLogger("A").Debug("b");
                     AssertDebugLastMessage("debug", "ala ma b");
-                    using (NLog.NDC.Push("kota"))
+                    using (NestedDiagnosticsContext.Push("kota"))
                     {
                         LogManager.GetLogger("A").Debug("c");
                         AssertDebugLastMessage("debug", "ma kota c");
-                        using (NLog.NDC.Push("kopytko"))
+                        using (NestedDiagnosticsContext.Push("kopytko"))
                         {
                             LogManager.GetLogger("A").Debug("d");
                             AssertDebugLastMessage("debug", "kota kopytko d");
@@ -154,22 +155,22 @@ namespace NLog.UnitTests.LayoutRenderers
 
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
-            using (NLog.NDC.Push("ala"))
+            using (NestedDiagnosticsContext.Push("ala"))
             {
                 LogManager.GetLogger("A").Debug("a");
                 AssertDebugLastMessage("debug", "ala a");
-                using (NLog.NDC.Push("ma"))
+                using (NestedDiagnosticsContext.Push("ma"))
                 {
                     LogManager.GetLogger("A").Debug("b");
                     AssertDebugLastMessage("debug", "ma b");
-                    using (NLog.NDC.Push("kota"))
+                    using (NestedDiagnosticsContext.Push("kota"))
                     {
                         LogManager.GetLogger("A").Debug("c");
                         AssertDebugLastMessage("debug", "kota c");
-                        NLog.NDC.Push("kopytko");
+                        NestedDiagnosticsContext.Push("kopytko");
                         LogManager.GetLogger("A").Debug("d");
                         AssertDebugLastMessage("debug", "kopytko d");
-                        Assert.AreEqual("kopytko", NLog.NDC.Pop()); // manual pop
+                        Assert.AreEqual("kopytko", NestedDiagnosticsContext.Pop()); // manual pop
                         LogManager.GetLogger("A").Debug("c");
                         AssertDebugLastMessage("debug", "kota c");
                     }
@@ -181,13 +182,13 @@ namespace NLog.UnitTests.LayoutRenderers
             }
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
-            Assert.AreEqual(String.Empty, NLog.NDC.Pop());
-            Assert.AreEqual(String.Empty, NLog.NDC.GetTopMessage());
-            NLog.NDC.Push("zzz");
-            Assert.AreEqual("zzz", NLog.NDC.GetTopMessage());
-            NLog.NDC.Clear();
-            Assert.AreEqual(String.Empty, NLog.NDC.Pop());
-            Assert.AreEqual(String.Empty, NLog.NDC.GetTopMessage());
+            Assert.AreEqual(String.Empty, NestedDiagnosticsContext.Pop());
+            Assert.AreEqual(String.Empty, NestedDiagnosticsContext.GetTopMessage());
+            NestedDiagnosticsContext.Push("zzz");
+            Assert.AreEqual("zzz", NestedDiagnosticsContext.GetTopMessage());
+            NestedDiagnosticsContext.Clear();
+            Assert.AreEqual(String.Empty, NestedDiagnosticsContext.Pop());
+            Assert.AreEqual(String.Empty, NestedDiagnosticsContext.GetTopMessage());
         }
 
         [Test]
@@ -206,19 +207,19 @@ namespace NLog.UnitTests.LayoutRenderers
 
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
-            using (NLog.NDC.Push("ala"))
+            using (NestedDiagnosticsContext.Push("ala"))
             {
                 LogManager.GetLogger("A").Debug("a");
                 AssertDebugLastMessage("debug", "ala a");
-                using (NLog.NDC.Push("ma"))
+                using (NestedDiagnosticsContext.Push("ma"))
                 {
                     LogManager.GetLogger("A").Debug("b");
                     AssertDebugLastMessage("debug", "ala ma b");
-                    using (NLog.NDC.Push("kota"))
+                    using (NestedDiagnosticsContext.Push("kota"))
                     {
                         LogManager.GetLogger("A").Debug("c");
                         AssertDebugLastMessage("debug", "ala ma c");
-                        using (NLog.NDC.Push("kopytko"))
+                        using (NestedDiagnosticsContext.Push("kopytko"))
                         {
                             LogManager.GetLogger("A").Debug("d");
                             AssertDebugLastMessage("debug", "ala ma d");
@@ -252,19 +253,19 @@ namespace NLog.UnitTests.LayoutRenderers
 
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
-            using (NLog.NDC.Push("ala"))
+            using (NestedDiagnosticsContext.Push("ala"))
             {
                 LogManager.GetLogger("A").Debug("a");
                 AssertDebugLastMessage("debug", "ala a");
-                using (NLog.NDC.Push("ma"))
+                using (NestedDiagnosticsContext.Push("ma"))
                 {
                     LogManager.GetLogger("A").Debug("b");
                     AssertDebugLastMessage("debug", "ala:ma b");
-                    using (NLog.NDC.Push("kota"))
+                    using (NestedDiagnosticsContext.Push("kota"))
                     {
                         LogManager.GetLogger("A").Debug("c");
                         AssertDebugLastMessage("debug", "ala:ma:kota c");
-                        using (NLog.NDC.Push("kopytko"))
+                        using (NestedDiagnosticsContext.Push("kopytko"))
                         {
                             LogManager.GetLogger("A").Debug("d");
                             AssertDebugLastMessage("debug", "ala:ma:kota:kopytko d");

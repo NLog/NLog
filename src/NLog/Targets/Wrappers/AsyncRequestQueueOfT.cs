@@ -87,7 +87,7 @@ namespace NLog.Targets.Wrappers
 
         /// <summary>
         /// Dequeues a maximum of <c>count</c> items from the queue
-        /// and adds returns the <see cref="ArrayList"/> containing them.
+        /// and adds returns the list containing them.
         /// </summary>
         /// <param name="count">Maximum number of items to be dequeued.</param>
         public List<T> DequeueBatch(int count)

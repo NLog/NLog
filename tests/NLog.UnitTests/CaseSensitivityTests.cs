@@ -45,7 +45,7 @@ namespace NLog.UnitTests
 	public class CaseSensitivityTests : NLogTestBase
 	{
         [Test]
-        public void UpperCaseTest()
+        public void LowerCaseTest()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"
@@ -85,7 +85,7 @@ namespace NLog.UnitTests
         }
 
         [Test]
-        public void LowerCaseTest()
+        public void UpperCaseTest()
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(@"

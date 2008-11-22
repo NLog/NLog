@@ -146,26 +146,26 @@ namespace NLog.LayoutRenderers
 				return ;
 			if (QueryString != null)
             {
-                builder.Append(ApplyPadding(context.Request.QueryString[QueryString]));
+                builder.Append(context.Request.QueryString[QueryString]);
             }
             else if (Form != null)
             {
-                builder.Append(ApplyPadding(context.Request.Form[Form]));
+                builder.Append(context.Request.Form[Form]);
             }
             else if (Cookie != null)
             {
                 HttpCookie cookie = context.Request.Cookies[Cookie];
 
                 if (cookie != null)
-                    builder.Append(ApplyPadding(cookie.Value));
+                    builder.Append(cookie.Value);
             }
             else if (ServerVariable != null)
             {
-                builder.Append(ApplyPadding(context.Request.ServerVariables[ServerVariable]));
+                builder.Append(context.Request.ServerVariables[ServerVariable]);
             }
             else if (Item != null)
             {
-                builder.Append(ApplyPadding(context.Request[Item]));
+                builder.Append(context.Request[Item]);
             }
         }
     }

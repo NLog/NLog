@@ -79,7 +79,7 @@ namespace NLog.Targets
     /// </p>
     /// <code lang="C#" src="examples/targets/Configuration API/Mail/Buffered/Example.cs" />
     /// </example>
-    [Target("Mail",IgnoresLayout=true)]
+    [Target("Mail")]
     public class MailTarget: TargetWithLayoutHeaderAndFooter
     {
         /// <summary>
@@ -116,6 +116,7 @@ namespace NLog.Targets
         private int _smtpPort = 25;
         private bool _isHtml = false;
         private bool _newLines = false;
+        private bool _enableSsl = false;
 
         /// <summary>
         /// Creates a new instance of <see cref="MailTarget"/>.
@@ -249,6 +250,16 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Enable the use of SSL (secure sockets layer) when communicating with SMTP server.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool EnableSsl
+        {
+            get { return _enableSsl; }
+            set { _enableSsl = value; }
+        }
+
+        /// <summary>
         /// The port that SMTP Server is listening on.
         /// </summary>
         [DefaultValue(25)]
@@ -329,6 +340,7 @@ namespace NLog.Targets
                 client.Credentials = CredentialCache.DefaultNetworkCredentials;
             else if (SmtpAuthentication == SmtpAuthenticationMode.Basic)
                 client.Credentials = new NetworkCredential(SmtpUsername.GetFormattedMessage(lastEvent), SmtpPassword.GetFormattedMessage(lastEvent));
+            client.EnableSsl = this.EnableSsl;
             Internal.InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, _smtpServer);
             client.Send(msg);
         }

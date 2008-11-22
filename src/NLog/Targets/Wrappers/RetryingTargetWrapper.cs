@@ -64,7 +64,7 @@ namespace NLog.Targets.Wrappers
     /// </p>
     /// <code lang="C#" src="examples/targets/Configuration API/RetryingWrapper/Simple/Example.cs" />
     /// </example>
-    [Target("RetryingWrapper", IgnoresLayout = true, IsWrapper = true)]
+    [Target("RetryingWrapper", IsWrapper = true)]
     public class RetryingTargetWrapper: WrapperTargetBase
     {
         private int _retryCount = 3;

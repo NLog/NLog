@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The call site (class name, method name and source information)
     /// </summary>
-    [LayoutRenderer("callsite",UsingLogEventInfo=true)]
+    [LayoutRenderer("callsite")]
     public class CallSiteLayoutRenderer: LayoutRenderer
     {
         private bool _className = true;
@@ -114,9 +114,14 @@ namespace NLog.LayoutRenderers
         /// Checks whether the stack trace is requested.
         /// </summary>
         /// <returns>2 when the source file information is requested, 1 otherwise.</returns>
-        protected internal override int NeedsStackTrace()
+        protected internal override StackTraceUsage GetStackTraceUsage()
         {
-            return _sourceFile ? 2 : 1;
+            return _sourceFile ? StackTraceUsage.WithSource : StackTraceUsage.WithoutSource;
+        }
+
+        protected internal override bool IsVolatile()
+        {
+            return false;
         }
 
         /// <summary>
@@ -129,44 +134,38 @@ namespace NLog.LayoutRenderers
             StackFrame frame = logEvent.UserStackFrame;
             if (frame != null)
             {
-                StringBuilder sb2 = builder;
-                if (Padding != 0)
-                    sb2 = new StringBuilder();
-
                 MethodBase method = frame.GetMethod();
                 if (ClassName)
                 {
-                    sb2.Append(method.DeclaringType.FullName);
+                    builder.Append(method.DeclaringType.FullName);
                 }
                 if (MethodName)
                 {
                     if (ClassName)
                     {
-                        sb2.Append(".");
+                        builder.Append(".");
                     }
-                    sb2.Append(method.Name);
+                    builder.Append(method.Name);
                 }
                 if (FileName)
                 {
                     string fileName = frame.GetFileName();
                     if (fileName != null)
                     {
-                        sb2.Append("(");
+                        builder.Append("(");
                         if (IncludeSourcePath)
                         {
-                            sb2.Append(fileName);
+                            builder.Append(fileName);
                         }
                         else
                         {
-                            sb2.Append(Path.GetFileName(fileName));
+                            builder.Append(Path.GetFileName(fileName));
                         }
-                        sb2.Append(":");
-                        sb2.Append(frame.GetFileLineNumber());
-                        sb2.Append(")");
+                        builder.Append(":");
+                        builder.Append(frame.GetFileLineNumber());
+                        builder.Append(")");
                     }
                 }
-                if (Padding != 0)
-                    builder.Append(ApplyPadding(sb2.ToString()));
             }
         }
     }

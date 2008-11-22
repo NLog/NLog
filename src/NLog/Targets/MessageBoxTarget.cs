@@ -37,7 +37,11 @@ using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Text;
 
+#if SILVERLIGHT
+using System.Windows.Browser;
+#else
 using System.Windows.Forms;
+#endif
 
 using NLog.Config;
 using System.Collections.Generic;
@@ -70,15 +74,15 @@ namespace NLog.Targets
     [Target("MessageBox")]
     public sealed class MessageBoxTarget: TargetWithLayout
     {
-        private Layout _caption = "";
-
         /// <summary>
         /// Creates a new instance of the <see cref="MessageBoxTarget"/>.
         /// </summary>
         public MessageBoxTarget()
         {
-            Caption = "NLog";
         }
+
+#if !SILVERLIGHT
+        private Layout _caption = "NLog";
 
         /// <summary>
         /// Message box title.
@@ -88,6 +92,7 @@ namespace NLog.Targets
             get { return _caption; }
             set { _caption = value; }
         }
+#endif
 
         /// <summary>
         /// Adds all layouts used by this target to the specified collection.
@@ -96,8 +101,10 @@ namespace NLog.Targets
         public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             base.PopulateLayouts (layouts);
+#if !SILVERLIGHT
             if (Caption != null)
                 Caption.PopulateLayouts(layouts);
+#endif
         }
 
         /// <summary>
@@ -107,7 +114,11 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
+#if SILVERLIGHT
+            HtmlPage.Window.Alert(Layout.GetFormattedMessage(logEvent));
+#else
             MessageBox.Show(Layout.GetFormattedMessage(logEvent), Caption.GetFormattedMessage(logEvent));
+#endif
         }
 
         /// <summary>
@@ -128,7 +139,11 @@ namespace NLog.Targets
                 sb.Append("\n");
             }
 
+#if SILVERLIGHT
+            HtmlPage.Window.Alert(sb.ToString());
+#else
             MessageBox.Show(sb.ToString(), Caption.GetFormattedMessage(lastLogEvent));
+#endif
         }
     }
 }

@@ -4,6 +4,7 @@ using NLog.Config;
 using System.Globalization;
 using System;
 using System.Collections.Generic;
+using NLog.Internal;
 
 namespace NLog.Layouts
 {
@@ -71,13 +72,13 @@ namespace NLog.Layouts
         /// <returns>
         /// 0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace
         /// </returns>
-        public override int NeedsStackTrace()
+        public override StackTraceUsage GetStackTraceUsage()
         {
-            int max = Layout.NeedsStackTrace();
+            StackTraceUsage max = Layout.GetStackTraceUsage();
             if (Header != null)
-                max = Math.Max(max, Header.NeedsStackTrace());
+                max = StackTraceUsageUtils.Max(max, Header.GetStackTraceUsage());
             if (Footer != null)
-                max = Math.Max(max, Footer.NeedsStackTrace());
+                max = StackTraceUsageUtils.Max(max, Footer.GetStackTraceUsage());
             return max;
         }
 
@@ -131,7 +132,9 @@ namespace NLog.Layouts
         /// </summary>
         public override void Initialize()
         {
-            Layout.Initialize();
+            base.Initialize();
+            if (Layout != null)
+                Layout.Initialize();
             if (Header != null)
                 Header.Initialize();
             if (Footer != null)
@@ -143,11 +146,13 @@ namespace NLog.Layouts
         /// </summary>
         public override void Close()
         {
-            Layout.Close();
-            if (Header != null)
+            if (Layout != null && Layout.IsInitialized)
+                Layout.Close();
+            if (Header != null && Header.IsInitialized)
                 Header.Close();
-            if (Footer != null)
+            if (Footer != null && Footer.IsInitialized)
                 Footer.Close();
+            base.Close();
         }
 
         /// <summary>

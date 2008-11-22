@@ -61,7 +61,7 @@ namespace NLog.Targets.Wrappers
     /// </p>
     /// <code lang="C#" src="examples/targets/Configuration API/AutoFlushWrapper/Simple/Example.cs" />
     /// </example>
-    [Target("AutoFlushWrapper", IgnoresLayout = true, IsWrapper = true)]
+    [Target("AutoFlushWrapper", IsWrapper = true)]
     public class AutoFlushTargetWrapper: WrapperTargetBase
     {
         /// <summary>

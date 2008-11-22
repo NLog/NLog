@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -32,8 +32,7 @@
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>NET_2_0</DefineConstants>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>bin\Debug\NLog.XML</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <NoStdLib>false</NoStdLib>
@@ -41,10 +40,11 @@
     <Optimize>false</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningLevel>4</WarningLevel>
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
+    <LangVersion>ISO-2</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -158,6 +158,7 @@
     <Compile Include="Config\ConfigSectionHandler.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
     <Compile Include="Config\DefaultParameterAttribute.cs" />
     <Compile Include="Config\LoggingConfiguration.cs">
       <SubType>Code</SubType>
@@ -183,6 +184,12 @@
     <Compile Include="Config\IFactory.cs" />
     <Compile Include="Config\Factory.cs" />
     <Compile Include="Config\NameAttributeBase.cs" />
+    <Compile Include="Internal\StackTraceUsageUtils.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\ReplaceLayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\LowerCaseLayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\UpperCaseLayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\PaddingLayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBase.cs" />
     <Compile Include="LogFactoryOfT.cs" />
     <Compile Include="FormattedLogEventInfo.cs" />
     <Compile Include="Internal\NativeMethods.cs" />
@@ -190,13 +197,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Layouts\Layout.cs" />
-    <Compile Include="Layouts\LayoutConverter.cs" />
     <Compile Include="Layouts\LayoutParser.cs" />
-    <Compile Include="LayoutRenderers\Rot13LayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\Rot13LayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\FileContentsLayoutRenderer.cs" />
     <Compile Include="Config\NLogFactories.cs" />
     <Compile Include="LogMessageDelegate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StackTraceUsage.cs" />
     <Compile Include="Targets\TargetWithLayoutHeaderAndFooter.cs" />
     <Compile Include="Layouts\LayoutWithHeaderAndFooter.cs" />
     <Compile Include="Internal\CurrentTimeGetter.cs" />
@@ -228,7 +235,7 @@
     <Compile Include="Filters\WhenNotEqualFilter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GDC.cs">
+    <Compile Include="Contexts\GlobalDiagnosticsContext.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Internal\CompactFrameworkHelper.cs">
@@ -431,10 +438,10 @@
     <Compile Include="LogManager.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MDC.cs">
+    <Compile Include="Contexts\MappedDiagnosticsContext.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NDC.cs">
+    <Compile Include="Contexts\NestedDiagnosticsContext.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Targets\Target.cs">

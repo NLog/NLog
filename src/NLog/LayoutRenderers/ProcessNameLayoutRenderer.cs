@@ -84,11 +84,11 @@ namespace NLog.LayoutRenderers
         {
             if (FullName)
             {
-                builder.Append(ApplyPadding(ThreadIDHelper.Instance.CurrentProcessName));
+                builder.Append(ThreadIDHelper.Instance.CurrentProcessName);
             }
             else
             {
-                builder.Append(ApplyPadding(ThreadIDHelper.Instance.CurrentProcessBaseName));
+                builder.Append(ThreadIDHelper.Instance.CurrentProcessBaseName);
             }
         }
 

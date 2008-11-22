@@ -74,5 +74,11 @@ namespace NLog.Config
         {
             get { return _nameToType.Values; }
         }
+
+        public bool TryGetType(string name, out Type result)
+        {
+            result = null;
+            return false;
+        }
     }
 }

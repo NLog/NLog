@@ -72,7 +72,7 @@ namespace NLog.LayoutRenderers
         /// expensive to calculate this function should return a rough estimate
         /// that's big enough in most cases, but not too big, in order to conserve memory.
         /// </remarks>
-        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        protected internal sealed override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
             return 32;
         }
@@ -86,7 +86,7 @@ namespace NLog.LayoutRenderers
         {
             if (Variable != null)
             {
-                builder.Append(ApplyPadding(EnvironmentHelper.GetSafeEnvironmentVariable(Variable)));
+                builder.Append(EnvironmentHelper.GetSafeEnvironmentVariable(Variable));
             }
         }
 

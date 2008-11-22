@@ -43,7 +43,6 @@ namespace NLog.Targets
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class TargetAttribute: NameAttributeBase
     {
-        private bool _ignoresLayout = false;
         private bool _isCompound = false;
         private bool _isWrapper = false;
 
@@ -53,15 +52,6 @@ namespace NLog.Targets
         /// <param name="name"></param>
         public TargetAttribute(string name) : base(name)
         {
-        }
-
-        /// <summary>
-        /// Determines whether the target ignores layout specification.
-        /// </summary>
-        public bool IgnoresLayout
-        {
-            get { return _ignoresLayout; }
-            set { _ignoresLayout = value; }
         }
 
         /// <summary>

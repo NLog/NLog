@@ -41,6 +41,7 @@ using NLog.Config;
 using NUnit.Framework;
 using NLog.LayoutRenderers;
 using NLog.Layouts;
+using System.Text;
 
 namespace NLog.UnitTests
 {
@@ -116,13 +117,12 @@ namespace NLog.UnitTests
         [Test]
         public void DefaultValueWithOtherParametersTest()
         {
-            SimpleLayout l = "${mdc:BBB:padding=3:padcharacter=X}";
+            SimpleLayout l = "${exception:message,type:separator=x}";
             Assert.AreEqual(1, l.Renderers.Length);
-            MDCLayoutRenderer mdc = l.Renderers[0] as MDCLayoutRenderer;
-            Assert.IsNotNull(mdc);
-            Assert.AreEqual("BBB", mdc.Item);
-            Assert.AreEqual(3, mdc.Padding);
-            Assert.AreEqual('X', mdc.PadCharacter);
+            ExceptionLayoutRenderer elr = l.Renderers[0] as ExceptionLayoutRenderer;
+            Assert.IsNotNull(elr);
+            Assert.AreEqual("message,type", elr.Format);
+            Assert.AreEqual("x", elr.Separator);
         }
 
         [Test]
@@ -138,14 +138,14 @@ namespace NLog.UnitTests
         [Test]
         public void NestedLayoutTest()
         {
-            SimpleLayout l = "${file-contents:fileName=${basedir:padding=10}/aaa.txt:padding=12}";
+            SimpleLayout l = "${file-contents:fileName=${basedir:padding=10}/aaa.txt:encoding=iso-8859-1}";
             Assert.AreEqual(1, l.Renderers.Length);
             FileContentsLayoutRenderer lr = l.Renderers[0] as FileContentsLayoutRenderer;
             Assert.IsNotNull(lr);
             Assert.IsInstanceOfType(typeof(SimpleLayout), lr.FileName);
             Assert.AreEqual("${basedir:padding=10}/aaa.txt", ((SimpleLayout)lr.FileName).Text);
             Assert.AreEqual(1, ((SimpleLayout)lr.FileName).Renderers.Length);
-            Assert.AreEqual(12, lr.Padding);
+            Assert.AreEqual(Encoding.GetEncoding("iso-8859-1"), lr.Encoding);
         }
 
         [Test]

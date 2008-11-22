@@ -41,7 +41,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The Ticks value of current date and time.
     /// </summary>
-    [LayoutRenderer("ticks",UsingLogEventInfo=true)]
+    [LayoutRenderer("ticks")]
     public class TicksLayoutRenderer: LayoutRenderer
     {
         /// <summary>
@@ -68,7 +68,12 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(ApplyPadding(logEvent.TimeStamp.Ticks.ToString(Culture)));
+            builder.Append(logEvent.TimeStamp.Ticks.ToString(CultureInfo.InvariantCulture));
+        }
+
+        protected internal override bool IsVolatile()
+        {
+            return false;
         }
     }
 }

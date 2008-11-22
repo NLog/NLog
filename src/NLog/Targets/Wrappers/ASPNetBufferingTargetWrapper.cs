@@ -98,7 +98,7 @@ namespace NLog.Targets.Wrappers
     /// directory along with usage instructions.
     /// </p>
     /// </example>
-    [Target("ASPNetBufferingWrapper", IgnoresLayout = true, IsWrapper = true)]
+    [Target("ASPNetBufferingWrapper", IsWrapper = true)]
     public class ASPNetBufferingTargetWrapper: WrapperTargetBase
     {
         private object _dataSlot = new object();

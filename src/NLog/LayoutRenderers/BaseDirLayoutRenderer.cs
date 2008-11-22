@@ -103,15 +103,15 @@ namespace NLog.LayoutRenderers
         {
             if (File != null)
             {
-                builder.Append(ApplyPadding(Path.Combine(_baseDir, File)));
+                builder.Append(Path.Combine(_baseDir, File));
             }
             else if (Dir != null)
             {
-                builder.Append(ApplyPadding(Path.Combine(_baseDir, Dir)));
+                builder.Append(Path.Combine(_baseDir, Dir));
             }
             else
             {
-                builder.Append(ApplyPadding(_baseDir));
+                builder.Append(_baseDir);
             }
         }
 

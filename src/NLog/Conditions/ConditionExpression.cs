@@ -60,6 +60,11 @@ namespace NLog.Conditions
         {
         }
 
+        /// <summary>
+        /// Converts condition text to a condition expression tree.
+        /// </summary>
+        /// <param name="text">Condition text to be converted</param>
+        /// <returns>Condition expression tree</returns>
         public static implicit operator ConditionExpression(string text)
         {
             return ConditionParser.ParseExpression(text);

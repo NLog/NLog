@@ -42,6 +42,7 @@ using NUnit.Framework;
 using NLog.LayoutRenderers;
 using NLog.Targets;
 using NLog.Layouts;
+using NLog.LayoutRenderers.Wrappers;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -52,11 +53,11 @@ namespace NLog.UnitTests.LayoutRenderers
         public void Test1()
         {
             Assert.AreEqual("NOPQRSTUVWXYZABCDEFGHIJKLM",
-                    Rot13LayoutRenderer.DecodeRot13("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+                    Rot13LayoutRendererWrapper.DecodeRot13("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
             Assert.AreEqual("nopqrstuvwxyzabcdefghijklm0123456789",
-                    Rot13LayoutRenderer.DecodeRot13("abcdefghijklmnopqrstuvwxyz0123456789"));
+                    Rot13LayoutRendererWrapper.DecodeRot13("abcdefghijklmnopqrstuvwxyz0123456789"));
             Assert.AreEqual("How can you tell an extrovert from an introvert at NSA? Va gur ryringbef, gur rkgebiregf ybbx ng gur BGURE thl'f fubrf.",
-            Rot13LayoutRenderer.DecodeRot13(
+            Rot13LayoutRendererWrapper.DecodeRot13(
                             "Ubj pna lbh gryy na rkgebireg sebz na vagebireg ng AFN? In the elevators, the extroverts look at the OTHER guy's shoes."));
         }
 

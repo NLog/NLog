@@ -176,6 +176,31 @@ namespace NLog.Config
             _logLevels[level.Ordinal] = false;
         }
 
+        public ICollection<LogLevel> Levels
+        {
+            get
+            {
+                List<LogLevel> levels = new List<LogLevel>();
+
+                for (int i = 0; i < LogLevel.MaxLevel.Ordinal; ++i)
+                {
+                    if (_logLevels[i])
+                        levels.Add(LogLevel.FromOrdinal(i));
+                }
+                return levels.AsReadOnly();
+            }
+            set
+            {
+                for (int i = 0; i < _logLevels.Length; ++i)
+                    _logLevels[0] = false;
+
+                foreach (LogLevel ll in value)
+                {
+                    _logLevels[ll.Ordinal] = true;
+                }
+            }
+        }
+
         /// <summary>
         /// Checks whether te particular log level is enabled for this rule.
         /// </summary>

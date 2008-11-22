@@ -41,7 +41,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The date and time in a long, sortable format yyyy-MM-dd HH:mm:ss.mmm
     /// </summary>
-    [LayoutRenderer("longdate",UsingLogEventInfo=true)]
+    [LayoutRenderer("longdate")]
     public class LongDateLayoutRenderer: LayoutRenderer
     {
         /// <summary>
@@ -81,28 +81,26 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (NeedPadding())
-            {
-                builder.Append(ApplyPadding(logEvent.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo)));
-            }
-            else
-            {
-                DateTime dt = logEvent.TimeStamp;
+            DateTime dt = logEvent.TimeStamp;
 
-                builder.Append(dt.Year);
-                builder.Append('-');
-                Append2DigitsZeroPadded(builder, dt.Month);
-                builder.Append('-');
-                Append2DigitsZeroPadded(builder, dt.Day);
-                builder.Append(' ');
-                Append2DigitsZeroPadded(builder, dt.Hour);
-                builder.Append(':');
-                Append2DigitsZeroPadded(builder, dt.Minute);
-                builder.Append(':');
-                Append2DigitsZeroPadded(builder, dt.Second);
-                builder.Append('.');
-                Append4DigitsZeroPadded(builder, (int)(dt.Ticks % 10000000) / 1000);
-            }
+            builder.Append(dt.Year);
+            builder.Append('-');
+            Append2DigitsZeroPadded(builder, dt.Month);
+            builder.Append('-');
+            Append2DigitsZeroPadded(builder, dt.Day);
+            builder.Append(' ');
+            Append2DigitsZeroPadded(builder, dt.Hour);
+            builder.Append(':');
+            Append2DigitsZeroPadded(builder, dt.Minute);
+            builder.Append(':');
+            Append2DigitsZeroPadded(builder, dt.Second);
+            builder.Append('.');
+            Append4DigitsZeroPadded(builder, (int)(dt.Ticks % 10000000) / 1000);
+        }
+
+        protected internal override bool IsVolatile()
+        {
+            return false;
         }
     }
 }

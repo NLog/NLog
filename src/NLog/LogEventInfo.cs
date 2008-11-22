@@ -55,7 +55,7 @@ namespace NLog
         /// </summary>
         public static readonly DateTime ZeroDate = DateTime.Now;
 
-        private static int _globalSequenceID = 0;
+        private static int _globalSequenceID;
 
         private DateTime _timeStamp;
         private LogLevel _level;
@@ -78,19 +78,12 @@ namespace NLog
         /// </summary>
         /// <param name="level">Log level</param>
         /// <param name="loggerName">Logger name</param>
-        /// <param name="message">Log message including parameter placeholders</param>
         protected LogEventInfo(LogLevel level, string loggerName)
         {
             _timeStamp = CurrentTimeGetter.Now;
             _level = level;
             _loggerName = loggerName;
-            _layoutCache = null;
             _sequenceID = Interlocked.Increment(ref _globalSequenceID);
-
-#if !NET_CF
-            _stackTrace = null;
-            _userStackFrame = 0;
-#endif 
         } 
 
         /// <summary>
@@ -193,7 +186,7 @@ namespace NLog
         /// The unique identifier of log event which is automatically generated
         /// and monotonously increasing.
         /// </summary>
-        public int SequenceID
+        public int SequenceId
         {
             get { return _sequenceID; }
         }

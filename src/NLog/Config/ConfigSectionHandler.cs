@@ -53,7 +53,7 @@ namespace NLog.Config
             {
                 string configFileName = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
 
-                return new XmlLoggingConfiguration((XmlElement)section, configFileName);
+                return new XmlLoggingConfiguration(configFileName);
             }
             catch (Exception ex)
             {

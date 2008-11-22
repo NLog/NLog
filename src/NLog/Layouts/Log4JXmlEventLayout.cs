@@ -45,9 +45,9 @@ namespace NLog.Layouts
         /// information should be gathered during layout processing.
         /// </summary>
         /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
-        public override int NeedsStackTrace()
+        public override StackTraceUsage GetStackTraceUsage()
         {
-            return _renderer.NeedsStackTrace();
+            return _renderer.GetStackTraceUsage();
         }
 
         /// <summary>

@@ -64,7 +64,7 @@ namespace NLog.Targets.Compound
     /// </p>
     /// <code lang="C#" src="examples/targets/Configuration API/RandomizeGroup/Simple/Example.cs" />
     /// </example>
-    [Target("RandomizeGroup", IgnoresLayout = true, IsCompound = true)]
+    [Target("RandomizeGroup", IsCompound = true)]
     public class RandomizeTarget: CompoundTargetBase
     {
         private static Random _random = new Random();

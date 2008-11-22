@@ -36,6 +36,7 @@ using System.Text;
 
 using NLog.LayoutRenderers;
 using NLog.Config;
+using NLog.Contexts;
 
 namespace NLog.LayoutRenderers
 {
@@ -68,7 +69,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// The separator to be used for concatenating NDC output.
+        /// The separator to be used for concatenating nested diagnostics context output.
         /// </summary>
         public string Separator
         {
@@ -93,13 +94,13 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Renders the specified NDC item and appends it to the specified <see cref="StringBuilder" />.
+        /// Renders the specified Nested Diagnostics Context item and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string[] messages = NDC.GetAllMessages();
+            string[] messages = NestedDiagnosticsContext.GetAllMessages();
             int startPos = 0;
             int endPos = messages.Length;
 
@@ -130,7 +131,7 @@ namespace NLog.LayoutRenderers
                 sb.Append(messages[i]);
                 separator = this.Separator;
             }
-            builder.Append(ApplyPadding(sb.ToString()));
+            builder.Append(sb.ToString());
         }
     }
 }

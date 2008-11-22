@@ -73,7 +73,7 @@ namespace NLog.Targets
     /// so that your application threads will not be blocked by the timing-out connection attempts.
     /// </p>
     /// </example>
-    [Target("NLogViewer", IgnoresLayout=true)]
+    [Target("NLogViewer")]
     public class NLogViewerTarget: NetworkTarget
     {
         private ICollection<NLogViewerParameterInfo> _parameters = new List<NLogViewerParameterInfo>();
@@ -155,14 +155,14 @@ namespace NLog.Targets
         /// Returns the value indicating whether call site and/or source information should be gathered.
         /// </summary>
         /// <returns>2 - when IncludeSourceInfo is set, 1 when IncludeCallSite is set, 0 otherwise</returns>
-        protected internal override int NeedsStackTrace()
+        protected internal override StackTraceUsage GetStackTraceUsage()
         {
             if (IncludeSourceInfo)
-                return 2;
+                return StackTraceUsage.WithSource;
             if (IncludeCallSite)
-                return 1;
+                return StackTraceUsage.WithoutSource;
 
-            return base.NeedsStackTrace();
+            return base.GetStackTraceUsage();
         }
 #endif
 

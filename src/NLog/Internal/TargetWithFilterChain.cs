@@ -46,13 +46,13 @@ namespace NLog.Internal
         private Target _target;
         private ICollection<Filter> _filterChain;
         private TargetWithFilterChain _next;
-        private int _needsStackTrace = 0;
+        private StackTraceUsage _stackTraceUsage = StackTraceUsage.None;
 
         public TargetWithFilterChain(Target a, ICollection<Filter> filterChain)
         {
             _target = a;
             _filterChain = filterChain;
-            _needsStackTrace = 0;
+            _stackTraceUsage = StackTraceUsage.None;
         }
 
         public Target Target
@@ -60,10 +60,9 @@ namespace NLog.Internal
             get { return _target; }
         }
 
-        public int NeedsStackTrace
+        public StackTraceUsage GetStackTraceUsage()
         {
-            get { return _needsStackTrace; }
-            set { _needsStackTrace = value; }
+            return _stackTraceUsage;
         }
 
         public ICollection<Filter> FilterChain
@@ -77,23 +76,25 @@ namespace NLog.Internal
             set { _next = value; }
         }
 
-        public void PrecalculateNeedsStackTrace()
+        public void PrecalculateGetStackTraceUsage()
         {
-            _needsStackTrace = 0;
+            _stackTraceUsage = StackTraceUsage.None;
 
             for (TargetWithFilterChain awf = this; awf != null; awf = awf.Next)
             {
-                if (_needsStackTrace >= 2)
+                if (_stackTraceUsage >= StackTraceUsage.WithSource)
                     break;
                 Target app = awf.Target;
 
-                int nst = app.NeedsStackTrace();
-                _needsStackTrace = Math.Max(_needsStackTrace, nst);
+                StackTraceUsage stu = app.GetStackTraceUsage();
+                if (stu > _stackTraceUsage)
+                    _stackTraceUsage = stu;
 
                 foreach (Filter filter in awf.FilterChain)
                 {
-                    nst = filter.NeedsStackTrace();
-                    _needsStackTrace = Math.Max(_needsStackTrace, nst);
+                    stu = filter.GetStackTraceUsage();
+                    if (stu > _stackTraceUsage)
+                        _stackTraceUsage = stu;
                 }
             }
 

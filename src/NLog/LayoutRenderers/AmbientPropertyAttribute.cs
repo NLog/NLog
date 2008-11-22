@@ -32,22 +32,15 @@
 // 
 
 using System;
-using System.Text;
-using System.Collections;
-
-using NLog.Internal;
-using NLog.LayoutRenderers;
-
-using System.Threading;
 using NLog.Config;
-using System.IO;
-using System.Reflection;
-using System.Collections.Generic;
-using System.ComponentModel;
 
-namespace NLog.Layouts
+namespace NLog.LayoutRenderers
 {
-    public class LayoutConverter : TypeConverter
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple=true)]
+    public class AmbientPropertyAttribute: NameAttributeBase
     {
+        public AmbientPropertyAttribute(string name) : base(name)
+        {
+        }
     }
 }

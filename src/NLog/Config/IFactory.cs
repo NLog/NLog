@@ -16,6 +16,7 @@ namespace NLog.Config
     {
         void Add(string name, TItemType type);
         bool TryCreate(string name, out TBaseType result);
+        bool TryGetType(string name, out Type result);
         TBaseType Create(string name);
         IEnumerable<TItemType> RegisteredItems { get; }
     }

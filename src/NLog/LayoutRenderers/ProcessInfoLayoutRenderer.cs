@@ -42,6 +42,7 @@ using NLog.Config;
 using System.Reflection;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace NLog.LayoutRenderers
 {
@@ -177,8 +178,9 @@ namespace NLog.LayoutRenderers
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (_propertyInfo != null)
-                builder.Append(ApplyPadding(Convert.ToString(_propertyInfo.GetValue(_process, null), CultureInfo)));
+                builder.Append(Convert.ToString(_propertyInfo.GetValue(_process, null), CultureInfo.InvariantCulture));
         }
+
 
         /// <summary>
         /// Initializes the layout renderer.

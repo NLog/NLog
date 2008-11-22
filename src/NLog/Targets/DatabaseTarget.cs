@@ -67,7 +67,7 @@ namespace NLog.Targets
     /// <para>To set up the log target programmatically use code like this (an equivalent of MSSQL configuration):</para>
     /// <code lang="C#" src="examples/targets/Configuration API/Database/MSSQL/Example.cs" height="630" />
     /// </example>
-    [Target("Database", IgnoresLayout=true)]
+    [Target("Database")]
     public sealed class DatabaseTarget: Target
     {
         private Assembly _system_data_assembly = typeof(IDbConnection).Assembly;

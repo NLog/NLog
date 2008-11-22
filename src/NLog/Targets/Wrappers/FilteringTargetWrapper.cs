@@ -65,7 +65,7 @@ namespace NLog.Targets.Wrappers
     /// </p>
     /// <code lang="C#" src="examples/targets/Configuration API/FilteringWrapper/Simple/Example.cs" />
     /// </example>
-    [Target("FilteringWrapper", IgnoresLayout = true, IsWrapper = true)]
+    [Target("FilteringWrapper", IsWrapper = true)]
     public class FilteringTargetWrapper: WrapperTargetBase
     {
         private ConditionExpression _condition;

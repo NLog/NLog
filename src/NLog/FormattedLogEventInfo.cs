@@ -63,35 +63,6 @@ namespace NLog
                 CalcFormattedMessage();
         }
 
-        /// <summary>
-        /// Gets the raw log message including any parameter placeholders.
-        /// </summary>
-        public string Message
-        {
-            get { return _message; }
-            set { _message = value; }
-        }
-
-        /// <summary>
-        /// Gets the parameter values or <see langword="null" /> if no parameters have
-        /// been specified.
-        /// </summary>
-        public object[] Parameters
-        {
-            get { return _parameters; }
-            set { _parameters = value; }
-        }
-
-        /// <summary>
-        /// Gets the format provider that was provided while logging or <see langword="null" />
-        /// when no formatProvider was specified.
-        /// </summary>
-        public IFormatProvider FormatProvider
-        {
-            get { return _formatProvider; }
-            set { _formatProvider = value; }
-        }
-
         public override string FormattedMessage
         {
             get

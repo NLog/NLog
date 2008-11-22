@@ -41,8 +41,8 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The process time in format HH:mm:ss.mmm
     /// </summary>
-    [LayoutRenderer("processtime",UsingLogEventInfo=true,IgnoresPadding=true)]
-    public class ProcessTimeLayoutRenderer: LayoutRenderer
+    [LayoutRenderer("processtime")]
+    public class ProcessTimeLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -87,6 +87,11 @@ namespace NLog.LayoutRenderers
             if (ts.Milliseconds < 10)
                 builder.Append('0');
             builder.Append(ts.Milliseconds);
+        }
+
+        protected internal override bool IsVolatile()
+        {
+            return false;
         }
     }
 }

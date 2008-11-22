@@ -63,7 +63,7 @@ namespace NLog.Targets.Wrappers
     /// </p>
     /// <code lang="C#" src="examples/targets/Configuration API/RepeatingWrapper/Simple/Example.cs" />
     /// </example>
-    [Target("RepeatingWrapper", IgnoresLayout = true, IsWrapper = true)]
+    [Target("RepeatingWrapper", IsWrapper = true)]
     public class RepeatingTargetWrapper: WrapperTargetBase
     {
         private int _repeatCount = 3;

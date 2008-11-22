@@ -857,7 +857,7 @@ namespace NLog.Targets
         /// </remarks>
         protected internal override void Write(LogEventInfo[] logEvents)
         {
-            if (FileName.IsAppDomainFixed)
+            if (FileName.IsAppDomainFixed())
             {
                 foreach (LogEventInfo lei in logEvents)
                     Write(lei);
@@ -1337,9 +1337,9 @@ namespace NLog.Targets
                 if (val != 0)
                     return val;
 
-                if (le1.SequenceID < le2.SequenceID)
+                if (le1.SequenceId < le2.SequenceId)
                     return -1;
-                if (le1.SequenceID > le2.SequenceID)
+                if (le1.SequenceId > le2.SequenceId)
                     return 1;
                 return 0;
             }

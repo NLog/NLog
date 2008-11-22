@@ -35,6 +35,7 @@ using System;
 using System.Text;
 using NLog.Config;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace NLog.LayoutRenderers
 {
@@ -83,10 +84,10 @@ namespace NLog.LayoutRenderers
 #if NET_CF_1_0
             string msg = Convert.ToString(logEvent.Context[Item]);
 #else
-            string msg = Convert.ToString(logEvent.Context[Item], CultureInfo);
+            string msg = Convert.ToString(logEvent.Context[Item], CultureInfo.InvariantCulture);
 #endif
 
-            builder.Append(ApplyPadding(msg));
+            builder.Append(msg);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The logger name.
     /// </summary>
-    [LayoutRenderer("logger",UsingLogEventInfo=true)]
+    [LayoutRenderer("logger")]
     public class LoggerNameLayoutRenderer: LayoutRenderer
     {
         private bool _shortName = false;
@@ -84,12 +84,17 @@ namespace NLog.LayoutRenderers
             {
                 int lastDot = logEvent.LoggerName.LastIndexOf('.');
                 if (lastDot < 0)
-                    builder.Append(ApplyPadding(logEvent.LoggerName));
+                    builder.Append(logEvent.LoggerName);
                 else
-                    builder.Append(ApplyPadding(logEvent.LoggerName.Substring(lastDot + 1)));
+                    builder.Append(logEvent.LoggerName.Substring(lastDot + 1));
             }
             else
-                builder.Append(ApplyPadding(logEvent.LoggerName));
+                builder.Append(logEvent.LoggerName);
+        }
+
+        protected internal override bool IsVolatile()
+        {
+            return false;
         }
     }
 }

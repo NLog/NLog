@@ -5,6 +5,7 @@ using System.Globalization;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using NLog.Internal;
 namespace NLog.Layouts
 {
     /// <summary>
@@ -244,15 +245,15 @@ namespace NLog.Layouts
         /// information should be gathered during layout processing.
         /// </summary>
         /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
-        public override int NeedsStackTrace()
+        public override StackTraceUsage GetStackTraceUsage()
         {
-            int nst = 0;
+            StackTraceUsage stu = 0;
 
             foreach (CsvColumn cc in _columns)
             {
-                nst = Math.Max(nst, cc.Layout.NeedsStackTrace());
+                stu = StackTraceUsageUtils.Max(stu, cc.Layout.GetStackTraceUsage());
             }
-            return nst;
+            return stu;
         }
 
         /// <summary>
@@ -407,7 +408,7 @@ namespace NLog.Layouts
             /// <returns>
             /// 0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace
             /// </returns>
-            public override int NeedsStackTrace()
+            public override StackTraceUsage GetStackTraceUsage()
             {
                 return 0;
             }

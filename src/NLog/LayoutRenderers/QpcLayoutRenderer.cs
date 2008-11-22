@@ -191,7 +191,7 @@ namespace NLog.LayoutRenderers
                 stringValue = Convert.ToString(qpcValue);
             }
 
-            builder.Append(ApplyPadding(stringValue));
+            builder.Append(stringValue);
         }
 
 #if !NET_CF

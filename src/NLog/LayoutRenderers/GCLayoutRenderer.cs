@@ -42,6 +42,7 @@ using NLog.Config;
 using System.Reflection;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace NLog.LayoutRenderers
 {
@@ -153,7 +154,7 @@ namespace NLog.LayoutRenderers
                     break;
             }
 
-            builder.Append(ApplyPadding(Convert.ToString(value, CultureInfo)));
+            builder.Append(Convert.ToString(value, CultureInfo.InvariantCulture));
         }
     }
 }

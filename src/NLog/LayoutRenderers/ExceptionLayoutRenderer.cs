@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers
     /// Exception information provided through 
     /// a call to one of the Logger.*Exception() methods.
     /// </summary>
-    [LayoutRenderer("exception",UsingLogEventInfo=true)]
+    [LayoutRenderer("exception")]
     public class ExceptionLayoutRenderer: LayoutRenderer
     {
         private string _format;
@@ -193,8 +193,13 @@ namespace NLog.LayoutRenderers
                         sb2.Append(Separator);
                     _exceptionDataTargets[i](sb2, logEvent.Exception);
                 }
-                builder.Append(ApplyPadding(sb2.ToString()));
+                builder.Append(sb2.ToString());
             }
+        }
+
+        protected internal override bool IsVolatile()
+        {
+            return false;
         }
     }
 }

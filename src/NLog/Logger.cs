@@ -277,7 +277,7 @@ namespace NLog
         /// Writes the diagnostic message at the specified level.
         /// </summary>
         /// <param name="level">the log level.</param>
-        /// <param name="message">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        /// <param name="messageDelegate">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         public void Log(LogLevel level, LogMessageDelegate messageDelegate) {
             if (IsEnabled(level))
                 WriteToTargets(level, messageDelegate());
@@ -287,10 +287,10 @@ namespace NLog
         /// Writes the diagnostic message at the specified level.
         /// </summary>
         /// <param name="level">the log level.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void Log(LogLevel level, object obj) {
+        /// <param name="value">A value to be written.</param>
+        public void Log(LogLevel level, object value) {
             if (IsEnabled(level))
-                WriteToTargets(level, "{0}", new object[] { obj } );
+                WriteToTargets(level, "{0}", new object[] { value } );
         }
 
         /// <summary>
@@ -298,10 +298,10 @@ namespace NLog
         /// </summary>
         /// <param name="level">the log level.</param>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void Log(LogLevel level, IFormatProvider formatProvider, object obj) {
+        /// <param name="value">A value to be written.</param>
+        public void Log(LogLevel level, IFormatProvider formatProvider, object value) {
             if (IsEnabled(level))
-                WriteToTargets(level, formatProvider, "{0}", new object[] { obj });
+                WriteToTargets(level, formatProvider, "{0}", new object[] { value });
         }
 
         /// <summary>
@@ -431,7 +431,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
         /// </summary>
-        /// <param name="message">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        /// <param name="messageDelegate">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         public void Trace(LogMessageDelegate messageDelegate) {
             if (IsTraceEnabled)
                 WriteToTargets(LogLevel.Trace, messageDelegate());
@@ -440,20 +440,20 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
         /// </summary>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void Trace(object obj) {
+        /// <param name="value">A value to be written.</param>
+        public void Trace(object value) {
             if (IsTraceEnabled)
-                WriteToTargets(LogLevel.Trace, "{0}", new object[] { obj } );
+                WriteToTargets(LogLevel.Trace, "{0}", new object[] { value } );
         }
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void Trace(IFormatProvider formatProvider, object obj) {
+        /// <param name="value">A value to be written.</param>
+        public void Trace(IFormatProvider formatProvider, object value) {
             if (IsTraceEnabled)
-                WriteToTargets(LogLevel.Trace, formatProvider, "{0}", new object[] { obj });
+                WriteToTargets(LogLevel.Trace, formatProvider, "{0}", new object[] { value });
         }
 
         /// <summary>
@@ -574,7 +574,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
         /// </summary>
-        /// <param name="message">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        /// <param name="messageDelegate">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         public void Debug(LogMessageDelegate messageDelegate) {
             if (IsDebugEnabled)
                 WriteToTargets(LogLevel.Debug, messageDelegate());
@@ -583,20 +583,20 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
         /// </summary>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void Debug(object obj) {
+        /// <param name="value">A value to be written.</param>
+        public void Debug(object value) {
             if (IsDebugEnabled)
-                WriteToTargets(LogLevel.Debug, "{0}", new object[] { obj } );
+                WriteToTargets(LogLevel.Debug, "{0}", new object[] { value } );
         }
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void Debug(IFormatProvider formatProvider, object obj) {
+        /// <param name="value">A value to be written.</param>
+        public void Debug(IFormatProvider formatProvider, object value) {
             if (IsDebugEnabled)
-                WriteToTargets(LogLevel.Debug, formatProvider, "{0}", new object[] { obj });
+                WriteToTargets(LogLevel.Debug, formatProvider, "{0}", new object[] { value });
         }
 
         /// <summary>
@@ -717,7 +717,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level.
         /// </summary>
-        /// <param name="message">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        /// <param name="messageDelegate">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         public void Info(LogMessageDelegate messageDelegate) {
             if (IsInfoEnabled)
                 WriteToTargets(LogLevel.Info, messageDelegate());
@@ -726,20 +726,20 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level.
         /// </summary>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void Info(object obj) {
+        /// <param name="value">A value to be written.</param>
+        public void Info(object value) {
             if (IsInfoEnabled)
-                WriteToTargets(LogLevel.Info, "{0}", new object[] { obj } );
+                WriteToTargets(LogLevel.Info, "{0}", new object[] { value } );
         }
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void Info(IFormatProvider formatProvider, object obj) {
+        /// <param name="value">A value to be written.</param>
+        public void Info(IFormatProvider formatProvider, object value) {
             if (IsInfoEnabled)
-                WriteToTargets(LogLevel.Info, formatProvider, "{0}", new object[] { obj });
+                WriteToTargets(LogLevel.Info, formatProvider, "{0}", new object[] { value });
         }
 
         /// <summary>
@@ -860,7 +860,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level.
         /// </summary>
-        /// <param name="message">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        /// <param name="messageDelegate">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         public void Warn(LogMessageDelegate messageDelegate) {
             if (IsWarnEnabled)
                 WriteToTargets(LogLevel.Warn, messageDelegate());
@@ -869,20 +869,20 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level.
         /// </summary>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void Warn(object obj) {
+        /// <param name="value">A value to be written.</param>
+        public void Warn(object value) {
             if (IsWarnEnabled)
-                WriteToTargets(LogLevel.Warn, "{0}", new object[] { obj } );
+                WriteToTargets(LogLevel.Warn, "{0}", new object[] { value } );
         }
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void Warn(IFormatProvider formatProvider, object obj) {
+        /// <param name="value">A value to be written.</param>
+        public void Warn(IFormatProvider formatProvider, object value) {
             if (IsWarnEnabled)
-                WriteToTargets(LogLevel.Warn, formatProvider, "{0}", new object[] { obj });
+                WriteToTargets(LogLevel.Warn, formatProvider, "{0}", new object[] { value });
         }
 
         /// <summary>
@@ -1003,7 +1003,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level.
         /// </summary>
-        /// <param name="message">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        /// <param name="messageDelegate">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         public void Error(LogMessageDelegate messageDelegate) {
             if (IsErrorEnabled)
                 WriteToTargets(LogLevel.Error, messageDelegate());
@@ -1012,20 +1012,20 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level.
         /// </summary>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void Error(object obj) {
+        /// <param name="value">A value to be written.</param>
+        public void Error(object value) {
             if (IsErrorEnabled)
-                WriteToTargets(LogLevel.Error, "{0}", new object[] { obj } );
+                WriteToTargets(LogLevel.Error, "{0}", new object[] { value } );
         }
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void Error(IFormatProvider formatProvider, object obj) {
+        /// <param name="value">A value to be written.</param>
+        public void Error(IFormatProvider formatProvider, object value) {
             if (IsErrorEnabled)
-                WriteToTargets(LogLevel.Error, formatProvider, "{0}", new object[] { obj });
+                WriteToTargets(LogLevel.Error, formatProvider, "{0}", new object[] { value });
         }
 
         /// <summary>
@@ -1146,7 +1146,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level.
         /// </summary>
-        /// <param name="message">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        /// <param name="messageDelegate">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         public void Fatal(LogMessageDelegate messageDelegate) {
             if (IsFatalEnabled)
                 WriteToTargets(LogLevel.Fatal, messageDelegate());
@@ -1155,20 +1155,20 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level.
         /// </summary>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void Fatal(object obj) {
+        /// <param name="value">A value to be written.</param>
+        public void Fatal(object value) {
             if (IsFatalEnabled)
-                WriteToTargets(LogLevel.Fatal, "{0}", new object[] { obj } );
+                WriteToTargets(LogLevel.Fatal, "{0}", new object[] { value } );
         }
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void Fatal(IFormatProvider formatProvider, object obj) {
+        /// <param name="value">A value to be written.</param>
+        public void Fatal(IFormatProvider formatProvider, object value) {
             if (IsFatalEnabled)
-                WriteToTargets(LogLevel.Fatal, formatProvider, "{0}", new object[] { obj });
+                WriteToTargets(LogLevel.Fatal, formatProvider, "{0}", new object[] { value });
         }
 
         /// <summary>

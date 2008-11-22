@@ -75,19 +75,21 @@ namespace NLog.Tester
         static void Main(string[]args)
         {
             ConsoleTarget ct = new ConsoleTarget();
-            ct.Layout = "${message} ${longdate}";
+            ct.Layout = "${message} ${longdate} ${replace:searchFor=(..):regex=true:wholeWords=true:replaceWith=[xx'$1'yy]:inner=${rot13:inner=${message}:uppercase=true:padding=-10}}";
 
             CsvLayout csv = new CsvLayout();
             csv.Columns.Add(new CsvColumn("msg", "${message}"));
             csv.Columns.Add(new CsvColumn("date", "${longdate}"));
             csv.Columns.Add(new CsvColumn("level", "${level}"));
             csv.WithHeader = true;
-            ct.Layout = csv;
+            //ct.Layout = csv;
 
             SimpleConfigurator.ConfigureForTargetLogging(ct);
 
             //InternalLogger.LogToConsole = true;
             //InternalLogger.LogLevel = LogLevel.Debug;
+
+            logger.Debug(() => "foo bar");
 
             for (int i = 0; i < 3; ++i)
             {

@@ -54,6 +54,11 @@ namespace NLog.Config
             _items.Add(name, type);
         }
 
+        public bool TryGetType(string name, out Type result)
+        {
+            return _items.TryGetValue(name, out result);
+        }
+
         public bool TryCreate(string name, out TBaseType result)
         {
             Type type;

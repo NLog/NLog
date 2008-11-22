@@ -40,7 +40,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// A newline literal.
     /// </summary>
-    [LayoutRenderer("newline",IgnoresPadding=true)]
+    [LayoutRenderer("newline")]
     public class NewLine: LayoutRenderer
     {
         /// <summary>

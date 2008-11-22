@@ -66,7 +66,7 @@ namespace NLog.Targets.Compound
     /// </p>
     /// <code lang="C#" src="examples/targets/Configuration API/RoundRobinGroup/Simple/Example.cs" />
     /// </example>
-    [Target("RoundRobinGroup", IgnoresLayout = true, IsCompound = true)]
+    [Target("RoundRobinGroup", IsCompound = true)]
     public class RoundRobinTarget: CompoundTargetBase
     {
         private int _currentTarget = 0;

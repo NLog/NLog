@@ -63,7 +63,7 @@ namespace NLog.Targets.Compound
     /// </p>
     /// <code lang="C#" src="examples/targets/Configuration API/FallbackGroup/Simple/Example.cs" />
     /// </example>
-    [Target("FallbackGroup", IgnoresLayout = true, IsCompound = true)]
+    [Target("FallbackGroup", IsCompound = true)]
     public class FallbackTarget: CompoundTargetBase
     {
         private int _currentTarget = 0;

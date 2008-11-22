@@ -79,7 +79,7 @@ namespace NLog.UnitTests
             doc.LoadXml(@"
             <nlog>
                 <targets>
-                    <target name='d' type='Debug' layout='${message:padding=10} ${level}' />
+                    <target name='d' type='Debug' layout='${message} ${level}' />
                 </targets>
             </nlog>");
 
@@ -88,13 +88,13 @@ namespace NLog.UnitTests
             Assert.IsNotNull(t);
             Assert.AreEqual(t.Name, "d");
             SimpleLayout l = t.Layout as SimpleLayout;
-            Assert.AreEqual("${message:padding=10} ${level}", l.Text);
+            Assert.AreEqual("${message} ${level}", l.Text);
             Assert.IsNotNull(l);
             Assert.AreEqual(3, l.Renderers.Length);
             Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), l.Renderers[0]);
             Assert.IsInstanceOfType(typeof(LiteralLayoutRenderer), l.Renderers[1]);
             Assert.IsInstanceOfType(typeof(LevelLayoutRenderer), l.Renderers[2]);
-            Assert.AreEqual(10, l.Renderers[0].Padding);
+            Assert.AreEqual(" ", ((LiteralLayoutRenderer)l.Renderers[1]).Text);
         }
 
         [Test]

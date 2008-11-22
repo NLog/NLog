@@ -40,7 +40,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// The formatted log message.
     /// </summary>
-    [LayoutRenderer("message",UsingLogEventInfo=true)]
+    [LayoutRenderer("message")]
     public class MessageLayoutRenderer: LayoutRenderer
     {
         /// <summary>
@@ -66,7 +66,12 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(ApplyPadding(logEvent.FormattedMessage));
+            builder.Append(logEvent.FormattedMessage);
+        }
+
+        protected internal override bool IsVolatile()
+        {
+            return false;
         }
     }
 }

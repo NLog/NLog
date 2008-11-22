@@ -66,7 +66,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Stack trace renderer.
     /// </summary>
-    [LayoutRenderer("stacktrace",UsingLogEventInfo=true,IgnoresPadding=true)]
+    [LayoutRenderer("stacktrace")]
     public class StackTraceLayoutRenderer: LayoutRenderer
     {
         private StackTraceFormat _format = StackTraceFormat.Flat;
@@ -124,9 +124,9 @@ namespace NLog.LayoutRenderers
         /// Checks whether the stack trace is requested.
         /// </summary>
         /// <returns>2 when the source file information is requested, 1 otherwise.</returns>
-        protected internal override int NeedsStackTrace()
+        protected internal override StackTraceUsage GetStackTraceUsage()
         {
-            return 2;
+            return StackTraceUsage.WithSource;
         }
 
         /// <summary>
@@ -179,6 +179,11 @@ namespace NLog.LayoutRenderers
                     }
                     break;
             }
+        }
+
+        protected internal override bool IsVolatile()
+        {
+            return false;
         }
     }
 }

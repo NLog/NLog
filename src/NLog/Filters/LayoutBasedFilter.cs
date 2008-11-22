@@ -64,13 +64,13 @@ namespace NLog.Filters
 
         /// <summary>
         /// Determines whether stack trace information should be gathered
-        /// during log event processing. By default it calls <see cref="NLog.Layout.NeedsStackTrace" /> on
-        /// <see cref="TargetWithLayout.Layout" />.
+        /// during log event processing. By default it calls <see cref="Layout.GetStackTraceUsage" /> on
+        /// the <see cref="Layout" />.
         /// </summary>
-        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
-        public override int NeedsStackTrace()
+        /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
+        public override StackTraceUsage GetStackTraceUsage()
         {
-            return Layout.NeedsStackTrace();
+            return Layout.GetStackTraceUsage();
         }
     }
 }

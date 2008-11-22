@@ -38,6 +38,7 @@ using System.Collections;
 using NLog.Config;
 using System.Collections.Generic;
 using NLog.Layouts;
+using NLog.Internal;
 
 namespace NLog.Targets
 {
@@ -46,11 +47,14 @@ namespace NLog.Targets
     /// </summary>
     public abstract class Target
     {
-        private bool _initialized = false;
+        private bool _isInitialized = false;
 
-        public bool Initialized
+        /// <summary>
+        /// Determines whether the target has been initialized by calling <see cref="Initialize" />.
+        /// </summary>
+        public bool IsInitialized
         {
-            get { return _initialized; }
+            get { return _isInitialized; }
         }
 
         /// <summary>
@@ -64,49 +68,8 @@ namespace NLog.Targets
         {
         }
 
-        /// <summary>
-        /// Gets the collection of <see cref="Layout"/> objects that are used
-        /// by this target.
-        /// </summary>
-        /// <returns>A collectionof <see cref="ILayout"/> objects. The collection is cached and accumulated 
-        /// by calling <see cref="PopulateLayouts"/>.</returns>
-        public List<Layout> GetLayouts()
-        {
-            List<Layout> lc = _allLayouts;
-            if (lc == null)
-            {
-                lock (this)
-                {
-                    lc = _allLayouts;
-                    if (lc == null)
-                    {
-                        lc = new List<Layout>();
-                        PopulateLayouts(lc);
-                        _allLayouts = lc;
-                        return lc;
-                    }
-                    else
-                    {
-                        return lc;
-                    }
-                }
-            }
-            else
-            {
-                return lc;
-            }
-        }
-
-        /// <summary>
-        /// Invalidates the collection of layouts cached by <see cref="GetLayouts"/>.
-        /// </summary>
-        protected void InvalidateLayouts()
-        {
-            _allLayouts = null;
-        }
-
-        private List<Layout> _allLayouts = null;
-        private int _needsStackTrace = -1;
+        private List<Layout> _allLayouts = new List<Layout>();
+        private StackTraceUsage _stackTraceUsage;
         private string _name;
 
         /// <summary>
@@ -118,6 +81,7 @@ namespace NLog.Targets
             get { return _name; }
             set { _name = value; }
         }
+
 
         /// <summary>
         /// Writes logging event to the log target. Must be overridden in inheriting
@@ -142,36 +106,13 @@ namespace NLog.Targets
 
         /// <summary>
         /// Determines whether stack trace information should be gathered
-        /// during log event processing. By default it calls <see cref="NLog.Layout.NeedsStackTrace" /> on
+        /// during log event processing. By default it calls <see cref="Layout.GetStackTraceUsage" /> on
         /// the result of <see cref="GetLayouts()"/>.
         /// </summary>
         /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
-        protected internal virtual int NeedsStackTrace()
+        protected internal virtual StackTraceUsage GetStackTraceUsage()
         {
-            int nst = _needsStackTrace;
-
-            if (nst == -1)
-            {
-                lock (this)
-                {
-                    nst = _needsStackTrace;
-                    if (nst == -1)
-                    {
-                        int max = 0;
-
-                        foreach (Layout l in GetLayouts())
-                        {
-                            max = Math.Max(max, l.NeedsStackTrace());
-                            if (max == 2)
-                                break;
-                        }
-                        nst = max;
-                        _needsStackTrace = nst;
-                    }
-                }
-            }
-
-            return nst;
+            return _stackTraceUsage;
         }
 
         /// <summary>
@@ -214,27 +155,29 @@ namespace NLog.Targets
         /// </summary>
         protected internal virtual void Close()
         {
-            if (!_initialized)
-                throw new InvalidOperationException("Called Close() without Initialize()");
-            foreach (Layout l in GetLayouts())
+            if (!_isInitialized)
+                InternalLogger.Warn("Called Close() without Initialize() on " + this.ToString() + "(" + this.GetHashCode() + ")");
+            else
+                InternalLogger.Trace("Closing " + this.ToString() + "(" + this.GetHashCode() + ")...");
+            foreach (Layout l in _allLayouts)
             {
                 l.Close();
             }
-            _initialized = false;
+            _isInitialized = false;
         }
 
         /// <summary>
-        /// Calls the <see cref="NLog.Layout.Precalculate"/> on each volatile layout
+        /// Calls the <see cref="Layout.Precalculate"/> on each volatile layout
         /// used by this target.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         /// <remarks>
         /// A layout is volatile if it contains at least one <see cref="Layout"/> for 
-        /// which <see cref="LayoutRenderer.IsVolatile"/> returns true.
+        /// which <see cref="Layout.IsVolatile"/> returns true.
         /// </remarks>
         public void PrecalculateVolatileLayouts(LogEventInfo logEvent)
         {
-            foreach (Layout l in GetLayouts())
+            foreach (Layout l in _allLayouts)
             {
                 if (l.IsVolatile())
                     l.Precalculate(logEvent);
@@ -255,11 +198,17 @@ namespace NLog.Targets
         /// </summary>
         public virtual void Initialize()
         {
-            _initialized = true;
-            foreach (Layout l in GetLayouts())
+            PopulateLayouts(_allLayouts);
+
+            foreach (Layout l in _allLayouts)
             {
                 l.Initialize();
+
+                StackTraceUsage stu = l.GetStackTraceUsage();
+                if (stu > _stackTraceUsage)
+                    _stackTraceUsage = stu;
             }
+            _isInitialized = true;
         }
     }
 }

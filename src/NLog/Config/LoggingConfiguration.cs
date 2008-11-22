@@ -196,6 +196,7 @@ namespace NLog.Config
                     InternalLogger.Error("Error while closing target: {0} {1}", target.Name, ex); 
                 }
             }
+            InternalLogger.Debug("Finished closing logging configuration.");
         }
     }
 }

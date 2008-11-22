@@ -76,7 +76,7 @@ namespace NLog.Layouts
 
         private string _layoutText;
         private LayoutRenderer[] _renderers;
-        private int _needsStackTrace = 0;
+        private StackTraceUsage _stackTraceUsage = StackTraceUsage.None;
         private bool _isVolatile = false;
         private string _fixedText;
 
@@ -86,12 +86,13 @@ namespace NLog.Layouts
         public string Text
         {
             get { return _layoutText; }
-            set { 
+            set
+            {
                 LayoutRenderer[] renderers;
                 string txt;
-                
+
                 renderers = LayoutParser.CompileLayout(
-                    new LayoutParser.Tokenizer(value), 
+                    new LayoutParser.Tokenizer(value),
                     false,
                     out txt);
 
@@ -103,9 +104,9 @@ namespace NLog.Layouts
         /// Returns true if this layout produces a value that doesn't change for a particular
         /// AppDomain.
         /// </summary>
-        public override bool IsAppDomainFixed
+        public override bool IsAppDomainFixed()
         {
-            get { return _fixedText != null; }
+            return _fixedText != null;
         }
 
         /// <summary>
@@ -170,9 +171,9 @@ namespace NLog.Layouts
         /// information should be gathered during layout processing.
         /// </summary>
         /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
-        public override int NeedsStackTrace()
+        public override StackTraceUsage GetStackTraceUsage()
         {
-            return _needsStackTrace;
+            return _stackTraceUsage;
         }
 
         /// <summary>
@@ -209,13 +210,13 @@ namespace NLog.Layouts
             _layoutText = text;
 
             _isVolatile = false;
-            _needsStackTrace = 0;
+            _stackTraceUsage = StackTraceUsage.None;
 
             foreach (LayoutRenderer lr in renderers)
             {
-                int nst = lr.NeedsStackTrace();
-                if (nst > _needsStackTrace)
-                    _needsStackTrace = nst;
+                StackTraceUsage stu = lr.GetStackTraceUsage();
+                if (stu > _stackTraceUsage)
+                    _stackTraceUsage = stu;
                 if (lr.IsVolatile())
                     _isVolatile = true;
             }
@@ -286,6 +287,11 @@ namespace NLog.Layouts
             return Text;
         }
 
+        /// <summary>
+        /// Converts a text to a simple layout.
+        /// </summary>
+        /// <param name="text">Text to be converted.</param>
+        /// <returns>A <see cref="SimpleLayout"/> object.</returns>
         public static implicit operator SimpleLayout(string text)
         {
             return new SimpleLayout(text);

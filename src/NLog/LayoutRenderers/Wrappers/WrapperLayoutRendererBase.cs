@@ -39,7 +39,7 @@ using System.ComponentModel;
 using NLog.Config;
 using NLog.Layouts;
 
-namespace NLog.LayoutRenderers
+namespace NLog.LayoutRenderers.Wrappers
 {
     /// <summary>
     /// Decodes text "encrypted" with ROT-13.
@@ -47,10 +47,19 @@ namespace NLog.LayoutRenderers
     /// <remarks>
     /// See <a href="http://en.wikipedia.org/wiki/ROT13">http://en.wikipedia.org/wiki/ROT13</a>.
     /// </remarks>
-    [LayoutRenderer("rot13")]
-    public class Rot13LayoutRenderer: LayoutRenderer
+    public abstract class WrapperLayoutRendererBase: LayoutRenderer
     {
         private Layout _inner;
+
+        /// <summary>
+        /// Wrapped layout
+        /// </summary>
+        [DefaultParameter]
+        public Layout Inner
+        {
+            get { return _inner; }
+            set { _inner = value; }
+        }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -69,67 +78,55 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// The text to be decoded.
-        /// </summary>
-        [DefaultParameter]
-        public Layout Text
-        {
-            get { return _inner; }
-            set { _inner = value; }
-        }
-        /// <summary>
-        /// Renders the inner message, decrypts it with ROT-13 and appends it to the specified <see cref="StringBuilder" />.
+        /// Renders the inner message, processes it and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string msg = _inner.GetFormattedMessage(logEvent);
-            builder.Append(ApplyPadding(DecodeRot13(msg)));
+            string msg = Inner.GetFormattedMessage(logEvent);
+            builder.Append(Transform(msg));
         }
 
+        /// <summary>
+        /// Transforms a layout output.
+        /// </summary>
+        /// <param name="text">Layout output to be transform</param>
+        /// <returns>Transformed text</returns>
+        protected abstract string Transform(string text);
 
         /// <summary>
         /// Determines whether stack trace information should be gathered
-        /// during log event processing. By default it calls <see cref="NLog.Layout.NeedsStackTrace"/> on
-        /// <see cref="TargetWithLayout.Layout"/>.
+        /// during log event processing. By default it calls <see cref="Layout.GetStackTraceUsage"/> on
+        /// <see cref="Layout"/>.
         /// </summary>
-        /// <returns>
-        /// 0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace
-        /// </returns>
-        protected internal override int NeedsStackTrace()
+        /// <returns>A <see cref="StackTraceUsage" /> value.</returns>
+        protected internal override StackTraceUsage GetStackTraceUsage()
         {
-            return Math.Max(base.NeedsStackTrace(), _inner.NeedsStackTrace());
+            return StackTraceUsageUtils.Max(base.GetStackTraceUsage(), Inner.GetStackTraceUsage());
         }
 
-        /// <summary>
-        /// Encodes/Decodes ROT-13-encoded string.
-        /// </summary>
-        /// <param name="s">The string to be encoded/decoded</param>
-        /// <returns>Encoded/Decoded text</returns>
-        public static string DecodeRot13(string s)
+        public override void Initialize()
         {
-            char[] chars = s.ToCharArray();
-            for (int i = 0; i < chars.Length; ++i)
+            base.Initialize();
+            if (Inner != null)
             {
-                chars[i] = DecodeRot13Char(chars[i]);
+                Inner.Initialize();
             }
-
-            return new string(chars);
         }
 
-        private static char DecodeRot13Char(char c)
+        public override void Close()
         {
-            if (c >= 'A' && c <= 'M')
-                return (char)('N' + (c - 'A'));
-            if (c >= 'a' && c <= 'm')
-                return (char)('n' + (c - 'a'));
-            if (c >= 'N' && c <= 'Z')
-                return (char)('A' + (c - 'N'));
-            if (c >= 'n' && c <= 'z')
-                return (char)('a' + (c - 'n'));
+            if (Inner != null && Inner.IsInitialized)
+            {
+                Inner.Close();
+            }
+            base.Close();
+        }
 
-            return c;
+        protected internal override bool IsAppDomainFixed()
+        {
+            return Inner.IsAppDomainFixed();
         }
     }
 }

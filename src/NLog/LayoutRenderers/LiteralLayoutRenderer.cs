@@ -44,7 +44,7 @@ namespace NLog.LayoutRenderers
     /// This is used to escape '${' sequence 
     /// as ;${literal:text=${}'
     /// </remarks>
-    [LayoutRenderer("literal", UsingLogEventInfo=true, IgnoresPadding=true)]
+    [LayoutRenderer("literal")]
     public class LiteralLayoutRenderer: LayoutRenderer
     {
         private string _txt;
@@ -100,6 +100,11 @@ namespace NLog.LayoutRenderers
         {
             get { return _txt; }
             set { _txt = value; }
+        }
+
+        protected internal override bool IsVolatile()
+        {
+            return false;
         }
     }
 }

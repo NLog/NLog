@@ -80,7 +80,7 @@ namespace NLog.LayoutRenderers
 			if (context.User.Identity == null)
 				return ;
             
-            builder.Append(ApplyPadding(context.User.Identity.Name));
+            builder.Append(context.User.Identity.Name);
         }
     }
 }
