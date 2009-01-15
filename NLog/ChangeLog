@@ -1,3 +1,7 @@
+2009-01-14 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Fixed log4j interoperability - log4j:locationInfo was using lower case
+	instead of camelCase. Reported by Juergen Heusler.
+
 2006-09-18 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Preparing for 1.0 release
 
