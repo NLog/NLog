@@ -194,7 +194,7 @@ namespace NLog.LayoutRenderers
                 MethodBase methodBase = frame.GetMethod();
                 Type type = methodBase.DeclaringType;
 
-                xtw.WriteStartElement("log4j:locationinfo");
+                xtw.WriteStartElement("log4j:locationInfo");
                 xtw.WriteAttributeString("class", type.FullName);
                 xtw.WriteAttributeString("method", methodBase.ToString());
                 if (IncludeSourceInfo)
