@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 
 using System;
 using System.Runtime.InteropServices;
@@ -45,19 +45,13 @@ namespace NLog.Win32.Targets
     /// Outputs logging messages through the ASP Response object.
     /// </summary>
     [Target("ASPResponse")]
-    public sealed class ASPResponseTarget: TargetWithLayout
+    public sealed class ASPResponseTarget : TargetWithLayout
     {
-        private bool _addComments;
-
         /// <summary>
-        /// Add &lt;!-- --&gt; comments around all written texts.
+        /// Gets or sets a value indicating whether to add &lt;!-- --&gt; comments around all written texts.
         /// </summary>
-        public bool AddComments
-        {
-            get { return _addComments; }
-            set { _addComments = value; }
-        }
-     
+        public bool AddComments { get; set; }
+
         /// <summary>
         /// Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
         /// </summary>
@@ -67,14 +61,15 @@ namespace NLog.Win32.Targets
             ASPHelper.IResponse response = ASPHelper.GetResponseObject();
             if (response != null)
             {
-                if (AddComments)
+                if (this.AddComments)
                 {
-                    response.Write("<!-- " + Layout.GetFormattedMessage(logEvent) + "-->");
+                    response.Write("<!-- " + this.Layout.GetFormattedMessage(logEvent) + "-->");
                 }
                 else
                 {
-                    response.Write(Layout.GetFormattedMessage(logEvent));
+                    response.Write(this.Layout.GetFormattedMessage(logEvent));
                 }
+
                 Marshal.ReleaseComObject(response);
             }
         }

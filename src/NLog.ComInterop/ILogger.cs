@@ -139,9 +139,6 @@ namespace NLog.ComInterop
         /// <summary>
         /// The logger name.
         /// </summary>
-        string LoggerName
-        {
-            get; set;
-        }
+        string LoggerName { get; set; }
     }
 }

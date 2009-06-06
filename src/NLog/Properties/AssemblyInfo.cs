@@ -38,13 +38,11 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 
 #if NET_2_0
-[assembly: AssemblyTitle("NLog for .NET 2.0")]
+[assembly: AssemblyTitle("NLog for .NET Framework 2.0")]
+#elif NET_3_5
+[assembly: AssemblyTitle("NLog for .NET Framework 3.5")]
 #elif MONO_1_0
-[assembly: AssemblyTitle("NLog for Mono 1.0")]
-#elif MONO_2_0
 [assembly: AssemblyTitle("NLog for Mono 2.0")]
-#elif NET_CF_1_0
-[assembly: AssemblyTitle("NLog for .NET Compact Framework 1.0")]
 #elif NET_CF_2_0
 [assembly: AssemblyTitle("NLog for .NET Compact Framework 2.0")]
 #elif DOCUMENTATION
@@ -54,15 +52,9 @@ using System.Security.Permissions;
 [assembly: AssemblyDescription("NLog")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NLog")]
-[assembly: AssemblyProduct("NLog - .NET Logging Library")]
-[assembly: AssemblyCopyright("Copyright (c) 2004-2006 by Jaroslaw Kowalski")]
+[assembly: AssemblyProduct("NLog - Advanced .NET Logging")]
+[assembly: AssemblyCopyright("Copyright (c) 2004-2009 by Jaroslaw Kowalski")]
 [assembly: AssemblyCulture("")]
 
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]
-
-#if !NET_CF
-//[assembly: ReflectionPermission(SecurityAction.RequestMinimum, MemberAccess = true, TypeInformation = true)]
-//[assembly: SecurityPermission(SecurityAction.RequestMinimum, Flags = SecurityPermissionFlag.Execution)]
-//[assembly: FileIOPermission(SecurityAction.RequestMinimum, Unrestricted = true)]
-#endif

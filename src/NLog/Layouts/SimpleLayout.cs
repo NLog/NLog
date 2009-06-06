@@ -32,17 +32,11 @@
 // 
 
 using System;
+using System.Collections.Generic;
 using System.Text;
-using System.Collections;
 
 using NLog.Internal;
 using NLog.LayoutRenderers;
-
-using System.Threading;
-using NLog.Config;
-using System.IO;
-using System.Reflection;
-using System.Collections.Generic;
 
 namespace NLog.Layouts
 {
@@ -52,40 +46,56 @@ namespace NLog.Layouts
     [Layout("SimpleLayout")]
     public sealed class SimpleLayout : Layout
     {
+        #region Constants and Fields
+
+        private string fixedText;
+
+        private bool isVolatile = false;
+
+        private string layoutText;
+        private LayoutRenderer[] renderers;
+        private StackTraceUsage stackTraceUsage = StackTraceUsage.None;
+
+        #endregion
+
+        #region Constructors and Destructors
+
         /// <summary>
-        /// Creates a new instance of the <see cref="Layout"/> and sets it to empty string.
+        /// Initializes a new instance of the SimpleLayout class.
         /// </summary>
         public SimpleLayout()
         {
-            Text = String.Empty;
+            this.Text = String.Empty;
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="Layout"/> and sets it to the specified string.
+        /// Initializes a new instance of the SimpleLayout class.
         /// </summary>
         /// <param name="txt">The layout string to parse.</param>
         public SimpleLayout(string txt)
         {
-            Text = txt;
+            this.Text = txt;
         }
 
         internal SimpleLayout(LayoutRenderer[] renderers, string text)
         {
-            SetRenderers(renderers, text);
+            this.SetRenderers(renderers, text);
         }
 
-        private string _layoutText;
-        private LayoutRenderer[] _renderers;
-        private StackTraceUsage _stackTraceUsage = StackTraceUsage.None;
-        private bool _isVolatile = false;
-        private string _fixedText;
+        #endregion
+
+        #region Properties
 
         /// <summary>
-        /// The layout text
+        /// Gets or sets the layout text.
         /// </summary>
         public string Text
         {
-            get { return _layoutText; }
+            get
+            {
+                return this.layoutText;
+            }
+
             set
             {
                 LayoutRenderer[] renderers;
@@ -96,131 +106,35 @@ namespace NLog.Layouts
                     false,
                     out txt);
 
-                SetRenderers(renderers, txt);
+                this.SetRenderers(renderers, txt);
             }
         }
 
         /// <summary>
-        /// Returns true if this layout produces a value that doesn't change for a particular
-        /// AppDomain.
+        /// Gets a collection of <see cref="LayoutRenderer"/> objects that make up this layout.
         /// </summary>
-        public override bool IsAppDomainFixed()
+        internal IEnumerable<LayoutRenderer> Renderers
         {
-            return _fixedText != null;
+            get { return this.renderers; }
         }
+
+        #endregion
+
+        #region Operators
 
         /// <summary>
-        /// Renders the layout for the specified logging event by invoking layout renderers
-        /// that make up the event.
+        /// Converts a text to a simple layout.
         /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <returns>The rendered layout.</returns>
-        public override string GetFormattedMessage(LogEventInfo logEvent)
+        /// <param name="text">Text to be converted.</param>
+        /// <returns>A <see cref="SimpleLayout"/> object.</returns>
+        public static implicit operator SimpleLayout(string text)
         {
-            if (_fixedText != null)
-                return _fixedText;
-
-            string cachedValue;
-
-            if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
-                return cachedValue;
-
-            int size = 0;
-
-            for (int i = 0; i < _renderers.Length; ++i)
-            {
-                LayoutRenderer app = _renderers[i];
-                try
-                {
-                    int ebs = app.GetEstimatedBufferSize(logEvent);
-                    size += ebs;
-                }
-                catch (Exception ex)
-                {
-                    if (InternalLogger.IsWarnEnabled)
-                    {
-                        InternalLogger.Warn("Exception in {0}.GetEstimatedBufferSize(): {1}.", app.GetType().FullName, ex);
-                    }
-                }
-            }
-            StringBuilder builder = new StringBuilder(size);
-
-            for (int i = 0; i < _renderers.Length; ++i)
-            {
-                LayoutRenderer app = _renderers[i];
-                try
-                {
-                    app.Append(builder, logEvent);
-                }
-                catch (Exception ex)
-                {
-                    if (InternalLogger.IsWarnEnabled)
-                    {
-                        InternalLogger.Warn("Exception in {0}.Append(): {1}.", app.GetType().FullName, ex);
-                    }
-                }
-            }
-
-            string value = builder.ToString();
-            logEvent.AddCachedLayoutValue(this, value);
-            return value;
+            return new SimpleLayout(text);
         }
 
-        /// <summary>
-        /// Returns the value indicating whether a stack trace and/or the source file
-        /// information should be gathered during layout processing.
-        /// </summary>
-        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
-        public override StackTraceUsage GetStackTraceUsage()
-        {
-            return _stackTraceUsage;
-        }
+        #endregion
 
-        /// <summary>
-        /// Returns the value indicating whether this layout includes any volatile 
-        /// layout renderers.
-        /// </summary>
-        /// <returns><see langword="true" /> when the layout includes at least 
-        /// one volatile renderer, <see langword="false"/> otherwise.</returns>
-        /// <remarks>
-        /// Volatile layout renderers are dependent on information not contained 
-        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
-        /// </remarks>
-        public override bool IsVolatile()
-        {
-            return _isVolatile;
-        }
-
-        /// <summary>
-        /// A collection of <see cref="LayoutRenderer"/> objects that make up this layout.
-        /// </summary>
-        public LayoutRenderer[] Renderers
-        {
-            get { return _renderers; }
-        }
-
-        internal void SetRenderers(LayoutRenderer[] renderers, string text)
-        {
-            _renderers = renderers;
-            if (_renderers.Length == 1 && _renderers[0] is LiteralLayoutRenderer)
-                _fixedText = ((LiteralLayoutRenderer)(_renderers[0])).Text;
-            else
-                _fixedText = null;
-
-            _layoutText = text;
-
-            _isVolatile = false;
-            _stackTraceUsage = StackTraceUsage.None;
-
-            foreach (LayoutRenderer lr in renderers)
-            {
-                StackTraceUsage stu = lr.GetStackTraceUsage();
-                if (stu > _stackTraceUsage)
-                    _stackTraceUsage = stu;
-                if (lr.IsVolatile())
-                    _isVolatile = true;
-            }
-        }
+        #region Public Methods
 
         /// <summary>
         /// Escapes the passed text so that it can
@@ -243,7 +157,7 @@ namespace NLog.Layouts
         /// Evaluates the specified text by expadinging all layout renderers.
         /// </summary>
         /// <param name="text">The text to be evaluated.</param>
-        /// <param name="logEvent">Log event to be used for evaluation</param>
+        /// <param name="logEvent">Log event to be used for evaluation.</param>
         /// <returns>The input text with all occurences of ${} replaced with
         /// values provided by the appropriate layout renderers.</returns>
         public static string Evaluate(string text, LogEventInfo logEvent)
@@ -265,36 +179,163 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Renders the layout for the specified logging event by invoking layout renderers
+        /// that make up the event.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        /// <returns>The rendered layout.</returns>
+        public override string GetFormattedMessage(LogEventInfo logEvent)
+        {
+            if (this.fixedText != null)
+            {
+                return this.fixedText;
+            }
+
+            string cachedValue;
+
+            if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
+            {
+                return cachedValue;
+            }
+
+            int size = 0;
+
+            for (int i = 0; i < this.renderers.Length; ++i)
+            {
+                LayoutRenderer app = this.renderers[i];
+                try
+                {
+                    int ebs = app.GetEstimatedBufferSize(logEvent);
+                    size += ebs;
+                }
+                catch (Exception ex)
+                {
+                    if (InternalLogger.IsWarnEnabled)
+                    {
+                        InternalLogger.Warn("Exception in {0}.GetEstimatedBufferSize(): {1}.", app.GetType().FullName, ex);
+                    }
+                }
+            }
+
+            StringBuilder builder = new StringBuilder(size);
+
+            for (int i = 0; i < this.renderers.Length; ++i)
+            {
+                LayoutRenderer app = this.renderers[i];
+                try
+                {
+                    app.Append(builder, logEvent);
+                }
+                catch (Exception ex)
+                {
+                    if (InternalLogger.IsWarnEnabled)
+                    {
+                        InternalLogger.Warn("Exception in {0}.Append(): {1}.", app.GetType().FullName, ex);
+                    }
+                }
+            }
+
+            string value = builder.ToString();
+            logEvent.AddCachedLayoutValue(this, value);
+            return value;
+        }
+
+        /// <summary>
+        /// Returns the value indicating whether a stack trace and/or the source file
+        /// information should be gathered during layout processing.
+        /// </summary>
+        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace.</returns>
+        public override StackTraceUsage GetStackTraceUsage()
+        {
+            return this.stackTraceUsage;
+        }
+
+        /// <summary>
         /// Initializes the layout.
         /// </summary>
         public override void Initialize()
         {
             base.Initialize();
-            foreach (LayoutRenderer lr in Renderers)
+
+            foreach (LayoutRenderer lr in this.Renderers)
             {
                 lr.Initialize();
             }
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"></see> that represents the current <see cref="T:System.Object"></see>.
+        /// Gets or sets a value indicating whether the value of layout is fixed for current AppDomain.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String"></see> that represents the current <see cref="T:System.Object"></see>.
+        /// A value of <c>true</c> if value of layout is fixed for current AppDomain, otherwise <c>false</c>.
         /// </returns>
-        public override string ToString()
+        public override bool IsAppDomainFixed()
         {
-            return Text;
+            return this.fixedText != null;
         }
 
         /// <summary>
-        /// Converts a text to a simple layout.
+        /// Returns the value indicating whether this layout includes any volatile 
+        /// layout renderers.
         /// </summary>
-        /// <param name="text">Text to be converted.</param>
-        /// <returns>A <see cref="SimpleLayout"/> object.</returns>
-        public static implicit operator SimpleLayout(string text)
+        /// <returns>A value of <see langword="true" /> when the layout includes at least 
+        /// one volatile renderer, <see langword="false"/> otherwise.</returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained 
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
+        public override bool IsVolatile()
         {
-            return new SimpleLayout(text);
+            return this.isVolatile;
         }
+
+        /// <summary>
+        /// Returns a <see cref="T:System.String"></see> that represents the current object.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"></see> that represents the current object.
+        /// </returns>
+        public override string ToString()
+        {
+            return this.Text;
+        }
+
+        #endregion
+
+        #region Methods
+
+        internal void SetRenderers(LayoutRenderer[] renderers, string text)
+        {
+            this.renderers = renderers;
+            if (this.renderers.Length == 1 && this.renderers[0] is LiteralLayoutRenderer)
+            {
+                this.fixedText = ((LiteralLayoutRenderer)this.renderers[0]).Text;
+            }
+            else
+            {
+                this.fixedText = null;
+            }
+
+            this.layoutText = text;
+
+            this.isVolatile = false;
+            this.stackTraceUsage = StackTraceUsage.None;
+
+            foreach (LayoutRenderer lr in renderers)
+            {
+                StackTraceUsage stu = lr.GetStackTraceUsage();
+                if (stu > this.stackTraceUsage)
+                {
+                    this.stackTraceUsage = stu;
+                }
+
+                if (lr.IsVolatile())
+                {
+                    this.isVolatile = true;
+                }
+            }
+        }
+
+        #endregion
     }
 }

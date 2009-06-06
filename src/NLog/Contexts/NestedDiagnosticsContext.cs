@@ -33,8 +33,6 @@
 
 using System;
 using System.Collections;
-using System.Collections.Specialized;
-using System.Text;
 using System.Collections.Generic;
 
 namespace NLog.Contexts
@@ -46,7 +44,47 @@ namespace NLog.Contexts
     /// </summary>
     public class NestedDiagnosticsContext
     {
-        internal NestedDiagnosticsContext() { }
+#if !SILVERLIGHT
+        private static LocalDataStoreSlot dataSlot = System.Threading.Thread.AllocateDataSlot();
+#else
+        [ThreadStatic]
+        private static Stack<string> threadStack;
+#endif
+
+        internal NestedDiagnosticsContext()
+        {
+        }
+
+#if SILVERLIGHT
+        private static Stack<string> ThreadStack
+        {
+            get
+            {
+                if (threadStack == null)
+                {
+                    threadStack = new Stack<string>();
+                }
+
+                return threadStack;
+            }
+        }
+#else
+        private static Stack<string> ThreadStack
+        {
+            get
+            {
+                Stack<string> threadStack = (Stack<string>)System.Threading.Thread.GetData(dataSlot);
+
+                if (threadStack == null)
+                {
+                    threadStack = new Stack<string>();
+                    System.Threading.Thread.SetData(dataSlot, threadStack);
+                }
+
+                return threadStack;
+            }
+        }
+#endif
 
         /// <summary>
         /// Pushes the specified text on current thread NDC.
@@ -81,7 +119,7 @@ namespace NLog.Contexts
         /// <summary>
         /// Gets the top NDC message but doesn't remove it.
         /// </summary>
-        /// <returns>The top message. </returns>
+        /// <returns>The top message. .</returns>
         public static string GetTopMessage()
         {
             Stack<string> stack = ThreadStack;
@@ -106,71 +144,41 @@ namespace NLog.Contexts
         /// <summary>
         /// Gets all messages on the stack.
         /// </summary>
+        /// <returns>Array of strings on the stack.</returns>
         public static string[] GetAllMessages()
         {
             return ThreadStack.ToArray();
         }
 
-        private class StackPopper: IDisposable
+        /// <summary>
+        /// Resets the stack to the original count during <see cref="IDisposable.Dispose"/>.
+        /// </summary>
+        private class StackPopper : IDisposable
         {
-            private Stack<string> _stack;
-            private int _previousCount;
+            private Stack<string> stack;
+            private int previousCount;
 
+            /// <summary>
+            /// Initializes a new instance of the StackPopper class.
+            /// </summary>
+            /// <param name="stack">The stack.</param>
+            /// <param name="previousCount">The previous count.</param>
             public StackPopper(Stack<string> stack, int previousCount)
             {
-                _stack = stack;
-                _previousCount = previousCount;
+                this.stack = stack;
+                this.previousCount = previousCount;
             }
 
+            /// <summary>
+            /// Reverts the stack to original item count.
+            /// </summary>
             void IDisposable.Dispose()
             {
-                while (_stack.Count > _previousCount)
+                while (this.stack.Count > this.previousCount)
                 {
-                    _stack.Pop();
+                    this.stack.Pop();
                 }
             }
         }
-
-#if SILVERLIGHT
-        public static Stack<string> ThreadStack
-        {
-            get
-            {
-                if (_threadStack == null)
-                    _threadStack = new Stack<string>();
-                return _threadStack;
-            }
-        }
-
-        [ThreadStatic]
-        private static Stack<string> _threadStack;
-
-#else
-        private static Stack<string> ThreadStack
-        {
-            get
-            {
-                Stack<string> threadStack = (Stack<string>)System.Threading.Thread.GetData(_dataSlot);
-
-                if (threadStack == null)
-                {
-                    threadStack = new Stack<string>();
-                    System.Threading.Thread.SetData(_dataSlot, threadStack);
-                }
-
-                return threadStack;
-            }
-        }
-
-        private static LocalDataStoreSlot _dataSlot = System.Threading.Thread.AllocateDataSlot();
-#endif
-    }
-
-    /// <summary>
-    /// Nested Diagnostics Context - for log4net compatibility
-    /// </summary>
-    [Obsolete("Use NestedDiagnosticsContext")]
-    public class NDC : NestedDiagnosticsContext
-    {
     }
 }

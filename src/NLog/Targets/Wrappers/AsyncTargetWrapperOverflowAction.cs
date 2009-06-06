@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,10 +31,28 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Reflection;
+namespace NLog.Targets.Wrappers
+{
+    /// <summary>
+    /// The action to be taken when the queue overflows.
+    /// </summary>
+    public enum AsyncTargetWrapperOverflowAction
+    {
+        /// <summary>
+        /// Grow the queue.
+        /// </summary>
+        Grow,
 
-#if NANT
-[assembly: AssemblyKeyFile("src/NLog.snk")]
-#else 
-[assembly: AssemblyKeyFile("../../../NLog.snk")]
+        /// <summary>
+        /// Discard the overflowing item.
+        /// </summary>
+        Discard,
+
+#if !NET_CF
+        /// <summary>
+        /// Block until there's more room in the queue.
+        /// </summary>
+        Block,
 #endif
+    }
+}

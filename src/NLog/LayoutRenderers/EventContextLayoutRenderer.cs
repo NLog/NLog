@@ -32,31 +32,24 @@
 // 
 
 using System;
+using System.Globalization;
 using System.Text;
 using NLog.Config;
-using System.ComponentModel;
-using System.Globalization;
 
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// Log event context data
+    /// Log event context data.
     /// </summary>
     [LayoutRenderer("event-context")]
     public class EventContextLayoutRenderer : LayoutRenderer
     {
-        private string _item;
-
         /// <summary>
-        /// Name of the item.
+        /// Gets or sets the name of the item.
         /// </summary>
         [RequiredParameter]
         [DefaultParameter]
-        public string Item
-        {
-            get { return _item; }
-            set { _item = value; }
-        }
+        public string Item { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -84,7 +77,7 @@ namespace NLog.LayoutRenderers
 #if NET_CF_1_0
             string msg = Convert.ToString(logEvent.Context[Item]);
 #else
-            string msg = Convert.ToString(logEvent.Context[Item], CultureInfo.InvariantCulture);
+            string msg = Convert.ToString(logEvent.Context[this.Item], CultureInfo.InvariantCulture);
 #endif
 
             builder.Append(msg);

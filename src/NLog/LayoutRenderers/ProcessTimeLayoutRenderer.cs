@@ -39,7 +39,7 @@ using NLog.Config;
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// The process time in format HH:mm:ss.mmm
+    /// The process time in format HH:mm:ss.mmm.
     /// </summary>
     [LayoutRenderer("processtime")]
     public class ProcessTimeLayoutRenderer : LayoutRenderer
@@ -69,26 +69,54 @@ namespace NLog.LayoutRenderers
         {
             TimeSpan ts = logEvent.TimeStamp - LogEventInfo.ZeroDate;
             if (ts.Hours < 10)
+            {
                 builder.Append('0');
+            }
+
             builder.Append(ts.Hours);
             builder.Append(':');
             if (ts.Minutes < 10)
+            {
                 builder.Append('0');
+            }
+
             builder.Append(ts.Minutes);
             builder.Append(':');
             if (ts.Seconds < 10)
+            {
                 builder.Append('0');
+            }
+
             builder.Append(ts.Seconds);
             builder.Append('.');
             if (ts.Milliseconds < 1000)
+            {
                 builder.Append('0');
+            }
+
             if (ts.Milliseconds < 100)
+            {
                 builder.Append('0');
+            }
+
             if (ts.Milliseconds < 10)
+            {
                 builder.Append('0');
+            }
+
             builder.Append(ts.Milliseconds);
         }
 
+        /// <summary>
+        /// Determines whether the layout renderer is volatile.
+        /// </summary>
+        /// <returns>
+        /// A boolean indicating whether the layout renderer is volatile.
+        /// </returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
         protected internal override bool IsVolatile()
         {
             return false;

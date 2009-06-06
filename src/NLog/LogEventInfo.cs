@@ -32,16 +32,11 @@
 // 
 
 using System;
-using System.Globalization;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
-using System.Reflection;
-
-using System.Collections;
-using System.Collections.Specialized;
-using NLog.Layouts;
 using NLog.Internal;
-using System.Collections.Generic;
+using NLog.Layouts;
 
 namespace NLog
 {
@@ -51,75 +46,50 @@ namespace NLog
     public abstract class LogEventInfo
     {
         /// <summary>
-        /// The date of the first log event created.
+        /// Gets or sets the date of the first log event created.
         /// </summary>
         public static readonly DateTime ZeroDate = DateTime.Now;
 
-        private static int _globalSequenceID;
+        private static int globalSequenceID;
 
-        private DateTime _timeStamp;
-        private LogLevel _level;
-        private string _loggerName;
-        private IDictionary<Layout,string> _layoutCache;
-        private IDictionary<string,object> _eventContext;
-        private int _sequenceID;
-
-        /// <summary>
-        /// Creates the null event.
-        /// </summary>
-        /// <returns></returns>
-        public static LogEventInfo CreateNullEvent()
-        {
-            return new UnformattedLogEventInfo(LogLevel.Off, String.Empty, String.Empty);
-        }
+        private IDictionary<Layout, string> layoutCache;
+        private IDictionary<string, object> eventContext;
+        private int sequenceID;
+#if !NET_CF
+        private StackTrace stackTrace;
+        private int userStackFrame;
+#endif
 
         /// <summary>
-        /// Creates a new instance of <see cref="LogEventInfo"/> and assigns its fields.
+        /// Initializes a new instance of the LogEventInfo class.
         /// </summary>
-        /// <param name="level">Log level</param>
-        /// <param name="loggerName">Logger name</param>
+        /// <param name="level">Log level.</param>
+        /// <param name="loggerName">Logger name.</param>
         protected LogEventInfo(LogLevel level, string loggerName)
         {
-            _timeStamp = CurrentTimeGetter.Now;
-            _level = level;
-            _loggerName = loggerName;
-            _sequenceID = Interlocked.Increment(ref _globalSequenceID);
-        } 
+            this.TimeStamp = CurrentTimeGetter.Now;
+            this.Level = level;
+            this.LoggerName = loggerName;
+            this.sequenceID = Interlocked.Increment(ref globalSequenceID);
+        }
 
         /// <summary>
         /// Gets or sets the timestamp of the logging event.
         /// </summary>
-        public DateTime TimeStamp
-        {
-            get { return _timeStamp; }
-            set { _timeStamp = value; }
-        }
+        public DateTime TimeStamp { get; set; }
 
         /// <summary>
         /// Gets or sets the level of the logging event.
         /// </summary>
-        public LogLevel Level
-        {
-            get { return _level; }
-            set { _level = value; }
-        }
+        public LogLevel Level { get; set; }
 
 #if !NET_CF
-        private StackTrace _stackTrace;
-        private int _userStackFrame;
-
         /// <summary>
-        /// Returns true if stack trace has been set for this event.
+        /// Gets a value indicating whether stack trace has been set for this event.
         /// </summary>
         public bool HasStackTrace
         {
-            get { return _stackTrace != null; }
-        }
-
-        internal void SetStackTrace(StackTrace stackTrace, int userStackFrame)
-        {
-            _stackTrace = stackTrace;
-            _userStackFrame = userStackFrame;
+            get { return this.stackTrace != null; }
         }
 
         /// <summary>
@@ -127,16 +97,16 @@ namespace NLog
         /// </summary>
         public StackFrame UserStackFrame
         {
-            get { return (_stackTrace != null) ? _stackTrace.GetFrame(_userStackFrame): null; }
+            get { return (this.stackTrace != null) ? this.stackTrace.GetFrame(this.userStackFrame) : null; }
         }
 
         /// <summary>
         /// Gets the number index of the stack frame that represents the user
-        /// code (not the NLog code)
+        /// code (not the NLog code).
         /// </summary>
         public int UserStackFrameNumber
         {
-            get { return _userStackFrame; }
+            get { return this.userStackFrame; }
         }
 
         /// <summary>
@@ -144,11 +114,11 @@ namespace NLog
         /// </summary>
         public StackTrace StackTrace
         {
-            get { return _stackTrace; }
+            get { return this.stackTrace; }
         }
-#endif 
+#endif
         /// <summary>
-        /// Gets or sets the exception information.
+        /// Gets the exception information.
         /// </summary>
         public virtual Exception Exception
         {
@@ -158,54 +128,74 @@ namespace NLog
         /// <summary>
         /// Gets or sets the logger name.
         /// </summary>
-        public string LoggerName
-        {
-            get { return _loggerName; }
-            set { _loggerName = value; }
-        }
+        public string LoggerName { get; set; }
 
         /// <summary>
-        /// Returns the formatted message.
+        /// Gets the formatted message.
         /// </summary>
         public abstract string FormattedMessage { get; }
 
         /// <summary>
         /// Gets the dictionary of per-event context properties.
         /// </summary>
-        public IDictionary<string,object> Context
+        public IDictionary<string, object> Context
         {
             get
             {
-                if (_eventContext == null)
-                    _eventContext = new Dictionary<string,object>();
-                return _eventContext;
+                if (this.eventContext == null)
+                {
+                    this.eventContext = new Dictionary<string, object>();
+                }
+
+                return this.eventContext;
             }
         }
 
         /// <summary>
-        /// The unique identifier of log event which is automatically generated
+        /// Gets the unique identifier of log event which is automatically generated
         /// and monotonously increasing.
         /// </summary>
         public int SequenceId
         {
-            get { return _sequenceID; }
+            get { return this.sequenceID; }
         }
+
+        /// <summary>
+        /// Creates the null event.
+        /// </summary>
+        /// <returns>Null event (which can be used whenever <see cref="LogEventInfo"/> is required).</returns>
+        public static LogEventInfo CreateNullEvent()
+        {
+            return new UnformattedLogEventInfo(LogLevel.Off, String.Empty, String.Empty);
+        }
+
+#if !NET_CF
+        internal void SetStackTrace(StackTrace stackTrace, int userStackFrame)
+        {
+            this.stackTrace = stackTrace;
+            this.userStackFrame = userStackFrame;
+        }
+#endif
 
         internal bool TryGetCachedLayoutValue(Layout layout, out string result)
         {
-            if (_layoutCache == null)
+            if (this.layoutCache == null)
             {
                 result = null;
                 return false;
             }
-            return _layoutCache.TryGetValue(layout, out result);
+
+            return this.layoutCache.TryGetValue(layout, out result);
         }
 
         internal void AddCachedLayoutValue(Layout layout, string value)
         {
-            if (_layoutCache == null)
-                _layoutCache = new Dictionary<Layout, string>();
-            _layoutCache[layout] = value;
+            if (this.layoutCache == null)
+            {
+                this.layoutCache = new Dictionary<Layout, string>();
+            }
+
+            this.layoutCache[layout] = value;
         }
     }
 }

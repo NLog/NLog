@@ -1,0 +1,56 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
+    <NLogBuildPath Condition="'$(NLogBuildPath)'==''">$(MSBuildProjectDirectory)\build</NLogBuildPath>
+    <ProjectTarget Condition="'$(ProjectTarget)'==''">Build</ProjectTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectFile Include="src\NLog\NLog.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TargetConfiguration Include="Debug" />
+    <TargetConfiguration Include="Release" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TargetFramework Include="Silverlight2" />
+    <TargetFramework Include="NetCF2.0" />
+    <TargetFramework Include="NetCF3.5" />
+    <TargetFramework Include="NetFx2.0.Client" />
+    <TargetFramework Include="NetFx2.0" />
+    <TargetFramework Include="NetFx3.5.Client" />
+    <TargetFramework Include="NetFx3.5" />
+  </ItemGroup>
+
+  <Import Project="NLog.local" Condition="Exists('NLog.local')" />
+
+  <Target Name="Build">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" />
+  </Target>
+
+  <Target Name="FullBuild">
+    <RemoveDir Directories="$(NLogBuildPath)" />
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" />
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" Properties="ProjectTarget=Documentation" />
+    <CallTarget Targets="Installer" />
+  </Target>
+
+  <Target Name="Installer">
+    <MSBuild Projects="Installer\Installer.wixproj" Targets="Rebuild" Properties="NLogBuildPath=$(MSBuildProjectDirectory)\build\Debug" />
+  </Target>
+
+  <Target Name="BuildAllFrameworksAndConfigurations">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" Properties="Configuration=%(TargetConfiguration.Identity)" />
+  </Target>
+
+  <Target Name="BuildAllFrameworksForSingleConfiguration">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildSingleFramework" Properties="Framework=%(TargetFramework.Identity)"  ContinueOnError="true" StopOnFirstFailure="false" />
+  </Target>
+
+  <Target Name="BuildSingleFramework">
+    <Message Text="Building configuration: $(Configuration) for framework: $(Framework) Path: $(NLogBuildPath)" />
+    <MSBuild Projects="@(ProjectFile)" Targets="$(ProjectTarget)" Properties="NLogBuildPath=$(NLogBuildPath)" />
+  </Target>
+</Project>

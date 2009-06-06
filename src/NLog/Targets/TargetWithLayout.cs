@@ -31,13 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.Collections;
-
-using NLog.Config;
 using System.Collections.Generic;
 using System.ComponentModel;
+using NLog.Config;
 using NLog.Layouts;
 
 namespace NLog.Targets
@@ -47,26 +43,23 @@ namespace NLog.Targets
     /// </summary>
     public abstract class TargetWithLayout : Target
     {
-        private Layout _layout;
-
         /// <summary>
-        /// Creates a new instance of <see cref="TargetWithLayout" />
+        /// Initializes a new instance of the TargetWithLayout class.
         /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
         protected TargetWithLayout()
         {
-            Layout = "${longdate}|${level:uppercase=true}|${logger}|${message}";
+            this.Layout = "${longdate}|${level:uppercase=true}|${logger}|${message}";
         }
 
         /// <summary>
-        /// The compiled layout, can be an instance of <see cref="Layout"/> or other layout type.
+        /// Gets or sets the compiled layout, can be an instance of <see cref="Layout"/> or other layout type.
         /// </summary>
         [RequiredParameter]
         [DefaultValue("${longdate}|${level:uppercase=true}|${logger}|${message}")]
-        public virtual Layout Layout
-        {
-            get { return _layout; }
-            set { _layout = value; }
-        }
+        public virtual Layout Layout { get; set; }
 
         /// <summary>
         /// Adds all layouts used by this target to the specified collection.
@@ -75,7 +68,9 @@ namespace NLog.Targets
         public override void PopulateLayouts(ICollection<Layout> layouts)
         {
             if (this.Layout != null)
+            {
                 this.Layout.PopulateLayouts(layouts);
+            }
         }
 
         /// <summary>
@@ -85,13 +80,21 @@ namespace NLog.Targets
         {
             base.Initialize();
             if (this.Layout != null)
+            {
                 this.Layout.Initialize();
+            }
         }
 
+        /// <summary>
+        /// Closes the target and releases any unmanaged resources.
+        /// </summary>
         protected internal override void Close()
         {
             if (this.Layout != null)
+            {
                 this.Layout.Close();
+            }
+
             base.Close();
         }
    }

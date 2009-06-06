@@ -32,23 +32,22 @@
 // 
 
 using System;
-using NLog.Internal;
 using NLog.Config;
 
 namespace NLog.Filters
 {
     /// <summary>
-    /// Marks class as a layout renderer and assigns a name to it
+    /// Marks class as a layout renderer and assigns a name to it.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class FilterAttribute: NameAttributeBase
+    public sealed class FilterAttribute : NameAttributeBase
     {
         /// <summary>
-        /// Creates a new instance of <see cref="FilterAttribute"/> and assigns
-        /// a name to it.
+        /// Initializes a new instance of the FilterAttribute class.
         /// </summary>
-        /// <param name="name"></param>
-        public FilterAttribute(string name) : base(name)
+        /// <param name="filterName">Name of the filter.</param>
+        public FilterAttribute(string filterName)
+            : base(filterName)
         {
         }
     }

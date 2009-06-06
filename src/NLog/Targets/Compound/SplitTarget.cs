@@ -31,19 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
-using NLog.Config;
-
 namespace NLog.Targets.Compound
 {
     /// <summary>
@@ -65,21 +52,21 @@ namespace NLog.Targets.Compound
     /// <code lang="C#" src="examples/targets/Configuration API/SplitGroup/Simple/Example.cs" />
     /// </example>
     [Target("SplitGroup", IsCompound = true)]
-    public class SplitTarget: CompoundTargetBase
+    public class SplitTarget : CompoundTargetBase
     {
         /// <summary>
-        /// Creates a new instance of <see cref="SplitTarget"/>.
+        /// Initializes a new instance of the SplitTarget class.
         /// </summary>
         public SplitTarget()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="SplitTarget"/> and
-        /// initializes the <see cref="Targets"/> collection to the
-        /// provided array of <see cref="Target"/> objects.
+        /// Initializes a new instance of the SplitTarget class.
         /// </summary>
-        public SplitTarget(params Target[] targets) : base(targets)
+        /// <param name="targets">The targets.</param>
+        public SplitTarget(params Target[] targets)
+            : base(targets)
         {
         }
 
@@ -89,10 +76,10 @@ namespace NLog.Targets.Compound
         /// <param name="logEvent">The log event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            for (int i = 0; i < Targets.Count; ++i)
+            for (int i = 0; i < this.Targets.Count; ++i)
             {
-                Targets[i].Write(logEvent);
+                this.Targets[i].Write(logEvent);
             }
         }
-   }
+    }
 }

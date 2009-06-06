@@ -31,15 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Reflection;
-using System.Globalization;
-
-using NLog.Config;
 using System.Collections.Generic;
+using NLog.Config;
 using NLog.Layouts;
 
 namespace NLog.Targets
@@ -48,32 +41,21 @@ namespace NLog.Targets
     /// The base class for all targets which call methods (local or remote). 
     /// Manages parameters and type coercion.
     /// </summary>
-    public abstract class MethodCallTargetBase: Target
+    public abstract class MethodCallTargetBase : Target
     {
-        private ICollection<MethodCallParameter> _parameters = new List<MethodCallParameter>();
-
         /// <summary>
-        /// Prepares an array of parameters to be passed based on the logging event and calls DoInvoke()
+        /// Initializes a new instance of the MethodCallTargetBase class.
         /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        public MethodCallTargetBase()
         {
-            object[]parameters = new object[Parameters.Count];
-            int i = 0;
-
-            foreach (MethodCallParameter mcp in _parameters)
-            {
-                parameters[i++] = mcp.GetValue(logEvent);
-            }
-
-            DoInvoke(parameters);
+            this.Parameters = new List<MethodCallParameter>();
         }
 
         /// <summary>
-        /// Calls the target method. Must be implemented in concrete classes.
+        /// Gets the array of parameters to be passed.
         /// </summary>
-        /// <param name="parameters">Method call parameters</param>
-        protected abstract void DoInvoke(object[]parameters);
+        [ArrayParameter(typeof(MethodCallParameter), "parameter")]
+        public ICollection<MethodCallParameter> Parameters { get; private set; }
 
         /// <summary>
         /// Adds all layouts used by this target to the specified collection.
@@ -81,20 +63,36 @@ namespace NLog.Targets
         /// <param name="layouts">The collection to add layouts to.</param>
         public override void PopulateLayouts(ICollection<Layout> layouts)
         {
-            base.PopulateLayouts (layouts);
-            foreach (MethodCallParameter p in Parameters)
+            base.PopulateLayouts(layouts);
+            foreach (MethodCallParameter p in this.Parameters)
             {
                 p.Layout.PopulateLayouts(layouts);
             }
         }
 
         /// <summary>
-        /// Array of parameters to be passed.
+        /// Prepares an array of parameters to be passed based on the logging event and calls DoInvoke().
         /// </summary>
-        [ArrayParameter(typeof(MethodCallParameter), "parameter")]
-        public ICollection<MethodCallParameter> Parameters
+        /// <param name="logEvent">
+        /// The logging event.
+        /// </param>
+        protected internal override void Write(LogEventInfo logEvent)
         {
-            get { return _parameters; }
+            object[] parameters = new object[this.Parameters.Count];
+            int i = 0;
+
+            foreach (MethodCallParameter mcp in this.Parameters)
+            {
+                parameters[i++] = mcp.GetValue(logEvent);
+            }
+
+            this.DoInvoke(parameters);
         }
+
+        /// <summary>
+        /// Calls the target method. Must be implemented in concrete classes.
+        /// </summary>
+        /// <param name="parameters">Method call parameters.</param>
+        protected abstract void DoInvoke(object[] parameters);
     }
 }

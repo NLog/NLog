@@ -31,11 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT
+
 using System;
-using System.Text;
 using System.IO;
+using System.Text;
+
 using NLog.Internal;
-using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -43,41 +45,32 @@ namespace NLog.LayoutRenderers
     /// The current application domain's base directory.
     /// </summary>
     [LayoutRenderer("basedir")]
-    public class BaseDirLayoutRenderer: LayoutRenderer
+    public class BaseDirLayoutRenderer : LayoutRenderer
     {
-        private string _fileName = null;
-        private string _directoryName = null;
-        private string _baseDir;
+        private string baseDir;
 
         /// <summary>
-        /// Creates a new instance of <see cref="BaseDirLayoutRenderer"/>.
+        /// Initializes a new instance of the BaseDirLayoutRenderer class.
         /// </summary>
         public BaseDirLayoutRenderer()
         {
 #if !NET_CF
-            _baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            this.baseDir = AppDomain.CurrentDomain.BaseDirectory;
 #else
-            _baseDir = CompactFrameworkHelper.GetExeBaseDir();
+            this.baseDir = CompactFrameworkHelper.GetExeBaseDir();
 #endif
         }
 
         /// <summary>
-        /// The name of the file to be Path.Combine()'d with with the base directory.
+        /// Gets or sets the name of the file to be Path.Combine()'d with with the base directory.
         /// </summary>
-        public string File
-        {
-            get { return _fileName; }
-            set { _fileName = value; }
-        }
+        public string File { get; set; }
 
         /// <summary>
-        /// The name of the directory to be Path.Combine()'d with with the base directory.
+        /// Gets or sets the name of the directory to be Path.Combine()'d with with the base directory.
         /// </summary>
-        public string Dir
-        {
-            get { return _directoryName; }
-            set { _directoryName = value; }
-        }
+        public string Dir { get; set; }
+
         /// <summary>
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
@@ -101,17 +94,17 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (File != null)
+            if (this.File != null)
             {
-                builder.Append(Path.Combine(_baseDir, File));
+                builder.Append(Path.Combine(this.baseDir, this.File));
             }
-            else if (Dir != null)
+            else if (this.Dir != null)
             {
-                builder.Append(Path.Combine(_baseDir, Dir));
+                builder.Append(Path.Combine(this.baseDir, this.Dir));
             }
             else
             {
-                builder.Append(_baseDir);
+                builder.Append(this.baseDir);
             }
         }
 
@@ -119,7 +112,7 @@ namespace NLog.LayoutRenderers
         /// Determines whether the value produced by the layout renderer
         /// is fixed per current app-domain.
         /// </summary>
-        /// <returns><see langword="true"/></returns>
+        /// <returns>A value of <see langword="true"/>.</returns>
         protected internal override bool IsAppDomainFixed()
         {
             return true;
@@ -127,3 +120,4 @@ namespace NLog.LayoutRenderers
     }
 }
 
+#endif

@@ -32,17 +32,8 @@
 // 
 
 using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
 
 using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
-using NLog.Config;
 
 namespace NLog.Targets.Compound
 {
@@ -64,33 +55,34 @@ namespace NLog.Targets.Compound
     /// <code lang="C#" src="examples/targets/Configuration API/FallbackGroup/Simple/Example.cs" />
     /// </example>
     [Target("FallbackGroup", IsCompound = true)]
-    public class FallbackTarget: CompoundTargetBase
+    public class FallbackTarget : CompoundTargetBase
     {
-        private int _currentTarget = 0;
-        private bool _returnToFirstOnSuccess = false;
+        private int currentTarget = 0;
+        private bool returnToFirstOnSuccess = false;
 
         /// <summary>
-        /// Creates a new instance of <see cref="FallbackTarget"/>.
+        /// Initializes a new instance of the <see cref="FallbackTarget"/> class.
         /// </summary>
         public FallbackTarget()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="FallbackTarget"/> and sets
-        /// the targets to be used.
+        /// Initializes a new instance of the FallbackTarget class.
         /// </summary>
-        public FallbackTarget(params Target[] targets) : base(targets)
+        /// <param name="targets">The targets.</param>
+        public FallbackTarget(params Target[] targets)
+            : base(targets)
         {
         }
 
         /// <summary>
-        /// Whether to return to the first target after any successful write.
+        /// Gets or sets a value indicating whether to return to the first target after any successful write.
         /// </summary>
         public bool ReturnToFirstOnSuccess
         {
-            get { return _returnToFirstOnSuccess; }
-            set { _returnToFirstOnSuccess = value; }
+            get { return this.returnToFirstOnSuccess; }
+            set { this.returnToFirstOnSuccess = value; }
         }
 
         /// <summary>
@@ -108,29 +100,31 @@ namespace NLog.Targets.Compound
         {
             lock (this)
             {
-                for (int i = 0; i < Targets.Count; ++i)
+                for (int i = 0; i < this.Targets.Count; ++i)
                 {
                     try
                     {
-                        Targets[_currentTarget].Write(logEvent);
-                        if (_currentTarget != 0)
+                        this.Targets[this.currentTarget].Write(logEvent);
+                        if (this.currentTarget != 0)
                         {
-                            if (ReturnToFirstOnSuccess)
+                            if (this.ReturnToFirstOnSuccess)
                             {
-                                InternalLogger.Debug("Fallback: target '{0}' succeeded. Returning to the first one.", Targets[_currentTarget]);
-                                _currentTarget = 0;
+                                InternalLogger.Debug("Fallback: target '{0}' succeeded. Returning to the first one.", this.Targets[this.currentTarget]);
+                                this.currentTarget = 0;
                             }
                         }
+
                         return;
                     }
                     catch (Exception ex)
                     {
-                        InternalLogger.Warn("Fallback: target '{0}' failed. Proceeding to the next one. Error was: {1}", Targets[_currentTarget], ex);
+                        InternalLogger.Warn("Fallback: target '{0}' failed. Proceeding to the next one. Error was: {1}", this.Targets[this.currentTarget], ex);
+
                         // error while writing, try another one
-                        _currentTarget = (_currentTarget + 1) % Targets.Count;
+                        this.currentTarget = (this.currentTarget + 1) % this.Targets.Count;
                     }
                 }
             }
         }
-   }
+    }
 }

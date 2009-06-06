@@ -31,24 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
+using System.Collections.Generic;
 using NLog.Config;
 using NLog.LayoutRenderers;
 using NLog.Layouts;
-using System.Collections.Generic;
 
 namespace NLog.Targets
 {
+    using Contexts;
+
     /// <summary>
     /// Sends logging messages to the remote instance of NLog Viewer. 
     /// </summary>
@@ -74,70 +65,101 @@ namespace NLog.Targets
     /// </p>
     /// </example>
     [Target("NLogViewer")]
-    public class NLogViewerTarget: NetworkTarget
+    public class NLogViewerTarget : NetworkTarget
     {
-        private ICollection<NLogViewerParameterInfo> _parameters = new List<NLogViewerParameterInfo>();
-
-        private Log4JXmlEventLayoutRenderer Renderer
-        {
-            get { return Layout.Renderer; }
-        }
+        private ICollection<NLogViewerParameterInfo> parameters = new List<NLogViewerParameterInfo>();
 
         /// <summary>
-        /// An instance of <see cref="Log4JXmlEventLayout"/> that is used to format log messages.
+        /// Initializes a new instance of the NLogViewerTarget class.
         /// </summary>
-        protected new Log4JXmlEventLayout Layout
-        {
-            get { return base.Layout as Log4JXmlEventLayout; }
-            set { Layout = value; }
-        }
-
-        /// <summary>
-        /// Include NLog-specific extensions to log4j schema.
-        /// </summary>
-        public bool IncludeNLogData
-        {
-            get { return Renderer.IncludeNLogData; }
-            set { Renderer.IncludeNLogData = value;  }
-        }
-
-        /// <summary>
-        /// Creates a new instance of the <see cref="NLogViewerTarget"/> 
-        /// and initializes default property values.
-        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
         public NLogViewerTarget()
         {
-            Layout = new Log4JXmlEventLayout();
-            Renderer.Parameters = _parameters;
+            this.Layout = new Log4JXmlEventLayout();
+            this.Renderer.Parameters = this.parameters;
             NewLine = false;
         }
 
         /// <summary>
-        /// The AppInfo field. By default it's the friendly name of the current AppDomain.
+        /// Gets or sets a value indicating whether to include NLog-specific extensions to log4j schema.
+        /// </summary>
+        public bool IncludeNLogData
+        {
+            get { return this.Renderer.IncludeNLogData; }
+            set { this.Renderer.IncludeNLogData = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the AppInfo field. By default it's the friendly name of the current AppDomain.
         /// </summary>
         public string AppInfo
         {
-            get { return Renderer.AppInfo; }
-            set { Renderer.AppInfo = value; }
+            get { return this.Renderer.AppInfo; }
+            set { this.Renderer.AppInfo = value; }
         }
 
 #if !NET_CF
         /// <summary>
-        /// Include call site (class and method name) in the information sent over the network.
+        /// Gets or sets a value indicating whether to include call site (class and method name) in the information sent over the network.
         /// </summary>
         public bool IncludeCallSite
         {
-            get { return Renderer.IncludeCallSite; }
-            set { Renderer.IncludeCallSite = value; }
+            get { return this.Renderer.IncludeCallSite; }
+            set { this.Renderer.IncludeCallSite = value; }
         }
 
         /// <summary>
-        /// Include source info (file name and line number) in the information sent over the network.
+        /// Gets or sets a value indicating whether to include source info (file name and line number) in the information sent over the network.
         /// </summary>
         public bool IncludeSourceInfo
         {
-            get { return Renderer.IncludeSourceInfo; }
-            set { Renderer.IncludeSourceInfo = value; }
+            get { return this.Renderer.IncludeSourceInfo; }
+            set { this.Renderer.IncludeSourceInfo = value; }
+        }
+#endif
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsContext"/> dictionary contents.
+        /// </summary>
+        public bool IncludeMDC
+        {
+            get { return this.Renderer.IncludeMDC; }
+            set { this.Renderer.IncludeMDC = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include <see cref="NestedDiagnosticsContext"/> stack contents.
+        /// </summary>
+        public bool IncludeNDC
+        {
+            get { return this.Renderer.IncludeNDC; }
+            set { this.Renderer.IncludeNDC = value; }
+        }
+
+        /// <summary>
+        /// Gets the collection of parameters. Each parameter contains a mapping
+        /// between NLog layout and a named parameter.
+        /// </summary>
+        [ArrayParameter(typeof(NLogViewerParameterInfo), "parameter")]
+        public ICollection<NLogViewerParameterInfo> Parameters
+        {
+            get { return this.parameters; }
+        }
+
+        /// <summary>
+        /// Gets or sets the instance of <see cref="Log4JXmlEventLayout"/> that is used to format log messages.
+        /// </summary>
+        protected new Log4JXmlEventLayout Layout
+        {
+            get { return base.Layout as Log4JXmlEventLayout; }
+            set { this.Layout = value; }
+        }
+
+        private Log4JXmlEventLayoutRenderer Renderer
+        {
+            get { return this.Layout.Renderer; }
         }
 
         /// <summary>
@@ -146,51 +168,32 @@ namespace NLog.Targets
         /// <param name="layouts">The collection to add layouts to.</param>
         public override void PopulateLayouts(ICollection<Layout> layouts)
         {
-            base.PopulateLayouts (layouts);
-            foreach (NLogViewerParameterInfo pi in Parameters)
+            base.PopulateLayouts(layouts);
+            foreach (NLogViewerParameterInfo pi in this.Parameters)
+            {
                 pi.Layout.PopulateLayouts(layouts);
+            }
         }
 
+#if !NET_CF
         /// <summary>
         /// Returns the value indicating whether call site and/or source information should be gathered.
         /// </summary>
-        /// <returns>2 - when IncludeSourceInfo is set, 1 when IncludeCallSite is set, 0 otherwise</returns>
+        /// <returns>2 - when IncludeSourceInfo is set, 1 when IncludeCallSite is set, 0 otherwise.</returns>
         protected internal override StackTraceUsage GetStackTraceUsage()
         {
-            if (IncludeSourceInfo)
+            if (this.IncludeSourceInfo)
+            {
                 return StackTraceUsage.WithSource;
-            if (IncludeCallSite)
+            }
+
+            if (this.IncludeCallSite)
+            {
                 return StackTraceUsage.WithoutSource;
+            }
 
             return base.GetStackTraceUsage();
         }
 #endif
-
-        /// <summary>
-        /// Include MDC dictionary in the information sent over the network.
-        /// </summary>
-        public bool IncludeMDC
-        {
-            get { return Renderer.IncludeMDC; }
-            set { Renderer.IncludeMDC = value; }
-        }
-
-        /// <summary>
-        /// Include NDC stack.
-        /// </summary>
-        public bool IncludeNDC
-        {
-            get { return Renderer.IncludeNDC; }
-            set { Renderer.IncludeNDC = value; }
-        }
-        /// <summary>
-        /// The collection of parameters. Each parameter contains a mapping
-        /// between NLog layout and a named parameter.
-        /// </summary>
-        [ArrayParameter(typeof(NLogViewerParameterInfo), "parameter")]
-        public ICollection<NLogViewerParameterInfo> Parameters
-        {
-            get { return _parameters; }
-        }
     }
 }

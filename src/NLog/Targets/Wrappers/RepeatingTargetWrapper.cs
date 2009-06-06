@@ -31,18 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
-using NLog.Config;
 using System.ComponentModel;
 
 namespace NLog.Targets.Wrappers
@@ -64,36 +52,36 @@ namespace NLog.Targets.Wrappers
     /// <code lang="C#" src="examples/targets/Configuration API/RepeatingWrapper/Simple/Example.cs" />
     /// </example>
     [Target("RepeatingWrapper", IsWrapper = true)]
-    public class RepeatingTargetWrapper: WrapperTargetBase
+    public class RepeatingTargetWrapper : WrapperTargetBase
     {
-        private int _repeatCount = 3;
+        private int repeatCount = 3;
 
         /// <summary>
-        /// Creates a new instance of <see cref="RepeatingTargetWrapper"/>.
+        /// Initializes a new instance of the RepeatingTargetWrapper class.
         /// </summary>
         public RepeatingTargetWrapper()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="RepeatingTargetWrapper"/>,
-        /// initializes the <see cref="WrapperTargetBase.WrappedTarget"/> to the specified <see cref="Target"/> value and
-        /// sets the <see cref="RepeatCount"/>,
+        /// Initializes a new instance of the RepeatingTargetWrapper class.
         /// </summary>
-        public RepeatingTargetWrapper(Target writeTo, int repeatCount)
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        /// <param name="repeatCount">The repeat count.</param>
+        public RepeatingTargetWrapper(Target wrappedTarget, int repeatCount)
         {
-            WrappedTarget = writeTo;
-            RepeatCount = repeatCount;
+            WrappedTarget = wrappedTarget;
+            this.RepeatCount = repeatCount;
         }
 
         /// <summary>
-        /// The number of times to repeat each log message.
+        /// Gets or sets the number of times to repeat each log message.
         /// </summary>
         [DefaultValue(3)]
         public int RepeatCount
         {
-            get { return _repeatCount; }
-            set { _repeatCount = value; }
+            get { return this.repeatCount; }
+            set { this.repeatCount = value; }
         }
 
         /// <summary>
@@ -102,7 +90,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            for (int i = 0; i < RepeatCount; ++i)
+            for (int i = 0; i < this.RepeatCount; ++i)
             {
                 WrappedTarget.Write(logEvent);
             }
@@ -114,16 +102,17 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvents">The array of log events.</param>
         protected internal override void Write(LogEventInfo[] logEvents)
         {
-            LogEventInfo[] newEvents = new LogEventInfo[logEvents.Length * RepeatCount];
+            LogEventInfo[] newEvents = new LogEventInfo[logEvents.Length * this.RepeatCount];
             int pos = 0;
 
             for (int i = 0; i < logEvents.Length; ++i)
             {
-                for (int j = 0; j < RepeatCount; ++j)
+                for (int j = 0; j < this.RepeatCount; ++j)
                 {
                     newEvents[pos++] = logEvents[i];
                 }
             }
+
             WrappedTarget.Write(newEvents);
         }
     }

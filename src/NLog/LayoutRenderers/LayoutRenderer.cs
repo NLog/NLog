@@ -31,12 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
 using System.Text;
-using System.Globalization;
-using System.ComponentModel;
-using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -46,9 +41,18 @@ namespace NLog.LayoutRenderers
     public abstract class LayoutRenderer
     {
         /// <summary>
-        /// Creates a new instance of <see cref="LayoutRenderer" />
+        /// Initializes the layout renderer.
         /// </summary>
-        protected LayoutRenderer(){}
+        public virtual void Initialize()
+        {
+        }
+
+        /// <summary>
+        /// Closes the layout renderer.
+        /// </summary>
+        public virtual void Close()
+        {
+        }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -97,26 +101,12 @@ namespace NLog.LayoutRenderers
         /// Determines whether the value produced by the layout renderer
         /// is fixed per current app-domain.
         /// </summary>
-        /// <returns>The boolean value. <c>true</c> makes the value
+        /// <returns>The boolean value of <c>true</c> makes the value
         /// of the layout renderer be precalculated and inserted as a literal
         /// in the resulting layout string.</returns>
         protected internal virtual bool IsAppDomainFixed()
         {
             return false;
-        }
-
-        /// <summary>
-        /// Initializes the layout renderer.
-        /// </summary>
-        public virtual void Initialize()
-        {
-        }
-
-        /// <summary>
-        /// Closes the layout renderer.
-        /// </summary>
-        public virtual void Close()
-        {
         }
     }
 }

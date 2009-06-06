@@ -43,34 +43,32 @@ namespace NLog.Filters
     /// <summary>
     /// A base class for filters that are based on comparing a value to a layout.
     /// </summary>
-    public abstract class LayoutBasedFilter: Filter
+    public abstract class LayoutBasedFilter : Filter
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="LayoutBasedFilter"/>.
+        /// Initializes a new instance of the LayoutBasedFilter class.
         /// </summary>
-        protected LayoutBasedFilter(){}
-
-        private Layout _layout;
-
-        /// <summary>
-        /// Compiled layout.
-        /// </summary>
-        [RequiredParameter]
-        public Layout Layout
+        protected LayoutBasedFilter()
         {
-            get { return _layout; }
-            set { _layout = value; }
         }
 
         /// <summary>
-        /// Determines whether stack trace information should be gathered
-        /// during log event processing. By default it calls <see cref="Layout.GetStackTraceUsage" /> on
-        /// the <see cref="Layout" />.
+        /// Gets or sets the layout to be used to filter log messages.
         /// </summary>
-        /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
+        /// <value>The layout.</value>
+        [RequiredParameter]
+        public Layout Layout { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether stack trace information should be gathered
+        /// during log event processing.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="StackTraceUsage"/> value that determines stack trace handling.
+        /// </returns>
         public override StackTraceUsage GetStackTraceUsage()
         {
-            return Layout.GetStackTraceUsage();
+            return this.Layout.GetStackTraceUsage();
         }
     }
 }

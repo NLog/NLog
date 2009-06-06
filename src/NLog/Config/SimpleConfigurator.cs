@@ -31,13 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-
-using NLog;
 using NLog.Targets;
-using NLog.Filters;
 
 namespace NLog.Config
 {

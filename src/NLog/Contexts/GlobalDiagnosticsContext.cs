@@ -43,9 +43,14 @@ namespace NLog.Contexts
     /// </summary>
     public class GlobalDiagnosticsContext
     {
-        private static Dictionary<string, string> _dict = new Dictionary<string, string>();
+        private static Dictionary<string, string> dict = new Dictionary<string, string>();
 
-        internal GlobalDiagnosticsContext(){}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GlobalDiagnosticsContext"/> class.
+        /// </summary>
+        internal GlobalDiagnosticsContext()
+        {
+        }
 
         /// <summary>
         /// Sets the Global Diagnostics Context item to the specified value.
@@ -54,9 +59,9 @@ namespace NLog.Contexts
         /// <param name="value">Item value.</param>
         public static void Set(string item, string value)
         {
-            lock (_dict)
+            lock (dict)
             {
-                _dict[item] = value;
+                dict[item] = value;
             }
         }
 
@@ -67,12 +72,15 @@ namespace NLog.Contexts
         /// <returns>The item value of String.Empty if the value is not present.</returns>
         public static string Get(string item)
         {
-            lock (_dict)
+            lock (dict)
             {
                 string s;
 
-                if (!_dict.TryGetValue(item, out s))
+                if (!dict.TryGetValue(item, out s))
+                {
                     s = String.Empty;
+                }
+
                 return s;
             }
         }
@@ -84,9 +92,9 @@ namespace NLog.Contexts
         /// <returns>A boolean indicating whether the specified item exists in current thread GDC.</returns>
         public static bool Contains(string item)
         {
-            lock (_dict)
+            lock (dict)
             {
-                return _dict.ContainsKey(item);
+                return dict.ContainsKey(item);
             }
         }
 
@@ -96,9 +104,9 @@ namespace NLog.Contexts
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
-            lock (_dict)
+            lock (dict)
             {
-                _dict.Remove(item);
+                dict.Remove(item);
             }
         }
 
@@ -107,18 +115,10 @@ namespace NLog.Contexts
         /// </summary>
         public static void Clear()
         {
-            lock (_dict)
+            lock (dict)
             {
-                _dict.Clear();
+                dict.Clear();
             }
         }
-    }
-
-    /// <summary>
-    /// Global Diagnostics Context - used for log4net compatibility
-    /// </summary>
-    [Obsolete("Use GlobalDiagnosticsContext instead")]
-    public class GDC : GlobalDiagnosticsContext
-    {
     }
 }

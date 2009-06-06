@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT && !CLIENT_SKU
 
 using System;
 using System.Text;
@@ -42,7 +42,7 @@ using NLog.Config;
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// ASP.NET User variable
+    /// ASP.NET User variable.
     /// </summary>
     [LayoutRenderer("aspnet-user-identity")]
     public class ASPNETUserIdentityLayoutRenderer : LayoutRenderer
@@ -72,14 +72,20 @@ namespace NLog.LayoutRenderers
         {
             HttpContext context = HttpContext.Current;
             if (context == null)
-                return ;
+            {
+                return;
+            }
 
-			if (context.User == null)
-				return ;
-            
-			if (context.User.Identity == null)
-				return ;
-            
+            if (context.User == null)
+            {
+                return;
+            }
+
+            if (context.User.Identity == null)
+            {
+                return;
+            }
+
             builder.Append(context.User.Identity.Name);
         }
     }

@@ -31,14 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 
 using System;
 using System.Text;
-using System.IO;
 using NLog.Internal;
-
-using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -46,14 +43,17 @@ namespace NLog.LayoutRenderers
     /// The machine name that the process is running on.
     /// </summary>
     [LayoutRenderer("machinename")]
-    public class MachineNameLayoutRenderer: LayoutRenderer
+    public class MachineNameLayoutRenderer : LayoutRenderer
     {
-        static string _machineName = GetMachineName();
-
-        internal static string MachineName
+        /// <summary>
+        /// Initializes static members of the MachineNameLayoutRenderer class.
+        /// </summary>
+        static MachineNameLayoutRenderer()
         {
-            get { return _machineName; }
+            MachineName = GetMachineName();
         }
+
+        internal static string MachineName { get; private set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -68,7 +68,7 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
-            return _machineName.Length;
+            return MachineName.Length;
         }
 
         /// <summary>
@@ -78,7 +78,21 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(_machineName);
+            builder.Append(MachineName);
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the value produced by the layout renderer
+        /// is fixed per current app-domain.
+        /// </summary>
+        /// <returns>
+        /// The boolean value of <c>true</c> makes the value
+        /// of the layout renderer be precalculated and inserted as a literal
+        /// in the resulting layout string.
+        /// </returns>
+        protected internal override bool IsAppDomainFixed()
+        {
+            return true;
         }
 
         private static string GetMachineName()
@@ -92,16 +106,6 @@ namespace NLog.LayoutRenderers
                 InternalLogger.Warn("Error getting machine name: {0}", ex);
                 return String.Empty;
             }
-        }
-
-        /// <summary>
-        /// Determines whether the value produced by the layout renderer
-        /// is fixed per current app-domain.
-        /// </summary>
-        /// <returns><see langword="true"/></returns>
-        protected internal override bool IsAppDomainFixed()
-        {
-            return true;
         }
     }
 }

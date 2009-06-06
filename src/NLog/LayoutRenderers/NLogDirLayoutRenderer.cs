@@ -31,10 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
 using System.IO;
-using NLog.Config;
+using System.Text;
 
 namespace NLog.LayoutRenderers
 {
@@ -42,38 +40,31 @@ namespace NLog.LayoutRenderers
     /// The directory where NLog.dll is located.
     /// </summary>
     [LayoutRenderer("nlogdir")]
-    public class NLogDirLayoutRenderer: LayoutRenderer
+    public class NLogDirLayoutRenderer : LayoutRenderer
     {
-        private string _fileName = null;
-        private string _directoryName = null;
-        private static string _nlogDir;
-
+        /// <summary>
+        /// Initializes static members of the NLogDirLayoutRenderer class.
+        /// </summary>
         static NLogDirLayoutRenderer()
         {
 #if !NET_CF
-            _nlogDir = Path.GetDirectoryName(typeof(LogManager).Assembly.Location);
+            NLogDir = Path.GetDirectoryName(typeof(LogManager).Assembly.Location);
 #else
-            _nlogDir = Path.GetDirectoryName(typeof(LogManager).Assembly.GetName().CodeBase);
+            NLogDir = Path.GetDirectoryName(typeof(LogManager).Assembly.GetName().CodeBase);
 #endif
         }
 
         /// <summary>
-        /// The name of the file to be Path.Combine()'d with the directory name.
+        /// Gets or sets the name of the file to be Path.Combine()'d with the directory name.
         /// </summary>
-        public string File
-        {
-            get { return _fileName; }
-            set { _fileName = value; }
-        }
+        public string File { get; set; }
 
         /// <summary>
-        /// The name of the directory to be Path.Combine()'d with the directory name.
+        /// Gets or sets the name of the directory to be Path.Combine()'d with the directory name.
         /// </summary>
-        public string Dir
-        {
-            get { return _directoryName; }
-            set { _directoryName = value; }
-        }
+        public string Dir { get; set; }
+
+        private static string NLogDir { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -91,11 +82,6 @@ namespace NLog.LayoutRenderers
             return 32;
         }
 
-        private string NLogDir
-        {
-            get { return _nlogDir; }
-        }
-
         /// <summary>
         /// Renders the directory where NLog is located and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
@@ -105,13 +91,13 @@ namespace NLog.LayoutRenderers
         {
             string baseDir = NLogDir;
 
-            if (File != null)
+            if (this.File != null)
             {
-                builder.Append(Path.Combine(baseDir, File));
+                builder.Append(Path.Combine(baseDir, this.File));
             }
-            else if (Dir != null)
+            else if (this.Dir != null)
             {
-                builder.Append(Path.Combine(baseDir, Dir));
+                builder.Append(Path.Combine(baseDir, this.Dir));
             }
             else
             {
@@ -123,7 +109,11 @@ namespace NLog.LayoutRenderers
         /// Determines whether the value produced by the layout renderer
         /// is fixed per current app-domain.
         /// </summary>
-        /// <returns><see langword="true"/></returns>
+        /// <returns>
+        /// The boolean value of <c>true</c> makes the value
+        /// of the layout renderer be precalculated and inserted as a literal
+        /// in the resulting layout string.
+        /// </returns>
         protected internal override bool IsAppDomainFixed()
         {
             return true;

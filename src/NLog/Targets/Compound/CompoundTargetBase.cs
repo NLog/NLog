@@ -31,18 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
-using NLog.Config;
 using System.Collections.Generic;
 using NLog.Layouts;
 
@@ -52,35 +40,25 @@ namespace NLog.Targets.Compound
     /// A base class for targets which wrap other (multiple) targets
     /// and provide various forms of target routing.
     /// </summary>
-    public abstract class CompoundTargetBase: Target
+    public abstract class CompoundTargetBase : Target
     {
-        private IList<Target> _targets = new List<Target>();
-
         /// <summary>
-        /// Creates a new instance of <see cref="CompoundTargetBase"/>.
+        /// Initializes a new instance of the CompoundTargetBase class.
         /// </summary>
-        protected CompoundTargetBase()
+        /// <param name="targets">The targets.</param>
+        protected CompoundTargetBase(params Target[] targets)
         {
-        }
-
-        /// <summary>
-        /// Creates a new instance of <see cref="CompoundTargetBase"/> and
-        /// initializes the <see cref="Targets"/> collection to the provided
-        /// list of <see cref="Target"/> objects.
-        /// </summary>
-        public CompoundTargetBase(params Target[] targets)
-        {
+            this.Targets = new List<Target>();
             foreach (Target t in targets)
-                Targets.Add(t);
+            {
+                this.Targets.Add(t);
+            }
         }
 
         /// <summary>
-        /// A collection of targets managed by this compound target.
+        /// Gets the collection of targets managed by this compound target.
         /// </summary>
-        public IList<Target> Targets
-        {
-            get { return _targets; }
-        }
+        public IList<Target> Targets { get; private set; }
 
         /// <summary>
         /// Adds all layouts used by this target and sub-targets.
@@ -88,8 +66,8 @@ namespace NLog.Targets.Compound
         /// <param name="layouts">The collection to add layouts to.</param>
         public override void PopulateLayouts(ICollection<Layout> layouts)
         {
-            base.PopulateLayouts (layouts);
-            foreach (Target t in Targets)
+            base.PopulateLayouts(layouts);
+            foreach (Target t in this.Targets)
             {
                 t.PopulateLayouts(layouts);
             }
@@ -100,7 +78,7 @@ namespace NLog.Targets.Compound
         /// </summary>
         public override void Initialize()
         {
-            foreach (Target t in Targets)
+            foreach (Target t in this.Targets)
             {
                 t.Initialize();
             }
@@ -111,11 +89,11 @@ namespace NLog.Targets.Compound
         /// </summary>
         protected internal override void Close()
         {
-            base.Close ();
-            foreach (Target t in Targets)
+            base.Close();
+            foreach (Target t in this.Targets)
             {
                 t.Close();
             }
         }
-   }
+    }
 }

@@ -31,13 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.Diagnostics;
-using System.Reflection;
-using System.Collections;
-
-using NLog.Internal;
 using NLog.Config;
 using NLog.Layouts;
 
@@ -48,32 +41,23 @@ namespace NLog.Targets
     /// </summary>
     public class NLogViewerParameterInfo
     {
-        /// <summary>ba
-        /// Creates a new instance of <see cref="NLogViewerParameterInfo"/>.
-        /// </summary>
-        public NLogViewerParameterInfo(){}
-
-        private Layout _layout;
-        private string _name;
-
         /// <summary>
-        /// Viewer parameter name.
+        /// Initializes a new instance of the NLogViewerParameterInfo class.
         /// </summary>
-        [RequiredParameter]
-        public string Name
+        public NLogViewerParameterInfo()
         {
-            get { return _name; }
-            set { _name = value; }
         }
 
         /// <summary>
-        /// The layout that should be use to calcuate the value for the parameter.
+        /// Gets or sets viewer parameter name.
         /// </summary>
         [RequiredParameter]
-        public Layout Layout
-        {
-            get { return _layout; }
-            set { _layout = value; }
-        }
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the layout that should be use to calcuate the value for the parameter.
+        /// </summary>
+        [RequiredParameter]
+        public Layout Layout { get; set; }
     }
 }

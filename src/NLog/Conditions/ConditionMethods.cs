@@ -31,12 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Collections;
-using NLog.Config;
-
 namespace NLog.Conditions
 {
     /// <summary>
@@ -49,8 +43,8 @@ namespace NLog.Conditions
         /// <summary>
         /// Compares two objects for equality.
         /// </summary>
-        /// <param name="o1">The first object</param>
-        /// <param name="o2">The second object</param>
+        /// <param name="o1">The first object.</param>
+        /// <param name="o2">The second object.</param>
         /// <returns><b>true</b> when two objects are equal, <b>false</b> otherwise.</returns>
         [ConditionMethod("equals")]
         public static bool Equals2(object o1, object o2)
@@ -59,10 +53,10 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Determines whether the second string is a substring of the first one.
+        /// Gets or sets a value indicating whether the second string is a substring of the first one.
         /// </summary>
-        /// <param name="s1">The first string</param>
-        /// <param name="s2">The second string</param>
+        /// <param name="s1">The first string.</param>
+        /// <param name="s2">The second string.</param>
         /// <returns><b>true</b> when the second string is a substring of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("contains")]
         public static bool Contains(string s1, string s2)
@@ -71,10 +65,10 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Determines whether the second string is a prefix of the first one.
+        /// Gets or sets a value indicating whether the second string is a prefix of the first one.
         /// </summary>
-        /// <param name="s1">The first string</param>
-        /// <param name="s2">The second string</param>
+        /// <param name="s1">The first string.</param>
+        /// <param name="s2">The second string.</param>
         /// <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("starts-with")]
         public static bool StartsWith(string s1, string s2)
@@ -83,10 +77,10 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Determines whether the second string is a suffix of the first one.
+        /// Gets or sets a value indicating whether the second string is a suffix of the first one.
         /// </summary>
-        /// <param name="s1">The first string</param>
-        /// <param name="s2">The second string</param>
+        /// <param name="s1">The first string.</param>
+        /// <param name="s2">The second string.</param>
         /// <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("ends-with")]
         public static bool EndsWith(string s1, string s2)
@@ -97,12 +91,12 @@ namespace NLog.Conditions
         /// <summary>
         /// Returns the length of a string.
         /// </summary>
-        /// <param name="s">A string.</param>
-        /// <returns>The length of a string.</returns>
+        /// <param name="text">A string whose lengths is to be evaluated.</param>
+        /// <returns>The length of the string.</returns>
         [ConditionMethod("length")]
-        public static int Length(string s)
+        public static int Length(string text)
         {
-            return s.Length;
+            return text.Length;
         }
     }
 }

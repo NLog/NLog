@@ -31,11 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 
 using System;
 using System.Text;
-using System.IO;
 
 using NLog.Config;
 using NLog.Internal;
@@ -46,20 +45,14 @@ namespace NLog.LayoutRenderers
     /// The environment variable.
     /// </summary>
     [LayoutRenderer("environment")]
-    public class EnvironmentLayoutRenderer: LayoutRenderer
+    public class EnvironmentLayoutRenderer : LayoutRenderer
     {
-        private string _variable = null;
-
         /// <summary>
-        /// Name of the environment variable.
+        /// Gets or sets the name of the environment variable.
         /// </summary>
         [RequiredParameter]
         [DefaultParameter]
-        public string Variable
-        {
-            get { return _variable; }
-            set { _variable = value; }
-        }
+        public string Variable { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -84,21 +77,10 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (Variable != null)
+            if (this.Variable != null)
             {
-                builder.Append(EnvironmentHelper.GetSafeEnvironmentVariable(Variable));
+                builder.Append(EnvironmentHelper.GetSafeEnvironmentVariable(this.Variable));
             }
-        }
-
-        /// <summary>
-        /// Determines whether the value produced by the layout renderer
-        /// is fixed per current app-domain.
-        /// </summary>
-        /// <returns><see langword="true"/></returns>
-        protected internal override bool IsAppDomainFixed()
-        {
-            // AFAIK there's no way to change the env variables
-            return true;
         }
     }
 }

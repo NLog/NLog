@@ -31,18 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Collections;
-using System.Diagnostics;
-
-using NLog.Internal;
-using NLog.Config;
-using NLog.Conditions;
 using System.Collections.Generic;
+using NLog.Conditions;
+using NLog.Config;
+using NLog.Internal;
 using NLog.Layouts;
 
 namespace NLog.Targets.Wrappers
@@ -75,38 +67,44 @@ namespace NLog.Targets.Wrappers
     /// <code lang="C#" src="examples/targets/Configuration API/PostFilteringWrapper/Simple/Example.cs" />
     /// </example>
     [Target("PostFilteringWrapper", IsWrapper = true)]
-    public class PostFilteringTargetWrapper: WrapperTargetBase
+    public class PostFilteringTargetWrapper : WrapperTargetBase
     {
-        private ConditionExpression _defaultFilter;
-        private ICollection<FilteringRule> _rules = new List<FilteringRule>();
-
         /// <summary>
-        /// Creates a new instance of <see cref="PostFilteringTargetWrapper"/>.
+        /// Initializes a new instance of the PostFilteringTargetWrapper class.
         /// </summary>
         public PostFilteringTargetWrapper()
         {
+            this.Rules = new List<FilteringRule>();
         }
 
         /// <summary>
-        /// Default filter to be applied when no specific rule matches.
+        /// Gets or sets the default filter to be applied when no specific rule matches.
         /// </summary>
-        public ConditionExpression DefaultFilter
-        {
-            get { return _defaultFilter; }
-            set { _defaultFilter = value; }
-        }
+        public ConditionExpression DefaultFilter { get; set; }
 
         /// <summary>
-        /// Collection of filtering rules. The rules are processed top-down
+        /// Gets the collection of filtering rules. The rules are processed top-down
         /// and the first rule that matches determines the filtering condition to
         /// be applied to log events.
         /// </summary>
         [ArrayParameter(typeof(FilteringRule), "when")]
-        public ICollection<FilteringRule> Rules
-        {
-            get { return _rules; }
-        }
+        public ICollection<FilteringRule> Rules { get; private set; }
 
+        /// <summary>
+        /// Adds all layouts used by this target to the specified collection.
+        /// </summary>
+        /// <param name="layouts">The collection to add layouts to.</param>
+        public override void PopulateLayouts(ICollection<Layout> layouts)
+        {
+            base.PopulateLayouts(layouts);
+            foreach (FilteringRule fr in this.Rules)
+            {
+                fr.Filter.PopulateLayouts(layouts);
+                fr.Exists.PopulateLayouts(layouts);
+            }
+
+            this.DefaultFilter.PopulateLayouts(layouts);
+        }
 
         /// <summary>
         /// Evaluates all filtering rules to find the first one that matches.
@@ -125,48 +123,60 @@ namespace NLog.Targets.Wrappers
             }
 
             // evaluate all the rules to get the filtering condition
-
             for (int i = 0; i < logEvents.Length; ++i)
             {
-                foreach (FilteringRule rule in _rules)
+                foreach (FilteringRule rule in this.Rules)
                 {
                     object v = rule.Exists.Evaluate(logEvents[i]);
 
                     if (v is bool && (bool)v)
                     {
                         if (InternalLogger.IsTraceEnabled)
+                        {
                             InternalLogger.Trace("Rule matched: {0}", rule.Exists);
+                        }
+
                         resultFilter = rule.Filter;
                         break;
                     }
                 }
+
                 if (resultFilter != null)
+                {
                     break;
+                }
             }
 
             if (resultFilter == null)
-                resultFilter = _defaultFilter;
+            {
+                resultFilter = this.DefaultFilter;
+            }
 
             if (InternalLogger.IsTraceEnabled)
+            {
                 InternalLogger.Trace("Filter to apply: {0}", resultFilter);
+            }
 
             // apply the condition to the buffer
-
             List<LogEventInfo> resultBuffer = new List<LogEventInfo>();
 
             for (int i = 0; i < logEvents.Length; ++i)
             {
                 object v = resultFilter.Evaluate(logEvents[i]);
                 if (v is bool && (bool)v)
+                {
                     resultBuffer.Add(logEvents[i]);
+                }
             }
 
             if (InternalLogger.IsTraceEnabled)
+            {
                 InternalLogger.Trace("After filtering: {0} events", resultBuffer.Count);
+            }
 
             if (resultBuffer.Count > 0)
             {
-                WrappedTarget.Write(resultBuffer.ToArray());
+                this.WrappedTarget.Write(resultBuffer.ToArray());
             }
         }
 
@@ -177,22 +187,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">Log event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            Write(new LogEventInfo[] { logEvent });
-        }
-
-        /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts(layouts);
-            foreach (FilteringRule fr in Rules)
-            {
-                fr.Filter.PopulateLayouts(layouts);
-                fr.Exists.PopulateLayouts(layouts);
-            }
-            DefaultFilter.PopulateLayouts(layouts);
+            this.Write(new LogEventInfo[] { logEvent });
         }
     }
 }

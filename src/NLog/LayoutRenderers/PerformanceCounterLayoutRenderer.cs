@@ -31,16 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 
-using System;
-using System.Text;
-using System.IO;
 using System.Diagnostics;
-
-using NLog.Config;
-using NLog.Internal;
 using System.Globalization;
+using System.Text;
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -48,65 +44,66 @@ namespace NLog.LayoutRenderers
     /// The performance counter.
     /// </summary>
     [LayoutRenderer("performancecounter")]
-    public class PerformanceCounterLayoutRenderer: LayoutRenderer
+    public class PerformanceCounterLayoutRenderer : LayoutRenderer
     {
-        private string _categoryName = null;
-        private string _counterName = null;
-        private string _instanceName = null;
-        private string _machineName = null;
-        private PerformanceCounter _perfCounter = null;
+        private PerformanceCounter perfCounter = null;
 
         /// <summary>
-        /// Name of the counter category.
+        /// Initializes a new instance of the PerformanceCounterLayoutRenderer class.
+        /// </summary>
+        public PerformanceCounterLayoutRenderer()
+        {
+        }
+
+        /// <summary>
+        /// Gets or sets the name of the counter category.
         /// </summary>
         [RequiredParameter]
-        public string Category
-        {
-            get { return _categoryName; }
-            set
-            {
-                _categoryName = value;
-                InvalidatePerformanceCounter();
-            }
-        }
+        public string Category { get; set; }
 
         /// <summary>
-        /// Name of the performance counter.
+        /// Gets or sets the name of the performance counter.
         /// </summary>
         [RequiredParameter]
-        public string Counter
+        public string Counter { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the performance counter instance (e.g. this.Global_).
+        /// </summary>
+        public string Instance { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the machine to read the performance counter from.
+        /// </summary>
+        public string MachineName { get; set; }
+
+        /// <summary>
+        /// Initializes the layout renderer.
+        /// </summary>
+        public override void Initialize()
         {
-            get { return _counterName; }
-            set
+            base.Initialize();
+
+            if (this.MachineName != null)
             {
-                _counterName = value;
-                InvalidatePerformanceCounter();
+                this.perfCounter = new PerformanceCounter(this.Category, this.Counter, this.Instance, this.MachineName);
+            }
+            else
+            {
+                this.perfCounter = new PerformanceCounter(this.Category, this.Counter, this.Instance, true);
             }
         }
 
         /// <summary>
-        /// Name of the performance counter instance (e.g. _Global_).
+        /// Closes the layout renderer.
         /// </summary>
-        public string Instance
+        public override void Close()
         {
-            get { return _instanceName; }
-            set
+            base.Close();
+            if (this.perfCounter != null)
             {
-                _instanceName = value;
-                InvalidatePerformanceCounter();
-            }
-        }
-
-        /// <summary>
-        /// Name of the machine to read the performance counter from.
-        /// </summary>
-        public string MachineName
-        {
-            get { return _machineName; }
-            set
-            {
-                _machineName = value;
-                InvalidatePerformanceCounter();
+                this.perfCounter.Close();
+                this.perfCounter = null;
             }
         }
 
@@ -126,45 +123,6 @@ namespace NLog.LayoutRenderers
             return 32;
         }
 
-        private void CreatePerformanceCounter()
-        {
-            if (_perfCounter == null)
-            {
-                lock (this)
-                {
-                    if (_perfCounter == null)
-                    {
-                        if (_machineName != null)
-                        {
-                            _perfCounter = new PerformanceCounter(_categoryName, _counterName, _instanceName, _machineName);
-                        }
-                        else
-                        {
-                            _perfCounter = new PerformanceCounter(_categoryName, _counterName, _instanceName, true);
-                        }
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Closes currently open performance counter (if any).
-        /// </summary>
-        private void InvalidatePerformanceCounter()
-        {
-            if (_perfCounter != null)
-            {
-                lock (this)
-                {
-                    if (_perfCounter != null)
-                    {
-                        _perfCounter.Close();
-                        _perfCounter = null;
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// Renders the specified environment variable and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
@@ -172,8 +130,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            CreatePerformanceCounter();
-            builder.Append(_perfCounter.NextValue().ToString(CultureInfo.InvariantCulture));
+            builder.Append(this.perfCounter.NextValue().ToString(CultureInfo.InvariantCulture));
         }
     }
 }

@@ -31,12 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
 using System.Text;
-using System.Runtime.InteropServices;
 
-using NLog.Internal;
-using NLog.Config;
 using System.Threading;
 
 namespace NLog.LayoutRenderers
@@ -45,7 +41,7 @@ namespace NLog.LayoutRenderers
     /// The identifier of the current thread.
     /// </summary>
     [LayoutRenderer("threadid")]
-    public class ThreadIDLayoutRenderer: LayoutRenderer
+    public class ThreadIDLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Returns the estimated number of characters that are needed to

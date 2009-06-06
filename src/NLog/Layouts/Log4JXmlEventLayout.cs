@@ -1,7 +1,5 @@
-using NLog.LayoutRenderers;
 using System.Text;
-using System.Collections.Generic;
-using NLog.Config;
+using NLog.LayoutRenderers;
 
 namespace NLog.Layouts
 {
@@ -11,14 +9,14 @@ namespace NLog.Layouts
     [Layout("Log4JXmlEventLayout")]
     public class Log4JXmlEventLayout : Layout
     {
-        private Log4JXmlEventLayoutRenderer _renderer = new Log4JXmlEventLayoutRenderer();
+        private Log4JXmlEventLayoutRenderer renderer = new Log4JXmlEventLayoutRenderer();
 
         /// <summary>
-        /// Returns the <see cref="Log4JXmlEventLayoutRenderer"/> instance that renders log events.
+        /// Gets the <see cref="Log4JXmlEventLayoutRenderer"/> instance that renders log events.
         /// </summary>
         public Log4JXmlEventLayoutRenderer Renderer
         {
-            get { return _renderer; }
+            get { return this.renderer; }
         }
 
         /// <summary>
@@ -31,11 +29,13 @@ namespace NLog.Layouts
             string cachedValue;
 
             if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
+            {
                 return cachedValue;
+            }
 
-            StringBuilder sb = new StringBuilder(_renderer.GetEstimatedBufferSize(logEvent));
+            StringBuilder sb = new StringBuilder(this.renderer.GetEstimatedBufferSize(logEvent));
 
-            _renderer.Append(sb, logEvent);
+            this.renderer.Append(sb, logEvent);
             logEvent.AddCachedLayoutValue(this, sb.ToString());
             return sb.ToString();
         }
@@ -44,17 +44,17 @@ namespace NLog.Layouts
         /// Returns the value indicating whether a stack trace and/or the source file
         /// information should be gathered during layout processing.
         /// </summary>
-        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
+        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace.</returns>
         public override StackTraceUsage GetStackTraceUsage()
         {
-            return _renderer.GetStackTraceUsage();
+            return this.renderer.GetStackTraceUsage();
         }
 
         /// <summary>
         /// Returns the value indicating whether this layout includes any volatile 
         /// layout renderers.
         /// </summary>
-        /// <returns><see langword="true" /> when the layout includes at least 
+        /// <returns>A value of <see langword="true" /> when the layout includes at least 
         /// one volatile renderer, <see langword="false"/> otherwise.</returns>
         /// <remarks>
         /// Volatile layout renderers are dependent on information not contained 
@@ -62,7 +62,7 @@ namespace NLog.Layouts
         /// </remarks>
         public override bool IsVolatile()
         {
-            return _renderer.IsVolatile();
+            return this.renderer.IsVolatile();
         }
     }
 }

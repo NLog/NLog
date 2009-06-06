@@ -31,61 +31,72 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 
 using System;
 using System.Collections;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 
 namespace NLog.Internal
 {
-    internal class MultiFileWatcher: IDisposable
+    /// <summary>
+    /// Watches multiple files at the same time and raises an event whenever 
+    /// a single change is detected in any of those files.
+    /// </summary>
+    internal class MultiFileWatcher : IDisposable
     {
-        private List<FileSystemWatcher> _watchers = new List<FileSystemWatcher>();
+        private List<FileSystemWatcher> watchers = new List<FileSystemWatcher>();
 
-        public MultiFileWatcher(){}
+        /// <summary>
+        /// Occurs when a change is detected in one of the monitored files.
+        /// </summary>
+        public event EventHandler OnChange;
 
-        public MultiFileWatcher(EventHandler onChange)
-        {
-            OnChange += onChange;
-        }
-
-        public MultiFileWatcher(ICollection fileNames)
-        {
-            Watch(fileNames);
-        }
-
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
-            StopWatching();
+            this.StopWatching();
         }
 
+        /// <summary>
+        /// Stops the watching.
+        /// </summary>
         public void StopWatching()
         {
-            lock(this)
+            lock (this)
             {
-                foreach (FileSystemWatcher watcher in _watchers)
+                foreach (FileSystemWatcher watcher in this.watchers)
                 {
                     InternalLogger.Info("Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
                     watcher.EnableRaisingEvents = false;
                     watcher.Dispose();
                 }
-                _watchers.Clear();
+
+                this.watchers.Clear();
             }
         }
 
-        public void Watch(ICollection fileNames)
+        /// <summary>
+        /// Watches the specified files for changes.
+        /// </summary>
+        /// <param name="fileNames">The file names.</param>
+        public void Watch(IEnumerable<string> fileNames)
         {
             if (fileNames == null)
-                return ;
+            {
+                return;
+            }
+
             foreach (string s in fileNames)
             {
-                Watch(s);
+                this.Watch(s);
             }
         }
 
-        public void Watch(string fileName)
+        internal void Watch(string fileName)
         {
             FileSystemWatcher watcher = new FileSystemWatcher();
             watcher.Path = Path.GetDirectoryName(fileName);
@@ -97,22 +108,22 @@ namespace NLog.Internal
             watcher.EnableRaisingEvents = true;
             InternalLogger.Info("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
 
-            lock(this)
+            lock (this)
             {
-                _watchers.Add(watcher);
+                this.watchers.Add(watcher);
             }
         }
 
         private void OnWatcherChanged(object source, FileSystemEventArgs e)
         {
-            lock(this)
+            lock (this)
             {
-                if (OnChange != null)
-                    OnChange(source, e);
+                if (this.OnChange != null)
+                {
+                    this.OnChange(source, e);
+                }
             }
         }
-
-        public event EventHandler OnChange;
     }
 }
 

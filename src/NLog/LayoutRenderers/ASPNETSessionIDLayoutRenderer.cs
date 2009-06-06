@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT && !CLIENT_SKU
 
 using System;
 using System.Text;
@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     /// ASP.NET Session ID.
     /// </summary>                 
     [LayoutRenderer("aspnet-sessionid")]
-    public class ASPNETSessionIDLayoutRenderer: LayoutRenderer
+    public class ASPNETSessionIDLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -72,10 +72,14 @@ namespace NLog.LayoutRenderers
         {
             HttpContext context = HttpContext.Current;
             if (context == null)
-                return ;
+            {
+                return;
+            }
 
-			if (context.Session == null)
-				return ;
+            if (context.Session == null)
+            {
+                return;
+            }
 
             builder.Append(context.Session.SessionID);
         }

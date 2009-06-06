@@ -31,17 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.IO;
-using System.Threading;
-using System.Collections;
-using System.Collections.Specialized;
-
-using NLog;
-using NLog.Config;
-
-using NLog.Internal;
 using System.Collections.Generic;
 using NLog.Layouts;
 
@@ -50,18 +39,12 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Base class for targets wrap other (single) targets.
     /// </summary>
-    public abstract class WrapperTargetBase: Target
+    public abstract class WrapperTargetBase : Target
     {
-        private Target _wrappedTarget = null;
-
         /// <summary>
-        /// The target that this target wraps.
+        /// Gets or sets the target that is wrapped by this target.
         /// </summary>
-        public Target WrappedTarget
-        {
-            get { return _wrappedTarget; }
-            set { _wrappedTarget = value; }
-        }
+        public Target WrappedTarget { get; set; }
 
         /// <summary>
         /// Adds all layouts used by this target to the specified collection.
@@ -69,26 +52,8 @@ namespace NLog.Targets.Wrappers
         /// <param name="layouts">The collection to add layouts to.</param>
         public override void PopulateLayouts(ICollection<Layout> layouts)
         {
-            base.PopulateLayouts (layouts);
-            WrappedTarget.PopulateLayouts(layouts);
-        }
-
-        /// <summary>
-        /// Closes the target by forwarding the call to the <see cref="WrapperTargetBase.WrappedTarget"/> object.
-        /// </summary>
-        protected internal override void Close()
-        {
-            base.Close();
-            WrappedTarget.Close();
-        }
-
-        /// <summary>
-        /// Forwards the call to <see cref="WrapperTargetBase.WrappedTarget"/>.GetStackTraceUsage().
-        /// </summary>
-        /// <returns>The value of forwarded call</returns>
-        protected internal override StackTraceUsage GetStackTraceUsage()
-        {
-            return WrappedTarget.GetStackTraceUsage();
+            base.PopulateLayouts(layouts);
+            this.WrappedTarget.PopulateLayouts(layouts);
         }
 
         /// <summary>
@@ -97,7 +62,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         public override void Initialize()
         {
-            WrappedTarget.Initialize();
+            this.WrappedTarget.Initialize();
         }
 
         /// <summary>
@@ -106,7 +71,25 @@ namespace NLog.Targets.Wrappers
         /// <returns>A string that describes the target.</returns>
         public override string ToString()
         {
-            return ((this.Name != null) ? this.Name : "unnamed") + ":" + this.GetType().Name + "(" + ((WrappedTarget != null) ? WrappedTarget.ToString() : "null") + ")";
+            return ((this.Name != null) ? this.Name : "unnamed") + ":" + this.GetType().Name + "(" + ((this.WrappedTarget != null) ? this.WrappedTarget.ToString() : "null") + ")";
+        }
+
+        /// <summary>
+        /// Closes the target by forwarding the call to the <see cref="WrapperTargetBase.WrappedTarget"/> object.
+        /// </summary>
+        protected internal override void Close()
+        {
+            base.Close();
+            this.WrappedTarget.Close();
+        }
+
+        /// <summary>
+        /// Forwards the call to <see cref="WrapperTargetBase.WrappedTarget"/>.GetStackTraceUsage().
+        /// </summary>
+        /// <returns>The value of forwarded call.</returns>
+        protected internal override StackTraceUsage GetStackTraceUsage()
+        {
+            return this.WrappedTarget.GetStackTraceUsage();
         }
     }
 }

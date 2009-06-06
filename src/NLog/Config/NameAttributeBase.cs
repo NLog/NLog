@@ -32,32 +32,37 @@
 // 
 
 using System;
+using NLog.LayoutRenderers;
+using NLog.Layouts;
+using NLog.Targets;
 
 namespace NLog.Config
 {
     /// <summary>
-    /// Attaches a simple name to an type.
+    /// Attaches a simple name to an item (such as <see cref="Target"/>, 
+    /// <see cref="LayoutRenderer"/>, <see cref="Layout"/>, etc.).
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class NameAttributeBase: Attribute
+    public class NameAttributeBase : Attribute
     {
-        private string _name;
+        private string name;
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the NameAttributeBase class.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">The name of the item.</param>
         protected NameAttributeBase(string name)
         {
-            _name = name;
+            this.name = name;
         }
 
         /// <summary>
-        /// The name.
+        /// Gets the name of the item.
         /// </summary>
+        /// <value>The name of the item.</value>
         public string Name
         {
-            get { return _name; }
+            get { return this.name; }
         }
     }
 }

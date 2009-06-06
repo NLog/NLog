@@ -40,146 +40,92 @@ namespace NLog
     /// </summary>
     public class LogLevel : IComparable
     {
-        private string _name;
-        private int _ordinal;
-
-        private static LogLevel _trace;
-        private static LogLevel _debug;
-        private static LogLevel _info;
-        private static LogLevel _warn;
-        private static LogLevel _error;
-        private static LogLevel _fatal;
-
-        private static LogLevel _off;
-        private static LogLevel _maxLevel;
-        private static LogLevel _minLevel;
+        private static LogLevel[] levelByOrdinal;
 
         /// <summary>
-        /// The Trace level.
+        /// Initializes static members of the LogLevel class.
         /// </summary>
-        public static LogLevel Trace
-        {
-            get { return _trace; }
-        }
-
-        /// <summary>
-        /// The Debug level.
-        /// </summary>
-        public static LogLevel Debug
-        {
-            get { return _debug; }
-        }
-
-        /// <summary>
-        /// The Info level.
-        /// </summary>
-        public static LogLevel Info
-        {
-            get { return _info; }
-        }
-
-        /// <summary>
-        /// The Warn level.
-        /// </summary>
-        public static LogLevel Warn
-        {
-            get { return _warn; }
-        }
-
-        /// <summary>
-        /// The Error level.
-        /// </summary>
-        public static LogLevel Error
-        {
-            get { return _error; }
-        }
-
-        /// <summary>
-        /// The Fatal level.
-        /// </summary>
-        public static LogLevel Fatal
-        {
-            get { return _fatal; }
-        }
-
-        /// <summary>
-        /// The Off level.
-        /// </summary>
-        public static LogLevel Off
-        {
-            get { return _off; }
-        }
-
-        internal static LogLevel MaxLevel
-        {
-            get { return _maxLevel; }
-        }
-
-        internal static LogLevel MinLevel
-        {
-            get { return _minLevel; }
-        }
-
-        private static LogLevel[] _levelByOrdinal;
-
         static LogLevel()
         {
             int l = 0;
 
-            _trace = new LogLevel("Trace", l++);
-            _debug = new LogLevel("Debug", l++);
-            _info = new LogLevel("Info", l++);
-            _warn = new LogLevel("Warn", l++);
-            _error = new LogLevel("Error", l++);
-            _fatal = new LogLevel("Fatal", l++);
-            _off = new LogLevel("Off", l++);
+            Trace = new LogLevel("Trace", l++);
+            Debug = new LogLevel("Debug", l++);
+            Info = new LogLevel("Info", l++);
+            Warn = new LogLevel("Warn", l++);
+            Error = new LogLevel("Error", l++);
+            Fatal = new LogLevel("Fatal", l++);
+            Off = new LogLevel("Off", l++);
 
-            _levelByOrdinal = new LogLevel[] { Trace, Debug, Info, Warn, Error, Fatal, Off };
-            _minLevel = _levelByOrdinal[0];
-            _maxLevel = _levelByOrdinal[_levelByOrdinal.Length - 2]; // ignore the Off level
+            levelByOrdinal = new LogLevel[] { Trace, Debug, Info, Warn, Error, Fatal, Off };
+            MaxLevel = levelByOrdinal[0];
+            MaxLevel = levelByOrdinal[levelByOrdinal.Length - 2]; // ignore the Off level
         }
 
         // to be changed into public in the future.
         private LogLevel(string name, int ordinal)
         {
-            _name = name;
-            _ordinal = ordinal;
+            this.Name = name;
+            this.Ordinal = ordinal;
         }
+
+        /// <summary>
+        /// Gets the Debug level.
+        /// </summary>
+        public static LogLevel Debug { get; private set; }
+
+        /// <summary>
+        /// Gets the Error level.
+        /// </summary>
+        public static LogLevel Error { get; private set; }
+
+        /// <summary>
+        /// Gets the Fatal level.
+        /// </summary>
+        public static LogLevel Fatal { get; private set; }
+
+        /// <summary>
+        /// Gets the Info level.
+        /// </summary>
+        public static LogLevel Info { get; private set; }
+
+        /// <summary>
+        /// Gets the Off level.
+        /// </summary>
+        public static LogLevel Off { get; private set; }
+
+        /// <summary>
+        /// Gets the Trace level.
+        /// </summary>
+        public static LogLevel Trace { get; private set; }
+
+        /// <summary>
+        /// Gets the Warn level.
+        /// </summary>
+        public static LogLevel Warn { get; private set; }
 
         /// <summary>
         /// Gets the name of the log level.
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-        }
+        public string Name { get; private set; }
 
-        internal int Ordinal
-        {
-            get { return _ordinal; }
-        }
+        internal static LogLevel MaxLevel { get; set; }
 
-        /// <summary>
-        /// Gets the <see cref="LogLevel"/> that corresponds to the specified ordinal.
-        /// </summary>
-        /// <param name="ordinal">The ordinal.</param>
-        /// <returns>The <see cref="LogLevel"/> instance. For 0 it returns <see cref="LogLevel.Debug"/>, 1 gives <see cref="LogLevel.Info"/> and so on</returns>
-        public static LogLevel FromOrdinal(int ordinal)
-        {
-            return _levelByOrdinal[ordinal];
-        }
+        internal static LogLevel MinLevel { get; set; }
+
+        internal int Ordinal { get; private set; }
 
         /// <summary>
         /// Compares two <see cref="LogLevel"/> objects 
         /// and returns a value indicating whether 
-        /// the first one is less than or equal to the second one.
+        /// the first one is greater than the second one.
         /// </summary>
         /// <param name="l1">The first level.</param>
         /// <param name="l2">The second level.</param>
-        /// <returns>The value of <c>l1.Ordinal &lt;= l2.Ordinal</c></returns>
-        public static bool operator <=(LogLevel l1, LogLevel l2)
+        /// <returns>The value of <c>l1.Ordinal &gt; l2.Ordinal</c>.</returns>
+        public static bool operator >(LogLevel l1, LogLevel l2)
         {
-            return l1.Ordinal <= l2.Ordinal;
+            return l1.Ordinal > l2.Ordinal;
         }
 
         /// <summary>
@@ -189,7 +135,7 @@ namespace NLog
         /// </summary>
         /// <param name="l1">The first level.</param>
         /// <param name="l2">The second level.</param>
-        /// <returns>The value of <c>l1.Ordinal &gt;= l2.Ordinal</c></returns>
+        /// <returns>The value of <c>l1.Ordinal &gt;= l2.Ordinal</c>.</returns>
         public static bool operator >=(LogLevel l1, LogLevel l2)
         {
             return l1.Ordinal >= l2.Ordinal;
@@ -202,7 +148,7 @@ namespace NLog
         /// </summary>
         /// <param name="l1">The first level.</param>
         /// <param name="l2">The second level.</param>
-        /// <returns>The value of <c>l1.Ordinal &lt; l2.Ordinal</c></returns>
+        /// <returns>The value of <c>l1.Ordinal &lt; l2.Ordinal</c>.</returns>
         public static bool operator <(LogLevel l1, LogLevel l2)
         {
             return l1.Ordinal < l2.Ordinal;
@@ -211,37 +157,52 @@ namespace NLog
         /// <summary>
         /// Compares two <see cref="LogLevel"/> objects 
         /// and returns a value indicating whether 
-        /// the first one is greater than the second one.
+        /// the first one is less than or equal to the second one.
         /// </summary>
         /// <param name="l1">The first level.</param>
         /// <param name="l2">The second level.</param>
-        /// <returns>The value of <c>l1.Ordinal &gt; l2.Ordinal</c></returns>
-        public static bool operator >(LogLevel l1, LogLevel l2)
+        /// <returns>The value of <c>l1.Ordinal &lt;= l2.Ordinal</c>.</returns>
+        public static bool operator <=(LogLevel l1, LogLevel l2)
         {
-            return l1.Ordinal > l2.Ordinal;
+            return l1.Ordinal <= l2.Ordinal;
+        }
+
+        /// <summary>
+        /// Gets the <see cref="LogLevel"/> that corresponds to the specified ordinal.
+        /// </summary>
+        /// <param name="ordinal">The ordinal.</param>
+        /// <returns>The <see cref="LogLevel"/> instance. For 0 it returns <see cref="LogLevel.Debug"/>, 1 gives <see cref="LogLevel.Info"/> and so on.</returns>
+        public static LogLevel FromOrdinal(int ordinal)
+        {
+            return levelByOrdinal[ordinal];
         }
 
         /// <summary>
         /// Returns the <see cref="T:NLog.LogLevel"/> that corresponds to the supplied <see langword="string" />.
         /// </summary>
-        /// <param name="s">the texual representation of the log level</param>
-        /// <returns>the enumeration value.</returns>
-        public static LogLevel FromString(string s)
+        /// <param name="levelString">The texual representation of the log level.</param>
+        /// <returns>The enumeration value.</returns>
+        public static LogLevel FromString(string levelString)
         {
             // case sensitive search first
-            for (int i = 0; i < _levelByOrdinal.Length; ++i)
+            for (int i = 0; i < levelByOrdinal.Length; ++i)
             {
-                if (_levelByOrdinal[i].Name == s)
-                    return _levelByOrdinal[i];
+                if (levelByOrdinal[i].Name == levelString)
+                {
+                    return levelByOrdinal[i];
+                }
             }
 
             // case insensitive search
-            for (int i = 0; i < _levelByOrdinal.Length; ++i)
+            for (int i = 0; i < levelByOrdinal.Length; ++i)
             {
-                if (0 == String.Compare(_levelByOrdinal[i].Name, s, StringComparison.InvariantCultureIgnoreCase))
-                    return _levelByOrdinal[i];
+                if (0 == String.Compare(levelByOrdinal[i].Name, levelString, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return levelByOrdinal[i];
+                }
             }
-            throw new ArgumentException("Unknown log level: " + s);
+
+            throw new ArgumentException("Unknown log level: " + levelString);
         }
 
         /// <summary>
@@ -250,21 +211,26 @@ namespace NLog
         /// <returns>Log level name.</returns>
         public override string ToString()
         {
-            return Name;
+            return this.Name;
         }
 
         /// <summary>
         /// Compares the level to the other <see cref="LogLevel"/> object.
         /// </summary>
-        /// <param name="obj">the object object</param>
-        /// <returns>a value less than zero when this logger's <see cref="Ordinal"/> is 
+        /// <param name="obj">
+        /// The object object.
+        /// </param>
+        /// <returns>
+        /// A value less than zero when this logger's <see cref="Ordinal"/> is 
         /// less than the other logger's ordinal, 0 when they are equal and 
         /// greater than zero when this ordinal is greater than the
-        /// other ordinal.</returns>
+        /// other ordinal.
+        /// </returns>
         public int CompareTo(object obj)
         {
-            LogLevel l = (LogLevel)obj;
-            return this.Ordinal - l.Ordinal;
+            var level = (LogLevel)obj;
+
+            return this.Ordinal - level.Ordinal;
         }
     } 
 }

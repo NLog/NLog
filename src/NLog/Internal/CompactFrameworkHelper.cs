@@ -35,53 +35,57 @@
 
 using System;
 using System.IO;
-using System.Text;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace NLog.Internal
 {
+    /// <summary>
+    /// Helpers for .NET Compact Framework.
+    /// </summary>
     internal sealed class CompactFrameworkHelper
     {
-        private static string _exeName;
-        private static string _exeBaseDir;
+        private static string exeName;
+        private static string exeBaseDir;
 
-        public static string GetExeFileName()
+        internal static string GetExeFileName()
         {
-            if (_exeName == null)
+            if (exeName == null)
             {
                 LoadExeInfo();
             }
-            return _exeName;
+
+            return exeName;
         }
 
-        public static string GetExeBaseDir()
+        internal static string GetExeBaseDir()
         {
-            if (_exeName == null)
+            if (exeName == null)
             {
                 LoadExeInfo();
             }
-            return _exeBaseDir;
+
+            return exeBaseDir;
         }
 
         private static void LoadExeInfo()
         {
             lock (typeof(CompactFrameworkHelper))
             {
-                if (_exeName == null)
+                if (exeName == null)
                 {
                     StringBuilder sb = new StringBuilder(512);
 
                     // passing 0 as the first parameter gets us the name of the EXE
-
                     GetModuleFileName(IntPtr.Zero, sb, sb.Capacity);
-                    _exeName = sb.ToString();
-                    _exeBaseDir = Path.GetDirectoryName(_exeName);
+                    exeName = sb.ToString();
+                    exeBaseDir = Path.GetDirectoryName(exeName);
                 }
             }
         }
 
-        [DllImport("coredll.dll", CharSet=CharSet.Unicode)]
-        private static extern int GetModuleFileName(IntPtr hModule, StringBuilder szBuffer, int nCapacity);
+        [DllImport("coredll.dll", CharSet = CharSet.Unicode)]
+        private static extern int GetModuleFileName(IntPtr module, StringBuilder buffer, int capacity);
     }
 }
 

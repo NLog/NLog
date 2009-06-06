@@ -31,10 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
 using System.Text;
 using NLog.Config;
-using System.ComponentModel;
 using NLog.Contexts;
 
 namespace NLog.LayoutRenderers
@@ -43,20 +41,14 @@ namespace NLog.LayoutRenderers
     /// Mapped Diagnostic Context item. Provided for compatibility with log4net.
     /// </summary>
     [LayoutRenderer("mdc")]
-    public class MDCLayoutRenderer: LayoutRenderer
+    public class MDCLayoutRenderer : LayoutRenderer
     {
-        private string _item;
-
         /// <summary>
-        /// Name of the item.
+        /// Gets or sets the name of the item.
         /// </summary>
         [RequiredParameter]
         [DefaultParameter]
-        public string Item
-        {
-            get { return _item; }
-            set { _item = value; }
-        }
+        public string Item { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -71,7 +63,7 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
-            return MappedDiagnosticsContext.Get(Item).Length;
+            return MappedDiagnosticsContext.Get(this.Item).Length;
         }
 
         /// <summary>
@@ -81,7 +73,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string msg = MappedDiagnosticsContext.Get(Item);
+            string msg = MappedDiagnosticsContext.Get(this.Item);
             builder.Append(msg);
         }
     }

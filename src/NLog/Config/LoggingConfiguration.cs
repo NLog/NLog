@@ -33,14 +33,10 @@
 
 using System;
 using System.Collections;
-using System.Xml;
+using System.Collections.Generic;
 using System.Globalization;
-using System.Reflection;
-
-using NLog;
 using NLog.Internal;
 using NLog.Targets;
-using System.Collections.Generic;
 
 namespace NLog.Config
 {
@@ -50,14 +46,32 @@ namespace NLog.Config
     /// </summary>
     public class LoggingConfiguration
     {
-        internal IDictionary<string, Target> _targets = new Dictionary<string, Target>();
-        internal ICollection<Target> _aliveTargets = new List<Target>();
-        private IList<LoggingRule> _loggingRules = new List<LoggingRule>();
+        private IDictionary<string, Target> targets = new Dictionary<string, Target>();
+        private ICollection<Target> aliveTargets = new List<Target>();
+        private IList<LoggingRule> loggingRules = new List<LoggingRule>();
 
         /// <summary>
-        /// Creates new instance of LoggingConfiguration object.
+        /// Initializes a new instance of the LoggingConfiguration class.
         /// </summary>
-        public LoggingConfiguration(){}
+        public LoggingConfiguration()
+        {
+        }
+
+        /// <summary>
+        /// Gets the collection of logging rules.
+        /// </summary>
+        public IList<LoggingRule> LoggingRules
+        {
+            get { return this.loggingRules; }
+        }
+
+        /// <summary>
+        /// Gets the collection of file names which should be watched for changes by NLog.
+        /// </summary>
+        public virtual IEnumerable<string> FileNamesToWatch
+        {
+            get { return new string[0]; }
+        }
 
         /// <summary>
         /// Registers the specified target object under a given name.
@@ -67,9 +81,12 @@ namespace NLog.Config
         public void AddTarget(string name, Target target)
         {
             if (name == null)
+            {
                 throw new ArgumentException("name", "Target name cannot be null");
+            }
+
             InternalLogger.Debug("Registering target {0}: {1}", name, target.GetType().FullName);
-            _targets[name.ToLower(CultureInfo.InvariantCulture)] = target;
+            this.targets[name.ToLower(CultureInfo.InvariantCulture)] = target;
         }
 
         /// <summary>
@@ -78,7 +95,7 @@ namespace NLog.Config
         /// <param name="name">Name of the target.</param>
         public void RemoveTarget(string name)
         {
-            _targets.Remove(name.ToLower(CultureInfo.InvariantCulture));
+            this.targets.Remove(name.ToLower(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
@@ -90,26 +107,12 @@ namespace NLog.Config
         {
             Target value;
 
-            if (!_targets.TryGetValue(name.ToLower(CultureInfo.InvariantCulture), out value))
+            if (!this.targets.TryGetValue(name.ToLower(CultureInfo.InvariantCulture), out value))
+            {
                 return null;
+            }
 
             return value;
-        }
-
-        /// <summary>
-        /// The collection of logging rules
-        /// </summary>
-        public IList<LoggingRule> LoggingRules
-        {
-            get { return _loggingRules; }
-        }
-
-        /// <summary>
-        /// A collection of file names which should be watched for changes by NLog.
-        /// </summary>
-        public virtual ICollection FileNamesToWatch
-        {
-            get { return null; }
         }
 
         /// <summary>
@@ -121,50 +124,6 @@ namespace NLog.Config
             return this;
         }
 
-        
-        /// <summary>
-        /// Flushes any pending log messages on all appenders.
-        /// </summary>
-        internal void FlushAllTargets(TimeSpan timeout)
-        {
-            foreach (Target target in _targets.Values)
-            {
-                try
-                {
-                    target.Flush(timeout);
-                
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error("Error while flushing target: {0} {1}", target.Name, ex); 
-                }
-            }
-        }
-
-        internal void InitializeAll()
-        {
-            foreach (LoggingRule r in LoggingRules)
-            {
-                foreach (Target t in r.Targets)
-                {
-                    if (!_aliveTargets.Contains(t))
-                        _aliveTargets.Add(t);
-                }
-            }
-
-            foreach (Target target in _aliveTargets)
-            {
-                try
-                {
-                    target.Initialize();
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error("Error while initializing target: {0} {1}", target.Name, ex); 
-                }
-            }
-        }
-
         /// <summary>
         /// Returns a collection of named targets specified in the configuration.
         /// </summary>
@@ -174,9 +133,8 @@ namespace NLog.Config
         /// </remarks>
         public IList<Target> GetConfiguredNamedTargets()
         {
-            return new List<Target>(_targets.Values);
+            return new List<Target>(this.targets.Values);
         }
-
 
         /// <summary>
         /// Closes all targets and releases any unmanaged resources.
@@ -184,7 +142,7 @@ namespace NLog.Config
         public void Close()
         {
             InternalLogger.Debug("Closing logging configuration...");
-            foreach (Target target in _aliveTargets)
+            foreach (Target target in this.aliveTargets)
             {
                 try
                 {
@@ -196,7 +154,71 @@ namespace NLog.Config
                     InternalLogger.Error("Error while closing target: {0} {1}", target.Name, ex); 
                 }
             }
+
             InternalLogger.Debug("Finished closing logging configuration.");
+        }
+
+        /// <summary>
+        /// Flushes any pending log messages on all appenders.
+        /// </summary>
+        /// <param name="timeout">The timeout.</param>
+        internal void FlushAllTargets(TimeSpan timeout)
+        {
+            foreach (Target target in this.targets.Values)
+            {
+                try
+                {
+                    target.Flush(timeout);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error("Error while flushing target: {0} {1}", target.Name, ex);
+                }
+            }
+        }
+
+        internal void InitializeAll()
+        {
+            foreach (LoggingRule r in this.LoggingRules)
+            {
+                foreach (Target t in r.Targets)
+                {
+                    if (!this.aliveTargets.Contains(t))
+                    {
+                        this.aliveTargets.Add(t);
+                    }
+                }
+            }
+
+            foreach (Target target in this.aliveTargets)
+            {
+                try
+                {
+                    target.Initialize();
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error("Error while initializing target: {0} {1}", target.Name, ex);
+                }
+            }
+        }
+
+        internal void Dump()
+        {
+            InternalLogger.Debug("--- NLog configuration dump. ---");
+            InternalLogger.Debug("Targets:");
+            foreach (Target target in this.targets.Values)
+            {
+                InternalLogger.Info("{0}", target);
+            }
+
+            InternalLogger.Debug("Rules:");
+            foreach (LoggingRule rule in this.LoggingRules)
+            {
+                InternalLogger.Info("{0}", rule);
+            }
+
+            InternalLogger.Debug("--- End of NLog configuration dump ---");
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 namespace NLog
 {
     /// <summary>
-    /// Determines whether stack trace should be captured when processing this log message.
+    /// Gets or sets a value indicating whether stack trace should be captured when processing this log message.
     /// </summary>
     public enum StackTraceUsage
     {

@@ -31,17 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.Diagnostics;
-using System.Reflection;
-using System.Data;
-using System.Collections;
+#if !SILVERLIGHT
 
-using NLog.Internal;
-using NLog.Config;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.Reflection;
+using System.Text;
+using NLog.Config;
+using NLog.Internal;
 using NLog.Layouts;
 
 namespace NLog.Targets
@@ -57,44 +56,34 @@ namespace NLog.Targets
     /// </para>
     /// <para>MS SQL Server using System.Data.SqlClient:</para>
     /// <code lang="XML" src="examples/targets/Configuration File/Database/MSSQL/NLog.config" height="450" />
-    /// 
     /// <para>Oracle using System.Data.OracleClient:</para>
     /// <code lang="XML" src="examples/targets/Configuration File/Database/Oracle.Native/NLog.config" height="350" />
-    /// 
     /// <para>Oracle using System.Data.OleDbClient:</para>
     /// <code lang="XML" src="examples/targets/Configuration File/Database/Oracle.OleDb/NLog.config" height="350" />
-    /// 
     /// <para>To set up the log target programmatically use code like this (an equivalent of MSSQL configuration):</para>
     /// <code lang="C#" src="examples/targets/Configuration API/Database/MSSQL/Example.cs" height="630" />
     /// </example>
     [Target("Database")]
-    public sealed class DatabaseTarget: Target
+    public sealed class DatabaseTarget : Target
     {
-        private Assembly _system_data_assembly = typeof(IDbConnection).Assembly;
-        private Type _connectionType = null;
-        private bool _keepConnection = true;
-        private bool _useTransaction = false;
-        private Layout _connectionString = null;
-        private Layout _dbHostLayout = ".";
-        private Layout _dbUserNameLayout = null;
-        private Layout _dbPasswordLayout = null;
-        private Layout _dbDatabaseLayout = null;
-        private Layout _commandTextLayout = null;
-        private ICollection<DatabaseParameterInfo> _parameters = new List<DatabaseParameterInfo>();
-        private IDbConnection _activeConnection = null;
-        private string _connectionStringCache = null;
+        private static Assembly systemDataAssembly = typeof(IDbConnection).Assembly;
+
+        private Type connectionType = null;
+        private ICollection<DatabaseParameterInfo> parameters = new List<DatabaseParameterInfo>();
+        private IDbConnection activeConnection = null;
+        private string connectionStringCache = null;
 
         /// <summary>
-        /// Creates a new instance of the <see cref="DatabaseTarget"/> object and sets
-        /// the default values of some properties;
+        /// Initializes a new instance of the DatabaseTarget class.
         /// </summary>
         public DatabaseTarget()
         {
-            DBProvider = "sqlserver";
+            this.DBProvider = "sqlserver";
+            this.DBHost = ".";
         }
 
         /// <summary>
-        /// The name of the database provider. It can be:
+        /// Gets or sets the name of the database provider. It can be:
         /// <c>sqlserver, mssql, microsoft, msde</c> (all for MSSQL database), <c>oledb, odbc</c> or other name in which case
         /// it's treated as a fully qualified type name of the data provider *Connection class.
         /// </summary>
@@ -102,7 +91,11 @@ namespace NLog.Targets
         [DefaultValue("sqlserver")]
         public string DBProvider
         {
-            get { return _connectionType.FullName; }
+            get
+            {
+                return this.connectionType.FullName;
+            }
+
             set
             {
                 switch (value)
@@ -111,148 +104,74 @@ namespace NLog.Targets
                     case "mssql":
                     case "microsoft":
                     case "msde":
-                        _connectionType = _system_data_assembly.GetType("System.Data.SqlClient.SqlConnection");
+                        this.connectionType = systemDataAssembly.GetType("System.Data.SqlClient.SqlConnection");
                         break;
 
                     case "oledb":
-                        _connectionType = _system_data_assembly.GetType("System.Data.OleDb.OleDbConnection");
+                        this.connectionType = systemDataAssembly.GetType("System.Data.OleDb.OleDbConnection");
                         break;
 
                     case "odbc":
-                        _connectionType = _system_data_assembly.GetType("System.Data.Odbc.OdbcConnection");
+                        this.connectionType = systemDataAssembly.GetType("System.Data.Odbc.OdbcConnection");
                         break;
 
                     default:
-                        _connectionType = Type.GetType(value);
+                        this.connectionType = Type.GetType(value);
                         break;
                 }
             }
         }
 
         /// <summary>
-        /// The connection string. When provided, it overrides the values
+        /// Gets or sets the connection string. When provided, it overrides the values
         /// specified in DBHost, DBUserName, DBPassword, DBDatabase.
         /// </summary>
-        public Layout ConnectionString
-        {
-            get { return _connectionString; }
-            set { _connectionString = value; }
-        }
+        public Layout ConnectionString { get; set; }
 
         /// <summary>
-        /// Keep the database connection open between the log events.
+        /// Gets or sets a value indicating whether to keep the 
+        /// database connection open between the log events.
         /// </summary>
         [DefaultValue(true)]
-        public bool KeepConnection
-        {
-            get { return _keepConnection; }
-            set { _keepConnection = value; }
-        }
+        public bool KeepConnection { get; set; }
 
         /// <summary>
-        /// Use database transactions. Some data providers require this.
+        /// Gets or sets a value indicating whether to use database transactions. 
+        /// Some data providers require this.
         /// </summary>
         [DefaultValue(false)]
-        public bool UseTransactions
-        {
-            get
-            {
-                return _useTransaction;
-            
-            }
-            set { _useTransaction = value; }
-        }
+        public bool UseTransactions { get; set; }
 
         /// <summary>
-        /// The database host name. If the ConnectionString is not provided
+        /// Gets or sets the database host name. If the ConnectionString is not provided
         /// this value will be used to construct the "Server=" part of the
         /// connection string.
         /// </summary>
-        public Layout DBHost
-        {
-            get { return Convert.ToString(_dbHostLayout); }
-            set { _dbHostLayout = value; }
-        }
+        public Layout DBHost { get; set; }
 
         /// <summary>
-        /// The database host name. If the ConnectionString is not provided
-        /// this value will be used to construct the "Server=" part of the
-        /// connection string.
-        /// </summary>
-        public Layout DBHostLayout
-        {
-            get { return _dbHostLayout; }
-            set { _dbHostLayout = value; }
-        }
-
-        /// <summary>
-        /// The database user name. If the ConnectionString is not provided
+        /// Gets or sets the database user name. If the ConnectionString is not provided
         /// this value will be used to construct the "User ID=" part of the
         /// connection string.
         /// </summary>
-        public Layout DBUserName
-        {
-            get { return Convert.ToString(_dbUserNameLayout); }
-            set { _dbUserNameLayout = value; }
-        }
+        public Layout DBUserName { get; set; }
 
         /// <summary>
-        /// The database user name. If the ConnectionString is not provided
-        /// this value will be used to construct the "User ID=" part of the
-        /// connection string.
-        /// </summary>
-        public Layout DBUserNameLayout
-        {
-            get { return _dbUserNameLayout; }
-            set { _dbUserNameLayout = value; }
-        }
-
-        /// <summary>
-        /// The database password. If the ConnectionString is not provided
+        /// Gets or sets the database password. If the ConnectionString is not provided
         /// this value will be used to construct the "Password=" part of the
         /// connection string.
         /// </summary>
-        public string DBPassword
-        {
-            get { return Convert.ToString(_dbPasswordLayout); }
-            set { _dbPasswordLayout = value; }
-        }
+        public Layout DBPassword { get; set; }
 
         /// <summary>
-        /// The database password. If the ConnectionString is not provided
-        /// this value will be used to construct the "Password=" part of the
-        /// connection string.
-        /// </summary>
-        public Layout DBPasswordLayout
-        {
-            get { return _dbPasswordLayout; }
-            set { _dbPasswordLayout = value; }
-        }
-
-        /// <summary>
-        /// The database name. If the ConnectionString is not provided
+        /// Gets or sets the database name. If the ConnectionString is not provided
         /// this value will be used to construct the "Database=" part of the
         /// connection string.
         /// </summary>
-        public string DBDatabase
-        {
-            get { return Convert.ToString(_dbDatabaseLayout); }
-            set { _dbDatabaseLayout = value; }
-        }
+        public Layout DBDatabase { get; set; }
 
         /// <summary>
-        /// The database name. If the ConnectionString is not provided
-        /// this value will be used to construct the "Database=" part of the
-        /// connection string.
-        /// </summary>
-        public Layout DBDatabaseLayout
-        {
-            get { return _dbDatabaseLayout; }
-            set { _dbDatabaseLayout = value; }
-        }
-
-        /// <summary>
-        /// The text of the SQL command to be run on each log level.
+        /// Gets or sets the text of the SQL command to be run on each log level.
         /// </summary>
         /// <remarks>
         /// Typically this is a SQL INSERT statement or a stored procedure call. 
@@ -263,37 +182,55 @@ namespace NLog.Targets
         /// The layout renderers should be specified as &lt;parameters />&gt; instead.
         /// </remarks>
         [RequiredParameter]
-        public string CommandText
-        {
-            get { return Convert.ToString(_commandTextLayout); }
-            set { _commandTextLayout = value; }
-        }
+        public Layout CommandText { get; set; }
 
         /// <summary>
-        /// The text of the SQL command to be run on each log level.
-        /// </summary>
-        /// <remarks>
-        /// Typically this is a SQL INSERT statement or a stored procedure call. 
-        /// It should use the database-specific parameters (marked as <c>@parameter</c>
-        /// for SQL server or <c>:parameter</c> for Oracle, other data providers
-        /// have their own notation) and not the layout renderers, 
-        /// because the latter is prone to SQL injection attacks.
-        /// The layout renderers should be specified as &lt;parameters />&lt; instead.
-        /// </remarks>
-        public Layout CommandTextLayout
-        {
-            get { return _commandTextLayout; }
-            set { _commandTextLayout = value; }
-        }
-
-        /// <summary>
-        /// The collection of paramters. Each parameter contains a mapping
+        /// Gets the collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a database named or positional parameter.
         /// </summary>
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
         public ICollection<DatabaseParameterInfo> Parameters
         {
-            get { return _parameters; }
+            get { return this.parameters; }
+        }
+
+        /// <summary>
+        /// Adds all layouts used by this target to the specified collection.
+        /// </summary>
+        /// <param name="layouts">The collection to add layouts to.</param>
+        public override void PopulateLayouts(ICollection<Layout> layouts)
+        {
+            base.PopulateLayouts(layouts);
+
+            if (this.DBHost != null)
+            {
+                this.DBHost.PopulateLayouts(layouts);
+            }
+
+            if (this.DBUserName != null)
+            {
+                this.DBUserName.PopulateLayouts(layouts);
+            }
+
+            if (this.DBDatabase != null)
+            {
+                this.DBDatabase.PopulateLayouts(layouts);
+            }
+
+            if (this.DBPassword != null)
+            {
+                this.DBPassword.PopulateLayouts(layouts);
+            }
+
+            if (this.CommandText != null)
+            {
+                this.CommandText.PopulateLayouts(layouts);
+            }
+
+            foreach (DatabaseParameterInfo pi in this.Parameters)
+            {
+                pi.Layout.PopulateLayouts(layouts);
+            }
         }
 
         /// <summary>
@@ -304,130 +241,126 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            if (_keepConnection)
+            if (this.KeepConnection)
             {
-                lock(this)
+                lock (this)
                 {
-                    if (_activeConnection == null)
-                        _activeConnection = OpenConnection(logEvent);
-                    DoAppend(logEvent);
+                    if (this.activeConnection == null)
+                    {
+                        this.activeConnection = this.OpenConnection(logEvent);
+                    }
+
+                    this.DoWrite(logEvent);
                 }
             }
             else
             {
                 try
                 {
-                    _activeConnection = OpenConnection(logEvent);
-                    DoAppend(logEvent);
+                    this.activeConnection = this.OpenConnection(logEvent);
+                    this.DoWrite(logEvent);
                 }
                 finally
                 {
-                    if (_activeConnection != null)
+                    if (this.activeConnection != null)
                     {
-                        _activeConnection.Close();
-                        _activeConnection = null;
+                        this.activeConnection.Close();
+                        this.activeConnection = null;
                     }
                 }
             }
         }
 
-        /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
+        private void DoWrite(LogEventInfo logEvent)
         {
-            base.PopulateLayouts (layouts);
-
-            if (DBHostLayout != null) DBHostLayout.PopulateLayouts(layouts);
-            if (DBUserNameLayout != null) DBUserNameLayout.PopulateLayouts(layouts);
-            if (DBDatabaseLayout != null) DBDatabaseLayout.PopulateLayouts(layouts);
-            if (DBPasswordLayout != null) DBPasswordLayout.PopulateLayouts(layouts);
-            if (CommandTextLayout != null) CommandTextLayout.PopulateLayouts(layouts);
-
-            foreach (DatabaseParameterInfo pi in Parameters)
-                pi.Layout.PopulateLayouts(layouts);
-        }
-
-        private void DoAppend(LogEventInfo logEvent)
-        {
-            IDbCommand command = _activeConnection.CreateCommand();
-            command.CommandText = CommandTextLayout.GetFormattedMessage(logEvent);
-            foreach (DatabaseParameterInfo par in Parameters)
+            IDbCommand command = this.activeConnection.CreateCommand();
+            command.CommandText = this.CommandText.GetFormattedMessage(logEvent);
+            foreach (DatabaseParameterInfo par in this.Parameters)
             {
                 IDbDataParameter p = command.CreateParameter();
                 p.Direction = ParameterDirection.Input;
                 if (par.Name != null)
+                {
                     p.ParameterName = par.Name;
+                }
+
                 if (par.Size != 0)
+                {
                     p.Size = par.Size;
+                }
+
                 if (par.Precision != 0)
+                {
                     p.Precision = par.Precision;
+                }
+
                 if (par.Scale != 0)
+                {
                     p.Scale = par.Scale;
+                }
+
                 p.Value = par.Layout.GetFormattedMessage(logEvent);
                 command.Parameters.Add(p);
             }
+
             command.ExecuteNonQuery();
         }
 
         private IDbConnection OpenConnection(LogEventInfo logEvent)
         {
-            ConstructorInfo constructor = _connectionType.GetConstructor(new Type[]
-            {
-                typeof(string)
-            }
-
-            );
-            IDbConnection retVal = (IDbConnection)constructor.Invoke(new object[]
-            {
-                BuildConnectionString(logEvent)
-            }
-
-            );
+            ConstructorInfo constructor = this.connectionType.GetConstructor(new Type[] { typeof(string) });
+            IDbConnection retVal = (IDbConnection)constructor.Invoke(new object[] { this.BuildConnectionString(logEvent) });
 
             if (retVal != null)
+            {
                 retVal.Open();
+            }
 
             return retVal;
         }
 
         private string BuildConnectionString(LogEventInfo logEvent)
         {
-            if (_connectionStringCache != null)
-                return _connectionStringCache;
+            if (this.connectionStringCache != null)
+            {
+                return this.connectionStringCache;
+            }
 
-            if (_connectionString != null)
-                return _connectionString.GetFormattedMessage(logEvent);
+            if (this.ConnectionString != null)
+            {
+                return this.ConnectionString.GetFormattedMessage(logEvent);
+            }
 
             StringBuilder sb = new StringBuilder();
 
             sb.Append("Server=");
-            sb.Append(DBHostLayout.GetFormattedMessage(logEvent));
+            sb.Append(this.DBHost.GetFormattedMessage(logEvent));
             sb.Append(";");
-            if (DBUserNameLayout == null)
+            if (this.DBUserName == null)
             {
                 sb.Append("Trusted_Connection=SSPI;");
             }
             else
             {
                 sb.Append("User id=");
-                sb.Append(DBUserNameLayout.GetFormattedMessage(logEvent));
+                sb.Append(this.DBUserName.GetFormattedMessage(logEvent));
                 sb.Append(";Password=");
-                sb.Append(DBPasswordLayout.GetFormattedMessage(logEvent));
+                sb.Append(this.DBPassword.GetFormattedMessage(logEvent));
                 sb.Append(";");
             }
 
-            if (DBDatabaseLayout != null)
+            if (this.DBDatabase != null)
             {
                 sb.Append("Database=");
-                sb.Append(DBDatabaseLayout.GetFormattedMessage(logEvent));
+                sb.Append(this.DBDatabase.GetFormattedMessage(logEvent));
             }
 
-            _connectionStringCache = sb.ToString();
+            this.connectionStringCache = sb.ToString();
 
-            InternalLogger.Debug("Connection string: {0}", _connectionStringCache);
-            return _connectionStringCache;
+            InternalLogger.Debug("Connection string: {0}", this.connectionStringCache);
+            return this.connectionStringCache;
         }
     }
 }
+
+#endif

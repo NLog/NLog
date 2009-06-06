@@ -32,32 +32,36 @@
 // 
 
 using System;
-using System.Globalization;
-using System.Diagnostics;
-using System.Threading;
-using System.Reflection;
-
-using System.Collections;
-using System.Collections.Specialized;
-using NLog.Layouts;
-using NLog.Internal;
-using System.Collections.Generic;
 
 namespace NLog
 {
-    public class UnformattedLogEventInfoWithException : UnformattedLogEventInfo
+    /// <summary>
+    /// Unformatted log event info.
+    /// </summary>
+    internal class UnformattedLogEventInfoWithException : UnformattedLogEventInfo
     {
-        private Exception _exception;
+        private Exception exception;
 
+        /// <summary>
+        /// Initializes a new instance of the UnformattedLogEventInfoWithException class.
+        /// </summary>
+        /// <param name="level">The level.</param>
+        /// <param name="loggerName">Name of the logger.</param>
+        /// <param name="message">The message.</param>
+        /// <param name="exception">The exception.</param>
         public UnformattedLogEventInfoWithException(LogLevel level, string loggerName, string message, Exception exception)
             : base(level, loggerName, message)
         {
-            _exception = exception;
+            this.exception = exception;
         }
 
+        /// <summary>
+        /// Gets the exception information.
+        /// </summary>
+        /// <value></value>
         public override Exception Exception
         {
-            get { return _exception; }
+            get { return this.exception; }
         }
     }
 }

@@ -48,88 +48,88 @@ namespace NLog.ComInterop
     [ClassInterface(ClassInterfaceType.None)]
     public class Logger: ILogger
     {
-        private static NLog.Logger _defaultLogger = NLog.LogManager.CreateNullLogger();
+        private static NLog.Logger defaultLogger = NLog.LogManager.CreateNullLogger();
 
-        private NLog.Logger _logger = _defaultLogger;
-        private string _loggerName = String.Empty;
+        private NLog.Logger logger = defaultLogger;
+        private string loggerName = String.Empty;
 
         void ILogger.Log(string level, string message)
         {
-            _logger.Log(StringToLevel(level), message);
+            this.logger.Log(StringToLevel(level), message);
         }
 
         void ILogger.Trace(string message)
         {
-            _logger.Trace(message);
+            this.logger.Trace(message);
         }
 
         void ILogger.Debug(string message)
         {
-            _logger.Debug(message);
+            this.logger.Debug(message);
         }
 
         void ILogger.Info(string message)
         {
-            _logger.Info(message);
+            this.logger.Info(message);
         }
 
         void ILogger.Warn(string message)
         {
-            _logger.Warn(message);
+            this.logger.Warn(message);
         }
 
         void ILogger.Error(string message)
         {
-            _logger.Error(message);
+            this.logger.Error(message);
         }
 
         void ILogger.Fatal(string message)
         {
-            _logger.Fatal(message);
+            this.logger.Fatal(message);
         }
 
         bool ILogger.IsEnabled(string level)
         {
-            return _logger.IsEnabled(StringToLevel(level));
+            return this.logger.IsEnabled(StringToLevel(level));
         }
 
         bool ILogger.IsTraceEnabled
         {
-            get { return _logger.IsTraceEnabled; }
+            get { return this.logger.IsTraceEnabled; }
         }
 
         bool ILogger.IsDebugEnabled
         {
-            get { return _logger.IsDebugEnabled; }
+            get { return this.logger.IsDebugEnabled; }
         }
 
         bool ILogger.IsInfoEnabled
         {
-            get { return _logger.IsInfoEnabled; }
+            get { return this.logger.IsInfoEnabled; }
         }
 
         bool ILogger.IsWarnEnabled
         {
-            get { return _logger.IsWarnEnabled; }
+            get { return this.logger.IsWarnEnabled; }
         }
 
         bool ILogger.IsErrorEnabled
         {
-            get { return _logger.IsErrorEnabled; }
+            get { return this.logger.IsErrorEnabled; }
         }
 
         bool ILogger.IsFatalEnabled
         {
-            get { return _logger.IsFatalEnabled; }
+            get { return this.logger.IsFatalEnabled; }
         }
 
         string ILogger.LoggerName
         {
-            get { return _loggerName; }
+            get { return this.loggerName; }
             set
             {
-                _loggerName = value;
-                _logger = NLog.LogManager.GetLogger(value);
+                this.loggerName = value;
+                this.logger = NLog.LogManager.GetLogger(value);
             }
         }
 

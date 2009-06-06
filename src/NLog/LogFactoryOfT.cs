@@ -31,22 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Xml;
-using System.IO;
-using System.Reflection;
-using System.Threading;
 using System.Diagnostics;
-using System.Security;
-using System.Text;
-using System.Globalization;
 using System.Runtime.CompilerServices;
-
-using NLog.Config;
-using NLog.Internal;
-using NLog.Targets;
-using System.Collections.Generic;
 
 namespace NLog
 {
@@ -54,13 +40,14 @@ namespace NLog
     /// Specialized LogFactory that can return instances of custom logger types.
     /// </summary>
     /// <typeparam name="T">The type of the logger to be returned. Must inherit from <see cref="Logger"/>.</typeparam>
-    public class LogFactory<T> : LogFactory where T : Logger
+    public class LogFactory<T> : LogFactory 
+        where T : Logger
     {
         /// <summary>
         /// Gets the logger.
         /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns>An instance of <typeparamref name="LoggerType"/>.</returns>
+        /// <param name="name">The logger name.</param>
+        /// <returns>An instance of <typeparamref name="T"/>.</returns>
         public new T GetLogger(string name)
         {
             return (T)base.GetLogger(name, typeof(T));
@@ -78,9 +65,8 @@ namespace NLog
         {
             StackFrame frame = new StackFrame(1, false);
 
-            return GetLogger(frame.GetMethod().DeclaringType.FullName);
+            return this.GetLogger(frame.GetMethod().DeclaringType.FullName);
         }
 #endif
-    
     }
 }

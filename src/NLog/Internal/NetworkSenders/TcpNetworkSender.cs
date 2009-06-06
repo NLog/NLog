@@ -32,84 +32,54 @@
 // 
 
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
+
+#if SILVERLIGHT
 using System.Threading;
-using System.IO;
+#endif
 
 namespace NLog.Internal.NetworkSenders
 {
     /// <summary>
     /// Sends messages over a TCP network connection.
     /// </summary>
-	public class TcpNetworkSender : NetworkSender
-	{
-        private Socket _socket;
+    internal class TcpNetworkSender : NetworkSender
+    {
+        private Socket socket;
 #if SILVERLIGHT
-        private AutoResetEvent _syncHandle = new AutoResetEvent(false);
-        private SocketError _lastError;
+        private AutoResetEvent syncHandle = new AutoResetEvent(false);
+        private SocketError lastError;
 #endif
 
         /// <summary>
-        /// Creates a new instance of <see cref="TcpNetworkSender"/> and initializes
-        /// it with the specified URL. Connects to the server specified in the URL.
+        /// Initializes a new instance of the TcpNetworkSender class.
         /// </summary>
-        /// <param name="url">URL. Must start with tcp://</param>
-        public TcpNetworkSender(string url) : base(url)
+        /// <param name="url">URL. Must start with tcp://.</param>
+        public TcpNetworkSender(string url)
+            : base(url)
         {
             // tcp://hostname:port
-
             Uri parsedUri = new Uri(url);
 #if SILVERLIGHT
             SocketAsyncEventArgs sea = new SocketAsyncEventArgs();
             sea.RemoteEndPoint = new DnsEndPoint(parsedUri.Host, parsedUri.Port);
-            sea.Completed += AsyncCompleted;
-            _socket.ConnectAsync(sea);
-            _syncHandle.WaitOne();
-            if (_lastError != SocketError.Success)
+            sea.Completed += this.AsyncCompleted;
+            this.socket.ConnectAsync(sea);
+            this.syncHandle.WaitOne();
+            if (this.lastError != SocketError.Success)
+            {
                 throw new IOException("Cannot connect to host " + url);
+            }
 #else
             IPHostEntry host = Dns.GetHostEntry(parsedUri.Host);
             int port = parsedUri.Port;
 
-            _socket = new Socket(host.AddressList[0].AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-            _socket.Connect(new IPEndPoint(host.AddressList[0], port));
+            this.socket = new Socket(host.AddressList[0].AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            this.socket.Connect(new IPEndPoint(host.AddressList[0], port));
 #endif
         }
-
-        /// <summary>
-        /// Sends the specified text over the connected socket.
-        /// </summary>
-        /// <param name="bytes">The bytes to be sent.</param>
-        /// <param name="offset">Offset in buffer</param>
-        /// <param name="length">Number of bytes to send</param>
-        /// <remarks>To be overridden in inheriting classes.</remarks>
-        protected override void DoSend(byte[] bytes, int offset, int length)
-        {
-            lock (this)
-            {
-#if SILVERLIGHT
-                SocketAsyncEventArgs sea = new SocketAsyncEventArgs();
-                sea.SetBuffer(bytes, offset, length);
-                sea.Completed += AsyncCompleted;
-                _socket.SendAsync(sea);
-                _syncHandle.WaitOne();
-                if (_lastError != SocketError.Success)
-                    throw new IOException("Network send error");
-#else
-                _socket.Send(bytes, offset, length, SocketFlags.None);
-#endif
-            }
-        }
-
-#if SILVERLIGHT
-        private void AsyncCompleted(object sender, SocketAsyncEventArgs e)
-        {
-            _syncHandle.Set();
-            _lastError = e.SocketError;
-        }
-#endif
 
         /// <summary>
         /// Closes the socket.
@@ -120,14 +90,50 @@ namespace NLog.Internal.NetworkSenders
             {
                 try
                 {
-                    _socket.Close();
+                    this.socket.Close();
                 }
                 catch (Exception)
                 {
                     // ignore errors
                 }
-                _socket = null;
+
+                this.socket = null;
             }
         }
+
+        /// <summary>
+        /// Sends the specified text over the connected socket.
+        /// </summary>
+        /// <param name="bytes">The bytes to be sent.</param>
+        /// <param name="offset">Offset in buffer.</param>
+        /// <param name="length">Number of bytes to send.</param>
+        /// <remarks>To be overridden in inheriting classes.</remarks>
+        protected override void DoSend(byte[] bytes, int offset, int length)
+        {
+            lock (this)
+            {
+#if SILVERLIGHT
+                SocketAsyncEventArgs sea = new SocketAsyncEventArgs();
+                sea.SetBuffer(bytes, offset, length);
+                sea.Completed += this.AsyncCompleted;
+                this.socket.SendAsync(sea);
+                this.syncHandle.WaitOne();
+                if (this.lastError != SocketError.Success)
+                {
+                    throw new IOException("Network send error");
+                }
+#else
+                this.socket.Send(bytes, offset, length, SocketFlags.None);
+#endif
+            }
+        }
+
+#if SILVERLIGHT
+        private void AsyncCompleted(object sender, SocketAsyncEventArgs e)
+        {
+            this.syncHandle.Set();
+            this.lastError = e.SocketError;
+        }
+#endif
     }
 }

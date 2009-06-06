@@ -31,80 +31,65 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !(NET_CF)
+#if !NET_CF && !SILVERLIGHT
+
 using System;
-using System.Text;
-using System.Security.Principal;
 using System.ComponentModel;
-using NLog.Config;
-using System.Threading;
+using System.Security.Principal;
+using System.Text;
 
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// Thread identity information (name and authentication information)
+    /// Thread identity information (name and authentication information).
     /// </summary>
     [LayoutRenderer("identity")]
-    public class IdentityLayoutRenderer: LayoutRenderer
+    public class IdentityLayoutRenderer : LayoutRenderer
     {
-        private bool _name = true;
-        private bool _authType = true;
-        private bool _isAuthenticated = true;
-        private bool _fsNormalize = false;
-        private string _separator = ":";
- 
         /// <summary>
-        /// The separator to be used when concatenating 
+        /// Initializes a new instance of the IdentityLayoutRenderer class.
+        /// </summary>
+        public IdentityLayoutRenderer()
+        {
+            this.Name = true;
+            this.AuthType = true;
+            this.IsAuthenticated = true;
+            this.FSNormalize = false;
+            this.Separator = ":";
+        }
+
+        /// <summary>
+        /// Gets or sets the separator to be used when concatenating 
         /// parts of identity information.
         /// </summary>
         [DefaultValue(":")]
-        public string Separator
-        {
-            get { return _separator; }
-            set { _separator = value; }
-        }
+        public string Separator { get; set; }
 
         /// <summary>
-        /// Render Thread.CurrentPrincipal.Identity.Name.
+        /// Gets or sets a value indicating whether to render Thread.CurrentPrincipal.Identity.Name.
         /// </summary>
         [DefaultValue(true)]
-        public bool Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public bool Name { get; set; }
 
         /// <summary>
-        /// Render Thread.CurrentPrincipal.Identity.AuthenticationType.
+        /// Gets or sets a value indicating whether to render Thread.CurrentPrincipal.Identity.AuthenticationType.
         /// </summary>
         [DefaultValue(true)]
-        public bool AuthType
-        {
-            get { return _authType; }
-            set { _authType = value; }
-        }
+        public bool AuthType { get; set; }
 
         /// <summary>
-        /// Render Thread.CurrentPrincipal.Identity.IsAuthenticated.
+        /// Gets or sets a value indicating whether to render Thread.CurrentPrincipal.Identity.IsAuthenticated.
         /// </summary>
         [DefaultValue(true)]
-        public bool IsAuthenticated
-        {
-            get { return _isAuthenticated; }
-            set { _isAuthenticated = value; }
-        }
+        public bool IsAuthenticated { get; set; }
 
         /// <summary>
-        /// When true the output of this renderer is modified so it can be used as a part of file path
-        /// (illegal characters are replaced with '_')
+        /// Gets or sets a value indicating whether to modify the output of this renderer so it can be used as a part of file path
+        /// (illegal characters are replaced with '_').
         /// </summary>
         [DefaultValue(false)]
-        public bool FSNormalize
-        {
-            get { return _fsNormalize; }
-            set { _fsNormalize = value; }
-        }
-        
+        public bool FSNormalize { get; set; }
+
         /// <summary>
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
@@ -135,14 +120,13 @@ namespace NLog.LayoutRenderers
                 if (identity != null)
                 {
                     int sbstart = builder.Length;
-                    bool first = true;
+                    string separator = string.Empty;
 
-                    if (_isAuthenticated)
+                    if (this.IsAuthenticated)
                     {
-                        if (!first)
-                        {
-                            builder.Append(_separator);
-                        }
+                        builder.Append(separator);
+                        separator = this.Separator;
+
                         if (identity.IsAuthenticated)
                         {
                             builder.Append("auth");
@@ -151,35 +135,31 @@ namespace NLog.LayoutRenderers
                         {
                             builder.Append("notauth");
                         }
-                        first = false;
                     }
 
-                    if (_authType)
+                    if (this.AuthType)
                     {
-                        if (!first)
-                        {
-                            builder.Append(_separator);
-                        }
+                        builder.Append(separator);
+                        separator = this.Separator;
                         builder.Append(identity.AuthenticationType);
-                        first = false;
                     }
 
-                    if (_name)
+                    if (this.Name)
                     {
-                        if (!first)
-                        {
-                            builder.Append(_separator);
-                        }
+                        builder.Append(separator);
+                        separator = this.Separator;
                         builder.Append(identity.Name);
-                        first = false;
                     }
 
-                    if (_fsNormalize)
+                    if (this.FSNormalize)
                     {
-                        for (int i=sbstart; i<builder.Length; i++)
+                        for (int i = sbstart; i < builder.Length; i++)
                         {
                             char c = builder[i];
-                            if (!Char.IsLetterOrDigit(c) && c != '_' && c != '-' && c != '.') builder[i] = '_';
+                            if (!Char.IsLetterOrDigit(c) && c != '_' && c != '-' && c != '.')
+                            {
+                                builder[i] = '_';
+                            }
                         }
                     }
                 }

@@ -39,14 +39,14 @@ using System.Runtime.InteropServices;
 
 public class StopWatch
 {
-    private long _startTime;
-    private long _stopTime;
-    private static long _overhead = 0;
-    private static long _frequency;
+    private long startTime;
+    private long stopTime;
+    private static long overhead = 0;
+    private static long frequency;
 
     static StopWatch()
     {
-        QueryPerformanceFrequency(out _frequency);
+        QueryPerformanceFrequency(out frequency);
         StopWatch callibration = new StopWatch();
         long totalOverhead = 0;
         int loopCount = 0;
@@ -57,33 +57,33 @@ public class StopWatch
             totalOverhead += callibration.Ticks;
             loopCount++;
         }
-        _overhead = totalOverhead / loopCount;
-        //Console.WriteLine("Callibrating StopWatch: overhead {0}", _overhead);
+        overhead = totalOverhead / loopCount;
+        //Console.WriteLine("Callibrating StopWatch: overhead {0}", overhead);
     }
     
     public void Start()
     {
-        QueryPerformanceCounter(out _startTime);
+        QueryPerformanceCounter(out this.startTime);
     }
 
     public void Stop()
     {
-        QueryPerformanceCounter(out _stopTime);
+        QueryPerformanceCounter(out this.stopTime);
     }
 
     public long Ticks
     {
-        get { return _stopTime - _startTime - _overhead; }
+        get { return this.stopTime - this.startTime - overhead; }
     }
 
     public double Seconds
     {
-        get { return (double)(_stopTime - _startTime - _overhead) / _frequency; }
+        get { return (double)(this.stopTime - this.startTime - overhead) / frequency; }
     }
 
     public double Nanoseconds
     {
-        get { return (double)1000000000 * (_stopTime - _startTime - _overhead) / _frequency; }
+        get { return (double)1000000000 * (this.stopTime - this.startTime - overhead) / frequency; }
     }
 
     [DllImport("kernel32.dll")]

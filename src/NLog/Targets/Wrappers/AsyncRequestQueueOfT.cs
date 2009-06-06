@@ -1,46 +1,57 @@
 ﻿using System.Collections.Generic;
 using NLog.Internal;
+
 namespace NLog.Targets.Wrappers
 {
+    using System;
+
     /// <summary>
-    /// Asynchronous request queue
+    /// Asynchronous request queue.
     /// </summary>
+    /// <typeparam name="T">
+    /// Item type.
+    /// </typeparam>
     public class AsyncRequestQueue<T>
     {
-        private Queue<T> _queue = new Queue<T>();
-        private int _batchedItems = 0;
-        private AsyncTargetWrapperOverflowAction _overflowAction = AsyncTargetWrapperOverflowAction.Discard;
-        private int _requestLimit = 10000;
+        private Queue<T> queue = new Queue<T>();
+        private int batchedItems = 0;
 
         /// <summary>
-        /// Creates a new instance of <see cref="AsyncRequestQueue"/> and
-        /// sets the request limit and overflow action.
+        /// Initializes a new instance of the AsyncRequestQueue class.
         /// </summary>
         /// <param name="requestLimit">Request limit.</param>
         /// <param name="overflowAction">The overflow action.</param>
         public AsyncRequestQueue(int requestLimit, AsyncTargetWrapperOverflowAction overflowAction)
         {
-            _requestLimit = requestLimit;
-            _overflowAction = overflowAction;
+            this.RequestLimit = requestLimit;
+            this.OnOverflow = overflowAction;
         }
 
         /// <summary>
-        /// The request limit.
+        /// Gets or sets the request limit.
         /// </summary>
-        public int RequestLimit
-        {
-            get { return _requestLimit; }
-            set { _requestLimit = value; }
-        }
+        public int RequestLimit { get; set; }
 
         /// <summary>
-        /// Action to be taken when there's no more room in
+        /// Gets or sets the action to be taken when there's no more room in
         /// the queue and another request is enqueued.
         /// </summary>
-        public AsyncTargetWrapperOverflowAction OnOverflow
+        public AsyncTargetWrapperOverflowAction OnOverflow { get; set; }
+
+        /// <summary>
+        /// Gets the number of requests currently in the queue.
+        /// </summary>
+        public int RequestCount
         {
-            get { return _overflowAction; }
-            set { _overflowAction = value; }
+            get { return this.queue.Count; }
+        }
+
+        /// <summary>
+        /// Gets the number of requests currently being processed (in the queue + batched).
+        /// </summary>
+        public int UnprocessedRequestCount
+        {
+            get { return this.queue.Count + this.batchedItems; }
         }
 
         /// <summary>
@@ -52,9 +63,9 @@ namespace NLog.Targets.Wrappers
         {
             lock (this)
             {
-                if (_queue.Count >= RequestLimit)
+                if (this.queue.Count >= this.RequestLimit)
                 {
-                    switch (OnOverflow)
+                    switch (this.OnOverflow)
                     {
                         case AsyncTargetWrapperOverflowAction.Discard:
                             return;
@@ -64,7 +75,7 @@ namespace NLog.Targets.Wrappers
 
 #if !NET_CF
                         case AsyncTargetWrapperOverflowAction.Block:
-                            while (_queue.Count >= RequestLimit)
+                            while (this.queue.Count >= this.RequestLimit)
                             {
                                 InternalLogger.Debug("Blocking...");
                                 if (System.Threading.Monitor.Wait(this))
@@ -76,12 +87,14 @@ namespace NLog.Targets.Wrappers
                                     InternalLogger.Debug("Failed to enter critical section.");
                                 }
                             }
+
                             InternalLogger.Debug("Limit ok.");
                             break;
 #endif
                     }
                 }
-                _queue.Enqueue(o);
+
+                this.queue.Enqueue(o);
             }
         }
 
@@ -90,6 +103,7 @@ namespace NLog.Targets.Wrappers
         /// and adds returns the list containing them.
         /// </summary>
         /// <param name="count">Maximum number of items to be dequeued.</param>
+        /// <returns>List of dequeued items.</returns>
         public List<T> DequeueBatch(int count)
         {
             List<T> target = new List<T>(count);
@@ -97,19 +111,24 @@ namespace NLog.Targets.Wrappers
             {
                 for (int i = 0; i < count; ++i)
                 {
-                    if (_queue.Count <= 0)
+                    if (this.queue.Count <= 0)
+                    {
                         break;
+                    }
 
-                    T o = _queue.Dequeue();
+                    T o = this.queue.Dequeue();
 
                     target.Add(o);
                 }
 #if !NET_CF
-                if (OnOverflow == AsyncTargetWrapperOverflowAction.Block)
+                if (this.OnOverflow == AsyncTargetWrapperOverflowAction.Block)
+                {
                     System.Threading.Monitor.PulseAll(this);
+                }
 #endif
             }
-            _batchedItems = target.Count;
+
+            this.batchedItems = target.Count;
             return target;
         }
 
@@ -119,7 +138,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="batch">The batch.</param>
         public void BatchProcessed(ICollection<T> batch)
         {
-            _batchedItems = 0;
+            this.batchedItems = 0;
         }
 
         /// <summary>
@@ -129,25 +148,8 @@ namespace NLog.Targets.Wrappers
         {
             lock (this)
             {
-                _queue.Clear();
+                this.queue.Clear();
             }
         }
-
-        /// <summary>
-        /// Number of requests currently in the queue.
-        /// </summary>
-        public int RequestCount
-        {
-            get { return _queue.Count; }
-        }
-
-        /// <summary>
-        /// Number of requests currently being processed (in the queue + batched)
-        /// </summary>
-        public int UnprocessedRequestCount
-        {
-            get { return _queue.Count + _batchedItems; }
-        }
     }
-
 }

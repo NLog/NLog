@@ -33,25 +33,20 @@
 
 #if !NET_CF
 using System;
-using System.Text;
 using System.IO;
+using System.Text;
 using NLog.Config;
-using System.ComponentModel;
 
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// System special folder path (includes My Documents, My Music, Program Files, Desktop, and more)
+    /// System special folder path (includes My Documents, My Music, Program Files, Desktop, and more).
     /// </summary>
     [LayoutRenderer("specialfolder")]
     public class SpecialFolderLayoutRenderer : LayoutRenderer
     {
-        private string _fileName = null;
-        private string _directoryName = null;
-        private System.Environment.SpecialFolder _folder;
-
         /// <summary>
-        /// System special folder.
+        /// Gets or sets the system special folder to use.
         /// </summary>
         /// <remarks>
         /// Full list of options is available at <a href="http://msdn2.microsoft.com/en-us/system.environment.specialfolder.aspx">MSDN</a>.
@@ -67,29 +62,17 @@ namespace NLog.LayoutRenderers
         /// </ul>
         /// </remarks>
         [DefaultParameter]
-        public System.Environment.SpecialFolder Folder
-        {
-            get { return _folder; }
-            set { _folder = value; }
-        }
+        public Environment.SpecialFolder Folder { get; set; }
 
         /// <summary>
-        /// The name of the file to be Path.Combine()'d with the directory name.
+        /// Gets or sets the name of the file to be Path.Combine()'d with the directory name.
         /// </summary>
-        public string File
-        {
-            get { return _fileName; }
-            set { _fileName = value; }
-        }
+        public string File { get; set; }
 
         /// <summary>
-        /// The name of the directory to be Path.Combine()'d with the directory name.
+        /// Gets or sets the name of the directory to be Path.Combine()'d with the directory name.
         /// </summary>
-        public string Dir
-        {
-            get { return _directoryName; }
-            set { _directoryName = value; }
-        }
+        public string Dir { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -114,15 +97,15 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string baseDir = Environment.GetFolderPath(_folder);
+            string baseDir = Environment.GetFolderPath(this.Folder);
 
-            if (File != null)
+            if (this.File != null)
             {
-                builder.Append(Path.Combine(baseDir, File));
+                builder.Append(Path.Combine(baseDir, this.File));
             }
-            else if (Dir != null)
+            else if (this.Dir != null)
             {
-                builder.Append(Path.Combine(baseDir, Dir));
+                builder.Append(Path.Combine(baseDir, this.Dir));
             }
             else
             {
@@ -131,10 +114,10 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Determines whether the value produced by the layout renderer
+        /// Gets or sets a value indicating whether the value produced by the layout renderer
         /// is fixed per current app-domain.
         /// </summary>
-        /// <returns><see langword="true"/></returns>
+        /// <returns>A value of <see langword="true"/>.</returns>
         protected internal override bool IsAppDomainFixed()
         {
             return true;

@@ -39,20 +39,19 @@ using System.Xml.Serialization;
 namespace NLog.Conditions
 {
     /// <summary>
-    /// Condition literal expression (numeric, <b>LogLevel.XXX</b>, <b>true</b> or <b>false</b>)
+    /// Condition literal expression (numeric, <b>LogLevel.XXX</b>, <b>true</b> or <b>false</b>).
     /// </summary>
     internal sealed class ConditionLiteralExpression : ConditionExpression
     {
-        private object _literal;
+        private object literalValue;
 
         /// <summary>
-        /// Creates a new instance of <see cref="ConditionLiteralExpression"/>
-        /// and initializes it with the specified value.
+        /// Initializes a new instance of the ConditionLiteralExpression class.
         /// </summary>
-        /// <param name="literal"></param>
-        public ConditionLiteralExpression(object literal) 
+        /// <param name="literalValue">Literal value.</param>
+        public ConditionLiteralExpression(object literalValue) 
         {
-            _literal = literal;
+            this.literalValue = literalValue;
         }
 
         /// <summary>
@@ -62,7 +61,7 @@ namespace NLog.Conditions
         /// <returns>The literal value as passed in the constructor.</returns>
         public override object Evaluate(LogEventInfo context)
         {
-            return _literal;
+            return this.literalValue;
         }
 
         /// <summary>
@@ -71,7 +70,7 @@ namespace NLog.Conditions
         /// <returns>The literal value.</returns>
         public override string ToString()
         {
-            return _literal.ToString();
+            return this.literalValue.ToString();
         }
     }
 }

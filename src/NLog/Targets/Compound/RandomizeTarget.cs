@@ -32,17 +32,6 @@
 // 
 
 using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
-using NLog.Config;
 
 namespace NLog.Targets.Compound
 {
@@ -65,23 +54,23 @@ namespace NLog.Targets.Compound
     /// <code lang="C#" src="examples/targets/Configuration API/RandomizeGroup/Simple/Example.cs" />
     /// </example>
     [Target("RandomizeGroup", IsCompound = true)]
-    public class RandomizeTarget: CompoundTargetBase
+    public class RandomizeTarget : CompoundTargetBase
     {
-        private static Random _random = new Random();
+        private static Random random = new Random();
 
         /// <summary>
-        /// Creates an instance of <see cref="RandomizeTarget"/>.
+        /// Initializes a new instance of the RandomizeTarget class.
         /// </summary>
         public RandomizeTarget()
         {
         }
 
         /// <summary>
-        /// Creates an instance of <see cref="RandomizeTarget"/> and
-        /// initializes the <see cref="Targets"/> collection with the
-        /// specified list of <see cref="Target"/> objects.
+        /// Initializes a new instance of the RandomizeTarget class.
         /// </summary>
-        public RandomizeTarget(params Target[] targets) : base(targets)
+        /// <param name="targets">The targets.</param>
+        public RandomizeTarget(params Target[] targets)
+            : base(targets)
         {
         }
 
@@ -92,8 +81,8 @@ namespace NLog.Targets.Compound
         /// <param name="logEvent">The log event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            int pos = _random.Next(Targets.Count);
-            Targets[pos].Write(logEvent);
+            int pos = random.Next(this.Targets.Count);
+            this.Targets[pos].Write(logEvent);
         }
-   }
+    }
 }

@@ -32,12 +32,7 @@
 // 
 
 using System;
-using System.Text;
-using System.IO;
-using NLog.Internal;
 using System.ComponentModel;
-using NLog.Config;
-using NLog.Layouts;
 
 namespace NLog.LayoutRenderers.Wrappers
 {
@@ -48,79 +43,71 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("Padding")]
     [AmbientProperty("PadCharacter")]
     [AmbientProperty("FixedLength")]
-    public sealed class PaddngLayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class PaddingLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        private int _padding = 0;
-        private bool _fixedLength = false;
-        private int _absolutePadding = 0;
-        private char _padCharacter = ' ';
-
         /// <summary>
-        /// Padding value.
+        /// Initializes a new instance of the PaddingLayoutRendererWrapper class.
         /// </summary>
-        public int Padding
+        public PaddingLayoutRendererWrapper()
         {
-            get { return _padding; }
-            set
-            {
-                _padding = value;
-                _absolutePadding = Math.Abs(_padding);
-            }
+            this.PadCharacter = ' ';
         }
 
         /// <summary>
-        /// The absolute value of the <see cref="Padding"/> property.
+        /// Gets or sets number of characters to pad the output to. 
         /// </summary>
-        public int AbsolutePadding
-        {
-            get { return _absolutePadding; }
-        }
+        /// <remarks>
+        /// Positive padding values cause left padding, negative values 
+        /// cause right padding to the desired width.
+        /// </remarks>
+        public int Padding { get; set; }
 
         /// <summary>
-        /// The padding character.
+        /// Gets or sets the padding character.
         /// </summary>
-        public char PadCharacter
-        {
-            get { return _padCharacter; }
-            set { _padCharacter = value; }
-        }
+        [DefaultValue(' ')]
+        public char PadCharacter { get; set; }
 
         /// <summary>
-        /// Trim the rendered text to the AbsolutePadding value.
+        /// Gets or sets a value indicating whether to trim the 
+        /// rendered text to the absolute value of the padding length.
         /// </summary>
         [DefaultValue(false)]
-        public bool FixedLength
-        {
-            get { return _fixedLength; }
-            set { _fixedLength = value; }
-        }
+        public bool FixedLength { get; set; }
 
         /// <summary>
-        /// Post-processes the rendered message by applying padding and/or trimming. 
+        /// Transforms the output of another layout.
         /// </summary>
-        /// <param name="s">The text to be post-processed.</param>
-        /// <returns>Padded and trimmed string.</returns>
+        /// <param name="text">Output to be transform.</param>
+        /// <returns>Transformed text.</returns>
         protected override string Transform(string text)
         {
             string s = text ?? String.Empty;
 
-            if (Padding != 0)
+            if (this.Padding != 0)
             {
-                if (Padding > 0)
+                if (this.Padding > 0)
                 {
-                    s = s.PadLeft(Padding, PadCharacter);
+                    s = s.PadLeft(this.Padding, this.PadCharacter);
                 }
                 else
                 {
-                    s = s.PadRight(-Padding, PadCharacter);
+                    s = s.PadRight(-this.Padding, this.PadCharacter);
                 }
-                if (FixedLength && s.Length > AbsolutePadding)
+
+                int absolutePadding = this.Padding;
+                if (absolutePadding < 0)
                 {
-                    s = s.Substring(0, AbsolutePadding);
+                    absolutePadding = -absolutePadding;
+                }
+
+                if (this.FixedLength && s.Length > absolutePadding)
+                {
+                    s = s.Substring(0, absolutePadding);
                 }
             }
+
             return s;
         }
-
     }
 }

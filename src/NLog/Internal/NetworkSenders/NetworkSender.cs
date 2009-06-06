@@ -40,39 +40,44 @@ namespace NLog.Internal.NetworkSenders
     /// A base class for all network senders. Supports one-way sending of messages
     /// over various protocols.
     /// </summary>
-	public abstract class NetworkSender : IDisposable
-	{
-        private string _url;
+    internal abstract class NetworkSender : IDisposable
+    {
+        private string url;
 
         /// <summary>
-        /// Creates a new instance of the <see cref="NetworkSender"/> and initializes
-        /// it with the specified URL.
+        /// Initializes a new instance of the NetworkSender class.
         /// </summary>
-        /// <param name="url">URL.</param>
+        /// <param name="url">The network URL.</param>
         protected NetworkSender(string url)
         {
-            _url = url;
+            this.url = url;
         }
 
         /// <summary>
-        /// Disposes the <see cref="NetworkSender"/> object.
+        /// Finalizes an instance of the NetworkSender class.
         /// </summary>
         ~NetworkSender()
         {
-            Dispose(false);
+            this.Dispose(false);
         }
 
         /// <summary>
-        /// Creates a new instance of the network sender based on a network URL:
+        /// Gets the address of the network endpoint.
         /// </summary>
-        /// <param name="url">URL that determines the network sender to be created.</param>
-        /// <returns>A newly created network sender.</returns>
-        /// <remarks>
-        /// If the url starts with <c>tcp://</c> - a new <see cref="TcpNetworkSender" /> is created.<br/>
-#if !SILVERLIGHT
-        /// If the url starts with <c>udp://</c> - a new <see cref="UdpNetworkSender" /> is created.<br/>
-#endif
-        /// </remarks>
+        public string Address
+        {
+            get { return this.url; }
+        }
+
+        /// <summary>
+        /// Creates a new instance of the network sender based on a network URL:.
+        /// </summary>
+        /// <param name="url">
+        /// URL that determines the network sender to be created.
+        /// </param>
+        /// <returns>
+        /// A newly created network sender.
+        /// </returns>
         public static NetworkSender Create(string url)
         {
             if (url.StartsWith("tcp://"))
@@ -103,47 +108,39 @@ namespace NLog.Internal.NetworkSenders
         }
 
         /// <summary>
-        /// The address of the network endpoint.
-        /// </summary>
-        public string Address
-        {
-            get { return _url; }
-        }
-
-        /// <summary>
         /// Send the given text over the specified protocol.
         /// </summary>
         /// <param name="bytes">Bytes to be sent.</param>
-        /// <param name="offset">Offset in buffer</param>
-        /// <param name="length">Number of bytes to send</param>
+        /// <param name="offset">Offset in buffer.</param>
+        /// <param name="length">Number of bytes to send.</param>
         public void Send(byte[] bytes, int offset, int length)
         {
-            DoSend(bytes, offset, length);
+            this.DoSend(bytes, offset, length);
         }
-
-        /// <summary>
-        /// Actually sends the given text over the specified protocol.
-        /// </summary>
-        /// <param name="bytes">The bytes to be sent.</param>
-        /// <param name="offset">Offset in buffer</param>
-        /// <param name="length">Number of bytes to send</param>
-        /// <remarks>To be overridden in inheriting classes.</remarks>
-        protected abstract void DoSend(byte[] bytes, int offset, int length);
 
         /// <summary>
         /// Closes the sender and releases any unmanaged resources.
         /// </summary>
         public void Dispose()
         {
-            Dispose(true);
+            this.Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        /// <summary>
+        /// Actually sends the given text over the specified protocol.
+        /// </summary>
+        /// <param name="bytes">The bytes to be sent.</param>
+        /// <param name="offset">Offset in buffer.</param>
+        /// <param name="length">Number of bytes to send.</param>
+        /// <remarks>To be overridden in inheriting classes.</remarks>
+        protected abstract void DoSend(byte[] bytes, int offset, int length);
 
         private void Dispose(bool disposing)
         {
             if (disposing)
             {
-                Close();
+                this.Close();
             }
         }
     }

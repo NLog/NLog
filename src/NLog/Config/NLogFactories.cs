@@ -1,87 +1,116 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using NLog.Internal;
 using System.Reflection;
+
+using NLog.Conditions;
+using NLog.Filters;
+using NLog.LayoutRenderers;
 using NLog.Layouts;
 using NLog.Targets;
-using NLog.Filters;
-
-using NLog.Config;
-using NLog.LayoutRenderers;
-using NLog.Conditions;
 
 namespace NLog.Config
 {
+    /// <summary>
+    /// Provides registration information for named items (targets, layouts, layout renderers, etc.) managed by NLog.
+    /// </summary>
     public class NLogFactories
     {
-        private static IFactory<Target, Type> _targetFactory;
-        private static IFactory<Filter, Type> _filterFactory;
-        private static IFactory<LayoutRenderer, Type> _layoutRendererFactory;
-        private static IFactory<Layout, Type> _layoutFactory;
-        private static IFactory<MethodInfo, MethodInfo> _conditionMethodFactory;
-        private static IFactory<LayoutRenderer, Type> _ambientPropertyFactory;
+        private ICollection<object> allFactories;
 
-        public static IFactory<Target, Type> TargetFactory
-        {
-            get { return _targetFactory; }
-            private set { _targetFactory = value; }
-        }
-
-        public static IFactory<Filter, Type> FilterFactory
-        {
-            get { return _filterFactory; }
-            private set { _filterFactory = value; }
-        }
-
-        public static IFactory<LayoutRenderer, Type> LayoutRendererFactory
-        {
-            get { return _layoutRendererFactory; }
-            private set { _layoutRendererFactory = value; }
-        }
-
-        public static IFactory<Layout, Type> LayoutFactory
-        {
-            get { return _layoutFactory; }
-            private set { _layoutFactory = value; }
-        }
-
-        public static IFactory<LayoutRenderer, Type> AmbientPropertyFactory
-        {
-            get { return _ambientPropertyFactory; }
-            private set { _ambientPropertyFactory = value; }
-        }
-
-        public static IFactory<MethodInfo, MethodInfo> ConditionMethodFactory
-        {
-            get { return _conditionMethodFactory; }
-            private set { _conditionMethodFactory = value; }
-        }
-
-        private static ICollection<IFactory> _allFactories;
-
+        /// <summary>
+        /// Initializes static members of the NLogFactories class.
+        /// </summary>
         static NLogFactories()
         {
-            _allFactories = new List<IFactory>();
-            _allFactories.Add(TargetFactory = new Factory<Target, TargetAttribute>(false));
-            _allFactories.Add(FilterFactory = new Factory<Filter, FilterAttribute>(false));
-            _allFactories.Add(LayoutRendererFactory = new Factory<LayoutRenderer, LayoutRendererAttribute>(false));
-            _allFactories.Add(LayoutFactory = new Factory<Layout, LayoutAttribute>(false));
-            _allFactories.Add(ConditionMethodFactory = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>());
-            _allFactories.Add(AmbientPropertyFactory = new Factory<LayoutRenderer, AmbientPropertyAttribute>(false));
+            Default = new NLogFactories();
         }
 
-        public static void ScanAssembly(Assembly asm, string prefix)
+        /// <summary>
+        /// Initializes a new instance of the NLogFactories class.
+        /// </summary>
+        public NLogFactories()
         {
-            foreach (IFactory f in _allFactories)
+            this.allFactories = new List<object>();
+
+            this.allFactories.Add(this.TargetFactory = new Factory<Target, TargetAttribute>());
+            this.allFactories.Add(this.FilterFactory = new Factory<Filter, FilterAttribute>());
+            this.allFactories.Add(this.LayoutRendererFactory = new Factory<LayoutRenderer, LayoutRendererAttribute>());
+            this.allFactories.Add(this.LayoutFactory = new Factory<Layout, LayoutAttribute>());
+            this.allFactories.Add(this.ConditionMethodFactory = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>());
+            this.allFactories.Add(this.AmbientPropertyFactory = new Factory<LayoutRenderer, AmbientPropertyAttribute>());
+
+            this.RegisterItemsFromAssembly(typeof(Logger).Assembly);
+        }
+
+        /// <summary>
+        /// Gets or sets default singleton instance of <see cref="NLogFactories"/>.
+        /// </summary>
+        public static NLogFactories Default { get; set; }
+
+        /// <summary>
+        /// Gets the <see cref="Target"/> factory.
+        /// </summary>
+        /// <value>The target factory.</value>
+        public INamedItemFactory<Target, Type> TargetFactory { get; private set; }
+
+        /// <summary>
+        /// Gets the <see cref="Filter"/> factory.
+        /// </summary>
+        /// <value>The filter factory.</value>
+        public INamedItemFactory<Filter, Type> FilterFactory { get; private set; }
+
+        /// <summary>
+        /// Gets the <see cref="LayoutRenderer"/> factory.
+        /// </summary>
+        /// <value>The layout renderer factory.</value>
+        public INamedItemFactory<LayoutRenderer, Type> LayoutRendererFactory { get; private set; }
+
+        /// <summary>
+        /// Gets the <see cref="LayoutRenderer"/> factory.
+        /// </summary>
+        /// <value>The layout factory.</value>
+        public INamedItemFactory<Layout, Type> LayoutFactory { get; private set; }
+
+        /// <summary>
+        /// Gets the ambient property factory.
+        /// </summary>
+        /// <value>The ambient property factory.</value>
+        public INamedItemFactory<LayoutRenderer, Type> AmbientPropertyFactory { get; private set; }
+
+        /// <summary>
+        /// Gets the condition method factory.
+        /// </summary>
+        /// <value>The condition method factory.</value>
+        public INamedItemFactory<MethodInfo, MethodInfo> ConditionMethodFactory { get; private set; }
+
+        /// <summary>
+        /// Registers named items from the assembly.
+        /// </summary>
+        /// <param name="assembly">The assembly.</param>
+        public void RegisterItemsFromAssembly(Assembly assembly)
+        {
+            this.RegisterItemsFromAssembly(assembly, string.Empty);
+        }
+
+        /// <summary>
+        /// Registers named items from the assembly.
+        /// </summary>
+        /// <param name="assembly">The assembly.</param>
+        /// <param name="itemNamePrefix">Item name prefix.</param>
+        public void RegisterItemsFromAssembly(Assembly assembly, string itemNamePrefix)
+        {
+            foreach (IFactory f in this.allFactories)
             {
-                f.ScanAssembly(asm, prefix);
+                f.ScanAssembly(assembly, itemNamePrefix);
             }
         }
 
-        public static void Clear()
+        /// <summary>
+        /// Clears the contents of all factories.
+        /// </summary>
+        public void Clear()
         {
-            foreach (IFactory f in _allFactories)
+            foreach (IFactory f in this.allFactories)
             {
                 f.Clear();
             }

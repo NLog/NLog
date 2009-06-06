@@ -33,7 +33,8 @@
 
 #define TRACE
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
+
 using System;
 using System.Diagnostics;
 
@@ -42,7 +43,7 @@ using NLog.Config;
 namespace NLog.Targets
 {
     /// <summary>
-    /// Sends logging messages through System.Diagnostics.Trace
+    /// Sends logging messages through System.Diagnostics.Trace.
     /// </summary>
     /// <example>
     /// <p>
@@ -60,7 +61,7 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/Trace/Simple/Example.cs" />
     /// </example>
     [Target("Trace")]
-    public sealed class TraceTarget: TargetWithLayout
+    public sealed class TraceTarget : TargetWithLayout
     {
         /// <summary>
         /// Writes the specified logging event to the <see cref="System.Diagnostics.Trace"/> facility.
@@ -73,11 +74,11 @@ namespace NLog.Targets
         {
             if (logEvent.Level >= LogLevel.Error)
             {
-                Trace.Fail(Layout.GetFormattedMessage(logEvent));
+                Trace.Fail(this.Layout.GetFormattedMessage(logEvent));
             }
             else
             {
-                Trace.WriteLine(Layout.GetFormattedMessage(logEvent));
+                Trace.WriteLine(this.Layout.GetFormattedMessage(logEvent));
             }
         }
     }

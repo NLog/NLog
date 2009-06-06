@@ -40,37 +40,27 @@ namespace NLog.Config
     /// Specifies the mapping between XML elements and .NET types.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class ArrayParameterAttribute: Attribute
+    public sealed class ArrayParameterAttribute : Attribute
     {
-        private Type _itemType;
-        private string _elementName;
-
         /// <summary>
-        /// Creates a new instance of ArrayParameterAttribute specifying the
-        /// element type and configuration element name.
+        /// Initializes a new instance of the ArrayParameterAttribute class.
         /// </summary>
-        /// <param name="itemType">The type of the array item</param>
+        /// <param name="itemType">The type of the array item.</param>
         /// <param name="elementName">The XML element name that represents the item.</param>
         public ArrayParameterAttribute(Type itemType, string elementName)
         {
-            _itemType = itemType;
-            _elementName = elementName;
+            this.ItemType = itemType;
+            this.ElementName = elementName;
         }
 
         /// <summary>
-        /// The .NET type of the array item
+        /// Gets the .NET type of the array item.
         /// </summary>
-        public Type ItemType
-        {
-            get { return _itemType; }
-        }
+        public Type ItemType { get; private set; }
 
         /// <summary>
-        /// The XML element name.
+        /// Gets the XML element name.
         /// </summary>
-        public string ElementName
-        {
-            get { return _elementName; }
-        }
+        public string ElementName { get; private set; }
     }
 }

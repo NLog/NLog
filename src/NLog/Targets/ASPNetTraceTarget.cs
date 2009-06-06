@@ -31,12 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT && !CLIENT_SKU
+
 using System;
 using System.Web;
-
-using NLog.Targets;
-using NLog.Config;
 
 namespace NLog.Targets
 {
@@ -73,7 +71,7 @@ namespace NLog.Targets
     /// <p/>
     /// </example>
     [Target("ASPNetTrace")]
-    public class ASPNetTraceTarget: TargetWithLayout
+    public class ASPNetTraceTarget : TargetWithLayout
     {
         /// <summary>
         /// Writes the specified logging event to the ASP.NET Trace facility. Log entries
@@ -89,16 +87,16 @@ namespace NLog.Targets
 
             if (context == null)
             {
-                return ;
+                return;
             }
 
             if (logEvent.Level >= LogLevel.Warn)
             {
-                context.Trace.Warn(logEvent.LoggerName, Layout.GetFormattedMessage(logEvent));
+                context.Trace.Warn(logEvent.LoggerName, this.Layout.GetFormattedMessage(logEvent));
             }
             else
             {
-                context.Trace.Write(logEvent.LoggerName, Layout.GetFormattedMessage(logEvent));
+                context.Trace.Write(logEvent.LoggerName, this.Layout.GetFormattedMessage(logEvent));
             }
         }
     }

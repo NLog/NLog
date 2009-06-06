@@ -1,82 +1,37 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
-    <ProjectType>Local</ProjectType>
-    <ProductVersion>8.0.50727</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B3F8E5FB-C9D4-4C12-841F-8009EB60DB3D}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>
-    </ApplicationIcon>
-    <AssemblyKeyContainerName>
-    </AssemblyKeyContainerName>
-    <AssemblyName>NLog.ComInterop</AssemblyName>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
-    <DefaultClientScript>JScript</DefaultClientScript>
-    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
-    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <NLogBuildPath Condition="'$(NLogBuildPath)'==''">$(MSBuildProjectDirectory)\build</NLogBuildPath>
+    <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
+    <SignAssembly>true</SignAssembly>
+    <OutputPath>bin\$(Configuration)</OutputPath>
+    <Framework Condition="'$(Framework)' == ''">NetFX3.5</Framework>
+    <FrameworksPath Condition="'$(FrameworksPath)' == ''">..\Frameworks</FrameworksPath>
+    <FrameworkDefaults>$(FrameworksPath)\$(Framework).defaults</FrameworkDefaults>
+    <DefineConstants></DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(NLogBuildPath)' != ''">
+    <OutputPath>$(NLogBuildPath)\$(Configuration)\$(Framework)</OutputPath>
+    <IntermediateOutputPath>$(NLogBuildPath)\obj\$(Configuration)\$(Framework)</IntermediateOutputPath>
+  </PropertyGroup>
+
+  <Import Project="$(FrameworkDefaults)" />
+
+  <PropertyGroup>
+    <ProjectGuid>{B3F8E5FB-C9D4-4C12-841F-8009EB60DB3D}</ProjectGuid>
+    <AssemblyName>NLog.ComInterop</AssemblyName>
     <OutputType>Library</OutputType>
     <RootNamespace>NLog.ComInterop</RootNamespace>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject>
-    </StartupObject>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug\</OutputPath>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-    <BaseAddress>285212672</BaseAddress>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-    <ConfigurationOverrideFile>
-    </ConfigurationOverrideFile>
-    <DefineConstants>DOTNET;DOTNET_1_1</DefineConstants>
-    <DocumentationFile>NLog.ComInterop.xml</DocumentationFile>
-    <DebugSymbols>true</DebugSymbols>
-    <FileAlignment>4096</FileAlignment>
-    <NoStdLib>false</NoStdLib>
-    <NoWarn>1699</NoWarn>
-    <Optimize>false</Optimize>
-    <RegisterForComInterop>false</RegisterForComInterop>
-    <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningLevel>4</WarningLevel>
-    <DebugType>full</DebugType>
-    <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release\</OutputPath>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-    <BaseAddress>285212672</BaseAddress>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-    <ConfigurationOverrideFile>
-    </ConfigurationOverrideFile>
-    <DefineConstants>DOTNET;DOTNET_1_1</DefineConstants>
-    <DocumentationFile>NLog.ComInterop.xml</DocumentationFile>
-    <DebugSymbols>false</DebugSymbols>
-    <FileAlignment>4096</FileAlignment>
-    <NoStdLib>false</NoStdLib>
-    <NoWarn>1699</NoWarn>
-    <Optimize>false</Optimize>
-    <RegisterForComInterop>false</RegisterForComInterop>
-    <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningLevel>4</WarningLevel>
-    <DebugType>none</DebugType>
-    <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System">
-      <Name>System</Name>
-    </Reference>
-    <Reference Include="System.Xml">
-      <Name>System.XML</Name>
-    </Reference>
     <ProjectReference Include="..\NLog\NLog.csproj">
       <Name>NLog</Name>
       <Project>{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}</Project>
@@ -85,9 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="AssemblySign.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ILogger.cs">
@@ -104,17 +56,7 @@
     </Compile>
     <Compile Include="AssemblyBuildInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup />
-  <ItemGroup />
-  <ItemGroup />
-  <ItemGroup />
-  <ItemGroup />
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>"$(ProjectDir)..\..\tools\RewriteBuildNumber.exe" "$(ProjectDir)..\..\NLog.version" "$(ProjectDir)AssemblyBuildInfo.cs" "$(ProjectDir)..\..\build\NLog.buildversion"</PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
+
+  <Import Project="$(TargetsPath)" />
+
 </Project>

@@ -1,8 +1,3 @@
-using NLog.LayoutRenderers;
-using System.Text;
-using NLog.Config;
-using System.Globalization;
-using System;
 using System.Collections.Generic;
 using NLog.Internal;
 
@@ -14,10 +9,6 @@ namespace NLog.Layouts
     [Layout("LayoutWithHeaderAndFooter")]
     public class LayoutWithHeaderAndFooter : Layout
     {
-        private Layout _header = null;
-        private Layout _footer = null;
-        private Layout _layout = null;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LayoutWithHeaderAndFooter"/> class.
         /// </summary>
@@ -26,34 +17,22 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Main layout (can be repeated multiple times)
+        /// Gets or sets the body layout (can be repeated multiple times).
         /// </summary>
         /// <value></value>
-        public Layout Layout
-        {
-            get { return _layout; }
-            set { _layout = value; }
-        }
+        public Layout Layout { get; set; }
 
         /// <summary>
-        /// Header
+        /// Gets or sets the header layout.
         /// </summary>
         /// <value></value>
-        public Layout Header
-        {
-            get { return _header; }
-            set { _header = value; }
-        }
+        public Layout Header { get; set; }
 
         /// <summary>
-        /// Footer
+        /// Gets or sets the footer layout.
         /// </summary>
         /// <value></value>
-        public Layout Footer
-        {
-            get { return _footer; }
-            set { _footer = value; }
-        }
+        public Layout Footer { get; set; }
 
         /// <summary>
         /// Renders the layout for the specified logging event by invoking layout renderers.
@@ -62,23 +41,26 @@ namespace NLog.Layouts
         /// <returns>The rendered layout.</returns>
         public override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            return _layout.GetFormattedMessage(logEvent);
+            return this.Layout.GetFormattedMessage(logEvent);
         }
 
         /// <summary>
-        /// Returns the value indicating whether a stack trace and/or the source file
-        /// information should be gathered during layout processing.
+        /// Gets or sets a value indicating whether stack trace information should be gathered during log event processing. 
         /// </summary>
-        /// <returns>
-        /// 0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace
-        /// </returns>
+        /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
         public override StackTraceUsage GetStackTraceUsage()
         {
             StackTraceUsage max = Layout.GetStackTraceUsage();
-            if (Header != null)
-                max = StackTraceUsageUtils.Max(max, Header.GetStackTraceUsage());
-            if (Footer != null)
-                max = StackTraceUsageUtils.Max(max, Footer.GetStackTraceUsage());
+            if (this.Header != null)
+            {
+                max = StackTraceUsageUtils.Max(max, this.Header.GetStackTraceUsage());
+            }
+
+            if (this.Footer != null)
+            {
+                max = StackTraceUsageUtils.Max(max, this.Footer.GetStackTraceUsage());
+            }
+
             return max;
         }
 
@@ -87,9 +69,9 @@ namespace NLog.Layouts
         /// layout renderers.
         /// </summary>
         /// <returns>
-        /// 	<see langword="true"/> when the layout includes at least
+        /// A value of <see langword="true"/> when the layout includes at least
         /// one volatile renderer, <see langword="false"/> otherwise.
-        /// </returns>
+        /// .</returns>
         /// <remarks>
         /// Volatile layout renderers are dependent on information not contained
         /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
@@ -97,13 +79,19 @@ namespace NLog.Layouts
         public override bool IsVolatile()
         {
             if (Layout.IsVolatile())
+            {
                 return true;
+            }
 
-            if (Header != null && Header.IsVolatile())
+            if (this.Header != null && this.Header.IsVolatile())
+            {
                 return true;
+            }
 
-            if (Footer != null && Footer.IsVolatile())
+            if (this.Footer != null && this.Footer.IsVolatile())
+            {
                 return true;
+            }
 
             return false;
         }
@@ -121,10 +109,15 @@ namespace NLog.Layouts
         public override void Precalculate(LogEventInfo logEvent)
         {
             Layout.Precalculate(logEvent);
-            if (Header != null)
-                Header.Precalculate(logEvent);
-            if (Footer != null)
-                Footer.Precalculate(logEvent);
+            if (this.Header != null)
+            {
+                this.Header.Precalculate(logEvent);
+            }
+
+            if (this.Footer != null)
+            {
+                this.Footer.Precalculate(logEvent);
+            }
         }
 
         /// <summary>
@@ -134,11 +127,19 @@ namespace NLog.Layouts
         {
             base.Initialize();
             if (Layout != null)
+            {
                 Layout.Initialize();
-            if (Header != null)
-                Header.Initialize();
-            if (Footer != null)
-                Footer.Initialize();
+            }
+
+            if (this.Header != null)
+            {
+                this.Header.Initialize();
+            }
+
+            if (this.Footer != null)
+            {
+                this.Footer.Initialize();
+            }
         }
 
         /// <summary>
@@ -147,11 +148,20 @@ namespace NLog.Layouts
         public override void Close()
         {
             if (Layout != null && Layout.IsInitialized)
+            {
                 Layout.Close();
-            if (Header != null && Header.IsInitialized)
-                Header.Close();
-            if (Footer != null && Footer.IsInitialized)
-                Footer.Close();
+            }
+
+            if (this.Header != null && this.Header.IsInitialized)
+            {
+                this.Header.Close();
+            }
+
+            if (this.Footer != null && this.Footer.IsInitialized)
+            {
+                this.Footer.Close();
+            }
+
             base.Close();
         }
 
@@ -163,11 +173,19 @@ namespace NLog.Layouts
         {
             layouts.Add(this);
             if (Layout != null)
+            {
                 Layout.PopulateLayouts(layouts);
-            if (Header != null)
-                Header.PopulateLayouts(layouts);
-            if (Footer != null)
-                Footer.PopulateLayouts(layouts);
+            }
+
+            if (this.Header != null)
+            {
+                this.Header.PopulateLayouts(layouts);
+            }
+
+            if (this.Footer != null)
+            {
+                this.Footer.PopulateLayouts(layouts);
+            }
         }
     }
 }

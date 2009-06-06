@@ -31,15 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT && !CLIENT_SKU
 
 using System;
+using System.Globalization;
 using System.Text;
 using System.Web;
-
 using NLog.Config;
-using System.ComponentModel;
-using System.Globalization;
 
 namespace NLog.LayoutRenderers
 {
@@ -70,21 +68,15 @@ namespace NLog.LayoutRenderers
     /// </code>
     /// </example>
     [LayoutRenderer("aspnet-application")]
-    public class ASPNETApplicationValueLayoutRenderer: LayoutRenderer
+    public class AspNetApplicationValueLayoutRenderer : LayoutRenderer
     {
-        private string _variable = null;
-
         /// <summary>
-        /// The variable name.
+        /// Gets or sets the variable name.
         /// </summary>
         [RequiredParameter]
         [DefaultParameter]
-        public string Variable
-        {
-            get { return _variable; }
-            set { _variable = value; }
-        }
-        
+        public string Variable { get; set; }
+
         /// <summary>
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
@@ -98,10 +90,14 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
-            if (_variable == null)
+            if (this.Variable == null)
+            {
                 return 0;
+            }
             else
+            {
                 return 64;
+            }
         }
 
         /// <summary>
@@ -111,16 +107,23 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (Variable == null)
-                return ;
+            if (this.Variable == null)
+            {
+                return;
+            }
 
             HttpContext context = HttpContext.Current;
             if (context == null)
-                return ;
+            {
+                return;
+            }
 
-			if (context.Application == null)
-				return ;
-			builder.Append(Convert.ToString(context.Application[Variable], CultureInfo.InvariantCulture));
+            if (context.Application == null)
+            {
+                return;
+            }
+
+            builder.Append(Convert.ToString(context.Application[this.Variable], CultureInfo.InvariantCulture));
         }
     }
 }

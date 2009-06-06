@@ -31,84 +31,78 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.Globalization;
-using System.Security;
-using System.Runtime.InteropServices;
+#if !SILVERLIGHT
 
-using NLog.Config;
+using System;
 using System.ComponentModel;
+using System.Globalization;
+using System.Runtime.InteropServices;
+using System.Security;
+using System.Text;
 
 namespace NLog.LayoutRenderers
 {
+    using Internal;
+
     /// <summary>
     /// High precision timer, based on the value returned from QueryPerformanceCounter() optionally converted to seconds.
     /// </summary>
     [LayoutRenderer("qpc")]
-    public class QpcLayoutRenderer: LayoutRenderer
+    public class QpcLayoutRenderer : LayoutRenderer
     {
-        private bool _raw = false;
-        private bool _normalize = true;
-        private bool _diff = false;
-        private ulong _firstQpcValue = 0;
-        private ulong _lastQpcValue = 0;
-        private bool _first = true;
-        private double _frequency = 1;
-        private int _precision = 6;
-        private bool _alignDecimalPoint = true;
+        private bool raw = false;
+        private ulong firstQpcValue = 0;
+        private ulong lastQpcValue = 0;
+        private bool first = true;
+        private double frequency = 1;
 
         /// <summary>
-        /// Normalize the result by subtracting it from the result of the
-        /// first call (so that it's effectively zero-based).
+        /// Initializes a new instance of the QpcLayoutRenderer class.
+        /// </summary>
+        public QpcLayoutRenderer()
+        {
+            this.Normalize = true;
+            this.Difference = false;
+            this.Precision = 4;
+            this.AlignDecimalPoint = true;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to normalize the result by subtracting 
+        /// it from the result of the first call (so that it's effectively zero-based).
         /// </summary>
         [DefaultValue(true)]
-        public bool Normalize
-        {
-            get { return _normalize; }
-            set { _normalize = value; }
-        }
+        public bool Normalize { get; set; }
 
         /// <summary>
-        /// Output the difference between the result of QueryPerformanceCounter 
-        /// and the previous one.
+        /// Gets or sets a value indicating whether to output the difference between the result 
+        /// of QueryPerformanceCounter and the previous one.
         /// </summary>
         [DefaultValue(false)]
-        public bool Difference
-        {
-            get { return _diff; }
-            set { _diff = value; }
-        }
+        public bool Difference { get; set; }
 
         /// <summary>
-        /// Convert the result to seconds by dividing by the result of QueryPerformanceFrequency().
+        /// Gets or sets a value indicating whether to convert the result to seconds by dividing 
+        /// by the result of QueryPerformanceFrequency().
         /// </summary>
         [DefaultValue(true)]
         public bool Seconds
         {
-            get { return !_raw; }
-            set { _raw = !value; }
+            get { return !this.raw; }
+            set { this.raw = !value; }
         }
 
         /// <summary>
-        /// Number of decimal digits to be included in output.
+        /// Gets or sets the number of decimal digits to be included in output.
         /// </summary>
         [DefaultValue(4)]
-        public int Precision
-        {
-            get { return _precision; }
-            set { _precision = value; }
-        }
+        public int Precision { get; set; }
 
         /// <summary>
-        /// Align decimal point (emit non-significant zeros)
+        /// Gets or sets a value indicating whether to align decimal point (emit non-significant zeros).
         /// </summary>
         [DefaultValue(true)]
-        public bool AlignDecimalPoint
-        {
-            get { return _alignDecimalPoint; }
-            set { _alignDecimalPoint = value; }
-        }
+        public bool AlignDecimalPoint { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -126,7 +120,6 @@ namespace NLog.LayoutRenderers
             return 32;
         }
 
-
         /// <summary>
         /// Renders the ticks value of current time and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
@@ -136,53 +129,58 @@ namespace NLog.LayoutRenderers
         {
             ulong qpcValue;
 
-            if (!QueryPerformanceCounter(out qpcValue))
+            if (!NativeMethods.QueryPerformanceCounter(out qpcValue))
+            {
                 return;
+            }
 
-            if (_first)
+            if (this.first)
             {
                 lock (this)
                 {
-                    if (_first)
+                    if (this.first)
                     {
                         ulong frequency;
 
-                        QueryPerformanceFrequency(out frequency);
-                        _frequency = (double)frequency;
-                        _firstQpcValue = qpcValue;
-                        _lastQpcValue = qpcValue;
-                        _first = false;
+                        NativeMethods.QueryPerformanceFrequency(out frequency);
+                        this.frequency = (double)frequency;
+                        this.firstQpcValue = qpcValue;
+                        this.lastQpcValue = qpcValue;
+                        this.first = false;
                     }
                 }
             }
 
             ulong v = qpcValue;
 
-            if (Difference)
-                qpcValue -= _lastQpcValue;
-            else if (Normalize)
-                qpcValue -= _firstQpcValue;
+            if (this.Difference)
+            {
+                qpcValue -= this.lastQpcValue;
+            }
+            else if (this.Normalize)
+            {
+                qpcValue -= this.firstQpcValue;
+            }
 
-            _lastQpcValue = v;
-
+            this.lastQpcValue = v;
 
             string stringValue;
 
-            if (Seconds)
+            if (this.Seconds)
             {
-                double val = Math.Round((double)qpcValue / _frequency, Precision);
+                double val = Math.Round((double)qpcValue / this.frequency, this.Precision);
 
                 stringValue = Convert.ToString(val, CultureInfo.InvariantCulture);
-                if (AlignDecimalPoint)
+                if (this.AlignDecimalPoint)
                 {
                     int p = stringValue.IndexOf('.');
                     if (p == -1)
                     {
-                        stringValue += "." + new string('0', Precision);
+                        stringValue += "." + new string('0', this.Precision);
                     }
                     else
                     {
-                        stringValue += new string('0', Precision - (stringValue.Length - 1 - p));
+                        stringValue += new string('0', this.Precision - (stringValue.Length - 1 - p));
                     }
                 }
             }
@@ -193,19 +191,7 @@ namespace NLog.LayoutRenderers
 
             builder.Append(stringValue);
         }
-
-#if !NET_CF
-        [DllImport("kernel32.dll"), SuppressUnmanagedCodeSecurity]
-#else
-        [DllImport("coredll.dll")]
-#endif
-        static extern bool QueryPerformanceCounter(out ulong lpPerformanceCount);
-
-#if !NET_CF
-        [DllImport("kernel32.dll"), SuppressUnmanagedCodeSecurity]
-#else
-        [DllImport("coredll.dll")]
-#endif
-        static extern bool QueryPerformanceFrequency(out ulong lpPerformanceFrequency);
     }
 }
+
+#endif

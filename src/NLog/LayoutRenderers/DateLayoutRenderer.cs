@@ -31,10 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
 using System.Globalization;
-using System.ComponentModel;
+using System.Text;
 using NLog.Config;
 
 namespace NLog.LayoutRenderers
@@ -43,19 +41,37 @@ namespace NLog.LayoutRenderers
     /// Current date and time.
     /// </summary>
     [LayoutRenderer("date")]
-    public class DateLayoutRenderer: LayoutRenderer
+    public class DateLayoutRenderer : LayoutRenderer
     {
-        private string _format = "G";
+        /// <summary>
+        /// Initializes a new instance of the DateLayoutRenderer class.
+        /// </summary>
+        public DateLayoutRenderer()
+        {
+            this.Format = "G";
+            this.Culture = CultureInfo.InvariantCulture;
+        }
 
         /// <summary>
-        /// The date format. Can be any argument accepted by DateTime.ToString(format)
+        /// Gets or sets the culture used for rendering. 
+        /// </summary>
+        /// <example>
+        /// The format for culture names is described in <a href="http://rfc.net/rfc1766.html">RFC 1766</a> and at <a href="http://msdn2.microsoft.com/en-us/library/system.globalization.cultureinfo.cultureinfo.aspx">MSDN</a>. 
+        /// Some examples of valid culture names are:
+        /// <ul>
+        /// <li><b>en-US</b> - English (United States)</li>
+        /// <li><b>en-UK</b> - English (United Kingdom)</li>
+        /// <li><b>pl-PL</b> - Polish</li>
+        /// <li><b>ar-SA</b> - Arabic (Saudi Arabia)</li>
+        /// </ul>
+        /// </example>
+        public CultureInfo Culture { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date format. Can be any argument accepted by DateTime.ToString(format).
         /// </summary>
         [DefaultParameter]
-        public string Format
-        {
-            get { return _format; }
-            set { _format = value; }
-        }
+        public string Format { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -80,30 +96,19 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(logEvent.TimeStamp.ToString(Format, Culture));
+            builder.Append(logEvent.TimeStamp.ToString(this.Format, this.Culture));
         }
-
-        private CultureInfo _cultureInfo = CultureInfo.InvariantCulture;
 
         /// <summary>
-        /// The culture to be used for rendering. 
+        /// Determines whether the layout renderer is volatile.
         /// </summary>
-        /// <example>
-        /// The format for culture names is described in <a href="http://rfc.net/rfc1766.html">RFC 1766</a> and at <a href="http://msdn2.microsoft.com/en-us/library/system.globalization.cultureinfo.cultureinfo.aspx">MSDN</a>. 
-        /// Some examples of valid culture names are:
-        /// <ul>
-        /// <li><b>en-US</b> - English (United States)</li>
-        /// <li><b>en-UK</b> - English (United Kingdom)</li>
-        /// <li><b>pl-PL</b> - Polish</li>
-        /// <li><b>ar-SA</b> - Arabic (Saudi Arabia)</li>
-        /// </ul>
-        /// </example>
-        public CultureInfo Culture
-        {
-            get { return _cultureInfo; }
-            set { _cultureInfo = value; }
-        }
-
+        /// <returns>
+        /// A boolean indicating whether the layout renderer is volatile.
+        /// </returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
         protected internal override bool IsVolatile()
         {
             return false;

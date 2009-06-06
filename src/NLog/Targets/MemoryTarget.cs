@@ -31,11 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using NLog.Config;
 using System.Collections.Generic;
 
 namespace NLog.Targets
@@ -59,10 +54,18 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/Memory/Simple/Example.cs" />
     /// </example>
     [Target("Memory")]
-    public sealed class MemoryTarget: TargetWithLayout
+    public sealed class MemoryTarget : TargetWithLayout
     {
-        private ICollection<string> _logs = new List<string>();
-        private object _lockObject = new object();
+        private ICollection<string> logs = new List<string>();
+        private object lockObject = new object();
+
+        /// <summary>
+        /// Gets the list of logs gathered in the <see cref="MemoryTarget"/>.
+        /// </summary>
+        public ICollection<string> Logs
+        {
+            get { return this.logs; }
+        }
 
         /// <summary>
         /// Renders the logging event message and adds it to the internal ArrayList of log messages.
@@ -70,20 +73,12 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            string msg = Layout.GetFormattedMessage(logEvent);
+            string msg = this.Layout.GetFormattedMessage(logEvent);
 
-            lock (_lockObject)
+            lock (this.lockObject)
             {
-                _logs.Add(msg);
+                this.logs.Add(msg);
             }
-        }
-
-        /// <summary>
-        /// Returns the list of logs gathered in the <see cref="MemoryTarget"/>.
-        /// </summary>
-        public ICollection<string> Logs
-        {
-            get { return _logs; }
         }
     }
 }

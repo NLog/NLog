@@ -31,73 +31,87 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Text;
-
-using NLog.Targets;
-using NLog.Filters;
 using System.Collections.Generic;
+using NLog.Filters;
+using NLog.Targets;
 
 namespace NLog.Internal
 {
+    /// <summary>
+    /// Represents target with a chain of filters which determine
+    /// whether logging should happen.
+    /// </summary>
     internal class TargetWithFilterChain
     {
-        private Target _target;
-        private ICollection<Filter> _filterChain;
-        private TargetWithFilterChain _next;
-        private StackTraceUsage _stackTraceUsage = StackTraceUsage.None;
+        private StackTraceUsage stackTraceUsage = StackTraceUsage.None;
 
-        public TargetWithFilterChain(Target a, ICollection<Filter> filterChain)
+        /// <summary>
+        /// Initializes a new instance of the TargetWithFilterChain class.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="filterChain">The filter chain.</param>
+        public TargetWithFilterChain(Target target, ICollection<Filter> filterChain)
         {
-            _target = a;
-            _filterChain = filterChain;
-            _stackTraceUsage = StackTraceUsage.None;
+            this.Target = target;
+            this.FilterChain = filterChain;
+            this.stackTraceUsage = StackTraceUsage.None;
         }
 
-        public Target Target
-        {
-            get { return _target; }
-        }
+        /// <summary>
+        /// Gets the target.
+        /// </summary>
+        /// <value>The target.</value>
+        public Target Target { get; private set; }
 
+        /// <summary>
+        /// Gets the filter chain.
+        /// </summary>
+        /// <value>The filter chain.</value>
+        public ICollection<Filter> FilterChain { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the next <see cref="TargetWithFilterChain"/> item in the chain.
+        /// </summary>
+        /// <value>The next item in the chain.</value>
+        public TargetWithFilterChain NextInChain { get; set; }
+
+        /// <summary>
+        /// Gets the stack trace usage.
+        /// </summary>
+        /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
         public StackTraceUsage GetStackTraceUsage()
         {
-            return _stackTraceUsage;
+            return this.stackTraceUsage;
         }
 
-        public ICollection<Filter> FilterChain
+        internal void PrecalculateStackTraceUsage()
         {
-            get { return _filterChain; }
-        }
+            this.stackTraceUsage = StackTraceUsage.None;
 
-        public TargetWithFilterChain Next
-        {
-            get { return _next; }
-            set { _next = value; }
-        }
-
-        public void PrecalculateGetStackTraceUsage()
-        {
-            _stackTraceUsage = StackTraceUsage.None;
-
-            for (TargetWithFilterChain awf = this; awf != null; awf = awf.Next)
+            for (TargetWithFilterChain awf = this; awf != null; awf = awf.NextInChain)
             {
-                if (_stackTraceUsage >= StackTraceUsage.WithSource)
+                if (this.stackTraceUsage >= StackTraceUsage.WithSource)
+                {
                     break;
+                }
+
                 Target app = awf.Target;
 
                 StackTraceUsage stu = app.GetStackTraceUsage();
-                if (stu > _stackTraceUsage)
-                    _stackTraceUsage = stu;
+                if (stu > this.stackTraceUsage)
+                {
+                    this.stackTraceUsage = stu;
+                }
 
                 foreach (Filter filter in awf.FilterChain)
                 {
                     stu = filter.GetStackTraceUsage();
-                    if (stu > _stackTraceUsage)
-                        _stackTraceUsage = stu;
+                    if (stu > this.stackTraceUsage)
+                    {
+                        this.stackTraceUsage = stu;
+                    }
                 }
             }
-
         }
     }
 }

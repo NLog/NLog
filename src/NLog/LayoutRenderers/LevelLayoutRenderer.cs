@@ -41,7 +41,7 @@ namespace NLog.LayoutRenderers
     /// The log level.
     /// </summary>
     [LayoutRenderer("level")]
-    public class LevelLayoutRenderer: LayoutRenderer
+    public class LevelLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -69,6 +69,16 @@ namespace NLog.LayoutRenderers
             builder.Append(logEvent.Level.ToString());
         }
 
+        /// <summary>
+        /// Determines whether the layout renderer is volatile.
+        /// </summary>
+        /// <returns>
+        /// A boolean indicating whether the layout renderer is volatile.
+        /// </returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
         protected internal override bool IsVolatile()
         {
             return false;

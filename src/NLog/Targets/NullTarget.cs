@@ -31,13 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
 using System.ComponentModel;
-
-using NLog.Config;
 
 namespace NLog.Targets
 {
@@ -60,18 +54,18 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/Null/Simple/Example.cs" />
     /// </example>
     [Target("Null")]
-    public sealed class NullTarget: TargetWithLayout
+    public sealed class NullTarget : TargetWithLayout
     {
-        private bool _formatMessage = false;
+        private bool formatMessage = false;
 
         /// <summary>
-        /// Perform layout calculation.
+        /// Gets or sets a value indicating whether to perform layout calculation.
         /// </summary>
         [DefaultValue(false)]
         public bool FormatMessage
         {
-            get { return _formatMessage; }
-            set { _formatMessage = value; }
+            get { return this.formatMessage; }
+            set { this.formatMessage = value; }
         }
 
         /// <summary>
@@ -81,9 +75,9 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            if (_formatMessage)
+            if (this.formatMessage)
             {
-                Layout.GetFormattedMessage(logEvent);
+                this.Layout.GetFormattedMessage(logEvent);
             }
         }
     }

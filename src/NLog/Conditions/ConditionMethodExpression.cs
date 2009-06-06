@@ -32,12 +32,9 @@
 // 
 
 using System;
-using System.IO;
-using System.Text;
-using System.Reflection;
-
-using System.Xml.Serialization;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Text;
 using NLog.Config;
 using NLog.Layouts;
 
@@ -48,81 +45,109 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionMethodExpression : ConditionExpression
     {
-        private string _name;
-        private ICollection<ConditionExpression> _parameters;
-        private MethodInfo _methodInfo;
-        private bool _acceptsLogEvent;
+        private string conditionMethodName;
+        private ICollection<ConditionExpression> methodParameters;
+        private MethodInfo methodInfo;
+        private bool acceptsLogEvent;
 
-        public ConditionMethodExpression() {}
-        public ConditionMethodExpression(string name, ICollection<ConditionExpression> parameters) 
+        /// <summary>
+        /// Initializes a new instance of the ConditionMethodExpression class.
+        /// </summary>
+        public ConditionMethodExpression()
         {
-            _name = name;
-            _parameters = parameters;
+        }
 
-            _methodInfo = NLogFactories.ConditionMethodFactory.Create(_name);
-            ParameterInfo[] formalParameters = _methodInfo.GetParameters();
+        /// <summary>
+        /// Initializes a new instance of the ConditionMethodExpression class.
+        /// </summary>
+        /// <param name="conditionMethodName">Name of the condition method.</param>
+        /// <param name="methodInfo"><see cref="MethodInfo"/> of the condition method.</param>
+        /// <param name="methodParameters">The method parameters.</param>
+        public ConditionMethodExpression(string conditionMethodName, MethodInfo methodInfo, ICollection<ConditionExpression> methodParameters)
+        {
+            this.methodInfo = methodInfo;
+            this.conditionMethodName = conditionMethodName;
+            this.methodParameters = methodParameters;
+
+            ParameterInfo[] formalParameters = this.methodInfo.GetParameters();
             if (formalParameters.Length >= 0)
             {
-                _acceptsLogEvent = (formalParameters[0].ParameterType == typeof(LogEventInfo));
+                this.acceptsLogEvent = formalParameters[0].ParameterType == typeof(LogEventInfo);
             }
             else
             {
-                _acceptsLogEvent = false;
+                this.acceptsLogEvent = false;
             }
 
-            int actualParameterCount = _parameters.Count;
-            if (_acceptsLogEvent)
+            int actualParameterCount = this.methodParameters.Count;
+            if (this.acceptsLogEvent)
+            {
                 actualParameterCount++;
+            }
+
             if (formalParameters.Length != actualParameterCount)
             {
-                Internal.InternalLogger.Error("Condition method: '{0}' expects {1} parameters. Passed {2}", name, formalParameters.Length, actualParameterCount);
-                throw new ConditionParseException(String.Format("Condition method: '{0}' expects {1} parameters. Passed {2}", name, formalParameters.Length, actualParameterCount));
+                Internal.InternalLogger.Error("Condition method: '{0}' expects {1} parameters. Passed {2}", conditionMethodName, formalParameters.Length, actualParameterCount);
+                throw new ConditionParseException(String.Format("Condition method: '{0}' expects {1} parameters. Passed {2}", conditionMethodName, formalParameters.Length, actualParameterCount));
             }
         }
 
+        /// <summary>
+        /// Evaluates the expression.
+        /// </summary>
+        /// <param name="context">Evaluation context.</param>
+        /// <returns>Expression result.</returns>
         public override object Evaluate(LogEventInfo context)
         {
             object[] callParameters;
-            int parameterOffset = _acceptsLogEvent ? 1 : 0;
+            int parameterOffset = this.acceptsLogEvent ? 1 : 0;
 
-            callParameters = new object[_parameters.Count + parameterOffset];
+            callParameters = new object[this.methodParameters.Count + parameterOffset];
             int i = 0;
-            foreach (ConditionExpression ce in _parameters)
+            foreach (ConditionExpression ce in this.methodParameters)
             {
                 callParameters[i++ + parameterOffset] = ce.Evaluate(context);
             }
 
-            if (_acceptsLogEvent)
+            if (this.acceptsLogEvent)
+            {
                 callParameters[0] = context;
+            }
 
             try
             {
-                return _methodInfo.Invoke(null, callParameters);
+                return this.methodInfo.Invoke(null, callParameters);
             }
             catch (Exception ex)
             {
                 Internal.InternalLogger.Error("Error: {0}", ex);
-                return "";
+                return string.Empty;
             }
         }
 
+        /// <summary>
+        /// Returns a string representation of the expression.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"/> that represents the condition expression.
+        /// </returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(_name);
+            sb.Append(this.conditionMethodName);
             sb.Append("(");
-            string separator = "";
 
-            foreach (ConditionExpression expr in _parameters)
+            string separator = string.Empty;
+            foreach (ConditionExpression expr in this.methodParameters)
             {
                 sb.Append(separator);
                 sb.Append(expr);
                 separator = ",";
             }
+
             sb.Append(")");
             return sb.ToString();
         }
-
 
         /// <summary>
         /// Adds all layouts used by this expression to the specified collection.
@@ -130,7 +155,7 @@ namespace NLog.Conditions
         /// <param name="layouts">The collection to add layouts to.</param>
         public override void PopulateLayouts(ICollection<Layout> layouts)
         {
-            foreach (ConditionExpression expr in _parameters)
+            foreach (ConditionExpression expr in this.methodParameters)
             {
                 expr.PopulateLayouts(layouts);
             }

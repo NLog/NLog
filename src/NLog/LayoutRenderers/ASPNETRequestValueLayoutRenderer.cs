@@ -31,19 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT && !CLIENT_SKU
 
-using System;
 using System.Text;
 using System.Web;
 
 using NLog.Config;
-using System.ComponentModel;
 
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// ASP.NET Request variable
+    /// ASP.NET Request variable.
     /// </summary>
     /// <remarks>
     /// Use this layout renderer to insert the value of the specified parameter of the
@@ -62,58 +60,31 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("aspnet-request")]
     public class ASPNETRequestValueLayoutRenderer : LayoutRenderer
     {
-        private string _queryStringKey;
-        private string _formKey;
-        private string _cookie;
-        private string _item;
-        private string _serverVariable;
-
         /// <summary>
-        /// The item name. The QueryString, Form, Cookies, or ServerVariables collection variables having the specified name are rendered.
+        /// Gets or sets the item name. The QueryString, Form, Cookies, or ServerVariables collection variables having the specified name are rendered.
         /// </summary>
         [DefaultParameter]
-        public string Item
-        {
-            get { return _item; }
-            set { _item = value; }
-        }
-
+        public string Item { get; set; }
 
         /// <summary>
-        /// The QueryString variable to be rendered.
+        /// Gets or sets the QueryString variable to be rendered.
         /// </summary>
-        public string QueryString
-        {
-            get { return _queryStringKey; }
-            set { _queryStringKey = value; }
-        }
+        public string QueryString { get; set; }
 
         /// <summary>
-        /// The form variable to be rendered.
+        /// Gets or sets the form variable to be rendered.
         /// </summary>
-        public string Form
-        {
-            get { return _formKey; }
-            set { _formKey = value; }
-        }
+        public string Form { get; set; }
 
         /// <summary>
-        /// The cookie to be rendered.
+        /// Gets or sets the cookie to be rendered.
         /// </summary>
-        public string Cookie
-        {
-            get { return _cookie; }
-            set { _cookie = value; }
-        }
-
+        public string Cookie { get; set; }
+        
         /// <summary>
-        /// The ServerVariables item to be rendered.
+        /// Gets or sets the ServerVariables item to be rendered.
         /// </summary>
-        public string ServerVariable
-        {
-            get { return _serverVariable; }
-            set { _serverVariable = value; }
-        }
+        public string ServerVariable { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -140,32 +111,39 @@ namespace NLog.LayoutRenderers
         {
             HttpContext context = HttpContext.Current;
             if (context == null)
-                return ;
+            {
+                return;
+            }
 
-			if (context.Request == null)
-				return ;
-			if (QueryString != null)
+            if (context.Request == null)
             {
-                builder.Append(context.Request.QueryString[QueryString]);
+                return;
             }
-            else if (Form != null)
+
+            if (this.QueryString != null)
             {
-                builder.Append(context.Request.Form[Form]);
+                builder.Append(context.Request.QueryString[this.QueryString]);
             }
-            else if (Cookie != null)
+            else if (this.Form != null)
             {
-                HttpCookie cookie = context.Request.Cookies[Cookie];
+                builder.Append(context.Request.Form[this.Form]);
+            }
+            else if (this.Cookie != null)
+            {
+                HttpCookie cookie = context.Request.Cookies[this.Cookie];
 
                 if (cookie != null)
+                {
                     builder.Append(cookie.Value);
+                }
             }
-            else if (ServerVariable != null)
+            else if (this.ServerVariable != null)
             {
-                builder.Append(context.Request.ServerVariables[ServerVariable]);
+                builder.Append(context.Request.ServerVariables[this.ServerVariable]);
             }
-            else if (Item != null)
+            else if (this.Item != null)
             {
-                builder.Append(context.Request[Item]);
+                builder.Append(context.Request[this.Item]);
             }
         }
     }

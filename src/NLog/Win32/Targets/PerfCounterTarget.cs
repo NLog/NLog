@@ -31,13 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 
 using System;
-using System.Reflection;
-using System.Diagnostics;
 using System.Collections;
-using NLog.Internal;
+using System.Diagnostics;
 using NLog.Config;
 using NLog.Targets;
 
@@ -71,161 +69,167 @@ namespace NLog.Win32.Targets
     [Target("PerfCounter")]
     public class PerfCounterTarget : Target
     {
-        private bool _autoCreate = false;
-        private string _categoryName;
-        private string _counterName;
-        private string _instanceName = "";
-        private PerformanceCounterType _counterType = PerformanceCounterType.NumberOfItems32;
-        private static ArrayList _perfCounterTargets = new ArrayList();
-        private PerformanceCounter _perfCounter = null;
-        private bool _operational = true;
-            
+        private static ArrayList perfCounterTargets = new ArrayList();
+
+        private PerformanceCounter perfCounter = null;
+        private bool operational = true;
+
         /// <summary>
-        /// Creates a new instance of <see cref="PerfCounterTarget"/>.
+        /// Initializes a new instance of the PerfCounterTarget class.
         /// </summary>
         public PerfCounterTarget()
         {
-            lock(_perfCounterTargets)
+            this.CounterType = PerformanceCounterType.NumberOfItems32;
+            this.InstanceName = string.Empty;
+
+            lock (perfCounterTargets)
             {
-                if (!_perfCounterTargets.Contains(this)) _perfCounterTargets.Add(this);
+                if (!perfCounterTargets.Contains(this))
+                {
+                    perfCounterTargets.Add(this);
+                }
             }
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether performance counter should be automatically created.
+        /// </summary>
+        public bool AutoCreate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the performance counter category.
+        /// </summary>
+        [RequiredParameter]
+        public string CategoryName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the performance counter.
+        /// </summary>
+        [RequiredParameter]
+        public string CounterName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the performance counter instance name.
+        /// </summary>
+        public string InstanceName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the performance counter type.
+        /// </summary>
+        public PerformanceCounterType CounterType { get; set; }
 
         /// <summary>
         /// Increments the configured performance counter.
         /// </summary>
-        /// <param name="logEvent">log event</param>
+        /// <param name="logEvent">Log event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            if (!_operational) return;
-            if (_perfCounter == null) InitializePerfCounter();
-            if (_perfCounter == null) return; //not operational
-            
+            if (!this.operational)
+            {
+                return;
+            }
+
+            if (this.perfCounter == null)
+            {
+                this.InitializePerfCounter();
+            }
+
+            if (this.perfCounter == null)
+            {
+                // not operational
+                return;
+            }
+
             bool ok = false;
 
-            try 
+            try
             {
-                _perfCounter.Increment();
+                this.perfCounter.Increment();
                 ok = true;
             }
             finally
             {
-                _operational = ok;
+                this.operational = ok;
             }
         }
-        
-        /// <summary>
-        /// Whether performance counter should be automatically created.
-        /// </summary>
-        public bool AutoCreate
-        {
-            get {return _autoCreate; }
-            set {_autoCreate = value; }
-        }
-        
-        /// <summary>
-        /// Performance counter category.
-        /// </summary>
-        [RequiredParameter]
-        public string CategoryName
-        {
-            get {return _categoryName; }
-            set {_categoryName = value; }
-        }
-        
-        /// <summary>
-        /// Name of the performance counter.
-        /// </summary>
-        [RequiredParameter]
-        public string CounterName
-        {
-            get {return _counterName; }
-            set {_counterName = value; }
-        }
-        
-        /// <summary>
-        /// Instance name.
-        /// </summary>
-        public string InstanceName
-        {
-            get {return _instanceName; }
-            set {_instanceName = value; }
-        }
-        
-        /// <summary>
-        /// Performance counter type.
-        /// </summary>
-        public PerformanceCounterType CounterType
-        {
-            get { return _counterType; }
-            set { _counterType = value; }
-        }
-        
+
         private void InitializePerfCounter()
         {
-            lock(this)
+            lock (this)
             {
-                _operational = true;
+                this.operational = true;
                 try
                 {
-                    if (_perfCounter != null) { _perfCounter.Close(); _perfCounter = null; }
-                    if (_categoryName == null || _counterName == null) 
+                    if (this.perfCounter != null)
                     {
-                        throw new Exception("Missing category name or counter name for target: " + Name);
+                        this.perfCounter.Close(); 
+                        this.perfCounter = null;
                     }
-                    
-                    if (!PerformanceCounterCategory.Exists(CategoryName) || !PerformanceCounterCategory.CounterExists(CounterName, CategoryName))
+
+                    if (this.CategoryName == null || this.CounterName == null)
+                    {
+                        throw new Exception("Missing category name or counter name for target: " + this.Name);
+                    }
+
+                    if (!PerformanceCounterCategory.Exists(this.CategoryName) || !PerformanceCounterCategory.CounterExists(this.CounterName, this.CategoryName))
                     {
                         ArrayList targets = new ArrayList();
                         bool doCreate = false;
-                        foreach(PerfCounterTarget t in _perfCounterTargets)
+                        foreach (PerfCounterTarget t in perfCounterTargets)
                         {
-                            if (t.CategoryName == CategoryName)
+                            if (t.CategoryName == this.CategoryName)
                             {
                                 targets.Add(t);
-                                if (t.AutoCreate) doCreate = true;
+                                if (t.AutoCreate)
+                                {
+                                    doCreate = true;
+                                }
                             }
                         }
-                        
+
                         if (doCreate)
                         {
-                            if (PerformanceCounterCategory.Exists(CategoryName))
+                            if (PerformanceCounterCategory.Exists(this.CategoryName))
                             {
-                                //delete the whole category and rebuild from scratch
-                                PerformanceCounterCategory.Delete(CategoryName);
+                                // delete the whole category and rebuild from scratch
+                                PerformanceCounterCategory.Delete(this.CategoryName);
                             }
-                            
+
                             CounterCreationDataCollection ccds = new CounterCreationDataCollection();
-                            foreach(PerfCounterTarget t in targets)
+                            foreach (PerfCounterTarget t in targets)
                             {
                                 CounterCreationData ccd = new CounterCreationData();
-                                ccd.CounterName = t._counterName;
-                                ccd.CounterType = t._counterType;  
-                                ccds.Add(ccd);                                    
+                                ccd.CounterName = t.CounterName;
+                                ccd.CounterType = t.CounterType;
+                                ccds.Add(ccd);
                             }
-                            PerformanceCounterCategory.Create(CategoryName,
+
+                            PerformanceCounterCategory.Create(
+                                this.CategoryName,
                                 "Category created by NLog",
-                                (InstanceName != null) ? PerformanceCounterCategoryType.MultiInstance : PerformanceCounterCategoryType.SingleInstance,
+                                (this.InstanceName != null) ? PerformanceCounterCategoryType.MultiInstance : PerformanceCounterCategoryType.SingleInstance,
                                 ccds);
                         }
                         else
                         {
-                            throw new Exception(string.Format("Counter does not exist: {0}|{1}", CounterName, CategoryName));
+                            throw new Exception(string.Format("Counter does not exist: {0}|{1}", this.CounterName, this.CategoryName));
                         }
                     }
-                    
-                    _perfCounter = new PerformanceCounter(CategoryName, CounterName, InstanceName, false);
-                    _operational = true;
+
+                    this.perfCounter = new PerformanceCounter(this.CategoryName, this.CounterName, this.InstanceName, false);
+                    this.operational = true;
                 }
-                catch(Exception ex)
+                catch (Exception)
                 {
-                    _operational = false;
-                    _perfCounter = null;
-                    if (LogManager.ThrowExceptions) throw ex;
+                    this.operational = false;
+                    this.perfCounter = null;
+                    if (LogManager.ThrowExceptions)
+                    {
+                        throw;
+                    }
                 }
             }
         }
-
     }
 }
 

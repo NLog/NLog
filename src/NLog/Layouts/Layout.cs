@@ -31,16 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.Collections;
-
-using NLog.Internal;
-using NLog.LayoutRenderers;
-
-using System.Threading;
 using System.Collections.Generic;
-using System.ComponentModel;
+using NLog.Internal;
 
 namespace NLog.Layouts
 {
@@ -49,11 +41,27 @@ namespace NLog.Layouts
     /// </summary>
     public abstract class Layout
     {
-        private bool _initialized = false;
+        private bool initialized = false;
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is initialized.
+        /// </summary>
+        /// <value>
+        /// A value of <c>true</c> if this instance is initialized; otherwise, <c>false</c>.
+        /// </value>
         public bool IsInitialized
         {
-            get { return _initialized; }
+            get { return this.initialized; }
+        }
+
+        /// <summary>
+        /// Converts a given text to a <see cref="Layout" />.
+        /// </summary>
+        /// <param name="text">Text to be converted.</param>
+        /// <returns><see cref="SimpleLayout"/> object represented by the text.</returns>
+        public static implicit operator Layout(string text)
+        {
+            return new SimpleLayout(text);
         }
 
         /// <summary>
@@ -64,17 +72,16 @@ namespace NLog.Layouts
         public abstract string GetFormattedMessage(LogEventInfo logEvent);
 
         /// <summary>
-        /// Returns the value indicating whether a stack trace and/or the source file
-        /// information should be gathered during layout processing.
+        /// Gets or sets a value indicating whether stack trace information should be gathered during log event processing. 
         /// </summary>
-        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
+        /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
         public abstract StackTraceUsage GetStackTraceUsage();
 
         /// <summary>
         /// Returns the value indicating whether this layout includes any volatile 
         /// layout renderers.
         /// </summary>
-        /// <returns><see langword="true" /> when the layout includes at least 
+        /// <returns>A value of <see langword="true" /> when the layout includes at least 
         /// one volatile renderer, <see langword="false"/> otherwise.</returns>
         /// <remarks>
         /// Volatile layout renderers are dependent on information not contained 
@@ -94,7 +101,7 @@ namespace NLog.Layouts
         /// </remarks>
         public virtual void Precalculate(LogEventInfo logEvent)
         {
-            GetFormattedMessage(logEvent);
+            this.GetFormattedMessage(logEvent);
         }
 
         /// <summary>
@@ -102,7 +109,7 @@ namespace NLog.Layouts
         /// </summary>
         public virtual void Initialize()
         {
-            _initialized = true;
+            this.initialized = true;
         }
 
         /// <summary>
@@ -110,11 +117,16 @@ namespace NLog.Layouts
         /// </summary>
         public virtual void Close()
         {
-            if (!_initialized)
+            if (!this.initialized)
+            {
                 InternalLogger.Warn("Called Close() without Initialize() on " + this.ToString() + "(" + this.GetHashCode() + ")");
+            }
             else
-                InternalLogger.Trace("Closing " + this.ToString() + "(" + this.GetHashCode() + ")..." );
-            _initialized = false;
+            {
+                InternalLogger.Trace("Closing " + this.ToString() + "(" + this.GetHashCode() + ")...");
+            }
+
+            this.initialized = false;
         }
 
         /// <summary>
@@ -127,15 +139,11 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Converts a given text to a <see cref="Layout" />.
+        /// Gets or sets a value indicating whether the value of layout is fixed for current AppDomain.
         /// </summary>
-        /// <param name="text">Text to be converted</param>
-        /// <returns><see cref="SimpleLayout"/> object represented by the text.</returns>
-        public static implicit operator Layout(string text)
-        {
-            return new SimpleLayout(text);
-        }
-
+        /// <returns>
+        /// A value of <c>true</c> if value of layout is fixed for current AppDomain, otherwise <c>false</c>.
+        /// </returns>
         public virtual bool IsAppDomainFixed()
         {
             return false;

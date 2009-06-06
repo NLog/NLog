@@ -31,12 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
 using System.Text;
-using System.IO;
-using NLog.Internal;
-using System.ComponentModel;
 using NLog.Config;
+using NLog.Internal;
 using NLog.Layouts;
 
 namespace NLog.LayoutRenderers.Wrappers
@@ -47,18 +44,37 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <remarks>
     /// See <a href="http://en.wikipedia.org/wiki/ROT13">http://en.wikipedia.org/wiki/ROT13</a>.
     /// </remarks>
-    public abstract class WrapperLayoutRendererBase: LayoutRenderer
+    public abstract class WrapperLayoutRendererBase : LayoutRenderer
     {
-        private Layout _inner;
-
         /// <summary>
-        /// Wrapped layout
+        /// Gets or sets the wrapped layout.
         /// </summary>
         [DefaultParameter]
-        public Layout Inner
+        public Layout Inner { get; set; }
+
+        /// <summary>
+        /// Initializes the layout renderer.
+        /// </summary>
+        public override void Initialize()
         {
-            get { return _inner; }
-            set { _inner = value; }
+            base.Initialize();
+            if (this.Inner != null)
+            {
+                this.Inner.Initialize();
+            }
+        }
+
+        /// <summary>
+        /// Closes the layout renderer.
+        /// </summary>
+        public override void Close()
+        {
+            if (this.Inner != null && this.Inner.IsInitialized)
+            {
+                this.Inner.Close();
+            }
+
+            base.Close();
         }
 
         /// <summary>
@@ -84,49 +100,40 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string msg = Inner.GetFormattedMessage(logEvent);
-            builder.Append(Transform(msg));
+            string msg = this.Inner.GetFormattedMessage(logEvent);
+            builder.Append(this.Transform(msg));
         }
 
         /// <summary>
-        /// Transforms a layout output.
-        /// </summary>
-        /// <param name="text">Layout output to be transform</param>
-        /// <returns>Transformed text</returns>
-        protected abstract string Transform(string text);
-
-        /// <summary>
-        /// Determines whether stack trace information should be gathered
+        /// Gets or sets a value indicating whether stack trace information should be gathered
         /// during log event processing. By default it calls <see cref="Layout.GetStackTraceUsage"/> on
         /// <see cref="Layout"/>.
         /// </summary>
         /// <returns>A <see cref="StackTraceUsage" /> value.</returns>
         protected internal override StackTraceUsage GetStackTraceUsage()
         {
-            return StackTraceUsageUtils.Max(base.GetStackTraceUsage(), Inner.GetStackTraceUsage());
+            return StackTraceUsageUtils.Max(base.GetStackTraceUsage(), this.Inner.GetStackTraceUsage());
         }
 
-        public override void Initialize()
-        {
-            base.Initialize();
-            if (Inner != null)
-            {
-                Inner.Initialize();
-            }
-        }
-
-        public override void Close()
-        {
-            if (Inner != null && Inner.IsInitialized)
-            {
-                Inner.Close();
-            }
-            base.Close();
-        }
-
+        /// <summary>
+        /// Gets or sets a value indicating whether the value produced by the layout renderer
+        /// is fixed per current app-domain.
+        /// </summary>
+        /// <returns>
+        /// The boolean value of <c>true</c> makes the value
+        /// of the layout renderer be precalculated and inserted as a literal
+        /// in the resulting layout string.
+        /// </returns>
         protected internal override bool IsAppDomainFixed()
         {
-            return Inner.IsAppDomainFixed();
+            return this.Inner.IsAppDomainFixed();
         }
+
+        /// <summary>
+        /// Transforms the output of another layout.
+        /// </summary>
+        /// <param name="text">Output to be transform.</param>
+        /// <returns>Transformed text.</returns>
+        protected abstract string Transform(string text);
     }
 }

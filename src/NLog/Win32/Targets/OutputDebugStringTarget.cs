@@ -31,14 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
+#if !NET_CF && !SILVERLIGHT
+
 using System.Runtime.InteropServices;
 
 using NLog.Targets;
-using NLog.Config;
 
 namespace NLog.Win32.Targets
 {
+    using Internal;
+
     /// <summary>
     /// Outputs logging messages through the <c>OutputDebugString()</c> Win32 API.
     /// </summary>
@@ -58,7 +60,7 @@ namespace NLog.Win32.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/OutputDebugString/Simple/Example.cs" />
     /// </example>
     [Target("OutputDebugString")]
-    public sealed class OutputDebugStringTarget: TargetWithLayout
+    public sealed class OutputDebugStringTarget : TargetWithLayout
     {
         /// <summary>
         /// Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
@@ -66,14 +68,9 @@ namespace NLog.Win32.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            OutputDebugString(Layout.GetFormattedMessage(logEvent));
+            NativeMethods.OutputDebugString(this.Layout.GetFormattedMessage(logEvent));
         }
-
-        /// <summary>
-        /// Stub for OutputDebugString native method
-        /// </summary>
-        /// <param name="message">the string to output</param>
-        [DllImport("kernel32.dll")]
-        private static extern void OutputDebugString(string message);
     }
 }
+
+#endif

@@ -39,10 +39,10 @@ using NLog.Config;
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// The short date in a sortable format yyyy-MM-dd
+    /// The short date in a sortable format yyyy-MM-dd.
     /// </summary>
     [LayoutRenderer("shortdate")]
-    public class ShortDateLayoutRenderer: LayoutRenderer
+    public class ShortDateLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -70,6 +70,16 @@ namespace NLog.LayoutRenderers
             builder.Append(logEvent.TimeStamp.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
         }
 
+        /// <summary>
+        /// Determines whether the layout renderer is volatile.
+        /// </summary>
+        /// <returns>
+        /// A boolean indicating whether the layout renderer is volatile.
+        /// </returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
         protected internal override bool IsVolatile()
         {
             return false;

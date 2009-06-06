@@ -32,7 +32,6 @@
 // 
 
 using System;
-using NLog.Config;
 using System.ComponentModel;
 
 namespace NLog.Targets
@@ -56,21 +55,28 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/Console/Simple/Example.cs" />
     /// </example>
     [Target("Console")]
-    public sealed class ConsoleTarget: TargetWithLayoutHeaderAndFooter
+    public sealed class ConsoleTarget : TargetWithLayoutHeaderAndFooter
     {
 #if !NET_CF
-        private bool _error = false;
 
         /// <summary>
-        /// Send the logging messages to the standard error instead of the standard output.
+        /// Gets or sets a value indicating whether to send the logging messages to the standard error instead of the standard output.
         /// </summary>
         [DefaultValue(false)]
-        public bool Error
-        {
-            get { return _error; }
-            set { _error = value; }
-        }
+        public bool Error { get; set; }
 #endif
+
+        /// <summary>
+        /// Initializes the target.
+        /// </summary>
+        public override void Initialize()
+        {
+            base.Initialize();
+            if (Header != null)
+            {
+                this.Output(Header.GetFormattedMessage(LogEventInfo.CreateNullEvent()));
+            }
+        }
 
         /// <summary>
         /// Writes the specified logging event to the Console.Out or
@@ -82,13 +88,26 @@ namespace NLog.Targets
         /// </remarks>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            Output(Layout.GetFormattedMessage(logEvent));
+            this.Output(this.Layout.GetFormattedMessage(logEvent));
+        }
+
+        /// <summary>
+        /// Closes the target and releases any unmanaged resources.
+        /// </summary>
+        protected internal override void Close()
+        {
+            if (Footer != null)
+            {
+                this.Output(Footer.GetFormattedMessage(LogEventInfo.CreateNullEvent()));
+            }
+
+            base.Close();
         }
 
         private void Output(string s)
         {
 #if !NET_CF
-            if (Error)
+            if (this.Error)
             {
                 Console.Error.WriteLine(s);
             }
@@ -99,30 +118,6 @@ namespace NLog.Targets
 #else
             Console.WriteLine(s);
 #endif
-        }
-
-        /// <summary>
-        /// Initializes the target.
-        /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize();
-            if (Header != null)
-            {
-                Output(Header.GetFormattedMessage(LogEventInfo.CreateNullEvent()));
-            }
-        }
-
-        /// <summary>
-        /// Closes the target and releases any unmanaged resources.
-        /// </summary>
-        protected internal override void Close()
-        {
-            if (Footer != null)
-            {
-                Output(Footer.GetFormattedMessage(LogEventInfo.CreateNullEvent()));
-            }
-            base.Close();
         }
     }
 }

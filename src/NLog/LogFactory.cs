@@ -32,46 +32,72 @@
 // 
 
 using System;
-using System.Collections;
-using System.Xml;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
-using System.Threading;
-using System.Diagnostics;
-using System.Security;
-using System.Text;
-using System.Globalization;
 using System.Runtime.CompilerServices;
-
+using System.Text;
+using System.Threading;
 using NLog.Config;
 using NLog.Internal;
 using NLog.Targets;
-using System.Collections.Generic;
 
 namespace NLog
 {
     /// <summary>
     /// Represents a method that's invoked each time a logging configuration changes.
     /// </summary>
+    /// <param name="oldConfig">Old configuration.</param>
+    /// <param name="newConfig">New configuration.</param>
     public delegate void LoggingConfigurationChanged(LoggingConfiguration oldConfig, LoggingConfiguration newConfig);
 
     /// <summary>
     /// Represents a method that's invoked each time a logging configuration gets reloaded
     /// to signal either success or failure.
     /// </summary>
+    /// <param name="succeeded">Whether configuration load has succeeded.</param>
+    /// <param name="ex">Exception thrown while loading the configuration.</param>
     public delegate void LoggingConfigurationReloaded(bool succeeded, Exception ex);
-    
+
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
     /// </summary>
     public class LogFactory
     {
-        private Dictionary<LoggerCacheKey,Logger> _loggerCache = new Dictionary<LoggerCacheKey,Logger>();
-        private LoggingConfiguration _config;
-        private LogLevel _globalThreshold = LogLevel.MinLevel;
-        private bool _configLoaded = false;
-        private bool _throwExceptions = false;
-        private int _logsEnabled = 0;
+#if !NET_CF && !SILVERLIGHT
+        private const int ReconfigAfterFileChangedTimeout = 1000;
+        private MultiFileWatcher watcher;
+        private Timer reloadTimer = null;
+#endif
+
+        private Dictionary<LoggerCacheKey, Logger> loggerCache = new Dictionary<LoggerCacheKey, Logger>();
+        private LoggingConfiguration config;
+        private LogLevel globalThreshold = LogLevel.MinLevel;
+        private bool configLoaded = false;
+        private int logsEnabled = 0;
+
+        /// <summary>
+        /// Initializes a new instance of the LogFactory class.
+        /// </summary>
+        public LogFactory()
+        {
+#if !NET_CF && !SILVERLIGHT
+            this.watcher = new MultiFileWatcher();
+            this.watcher.OnChange += this.ConfigFileChanged;
+#endif
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the LogFactory class.
+        /// </summary>
+        /// <param name="config">The config.</param>
+        public LogFactory(LoggingConfiguration config)
+            : this()
+        {
+            this.Configuration = config;
+        }
 
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> changes.
@@ -84,43 +110,150 @@ namespace NLog
         /// </summary>
         public event LoggingConfigurationReloaded ConfigurationReloaded;
 #endif
+
         /// <summary>
-        /// Specified whether NLog should throw exceptions. By default exceptions
+        /// Gets or sets a value indicating whether exceptions should be thrown.
+        /// </summary>
+        /// <value>A value of <c>true</c> if exceptiosn should be thrown; otherwise, <c>false</c>.</value>
+        /// <remarks>By default exceptions
         /// are not thrown under any circumstances.
-        /// </summary>
-        public bool ThrowExceptions
-        {
-            get { return _throwExceptions; }
-            set { _throwExceptions = value; }
-        }
+        /// </remarks>
+        public bool ThrowExceptions { get; set; }
 
         /// <summary>
-        /// Creates a new instance of <see cref="LogFactory"/>
+        /// Gets or sets the current logging configuration.
         /// </summary>
-        public LogFactory()
+        public LoggingConfiguration Configuration
         {
+            get
+            {
+                lock (this)
+                {
+                    if (this.configLoaded)
+                    {
+                        return this.config;
+                    }
+
+                    this.configLoaded = true;
+
 #if !NET_CF && !SILVERLIGHT
-            _watcher = new MultiFileWatcher(new EventHandler(ConfigFileChanged));
+                    if (this.config == null)
+                    {
+                        // try to load default configuration
+                        this.config = XmlLoggingConfiguration.AppConfig;
+                    }
 #endif
+
+#if !SILVERLIGHT
+                    if (this.config == null)
+                    {
+                        foreach (string configFile in this.GetCandidateFileNames())
+                        {
+                            if (File.Exists(configFile))
+                            {
+                                InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                                this.config = new XmlLoggingConfiguration(configFile);
+                            }
+                        }
+                    }
+#endif
+
+#if !NET_CF && !SILVERLIGHT
+                    if (this.config != null)
+                    {
+                        this.Dump(this.config);
+                        this.watcher.Watch(this.config.FileNamesToWatch);
+                    }
+#endif
+                    if (this.config != null)
+                    {
+                        this.config.InitializeAll();
+                    }
+
+                    return this.config;
+                }
+            }
+
+            set
+            {
+#if !NET_CF && !SILVERLIGHT
+                try
+                {
+                    this.watcher.StopWatching();
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error("Cannot stop file watching: {0}", ex);
+                }
+#endif
+
+                lock (this)
+                {
+                    LoggingConfiguration oldConfig = this.config;
+                    if (oldConfig != null)
+                    {
+                        InternalLogger.Info("Closing old configuration.");
+                        oldConfig.Close();
+                    }
+
+                    this.config = value;
+                    this.configLoaded = true;
+
+                    if (this.config != null)
+                    {
+                        this.Dump(this.config);
+
+                        this.config.InitializeAll();
+                        this.ReconfigExistingLoggers(this.config);
+#if !NET_CF && !SILVERLIGHT
+                        try
+                        {
+                            this.watcher.Watch(this.config.FileNamesToWatch);
+                        }
+                        catch (Exception ex)
+                        {
+                            InternalLogger.Warn("Cannot start file watching: {0}", ex);
+                        }
+#endif
+                    }
+
+                    if (this.ConfigurationChanged != null)
+                    {
+                        this.ConfigurationChanged(oldConfig, value);
+                    }
+                }
+            }
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="LogFactory"/> and sets the initial configuration.
+        /// Gets or sets the global log threshold. Log events below this threshold are not logged.
         /// </summary>
-        public LogFactory(LoggingConfiguration config) : this()
+        public LogLevel GlobalThreshold
         {
-            Configuration = config;
+            get
+            {
+                return this.globalThreshold;
+            }
+
+            set
+            {
+                lock (this)
+                {
+                    this.globalThreshold = value;
+                    this.ReconfigExistingLoggers();
+                }
+            }
         }
 
         /// <summary>
         /// Creates a logger that discards all log messages.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Null logger instance.</returns>
         public Logger CreateNullLogger()
         {
-            TargetWithFilterChain[]targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
+            TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
             Logger newLogger = new Logger();
-            newLogger.Initialize("", new LoggerConfiguration(targetsByLevel), this);
+            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel), this);
             return newLogger;
         }
 
@@ -136,13 +269,13 @@ namespace NLog
         {
             StackFrame frame = new StackFrame(1, false);
 
-            return GetLogger(frame.GetMethod().DeclaringType.FullName);
+            return this.GetLogger(frame.GetMethod().DeclaringType.FullName);
         }
 
         /// <summary>
         /// Gets the logger named after the currently-being-initialized class.
         /// </summary>
-        /// <param name="loggerType">type of the logger to create. The type must inherit from NLog.Logger</param>
+        /// <param name="loggerType">The type of the logger to create. The type must inherit from NLog.Logger.</param>
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
@@ -151,221 +284,246 @@ namespace NLog
         {
             StackFrame frame = new StackFrame(1, false);
 
-            return GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
+            return this.GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
         }
 #endif
 
-        class LoggerCacheKey
-        {
-            private Type _loggerConcreteType;
-            private string _name;
-
-            public LoggerCacheKey(Type loggerConcreteType, string name)
-            {
-                _loggerConcreteType = loggerConcreteType;
-                _name = name;
-            }
-
-            public override int GetHashCode()
-            {
-                return _loggerConcreteType.GetHashCode() ^ _name.GetHashCode();
-            }
-
-            public override bool Equals(object o)
-            {
-                LoggerCacheKey lck2 = (LoggerCacheKey)o;
-                if (lck2 == null)
-                    return false;
-
-                return (ConcreteType == lck2.ConcreteType) && (lck2.Name == Name);
-            }
-
-            public Type ConcreteType
-            {
-                get { return _loggerConcreteType; }
-            }
-
-            public string Name
-            {
-                get { return _name; }
-            }
-        }
-
-        private Logger GetLogger(LoggerCacheKey cacheKey)
-        {
-            lock(this)
-            {
-                Logger l;
-
-                if (_loggerCache.TryGetValue(cacheKey, out l))
-                    return l;
-
-                //Activator.CreateInstance(cacheKey.ConcreteType);
-                Logger newLogger;
-
-                if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(Logger))
-                    newLogger = (Logger)FactoryHelper.CreateInstance(cacheKey.ConcreteType);
-                else
-                    newLogger = new Logger();
-
-                if (cacheKey.ConcreteType != null)
-                    
-                newLogger.Initialize(cacheKey.Name, GetConfigurationForLogger(cacheKey.Name, Configuration), this);
-                _loggerCache[cacheKey] = newLogger;
-                return newLogger;
-            }
-        }
-
         /// <summary>
         /// Gets the specified named logger.
         /// </summary>
-        /// <param name="name">name of the logger</param>
+        /// <param name="name">Name of the logger.</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name)
         {
-            return GetLogger(new LoggerCacheKey(typeof(Logger),name));
+            return this.GetLogger(new LoggerCacheKey(typeof(Logger), name));
         }
 
         /// <summary>
         /// Gets the specified named logger.
         /// </summary>
-        /// <param name="name">name of the logger</param>
-        /// <param name="loggerType">type of the logger to create. The type must inherit from NLog.Logger</param>
+        /// <param name="name">Name of the logger.</param>
+        /// <param name="loggerType">The type of the logger to create. The type must inherit from NLog.Logger.</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the 
         /// same argument aren't guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name, Type loggerType)
         {
-            return GetLogger(new LoggerCacheKey(loggerType,name));
+            return this.GetLogger(new LoggerCacheKey(loggerType, name));
         }
 
         /// <summary>
-        /// Gets or sets the current logging configuration.
+        /// Loops through all loggers previously returned by GetLogger
+        /// and recalculates their target and filter list. Useful after modifying the configuration programmatically
+        /// to ensure that all loggers have been properly configured.
         /// </summary>
-        public LoggingConfiguration Configuration
+        public void ReconfigExistingLoggers()
         {
-            get
+            this.ReconfigExistingLoggers(this.Configuration);
+        }
+
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        public void Flush()
+        {
+            this.Configuration.FlushAllTargets(TimeSpan.MaxValue);
+        }
+
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public void Flush(TimeSpan timeout)
+        {
+            this.Configuration.FlushAllTargets(timeout);
+        }
+
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public void Flush(int timeoutMilliseconds)
+        {
+            this.Configuration.FlushAllTargets(TimeSpan.FromMilliseconds(timeoutMilliseconds));
+        }
+
+        /// <summary>Decreases the log enable counter and if it reaches -1 
+        /// the logs are disabled.</summary>
+        /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
+        /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
+        /// <returns>An object that iplements IDisposable whose Dispose() method
+        /// reenables logging. To be used with C# <c>using ()</c> statement.</returns>
+        public IDisposable DisableLogging()
+        {
+            lock (this)
             {
-                lock(this)
+                this.logsEnabled--;
+                if (this.logsEnabled == -1)
                 {
-                    if (_configLoaded)
-                        return _config;
-
-                    _configLoaded = true;
-
-#if !NET_CF && !SILVERLIGHT
-                    if (_config == null)
-                    {
-                        // try to load default configuration
-                        _config = XmlLoggingConfiguration.AppConfig;
-                    }
-#endif
-
-#if !SILVERLIGHT
-                    if (_config == null)
-                    {
-                        foreach (string configFile in GetCandidateFileNames())
-                        {
-                            if (File.Exists(configFile))
-                            {
-                                InternalLogger.Debug("Attempting to load config from {0}", configFile);
-                                _config = new XmlLoggingConfiguration(configFile);
-                            }
-                        }
-                    }
-#endif
-
-#if !NET_CF && !SILVERLIGHT
-                    if (_config != null)
-                    {
-                        Dump(_config);
-                        _watcher.Watch(_config.FileNamesToWatch);
-                    }
-#endif
-                    if (_config != null)
-                    {
-                        _config.InitializeAll();
-                    }
-                    return _config;
+                    this.ReconfigExistingLoggers();
                 }
             }
 
-            set
+            return new LogEnabler(this);
+        }
+
+        /// <summary>Increases the log enable counter and if it reaches 0 the logs are disabled.</summary>
+        /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
+        /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
+        public void EnableLogging()
+        {
+            lock (this)
             {
+                this.logsEnabled++;
+                if (this.logsEnabled == 0)
+                {
+                    this.ReconfigExistingLoggers();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns <see langword="true" /> if logging is currently enabled.
+        /// </summary>
+        /// <returns>A value of <see langword="true" /> if logging is currently enabled, 
+        /// <see langword="false"/> otherwise.</returns>
+        /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
+        /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
+        public bool IsLoggingEnabled()
+        {
+            return this.logsEnabled >= 0;
+        }
+
 #if !NET_CF && !SILVERLIGHT
+        internal void ReloadConfigOnTimer(object state)
+        {
+            LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
+
+            InternalLogger.Info("Reloading configuration...");
+            lock (this)
+            {
+                if (this.reloadTimer != null)
+                {
+                    this.reloadTimer.Dispose();
+                    this.reloadTimer = null;
+                }
+
+                this.watcher.StopWatching();
                 try
                 {
-                    _watcher.StopWatching();
+                    if (this.Configuration != configurationToReload)
+                    {
+                        throw new Exception("Config changed in between. Not reloading.");
+                    }
+
+                    LoggingConfiguration newConfig = configurationToReload.Reload();
+                    if (newConfig != null)
+                    {
+                        this.Configuration = newConfig;
+                        if (this.ConfigurationReloaded != null)
+                        {
+                            this.ConfigurationReloaded(true, null);
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Configuration.Reload() returned null. Not reloading.");
+                    }
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error("Cannot stop file watching: {0}", ex);
-                }
-#endif 
-
-                lock(this)
-                {
-                    LoggingConfiguration oldConfig = _config;
-                    if (oldConfig != null)
+                    this.watcher.Watch(configurationToReload.FileNamesToWatch);
+                    if (this.ConfigurationReloaded != null)
                     {
-                        InternalLogger.Info("Closing old configuration.");
-                        oldConfig.Close();
+                        this.ConfigurationReloaded(false, ex);
                     }
-
-                    _config = value;
-                    _configLoaded = true;
-
-                    if (_config != null)
-                    {
-                        Dump(_config);
-
-                        _config.InitializeAll();
-                        ReconfigExistingLoggers(_config);
-#if !NET_CF && !SILVERLIGHT
-                        try
-                        {
-                            _watcher.Watch(_config.FileNamesToWatch);
-                        }
-                        catch (Exception ex)
-                        {
-                            InternalLogger.Warn("Cannot start file watching: {0}", ex);
-                        }
-#endif 
-                    }
-                    if (ConfigurationChanged != null)
-                        ConfigurationChanged(oldConfig, value);
                 }
             }
         }
+#endif
 
-#if !NET_CF && !SILVERLIGHT
-        private MultiFileWatcher _watcher;
-        private Timer _reloadTimer = null;
-
-        const int ReconfigAfterFileChangedTimeout = 1000;
-
-        private void ConfigFileChanged(object sender, EventArgs args)
+        internal void ReconfigExistingLoggers(LoggingConfiguration config)
         {
-            InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", ReconfigAfterFileChangedTimeout);
-
-            // In the rare cases we may get multiple notifications here, 
-            // but we need to reload config only once.
-            //
-            // The trick is to schedule the reload in one second after
-            // the last change notification comes in.
-
-            lock (this)
+            foreach (Logger logger in this.loggerCache.Values)
             {
-                if (_reloadTimer == null)
+                logger.SetConfiguration(this.GetConfigurationForLogger(logger.Name, config));
+            }
+        }
+
+        internal void GetTargetsByLevelForLogger(string name, ICollection<LoggingRule> rules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel)
+        {
+            foreach (LoggingRule rule in rules)
+            {
+                if (rule.NameMatches(name))
                 {
-                    _reloadTimer = new Timer(new TimerCallback(ReloadConfigOnTimer), Configuration, ReconfigAfterFileChangedTimeout, Timeout.Infinite);
+                    for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+                    {
+                        if (i >= this.GlobalThreshold.Ordinal && rule.IsLoggingEnabledForLevel(LogLevel.FromOrdinal(i)))
+                        {
+                            foreach (Target target in rule.Targets)
+                            {
+                                TargetWithFilterChain awf = new TargetWithFilterChain(target, rule.Filters);
+                                if (lastTargetsByLevel[i] != null)
+                                {
+                                    lastTargetsByLevel[i].NextInChain = awf;
+                                }
+                                else
+                                {
+                                    targetsByLevel[i] = awf;
+                                }
+
+                                lastTargetsByLevel[i] = awf;
+                            }
+                        }
+                    }
+
+                    this.GetTargetsByLevelForLogger(name, rule.ChildRules, targetsByLevel, lastTargetsByLevel);
+
+                    if (rule.Final)
+                    {
+                        break;
+                    }
                 }
-                else
+            }
+
+            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            {
+                TargetWithFilterChain tfc = targetsByLevel[i];
+                if (tfc != null)
                 {
-                    _reloadTimer.Change(ReconfigAfterFileChangedTimeout, Timeout.Infinite);
+                    tfc.PrecalculateStackTraceUsage();
                 }
             }
         }
-#endif 
+
+        internal LoggerConfiguration GetConfigurationForLogger(string name, LoggingConfiguration config)
+        {
+            TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
+            TargetWithFilterChain[] lastTargetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
+
+            if (config != null && this.IsLoggingEnabled())
+            {
+                this.GetTargetsByLevelForLogger(name, config.LoggingRules, targetsByLevel, lastTargetsByLevel);
+            }
+
+            InternalLogger.Debug("Targets for {0} by level:", name);
+            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
+                for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
+                {
+                    sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
+                    if (afc.FilterChain.Count > 0)
+                    {
+                        sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
+                    }
+                }
+
+                InternalLogger.Debug(sb.ToString());
+            }
+
+            return new LoggerConfiguration(targetsByLevel);
+        }
 
         private IEnumerable<string> GetCandidateFileNames()
         {
@@ -382,264 +540,170 @@ namespace NLog
             // current config file with .config renamed to .nlog
             string cf = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
             if (cf != null)
+            {
                 yield return Path.ChangeExtension(cf, ".nlog");
+            }
 
             // NLog.dll.nlog
             Assembly nlogAssembly = typeof(LoggingConfiguration).Assembly;
             if (!nlogAssembly.GlobalAssemblyCache)
+            {
                 yield return nlogAssembly.Location + ".nlog";
+            }
 
-            string globalConfig = Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE");
+            string globalConfig = Environment.GetEnvironmentVariable("NLOG_GLOBAL_config_FILE");
             if (!String.IsNullOrEmpty(globalConfig))
+            {
                 yield return globalConfig;
+            }
 #endif
-
         }
+
+        private Logger GetLogger(LoggerCacheKey cacheKey)
+        {
+            lock (this)
+            {
+                Logger l;
+
+                if (this.loggerCache.TryGetValue(cacheKey, out l))
+                {
+                    return l;
+                }
+
+                // Activator.CreateInstance(cacheKey.ConcreteType);
+                Logger newLogger;
+
+                if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(Logger))
+                {
+                    newLogger = (Logger)FactoryHelper.CreateInstance(cacheKey.ConcreteType);
+                }
+                else
+                {
+                    newLogger = new Logger();
+                }
+
+                if (cacheKey.ConcreteType != null)
+                {
+                    newLogger.Initialize(cacheKey.Name, this.GetConfigurationForLogger(cacheKey.Name, this.Configuration), this);
+                }
+
+                this.loggerCache[cacheKey] = newLogger;
+                return newLogger;
+            }
+        }
+
+#if !NET_CF && !SILVERLIGHT
+        private void ConfigFileChanged(object sender, EventArgs args)
+        {
+            InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", ReconfigAfterFileChangedTimeout);
+
+            // In the rare cases we may get multiple notifications here, 
+            // but we need to reload config only once.
+            //
+            // The trick is to schedule the reload in one second after
+            // the last change notification comes in.
+            lock (this)
+            {
+                if (this.reloadTimer == null)
+                {
+                    this.reloadTimer = new Timer(
+                        new TimerCallback(this.ReloadConfigOnTimer),
+                        this.Configuration,
+                        ReconfigAfterFileChangedTimeout,
+                        Timeout.Infinite);
+                }
+                else
+                {
+                    this.reloadTimer.Change(ReconfigAfterFileChangedTimeout, Timeout.Infinite);
+                }
+            }
+        }
+#endif
 
         private void Dump(LoggingConfiguration config)
         {
             if (!InternalLogger.IsDebugEnabled)
+            {
                 return;
-
-            InternalLogger.Debug("--- NLog configuration dump. ---");
-            InternalLogger.Debug("Targets:");
-            foreach (Target target in config._targets.Values)
-            {
-                InternalLogger.Info("{0}", target);
-            }
-            InternalLogger.Debug("Rules:");
-            foreach (LoggingRule rule in config.LoggingRules)
-            {
-                InternalLogger.Info("{0}", rule);
-            }
-            InternalLogger.Debug("--- End of NLog configuration dump ---");
-        }
-
-#if !NET_CF && !SILVERLIGHT
-        internal void ReloadConfigOnTimer(object state)
-        {
-            LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
-
-            InternalLogger.Info("Reloading configuration...");
-            lock(this)
-            {
-                if (_reloadTimer != null)
-                {
-                    _reloadTimer.Dispose();
-                    _reloadTimer = null;
-                }
-
-                _watcher.StopWatching();
-                try
-                {
-                    if (Configuration != configurationToReload)
-                    {
-                        throw new Exception("Config changed in between. Not reloading.");
-                    }
-
-                    LoggingConfiguration newConfig = configurationToReload.Reload();
-                    if (newConfig != null)
-                    {
-                        Configuration = newConfig;
-                        if (ConfigurationReloaded != null)
-                            ConfigurationReloaded(true, null);
-                    }
-                    else
-                    {
-                        throw new Exception("Configuration.Reload() returned null. Not reloading.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    _watcher.Watch(configurationToReload.FileNamesToWatch);
-                    if (ConfigurationReloaded != null)
-                        ConfigurationReloaded(false, ex);
-                }
-            }
-        }
-#endif
-
-        /// <summary>
-        /// Loops through all loggers previously returned by GetLogger
-        /// and recalculates their target and filter list. Useful after modifying the configuration programmatically
-        /// to ensure that all loggers have been properly configured.
-        /// </summary>
-        public void ReconfigExistingLoggers()
-        {
-            ReconfigExistingLoggers(Configuration);
-        }
-
-        internal void ReconfigExistingLoggers(LoggingConfiguration config)
-        {
-            foreach (Logger logger in _loggerCache.Values)
-            {
-                logger.SetConfiguration(GetConfigurationForLogger(logger.Name, config));
-            }
-        }
-
-        internal void GetTargetsByLevelForLogger(string name, ICollection<LoggingRule> rules, TargetWithFilterChain[]targetsByLevel, TargetWithFilterChain[]lastTargetsByLevel)
-        {
-            foreach (LoggingRule rule in rules)
-            {
-                if (rule.NameMatches(name))
-                {
-                    for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
-                    {
-                        if (i >= GlobalThreshold.Ordinal && rule.IsLoggingEnabledForLevel(LogLevel.FromOrdinal(i)))
-                        {
-                            foreach (Target target in rule.Targets)
-                            {
-                                TargetWithFilterChain awf = new TargetWithFilterChain(target, rule.Filters);
-                                if (lastTargetsByLevel[i] != null)
-                                {
-                                    lastTargetsByLevel[i].Next = awf;
-                                }
-                                else
-                                {
-                                    targetsByLevel[i] = awf;
-                                }
-                                lastTargetsByLevel[i] = awf;
-                            }
-                        }
-                    }
-
-                    GetTargetsByLevelForLogger(name, rule.ChildRules, targetsByLevel, lastTargetsByLevel);
-
-                    if (rule.Final)
-                        break;
-                }
-            }
-            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
-            {
-                TargetWithFilterChain tfc = targetsByLevel[i];
-                if (tfc != null)
-                    tfc.PrecalculateGetStackTraceUsage();
-            }
-        }
-
-        internal LoggerConfiguration GetConfigurationForLogger(string name, LoggingConfiguration config)
-        {
-            TargetWithFilterChain[]targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
-            TargetWithFilterChain[]lastTargetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
-
-            if (config != null && IsLoggingEnabled())
-            {
-                GetTargetsByLevelForLogger(name, config.LoggingRules, targetsByLevel, lastTargetsByLevel);
             }
 
-            InternalLogger.Debug("Targets for {0} by level:", name);
-            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
-                for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.Next)
-                {
-                    sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
-                    if (afc.FilterChain.Count > 0)
-                        sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
-                }
-                InternalLogger.Debug(sb.ToString());
-            }
-
-            return new LoggerConfiguration(targetsByLevel);
+            config.Dump();
         }
 
         /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
+        /// Logger cache key.
         /// </summary>
-        public void Flush()
+        internal class LoggerCacheKey
         {
-            Configuration.FlushAllTargets(TimeSpan.MaxValue);
+            private Type loggerConcreteType;
+            private string name;
+
+            internal LoggerCacheKey(Type loggerConcreteType, string name)
+            {
+                this.loggerConcreteType = loggerConcreteType;
+                this.name = name;
+            }
+
+            internal Type ConcreteType
+            {
+                get { return this.loggerConcreteType; }
+            }
+
+            internal string Name
+            {
+                get { return this.name; }
+            }
+
+            /// <summary>
+            /// Serves as a hash function for a particular type.
+            /// </summary>
+            /// <returns>
+            /// A hash code for the current <see cref="T:System.Object"/>.
+            /// </returns>
+            public override int GetHashCode()
+            {
+                return this.loggerConcreteType.GetHashCode() ^ this.name.GetHashCode();
+            }
+
+            /// <summary>
+            /// Determines if two objects are equal in value.
+            /// </summary>
+            /// <param name="o">Other object to compare to.</param>
+            /// <returns>True if objects are equal, false otherwise.</returns>
+            public override bool Equals(object o)
+            {
+                LoggerCacheKey lck2 = (LoggerCacheKey)o;
+                if (lck2 == null)
+                {
+                    return false;
+                }
+
+                return (this.ConcreteType == lck2.ConcreteType) && (lck2.Name == this.Name);
+            }
         }
 
         /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
+        /// Enables logging in <see cref="IDisposable.Dispose"/> implementation.
         /// </summary>
-        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-        public void Flush(TimeSpan timeout)
+        private class LogEnabler : IDisposable
         {
-            Configuration.FlushAllTargets(timeout);
-        }
+            private LogFactory factory;
 
-        /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
-        /// </summary>
-        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-        public void Flush(int timeoutMilliseconds)
-        {
-            Configuration.FlushAllTargets(TimeSpan.FromMilliseconds(timeoutMilliseconds));
-        }
-
-        class LogEnabler: IDisposable
-        {
-            private LogFactory _factory;
-
+            /// <summary>
+            /// Initializes a new instance of the LogEnabler class.
+            /// </summary>
+            /// <param name="factory">The factory.</param>
             public LogEnabler(LogFactory factory)
             {
-                _factory = factory;
+                this.factory = factory;
             }
 
+            /// <summary>
+            /// Enables logging.
+            /// </summary>
             void IDisposable.Dispose()
             {
-                _factory.EnableLogging();
-            }
-        }
-
-        /// <summary>Decreases the log enable counter and if it reaches -1 
-        /// the logs are disabled.</summary>
-        /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
-        /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
-        /// <returns>An object that iplements IDisposable whose Dispose() method
-        /// reenables logging. To be used with C# <c>using ()</c> statement.</returns>
-        public IDisposable DisableLogging()
-        {
-            lock (this)
-            {
-                _logsEnabled--;
-                if (_logsEnabled == -1)
-                    ReconfigExistingLoggers();
-            }
-            return new LogEnabler(this);
-        }
-
-        /// <summary>Increases the log enable counter and if it reaches 0 the logs are disabled.</summary>
-        /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
-        /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
-        public void EnableLogging()
-        {
-            lock (this)
-            {
-                _logsEnabled++;
-                if (_logsEnabled == 0)
-                    ReconfigExistingLoggers();
-            }
-        }
-
-        /// <summary>
-        /// Returns <see langword="true" /> if logging is currently enabled.
-        /// </summary>
-        /// <returns><see langword="true" /> if logging is currently enabled, 
-        /// <see langword="false"/> otherwise.</returns>
-        /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
-        /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
-        public bool IsLoggingEnabled()
-        {
-            return _logsEnabled >= 0;
-        }
-
-        /// <summary>
-        /// Global log threshold. Log events below this threshold are not logged.
-        /// </summary>
-        public LogLevel GlobalThreshold
-        {
-            get { return _globalThreshold; }
-            set 
-            { 
-                lock(this)
-                {
-                    _globalThreshold = value;
-                    ReconfigExistingLoggers();
-                }
+                this.factory.EnableLogging();
             }
         }
     }

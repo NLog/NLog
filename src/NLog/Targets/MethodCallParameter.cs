@@ -32,10 +32,6 @@
 // 
 
 using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Reflection;
 using System.Globalization;
 
 using NLog.Config;
@@ -48,82 +44,68 @@ namespace NLog.Targets
     /// </summary>
     public class MethodCallParameter
     {
-        private Type _type;
-        private Layout _layout;
-        private string _name;
-
         /// <summary>
-        /// Constructs a new instance of <see cref="MethodCallParameter"/> and sets
-        /// the type to String.
+        /// Initializes a new instance of the MethodCallParameter class.
         /// </summary>
         public MethodCallParameter()
         {
-            _type = typeof(string);
+            this.Type = typeof(string);
         }
 
         /// <summary>
-        /// Constructs a new instance of <see cref="MethodCallParameter"/>, sets
-        /// the type to String and initializes the Layout property.
+        /// Initializes a new instance of the MethodCallParameter class.
         /// </summary>
-        public MethodCallParameter(string layout)
+        /// <param name="layout">The layout to use for parameter value.</param>
+        public MethodCallParameter(Layout layout)
         {
-            _type = typeof(string);
-            Layout = layout;
+            this.Type = typeof(string);
+            this.Layout = layout;
         }
 
         /// <summary>
-        /// Constructs a new instance of <see cref="MethodCallParameter"/>, sets
-        /// the type to String and initializes the Name and Layout properties.
+        /// Initializes a new instance of the MethodCallParameter class.
         /// </summary>
-        public MethodCallParameter(string name, string layout)
+        /// <param name="parameterName">Name of the parameter.</param>
+        /// <param name="layout">The layout.</param>
+        public MethodCallParameter(string parameterName, Layout layout)
         {
-            _type = typeof(string);
-            Name = name;
-            Layout = layout;
+            this.Type = typeof(string);
+            this.Name = parameterName;
+            this.Layout = layout;
         }
 
         /// <summary>
-        /// Constructs a new instance of <see cref="MethodCallParameter"/>, sets
-        /// the type to String and initializes the Name, Layout and Type properties.
+        /// Initializes a new instance of the MethodCallParameter class.
         /// </summary>
-        public MethodCallParameter(string name, Type type, string layout)
+        /// <param name="name">The name of the parameter.</param>
+        /// <param name="layout">The layout.</param>
+        /// <param name="type">The type of the parameter.</param>
+        public MethodCallParameter(string name, Layout layout, Type type)
         {
-            _type = type;
-            Name = name;
-            Layout = layout;
+            this.Type = type;
+            this.Name = name;
+            this.Layout = layout;
         }
 
         /// <summary>
-        /// The name of the parameter.
+        /// Gets or sets the name of the parameter.
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
 
         /// <summary>
-        /// The type of the parameter.
+        /// Gets or sets the type of the parameter.
         /// </summary>
-        public string Type
-        {
-            get { return _type.FullName; }
-            set { _type = System.Type.GetType(value); }
-        }
+        public Type Type { get; set; }
 
         /// <summary>
-        /// The layout that should be use to calcuate the value for the parameter.
+        /// Gets or sets the layout that should be use to calcuate the value for the parameter.
         /// </summary>
         [RequiredParameter]
-        public Layout Layout
-        {
-            get { return _layout; }
-            set { _layout = value; }
-        }
+        public Layout Layout { get; set; }
 
         internal object GetValue(LogEventInfo logEvent)
         {
-            return Convert.ChangeType(Layout.GetFormattedMessage(logEvent), _type, CultureInfo.InvariantCulture);
+            return Convert.ChangeType(this.Layout.GetFormattedMessage(logEvent), this.Type, CultureInfo.InvariantCulture);
         }
     }
 }

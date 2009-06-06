@@ -32,18 +32,8 @@
 // 
 
 using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
-using NLog.Config;
 using System.ComponentModel;
+using NLog.Internal;
 
 namespace NLog.Targets.Wrappers
 {
@@ -65,50 +55,41 @@ namespace NLog.Targets.Wrappers
     /// <code lang="C#" src="examples/targets/Configuration API/RetryingWrapper/Simple/Example.cs" />
     /// </example>
     [Target("RetryingWrapper", IsWrapper = true)]
-    public class RetryingTargetWrapper: WrapperTargetBase
+    public class RetryingTargetWrapper : WrapperTargetBase
     {
-        private int _retryCount = 3;
-        private int _retryDelayMilliseconds = 100;
-
         /// <summary>
-        /// Creates a new instance of <see cref="RetryingTargetWrapper"/>.
+        /// Initializes a new instance of the RetryingTargetWrapper class.
         /// </summary>
         public RetryingTargetWrapper()
         {
+            this.RetryCount = 3;
+            this.RetryDelayMilliseconds = 100;
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="RetryingTargetWrapper"/> and 
-        /// initializes the <see cref="WrapperTargetBase.WrappedTarget"/>
-        /// <see cref="RetryCount"/> and <see cref="RetryDelayMilliseconds"/>
-        /// properties.
+        /// Initializes a new instance of the RetryingTargetWrapper class.
         /// </summary>
-        public RetryingTargetWrapper(Target writeTo, int retryCount, int retryDelayMilliseconds)
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        /// <param name="retryCount">The retry count.</param>
+        /// <param name="retryDelayMilliseconds">The retry delay milliseconds.</param>
+        public RetryingTargetWrapper(Target wrappedTarget, int retryCount, int retryDelayMilliseconds)
         {
-            WrappedTarget = writeTo;
-            RetryCount = retryCount;
-            RetryDelayMilliseconds = retryDelayMilliseconds;
+            this.WrappedTarget = wrappedTarget;
+            this.RetryCount = retryCount;
+            this.RetryDelayMilliseconds = retryDelayMilliseconds;
         }
 
         /// <summary>
-        /// Number of retries that should be attempted on the wrapped target in case of a failure.
+        /// Gets or sets the number of retries that should be attempted on the wrapped target in case of a failure.
         /// </summary>
         [DefaultValue(3)]
-        public int RetryCount
-        {
-            get { return _retryCount; }
-            set { _retryCount = value; }
-        }
+        public int RetryCount { get; set; }
 
         /// <summary>
-        /// The time to wait between retries in milliseconds.
+        /// Gets or sets the time to wait between retries in milliseconds.
         /// </summary>
         [DefaultValue(100)]
-        public int RetryDelayMilliseconds
-        {
-            get { return _retryDelayMilliseconds; }
-            set { _retryDelayMilliseconds = value; }
-        }
+        public int RetryDelayMilliseconds { get; set; }
 
         /// <summary>
         /// Writes the specified log event to the wrapped target, retrying and pausing in case of an error.
@@ -116,22 +97,27 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            for (int i = 0; i < RetryCount; ++i)
+            for (int i = 0; i < this.RetryCount; ++i)
             {
                 try
                 {
                     if (i > 0)
+                    {
                         InternalLogger.Warn("Retry #{0}", i);
+                    }
+
                     WrappedTarget.Write(logEvent);
-                    // success, return
                     return;
                 }
                 catch (Exception ex)
                 {
                     InternalLogger.Warn("Error while writing to '{0}': {1}", WrappedTarget, ex);
-                    if (i == RetryCount - 1)
+                    if (i == this.RetryCount - 1)
+                    {
                         throw ex;
-                    System.Threading.Thread.Sleep(RetryDelayMilliseconds);
+                    }
+
+                    System.Threading.Thread.Sleep(this.RetryDelayMilliseconds);
                 }
             }
         }

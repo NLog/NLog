@@ -1,0 +1,27 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <NLogBuildPath Condition="'$(NLogBuildPath)'==''">$(MSBuildProjectDirectory)\build</NLogBuildPath>
+    <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <SignAssembly>true</SignAssembly>
+    <OutputPath>bin\$(Configuration)</OutputPath>
+    <Framework Condition="'$(Framework)' == ''">NetFX3.5</Framework>
+    <FrameworksPath Condition="'$(FrameworksPath)' == ''">Frameworks</FrameworksPath>
+    <FrameworkDefaults>$(FrameworksPath)\$(Framework).defaults</FrameworkDefaults>
+    <DefineConstants>
+    </DefineConstants>
+    <StyleCopTargets>$(ProgramFiles)\MSBuild\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets</StyleCopTargets>
+    <StyleCopAdditionalAddinPaths>..\StyleCop.Addin.dll</StyleCopAdditionalAddinPaths>
+    <StyleCopOverrideSettingsFile>..\Settings.StyleCop</StyleCopOverrideSettingsFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(NLogBuildPath)' != ''">
+    <OutputPath>$(NLogBuildPath)\$(Configuration)\$(Framework)</OutputPath>
+    <IntermediateOutputPath>$(NLogBuildPath)\obj\$(Configuration)\$(Framework)</IntermediateOutputPath>
+  </PropertyGroup>
+  <Target Name="Documentation">
+     <MSBuild Projects="..\Documentation\Documentation.targets" Properties="AssemblyName=$(AssemblyName);OutputPath=$(OutputPath)" />
+  </Target>
+  <Import Project="$(FrameworkDefaults)" />
+</Project>

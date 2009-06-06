@@ -32,19 +32,9 @@
 // 
 
 using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
-using NLog.Config;
-using System.Threading;
 using System.ComponentModel;
+using System.Threading;
+using NLog.Internal;
 
 namespace NLog.Targets.Wrappers
 {
@@ -64,70 +54,70 @@ namespace NLog.Targets.Wrappers
     /// <code lang="C#" src="examples/targets/Configuration API/BufferingWrapper/Simple/Example.cs" />
     /// </example>
     [Target("BufferingWrapper", IsWrapper = true)]
-    public class BufferingTargetWrapper: WrapperTargetBase
+    public class BufferingTargetWrapper : WrapperTargetBase
     {
-        private LogEventInfoBuffer _buffer;
-        private Timer _flushTimer;
-        private int _flushTimeout = -1;
+        private LogEventInfoBuffer buffer;
+        private Timer flushTimer;
 
         /// <summary>
-        /// Creates a new instance of the <see cref="BufferingTargetWrapper"/> and initializes <see cref="BufferSize"/> to 100.
+        /// Initializes a new instance of the BufferingTargetWrapper class.
         /// </summary>
         public BufferingTargetWrapper()
         {
-            BufferSize = 100;
+            this.FlushTimeout = -1;
+            this.BufferSize = 100;
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="BufferingTargetWrapper"/>, initializes <see cref="BufferSize"/> to 100 and
-        /// sets the <see cref="WrapperTargetBase.WrappedTarget"/> to the specified value.
+        /// Initializes a new instance of the BufferingTargetWrapper class.
         /// </summary>
-        public BufferingTargetWrapper(Target writeTo) : this(writeTo, 100)
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        public BufferingTargetWrapper(Target wrappedTarget)
+            : this(wrappedTarget, 100)
         {
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="BufferingTargetWrapper"/>, initializes <see cref="BufferSize"/> and
-        /// the <see cref="WrapperTargetBase.WrappedTarget"/> to the specified values.
+        /// Initializes a new instance of the BufferingTargetWrapper class.
         /// </summary>
-        public BufferingTargetWrapper(Target writeTo, int bufferSize)
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        /// <param name="bufferSize">Size of the buffer.</param>
+        public BufferingTargetWrapper(Target wrappedTarget, int bufferSize)
         {
-            WrappedTarget = writeTo;
-            BufferSize = bufferSize;
+            this.FlushTimeout = -1;
+            this.WrappedTarget = wrappedTarget;
+            this.BufferSize = bufferSize;
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="BufferingTargetWrapper"/>, 
-        /// initializes <see cref="BufferSize"/>, <see cref="WrapperTargetBase.WrappedTarget"/> 
-        /// and <see cref="FlushTimeout"/> to the specified values.
+        /// Initializes a new instance of the BufferingTargetWrapper class.
         /// </summary>
-        public BufferingTargetWrapper(Target writeTo, int bufferSize, int flushTimeout)
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        /// <param name="bufferSize">Size of the buffer.</param>
+        /// <param name="flushTimeout">The flush timeout.</param>
+        public BufferingTargetWrapper(Target wrappedTarget, int bufferSize, int flushTimeout)
         {
-            WrappedTarget = writeTo;
-            BufferSize = bufferSize;
-            FlushTimeout = flushTimeout;
+            this.WrappedTarget = wrappedTarget;
+            this.BufferSize = bufferSize;
+            this.FlushTimeout = flushTimeout;
         }
 
         /// <summary>
-        /// Number of log events to be buffered.
+        /// Gets or sets the number of log events to be buffered.
         /// </summary>
         [DefaultValue(100)]
         public int BufferSize
         {
-            get { return _buffer.Size; }
-            set { _buffer = new LogEventInfoBuffer(value, false, 0); }
+            get { return this.buffer.Size; }
+            set { this.buffer = new LogEventInfoBuffer(value, false, 0); }
         }
 
         /// <summary>
-        /// Flush the contents of buffer if there's no write in the specified period of time
-        /// (milliseconds). Use -1 to disable timed flushes.
+        /// Gets or sets the timeout (in milliseconds) after which the contents of buffer will be flushed 
+        /// if there's no write in the specified period of time. Use -1 to disable timed flushes.
         /// </summary>
         [DefaultValue(-1)]
-        public int FlushTimeout
-        {
-            get { return _flushTimeout; }
-            set { _flushTimeout = value; }
-        }
+        public int FlushTimeout { get; set; }
 
         /// <summary>
         /// Initializes the target.
@@ -135,45 +125,20 @@ namespace NLog.Targets.Wrappers
         public override void Initialize()
         {
             base.Initialize();
-            _flushTimer = new Timer(new TimerCallback(this.FlushCallback), null, -1, -1);
-        }
-
-        /// <summary>
-        /// Adds the specified log event to the buffer and flushes
-        /// the buffer in case the buffer gets full.
-        /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
-        {
-            lock (this)
-            {
-                WrappedTarget.PrecalculateVolatileLayouts(logEvent);
-                int count = _buffer.Append(logEvent);
-                if (count >= BufferSize)
-                {
-                    LogEventInfo[] events = _buffer.GetEventsAndClear();
-                    WrappedTarget.Write(events);
-                }
-                else
-                {
-                    if (FlushTimeout > 0 && _flushTimer != null)
-                    {
-                        _flushTimer.Change(FlushTimeout, -1);
-                    }
-                }
-            }
+            this.flushTimer = new Timer(new TimerCallback(this.FlushCallback), null, -1, -1);
         }
 
         /// <summary>
         /// Flushes pending events in the buffer (if any).
         /// </summary>
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public override void Flush(TimeSpan timeout)
         {
-            base.Flush (timeout);
+            base.Flush(timeout);
 
             lock (this)
             {
-                LogEventInfo[] events = _buffer.GetEventsAndClear();
+                LogEventInfo[] events = this.buffer.GetEventsAndClear();
                 if (events.Length > 0)
                 {
                     WrappedTarget.Write(events);
@@ -186,22 +151,48 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected internal override void Close()
         {
-            Flush(TimeSpan.FromSeconds(3));
-            base.Close ();
-            _flushTimer.Dispose();
-            _flushTimer = null;
+            this.Flush(TimeSpan.FromSeconds(3));
+            base.Close();
+            this.flushTimer.Dispose();
+            this.flushTimer = null;
         }
 
-        void FlushCallback(object state)
+        /// <summary>
+        /// Adds the specified log event to the buffer and flushes
+        /// the buffer in case the buffer gets full.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
         {
             lock (this)
             {
-                LogEventInfo[] events = _buffer.GetEventsAndClear();
+                this.WrappedTarget.PrecalculateVolatileLayouts(logEvent);
+                int count = this.buffer.Append(logEvent);
+                if (count >= this.BufferSize)
+                {
+                    LogEventInfo[] events = this.buffer.GetEventsAndClear();
+                    WrappedTarget.Write(events);
+                }
+                else
+                {
+                    if (this.FlushTimeout > 0 && this.flushTimer != null)
+                    {
+                        this.flushTimer.Change(this.FlushTimeout, -1);
+                    }
+                }
+            }
+        }
+
+        private void FlushCallback(object state)
+        {
+            lock (this)
+            {
+                LogEventInfo[] events = this.buffer.GetEventsAndClear();
                 if (events.Length > 0)
                 {
                     WrappedTarget.Write(events);
                 }
             }
         }
-   }
+    }
 }

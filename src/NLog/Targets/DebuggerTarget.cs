@@ -58,23 +58,8 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/Debugger/Simple/Example.cs" />
     /// </example>
     [Target("Debugger")]
-    public sealed class DebuggerTarget: TargetWithLayoutHeaderAndFooter
+    public sealed class DebuggerTarget : TargetWithLayoutHeaderAndFooter
     {
-        static DebuggerTarget()
-        {
-        }
-        /// <summary>
-        /// Writes the specified logging event to the attached debugger.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
-        {
-            if (Debugger.IsLogging())
-            {
-                Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, Layout.GetFormattedMessage(logEvent) + "\n");
-            }
-        }
-
         /// <summary>
         /// Initializes the target.
         /// </summary>
@@ -83,7 +68,19 @@ namespace NLog.Targets
             base.Initialize();
             if (Header != null)
             {
-                Debugger.Log(LogLevel.Off.Ordinal, "", Header.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + "\n");
+                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, Header.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + "\n");
+            }
+        }
+
+        /// <summary>
+        /// Writes the specified logging event to the attached debugger.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
+        {
+            if (Debugger.IsLogging())
+            {
+                Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, this.Layout.GetFormattedMessage(logEvent) + "\n");
             }
         }
 
@@ -94,8 +91,9 @@ namespace NLog.Targets
         {
             if (Footer != null)
             {
-                Debugger.Log(LogLevel.Off.Ordinal, "", Footer.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + "\n");
+                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, Footer.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + "\n");
             }
+
             base.Close();
         }
     }

@@ -31,19 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
-using NLog.Config;
-
 namespace NLog.Targets
 {
     /// <summary>
@@ -71,11 +58,10 @@ namespace NLog.Targets
     /// </p>
     /// </example>
     [Target("Chainsaw")]
-    public class ChainsawTarget: NLogViewerTarget
+    public class ChainsawTarget : NLogViewerTarget
     {
         /// <summary>
-        /// Creates a new instance of the <see cref="ChainsawTarget"/> 
-        /// and initializes default property values.
+        /// Initializes a new instance of the ChainsawTarget class.
         /// </summary>
         public ChainsawTarget()
         {

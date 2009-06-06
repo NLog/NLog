@@ -36,47 +36,37 @@ using NLog.Config;
 namespace NLog.Layouts
 {
     /// <summary>
-    /// A column in the CSV
+    /// A column in the CSV.
     /// </summary>
     public class CsvColumn
     {
-        private Layout _layout;
-        private string _name;
-
         /// <summary>
-        /// Constructs a new instance of <see cref="CsvColumn"/>.
+        /// Initializes a new instance of the CsvColumn class.
         /// </summary>
         public CsvColumn()
         {
         }
 
         /// <summary>
-        /// Constructs a new instance of <see cref="CsvColumn"/> and
-        /// initializes Name and Layout properties.
+        /// Initializes a new instance of the CsvColumn class.
         /// </summary>
-        public CsvColumn(string name, string layout)
+        /// <param name="name">The name of the column.</param>
+        /// <param name="layout">The layout of the column.</param>
+        public CsvColumn(string name, Layout layout)
         {
-            Name = name;
-            Layout = layout;
+            this.Name = name;
+            this.Layout = layout;
         }
 
         /// <summary>
-        /// The name of the column.
+        /// Gets or sets the name of the column.
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
 
         /// <summary>
-        /// The layout that should be written in the column.
+        /// Gets or sets the layout of the column.
         /// </summary>
         [RequiredParameter]
-        public Layout Layout
-        {
-            get { return _layout; }
-            set { _layout = value; }
-        }
+        public Layout Layout { get; set; }
     }
 }

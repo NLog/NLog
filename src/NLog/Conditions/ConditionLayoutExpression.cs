@@ -31,10 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-
-using System.Xml.Serialization;
 using System.Collections.Generic;
 using NLog.Layouts;
 
@@ -42,31 +38,30 @@ namespace NLog.Conditions
 {
     /// <summary>
     /// Condition layout expression (represented by a string literal
-    /// with embedded ${})
+    /// with embedded ${}).
     /// </summary>
     internal sealed class ConditionLayoutExpression : ConditionExpression
     {
-        private SimpleLayout _layout;
+        private SimpleLayout layout;
 
         /// <summary>
-        /// Creates a new instance of <see cref="ConditionLayoutExpression"/>
-        /// and initializes the layout.
+        /// Initializes a new instance of the ConditionLayoutExpression class.
         /// </summary>
-        /// <param name="layout"></param>
+        /// <param name="layout">The layout.</param>
         public ConditionLayoutExpression(SimpleLayout layout) 
         {
-            _layout = layout;
+            this.layout = layout;
         }
 
         /// <summary>
         /// Evaluates the expression by calculating the value
         /// of the layout in the specified evaluation context.
         /// </summary>
-        /// <param name="context">Evaluation context</param>
+        /// <param name="context">Evaluation context.</param>
         /// <returns>The value of the layout.</returns>
         public override object Evaluate(LogEventInfo context)
         {
-            return _layout.GetFormattedMessage(context);
+            return this.layout.GetFormattedMessage(context);
         }
 
         /// <summary>
@@ -75,7 +70,7 @@ namespace NLog.Conditions
         /// <returns>String literal in single quotes.</returns>
         public override string ToString()
         {
-            return "'" + _layout.Text + "'";
+            return "'" + this.layout.Text + "'";
         }
 
         /// <summary>
@@ -84,7 +79,7 @@ namespace NLog.Conditions
         /// <param name="layouts">The collection to add layouts to.</param>
         public override void PopulateLayouts(ICollection<Layout> layouts)
         {
-            _layout.PopulateLayouts(layouts);
+            this.layout.PopulateLayouts(layouts);
         }
     }
 }

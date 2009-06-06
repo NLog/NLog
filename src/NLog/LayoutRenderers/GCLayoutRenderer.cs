@@ -34,15 +34,9 @@
 #if !NET_CF && !MONO
 
 using System;
-using System.Text;
-using System.Runtime.InteropServices;
-
-using NLog.Internal;
-using NLog.Config;
-using System.Reflection;
-using System.Diagnostics;
 using System.ComponentModel;
 using System.Globalization;
+using System.Text;
 
 namespace NLog.LayoutRenderers
 {
@@ -50,35 +44,43 @@ namespace NLog.LayoutRenderers
     /// The information about the garbage collector.
     /// </summary>
     [LayoutRenderer("gc")]
-    public class GCLayoutRenderer: LayoutRenderer
+    public class GCLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// The property of System.GC to retrieve
+        /// Initializes a new instance of the GCLayoutRenderer class.
+        /// </summary>
+        public GCLayoutRenderer()
+        {
+            this.Property = GCProperty.TotalMemory;
+        }
+
+        /// <summary>
+        /// Gets or sets the property of System.GC to retrieve.
         /// </summary>
         public enum GCProperty
         {
             /// <summary>
-            /// Total memory allocated
+            /// Total memory allocated.
             /// </summary>
             TotalMemory,
 
             /// <summary>
-            /// Total memory allocated (perform full garbage collection first)
+            /// Total memory allocated (perform full garbage collection first).
             /// </summary>
             TotalMemoryForceCollection,
 
             /// <summary>
-            /// Number of Gen0 collections.
+            /// Gets the number of Gen0 collections.
             /// </summary>
             CollectionCount0,
 
             /// <summary>
-            /// Number of Gen1 collections.
+            /// Gets the number of Gen1 collections.
             /// </summary>
             CollectionCount1,
 
             /// <summary>
-            /// Number of Gen2 collections.
+            /// Gets the number of Gen2 collections.
             /// </summary>
             CollectionCount2,
 
@@ -88,18 +90,12 @@ namespace NLog.LayoutRenderers
             MaxGeneration,
         }
 
-        private GCProperty _property = GCProperty.TotalMemory;
-
         /// <summary>
-        /// The property to retrieve.
+        /// Gets or sets the property to retrieve.
         /// </summary>
         [DefaultValue("TotalMemory")]
-        public GCProperty Property
-        {
-            get { return _property; }
-            set { _property = value; }
-        }
-
+        public GCProperty Property { get; set; }
+        
         /// <summary>
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
@@ -125,7 +121,7 @@ namespace NLog.LayoutRenderers
         {
             object value = null;
 
-            switch (_property)
+            switch (this.Property)
             {
                 case GCProperty.TotalMemory:
                     value = GC.GetTotalMemory(false);

@@ -44,24 +44,26 @@ namespace NLog.Conditions
     internal sealed class ConditionMessageExpression : ConditionExpression
     {
         /// <summary>
-        /// Creates a new instance of <see cref="ConditionMessageExpression"/>.
+        /// Initializes a new instance of the ConditionMessageExpression class.
         /// </summary>
-        public ConditionMessageExpression() {}
+        public ConditionMessageExpression()
+        {
+        }
 
         /// <summary>
         /// Evaluates to the logger message.
         /// </summary>
-        /// <param name="context">evaluation context</param>
-        /// <returns>The logger message</returns>
+        /// <param name="context">Evaluation context.</param>
+        /// <returns>The logger message.</returns>
         public override object Evaluate(LogEventInfo context)
         {
             return context.FormattedMessage;
         }
 
         /// <summary>
-        /// Returns a string representation of this expression
+        /// Returns a string representation of this expression.
         /// </summary>
-        /// <returns>a <b>message</b> string</returns>
+        /// <returns>The '<b>message</b>' string.</returns>
         public override string ToString()
         {
             return "message";

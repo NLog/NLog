@@ -31,22 +31,27 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 
 using System;
-using System.Xml;
 using System.Configuration;
-using System.IO;
-
+using System.Xml;
 using NLog.Internal;
 
 namespace NLog.Config
 {
     /// <summary>
-    /// NLog configuration section handler class for configuring NLog from App.config
+    /// NLog configuration section handler class for configuring NLog from App.config.
     /// </summary>
-    public class ConfigSectionHandler: IConfigurationSectionHandler
+    public class ConfigSectionHandler : IConfigurationSectionHandler
     {
+        /// <summary>
+        /// Creates a configuration section handler.
+        /// </summary>
+        /// <param name="parent">Parent object.</param>
+        /// <param name="configContext">Configuration context object.</param>
+        /// <param name="section">Section XML node.</param>
+        /// <returns>The created section handler object.</returns>
         object IConfigurationSectionHandler.Create(object parent, object configContext, XmlNode section)
         {
             try

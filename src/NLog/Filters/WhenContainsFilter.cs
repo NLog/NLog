@@ -32,49 +32,36 @@
 // 
 
 using System;
-using System.Text;
-
-using NLog;
-using NLog.Config;
 using System.ComponentModel;
+using NLog.Config;
 
 namespace NLog.Filters
 {
     /// <summary>
     /// Matches when the calculated layout contains the specified substring. 
-    /// This filter is deprecated in favour of <c>&lt;when /&gt;</c> which is based on <a href="conditions.html">contitions</a>
+    /// This filter is deprecated in favour of <c>&lt;when /&gt;</c> which is based on <a href="conditions.html">contitions</a>.
     /// </summary>
     [Filter("whenContains")]
-    public class WhenContainsFilter: LayoutBasedFilter
+    public class WhenContainsFilter : LayoutBasedFilter
     {
         /// <summary>
-        /// Initializes a new instance of the filter object.
+        /// Initializes a new instance of the WhenContainsFilter class.
         /// </summary>
-        public WhenContainsFilter(){}
-
-        private bool _ignoreCase = false;
+        public WhenContainsFilter()
+        {
+        }
 
         /// <summary>
-        /// Ignore case when comparing strings.
+        /// Gets or sets a value indicating whether to ignore case when comparing strings.
         /// </summary>
         [DefaultValue(false)]
-        public bool IgnoreCase
-        {
-            get { return _ignoreCase; }
-            set { _ignoreCase = value; }
-        }
-
-        private string _substring;
-
+        public bool IgnoreCase { get; set; }
+        
         /// <summary>
-        /// Substring to be matched.
+        /// Gets or sets the substring to be matched.
         /// </summary>
         [RequiredParameter]
-        public string Substring
-        {
-            get { return _substring; }
-            set { _substring = value; }
-        }
+        public string Substring { get; set; }
 
         /// <summary>
         /// Checks whether log event should be logged or not.
@@ -84,22 +71,16 @@ namespace NLog.Filters
         /// <see cref="FilterResult.Ignore"/> - if the log event should be ignored<br/>
         /// <see cref="FilterResult.Neutral"/> - if the filter doesn't want to decide<br/>
         /// <see cref="FilterResult.Log"/> - if the log event should be logged<br/>
-        /// </returns>
+        /// .</returns>
         protected internal override FilterResult Check(LogEventInfo logEvent)
         {
-            if (IgnoreCase)
+            if (this.Layout.GetFormattedMessage(logEvent).IndexOf(this.Substring, this.IgnoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0)
             {
-                if (Layout.GetFormattedMessage(logEvent).ToLower().IndexOf(Substring.ToLower()) >= 0)
-                    return Result;
-                else
-                    return FilterResult.Neutral;
+                return this.Action;
             }
             else
             {
-                if (Layout.GetFormattedMessage(logEvent).IndexOf(Substring) >= 0)
-                    return Result;
-                else
-                    return FilterResult.Neutral;
+                return FilterResult.Neutral;
             }
         }
     }

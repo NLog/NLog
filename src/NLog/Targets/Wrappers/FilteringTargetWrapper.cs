@@ -31,20 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
-using NLog.Config;
-using NLog.Conditions;
 using System.Collections.Generic;
+using NLog.Conditions;
+using NLog.Config;
 using NLog.Layouts;
 
 namespace NLog.Targets.Wrappers
@@ -66,38 +55,46 @@ namespace NLog.Targets.Wrappers
     /// <code lang="C#" src="examples/targets/Configuration API/FilteringWrapper/Simple/Example.cs" />
     /// </example>
     [Target("FilteringWrapper", IsWrapper = true)]
-    public class FilteringTargetWrapper: WrapperTargetBase
+    public class FilteringTargetWrapper : WrapperTargetBase
     {
-        private ConditionExpression _condition;
-        private static object _boxedBooleanTrue = true;
+        private static object boxedBooleanTrue = true;
 
         /// <summary>
-        /// Creates a new instance of <see cref="FilteringTargetWrapper"/>.
+        /// Initializes a new instance of the FilteringTargetWrapper class.
         /// </summary>
         public FilteringTargetWrapper()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="FilteringTargetWrapper"/> and 
-        /// initializes the <see cref="WrapperTargetBase.WrappedTarget"/> and
-        /// <see cref="Condition"/> properties.
+        /// Initializes a new instance of the FilteringTargetWrapper class.
         /// </summary>
-        public FilteringTargetWrapper(Target writeTo, ConditionExpression condition)
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        /// <param name="condition">The condition.</param>
+        public FilteringTargetWrapper(Target wrappedTarget, ConditionExpression condition)
         {
-            WrappedTarget = writeTo;
-            Condition = condition;
+            this.WrappedTarget = wrappedTarget;
+            this.Condition = condition;
         }
 
         /// <summary>
-        /// Condition expression. Log events who meet this condition will be forwarded 
+        /// Gets or sets the condition expression. Log events who meet this condition will be forwarded 
         /// to the wrapped target.
         /// </summary>
         [RequiredParameter]
-        public ConditionExpression Condition
+        public ConditionExpression Condition { get; set; }
+
+        /// <summary>
+        /// Adds all layouts used by this target to the specified collection.
+        /// </summary>
+        /// <param name="layouts">The collection to add layouts to.</param>
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
-            get { return _condition; }
-            set { _condition = value; }
+            base.PopulateLayouts(layouts);
+            if (this.Condition != null)
+            {
+                this.Condition.PopulateLayouts(layouts);
+            }
         }
 
         /// <summary>
@@ -108,21 +105,11 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">Log event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            object v = _condition.Evaluate(logEvent);
-            if (_boxedBooleanTrue.Equals(v))
+            object v = this.Condition.Evaluate(logEvent);
+            if (boxedBooleanTrue.Equals(v))
+            {
                 WrappedTarget.Write(logEvent);
+            }
         }
-
-        /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts(layouts);
-            if (Condition != null)
-                Condition.PopulateLayouts(layouts);
-        }
-
     }
 }

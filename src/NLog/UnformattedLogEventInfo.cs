@@ -31,32 +31,35 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Globalization;
-using System.Diagnostics;
-using System.Threading;
-using System.Reflection;
-
-using System.Collections;
-using System.Collections.Specialized;
-using NLog.Layouts;
-using NLog.Internal;
-using System.Collections.Generic;
-
 namespace NLog
 {
-    public class UnformattedLogEventInfo : LogEventInfo
+    /// <summary>
+    /// Unformatted log event info.
+    /// </summary>
+    internal class UnformattedLogEventInfo : LogEventInfo
     {
-        private string _message;
+        private string message;
 
-        public UnformattedLogEventInfo(LogLevel level, string loggerName, string message) : base(level, loggerName)
+        /// <summary>
+        /// Initializes a new instance of the UnformattedLogEventInfo class.
+        /// </summary>
+        /// <param name="logLevel">The log level.</param>
+        /// <param name="loggerName">Name of the logger.</param>
+        /// <param name="message">The message.</param>
+        public UnformattedLogEventInfo(LogLevel logLevel, string loggerName, string message) : base(logLevel, loggerName)
         {
-            _message = message;
+            this.message = message;
         }
 
+        /// <summary>
+        /// Returns the formatted message.
+        /// </summary>
+        /// <value>
+        /// Formatted message.
+        /// </value>
         public override string FormattedMessage
         {
-            get { return _message; }
+            get { return this.message; }
         }
     }
 }

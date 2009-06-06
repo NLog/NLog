@@ -34,8 +34,6 @@
 using System;
 using System.Text;
 
-using NLog.LayoutRenderers;
-using NLog.Config;
 using NLog.Contexts;
 
 namespace NLog.LayoutRenderers
@@ -44,38 +42,32 @@ namespace NLog.LayoutRenderers
     /// Nested Diagnostic Context item. Provided for compatibility with log4net.
     /// </summary>
     [LayoutRenderer("ndc")]
-    public class NDCLayoutRenderer: LayoutRenderer
+    public class NDCLayoutRenderer : LayoutRenderer
     {
-        private int _topFrames = -1;
-        private int _bottomFrames = -1;
-        private string _separator = " ";
-
         /// <summary>
-        /// The number of top stack frames to be rendered.
+        /// Initializes a new instance of the NDCLayoutRenderer class.
         /// </summary>
-        public int TopFrames
+        public NDCLayoutRenderer()
         {
-            get { return _topFrames; }
-            set { _topFrames = value; }
+            this.Separator = " ";
+            this.BottomFrames = -1;
+            this.TopFrames = -1;
         }
 
         /// <summary>
-        /// The number of bottom stack frames to be rendered.
+        /// Gets or sets the number of top stack frames to be rendered.
         /// </summary>
-        public int BottomFrames
-        {
-            get { return _bottomFrames; }
-            set { _bottomFrames = value; }
-        }
+        public int TopFrames { get; set; }
 
         /// <summary>
-        /// The separator to be used for concatenating nested diagnostics context output.
+        /// Gets or sets the number of bottom stack frames to be rendered.
         /// </summary>
-        public string Separator
-        {
-            get { return _separator; }
-            set { _separator = value; }
-        }
+        public int BottomFrames { get; set; }
+
+        /// <summary>
+        /// Gets or sets the separator to be used for concatenating nested diagnostics context output.
+        /// </summary>
+        public string Separator { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -104,13 +96,13 @@ namespace NLog.LayoutRenderers
             int startPos = 0;
             int endPos = messages.Length;
 
-            if (TopFrames !=  - 1)
+            if (this.TopFrames != -1)
             {
-                endPos = Math.Min(TopFrames, messages.Length);
+                endPos = Math.Min(this.TopFrames, messages.Length);
             }
-            else if (BottomFrames !=  - 1)
+            else if (this.BottomFrames != -1)
             {
-                startPos = messages.Length - Math.Min(BottomFrames, messages.Length);
+                startPos = messages.Length - Math.Min(this.BottomFrames, messages.Length);
             }
 
             int totalLength = 0;
@@ -131,6 +123,7 @@ namespace NLog.LayoutRenderers
                 sb.Append(messages[i]);
                 separator = this.Separator;
             }
+
             builder.Append(sb.ToString());
         }
     }

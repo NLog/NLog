@@ -32,69 +32,88 @@
 // 
 
 using System;
-using System.Globalization;
-using System.Diagnostics;
-using System.Threading;
-using System.Reflection;
-
-using System.Collections;
-using System.Collections.Specialized;
-using NLog.Layouts;
-using NLog.Internal;
-using System.Collections.Generic;
 
 namespace NLog
 {
-    public class FormattedLogEventInfo : LogEventInfo
+    /// <summary>
+    /// Formatted log event info.
+    /// </summary>
+    internal class FormattedLogEventInfo : LogEventInfo
     {
-        private IFormatProvider _formatProvider;
-        private string _message;
-        private object[] _parameters;
-        private string _formattedMessage;
+        private IFormatProvider formatProvider;
+        private string message;
+        private object[] parameters;
+        private string formattedMessage;
 
+        /// <summary>
+        /// Initializes a new instance of the FormattedLogEventInfo class.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="loggerName">Name of the logger.</param>
+        /// <param name="formatProvider">The format provider.</param>
+        /// <param name="message">The log message.</param>
+        /// <param name="parameters">The parameters.</param>
         public FormattedLogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters)
             : base(level, loggerName)
         {
-            _formatProvider = formatProvider;
-            _message = message;
-            _parameters = parameters;
+            this.formatProvider = formatProvider;
+            this.message = message;
+            this.parameters = parameters;
 
-            if (NeedToPreformatMessage(parameters))
-                CalcFormattedMessage();
+            if (this.NeedToPreformatMessage(parameters))
+            {
+                this.CalcFormattedMessage();
+            }
         }
 
+        /// <summary>
+        /// Gets the formatted message.
+        /// </summary>
         public override string FormattedMessage
         {
             get
-            { 
-                if (_formattedMessage == null)
-                    CalcFormattedMessage();
-                return _formattedMessage;
+            {
+                if (this.formattedMessage == null)
+                {
+                    this.CalcFormattedMessage();
+                }
+
+                return this.formattedMessage;
             }
         }
 
         private void CalcFormattedMessage()
         {
-            _formattedMessage = _message;
+            this.formattedMessage = this.message;
 
-            if (_parameters == null || _parameters.Length == 0)
+            if (this.parameters == null || this.parameters.Length == 0)
+            {
                 return;
+            }
 
-            if (_formatProvider != null)
-                _formattedMessage = String.Format(_formatProvider, _message, _parameters);
+            if (this.formatProvider != null)
+            {
+                this.formattedMessage = String.Format(this.formatProvider, this.message, this.parameters);
+            }
             else
-                _formattedMessage = String.Format(_message, _parameters);
+            {
+                this.formattedMessage = String.Format(this.message, this.parameters);
+            }
         }
 
-        internal static bool NeedToPreformatMessage(object[] parameters)
+        private bool NeedToPreformatMessage(object[] parameters)
         {
             // we need to preformat message if it contains any parameters which could possibly
             // do logging in their ToString()
             if (parameters == null)
+            {
                 return false;
-            
+            }
+
             if (parameters.Length == 0)
+            {
                 return false;
+            }
             
             if (parameters.Length > 3)
             {
@@ -102,27 +121,38 @@ namespace NLog
                 return true;
             }
 
-            if (!IsSafeToDeferFormatting(parameters[0]))
+            if (!this.IsSafeToDeferFormatting(parameters[0]))
+            {
                 return true;
+            }
+
             if (parameters.Length >= 2)
             {
-                if (!IsSafeToDeferFormatting(parameters[1]))
+                if (!this.IsSafeToDeferFormatting(parameters[1]))
+                {
                     return true;
+                }
             }
+
             if (parameters.Length >= 3)
             {
-                if (!IsSafeToDeferFormatting(parameters[2]))
+                if (!this.IsSafeToDeferFormatting(parameters[2]))
+                {
                     return true;
+                }
             }
+
             return false;
         }
 
-        private static bool IsSafeToDeferFormatting(object value)
+        private bool IsSafeToDeferFormatting(object value)
         {
             if (value == null)
+            {
                 return true;
+            }
 
-            return (value.GetType().IsPrimitive || value is string);
+            return value.GetType().IsPrimitive || value is string;
         }
     }
 }

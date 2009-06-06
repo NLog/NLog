@@ -39,7 +39,7 @@ using System.Runtime.Serialization;
 namespace NLog.Conditions
 {
     /// <summary>
-    /// Exception during parsing of condition expression
+    /// Exception during parsing of condition expression.
     /// </summary>
 #if !NET_CF && !SILVERLIGHT
     [Serializable]
@@ -47,30 +47,47 @@ namespace NLog.Conditions
     public class ConditionParseException : Exception 
     {
         /// <summary>
-        /// Creates a new instance of <see cref="ConditionParseException"/>.
+        /// Initializes a new instance of the ConditionParseException class.
         /// </summary>
-        public ConditionParseException() {}
+        public ConditionParseException()
+        {
+        }
 
         /// <summary>
-        /// Creates a new instance of <see cref="ConditionParseException"/>.
+        /// Initializes a new instance of the ConditionParseException class.
         /// </summary>
-        /// <param name="desc">Error message</param>
-        public ConditionParseException(string desc) : base(desc) {}
+        /// <param name="message">The message.</param>
+        public ConditionParseException(string message)
+            : base(message)
+        {
+        }
 
         /// <summary>
-        /// Creates a new instance of <see cref="ConditionParseException"/>.
+        /// Initializes a new instance of the ConditionParseException class.
         /// </summary>
-        /// <param name="desc">Error message</param>
-        /// <param name="inner">Inner exception</param>
-        public ConditionParseException(string desc, Exception inner) : base(desc, inner) {}
+        /// <param name="message">The message.</param>
+        /// <param name="innerException">The inner exception.</param>
+        public ConditionParseException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
 
 #if !NET_CF && !SILVERLIGHT
         /// <summary>
-        /// Creates a new instance of <see cref="ConditionParseException"/>.
+        /// Initializes a new instance of the ConditionParseException class.
         /// </summary>
-        /// <param name="info">Serialization info</param>
-        /// <param name="context">Streaming context</param>
-        protected ConditionParseException(SerializationInfo info, StreamingContext context) : base(info, context) {}
+        /// <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+        /// <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// The <paramref name="info"/> parameter is null.
+        /// </exception>
+        /// <exception cref="T:System.Runtime.Serialization.SerializationException">
+        /// The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0).
+        /// </exception>
+        protected ConditionParseException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+        }
 #endif
     }
 }

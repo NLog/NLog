@@ -31,192 +31,45 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 
 using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Config;
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
-using System.ComponentModel;
 
 namespace NLog.Targets.Wrappers
 {
+    using Internal;
+
     /// <summary>
     /// A target wrapper that impersonates another user for the duration of the write.
     /// </summary>
     [Target("ImpersonatingWrapper", IsWrapper = true)]
     public class ImpersonatingTargetWrapper : WrapperTargetBase
     {
-        private string _username;
-        private string _password;
-        private string _domain = ".";
-        private WindowsIdentity _newIdentity;
-        private SecurityLogonType _logonType = SecurityLogonType.Interactive;
-        private LogonProviderType _logonProvider = LogonProviderType.Default;
-        private SecurityImpersonationLevel _impersonationLevel = SecurityImpersonationLevel.Impersonation;
-        private IntPtr _existingTokenHandle = IntPtr.Zero;
-        private IntPtr _duplicateTokenHandle = IntPtr.Zero;
-        private bool _revertToSelf = false;
+        private WindowsIdentity newIdentity;
+        private IntPtr existingTokenHandle = IntPtr.Zero;
+        private IntPtr duplicateTokenHandle = IntPtr.Zero;
 
         /// <summary>
-        /// Creates a new instance of <see cref="ImpersonatingTargetWrapper"/>.
+        /// Initializes a new instance of the ImpersonatingTargetWrapper class.
         /// </summary>
         public ImpersonatingTargetWrapper()
         {
+            this.Domain = ".";
+            this.LogonType = SecurityLogonType.Interactive;
+            this.LogonProvider = LogonProviderType.Default;
+            this.ImpersonationLevel = SecurityImpersonationLevel.Impersonation;
         }
 
         /// <summary>
-        /// Username to change context to
+        /// Initializes a new instance of the ImpersonatingTargetWrapper class.
         /// </summary>
-        public string Username
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        public ImpersonatingTargetWrapper(Target wrappedTarget)
         {
-            get { return _username; }
-            set { _username = value; }
-        }
-
-        /// <summary>
-        /// Password
-        /// </summary>
-        public string Password
-        {
-            get { return _password; }
-            set { _password = value; }
-        }
-
-        /// <summary>
-        /// Windows domain name to change context to.
-        /// </summary>
-        [DefaultValue(".")]
-        public string Domain
-        {
-            get { return _domain; }
-            set { _domain = value; }
-        }
-
-        /// <summary>
-        /// Logon Type.
-        /// </summary>
-        public SecurityLogonType LogonType
-        {
-            get { return _logonType; }
-            set { _logonType = value; }
-        }
-
-        /// <summary>
-        /// Logon Provider.
-        /// </summary>
-        public LogonProviderType LogonProvider
-        {
-            get { return _logonProvider; }
-            set { _logonProvider = value; }
-        }
-
-        /// <summary>
-        /// Impersonation level.
-        /// </summary>
-        public SecurityImpersonationLevel ImpersonationLevel
-        {
-            get { return _impersonationLevel; }
-            set { _impersonationLevel = value; }
-        }
-
-        /// <summary>
-        /// Revert to the credentials of the process instead of impersonating another user.
-        /// </summary>
-        [DefaultValue(false)]
-        public bool RevertToSelf
-        {
-            get { return _revertToSelf; }
-            set { _revertToSelf = value; }
-        }
-        
-        /// <summary>
-        /// Creates a new instance of <see cref="ImpersonatingTargetWrapper"/> 
-        /// and initializes the <see cref="WrapperTargetBase.WrappedTarget"/> to the specified <see cref="Target"/> value.
-        /// </summary>
-        public ImpersonatingTargetWrapper(Target writeTo)
-        {
-            WrappedTarget = writeTo;
-        }
-
-        /// <summary>
-        /// Changes the security context, forwards the call to the <see cref="WrapperTargetBase.WrappedTarget"/>.Write()
-        /// and switches the context back to original.
-        /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
-        {
-            using (DoImpersonate())
-            {
-                WrappedTarget.Write(logEvent);
-            }
-        }
-
-        /// <summary>
-        /// Changes the security context, forwards the call to the <see cref="WrapperTargetBase.WrappedTarget"/>.Write()
-        /// and switches the context back to original.
-        /// </summary>
-        /// <param name="logEvents">Log events.</param>
-        protected internal override void Write(LogEventInfo[] logEvents)
-        {
-            using (DoImpersonate())
-            {
-                WrappedTarget.Write(logEvents);
-            }
-        }
-
-        /// <summary>
-        /// Initializes the impersonation context.
-        /// </summary>
-        public override void Initialize()
-        {
-            if (!RevertToSelf)
-                _newIdentity = CreateWindowsIdentity();
-            using (DoImpersonate())
-            {
-                base.Initialize();
-            }
-        }
-
-        /// <summary>
-        /// Closes the impersonation context.
-        /// </summary>
-        protected internal override void Close()
-        {
-            using (DoImpersonate())
-            {
-                base.Close();
-            }
-            if (_existingTokenHandle != IntPtr.Zero)
-            {
-                CloseHandle(_existingTokenHandle);
-                _existingTokenHandle = IntPtr.Zero;
-            }
-            if (_duplicateTokenHandle != IntPtr.Zero)
-            {
-                CloseHandle(_duplicateTokenHandle);
-                _duplicateTokenHandle = IntPtr.Zero;
-            }
-        }
-
-        private IDisposable DoImpersonate()
-        {
-            if (RevertToSelf)
-                return new ContextReverter(WindowsIdentity.Impersonate(IntPtr.Zero));
-
-            if (_newIdentity != null)
-                return new ContextReverter(_newIdentity.Impersonate());
-
-            return null;
+            this.WrappedTarget = wrappedTarget;
         }
 
         /// <summary>
@@ -225,22 +78,22 @@ namespace NLog.Targets.Wrappers
         public enum SecurityImpersonationLevel
         {
             /// <summary>
-            /// Anonymous
+            /// Anonymous Level.
             /// </summary>
             Anonymous = 0,
 
             /// <summary>
-            /// Identification
+            /// Identification Level.
             /// </summary>
             Identification = 1,
 
             /// <summary>
-            /// Impersonation
+            /// Impersonation Level.
             /// </summary>
             Impersonation = 2,
 
             /// <summary>
-            /// Delegation
+            /// Delegation Level.
             /// </summary>
             Delegation = 3
         }
@@ -251,7 +104,7 @@ namespace NLog.Targets.Wrappers
         public enum SecurityLogonType : int
         {
             /// <summary>
-            /// Interactive Logon
+            /// Interactive Logon.
             /// </summary>
             /// <remarks>
             /// This logon type is intended for users who will be interactively using the computer, such as a user being logged on  
@@ -263,7 +116,7 @@ namespace NLog.Targets.Wrappers
             Interactive = 2,
 
             /// <summary>
-            /// Network Logon
+            /// Network Logon.
             /// </summary>
             /// <remarks>
             /// This logon type is intended for high performance servers to authenticate plaintext passwords.
@@ -272,7 +125,7 @@ namespace NLog.Targets.Wrappers
             Network = 3,
 
             /// <summary>
-            /// Batch Logon
+            /// Batch Logon.
             /// </summary>
             /// <remarks>
             /// This logon type is intended for batch servers, where processes may be executing on behalf of a user without
@@ -283,7 +136,7 @@ namespace NLog.Targets.Wrappers
             Batch = 4,
 
             /// <summary>
-            /// Logon as a Service
+            /// Logon as a Service.
             /// </summary>
             /// <remarks>
             /// Indicates a service-type logon. The account provided must have the service privilege enabled.
@@ -291,7 +144,7 @@ namespace NLog.Targets.Wrappers
             Service = 5,
 
             /// <summary>
-            /// Network Clear Text Logon
+            /// Network Clear Text Logon.
             /// </summary>
             /// <remarks>
             /// This logon type preserves the name and password in the authentication package, which allows the server to make
@@ -303,7 +156,7 @@ namespace NLog.Targets.Wrappers
             NetworkClearText = 8,
 
             /// <summary>
-            /// New Network Credentials
+            /// New Network Credentials.
             /// </summary>
             /// <remarks>
             /// This logon type allows the caller to clone its current token and specify new credentials for outbound connections.
@@ -316,7 +169,6 @@ namespace NLog.Targets.Wrappers
 
         /// <summary>
         /// Logon provider.
-        /// 
         /// </summary>
         public enum LogonProviderType : int
         {
@@ -331,17 +183,122 @@ namespace NLog.Targets.Wrappers
             Default = 0,
         }
 
-        // obtains user token
-        [DllImport("advapi32.dll", SetLastError = true)]
-        private static extern bool LogonUser(string pszUsername, string pszDomain, string pszPassword, int dwLogonType, int dwLogonProvider, out IntPtr phToken);
+        /// <summary>
+        /// Gets or sets username to change context to.
+        /// </summary>
+        public string UserName { get; set; }
 
-        // closes open handes returned by LogonUser
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
-        private extern static bool CloseHandle(IntPtr handle);
+        /// <summary>
+        /// Gets or sets the user account password.
+        /// </summary>
+        public string Password { get; set; }
 
-        // creates duplicate token handle
-        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private extern static bool DuplicateToken(IntPtr existingTokenHandle, int impersonationLevel, out IntPtr duplicateTokenHandle);
+        /// <summary>
+        /// Gets or sets Windows domain name to change context to.
+        /// </summary>
+        [DefaultValue(".")]
+        public string Domain { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Logon Type.
+        /// </summary>
+        public SecurityLogonType LogonType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type of the logon provider.
+        /// </summary>
+        public LogonProviderType LogonProvider { get; set; }
+
+        /// <summary>
+        /// Gets or sets the required impersonation level.
+        /// </summary>
+        public SecurityImpersonationLevel ImpersonationLevel { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to revert to the credentials of the process instead of impersonating another user.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool RevertToSelf { get; set; }
+
+        /// <summary>
+        /// Initializes the impersonation context.
+        /// </summary>
+        public override void Initialize()
+        {
+            if (!this.RevertToSelf)
+            {
+                this.newIdentity = this.CreateWindowsIdentity();
+            }
+
+            using (this.DoImpersonate())
+            {
+                base.Initialize();
+            }
+        }
+
+        /// <summary>
+        /// Changes the security context, forwards the call to the <see cref="WrapperTargetBase.WrappedTarget"/>.Write()
+        /// and switches the context back to original.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
+        {
+            using (this.DoImpersonate())
+            {
+                this.WrappedTarget.Write(logEvent);
+            }
+        }
+
+        /// <summary>
+        /// Changes the security context, forwards the call to the <see cref="WrapperTargetBase.WrappedTarget"/>.Write()
+        /// and switches the context back to original.
+        /// </summary>
+        /// <param name="logEvents">Log events.</param>
+        protected internal override void Write(LogEventInfo[] logEvents)
+        {
+            using (this.DoImpersonate())
+            {
+                this.WrappedTarget.Write(logEvents);
+            }
+        }
+
+        /// <summary>
+        /// Closes the impersonation context.
+        /// </summary>
+        protected internal override void Close()
+        {
+            using (this.DoImpersonate())
+            {
+                base.Close();
+            }
+
+            if (this.existingTokenHandle != IntPtr.Zero)
+            {
+                NativeMethods.CloseHandle(this.existingTokenHandle);
+                this.existingTokenHandle = IntPtr.Zero;
+            }
+
+            if (this.duplicateTokenHandle != IntPtr.Zero)
+            {
+                NativeMethods.CloseHandle(this.duplicateTokenHandle);
+                this.duplicateTokenHandle = IntPtr.Zero;
+            }
+        }
+
+        private IDisposable DoImpersonate()
+        {
+            if (this.RevertToSelf)
+            {
+                return new ContextReverter(WindowsIdentity.Impersonate(IntPtr.Zero));
+            }
+
+            if (this.newIdentity != null)
+            {
+                return new ContextReverter(this.newIdentity.Impersonate());
+            }
+
+            return null;
+        }
 
         //
         // adapted from:
@@ -350,37 +307,54 @@ namespace NLog.Targets.Wrappers
         private WindowsIdentity CreateWindowsIdentity()
         {
             // initialize tokens
-            _existingTokenHandle = IntPtr.Zero;
-            _duplicateTokenHandle = IntPtr.Zero;
+            this.existingTokenHandle = IntPtr.Zero;
+            this.duplicateTokenHandle = IntPtr.Zero;
 
-            if (!LogonUser(Username, Domain, Password,
-                (int)_logonType, (int)_logonProvider,
-                out _existingTokenHandle))
-                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-
-            if (!DuplicateToken(_existingTokenHandle, (int)_impersonationLevel, out _duplicateTokenHandle))
+            if (!NativeMethods.LogonUser(
+                this.UserName,
+                this.Domain,
+                this.Password,
+                (int)this.LogonType,
+                (int)this.LogonProvider,
+                out this.existingTokenHandle))
             {
-                CloseHandle(_existingTokenHandle);
-                _existingTokenHandle = IntPtr.Zero;
+                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+            }
+
+            if (!NativeMethods.DuplicateToken(this.existingTokenHandle, (int)this.ImpersonationLevel, out this.duplicateTokenHandle))
+            {
+                NativeMethods.CloseHandle(this.existingTokenHandle);
+                this.existingTokenHandle = IntPtr.Zero;
                 Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
             }
 
             // create new identity using new primary token
-            return new WindowsIdentity(_duplicateTokenHandle);
+            return new WindowsIdentity(this.duplicateTokenHandle);
         }
 
+        /// <summary>
+        /// Helper class which reverts the given <see cref="WindowsImpersonationContext"/> 
+        /// to its original value as part of <see cref="IDisposable.Dispose"/>.
+        /// </summary>
         internal class ContextReverter : IDisposable
         {
-            private WindowsImpersonationContext _wic;
+            private WindowsImpersonationContext wic;
 
-            public ContextReverter(WindowsImpersonationContext wic)
+            /// <summary>
+            /// Initializes a new instance of the ContextReverter class.
+            /// </summary>
+            /// <param name="windowsImpersonationContext">The windows impersonation context.</param>
+            public ContextReverter(WindowsImpersonationContext windowsImpersonationContext)
             {
-                _wic = wic;
+                this.wic = windowsImpersonationContext;
             }
 
+            /// <summary>
+            /// Reverts the impersonation context.
+            /// </summary>
             public void Dispose()
             {
-                _wic.Undo();
+                this.wic.Undo();
             }
         }
     }

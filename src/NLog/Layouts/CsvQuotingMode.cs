@@ -31,15 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Reflection;
-using System.Globalization;
-
-using NLog.Config;
-
 namespace NLog.Layouts
 {
     /// <summary>
@@ -63,5 +54,4 @@ namespace NLog.Layouts
         /// </summary>
         Auto
     }
-
 }

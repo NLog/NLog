@@ -32,7 +32,6 @@
 // 
 
 using System;
-using NLog.Internal;
 using NLog.Config;
 
 namespace NLog.Layouts
@@ -41,14 +40,14 @@ namespace NLog.Layouts
     /// Marks class as a layout renderer and assigns a format string to it.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class LayoutAttribute: NameAttributeBase
+    public sealed class LayoutAttribute : NameAttributeBase
     {
         /// <summary>
-        /// Creates a new instance of <see cref="LayoutAttribute"/>
-        /// and assigns the <see cref="Name"/> to the specified value.
+        /// Initializes a new instance of the LayoutAttribute class.
         /// </summary>
-        /// <param name="name">layout name</param>
-        public LayoutAttribute(string name) : base(name)
+        /// <param name="name">Layout name.</param>
+        public LayoutAttribute(string name)
+            : base(name)
         {
         }
     }

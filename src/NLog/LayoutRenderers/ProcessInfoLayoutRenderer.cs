@@ -31,18 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF && !MONO
+#if !NET_CF && !MONO && !SILVERLIGHT
 
 using System;
-using System.Text;
-using System.Runtime.InteropServices;
-
-using NLog.Internal;
-using NLog.Config;
-using System.Reflection;
-using System.Diagnostics;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
+using System.Reflection;
+using System.Text;
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -50,108 +47,254 @@ namespace NLog.LayoutRenderers
     /// The information about the running process.
     /// </summary>
     [LayoutRenderer("processinfo")]
-    public class ProcessInfoLayoutRenderer: LayoutRenderer
+    public class ProcessInfoLayoutRenderer : LayoutRenderer
     {
+        private Process process;
+
+        private PropertyInfo propertyInfo;
+
         /// <summary>
-        /// The property of System.Diagnostics.Process to retrieve
+        /// Initializes a new instance of the ProcessInfoLayoutRenderer class.
+        /// </summary>
+        public ProcessInfoLayoutRenderer()
+        {
+            this.Property = ProcessInfoProperty.Id;
+        }
+
+        /// <summary>
+        /// Property of System.Diagnostics.Process to retrieve.
         /// </summary>
         public enum ProcessInfoProperty
         {
-            /// <summary></summary>
+            /// <summary>
+            /// Base Priority.
+            /// </summary>
             BasePriority,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Exit Code.
+            /// </summary>
             ExitCode,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Exit Time.
+            /// </summary>
             ExitTime,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Process Handle.
+            /// </summary>
             Handle,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Handle Count.
+            /// </summary>
             HandleCount,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Whether process has exited.
+            /// </summary>
             HasExited,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Process ID.
+            /// </summary>
             Id,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Machine name.
+            /// </summary>
             MachineName,
-            /// <summary></summary>
-            MainModule,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Handle of the main window.
+            /// </summary>
             MainWindowHandle,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Title of the main window.
+            /// </summary>
             MainWindowTitle,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Maximum Working Set.
+            /// </summary>
             MaxWorkingSet,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Minimum Working Set.
+            /// </summary>
             MinWorkingSet,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Non-paged System Memory Size.
+            /// </summary>
             NonpagedSystemMemorySize,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Non-paged System Memory Size (64-bit).
+            /// </summary>
             NonpagedSystemMemorySize64,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Paged Memory Size.
+            /// </summary>
             PagedMemorySize,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Paged Memory Size (64-bit)..
+            /// </summary>
             PagedMemorySize64,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Paged System Memory Size.
+            /// </summary>
             PagedSystemMemorySize,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Paged System Memory Size (64-bit).
+            /// </summary>
             PagedSystemMemorySize64,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Peak Paged Memory Size.
+            /// </summary>
             PeakPagedMemorySize,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Peak Paged Memory Size (64-bit).
+            /// </summary>
             PeakPagedMemorySize64,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Peak Vitual Memory Size.
+            /// </summary>
             PeakVirtualMemorySize,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Peak Virtual Memory Size (64-bit)..
+            /// </summary>
             PeakVirtualMemorySize64,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Peak Working Set Size.
+            /// </summary>
             PeakWorkingSet,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Peak Working Set Size (64-bit).
+            /// </summary>
             PeakWorkingSet64,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Whether priority boost is enabled.
+            /// </summary>
             PriorityBoostEnabled,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Priority Class.
+            /// </summary>
             PriorityClass,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Private Memory Size.
+            /// </summary>
             PrivateMemorySize,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Private Memory Size (64-bit).
+            /// </summary>
             PrivateMemorySize64,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Privileged Processor Time.
+            /// </summary>
             PrivilegedProcessorTime,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Process Name.
+            /// </summary>
             ProcessName,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Whether process is responding.
+            /// </summary>
             Responding,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Session ID.
+            /// </summary>
             SessionId,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Process Start Time.
+            /// </summary>
             StartTime,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Total Processor Time.
+            /// </summary>
             TotalProcessorTime,
-            /// <summary></summary>
+
+            /// <summary>
+            /// User Processor Time.
+            /// </summary>
             UserProcessorTime,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Virtual Memory Size.
+            /// </summary>
             VirtualMemorySize,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Virtual Memory Size (64-bit).
+            /// </summary>
             VirtualMemorySize64,
-            /// <summary></summary>
+
+            /// <summary>
+            /// Working Set Size.
+            /// </summary>
             WorkingSet,
-            /// <summary></summary>
-            WorkingSet64
+
+            /// <summary>
+            /// Working Set Size (64-bit).
+            /// </summary>
+            WorkingSet64,
         }
 
-        private ProcessInfoProperty _property = ProcessInfoProperty.Id;
-        private PropertyInfo _propertyInfo;
-        private Process _process;
+        /// <summary>
+        /// Gets or sets the property to retrieve.
+        /// </summary>
+        [DefaultValue("Id"), DefaultParameter]
+        public ProcessInfoProperty Property { get; set; }
 
         /// <summary>
-        /// The property to retrieve.
+        /// Initializes the layout renderer.
         /// </summary>
-        [DefaultValue("Id")]
-        [DefaultParameter]
-        public ProcessInfoProperty Property
+        public override void Initialize()
         {
-            get { return _property; }
-            set { _property = value; }
+            base.Initialize();
+            this.propertyInfo = typeof(Process).GetProperty(this.Property.ToString());
+            if (this.propertyInfo == null)
+            {
+                throw new ArgumentException("Property '" + this.propertyInfo + "' not found in System.Diagnostics.Process");
+            }
+
+            this.process = Process.GetCurrentProcess();
+        }
+
+        /// <summary>
+        /// Closes the layout renderer.
+        /// </summary>
+        public override void Close()
+        {
+            if (this.process != null)
+            {
+                this.process.Close();
+                this.process = null;
+            }
+
+            base.Close();
         }
 
         /// <summary>
@@ -177,34 +320,10 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (_propertyInfo != null)
-                builder.Append(Convert.ToString(_propertyInfo.GetValue(_process, null), CultureInfo.InvariantCulture));
-        }
-
-
-        /// <summary>
-        /// Initializes the layout renderer.
-        /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize();
-            _propertyInfo = typeof(Process).GetProperty(Property.ToString());
-            if (_propertyInfo == null)
-                throw new ArgumentException("Property '" + _propertyInfo + "' not found in System.Diagnostics.Process");
-            _process = Process.GetCurrentProcess();
-        }
-
-        /// <summary>
-        /// Closes the layout renderer.
-        /// </summary>
-        public override void Close()
-        {
-            if (_process != null)
+            if (this.propertyInfo != null)
             {
-                _process.Close();
-                _process = null;
+                builder.Append(Convert.ToString(this.propertyInfo.GetValue(this.process, null), CultureInfo.InvariantCulture));
             }
-            base.Close();
         }
     }
 }

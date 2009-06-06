@@ -32,25 +32,76 @@
 // 
 
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
-using System.Collections;
-
+using NLog.Config;
 using NLog.Internal;
 using NLog.LayoutRenderers;
-
-using System.Threading;
-using NLog.Config;
-using System.IO;
-using System.Reflection;
-using NLog.Layouts;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using NLog.LayoutRenderers.Wrappers;
 
 namespace NLog.Layouts
 {
+    /// <summary>
+    /// Parses layout strings.
+    /// </summary>
     internal sealed class LayoutParser
     {
+        internal static LayoutRenderer[] CompileLayout(Tokenizer sr, bool isNested, out string text)
+        {
+            List<LayoutRenderer> result = new List<LayoutRenderer>();
+            StringBuilder literalBuf = new StringBuilder();
+
+            int ch;
+
+            int p0 = sr.Position;
+
+            while ((ch = sr.Peek()) != -1)
+            {
+                if (isNested && (ch == '}' || ch == ':'))
+                {
+                    break;
+                }
+
+                sr.Read();
+
+                if (ch == '$' && sr.Peek() == '{')
+                {
+                    if (literalBuf.Length > 0)
+                    {
+                        result.Add(new LiteralLayoutRenderer(literalBuf.ToString()));
+                        literalBuf.Length = 0;
+                    }
+
+                    LayoutRenderer newLayoutRenderer = ParseLayoutRenderer(sr);
+                    if (newLayoutRenderer.IsAppDomainFixed())
+                    {
+                        newLayoutRenderer = ConvertToLiteral(newLayoutRenderer);
+                    }
+
+                    // layout renderer
+                    result.Add(newLayoutRenderer);
+                }
+                else
+                {
+                    literalBuf.Append((char)ch);
+                }
+            }
+
+            if (literalBuf.Length > 0)
+            {
+                result.Add(new LiteralLayoutRenderer(literalBuf.ToString()));
+                literalBuf.Length = 0;
+            }
+
+            int p1 = sr.Position;
+
+            MergeLiterals(result);
+            text = sr.Substring(p0, p1);
+
+            return result.ToArray();
+        }
+
         private static string ParseLayoutRendererName(Tokenizer sr)
         {
             int ch;
@@ -59,7 +110,10 @@ namespace NLog.Layouts
             while ((ch = sr.Peek()) != -1)
             {
                 if (ch == ':' || ch == '}')
+                {
                     break;
+                }
+
                 nameBuf.Append((char)ch);
                 sr.Read();
             }
@@ -76,7 +130,10 @@ namespace NLog.Layouts
             while ((ch = sr.Peek()) != -1)
             {
                 if ((ch == '=' || ch == '}' || ch == ':') && nestLevel == 0)
+                {
                     break;
+                }
+
                 if (ch == '$')
                 {
                     sr.Read();
@@ -87,12 +144,15 @@ namespace NLog.Layouts
                         nestLevel++;
                         sr.Read();
                     }
+
                     continue;
                 }
+
                 if (ch == '}')
                 {
                     nestLevel--;
                 }
+
                 if (ch == '\\')
                 {
                     // skip the backslash
@@ -102,6 +162,7 @@ namespace NLog.Layouts
                     nameBuf.Append((char)sr.Read());
                     continue;
                 }
+
                 nameBuf.Append((char)ch);
                 sr.Read();
             }
@@ -117,7 +178,10 @@ namespace NLog.Layouts
             while ((ch = sr.Peek()) != -1)
             {
                 if (ch == ':' || ch == '}')
+                {
                     break;
+                }
+
                 if (ch == '\\')
                 {
                     // skip the backslash
@@ -127,6 +191,7 @@ namespace NLog.Layouts
                     nameBuf.Append((char)sr.Read());
                     continue;
                 }
+
                 nameBuf.Append((char)ch);
                 sr.Read();
             }
@@ -140,10 +205,12 @@ namespace NLog.Layouts
 
             ch = sr.Read();
             if (ch != '{')
+            {
                 throw new NLogConfigurationException("'{' expected in layout specification");
+            }
 
             string name = ParseLayoutRendererName(sr);
-            LayoutRenderer lr = NLogFactories.LayoutRendererFactory.Create(name);
+            LayoutRenderer lr = NLogFactories.Default.LayoutRendererFactory.CreateInstance(name);
 
             Dictionary<Type, LayoutRenderer> wrappers = new Dictionary<Type, LayoutRenderer>();
             List<LayoutRenderer> orderedWrappers = new List<LayoutRenderer>();
@@ -162,20 +229,25 @@ namespace NLog.Layouts
                     {
                         Type wrapperType;
 
-                        if (NLogFactories.AmbientPropertyFactory.TryGetType(parameterName, out wrapperType))
+                        if (NLogFactories.Default.AmbientPropertyFactory.TryGetDefinition(parameterName, out wrapperType))
                         {
                             LayoutRenderer wrapperRenderer;
 
                             if (!wrappers.TryGetValue(wrapperType, out wrapperRenderer))
                             {
-                                wrapperRenderer = NLogFactories.AmbientPropertyFactory.Create(parameterName);
+                                wrapperRenderer = NLogFactories.Default.AmbientPropertyFactory.CreateInstance(parameterName);
                                 wrappers[wrapperType] = wrapperRenderer;
                                 orderedWrappers.Add(wrapperRenderer);
                             }
+
                             if (!PropertyHelper.TryGetPropertyInfo(wrapperRenderer, parameterName, out pi))
+                            {
                                 pi = null;
+                            }
                             else
+                            {
                                 parameterTarget = wrapperRenderer;
+                            }
                         }
                     }
 
@@ -205,10 +277,9 @@ namespace NLog.Layouts
                 {
                     // what we've just read is not a parameterName, but a value
                     // assign it to a default property (denoted by empty string)
-
                     PropertyInfo pi;
-                    
-                    if (PropertyHelper.TryGetPropertyInfo(lr, "", out pi))
+
+                    if (PropertyHelper.TryGetPropertyInfo(lr, string.Empty, out pi))
                     {
                         if (typeof(SimpleLayout) == pi.PropertyType)
                         {
@@ -225,6 +296,7 @@ namespace NLog.Layouts
                         InternalLogger.Warn("{0} has no default property", lr.GetType().FullName);
                     }
                 }
+
                 ch = sr.Read();
             }
 
@@ -236,63 +308,13 @@ namespace NLog.Layouts
                 {
                     lr = ConvertToLiteral(lr);
                 }
-                newRenderer.Inner = new SimpleLayout(new LayoutRenderer[] { lr }, "");
 
+                newRenderer.Inner = new SimpleLayout(new LayoutRenderer[] { lr }, string.Empty);
                 lr = newRenderer;
             }
+
             return lr;
         }
-
-        internal static LayoutRenderer[] CompileLayout(Tokenizer sr, bool isNested, out string text)
-        {
-            List<LayoutRenderer> result = new List<LayoutRenderer>();
-            StringBuilder literalBuf = new StringBuilder();
-
-            int ch;
-
-            int p0 = sr.Position;
-
-            while ((ch = sr.Peek()) != -1)
-            {
-                if (isNested && (ch == '}' || ch == ':'))
-                {
-                    break;
-                }
-                sr.Read();
-
-                if (ch == '$' && sr.Peek() == '{')
-                {
-                    if (literalBuf.Length > 0)
-                    {
-                        result.Add(new LiteralLayoutRenderer(literalBuf.ToString()));
-                        literalBuf.Length = 0;
-                    }
-
-                    LayoutRenderer newLayoutRenderer = ParseLayoutRenderer(sr);
-                    if (newLayoutRenderer.IsAppDomainFixed())
-                        newLayoutRenderer = ConvertToLiteral(newLayoutRenderer);
-                    result.Add(newLayoutRenderer);
-                    // layout renderer
-                }
-                else
-                {
-                    literalBuf.Append((char)ch);
-                }
-            }
-
-            if (literalBuf.Length > 0)
-            {
-                result.Add(new LiteralLayoutRenderer(literalBuf.ToString()));
-                literalBuf.Length = 0;
-            }
-            int p1 = sr.Position;
-
-            MergeLiterals(result);
-            text = sr.Substring(p0, p1);
-
-            return result.ToArray();
-        }
-        
 
         private static void MergeLiterals(List<LayoutRenderer> list)
         {
@@ -319,41 +341,56 @@ namespace NLog.Layouts
             return new LiteralLayoutRenderer(sb.ToString());
         }
 
+        /// <summary>
+        /// Simple character tokenizer.
+        /// </summary>
         internal class Tokenizer
         {
-            private string _text;
-            private int _pos;
+            private string text;
+            private int pos;
 
+            /// <summary>
+            /// Initializes a new instance of the Tokenizer class.
+            /// </summary>
+            /// <param name="text">The text to be tokenized.</param>
             public Tokenizer(string text)
             {
-                _text = text;
-                _pos = 0;
+                this.text = text;
+                this.pos = 0;
             }
 
-            public int Peek()
+            internal int Position
             {
-                if (_pos < _text.Length)
-                    return _text[_pos];
+                get { return this.pos; }
+            }
+
+            internal int Peek()
+            {
+                if (this.pos < this.text.Length)
+                {
+                    return this.text[this.pos];
+                }
                 else
+                {
                     return -1;
+                }
             }
 
-            public int Read()
+            internal int Read()
             {
-                if (_pos < _text.Length)
-                    return _text[_pos++];
+                if (this.pos < this.text.Length)
+                {
+                    return this.text[this.pos++];
+                }
                 else
+                {
                     return -1;
+                }
             }
 
-            public int Position
+            internal string Substring(int p0, int p1)
             {
-                get { return _pos; }
-            }
-
-            public string Substring(int p0, int p1)
-            {
-                return _text.Substring(p0, p1 - p0);
+                return this.text.Substring(p0, p1 - p0);
             }
         }
     }

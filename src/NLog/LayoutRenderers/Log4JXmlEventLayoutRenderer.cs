@@ -32,65 +32,173 @@
 // 
 
 using System;
-using System.Text;
-using System.IO;
-using System.Xml;
-using System.Diagnostics;
-using System.Reflection;
-
-using NLog.Config;
-using NLog.Targets;
-using System.ComponentModel;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Reflection;
+using System.Text;
+using System.Xml;
 using NLog.Contexts;
+using NLog.Targets;
 
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// XML event description compatible with log4j, Chainsaw and NLogViewer
+    /// XML event description compatible with log4j, Chainsaw and NLogViewer.
     /// </summary>
     [LayoutRenderer("log4jxmlevent")]
-    public class Log4JXmlEventLayoutRenderer: LayoutRenderer
+    public class Log4JXmlEventLayoutRenderer : LayoutRenderer
     {
-        private string _appInfo;
-        private bool _includeMDC = false;
-        private bool _includeNDC = false;
-        private bool _includeNLogData = true;
-        private bool _indentXml = false;
-        private static DateTime _log4jDateBase = new DateTime(1970, 1, 1);
-        private ICollection<NLogViewerParameterInfo> _parameters = new List<NLogViewerParameterInfo>();
+        private static DateTime log4jDateBase = new DateTime(1970, 1, 1);
 
         /// <summary>
-        /// Creates a new instance of <see cref="Log4JXmlEventLayoutRenderer"/> and initializes default values.
+        /// Initializes a new instance of the Log4JXmlEventLayoutRenderer class.
         /// </summary>
         public Log4JXmlEventLayoutRenderer()
         {
+            this.IncludeNLogData = true;
 #if NET_CF
-            AppInfo = ".NET CF Application";
+            this.AppInfo = ".NET CF Application";
 #elif SILVERLIGHT
-            AppInfo = "Silverlight Application";
+            this.AppInfo = "Silverlight Application";
 #else
-            AppInfo = String.Format("{0}({1})", AppDomain.CurrentDomain.FriendlyName, NLog.Internal.ThreadIDHelper.Instance.CurrentProcessID);
+            this.AppInfo = String.Format(
+                "{0}({1})", 
+                AppDomain.CurrentDomain.FriendlyName, 
+                NLog.Internal.ThreadIDHelper.Instance.CurrentProcessID);
 #endif
+            this.Parameters = new List<NLogViewerParameterInfo>();
         }
 
         /// <summary>
-        /// Include NLog-specific extensions to log4j schema.
+        /// Gets or sets a value indicating whether to include NLog-specific extensions to log4j schema.
         /// </summary>
         [DefaultValue(true)]
-        public bool IncludeNLogData
-        {
-            get { return _includeNLogData; }
-            set { _includeNLogData = value; }
-        }
+        public bool IncludeNLogData { get; set; }
 
         /// <summary>
-        /// Whether the XML should use spaces for indentation.
+        /// Gets or sets a value indicating whether the XML should use spaces for indentation.
         /// </summary>
-        public bool IndentXml
+        public bool IndentXml { get; set; }
+
+        /// <summary>
+        /// Gets or sets the AppInfo field. By default it's the friendly name of the current AppDomain.
+        /// </summary>
+        public string AppInfo { get; set; }
+
+#if !NET_CF
+        /// <summary>
+        /// Gets or sets a value indicating whether to include call site (class and method name) in the information sent over the network.
+        /// </summary>
+        public bool IncludeCallSite { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include source info (file name and line number) in the information sent over the network.
+        /// </summary>
+        public bool IncludeSourceInfo { get; set; }
+#endif
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
+        /// </summary>
+        public bool IncludeMDC { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
+        /// </summary>
+        public bool IncludeNDC { get; set; }
+
+        internal ICollection<NLogViewerParameterInfo> Parameters { get; set; }
+
+        /// <summary>
+        /// Renders the XML logging event and appends it to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="logEvent">Logging event.</param>
+        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            get { return _indentXml; }
-            set { _indentXml = value; }
+            StringWriter sw = new StringWriter(builder);
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = this.IndentXml;
+            XmlWriter xtw = XmlWriter.Create(sw, settings);
+
+            xtw.WriteStartElement("log4j:event");
+            xtw.WriteAttributeString("logger", logEvent.LoggerName);
+            xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpper());
+            xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds));
+            xtw.WriteAttributeString("thread", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString());
+
+            xtw.WriteElementString("log4j:message", logEvent.FormattedMessage);
+            if (this.IncludeNDC)
+            {
+                xtw.WriteElementString("log4j:NDC", String.Join(" ", NestedDiagnosticsContext.GetAllMessages()));
+            }
+#if !NET_CF
+            if (this.IncludeCallSite || this.IncludeSourceInfo)
+            {
+                System.Diagnostics.StackFrame frame = logEvent.UserStackFrame;
+                MethodBase methodBase = frame.GetMethod();
+                Type type = methodBase.DeclaringType;
+
+                xtw.WriteStartElement("log4j:locationinfo");
+                xtw.WriteAttributeString("class", type.FullName);
+                xtw.WriteAttributeString("method", methodBase.ToString());
+                if (this.IncludeSourceInfo)
+                {
+                    xtw.WriteAttributeString("file", frame.GetFileName());
+                    xtw.WriteAttributeString("line", frame.GetFileLineNumber().ToString());
+                }
+
+                xtw.WriteEndElement();
+
+                if (this.IncludeNLogData)
+                {
+                    xtw.WriteElementString("nlog:eventSequenceNumber", logEvent.SequenceId.ToString());
+                    xtw.WriteStartElement("nlog:locationinfo");
+                    xtw.WriteAttributeString("assembly", type.Assembly.FullName);
+                    xtw.WriteEndElement();
+                }
+            }
+#endif
+            xtw.WriteStartElement("log4j:properties");
+            if (this.IncludeMDC)
+            {
+                foreach (KeyValuePair<string, string> entry in MappedDiagnosticsContext.ThreadDictionary)
+                {
+                    xtw.WriteStartElement("log4j:data");
+                    xtw.WriteAttributeString("name", Convert.ToString(entry.Key));
+                    xtw.WriteAttributeString("value", Convert.ToString(entry.Value));
+                    xtw.WriteEndElement();
+                }
+            }
+
+            foreach (NLogViewerParameterInfo parameter in this.Parameters)
+            {
+                xtw.WriteStartElement("log4j:data");
+                xtw.WriteAttributeString("name", parameter.Name);
+                xtw.WriteAttributeString("value", parameter.Layout.GetFormattedMessage(logEvent));
+                xtw.WriteEndElement();
+            }
+
+            xtw.WriteStartElement("log4j:data");
+            xtw.WriteAttributeString("name", "log4japp");
+            xtw.WriteAttributeString("value", this.AppInfo);
+            xtw.WriteEndElement();
+
+            xtw.WriteStartElement("log4j:data");
+            xtw.WriteAttributeString("name", "log4jmachinename");
+#if NET_CF
+            xtw.WriteAttributeString("value", "netcf");
+#elif SILVERLIGHT
+            xtw.WriteAttributeString("value", "silverlight");
+#else
+            xtw.WriteAttributeString("value", NLog.LayoutRenderers.MachineNameLayoutRenderer.MachineName);
+#endif
+            xtw.WriteEndElement();
+            xtw.WriteEndElement();
+
+            xtw.WriteEndElement();
+            xtw.Flush();
         }
 
         /// <summary>
@@ -110,151 +218,15 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// The AppInfo field. By default it's the friendly name of the current AppDomain.
+        /// Determines whether the layout renderer is volatile.
         /// </summary>
-        public string AppInfo
-        {
-            get { return _appInfo; }
-            set { _appInfo = value; }
-        }
-
-#if !NET_CF
-        private bool _includeCallSite = false;
-        private bool _includeSourceInfo = false;
-
-        /// <summary>
-        /// Include call site (class and method name) in the information sent over the network.
-        /// </summary>
-        public bool IncludeCallSite
-        {
-            get { return _includeCallSite; }
-            set { _includeCallSite = value; }
-        }
-
-        /// <summary>
-        /// Include source info (file name and line number) in the information sent over the network.
-        /// </summary>
-        public bool IncludeSourceInfo
-        {
-            get { return _includeSourceInfo; }
-            set { _includeSourceInfo = value; }
-        }
-#endif
-
-        /// <summary>
-        /// Include MDC dictionary in the information sent over the network.
-        /// </summary>
-        public bool IncludeMDC
-        {
-            get { return _includeMDC; }
-            set { _includeMDC = value; }
-        }
-
-        /// <summary>
-        /// Include NDC stack.
-        /// </summary>
-        public bool IncludeNDC
-        {
-            get { return _includeNDC; }
-            set { _includeNDC = value; }
-        }
-
-        internal ICollection<NLogViewerParameterInfo> Parameters
-        {
-            get { return _parameters; }
-            set { _parameters = value; }
-        }
-
-        /// <summary>
-        /// Renders the XML logging event and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            StringWriter sw = new StringWriter(builder);
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.Indent = IndentXml;
-            XmlWriter xtw = XmlWriter.Create(sw, settings);
-
-            xtw.WriteStartElement("log4j:event");
-            xtw.WriteAttributeString("logger", logEvent.LoggerName);
-            xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpper());
-            xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - _log4jDateBase).TotalMilliseconds));
-            xtw.WriteAttributeString("thread", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString());
-
-            xtw.WriteElementString("log4j:message", logEvent.FormattedMessage);
-            if (IncludeNDC)
-            {
-                xtw.WriteElementString("log4j:NDC", String.Join(" ", NestedDiagnosticsContext.GetAllMessages()));
-            }
-#if !NET_CF
-            if (IncludeCallSite || IncludeSourceInfo)
-            {
-                System.Diagnostics.StackFrame frame = logEvent.UserStackFrame;
-                MethodBase methodBase = frame.GetMethod();
-                Type type = methodBase.DeclaringType;
-
-                xtw.WriteStartElement("log4j:locationinfo");
-                xtw.WriteAttributeString("class", type.FullName);
-                xtw.WriteAttributeString("method", methodBase.ToString());
-                if (IncludeSourceInfo)
-                {
-                    xtw.WriteAttributeString("file", frame.GetFileName());
-                    xtw.WriteAttributeString("line", frame.GetFileLineNumber().ToString());
-                }
-                xtw.WriteEndElement();
-
-                if (IncludeNLogData)
-                {
-                    xtw.WriteElementString("nlog:eventSequenceNumber", logEvent.SequenceId.ToString());
-                    xtw.WriteStartElement("nlog:locationinfo");
-                    xtw.WriteAttributeString("assembly", type.Assembly.FullName);
-                    xtw.WriteEndElement();
-                }
-            }
-#endif
-            xtw.WriteStartElement("log4j:properties");
-            if (IncludeMDC)
-            {
-                foreach (KeyValuePair<string,string> entry in MappedDiagnosticsContext.ThreadDictionary)
-                {
-                    xtw.WriteStartElement("log4j:data");
-                    xtw.WriteAttributeString("name", Convert.ToString(entry.Key));
-                    xtw.WriteAttributeString("value", Convert.ToString(entry.Value));
-                    xtw.WriteEndElement();
-                }
-            }
-
-            foreach (NLogViewerParameterInfo parameter in Parameters)
-            {
-                xtw.WriteStartElement("log4j:data");
-                xtw.WriteAttributeString("name", parameter.Name);
-                xtw.WriteAttributeString("value", parameter.Layout.GetFormattedMessage(logEvent));
-                xtw.WriteEndElement();
-            }
-
-            xtw.WriteStartElement("log4j:data");
-            xtw.WriteAttributeString("name", "log4japp");
-            xtw.WriteAttributeString("value", AppInfo);
-            xtw.WriteEndElement();
-
-            xtw.WriteStartElement("log4j:data");
-            xtw.WriteAttributeString("name", "log4jmachinename");
-#if NET_CF
-            xtw.WriteAttributeString("value", "netcf");
-#elif SILVERLIGHT
-            xtw.WriteAttributeString("value", "silverlight");
-#else
-            xtw.WriteAttributeString("value", NLog.LayoutRenderers.MachineNameLayoutRenderer.MachineName);
-#endif
-            xtw.WriteEndElement();
-            xtw.WriteEndElement();
-
-            xtw.WriteEndElement();
-            xtw.Flush();
-        }
-
+        /// <returns>
+        /// A boolean indicating whether the layout renderer is volatile.
+        /// </returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
         protected internal override bool IsVolatile()
         {
             return false;

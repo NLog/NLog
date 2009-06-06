@@ -31,16 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF_1_0
+#if !NET_CF_1_0 && !SILVERLIGHT
 
 using System;
 using System.Text;
-using System.IO;
-
 using Microsoft.Win32;
-
-using NLog.LayoutRenderers;
 using NLog.Config;
+using NLog.LayoutRenderers;
 
 namespace NLog.Win32.LayoutRenderers
 {
@@ -48,34 +45,24 @@ namespace NLog.Win32.LayoutRenderers
     /// A value from the Registry.
     /// </summary>
     [LayoutRenderer("registry")]
-    public class RegistryLayoutRenderer: LayoutRenderer
+    public class RegistryLayoutRenderer : LayoutRenderer
     {
-        private string _value = null;
-        private string _defaultValue = null;
-        private string _key = null;
-        private RegistryKey _rootKey = Registry.LocalMachine;
-        private string _subKey = null;
+        private string key = null;
+        private RegistryKey rootKey = Registry.LocalMachine;
+        private string subKey = null;
 
         /// <summary>
-        /// Registry value.
+        /// Gets or sets the registry value name.
         /// </summary>
-        public string Value
-        {
-            get { return _value; }
-            set { _value = value; }
-        }
+        public string Value { get; set; }
 
         /// <summary>
-        /// The value to be output when the specified registry key or value is not found.
+        /// Gets or sets the value to be output when the specified registry key or value is not found.
         /// </summary>
-        public string DefaultValue
-        {
-            get { return _defaultValue; }
-            set { _defaultValue = value; }
-        }
+        public string DefaultValue { get; set; }
 
         /// <summary>
-        /// Registry key.
+        /// Gets or sets the registry key.
         /// </summary>
         /// <remarks>
         /// Must have one of the forms:
@@ -89,35 +76,36 @@ namespace NLog.Win32.LayoutRenderers
         [RequiredParameter]
         public string Key
         {
-            get { return _key; }
+            get
+            {
+                return this.key;
+            }
+
             set
             {
-                _key = value;
-                int pos = _key.IndexOfAny(new char[]
-                {
-                    '\\', '/'
-                }
+                this.key = value;
+                int pos = this.key.IndexOfAny(new char[] { '\\', '/' });
 
-                );
                 if (pos >= 0)
                 {
-                    string root = _key.Substring(0, pos);
+                    string root = this.key.Substring(0, pos);
                     switch (root.ToUpper())
                     {
                         case "HKEY_LOCAL_MACHINE":
                         case "HKLM":
-                            _rootKey = Registry.LocalMachine;
+                            this.rootKey = Registry.LocalMachine;
                             break;
 
                         case "HKEY_CURRENT_USER":
                         case "HKCU":
-                            _rootKey = Registry.CurrentUser;
+                            this.rootKey = Registry.CurrentUser;
                             break;
 
                         default:
                             throw new ArgumentException("Key name is invalid. Root hive not recognized.");
                     }
-                    _subKey = _key.Substring(pos + 1).Replace('/', '\\');
+
+                    this.subKey = this.key.Substring(pos + 1).Replace('/', '\\');
                 }
                 else
                 {
@@ -148,9 +136,9 @@ namespace NLog.Win32.LayoutRenderers
         /// <param name="logEvent">Logging event. Ignored.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            using(RegistryKey key = _rootKey.OpenSubKey(_subKey))
+            using (RegistryKey key = this.rootKey.OpenSubKey(this.subKey))
             {
-                builder.Append(key.GetValue(Value, DefaultValue));
+                builder.Append(key.GetValue(this.Value, this.DefaultValue));
             }
         }
     }

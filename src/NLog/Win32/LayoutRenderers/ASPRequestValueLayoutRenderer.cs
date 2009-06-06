@@ -31,77 +31,47 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 
 using System;
-using System.Text;
 using System.Runtime.InteropServices;
-using System.Reflection;
-
+using System.Text;
 using NLog.Config;
 using NLog.LayoutRenderers;
-using System.ComponentModel;
 
 namespace NLog.Win32.LayoutRenderers
 {
     /// <summary>
-    /// ASP Request variable
+    /// ASP Request variable.
     /// </summary>
     [LayoutRenderer("asp-request")]
-    public class ASPRequestValueLayoutRenderer: LayoutRenderer
+    public class ASPRequestValueLayoutRenderer : LayoutRenderer
     {
-        private string _queryStringKey;
-        private string _formKey;
-        private string _cookie;
-        private string _item;
-        private string _serverVariable;
-
         /// <summary>
-        /// The item name. The QueryString, Form, Cookies, or ServerVariables collection variables having the specified name are rendered.
+        /// Gets or sets the item name. The QueryString, Form, Cookies, or ServerVariables collection variables having the specified name are rendered.
         /// </summary>
         [DefaultParameter]
-        public string Item
-        {
-            get { return _item; }
-            set { _item = value; }
-        }
-
+        public string Item { get; set; }
 
         /// <summary>
-        /// The QueryString variable to be rendered.
+        /// Gets or sets the QueryString variable to be rendered.
         /// </summary>
-        public string QueryString
-        {
-            get { return _queryStringKey; }
-            set { _queryStringKey = value; }
-        }
+        public string QueryString { get; set; }
 
         /// <summary>
-        /// The form variable to be rendered.
+        /// Gets or sets the form variable to be rendered.
         /// </summary>
-        public string Form
-        {
-            get { return _formKey; }
-            set { _formKey = value; }
-        }
+        public string Form { get; set; }
 
         /// <summary>
-        /// The cookie to be rendered.
+        /// Gets or sets the cookie to be rendered.
         /// </summary>
-        public string Cookie
-        {
-            get { return _cookie; }
-            set { _cookie = value; }
-        }
+        public string Cookie { get; set; }
 
         /// <summary>
-        /// The ServerVariables item to be rendered.
+        /// Gets or sets the ServerVariables item to be rendered.
         /// </summary>
-        public string ServerVariable
-        {
-            get { return _serverVariable; }
-            set { _serverVariable = value; }
-        }
+        public string ServerVariable { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -117,6 +87,52 @@ namespace NLog.Win32.LayoutRenderers
             return 64;
         }
 
+        /// <summary>
+        /// Renders the specified ASP Request variable and appends it to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="logEvent">Logging event.</param>
+        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            ASPHelper.IRequest request = ASPHelper.GetRequestObject();
+            if (request != null)
+            {
+                if (this.QueryString != null)
+                {
+                    builder.Append(this.GetItem(request.GetQueryString(), this.QueryString));
+                }
+                else if (this.Form != null)
+                {
+                    builder.Append(this.GetItem(request.GetForm(), this.Form));
+                }
+                else if (this.Cookie != null)
+                {
+                    object cookie = request.GetCookies().GetItem(this.Cookie);
+                    builder.Append(Convert.ToString(ASPHelper.GetComDefaultProperty(cookie)));
+                }
+                else if (this.ServerVariable != null)
+                {
+                    builder.Append(this.GetItem(request.GetServerVariables(), this.ServerVariable));
+                }
+                else if (this.Item != null)
+                {
+                    ASPHelper.IDispatch o = request.GetItem(this.Item);
+                    ASPHelper.IStringList sl = o as ASPHelper.IStringList;
+                    if (sl != null)
+                    {
+                        if (sl.GetCount() > 0)
+                        {
+                            builder.Append(sl.GetItem(1));
+                        }
+
+                        Marshal.ReleaseComObject(sl);
+                    }
+                }
+
+                Marshal.ReleaseComObject(request);
+            }
+        }
+
         private string GetItem(ASPHelper.IRequestDictionary dict, string key)
         {
             object retVal = null;
@@ -128,56 +144,15 @@ namespace NLog.Win32.LayoutRenderers
                 {
                     retVal = sl.GetItem(1);
                 }
+
                 Marshal.ReleaseComObject(sl);
             }
             else
-                return o.GetType().ToString();
-            return Convert.ToString(retVal);
-        }
-
-        /// <summary>
-        /// Renders the specified ASP Request variable and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            ASPHelper.IRequest request = ASPHelper.GetRequestObject();
-            if (request != null)
             {
-                if (QueryString != null)
-                {
-                    builder.Append(GetItem(request.GetQueryString(), QueryString));
-                }
-                else if (Form != null)
-                {
-                    builder.Append(GetItem(request.GetForm(), Form));
-                }
-                else if (Cookie != null)
-                {
-                    object cookie = request.GetCookies().GetItem(Cookie);
-                    builder.Append(Convert.ToString(ASPHelper.GetComDefaultProperty(cookie)));
-                }
-                else if (ServerVariable != null)
-                {
-                    builder.Append(GetItem(request.GetServerVariables(), ServerVariable));
-                }
-                else if (Item != null)
-                {
-                    ASPHelper.IDispatch o = request.GetItem(Item);
-                    ASPHelper.IStringList sl = o as ASPHelper.IStringList;
-                    if (sl != null)
-                    {
-                        if (sl.GetCount() > 0)
-                        {
-                            builder.Append(sl.GetItem(1));
-                        }
-                        Marshal.ReleaseComObject(sl);
-                    }
-                }
-
-                Marshal.ReleaseComObject(request);
+                return o.GetType().ToString();
             }
+
+            return Convert.ToString(retVal);
         }
     }
 }

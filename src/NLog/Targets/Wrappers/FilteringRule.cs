@@ -31,15 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.Diagnostics;
-using System.Reflection;
-using System.Collections;
-
-using NLog.Internal;
-using NLog.Config;
 using NLog.Conditions;
+using NLog.Config;
 
 namespace NLog.Targets.Wrappers
 {
@@ -48,32 +41,23 @@ namespace NLog.Targets.Wrappers
     /// </summary>
     public class FilteringRule
     {
-        private ConditionExpression _exists;
-        private ConditionExpression _filter;
-
         /// <summary>
-        /// Creates a new instance of <see cref="FilteringRule"/>.
+        /// Initializes a new instance of the FilteringRule class.
         /// </summary>
-        public FilteringRule() {}
-
-        /// <summary>
-        /// Condition to be tested.
-        /// </summary>
-        [RequiredParameter]
-        public ConditionExpression Exists
+        public FilteringRule()
         {
-            get { return _exists; }
-            set { _exists = value; }
         }
 
         /// <summary>
-        /// Resulting filter to be applied when the condition matches.
+        /// Gets or sets the condition to be tested.
         /// </summary>
         [RequiredParameter]
-        public ConditionExpression Filter
-        {
-            get { return _filter; }
-            set { _filter = value; }
-        }
+        public ConditionExpression Exists { get; set; }
+
+        /// <summary>
+        /// Gets or sets the resulting filter to be applied when the condition matches.
+        /// </summary>
+        [RequiredParameter]
+        public ConditionExpression Filter { get; set; }
     }
 }

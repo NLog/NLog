@@ -36,10 +36,18 @@ using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple=true)]
-    public class AmbientPropertyAttribute: NameAttributeBase
+    /// <summary>
+    /// Designates a property of the class as an ambient property.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+    public class AmbientPropertyAttribute : NameAttributeBase
     {
-        public AmbientPropertyAttribute(string name) : base(name)
+        /// <summary>
+        /// Initializes a new instance of the AmbientPropertyAttribute class.
+        /// </summary>
+        /// <param name="name">Ambient property name.</param>
+        public AmbientPropertyAttribute(string name)
+            : base(name)
         {
         }
     }

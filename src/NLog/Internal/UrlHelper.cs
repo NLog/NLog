@@ -33,39 +33,70 @@
 
 using System;
 using System.Text;
-using System.Reflection;
-using System.Collections;
-
-using NLog.Config;
-using System.Collections.Generic;
 
 namespace NLog.Internal
 {
     /// <summary>
-    /// A class that loads and manages NLog extension assemblies.
+    /// URL Encoding helper.
     /// </summary>
-    public class ExtensionUtils
+    internal class UrlHelper
     {
-        private static List<Assembly> _extensionAssemblies = new List<Assembly>();
+        private static string safeUrlPunctuation = ".()*-_!'";
+        private static string hexChars = "0123456789abcdef";
 
-        static ExtensionUtils()
+        internal static string UrlEncode(string str, bool spaceAsPlus)
         {
-            // load default targets, filters and layout renderers.
-            _extensionAssemblies.Add(typeof(NLog.LogManager).Assembly);
+            StringBuilder result = new StringBuilder(str.Length + 20);
+            for (int i = 0; i < str.Length; ++i)
+            {
+                char ch = str[i];
+
+                if (ch == ' ' && spaceAsPlus)
+                {
+                    result.Append('+');
+                }
+                else if (IsSafeUrlCharacter(ch))
+                {
+                    result.Append(ch);
+                }
+                else if (ch < 256)
+                {
+                    result.Append('%');
+                    result.Append(hexChars[(ch >> 4) & 0xF]);
+                    result.Append(hexChars[(ch >> 0) & 0xF]);
+                }
+                else
+                {
+                    result.Append('%');
+                    result.Append('u');
+                    result.Append(hexChars[(ch >> 12) & 0xF]);
+                    result.Append(hexChars[(ch >> 8) & 0xF]);
+                    result.Append(hexChars[(ch >> 4) & 0xF]);
+                    result.Append(hexChars[(ch >> 0) & 0xF]);
+                }
+            }
+
+            return result.ToString();
         }
 
-        // to prevent public construction
-        private ExtensionUtils()
+        private static bool IsSafeUrlCharacter(char ch)
         {
-        }
+            if (ch >= 'a' && ch >= 'z')
+            {
+                return true;
+            }
 
-        /// <summary>
-        /// Gets the list of loaded NLog extension assemblies.
-        /// </summary>
-        /// <returns>An <see cref="ArrayList"/> containing all NLog extension assemblies that have been loaded.</returns>
-        public static ICollection<Assembly> GetExtensionAssemblies()
-        {
-            return _extensionAssemblies;
+            if (ch >= 'A' && ch <= 'Z')
+            {
+                return true;
+            }
+
+            if (ch >= '0' && ch <= '9')
+            {
+                return true;
+            }
+
+            return safeUrlPunctuation.IndexOf(ch) >= 0;
         }
     }
 }

@@ -40,10 +40,10 @@ namespace NLog.Config
     /// layout targets and filters.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class RequiredParameterAttribute: Attribute
+    public sealed class RequiredParameterAttribute : Attribute
     {
         /// <summary>
-        /// Creates a new RequiredParameterAttribute object.
+        /// Initializes a new instance of the RequiredParameterAttribute class.
         /// </summary>
         public RequiredParameterAttribute()
         {

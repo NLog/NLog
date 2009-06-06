@@ -31,17 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Reflection;
+#if !SILVERLIGHT
 
-using NLog.Config;
-using System.IO;
-using System.Xml;
-using System.Net;
+using System;
 using System.ComponentModel;
+using System.IO;
+using System.Net;
+using System.Text;
+using System.Xml;
+using NLog.Internal;
 
 namespace NLog.Targets
 {
@@ -69,146 +67,139 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/WebService/Simple/WebService1/Service1.asmx.cs" />
     /// </example>
     [Target("WebService")]
-    public sealed class WebServiceTarget: MethodCallTargetBase
+    public sealed class WebServiceTarget : MethodCallTargetBase
     {
-        const string soapEnvelopeNamespace = "http://schemas.xmlsoap.org/soap/envelope/";
-        const string soap12EnvelopeNamespace = "http://www.w3.org/2003/05/soap-envelope";
+        private const string SoapEnvelopeNamespace = "http://schemas.xmlsoap.org/soap/envelope/";
+        private const string Soap12EnvelopeNamespace = "http://www.w3.org/2003/05/soap-envelope";
 
         /// <summary>
-        /// Web service protocol
+        /// Initializes a new instance of the WebServiceTarget class.
+        /// </summary>
+        public WebServiceTarget()
+        {
+            this.Protocol = WebServiceProtocol.Soap11;
+        }
+
+        /// <summary>
+        /// Web service protocol.
         /// </summary>
         public enum WebServiceProtocol
         {
             /// <summary>
-            /// SOAP 1.1
+            /// Use SOAP 1.1 Protocol.
             /// </summary>
             Soap11,
 
             /// <summary>
-            /// SOAP 1.2
+            /// Use SOAP 1.2 Protocol.
             /// </summary>
             Soap12,
 
             /// <summary>
-            /// HTTP POST
+            /// Use HTTP POST Protocol.
             /// </summary>
             HttpPost,
 
             /// <summary>
-            /// HTTP GET
+            /// Use HTTP GET Protocol.
             /// </summary>
             HttpGet,
         }
 
-        private string _methodName = null;
-        private string _url = null;
-        private string _namespace = null;
-        private WebServiceProtocol _protocol = WebServiceProtocol.Soap11;
-
         /// <summary>
-        /// Web service URL.
+        /// Gets or sets the web service URL.
         /// </summary>
-        public string Url
-        {
-            get { return _url; }
-            set { _url = value; } 
-        }
+        public string Url { get; set; }
 
         /// <summary>
-        /// Web service method name.
+        /// Gets or sets the Web service method name.
         /// </summary>
-        public string MethodName
-        {
-            get { return _methodName; }
-            set { _methodName = value; }
-        }
+        public string MethodName { get; set; }
 
         /// <summary>
-        /// Web service namespace.
+        /// Gets or sets the Web service namespace.
         /// </summary>
-        public string Namespace
-        {
-            get { return _namespace; }
-            set { _namespace = value; }
-        }
+        public string Namespace { get; set; }
 
         /// <summary>
-        /// The protocol to be used when calling web service.
+        /// Gets or sets the protocol to be used when calling web service.
         /// </summary>
         [DefaultValue("Soap11")]
-        public WebServiceProtocol Protocol
-        {
-            get { return _protocol; }
-            set { _protocol = value; }
-        }
+        public WebServiceProtocol Protocol { get; set; }
 
         /// <summary>
         /// Invokes the web service method.
         /// </summary>
         /// <param name="parameters">Parameters to be passed.</param>
-        protected override void DoInvoke(object[]parameters)
+        protected override void DoInvoke(object[] parameters)
         {
-            switch (_protocol)
+            switch (this.Protocol)
             {
                 case WebServiceProtocol.Soap11:
-                    InvokeSoap11(parameters);
+                    this.InvokeSoap11(parameters);
                     break;
 
                 case WebServiceProtocol.Soap12:
-                    InvokeSoap12(parameters);
+                    this.InvokeSoap12(parameters);
                     break;
 
                 case WebServiceProtocol.HttpGet:
-                    InvokeHttpGet(parameters);
+                    this.InvokeHttpGet(parameters);
                     break;
 
                 case WebServiceProtocol.HttpPost:
-                    InvokeHttpPost(parameters);
+                    this.InvokeHttpPost(parameters);
                     break;
             }
-            //_client.DoInvoke(MethodName, parameters);
         }
 
         private void InvokeSoap11(object[] parameters)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(new Uri(this.Url));
             request.Method = "POST";
             request.ContentType = "text/xml; charset=utf-8";
 
             string soapAction;
 
-            if (Namespace.EndsWith("/"))
-                soapAction = "SOAPAction: " + Namespace + MethodName;
+            if (this.Namespace.EndsWith("/"))
+            {
+                soapAction = "SOAPAction: " + this.Namespace + this.MethodName;
+            }
             else
-                soapAction = "SOAPAction: " + Namespace + "/" + MethodName;
+            {
+                soapAction = "SOAPAction: " + this.Namespace + "/" + this.MethodName;
+            }
+
             request.Headers.Add(soapAction);
 
             using (Stream s = request.GetRequestStream())
             {
-                XmlTextWriter xtw = new XmlTextWriter(s, System.Text.Encoding.UTF8);
-
-                xtw.WriteStartElement("soap", "Envelope", soapEnvelopeNamespace);
-                xtw.WriteStartElement("Body", soapEnvelopeNamespace);
-                xtw.WriteStartElement(MethodName, Namespace);
-                int i = 0;
-                foreach (MethodCallParameter par in Parameters)
+                using (XmlWriter xtw = XmlWriter.Create(s, new XmlWriterSettings { Encoding = Encoding.UTF8 }))
                 {
-                    xtw.WriteElementString(par.Name, Convert.ToString(parameters[i]));
-                    i++;
+                    xtw.WriteStartElement("soap", "Envelope", SoapEnvelopeNamespace);
+                    xtw.WriteStartElement("Body", SoapEnvelopeNamespace);
+                    xtw.WriteStartElement(this.MethodName, this.Namespace);
+                    int i = 0;
+
+                    foreach (MethodCallParameter par in this.Parameters)
+                    {
+                        xtw.WriteElementString(par.Name, Convert.ToString(parameters[i]));
+                        i++;
+                    }
+
+                    xtw.WriteEndElement(); // methodname
+                    xtw.WriteEndElement(); // Body
+                    xtw.WriteEndElement(); // soap:Envelope
                 }
-                xtw.WriteEndElement();
-                xtw.WriteEndElement();
-                xtw.WriteEndElement();
-                xtw.Flush();
             }
 
             WebResponse response = request.GetResponse();
             response.Close();
         }
 
-        private void InvokeSoap12(object[] parameters)
+        private void InvokeSoap12(object[] parameterValues)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(this.Url);
             request.Method = "POST";
             request.ContentType = "text/xml; charset=utf-8";
 
@@ -216,15 +207,16 @@ namespace NLog.Targets
             {
                 XmlTextWriter xtw = new XmlTextWriter(s, System.Text.Encoding.UTF8);
 
-                xtw.WriteStartElement("soap12", "Envelope", soap12EnvelopeNamespace);
-                xtw.WriteStartElement("Body", soap12EnvelopeNamespace);
-                xtw.WriteStartElement(MethodName, Namespace);
+                xtw.WriteStartElement("soap12", "Envelope", Soap12EnvelopeNamespace);
+                xtw.WriteStartElement("Body", Soap12EnvelopeNamespace);
+                xtw.WriteStartElement(this.MethodName, this.Namespace);
                 int i = 0;
-                foreach (MethodCallParameter par in Parameters)
+                foreach (MethodCallParameter par in this.Parameters)
                 {
-                    xtw.WriteElementString(par.Name, Convert.ToString(parameters[i]));
+                    xtw.WriteElementString(par.Name, Convert.ToString(parameterValues[i]));
                     i++;
                 }
+
                 xtw.WriteEndElement();
                 xtw.WriteEndElement();
                 xtw.WriteEndElement();
@@ -235,30 +227,40 @@ namespace NLog.Targets
             response.Close();
         }
 
-        private void InvokeHttpPost(object[] parameters)
+        private void InvokeHttpPost(object[] parameterValues)
         {
-            string CompleteUrl;
+            string completeUrl;
 
-            if (MethodName.EndsWith("/"))
-                CompleteUrl = Url + MethodName;
+            if (this.MethodName.EndsWith("/"))
+            {
+                completeUrl = this.Url + this.MethodName;
+            }
             else
-                CompleteUrl = Url + "/" + MethodName;
+            {
+                completeUrl = this.Url + "/" + this.MethodName;
+            }
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(CompleteUrl);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(completeUrl);
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
 
+            string separator = string.Empty;
             using (Stream s = request.GetRequestStream())
-            using (StreamWriter sw = new StreamWriter(s))
             {
-                int i = 0;
-
-                foreach (MethodCallParameter par in Parameters)
+                using (StreamWriter sw = new StreamWriter(s))
                 {
-                    sw.Write(par.Name + "=" + System.Web.HttpUtility.UrlEncodeUnicode(Convert.ToString(parameters[i])) + ((i < (Parameters.Count - 1)) ? "&" : ""));
-                    i++;
+                    int i = 0;
+                    foreach (MethodCallParameter parameter in this.Parameters)
+                    {
+                        sw.Write(separator);
+                        sw.Write(parameter.Name);
+                        sw.Write("=");
+                        sw.Write(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i]), true));
+                        separator = "&";
+                    }
+
+                    sw.Flush();
                 }
-                sw.Flush();
             }
 
             WebResponse response = request.GetResponse();
@@ -271,3 +273,5 @@ namespace NLog.Targets
         }
     }
 }
+
+#endif

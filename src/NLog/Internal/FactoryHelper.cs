@@ -33,26 +33,27 @@
 
 using System;
 using System.Reflection;
-using System.Globalization;
-using NLog.Internal;
 
 namespace NLog.Internal
 {
+    /// <summary>
+    /// Object construction helper.
+    /// </summary>
     internal class FactoryHelper
     {
-        private static Type[]EmptyTypes = new Type[0];
-        private static object[]EmptyParams = new object[0];
+        private static Type[] emptyTypes = new Type[0];
+        private static object[] emptyParams = new object[0];
 
         private FactoryHelper()
         {
         }
 
-        public static object CreateInstance(Type t)
+        internal static object CreateInstance(Type t)
         {
-            ConstructorInfo constructor = t.GetConstructor(EmptyTypes); //t.GetConstructor(BindingFlags.Public | BindingFlags.Instance, null, Type.EmptyTypes, null);
+            ConstructorInfo constructor = t.GetConstructor(emptyTypes);
             if (constructor != null)
             {
-                return constructor.Invoke(EmptyParams);
+                return constructor.Invoke(emptyParams);
             }
             else
             {

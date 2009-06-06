@@ -33,11 +33,8 @@
 
 #if !NET_CF
 using System;
-using System.Text;
-using System.Globalization;
-
-using NLog.Config;
 using System.ComponentModel;
+using System.Text;
 
 namespace NLog.LayoutRenderers
 {
@@ -45,19 +42,21 @@ namespace NLog.LayoutRenderers
     /// Globally-unique identifier (GUID).
     /// </summary>
     [LayoutRenderer("guid")]
-    public class GuidLayoutRenderer: LayoutRenderer
+    public class GuidLayoutRenderer : LayoutRenderer
     {
-        private string _format = "N";
+        /// <summary>
+        /// Initializes a new instance of the GuidLayoutRenderer class.
+        /// </summary>
+        public GuidLayoutRenderer()
+        {
+            this.Format = "N";
+        }
 
         /// <summary>
-        /// The GUID format as accepted by Guid.ToString() method.
+        /// Gets or sets the GUID format as accepted by Guid.ToString() method.
         /// </summary>
         [DefaultValue("N")]
-        public string Format
-        {
-            get { return _format; }
-            set { _format = value; }
-        }
+        public string Format { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -82,7 +81,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(Guid.NewGuid().ToString(Format));
+            builder.Append(Guid.NewGuid().ToString(this.Format));
         }
     }
 }

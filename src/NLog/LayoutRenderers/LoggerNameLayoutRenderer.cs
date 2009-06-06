@@ -31,11 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.Globalization;
 using System.ComponentModel;
-using NLog.Config;
+using System.Text;
 
 namespace NLog.LayoutRenderers
 {
@@ -43,20 +40,14 @@ namespace NLog.LayoutRenderers
     /// The logger name.
     /// </summary>
     [LayoutRenderer("logger")]
-    public class LoggerNameLayoutRenderer: LayoutRenderer
+    public class LoggerNameLayoutRenderer : LayoutRenderer
     {
-        private bool _shortName = false;
-
         /// <summary>
-        /// Render short logger name (the part after the trailing dot character).
+        /// Gets or sets a value indicating whether to render short logger name (the part after the trailing dot character).
         /// </summary>
         [DefaultValue(false)]
-        public bool ShortName
-        {
-            get { return _shortName; }
-            set { _shortName = value; }
-        }
-        
+        public bool ShortName { get; set; }
+
         /// <summary>
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
@@ -80,18 +71,34 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (ShortName)
+            if (this.ShortName)
             {
                 int lastDot = logEvent.LoggerName.LastIndexOf('.');
                 if (lastDot < 0)
+                {
                     builder.Append(logEvent.LoggerName);
+                }
                 else
+                {
                     builder.Append(logEvent.LoggerName.Substring(lastDot + 1));
+                }
             }
             else
+            {
                 builder.Append(logEvent.LoggerName);
+            }
         }
 
+        /// <summary>
+        /// Determines whether the layout renderer is volatile.
+        /// </summary>
+        /// <returns>
+        /// A boolean indicating whether the layout renderer is volatile.
+        /// </returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
         protected internal override bool IsVolatile()
         {
             return false;

@@ -32,54 +32,65 @@
 // 
 
 using System;
-using System.Xml;
 using System.IO;
-using System.Threading;
-using System.Collections;
-using System.Collections.Specialized;
-
-using NLog;
-using NLog.Config;
-
-using NLog.Internal;
 
 namespace NLog.Internal.FileAppenders
 {
+    /// <summary>
+    /// Multi-process and multi-host file appender which attempts
+    /// to get exclusive write access and retries if it's not available.
+    /// </summary>
     internal class RetryingMultiProcessFileAppender : BaseFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
-        public class Factory : IFileAppenderFactory
-        {
-            public BaseFileAppender Open(string fileName, ICreateFileParameters parameters)
-            {
-                return new RetryingMultiProcessFileAppender(fileName, parameters);
-            }
-        }
-
+        /// <summary>
+        /// Initializes a new instance of the RetryingMultiProcessFileAppender class.
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="parameters">The parameters.</param>
         public RetryingMultiProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
         }
 
+        /// <summary>
+        /// Writes the specified bytes.
+        /// </summary>
+        /// <param name="bytes">The bytes.</param>
         public override void Write(byte[] bytes)
         {
             using (FileStream fileStream = CreateFileStream(false))
             {
                 fileStream.Write(bytes, 0, bytes.Length);
             }
+
             FileTouched();
         }
 
+        /// <summary>
+        /// Flushes this instance.
+        /// </summary>
         public override void Flush()
         {
             // nothing to do
         }
 
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
         public override void Close()
         {
             // nothing to do
         }
 
+        /// <summary>
+        /// Gets the file info.
+        /// </summary>
+        /// <param name="lastWriteTime">The last write time.</param>
+        /// <param name="fileLength">Length of the file.</param>
+        /// <returns>
+        /// True if the operation succeeded, false otherwise.
+        /// </returns>
         public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
         {
             FileInfo fi = new FileInfo(FileName);
@@ -94,6 +105,25 @@ namespace NLog.Internal.FileAppenders
                 fileLength = -1;
                 lastWriteTime = DateTime.MinValue;
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Factory class.
+        /// </summary>
+        private class Factory : IFileAppenderFactory
+        {
+            /// <summary>
+            /// Opens the appender for given file name and parameters.
+            /// </summary>
+            /// <param name="fileName">Name of the file.</param>
+            /// <param name="parameters">Creation parameters.</param>
+            /// <returns>
+            /// Instance of <see cref="BaseFileAppender"/> which can be used to write to the file.
+            /// </returns>
+            BaseFileAppender IFileAppenderFactory.Open(string fileName, ICreateFileParameters parameters)
+            {
+                return new RetryingMultiProcessFileAppender(fileName, parameters);
             }
         }
     }

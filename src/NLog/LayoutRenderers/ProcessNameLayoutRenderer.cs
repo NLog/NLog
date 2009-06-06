@@ -31,13 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.Runtime.InteropServices;
+#if !SILVERLIGHT
 
-using NLog.Internal;
 using System.ComponentModel;
-using NLog.Config;
+using System.Text;
+using NLog.Internal;
 
 namespace NLog.LayoutRenderers
 {
@@ -45,20 +43,14 @@ namespace NLog.LayoutRenderers
     /// The name of the current process.
     /// </summary>
     [LayoutRenderer("processname")]
-    public class ProcessNameLayoutRenderer: LayoutRenderer
+    public class ProcessNameLayoutRenderer : LayoutRenderer
     {
-        private bool _fullName = false;
-
         /// <summary>
-        /// Write the full path to the process executable.
+        /// Gets or sets a value indicating whether to write the full path to the process executable.
         /// </summary>
         [DefaultValue(false)]
-        public bool FullName
-        {
-            get { return _fullName; }
-            set { _fullName = value; }
-        }
-        
+        public bool FullName { get; set; }
+
         /// <summary>
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
@@ -82,7 +74,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (FullName)
+            if (this.FullName)
             {
                 builder.Append(ThreadIDHelper.Instance.CurrentProcessName);
             }
@@ -96,10 +88,12 @@ namespace NLog.LayoutRenderers
         /// Determines whether the value produced by the layout renderer
         /// is fixed per current app-domain.
         /// </summary>
-        /// <returns><see langword="true"/></returns>
+        /// <returns>A value of <see langword="true"/>.</returns>
         protected internal override bool IsAppDomainFixed()
         {
             return true;
         }
     }
 }
+
+#endif

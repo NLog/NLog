@@ -36,22 +36,12 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-
-#if DOTNET_1_0
-[assembly: AssemblyTitle("NLog COM Interop for .NET 1.0")]
-#elif DOTNET_1_1
-[assembly: AssemblyTitle("NLog COM Interop for .NET 1.1")]
-#elif DOTNET_2_0
 [assembly: AssemblyTitle("NLog COM Interop for .NET 2.0")]
-#else
-#error Cannot set AssemblyTitle
-#endif
-
 [assembly: AssemblyDescription("NLog COM Interop")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NLog - http://www.nlog-project.org/")]
-[assembly: AssemblyProduct("NLog - .NET Logging Library")]
-[assembly: AssemblyCopyright("Copyright (c) 2004-2006 by Jaroslaw Kowalski")]
+[assembly: AssemblyProduct("NLog - Advanced .NET Logging")]
+[assembly: AssemblyCopyright("Copyright (c) 2004-2009 by Jaroslaw Kowalski")]
 [assembly: AssemblyCulture("")]
 
 [assembly: Guid("fb84adc2-a04b-4ff3-8a20-7c069c3cfa6f")]

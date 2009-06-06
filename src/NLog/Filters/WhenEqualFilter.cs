@@ -32,49 +32,36 @@
 // 
 
 using System;
-using System.Text;
-
-using NLog;
-using NLog.Config;
 using System.ComponentModel;
+using NLog.Config;
 
 namespace NLog.Filters
 {
     /// <summary>
     /// Matches when the calculated layout is equal to the specified substring.
-    /// This filter is deprecated in favour of <c>&lt;when /&gt;</c> which is based on <a href="conditions.html">contitions</a>
+    /// This filter is deprecated in favour of <c>&lt;when /&gt;</c> which is based on <a href="conditions.html">contitions</a>.
     /// </summary>
     [Filter("whenEqual")]
-    public class WhenEqualFilter: LayoutBasedFilter
+    public class WhenEqualFilter : LayoutBasedFilter
     {
         /// <summary>
-        /// Initializes a new instance of the filter object.
+        /// Initializes a new instance of the WhenEqualFilter class.
         /// </summary>
-        public WhenEqualFilter(){}
-
-        private bool _ignoreCase = false;
+        public WhenEqualFilter()
+        {
+        }
 
         /// <summary>
-        /// Ignore case when comparing strings.
+        /// Gets or sets a value indicating whether to ignore case when comparing strings.
         /// </summary>
         [DefaultValue(false)]
-        public bool IgnoreCase
-        {
-            get { return _ignoreCase; }
-            set { _ignoreCase = value; }
-        }
-
-        private string _compareTo;
+        public bool IgnoreCase { get; set; }
 
         /// <summary>
-        /// String to compare the layout to.
+        /// Gets or sets a string to compare the layout to.
         /// </summary>
         [RequiredParameter]
-        public string CompareTo
-        {
-            get { return _compareTo; }
-            set { _compareTo = value; }
-        }
+        public string CompareTo { get; set; }
 
         /// <summary>
         /// Checks whether log event should be logged or not.
@@ -84,13 +71,20 @@ namespace NLog.Filters
         /// <see cref="FilterResult.Ignore"/> - if the log event should be ignored<br/>
         /// <see cref="FilterResult.Neutral"/> - if the filter doesn't want to decide<br/>
         /// <see cref="FilterResult.Log"/> - if the log event should be logged<br/>
-        /// </returns>
+        /// .</returns>
         protected internal override FilterResult Check(LogEventInfo logEvent)
         {
-            if (0 == String.Compare(Layout.GetFormattedMessage(logEvent), CompareTo, IgnoreCase ? StringComparison.InvariantCultureIgnoreCase : StringComparison.InvariantCulture))
-                return Result;
+            if (0 == String.Compare(
+                this.Layout.GetFormattedMessage(logEvent),
+                this.CompareTo,
+                this.IgnoreCase ? StringComparison.InvariantCultureIgnoreCase : StringComparison.InvariantCulture))
+            {
+                return this.Action;
+            }
             else
+            {
                 return FilterResult.Neutral;
+            }
         }
     }
 }

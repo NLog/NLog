@@ -31,19 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Text;
-using System.Diagnostics;
-using System.Reflection;
+#if !NET_CF && !SILVERLIGHT
 
-using System.Net;
-using System.Net.Mail;
-using NLog.Config;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
 using NLog.Layouts;
 
 namespace NLog.Targets
@@ -80,8 +74,23 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/Mail/Buffered/Example.cs" />
     /// </example>
     [Target("Mail")]
-    public class MailTarget: TargetWithLayoutHeaderAndFooter
+    public class MailTarget : TargetWithLayoutHeaderAndFooter
     {
+        /// <summary>
+        /// Initializes a new instance of the MailTarget class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        public MailTarget()
+        {
+            this.Body = "${message}${newline}";
+            this.Subject = "Message from NLog on ${machinename}";
+            this.Encoding = Encoding.UTF8;
+            this.SmtpPort = 25;
+            this.SmtpAuthentication = SmtpAuthenticationMode.None;
+        }
+
         /// <summary>
         /// SMTP authentication modes.
         /// </summary>
@@ -91,183 +100,105 @@ namespace NLog.Targets
             /// No authentication.
             /// </summary>
             None,
-                
+
             /// <summary>
-            /// Basic - username and password
+            /// Basic - username and password.
             /// </summary>
             Basic,
 
             /// <summary>
-            /// NTLM Authentication
+            /// NTLM Authentication.
             /// </summary>
             Ntlm,
         }
 
-        private Layout _from;
-        private Layout _to;
-        private Layout _cc;
-        private Layout _bcc;
-        private Layout _subject = "Message from NLog on ${machinename}";
-        private Encoding _encoding = System.Text.Encoding.UTF8;
-        private Layout _smtpServer;
-        private Layout _smtpUsername;
-        private Layout _smtpPassword;
-        private SmtpAuthenticationMode _smtpAuthentication = SmtpAuthenticationMode.None;
-        private int _smtpPort = 25;
-        private bool _isHtml = false;
-        private bool _newLines = false;
-        private bool _enableSsl = false;
-
         /// <summary>
-        /// Creates a new instance of <see cref="MailTarget"/>.
+        /// Gets or sets sender's email address (e.g. joe@domain.com).
         /// </summary>
-        public MailTarget()
-        {
-            Body = "${message}${newline}";
-        }
+        public Layout From { get; set; }
 
         /// <summary>
-        /// Sender's email address (e.g. joe@domain.com)
+        /// Gets or sets recipients' email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com).
         /// </summary>
-        public Layout From
-        {
-            get { return _from; }
-            set { _from = value; }
-        }
+        public Layout To { get; set; }
 
         /// <summary>
-        /// Recipients' email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com)
+        /// Gets or sets CC email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com).
         /// </summary>
-        public Layout To
-        {
-            get { return _to; }
-            set { _to = value; }
-        }
+        public Layout CC { get; set; }
 
         /// <summary>
-        /// CC email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com)
+        /// Gets or sets BCC email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com).
         /// </summary>
-        public Layout CC
-        {
-            get { return _cc; }
-            set { _cc = value; }
-        }
+        public Layout Bcc { get; set; }
 
         /// <summary>
-        /// BCC email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com)
+        /// Gets or sets a value indicating whether to add new lines between log entries.
         /// </summary>
-        public Layout BCC
-        {
-            get { return _bcc; }
-            set { _bcc = value; }
-        }
+        /// <value>A value of <c>true</c> if new lines should be added; otherwise, <c>false</c>.</value>
+        public bool AddNewLines { get; set; }
 
         /// <summary>
-        /// Whether to add new lines between log entries.
-        /// </summary>
-        /// <value><c>true</c> if new lines should be added; otherwise, <c>false</c>.</value>
-        public bool AddNewLines
-        {
-            get { return _newLines; }
-            set { _newLines = value; }
-        }
-
-        /// <summary>
-        /// Mail subject.
+        /// Gets or sets the mail subject.
         /// </summary>
         [DefaultValue("Message from NLog on ${machinename}")]
-        public Layout Subject
-        {
-            get { return _subject; }
-            set { _subject = value; }
-        }
+        public Layout Subject { get; set; }
 
         /// <summary>
-        /// Mail message body (repeated for each log message send in one mail)
+        /// Gets or sets mail message body (repeated for each log message send in one mail).
         /// </summary>
+        /// <remarks>Alias for <see cref="Layout"/> property.</remarks>
         [DefaultValue("${message}")]
         public Layout Body
         {
-            get { return base.Layout; }
-            set { base.Layout = value; }
+            get { return this.Layout; }
+            set { this.Layout = value; }
         }
 
         /// <summary>
-        /// Encoding to be used for sending e-mail.
+        /// Gets or sets encoding to be used for sending e-mail.
         /// </summary>
         [DefaultValue("UTF8")]
-        public Encoding Encoding
-        {
-            get { return _encoding; }
-            set { _encoding = value; }
-        }
+        public Encoding Encoding { get; set; }
 
         /// <summary>
-        /// Send message as HTML instead of plain text.
+        /// Gets or sets a value indicating whether to send message as HTML instead of plain text.
         /// </summary>
         [DefaultValue(false)]
-        public bool HTML
-        {
-            get { return _isHtml; }
-            set { _isHtml = value; }
-        }
-
+        public bool Html { get; set; }
+        
         /// <summary>
-        /// SMTP Server to be used for sending.
+        /// Gets or sets SMTP Server to be used for sending.
         /// </summary>
-        public Layout SmtpServer
-        {
-            get { return _smtpServer; }
-            set { _smtpServer = value; }
-        }
+        public Layout SmtpServer { get; set; }
 
         /// <summary>
-        /// SMTP Authentication mode.
+        /// Gets or sets SMTP Authentication mode.
         /// </summary>
         [DefaultValue("None")]
-        public SmtpAuthenticationMode SmtpAuthentication
-        {
-            get { return _smtpAuthentication; }
-            set { _smtpAuthentication = value; }
-        }
+        public SmtpAuthenticationMode SmtpAuthentication { get; set; }
 
         /// <summary>
-        /// The username used to connect to SMTP server (used when SmtpAuthentication is set to "basic").
+        /// Gets or sets the username used to connect to SMTP server (used when SmtpAuthentication is set to "basic").
         /// </summary>
-        public Layout SmtpUsername
-        {
-            get { return _smtpUsername; }
-            set { _smtpUsername = value; }
-        }
+        public Layout SmtpUsername { get; set; }
 
         /// <summary>
-        /// The password used to authenticate against SMTP server (used when SmtpAuthentication is set to "basic").
+        /// Gets or sets the password used to authenticate against SMTP server (used when SmtpAuthentication is set to "basic").
         /// </summary>
-        public Layout SmtpPassword
-        {
-            get { return _smtpPassword; }
-            set { _smtpPassword = value; }
-        }
+        public Layout SmtpPassword { get; set; }
 
         /// <summary>
-        /// Enable the use of SSL (secure sockets layer) when communicating with SMTP server.
+        /// Gets or sets a value indicating whether SSL (secure sockets layer) should be used when communicating with SMTP server.
         /// </summary>
         [DefaultValue(false)]
-        public bool EnableSsl
-        {
-            get { return _enableSsl; }
-            set { _enableSsl = value; }
-        }
+        public bool EnableSsl { get; set; }
 
         /// <summary>
-        /// The port that SMTP Server is listening on.
+        /// Gets or sets the port number that SMTP Server is listening on.
         /// </summary>
         [DefaultValue(25)]
-        public int SmtpPort
-        {
-            get { return _smtpPort; }
-            set { _smtpPort = value; }
-        }
+        public int SmtpPort { get; set; }
 
         /// <summary>
         /// Adds all layouts used by this target to the specified collection.
@@ -275,12 +206,31 @@ namespace NLog.Targets
         /// <param name="layouts">The collection to add layouts to.</param>
         public override void PopulateLayouts(ICollection<Layout> layouts)
         {
-            base.PopulateLayouts (layouts);
-            if (_from != null) _from.PopulateLayouts(layouts);
-            if (_to != null) _to.PopulateLayouts(layouts);
-            if (_cc != null) _cc.PopulateLayouts(layouts);
-            if (_bcc != null) _bcc.PopulateLayouts(layouts);
-            if (_subject != null) _subject.PopulateLayouts(layouts);
+            base.PopulateLayouts(layouts);
+            if (this.From != null)
+            {
+                this.From.PopulateLayouts(layouts);
+            }
+
+            if (this.To != null)
+            {
+                this.To.PopulateLayouts(layouts);
+            }
+
+            if (this.CC != null)
+            {
+                this.CC.PopulateLayouts(layouts);
+            }
+
+            if (this.Bcc != null)
+            {
+                this.Bcc.PopulateLayouts(layouts);
+            }
+
+            if (this.Subject != null)
+            {
+                this.Subject.PopulateLayouts(layouts);
+            }
         }
 
         /// <summary>
@@ -299,12 +249,19 @@ namespace NLog.Targets
         protected internal override void Write(LogEventInfo[] events)
         {
             if (events == null)
+            {
                 return;
-            if (events.Length == 0)
-                return;
+            }
 
-            if (_from == null || _to == null || _subject == null)
+            if (events.Length == 0)
+            {
                 return;
+            }
+
+            if (this.From == null || this.To == null || this.Subject == null)
+            {
+                return;
+            }
 
             LogEventInfo lastEvent = events[events.Length - 1];
             string bodyText;
@@ -314,62 +271,77 @@ namespace NLog.Targets
             if (Header != null)
             {
                 bodyBuffer.Append(Header.GetFormattedMessage(lastEvent));
-                if (AddNewLines)
+                if (this.AddNewLines)
+                {
                     bodyBuffer.Append("\n");
+                }
             }
+
             for (int i = 0; i < events.Length; ++i)
             {
-                bodyBuffer.Append(Layout.GetFormattedMessage(events[i]));
-                if (AddNewLines)
+                bodyBuffer.Append(this.Layout.GetFormattedMessage(events[i]));
+                if (this.AddNewLines)
+                {
                     bodyBuffer.Append("\n");
+                }
             }
+
             if (Footer != null)
             {
                 bodyBuffer.Append(Footer.GetFormattedMessage(lastEvent));
-                if (AddNewLines)
+                if (this.AddNewLines)
+                {
                     bodyBuffer.Append("\n");
+                }
             }
 
             bodyText = bodyBuffer.ToString();
 
             MailMessage msg = new MailMessage();
-            SetupMailMessage(msg, lastEvent);
+            this.SetupMailMessage(msg, lastEvent);
             msg.Body = bodyText;
-            SmtpClient client = new SmtpClient(SmtpServer.GetFormattedMessage(lastEvent), SmtpPort);
-            if (SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
+            SmtpClient client = new SmtpClient(this.SmtpServer.GetFormattedMessage(lastEvent), this.SmtpPort);
+            if (this.SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
+            {
                 client.Credentials = CredentialCache.DefaultNetworkCredentials;
-            else if (SmtpAuthentication == SmtpAuthenticationMode.Basic)
-                client.Credentials = new NetworkCredential(SmtpUsername.GetFormattedMessage(lastEvent), SmtpPassword.GetFormattedMessage(lastEvent));
+            }
+            else if (this.SmtpAuthentication == SmtpAuthenticationMode.Basic)
+            {
+                client.Credentials = new NetworkCredential(this.SmtpUsername.GetFormattedMessage(lastEvent), this.SmtpPassword.GetFormattedMessage(lastEvent));
+            }
+
             client.EnableSsl = this.EnableSsl;
-            Internal.InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, _smtpServer);
+            Internal.InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, this.SmtpServer);
             client.Send(msg);
         }
 
         private void SetupMailMessage(MailMessage msg, LogEventInfo logEvent)
         {
-            msg.From = new MailAddress(_from.GetFormattedMessage(logEvent));
-            foreach (string mail in _to.GetFormattedMessage(logEvent).Split(';'))
+            msg.From = new MailAddress(this.From.GetFormattedMessage(logEvent));
+            foreach (string mail in this.To.GetFormattedMessage(logEvent).Split(';'))
             {
                 msg.To.Add(mail);
             }
-            if (_bcc != null)
+
+            if (this.Bcc != null)
             {
-                foreach (string mail in _bcc.GetFormattedMessage(logEvent).Split(';'))
+                foreach (string mail in this.Bcc.GetFormattedMessage(logEvent).Split(';'))
                 {
                     msg.Bcc.Add(mail);
                 }
             }
 
-            if (_cc != null)
+            if (this.CC != null)
             {
-                foreach (string mail in _cc.GetFormattedMessage(logEvent).Split(';'))
+                foreach (string mail in this.CC.GetFormattedMessage(logEvent).Split(';'))
                 {
                     msg.CC.Add(mail);
                 }
             }
-            msg.Subject = _subject.GetFormattedMessage(logEvent);
-            msg.BodyEncoding = System.Text.Encoding.UTF8;
-            msg.IsBodyHtml = HTML;
+
+            msg.Subject = this.Subject.GetFormattedMessage(logEvent);
+            msg.BodyEncoding = this.Encoding;
+            msg.IsBodyHtml = this.Html;
             msg.Priority = MailPriority.Normal;
         }
     }

@@ -31,19 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
-using NLog.Config;
-
 namespace NLog.Targets.Wrappers
 {
     /// <summary>
@@ -62,33 +49,37 @@ namespace NLog.Targets.Wrappers
     /// <code lang="C#" src="examples/targets/Configuration API/AutoFlushWrapper/Simple/Example.cs" />
     /// </example>
     [Target("AutoFlushWrapper", IsWrapper = true)]
-    public class AutoFlushTargetWrapper: WrapperTargetBase
+    public class AutoFlushTargetWrapper : WrapperTargetBase
     {
         /// <summary>
-        /// Creates a new instance of <see cref="AutoFlushTargetWrapper"/>.
+        /// Initializes a new instance of the AutoFlushTargetWrapper class.
         /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
         public AutoFlushTargetWrapper()
+            : this(null)
         {
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="AutoFlushTargetWrapper"/> 
-        /// and initializes the <see cref="WrapperTargetBase.WrappedTarget"/> to the specified <see cref="Target"/> value.
+        /// Initializes a new instance of the AutoFlushTargetWrapper class.
         /// </summary>
-        public AutoFlushTargetWrapper(Target writeTo)
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        public AutoFlushTargetWrapper(Target wrappedTarget)
         {
-            WrappedTarget = writeTo;
+            this.WrappedTarget = wrappedTarget;
         }
 
         /// <summary>
         /// Forwards the call to the <see cref="WrapperTargetBase.WrappedTarget"/>.Write()
         /// and calls <see cref="Target.Flush()"/> on it.
         /// </summary>
-        /// <param name="logEvent"></param>
+        /// <param name="logEvent">Logging event to be written out.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            WrappedTarget.Write(logEvent);
-            WrappedTarget.Flush();
+            this.WrappedTarget.Write(logEvent);
+            this.WrappedTarget.Flush();
         }
     }
 }

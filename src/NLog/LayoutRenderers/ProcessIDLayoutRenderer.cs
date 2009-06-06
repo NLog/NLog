@@ -31,12 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
+#if !SILVERLIGHT
+
 using System.Text;
-using System.Runtime.InteropServices;
 
 using NLog.Internal;
-using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -44,7 +43,7 @@ namespace NLog.LayoutRenderers
     /// The identifier of the current process.
     /// </summary>
     [LayoutRenderer("processid")]
-    public class ProcessIDLayoutRenderer: LayoutRenderer
+    public class ProcessIDLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -73,13 +72,19 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Determines whether the value produced by the layout renderer
+        /// Gets or sets a value indicating whether the value produced by the layout renderer
         /// is fixed per current app-domain.
         /// </summary>
-        /// <returns><see langword="true"/></returns>
+        /// <returns>
+        /// The boolean value of <c>true</c> makes the value
+        /// of the layout renderer be precalculated and inserted as a literal
+        /// in the resulting layout string.
+        /// </returns>
         protected internal override bool IsAppDomainFixed()
         {
             return true;
         }
     }
 }
+
+#endif

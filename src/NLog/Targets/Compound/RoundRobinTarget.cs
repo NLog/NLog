@@ -31,19 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
 using System.Threading;
-
-using NLog.Config;
 
 namespace NLog.Targets.Compound
 {
@@ -67,23 +55,23 @@ namespace NLog.Targets.Compound
     /// <code lang="C#" src="examples/targets/Configuration API/RoundRobinGroup/Simple/Example.cs" />
     /// </example>
     [Target("RoundRobinGroup", IsCompound = true)]
-    public class RoundRobinTarget: CompoundTargetBase
+    public class RoundRobinTarget : CompoundTargetBase
     {
-        private int _currentTarget = 0;
+        private int currentTarget = 0;
 
         /// <summary>
-        /// Creates a new instance of <see cref="RoundRobinTarget"/>.
+        /// Initializes a new instance of the RoundRobinTarget class.
         /// </summary>
         public RoundRobinTarget()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="RoundRobinTarget"/> and initializes
-        /// the <see cref="Targets"/> collection to the provided
-        /// array of <see cref="Target"/> objects.
+        /// Initializes a new instance of the RoundRobinTarget class.
         /// </summary>
-        public RoundRobinTarget(params Target[] targets) : base(targets)
+        /// <param name="targets">The targets.</param>
+        public RoundRobinTarget(params Target[] targets)
+            : base(targets)
         {
         }
 
@@ -101,8 +89,8 @@ namespace NLog.Targets.Compound
         /// </remarks>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            int currentTarget = Interlocked.Increment(ref _currentTarget);
-            Targets[currentTarget % Targets.Count].Write(logEvent);
+            int currentTarget = Interlocked.Increment(ref this.currentTarget);
+            this.Targets[currentTarget % this.Targets.Count].Write(logEvent);
         }
-   }
+    }
 }

@@ -31,15 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 
 using System;
-using System.Text;
 using System.Runtime.InteropServices;
-
-using NLog.LayoutRenderers;
+using System.Text;
 using NLog.Config;
-using System.ComponentModel;
+using NLog.LayoutRenderers;
 
 namespace NLog.Win32.LayoutRenderers
 {
@@ -47,21 +45,14 @@ namespace NLog.Win32.LayoutRenderers
     /// ASP Application variable.
     /// </summary>
     [LayoutRenderer("asp-application")]
-    public class ASPApplicationValueLayoutRenderer: LayoutRenderer
+    public class ASPApplicationValueLayoutRenderer : LayoutRenderer
     {
-        private string _appVariable;
-
         /// <summary>
-        /// The variable name.
+        /// Gets or sets the ASP Application variable name.
         /// </summary>
         [RequiredParameter]
         [DefaultParameter]
-        public string Variable
-        {
-            get { return _appVariable; }
-            set { _appVariable = value; }
-
-        }
+        public string Variable { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -87,16 +78,16 @@ namespace NLog.Win32.LayoutRenderers
             ASPHelper.IApplicationObject app = ASPHelper.GetApplicationObject();
             if (app != null)
             {
-                if (Variable != null)
+                if (this.Variable != null)
                 {
+                    object variableValue = app.GetValue(this.Variable);
 
-                    object variableValue = app.GetValue(Variable);
                     builder.Append(Convert.ToString(variableValue));
                 }
+
                 Marshal.ReleaseComObject(app);
             }
         }
     }
 }
-
 #endif

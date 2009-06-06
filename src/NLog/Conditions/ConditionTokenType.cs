@@ -31,11 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Collections;
-
 namespace NLog.Conditions
 {
     /// <summary>
@@ -44,30 +39,47 @@ namespace NLog.Conditions
     internal enum ConditionTokenType
     {
         EOF,
+
         BOF,
+
         Number,
+
         String,
+
         Keyword,
-        //Punct,
+
         Whitespace,
 
         FirstPunct,
 
         LT,
+
         GT,
+        
         LE,
+        
         GE,
+        
         EQ,
+        
         NE,
+
         LeftParen,
+        
         RightParen,
+        
         Dot,
+        
         Comma,
+        
         Not,
+        
         And,
+        
         Or,
 
         LastPunct,
+        
         Invalid,
-    };
+    }
 }

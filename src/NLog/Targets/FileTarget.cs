@@ -32,25 +32,20 @@
 // 
 
 using System;
-using System.Xml;
-using System.IO;
-using System.Threading;
 using System.Collections;
-using System.Collections.Specialized;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Text;
+using System.Threading;
 
-using NLog;
 using NLog.Config;
-
 using NLog.Internal;
 using NLog.Internal.FileAppenders;
-using NLog.Layouts;
-using System.ComponentModel;
-using System.Collections.Generic;
-#if !NET_CF && !SILVERLIGHT
-using System.Runtime.InteropServices;
+#if !SILVERLIGHT && !NET_CF
 using NLog.Internal.Win32;
 #endif
-using System.Text;
+using NLog.Layouts;
 
 namespace NLog.Targets
 {
@@ -131,8 +126,83 @@ namespace NLog.Targets
     /// <code lang="XML" src="examples/targets/Configuration File/File/CSV/NLog.config" />
     /// </example>
     [Target("File")]
-    public class FileTarget: TargetWithLayoutHeaderAndFooter, ICreateFileParameters
+    public class FileTarget : TargetWithLayoutHeaderAndFooter, ICreateFileParameters
     {
+        private readonly LogEventComparer logEventComparer;
+        private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
+
+        private LineEndingMode lineEndingMode = LineEndingMode.Default;
+        private IFileAppenderFactory appenderFactory;
+        private BaseFileAppender[] recentAppenders;
+        private Timer autoClosingTimer = null;
+        private int initializedFilesCounter = 0;
+
+        /// <summary>
+        /// Initializes a new instance of the FileTarget class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        public FileTarget()
+        {
+            this.ArchiveNumbering = ArchiveNumberingMode.Sequence;
+            this.MaxArchiveFiles = 9;
+            this.ConcurrentWriteAttemptDelay = 1;
+            this.ArchiveEvery = ArchiveEveryMode.None;
+            this.ArchiveAboveSize = -1;
+            this.ConcurrentWriteAttempts = 10;
+            this.ConcurrentWrites = true;
+#if SILVERLIGHT
+            this.Encoding = Encoding.UTF8;
+#else
+            this.Encoding = Encoding.Default;
+#endif
+            this.BufferSize = 32768;
+            this.AutoFlush = true;
+#if !SILVERLIGHT && !NET_CF
+            this.FileAttributes = Win32FileAttributes.Normal;
+            this.NewLineChars = Environment.NewLine;
+#else
+            this.NewLineChars = "\r\n";
+#endif
+            this.EnableFileDelete = true;
+            this.OpenFileCacheTimeout = -1;
+            this.OpenFileCacheSize = 5;
+            this.CreateDirs = true;
+            this.logEventComparer = new LogEventComparer(this);
+        }
+
+        /// <summary>
+        /// Line ending mode.
+        /// </summary>
+        public enum LineEndingMode
+        {
+            /// <summary>
+            /// Insert platform-dependent end-of-line sequence after each line.
+            /// </summary>
+            Default,
+
+            /// <summary>
+            /// Insert CR LF sequence (ASCII 13, ASCII 10) after each line.
+            /// </summary>
+            CRLF,
+
+            /// <summary>
+            /// Insert CR character (ASCII 13) after each line.
+            /// </summary>
+            CR,
+
+            /// <summary>
+            /// Insert LF character (ASCII 10) after each line.
+            /// </summary>
+            LF,
+
+            /// <summary>
+            /// Don't insert any line ending.
+            /// </summary>
+            None,
+        }
+
         /// <summary>
         /// Specifies the way archive numbering is performed.
         /// </summary>
@@ -144,7 +214,7 @@ namespace NLog.Targets
             Sequence,
 
             /// <summary>
-            /// Rolling style numbering (the most recent is always #0 then #1, ..., #N
+            /// Rolling style numbering (the most recent is always #0 then #1, ..., #N.
             /// </summary>
             Rolling,
         }
@@ -186,88 +256,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Line ending mode.
-        /// </summary>
-        public enum LineEndingMode
-        {
-            /// <summary>
-            /// Insert platform-dependent end-of-line sequence after each line.
-            /// </summary>
-            Default,
-
-            /// <summary>
-            /// Insert CR LF sequence (ASCII 13, ASCII 10) after each line.
-            /// </summary>
-            CRLF,
-
-            /// <summary>
-            /// Insert CR character (ASCII 13) after each line.
-            /// </summary>
-            CR,
-
-            /// <summary>
-            /// Insert LF character (ASCII 10) after each line.
-            /// </summary>
-            LF,
-
-            /// <summary>
-            /// Don't insert any line ending.
-            /// </summary>
-            None,
-        }
-
-        private Layout _fileName;
-        private bool _createDirs = true;
-        private bool _keepFileOpen = false;
-#if SILVERLIGHT
-        private System.Text.Encoding _encoding = Encoding.UTF8;
-#else
-        private System.Text.Encoding _encoding = Encoding.Default;
-#endif
-
-#if NET_CF
-        private string _newLine = "\r\n";
-#else
-        private string _newLine = Environment.NewLine;
-#endif
-        private LineEndingMode _lineEndingMode = LineEndingMode.Default;
-
-        private bool _autoFlush = true;
-        private bool _concurrentWrites = true;
-        private bool _networkWrites = false;
-        private int _concurrentWriteAttempts = 10;
-        private int _bufferSize = 32768;
-        private int _concurrentWriteAttemptDelay = 1;
-        private LogEventComparer _logEventComparer;
-        private Layout _autoArchiveFileName = null;
-        private int _maxArchiveFiles = 9;
-        private long _archiveAboveSize = -1;
-        private ArchiveEveryMode _archiveEvery = ArchiveEveryMode.None;
-        private int _openFileCacheSize = 5;
-        private IFileAppenderFactory _appenderFactory;
-        private BaseFileAppender[] _recentAppenders;
-        private ArchiveNumberingMode _archiveNumbering = ArchiveNumberingMode.Sequence;
-        private Timer _autoClosingTimer = null;
-        private int _openFileCacheTimeout = -1;
-        private bool _deleteOldFileOnStartup = false;
-        private bool _replaceFileContentsOnEachWrite = false;
-        private bool _enableFileDelete = true;
-        private Dictionary<string,DateTime> _initializedFiles = new Dictionary<string,DateTime>();
-        private int _initializedFilesCounter = 0;
-#if !NET_CF && !SILVERLIGHT
-        private Win32FileAttributes _fileAttributes = Win32FileAttributes.Normal;
-#endif
-
-        /// <summary>
-        /// Creates a new instance of <see cref="FileTarget"/>.
-        /// </summary>
-        public FileTarget()
-        {
-            _logEventComparer = new LogEventComparer(this);
-        }
-
-        /// <summary>
-        /// The name of the file to write to.
+        /// Gets or sets the name of the file to write to.
         /// </summary>
         /// <remarks>
         /// This FileName string is a layout which may include instances of layout renderers.
@@ -281,28 +270,20 @@ namespace NLog.Targets
         /// You can combine as many of the layout renderers as you want to produce an arbitrary log file name.
         /// </example>
         [RequiredParameter]
-        public Layout FileName
-        {
-            get { return _fileName; }
-            set { _fileName = value; }
-        }
+        public Layout FileName { get; set; }
 
         /// <summary>
-        /// Create directories if they don't exist.
+        /// Gets or sets a value indicating whether to create directories if they don't exist.
         /// </summary>
         /// <remarks>
         /// Setting this to false may improve performance a bit, but you'll receive an error
         /// when attempting to write to a directory that's not present.
         /// </remarks>
         [DefaultValue(true)]
-        public bool CreateDirs
-        {
-            get { return _createDirs; }
-            set { _createDirs = value; }
-        }
+        public bool CreateDirs { get; set; }
 
         /// <summary>
-        /// The number of files to be kept open. Setting this to a higher value may improve performance
+        /// Gets or sets the number of files to be kept open. Setting this to a higher value may improve performance
         /// in a situation where a single File target is writing to many files
         /// (such as splitting by level or by logger).
         /// </summary>
@@ -314,192 +295,141 @@ namespace NLog.Targets
         /// be keeping a large number of files open which consumes system resources.
         /// </remarks>
         [DefaultValue(5)]
-        public int OpenFileCacheSize
-        {
-            get { return _openFileCacheSize; }
-            set { _openFileCacheSize = value; }
-        }
+        public int OpenFileCacheSize { get; set; }
 
         /// <summary>
-        /// Maximum number of seconds that files are kept open. If this number is negative.
+        /// Gets or sets the maximum number of seconds that files are kept open. If this number is negative.
         /// </summary>
         [DefaultValue(-1)]
-        public int OpenFileCacheTimeout
-        {
-            get { return _openFileCacheTimeout; }
-            set { _openFileCacheTimeout = value; }
-        }
+        public int OpenFileCacheTimeout { get; set; }
 
         /// <summary>
-        /// Delete old log file on startup.
+        /// Gets or sets a value indicating whether to delete old log file on startup.
         /// </summary>
         /// <remarks>
-        /// This option works only when the "fileName" parameter denotes a single file.
+        /// This option works only when the "FileName" parameter denotes a single file.
         /// </remarks>
         [DefaultValue(false)]
-        public bool DeleteOldFileOnStartup
-        {
-            get { return _deleteOldFileOnStartup; }
-            set { _deleteOldFileOnStartup = value; }
-        }
+        public bool DeleteOldFileOnStartup { get; set; }
 
         /// <summary>
-        /// Replace file contents on each write instead of appending log message at the end.
+        /// Gets or sets a value indicating whether to replace file contents on each write instead of appending log message at the end.
         /// </summary>
         [DefaultValue(false)]
-        public bool ReplaceFileContentsOnEachWrite
-        {
-            get { return _replaceFileContentsOnEachWrite; }
-            set { _replaceFileContentsOnEachWrite = value; }
-        }
+        public bool ReplaceFileContentsOnEachWrite { get; set; }
 
         /// <summary>
-        /// Keep log file open instead of opening and closing it on each logging event.
+        /// Gets or sets a value indicating whether to keep log file open instead of opening and closing it on each logging event.
         /// </summary>
         /// <remarks>
         /// Setting this property to <c>True</c> helps improve performance.
         /// </remarks>
         [DefaultValue(false)]
-        public bool KeepFileOpen
-        {
-            get { return _keepFileOpen; }
-            set { _keepFileOpen = value; }
-        }
+        public bool KeepFileOpen { get; set; }
 
         /// <summary>
-        /// Enable log file(s) to be deleted.
+        /// Gets or sets a value indicating whether to enable log file(s) to be deleted.
         /// </summary>
         [DefaultValue(true)]
-        public bool EnableFileDelete
-        {
-            get { return _enableFileDelete; }
-            set { _enableFileDelete = value; }
-        }
+        public bool EnableFileDelete { get; set; }
 
 #if !NET_CF && !SILVERLIGHT
         /// <summary>
-        /// File attributes (Windows only).
+        /// Gets or sets the file attributes (Windows only).
         /// </summary>
-        public Win32FileAttributes FileAttributes
-        {
-            get { return _fileAttributes; }
-            set { _fileAttributes = value; }
-        }
+        public Win32FileAttributes FileAttributes { get; set; }
+
 #endif
 
         /// <summary>
-        /// Gets the characters that are appended after each line.
-        /// </summary>
-        protected string NewLineChars
-        {
-            get { return _newLine; }
-        }
-        /// <summary>
-        /// Line ending mode.
+        /// Gets or sets the line ending mode.
         /// </summary>
         public LineEndingMode LineEnding
         {
-            get { return _lineEndingMode; }
+            get
+            {
+                return this.lineEndingMode;
+            }
+
             set
             {
-                _lineEndingMode = value; 
+                this.lineEndingMode = value;
                 switch (value)
                 {
                     case LineEndingMode.CR:
-                        _newLine = "\r";
+                        this.NewLineChars = "\r";
                         break;
 
                     case LineEndingMode.LF:
-                        _newLine = "\n";
+                        this.NewLineChars = "\n";
                         break;
 
                     case LineEndingMode.CRLF:
-                        _newLine = "\r\n";
+                        this.NewLineChars = "\r\n";
                         break;
 
                     case LineEndingMode.Default:
 #if NET_CF
-                        _newLine = "\r\n";
+                        this.NewLineChars = "\r\n";
 #else
-                        _newLine = Environment.NewLine;
+                        this.NewLineChars = Environment.NewLine;
 #endif
                         break;
 
                     case LineEndingMode.None:
-                        _newLine = "";
+                        this.NewLineChars = string.Empty;
                         break;
                 }
             }
         }
 
         /// <summary>
-        /// Automatically flush the file buffers after each log message.
+        /// Gets or sets a value indicating whether to automatically flush the file buffers after each log message.
         /// </summary>
         [DefaultValue(true)]
-        public bool AutoFlush
-        {
-            get { return _autoFlush; }
-            set { _autoFlush = value; }
-        }
+        public bool AutoFlush { get; set; }
 
         /// <summary>
-        /// Log file buffer size in bytes.
+        /// Gets or sets the log file buffer size in bytes.
         /// </summary>
         [DefaultValue(32768)]
-        public int BufferSize
-        {
-            get { return _bufferSize; }
-            set { _bufferSize = value; }
-        }
+        public int BufferSize { get; set; }
 
         /// <summary>
-        /// File encoding.</summary>
+        /// Gets or sets the file encoding.</summary>
         /// <remarks>
-        /// Can be any encoding name supported by System.Text.Encoding.GetEncoding() e.g. <c>windows-1252</c>, <c>iso-8859-2</c>.
+        /// Can be any encoding name supported by Encoding.GetEncoding() e.g. <c>windows-1252</c>, <c>iso-8859-2</c>.
         /// </remarks>
-        public Encoding Encoding
-        {
-            get { return _encoding; }
-            set { _encoding = value; }
-        }
+        public Encoding Encoding { get; set; }
 
         /// <summary>
-        /// Enables concurrent writes to the log file by multiple processes on the same host.
+        /// Gets or sets a value indicating whether concurrent writes to the log file by multiple processes on the same host.
         /// </summary>
         /// <remarks>
         /// This makes multi-process logging possible. NLog uses a special technique
         /// that lets it keep the files open for writing.
         /// </remarks>
         [DefaultValue(true)]
-        public bool ConcurrentWrites
-        {
-            get { return _concurrentWrites; }
-            set { _concurrentWrites = value; }
-        }
+        public bool ConcurrentWrites { get; set; }
 
         /// <summary>
-        /// Disables open-fi
+        /// Gets or sets a value indicating whether concurrent writes to the log file by multiple processes on different network hosts.
         /// </summary>
+        /// <remarks>
+        /// This effectively prevents files from being kept open.
+        /// </remarks>
         [DefaultValue(false)]
-        public bool NetworkWrites
-        {
-            get { return _networkWrites; }
-            set { _networkWrites = value; }
-        }
+        public bool NetworkWrites { get; set; }
 
         /// <summary>
-        /// The number of times the write is appended on the file before NLog
+        /// Gets or sets the number of times the write is appended on the file before NLog
         /// discards the log message.
         /// </summary>
         [DefaultValue(10)]
-        public int ConcurrentWriteAttempts
-        {
-            get { return _concurrentWriteAttempts; }
-            set { _concurrentWriteAttempts = value; }
-        }
+        public int ConcurrentWriteAttempts { get; set; }
 
         /// <summary>
-        /// Automatically archive log files that exceed the specified size in bytes.
+        /// Gets or sets the size in bytes above which log files will be automatically archived.
         /// </summary>
         /// <remarks>
         /// Caution: Enabling this option can considerably slow down your file 
@@ -507,20 +437,16 @@ namespace NLog.Targets
         /// be writing to the file, consider setting <c>ConcurrentWrites</c>
         /// to <c>false</c> for maximum performance.
         /// </remarks>
-        public long ArchiveAboveSize
-        {
-            get { return _archiveAboveSize; }
-            set { _archiveAboveSize = value; }
-        }
+        public long ArchiveAboveSize { get; set; }
 
         /// <summary>
-        /// Automatically archive log files every time the specified time passes.
+        /// Gets or sets a value indicating whether to automatically archive log files every time the specified time passes.
+        /// </summary>
+        /// <remarks>
         /// Possible options are: <c>year</c>, <c>month</c>, <c>day</c>, <c>hour</c>, <c>minute</c>. Files are 
         /// moved to the archive as part of the write operation if the current period of time changes. For example
         /// if the current <c>hour</c> changes from 10 to 11, the first write that will occur
         /// on or after 11:00 will trigger the archiving.
-        /// </summary>
-        /// <remarks>
         /// <p>
         /// Caution: Enabling this option can considerably slow down your file 
         /// logging in multi-process scenarios. If only one process is going to
@@ -528,27 +454,21 @@ namespace NLog.Targets
         /// to <c>false</c> for maximum performance.
         /// </p>
         /// </remarks>
-        public ArchiveEveryMode ArchiveEvery
-        {
-            get { return _archiveEvery; }
-            set { _archiveEvery = value; }
-        }
+        public ArchiveEveryMode ArchiveEvery { get; set; }
 
         /// <summary>
-        /// The name of the file to be used for an archive. 
+        /// Gets or sets the name of the file to be used for an archive.
+        /// </summary>
+        /// <remarks>
         /// It may contain a special placeholder {#####}
         /// that will be replaced with a sequence of numbers depending on 
         /// the archiving strategy. The number of hash characters used determines
         /// the number of numerical digits to be used for numbering files.
-        /// </summary>
-        public Layout ArchiveFileName
-        {
-            get { return _autoArchiveFileName; }
-            set { _autoArchiveFileName = value; }
-        }
+        /// </remarks>
+        public Layout ArchiveFileName { get; set; }
 
         /// <summary>
-        /// The delay in milliseconds to wait before attempting to write to the file again.
+        /// Gets or sets the delay in milliseconds to wait before attempting to write to the file again.
         /// </summary>
         /// <remarks>
         /// The actual delay is a random value between 0 and the value specified
@@ -565,48 +485,374 @@ namespace NLog.Targets
         /// and so on.
         /// </example>
         [DefaultValue(1)]
-        public int ConcurrentWriteAttemptDelay
-        {
-            get { return _concurrentWriteAttemptDelay; }
-            set { _concurrentWriteAttemptDelay = value; }
-        }
+        public int ConcurrentWriteAttemptDelay { get; set; }
 
         /// <summary>
-        /// Maximum number of archive files that should be kept.
+        /// Gets or sets the maximum number of archive files that should be kept.
         /// </summary>
         [DefaultValue(9)]
-        public int MaxArchiveFiles
+        public int MaxArchiveFiles { get; set; }
+
+        /// <summary>
+        /// Gets or sets the way file archives are numbered. 
+        /// </summary>
+        public ArchiveNumberingMode ArchiveNumbering { get; set; }
+
+        /// <summary>
+        /// Gets the characters that are appended after each line.
+        /// </summary>
+        protected string NewLineChars { get; private set; }
+
+        /// <summary>
+        /// Adds all layouts used by this target to the specified collection.
+        /// </summary>
+        /// <param name="layouts">The collection to add layouts to.</param>
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
-            get { return _maxArchiveFiles; }
-            set { _maxArchiveFiles = value; }
+            base.PopulateLayouts(layouts);
+            if (this.FileName != null)
+            {
+                this.FileName.PopulateLayouts(layouts);
+            }
         }
 
         /// <summary>
-        /// Determines the way file archives are numbered. 
+        /// Removes records of initialized files that have not been 
+        /// accessed in the last two days.
         /// </summary>
-        public ArchiveNumberingMode ArchiveNumbering
+        /// <remarks>
+        /// Files are marked 'initialized' for the purpose of writing footers when the logging finishes.
+        /// </remarks>
+        public void CleanupInitializedFiles()
         {
-            get { return _archiveNumbering; }
-            set { _archiveNumbering = value; }
+            this.CleanupInitializedFiles(DateTime.Now.AddDays(-2));
+        }
+
+        /// <summary>
+        /// Removes records of initialized files that have not been
+        /// accessed after the specified date.
+        /// </summary>
+        /// <param name="cleanupThreshold">The cleanup threshold.</param>
+        /// <remarks>
+        /// Files are marked 'initialized' for the purpose of writing footers when the logging finishes.
+        /// </remarks>
+        public void CleanupInitializedFiles(DateTime cleanupThreshold)
+        {
+            // clean up files that are two days old
+            List<string> filesToUninitialize = new List<string>();
+
+            foreach (KeyValuePair<string, DateTime> de in this.initializedFiles)
+            {
+                string fileName = de.Key;
+                DateTime lastWriteTime = de.Value;
+                if (lastWriteTime < cleanupThreshold)
+                {
+                    filesToUninitialize.Add(fileName);
+                }
+            }
+
+            foreach (string fileName in filesToUninitialize)
+            {
+                this.WriteFooterAndUninitialize(fileName);
+            }
+        }
+
+        /// <summary>
+        /// Initializes file logging by creating data structures that
+        /// enable efficient multi-file logging.
+        /// </summary>
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            if (!this.KeepFileOpen)
+            {
+                this.appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
+            }
+            else
+            {
+                if (this.ArchiveAboveSize != -1 || this.ArchiveEvery != ArchiveEveryMode.None)
+                {
+                    if (this.NetworkWrites)
+                    {
+                        this.appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
+                    }
+                    else if (this.ConcurrentWrites)
+                    {
+#if NET_CF || SILVERLIGHT
+                        this.appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
+#elif MONO
+                        //
+                        // mono on Windows uses mutexes, on Unix - special appender
+                        //
+                        if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Unix))
+                        {
+                            this.appenderFactory = UnixMultiProcessFileAppender.TheFactory;
+                        }
+                        else
+                        {
+                            this.appenderFactory = MutexMultiProcessFileAppender.TheFactory;
+                        }
+#else
+                        this.appenderFactory = MutexMultiProcessFileAppender.TheFactory;
+#endif
+                    }
+                    else
+                    {
+                        this.appenderFactory = CountingSingleProcessFileAppender.TheFactory;
+                    }
+                }
+                else
+                {
+                    if (this.NetworkWrites)
+                    {
+                        this.appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
+                    }
+                    else if (this.ConcurrentWrites)
+                    {
+#if NET_CF || SILVERLIGHT
+                        this.appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
+#elif MONO
+                        //
+                        // mono on Windows uses mutexes, on Unix - special appender
+                        //
+                        if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Unix))
+                        {
+                            this.appenderFactory = UnixMultiProcessFileAppender.TheFactory;
+                        }
+                        else
+                        {
+                            this.appenderFactory = MutexMultiProcessFileAppender.TheFactory;
+                        }
+#else
+                        this.appenderFactory = MutexMultiProcessFileAppender.TheFactory;
+#endif
+                    }
+                    else
+                    {
+                        this.appenderFactory = SingleProcessFileAppender.TheFactory;
+                    }
+                }
+            }
+
+            this.recentAppenders = new BaseFileAppender[this.OpenFileCacheSize];
+
+            if ((this.OpenFileCacheSize > 0 || this.EnableFileDelete) && this.OpenFileCacheTimeout > 0)
+            {
+                this.autoClosingTimer = new Timer(
+                    new TimerCallback(this.AutoClosingTimerCallback),
+                    null,
+                    this.OpenFileCacheTimeout * 1000,
+                    this.OpenFileCacheTimeout * 1000);
+            }
+
+            // Console.Error.WriteLine("Name: {0} Factory: {1}", this.Name, this.appenderFactory.GetType().FullName);
+        }
+
+        /// <summary>
+        /// Flushes all pending file operations.
+        /// </summary>
+        /// <param name="timeout">The timeout.</param>
+        /// <remarks>
+        /// The timeout parameter is ignored, because file APIs don't provide
+        /// the needed functionality.
+        /// </remarks>
+        public override void Flush(TimeSpan timeout)
+        {
+            for (int i = 0; i < this.recentAppenders.Length; ++i)
+            {
+                if (this.recentAppenders[i] == null)
+                {
+                    break;
+                }
+
+                this.recentAppenders[i].Flush();
+            }
+        }
+
+        /// <summary>
+        /// Writes the specified logging event to a file specified in the FileName 
+        /// parameter.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
+        {
+            lock (this)
+            {
+                string fileName = this.FileName.GetFormattedMessage(logEvent);
+                byte[] bytes = this.GetBytesToWrite(logEvent);
+
+                if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
+                {
+                    this.InvalidateCacheItem(fileName);
+                    this.DoAutoArchive(fileName, logEvent);
+                }
+
+                this.WriteToFile(fileName, bytes, false);
+            }
+        }
+
+        /// <summary>
+        /// Writes the specified array of logging events to a file specified in the FileName 
+        /// parameter.
+        /// </summary>
+        /// <param name="logEvents">An array of <see cref="LogEventInfo "/> objects.</param>
+        /// <remarks>
+        /// This function makes use of the fact that the events are batched by sorting 
+        /// the requests by filename. This optimizes the number of open/close calls
+        /// and can help improve performance.
+        /// </remarks>
+        protected internal override void Write(LogEventInfo[] logEvents)
+        {
+            if (this.FileName.IsAppDomainFixed())
+            {
+                foreach (LogEventInfo lei in logEvents)
+                {
+                    this.Write(lei);
+                }
+
+                return;
+            }
+
+            Array.Sort(logEvents, 0, logEvents.Length, this.logEventComparer);
+
+            lock (this)
+            {
+                string currentFileName = null;
+                MemoryStream ms = new MemoryStream();
+                LogEventInfo firstLogEvent = null;
+
+                for (int i = 0; i < logEvents.Length; ++i)
+                {
+                    LogEventInfo logEvent = logEvents[i];
+                    string logEventFileName = this.FileName.GetFormattedMessage(logEvent);
+                    if (logEventFileName != currentFileName)
+                    {
+                        if (currentFileName != null)
+                        {
+                            if (this.ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
+                            {
+                                this.WriteFooterAndUninitialize(currentFileName);
+                                this.InvalidateCacheItem(currentFileName);
+                                this.DoAutoArchive(currentFileName, firstLogEvent);
+                            }
+
+                            this.WriteToFile(currentFileName, ms.ToArray(), false);
+                        }
+
+                        currentFileName = logEventFileName;
+                        firstLogEvent = logEvent;
+                        ms.SetLength(0);
+                        ms.Position = 0;
+                    }
+
+                    byte[] bytes = this.GetBytesToWrite(logEvent);
+                    ms.Write(bytes, 0, bytes.Length);
+                }
+
+                if (currentFileName != null)
+                {
+                    if (this.ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
+                    {
+                        this.WriteFooterAndUninitialize(currentFileName);
+                        this.InvalidateCacheItem(currentFileName);
+                        this.DoAutoArchive(currentFileName, firstLogEvent);
+                    }
+
+                    this.WriteToFile(currentFileName, ms.ToArray(), false);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Closes the file(s) opened for writing.
+        /// </summary>
+        protected internal override void Close()
+        {
+            base.Close();
+
+            lock (this)
+            {
+                foreach (string fileName in new List<string>(this.initializedFiles.Keys))
+                {
+                    this.WriteFooterAndUninitialize(fileName);
+                }
+
+                if (this.autoClosingTimer != null)
+                {
+                    this.autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
+                    this.autoClosingTimer.Dispose();
+                    this.autoClosingTimer = null;
+                }
+            }
+
+            for (int i = 0; i < this.recentAppenders.Length; ++i)
+            {
+                if (this.recentAppenders[i] == null)
+                {
+                    break;
+                }
+
+                this.recentAppenders[i].Close();
+                this.recentAppenders[i] = null;
+            }
+        }
+
+        /// <summary>
+        /// Formats the log event for write.
+        /// </summary>
+        /// <param name="logEvent">The log event to be formatted.</param>
+        /// <returns>A string representation of the log event.</returns>
+        protected virtual string GetFormattedMessage(LogEventInfo logEvent)
+        {
+            return this.Layout.GetFormattedMessage(logEvent);
+        }
+
+        /// <summary>
+        /// Gets the bytes to be written to the file.
+        /// </summary>
+        /// <param name="logEvent">Log event.</param>
+        /// <returns>Array of bytes that are ready to be written.</returns>
+        protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
+        {
+            string renderedText = this.GetFormattedMessage(logEvent) + this.NewLineChars;
+            return this.TransformBytes(this.Encoding.GetBytes(renderedText));
+        }
+
+        /// <summary>
+        /// Modifies the specified byte array before it gets sent to a file.
+        /// </summary>
+        /// <param name="bytes">The byte array.</param>
+        /// <returns>The modified byte array. The function can do the modification in-place.</returns>
+        protected virtual byte[] TransformBytes(byte[] bytes)
+        {
+            return bytes;
         }
 
         private void RecursiveRollingRename(string fileName, string pattern, int archiveNumber)
         {
-            if (archiveNumber >= MaxArchiveFiles)
+            if (archiveNumber >= this.MaxArchiveFiles)
             {
                 File.Delete(fileName);
                 return;
             }
 
             if (!File.Exists(fileName))
+            {
                 return;
+            }
 
-            string newFileName = ReplaceNumber(pattern, archiveNumber);
+            string newFileName = this.ReplaceNumber(pattern, archiveNumber);
             if (File.Exists(fileName))
-                RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
+            {
+                this.RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
+            }
 
             if (InternalLogger.IsTraceEnabled)
+            {
                 InternalLogger.Trace("Renaming {0} to {1}", fileName, newFileName);
+            }
+
             try
             {
                 File.Move(fileName, newFileName);
@@ -631,20 +877,17 @@ namespace NLog.Targets
         {
             string baseNamePattern = Path.GetFileName(pattern);
 
-            //Console.WriteLine("baseNamePatern: {0}", baseNamePattern);
-
             int firstPart = baseNamePattern.IndexOf("{#");
             int lastPart = baseNamePattern.IndexOf("#}") + 2;
             int trailerLength = baseNamePattern.Length - lastPart;
 
             string fileNameMask = baseNamePattern.Substring(0, firstPart) + "*" + baseNamePattern.Substring(lastPart);
 
-            //Console.WriteLine("fileNameMask: {0}", fileNameMask);
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             int nextNumber = -1;
             int minNumber = -1;
 
-            Dictionary<int,string> number2name = new Dictionary<int,string>();
+            var number2name = new Dictionary<int, string>();
 
             try
             {
@@ -676,6 +919,7 @@ namespace NLog.Targets
 
                     number2name[num] = s;
                 }
+
                 nextNumber++;
             }
             catch (DirectoryNotFoundException)
@@ -686,7 +930,7 @@ namespace NLog.Targets
 
             if (minNumber != -1)
             {
-                int minNumberToKeep = nextNumber - _maxArchiveFiles + 1;
+                int minNumberToKeep = nextNumber - this.MaxArchiveFiles + 1;
                 for (int i = minNumber; i < minNumberToKeep; ++i)
                 {
                     string s;
@@ -698,7 +942,7 @@ namespace NLog.Targets
                 }
             }
 
-            string newFileName = ReplaceNumber(pattern, nextNumber);
+            string newFileName = this.ReplaceNumber(pattern, nextNumber);
             File.Move(fileName, newFileName);
         }
 
@@ -706,57 +950,63 @@ namespace NLog.Targets
         {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
+            {
                 return;
+            }
 
             // Console.WriteLine("DoAutoArchive({0})", fileName);
-            
             string fileNamePattern;
 
-            if (_autoArchiveFileName == null)
+            if (this.ArchiveFileName == null)
             {
                 string ext = Path.GetExtension(fileName);
                 fileNamePattern = Path.ChangeExtension(fi.FullName, ".{#}" + ext);
-
             }
             else
             {
-                fileNamePattern = _autoArchiveFileName.GetFormattedMessage(ev);
+                fileNamePattern = this.ArchiveFileName.GetFormattedMessage(ev);
             }
 
-            switch (ArchiveNumbering)
+            switch (this.ArchiveNumbering)
             {
                 case ArchiveNumberingMode.Rolling:
-                    RecursiveRollingRename(fi.FullName, fileNamePattern, 0);
+                    this.RecursiveRollingRename(fi.FullName, fileNamePattern, 0);
                     break;
 
                 case ArchiveNumberingMode.Sequence:
-                    SequentialArchive(fi.FullName, fileNamePattern);
+                    this.SequentialArchive(fi.FullName, fileNamePattern);
                     break;
             }
         }
 
         private bool ShouldAutoArchive(string fileName, LogEventInfo ev, int upcomingWriteSize)
         {
-            if (_archiveAboveSize == -1 && _archiveEvery == ArchiveEveryMode.None)
+            if (this.ArchiveAboveSize == -1 && this.ArchiveEvery == ArchiveEveryMode.None)
+            {
                 return false;
+            }
 
             DateTime lastWriteTime;
             long fileLength;
 
-            if (!GetFileInfo(fileName, out lastWriteTime, out fileLength))
-                return false;
-
-            if (_archiveAboveSize != -1)
+            if (!this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
             {
-                if (fileLength + upcomingWriteSize > _archiveAboveSize)
-                    return true;
+                return false;
             }
 
-            if (_archiveEvery != ArchiveEveryMode.None)
+            if (this.ArchiveAboveSize != -1)
+            {
+                if (fileLength + upcomingWriteSize > this.ArchiveAboveSize)
+                {
+                    return true;
+                }
+            }
+
+            if (this.ArchiveEvery != ArchiveEveryMode.None)
             {
                 string formatString;
 
-                switch (_archiveEvery)
+                switch (this.ArchiveEvery)
                 {
                     case ArchiveEveryMode.Year:
                         formatString = "yyyy";
@@ -784,212 +1034,12 @@ namespace NLog.Targets
                 string ts2 = ev.TimeStamp.ToString(formatString);
 
                 if (ts != ts2)
+                {
                     return true;
+                }
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts (layouts);
-            if (FileName != null)
-                FileName.PopulateLayouts(layouts);
-        }
-
-        /// <summary>
-        /// Formats the log event for write.
-        /// </summary>
-        /// <param name="logEvent">The log event to be formatted.</param>
-        /// <returns>A string representation of the log event.</returns>
-        protected virtual string GetFormattedMessage(LogEventInfo logEvent)
-        {
-            return Layout.GetFormattedMessage(logEvent);
-        }
-
-        /// <summary>
-        /// Gets the bytes to be written to the file.
-        /// </summary>
-        /// <param name="logEvent">log event</param>
-        /// <returns>array of bytes that are ready to be written</returns>
-        protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
-        {
-            string renderedText = GetFormattedMessage(logEvent) + NewLineChars;
-            return TransformBytes(_encoding.GetBytes(renderedText));
-        }
-
-        /// <summary>
-        /// Writes the specified logging event to a file specified in the FileName 
-        /// parameter.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
-        {
-            lock (this)
-            {
-                string fileName = FileName.GetFormattedMessage(logEvent);
-                byte[] bytes = GetBytesToWrite(logEvent);
-
-                if (ShouldAutoArchive(fileName, logEvent, bytes.Length))
-                {
-                    InvalidateCacheItem(fileName);
-                    DoAutoArchive(fileName, logEvent);
-                }
-
-                WriteToFile(fileName, bytes, false);
-            }
-        }
-
-
-        /// <summary>
-        /// Writes the specified array of logging events to a file specified in the FileName 
-        /// parameter.
-        /// </summary>
-        /// <param name="logEvents">An array of <see cref="LogEventInfo "/> objects.</param>
-        /// <remarks>
-        /// This function makes use of the fact that the events are batched by sorting 
-        /// the requests by filename. This optimizes the number of open/close calls
-        /// and can help improve performance.
-        /// </remarks>
-        protected internal override void Write(LogEventInfo[] logEvents)
-        {
-            if (FileName.IsAppDomainFixed())
-            {
-                foreach (LogEventInfo lei in logEvents)
-                    Write(lei);
-                return;
-            }
-
-            Array.Sort(logEvents, 0, logEvents.Length, _logEventComparer);
-
-            lock (this)
-            {
-                string currentFileName = null;
-                MemoryStream ms = new MemoryStream();
-                LogEventInfo firstLogEvent = null;
-
-                for (int i = 0; i < logEvents.Length; ++i)
-                {
-                    LogEventInfo logEvent = logEvents[i];
-                    string logEventFileName = FileName.GetFormattedMessage(logEvent);
-                    if (logEventFileName != currentFileName)
-                    {
-                        if (currentFileName != null)
-                        {
-                            if (ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
-                            {
-                                WriteFooterAndUninitialize(currentFileName);
-                                InvalidateCacheItem(currentFileName);
-                                DoAutoArchive(currentFileName, firstLogEvent);
-                            }
-
-                            WriteToFile(currentFileName, ms.ToArray(), false);
-                        }
-                        currentFileName = logEventFileName;
-                        firstLogEvent = logEvent;
-                        ms.SetLength(0);
-                        ms.Position = 0;
-                    }
-
-                    byte[] bytes = GetBytesToWrite(logEvent);
-                    ms.Write(bytes, 0, bytes.Length);
-                }
-                if (currentFileName != null)
-                {
-                    if (ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
-                    {
-                        WriteFooterAndUninitialize(currentFileName);
-                        InvalidateCacheItem(currentFileName);
-                        DoAutoArchive(currentFileName, firstLogEvent);
-                    }
-
-                    WriteToFile(currentFileName, ms.ToArray(), false);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Initializes file logging by creating data structures that
-        /// enable efficient multi-file logging.
-        /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize ();
-
-            if (!KeepFileOpen)
-            {
-                _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
-            }
-            else
-            {
-                if (_archiveAboveSize != -1 || _archiveEvery != ArchiveEveryMode.None)
-                {
-                    if (NetworkWrites)
-                    {
-                        _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
-                    }
-                    else if (ConcurrentWrites)
-                    {
-#if NET_CF || SILVERLIGHT
-                        _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
-#elif MONO
-                        //
-                        // mono on Windows uses mutexes, on Unix - special appender
-                        //
-                        if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Unix))
-                            _appenderFactory = UnixMultiProcessFileAppender.TheFactory;
-                        else
-                            _appenderFactory = MutexMultiProcessFileAppender.TheFactory;
-#else
-                        _appenderFactory = MutexMultiProcessFileAppender.TheFactory;
-#endif
-                    }
-                    else
-                    {
-                        _appenderFactory = CountingSingleProcessFileAppender.TheFactory;
-                    }
-                }
-                else
-                {
-                    if (NetworkWrites)
-                    {
-                        _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
-                    }
-                    else if (ConcurrentWrites)
-                    {
-#if NET_CF || SILVERLIGHT
-                        _appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
-#elif MONO
-                        //
-                        // mono on Windows uses mutexes, on Unix - special appender
-                        //
-                        if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Unix))
-                            _appenderFactory = UnixMultiProcessFileAppender.TheFactory;
-                        else
-                            _appenderFactory = MutexMultiProcessFileAppender.TheFactory;
-#else
-                        _appenderFactory = MutexMultiProcessFileAppender.TheFactory;
-#endif
-                    }
-                    else
-                    {
-                        _appenderFactory = SingleProcessFileAppender.TheFactory;
-                    }
-                }
-            }
-
-            _recentAppenders = new BaseFileAppender[OpenFileCacheSize];
-
-            if ((OpenFileCacheSize > 0 || EnableFileDelete) && OpenFileCacheTimeout > 0)
-            {
-                _autoClosingTimer = new Timer(new TimerCallback(this.AutoClosingTimerCallback), null, OpenFileCacheTimeout * 1000, OpenFileCacheTimeout * 1000);
-            }
-
-            // Console.Error.WriteLine("Name: {0} Factory: {1}", this.Name, _appenderFactory.GetType().FullName);
         }
 
         private void AutoClosingTimerCallback(object state)
@@ -998,21 +1048,27 @@ namespace NLog.Targets
             {
                 try
                 {
-                    DateTime timeToKill = DateTime.Now.AddSeconds(-OpenFileCacheTimeout);
-                    for (int i = 0; i < _recentAppenders.Length; ++i)
+                    DateTime timeToKill = DateTime.Now.AddSeconds(-this.OpenFileCacheTimeout);
+                    for (int i = 0; i < this.recentAppenders.Length; ++i)
                     {
-                        if (_recentAppenders[i] == null)
-                            break;
-
-                        if (_recentAppenders[i].OpenTime < timeToKill)
+                        if (this.recentAppenders[i] == null)
                         {
-                            for (int j = i; j < _recentAppenders.Length; ++j)
+                            break;
+                        }
+
+                        if (this.recentAppenders[i].OpenTime < timeToKill)
+                        {
+                            for (int j = i; j < this.recentAppenders.Length; ++j)
                             {
-                                if (_recentAppenders[j] == null)
+                                if (this.recentAppenders[j] == null)
+                                {
                                     break;
-                                _recentAppenders[j].Close();
-                                _recentAppenders[j] = null;
+                                }
+
+                                this.recentAppenders[j].Close();
+                                this.recentAppenders[j] = null;
                             }
+
                             break;
                         }
                     }
@@ -1024,31 +1080,27 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Modifies the specified byte array before it gets sent to a file.
-        /// </summary>
-        /// <param name="bytes">The byte array</param>
-        /// <returns>The modified byte array. The function can do the modification in-place.</returns>
-        protected virtual byte[] TransformBytes(byte[] bytes)
-        {
-            return bytes;
-        }
-
         private void WriteToFile(string fileName, byte[] bytes, bool justData)
         {
-            if (ReplaceFileContentsOnEachWrite)
+            if (this.ReplaceFileContentsOnEachWrite)
             {
                 using (FileStream fs = File.Create(fileName))
                 {
-                    byte[] headerBytes = GetHeaderBytes();
-                    byte[] footerBytes = GetFooterBytes();
+                    byte[] headerBytes = this.GetHeaderBytes();
+                    byte[] footerBytes = this.GetFooterBytes();
 
                     if (headerBytes != null)
+                    {
                         fs.Write(headerBytes, 0, headerBytes.Length);
+                    }
+
                     fs.Write(bytes, 0, bytes.Length);
                     if (footerBytes != null)
+                    {
                         fs.Write(footerBytes, 0, footerBytes.Length);
+                    }
                 }
+
                 return;
             }
 
@@ -1056,9 +1108,9 @@ namespace NLog.Targets
 
             if (!justData)
             {
-                if (!_initializedFiles.ContainsKey(fileName))
+                if (!this.initializedFiles.ContainsKey(fileName))
                 {
-                    if (DeleteOldFileOnStartup)
+                    if (this.DeleteOldFileOnStartup)
                     {
                         try
                         {
@@ -1069,17 +1121,19 @@ namespace NLog.Targets
                             InternalLogger.Warn("Unable to delete old log file '{0}': {1}", fileName, ex);
                         }
                     }
-                    _initializedFiles[fileName] = DateTime.Now;
-                    _initializedFilesCounter++;
+
+                    this.initializedFiles[fileName] = DateTime.Now;
+                    this.initializedFilesCounter++;
                     writeHeader = true;
 
-                    if (_initializedFilesCounter >= 100)
+                    if (this.initializedFilesCounter >= 100)
                     {
-                        _initializedFilesCounter = 0;
-                        CleanupInitializedFiles();
+                        this.initializedFilesCounter = 0;
+                        this.CleanupInitializedFiles();
                     }
                 }
-                _initializedFiles[fileName] = DateTime.Now;
+
+                this.initializedFiles[fileName] = DateTime.Now;
             }
 
             //
@@ -1090,30 +1144,31 @@ namespace NLog.Targets
             // The number of items is usually very limited so the 
             // performance should be equivalent to the one of the hashtable.
             //
-
             BaseFileAppender appenderToWrite = null;
-            int freeSpot = _recentAppenders.Length - 1;
+            int freeSpot = this.recentAppenders.Length - 1;
 
-            for (int i = 0; i < _recentAppenders.Length; ++i)
+            for (int i = 0; i < this.recentAppenders.Length; ++i)
             {
-                if (_recentAppenders[i] == null)
+                if (this.recentAppenders[i] == null)
                 {
                     freeSpot = i;
                     break;
                 }
 
-                if (_recentAppenders[i].FileName == fileName)
+                if (this.recentAppenders[i].FileName == fileName)
                 {
                     // found it, move it to the first place on the list
                     // (MRU)
 
                     // file open has a chance of failure
                     // if it fails in the constructor, we won't modify any data structures
-
-                    BaseFileAppender app = _recentAppenders[i];
+                    BaseFileAppender app = this.recentAppenders[i];
                     for (int j = i; j > 0; --j)
-                        _recentAppenders[j] = _recentAppenders[j - 1];
-                    _recentAppenders[0] = app;
+                    {
+                        this.recentAppenders[j] = this.recentAppenders[j - 1];
+                    }
+
+                    this.recentAppenders[0] = app;
                     appenderToWrite = app;
                     break;
                 }
@@ -1121,26 +1176,26 @@ namespace NLog.Targets
 
             if (appenderToWrite == null)
             {
-                BaseFileAppender newAppender = _appenderFactory.Open(fileName, this);
+                BaseFileAppender newAppender = this.appenderFactory.Open(fileName, this);
 
-                if (_recentAppenders[freeSpot] != null)
+                if (this.recentAppenders[freeSpot] != null)
                 {
-                    _recentAppenders[freeSpot].Close();
-                    _recentAppenders[freeSpot] = null;
+                    this.recentAppenders[freeSpot].Close();
+                    this.recentAppenders[freeSpot] = null;
                 }
 
                 for (int j = freeSpot; j > 0; --j)
                 {
-                    _recentAppenders[j] = _recentAppenders[j - 1];
+                    this.recentAppenders[j] = this.recentAppenders[j - 1];
                 }
 
-                _recentAppenders[0] = newAppender;
+                this.recentAppenders[0] = newAppender;
                 appenderToWrite = newAppender;
             }
 
             if (writeHeader && !justData)
             {
-                byte[] headerBytes = GetHeaderBytes();
+                byte[] headerBytes = this.GetHeaderBytes();
                 if (headerBytes != null)
                 {
                     appenderToWrite.Write(headerBytes);
@@ -1153,133 +1208,51 @@ namespace NLog.Targets
         private byte[] GetHeaderBytes()
         {
             if (Header == null)
+            {
                 return null;
+            }
 
-            string renderedText = Header.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + NewLineChars;
-            return TransformBytes(_encoding.GetBytes(renderedText));
+            string renderedText = Header.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
+            return this.TransformBytes(this.Encoding.GetBytes(renderedText));
         }
 
         private byte[] GetFooterBytes()
         {
             if (Footer == null)
+            {
                 return null;
-
-            string renderedText = Footer.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + NewLineChars;
-            return TransformBytes(_encoding.GetBytes(renderedText));
-        }
-
-        /// <summary>
-        /// Removes records of initialized files that have not been 
-        /// accessed in the last two days.
-        /// </summary>
-        /// <remarks>
-        /// Files are marked 'initialized' for the purpose of writing footers when the logging finishes.
-        /// </remarks>
-        public void CleanupInitializedFiles()
-        {
-            CleanupInitializedFiles(DateTime.Now.AddDays(-2));
-        }
-
-        /// <summary>
-        /// Removes records of initialized files that have not been 
-        /// accessed after the specified date.
-        /// </summary>
-        /// <remarks>
-        /// Files are marked 'initialized' for the purpose of writing footers when the logging finishes.
-        /// </remarks>
-        public void CleanupInitializedFiles(DateTime cleanupThreshold)
-        {
-            // clean up files that are two days old
-
-            List<string> filesToUninitialize = new List<string>();
-
-            foreach (KeyValuePair<string, DateTime> de in _initializedFiles)
-            {
-                string fileName = de.Key;
-                DateTime lastWriteTime = de.Value;
-                if (lastWriteTime < cleanupThreshold)
-                {
-                    filesToUninitialize.Add(fileName);
-                }
             }
 
-            foreach (string fileName in filesToUninitialize)
-            {
-                WriteFooterAndUninitialize(fileName);
-            }
+            string renderedText = Footer.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
+            return this.TransformBytes(this.Encoding.GetBytes(renderedText));
         }
 
         private void WriteFooterAndUninitialize(string fileName)
         {
-            byte[] footerBytes = GetFooterBytes();
+            byte[] footerBytes = this.GetFooterBytes();
             if (footerBytes != null)
             {
                 if (File.Exists(fileName))
                 {
-                    WriteToFile(fileName, footerBytes, true);
-                }
-            }
-            _initializedFiles.Remove(fileName);
-        }
-
-        /// <summary>
-        /// Flushes all pending file operations.
-        /// </summary>
-        /// <param name="timeout">The timeout</param>
-        /// <remarks>
-        /// The timeout parameter is ignored, because file APIs don't provide
-        /// the needed functionality.
-        /// </remarks>
-        public override void Flush(TimeSpan timeout)
-        {
-            for (int i = 0; i < _recentAppenders.Length; ++i)
-            {
-                if (_recentAppenders[i] == null)
-                    break;
-                _recentAppenders[i].Flush();
-            }
-        }
-
-        /// <summary>
-        /// Closes the file(s) opened for writing.
-        /// </summary>
-        protected internal override void Close()
-        {
-            base.Close();
-
-            lock (this)
-            {
-                foreach (string fileName in new List<string>(_initializedFiles.Keys))
-                {
-                    WriteFooterAndUninitialize(fileName);
-                }
-
-                if (_autoClosingTimer != null)
-                {
-                    _autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
-                    _autoClosingTimer.Dispose();
-                    _autoClosingTimer = null;
+                    this.WriteToFile(fileName, footerBytes, true);
                 }
             }
 
-            for (int i = 0; i < _recentAppenders.Length; ++i)
-            {
-                if (_recentAppenders[i] == null)
-                    break;
-                _recentAppenders[i].Close();
-                _recentAppenders[i] = null;
-            }
+            this.initializedFiles.Remove(fileName);
         }
 
         private bool GetFileInfo(string fileName, out DateTime lastWriteTime, out long fileLength)
         {
-            for (int i = 0; i < _recentAppenders.Length; ++i)
+            for (int i = 0; i < this.recentAppenders.Length; ++i)
             {
-                if (_recentAppenders[i] == null)
-                    break;
-                if (_recentAppenders[i].FileName == fileName)
+                if (this.recentAppenders[i] == null)
                 {
-                    _recentAppenders[i].GetFileInfo(out lastWriteTime, out fileLength);
+                    break;
+                }
+
+                if (this.recentAppenders[i].FileName == fileName)
+                {
+                    this.recentAppenders[i].GetFileInfo(out lastWriteTime, out fileLength);
                     return true;
                 }
             }
@@ -1298,49 +1271,91 @@ namespace NLog.Targets
                 return false;
             }
         }
- 
+
         private void InvalidateCacheItem(string fileName)
         {
-            for (int i = 0; i < _recentAppenders.Length; ++i)
+            for (int i = 0; i < this.recentAppenders.Length; ++i)
             {
-                if (_recentAppenders[i] == null)
-                    break;
-                if (_recentAppenders[i].FileName == fileName)
+                if (this.recentAppenders[i] == null)
                 {
-                    _recentAppenders[i].Close();
-                    for (int j = i; j < _recentAppenders.Length - 1; ++j)
-                        _recentAppenders[j] = _recentAppenders[j + 1];
-                    _recentAppenders[_recentAppenders.Length - 1] = null;
+                    break;
+                }
+
+                if (this.recentAppenders[i].FileName == fileName)
+                {
+                    this.recentAppenders[i].Close();
+                    for (int j = i; j < this.recentAppenders.Length - 1; ++j)
+                    {
+                        this.recentAppenders[j] = this.recentAppenders[j + 1];
+                    }
+
+                    this.recentAppenders[this.recentAppenders.Length - 1] = null;
                     break;
                 }
             }
         }
 
-        class LogEventComparer : IComparer
+        /// <summary>
+        /// Compares two log events do determine their ordering 
+        /// by filename first, then by sequence ID.
+        /// </summary>
+        private class LogEventComparer : IComparer
         {
-            private FileTarget _fileTarget;
+            private FileTarget fileTarget;
 
+            /// <summary>
+            /// Initializes a new instance of the LogEventComparer class.
+            /// </summary>
+            /// <param name="fileTarget">The file target.</param>
             public LogEventComparer(FileTarget fileTarget)
             {
-                _fileTarget = fileTarget;
+                this.fileTarget = fileTarget;
             }
 
+            /// <summary>
+            /// Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.
+            /// </summary>
+            /// <param name="x">The first object to compare.</param>
+            /// <param name="y">The second object to compare.</param>
+            /// <returns>
+            /// Value
+            /// Condition
+            /// Less than zero
+            /// <paramref name="x"/> is less than <paramref name="y"/>.
+            /// Zero
+            /// <paramref name="x"/> equals <paramref name="y"/>.
+            /// Greater than zero
+            /// <paramref name="x"/> is greater than <paramref name="y"/>.
+            /// </returns>
+            /// <exception cref="T:System.ArgumentException">
+            /// Neither <paramref name="x"/> nor <paramref name="y"/> implements the <see cref="T:System.IComparable"/> interface.
+            /// -or-
+            /// <paramref name="x"/> and <paramref name="y"/> are of different types and neither one can handle comparisons with the other.
+            /// </exception>
             public int Compare(object x, object y)
             {
                 LogEventInfo le1 = (LogEventInfo)x;
                 LogEventInfo le2 = (LogEventInfo)y;
 
-                string filename1 = _fileTarget.FileName.GetFormattedMessage(le1);
-                string filename2 = _fileTarget.FileName.GetFormattedMessage(le2);
+                string filename1 = this.fileTarget.FileName.GetFormattedMessage(le1);
+                string filename2 = this.fileTarget.FileName.GetFormattedMessage(le2);
 
                 int val = String.CompareOrdinal(filename1, filename2);
                 if (val != 0)
+                {
                     return val;
-
+                }
+                
                 if (le1.SequenceId < le2.SequenceId)
+                {
                     return -1;
+                }
+
                 if (le1.SequenceId > le2.SequenceId)
+                {
                     return 1;
+                }
+
                 return 0;
             }
         }

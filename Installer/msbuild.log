@@ -1,0 +1,246 @@
+Build started 5/29/2009 11:20:05 PM.
+Project "D:\Work\NLog2\NLog.proj" on node 0 (Installer target(s)).
+Building with tools version "3.5".
+Target "Installer" in file "D:\Work\NLog2\NLog.proj" from project "D:\Work\NLog2\NLog.proj":
+Using "MSBuild" task from assembly "Microsoft.Build.Tasks.v3.5, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "MSBuild"
+  Global Properties:
+    NLogBuildPath=D:\Work\NLog2\build\Debug
+Project "D:\Work\NLog2\NLog.proj" (1) is building "D:\Work\NLog2\Installer\Installer.wixproj" (2) on node 0 (Rebuild target(s)).
+Building with tools version "2.0".
+Target "_CheckRequiredProperties" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Task "Error" skipped, due to false condition; ( '$(OutputName)' == '' ) was evaluated as ( 'NLogSetup' == '' ).
+Task "Warning" skipped, due to false condition; ( '$(_OriginalOutputType)' == '' ) was evaluated as ( 'Package' == '' ).
+Task "Error" skipped, due to false condition; ( '$(OutputType)' != 'Package' and '$(OutputType)' != 'PatchCreation' and '$(OutputType)' != 'Module' and '$(OutputType)' != 'Library' ) was evaluated as ( 'Package' != 'Package' and 'Package' != 'PatchCreation' and 'Package' != 'Module' and 'Package' != 'Library' ).
+Task "Error" skipped, due to false condition; ('$(OutDir)' != '' and !HasTrailingSlash('$(OutDir)')) was evaluated as ('D:\Work\NLog2\build\Debug\' != '' and !HasTrailingSlash('D:\Work\NLog2\build\Debug\')).
+Done building target "_CheckRequiredProperties" in project "Installer.wixproj".
+Target "_SetDefaultPathValues" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Using "ReadRegistry" task from assembly "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\WixTasks.dll".
+Task "ReadRegistry"
+  Registry value at 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Installer XML\3.0\InstallRoot' is 'C:\Program Files (x86)\Windows Installer XML v3\bin\'.
+Done executing task "ReadRegistry".
+Task "ReadRegistry"
+  Registry value at 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Installer XML\3.0\InstallRoot' is 'C:\Program Files (x86)\Windows Installer XML v3\bin\'.
+Done executing task "ReadRegistry".
+Task "CreateProperty" skipped, due to false condition; ( '$(WixToolPath)' == '' ) was evaluated as ( 'C:\Program Files (x86)\Windows Installer XML v3\bin\' == '' ).
+Task "ReadRegistry" skipped, due to false condition; ( '$(WixExtDir)' == '' ) was evaluated as ( 'C:\Program Files (x86)\Windows Installer XML v3\bin\' == '' ).
+Task "ReadRegistry" skipped, due to false condition; ( '$(WixToolPath)' == '' ) was evaluated as ( 'C:\Program Files (x86)\Windows Installer XML v3\bin\' == '' ).
+Task "CreateProperty" skipped, due to false condition; ( '$(WixExtDir)' == '' ) was evaluated as ( 'C:\Program Files (x86)\Windows Installer XML v3\bin\' == '' ).
+Done building target "_SetDefaultPathValues" in project "Installer.wixproj".
+Target "CoreClean" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Using "ReadLinesFromFile" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "ReadLinesFromFile"
+Done executing task "ReadLinesFromFile".
+Using "FindUnderPath" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "FindUnderPath"
+  Comparison path is "D:\Work\NLog2\build\Debug\".
+  Path "D:\Work\NLog2\build\Debug\NLogSetup.wixpdb" is inside the comparison path.
+  Path "D:\Work\NLog2\Installer\obj\Debug\NLog.wixobj" is outside the comparison path.
+Done executing task "FindUnderPath".
+Task "FindUnderPath"
+  Comparison path is "obj\Debug\".
+  Path "D:\Work\NLog2\build\Debug\NLogSetup.wixpdb" is outside the comparison path.
+  Path "D:\Work\NLog2\Installer\obj\Debug\NLog.wixobj" is inside the comparison path.
+Done executing task "FindUnderPath".
+Using "Delete" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "Delete"
+  Deleting file "D:\Work\NLog2\build\Debug\NLogSetup.wixpdb".
+  Command:
+  del "D:\Work\NLog2\build\Debug\NLogSetup.wixpdb"
+  Deleting file "obj\Debug\NLog.wixobj".
+  Command:
+  del "obj\Debug\NLog.wixobj"
+Done executing task "Delete".
+Using "CreateItem" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "CreateItem"
+Done executing task "CreateItem".
+Using "RemoveDuplicates" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "RemoveDuplicates"
+Done executing task "RemoveDuplicates".
+Using "MakeDir" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "MakeDir"
+Done executing task "MakeDir".
+Using "WriteLinesToFile" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "WriteLinesToFile"
+Done executing task "WriteLinesToFile".
+Done building target "CoreClean" in project "Installer.wixproj".
+Target "BuildOnlySettings" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Using "CreateProperty" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "CreateProperty"
+Done executing task "CreateProperty".
+Done building target "BuildOnlySettings" in project "Installer.wixproj".
+Target "PrepareForBuild" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Task "CreateProperty"
+Done executing task "CreateProperty".
+Task "CreateProperty"
+Done executing task "CreateProperty".
+Task "CreateProperty"
+Done executing task "CreateProperty".
+Task "MakeDir"
+Done executing task "MakeDir".
+Done building target "PrepareForBuild" in project "Installer.wixproj".
+Target "PreBuildEvent" skipped, due to false condition; ( '$(PreBuildEvent)' != '' ) was evaluated as ( '' != '' ).
+Target "SplitProjectReferencesByType" skipped, due to false condition; ( '@(ProjectReference)' != '' ) was evaluated as ( '' != '' ).
+Target "ResolveProjectReferences" skipped, due to false condition; ( '@(NonVCProjectReference)' != '' ) was evaluated as ( '' != '' ).
+Target "ResolveVCProjectReferences" skipped, due to false condition; ( '@(VCProjectReference)' != '' ) was evaluated as ( '' != '' ).
+Target "ResolveWixLibraryReferences" skipped, due to false condition; ( '@(WixLibrary)@(_ResolvedWixExtensionPaths)' != '') was evaluated as ( '' != '').
+Target "ResolveReferences" skipped. Previously built successfully.
+Target "AddSolutionDefineConstants" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Using "Warning" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "Warning"
+C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets : warning : Solution properties are only available during IDE builds or when building the solution file from the command line. To turn off this warning set <DefineSolutionProperties>false</DefineSolutionProperties> in your .wixproj file.
+Done executing task "Warning".
+Task "CreateProperty"
+Done executing task "CreateProperty".
+Task "CreateProperty"
+Done executing task "CreateProperty".
+Task "CreateProperty"
+Done executing task "CreateProperty".
+Task "CreateProperty"
+Done executing task "CreateProperty".
+Task "CreateProperty"
+Done executing task "CreateProperty".
+Task "CreateProperty"
+Done executing task "CreateProperty".
+Done building target "AddSolutionDefineConstants" in project "Installer.wixproj".
+Target "AddProjectReferenceDefineConstants" skipped, due to false condition; ( '@(_ResolvedProjectReferencePaths)' != '' ) was evaluated as ( '' != '' ).
+Target "AddCompilerDefineConstants" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Task "CreateProperty"
+Done executing task "CreateProperty".
+Done building target "AddCompilerDefineConstants" in project "Installer.wixproj".
+Target "ResolveReferences" skipped. Previously built successfully.
+Target "_TimeStampBeforeCompileAndLink" skipped, due to false condition; ( '$(RunPostBuildEvent)' == 'OnOutputUpdated' ) was evaluated as ( '' == 'OnOutputUpdated' ).
+Target "HarvestProjects" skipped, due to false condition; ( '@(HeatProject)' != '' ) was evaluated as ( '' != '' ).
+Target "PrepareForBuild" skipped. Previously built successfully.
+Target "ResolveWixExtensionPaths" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Task "CreateItem" skipped, due to false condition; ( '%(WixExtension.HintPath)' == '' ) was evaluated as ( '\WixUIExtension.dll' == '' ).
+Task "CreateItem"
+Done executing task "CreateItem".
+Task "CreateItem" skipped, due to false condition; (Exists('%(_AllWixExtensions.FullPath)')) was evaluated as (Exists('D:\WixUIExtension.dll')).
+Task "CreateItem" skipped, due to false condition; (!Exists('%(_AllWixExtensions.FullPath)') and '%(_AllWixExtensions.Extension)' == '' ) was evaluated as (!Exists('D:\WixUIExtension.dll') and '.dll' == '' ).
+Task "CreateItem"
+Done executing task "CreateItem".
+Task "RemoveDuplicates"
+Done executing task "RemoveDuplicates".
+Done building target "ResolveWixExtensionPaths" in project "Installer.wixproj".
+Target "Compile" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Building target "Compile" completely.
+Output file "obj\Debug\NLog.wixobj" does not exist.
+Using "Candle" task from assembly "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\WixTasks.dll".
+Task "Candle"
+  Command:
+  C:\Program Files (x86)\Windows Installer XML v3\bin\candle.exe -dNLogBuildPath=D:\Work\NLog2\build\Debug -d"DevEnvDir=*Undefined if not building from within Visual Studio*" -d"SolutionDir=*Undefined if not building a solution or within Visual Studio*" -d"SolutionExt=*Undefined if not building a solution or within Visual Studio*" -d"SolutionFileName=*Undefined if not building a solution or within Visual Studio*" -d"SolutionName=*Undefined if not building a solution or within Visual Studio*" -d"SolutionPath=*Undefined if not building a solution or within Visual Studio*" -dConfiguration=Debug -dOutDir=D:\Work\NLog2\build\Debug\ -dPlatform=x86 -dProjectDir=D:\Work\NLog2\Installer\ -dProjectExt=.wixproj -dProjectFileName=Installer.wixproj -dProjectName=Installer -dProjectPath=D:\Work\NLog2\Installer\Installer.wixproj -dTargetDir=D:\Work\NLog2\build\Debug\ -dTargetExt=.msi -dTargetFileName=NLogSetup.msi -dTargetName=NLogSetup -dTargetPath=D:\Work\NLog2\build\Debug\NLogSetup.msi -out obj\Debug\NLog.wixobj -arch x86 -ext "C:\Program Files (x86)\Windows Installer XML v3\bin\WixUIExtension.dll" NLog.wxs
+  Microsoft (R) Windows Installer Xml Compiler version 3.0.5217.0
+  Copyright (C) Microsoft Corporation. All rights reserved.
+  
+  NLog.wxs
+Done executing task "Candle".
+Done building target "Compile" in project "Installer.wixproj".
+Target "Lib" skipped, due to false condition; ( '$(OutputType)' == 'Library' ) was evaluated as ( 'Package' == 'Library' ).
+Target "PrepareForBuild" skipped. Previously built successfully.
+Target "ResolveWixExtensionPaths" skipped. Previously built successfully.
+Target "AssignCultures" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Using "WixAssignCulture" task from assembly "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\WixTasks.dll".
+Task "WixAssignCulture"
+Done executing task "WixAssignCulture".
+Task "CreateItem"
+Done executing task "CreateItem".
+Task "CreateProperty"
+Done executing task "CreateProperty".
+Task "CreateItem"
+Done executing task "CreateItem".
+Task "CreateProperty"
+Done executing task "CreateProperty".
+Done building target "AssignCultures" in project "Installer.wixproj".
+Target "Link" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Building target "Link" completely.
+Input file "obj\Debug\NLog.wixobj" is newer than output file "D:\Work\NLog2\build\Debug\NLogSetup.msi".
+Using "Light" task from assembly "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\WixTasks.dll".
+Task "Light"
+  Command:
+  C:\Program Files (x86)\Windows Installer XML v3\bin\Light.exe -cultures:null -ext "C:\Program Files (x86)\Windows Installer XML v3\bin\WixUIExtension.dll" -out D:\Work\NLog2\build\Debug\NLogSetup.msi -pdbout D:\Work\NLog2\build\Debug\NLogSetup.wixpdb obj\Debug\NLog.wixobj
+  Microsoft (R) Windows Installer Xml Linker version 3.0.5217.0
+  Copyright (C) Microsoft Corporation. All rights reserved.
+  
+Done executing task "Light".
+Done building target "Link" in project "Installer.wixproj".
+Target "_TimeStampAfterCompileAndLink" skipped, due to false condition; ( '$(RunPostBuildEvent)' == 'OnOutputUpdated' ) was evaluated as ( '' == 'OnOutputUpdated' ).
+Target "PrepareForBuild" skipped. Previously built successfully.
+Target "GetTargetPath" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Building target "GetTargetPath" completely.
+No input files were specified.
+Done building target "GetTargetPath" in project "Installer.wixproj".
+Target "_CheckForCompileAndLinkOutputs" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Task "CreateItem"
+Done executing task "CreateItem".
+Task "CreateItem" skipped, due to false condition; (Exists('%(FullPath)')) was evaluated as (Exists('')).
+Task "CreateItem"
+Done executing task "CreateItem".
+Task "CreateItem"
+Done executing task "CreateItem".
+Done building target "_CheckForCompileAndLinkOutputs" in project "Installer.wixproj".
+Target "_CleanGetCurrentAndPriorFileWrites" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Task "ReadLinesFromFile"
+Done executing task "ReadLinesFromFile".
+Task "FindUnderPath"
+  Comparison path is "D:\Work\NLog2\build\Debug\".
+  Path "D:\Work\NLog2\Installer\obj\Debug\NLog.wixobj" is outside the comparison path.
+  Path "D:\Work\NLog2\build\Debug\NLogSetup.wixpdb" is inside the comparison path.
+Done executing task "FindUnderPath".
+Task "FindUnderPath"
+  Comparison path is "obj\Debug\".
+  Path "D:\Work\NLog2\Installer\obj\Debug\NLog.wixobj" is inside the comparison path.
+  Path "D:\Work\NLog2\build\Debug\NLogSetup.wixpdb" is outside the comparison path.
+Done executing task "FindUnderPath".
+Task "RemoveDuplicates"
+Done executing task "RemoveDuplicates".
+Done building target "_CleanGetCurrentAndPriorFileWrites" in project "Installer.wixproj".
+Target "IncrementalClean" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Task "CreateItem"
+Done executing task "CreateItem".
+Task "FindUnderPath"
+  Comparison path is "D:\Work\NLog2\build\Debug\".
+Done executing task "FindUnderPath".
+Task "FindUnderPath"
+  Comparison path is "obj\Debug\".
+Done executing task "FindUnderPath".
+Task "Delete"
+Done executing task "Delete".
+Task "CreateItem"
+Done executing task "CreateItem".
+Task "RemoveDuplicates"
+Done executing task "RemoveDuplicates".
+Task "MakeDir"
+Done executing task "MakeDir".
+Task "WriteLinesToFile"
+Done executing task "WriteLinesToFile".
+Done building target "IncrementalClean" in project "Installer.wixproj".
+Target "PostBuildEvent" skipped, due to false condition; ( '$(PostBuildEvent)' != '' and
+      ( '$(RunPostBuildEvent)' != 'OnOutputUpdated' or '$(_TargetOutputTimestampBeforeCompileAndLink)' != '$(_TargetOutputTimestampAfterCompileAndLink)' )) was evaluated as ( '' != '' and
+      ( '' != 'OnOutputUpdated' or '' != '' )).
+Target "Build" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Building target "Build" completely.
+No input files were specified.
+Done building target "Build" in project "Installer.wixproj".
+Target "Rebuild" in file "C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets" from project "D:\Work\NLog2\Installer\Installer.wixproj":
+Building target "Rebuild" completely.
+No input files were specified.
+Done building target "Rebuild" in project "Installer.wixproj".
+Done Building Project "D:\Work\NLog2\Installer\Installer.wixproj" (Rebuild target(s)).
+
+Done executing task "MSBuild".
+Done building target "Installer" in project "NLog.proj".
+Done Building Project "D:\Work\NLog2\NLog.proj" (Installer target(s)).
+
+
+Build succeeded.
+
+"D:\Work\NLog2\NLog.proj" (Installer target) (1) ->
+"D:\Work\NLog2\Installer\Installer.wixproj" (Rebuild target) (2) ->
+(AddSolutionDefineConstants target) -> 
+  C:\Program Files (x86)\MSBuild\Microsoft\WiX\v3.0\Wix.targets : warning : Solution properties are only available during IDE builds or when building the solution file from the command line. To turn off this warning set <DefineSolutionProperties>false</DefineSolutionProperties> in your .wixproj file.
+
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:12.44

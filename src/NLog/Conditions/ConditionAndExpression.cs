@@ -41,30 +41,29 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionAndExpression : ConditionExpression 
     {
-        /// <summary>
-        /// The left hand side of the AND expression.
-        /// </summary>
-        public readonly ConditionExpression Left;
+        private static object boxedFalse = false;
+        private static object boxedTrue = true;
 
         /// <summary>
-        /// The right hand side of the AND expression.
-        /// </summary>
-        public readonly ConditionExpression Right;
-
-        private static object _boxedFalse = false;
-        private static object _boxedTrue = true;
-
-        /// <summary>
-        /// Creates a new instance of <see cref="ConditionAndExpression"/> and assigns
-        /// its Left and Right properties;
+        /// Initializes a new instance of the ConditionAndExpression class.
         /// </summary>
         /// <param name="left">Left hand side of the AND expression.</param>
         /// <param name="right">Right hand side of the AND expression.</param>
-        public ConditionAndExpression(ConditionExpression left, ConditionExpression right) 
+        public ConditionAndExpression(ConditionExpression left, ConditionExpression right)
         {
             this.Left = left;
             this.Right = right;
         }
+
+        /// <summary>
+        /// Gets the left hand side of the AND expression.
+        /// </summary>
+        public ConditionExpression Left { get; private set; }
+
+        /// <summary>
+        /// Gets the right hand side of the AND expression.
+        /// </summary>
+        public ConditionExpression Right { get; private set; }
 
         /// <summary>
         /// Evaluates the expression by evaluating <see cref="Left"/> and <see cref="Right"/> recursively.
@@ -73,24 +72,28 @@ namespace NLog.Conditions
         /// <returns>The value of the conjunction operator.</returns>
         public override object Evaluate(LogEventInfo context)
         {
-            bool bval1 = (bool)Left.Evaluate(context);
+            bool bval1 = (bool)this.Left.Evaluate(context);
             if (!bval1)
-                return _boxedFalse;
+            {
+                return boxedFalse;
+            }
 
-            bool bval2 = (bool)Right.Evaluate(context);
+            bool bval2 = (bool)this.Right.Evaluate(context);
             if (!bval2)
-                return _boxedFalse;
+            {
+                return boxedFalse;
+            }
 
-            return _boxedTrue;
+            return boxedTrue;
         }
 
         /// <summary>
         /// Returns a string representation of this expression.
         /// </summary>
-        /// <returns>(Left) or (Right) string</returns>
+        /// <returns>A concatenated '(Left) and (Right)' string.</returns>
         public override string ToString()
         {
-            return "(" + Left + ") and (" + Right + ")";
+            return "(" + this.Left + ") and (" + this.Right + ")";
         }
 
         /// <summary>
@@ -99,8 +102,8 @@ namespace NLog.Conditions
         /// <param name="layouts">The collection to add layouts to.</param>
         public override void PopulateLayouts(ICollection<Layout> layouts)
         {
-            Left.PopulateLayouts(layouts);
-            Right.PopulateLayouts(layouts);
+            this.Left.PopulateLayouts(layouts);
+            this.Right.PopulateLayouts(layouts);
         }
     }
 }

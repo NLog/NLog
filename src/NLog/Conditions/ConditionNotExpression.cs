@@ -31,9 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Collections;
 using System.Collections.Generic;
 using NLog.Layouts;
 
@@ -44,21 +41,36 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionNotExpression : ConditionExpression 
     {
-        private ConditionExpression expr;
+        private ConditionExpression expression;
 
-        public ConditionNotExpression(ConditionExpression expr) 
+        /// <summary>
+        /// Initializes a new instance of the ConditionNotExpression class.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        public ConditionNotExpression(ConditionExpression expression) 
         {
-            this.expr = expr;
+            this.expression = expression;
         }
 
+        /// <summary>
+        /// Evaluates the expression.
+        /// </summary>
+        /// <param name="context">Evaluation context.</param>
+        /// <returns>Expression result.</returns>
         public override object Evaluate(LogEventInfo context)
         {
-            return !((bool)expr.Evaluate(context));
+            return !(bool)this.expression.Evaluate(context);
         }
 
+        /// <summary>
+        /// Returns a string representation of the expression.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"/> that represents the condition expression.
+        /// </returns>
         public override string ToString()
         {
-            return "not(" + expr + ")";
+            return "not(" + this.expression + ")";
         }
 
         /// <summary>
@@ -67,7 +79,7 @@ namespace NLog.Conditions
         /// <param name="layouts">The collection to add layouts to.</param>
         public override void PopulateLayouts(ICollection<Layout> layouts)
         {
-            expr.PopulateLayouts(layouts);
+            this.expression.PopulateLayouts(layouts);
         }
     }
 }

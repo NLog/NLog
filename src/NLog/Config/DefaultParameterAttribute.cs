@@ -39,10 +39,10 @@ namespace NLog.Config
     /// Attribute used to mark the default parameters for layout renderers.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class DefaultParameterAttribute: Attribute
+    public sealed class DefaultParameterAttribute : Attribute
     {
         /// <summary>
-        /// Creates a new DefaultParameterAttribute object.
+        /// Initializes a new instance of the DefaultParameterAttribute class.
         /// </summary>
         public DefaultParameterAttribute()
         {

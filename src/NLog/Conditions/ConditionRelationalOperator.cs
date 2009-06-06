@@ -39,32 +39,32 @@ namespace NLog.Conditions
     internal enum ConditionRelationalOperator
     {
         /// <summary>
-        /// Equality (==)
+        /// Equality (==).
         /// </summary>
         Equal,
 
         /// <summary>
-        /// Inequality (!=)
+        /// Inequality (!=).
         /// </summary>
         NotEqual,
 
         /// <summary>
-        /// Less than (&lt;)
+        /// Less than (&lt;).
         /// </summary>
         Less,
 
         /// <summary>
-        /// Greater than (&gt;)
+        /// Greater than (&gt;).
         /// </summary>
         Greater,
 
         /// <summary>
-        /// Less than or equal (&lt;=)
+        /// Less than or equal (&lt;=).
         /// </summary>
         LessOrEqual,
 
         /// <summary>
-        /// Greater than or equal (&gt;=)
+        /// Greater than or equal (&gt;=).
         /// </summary>
         GreaterOrEqual,
     }

@@ -34,11 +34,6 @@
 #if !NET_CF
 
 using System;
-using System.Reflection;
-using System.Globalization;
-using NLog.Internal;
-using System.IO;
-using System.Runtime.InteropServices;
 
 namespace NLog.Internal.Win32
 {
@@ -131,7 +126,7 @@ namespace NLog.Internal.Win32
         /// A file is accessed according to POSIX rules.
         /// </summary>
         PosixSemantics = 0x01000000,
-    };
+    }
 }
 
 #endif

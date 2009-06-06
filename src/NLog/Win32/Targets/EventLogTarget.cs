@@ -31,18 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 
 using System;
-using System.Diagnostics;
-using System.Text;
-using System.Globalization;
-
-using NLog.Internal;
-using NLog.Config;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Globalization;
+using NLog.Internal;
 using NLog.Layouts;
-
 using NLog.Targets;
 
 namespace NLog.Win32.Targets
@@ -67,132 +63,55 @@ namespace NLog.Win32.Targets
     /// </example>
     [Target("EventLog")]
     public class EventLogTarget : TargetWithLayout
-	{
-        private string _machineName = ".";
-        private string _sourceName;
-        private string _logName = "Application";
-        private bool _needEventLogSourceUpdate;
-        private bool _operational;
-        private Layout _eventID = null;
-        private Layout _category = null;
-
+    {
         /// <summary>
-        /// Creates a new instance of <see cref="EventLogTarget"/> and 
+        /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
         public EventLogTarget()
         {
-            _sourceName = AppDomain.CurrentDomain.FriendlyName;
+            this.Source = AppDomain.CurrentDomain.FriendlyName;
+            this.Log = "Application";
+            this.MachineName = ".";
         }
 
         /// <summary>
-        /// Machine name on which Event Log service is running.
+        /// Gets or sets the name of the machine on which Event Log service is running.
         /// </summary>
         [DefaultValue(".")]
-        public string MachineName
-        {
-            get { return _machineName; }
-            set
-            {
-                _machineName = value; 
-                _needEventLogSourceUpdate = true;
-            }
-        }
+        public string MachineName { get; set; }
 
         /// <summary>
-        /// Layout that renders event ID.
+        /// Gets or sets the layout that renders event ID.
         /// </summary>
-        public Layout EventID
-        {
-            get { return _eventID; }
-            set { _eventID = value; }
-        }
+        public Layout EventID { get; set; }
 
         /// <summary>
-        /// Layout that renders event Category.
+        /// Gets or sets the layout that renders event Category.
         /// </summary>
-        public Layout Category
-        {
-            get { return _category; }
-            set { _category = value; }
-        }
+        public Layout Category { get; set; }
 
         /// <summary>
-        /// The value to be used as the event Source.
+        /// Gets or sets the value to be used as the event Source.
         /// </summary>
         /// <remarks>
         /// By default this is the friendly name of the current AppDomain.
         /// </remarks>
-        public string Source
-        {
-            get { return _sourceName; }
-            set 
-            {
-                _sourceName = value;
-                _needEventLogSourceUpdate = true;
-            }
-        }
+        public string Source { get; set; }
 
         /// <summary>
-        /// Name of the Event Log to write to. This can be System, Application or 
+        /// Gets or sets the name of the Event Log to write to. This can be System, Application or 
         /// any user-defined name.
         /// </summary>
         [DefaultValue("Application")]
-        public string Log
+        public string Log { get; set; }
+
+        /// <summary>
+        /// Initializes the target.
+        /// </summary>
+        public override void Initialize()
         {
-            get { return _logName; }
-            set { _logName = value; }
-        }
-
-        private void UpdateEventLogSource()
-        {
-            if (!_needEventLogSourceUpdate)
-                return;
-
-            lock (this)
-            {
-                _operational = false;
-
-                // if we throw anywhere, we remain non-operational
-
-                try
-                {
-                    if (!_needEventLogSourceUpdate)
-                        return;
-
-                    if (EventLog.SourceExists(_sourceName, _machineName))
-                    {
-                        string currentLogName = EventLog.LogNameFromSourceName(_sourceName, _machineName);
-                        if (currentLogName != _logName)
-                        {
-                            // re-create the association between Log and Source
-                            EventLog.DeleteEventSource(_sourceName, _machineName);
-                            EventSourceCreationData escd = new EventSourceCreationData(_sourceName, _logName);
-                            escd.MachineName = _machineName;
-                            EventLog.CreateEventSource(escd);
-                        }
-                        else
-                        {
-                            // ok, Source registered and associated with the correct Log
-                        }
-                    }
-                    else
-                    {
-                        EventSourceCreationData escd = new EventSourceCreationData(_sourceName, _logName);
-                        escd.MachineName = _machineName;
-                        EventLog.CreateEventSource(escd);
-                    }
-                    // mark the configuration as operational
-                    _operational = true;
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error("Error when connecting to EventLog: {0}", ex);
-                }
-                finally
-                {
-                    _needEventLogSourceUpdate = false;
-                }
-            }
+            base.Initialize();
+            this.CreateEventSourceIfNeeded();
         }
 
         /// <summary>
@@ -201,11 +120,7 @@ namespace NLog.Win32.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            UpdateEventLogSource();
-            if (!_operational)
-                return;
-            
-            string message = Layout.GetFormattedMessage(logEvent);
+            string message = this.Layout.GetFormattedMessage(logEvent);
             if (message.Length > 16384)
             {
                 // limitation of EventLog API
@@ -217,7 +132,7 @@ namespace NLog.Win32.Targets
             if (logEvent.Level >= LogLevel.Error)
             {
                 entryType = EventLogEntryType.Error;
-            } 
+            }
             else if (logEvent.Level >= LogLevel.Warn)
             {
                 entryType = EventLogEntryType.Warning;
@@ -229,21 +144,56 @@ namespace NLog.Win32.Targets
 
             int eventID = 0;
 
-            if (EventID != null)
+            if (this.EventID != null)
             {
-                eventID = Convert.ToInt32(EventID.GetFormattedMessage(logEvent), CultureInfo.InvariantCulture);
+                eventID = Convert.ToInt32(this.EventID.GetFormattedMessage(logEvent), CultureInfo.InvariantCulture);
             }
 
             short category = 0;
 
-            if (Category != null)
+            if (this.Category != null)
             {
-                category = Convert.ToInt16(Category.GetFormattedMessage(logEvent), CultureInfo.InvariantCulture);
+                category = Convert.ToInt16(this.Category.GetFormattedMessage(logEvent), CultureInfo.InvariantCulture);
             }
 
-            EventLog.WriteEntry(_sourceName, message, entryType, eventID, category);
+            EventLog.WriteEntry(this.Source, message, entryType, eventID, category);
         }
-	}
+
+        private void CreateEventSourceIfNeeded()
+        {
+            // if we throw anywhere, we remain non-operational
+            try
+            {
+                if (EventLog.SourceExists(this.Source, this.MachineName))
+                {
+                    string currentLogName = EventLog.LogNameFromSourceName(this.Source, this.MachineName);
+                    if (currentLogName != this.Log)
+                    {
+                        // re-create the association between Log and Source
+                        EventLog.DeleteEventSource(this.Source, this.MachineName);
+                        EventSourceCreationData escd = new EventSourceCreationData(this.Source, this.Log);
+                        escd.MachineName = this.MachineName;
+                        EventLog.CreateEventSource(escd);
+                    }
+                    else
+                    {
+                        // ok, Source registered and associated with the correct Log
+                    }
+                }
+                else
+                {
+                    EventSourceCreationData escd = new EventSourceCreationData(this.Source, this.Log);
+                    escd.MachineName = this.MachineName;
+                    EventLog.CreateEventSource(escd);
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error("Error when connecting to EventLog: {0}", ex);
+                throw;
+            }
+        }
+    }
 }
 
 #endif

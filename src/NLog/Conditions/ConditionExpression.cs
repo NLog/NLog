@@ -31,10 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
 using System.Collections.Generic;
 using NLog.Layouts;
 
@@ -45,6 +41,16 @@ namespace NLog.Conditions
     /// </summary>
     public abstract class ConditionExpression 
     {
+        /// <summary>
+        /// Converts condition text to a condition expression tree.
+        /// </summary>
+        /// <param name="text">Condition text to be converted.</param>
+        /// <returns>Condition expression tree.</returns>
+        public static implicit operator ConditionExpression(string text)
+        {
+            return ConditionParser.ParseExpression(text);
+        }
+
         /// <summary>
         /// Evaluates the expression.
         /// </summary>
@@ -61,13 +67,11 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Converts condition text to a condition expression tree.
+        /// Returns a string representation of the expression.
         /// </summary>
-        /// <param name="text">Condition text to be converted</param>
-        /// <returns>Condition expression tree</returns>
-        public static implicit operator ConditionExpression(string text)
-        {
-            return ConditionParser.ParseExpression(text);
-        }
+        /// <returns>
+        /// A <see cref="T:System.String"/> that represents the condition expression.
+        /// </returns>
+        public abstract override string ToString();
     }
 }

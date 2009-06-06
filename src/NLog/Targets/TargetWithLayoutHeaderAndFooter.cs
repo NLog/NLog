@@ -31,14 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.Collections;
-
+using System.ComponentModel;
 using NLog.Config;
 using NLog.Layouts;
-using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace NLog.Targets
 {
@@ -48,52 +43,62 @@ namespace NLog.Targets
     public abstract class TargetWithLayoutHeaderAndFooter : TargetWithLayout
     {
         /// <summary>
-        /// Creates a new instance of <see cref="TargetWithLayout" />
+        /// Initializes a new instance of the TargetWithLayoutHeaderAndFooter class.
         /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
         protected TargetWithLayoutHeaderAndFooter()
         {
             Layout originalLayout = base.Layout;
-            LHF = new LayoutWithHeaderAndFooter();
+            this.LHF = new LayoutWithHeaderAndFooter();
             Layout = originalLayout;
         }
 
         /// <summary>
-        /// The text to be rendered.
+        /// Gets or sets the text to be rendered.
         /// </summary>
         [RequiredParameter]
-        [DefaultValue("${longdate}|${level:uppercase=true}|${logger}|${message}")]
         public new Layout Layout
         {
-            get { return LHF.Layout; }
+            get
+            {
+                return this.LHF.Layout;
+            }
+
             set
             {
                 if (value is LayoutWithHeaderAndFooter)
+                {
                     base.Layout = value;
+                }
                 else
-                    LHF.Layout = value;
+                {
+                    this.LHF.Layout = value;
+                }
             }
         }
 
         /// <summary>
-        /// Footer
+        /// Gets or sets the footer.
         /// </summary>
         public Layout Footer
         {
-            get { return LHF.Footer; }
-            set { LHF.Footer = value; }
+            get { return this.LHF.Footer; }
+            set { this.LHF.Footer = value; }
         }
 
         /// <summary>
-        /// Header
+        /// Gets or sets the header.
         /// </summary>
         public Layout Header
         {
-            get { return LHF.Header; }
-            set { LHF.Header = value; }
+            get { return this.LHF.Header; }
+            set { this.LHF.Header = value; }
         }
 
         /// <summary>
-        /// Gets the layout with header and footer.
+        /// Gets or sets the layout with header and footer.
         /// </summary>
         /// <value>The layout with header and footer.</value>
         private LayoutWithHeaderAndFooter LHF

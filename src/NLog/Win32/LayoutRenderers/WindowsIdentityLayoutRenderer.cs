@@ -31,44 +31,41 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !(NET_CF)
-using NLog.Config;
-using System;
-using System.Text;
-using System.Security.Principal;
+#if !NET_CF && !SILVERLIGHT
+
 using System.ComponentModel;
+using System.Security.Principal;
+using System.Text;
 using NLog.LayoutRenderers;
 
 namespace NLog.Win32.LayoutRenderers
 {
     /// <summary>
-    /// Thread Windows identity information (username)
+    /// Thread Windows identity information (username).
     /// </summary>
     [LayoutRenderer("windows-identity")]
-    public class WindowsIdentityLayoutRenderer: LayoutRenderer
+    public class WindowsIdentityLayoutRenderer : LayoutRenderer
     {
-        private bool _includeDomain = true;
-        private bool _includeUserName = true;
-
         /// <summary>
-        /// Whether domain name should be included.
+        /// Initializes a new instance of the WindowsIdentityLayoutRenderer class.
         /// </summary>
-        [DefaultValue(true)]
-        public bool Domain
+        public WindowsIdentityLayoutRenderer()
         {
-            get { return _includeDomain; }
-            set { _includeDomain = value; }
+            this.UserName = true;
+            this.Domain = true;
         }
 
         /// <summary>
-        /// Whether username should be included.
+        /// Gets or sets a value indicating whether domain name should be included.
         /// </summary>
         [DefaultValue(true)]
-        public bool UserName
-        {
-            get { return _includeUserName; }
-            set { _includeUserName = value; }
-        }
+        public bool Domain { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether username should be included.
+        /// </summary>
+        [DefaultValue(true)]
+        public bool UserName { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -96,32 +93,33 @@ namespace NLog.Win32.LayoutRenderers
             WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
             if (currentIdentity != null)
             {
-                string output = "";
+                string output = string.Empty;
 
-                if (UserName)
+                if (this.UserName)
                 {
-                    if (Domain)
+                    if (this.Domain)
                     {
                         // username && domain
-
                         output = currentIdentity.Name;
                     }
                     else
                     {
                         // user name but no domain
-
                         int pos = currentIdentity.Name.LastIndexOf('\\');
                         if (pos >= 0)
+                        {
                             output = currentIdentity.Name.Substring(pos + 1);
+                        }
                         else
+                        {
                             output = currentIdentity.Name;
+                        }
                     }
                 }
                 else
                 {
                     // no username
-
-                    if (!Domain)
+                    if (!this.Domain)
                     {
                         // nothing to output
                         return;
@@ -129,10 +127,15 @@ namespace NLog.Win32.LayoutRenderers
 
                     int pos = currentIdentity.Name.IndexOf('\\');
                     if (pos >= 0)
+                    {
                         output = currentIdentity.Name.Substring(0, pos);
+                    }
                     else
+                    {
                         output = currentIdentity.Name;
+                    }
                 }
+
                 builder.Append(output);
             }
         }

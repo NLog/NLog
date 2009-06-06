@@ -31,14 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.Collections;
-using System.Globalization;
-using System.ComponentModel;
-
-using NLog.Config;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
+using System.Text;
 
 namespace NLog.LayoutRenderers
 {
@@ -46,40 +42,35 @@ namespace NLog.LayoutRenderers
     /// A counter value (increases on each layout rendering).
     /// </summary>
     [LayoutRenderer("counter")]
-    public class CounterLayoutRenderer: LayoutRenderer
+    public class CounterLayoutRenderer : LayoutRenderer
     {
-        private int _value = 1;
-        private string _sequence = null;
-        private int _increment = 1;
+        private static Dictionary<string, int> sequences = new Dictionary<string, int>();
 
         /// <summary>
-        /// The initial value of the counter
+        /// Initializes a new instance of the CounterLayoutRenderer class.
+        /// </summary>
+        public CounterLayoutRenderer()
+        {
+            this.Increment = 1;
+            this.Value = 1;
+        }
+
+        /// <summary>
+        /// Gets or sets the initial value of the counter.
         /// </summary>
         [DefaultValue(1)]
-        public int Value
-        {
-            get { return _value; }
-            set { _value = value; }
-        }
+        public int Value { get; set; }
 
         /// <summary>
-        /// The value to be added to the counter after each layout rendering.
+        /// Gets or sets the value to be added to the counter after each layout rendering.
         /// </summary>
         [DefaultValue(1)]
-        public int Increment
-        {
-            get { return _increment; }
-            set { _increment = value; }
-        }
+        public int Increment { get; set; }
 
         /// <summary>
-        /// The name of the sequence. Different named sequences can have individual values.
+        /// Gets or sets the name of the sequence. Different named sequences can have individual values.
         /// </summary>
-        public string Sequence
-        {
-            get { return _sequence; }
-            set { _sequence = value; }
-        }
+        public string Sequence { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -106,34 +97,34 @@ namespace NLog.LayoutRenderers
         {
             int v;
 
-            if (Sequence != null)
+            if (this.Sequence != null)
             {
-                v = GetNextSequenceValue(Sequence, Value, Increment);
+                v = GetNextSequenceValue(this.Sequence, this.Value, this.Increment);
             }
             else
             {
-                v = _value;
-                _value += Increment;
+                v = this.Value;
+                this.Value += this.Increment;
             }
 
             builder.Append(v.ToString(CultureInfo.InvariantCulture));
         }
 
-        private static Dictionary<string, int> _sequences = new Dictionary<string, int>();
-
         private static int GetNextSequenceValue(string sequenceName, int defaultValue, int increment)
         {
-            lock(_sequences)
+            lock (sequences)
             {
                 int val;
 
-                if (!_sequences.TryGetValue(sequenceName, out val))
+                if (!sequences.TryGetValue(sequenceName, out val))
+                {
                     val = defaultValue;
+                }
 
                 int retVal = val;
 
                 val += increment;
-                _sequences[sequenceName] = val;
+                sequences[sequenceName] = val;
                 return retVal;
             }
         }

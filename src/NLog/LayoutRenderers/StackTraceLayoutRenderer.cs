@@ -32,13 +32,9 @@
 // 
 
 #if !NET_CF
-using System;
-using System.Text;
-using System.Diagnostics;
-using System.Reflection;
-
-using NLog.Config;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Text;
 
 namespace NLog.LayoutRenderers
 {
@@ -48,17 +44,17 @@ namespace NLog.LayoutRenderers
     public enum StackTraceFormat
     {
         /// <summary>
-        /// Raw format (multiline - as returned by StackFrame.ToString() method)
+        /// Raw format (multiline - as returned by StackFrame.ToString() method).
         /// </summary>
         Raw,
 
         /// <summary>
-        /// Flat format (class and method names displayed in a single line)
+        /// Flat format (class and method names displayed in a single line).
         /// </summary>
         Flat,
 
         /// <summary>
-        /// Detailed flat format (method signatures displayed in a single line)
+        /// Detailed flat format (method signatures displayed in a single line).
         /// </summary>
         DetailedFlat,
     }
@@ -67,42 +63,35 @@ namespace NLog.LayoutRenderers
     /// Stack trace renderer.
     /// </summary>
     [LayoutRenderer("stacktrace")]
-    public class StackTraceLayoutRenderer: LayoutRenderer
+    public class StackTraceLayoutRenderer : LayoutRenderer
     {
-        private StackTraceFormat _format = StackTraceFormat.Flat;
-        private int _topFrames = 3;
-        private string _separator = " => ";
+        /// <summary>
+        /// Initializes a new instance of the StackTraceLayoutRenderer class.
+        /// </summary>
+        public StackTraceLayoutRenderer()
+        {
+            this.Separator = " => ";
+            this.TopFrames = 3;
+            this.Format = StackTraceFormat.Flat;
+        }
 
         /// <summary>
-        /// The output format of the stack trace.
+        /// Gets or sets the output format of the stack trace.
         /// </summary>
         [DefaultValue("Flat")]
-        public StackTraceFormat Format
-        {
-            get { return _format; }
-            set { _format = value; }
-        }
+        public StackTraceFormat Format { get; set; }
 
         /// <summary>
-        /// The number of top stack frames to be rendered.
+        /// Gets or sets the number of top stack frames to be rendered.
         /// </summary>
         [DefaultValue(3)]
-        public int TopFrames
-        {
-            get { return _topFrames; }
-            set { _topFrames = value; }
-        }
+        public int TopFrames { get; set; }
 
         /// <summary>
-        /// Stack frame separator string.
+        /// Gets or sets the stack frame separator string.
         /// </summary>
         [DefaultValue(" => ")]
-        public string Separator
-        {
-            get { return _separator; }
-            set { _separator = value; }
-        }
-
+        public string Separator { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -137,11 +126,13 @@ namespace NLog.LayoutRenderers
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             bool first = true;
-            int startingFrame = logEvent.UserStackFrameNumber + TopFrames - 1;
+            int startingFrame = logEvent.UserStackFrameNumber + this.TopFrames - 1;
             if (startingFrame >= logEvent.StackTrace.FrameCount)
+            {
                 startingFrame = logEvent.StackTrace.FrameCount - 1;
+            }
 
-            switch (Format)
+            switch (this.Format)
             {
                 case StackTraceFormat.Raw:
                     for (int i = startingFrame; i >= logEvent.UserStackFrameNumber; --i)
@@ -149,6 +140,7 @@ namespace NLog.LayoutRenderers
                         StackFrame f = logEvent.StackTrace.GetFrame(i);
                         builder.Append(f.ToString());
                     }
+
                     break;
 
                 case StackTraceFormat.Flat:
@@ -156,13 +148,16 @@ namespace NLog.LayoutRenderers
                     {
                         StackFrame f = logEvent.StackTrace.GetFrame(i);
                         if (!first)
-                            builder.Append(_separator);
+                        {
+                            builder.Append(this.Separator);
+                        }
 
                         builder.Append(f.GetMethod().DeclaringType.Name);
                         builder.Append(".");
                         builder.Append(f.GetMethod().Name);
                         first = false;
                     }
+
                     break;
 
                 case StackTraceFormat.DetailedFlat:
@@ -170,17 +165,30 @@ namespace NLog.LayoutRenderers
                     {
                         StackFrame f = logEvent.StackTrace.GetFrame(i);
                         if (!first)
-                            builder.Append(_separator);
+                        {
+                            builder.Append(this.Separator);
+                        }
 
                         builder.Append("[");
                         builder.Append(f.GetMethod());
                         builder.Append("]");
                         first = false;
                     }
+
                     break;
             }
         }
 
+        /// <summary>
+        /// Determines whether the layout renderer is volatile.
+        /// </summary>
+        /// <returns>
+        /// A boolean indicating whether the layout renderer is volatile.
+        /// </returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
         protected internal override bool IsVolatile()
         {
             return false;

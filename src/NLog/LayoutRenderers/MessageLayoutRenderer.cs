@@ -41,7 +41,7 @@ namespace NLog.LayoutRenderers
     /// The formatted log message.
     /// </summary>
     [LayoutRenderer("message")]
-    public class MessageLayoutRenderer: LayoutRenderer
+    public class MessageLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -69,6 +69,16 @@ namespace NLog.LayoutRenderers
             builder.Append(logEvent.FormattedMessage);
         }
 
+        /// <summary>
+        /// Determines whether the layout renderer is volatile.
+        /// </summary>
+        /// <returns>
+        /// A boolean indicating whether the layout renderer is volatile.
+        /// </returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
         protected internal override bool IsVolatile()
         {
             return false;

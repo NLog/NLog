@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT
+
 using System;
 using System.Net;
 using System.Net.Sockets;
@@ -41,41 +43,25 @@ namespace NLog.Internal.NetworkSenders
     /// <summary>
     /// Sends messages over the network as UDP datagrams.
     /// </summary>
-	public class UdpNetworkSender : NetworkSender
-	{
-        private Socket _socket;
-        private IPEndPoint _endpoint;
+    internal class UdpNetworkSender : NetworkSender
+    {
+        private Socket socket;
+        private IPEndPoint endpoint;
 
         /// <summary>
-        /// Creates a new instance of <see cref="UdpNetworkSender"/> and initializes
-        /// it with the specified URL.
+        /// Initializes a new instance of the UdpNetworkSender class.
         /// </summary>
-        /// <param name="url">URL. Must start with udp://</param>
-        public UdpNetworkSender(string url) : base(url)
+        /// <param name="url">URL. Must start with udp://.</param>
+        public UdpNetworkSender(string url)
+            : base(url)
         {
             // udp://hostname:port
-
             Uri parsedUri = new Uri(url);
             IPHostEntry host = Dns.GetHostEntry(parsedUri.Host);
             int port = parsedUri.Port;
 
-            _endpoint = new IPEndPoint(host.AddressList[0], port);
-            _socket = new Socket(_endpoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
-        }
-
-        /// <summary>
-        /// Sends the specified text as a UDP datagram.
-        /// </summary>
-        /// <param name="bytes">The bytes to be sent.</param>
-        /// <param name="offset">Offset in buffer</param>
-        /// <param name="length">Number of bytes to send</param>
-        /// <remarks>To be overridden in inheriting classes.</remarks>
-        protected override void DoSend(byte[] bytes, int offset, int length)
-        {
-            lock (this)
-            {
-                _socket.SendTo(bytes, offset, length, SocketFlags.None, _endpoint);
-            }
+            this.endpoint = new IPEndPoint(host.AddressList[0], port);
+            this.socket = new Socket(this.endpoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
         }
 
         /// <summary>
@@ -87,14 +73,32 @@ namespace NLog.Internal.NetworkSenders
             {
                 try
                 {
-                    _socket.Close();
+                    this.socket.Close();
                 }
                 catch (Exception)
                 {
                     // ignore errors
                 }
-                _socket = null;
+
+                this.socket = null;
+            }
+        }
+
+        /// <summary>
+        /// Sends the specified text as a UDP datagram.
+        /// </summary>
+        /// <param name="bytes">The bytes to be sent.</param>
+        /// <param name="offset">Offset in buffer.</param>
+        /// <param name="length">Number of bytes to send.</param>
+        /// <remarks>To be overridden in inheriting classes.</remarks>
+        protected override void DoSend(byte[] bytes, int offset, int length)
+        {
+            lock (this)
+            {
+                this.socket.SendTo(bytes, offset, length, SocketFlags.None, this.endpoint);
             }
         }
     }
 }
+
+#endif

@@ -31,15 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF_1_0
+#if !NET_CF && !SILVERLIGHT && !CLIENT_SKU
 
-using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Messaging;
 using System.Text;
-
 using NLog.Config;
-using System.ComponentModel;
-using System.Collections.Generic;
 using NLog.Layouts;
 using NLog.Targets;
 
@@ -70,79 +68,61 @@ namespace NLog.Win32.Targets
     [Target("MSMQ")]
     public class MSMQTarget : TargetWithLayout
     {
-        private Layout _queue;
-        private Layout _label = "NLog";
-        private bool _createIfNotExists;
-        private Encoding _encoding = System.Text.Encoding.UTF8;
-        private bool _useXmlEncoding;
-        private MessagePriority _messagePriority = MessagePriority.Normal;
-        private bool _recoverableMessages;
+        private MessagePriority messagePriority = MessagePriority.Normal;
 
         /// <summary>
-        /// Name of the queue to write to.
+        /// Initializes a new instance of the MSMQTarget class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        public MSMQTarget()
+        {
+            this.Label = "NLog";
+            this.Encoding = System.Text.Encoding.UTF8;
+        }
+
+        /// <summary>
+        /// Gets or sets the name of the queue to write to.
         /// </summary>
         /// <remarks>
         /// To write to a private queue on a local machine use <c>.\private$\QueueName</c>.
         /// For other available queue names, consult MSMQ documentation.
         /// </remarks>
         [RequiredParameter]
-        public Layout Queue
-        {
-            get { return _queue; }
-            set { _queue = value; }
-        }
+        public Layout Queue { get; set; }
 
         /// <summary>
-        /// The label to associate with each message.
+        /// Gets or sets the label to associate with each message.
         /// </summary>
         /// <remarks>
         /// By default no label is associated.
         /// </remarks>
         [DefaultValue("NLog")]
-        public Layout Label
-        {
-            get { return _label; }
-            set { _label = value; }
-        }
+        public Layout Label { get; set; }
 
         /// <summary>
-        /// Create the queue if it doesn't exists.
+        /// Gets or sets a value indicating whether to create the queue if it doesn't exists.
         /// </summary>
         [DefaultValue(false)]
-        public bool CreateQueueIfNotExists
-        {
-            get { return _createIfNotExists; }
-            set { _createIfNotExists = value; }
-        }
+        public bool CreateQueueIfNotExists { get; set; }
 
         /// <summary>
-        /// Encoding to be used when writing text to the queue.
+        /// Gets or sets the encoding to be used when writing text to the queue.
         /// </summary>
-        public Encoding Encoding
-        {
-            get { return _encoding; }
-            set { _encoding = value; }
-        }
+        public Encoding Encoding { get; set; }
 
         /// <summary>
-        /// Use the XML format when serializing message.
+        /// Gets or sets a value indicating whether to use the XML format when serializing message.
         /// </summary>
         [DefaultValue(false)]
-        public bool UseXmlEncoding
-        {
-            get { return _useXmlEncoding; }
-            set { _useXmlEncoding = value; }
-        }
+        public bool UseXmlEncoding { get; set; }
 
         /// <summary>
-        /// Use recoverable messages (with guaranteed delivery).
+        /// Gets or sets a value indicating whether to use recoverable messages (with guaranteed delivery).
         /// </summary>
         [DefaultValue(false)]
-        public bool Recoverable
-        {
-            get { return _recoverableMessages; }
-            set { _recoverableMessages = value; }
-        }
+        public bool Recoverable { get; set; }
 
         /// <summary>
         /// Adds all layouts used by this target to the specified collection.
@@ -150,9 +130,9 @@ namespace NLog.Win32.Targets
         /// <param name="layouts">The collection to add layouts to.</param>
         public override void PopulateLayouts(ICollection<Layout> layouts)
         {
-            base.PopulateLayouts (layouts);
-            Queue.PopulateLayouts(layouts);
-            Label.PopulateLayouts(layouts);
+            base.PopulateLayouts(layouts);
+            this.Queue.PopulateLayouts(layouts);
+            this.Label.PopulateLayouts(layouts);
         }
 
         /// <summary>
@@ -162,22 +142,28 @@ namespace NLog.Win32.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            if (_queue == null)
+            if (this.Queue == null)
+            {
                 return;
+            }
 
-            string queue = _queue.GetFormattedMessage(logEvent);
+            string queue = this.Queue.GetFormattedMessage(logEvent);
 
             if (!MessageQueue.Exists(queue))
             {
-                if (CreateQueueIfNotExists)
+                if (this.CreateQueueIfNotExists)
+                {
                     MessageQueue.Create(queue);
+                }
                 else
+                {
                     return;
+                }
             }
 
             using (MessageQueue mq = new MessageQueue(queue))
             {
-                Message msg = PrepareMessage(logEvent);
+                Message msg = this.PrepareMessage(logEvent);
                 if (msg != null)
                 {
                     mq.Send(msg);
@@ -189,7 +175,7 @@ namespace NLog.Win32.Targets
         /// Prepares a message to be sent to the message queue.
         /// </summary>
         /// <param name="logEvent">The log event to be used when calculating label and text to be written.</param>
-        /// <returns>The message to be sent</returns>
+        /// <returns>The message to be sent.</returns>
         /// <remarks>
         /// You may override this method in inheriting classes
         /// to provide services like encryption or message 
@@ -198,26 +184,28 @@ namespace NLog.Win32.Targets
         protected virtual Message PrepareMessage(LogEventInfo logEvent)
         {
             Message msg = new Message();
-            if (_label != null)
+            if (this.Label != null)
             {
-                msg.Label = _label.GetFormattedMessage(logEvent);
+                msg.Label = this.Label.GetFormattedMessage(logEvent);
             }
-            msg.Recoverable = _recoverableMessages;
-            msg.Priority = _messagePriority;
 
-            if (_useXmlEncoding)
+            msg.Recoverable = this.Recoverable;
+            msg.Priority = this.messagePriority;
+
+            if (this.UseXmlEncoding)
             {
                 msg.Body = Layout.GetFormattedMessage(logEvent);
             }
             else
             {
-                byte[] dataBytes = _encoding.GetBytes(Layout.GetFormattedMessage(logEvent));
+                byte[] dataBytes = this.Encoding.GetBytes(this.Layout.GetFormattedMessage(logEvent));
 
                 msg.BodyStream.Write(dataBytes, 0, dataBytes.Length);
             }
+
             return msg;
         }
-	}
+    }
 }
 
 #endif

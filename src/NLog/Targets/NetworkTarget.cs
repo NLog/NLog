@@ -32,17 +32,11 @@
 // 
 
 using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Threading;
-
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Text;
 using NLog.Internal;
 using NLog.Internal.NetworkSenders;
-using System.Text;
-using System.ComponentModel;
-using System.Collections.Generic;
-using NLog.Config;
 using NLog.Layouts;
 
 namespace NLog.Targets
@@ -84,14 +78,23 @@ namespace NLog.Targets
     /// </p>
     /// </example>
     [Target("Network")]
-    public class NetworkTarget: TargetWithLayout
+    public class NetworkTarget : TargetWithLayout
     {
-        private bool _newline = false;
-        private bool _keepConnection = true;
-        private Layout _addressLayout = null;
-        private NetworkSender _sender = null;
-        private Encoding _encoding = System.Text.Encoding.UTF8;
-        private OverflowAction _onOverflow = OverflowAction.Split;
+        private NetworkSender sender;
+
+        /// <summary>
+        /// Initializes a new instance of the NetworkTarget class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        public NetworkTarget()
+        {
+            this.Encoding = System.Text.Encoding.UTF8;
+            this.OnOverflow = OverflowAction.Split;
+            this.KeepConnection = true;
+            this.MaxMessageSize = 65000;
+        }
 
         /// <summary>
         /// Action that should be taken if the message overflows.
@@ -109,136 +112,62 @@ namespace NLog.Targets
             Split,
 
             /// <summary>
-            /// Discard the entire message
+            /// Discard the entire message.
             /// </summary>
             Discard
         }
 
         /// <summary>
-        /// The network address. Can be tcp://host:port or udp://host:port
+        /// Gets or sets the network address. Can be tcp://host:port or udp://host:port.
         /// </summary>
         /// <remarks>
         /// For HTTP Support use the WebService target.
         /// </remarks>
-        public Layout Address
-        {
-            get { return _addressLayout; }
-            set 
-            {
-                _addressLayout = value; 
-                if (_sender != null)
-                {
-                    _sender.Close();
-                    _sender = null;
-                }
-            }
-        }
+        public Layout Address { get; set; }
 
         /// <summary>
-        /// Keep connection open whenever possible.
+        /// Gets or sets a value indicating whether to keep connection open whenever possible.
         /// </summary>
         [DefaultValue(true)]
-        public bool KeepConnection
-        {
-            get { return _keepConnection; }
-            set { _keepConnection = value; }
-        }
+        public bool KeepConnection { get; set; }
 
         /// <summary>
-        /// Append newline at the end of log message.
+        /// Gets or sets a value indicating whether to append newline at the end of log message.
         /// </summary>
         [DefaultValue(false)]
-        public bool NewLine
-        {
-            get { return _newline; }
-            set { _newline = value; }
-        }
-
-        private int _maxMessageSize = 65000;
+        public bool NewLine { get; set; }
 
         /// <summary>
-        /// Maximum message size in bytes.
+        /// Gets or sets the maximum message size in bytes.
         /// </summary>
         [DefaultValue(65000)]
-        public int MaxMessageSize
-        {
-            get { return _maxMessageSize; }
-            set { _maxMessageSize = value; }
-        }
-	
+        public int MaxMessageSize { get; set; }
 
         /// <summary>
-        /// Action that should be taken if the message is larger than
-        /// maxMessageSize
+        /// Gets or sets the action that should be taken if the message is larger than
+        /// maxMessageSize.
         /// </summary>
-        public OverflowAction OnOverflow
-        {
-            get { return _onOverflow; }
-            set { _onOverflow = value; }
-        }
+        public OverflowAction OnOverflow { get; set; }
 
         /// <summary>
-        /// Encoding
+        /// Gets or sets the encoding to be used.
         /// </summary>
         /// <remarks>
         /// Can be any encoding name supported by System.Text.Encoding.GetEncoding() e.g. <c>windows-1252</c>, <c>iso-8859-2</c>.
         /// </remarks>
         [DefaultValue("utf-8")]
-        public Encoding Encoding
-        {
-            get { return _encoding; }
-            set { _encoding = value; }
-        }
+        public Encoding Encoding { get; set; }
 
         /// <summary>
-        /// Sends the provided text to the specified address.
+        /// Adds all layouts used by this target to the specified collection.
         /// </summary>
-        /// <param name="address">The address. Can be tcp://host:port, udp://host:port, http://host:port</param>
-        /// <param name="bytes">The bytes to be sent.</param>
-        protected virtual void NetworkSend(string address, byte[] bytes)
+        /// <param name="layouts">The collection to add layouts to.</param>
+        public override void PopulateLayouts(ICollection<Layout> layouts)
         {
-            lock (this)
+            base.PopulateLayouts(layouts);
+            if (this.Address != null)
             {
-                if (KeepConnection)
-                {
-                    if (_sender != null)
-                    {
-                        if (_sender.Address != address)
-                        {
-                            _sender.Close();
-                            _sender = null;
-                        }
-                    };
-                    if (_sender == null)
-                    {
-                        _sender = NetworkSender.Create(address);
-                    }
-
-                    try
-                    {
-                        ChunkedSend(_sender, bytes);
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Error("Error when sending {0}", ex);
-                        _sender.Close();
-                        _sender = null;
-                        throw;
-                    }
-                }
-                else
-                {
-                    NetworkSender sender = NetworkSender.Create(address);
-
-                    try
-                    {
-                        ChunkedSend(sender, bytes);
-                    }
-                    finally
-                    {
-                        sender.Close();
-                    }
-                }
+                this.Address.PopulateLayouts(layouts);
             }
         }
 
@@ -250,8 +179,10 @@ namespace NLog.Targets
         {
             lock (this)
             {
-                if (_sender != null)
-                    _sender.Flush();
+                if (this.sender != null)
+                {
+                    this.sender.Flush();
+                }
             }
         }
 
@@ -263,20 +194,11 @@ namespace NLog.Targets
             base.Close();
             lock (this)
             {
-                if (_sender != null)
-                    _sender.Close();
+                if (this.sender != null)
+                {
+                    this.sender.Close();
+                }
             }
-        }
-
-        /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts(layouts);
-            if (Address != null)
-                Address.PopulateLayouts(layouts);
         }
 
         /// <summary>
@@ -286,24 +208,81 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            NetworkSend(Address.GetFormattedMessage(logEvent), GetBytesToWrite(logEvent));
+            this.NetworkSend(this.Address.GetFormattedMessage(logEvent), this.GetBytesToWrite(logEvent));
+        }
+
+        /// <summary>
+        /// Sends the provided text to the specified address.
+        /// </summary>
+        /// <param name="address">The address. Can be tcp://host:port, udp://host:port, http://host:port.</param>
+        /// <param name="bytes">The bytes to be sent.</param>
+        protected virtual void NetworkSend(string address, byte[] bytes)
+        {
+            lock (this)
+            {
+                if (this.KeepConnection)
+                {
+                    if (this.sender != null)
+                    {
+                        if (this.sender.Address != address)
+                        {
+                            this.sender.Close();
+                            this.sender = null;
+                        }
+                    }
+
+                    if (this.sender == null)
+                    {
+                        this.sender = NetworkSender.Create(address);
+                    }
+
+                    try
+                    {
+                        this.ChunkedSend(this.sender, bytes);
+                    }
+                    catch (Exception ex)
+                    {
+                        InternalLogger.Error("Error when sending {0}", ex);
+                        this.sender.Close();
+                        this.sender = null;
+                        throw;
+                    }
+                }
+                else
+                {
+                    NetworkSender sender = NetworkSender.Create(address);
+
+                    try
+                    {
+                        this.ChunkedSend(sender, bytes);
+                    }
+                    finally
+                    {
+                        sender.Close();
+                    }
+                }
+            }
         }
 
         /// <summary>
         /// Gets the bytes to be written.
         /// </summary>
-        /// <param name="logEvent">Log event</param>
+        /// <param name="logEvent">Log event.</param>
         /// <returns>Byte array.</returns>
         protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
         {
             string text;
 
-            if (NewLine)
-                text = Layout.GetFormattedMessage(logEvent) + "\r\n";
+            if (this.NewLine)
+            {
+                text = this.Layout.GetFormattedMessage(logEvent) + "\r\n";
+            }
             else
-                text = Layout.GetFormattedMessage(logEvent);
+            {
+                text = this.Layout.GetFormattedMessage(logEvent);
+            }
 
-            return _encoding.GetBytes(text);
+            return this.Encoding.GetBytes(text);
         }
 
         private void ChunkedSend(NetworkSender sender, byte[] buffer)
@@ -314,16 +293,21 @@ namespace NLog.Targets
             while (tosend > 0)
             {
                 int chunksize = tosend;
-                if (chunksize > MaxMessageSize)
+                if (chunksize > this.MaxMessageSize)
                 {
-                    if (OnOverflow == OverflowAction.Discard)
+                    if (this.OnOverflow == OverflowAction.Discard)
+                    {
                         return;
+                    }
 
-                    if (OnOverflow == OverflowAction.Error)
-                        throw new OverflowException("Attempted to send a message larger than MaxMessageSize(" + MaxMessageSize + "). Actual size was: " + buffer.Length + ". Adjust OnOverflow and MaxMessageSize parameters accordingly.");
+                    if (this.OnOverflow == OverflowAction.Error)
+                    {
+                        throw new OverflowException("Attempted to send a message larger than this.MaxMessageSize(" + this.MaxMessageSize + "). Actual size was: " + buffer.Length + ". Adjust OnOverflow and this.MaxMessageSize parameters accordingly.");
+                    }
 
-                    chunksize = MaxMessageSize;
+                    chunksize = this.MaxMessageSize;
                 }
+
                 sender.Send(buffer, pos, chunksize);
                 tosend -= chunksize;
                 pos += chunksize;

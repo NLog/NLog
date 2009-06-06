@@ -31,14 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.IO;
-using NLog.Internal;
-using System.ComponentModel;
-using NLog.Config;
-using NLog.Layouts;
-
 namespace NLog.LayoutRenderers.Wrappers
 {
     /// <summary>
@@ -46,24 +38,26 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     [LayoutRenderer("lowercase")]
     [AmbientProperty("LowerCase")]
-    public sealed class LowerCaseLayoutRendererWrapper: WrapperLayoutRendererBase
+    public sealed class LowerCaseLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        private bool _lowerCase = false;
-
-        public bool LowerCase
-        {
-            get { return _lowerCase; }
-            set { _lowerCase = value; }
-        }
+        /// <summary>
+        /// Gets or sets a value indicating whether lower case conversion should be applied.
+        /// </summary>
+        /// <value>A value of <c>true</c> if lower case conversion should be applied; otherwise, <c>false</c>.</value>
+        public bool LowerCase { get; set; }
 
         /// <summary>
         /// Post-processes the rendered message. 
         /// </summary>
-        /// <param name="s">The text to be post-processed.</param>
+        /// <param name="text">The text to be post-processed.</param>
         /// <returns>Padded and trimmed string.</returns>
         protected override string Transform(string text)
         {
-            return LowerCase ? text.ToLowerInvariant() : text;
+#if SILVERLIGHT || NET_CF
+            return this.LowerCase ? text.ToLower() : text;
+#else
+            return this.LowerCase ? text.ToLowerInvariant() : text;
+#endif
         }
     }
 }

@@ -32,57 +32,59 @@
 // 
 
 using System;
-using System.Text;
-using System.Reflection;
-using System.Collections;
-
-using NLog.Config;
-using NLog.Internal;
-using System.Runtime.InteropServices;
 
 namespace NLog.Internal
 {
+    /// <summary>
+    /// Optimized methods to get current time.
+    /// </summary>
     internal class CurrentTimeGetter
     {
-        delegate DateTime GetDelegate();
+        private static GetDelegate getDelegate;
+        private static int lastTicks = -1;
+        private static DateTime lastDateTime = DateTime.MinValue;
 
-        private static GetDelegate _getDelegate;
-
+        /// <summary>
+        /// Initializes static members of the CurrentTimeGetter class.
+        /// </summary>
         static CurrentTimeGetter()
         {
             // this is to keep Mono compiler quiet
-            _getDelegate = new GetDelegate(NonOptimizedGet);
-            _getDelegate = new GetDelegate(ThrottledGet);
+            getDelegate = new GetDelegate(NonOptimizedGet);
+            getDelegate = new GetDelegate(ThrottledGet);
         }
 
+        private delegate DateTime GetDelegate();
+
+        /// <summary>
+        /// Gets the current time in an optimized fashion.
+        /// </summary>
+        /// <value>Current time.</value>
         public static DateTime Now
         {
-            get { return _getDelegate(); }
+            get { return getDelegate(); }
         }
 
-        private static int _lastTicks = -1;
-        private static DateTime _lastDateTime = DateTime.MinValue;
-
-        static DateTime NonOptimizedGet()
+        private static DateTime NonOptimizedGet()
         {
             return DateTime.Now;
         }
 
-        static DateTime ThrottledGet()
+        private static DateTime ThrottledGet()
         {
             int t = Environment.TickCount;
 
-            if (t != _lastTicks)
+            if (t != lastTicks)
             {
                 DateTime dt = DateTime.Now;
 
-                _lastTicks = t;
-                _lastDateTime = dt;
+                lastTicks = t;
+                lastDateTime = dt;
                 return dt;
             }
             else
             {
-                return _lastDateTime;
+                return lastDateTime;
             }
         }
     }

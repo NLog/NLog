@@ -34,17 +34,13 @@
 #if !NET_CF
 
 using System;
-using System.Reflection;
-using System.Globalization;
-using NLog.Internal;
-using System.IO;
 using System.Runtime.InteropServices;
 
 namespace NLog.Internal.Win32
 {
     internal class Win32FileHelper
     {
-        public const int FILE_SHARE_READ = 1;
+        public const int FILE_SHAREC_READ = 1;
         public const int FILE_SHARE_WRITE = 2;
         public const int FILE_SHARE_DELETE = 4;
 
@@ -71,7 +67,6 @@ namespace NLog.Internal.Win32
             TruncateExisting = 5,
         }
 
-
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr CreateFile(
             string lpFileName,
@@ -83,8 +78,7 @@ namespace NLog.Internal.Win32
             IntPtr hTemplateFile);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern bool GetFileInformationByHandle(IntPtr hFile,
-           out BY_HANDLE_FILE_INFORMATION lpFileInformation);
+        public static extern bool GetFileInformationByHandle(IntPtr hFile, out BY_HANDLE_FILE_INFORMATION lpFileInformation);
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         public struct BY_HANDLE_FILE_INFORMATION
@@ -99,7 +93,7 @@ namespace NLog.Internal.Win32
             public uint nNumberOfLinks;
             public uint nFileIndexHigh;
             public uint nFileIndexLow;
-        };
+        }
     }
 }
 

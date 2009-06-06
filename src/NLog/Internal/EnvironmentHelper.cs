@@ -31,30 +31,34 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
+
 using System;
 using System.Security;
 
 namespace NLog.Internal
 {
-    internal sealed class EnvironmentHelper
+    /// <summary>
+    /// Safe way to get environment variables.
+    /// </summary>
+    internal static class EnvironmentHelper
     {
-        private EnvironmentHelper() { }
-
-        public static string GetSafeEnvironmentVariable(string name)
+        internal static string GetSafeEnvironmentVariable(string name)
         {
             try
             {
                 string s = Environment.GetEnvironmentVariable(name);
 
                 if (s == null || s.Length == 0)
+                {
                     return null;
+                }
 
                 return s;
             }
             catch (SecurityException)
             {
-                return "";
+                return string.Empty;
             }
         }
     }

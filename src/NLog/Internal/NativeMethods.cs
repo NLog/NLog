@@ -1,10 +1,12 @@
-using System;
-using System.Text;
-using System.Runtime.InteropServices;
+#if !SILVERLIGHT
 
 namespace NLog.Internal
 {
-    internal class NativeMethods
+    using System;
+    using System.Runtime.InteropServices;
+    using System.Security;
+
+    internal static class NativeMethods
     {
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -16,7 +18,7 @@ namespace NLog.Internal
 
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool GetConsoleScreenBufferInfo(IntPtr hConsole, out CONSOLE_SCREEN_BUFFER_INFO bufferInfo);
+        internal static extern bool GetConsoleScreenBufferInfo(IntPtr hConsole, out CONSOLE_BUFFER_INFO bufferInfo);
 
         internal const int STD_OUTPUT_HANDLE = -11;
         internal const int STD_ERROR_HANDLE = -12;
@@ -41,7 +43,7 @@ namespace NLog.Internal
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        internal struct CONSOLE_SCREEN_BUFFER_INFO
+        internal struct CONSOLE_BUFFER_INFO
         {
             public COORD dwSize;
             public COORD dwCursorPosition;
@@ -49,5 +51,37 @@ namespace NLog.Internal
             public SMALL_RECT srWindow;
             public COORD dwMaximumWindowSize;
         }
+
+        // obtains user token
+        [DllImport("advapi32.dll", SetLastError = true)]
+        internal static extern bool LogonUser(string pszUsername, string pszDomain, string pszPassword, int dwLogonType, int dwLogonProvider, out IntPtr phToken);
+
+        // closes open handes returned by LogonUser
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
+        internal static extern bool CloseHandle(IntPtr handle);
+
+        // creates duplicate token handle
+        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        internal static extern bool DuplicateToken(IntPtr existingTokenHandle, int impersonationLevel, out IntPtr duplicateTokenHandle);
+
+        [DllImport("kernel32.dll")]
+        internal static extern void OutputDebugString(string message);
+
+
+#if !NET_CF
+        [DllImport("kernel32.dll"), SuppressUnmanagedCodeSecurity]
+#else
+        [DllImport("coredll.dll")]
+#endif
+        internal static extern bool QueryPerformanceCounter(out ulong lpPerformanceCount);
+
+#if !NET_CF
+        [DllImport("kernel32.dll"), SuppressUnmanagedCodeSecurity]
+#else
+        [DllImport("coredll.dll")]
+#endif
+        internal static extern bool QueryPerformanceFrequency(out ulong lpPerformanceFrequency);
     }
 }
+
+#endif

@@ -31,17 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.IO;
-using System.Threading;
-using System.Collections;
-using System.Collections.Specialized;
-
-using NLog;
-using NLog.Config;
-
-using NLog.Internal;
 #if !NET_CF && !SILVERLIGHT
 using NLog.Internal.Win32;
 #endif
@@ -54,11 +43,17 @@ namespace NLog.Internal.FileAppenders
     internal interface ICreateFileParameters
     {
         int ConcurrentWriteAttemptDelay { get; }
+
         int ConcurrentWriteAttempts { get; }
+
         bool ConcurrentWrites { get; }
+
         bool CreateDirs { get; }
+
         bool EnableFileDelete { get; }
+
         int BufferSize { get; }
+
 #if !NET_CF && !SILVERLIGHT
         Win32FileAttributes FileAttributes { get; }
 #endif

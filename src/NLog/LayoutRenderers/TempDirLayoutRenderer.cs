@@ -31,10 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
 using System.IO;
-using NLog.Config;
+using System.Text;
 
 namespace NLog.LayoutRenderers
 {
@@ -44,32 +42,25 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("tempdir")]
     public class TempDirLayoutRenderer : LayoutRenderer
     {
-        private string _fileName = null;
-        private string _directoryName = null;
-        private static string _tempDir;
+        private static string tempDir;
 
+        /// <summary>
+        /// Initializes static members of the TempDirLayoutRenderer class.
+        /// </summary>
         static TempDirLayoutRenderer()
         {
-            _tempDir = Path.GetTempPath();
+            tempDir = Path.GetTempPath();
         }
 
         /// <summary>
-        /// The name of the file to be Path.Combine()'d with the directory name.
+        /// Gets or sets the name of the file to be Path.Combine()'d with the directory name.
         /// </summary>
-        public string File
-        {
-            get { return _fileName; }
-            set { _fileName = value; }
-        }
+        public string File { get; set; }
 
         /// <summary>
-        /// The name of the directory to be Path.Combine()'d with the directory name.
+        /// Gets or sets the name of the directory to be Path.Combine()'d with the directory name.
         /// </summary>
-        public string Dir
-        {
-            get { return _directoryName; }
-            set { _directoryName = value; }
-        }
+        public string Dir { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -94,15 +85,15 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string baseDir = _tempDir;
+            string baseDir = tempDir;
 
-            if (File != null)
+            if (this.File != null)
             {
-                builder.Append(Path.Combine(baseDir, File));
+                builder.Append(Path.Combine(baseDir, this.File));
             }
-            else if (Dir != null)
+            else if (this.Dir != null)
             {
-                builder.Append(Path.Combine(baseDir, Dir));
+                builder.Append(Path.Combine(baseDir, this.Dir));
             }
             else
             {
@@ -111,10 +102,14 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Determines whether the value produced by the layout renderer
+        /// Gets or sets a value indicating whether the value produced by the layout renderer
         /// is fixed per current app-domain.
         /// </summary>
-        /// <returns><see langword="true"/></returns>
+        /// <returns>
+        /// The boolean value of <c>true</c> makes the value
+        /// of the layout renderer be precalculated and inserted as a literal
+        /// in the resulting layout string.
+        /// </returns>
         protected internal override bool IsAppDomainFixed()
         {
             return true;

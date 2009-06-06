@@ -32,7 +32,6 @@
 // 
 
 using System;
-using NLog.Internal;
 using NLog.Config;
 
 namespace NLog.LayoutRenderers
@@ -41,13 +40,14 @@ namespace NLog.LayoutRenderers
     /// Marks class as a layout renderer and assigns a format string to it.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class LayoutRendererAttribute: NameAttributeBase
+    public sealed class LayoutRendererAttribute : NameAttributeBase
     {
         /// <summary>
-        /// Creates a new instance of <see cref="LayoutRendererAttribute"/>
+        /// Initializes a new instance of the LayoutRendererAttribute class.
         /// </summary>
-        /// <param name="name">Name of the layout renderer</param>
-        public LayoutRendererAttribute(string name) : base(name)
+        /// <param name="name">Name of the layout renderer.</param>
+        public LayoutRendererAttribute(string name)
+            : base(name)
         {
         }
     }

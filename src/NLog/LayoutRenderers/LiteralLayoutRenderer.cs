@@ -45,27 +45,29 @@ namespace NLog.LayoutRenderers
     /// as ;${literal:text=${}'
     /// </remarks>
     [LayoutRenderer("literal")]
-    public class LiteralLayoutRenderer: LayoutRenderer
+    public class LiteralLayoutRenderer : LayoutRenderer
     {
-        private string _txt;
-
         /// <summary>
-        /// Creates a new instance of <see cref="LiteralLayoutRenderer"/>.
+        /// Initializes a new instance of the LiteralLayoutRenderer class.
         /// </summary>
         public LiteralLayoutRenderer()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LiteralLayoutRenderer"/> and sets the
-        /// literal text value.
+        /// Initializes a new instance of the LiteralLayoutRenderer class.
         /// </summary>
-        /// <param name="txt">The literal text value.</param>
+        /// <param name="text">The literal text value.</param>
         /// <remarks>This is used by the layout compiler.</remarks>
-        public LiteralLayoutRenderer(string txt)
+        public LiteralLayoutRenderer(string text)
         {
-            _txt = txt;
+            this.Text = text;
         }
+
+        /// <summary>
+        /// Gets or sets the literal text.
+        /// </summary>
+        public string Text { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -80,7 +82,7 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
-            return _txt.Length;
+            return this.Text.Length;
         }
 
         /// <summary>
@@ -90,18 +92,19 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(_txt);
+            builder.Append(this.Text);
         }
 
         /// <summary>
-        /// Literal text.
+        /// Determines whether the layout renderer is volatile.
         /// </summary>
-        public string Text
-        {
-            get { return _txt; }
-            set { _txt = value; }
-        }
-
+        /// <returns>
+        /// A boolean indicating whether the layout renderer is volatile.
+        /// </returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
         protected internal override bool IsVolatile()
         {
             return false;

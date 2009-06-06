@@ -32,13 +32,7 @@
 // 
 
 using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
 using System.Reflection;
-using System.Globalization;
-
-using NLog.Config;
 
 namespace NLog.Targets
 {
@@ -61,54 +55,35 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/MethodCall/Simple/Example.cs" />
     /// </example>
     [Target("MethodCall")]
-    public sealed class MethodCallTarget: MethodCallTargetBase
+    public sealed class MethodCallTarget : MethodCallTargetBase
     {
-        private string _className = null;
-        private MethodInfo _methodInfo = null;
-        private string _methodName = null;
+        /// <summary>
+        /// Gets or sets the class name.
+        /// </summary>
+        public string ClassName { get; set; }
 
         /// <summary>
-        /// The class name.
+        /// Gets or sets the method name. The method must be public and static.
         /// </summary>
-        public string ClassName
-        {
-            get { return _className; }
-            set
-            {
-                _className = value;
-                UpdateMethodInfo();
-            }
-        }
+        public string MethodName { get; set; }
+
+        private MethodInfo Method { get; set; }
 
         /// <summary>
-        /// The method name. The method must be public and static.
+        /// Initializes the target.
         /// </summary>
-        public string MethodName
+        public override void Initialize()
         {
-            get { return _methodName; }
-            set
-            {
-                _methodName = value;
-                UpdateMethodInfo();
-            }
-        }
+            base.Initialize();
 
-        private MethodInfo Method
-        {
-            get { return _methodInfo; }
-            set { _methodInfo = value; }
-        }
-
-        private void UpdateMethodInfo()
-        {
-            if (ClassName != null && MethodName != null)
+            if (this.ClassName != null && this.MethodName != null)
             {
-                Type targetType = Type.GetType(ClassName);
-                Method = targetType.GetMethod(MethodName);
+                Type targetType = Type.GetType(this.ClassName);
+                this.Method = targetType.GetMethod(this.MethodName);
             }
             else
             {
-                Method = null;
+                this.Method = null;
             }
         }
 
@@ -116,11 +91,11 @@ namespace NLog.Targets
         /// Calls the specified Method.
         /// </summary>
         /// <param name="parameters">Method parameters.</param>
-        protected override void DoInvoke(object[]parameters)
+        protected override void DoInvoke(object[] parameters)
         {
-            if (Method != null)
+            if (this.Method != null)
             {
-                Method.Invoke(null, parameters);
+                this.Method.Invoke(null, parameters);
             }
         }
     }

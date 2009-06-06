@@ -33,16 +33,14 @@
 
 using System;
 using System.Text;
-using System.Globalization;
-using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// The date and time in a long, sortable format yyyy-MM-dd HH:mm:ss.mmm
+    /// The date and time in a long, sortable format yyyy-MM-dd HH:mm:ss.mmm.
     /// </summary>
     [LayoutRenderer("longdate")]
-    public class LongDateLayoutRenderer: LayoutRenderer
+    public class LongDateLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -58,20 +56,6 @@ namespace NLog.LayoutRenderers
         protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
             return 24;
-        }
-
-        private static void Append2DigitsZeroPadded(StringBuilder builder, int number)
-        {
-            builder.Append((char)((number / 10) + '0'));
-            builder.Append((char)((number % 10) + '0'));
-        }
-
-        private static void Append4DigitsZeroPadded(StringBuilder builder, int number)
-        {
-            builder.Append((char)((number / 1000 % 10) + '0'));
-            builder.Append((char)((number / 100 % 10) + '0'));
-            builder.Append((char)((number / 10 % 10) + '0'));
-            builder.Append((char)((number / 1 % 10) + '0'));
         }
 
         /// <summary>
@@ -98,9 +82,33 @@ namespace NLog.LayoutRenderers
             Append4DigitsZeroPadded(builder, (int)(dt.Ticks % 10000000) / 1000);
         }
 
+        /// <summary>
+        /// Determines whether the layout renderer is volatile.
+        /// </summary>
+        /// <returns>
+        /// A boolean indicating whether the layout renderer is volatile.
+        /// </returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
         protected internal override bool IsVolatile()
         {
             return false;
+        }
+
+        private static void Append2DigitsZeroPadded(StringBuilder builder, int number)
+        {
+            builder.Append((char)((number / 10) + '0'));
+            builder.Append((char)((number % 10) + '0'));
+        }
+
+        private static void Append4DigitsZeroPadded(StringBuilder builder, int number)
+        {
+            builder.Append((char)(((number / 1000) % 10) + '0'));
+            builder.Append((char)(((number / 100) % 10) + '0'));
+            builder.Append((char)(((number / 10) % 10) + '0'));
+            builder.Append((char)(((number / 1) % 10) + '0'));
         }
     }
 }

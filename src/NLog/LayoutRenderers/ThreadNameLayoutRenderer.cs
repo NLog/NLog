@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers
     /// The name of the current thread.
     /// </summary>
     [LayoutRenderer("threadname")]
-    public class ThreadNameLayoutRenderer: LayoutRenderer
+    public class ThreadNameLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Returns the estimated number of characters that are needed to

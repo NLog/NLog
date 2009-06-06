@@ -32,89 +32,88 @@
 // 
 
 using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
-using NLog.Config;
 
 namespace NLog.Internal
 {
     /// <summary>
     /// A cyclic buffer of <see cref="LogEventInfo"/> object.
     /// </summary>
-    public class LogEventInfoBuffer
+    internal class LogEventInfoBuffer
     {
+        private LogEventInfo[] buffer;
+        private int getPointer = 0;
+        private int putPointer = 0;
+        private int count = 0;
+        private bool growAsNeeded;
+        private int growLimit = 0;
+
         /// <summary>
-        /// Creates a new instance of <see cref="LogEventInfoBuffer"/>, sets the buffer size and grow options.
+        /// Initializes a new instance of the LogEventInfoBuffer class.
         /// </summary>
         /// <param name="size">Buffer size.</param>
         /// <param name="growAsNeeded">Whether buffer should grow as it becomes full.</param>
         /// <param name="growLimit">The maximum number of items that the buffer can grow to.</param>
         public LogEventInfoBuffer(int size, bool growAsNeeded, int growLimit)
         {
-            _growAsNeeded = growAsNeeded;
-            _buffer = new LogEventInfo[size];
-            _growLimit = growLimit;
-            _getPointer = 0;
-            _putPointer = 0;
+            this.growAsNeeded = growAsNeeded;
+            this.buffer = new LogEventInfo[size];
+            this.growLimit = growLimit;
+            this.getPointer = 0;
+            this.putPointer = 0;
         }
 
-        private LogEventInfo[] _buffer;
-        private int _getPointer = 0;
-        private int _putPointer = 0;
-        private int _count = 0;
-        private bool _growAsNeeded;
-        private int _growLimit = 0;
+        /// <summary>
+        /// Gets the number of items in the array.
+        /// </summary>
+        public int Size
+        {
+            get { return this.buffer.Length; }
+        }
 
         /// <summary>
         /// Adds the specified log event to the buffer.
         /// </summary>
-        /// <param name="eventInfo">Log event</param>
+        /// <param name="eventInfo">Log event.</param>
         /// <returns>The number of items in the buffer.</returns>
         public int Append(LogEventInfo eventInfo)
         {
             lock (this)
             {
                 // make room for additional item
-
-                if (_count >= _buffer.Length)
+                if (this.count >= this.buffer.Length)
                 {
-                    if (_growAsNeeded && _buffer.Length < _growLimit)
+                    if (this.growAsNeeded && this.buffer.Length < this.growLimit)
                     {
                         // create a new buffer, copy data from current
+                        int newLength = this.buffer.Length * 2;
+                        if (newLength >= this.growLimit)
+                        {
+                            newLength = this.growLimit;
+                        }
 
-                        int newLength = _buffer.Length * 2;
-                        if (newLength >= _growLimit)
-                            newLength = _growLimit;
-
+                        // InternalLogger.Trace("Enlarging LogEventInfoBuffer from {0} to {1}", this.buffer.Length, this.buffer.Length * 2);
                         LogEventInfo[] newBuffer = new LogEventInfo[newLength];
-                        // InternalLogger.Trace("Enlarging LogEventInfoBuffer from {0} to {1}", _buffer.Length, _buffer.Length * 2);
-                        Array.Copy(_buffer, 0, newBuffer, 0, _buffer.Length);
-                        _buffer = newBuffer;
+                        Array.Copy(this.buffer, 0, newBuffer, 0, this.buffer.Length);
+                        this.buffer = newBuffer;
                     }
                     else
                     {
                         // lose the oldest item
-                        _getPointer = _getPointer + 1;
+                        this.getPointer = this.getPointer + 1;
                     }
                 }
 
                 // put the item
+                this.putPointer = this.putPointer % this.buffer.Length;
+                this.buffer[this.putPointer] = eventInfo;
+                this.putPointer = this.putPointer + 1;
+                this.count++;
+                if (this.count >= this.buffer.Length)
+                {
+                    this.count = this.buffer.Length;
+                }
 
-                _putPointer = _putPointer % _buffer.Length;
-                _buffer[_putPointer] = eventInfo;
-                _putPointer = _putPointer + 1;
-                _count++;
-                if (_count >= _buffer.Length)
-                    _count = _buffer.Length;
-                return _count;
+                return this.count;
             }
         }
 
@@ -129,29 +128,23 @@ namespace NLog.Internal
         {
             lock (this)
             {
-                int cnt = _count;
+                int cnt = this.count;
                 LogEventInfo[] returnValue = new LogEventInfo[cnt];
-                // InternalLogger.Trace("GetEventsAndClear({0},{1},{2})", _getPointer, _putPointer, _count);
+
+                // InternalLogger.Trace("GetEventsAndClear({0},{1},{2})", this.getPointer, this.putPointer, this.count);
                 for (int i = 0; i < cnt; ++i)
                 {
-                    int p = (_getPointer + i) % _buffer.Length;
-                    LogEventInfo e = _buffer[p];
-                    _buffer[p] = null; // we don't want memory leaks
+                    int p = (this.getPointer + i) % this.buffer.Length;
+                    LogEventInfo e = this.buffer[p];
+                    this.buffer[p] = null; // we don't want memory leaks
                     returnValue[i] = e;
                 }
-                _count = 0;
-                _getPointer = 0;
-                _putPointer = 0;
+
+                this.count = 0;
+                this.getPointer = 0;
+                this.putPointer = 0;
                 return returnValue;
             }
-        }
-
-        /// <summary>
-        /// Gets the number of items in the array.
-        /// </summary>
-        public int Size
-        {
-            get { return _buffer.Length; }
         }
     }
 }

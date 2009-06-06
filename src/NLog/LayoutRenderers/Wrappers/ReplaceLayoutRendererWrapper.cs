@@ -31,13 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.IO;
-using NLog.Internal;
-using System.ComponentModel;
-using NLog.Config;
-using NLog.Layouts;
 using System.Text.RegularExpressions;
 
 namespace NLog.LayoutRenderers.Wrappers
@@ -46,43 +39,69 @@ namespace NLog.LayoutRenderers.Wrappers
     /// Replaces a string in the output of another layout with another string.
     /// </summary>
     [LayoutRenderer("replace")]
-    public sealed class ReplaceLayoutRendererWrapper: WrapperLayoutRendererBase
+    public sealed class ReplaceLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        private string _searchFor;
-        private string _replaceWith;
-        private bool _ignoreCase = false;
-        private bool _useRegex = false;
-        private bool _wholeWords = false;
-        private Regex _regex = null;
+        private Regex regex;
 
-        public string SearchFor
-        {
-            get { return _searchFor; }
-            set { _searchFor = value; }
-        }
+        /// <summary>
+        /// Gets or sets the text to search for.
+        /// </summary>
+        /// <value>The text search for.</value>
+        public string SearchFor { get; set; }
 
-        public bool RegEx
-        {
-            get { return _useRegex; }
-            set { _useRegex = value; }
-        }
+        /// <summary>
+        /// Gets or sets a value indicating whether regular expressions should be used.
+        /// </summary>
+        /// <value>A value of <c>true</c> if regular expressions should be used otherwise, <c>false</c>.</value>
+        public bool RegEx { get; set; }
 
-        public string ReplaceWith
-        {
-            get { return _replaceWith; }
-            set { _replaceWith = value; }
-        }
+        /// <summary>
+        /// Gets or sets the replacement string.
+        /// </summary>
+        /// <value>The replacement string.</value>
+        public string ReplaceWith { get; set; }
 
-        public bool IgnoreCase
-        {
-            get { return _ignoreCase; }
-            set { _ignoreCase = value; }
-        }
+        /// <summary>
+        /// Gets or sets a value indicating whether to ignore case.
+        /// </summary>
+        /// <value>A value of <c>true</c> if case should be ignored when searching; otherwise, <c>false</c>.</value>
+        public bool IgnoreCase { get; set; }
 
-        public bool WholeWords
+        /// <summary>
+        /// Gets or sets a value indicating whether to search for whole words.
+        /// </summary>
+        /// <value>A value of <c>true</c> if whole words should be searched for; otherwise, <c>false</c>.</value>
+        public bool WholeWords { get; set; }
+
+        /// <summary>
+        /// Initializes the layout renderer.
+        /// </summary>
+        public override void Initialize()
         {
-            get { return _wholeWords; }
-            set { _wholeWords = value; }
+            base.Initialize();
+            string regexString = this.SearchFor;
+
+            if (!this.RegEx)
+            {
+                regexString = Regex.Escape(regexString);
+            }
+
+#if SILVERLIGHT
+            RegexOptions regexOptions = RegexOptions.None;
+#else
+            RegexOptions regexOptions = RegexOptions.Compiled;
+#endif
+            if (this.IgnoreCase)
+            {
+                regexOptions |= RegexOptions.IgnoreCase;
+            }
+
+            if (this.WholeWords)
+            {
+                regexString = "\\b" + regexString + "\\b";
+            }
+
+            this.regex = new Regex(regexString, regexOptions);
         }
 
         /// <summary>
@@ -92,26 +111,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Post-processed text.</returns>
         protected override string Transform(string text)
         {
-            return _regex.Replace(text, ReplaceWith);
-        }
-
-        public override void Initialize()
-        {
-            base.Initialize();
-            string regexString = SearchFor;
-
-            if (!_useRegex)
-            {
-                regexString = Regex.Escape(regexString);
-            }
-
-            RegexOptions regexOptions = RegexOptions.Compiled;
-            if (IgnoreCase)
-                regexOptions |= RegexOptions.IgnoreCase;
-            if (WholeWords)
-                regexString = "\\b" + regexString + "\\b";
-
-            _regex = new Regex(regexString, regexOptions);
+            return this.regex.Replace(text, this.ReplaceWith);
         }
     }
 }

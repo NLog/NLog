@@ -31,10 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Text;
 
 #if SILVERLIGHT
@@ -43,8 +40,6 @@ using System.Windows.Browser;
 using System.Windows.Forms;
 #endif
 
-using NLog.Config;
-using System.Collections.Generic;
 using NLog.Layouts;
 
 namespace NLog.Targets
@@ -72,27 +67,23 @@ namespace NLog.Targets
     /// <code lang="C#" src="examples/targets/Configuration API/MessageBox/Simple/Example.cs" />
     /// </example>
     [Target("MessageBox")]
-    public sealed class MessageBoxTarget: TargetWithLayout
+    public sealed class MessageBoxTarget : TargetWithLayout
     {
         /// <summary>
-        /// Creates a new instance of the <see cref="MessageBoxTarget"/>.
+        /// Initializes a new instance of the MessageBoxTarget class.
         /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
         public MessageBoxTarget()
         {
+            this.Caption = "NLog";
         }
-
-#if !SILVERLIGHT
-        private Layout _caption = "NLog";
 
         /// <summary>
-        /// Message box title.
+        /// Gets or sets the message box title.
         /// </summary>
-        public Layout Caption
-        {
-            get { return _caption; }
-            set { _caption = value; }
-        }
-#endif
+        public Layout Caption { get; set; }
 
         /// <summary>
         /// Adds all layouts used by this target to the specified collection.
@@ -100,11 +91,11 @@ namespace NLog.Targets
         /// <param name="layouts">The collection to add layouts to.</param>
         public override void PopulateLayouts(ICollection<Layout> layouts)
         {
-            base.PopulateLayouts (layouts);
-#if !SILVERLIGHT
-            if (Caption != null)
-                Caption.PopulateLayouts(layouts);
-#endif
+            base.PopulateLayouts(layouts);
+            if (this.Caption != null)
+            {
+                this.Caption.PopulateLayouts(layouts);
+            }
         }
 
         /// <summary>
@@ -115,9 +106,9 @@ namespace NLog.Targets
         protected internal override void Write(LogEventInfo logEvent)
         {
 #if SILVERLIGHT
-            HtmlPage.Window.Alert(Layout.GetFormattedMessage(logEvent));
+            HtmlPage.Window.Alert(this.Caption.GetFormattedMessage(logEvent) + "\r\n\r\n" + this.Layout.GetFormattedMessage(logEvent));
 #else
-            MessageBox.Show(Layout.GetFormattedMessage(logEvent), Caption.GetFormattedMessage(logEvent));
+            MessageBox.Show(this.Layout.GetFormattedMessage(logEvent), this.Caption.GetFormattedMessage(logEvent));
 #endif
         }
 
@@ -129,20 +120,22 @@ namespace NLog.Targets
         protected internal override void Write(LogEventInfo[] logEvents)
         {
             if (logEvents.Length == 0)
+            {
                 return;
+            }
 
             StringBuilder sb = new StringBuilder();
             LogEventInfo lastLogEvent = logEvents[logEvents.Length - 1];
             foreach (LogEventInfo ev in logEvents)
             {
-                sb.Append(Layout.GetFormattedMessage(ev));
+                sb.Append(this.Layout.GetFormattedMessage(ev));
                 sb.Append("\n");
             }
 
 #if SILVERLIGHT
-            HtmlPage.Window.Alert(sb.ToString());
+            HtmlPage.Window.Alert(this.Caption.GetFormattedMessage(lastLogEvent) + "\r\n\r\n" + sb.ToString());
 #else
-            MessageBox.Show(sb.ToString(), Caption.GetFormattedMessage(lastLogEvent));
+            MessageBox.Show(sb.ToString(), this.Caption.GetFormattedMessage(lastLogEvent));
 #endif
         }
     }

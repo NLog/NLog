@@ -31,17 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 
-using System;
+using System.ComponentModel;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Runtime.InteropServices;
-
-using NLog.Config;
-using NLog.Conditions;
-using NLog.Targets;
-using System.ComponentModel;
 
 namespace NLog.Win32.Targets
 {
@@ -50,133 +44,121 @@ namespace NLog.Win32.Targets
     /// </summary>
     public class ConsoleWordHighlightingRule
     {
-        private string _text;
-        private string _regex;
-        private bool _wholeWords = false;
-        private bool _ignoreCase = false;
-        private Regex _compiledRegex;
-        private ConsoleOutputColor _backgroundColor = ConsoleOutputColor.NoChange;
-        private ConsoleOutputColor _foregroundColor = ConsoleOutputColor.NoChange;
+        private Regex compiledRegex;
+        private ConsoleOutputColor backgroundColor = ConsoleOutputColor.NoChange;
+        private ConsoleOutputColor foregroundColor = ConsoleOutputColor.NoChange;
 
         /// <summary>
-        /// The regular expression to be matched. You must specify either <c>text</c> or <c>regex</c>.
-        /// </summary>
-        public string Regex
-        {
-            get { return _regex; }
-            set { _regex = value; }
-        }
-
-        /// <summary>
-        /// The text to be matched. You must specify either <c>text</c> or <c>regex</c>.
-        /// </summary>
-        public string Text
-        {
-            get { return _text; }
-            set { _text = value; }
-        }
-
-        /// <summary>
-        /// Match whole words only.
-        /// </summary>
-        [DefaultValue(false)]
-        public bool WholeWords
-        {
-            get { return _wholeWords; }
-            set { _wholeWords = value; }
-        }
-
-        /// <summary>
-        /// Ignore case when comparing texts.
-        /// </summary>
-        [DefaultValue(false)]
-        public bool IgnoreCase
-        {
-            get { return _ignoreCase; }
-            set { _ignoreCase = value; }
-        }
-
-        /// <summary>
-        /// Compiled regular expression that matches either Text or Regex property.
-        /// </summary>
-        public Regex CompiledRegex
-        {
-            get
-            {
-                if (_compiledRegex == null)
-                {
-                    string regexpression = _regex;
-                    if (regexpression == null && _text != null)
-                    {
-                        regexpression = System.Text.RegularExpressions.Regex.Escape(_text);
-                        if (WholeWords)
-                            regexpression = "\b" + regexpression + "\b";
-                    }
-
-                    RegexOptions regexOptions = RegexOptions.Compiled;
-                    if (IgnoreCase)
-                        regexOptions |= RegexOptions.IgnoreCase;
-
-                    _compiledRegex = new Regex(regexpression, regexOptions);
-                }
-
-                return _compiledRegex;
-            }
-        }
-
-        /// <summary>
-        /// The foreground color.
-        /// </summary>
-        [DefaultValue("NoChange")]
-        public ConsoleOutputColor ForegroundColor
-        {
-            get { return _foregroundColor; }
-            set { _foregroundColor = value; }
-        }
-
-        /// <summary>
-        /// The background color.
-        /// </summary>
-        [DefaultValue("NoChange")]
-        public ConsoleOutputColor BackgroundColor
-        {
-            get { return _backgroundColor; }
-            set { _backgroundColor = value; }
-        }
-
-        /// <summary>
-        /// Creates a new instance of <see cref="ConsoleWordHighlightingRule"/>
+        /// Initializes a new instance of the ConsoleWordHighlightingRule class.
         /// </summary>
         public ConsoleWordHighlightingRule()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="ConsoleWordHighlightingRule"/>
-        /// and sets Text, BackgroundColor and ForegroundColor properties.
+        /// Initializes a new instance of the ConsoleWordHighlightingRule class.
         /// </summary>
+        /// <param name="text">The text to be matched..</param>
+        /// <param name="foregroundColor">Color of the foreground.</param>
+        /// <param name="backgroundColor">Color of the background.</param>
         public ConsoleWordHighlightingRule(string text, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor)
         {
-            Text = text;
-            ForegroundColor = foregroundColor;
-            BackgroundColor = backgroundColor;
+            this.Text = text;
+            this.ForegroundColor = foregroundColor;
+            this.BackgroundColor = backgroundColor;
+        }
+
+        /// <summary>
+        /// Gets or sets the regular expression to be matched. You must specify either <c>text</c> or <c>regex</c>.
+        /// </summary>
+        public string Regex { get; set; }
+
+        /// <summary>
+        /// Gets or sets the text to be matched. You must specify either <c>text</c> or <c>regex</c>.
+        /// </summary>
+        public string Text { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to match whole words only.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool WholeWords { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to ignore case when comparing texts.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool IgnoreCase { get; set; }
+
+        /// <summary>
+        /// Gets the compiled regular expression that matches either Text or Regex property.
+        /// </summary>
+        public Regex CompiledRegex
+        {
+            get
+            {
+                if (this.compiledRegex == null)
+                {
+                    string regexpression = this.Regex;
+                    if (regexpression == null && this.Text != null)
+                    {
+                        regexpression = System.Text.RegularExpressions.Regex.Escape(this.Text);
+                        if (this.WholeWords)
+                        {
+                            regexpression = "\b" + regexpression + "\b";
+                        }
+                    }
+
+                    RegexOptions regexOptions = RegexOptions.Compiled;
+                    if (this.IgnoreCase)
+                    {
+                        regexOptions |= RegexOptions.IgnoreCase;
+                    }
+
+                    this.compiledRegex = new Regex(regexpression, regexOptions);
+                }
+
+                return this.compiledRegex;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the foreground color.
+        /// </summary>
+        [DefaultValue("NoChange")]
+        public ConsoleOutputColor ForegroundColor
+        {
+            get { return this.foregroundColor; }
+            set { this.foregroundColor = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the background color.
+        /// </summary>
+        [DefaultValue("NoChange")]
+        public ConsoleOutputColor BackgroundColor
+        {
+            get { return this.backgroundColor; }
+            set { this.backgroundColor = value; }
         }
 
         internal string MatchEvaluator(Match m)
         {
             StringBuilder result = new StringBuilder();
+
             result.Append('\a');
             result.Append((char)((int)this.ForegroundColor + 'A'));
             result.Append((char)((int)this.BackgroundColor + 'A'));
             result.Append(m.Value);
             result.Append('\a');
             result.Append('X');
+
             return result.ToString();
         }
 
         internal string ReplaceWithEscapeSequences(string message)
         {
-            return CompiledRegex.Replace(message, new MatchEvaluator(this.MatchEvaluator));
+            return this.CompiledRegex.Replace(message, new MatchEvaluator(this.MatchEvaluator));
         }
     }
 }

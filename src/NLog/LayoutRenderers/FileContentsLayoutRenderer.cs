@@ -32,29 +32,68 @@
 // 
 
 using System;
-using System.Text;
 using System.IO;
-using NLog.Internal;
-using System.ComponentModel;
+using System.Text;
 using NLog.Config;
+using NLog.Internal;
 using NLog.Layouts;
 
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// Contents of the specified file.
+    /// Renders contents of the specified file.
     /// </summary>
     [LayoutRenderer("file-contents")]
-    public class FileContentsLayoutRenderer: LayoutRenderer
+    public class FileContentsLayoutRenderer : LayoutRenderer
     {
-        private Layout _fileName;
+        private string lastFileName;
+        private string currentFileContents;
+
+        /// <summary>
+        /// Initializes a new instance of the FileContentsLayoutRenderer class.
+        /// </summary>
+        public FileContentsLayoutRenderer()
+        {
 #if SILVERLIGHT
-        private System.Text.Encoding _encoding = Encoding.UTF8;
+            this.Encoding = Encoding.UTF8;
 #else
-        private System.Text.Encoding _encoding = Encoding.Default;
+            this.Encoding = Encoding.Default;
 #endif
-        private string _lastFileName = "";
-        private string _fileContents;
+            this.lastFileName = string.Empty;
+        }
+
+        /// <summary>
+        /// Gets or sets the name of the file.
+        /// </summary>
+        [DefaultParameter]
+        public Layout FileName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the encoding used in the file.
+        /// </summary>
+        /// <value>The encoding.</value>
+        public Encoding Encoding { get; set; }
+
+        /// <summary>
+        /// Renders the contents of the specified file and appends it to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="logEvent">Logging event.</param>
+        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            lock (this)
+            {
+                string fileName = this.FileName.GetFormattedMessage(logEvent);
+
+                if (fileName != this.lastFileName)
+                {
+                    this.currentFileContents = this.ReadFileContents(fileName);
+                    this.lastFileName = fileName;
+                }
+            }
+
+            builder.Append(this.currentFileContents);
+        }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -72,60 +111,19 @@ namespace NLog.LayoutRenderers
             return 8;
         }
 
-        /// <summary>
-        /// Name of the file.
-        /// </summary>
-        [DefaultParameter]
-        public Layout FileName
+        private string ReadFileContents(string fileName)
         {
-            get { return _fileName; }
-            set { _fileName = value; }
-        }
-
-        /// <summary>
-        /// File encoding.
-        /// </summary>
-        /// <value>The encoding.</value>
-        public Encoding Encoding
-        {
-            get { return _encoding; }
-            set { _encoding = value; }
-        }
-
-        /// <summary>
-        /// Renders the contents of the specified file and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            lock (this)
-            {
-                string fileName = _fileName.GetFormattedMessage(logEvent);
-
-                if (fileName != _lastFileName)
-                {
-                    ReadFileContents(fileName);
-                    _lastFileName = fileName;
-                }
-            }
-            builder.Append(_fileContents);
-        }
-
-        private void ReadFileContents(string fileName)
-        {
-            _fileContents = "";
-
             try
             {
-                using (StreamReader sr = new StreamReader(fileName, _encoding))
+                using (StreamReader sr = new StreamReader(fileName, this.Encoding))
                 {
-                    _fileContents = sr.ReadToEnd();
+                    return sr.ReadToEnd();
                 }
             }
             catch (Exception ex)
             {
-                InternalLogger.Warn("Cannot read file {0}: {1}", FileName, ex);
+                InternalLogger.Warn("Cannot read file {0}: {1}", this.FileName, ex);
+                return string.Empty;
             }
         }
     }

@@ -44,7 +44,51 @@ namespace NLog.Contexts
     /// </summary>
     public class MappedDiagnosticsContext
     {
-        internal MappedDiagnosticsContext(){}
+#if !SILVERLIGHT
+        private static LocalDataStoreSlot dataSlot = System.Threading.Thread.AllocateDataSlot();
+#else
+        [ThreadStatic]
+        private static IDictionary<string, string> threadDictionary;
+#endif
+
+        /// <summary>
+        /// Initializes a new instance of the MappedDiagnosticsContext class.
+        /// </summary>
+        internal MappedDiagnosticsContext()
+        {
+        }
+
+#if SILVERLIGHT
+        internal static IDictionary<string, string> ThreadDictionary
+        {
+            get
+            {
+                if (threadDictionary == null)
+                {
+                    threadDictionary = new Dictionary<string, string>();
+                }
+
+                return threadDictionary;
+            }
+        }
+
+#else
+        internal static IDictionary<string, string> ThreadDictionary
+        {
+            get
+            {
+                IDictionary<string, string> threadDictionary = (IDictionary<string, string>)System.Threading.Thread.GetData(dataSlot);
+
+                if (threadDictionary == null)
+                {
+                    threadDictionary = new Dictionary<string, string>();
+                    System.Threading.Thread.SetData(dataSlot, threadDictionary);
+                }
+
+                return threadDictionary;
+            }
+        }
+#endif
 
         /// <summary>
         /// Sets the current thread MDC item to the specified value.
@@ -66,7 +110,9 @@ namespace NLog.Contexts
             string s;
 
             if (!ThreadDictionary.TryGetValue(item, out s))
+            {
                 s = String.Empty;
+            }
 
             return s;
         }
@@ -97,47 +143,5 @@ namespace NLog.Contexts
         {
             ThreadDictionary.Clear();
         }
-
-#if SILVERLIGHT
-        public static IDictionary<string, string> ThreadDictionary
-        {
-            get
-            {
-                if (_threadDictionary == null)
-                    _threadDictionary = new Dictionary<string, string>();
-                return _threadDictionary;
-            }
-        }
-
-        [ThreadStatic]
-        private static IDictionary<string, string> _threadDictionary;
-
-#else
-        internal static IDictionary<string,string> ThreadDictionary
-        {
-            get
-            {
-                IDictionary<string, string> threadDictionary = (IDictionary<string, string>)System.Threading.Thread.GetData(_dataSlot);
-
-                if (threadDictionary == null)
-                {
-                    threadDictionary = new Dictionary<string,string>();
-                    System.Threading.Thread.SetData(_dataSlot, threadDictionary);
-                }
-
-                return threadDictionary;
-            }
-        }
-
-        private static LocalDataStoreSlot _dataSlot = System.Threading.Thread.AllocateDataSlot();
-#endif
-    }
-
-    /// <summary>
-    /// Mapped Diagnostics Context (MDC) - for log4net compatibility
-    /// </summary>
-    [Obsolete("Use MappedDiagnosticsContext")]
-    public class MDC : MappedDiagnosticsContext
-    {
     }
 }

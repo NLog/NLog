@@ -31,14 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF && !MONO
+#if !NET_CF && !MONO && !SILVERLIGHT
 
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Text;
-
+using System.ComponentModel;
 using System.Windows.Forms;
 
 using NLog.Config;
@@ -47,7 +42,7 @@ using NLog.Internal;
 namespace NLog.Targets
 {
     /// <summary>
-    /// Log text to Windows.Forms.Control.Text property control of specified Name
+    /// Logs text to Windows.Forms.Control.Text property control of specified Name.
     /// </summary>
     /// <example>
     /// <p>
@@ -67,47 +62,46 @@ namespace NLog.Targets
     [Target("FormControl")]
     public sealed class FormControlTarget : TargetWithLayout
     {
-        private string _controlName;
-        private bool _append = true;
-        private string _formName;
+        /// <summary>
+        /// Initializes a new instance of the FormControlTarget class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        public FormControlTarget()
+        {
+            this.Append = true;
+        }
+
+        private delegate void DelSendTheMessageToFormControl(Control ctrl, string logMessage);
 
         /// <summary>
-        /// Name of control to which Nlog will log
+        /// Gets or sets the name of control to which NLog will log write log text.
         /// </summary>
         [RequiredParameter]
-        public string ControlName
-        {
-            get { return _controlName; }
-            set { _controlName = value; }
-        }
+        public string ControlName { get; set; }
 
         /// <summary>
-        /// Setting to tell to append or overwrite the Text property of control
-        /// </summary>
-        public bool Append
-        {
-            get { return _append; }
-            set { _append = value; }
-        }
+        /// Gets or sets a value indicating whether log text should be appended to the text of the control instead of overwriting it. </summary>
+        [DefaultValue(true)]
+        public bool Append { get; set; }
 
         /// <summary>
-        /// Name of the Form on which the control is located.
+        /// Gets or sets the name of the Form on which the control is located.
         /// </summary>
-        public string FormName
-        {
-            get { return _formName; }
-            set { _formName = value; }
-        }
+        public string FormName { get; set; }
 
         /// <summary>
-        /// Log message to control
+        /// Log message to control.
         /// </summary>
-        /// <param name="logEvent">The logging event.</param>
+        /// <param name="logEvent">
+        /// The logging event.
+        /// </param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            string logMessage = Layout.GetFormattedMessage(logEvent);
+            string logMessage = this.Layout.GetFormattedMessage(logEvent);
             
-            FindControlAndSendTheMessage(logMessage);
+            this.FindControlAndSendTheMessage(logMessage);
         }
 
         private void FindControlAndSendTheMessage(string logMessage)
@@ -115,30 +109,40 @@ namespace NLog.Targets
             Form form = null;
 
             if (Form.ActiveForm != null)
+            {
                 form = Form.ActiveForm;
+            }
 
-            if (Application.OpenForms[FormName] != null)
-                form = Application.OpenForms[FormName];
+            if (Application.OpenForms[this.FormName] != null)
+            {
+                form = Application.OpenForms[this.FormName];
+            }
 
             if (form == null)
+            {
                 return;
+            }
 
-            Control ctrl = FormHelper.FindControl(ControlName, form);
+            Control ctrl = FormHelper.FindControl(this.ControlName, form);
 
             if (ctrl == null)
+            {
                 return;
+            }
 
-            ctrl.Invoke(new DelSendTheMessageToFormControl(SendTheMessageToFormControl), new object[] { ctrl, logMessage });
+            ctrl.Invoke(new DelSendTheMessageToFormControl(this.SendTheMessageToFormControl), new object[] { ctrl, logMessage });
         }
-
-        private delegate void DelSendTheMessageToFormControl(Control ctrl, string logMessage);
 
         private void SendTheMessageToFormControl(Control ctrl, string logMessage)
         {
-            if (Append)
+            if (this.Append)
+            {
                 ctrl.Text += logMessage;
+            }
             else
+            {
                 ctrl.Text = logMessage;
+            }
         }
     }
 }

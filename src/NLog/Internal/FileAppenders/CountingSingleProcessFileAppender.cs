@@ -31,83 +31,130 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.IO;
-using System.Threading;
-using System.Collections;
-using System.Collections.Specialized;
-
-using NLog;
-using NLog.Config;
-
-using NLog.Internal;
-
 namespace NLog.Internal.FileAppenders
 {
+    using System;
+    using System.IO;
+
+    /// <summary>
+    /// Implementation of <see cref="BaseFileAppender"/> which caches 
+    /// file information.
+    /// </summary>
     internal class CountingSingleProcessFileAppender : BaseFileAppender
     {
-        private FileStream _file;
-        private long _fileLength;
+        #region Constants and Fields
 
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
-        class Factory : IFileAppenderFactory
-        {
-            public BaseFileAppender Open(string fileName, ICreateFileParameters parameters)
-            {
-                return new CountingSingleProcessFileAppender(fileName, parameters);
-            }
-        }
+        private FileStream file;
 
-        public CountingSingleProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
+        private long fileLength;
+
+        #endregion
+
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes a new instance of the CountingSingleProcessFileAppender class.
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="parameters">The parameters.</param>
+        public CountingSingleProcessFileAppender(string fileName, ICreateFileParameters parameters)
+            : base(fileName, parameters)
         {
-            FileInfo fi = new FileInfo(fileName);
+            var fi = new FileInfo(fileName);
             if (fi.Exists)
             {
-                FileTouched(fi.LastWriteTime);
-                _fileLength = fi.Length;
+                this.FileTouched(fi.LastWriteTime);
+                this.fileLength = fi.Length;
             }
             else
             {
-                FileTouched();
-                _fileLength = 0;
+                this.FileTouched();
+                this.fileLength = 0;
             }
 
-            _file = CreateFileStream(false);
+            this.file = this.CreateFileStream(false);
         }
 
-        public override void Write(byte[] bytes)
-        {
-            if (_file == null)
-                return;
-            _fileLength += bytes.Length;
-            _file.Write(bytes, 0, bytes.Length);
-            FileTouched();
-        }
+        #endregion
 
-        public override void Flush()
-        {
-            if (_file == null)
-                return;
-            _file.Flush();
-            FileTouched();
-        }
+        #region Public Methods
 
+        /// <summary>
+        /// Closes this instance of the appender.
+        /// </summary>
         public override void Close()
         {
-            if (_file == null)
-                return;
-            //InternalLogger.Trace("Closing '{0}'", _fileName);
-            _file.Close();
-            _file = null;
+            if (this.file != null)
+            {
+                this.file.Close();
+                this.file = null;
+            }
         }
 
+        /// <summary>
+        /// Flushes this current appender.
+        /// </summary>
+        public override void Flush()
+        {
+            if (this.file == null)
+            {
+                return;
+            }
+
+            this.file.Flush();
+            this.FileTouched();
+        }
+
+        /// <summary>
+        /// Gets the file info.
+        /// </summary>
+        /// <param name="lastWriteTime">The last write time.</param>
+        /// <param name="fileLength">Length of the file.</param>
+        /// <returns>True if the operation succeeded, false otherwise.</returns>
         public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
         {
-            lastWriteTime = LastWriteTime;
-            fileLength = _fileLength;
+            lastWriteTime = this.LastWriteTime;
+            fileLength = this.fileLength;
             return true;
+        }
+
+        /// <summary>
+        /// Writes the specified bytes to a file.
+        /// </summary>
+        /// <param name="bytes">The bytes to be written.</param>
+        public override void Write(byte[] bytes)
+        {
+            if (this.file == null)
+            {
+                return;
+            }
+
+            this.fileLength += bytes.Length;
+            this.file.Write(bytes, 0, bytes.Length);
+            this.FileTouched();
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Factory class which creates <see cref="CountingSingleProcessFileAppender"/> objects.
+        /// </summary>
+        private class Factory : IFileAppenderFactory
+        {
+            /// <summary>
+            /// Opens the appender for given file name and parameters.
+            /// </summary>
+            /// <param name="fileName">Name of the file.</param>
+            /// <param name="parameters">Creation parameters.</param>
+            /// <returns>
+            /// Instance of <see cref="BaseFileAppender"/> which can be used to write to the file.
+            /// </returns>
+            BaseFileAppender IFileAppenderFactory.Open(string fileName, ICreateFileParameters parameters)
+            {
+                return new CountingSingleProcessFileAppender(fileName, parameters);
+            }
         }
     }
 }

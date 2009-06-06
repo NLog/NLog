@@ -1,25 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Reflection;
 using NLog.Internal;
 
 namespace NLog.Config
 {
-    internal class MethodFactory<TClassAttributeType,TMethodAttributeType> : IFactory<MethodInfo,MethodInfo>
+    /// <summary>
+    /// Factory for locating methods.
+    /// </summary>
+    /// <typeparam name="TClassAttributeType">The type of the class marker attribute.</typeparam>
+    /// <typeparam name="TMethodAttributeType">The type of the method marker attribute.</typeparam>
+    internal class MethodFactory<TClassAttributeType, TMethodAttributeType> : INamedItemFactory<MethodInfo, MethodInfo>, IFactory
         where TClassAttributeType : Attribute
         where TMethodAttributeType : NameAttributeBase
     {
-        private static Dictionary<string, MethodInfo> _nameToType = new Dictionary<string, MethodInfo>();
+        private Dictionary<string, MethodInfo> nameToMethodInfo = new Dictionary<string, MethodInfo>();
 
+        /// <summary>
+        /// Initializes a new instance of the MethodFactory class.
+        /// </summary>
         public MethodFactory()
         {
-            foreach (Assembly a in ExtensionUtils.GetExtensionAssemblies())
-            {
-                ScanAssembly(a, "");
-            }
         }
 
+        /// <summary>
+        /// Scans the assembly for classes marked with <typeparamref name="TClassAttributeType"/>
+        /// and methods marked with <typeparamref name="TMethodAttributeType"/> and adds them 
+        /// to the factory.
+        /// </summary>
+        /// <param name="theAssembly">The assembly.</param>
+        /// <param name="prefix">The prefix to use for names.</param>
         public void ScanAssembly(Assembly theAssembly, string prefix)
         {
             try
@@ -34,7 +44,7 @@ namespace NLog.Config
                             TMethodAttributeType[] methodAttributes = (TMethodAttributeType[])mi.GetCustomAttributes(typeof(TMethodAttributeType), false);
                             foreach (TMethodAttributeType attr in methodAttributes)
                             {
-                                Add(prefix + attr.Name, mi);
+                                this.RegisterDefinition(prefix + attr.Name, mi);
                             }
                         }
                     }
@@ -46,39 +56,74 @@ namespace NLog.Config
             }
         }
 
+        /// <summary>
+        /// Clears contents of the factory.
+        /// </summary>
         public void Clear()
         {
-            _nameToType.Clear();
+            this.nameToMethodInfo.Clear();
         }
 
-        public void Add(string name, MethodInfo methodInfo)
+        /// <summary>
+        /// Registers the definition of a single method.
+        /// </summary>
+        /// <param name="name">The method name.</param>
+        /// <param name="methodInfo">The method info.</param>
+        public void RegisterDefinition(string name, MethodInfo methodInfo)
         {
-            _nameToType.Add(name, methodInfo);
+            this.nameToMethodInfo.Add(name, methodInfo);
         }
 
-        public bool TryCreate(string name, out MethodInfo result)
+        /// <summary>
+        /// Tries to retrieve method by name.
+        /// </summary>
+        /// <param name="name">The method name.</param>
+        /// <param name="result">The result.</param>
+        /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
+        public bool TryCreateInstance(string name, out MethodInfo result)
         {
-            return _nameToType.TryGetValue(name, out result);
+            return this.nameToMethodInfo.TryGetValue(name, out result);
         }
 
-        public MethodInfo Create(string name)
+        /// <summary>
+        /// Retrieves method by name.
+        /// </summary>
+        /// <param name="name">Method name.</param>
+        /// <returns>MethodInfo object.</returns>
+        public MethodInfo CreateInstance(string name)
         {
             MethodInfo result;
 
-            if (TryCreate(name, out result))
+            if (this.TryCreateInstance(name, out result))
+            {
                 return result;
+            }
+
             throw new ArgumentException("Unknown function: '" + name + "'");
         }
 
-        public IEnumerable<MethodInfo> RegisteredItems
+        /// <summary>
+        /// Gets a collection of all registered items in the factory.
+        /// </summary>
+        /// <returns>
+        /// Sequence of key/value pairs where each key represents the name
+        /// of the item and value is the <typeparamref name="TDefinitionType"/> of
+        /// the item.
+        /// </returns>
+        public IEnumerable<KeyValuePair<string, MethodInfo>> GetAllRegisteredItems()
         {
-            get { return _nameToType.Values; }
+            return this.nameToMethodInfo;
         }
 
-        public bool TryGetType(string name, out Type result)
+        /// <summary>
+        /// Tries to get method definition.
+        /// </summary>
+        /// <param name="name">The method .</param>
+        /// <param name="result">The result.</param>
+        /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
+        public bool TryGetDefinition(string name, out MethodInfo result)
         {
-            result = null;
-            return false;
+            return this.nameToMethodInfo.TryGetValue(name, out result);
         }
     }
 }

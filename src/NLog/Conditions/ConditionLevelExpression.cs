@@ -44,9 +44,11 @@ namespace NLog.Conditions
     internal sealed class ConditionLevelExpression : ConditionExpression
     {
         /// <summary>
-        /// Creates a new instance of <see cref="ConditionLevelExpression"/>.
+        /// Initializes a new instance of the ConditionLevelExpression class.
         /// </summary>
-        public ConditionLevelExpression() {}
+        public ConditionLevelExpression()
+        {
+        }
 
         /// <summary>
         /// Evaluates to the current log level.
@@ -61,7 +63,7 @@ namespace NLog.Conditions
         /// <summary>
         /// Returns a string representation of the expression.
         /// </summary>
-        /// <returns><b>level</b> string.</returns>
+        /// <returns>The '<b>level</b>' string.</returns>
         public override string ToString()
         {
             return "level";

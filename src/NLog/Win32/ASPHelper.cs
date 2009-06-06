@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 
 using System;
 using System.Reflection;
@@ -39,9 +39,14 @@ using System.Runtime.InteropServices;
 
 namespace NLog.Win32
 {
+    /// <summary>
+    /// Various helper methods for accessing state of ASP application.
+    /// </summary>
     internal class ASPHelper
     {
-        private ASPHelper() { }
+        private ASPHelper()
+        {
+        }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("51372ae0-cae7-11cf-be81-00aa00a2fa25")]
         public interface IObjectContext

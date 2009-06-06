@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT && !CLIENT_SKU
 
 using System;
 using System.Text;
@@ -58,9 +58,11 @@ namespace NLog.Web
         public static event EventHandler BeginRequest;
 
         /// <summary>
-        /// Initializes the HttpModule
+        /// Initializes the HttpModule.
         /// </summary>
-        /// <param name="application">ASP.NET application</param>
+        /// <param name="application">
+        /// ASP.NET application.
+        /// </param>
         public void Init(HttpApplication application)
         {
             application.BeginRequest += new EventHandler(this.BeginRequestHandler);

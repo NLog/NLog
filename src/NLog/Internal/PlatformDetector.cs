@@ -32,48 +32,53 @@
 // 
 
 using System;
-using System.Text;
-using System.Reflection;
-using System.Collections;
-
-using NLog.Config;
-using NLog.Internal;
-using System.Globalization;
 using System.Collections.Generic;
+using NLog.Config;
 
 namespace NLog.Internal
 {
+    /// <summary>
+    /// Detects the platform the NLog is running on.
+    /// </summary>
     internal class PlatformDetector
     {
-        private static IDictionary<RuntimeOS,bool> _currentOSCompatibleWith = new Dictionary<RuntimeOS,bool>();
+        private static IDictionary<RuntimeOS, bool> currentOSCompatibleWith = new Dictionary<RuntimeOS, bool>();
 
-        public static bool IsCurrentOSCompatibleWith(RuntimeOS os)
+        internal static bool IsCurrentOSCompatibleWith(RuntimeOS os)
         {
-            return _currentOSCompatibleWith.ContainsKey(os);
+            return currentOSCompatibleWith.ContainsKey(os);
         }
 
-        public static RuntimeOS GetCurrentRuntimeOS()
+        internal static RuntimeOS GetCurrentRuntimeOS()
         {
             PlatformID platformID = Environment.OSVersion.Platform;
             if ((int)platformID == 4 || (int)platformID == 128)
+            {
                 return RuntimeOS.Unix;
+            }
 
             if ((int)platformID == 3)
+            {
                 return RuntimeOS.WindowsCE;
+            }
 
             if (platformID == PlatformID.Win32Windows)
+            {
                 return RuntimeOS.Windows;
+            }
 
             if (platformID == PlatformID.Win32NT)
+            {
                 return RuntimeOS.WindowsNT;
+            }
 
             return RuntimeOS.Unknown;
         }
 
         private static void FindCompatibleOSes()
         {
-            _currentOSCompatibleWith[GetCurrentRuntimeOS()] = true;
-            _currentOSCompatibleWith[RuntimeOS.Any] = true;
+            currentOSCompatibleWith[GetCurrentRuntimeOS()] = true;
+            currentOSCompatibleWith[RuntimeOS.Any] = true;
         }
     }
 }

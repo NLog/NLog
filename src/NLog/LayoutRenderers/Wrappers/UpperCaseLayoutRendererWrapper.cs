@@ -31,13 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.IO;
-using NLog.Internal;
-using System.ComponentModel;
-using NLog.Config;
-using NLog.Layouts;
 using System.Globalization;
 
 namespace NLog.LayoutRenderers.Wrappers
@@ -49,18 +42,22 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("UpperCase")]
     public sealed class UpperCaseLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        private bool _upperCase = false;
-
-        public bool UpperCase
+        /// <summary>
+        /// Initializes a new instance of the UpperCaseLayoutRendererWrapper class.
+        /// </summary>
+        public UpperCaseLayoutRendererWrapper()
         {
-            get { return _upperCase; }
-            set { _upperCase = value; }
+            this.Culture = CultureInfo.InvariantCulture;
         }
 
-        private CultureInfo _cultureInfo = CultureInfo.InvariantCulture;
+        /// <summary>
+        /// Gets or sets a value indicating whether upper case conversion should be applied.
+        /// </summary>
+        /// <value>A value of <c>true</c> if upper case conversion should be applied otherwise, <c>false</c>.</value>
+        public bool UpperCase { get; set; }
 
         /// <summary>
-        /// The culture to be used for rendering. 
+        /// Gets or sets the culture used for rendering. 
         /// </summary>
         /// <example>
         /// The format for culture names is described in <a href="http://rfc.net/rfc1766.html">RFC 1766</a> and at <a href="http://msdn2.microsoft.com/en-us/library/system.globalization.cultureinfo.cultureinfo.aspx">MSDN</a>. 
@@ -72,20 +69,20 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <li><b>ar-SA</b> - Arabic (Saudi Arabia)</li>
         /// </ul>
         /// </example>
-        public CultureInfo Culture
-        {
-            get { return _cultureInfo; }
-            set { _cultureInfo = value; }
-        }
+        public CultureInfo Culture { get; set; }
 
         /// <summary>
         /// Post-processes the rendered message. 
         /// </summary>
-        /// <param name="s">The text to be post-processed.</param>
+        /// <param name="text">The text to be post-processed.</param>
         /// <returns>Padded and trimmed string.</returns>
         protected override string Transform(string text)
         {
-            return UpperCase ? text.ToUpperInvariant() : text;
+#if SILVERLIGHT || NET_CF
+            return this.UpperCase ? text.ToUpper() : text;
+#else
+            return this.UpperCase ? text.ToUpperInvariant() : text;
+#endif
         }
     }
 }

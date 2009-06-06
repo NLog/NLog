@@ -45,32 +45,27 @@ namespace NLog.Filters
     public abstract class Filter
     {
         /// <summary>
-        /// 
+        /// Initializes a new instance of the Filter class.
         /// </summary>
-        protected Filter(){}
-
-        private FilterResult _filterResult = FilterResult.Neutral;
-
-        /// <summary>
-        /// The <see cref="FilterResult"/> value that should be returned 
-        /// when this filter matches.
-        /// </summary>
-        protected FilterResult Result
+        protected Filter()
         {
-            get { return _filterResult; }
+            this.Action = FilterResult.Neutral;
         }
 
         /// <summary>
-        /// User-requested action to be taken when filter matches.
+        /// Gets or sets the action to be taken when filter matches.
         /// </summary>
-        /// <remarks>
-        /// Allowed values are <c>log</c>, <c>ignore</c>, <c>neutral</c>.
-        /// </remarks>
         [RequiredParameter]
-        public FilterResult Action
+        public FilterResult Action { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether stack trace information should be gathered
+        /// during log event processing. 
+        /// </summary>
+        /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
+        public virtual StackTraceUsage GetStackTraceUsage()
         {
-            get { return _filterResult; }
-            set { _filterResult = value; }
+            return 0;
         }
 
         /// <summary>
@@ -81,17 +76,7 @@ namespace NLog.Filters
         /// <see cref="FilterResult.Ignore"/> - if the log event should be ignored<br/>
         /// <see cref="FilterResult.Neutral"/> - if the filter doesn't want to decide<br/>
         /// <see cref="FilterResult.Log"/> - if the log event should be logged<br/>
-        /// </returns>
+        /// .</returns>
         protected internal abstract FilterResult Check(LogEventInfo logEvent);
-
-        /// <summary>
-        /// Determines whether stack trace information should be gathered
-        /// during log event processing. 
-        /// </summary>
-        /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
-        public virtual StackTraceUsage GetStackTraceUsage()
-        {
-            return 0;
-        }
     }
 }

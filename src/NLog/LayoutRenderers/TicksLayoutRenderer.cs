@@ -31,10 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
 using System.Globalization;
-using NLog.Config;
+using System.Text;
 
 namespace NLog.LayoutRenderers
 {
@@ -42,7 +40,7 @@ namespace NLog.LayoutRenderers
     /// The Ticks value of current date and time.
     /// </summary>
     [LayoutRenderer("ticks")]
-    public class TicksLayoutRenderer: LayoutRenderer
+    public class TicksLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -60,7 +58,6 @@ namespace NLog.LayoutRenderers
             return 32;
         }
 
-
         /// <summary>
         /// Renders the ticks value of current time and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
@@ -71,6 +68,16 @@ namespace NLog.LayoutRenderers
             builder.Append(logEvent.TimeStamp.Ticks.ToString(CultureInfo.InvariantCulture));
         }
 
+        /// <summary>
+        /// Determines whether the layout renderer is volatile.
+        /// </summary>
+        /// <returns>
+        /// A boolean indicating whether the layout renderer is volatile.
+        /// </returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
         protected internal override bool IsVolatile()
         {
             return false;

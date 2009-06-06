@@ -31,15 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 
 using System;
-using System.Text;
 using System.Runtime.InteropServices;
-
-using NLog.LayoutRenderers;
+using System.Text;
 using NLog.Config;
-using System.ComponentModel;
+using NLog.LayoutRenderers;
 
 namespace NLog.Win32.LayoutRenderers
 {
@@ -47,20 +45,14 @@ namespace NLog.Win32.LayoutRenderers
     /// ASP Session variable.
     /// </summary>
     [LayoutRenderer("asp-session")]
-    public class ASPSessionValueLayoutRenderer: LayoutRenderer
+    public class ASPSessionValueLayoutRenderer : LayoutRenderer
     {
-        private string _sessionVariable = null;
-
         /// <summary>
-        /// Session variable name.
+        /// Gets or sets the session variable name.
         /// </summary>
         [RequiredParameter]
         [DefaultParameter]
-        public string Variable
-        {
-            get { return _sessionVariable; }
-            set { _sessionVariable = value; }
-        }
+        public string Variable { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -86,11 +78,12 @@ namespace NLog.Win32.LayoutRenderers
             ASPHelper.ISessionObject session = ASPHelper.GetSessionObject();
             if (session != null)
             {
-                if (Variable != null)
+                if (this.Variable != null)
                 {
-                    object variableValue = session.GetValue(Variable);
+                    object variableValue = session.GetValue(this.Variable);
                     builder.Append(Convert.ToString(variableValue));
                 }
+
                 Marshal.ReleaseComObject(session);
             }
         }

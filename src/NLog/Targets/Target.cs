@@ -32,13 +32,10 @@
 // 
 
 using System;
-using System.Text;
-using System.Collections;
-
-using NLog.Config;
 using System.Collections.Generic;
-using NLog.Layouts;
+using NLog.Config;
 using NLog.Internal;
+using NLog.Layouts;
 
 namespace NLog.Targets
 {
@@ -47,41 +44,111 @@ namespace NLog.Targets
     /// </summary>
     public abstract class Target
     {
-        private bool _isInitialized = false;
+        private List<Layout> allLayouts = new List<Layout>();
+        private StackTraceUsage stackTraceUsage;
 
         /// <summary>
-        /// Determines whether the target has been initialized by calling <see cref="Initialize" />.
+        /// Initializes a new instance of the Target class.
         /// </summary>
-        public bool IsInitialized
-        {
-            get { return _isInitialized; }
-        }
-
-        /// <summary>
-        /// Creates a new instance of the logging target and initializes
-        /// default layout.
-        /// </summary>
-        /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
-        /// </remarks>
         protected Target()
         {
         }
 
-        private List<Layout> _allLayouts = new List<Layout>();
-        private StackTraceUsage _stackTraceUsage;
-        private string _name;
+        /// <summary>
+        /// Gets a value indicating whether the target has been initialized by calling <see cref="Initialize" />.
+        /// </summary>
+        public bool IsInitialized { get; private set; }
 
         /// <summary>
-        /// The name of the target.
+        /// Gets or sets the name of the target.
         /// </summary>
         [RequiredParameter]
-        public string Name
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Returns the text representation of the object. Used for diagnostics.
+        /// </summary>
+        /// <returns>A string that describes the target.</returns>
+        public override string ToString()
         {
-            get { return _name; }
-            set { _name = value; }
+            return ((this.Name != null) ? this.Name : "unnamed") + ":" + this.GetType().Name;
         }
 
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        public void Flush()
+        {
+            this.Flush(TimeSpan.MaxValue);
+        }
+
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public virtual void Flush(TimeSpan timeout)
+        {
+            // do nothing
+        }
+
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public void Flush(int timeoutMilliseconds)
+        {
+            this.Flush(TimeSpan.FromMilliseconds(timeoutMilliseconds));
+        }
+
+        /// <summary>
+        /// Calls the <see cref="Layout.Precalculate"/> on each volatile layout
+        /// used by this target.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
+        /// <remarks>
+        /// A layout is volatile if it contains at least one <see cref="Layout"/> for 
+        /// which <see cref="Layout.IsVolatile"/> returns true.
+        /// </remarks>
+        public void PrecalculateVolatileLayouts(LogEventInfo logEvent)
+        {
+            foreach (Layout l in this.allLayouts)
+            {
+                if (l.IsVolatile())
+                {
+                    l.Precalculate(logEvent);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds all layouts used by this target to the specified collection.
+        /// </summary>
+        /// <param name="layouts">The collection to add layouts to.</param>
+        public virtual void PopulateLayouts(ICollection<Layout> layouts)
+        {
+        }
+
+        /// <summary>
+        /// Initializes the target. Can be used by inheriting classes
+        /// to initialize logging.
+        /// </summary>
+        public virtual void Initialize()
+        {
+            this.PopulateLayouts(this.allLayouts);
+
+            foreach (Layout l in this.allLayouts)
+            {
+                l.Initialize();
+
+                StackTraceUsage stu = l.GetStackTraceUsage();
+                if (stu > this.stackTraceUsage)
+                {
+                    this.stackTraceUsage = stu;
+                }
+            }
+
+            this.IsInitialized = true;
+        }
 
         /// <summary>
         /// Writes logging event to the log target. Must be overridden in inheriting
@@ -100,54 +167,19 @@ namespace NLog.Targets
         {
             for (int i = 0; i < logEvents.Length; ++i)
             {
-                Write(logEvents[i]);
+                this.Write(logEvents[i]);
             }
         }
 
         /// <summary>
-        /// Determines whether stack trace information should be gathered
-        /// during log event processing. By default it calls <see cref="Layout.GetStackTraceUsage" /> on
-        /// the result of <see cref="GetLayouts()"/>.
+        /// Gets or sets a value indicating whether stack trace information should be gathered during log event processing.
         /// </summary>
-        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
+        /// <returns>
+        /// A <see cref="StackTraceUsage"/> value which determines stack trace information to be gathered.
+        /// </returns>
         protected internal virtual StackTraceUsage GetStackTraceUsage()
         {
-            return _stackTraceUsage;
-        }
-
-        /// <summary>
-        /// Returns the text representation of the object. Used for diagnostics.
-        /// </summary>
-        /// <returns>A string that describes the target.</returns>
-        public override string ToString()
-        {
-            return ((this.Name != null) ? this.Name : "unnamed") + ":" + this.GetType().Name;
-        }
-
-        /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
-        /// </summary>
-        public void Flush()
-        {
-            Flush(TimeSpan.MaxValue);
-        }
-
-        /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
-        /// </summary>
-        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-        public virtual void Flush(TimeSpan timeout)
-        {
-            // do nothing
-        }
-
-        /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
-        /// </summary>
-        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-        public void Flush(int timeoutMilliseconds)
-        {
-            Flush(TimeSpan.FromMilliseconds(timeoutMilliseconds));
+            return this.stackTraceUsage;
         }
 
         /// <summary>
@@ -155,60 +187,21 @@ namespace NLog.Targets
         /// </summary>
         protected internal virtual void Close()
         {
-            if (!_isInitialized)
+            if (!this.IsInitialized)
+            {
                 InternalLogger.Warn("Called Close() without Initialize() on " + this.ToString() + "(" + this.GetHashCode() + ")");
+            }
             else
+            {
                 InternalLogger.Trace("Closing " + this.ToString() + "(" + this.GetHashCode() + ")...");
-            foreach (Layout l in _allLayouts)
+            }
+
+            foreach (Layout l in this.allLayouts)
             {
                 l.Close();
             }
-            _isInitialized = false;
-        }
 
-        /// <summary>
-        /// Calls the <see cref="Layout.Precalculate"/> on each volatile layout
-        /// used by this target.
-        /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        /// <remarks>
-        /// A layout is volatile if it contains at least one <see cref="Layout"/> for 
-        /// which <see cref="Layout.IsVolatile"/> returns true.
-        /// </remarks>
-        public void PrecalculateVolatileLayouts(LogEventInfo logEvent)
-        {
-            foreach (Layout l in _allLayouts)
-            {
-                if (l.IsVolatile())
-                    l.Precalculate(logEvent);
-            }
-        }
-
-        /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public virtual void PopulateLayouts(ICollection<Layout> layouts)
-        {
-        }
-
-        /// <summary>
-        /// Initializes the target. Can be used by inheriting classes
-        /// to initialize logging.
-        /// </summary>
-        public virtual void Initialize()
-        {
-            PopulateLayouts(_allLayouts);
-
-            foreach (Layout l in _allLayouts)
-            {
-                l.Initialize();
-
-                StackTraceUsage stu = l.GetStackTraceUsage();
-                if (stu > _stackTraceUsage)
-                    _stackTraceUsage = stu;
-            }
-            _isInitialized = true;
+            this.IsInitialized = false;
         }
     }
 }

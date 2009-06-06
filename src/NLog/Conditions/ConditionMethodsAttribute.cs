@@ -38,11 +38,11 @@ namespace NLog.Conditions
     /// <summary>
     /// Marks the class as containing condition methods.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class,AllowMultiple=true)]
-    public sealed class ConditionMethodsAttribute: Attribute
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+    public sealed class ConditionMethodsAttribute : Attribute
     {
         /// <summary>
-        /// Creates a new instance of <see cref="ConditionMethodsAttribute"/>.
+        /// Initializes a new instance of the ConditionMethodsAttribute class.
         /// </summary>
         public ConditionMethodsAttribute()
         {

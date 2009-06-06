@@ -32,14 +32,10 @@
 // 
 
 using System;
-using System.Collections;
-using System.Text;
-using System.IO;
-
-using NLog.Internal;
-using NLog.Config;
-using System.ComponentModel;
 using System.Collections.Generic;
+using System.Text;
+using NLog.Config;
+using NLog.Internal;
 
 namespace NLog.LayoutRenderers
 {
@@ -48,117 +44,46 @@ namespace NLog.LayoutRenderers
     /// a call to one of the Logger.*Exception() methods.
     /// </summary>
     [LayoutRenderer("exception")]
-    public class ExceptionLayoutRenderer: LayoutRenderer
+    public class ExceptionLayoutRenderer : LayoutRenderer
     {
-        private string _format;
-        private string _separator = " ";
-
-        delegate void ExceptionDataTarget(StringBuilder sb, Exception ex);
-
-        private ExceptionDataTarget[] _exceptionDataTargets = null;
+        private string format;
+        private ExceptionDataTarget[] exceptionDataTargets = null;
 
         /// <summary>
-        /// Initializes a new instance of <see cref="ExceptionLayoutRenderer"/>.
+        /// Initializes a new instance of the ExceptionLayoutRenderer class.
         /// </summary>
         public ExceptionLayoutRenderer()
         {
-            Format = "message";
+            this.Format = "message";
+            this.Separator = " ";
         }
 
+        private delegate void ExceptionDataTarget(StringBuilder sb, Exception ex);
 
         /// <summary>
-        /// The format of the output. Must be a comma-separated list of exception
+        /// Gets or sets the format of the output. Must be a comma-separated list of exception
         /// properties: Message, Type, ShortType, ToString, Method, StackTrace.
         /// This parameter value is case-insensitive.
         /// </summary>
         [DefaultParameter]
         public string Format
         {
-            get { return _format; }
-            set { _format = value; CompileFormat(value); }
+            get
+            {
+                return this.format;
+            }
+
+            set
+            {
+                this.format = value;
+                this.CompileFormat(value);
+            }
         }
 
         /// <summary>
-        /// The separator used to concatenate parts specified in the Format.
+        /// Gets or sets the separator used to concatenate parts specified in the Format.
         /// </summary>
-        public string Separator
-        {
-            get { return _separator; }
-            set { _separator = value; }
-        }
-
-        private void AppendMessage(StringBuilder sb, Exception ex) {
-            sb.Append(ex.Message);
-        }
-
-#if !NET_CF && !SILVERLIGHT
-        private void AppendMethod(StringBuilder sb, Exception ex) {
-            sb.Append(ex.TargetSite.ToString());
-        }
-
-        private void AppendStackTrace(StringBuilder sb, Exception ex) 
-        {
-            sb.Append(ex.StackTrace);
-        }
-#endif
-
-        private void AppendToString(StringBuilder sb, Exception ex) 
-        {
-            sb.Append(ex.ToString());
-        }
-
-        private void AppendType(StringBuilder sb, Exception ex) 
-        {
-            sb.Append(ex.GetType().FullName);
-        }
-
-        private void AppendShortType(StringBuilder sb, Exception ex) 
-        {
-            sb.Append(ex.GetType().Name);
-        }
-
-        private void CompileFormat(string format)
-        {
-            string[] parts = format.Replace(" ","").Split(',');
-            List<ExceptionDataTarget> dataTargets = new List<ExceptionDataTarget>();
-            
-            foreach (string s in parts)
-            {
-                switch (s.ToLower())
-                {
-                    case "message":
-                        dataTargets.Add(new ExceptionDataTarget(AppendMessage));
-                        break;
-                        
-                    case "type":
-                        dataTargets.Add(new ExceptionDataTarget(AppendType));
-                        break;
-                    
-                    case "shorttype":
-                        dataTargets.Add(new ExceptionDataTarget(AppendShortType));
-                        break;
-
-                    case "tostring":
-                        dataTargets.Add(new ExceptionDataTarget(AppendToString));
-                        break;
-
-#if !NET_CF && !SILVERLIGHT
-                   case "stacktrace":
-                        dataTargets.Add(new ExceptionDataTarget(AppendStackTrace));
-                        break;
-
-                    case "method":
-                        dataTargets.Add(new ExceptionDataTarget(AppendMethod));
-                        break;
-#endif
-                    default:
-                        InternalLogger.Warn("Unknown exception data target: {0}", s);
-                        break;
-                    
-                }
-            }
-            _exceptionDataTargets = dataTargets.ToArray();
-        }
+        public string Separator { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -187,19 +112,108 @@ namespace NLog.LayoutRenderers
             {
                 StringBuilder sb2 = new StringBuilder(128);
 
-                for (int i = 0; i < _exceptionDataTargets.Length; ++i)
+                for (int i = 0; i < this.exceptionDataTargets.Length; ++i)
                 {
                     if (i != 0)
-                        sb2.Append(Separator);
-                    _exceptionDataTargets[i](sb2, logEvent.Exception);
+                    {
+                        sb2.Append(this.Separator);
+                    }
+
+                    this.exceptionDataTargets[i](sb2, logEvent.Exception);
                 }
+
                 builder.Append(sb2.ToString());
             }
         }
 
+        /// <summary>
+        /// Determines whether the layout renderer is volatile.
+        /// </summary>
+        /// <returns>
+        /// A boolean indicating whether the layout renderer is volatile.
+        /// </returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
         protected internal override bool IsVolatile()
         {
             return false;
+        }
+
+        private void AppendMessage(StringBuilder sb, Exception ex)
+        {
+            sb.Append(ex.Message);
+        }
+
+#if !NET_CF && !SILVERLIGHT
+        private void AppendMethod(StringBuilder sb, Exception ex)
+        {
+            sb.Append(ex.TargetSite.ToString());
+        }
+
+        private void AppendStackTrace(StringBuilder sb, Exception ex)
+        {
+            sb.Append(ex.StackTrace);
+        }
+#endif
+
+        private void AppendToString(StringBuilder sb, Exception ex)
+        {
+            sb.Append(ex.ToString());
+        }
+
+        private void AppendType(StringBuilder sb, Exception ex)
+        {
+            sb.Append(ex.GetType().FullName);
+        }
+
+        private void AppendShortType(StringBuilder sb, Exception ex)
+        {
+            sb.Append(ex.GetType().Name);
+        }
+
+        private void CompileFormat(string format)
+        {
+            string[] parts = format.Replace(" ", string.Empty).Split(',');
+            List<ExceptionDataTarget> dataTargets = new List<ExceptionDataTarget>();
+
+            foreach (string s in parts)
+            {
+                switch (s.ToLower())
+                {
+                    case "message":
+                        dataTargets.Add(new ExceptionDataTarget(this.AppendMessage));
+                        break;
+
+                    case "type":
+                        dataTargets.Add(new ExceptionDataTarget(this.AppendType));
+                        break;
+
+                    case "shorttype":
+                        dataTargets.Add(new ExceptionDataTarget(this.AppendShortType));
+                        break;
+
+                    case "tostring":
+                        dataTargets.Add(new ExceptionDataTarget(this.AppendToString));
+                        break;
+
+#if !NET_CF && !SILVERLIGHT
+                    case "stacktrace":
+                        dataTargets.Add(new ExceptionDataTarget(this.AppendStackTrace));
+                        break;
+
+                    case "method":
+                        dataTargets.Add(new ExceptionDataTarget(this.AppendMethod));
+                        break;
+#endif
+                    default:
+                        InternalLogger.Warn("Unknown exception data target: {0}", s);
+                        break;
+                }
+            }
+
+            this.exceptionDataTargets = dataTargets.ToArray();
         }
     }
 }

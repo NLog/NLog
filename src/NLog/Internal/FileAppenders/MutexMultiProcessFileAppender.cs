@@ -31,20 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
+#if !NET_CF && !SILVERLIGHT
 
 using System;
-using System.Xml;
 using System.IO;
 using System.Threading;
-using System.Text;
-using System.Collections;
-using System.Collections.Specialized;
-
-using NLog;
-using NLog.Config;
-
-using NLog.Internal;
 
 namespace NLog.Internal.FileAppenders
 {
@@ -61,79 +52,106 @@ namespace NLog.Internal.FileAppenders
     /// </remarks>
     internal class MutexMultiProcessFileAppender : BaseFileAppender
     {
-        private Mutex _mutex;
-        private FileStream _file;
-
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
-        public class Factory : IFileAppenderFactory
-        {
-            public BaseFileAppender Open(string fileName, ICreateFileParameters parameters)
-            {
-                return new MutexMultiProcessFileAppender(fileName, parameters);
-            }
-        }
+        private FileStream file;
+        private Mutex mutex;
 
+        /// <summary>
+        /// Initializes a new instance of the MutexMultiProcessFileAppender class.
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="parameters">The parameters.</param>
         public MutexMultiProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
             try
             {
-                _mutex = new Mutex(false, GetMutexName(fileName));
-                _file = CreateFileStream(true);
+                this.mutex = new Mutex(false, this.GetMutexName(fileName));
+                this.file = CreateFileStream(true);
             }
             catch
             {
-                if (_mutex != null)
+                if (this.mutex != null)
                 {
-                    _mutex.Close();
-                    _mutex = null;
+                    this.mutex.Close();
+                    this.mutex = null;
                 }
-                if (_file != null)
+
+                if (this.file != null)
                 {
-                    _file.Close();
-                    _file = null;
+                    this.file.Close();
+                    this.file = null;
                 }
+
                 throw;
             }
         }
 
+        /// <summary>
+        /// Writes the specified bytes.
+        /// </summary>
+        /// <param name="bytes">The bytes to be written.</param>
         public override void Write(byte[] bytes)
         {
-            if (_mutex == null)
+            if (this.mutex == null)
+            {
                 return;
-            _mutex.WaitOne();
+            }
+
+            this.mutex.WaitOne();
             try
             {
-                _file.Seek(0, SeekOrigin.End);
-                _file.Write(bytes, 0, bytes.Length);
-                _file.Flush();
+                this.file.Seek(0, SeekOrigin.End);
+                this.file.Write(bytes, 0, bytes.Length);
+                this.file.Flush();
                 FileTouched();
             }
             finally
             {
-                _mutex.ReleaseMutex();
+                this.mutex.ReleaseMutex();
             }
         }
 
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
         public override void Close()
         {
             InternalLogger.Trace("Closing '{0}'", FileName);
-            if (_mutex != null)
+            if (this.mutex != null)
             {
-                _mutex.Close();
+                this.mutex.Close();
             }
-            if (_file != null)
+
+            if (this.file != null)
             {
-                _file.Close();
+                this.file.Close();
             }
-            _mutex = null;
-            _file = null;
+
+            this.mutex = null;
+            this.file = null;
             FileTouched();
         }
 
+        /// <summary>
+        /// Flushes this instance.
+        /// </summary>
         public override void Flush()
         {
             // do nothing, the stream is always flushed
+        }
+
+        /// <summary>
+        /// Gets the file info.
+        /// </summary>
+        /// <param name="lastWriteTime">The last write time.</param>
+        /// <param name="fileLength">Length of the file.</param>
+        /// <returns>
+        /// True if the operation succeeded, false otherwise.
+        /// </returns>
+        public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
+        {
+            return FileInfoHelper.Helper.GetFileInfo(FileName, this.file.SafeFileHandle.DangerousGetHandle(), out lastWriteTime, out fileLength);
         }
 
         private string GetMutexName(string fileName)
@@ -147,9 +165,23 @@ namespace NLog.Internal.FileAppenders
             return "filelock-mutex-" + canonicalName;
         }
 
-        public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
+        /// <summary>
+        /// Factory class.
+        /// </summary>
+        private class Factory : IFileAppenderFactory
         {
-            return FileInfoHelper.Helper.GetFileInfo(FileName, _file.SafeFileHandle.DangerousGetHandle(), out lastWriteTime, out fileLength);
+            /// <summary>
+            /// Opens the appender for given file name and parameters.
+            /// </summary>
+            /// <param name="fileName">Name of the file.</param>
+            /// <param name="parameters">Creation parameters.</param>
+            /// <returns>
+            /// Instance of <see cref="BaseFileAppender"/> which can be used to write to the file.
+            /// </returns>
+            BaseFileAppender IFileAppenderFactory.Open(string fileName, ICreateFileParameters parameters)
+            {
+                return new MutexMultiProcessFileAppender(fileName, parameters);
+            }
         }
     }
 }

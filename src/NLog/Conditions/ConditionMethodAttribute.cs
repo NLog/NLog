@@ -32,23 +32,22 @@
 // 
 
 using System;
-using NLog.Internal;
 using NLog.Config;
 
 namespace NLog.Conditions
 {
     /// <summary>
-    /// Marks class as a log event Condition and assigns a name to it
+    /// Marks class as a log event Condition and assigns a name to it.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Method,AllowMultiple=true)]
-    public sealed class ConditionMethodAttribute: NameAttributeBase
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
+    public sealed class ConditionMethodAttribute : NameAttributeBase
     {
         /// <summary>
-        /// Creates a new instance of <see cref="ConditionMethodAttribute"/> and assigns
-        /// a name to it.
+        /// Initializes a new instance of the ConditionMethodAttribute class.
         /// </summary>
-        /// <param name="name"></param>
-        public ConditionMethodAttribute(string name) : base(name)
+        /// <param name="name">Condition method name.</param>
+        public ConditionMethodAttribute(string name)
+            : base(name)
         {
         }
     }

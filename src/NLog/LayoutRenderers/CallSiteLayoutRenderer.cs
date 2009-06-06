@@ -32,67 +32,54 @@
 // 
 
 #if !NET_CF
-using System;
-using System.Text;
-using System.Diagnostics;
-using System.Reflection;
-using System.IO;
-
-using NLog.Config;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Text;
 
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// The call site (class name, method name and source information)
+    /// The call site (class name, method name and source information).
     /// </summary>
     [LayoutRenderer("callsite")]
-    public class CallSiteLayoutRenderer: LayoutRenderer
+    public class CallSiteLayoutRenderer : LayoutRenderer
     {
-        private bool _className = true;
-        private bool _methodName = true;
-        private bool _sourceFile = false;
-        private bool _includeSourcePath = true;
-
         /// <summary>
-        /// Render the class name.
+        /// Initializes a new instance of the CallSiteLayoutRenderer class.
         /// </summary>
-        [DefaultValue(true)]
-        public bool ClassName
+        public CallSiteLayoutRenderer()
         {
-            get { return _className; }
-            set { _className = value; }
+            this.ClassName = true;
+            this.MethodName = true;
+            this.FileName = false;
+            this.IncludeSourcePath = true;
         }
 
         /// <summary>
-        /// Render the method name.
+        /// Gets or sets a value indicating whether to render the class name.
         /// </summary>
         [DefaultValue(true)]
-        public bool MethodName
-        {
-            get { return _methodName; }
-            set { _methodName = value; }
-        }
+        public bool ClassName { get; set; }
 
         /// <summary>
-        /// Render the source file name and line number.
+        /// Gets or sets a value indicating whether to render the method name.
+        /// </summary>
+        [DefaultValue(true)]
+        public bool MethodName { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to render the source file name and line number.
         /// </summary>
         [DefaultValue(false)]
-        public bool FileName
-        {
-            get { return _sourceFile; }
-            set { _sourceFile = value; }
-        }
+        public bool FileName { get; set; }
 
         /// <summary>
-        /// Include source file path.
+        /// Gets or sets a value indicating whether to include source file path.
         /// </summary>
         [DefaultValue(true)]
-        public bool IncludeSourcePath
-        {
-            get { return _includeSourcePath; }
-            set { _includeSourcePath = value; }
-        }
+        public bool IncludeSourcePath { get; set; }
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -116,9 +103,19 @@ namespace NLog.LayoutRenderers
         /// <returns>2 when the source file information is requested, 1 otherwise.</returns>
         protected internal override StackTraceUsage GetStackTraceUsage()
         {
-            return _sourceFile ? StackTraceUsage.WithSource : StackTraceUsage.WithoutSource;
+            return this.FileName ? StackTraceUsage.WithSource : StackTraceUsage.WithoutSource;
         }
 
+        /// <summary>
+        /// Determines whether the layout renderer is volatile.
+        /// </summary>
+        /// <returns>
+        /// A boolean indicating whether the layout renderer is volatile.
+        /// </returns>
+        /// <remarks>
+        /// Volatile layout renderers are dependent on information not contained
+        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
+        /// </remarks>
         protected internal override bool IsVolatile()
         {
             return false;
@@ -135,25 +132,28 @@ namespace NLog.LayoutRenderers
             if (frame != null)
             {
                 MethodBase method = frame.GetMethod();
-                if (ClassName)
+                if (this.ClassName)
                 {
                     builder.Append(method.DeclaringType.FullName);
                 }
-                if (MethodName)
+
+                if (this.MethodName)
                 {
-                    if (ClassName)
+                    if (this.ClassName)
                     {
                         builder.Append(".");
                     }
+
                     builder.Append(method.Name);
                 }
-                if (FileName)
+
+                if (this.FileName)
                 {
                     string fileName = frame.GetFileName();
                     if (fileName != null)
                     {
                         builder.Append("(");
-                        if (IncludeSourcePath)
+                        if (this.IncludeSourcePath)
                         {
                             builder.Append(fileName);
                         }
@@ -161,6 +161,7 @@ namespace NLog.LayoutRenderers
                         {
                             builder.Append(Path.GetFileName(fileName));
                         }
+
                         builder.Append(":");
                         builder.Append(frame.GetFileLineNumber());
                         builder.Append(")");

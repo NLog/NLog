@@ -32,7 +32,6 @@
 // 
 
 using System;
-using NLog.Internal;
 using NLog.Config;
 
 namespace NLog.Targets
@@ -41,35 +40,25 @@ namespace NLog.Targets
     /// Marks class as a logging target and assigns a name to it.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class TargetAttribute: NameAttributeBase
+    public sealed class TargetAttribute : NameAttributeBase
     {
-        private bool _isCompound = false;
-        private bool _isWrapper = false;
-
         /// <summary>
-        /// Creates a new instance of the TargetAttribute class and sets the name.
+        /// Initializes a new instance of the TargetAttribute class.
         /// </summary>
-        /// <param name="name"></param>
-        public TargetAttribute(string name) : base(name)
+        /// <param name="targetName">Name of the target.</param>
+        public TargetAttribute(string targetName)
+            : base(targetName)
         {
         }
 
         /// <summary>
-        /// Marks the target as 'wrapper' target (used to generate the target summary documentation page);
+        /// Gets or sets a value indicating whether to the target is a wrapper target (used to generate the target summary documentation page).
         /// </summary>
-        public bool IsWrapper
-        {
-            get { return _isWrapper; }
-            set { _isWrapper = value; }
-        }
+        public bool IsWrapper { get; set; }
 
         /// <summary>
-        /// Marks the target as 'compound' target (used to generate the target summary documentation page);
+        /// Gets or sets a value indicating whether to the target is a compound target (used to generate the target summary documentation page).
         /// </summary>
-        public bool IsCompound
-        {
-            get { return _isCompound; }
-            set { _isCompound = value; }
-        }
+        public bool IsCompound { get; set; }
     }
 }
