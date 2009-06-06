@@ -47,21 +47,6 @@ using NLog.Targets;
 namespace NLog
 {
     /// <summary>
-    /// Represents a method that's invoked each time a logging configuration changes.
-    /// </summary>
-    /// <param name="oldConfig">Old configuration.</param>
-    /// <param name="newConfig">New configuration.</param>
-    public delegate void LoggingConfigurationChanged(LoggingConfiguration oldConfig, LoggingConfiguration newConfig);
-
-    /// <summary>
-    /// Represents a method that's invoked each time a logging configuration gets reloaded
-    /// to signal either success or failure.
-    /// </summary>
-    /// <param name="succeeded">Whether configuration load has succeeded.</param>
-    /// <param name="ex">Exception thrown while loading the configuration.</param>
-    public delegate void LoggingConfigurationReloaded(bool succeeded, Exception ex);
-
-    /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
     /// </summary>
     public class LogFactory
@@ -102,13 +87,13 @@ namespace NLog
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> changes.
         /// </summary>
-        public event LoggingConfigurationChanged ConfigurationChanged;
+        public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
 #if !NET_CF && !SILVERLIGHT
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
-        public event LoggingConfigurationReloaded ConfigurationReloaded;
+        public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
 #endif
 
         /// <summary>
@@ -217,9 +202,11 @@ namespace NLog
 #endif
                     }
 
-                    if (this.ConfigurationChanged != null)
+                    var configurationChangedDelegate = this.ConfigurationChanged;
+
+                    if (configurationChangedDelegate != null)
                     {
-                        this.ConfigurationChanged(oldConfig, value);
+                        configurationChangedDelegate(this, new LoggingConfigurationChangedEventArgs(oldConfig, value));
                     }
                 }
             }
@@ -432,9 +419,11 @@ namespace NLog
                 catch (Exception ex)
                 {
                     this.watcher.Watch(configurationToReload.FileNamesToWatch);
-                    if (this.ConfigurationReloaded != null)
+
+                    var configurationReloadedDelegate = this.ConfigurationReloaded;
+                    if (configurationReloadedDelegate != null)
                     {
-                        this.ConfigurationReloaded(false, ex);
+                        configurationReloadedDelegate(this, new LoggingConfigurationReloadedEventArgs(false, ex));
                     }
                 }
             }

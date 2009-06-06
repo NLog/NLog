@@ -43,9 +43,10 @@ namespace NLog
     [CLSCompliant(true)]
     public class Logger
     {
+        private readonly Type loggerType = typeof(Logger);
+
         private string loggerName;
         private LogFactory factory;
-        private Type loggerType = typeof(Logger);
         private volatile LoggerConfiguration configuration;
         private volatile bool isTraceEnabled;
         private volatile bool isDebugEnabled;
@@ -187,12 +188,29 @@ namespace NLog
         /// Writes the diagnostic message at the specified level.
         /// </summary>
         /// <param name="level">The log level.</param>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        public void Log(LogLevel level, string message)
+        /// <param name="value">The value to be written.</param>
+        public void Log<T>(LogLevel level, T value)
         {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargets(level, message);
+                this.WriteToTargets(level, null, value);
+            }
+        }
+
+        /// <overloads>
+        /// Writes the diagnostic message at the specified level using the specified format provider and format parameters.
+        /// </overloads>
+        /// <summary>
+        /// Writes the diagnostic message at the specified level.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="value">The value to be written.</param>
+        public void Log<T>(LogLevel level, IFormatProvider formatProvider, T value)
+        {
+            if (this.IsEnabled(level))
+            {
+                this.WriteToTargets(level, formatProvider, value);
             }
         }
 
@@ -208,7 +226,7 @@ namespace NLog
         {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargets(level, messageDelegate());
+                this.WriteToTargets(level, null, messageDelegate());
             }
         }
 
@@ -370,12 +388,28 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
         /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        public void Trace(string message)
+        /// <param name="value">The value to be written.</param>
+        public void Trace<T>(T value)
         {
             if (this.IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message);
+                this.WriteToTargets(LogLevel.Trace, null, value);
+            }
+        }
+
+        /// <overloads>
+        /// Writes the diagnostic message at the <c>Trace</c> level using the specified format provider and format parameters.
+        /// </overloads>
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="value">The value to be written.</param>
+        public void Trace<T>(IFormatProvider formatProvider, T value)
+        {
+            if (this.IsTraceEnabled)
+            {
+                this.WriteToTargets(LogLevel.Trace, formatProvider, value);
             }
         }
 
@@ -390,7 +424,7 @@ namespace NLog
         {
             if (this.IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, messageDelegate());
+                this.WriteToTargets(LogLevel.Trace, null, messageDelegate());
             }
         }
 
@@ -543,12 +577,28 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
         /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        public void Debug(string message)
+        /// <param name="value">The value to be written.</param>
+        public void Debug<T>(T value)
         {
             if (this.IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message);
+                this.WriteToTargets(LogLevel.Debug, null, value);
+            }
+        }
+
+        /// <overloads>
+        /// Writes the diagnostic message at the <c>Debug</c> level using the specified format provider and format parameters.
+        /// </overloads>
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Debug</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="value">The value to be written.</param>
+        public void Debug<T>(IFormatProvider formatProvider, T value)
+        {
+            if (this.IsDebugEnabled)
+            {
+                this.WriteToTargets(LogLevel.Debug, formatProvider, value);
             }
         }
 
@@ -563,7 +613,7 @@ namespace NLog
         {
             if (this.IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, messageDelegate());
+                this.WriteToTargets(LogLevel.Debug, null, messageDelegate());
             }
         }
 
@@ -716,12 +766,28 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level.
         /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        public void Info(string message)
+        /// <param name="value">The value to be written.</param>
+        public void Info<T>(T value)
         {
             if (this.IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message);
+                this.WriteToTargets(LogLevel.Info, null, value);
+            }
+        }
+
+        /// <overloads>
+        /// Writes the diagnostic message at the <c>Info</c> level using the specified format provider and format parameters.
+        /// </overloads>
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Info</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="value">The value to be written.</param>
+        public void Info<T>(IFormatProvider formatProvider, T value)
+        {
+            if (this.IsInfoEnabled)
+            {
+                this.WriteToTargets(LogLevel.Info, formatProvider, value);
             }
         }
 
@@ -736,7 +802,7 @@ namespace NLog
         {
             if (this.IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, messageDelegate());
+                this.WriteToTargets(LogLevel.Info, null, messageDelegate());
             }
         }
 
@@ -889,12 +955,28 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level.
         /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        public void Warn(string message)
+        /// <param name="value">The value to be written.</param>
+        public void Warn<T>(T value)
         {
             if (this.IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message);
+                this.WriteToTargets(LogLevel.Warn, null, value);
+            }
+        }
+
+        /// <overloads>
+        /// Writes the diagnostic message at the <c>Warn</c> level using the specified format provider and format parameters.
+        /// </overloads>
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Warn</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="value">The value to be written.</param>
+        public void Warn<T>(IFormatProvider formatProvider, T value)
+        {
+            if (this.IsWarnEnabled)
+            {
+                this.WriteToTargets(LogLevel.Warn, formatProvider, value);
             }
         }
 
@@ -909,7 +991,7 @@ namespace NLog
         {
             if (this.IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, messageDelegate());
+                this.WriteToTargets(LogLevel.Warn, null, messageDelegate());
             }
         }
 
@@ -1062,12 +1144,28 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level.
         /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        public void Error(string message)
+        /// <param name="value">The value to be written.</param>
+        public void Error<T>(T value)
         {
             if (this.IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message);
+                this.WriteToTargets(LogLevel.Error, null, value);
+            }
+        }
+
+        /// <overloads>
+        /// Writes the diagnostic message at the <c>Error</c> level using the specified format provider and format parameters.
+        /// </overloads>
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Error</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="value">The value to be written.</param>
+        public void Error<T>(IFormatProvider formatProvider, T value)
+        {
+            if (this.IsErrorEnabled)
+            {
+                this.WriteToTargets(LogLevel.Error, formatProvider, value);
             }
         }
 
@@ -1082,7 +1180,7 @@ namespace NLog
         {
             if (this.IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, messageDelegate());
+                this.WriteToTargets(LogLevel.Error, null, messageDelegate());
             }
         }
 
@@ -1235,12 +1333,28 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level.
         /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        public void Fatal(string message)
+        /// <param name="value">The value to be written.</param>
+        public void Fatal<T>(T value)
         {
             if (this.IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message);
+                this.WriteToTargets(LogLevel.Fatal, null, value);
+            }
+        }
+
+        /// <overloads>
+        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified format provider and format parameters.
+        /// </overloads>
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Fatal</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="value">The value to be written.</param>
+        public void Fatal<T>(IFormatProvider formatProvider, T value)
+        {
+            if (this.IsFatalEnabled)
+            {
+                this.WriteToTargets(LogLevel.Fatal, formatProvider, value);
             }
         }
 
@@ -1255,7 +1369,7 @@ namespace NLog
         {
             if (this.IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, messageDelegate());
+                this.WriteToTargets(LogLevel.Fatal, null, messageDelegate());
             }
         }
 
@@ -1410,17 +1524,17 @@ namespace NLog
 
         internal void WriteToTargets(LogLevel level, IFormatProvider formatProvider, string message, object[] args)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), new FormattedLogEventInfo(level, this.Name, formatProvider, message, args), this.factory);
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), LogEventInfo.Create(level, this.Name, formatProvider, message, args), this.factory);
         }
 
-        internal void WriteToTargets(LogLevel level, string message)
+        internal void WriteToTargets<T>(LogLevel level, IFormatProvider formatProvider, T value)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), new UnformattedLogEventInfo(level, this.Name, message), this.factory);
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), LogEventInfo.Create(level, this.Name, formatProvider, value), this.factory);
         }
 
         internal void WriteToTargets(LogLevel level, string message, Exception ex)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), new UnformattedLogEventInfoWithException(level, this.Name, message, ex), this.factory);
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), LogEventInfo.Create(level, this.Name, message, ex), this.factory);
         }
 
         internal void WriteToTargets(LogLevel level, string message, object[] args)

@@ -132,7 +132,7 @@ namespace NLog.UnitTests
 
         protected void AssertLayoutRendererOutput(Layout l, string expected)
         {
-            string actual = l.GetFormattedMessage(new UnformattedLogEventInfo(LogLevel.Info, "loggername", "message"));
+            string actual = l.GetFormattedMessage(LogEventInfo.Create(LogLevel.Info, "loggername", "message"));
             Assert.AreEqual(expected, actual);
         }
     }

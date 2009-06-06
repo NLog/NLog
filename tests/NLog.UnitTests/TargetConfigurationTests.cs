@@ -69,7 +69,7 @@ namespace NLog.UnitTests
             Assert.AreEqual("${message}", l.Text);
             Assert.IsNotNull(t.Layout);
             Assert.AreEqual(1, l.Renderers.Length);
-            Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), l.Renderers[0]);
+            Assert.IsInstanceOf(typeof(MessageLayoutRenderer), l.Renderers[0]);
         }
 
         [Test]
@@ -91,9 +91,9 @@ namespace NLog.UnitTests
             Assert.AreEqual("${message} ${level}", l.Text);
             Assert.IsNotNull(l);
             Assert.AreEqual(3, l.Renderers.Length);
-            Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), l.Renderers[0]);
-            Assert.IsInstanceOfType(typeof(LiteralLayoutRenderer), l.Renderers[1]);
-            Assert.IsInstanceOfType(typeof(LevelLayoutRenderer), l.Renderers[2]);
+            Assert.IsInstanceOf(typeof(MessageLayoutRenderer), l.Renderers[0]);
+            Assert.IsInstanceOf(typeof(LiteralLayoutRenderer), l.Renderers[1]);
+            Assert.IsInstanceOf(typeof(LevelLayoutRenderer), l.Renderers[2]);
             Assert.AreEqual(" ", ((LiteralLayoutRenderer)l.Renderers[1]).Text);
         }
 
@@ -117,9 +117,9 @@ namespace NLog.UnitTests
             Assert.IsNotNull(c.FindTargetByName("b"));
             Assert.IsNotNull(c.FindTargetByName("c"));
 
-            Assert.IsInstanceOfType(typeof(BufferingTargetWrapper), c.FindTargetByName("b"));
-            Assert.IsInstanceOfType(typeof(AsyncTargetWrapper), c.FindTargetByName("a"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("c"));
+            Assert.IsInstanceOf(typeof(BufferingTargetWrapper), c.FindTargetByName("b"));
+            Assert.IsInstanceOf(typeof(AsyncTargetWrapper), c.FindTargetByName("a"));
+            Assert.IsInstanceOf(typeof(DebugTarget), c.FindTargetByName("c"));
 
             BufferingTargetWrapper btw = c.FindTargetByName("b") as BufferingTargetWrapper;
             AsyncTargetWrapper atw = c.FindTargetByName("a") as AsyncTargetWrapper;
@@ -154,11 +154,11 @@ namespace NLog.UnitTests
             Assert.IsNotNull(c.FindTargetByName("d3"));
             Assert.IsNotNull(c.FindTargetByName("d4"));
 
-            Assert.IsInstanceOfType(typeof(RoundRobinTarget), c.FindTargetByName("rr"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d1"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d2"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d3"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d4"));
+            Assert.IsInstanceOf(typeof(RoundRobinTarget), c.FindTargetByName("rr"));
+            Assert.IsInstanceOf(typeof(DebugTarget), c.FindTargetByName("d1"));
+            Assert.IsInstanceOf(typeof(DebugTarget), c.FindTargetByName("d2"));
+            Assert.IsInstanceOf(typeof(DebugTarget), c.FindTargetByName("d3"));
+            Assert.IsInstanceOf(typeof(DebugTarget), c.FindTargetByName("d4"));
 
             RoundRobinTarget rr = c.FindTargetByName("rr") as RoundRobinTarget;
             DebugTarget d1 = c.FindTargetByName("d1") as DebugTarget;

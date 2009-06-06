@@ -32,25 +32,20 @@
 // 
 
 using System;
-using System.Runtime.InteropServices;
-
-using NLog;
 using NLog.Config;
-using NLog.Targets.Compound;
-using NLog.Targets.Wrappers;
-using NLog.Conditions;
 using NLog.Targets;
-using NLog.Win32.Targets;
-using NLog.Internal;
-using System.IO;
-using System.Threading;
 using NLog.Layouts;
 
-namespace NLog.Tester
+namespace NLog.Test
 {
+    public static class ExtensionMethods
+    {
+
+    }
+
     public class Test
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public static void LogProc(string msg)
         {

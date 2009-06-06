@@ -51,7 +51,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             Layout l = "${event-context:aaa}";
             l.Initialize();
-            LogEventInfo lei = new UnformattedLogEventInfo(LogLevel.Info, "aaa", "bbb");
+            LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
 
             // empty
             Assert.AreEqual("", l.GetFormattedMessage(lei));
@@ -61,7 +61,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void Test2()
         {
             Layout l = "${event-context:aaa}";
-            LogEventInfo lei = new UnformattedLogEventInfo(LogLevel.Info, "aaa", "bbb");
+            LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
             l.Initialize();
             lei.Context["aaa"] = "bbb";
 

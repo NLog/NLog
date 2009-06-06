@@ -38,12 +38,28 @@ for $level (@levels) {
         /// <summary>
         /// Writes the diagnostic message at the $level3 level.
         /// </summary>$param0
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        public void $level(${arg0}string message)
+        /// <param name="value">The value to be written.</param>
+        public void $level<T>(${arg0}T value)
         {
             if ($isenabled)
             {
-                this.WriteToTargets($level2, message);
+                this.WriteToTargets($level2, null, value);
+            }
+        }
+
+        /// <overloads>
+        /// Writes the diagnostic message at the $level3 level using the specified format provider and format parameters.
+        /// </overloads>
+        /// <summary>
+        /// Writes the diagnostic message at the $level3 level.
+        /// </summary>$param0
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="value">The value to be written.</param>
+        public void $level<T>(${arg0}IFormatProvider formatProvider, T value)
+        {
+            if ($isenabled)
+            {
+                this.WriteToTargets($level2, formatProvider, value);
             }
         }
 
@@ -58,7 +74,7 @@ for $level (@levels) {
         {
             if ($isenabled)
             {
-                this.WriteToTargets($level2, messageDelegate());
+                this.WriteToTargets($level2, null, messageDelegate());
             }
         }
 

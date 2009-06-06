@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -32,63 +32,19 @@
 // 
 
 using System;
-using System.Threading;
-using System.Globalization;
-using System.IO;
-using System.Runtime.InteropServices;
 
-public class StopWatch
+namespace NLog.Config
 {
-    private long startTime;
-    private long stopTime;
-    private static long overhead = 0;
-    private static long frequency;
-
-    static StopWatch()
+    public class LoggingConfigurationReloadedEventArgs : EventArgs
     {
-        QueryPerformanceFrequency(out frequency);
-        StopWatch callibration = new StopWatch();
-        long totalOverhead = 0;
-        int loopCount = 0;
-        for (int i = 0; i < 10000; ++i)
+        internal LoggingConfigurationReloadedEventArgs(bool succeeded, Exception exception)
         {
-            callibration.Start();
-            callibration.Stop();
-            totalOverhead += callibration.Ticks;
-            loopCount++;
+            this.Succeeded = succeeded;
+            this.Exception = exception;
         }
-        overhead = totalOverhead / loopCount;
-        //Console.WriteLine("Callibrating StopWatch: overhead {0}", overhead);
-    }
-    
-    public void Start()
-    {
-        QueryPerformanceCounter(out this.startTime);
-    }
 
-    public void Stop()
-    {
-        QueryPerformanceCounter(out this.stopTime);
+        public bool Succeeded { get; private set; }
+
+        public Exception Exception { get; private set; }
     }
-
-    public long Ticks
-    {
-        get { return this.stopTime - this.startTime - overhead; }
-    }
-
-    public double Seconds
-    {
-        get { return (double)(this.stopTime - this.startTime - overhead) / frequency; }
-    }
-
-    public double Nanoseconds
-    {
-        get { return (double)1000000000 * (this.stopTime - this.startTime - overhead) / frequency; }
-    }
-
-    [DllImport("kernel32.dll")]
-    static extern bool QueryPerformanceCounter(out long val);
-
-    [DllImport("kernel32.dll")]
-    static extern bool QueryPerformanceFrequency(out long val);
 }

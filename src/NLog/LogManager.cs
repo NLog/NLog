@@ -74,7 +74,7 @@ namespace NLog
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> changes.
         /// </summary>
-        public static event LoggingConfigurationChanged ConfigurationChanged
+        public static event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged
         {
             add { globalFactory.ConfigurationChanged += value; }
             remove { globalFactory.ConfigurationChanged -= value; }
@@ -84,7 +84,7 @@ namespace NLog
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
-        public static event LoggingConfigurationReloaded ConfigurationReloaded
+        public static event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded
         {
             add { globalFactory.ConfigurationReloaded += value; }
             remove { globalFactory.ConfigurationReloaded -= value; }

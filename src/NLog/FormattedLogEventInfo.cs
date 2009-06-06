@@ -40,9 +40,9 @@ namespace NLog
     /// </summary>
     internal class FormattedLogEventInfo : LogEventInfo
     {
-        private IFormatProvider formatProvider;
-        private string message;
-        private object[] parameters;
+        private readonly IFormatProvider formatProvider;
+        private readonly string message;
+        private readonly object[] parameters;
         private string formattedMessage;
 
         /// <summary>

@@ -127,9 +127,9 @@ namespace NLog.UnitTests
 
         private int _reloadCounter = 0;
 
-        private void OnConfigReloaded(bool success, Exception ex)
+        private void OnConfigReloaded(object sender, LoggingConfigurationReloadedEventArgs e)
         {
-            Console.WriteLine("OnConfigReloaded success={0}", success);
+            Console.WriteLine("OnConfigReloaded success={0}", e.Succeeded);
             _reloadCounter++;
         }
 
@@ -149,7 +149,7 @@ namespace NLog.UnitTests
             try
             {
                 _reloadCounter = 0;
-                LogManager.ConfigurationReloaded += new LoggingConfigurationReloaded(OnConfigReloaded);
+                LogManager.ConfigurationReloaded += OnConfigReloaded;
                 using (StreamWriter fs = File.CreateText(fileName))
                 {
                     fs.Write(@"<nlog autoReload='true'>
@@ -216,7 +216,7 @@ namespace NLog.UnitTests
             }
             finally
             {
-                LogManager.ConfigurationReloaded -= new LoggingConfigurationReloaded(OnConfigReloaded);
+                LogManager.ConfigurationReloaded -= OnConfigReloaded;
                 LogManager.Configuration = null;
                 if (File.Exists(fileName))
                     File.Delete(fileName);

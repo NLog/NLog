@@ -166,7 +166,7 @@ namespace NLog
         /// <returns>Null event (which can be used whenever <see cref="LogEventInfo"/> is required).</returns>
         public static LogEventInfo CreateNullEvent()
         {
-            return new UnformattedLogEventInfo(LogLevel.Off, String.Empty, String.Empty);
+            return LogEventInfo.Create(LogLevel.Off, String.Empty, null, String.Empty);
         }
 
 #if !NET_CF
@@ -196,6 +196,41 @@ namespace NLog
             }
 
             this.layoutCache[layout] = value;
+        }
+
+        /// <summary>
+        /// Creates <see cref="LogEventInfo"/> for a pre-formatted message.
+        /// </summary>
+        /// <param name="logLevel">The log level.</param>
+        /// <param name="loggerName">Logger name.</param>
+        /// <param name="message">Pre-formatted message.</param>
+        /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
+        public static LogEventInfo Create(LogLevel logLevel, string loggerName, string message)
+        {
+            return new FormattedLogEventInfo(logLevel, loggerName, null, "{0}", new object[] { message });
+        }
+
+        /// <summary>
+        /// Creates <see cref="LogEventInfo"/> for a given value.
+        /// </summary>
+        /// <param name="logLevel">The log level.</param>
+        /// <param name="loggerName">Logger name.</param>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="value">Value.</param>
+        /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
+        public static LogEventInfo Create<T>(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, T value)
+        {
+            return new FormattedLogEventInfo(logLevel, loggerName, formatProvider, "{0}", new object[] { value });
+        }
+
+        public static LogEventInfo Create(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, string message, object[] parameters)
+        {
+            return new FormattedLogEventInfo(logLevel, loggerName, formatProvider, message, parameters);
+        }
+
+        public static LogEventInfo Create(LogLevel logLevel, string loggerName, string message, Exception exception)
+        {
+            return new UnformattedLogEventInfoWithException(logLevel, loggerName, message, exception);
         }
     }
 }

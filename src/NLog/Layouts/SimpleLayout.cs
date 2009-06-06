@@ -113,7 +113,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets a collection of <see cref="LayoutRenderer"/> objects that make up this layout.
         /// </summary>
-        internal IEnumerable<LayoutRenderer> Renderers
+        internal LayoutRenderer[] Renderers
         {
             get { return this.renderers; }
         }

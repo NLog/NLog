@@ -287,8 +287,6 @@ namespace NLog.Config
 
         private void ParseNLogElement(XmlReader reader, string baseDirectory)
         {
-            InternalLogger.LogToConsole = true;
-            InternalLogger.LogLevel = LogLevel.Trace;
             InternalLogger.Trace("ParseNLogElement");
             Debug.Assert(this.CaseInsensitiveEquals(reader.LocalName, "nlog"), "Expected <nlog/> element.");
 

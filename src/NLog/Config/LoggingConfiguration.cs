@@ -82,7 +82,7 @@ namespace NLog.Config
         {
             if (name == null)
             {
-                throw new ArgumentException("name", "Target name cannot be null");
+                throw new ArgumentException("Target name cannot be null", "name");
             }
 
             InternalLogger.Debug("Registering target {0}: {1}", name, target.GetType().FullName);
