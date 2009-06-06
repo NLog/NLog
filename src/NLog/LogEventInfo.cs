@@ -49,12 +49,11 @@ namespace NLog
         /// Gets or sets the date of the first log event created.
         /// </summary>
         public static readonly DateTime ZeroDate = DateTime.Now;
+        private readonly int sequenceID;
 
         private static int globalSequenceID;
-
         private IDictionary<Layout, string> layoutCache;
         private IDictionary<string, object> eventContext;
-        private int sequenceID;
 #if !NET_CF
         private StackTrace stackTrace;
         private int userStackFrame;
