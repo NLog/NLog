@@ -559,6 +559,6 @@
     <Compile Include="LogFactory.cs" />
     <Compile Include="LayoutRenderers\EventContextLayoutRenderer.cs" />
   </ItemGroup>
-  <Import Project="$(TargetsPath)" />
+  <Import Project="$(TargetsPath)" Condition="Exists('$(TargetsPath)')" />
   <Import Project="$(StyleCopTargets)" Condition="'$(StyleCopTargets)' != '' and Exists('$(StyleCopTargets)')" />
 </Project>

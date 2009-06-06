@@ -31,7 +31,8 @@
   </Target>
 
   <Target Name="FullBuild">
-    <RemoveDir Directories="$(NLogBuildPath)" />
+    <RemoveDir Directories="$(NLogBuildPath)\bin" />
+    <RemoveDir Directories="$(NLogBuildPath)\obj" />
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" />
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" Properties="ProjectTarget=Documentation" />
     <CallTarget Targets="Installer" />
@@ -42,15 +43,15 @@
   </Target>
 
   <Target Name="BuildAllFrameworksAndConfigurations">
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" Properties="Configuration=%(TargetConfiguration.Identity)" />
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" Properties="Configuration=%(TargetConfiguration.Identity);ProjectTarget=$(ProjectTarget)" />
   </Target>
 
   <Target Name="BuildAllFrameworksForSingleConfiguration">
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildSingleFramework" Properties="Framework=%(TargetFramework.Identity)"  ContinueOnError="true" StopOnFirstFailure="false" />
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildSingleFramework" Properties="Framework=%(TargetFramework.Identity);ProjectTarget=$(ProjectTarget)" ContinueOnError="true" StopOnFirstFailure="false" />
   </Target>
 
   <Target Name="BuildSingleFramework">
-    <Message Text="Building configuration: $(Configuration) for framework: $(Framework) Path: $(NLogBuildPath)" />
+    <Message Text="Building configuration: $(Configuration) for framework: $(Framework) Path: $(NLogBuildPath). Target=$(ProjectTarget)" />
     <MSBuild Projects="@(ProjectFile)" Targets="$(ProjectTarget)" Properties="NLogBuildPath=$(NLogBuildPath)" />
   </Target>
 </Project>

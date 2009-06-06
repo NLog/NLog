@@ -1,4 +1,4 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Rebuild" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -26,5 +26,8 @@
       <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
     </WixExtension>
   </ItemGroup>
-  <Import Project="$(WixTargetsPath)" />
+  <Target Name="Rebuild">
+    <Warning Text="WIX 3.0 is not installed. Cannot generate installer." />
+  </Target>
+  <Import Project="$(WixTargetsPath)" Condition="Exists('$(WixTargetsPath)')"/>
 </Project>

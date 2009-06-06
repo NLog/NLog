@@ -18,7 +18,12 @@
     <IntermediateOutputPath>$(NLogBuildPath)\obj\$(Configuration)\$(Framework)</IntermediateOutputPath>
   </PropertyGroup>
   <Target Name="Documentation">
-     <MSBuild Projects="..\Documentation\Documentation.targets" Properties="AssemblyName=$(AssemblyName);OutputPath=$(OutputPath)" />
+     <Error Text="Sandcastle is not installed, cannot generate API documentation for $(AssemblyName) / $(Framework)." Condition="'$(DXROOT)' == ''"/>
+     <MSBuild Projects="..\..\Documentation\Documentation.targets" Properties="AssemblyName=$(AssemblyName);OutputPath=$(OutputPath)" Condition="'$(DXROOT)' != ''"/>
+  </Target>
+  <!-- this target will be overridden by framework-specific target file -->
+  <Target Name="Build">
+     <Warning Text="Framework '$(Framework)' not installed." />
   </Target>
   <Import Project="$(FrameworkDefaults)" />
 </Project>
