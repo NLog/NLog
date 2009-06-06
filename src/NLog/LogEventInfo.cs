@@ -169,6 +169,59 @@ namespace NLog
             return LogEventInfo.Create(LogLevel.Off, String.Empty, null, String.Empty);
         }
 
+        /// <summary>
+        /// Creates <see cref="LogEventInfo"/> for a pre-formatted message.
+        /// </summary>
+        /// <param name="logLevel">The log level.</param>
+        /// <param name="loggerName">Logger name.</param>
+        /// <param name="message">Pre-formatted message.</param>
+        /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
+        public static LogEventInfo Create(LogLevel logLevel, string loggerName, string message)
+        {
+            return new FormattedLogEventInfo(logLevel, loggerName, null, "{0}", new object[] { message });
+        }
+
+        /// <summary>
+        /// Creates <see cref="LogEventInfo"/> for a given value.
+        /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>
+        /// <param name="logLevel">The log level.</param>
+        /// <param name="loggerName">Name of the logger.</param>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="value">The value to be written.</param>
+        /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
+        public static LogEventInfo Create<T>(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, T value)
+        {
+            return new FormattedLogEventInfo(logLevel, loggerName, formatProvider, "{0}", new object[] { value });
+        }
+
+        /// <summary>
+        /// Creates <see cref="LogEventInfo"/> for a message which requires formatting.
+        /// </summary>
+        /// <param name="logLevel">The log level.</param>
+        /// <param name="loggerName">Name of the logger.</param>
+        /// <param name="formatProvider">The format provider.</param>
+        /// <param name="message">The message.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
+        public static LogEventInfo Create(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, string message, object[] parameters)
+        {
+            return new FormattedLogEventInfo(logLevel, loggerName, formatProvider, message, parameters);
+        }
+
+        /// <summary>
+        /// Creates <see cref="LogEventInfo"/> associated with an exception.
+        /// </summary>
+        /// <param name="logLevel">The log level.</param>
+        /// <param name="loggerName">Name of the logger.</param>
+        /// <param name="message">The message.</param>
+        /// <param name="exception">The exception.</param>
+        /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
+        public static LogEventInfo Create(LogLevel logLevel, string loggerName, string message, Exception exception)
+        {
+            return new UnformattedLogEventInfoWithException(logLevel, loggerName, message, exception);
+        }
+
 #if !NET_CF
         internal void SetStackTrace(StackTrace stackTrace, int userStackFrame)
         {
@@ -196,41 +249,6 @@ namespace NLog
             }
 
             this.layoutCache[layout] = value;
-        }
-
-        /// <summary>
-        /// Creates <see cref="LogEventInfo"/> for a pre-formatted message.
-        /// </summary>
-        /// <param name="logLevel">The log level.</param>
-        /// <param name="loggerName">Logger name.</param>
-        /// <param name="message">Pre-formatted message.</param>
-        /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
-        public static LogEventInfo Create(LogLevel logLevel, string loggerName, string message)
-        {
-            return new FormattedLogEventInfo(logLevel, loggerName, null, "{0}", new object[] { message });
-        }
-
-        /// <summary>
-        /// Creates <see cref="LogEventInfo"/> for a given value.
-        /// </summary>
-        /// <param name="logLevel">The log level.</param>
-        /// <param name="loggerName">Logger name.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="value">Value.</param>
-        /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
-        public static LogEventInfo Create<T>(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, T value)
-        {
-            return new FormattedLogEventInfo(logLevel, loggerName, formatProvider, "{0}", new object[] { value });
-        }
-
-        public static LogEventInfo Create(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, string message, object[] parameters)
-        {
-            return new FormattedLogEventInfo(logLevel, loggerName, formatProvider, message, parameters);
-        }
-
-        public static LogEventInfo Create(LogLevel logLevel, string loggerName, string message, Exception exception)
-        {
-            return new UnformattedLogEventInfoWithException(logLevel, loggerName, message, exception);
         }
     }
 }

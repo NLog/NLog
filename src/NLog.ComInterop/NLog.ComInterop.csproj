@@ -1,35 +1,20 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <NLogBuildPath Condition="'$(NLogBuildPath)'==''">$(MSBuildProjectDirectory)\build</NLogBuildPath>
-    <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>false</DelaySign>
-    <SignAssembly>true</SignAssembly>
-    <OutputPath>bin\$(Configuration)</OutputPath>
-    <Framework Condition="'$(Framework)' == ''">NetFX3.5</Framework>
-    <FrameworksPath Condition="'$(FrameworksPath)' == ''">..\Frameworks</FrameworksPath>
-    <FrameworkDefaults>$(FrameworksPath)\$(Framework).defaults</FrameworkDefaults>
-    <DefineConstants></DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(NLogBuildPath)' != ''">
-    <OutputPath>$(NLogBuildPath)\$(Configuration)\$(Framework)</OutputPath>
-    <IntermediateOutputPath>$(NLogBuildPath)\obj\$(Configuration)\$(Framework)</IntermediateOutputPath>
-  </PropertyGroup>
-
-  <Import Project="$(FrameworkDefaults)" />
-
+  <Import Project="..\NLog.targets" />
   <PropertyGroup>
     <ProjectGuid>{B3F8E5FB-C9D4-4C12-841F-8009EB60DB3D}</ProjectGuid>
+    <ApplicationIcon>
+    </ApplicationIcon>
     <AssemblyName>NLog.ComInterop</AssemblyName>
     <OutputType>Library</OutputType>
     <RootNamespace>NLog.ComInterop</RootNamespace>
+    <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
+    <StyleCopEnabled>true</StyleCopEnabled>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>TRACE;DEBUG;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DefineConstants>TRACE;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\NLog\NLog.csproj">
@@ -44,9 +29,11 @@
     </Compile>
     <Compile Include="ILogger.cs">
       <SubType>Code</SubType>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="ILogManager.cs">
       <SubType>Code</SubType>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Logger.cs">
       <SubType>Code</SubType>
@@ -58,5 +45,5 @@
   </ItemGroup>
 
   <Import Project="$(TargetsPath)" />
-
+  <Import Project="$(StyleCopTargets)" Condition="'$(StyleCopTargets)' != '' and Exists('$(StyleCopTargets)')" />
 </Project>

@@ -37,7 +37,7 @@ using System.Runtime.InteropServices;
 namespace NLog.ComInterop
 {
     /// <summary>
-    /// NLog COM Interop LogManager interface
+    /// NLog COM Interop LogManager interface.
     /// </summary>
     [Guid("7ee3af3b-ba37-45b6-8f5d-cc23bb46c698")]
     [InterfaceType(ComInterfaceType.InterfaceIsDual)]
@@ -50,12 +50,12 @@ namespace NLog.ComInterop
         void LoadConfigFromFile(string fileName);
 
         /// <summary>
-        /// Internal log to the console.
+        /// Gets or sets a value indicating whether internal messages should be written to the console.
         /// </summary>
         bool InternalLogToConsole { get; set; }
 
         /// <summary>
-        /// Internal log file.
+        /// Gets or sets the name of the internal log file.
         /// </summary>
         string InternalLogFile { get; set; }
 

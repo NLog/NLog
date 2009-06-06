@@ -2,11 +2,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <NLogBuildPath Condition="'$(NLogBuildPath)'==''">$(MSBuildProjectDirectory)\build</NLogBuildPath>
+    <NLogBuildPath Condition="'$(NLogBuildPath)'==''">$(MSBuildProjectDirectory)</NLogBuildPath>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <SignAssembly>true</SignAssembly>
-    <OutputPath>bin\$(Configuration)</OutputPath>
     <Framework Condition="'$(Framework)' == ''">NetFX3.5</Framework>
     <FrameworksPath Condition="'$(FrameworksPath)' == ''">Frameworks</FrameworksPath>
     <FrameworkDefaults>$(FrameworksPath)\$(Framework).defaults</FrameworkDefaults>
@@ -15,9 +14,7 @@
     <StyleCopTargets>$(ProgramFiles)\MSBuild\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets</StyleCopTargets>
     <StyleCopAdditionalAddinPaths>..\StyleCop.Addin.dll</StyleCopAdditionalAddinPaths>
     <StyleCopOverrideSettingsFile>..\Settings.StyleCop</StyleCopOverrideSettingsFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(NLogBuildPath)' != ''">
-    <OutputPath>$(NLogBuildPath)\$(Configuration)\$(Framework)</OutputPath>
+    <OutputPath>$(NLogBuildPath)\bin\$(Configuration)\$(Framework)</OutputPath>
     <IntermediateOutputPath>$(NLogBuildPath)\obj\$(Configuration)\$(Framework)</IntermediateOutputPath>
   </PropertyGroup>
   <Target Name="Documentation">

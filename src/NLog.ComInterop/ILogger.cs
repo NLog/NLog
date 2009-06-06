@@ -37,7 +37,7 @@ using System.Runtime.InteropServices;
 namespace NLog.ComInterop
 {
     /// <summary>
-    /// NLog COM Interop logger interface
+    /// NLog COM Interop logger interface.
     /// </summary>
     [Guid("757fd55a-cc93-4b53-a7a0-18e85620704a")]
     [InterfaceType(ComInterfaceType.InterfaceIsDual)]
@@ -94,50 +94,37 @@ namespace NLog.ComInterop
         bool IsEnabled(string level);
 
         /// <summary>
-        /// Returns the boolean value indicating whether the Trace level is enabled.
+        /// Gets a value indicating whether the Trace level is enabled.
         /// </summary>
-        bool IsTraceEnabled
-        {
-            get;
-        }
-        /// <summary>
-        /// Returns the boolean value indicating whether the Debug level is enabled.
-        /// </summary>
-        bool IsDebugEnabled
-        {
-            get;
-        }
-        /// <summary>
-        /// Returns the boolean value indicating whether the Info level is enabled.
-        /// </summary>
-        bool IsInfoEnabled
-        {
-            get;
-        }
-        /// <summary>
-        /// Returns the boolean value indicating whether the Warn level is enabled.
-        /// </summary>
-        bool IsWarnEnabled
-        {
-            get;
-        }
-        /// <summary>
-        /// Returns the boolean value indicating whether the Error level is enabled.
-        /// </summary>
-        bool IsErrorEnabled
-        {
-            get;
-        }
-        /// <summary>
-        /// Returns the boolean value indicating whether the Fatal level is enabled.
-        /// </summary>
-        bool IsFatalEnabled
-        {
-            get;
-        }
+        bool IsTraceEnabled { get; }
 
         /// <summary>
-        /// The logger name.
+        /// Gets a value indicating whether the Debug level is enabled.
+        /// </summary>
+        bool IsDebugEnabled { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether the Info level is enabled.
+        /// </summary>
+        bool IsInfoEnabled { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether the Warn level is enabled.
+        /// </summary>
+        bool IsWarnEnabled { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether the Error level is enabled.
+        /// </summary>
+        bool IsErrorEnabled { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether the Fatal level is enabled.
+        /// </summary>
+        bool IsFatalEnabled { get; }
+
+        /// <summary>
+        /// Gets or sets the logger name.
         /// </summary>
         string LoggerName { get; set; }
     }

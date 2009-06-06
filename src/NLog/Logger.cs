@@ -37,6 +37,8 @@ using NLog.Internal;
 
 namespace NLog
 {
+    using Config;
+
     /// <summary>
     /// Provides logging interface and utility functions.
     /// </summary>
@@ -65,7 +67,7 @@ namespace NLog
         /// <summary>
         /// Occurs when logger configuration changes.
         /// </summary>
-        public event LoggerReconfiguredDelegate LoggerReconfigured;
+        public event EventHandler<EventArgs> LoggerReconfigured;
 
         /// <summary>
         /// Gets the name of the logger.
@@ -187,6 +189,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the specified level.
         /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="level">The log level.</param>
         /// <param name="value">The value to be written.</param>
         public void Log<T>(LogLevel level, T value)
@@ -203,6 +206,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the specified level.
         /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="level">The log level.</param>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">The value to be written.</param>
@@ -388,6 +392,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
         /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="value">The value to be written.</param>
         public void Trace<T>(T value)
         {
@@ -403,6 +408,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
         /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">The value to be written.</param>
         public void Trace<T>(IFormatProvider formatProvider, T value)
@@ -577,6 +583,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
         /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="value">The value to be written.</param>
         public void Debug<T>(T value)
         {
@@ -592,6 +599,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
         /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">The value to be written.</param>
         public void Debug<T>(IFormatProvider formatProvider, T value)
@@ -766,6 +774,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level.
         /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="value">The value to be written.</param>
         public void Info<T>(T value)
         {
@@ -781,6 +790,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level.
         /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">The value to be written.</param>
         public void Info<T>(IFormatProvider formatProvider, T value)
@@ -955,6 +965,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level.
         /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="value">The value to be written.</param>
         public void Warn<T>(T value)
         {
@@ -970,6 +981,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level.
         /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">The value to be written.</param>
         public void Warn<T>(IFormatProvider formatProvider, T value)
@@ -1144,6 +1156,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level.
         /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="value">The value to be written.</param>
         public void Error<T>(T value)
         {
@@ -1159,6 +1172,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level.
         /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">The value to be written.</param>
         public void Error<T>(IFormatProvider formatProvider, T value)
@@ -1333,6 +1347,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level.
         /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="value">The value to be written.</param>
         public void Fatal<T>(T value)
         {
@@ -1348,6 +1363,7 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level.
         /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">The value to be written.</param>
         public void Fatal<T>(IFormatProvider formatProvider, T value)
@@ -1564,9 +1580,11 @@ namespace NLog
             this.isErrorEnabled = configuration.IsEnabled(LogLevel.Error);
             this.isFatalEnabled = configuration.IsEnabled(LogLevel.Fatal);
 
-            if (this.LoggerReconfigured != null)
+            var loggerReconfiguredDelegate = this.LoggerReconfigured;
+
+            if (loggerReconfiguredDelegate != null)
             {
-                this.LoggerReconfigured(this);
+                loggerReconfiguredDelegate(this, new EventArgs());
             }
         }
 

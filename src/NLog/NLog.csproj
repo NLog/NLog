@@ -92,7 +92,6 @@
     <Compile Include="Internal\Win32ThreadIDHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="LoggerReconfiguredDelegate.cs" />
     <Compile Include="Internal\UrlHelper.cs" />
     <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
     <Compile Include="Config\DefaultParameterAttribute.cs" />

@@ -40,92 +40,84 @@ using NLog.Internal;
 namespace NLog.ComInterop
 {
     /// <summary>
-    /// NLog COM Interop logger implementation
+    /// NLog COM Interop logger implementation.
     /// </summary>
     [ComVisible(true)]
     [ProgId("NLog.Logger")]
     [Guid("181f39a8-41a8-4e35-91b6-5f8d96f5e61c")]
     [ClassInterface(ClassInterfaceType.None)]
-    public class Logger: ILogger
+    public class Logger : ILogger
     {
         private static NLog.Logger defaultLogger = NLog.LogManager.CreateNullLogger();
 
         private NLog.Logger logger = defaultLogger;
         private string loggerName = String.Empty;
 
-        void ILogger.Log(string level, string message)
-        {
-            this.logger.Log(StringToLevel(level), message);
-        }
-
-        void ILogger.Trace(string message)
-        {
-            this.logger.Trace(message);
-        }
-
-        void ILogger.Debug(string message)
-        {
-            this.logger.Debug(message);
-        }
-
-        void ILogger.Info(string message)
-        {
-            this.logger.Info(message);
-        }
-
-        void ILogger.Warn(string message)
-        {
-            this.logger.Warn(message);
-        }
-
-        void ILogger.Error(string message)
-        {
-            this.logger.Error(message);
-        }
-
-        void ILogger.Fatal(string message)
-        {
-            this.logger.Fatal(message);
-        }
-
-        bool ILogger.IsEnabled(string level)
-        {
-            return this.logger.IsEnabled(StringToLevel(level));
-        }
-
-        bool ILogger.IsTraceEnabled
+        /// <summary>
+        /// Gets a value indicating whether the Trace level is enabled.
+        /// </summary>
+        /// <value></value>
+        public bool IsTraceEnabled
         {
             get { return this.logger.IsTraceEnabled; }
         }
 
-        bool ILogger.IsDebugEnabled
+        /// <summary>
+        /// Gets a value indicating whether the Debug level is enabled.
+        /// </summary>
+        /// <value></value>
+        public bool IsDebugEnabled
         {
             get { return this.logger.IsDebugEnabled; }
         }
 
-        bool ILogger.IsInfoEnabled
+        /// <summary>
+        /// Gets a value indicating whether the Info level is enabled.
+        /// </summary>
+        /// <value></value>
+        public bool IsInfoEnabled
         {
             get { return this.logger.IsInfoEnabled; }
         }
 
-        bool ILogger.IsWarnEnabled
+        /// <summary>
+        /// Gets a value indicating whether the Warn level is enabled.
+        /// </summary>
+        /// <value></value>
+        public bool IsWarnEnabled
         {
             get { return this.logger.IsWarnEnabled; }
         }
 
-        bool ILogger.IsErrorEnabled
+        /// <summary>
+        /// Gets a value indicating whether the Error level is enabled.
+        /// </summary>
+        /// <value></value>
+        public bool IsErrorEnabled
         {
             get { return this.logger.IsErrorEnabled; }
         }
 
-        bool ILogger.IsFatalEnabled
+        /// <summary>
+        /// Gets a value indicating whether the Fatal level is enabled.
+        /// </summary>
+        /// <value></value>
+        public bool IsFatalEnabled
         {
             get { return this.logger.IsFatalEnabled; }
         }
 
-        string ILogger.LoggerName
+        /// <summary>
+        /// Gets or sets the logger name.
+        /// </summary>
+        /// <value></value>
+        public string LoggerName
         {
-            get { return this.loggerName; }
+            get
+            {
+                return this.loggerName;
+            }
+
             set
             {
                 this.loggerName = value;
@@ -133,25 +125,106 @@ namespace NLog.ComInterop
             }
         }
 
-        private static LogLevel StringToLevel(string s)
+        /// <summary>
+        /// Writes the diagnostic message at the specified level.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="message">A <see langword="string"/> to be written.</param>
+        public void Log(string level, string message)
         {
-            switch (s[0])
+            this.logger.Log(StringToLevel(level), message);
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the Trace level.
+        /// </summary>
+        /// <param name="message">A <see langword="string"/> to be written.</param>
+        public void Trace(string message)
+        {
+            this.logger.Trace(message);
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the Debug level.
+        /// </summary>
+        /// <param name="message">A <see langword="string"/> to be written.</param>
+        public void Debug(string message)
+        {
+            this.logger.Debug(message);
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the Info level.
+        /// </summary>
+        /// <param name="message">A <see langword="string"/> to be written.</param>
+        public void Info(string message)
+        {
+            this.logger.Info(message);
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the Warn level.
+        /// </summary>
+        /// <param name="message">A <see langword="string"/> to be written.</param>
+        public void Warn(string message)
+        {
+            this.logger.Warn(message);
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the Error level.
+        /// </summary>
+        /// <param name="message">A <see langword="string"/> to be written.</param>
+        public void Error(string message)
+        {
+            this.logger.Error(message);
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the Fatal level.
+        /// </summary>
+        /// <param name="message">A <see langword="string"/> to be written.</param>
+        public void Fatal(string message)
+        {
+            this.logger.Fatal(message);
+        }
+
+        /// <summary>
+        /// Checks if the specified log level is enabled.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <returns>
+        /// A value indicating whether the specified log level is enabled.
+        /// </returns>
+        public bool IsEnabled(string level)
+        {
+            return this.logger.IsEnabled(StringToLevel(level));
+        }
+
+        private static LogLevel StringToLevel(string levelString)
+        {
+            switch (levelString)
             {
-                case 'T':
+                case "Trace":
                     return LogLevel.Trace;
-                case 'D':
+
+                case "Debug":
                     return LogLevel.Debug;
-                case 'I':
+
+                case "Info":
                     return LogLevel.Info;
-                case 'W':
+
+                case "Warn":
                     return LogLevel.Warn;
-                case 'E':
+
+                case "Error":
                     return LogLevel.Error;
-                case 'F':
+
+                case "Fatal":
                     return LogLevel.Fatal;
 
                 default:
-                    throw new NotSupportedException("LogLevel not supported: " + s);
+                    throw new NotSupportedException("LogLevel not supported: " + levelString);
             }
         }
     }
