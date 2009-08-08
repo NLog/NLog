@@ -1,0 +1,5 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <StartArguments>-comments NLog.xml -ref "C:\Program Files (x86)\Microsoft Silverlight\3.0.40723.0" -assembly NLog.dll -output NLog.doc.xml</StartArguments>
+  </PropertyGroup>
+</Project>

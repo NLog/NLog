@@ -15,4 +15,8 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ReferenceAssemblyDirectory Include="$(WinDir)\Microsoft.NET\Framework\v2.0.50727" />
+  </ItemGroup>
 </Project>

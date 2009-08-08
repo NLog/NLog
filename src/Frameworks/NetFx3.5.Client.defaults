@@ -15,4 +15,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ReferenceAssemblyDirectory Include="$(WinDir)\Microsoft.NET\Framework\v2.0.50727" />
+  </ItemGroup>
 </Project>

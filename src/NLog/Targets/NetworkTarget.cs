@@ -152,9 +152,6 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the encoding to be used.
         /// </summary>
-        /// <remarks>
-        /// Can be any encoding name supported by System.Text.Encoding.GetEncoding() e.g. <c>windows-1252</c>, <c>iso-8859-2</c>.
-        /// </remarks>
         [DefaultValue("utf-8")]
         public Encoding Encoding { get; set; }
 

@@ -108,6 +108,18 @@ for $level (@levels) {
         }
 
         /// <summary>
+        /// Writes the diagnostic message at the $level3 level.
+        /// </summary>$param0
+        /// <param name="message">Log message.</param>
+        public void $level(${arg0}string message) 
+        { 
+            if ($isenabled)
+            {
+                this.WriteToTargets($level2, null, message);
+            }
+        }
+
+        /// <summary>
         /// Writes the diagnostic message at the $level3 level using the specified parameters.
         /// </summary>$param0
         /// <param name="message">A <see langword="string" /> containing format items.</param>

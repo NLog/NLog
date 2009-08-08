@@ -21,7 +21,9 @@
      <Error Text="Sandcastle is not installed, cannot generate API documentation for $(AssemblyName) / $(Framework)." Condition="'$(DXROOT)' == ''"/>
      <MSBuild Projects="..\..\Documentation\Documentation.targets" Properties="AssemblyName=$(AssemblyName);OutputPath=$(OutputPath)" Condition="'$(DXROOT)' != ''"/>
   </Target>
-  <!-- this target will be overridden by framework-specific target file -->
+  <Target Name="ApiXml">
+    <Exec WorkingDirectory="$(OutputPath)" Command="D:\Work\NLog2\tools\MakeNLogDoc\bin\Debug\MakeNLogDoc.exe -comments NLog.xml @(ReferenceAssemblyDirectory -> '-ref &quot;%(fullpath)&quot;', ' ') -assembly NLog.dll -output $(NLogBuildPath)\NLogApi.$(Framework).xml" />
+  </Target>
   <Target Name="Build">
      <Warning Text="Framework '$(Framework)' not installed." />
   </Target>

@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <TargetFramework Include="Silverlight2" />
+    <TargetFramework Include="Silverlight3" />
     <TargetFramework Include="NetCF2.0" />
     <TargetFramework Include="NetCF3.5" />
     <TargetFramework Include="NetFx2.0.Client" />
@@ -31,15 +32,21 @@
   </Target>
 
   <Target Name="FullBuild">
+    <CallTarget Targets="Tools" />
     <RemoveDir Directories="$(NLogBuildPath)\bin" />
     <RemoveDir Directories="$(NLogBuildPath)\obj" />
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" />
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" Properties="ProjectTarget=Documentation" />
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" Properties="ProjectTarget=ApiXml" />
+    <!-- <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" Properties="ProjectTarget=Documentation" /> -->
     <CallTarget Targets="Installer" />
   </Target>
 
   <Target Name="Installer">
     <MSBuild Projects="Installer\Installer.wixproj" Targets="Rebuild" Properties="NLogBuildPath=$(MSBuildProjectDirectory)\build\Debug" />
+  </Target>
+
+  <Target Name="Tools">
+    <MSBuild Projects="Tools\MakeNLogDoc\MakeNLogDoc.csproj" Targets="Rebuild" />
   </Target>
 
   <Target Name="BuildAllFrameworksAndConfigurations">

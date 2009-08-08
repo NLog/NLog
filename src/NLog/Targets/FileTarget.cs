@@ -396,10 +396,8 @@ namespace NLog.Targets
         public int BufferSize { get; set; }
 
         /// <summary>
-        /// Gets or sets the file encoding.</summary>
-        /// <remarks>
-        /// Can be any encoding name supported by Encoding.GetEncoding() e.g. <c>windows-1252</c>, <c>iso-8859-2</c>.
-        /// </remarks>
+        /// Gets or sets the file encoding.
+        /// </summary>
         public Encoding Encoding { get; set; }
 
         /// <summary>

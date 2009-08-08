@@ -264,6 +264,19 @@ namespace NLog
         }
 
         /// <summary>
+        /// Writes the diagnostic message at the specified level.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="message">Log message.</param>
+        public void Log(LogLevel level, string message) 
+        { 
+            if (this.IsEnabled(level))
+            {
+                this.WriteToTargets(level, null, message);
+            }
+        }
+
+        /// <summary>
         /// Writes the diagnostic message at the specified level using the specified parameters.
         /// </summary>
         /// <param name="level">The log level.</param>
@@ -462,6 +475,18 @@ namespace NLog
         }
 
         /// <summary>
+        /// Writes the diagnostic message at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public void Trace(string message) 
+        { 
+            if (this.IsTraceEnabled)
+            {
+                this.WriteToTargets(LogLevel.Trace, null, message);
+            }
+        }
+
+        /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters.
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
@@ -649,6 +674,18 @@ namespace NLog
             if (this.IsDebugEnabled)
             {
                 this.WriteToTargets(LogLevel.Debug, formatProvider, message, args); 
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Debug</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public void Debug(string message) 
+        { 
+            if (this.IsDebugEnabled)
+            {
+                this.WriteToTargets(LogLevel.Debug, null, message);
             }
         }
 
@@ -844,6 +881,18 @@ namespace NLog
         }
 
         /// <summary>
+        /// Writes the diagnostic message at the <c>Info</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public void Info(string message) 
+        { 
+            if (this.IsInfoEnabled)
+            {
+                this.WriteToTargets(LogLevel.Info, null, message);
+            }
+        }
+
+        /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level using the specified parameters.
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
@@ -1031,6 +1080,18 @@ namespace NLog
             if (this.IsWarnEnabled)
             {
                 this.WriteToTargets(LogLevel.Warn, formatProvider, message, args); 
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Warn</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public void Warn(string message) 
+        { 
+            if (this.IsWarnEnabled)
+            {
+                this.WriteToTargets(LogLevel.Warn, null, message);
             }
         }
 
@@ -1226,6 +1287,18 @@ namespace NLog
         }
 
         /// <summary>
+        /// Writes the diagnostic message at the <c>Error</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public void Error(string message) 
+        { 
+            if (this.IsErrorEnabled)
+            {
+                this.WriteToTargets(LogLevel.Error, null, message);
+            }
+        }
+
+        /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
@@ -1413,6 +1486,18 @@ namespace NLog
             if (this.IsFatalEnabled)
             {
                 this.WriteToTargets(LogLevel.Fatal, formatProvider, message, args); 
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Fatal</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public void Fatal(string message) 
+        { 
+            if (this.IsFatalEnabled)
+            {
+                this.WriteToTargets(LogLevel.Fatal, null, message);
             }
         }
 
