@@ -8,8 +8,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.ComInterop", "src\NLog
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeNLogXSD", "tools\MakeNLogXSD\MakeNLogXSD.csproj", "{BB32EC17-234D-477D-AC37-96EB19A52018}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeNLogDoc", "tools\MakeNLogDoc\MakeNLogDoc.csproj", "{773C477E-2626-432D-B959-325B3B146744}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests", "tests\NLog.UnitTests\NLog.UnitTests.csproj", "{1653EE05-2720-4A85-BF14-74C4493787B1}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Installer", "Installer\Installer.wixproj", "{4667DC1D-0462-4CCC-A210-0490331E09B4}"
@@ -82,18 +80,6 @@ Global
 		{BB32EC17-234D-477D-AC37-96EB19A52018}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{BB32EC17-234D-477D-AC37-96EB19A52018}.Release|Win32.ActiveCfg = Release|Any CPU
 		{BB32EC17-234D-477D-AC37-96EB19A52018}.Release|x86.ActiveCfg = Release|Build All 2.0 Platforms Simultaneously
-		{773C477E-2626-432D-B959-325B3B146744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{773C477E-2626-432D-B959-325B3B146744}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{773C477E-2626-432D-B959-325B3B146744}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{773C477E-2626-432D-B959-325B3B146744}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{773C477E-2626-432D-B959-325B3B146744}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{773C477E-2626-432D-B959-325B3B146744}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{773C477E-2626-432D-B959-325B3B146744}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{773C477E-2626-432D-B959-325B3B146744}.Release|Any CPU.Build.0 = Release|Any CPU
-		{773C477E-2626-432D-B959-325B3B146744}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{773C477E-2626-432D-B959-325B3B146744}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{773C477E-2626-432D-B959-325B3B146744}.Release|Win32.ActiveCfg = Release|Any CPU
-		{773C477E-2626-432D-B959-325B3B146744}.Release|x86.ActiveCfg = Release|Any CPU
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

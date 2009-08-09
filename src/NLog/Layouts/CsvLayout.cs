@@ -11,7 +11,7 @@ namespace NLog.Layouts
     /// <summary>
     /// A specialized layout that renders CSV-formatted events.
     /// </summary>
-    [Layout("CSVLayout")]
+    [Layout("CsvLayout")]
     public class CsvLayout : Layout
     {
         private ICollection<CsvColumn> columns = new List<CsvColumn>();

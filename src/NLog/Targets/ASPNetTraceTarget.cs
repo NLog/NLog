@@ -70,7 +70,7 @@ namespace NLog.Targets
     /// <img src="examples/targets/Screenshots/ASPNetTrace/ASPNetTraceOutput2.gif" />
     /// <p/>
     /// </example>
-    [Target("ASPNetTrace")]
+    [Target("AspNetTrace")]
     public class ASPNetTraceTarget : TargetWithLayout
     {
         /// <summary>

@@ -55,7 +55,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets or sets the compiled layout, can be an instance of <see cref="Layout"/> or other layout type.
+        /// Gets or sets the layout used to format log messages.
         /// </summary>
         [RequiredParameter]
         [DefaultValue("${longdate}|${level:uppercase=true}|${logger}|${message}")]

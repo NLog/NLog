@@ -298,7 +298,8 @@ namespace NLog.Targets
         public int OpenFileCacheSize { get; set; }
 
         /// <summary>
-        /// Gets or sets the maximum number of seconds that files are kept open. If this number is negative.
+        /// Gets or sets the maximum number of seconds that files are kept open. If this number is negative the files are 
+        /// not automatically closed after a period of inactivity.
         /// </summary>
         [DefaultValue(-1)]
         public int OpenFileCacheTimeout { get; set; }

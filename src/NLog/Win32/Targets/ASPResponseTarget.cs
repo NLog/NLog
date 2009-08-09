@@ -44,7 +44,7 @@ namespace NLog.Win32.Targets
     /// <summary>
     /// Outputs logging messages through the ASP Response object.
     /// </summary>
-    [Target("ASPResponse")]
+    [Target("AspResponse")]
     public sealed class ASPResponseTarget : TargetWithLayout
     {
         /// <summary>

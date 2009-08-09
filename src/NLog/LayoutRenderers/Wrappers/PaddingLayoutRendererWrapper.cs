@@ -54,7 +54,7 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         /// <summary>
-        /// Gets or sets number of characters to pad the output to. 
+        /// Gets or sets the number of characters to pad the output to. 
         /// </summary>
         /// <remarks>
         /// Positive padding values cause left padding, negative values 
