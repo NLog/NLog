@@ -659,10 +659,11 @@
 
     <target name="configure-mono-1.0">
         <property name="nlog.define" value="${nlog.define};MONO;MONO_1_0" />
+        <property name="nlog.csc.args" value="/nowarn:0618" />
     </target>
     <target name="configure-mono-2.0">
         <property name="nlog.define" value="${nlog.define};MONO;MONO_2_0;NET_2_API" />
-        <property name="nlog.csc.args" value="/nowarn:1591,1699" />
+        <property name="nlog.csc.args" value="/nowarn:1591,1699,0618" />
     </target>
 
     <target name="configure-net-1.0">
@@ -951,7 +952,7 @@
         </if>
     </target>
 
-    <target name="vs2005templates">
+    <target name="vs2005templates" depends="update-build-number">
         <mkdir dir="build/templates" />
         <foreach item="String" in="Empty,Typical,Console" delim="," property="projecttype">
             <foreach item="String" in="CSharp,VisualBasic,JSharp" delim="," property="language">
