@@ -19,7 +19,7 @@
     <property name="nlog.csc.args" value="/nowarn:1591" />
     <property name="ndoc.version" value="2.0" />
     <property name="sandcastle.dir" value="c:\program files\sandcastle" />
-	<property name="ndoc.basedir" value="D:\Apps\NDoc" unless="${property::exists('ndoc.basedir')}" />
+    <property name="ndoc.basedir" value="tools\NDoc" unless="${property::exists('ndoc.basedir')}" />
     <property name="ndoc.path" value="${ndoc.basedir}/${ndoc.version}" dynamic="true" />
     <property name="ndoc.console.exe" value="${ndoc.path}/NDocConsole.exe" dynamic="true" />
     <property name="ndoc.console.args" value="-referencepath &quot;${framework::get-assembly-directory(framework::get-target-framework())}&quot;" dynamic="true" />
