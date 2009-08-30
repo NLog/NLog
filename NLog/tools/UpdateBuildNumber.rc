@@ -1,0 +1,5 @@
+#define RT_MANIFEST 24 
+#define APP_MANIFEST 1
+
+APP_MANIFEST RT_MANIFEST UpdateBuildNumber.exe.manifest
+
