@@ -12,7 +12,6 @@
     <property name="ssh.program" value="plink" />
     <property name="scp.args" value="-q -batch" />
     <property name="ssh.args" value="-batch" />
-    <property name="benchmark.mode" value="short" />
 
     <property name="deploy.host" value="jaak@sav.net" />
     
@@ -25,16 +24,12 @@
     <property name="ndoc.console.args" value="-referencepath &quot;${framework::get-assembly-directory(framework::get-target-framework())}&quot;" dynamic="true" />
     <property name="prettyprinter.exe" value="tools/PrettyPrinter.exe" />
     <property name="ndocsyntax.path" value="tools/NDocSyntax.exe" />
-    <property name="benchmark.loop.unroll" value="4" />
 
     <property name="webserver.deploy.dir" value="web/www.nlog-project.org/html" />
     <property name="csc.warninglevel" value="4" />
 
     <property name="nlog.package.name" value="${tstamp.date}" unless="${property::exists('nlog.package.name')}" />
     <property name="nlog.release.dir" value="releases/${nlog.package.name}" />
-    <property name="ilmerge.version" value="1" />
-    <property name="log4net.bin.dir" value="../log4net-1.2.10/bin" />
-    <property name="enterpriselib.bin.dir" value="C:\Program Files\Microsoft Enterprise Library January 2006\bin" />
 
     <property name="installer.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-setup.exe" />
     <property name="installer.debug.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-setup-debug.exe" />
@@ -354,58 +349,6 @@
         <copy file="tests/NLog.Test/App.config" tofile="${nlog.dir}/NLog.Test.exe.config" />
     </target>
 
-    <target name="NLog.Benchmark" depends="NLog">
-        <csc target="exe" output="${nlog.dir}/NLog.Benchmark.exe" define="${nlog.define};NLOG" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="tests/NLog.Benchmark">
-                <include name="*.cs" />
-            </sources>
-            <references>
-                <include name="${nlog.dir}/NLog.dll" />
-                <include name="mscorlib.dll" />
-                <include name="System.dll" />
-                <include name="System.Xml.dll" />
-            </references>
-        </csc>
-        <copy todir="${nlog.dir}">
-            <fileset basedir="tests/NLog.Benchmark">
-                <include name="NLog.config" />
-                <include name="*.png" />
-                <include name="*.xsl" />
-            </fileset>
-        </copy>
-        <property name="log4netbinary" value="${log4net.bin.dir}/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/${if(nlog.debug,'debug','release')}/log4net.dll" />
-        <if test="${file::exists(log4netbinary)}">
-            <copy file="${log4netbinary}" tofile="${nlog.dir}/log4net.dll" />
-            <copy file="tests/NLog.Benchmark/log4net.config" tofile="${nlog.dir}/log4net.config" />
-        </if>
-        <exec program="${nlog.dir}/NLog.Benchmark.exe" workingdir="${nlog.dir}" commandline="Benchmark.xml ${benchmark.mode}" useruntimeengine="true" />
-    </target>
-
-    <target name="NLog.Benchmark-LAB" depends="NLog">
-        <copy todir="${nlog.dir}">
-            <fileset basedir="${enterpriselib.bin.dir}">
-                <include name="Microsoft.Practices.*.dll" />
-                <include name="Microsoft.Practices.*.pdb" />
-            </fileset>
-        </copy>
-        <delete file="${nlog.dir}/NLog.Benchmark-log4net.exe" failonerror="false" />
-        <exec program="perl" commandline="tests/NLog.Benchmark/unroll_loop.pl tests/NLog.Benchmark/Benchmark.cs tests/NLog.Benchmark/Benchmark.Unrolled.cs ${benchmark.loop.unroll}" />
-        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-lab.exe" define="${nlog.define},ENTLIB" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="tests/NLog.Benchmark">
-                <include name="**/*.cs" />
-                <exclude name="Benchmark.cs" />
-            </sources>
-            <references>
-                <include name="mscorlib.dll" />
-                <include name="System.dll" />
-                <include name="System.Xml.dll" />
-                <include name="${nlog.dir}/Microsoft.*.dll" />
-            </references>
-        </csc>
-        <copy file="tests/NLog.Benchmark/EntLibLAB.config" tofile="${nlog.dir}/NLog.Benchmark-lab.exe.config" />
-        <exec program="${nlog.dir}/NLog.Benchmark-lab.exe" workingdir="${nlog.dir}" commandline="Benchmark-lab.xml ${benchmark.mode}" />
-    </target>
-
     <target name="pfiles">
         <property name="nlog.dir" value="${environment::get-folder-path('ProgramFiles')}\NLog\bin\${framework::get-target-framework()}" unless="${property::exists('nlog.dir')}" />
     </target>
@@ -503,64 +446,6 @@
     <target name="NLogC-mono-2.0" />
     <target name="NLogC-netcf-1.0" />
     <target name="NLogC-netcf-2.0" />
-
-    <target name="NLog.Benchmark-log4net" depends="NLog">
-        <copy file="${log4net.bin.dir}/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/${if(nlog.debug,'debug','release')}/log4net.dll" tofile="${nlog.dir}/log4net.dll" />
-        <delete file="${nlog.dir}/NLog.Benchmark-log4net.exe" failonerror="false" />
-        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net.exe" define="${nlog.define},LOG4NET" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="tests/NLog.Benchmark">
-                <include name="**/*.cs" />
-            </sources>
-            <references>
-                <include name="${nlog.dir}/log4net.dll" />
-                <include name="mscorlib.dll" />
-                <include name="System.dll" />
-                <include name="System.Xml.dll" />
-            </references>
-        </csc>
-        <copy file="tests/NLog.Benchmark/log4net.config" tofile="${nlog.dir}/log4net.config" />
-        <exec program="${nlog.dir}/NLog.Benchmark-log4net.exe" workingdir="${nlog.dir}" commandline="Benchmark-log4net.xml ${benchmark.mode}" />
-    </target>
-
-    <target name="NLog.Benchmark-log4net-withformat" depends="NLog">
-        <copy file="${log4net.bin.dir}/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/${if(nlog.debug,'debug','release')}/log4net.dll" tofile="${nlog.dir}/log4net.dll" />
-        <delete file="${nlog.dir}/NLog.Benchmark-log4net.exe" failonerror="false" />
-        <exec program="perl" commandline="tests/NLog.Benchmark/unroll_loop.pl tests/NLog.Benchmark/Benchmark.cs tests/NLog.Benchmark/Benchmark.Unrolled.cs ${benchmark.loop.unroll}" />
-        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net.exe" define="${nlog.define},LOG4NET,LOG4NETWITHFORMAT" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="tests/NLog.Benchmark">
-                <include name="**/*.cs" />
-                <exclude name="Benchmark.cs" />
-            </sources>
-            <references>
-                <include name="${nlog.dir}/log4net.dll" />
-                <include name="mscorlib.dll" />
-                <include name="System.dll" />
-                <include name="System.Xml.dll" />
-            </references>
-        </csc>
-        <copy file="tests/NLog.Benchmark/log4net.config" tofile="${nlog.dir}/log4net.config" />
-        <exec program="${nlog.dir}/NLog.Benchmark-log4net.exe" workingdir="${nlog.dir}" commandline="Benchmark-log4net-withformat.xml ${benchmark.mode}" />
-    </target>
-
-    <target name="NLog.Benchmark-log4net-with-concrete-logger" depends="NLog">
-        <copy file="${log4net.bin.dir}/${framework::get-family(framework::get-target-framework())}/${framework::get-version(framework::get-target-framework())}/${if(nlog.debug,'debug','release')}/log4net.dll" tofile="${nlog.dir}/log4net.dll" />
-        <delete file="${nlog.dir}/NLog.Benchmark-log4net.exe" failonerror="false" />
-        <csc target="exe" output="${nlog.dir}/NLog.Benchmark-log4net.exe" define="${nlog.define},LOG4NET_WITH_FASTLOGGER" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="tests/NLog.Benchmark">
-                <include name="**/*.cs" />
-            </sources>
-            <references>
-                <include name="${nlog.dir}/log4net.dll" />
-                <include name="mscorlib.dll" />
-                <include name="System.dll" />
-                <include name="System.Xml.dll" />
-            </references>
-        </csc>
-        <copy file="tests/NLog.Benchmark/log4net.config" tofile="${nlog.dir}/log4net.config" />
-        <exec program="${nlog.dir}/NLog.Benchmark-log4net.exe" workingdir="${nlog.dir}" commandline="Benchmark-log4net-concrete-logger.xml ${benchmark.mode}" />
-    </target>
-
-    <target name="all-benchmarks" depends="NLog.Benchmark, NLog.Benchmark-log4net-withformat" />
 
     <target name="test" depends="NLog.UnitTests">
         <if test="${framework::get-family(framework::get-target-framework())=='net'}">
@@ -672,11 +557,9 @@
     
     <target name="configure-net-1.1">
         <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET_1_1" />
-        <property name="ilmerge.version" value="1.1" />
     </target>
 
     <target name="configure-net-2.0">
-        <property name="ilmerge.version" value="2" />
         <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET2;DOTNET_2_0;NET_2_API" />
         <property name="nlog.csc.args" value="/nowarn:1591,1699" />
     </target>
@@ -729,12 +612,63 @@
     </target>
 
     <target name="installer" depends="allframeworksdebugandrelease, clean_examples, help, vs2005templates">
+        <call target="buildinstaller" />
+    </target>
+
+    <target name="buildinstaller">
         <readregistry property="nsis.dir" key="SOFTWARE\NSIS\" />
         <property name="makensis.exe" value="${nsis.dir}/makensis.exe" />
 
-        <exec program="${makensis.exe}" commandline="/DNLOGVERSION=${nlog.package.name} /DOPTIONALDEBUG= tools\SetupNLog.nsi" verbose="true" />
+        <property name="dotnet.defines" value="" />
+        <property name="mono.defines" value="" />
+        <property name="netcf.defines" value="" />
+
+        <if test="${file::exists('build\net-1.0\bin\NLog.dll')}">
+            <property name="dotnet.defines" value="${dotnet.defines} /DHAVE_NET_1_0" />
+        </if>
+
+        <if test="${file::exists('build\net-1.1\bin\NLog.dll')}">
+            <property name="dotnet.defines" value="${dotnet.defines} /DHAVE_NET_1_1" />
+        </if>
+
+        <if test="${file::exists('build\net-2.0\bin\NLog.dll')}">
+            <property name="dotnet.defines" value="${dotnet.defines} /DHAVE_NET_2_0" />
+        </if>
+
+        <if test="${dotnet.defines != ''}">
+            <property name="dotnet.defines" value="${dotnet.defines} /DHAVE_NET" />
+        </if>
+
+        <if test="${file::exists('build\mono-1.0\bin\NLog.dll')}">
+            <property name="mono.defines" value="${mono.defines} /DHAVE_MONO_1_0" />
+        </if>
+
+        <if test="${file::exists('build\mono-2.0\bin\NLog.dll')}">
+            <property name="mono.defines" value="${mono.defines} /DHAVE_MONO_2_0" />
+        </if>
+
+        <if test="${mono.defines != ''}">
+            <property name="mono.defines" value="${mono.defines} /DHAVE_MONO" />
+        </if>
+
+        <if test="${file::exists('build\netcf-1.0\bin\NLog.dll')}">
+            <property name="netcf.defines" value="${netcf.defines} /DHAVE_NETCF_1_0" />
+        </if>
+
+        <if test="${file::exists('build\netcf-2.0\bin\NLog.dll')}">
+            <property name="netcf.defines" value="${netcf.defines} /DHAVE_NETCF_2_0" />
+        </if>
+
+        <if test="${netcf.defines != ''}">
+            <property name="netcf.defines" value="${netcf.defines} /DHAVE_NETCF" />
+        </if>
+
+        <property name="supportedframeworks.defines" value="${dotnet.defines}${mono.defines}${netcf.defines}" />
+	<echo message="DEFINES: ${supportedframeworks.defines}" />
+
+        <exec program="${makensis.exe}" commandline="/DNLOGVERSION=${nlog.package.name} ${supportedframeworks.defines} /DOPTIONALDEBUG= tools\SetupNLog.nsi" verbose="true" />
         <move file="SetupNLog.exe" tofile="${installer.name}" overwrite="true" />
-        <exec program="${makensis.exe}" commandline="/DNLOGVERSION=${nlog.package.name}-debug /DOPTIONALDEBUG=-debug tools\SetupNLog.nsi" verbose="true" />
+        <exec program="${makensis.exe}" commandline="/DNLOGVERSION=${nlog.package.name}-debug ${supportedframeworks.defines} /DOPTIONALDEBUG=-debug tools\SetupNLog.nsi" verbose="true" />
         <move file="SetupNLog.exe" tofile="${installer.debug.name}" overwrite="true" />
     </target>
 
