@@ -67,7 +67,6 @@ namespace NLog.Internal
         [DllImport("kernel32.dll")]
         internal static extern void OutputDebugString(string message);
 
-
 #if !NET_CF
         [DllImport("kernel32.dll"), SuppressUnmanagedCodeSecurity]
 #else

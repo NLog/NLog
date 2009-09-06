@@ -15,8 +15,4 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ReferenceAssemblyDirectory Include="$(ProgramFiles)\Microsoft Silverlight\3.0.40723.0" />
-  </ItemGroup>
 </Project>

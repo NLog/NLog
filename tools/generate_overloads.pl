@@ -48,9 +48,6 @@ for $level (@levels) {
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the $level3 level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the $level3 level.
         /// </summary>
@@ -65,9 +62,6 @@ for $level (@levels) {
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the $level3 level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the $level3 level.
         /// </summary>$param0

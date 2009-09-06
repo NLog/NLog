@@ -75,7 +75,7 @@ namespace NLog.Targets.Wrappers
     /// that PostFilteringWrapper is used to provide the filtering and actual logs go to
     /// a file).
     /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/ASPNetBufferingWrapper/web.nlog" />
+    /// <code lang="XML" source="examples/targets/Configuration File/ASPNetBufferingWrapper/web.nlog" />
     /// <p>
     /// This assumes just one target and a single rule. More configuration
     /// options are described <a href="config.html">here</a>.
@@ -85,7 +85,7 @@ namespace NLog.Targets.Wrappers
     /// piece of code in your <c>Application_OnStart()</c> handler in Global.asax.cs 
     /// or some other place that gets executed at the very beginning of your code:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/ASPNetBufferingWrapper/Global.asax.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/ASPNetBufferingWrapper/Global.asax.cs" />
     /// <p>
     /// Fully working C# project can be found in the <c>Examples/Targets/Configuration API/ASPNetBufferingWrapper</c>
     /// directory along with usage instructions.

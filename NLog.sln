@@ -10,8 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeNLogXSD", "tools\MakeNL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests", "tests\NLog.UnitTests\NLog.UnitTests.csproj", "{1653EE05-2720-4A85-BF14-74C4493787B1}"
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Installer", "Installer\Installer.wixproj", "{4667DC1D-0462-4CCC-A210-0490331E09B4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7638C35C-A8AC-437C-94FD-9DABD9D5839C}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Documentation.scproj = Documentation\Documentation.scproj
@@ -92,18 +90,6 @@ Global
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Release|Win32.ActiveCfg = Release|Any CPU
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Release|x86.ActiveCfg = Release|Any CPU
-		{4667DC1D-0462-4CCC-A210-0490331E09B4}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{4667DC1D-0462-4CCC-A210-0490331E09B4}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{4667DC1D-0462-4CCC-A210-0490331E09B4}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{4667DC1D-0462-4CCC-A210-0490331E09B4}.Debug|Win32.ActiveCfg = Debug|x86
-		{4667DC1D-0462-4CCC-A210-0490331E09B4}.Debug|x86.ActiveCfg = Debug|x86
-		{4667DC1D-0462-4CCC-A210-0490331E09B4}.Debug|x86.Build.0 = Debug|x86
-		{4667DC1D-0462-4CCC-A210-0490331E09B4}.Release|Any CPU.ActiveCfg = Release|x86
-		{4667DC1D-0462-4CCC-A210-0490331E09B4}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{4667DC1D-0462-4CCC-A210-0490331E09B4}.Release|Mixed Platforms.Build.0 = Release|x86
-		{4667DC1D-0462-4CCC-A210-0490331E09B4}.Release|Win32.ActiveCfg = Release|x86
-		{4667DC1D-0462-4CCC-A210-0490331E09B4}.Release|x86.ActiveCfg = Release|x86
-		{4667DC1D-0462-4CCC-A210-0490331E09B4}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

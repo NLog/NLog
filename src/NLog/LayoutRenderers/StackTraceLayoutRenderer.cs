@@ -35,6 +35,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {

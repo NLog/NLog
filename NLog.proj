@@ -32,21 +32,14 @@
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" />
   </Target>
 
-  <Target Name="FullBuild">
-    <CallTarget Targets="Tools" />
+  <Target Name="BuildAll">
     <RemoveDir Directories="$(NLogBuildPath)\bin" />
     <RemoveDir Directories="$(NLogBuildPath)\obj" />
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" />
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" Properties="ProjectTarget=Documentation" />
-    <CallTarget Targets="Installer" />
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" Properties="ProjectTarget=BuildWithDocumentation" />
   </Target>
 
   <Target Name="Installer">
     <MSBuild Projects="Installer\Installer.wixproj" Targets="Rebuild" Properties="NLogBuildPath=$(MSBuildProjectDirectory)\build\Debug" />
-  </Target>
-
-  <Target Name="Tools">
-    <MSBuild Projects="Tools\MakeNLogDoc\MakeNLogDoc.csproj" Targets="Rebuild" />
   </Target>
 
   <Target Name="BuildAllFrameworksAndConfigurations">

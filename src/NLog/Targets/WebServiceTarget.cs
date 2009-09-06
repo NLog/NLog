@@ -54,7 +54,7 @@ namespace NLog.Targets
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/WebService/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/WebService/NLog.config" />
     /// <p>
     /// This assumes just one target and a single rule. More configuration
     /// options are described <a href="config.html">here</a>.
@@ -62,9 +62,9 @@ namespace NLog.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/WebService/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/WebService/Simple/Example.cs" />
     /// <p>The example web service that works with this example is shown below</p>
-    /// <code lang="C#" src="examples/targets/Configuration API/WebService/Simple/WebService1/Service1.asmx.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/WebService/Simple/WebService1/Service1.asmx.cs" />
     /// </example>
     [Target("WebService")]
     public sealed class WebServiceTarget : MethodCallTargetBase

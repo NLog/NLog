@@ -33,6 +33,7 @@
 
 using System;
 using System.Diagnostics;
+using NLog.Config;
 using NLog.Filters;
 using NLog.Internal;
 using NLog.Targets;

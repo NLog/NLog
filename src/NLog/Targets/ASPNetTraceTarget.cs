@@ -45,7 +45,7 @@ namespace NLog.Targets
     /// <p>To set up the ASP.NET Trace target in the <a href="config.html">configuration file</a>, put
     /// the following in <c>web.nlog</c> file in your web application directory.
     /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/ASPNetTrace/web.nlog" />
+    /// <code lang="XML" source="examples/targets/Configuration File/ASPNetTrace/web.nlog" />
     /// <p>
     /// This assumes just one target and a single rule. More configuration
     /// options are described <a href="config.html">here</a>.
@@ -55,7 +55,7 @@ namespace NLog.Targets
     /// piece of code in your <c>Application_OnStart()</c> handler in Global.asax.cs 
     /// or some other place that gets executed at the very beginning of your code:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/ASPNetTrace/Global.asax.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/ASPNetTrace/Global.asax.cs" />
     /// <p>
     /// Fully working C# project can be found in the <c>Examples/Targets/Configuration API/ASPNetTrace</c>
     /// directory along with usage instructions.
@@ -63,11 +63,11 @@ namespace NLog.Targets
     /// Resulting log entries can be viewed by navigating to http://server/path/Trace.axd.
     /// <br/>
     /// <b>HTTP Request List:</b><br/>
-    /// <img src="examples/targets/Screenshots/ASPNetTrace/ASPNetTraceOutput1.gif" />
+    /// <img source="examples/targets/Screenshots/ASPNetTrace/ASPNetTraceOutput1.gif" />
     /// <p/>
     /// <b>HTTP Request Details:</b>
     /// <br/>
-    /// <img src="examples/targets/Screenshots/ASPNetTrace/ASPNetTraceOutput2.gif" />
+    /// <img source="examples/targets/Screenshots/ASPNetTrace/ASPNetTraceOutput2.gif" />
     /// <p/>
     /// </example>
     [Target("AspNetTrace")]

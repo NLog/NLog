@@ -33,59 +33,20 @@
 
 using System;
 
-using NLog.Config;
-
-namespace NLog.Targets
+namespace NLog.Config
 {
     /// <summary>
-    /// Counts logging messages but does not output them anywhere. Provides 
-    /// the counter of logged messages and remembers the latest one.
+    /// Marks the class or a member as advanced. Advanced classes and members are hidden by 
+    /// default in generated documentation.
     /// </summary>
-    /// <example>
-    /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
-    /// use the following syntax:
-    /// </p>
-    /// <code lang="XML" source="examples/targets/Configuration File/Debug/NLog.config" />
-    /// <p>
-    /// This assumes just one target and a single rule. More configuration
-    /// options are described <a href="config.html">here</a>.
-    /// </p>
-    /// <p>
-    /// To set up the log target programmatically use code like this:
-    /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/Debug/Simple/Example.cs" />
-    /// </example>
-    [Target("Debug")]
-    public sealed class DebugTarget : TargetWithLayout
+    [AttributeUsage(AttributeTargets.Property)]
+    public sealed class AdvancedAttribute : Attribute
     {
-        private int counter = 0;
-        private string lastMessage = String.Empty;
-
         /// <summary>
-        /// Gets the number of times this target has been called.
+        /// Initializes a new instance of the AdvancedAttribute class.
         /// </summary>
-        public int Counter
+        public AdvancedAttribute()
         {
-            get { return this.counter; }
-        }
-
-        /// <summary>
-        /// Gets the last message rendered by this target.
-        /// </summary>
-        public string LastMessage
-        {
-            get { return this.lastMessage; }
-        }
-
-        /// <summary>
-        /// Increases the number of messages.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
-        {
-            this.counter++;
-            this.lastMessage = this.Layout.GetFormattedMessage(logEvent);
         }
     }
 }

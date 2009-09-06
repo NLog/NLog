@@ -32,6 +32,7 @@
 // 
 
 using System.Collections.Generic;
+using NLog.Config;
 using NLog.Layouts;
 
 namespace NLog.Targets.Wrappers

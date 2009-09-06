@@ -57,7 +57,7 @@ namespace NLog.Targets
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/File/Simple/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/File/Simple/NLog.config" />
     /// <p>
     /// You can use a single target to write to multiple files. The following
     /// example writes each log message to a file named after its log level, so
@@ -65,13 +65,13 @@ namespace NLog.Targets
     /// <c>Trace.log</c>, <c>Debug.log</c>, <c>Info.log</c>, <c>Warn.log</c>, 
     /// <c>Error.log</c>, <c>Fatal.log</c>
     /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/File/Multiple/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/File/Multiple/NLog.config" />
     /// <p>
     /// The file names can be quite complex for the most demanding scenarios. This
     /// example shows a way to create separate files for each day, user and log level.
     /// As you can see, the possibilities are endless.
     /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/File/Multiple2/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/File/Multiple2/NLog.config" />
     /// <p>
     /// Depending on your usage scenario it may be useful to add an <a href="target.AsyncWrapper.html">asynchronous target wrapper</a>
     /// around the file target. This way all your log messages
@@ -80,50 +80,50 @@ namespace NLog.Targets
     /// for multi-threaded server applications which run for a long time and
     /// is not recommended for quickly-finishing command line applications.
     /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/File/Asynchronous/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/File/Asynchronous/NLog.config" />
     /// <p>
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/File/Asynchronous/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/File/Asynchronous/Example.cs" />
     /// <p>
     /// More configuration options are described <a href="config.html">here</a>.
     /// </p>
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/File/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/File/Simple/Example.cs" />
     /// <p>
     /// File target can also do file archiving, meaning that the log file is automatically
     /// moved to another place based on its size and time. This example demonstrates 
     /// file archiving based on size. Files after 10000 bytes are moved to a separate folder
     /// and renamed log.00000.txt, log.00001.txt and so on.
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/File/Archive1/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/File/Archive1/Example.cs" />
     /// <p>
     /// File archiving can also be done on date/time changes. For example, to create a new 
     /// archive file every minute use this code:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/File/Archive2/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/File/Archive2/Example.cs" />
     /// <p>
     /// You can combine both methods as demonstrated here:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/File/Archive3/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/File/Archive3/Example.cs" />
     /// <p>
     /// Note that file archiving works even when you use a single target instance
     /// to write to multiple files, such as putting each log level in a separate place:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/File/Archive4/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/File/Archive4/Example.cs" />
     /// <p>
     /// You can write texts using alternative layouts, such as CSV (comma-separated values).
     /// This example writes files which are properly CSV-quoted (can handle messages with line breaks
     /// and quotes)
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/File/CSV/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/File/CSV/Example.cs" />
     /// <para>
     /// This is the configuration file version:
     /// </para>
-    /// <code lang="XML" src="examples/targets/Configuration File/File/CSV/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/File/CSV/NLog.config" />
     /// </example>
     [Target("File")]
     public class FileTarget : TargetWithLayoutHeaderAndFooter, ICreateFileParameters
@@ -280,6 +280,7 @@ namespace NLog.Targets
         /// when attempting to write to a directory that's not present.
         /// </remarks>
         [DefaultValue(true)]
+        [Advanced]
         public bool CreateDirs { get; set; }
 
         /// <summary>
@@ -295,6 +296,7 @@ namespace NLog.Targets
         /// be keeping a large number of files open which consumes system resources.
         /// </remarks>
         [DefaultValue(5)]
+        [Advanced]
         public int OpenFileCacheSize { get; set; }
 
         /// <summary>
@@ -302,6 +304,7 @@ namespace NLog.Targets
         /// not automatically closed after a period of inactivity.
         /// </summary>
         [DefaultValue(-1)]
+        [Advanced]
         public int OpenFileCacheTimeout { get; set; }
 
         /// <summary>
@@ -317,6 +320,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to replace file contents on each write instead of appending log message at the end.
         /// </summary>
         [DefaultValue(false)]
+        [Advanced]
         public bool ReplaceFileContentsOnEachWrite { get; set; }
 
         /// <summary>
@@ -338,6 +342,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the file attributes (Windows only).
         /// </summary>
+        [Advanced]
         public Win32FileAttributes FileAttributes { get; set; }
 
 #endif
@@ -345,6 +350,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the line ending mode.
         /// </summary>
+        [Advanced]
         public LineEndingMode LineEnding
         {
             get
@@ -425,6 +431,7 @@ namespace NLog.Targets
         /// discards the log message.
         /// </summary>
         [DefaultValue(10)]
+        [Advanced]
         public int ConcurrentWriteAttempts { get; set; }
 
         /// <summary>
@@ -484,6 +491,7 @@ namespace NLog.Targets
         /// and so on.
         /// </example>
         [DefaultValue(1)]
+        [Advanced]
         public int ConcurrentWriteAttemptDelay { get; set; }
 
         /// <summary>

@@ -49,15 +49,15 @@ namespace NLog.Targets
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/FormControl/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/FormControl/NLog.config" />
     /// <p>
     /// The result is:
     /// </p>
-    /// <img src="examples/targets/Screenshots/FormControl/FormControl.gif" />
+    /// <img source="examples/targets/Screenshots/FormControl/FormControl.gif" />
     /// <p>
     /// To set up the log target programmatically similar to above use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/FormControl/Form1.cs" />,
+    /// <code lang="C#" source="examples/targets/Configuration API/FormControl/Form1.cs" />,
     /// </example>
     [Target("FormControl")]
     public sealed class FormControlTarget : TargetWithLayout

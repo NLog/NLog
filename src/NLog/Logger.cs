@@ -200,9 +200,6 @@ namespace NLog
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the specified level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the specified level.
         /// </summary>
@@ -218,9 +215,6 @@ namespace NLog
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the specified level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the specified level.
         /// </summary>
@@ -415,9 +409,6 @@ namespace NLog
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Trace</c> level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
         /// </summary>
@@ -432,9 +423,6 @@ namespace NLog
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Trace</c> level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
         /// </summary>
@@ -618,9 +606,6 @@ namespace NLog
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
         /// </summary>
@@ -635,9 +620,6 @@ namespace NLog
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Debug</c> level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
         /// </summary>
@@ -821,9 +803,6 @@ namespace NLog
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level.
         /// </summary>
@@ -838,9 +817,6 @@ namespace NLog
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Info</c> level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level.
         /// </summary>
@@ -1024,9 +1000,6 @@ namespace NLog
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level.
         /// </summary>
@@ -1041,9 +1014,6 @@ namespace NLog
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Warn</c> level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level.
         /// </summary>
@@ -1227,9 +1197,6 @@ namespace NLog
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level.
         /// </summary>
@@ -1244,9 +1211,6 @@ namespace NLog
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Error</c> level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level.
         /// </summary>
@@ -1430,9 +1394,6 @@ namespace NLog
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level.
         /// </summary>
@@ -1447,9 +1408,6 @@ namespace NLog
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level.
         /// </summary>

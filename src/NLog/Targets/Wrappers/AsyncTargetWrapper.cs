@@ -66,12 +66,12 @@ namespace NLog.Targets.Wrappers
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/AsyncWrapper/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/AsyncWrapper/NLog.config" />
     /// <p>
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/AsyncWrapper/Wrapping File/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/AsyncWrapper/Wrapping File/Example.cs" />
     /// </example>
     [Target("AsyncWrapper", IsWrapper = true)]
     public class AsyncTargetWrapper : WrapperTargetBase

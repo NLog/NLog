@@ -22,38 +22,10 @@
             </Component>
           </Directory>
 
-          <Directory Id="NetFX2.0.Client" Name="NetFX2.0.Client">
-            <Component Id="NetFX20ClientComponent" Guid="e47c3d9d-0624-4169-8ab8-a3d7eaea47f1">
-              <File Id="NLog20Client.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\NetFX2.0.Client\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-              <File Id="NLog20Client.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\NetFX2.0.Client\NLog.pdb" KeyPath="no" DiskId="1" />
-            </Component>
-          </Directory>
-
-          <Directory Id="NetFX3.5" Name="NetFX3.5">
-            <Component Id="NetFX35Component" Guid="08b9318e-4889-476a-864c-10dd9cb3c109">
-              <File Id="NLog35.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\NetFX3.5\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-              <File Id="NLog35.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\NetFX3.5\NLog.pdb" KeyPath="no" DiskId="1" />
-            </Component>
-          </Directory>
-
-          <Directory Id="NetFX3.5.Client" Name="NetFX3.5.Client">
-            <Component Id="NetFX35ClientComponent" Guid="bc7e582a-a5cc-4add-928f-afa5e69cf64e">
-              <File Id="NLog35Client.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\NetFX3.5.Client\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-              <File Id="NLog35Client.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\NetFX3.5.Client\NLog.pdb" KeyPath="no" DiskId="1" />
-            </Component>
-          </Directory>
-
           <Directory Id="NetCF2.0" Name="NetCF2.0">
             <Component Id="NetCF20Component" Guid="6bc94fb5-a041-448e-b1ab-5dc54d5c757d">
               <File Id="NLogCF20.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\NetCF2.0\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
               <File Id="NLogCF20.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\NetCF2.0\NLog.pdb" KeyPath="no" DiskId="1" />
-            </Component>
-          </Directory>
-
-          <Directory Id="NetCF3.5" Name="NetCF3.5">
-            <Component Id="NetCF35Component" Guid="54a7da69-c57c-4632-a5af-fea2010420b5">
-              <File Id="NLogCF35.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\NetCF3.5\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-              <File Id="NLogCF35.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\NetCF3.5\NLog.pdb" KeyPath="no" DiskId="1" />
             </Component>
           </Directory>
 
@@ -71,24 +43,8 @@
 			<ComponentRef Id="NetFX20Component" />
 		</Feature>
 
-    <Feature Id="NetFX20ClientFeature" Title=".NET Framework 2.0 Client Support" Level="1">
-      <ComponentRef Id="NetFX20ClientComponent" />
-    </Feature>
-
-    <Feature Id="NetFX35Feature" Title=".NET Framework 3.5 Support" Level="1">
-      <ComponentRef Id="NetFX35Component" />
-    </Feature>
-
-    <Feature Id="NetFX35ClientFeature" Title=".NET Framework 3.5 Client Support" Level="1">
-      <ComponentRef Id="NetFX35ClientComponent" />
-    </Feature>
-
     <Feature Id="NetCF20Feature" Title=".NET Compact Framework 2.0 Support" Level="1">
       <ComponentRef Id="NetCF20Component" />
-    </Feature>
-
-    <Feature Id="NetCF35Feature" Title=".NET Compact Framework 3.5 Support" Level="1">
-      <ComponentRef Id="NetCF35Component" />
     </Feature>
 
     <Feature Id="Silverlight2Feature" Title="Silverlight 2.0 Support" Level="1">

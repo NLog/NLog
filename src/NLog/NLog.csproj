@@ -80,6 +80,7 @@
     <Compile Include="Config\ConfigSectionHandler.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Config\AdvancedAttribute.cs" />
     <Compile Include="Config\IFactory`2.cs" />
     <Compile Include="Contexts\NDC.cs" />
     <Compile Include="Contexts\MDC.cs" />
@@ -143,7 +144,7 @@
     <Compile Include="Config\LoggingConfigurationReloadedEventArgs.cs" />
     <Compile Include="LogMessageDelegate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StackTraceUsage.cs" />
+    <Compile Include="Config\StackTraceUsage.cs" />
     <Compile Include="Targets\TargetWithLayoutHeaderAndFooter.cs" />
     <Compile Include="Layouts\LayoutWithHeaderAndFooter.cs" />
     <Compile Include="Internal\CurrentTimeGetter.cs" />

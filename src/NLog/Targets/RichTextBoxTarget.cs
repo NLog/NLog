@@ -50,28 +50,28 @@ namespace NLog.Targets
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
-    /// </p><code lang="XML" src="examples/targets/Configuration File/RichTextBox/Simple/NLog.config">
+    /// </p><code lang="XML" source="examples/targets/Configuration File/RichTextBox/Simple/NLog.config">
     /// </code>
     /// <p>
     /// The result is:
-    /// </p><img src="examples/targets/Screenshots/RichTextBox/Simple.gif"/><p>
+    /// </p><img source="examples/targets/Screenshots/RichTextBox/Simple.gif"/><p>
     /// To set up the target with coloring rules in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
-    /// </p><code lang="XML" src="examples/targets/Configuration File/RichTextBox/RowColoring/NLog.config">
+    /// </p><code lang="XML" source="examples/targets/Configuration File/RichTextBox/RowColoring/NLog.config">
     /// </code>
-    /// <code lang="XML" src="examples/targets/Configuration File/RichTextBox/WordColoring/NLog.config">
+    /// <code lang="XML" source="examples/targets/Configuration File/RichTextBox/WordColoring/NLog.config">
     /// </code>
     /// <p>
     /// The result is:
-    /// </p><img src="examples/targets/Screenshots/RichTextBox/RowColoring.gif"/><img src="examples/targets/Screenshots/RichTextBox/WordColoring.gif"/><p>
+    /// </p><img source="examples/targets/Screenshots/RichTextBox/RowColoring.gif"/><img source="examples/targets/Screenshots/RichTextBox/WordColoring.gif"/><p>
     /// To set up the log target programmatically similar to above use code like this:
-    /// </p><code lang="C#" src="examples/targets/Configuration API/RichTextBox/Simple/Form1.cs">
+    /// </p><code lang="C#" source="examples/targets/Configuration API/RichTextBox/Simple/Form1.cs">
     /// </code>
     /// ,
-    /// <code lang="C#" src="examples/targets/Configuration API/RichTextBox/RowColoring/Form1.cs">
+    /// <code lang="C#" source="examples/targets/Configuration API/RichTextBox/RowColoring/Form1.cs">
     /// </code>
     /// for RowColoring,
-    /// <code lang="C#" src="examples/targets/Configuration API/RichTextBox/WordColoring/Form1.cs">
+    /// <code lang="C#" source="examples/targets/Configuration API/RichTextBox/WordColoring/Form1.cs">
     /// </code>
     /// for WordColoring
     /// </example>

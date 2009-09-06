@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NLog
+﻿namespace NLog.Config
 {
     /// <summary>
     /// Value indicating how stack trace should be captured when processing the log event.

@@ -32,6 +32,7 @@
 // 
 
 using System.Text;
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {

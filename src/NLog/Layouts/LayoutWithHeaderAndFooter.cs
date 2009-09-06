@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NLog.Config;
 using NLog.Internal;
 
 namespace NLog.Layouts

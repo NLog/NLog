@@ -55,13 +55,13 @@ namespace NLog.Targets
     /// command and command parameters.
     /// </para>
     /// <para>MS SQL Server using System.Data.SqlClient:</para>
-    /// <code lang="XML" src="examples/targets/Configuration File/Database/MSSQL/NLog.config" height="450" />
+    /// <code lang="XML" source="examples/targets/Configuration File/Database/MSSQL/NLog.config" height="450" />
     /// <para>Oracle using System.Data.OracleClient:</para>
-    /// <code lang="XML" src="examples/targets/Configuration File/Database/Oracle.Native/NLog.config" height="350" />
+    /// <code lang="XML" source="examples/targets/Configuration File/Database/Oracle.Native/NLog.config" height="350" />
     /// <para>Oracle using System.Data.OleDbClient:</para>
-    /// <code lang="XML" src="examples/targets/Configuration File/Database/Oracle.OleDb/NLog.config" height="350" />
+    /// <code lang="XML" source="examples/targets/Configuration File/Database/Oracle.OleDb/NLog.config" height="350" />
     /// <para>To set up the log target programmatically use code like this (an equivalent of MSSQL configuration):</para>
-    /// <code lang="C#" src="examples/targets/Configuration API/Database/MSSQL/Example.cs" height="630" />
+    /// <code lang="C#" source="examples/targets/Configuration API/Database/MSSQL/Example.cs" height="630" />
     /// </example>
     [Target("Database")]
     public sealed class DatabaseTarget : Target

@@ -50,7 +50,7 @@ namespace NLog.Targets
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/Trace/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/Trace/NLog.config" />
     /// <p>
     /// This assumes just one target and a single rule. More configuration
     /// options are described <a href="config.html">here</a>.
@@ -58,7 +58,7 @@ namespace NLog.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/Trace/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/Trace/Simple/Example.cs" />
     /// </example>
     [Target("Trace")]
     public sealed class TraceTarget : TargetWithLayout

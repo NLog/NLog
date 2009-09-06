@@ -1,4 +1,5 @@
 using System.Text;
+using NLog.Config;
 using NLog.LayoutRenderers;
 
 namespace NLog.Layouts

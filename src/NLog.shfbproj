@@ -1,0 +1,75 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <!-- The configuration and platform will be used to determine which
+         assemblies to include from solution and project documentation
+         sources -->
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ff8480e8-de05-4447-a460-d63ee65bdcbf}</ProjectGuid>
+    <NLogBuildPath Condition="'$(NLogBuildPath)' == ''">NLog\bin\Debug\NetFX3.5</NLogBuildPath>
+    <SHFBSchemaVersion>1.8.0.0</SHFBSchemaVersion>
+    <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
+         Studio adds them anyway -->
+    <AssemblyName>Documentation</AssemblyName>
+    <RootNamespace>Documentation</RootNamespace>
+    <Name>Documentation</Name>
+    <!-- SHFB properties -->
+    <OutputPath>$(NLogBuildPath)\</OutputPath>
+    <HtmlHelpName>NLog</HtmlHelpName>
+    <DocumentationSources>
+      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.dll" xmlns="" />
+      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.xml" xmlns="" />
+    </DocumentationSources>
+    <HelpTitle>NLog - Advanced .NET Logging ($(Framework))</HelpTitle>
+    <CopyrightText>Copyright %28c%29 2004-2009 by Jaroslaw Kowalski</CopyrightText>
+    <FeedbackEMailAddress>feedback%40nlog-project.org</FeedbackEMailAddress>
+    <CopyrightHref>http://www.nlog-project.org/</CopyrightHref>
+    <FrameworkVersion>2.0.50727</FrameworkVersion>
+    <ComponentConfigurations>
+      <ComponentConfig id="Code Block Component" enabled="True">
+        <component id="Code Block Component" type="SandcastleBuilder.Components.CodeBlockComponent" assembly="{@SHFBFolder}SandcastleBuilder.Components.dll">
+          <basePath value="{@HtmlEncProjectFolder}\..\" />
+          <languageFilter value="true" />
+          <allowMissingSource value="false" />
+          <removeRegionMarkers value="false" />
+          <colorizer syntaxFile="{@SHFBFolder}Colorizer\highlight.xml" styleFile="{@SHFBFolder}Colorizer\highlight.xsl" copyImageUrl="../icons/CopyCode.gif" language="cs" tabSize="0" numberLines="true" outlining="false" keepSeeTags="false" defaultTitle="true" />
+        </component>
+      </ComponentConfig>
+      <ComponentConfig id="Post-transform Component" enabled="True">
+        <component id="Post-transform Component" type="SandcastleBuilder.Components.PostTransformComponent" assembly="{@SHFBFolder}SandcastleBuilder.Components.dll">
+          <colorizer stylesheet="{@SHFBFolder}Colorizer\highlight.css" scriptFile="{@SHFBFolder}Colorizer\highlight.js" copyImage="{@SHFBFolder}Colorizer\CopyCode.gif" />
+          <outputPath value="Output\" />
+          <logoFile filename="{@HtmlEncProjectFolder}\NLogo.png" height="0" width="0" altText="" placement="left" alignment="left" />
+        </component>
+      </ComponentConfig>
+    </ComponentConfigurations>
+    <ApiFilter>
+      <Filter entryType="Namespace" fullName="System" isExposed="True" xmlns="">
+        <Filter entryType="Class" fullName="System.Attribute" filterName="Attribute" isExposed="False" />
+        <Filter entryType="Class" fullName="System.Exception" filterName="Exception" isExposed="False" />
+        <Filter entryType="Class" fullName="System.Object" filterName="Object" isExposed="False" />
+      </Filter>
+    </ApiFilter>
+    <Preliminary>True</Preliminary>
+    <NamespaceSummaries>
+      <NamespaceSummaryItem name="NLog" isDocumented="True" xmlns="">
+      NLog namespace contains classes used by instrumented application to output log messages.
+      </NamespaceSummaryItem>
+    </NamespaceSummaries>
+    <PlugInConfigurations>
+    </PlugInConfigurations>
+    <NamingMethod>MemberName</NamingMethod>
+  </PropertyGroup>
+
+  <!-- There are no properties for these two groups but they need to appear in
+       order for Visual Studio to perform the build. -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  </PropertyGroup>
+
+  <!-- Import the SHFB build targets -->
+  <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
+  <Import Project="Frameworks\$(Framework).shfbproj" Condition="Exists('Frameworks\$(Framework).shfbproj')" />
+</Project>
