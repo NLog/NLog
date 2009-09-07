@@ -143,7 +143,7 @@
         <xsl:if test="$mode!='plain'">
             <img class="out_link" src="out_link.gif" />
         </xsl:if>
-        <a href="http://www.nlog-project.org/external/{substring-after(@href,'http://')}">
+        <a style="padding-left: 4px" href="http://www.nlog-project.org/external/{substring-after(@href,'http://')}">
             <xsl:apply-templates />
         </a>
     </xsl:template>

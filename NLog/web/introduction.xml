@@ -3,7 +3,7 @@
 <content lang="en" id="introduction">
     <h1>Welcome to NLog</h1>
     <p>
-        NLog is a logging platform for .NET with rich log routing and management 
+        NLog is a free logging platform for .NET with rich log routing and management 
         capabilities. It makes it easy to produce and manage high-quality logs 
         for your application regardless of its size or complexity.
     </p>
@@ -16,9 +16,12 @@
         common engine. 
     </p>
     <p>
+        NLog is open source, licensed under the terms of <a href="http://www.opensource.org/licenses/bsd-license.php">BSD license</a>, 
+    </p>
+    <p>
         <a class="download" href="http://www.nlog-project.org/download.html"><span>Download Now For Free</span></a>
     </p>
-    <h3>Project News</h3>
+    <h5>Project News</h5>
     <ul>
        <li><b>2009-09-07</b>&#160;<a href="http://nlog.codeplex.com/Release/ProjectReleases.aspx?ReleaseId=32601">NLog 1.0 Refresh</a> has been released.</li>
        <li><b>2009-09-06</b>&#160;NLog has moved from CodePlex from SourceForge.net. Source and binary releases as well as 
@@ -27,13 +30,13 @@
     </ul>
     <p>NLog can write log output to many targets including:</p>
     <ul>
-        <li>Files - single file or multiple, with automatic file naming and archival</li>
-        <li>Event Log - local or remote</li>
-        <li>Database - store your logs in databases supported by .NET</li>
-        <li>Network - using TCP, UDP, SOAP, MSMQ protocols</li>
-        <li>Command-line console - including color coding of messages</li>
-        <li>E-mail - you can receive emails whenever application errors occur</li>
-        <li>ASP.NET trace</li>
+        <li><b>Files</b> - single file or multiple, with automatic file naming and archival</li>
+        <li><b>Event Log</b> - local or remote</li>
+        <li><b>Database</b> - store your logs in databases supported by .NET</li>
+        <li><b>Network</b> - using TCP, UDP, SOAP, MSMQ protocols</li>
+        <li><b>Command-line console</b> - including color coding of messages</li>
+        <li><b>E-mail</b> - you can receive emails whenever application errors occur</li>
+        <li><b>ASP.NET trace</b></li>
         <li>... and many more</li>
     </ul>
 
@@ -45,7 +48,4 @@
         <li>cross-platform support: .NET Framework, .NET Compact Framework and Mono (on Windows and Unix)</li>
         <li>multiple APIs: <link href="netapi">.NET</link>, <link href="comapi">COM</link>, <link href="capi">C/C++</link></li>
     </ul>
-    <p>
-        NLog is open source, licensed under the terms of <a href="http://www.opensource.org/licenses/bsd-license.php">BSD license</a>, 
-    </p>
 </content>
