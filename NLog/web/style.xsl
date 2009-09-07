@@ -24,7 +24,7 @@
                 <link rel="stylesheet" href="syntax.css" type="text/css" />
                 <link rel="icon" href="http://www.nlog-project.org/favicon.ico" type="image/x-icon" />
                 <link rel="shortcut icon" href="http://www.nlog-project.org/favicon.ico" type="image/x-icon" /> 
-                <meta name="keywords" content="NLog logging tracing debugging library easy simple C# .NET log4net log4j Logger C/C++ COM" />
+                <meta name="keywords" content="nlog, server application logging, audit, .net logging, enterprise logging, central log management, log routing, event log, web application logging, cross-platform logging, log filtering, log rotation, database logging, silverlight tracing, logging, diagnostics, debug, trace, open source, free, .net logging api, system.diagnostics, log4net" />
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <title>NLog - <xsl:value-of select="$common/common/navigation/nav[@href=$page_id]/@label" /></title>
             </head>
