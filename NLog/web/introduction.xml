@@ -15,11 +15,16 @@
         including legacy modules written in C++/COM can route their log messages through a 
         common engine. 
     </p>
-
     <p>
         <a class="download" href="http://www.nlog-project.org/download.html"><span>Download Now For Free</span></a>
     </p>
-
+    <h3>Project News</h3>
+    <ul>
+       <li><b>2009-09-07</b>&#160;<a href="http://nlog.codeplex.com/Release/ProjectReleases.aspx?ReleaseId=32601">NLog 1.0 Refresh</a> has been released.</li>
+       <li><b>2009-09-06</b>&#160;NLog has moved from CodePlex from SourceForge.net. Source and binary releases as well as 
+       the issue tracker will be hosted here. NLog documentation and Subversion repository will continue to be hosted on nlog-project.org. 
+       Existing issues reported on sourceforge.net have been migrated to the "Issue Tracker".</li>
+    </ul>
     <p>NLog can write log output to many targets including:</p>
     <ul>
         <li>Files - single file or multiple, with automatic file naming and archival</li>

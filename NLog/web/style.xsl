@@ -95,15 +95,6 @@
 <!-- SiteSearch Google -->
                 </div>
                 <div id="counterCode">
-                    <!-- Start of StatCounter Code -->
-                    <script type="text/javascript" language="javascript">
-                        var sc_project=575077; 
-                        var sc_partition=4; 
-                        var sc_security="6fe22c9a"; 
-                    </script>
-
-                    <script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c5.statcounter.com/counter.php?sc_project=575077&amp;java=0&amp;security=6fe22c9a" alt="website tracking" border="0" /></a> </noscript>
-                    <!-- End of StatCounter Code -->
                     <!-- Google Analytics -->
                     <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
                     </script>
@@ -149,12 +140,12 @@
     </xsl:template>
 
     <xsl:template match="a[starts-with(@href,'http://') and not(starts-with(@href,'http://www.nlog-project')) and not(@nomangle)]">
-        <a href="http://www.nlog-project.org/external/{substring-after(@href,'http://')}">
-            <xsl:apply-templates />
-        </a>
         <xsl:if test="$mode!='plain'">
             <img class="out_link" src="out_link.gif" />
         </xsl:if>
+        <a href="http://www.nlog-project.org/external/{substring-after(@href,'http://')}">
+            <xsl:apply-templates />
+        </a>
     </xsl:template>
 
     <xsl:template match="nav">
