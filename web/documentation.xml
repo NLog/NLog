@@ -5,11 +5,8 @@
 
     <ul>
         <li><link href="tutorial">Tutorial</link> - <i>"Introduction to NLog"</i></li>
-        <li><link href="wprowadzenie">Tutorial in Polish</link> - <i>"Wprowadzenie do œledzenia aplikacji przy pomocy NLoga"</i></li>
         <li><link href="config">Configuration File</link> - how to configure logging</li>
         <li><link href="visualstudio">Visual Studio Support</link> - snippets, Intellisense(TM) and more</li>
-        <li><link href="performance">Performance</link> - how fast is NLog?</li>
-        <li><link href="releasenotes">Release Notes</link></li>
     </ul>
     <h3>Reference</h3>
     <ul>
@@ -29,9 +26,7 @@
         <li><link href="howto_write_target">How to write your own Target</link></li>
         <li><link href="howto_write_layout_renderer">How to write your own Layout Renderer</link></li>
         <li><link href="howto_write_filter">How to write your own Filter</link></li>
-        <li><link href="howto_write_condition_function">How to write your own Condition Function</link></li>
         <li><link href="howto_optimize_performance">How to optimize logging performance</link></li>
         <li><link href="howto_troubleshoot">How to troubleshoot your logging problems</link></li>
     </ul>
-    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>

@@ -24,7 +24,6 @@
                 <link rel="stylesheet" href="syntax.css" type="text/css" />
                 <link rel="icon" href="http://www.nlog-project.org/favicon.ico" type="image/x-icon" />
                 <link rel="shortcut icon" href="http://www.nlog-project.org/favicon.ico" type="image/x-icon" /> 
-                <meta name="generator" content="NAnt 0.85 style task" />
                 <meta name="keywords" content="NLog logging tracing debugging library easy simple C# .NET log4net log4j Logger C/C++ COM" />
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <title>NLog - <xsl:value-of select="$common/common/navigation/nav[@href=$page_id]/@label" /></title>
@@ -47,13 +46,6 @@
                             <xsl:call-template name="controls" />
                             <p/>
                             <xsl:comment>#include virtual="/dynamic/snippet.cgi?rectbanner"</xsl:comment>
-                            <div class="lastupdated">
-                                Last updated: <xsl:value-of select="$build_time" />
-                                <p/>
-                                This website is based on <b>NLog v<xsl:value-of select="$nlog_package" /></b>.
-                                Click <a href="http://www.nlog-project.org/snapshots/">here</a> to view the documentation 
-                                for other versions.
-                            </div>
                         </td>
                         <td valign="top" align="left" class="content">
                             <xsl:comment>#include virtual="/dynamic/snippet.cgi?vertbanner"</xsl:comment>
@@ -64,7 +56,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="copyright">Copyright &#169; 2004-2006 by Jaros³aw Kowalski.</td>
+                        <td class="copyright">Copyright &#169; 2004-2009 by <a style="text-decoration: none" href="http://www.nlog-project.org/disclaimer.html">Jaroslaw Kowalski</a></td>
                     </tr>
                 </table>
             </xsl:otherwise>

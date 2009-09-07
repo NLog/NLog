@@ -16,7 +16,7 @@
                 DefaultTargetSchema = "IE50"
                 DelaySign = "false"
                 OutputType = "Library"
-                PreBuildEvent = '"$(ProjectDir)..\..\tools\UpdateBuildNumber.exe" "$(ProjectDir)..\..\NLog.version" "$(ProjectDir)AssemblyBuildInfo.cs" "$(ProjectDir)..\..\build\NLog.buildversion"'
+                PreBuildEvent = ""
                 PostBuildEvent = ""
                 RootNamespace = "NLog.ComInterop"
                 RunPostBuildEvent = "OnBuildSuccess"

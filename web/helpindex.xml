@@ -1,26 +1,42 @@
 <?xml version="1.0" encoding="windows-1250" ?>
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
 <content lang="en" id="helpindex">
-    <h3>What is NLog?</h3>
+    <h1>Welcome to NLog</h1>
     <p>
-        NLog is a .NET logging library similar in concepts to <a href="http://logging.apache.org/log4net/">log4net</a>, 
-        designed with simplicity and flexibility in mind.
+        NLog is a logging platform for .NET with rich log routing and management 
+        capabilities. It makes it easy to produce and manage high-quality logs 
+        for your application regardless of its size or complexity.
+    </p>
+    <p>
+        It can process diagnostic messages emitted from any .NET language, augment
+        them with contextual information, format them according to your preference 
+        and send them to one or more targets such as file or database. 
+        .NET, C/C++ and COM interop APIs are supported so that all your application components 
+        including legacy modules written in C++/COM can route their log messages through a 
+        common engine. 
     </p>
 
-    <h3>Features</h3>
+    <p>NLog can write log output to many targets including:</p>
     <ul>
-        <li>.NET, .NET Compact Framework and Mono 1.0 support</li>
-        <li>very easy to configure, both with a config file and programmatically</li>
-        <li>easy to use - interface is identical to <code>Console.WriteLine</code> - there's no need to use <code>String.Format</code> any more</li>
-        <li>supports <link href="netapi">.NET</link>, <link href="capi">C/C++</link> and <link href="comapi">COM</link> interop API</li>
+        <li>Files - single file or multiple, with automatic file naming and archival</li>
+        <li>Event Log - local or remote</li>
+        <li>Database - store your logs in databases supported by .NET</li>
+        <li>Network - using TCP, UDP, SOAP, MSMQ protocols</li>
+        <li>Command-line console - including color coding of messages</li>
+        <li>E-mail - you can receive emails whenever application errors occur</li>
+        <li>ASP.NET trace</li>
+        <li>... and many more</li>
+    </ul>
+
+    <p>Other key features:</p>
+    <ul>
+        <li>very easy to configure, both through <link href="config">configuration file</link> and programmatically</li>
+        <li>easy-to-use logger pattern known from log4xxx</li>
+        <li>advanced routing using buffering, asynchronous logging, load balancing, failover, and more</li>
+        <li>cross-platform support: .NET Framework, .NET Compact Framework and Mono (on Windows and Unix)</li>
+        <li>multiple APIs: <link href="netapi">.NET</link>, <link href="comapi">COM</link>, <link href="capi">C/C++</link></li>
     </ul>
     <p>
-        NLog is open source, licensed 
-        under the terms of <a href="http://www.opensource.org/licenses/bsd-license.php">BSD license</a>, 
-        which permits commercial use. Everyone is encouraged to test it and report feedback to the mailing list.
+        NLog is open source, licensed under the terms of <a href="http://www.opensource.org/licenses/bsd-license.php">BSD license</a>, 
     </p>
-    <p>
-        The logging API is modelled after log4net with some extensions that help it achieve great speed as described <link href="netapi">here</link>.
-    </p>
-    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>
