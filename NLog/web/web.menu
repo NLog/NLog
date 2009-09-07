@@ -5,8 +5,8 @@
         <nav href="download" label="Download" />
         <nav href="documentation" label="Documentation" />
         <nav href="faq" label="FAQ" />
-        <nav href="http://www.nabble.com/NLog-Forum-f6167.html" noext="true" label="Forum" />
-        <nav href="http://trac.nlog-project.org/nlog/" noext="true" label="Issue Tracker" />
+        <nav href="forum" label="Forum" />
+        <nav href="issuetracker" label="Issue Tracker" />
         <nav href="mailinglists" label="Mailing Lists" />
     </navigation>
 </common>

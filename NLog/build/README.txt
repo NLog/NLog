@@ -1,1 +1,1 @@
-Output binaries will be created here. Do not delete this directory.
+Compiled binaries will be placed here. Do not delete this directory.

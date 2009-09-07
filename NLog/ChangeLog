@@ -1,3 +1,9 @@
+2009-09-06 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Preparing for NLog 1.0 Refresh
+        Cleaned up the build process and source tree by removing unused stuff.
+        Locked version number to 1.0.0.505 (compatible with 1.0)
+        Added installer support for VS2008 and VS2010 Beta.
+
 2009-01-14 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Fixed log4j interoperability - log4j:locationInfo was using lower case
 	instead of camelCase. Reported by Juergen Heusler.

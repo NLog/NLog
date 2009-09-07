@@ -2,4 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
 <content lang="en" id="support" subid="forum">
     <h1>Nabble Forum</h1>
+    <p>
+        Visit NLog Forum <a href="http://www.nlog-project.org/forum.html">here</a>.
+    </p>
 </content>

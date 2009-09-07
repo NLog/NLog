@@ -66,6 +66,5 @@
         <li><a href="help/NLog.Logger.IsFatalEnabled.html">IsFatalEnabled</a> - Determines if logging is enabled for the Fatal level.</li>
     </ul>
     <p>Full list of members of the Logger class can be found <a href="help/NLog.LoggerMembers.html">here</a>.</p>
-    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>
 

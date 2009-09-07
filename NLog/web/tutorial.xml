@@ -933,5 +933,4 @@ class Example
             NLogViewer - real-time log viewer application (currently in pre-alpha stage) -  <a href="http://viewer.nlog-project.org/">http://viewer.nlog-project.org/</a>
         </li>
     </ul>
-    <last-changed-date>$LastChangedDate$</last-changed-date>
 </content>

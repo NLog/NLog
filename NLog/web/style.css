@@ -770,3 +770,20 @@ img.out_link
         display: none;
     }
 }
+
+a.download
+{
+    width: 255px;
+    height: 32px;
+    background-image: url(download_now.png);
+}
+
+a.download:hover
+{
+    background-image: url(download_now_h.png);
+}
+
+.download span
+{
+    display: none;
+}

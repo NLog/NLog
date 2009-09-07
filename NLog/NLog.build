@@ -13,45 +13,42 @@
     <property name="scp.args" value="-q -batch" />
     <property name="ssh.args" value="-batch" />
 
-    <property name="deploy.host" value="jaak@sav.net" />
-    
     <property name="nlog.csc.args" value="/nowarn:1591" />
     <property name="ndoc.version" value="2.0" />
-    <property name="sandcastle.dir" value="c:\program files\sandcastle" />
     <property name="ndoc.basedir" value="tools\NDoc" unless="${property::exists('ndoc.basedir')}" />
     <property name="ndoc.path" value="${ndoc.basedir}/${ndoc.version}" dynamic="true" />
     <property name="ndoc.console.exe" value="${ndoc.path}/NDocConsole.exe" dynamic="true" />
     <property name="ndoc.console.args" value="-referencepath &quot;${framework::get-assembly-directory(framework::get-target-framework())}&quot;" dynamic="true" />
-    <property name="prettyprinter.exe" value="tools/PrettyPrinter.exe" />
     <property name="ndocsyntax.path" value="tools/NDocSyntax.exe" />
 
-    <property name="webserver.deploy.dir" value="web/www.nlog-project.org/html" />
     <property name="csc.warninglevel" value="4" />
 
     <property name="nlog.package.name" value="${tstamp.date}" unless="${property::exists('nlog.package.name')}" />
     <property name="nlog.release.dir" value="releases/${nlog.package.name}" />
 
-    <property name="installer.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-setup.exe" />
-    <property name="installer.debug.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-setup-debug.exe" />
-    <property name="source_snapshot.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-src.zip" />
-    <property name="binary_snapshot.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-${framework::get-target-framework()}${if(nlog.debug,'-debug','')}.zip" dynamic="true" />
-    <property name="help_package.name" value="${nlog.release.dir}/nlog-${nlog.package.name}-help.zip" />
+    <property name="installer.name" value="${nlog.release.dir}/NLog-${nlog.package.name}-setup.exe" />
+    <property name="installer.debug.name" value="${nlog.release.dir}/NLog-${nlog.package.name}-setup-debug.exe" />
+    <property name="source_snapshot.name" value="${nlog.release.dir}/NLog-${nlog.package.name}-src.zip" />
+    <property name="nlog.optionaldebug" value="${if(nlog.debug,'-debug','')}" dynamic="true" />
+    <property name="binary_snapshot.name" value="${nlog.release.dir}/NLog-${nlog.package.name}-${framework::get-target-framework()}${nlog.optionaldebug}.zip" dynamic="true" />
+    <property name="merged_binary_snapshot.name" value="${nlog.release.dir}/NLog-${nlog.package.name}-bin${nlog.optionaldebug}.zip" dynamic="true" />
+    <property name="help_package.name" value="${nlog.release.dir}/NLog-${nlog.package.name}-help.zip" />
     <property name="webtest.dir" value="${project::get-base-directory()}/webtest" />
 
-    <property name="clover.enabled" value="false" />
-    <property name="clover.home" value="D:\Apps\CloverNLog" />
+    <property name="nlog.version.major" value="1" />
+    <property name="nlog.version.minor" value="0" />
+    <property name="nlog.version.revision" value="0" />
+    <property name="nlog.version.build" value="505" />
+    <property name="nlog.version" value="${nlog.version.major}.${nlog.version.minor}.${nlog.version.revision}.${nlog.version.build}" />
 
     <target name="detectversion">
     </target>
 
     <target name="configure">
         <call target="configure-${framework::get-target-framework()}" />
-        <property name="buildsubdir" value="${framework::get-target-framework()}${if(clover.enabled,'-clover','')}${if(nlog.debug,'-debug','')}" />
+        <property name="buildsubdir" value="${framework::get-target-framework()}${nlog.optionaldebug}" />
         <property name="nlog.dir" value="${project::get-base-directory()}/build/${buildsubdir}/bin" unless="${property::exists('nlog.dir')}" />
         <property name="nlog.help.dir" value="build/${buildsubdir}/help" unless="${property::exists('nlog.help.dir')}" />
-        <property name="nunit2.report.dir" value="${project::get-base-directory()}/build/${buildsubdir}/test_results" />
-        <property name="clover.report.dir" value="build/${buildsubdir}/clover_report" />
-        <property name="clover.build.dir" value="build/${buildsubdir}/clover" />
 
         <echo message="Building NLog for ${framework::get-target-framework()}" />
         <echo message="Package name: ${nlog.package.name}" />
@@ -62,6 +59,18 @@
     </target>
 
     <target name="build" depends="configure, build-${framework::get-target-framework()}">
+    </target>
+
+    <target name="fullrelease">
+        <call target="clean_all" />
+        <call target="allframeworksdebugandrelease" />
+        <call target="clean_examples" />
+        <call target="help" />
+        <call target="vs2005templates" />
+        <call target="buildinstaller" />
+        <call target="source_snapshot" />
+        <exec program="nant" commandline="-D:nlog.package.name=${nlog.package.name} debug merged_binary_snapshot" />
+        <exec program="nant" commandline="-D:nlog.package.name=${nlog.package.name} release merged_binary_snapshot" />
     </target>
 
     <target name="debug">
@@ -75,7 +84,7 @@
     </target>
 
     <target name="binary_snapshot" depends="build">
-        <zip zipfile="${binary_snapshot.name}">
+        <zip zipfile="${binary_snapshot.name}" if="false">
             <fileset basedir="build/${buildsubdir}">
                 <include name="bin/*" />
             </fileset>
@@ -85,6 +94,59 @@
             </fileset>
             <fileset basedir="src/NLogC">
                 <include name="NLogC FAQ.txt" />
+            </fileset>
+        </zip>
+    </target>
+
+    <target name="merged_binary_snapshot" depends="configure">
+        <delete dir="build/binary_snapshot" />
+        <property name="snapshot.dir" value="build/binary_snapshot/NLog-${nlog.package.name}" />
+        <mkdir dir="${snapshot.dir}" />
+        <exec program="svn" commandline="export examples ${snapshot.dir}/examples" />
+        <copy todir="${snapshot.dir}/bin/.NET Framework 1.0">
+            <fileset basedir="build/net-1.0${nlog.optionaldebug}/bin">
+                <include name="*.*" />
+            </fileset>
+        </copy>
+        <copy todir="${snapshot.dir}/bin/.NET Framework 1.1">
+            <fileset basedir="build/net-1.1${nlog.optionaldebug}/bin">
+                <include name="*.*" />
+            </fileset>
+        </copy>
+        <copy todir="${snapshot.dir}/bin/.NET Framework 2.0">
+            <fileset basedir="build/net-2.0${nlog.optionaldebug}/bin">
+                <include name="*.*" />
+            </fileset>
+        </copy>
+        <copy todir="${snapshot.dir}/bin/.NET Compact Framework 1.0">
+            <fileset basedir="build/netcf-1.0${nlog.optionaldebug}/bin">
+                <include name="*.*" />
+            </fileset>
+        </copy>
+        <copy todir="${snapshot.dir}/bin/.NET Compact Framework 2.0">
+            <fileset basedir="build/netcf-2.0${nlog.optionaldebug}/bin">
+                <include name="*.*" />
+            </fileset>
+        </copy>
+        <copy todir="${snapshot.dir}/bin/Mono 1.0">
+            <fileset basedir="build/mono-1.0${nlog.optionaldebug}/bin">
+                <include name="*.*" />
+            </fileset>
+        </copy>
+        <copy todir="${snapshot.dir}/bin/Mono 2.0">
+            <fileset basedir="build/mono-2.0${nlog.optionaldebug}/bin">
+                <include name="*.*" />
+            </fileset>
+        </copy>
+        <copy file="README.txt" todir="${snapshot.dir}" />
+        <copy file="LICENSE.txt" todir="${snapshot.dir}" />
+        <copy file="build/doc/help/NLog.chm" todir="${snapshot.dir}" />
+        <copy file="src/NLogC/NLogC FAQ.txt" todir="${snapshot.dir}" />
+        <zip zipfile="${merged_binary_snapshot.name}">
+            <fileset basedir="build/binary_snapshot">
+                <include name="**/*" />
+                <exclude name=".svn" />
+                <exclude name="_svn" />
             </fileset>
         </zip>
     </target>
@@ -131,20 +193,7 @@
         </delete>
     </target>
 
-    <target name="update-build-number">
-        <exec program="tools/UpdateBuildNumber.exe" commandline="NLog.version src/NLog/AssemblyBuildInfo.cs build/NLog.buildversion" useruntimeengine="true" />
-        <exec program="tools/UpdateBuildNumber.exe" commandline="NLog.version src/NLog.ComInterop/AssemblyBuildInfo.cs build/NLog.buildversion" useruntimeengine="true" />
-        <foreach item="Line" in="build/NLog.buildversion" delim="." property="tmp1,tmp2,tmp3,tmp4">
-            <property name="nlog.version.major" value="${tmp1}" />
-            <property name="nlog.version.minor" value="${tmp2}" />
-            <property name="nlog.version.revision" value="${tmp3}" />
-            <property name="nlog.version.build" value="${tmp4}" />
-        </foreach>
-
-        <property name="nlog.version" value="${nlog.version.major}.${nlog.version.minor}.${nlog.version.revision}.${nlog.version.build}" />
-    </target>
-
-    <target name="NLog" depends="configure, update-build-number">
+    <target name="NLog" depends="configure">
         <csc target="library" output="${nlog.dir}/NLog.dll" doc="${nlog.dir}/NLog.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}" warnaserror="true">
             <sources basedir="src">
                 <include name="NLog/**/*.cs" />
@@ -474,7 +523,6 @@
             <fileset basedir="${nlog.dir}">
                 <include name="NLog.dll" />
                 <include name="NLog.ComInterop.dll" />
-                <include name="cloverruntime.dll" />
             </fileset>
         </copy>
 
@@ -581,7 +629,7 @@
     <target name="build-netcf-1.0" depends="NLog" />
     <target name="build-netcf-2.0" depends="NLog" />
 
-    <target name="publisher-policy" depends="configure, update-build-number">
+    <target name="publisher-policy" depends="configure">
         <uptodate property="publisherpolicy.uptodate">
             <targetfiles>
                 <include name="${nlog.dir}/Policy.${nlog.version.major}.${nlog.version.minor}.NLog.dll" />
@@ -691,49 +739,6 @@
         <exec program="nant" commandline="-t:mono-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build schema binary_snapshot" />
     </target>
 
-    <target name="sandcastle-help" depends="xmldoc,helpwebsite">
-        <mkdir dir="build/doc/sandcastle" />
-        <copy file="build/doc/NLog.xml" tofile="build/doc/sandcastle/comments.xml" />
-        <copy file="${sandcastle.dir}/Presentation/Configuration/Sandcastle.config" tofile="build/doc/sandcastle/Sandcastle.config">
-            <filterchain>
-                <replacestring from="&quot;..\..\" to="&quot;${sandcastle.dir}\" />
-                <replacestring from="&quot;..\" to="&quot;${sandcastle.dir}\Examples\" />
-            </filterchain>
-        </copy>
-        <exec program="${sandcastle.dir}/ProductionTools/MRefBuilder.exe" commandline="../NLog.dll /out:reflection.xml" workingdir="build/doc/sandcastle" />
-        <exec program="${sandcastle.dir}/ProductionTools/XslTransform.exe" 
-            commandline="&quot;${sandcastle.dir}/ProductionTransforms/AddOverloads.xsl&quot; reflection.xml /out:reflection2.xml"
-            workingdir="build/doc/sandcastle" />
-        <exec program="${sandcastle.dir}/ProductionTools/XslTransform.exe" 
-            commandline="&quot;${sandcastle.dir}/ProductionTransforms/AddGuidFileNames.xsl&quot; reflection2.xml /out:reflection.xml"
-            workingdir="build/doc/sandcastle" />
-        <exec program="${sandcastle.dir}/ProductionTools/XslTransform.exe" 
-            commandline="&quot;${sandcastle.dir}/ProductionTransforms/ReflectionToManifest.xsl&quot; reflection.xml /out:manifest.xml"
-            workingdir="build/doc/sandcastle" />
-        <mkdir dir="build/doc/sandcastle/Output" />
-        <mkdir dir="build/doc/sandcastle/Output/html" />
-        <copy todir="build/doc/sandcastle/Output">
-            <fileset basedir="${sandcastle.dir}/Presentation">
-                <include name="art/*" />
-                <include name="scripts/*" />
-                <include name="styles/*" />
-            </fileset>
-        </copy>
-        <copy todir="build/doc/sandcastle/Output/html">
-            <fileset basedir="build/doc/helpweb">
-                <include name="**/*" />
-            </fileset>
-        </copy>
-        <exec program="${sandcastle.dir}/ProductionTools/BuildAssembler.exe" 
-            commandline="manifest.xml /config:Sandcastle.config"
-            workingdir="build/doc/sandcastle" />
-        <exec program="${sandcastle.dir}/ProductionTools/XslTransform.exe" 
-            commandline="&quot;${sandcastle.dir}/ProductionTransforms/ReflectionToChmContents.xsl&quot; reflection.xml /arg:html=Output\html /out:Output\test.hhc"
-            workingdir="build/doc/sandcastle" />
-        <copy file="NLog.hhp" tofile="build/doc/sandcastle/Output/NLog.hhp" />
-        <exec program="C:\Program Files\HTML Help Workshop\hhc.exe" commandline="NLog.hhp" workingdir="build/doc/sandcastle/Output" />
-    </target>
-
     <target name="help" depends="xmldoc, helpwebsite">
         <copy file="${project::get-base-directory()}/web/syntax.xsl" tofile="build/doc/syntax.xsl" overwrite="true" />
         <xmlpoke file="build/doc/syntax.xsl" xpath="//xsl:param[@name='external-base']" value="file://${webbuild.dir}">
@@ -766,49 +771,22 @@
         </if>
     </target>
 
-    <target name="cleanwebsite" depends="xmldoc, website">
+    <target name="cleanwebsite">
+       <delete dir="build/doc" />
+       <call target="xmldoc" />
+       <call target="website" />
     </target>
 
-    <target name="publish_website_help" depends="help">
-        <zip zipfile="web.zip">
-            <fileset basedir="build/doc/help">
-                <include name="**/*" />
-                <exclude name="**/NLog.chm" />
-            </fileset>
-        </zip>
-        <echo message="Uploading web.zip and tools/web_install.sh to ${deploy.host}..." />
-        <exec program="${scp.program}" commandline="${scp.args} web.zip tools/web_install.sh ${deploy.host}:." workingdir="." />
-        <echo message="Spawning web_install.sh..." />
-        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} dos2unix web_install.sh &amp;&amp; /bin/bash web_install.sh ${webserver.deploy.dir}/help" workingdir="." />
-    </target>
-
-    <target name="publish_clover" depends="clover">
-        <zip zipfile="web.zip">
-            <fileset basedir="${clover.report.dir}">
-                <include name="**/*" />
-            </fileset>
-        </zip>
-        <echo message="Uploading web.zip and tools/web_install.sh to ${deploy.host}..." />
-        <exec program="${scp.program}" commandline="${scp.args} web.zip tools/web_install.sh ${deploy.host}:." workingdir="." />
-        <echo message="Spawning web_install.sh..." />
-        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} dos2unix web_install.sh &amp;&amp; /bin/bash web_install.sh ${webserver.deploy.dir}/clover" workingdir="." />
-        <echo message="Coverage results deployed." />
-    </target>
-
-    <target name="source_snapshot" depends="update-build-number">
+    <target name="source_snapshot" depends="configure">
         <delete dir="build/source_snapshot" if="${directory::exists('build/source_snapshot')}" />
         <property name="snapshot.dir" value="build/source_snapshot/NLog-${nlog.package.name}" />
         <mkdir dir="build/source_snapshot" if="${not directory::exists('build/source_snapshot')}" />
         <exec program="svn" commandline="export . ${snapshot.dir}" />
-        <copy file="build/NLog.buildversion" tofile="${snapshot.dir}/NLog.version" />
-        <copy todir="${snapshot.dir}">
-            <fileset basedir=".">
-                <include name="src/**/AssemblyBuildInfo.cs" />
-            </fileset>
-        </copy>
+        <delete dir="${snapshot.dir}/tools/NDoc/2.0" />
         <zip zipfile="${source_snapshot.name}">
             <fileset basedir="build/source_snapshot">
                 <include name="**/*" />
+                <exclude name=".svn" />
                 <exclude name="_svn" />
             </fileset>
         </zip>
@@ -847,11 +825,6 @@
         <call target="clean" />
     </target>
 
-    <target name="upload_web_snapshot">
-        <property name="webserver.deploy.dir" value="${webserver.deploy.dir}/snapshots/${nlog.package.name}/web" />
-        <call target="deploy-web" />
-    </target>
-
     <target name="schema" depends="NLog, xmldoc">
         <uptodate property="schema.uptodate">
             <targetfiles>
@@ -886,7 +859,7 @@
         </if>
     </target>
 
-    <target name="vs2005templates" depends="update-build-number">
+    <target name="vs2005templates">
         <mkdir dir="build/templates" />
         <foreach item="String" in="Empty,Typical,Console" delim="," property="projecttype">
             <foreach item="String" in="CSharp,VisualBasic,JSharp" delim="," property="language">
@@ -935,22 +908,6 @@
         <copy file="${nlog.dir}/NLog.xsd" tofile="${visualstudio.dir}/Xml/Schemas/NLog.xsd" />
     </target>
 
-    <target name="upload_snapshot">
-        <echo message="Creating a directory for ${nlog.package.name}..." />
-        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} mkdir -p ${webserver.deploy.dir}/snapshots/${nlog.package.name} ${webserver.deploy.dir}/snapshots/${nlog.package.name}/web" failonerror="false" />
-        <echo message="Uploading nlog-${nlog.package.name}*.*..." />
-        <exec program="${scp.program}" commandline="${scp.args} ${nlog.release.dir}/nlog-${nlog.package.name}*.* ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
-        <echo message="Uploading ChangeLog..." />
-        <exec program="${scp.program}" commandline="${scp.args} ChangeLog ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
-        <echo message="Uploading NLog.buildversion..." />
-        <exec program="${scp.program}" commandline="${scp.args} build/NLog.buildversion ${deploy.host}:${webserver.deploy.dir}/snapshots/${nlog.package.name}/" />
-        <echo message="Calculating MD5SUM..." />
-        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} (cd ${webserver.deploy.dir}/snapshots/${nlog.package.name}; md5sum nlog-${nlog.package.name}* > MD5SUM)" />
-        <echo message="Creating 'latest' link..." />
-        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} ln -nfs ${nlog.package.name} web/www.nlog-project.org/html/snapshots/latest" />
-        <echo message="Done." />
-    </target>
-
     <target name="clean_all" depends="clean_examples">
         <delete>
             <fileset basedir="build">
@@ -962,9 +919,6 @@
     </target>
 
     <target name="snapshot" depends="clean_all, sync-vs-projects, allframeworksdebugandrelease, source_snapshot, help, installer">
-    </target>
-
-    <target name="publish_snapshot" depends="snapshot, upload_snapshot, upload_web_snapshot">
     </target>
 
     <target name="webxmlwithsyntax">
@@ -1156,38 +1110,6 @@
         </style>
     </target>
     
-    <target name="load-clover">
-        <loadtasks assembly="${clover.home}/CloverNAnt-0.85.dll" />
-    </target>
-
-    <target name="clover" depends="load-clover">
-        <property name="clover.enabled" value="true" />
-        <call target="configure" />
-        <call target="clean" />
-        <delete file="${clover.build.dir}/clover.cdb" failonerror="false" />
-        <clover-setup 
-            initstring="${clover.build.dir}/clover.cdb"
-            builddir="${clover.build.dir}"
-            enabled="${clover.enabled}"
-            flushinterval="100">
-            <fileset basedir="src">
-                <include name="**/*" />
-                <exclude name="NLog.UnitTests.Web/**/*" />
-            </fileset>
-        </clover-setup>
-        <call target="build" />
-        <call target="nunit2report" />
-        <clover-report>
-            <current title="NLog Coverage" output="${clover.report.dir}">
-                <format type="html" />
-            </current>
-        </clover-report>
-    </target>
-
-    <target name="load-nunit2report">
-        <loadtasks assembly="tools/nunit2report/NAnt.NUnit2ReportTasks.dll" />
-    </target>
-
     <target name="setup_unittest_website">
         <mkiisdir dirpath="${project::get-base-directory()}/nlogtest" vdirname="nlogtest" 
             authntlm="false" 
@@ -1195,51 +1117,6 @@
             authbasic="false" 
             failonerror="false"
             />
-    </target>
-
-    <target name="nunit2report" depends="load-nunit2report, test">
-        <nunit2report format="frames" todir="${nunit2.report.dir}" verbose="true">
-            <fileset>
-                <include name="build/${buildsubdir}/test_results_xml/*.xml" />
-            </fileset>
-        </nunit2report>
-    </target>
-
-    <target name="publish_nunit2report" depends="nunit2report">
-        <zip zipfile="web.zip">
-            <fileset basedir="${nunit2.report.dir}">
-                <include name="**/*" />
-            </fileset>
-        </zip>
-        <echo message="Uploading web.zip and tools/web_install.sh to ${deploy.host}..." />
-        <exec program="${scp.program}" commandline="${scp.args} web.zip tools/web_install.sh ${deploy.host}:." workingdir="." />
-        <echo message="Spawning web_install.sh..." />
-        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} dos2unix web_install.sh &amp;&amp; /bin/bash web_install.sh ${webserver.deploy.dir}/nunit2report" workingdir="." />
-        <echo message="NUnit2report results deployed." />
-    </target>
-
-    <target name="deploy-web" depends="website">
-        <delete file="web.zip" if="${file::exists('web.zip')}" />
-        <zip zipfile="web.zip" stampdatetime="${datetime::now()}" includeemptydirs="true">
-            <fileset basedir="build/doc/web">
-                <include name="**/*" />
-                <exclude name="**/.svn" />
-                <exclude name="**/.svn/**" />
-                <exclude name="**/_svn" />
-                <exclude name="**/_svn/**" />
-                <exclude name="**/*.swp" />
-            </fileset>
-        </zip>
-        <echo message="Uploading web.zip and tools/web_install.sh to ${deploy.host}..." />
-        <exec program="${scp.program}" commandline="${scp.args} web.zip tools/web_install.sh ${deploy.host}:." workingdir="." />
-        <echo message="Spawning web_install.sh..." />
-        <exec program="${ssh.program}" commandline="${ssh.args} ${deploy.host} dos2unix web_install.sh &amp;&amp; /bin/bash web_install.sh ${webserver.deploy.dir}" workingdir="." />
-        <!-- <delete file="web.zip" /> -->
-    </target>
-
-    <target name="sourceforge_release">
-        <exec program="nant" commandline="publish_nunit2report" />
-        <exec program="nant" commandline="clover test publish_clover" />
     </target>
 
     <target name="sync-vs-projects">
