@@ -56,7 +56,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="copyright">Copyright &#169; 2004-2009 by <a style="text-decoration: none" href="http://www.nlog-project.org/disclaimer.html">Jaroslaw Kowalski</a></td>
+                        <td class="copyright">Copyright &#169; 2004-2009 by <a style="text-decoration: none" href="http://www.nlog-project.org/disclaimer.html">Jaroslaw Kowalski</a> | <a style="text-decoration: none" href="http://www.nlog-project.org/disclaimer.html">Disclaimer</a></td>
                     </tr>
                 </table>
             </xsl:otherwise>
