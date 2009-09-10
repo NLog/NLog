@@ -14,7 +14,9 @@
     <xsl:variable name="subpage_id" select="concat(/*[position()=1]/@subid,$subpage_id_override)" />
     <xsl:variable name="common" select="document(concat($mode,'.menu'))" />
     
-    <xsl:output method="xml" indent="no" omit-xml-declaration="yes" />
+    <xsl:output method="xml" omit-xml-declaration="yes" 
+                doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" 
+                doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN" indent="no" />
 
     <xsl:template match="/">
         <html>
@@ -28,7 +30,7 @@
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <title>NLog - <xsl:value-of select="$common/common/navigation/nav[@href=$page_id]/@label" /></title>
             </head>
-            <body width="100%">
+            <body>
                 <xsl:choose>
                     <xsl:when test="$mode='plain'">
                         <div class="plaincontent">
@@ -36,64 +38,45 @@
                         </div>
                     </xsl:when>
                     <xsl:otherwise>
-                <img src="title.png" style="display: none" /> <!-- need this for CHM -->
-                <div class="titleimage" style="overflow: hidden; width: 100%">
-                    <img src="NLog.jpg" />
+<div id="page">
+
+<div id="header">
+          <xsl:if test="$mode='web'">
+                <div id="googlesearch">
+<form action="http://www.google.com/cse" id="cse-search-box" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-2855917711217299:9kfg9pgji1w" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="26" />
+    <input type="submit" id="search-submit" name="sa" value="Search" />
+  </div>
+</form>
+ 
+<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
                 </div>
-                <table class="page" cellpadding="0" cellspacing="0" style="table-layout: fixed">
-                    <tr>
-                        <td valign="top" class="controls" rowspan="2">
-                            <xsl:call-template name="controls" />
-                            <p/>
-                            <xsl:comment>#include virtual="/dynamic/snippet.cgi?rectbanner"</xsl:comment>
-                        </td>
-                        <td valign="top" align="left" class="content">
-                            <xsl:comment>#include virtual="/dynamic/snippet.cgi?vertbanner"</xsl:comment>
-                            <xsl:comment>#include virtual="/dynamic/snippet.cgi?topbanner"</xsl:comment>
+          </xsl:if>
+
+	  <div id="logo">
+                    <img src="NLog.png" title="NLog - Advanced .NET Logging" />
+          </div>
+</div>
+
+<div id="menu">
+   <xsl:call-template name="controls" />
+</div>
+
+<div id="content">
                             <xsl:apply-templates select="/" mode="content" />
-                            <xsl:apply-templates select="/content/last-changed-date" mode="lastchangeddate" /> 
-                            <xsl:comment>#include virtual="/dynamic/snippet.cgi?bottombanner"</xsl:comment>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="copyright">Copyright &#169; 2004-2009 by <a style="text-decoration: none" href="http://www.nlog-project.org/disclaimer.html">Jaroslaw Kowalski</a> | <a style="text-decoration: none" href="http://www.nlog-project.org/disclaimer.html">Disclaimer</a></td>
-                    </tr>
-                </table>
+</div>
+
+<div id="footer">
+     Copyright &#169; 2004-2009 by <a style="text-decoration: none" href="http://www.nlog-project.org/disclaimer.html">Jaroslaw Kowalski</a> | <a style="text-decoration: none" href="http://www.nlog-project.org/disclaimer.html">Disclaimer</a>
+</div>
+
+</div>
             </xsl:otherwise>
         </xsl:choose>
-         <xsl:if test="$mode = 'web'">
-                <div id="googlesearch">
-                    <!-- SiteSearch Google -->
-                    <form method="get" action="http://www.google.com/custom" target="_top">
-                        <table border="0">
-                            <tr><td nowrap="nowrap" valign="top" align="left" height="32">
-<input type="hidden" name="domains" value="www.nlog-project.org"></input>
-<input type="text" name="q" size="20" maxlength="255" value=""></input>
-<input type="submit" name="sa" value="Google Search"></input>
-</td></tr>
-<tr>
-<td nowrap="nowrap">
-<table>
-<tr>
-<td>
-<input type="radio" name="sitesearch" value=""></input>
-<font size="-1" color="#000080">Web</font>
-</td>
-<td>
-<input type="radio" name="sitesearch" value="www.nlog-project.org" checked="checked"></input>
-<font size="-1" color="#000080">www.nlog-project.org</font>
-</td>
-</tr>
-</table>
-<input type="hidden" name="forid" value="1"></input>
-<input type="hidden" name="ie" value="UTF-8"></input>
-<input type="hidden" name="oe" value="UTF-8"></input>
-<input type="hidden" name="cof" value="GALT:#0066CC;GL:1;DIV:#999999;VLC:336633;AH:center;BGC:FFFFFF;LBGC:FF9900;ALC:0066CC;LC:0066CC;T:000000;GFNT:666666;GIMP:666666;FORID:1;"></input>
-<input type="hidden" name="hl" value="en"></input>
-</td></tr></table>
-</form>
-<!-- SiteSearch Google -->
-                </div>
+        <xsl:if test="$mode = 'web'">
                 <div id="counterCode">
                     <!-- Google Analytics -->
                     <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
@@ -134,9 +117,9 @@
     </xsl:template>
 
     <xsl:template match="navigation">
-        <table border="0" cellpadding="0" cellspacing="0">
-            <xsl:apply-templates select="nav" />
-        </table>
+	<ul>
+	   <xsl:apply-templates select="nav" />
+	</ul>
     </xsl:template>
 
     <xsl:template match="a[starts-with(@href,'http://') and not(starts-with(@href,'http://www.nlog-project')) and not(@nomangle)]">
@@ -149,21 +132,12 @@
     </xsl:template>
 
     <xsl:template match="nav">
-        <xsl:choose>
-            <xsl:when test="$page_id = @href"><tr><td class="nav_selected"><a class="nav_selected"><xsl:attribute name="href"><xsl:value-of select="@href" />.<xsl:value-of select="$file_extension" /></xsl:attribute><xsl:value-of select="@label" /></a><table class="submenu" width="100%"><xsl:apply-templates select="subnav" /></table></td></tr></xsl:when>
-            <xsl:otherwise>
-                <tr><td class="nav"><a class="nav"><xsl:attribute name="href"><xsl:value-of select="@href" /><xsl:if test="not(@noext)">.<xsl:value-of select="$file_extension" /></xsl:if></xsl:attribute><xsl:value-of select="@label" /></a></td></tr>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
-    <xsl:template match="subnav">
-        <xsl:choose>
-            <xsl:when test="$subpage_id = @href"><tr><td><a class="subnav_selected" href="{@href}.{$file_extension}"><xsl:value-of select="@label" /></a></td></tr></xsl:when>
-            <xsl:otherwise>
-                <tr><td><a class="subnav"><xsl:attribute name="href"><xsl:value-of select="@href" /><xsl:if test="not(@noext)">.<xsl:value-of select="$file_extension" /></xsl:if></xsl:attribute><xsl:value-of select="@label" /></a></td></tr>
-            </xsl:otherwise>
-        </xsl:choose>
+	<li>
+	    <xsl:if test="$page_id = @href">
+                <xsl:attribute name="class">selected</xsl:attribute>
+            </xsl:if>
+            <a class="nav_selected" href="{@href}.{$file_extension}"><xsl:value-of select="@label" /></a>
+        </li>
     </xsl:template>
 
     <xsl:template name="simple-type-name">

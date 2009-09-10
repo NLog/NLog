@@ -2,7 +2,6 @@
 <?xml-stylesheet type="text/xsl" href="style.xsl" ?>
 <content lang="en" id="documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <h2>Introduction to tracing applications with NLog</h2>
-    <p>Author: Jaros³aw Kowalski &lt;<a href="mailto:jaak@jkowalski.net">jaak@jkowalski.net</a>&gt;</p>
     <div style="margin-left: 1cm; margin-right: 1cm">
         <font color="#006400">
             <i>
