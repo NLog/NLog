@@ -1,11 +1,74 @@
+
 html, body
 {
     margin: 0px;
-    background-color: white;
+    background-color: #c0c0c0;
     color: black;
-    font-family: Verdana;
-    font-size: 11px;
+    font-family: Segoe UI, Verdana;
+    font-size: 12pt;
 }
+
+#header
+{
+}
+
+#page
+{
+	background-color: #ffffff;
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 16px;
+	margin-bottom: 16px;
+	border: 1px solid #a0a0a0;
+}
+
+#content
+{
+	margin-left: 200px;
+	padding-right: 20px;
+	padding-left: 20px;
+	border-left: 2px solid #FE7206;
+}
+
+#logo
+{
+	padding: 8px;
+}
+
+#footer
+{
+	clear: both;
+	text-align: center;
+	padding: 10px;
+}
+
+#menu
+{
+	float: left;
+	font-size: 14pt;
+	text-align: right;
+}
+
+#menu ul
+{
+	list-style: none;
+	margin: 0;
+	padding: 16px;
+	width: 170px;
+}
+
+#menu a
+{
+	color: black;
+	text-decoration: none;
+}
+
+#menu li.selected a
+{
+	font-weight: bold;
+}
+
 
 h1
 {
@@ -30,15 +93,6 @@ h6
 {
     font-size: 10pt;
     font-weight: bold;
-}
-
-td.nav
-{
-    font-family: Trebuchet MS, Arial, Helv;
-    font-size: 13px;
-    font-style: normal;
-    padding: 3px;
-    width: 150px;
 }
 
 a
@@ -67,10 +121,6 @@ a:hover
 
 div.titleimage
 {
-    overflow: hidden;
-    width: 100%;
-    height: 83px;
-    background-image: url(title.png);
 }
 
 span.path
@@ -163,124 +213,6 @@ span.xmlcomment
     font-style: italic;
 }
 
-a.nav
-{
-    display: block;
-    font-family: Tahoma, Arial, Helv;
-    font-style: normal;
-    font-weight: bold;
-    color: #202040;
-    margin: 1px;
-    width: 150px;
-    cursor: pointer; cursor: hand;
-    text-decoration: none;
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
-a.nav:visited
-{
-    color: black;
-}
-
-a.nav:hover
-{
-    color: blue;
-}
-
-a.nav_selected
-{
-    display: block;
-    font-family: Tahoma, Trebuchet MS, Arial, Helv;
-    font-style: normal;
-    font-weight: bold;
-    color: #805020;
-    margin: 1px;
-    margin-left: 4px;
-    cursor: pointer; cursor: hand;
-    text-decoration: none;
-}
-
-a.nav_selected:visited
-{
-    color: black;
-}
-
-a.nav_selected:hover
-{
-    color: blue;
-}
-
-a.subnav
-{
-    display: block;
-    font-family: Trebuchet MS, Arial, Helv;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    color: #202040;
-    margin: 1px;
-    cursor: pointer; cursor: hand;
-    text-decoration: none;
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
-td.subnav_spacer
-{
-    width: 10px;
-}
-
-a.subnav:visited
-{
-    color: black;
-}
-
-a.subnav:hover
-{
-    background-color: #f0f0f0;
-}
-
-a.subnav_selected
-{
-    display: block;
-    font-family: Trebuchet MS, Arial, Helv;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 12px;
-    color: black;
-    border: 1px solid #d0d0d0;
-    background-color: #ABC8E5;
-    padding-left: 4px;
-    padding-right: 4px;
-    cursor: pointer; cursor: hand;
-    text-decoration: none;
-}
-
-a.subnav_selected:visited
-{
-    color: black;
-}
-
-a.subnav_selected:hover
-{
-    color: red;
-}
-
-td.nav
-{
-}
-
-td.nav_selected
-{
-    background-color: #DFEAF5;
-    border: 1px solid #e0e0e0;
-    padding-left: 4px;
-    padding-right: 4px;
-    width: 150px;
-    font-size: 13px;
-}
-
 td.titledesc
 {
     font-family: Verdana;
@@ -319,51 +251,6 @@ td.controls
     background-color: #F2F7FC;
     border-right: 1px solid #c0c0c0;
     border-bottom: 1px solid #c0c0c0;
-}
-
-table.page
-{
-    /* border: 1px solid #404060; */
-}
-
-tr.spacer
-{
-    height: 10px;
-}
-
-
-td.copyright
-{
-    background-color: white;
-    padding: 4px;
-    font-size: 11px;
-    text-align: center;
-    font-family: Trebuchet MS, Arial, Helv;
-}
-
-
-td.hostedby
-{
-    background-color: #F2F7FC;
-    padding: 4px;
-    border-right: 1px solid #c0c0c0;
-}
-
-td.newsdate
-{
-    width: 100px;
-    vertical-align: top;
-    text-align: right;
-    font-weight: bold;
-    font-size: 14px;
-    padding: 4px;
-}
-
-td.newstext
-{
-    font-family: Trebuchet MS, Arial, Helv;
-    font-size: 13px;
-    padding: 4px;
 }
 
 code
@@ -510,8 +397,8 @@ code.config
 
 pre.example
 {
-    background-color: #f0f0f0;
-    /* border: 1px solid #c0c0f0; */
+    background-color: #f8f8f8;
+    border: 1px solid #c0c0ff;
     color: black;
     padding: 4px;
     font-size: 9pt;
@@ -520,7 +407,7 @@ pre.example
     white-space: -o-pre-wrap;    /* Opera 7 */
     white-space: pre-wrap;       /* CSS3 - Text module (Candidate Recommendation) */
     word-wrap: break-word;       /* IE 5.5+ */
-    width: 100%;
+    width: 710px;
 }
 
 pre.example code
@@ -720,9 +607,9 @@ table.definedin
 
 #googlesearch
 {
-    position: absolute;
-    top: 4px;
-    right: 10px;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
 }
 
 .lastupdated
@@ -775,7 +662,7 @@ a.download
 {
     width: 194px;
     height: 38px;
-    background-image: url(download_now.png);
+    background-image: url(/download_now.png);
 }
 
 .download span
