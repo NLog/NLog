@@ -32,6 +32,7 @@
 // 
 
 using System.Collections.Generic;
+using System.Globalization;
 using NLog.Conditions;
 using NLog.Config;
 using NLog.Internal;
@@ -119,7 +120,7 @@ namespace NLog.Targets.Wrappers
 
             if (InternalLogger.IsTraceEnabled)
             {
-                InternalLogger.Trace("Input: {0} events", logEvents.Length);
+                InternalLogger.Trace(CultureInfo.InvariantCulture, "Input: {0} events", logEvents.Length);
             }
 
             // evaluate all the rules to get the filtering condition
@@ -133,7 +134,7 @@ namespace NLog.Targets.Wrappers
                     {
                         if (InternalLogger.IsTraceEnabled)
                         {
-                            InternalLogger.Trace("Rule matched: {0}", rule.Exists);
+                            InternalLogger.Trace(CultureInfo.InvariantCulture, "Rule matched: {0}", rule.Exists);
                         }
 
                         resultFilter = rule.Filter;
@@ -154,7 +155,7 @@ namespace NLog.Targets.Wrappers
 
             if (InternalLogger.IsTraceEnabled)
             {
-                InternalLogger.Trace("Filter to apply: {0}", resultFilter);
+                InternalLogger.Trace(CultureInfo.InvariantCulture, "Filter to apply: {0}", resultFilter);
             }
 
             // apply the condition to the buffer
@@ -171,7 +172,7 @@ namespace NLog.Targets.Wrappers
 
             if (InternalLogger.IsTraceEnabled)
             {
-                InternalLogger.Trace("After filtering: {0} events", resultBuffer.Count);
+                InternalLogger.Trace(CultureInfo.InvariantCulture, "After filtering: {0} events", resultBuffer.Count);
             }
 
             if (resultBuffer.Count > 0)

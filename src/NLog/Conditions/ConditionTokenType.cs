@@ -38,9 +38,9 @@ namespace NLog.Conditions
     /// </summary>
     internal enum ConditionTokenType
     {
-        EOF,
+        EndOfInput,
 
-        BOF,
+        BeginningOfInput,
 
         Number,
 
@@ -56,13 +56,13 @@ namespace NLog.Conditions
 
         GT,
         
-        LE,
+        LessThanOrEqualTo,
         
-        GE,
+        GreaterThanOrEqualTo,
         
-        EQ,
+        EqualTo,
         
-        NE,
+        NotEqual,
 
         LeftParen,
         

@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using NLog.Config;
@@ -122,7 +123,7 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception ex)
             {
-                InternalLogger.Warn("Cannot read file {0}: {1}", this.FileName, ex);
+                InternalLogger.Warn(CultureInfo.InvariantCulture, "Cannot read file {0}: {1}", this.FileName, ex);
                 return string.Empty;
             }
         }

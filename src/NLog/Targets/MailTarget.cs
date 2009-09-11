@@ -35,6 +35,7 @@
 
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -311,7 +312,7 @@ namespace NLog.Targets
             }
 
             client.EnableSsl = this.EnableSsl;
-            Internal.InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, this.SmtpServer);
+            Internal.InternalLogger.Debug(CultureInfo.InvariantCulture, "Sending mail to {0} using {1}", msg.To, this.SmtpServer);
             client.Send(msg);
         }
 

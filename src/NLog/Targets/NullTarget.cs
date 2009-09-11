@@ -56,17 +56,11 @@ namespace NLog.Targets
     [Target("Null")]
     public sealed class NullTarget : TargetWithLayout
     {
-        private bool formatMessage = false;
-
         /// <summary>
         /// Gets or sets a value indicating whether to perform layout calculation.
         /// </summary>
         [DefaultValue(false)]
-        public bool FormatMessage
-        {
-            get { return this.formatMessage; }
-            set { this.formatMessage = value; }
-        }
+        public bool FormatMessage { get; set; }
 
         /// <summary>
         /// Does nothing. Optionally it calculates the layout text but
@@ -75,7 +69,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            if (this.formatMessage)
+            if (this.FormatMessage)
             {
                 this.Layout.GetFormattedMessage(logEvent);
             }

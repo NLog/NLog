@@ -40,24 +40,24 @@ namespace NLog
     /// </summary>
     public class LogLevel : IComparable
     {
-        private static LogLevel[] levelByOrdinal;
+        private static readonly LogLevel[] levelByOrdinal;
 
         /// <summary>
         /// Initializes static members of the LogLevel class.
         /// </summary>
         static LogLevel()
         {
-            int l = 0;
+            int ordinal = 0;
 
-            Trace = new LogLevel("Trace", l++);
-            Debug = new LogLevel("Debug", l++);
-            Info = new LogLevel("Info", l++);
-            Warn = new LogLevel("Warn", l++);
-            Error = new LogLevel("Error", l++);
-            Fatal = new LogLevel("Fatal", l++);
-            Off = new LogLevel("Off", l++);
+            Trace = new LogLevel("Trace", ordinal++);
+            Debug = new LogLevel("Debug", ordinal++);
+            Info = new LogLevel("Info", ordinal++);
+            Warn = new LogLevel("Warn", ordinal++);
+            Error = new LogLevel("Error", ordinal++);
+            Fatal = new LogLevel("Fatal", ordinal++);
+            Off = new LogLevel("Off", ordinal);
 
-            levelByOrdinal = new LogLevel[] { Trace, Debug, Info, Warn, Error, Fatal, Off };
+            levelByOrdinal = new[] { Trace, Debug, Info, Warn, Error, Fatal, Off };
             MaxLevel = levelByOrdinal[0];
             MaxLevel = levelByOrdinal[levelByOrdinal.Length - 2]; // ignore the Off level
         }
@@ -118,14 +118,40 @@ namespace NLog
         /// <summary>
         /// Compares two <see cref="LogLevel"/> objects 
         /// and returns a value indicating whether 
+        /// the first one is equal to the second one.
+        /// </summary>
+        /// <param name="level1">The first level.</param>
+        /// <param name="level2">The second level.</param>
+        /// <returns>The value of <c>level1.Ordinal == level2.Ordinal</c>.</returns>
+        public static bool operator ==(LogLevel level1, LogLevel level2)
+        {
+            return level1.Ordinal == level2.Ordinal;
+        }
+
+        /// <summary>
+        /// Compares two <see cref="LogLevel"/> objects 
+        /// and returns a value indicating whether 
+        /// the first one is not equal to the second one.
+        /// </summary>
+        /// <param name="level1">The first level.</param>
+        /// <param name="level2">The second level.</param>
+        /// <returns>The value of <c>level1.Ordinal != level2.Ordinal</c>.</returns>
+        public static bool operator !=(LogLevel level1, LogLevel level2)
+        {
+            return level1.Ordinal != level2.Ordinal;
+        }
+
+        /// <summary>
+        /// Compares two <see cref="LogLevel"/> objects 
+        /// and returns a value indicating whether 
         /// the first one is greater than the second one.
         /// </summary>
-        /// <param name="l1">The first level.</param>
-        /// <param name="l2">The second level.</param>
-        /// <returns>The value of <c>l1.Ordinal &gt; l2.Ordinal</c>.</returns>
-        public static bool operator >(LogLevel l1, LogLevel l2)
+        /// <param name="level1">The first level.</param>
+        /// <param name="level2">The second level.</param>
+        /// <returns>The value of <c>level1.Ordinal &gt; level2.Ordinal</c>.</returns>
+        public static bool operator >(LogLevel level1, LogLevel level2)
         {
-            return l1.Ordinal > l2.Ordinal;
+            return level1.Ordinal > level2.Ordinal;
         }
 
         /// <summary>
@@ -133,12 +159,12 @@ namespace NLog
         /// and returns a value indicating whether 
         /// the first one is greater than or equal to the second one.
         /// </summary>
-        /// <param name="l1">The first level.</param>
-        /// <param name="l2">The second level.</param>
-        /// <returns>The value of <c>l1.Ordinal &gt;= l2.Ordinal</c>.</returns>
-        public static bool operator >=(LogLevel l1, LogLevel l2)
+        /// <param name="level1">The first level.</param>
+        /// <param name="level2">The second level.</param>
+        /// <returns>The value of <c>level1.Ordinal &gt;= level2.Ordinal</c>.</returns>
+        public static bool operator >=(LogLevel level1, LogLevel level2)
         {
-            return l1.Ordinal >= l2.Ordinal;
+            return level1.Ordinal >= level2.Ordinal;
         }
 
         /// <summary>
@@ -146,12 +172,12 @@ namespace NLog
         /// and returns a value indicating whether 
         /// the first one is less than the second one.
         /// </summary>
-        /// <param name="l1">The first level.</param>
-        /// <param name="l2">The second level.</param>
-        /// <returns>The value of <c>l1.Ordinal &lt; l2.Ordinal</c>.</returns>
-        public static bool operator <(LogLevel l1, LogLevel l2)
+        /// <param name="level1">The first level.</param>
+        /// <param name="level2">The second level.</param>
+        /// <returns>The value of <c>level1.Ordinal &lt; level2.Ordinal</c>.</returns>
+        public static bool operator <(LogLevel level1, LogLevel level2)
         {
-            return l1.Ordinal < l2.Ordinal;
+            return level1.Ordinal < level2.Ordinal;
         }
 
         /// <summary>
@@ -159,12 +185,12 @@ namespace NLog
         /// and returns a value indicating whether 
         /// the first one is less than or equal to the second one.
         /// </summary>
-        /// <param name="l1">The first level.</param>
-        /// <param name="l2">The second level.</param>
-        /// <returns>The value of <c>l1.Ordinal &lt;= l2.Ordinal</c>.</returns>
-        public static bool operator <=(LogLevel l1, LogLevel l2)
+        /// <param name="level1">The first level.</param>
+        /// <param name="level2">The second level.</param>
+        /// <returns>The value of <c>level1.Ordinal &lt;= level2.Ordinal</c>.</returns>
+        public static bool operator <=(LogLevel level1, LogLevel level2)
         {
-            return l1.Ordinal <= l2.Ordinal;
+            return level1.Ordinal <= level2.Ordinal;
         }
 
         /// <summary>
@@ -180,14 +206,14 @@ namespace NLog
         /// <summary>
         /// Returns the <see cref="T:NLog.LogLevel"/> that corresponds to the supplied <see langword="string" />.
         /// </summary>
-        /// <param name="levelString">The texual representation of the log level.</param>
+        /// <param name="levelName">The texual representation of the log level.</param>
         /// <returns>The enumeration value.</returns>
-        public static LogLevel FromString(string levelString)
+        public static LogLevel FromString(string levelName)
         {
             // case sensitive search first
             for (int i = 0; i < levelByOrdinal.Length; ++i)
             {
-                if (levelByOrdinal[i].Name == levelString)
+                if (levelByOrdinal[i].Name == levelName)
                 {
                     return levelByOrdinal[i];
                 }
@@ -196,13 +222,13 @@ namespace NLog
             // case insensitive search
             for (int i = 0; i < levelByOrdinal.Length; ++i)
             {
-                if (0 == String.Compare(levelByOrdinal[i].Name, levelString, StringComparison.InvariantCultureIgnoreCase))
+                if (0 == String.Compare(levelByOrdinal[i].Name, levelName, StringComparison.OrdinalIgnoreCase))
                 {
                     return levelByOrdinal[i];
                 }
             }
 
-            throw new ArgumentException("Unknown log level: " + levelString);
+            throw new ArgumentException("Unknown log level: " + levelName);
         }
 
         /// <summary>
@@ -212,6 +238,22 @@ namespace NLog
         public override string ToString()
         {
             return this.Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Ordinal;
+        }
+
+        public override bool Equals(object obj)
+        {
+            LogLevel other = obj as LogLevel;
+            if (other == null)
+            {
+                return false;
+            }
+
+            return this.Ordinal == other.Ordinal;
         }
 
         /// <summary>

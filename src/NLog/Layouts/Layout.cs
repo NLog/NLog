@@ -32,6 +32,7 @@
 // 
 
 using System.Collections.Generic;
+using System.Globalization;
 using NLog.Config;
 using NLog.Internal;
 
@@ -42,7 +43,10 @@ namespace NLog.Layouts
     /// </summary>
     public abstract class Layout
     {
-        private bool initialized = false;
+        protected Layout()
+        {
+            IsInitialized = false;
+        }
 
         /// <summary>
         /// Gets a value indicating whether this instance is initialized.
@@ -50,10 +54,7 @@ namespace NLog.Layouts
         /// <value>
         /// A value of <c>true</c> if this instance is initialized; otherwise, <c>false</c>.
         /// </value>
-        public bool IsInitialized
-        {
-            get { return this.initialized; }
-        }
+        public bool IsInitialized { get; private set; }
 
         /// <summary>
         /// Converts a given text to a <see cref="Layout" />.
@@ -61,6 +62,11 @@ namespace NLog.Layouts
         /// <param name="text">Text to be converted.</param>
         /// <returns><see cref="SimpleLayout"/> object represented by the text.</returns>
         public static implicit operator Layout(string text)
+        {
+            return new SimpleLayout(text);
+        }
+
+        public static Layout FromString(string text)
         {
             return new SimpleLayout(text);
         }
@@ -110,7 +116,7 @@ namespace NLog.Layouts
         /// </summary>
         public virtual void Initialize()
         {
-            this.initialized = true;
+            this.IsInitialized = true;
         }
 
         /// <summary>
@@ -118,16 +124,16 @@ namespace NLog.Layouts
         /// </summary>
         public virtual void Close()
         {
-            if (!this.initialized)
+            if (!this.IsInitialized)
             {
-                InternalLogger.Warn("Called Close() without Initialize() on " + this.ToString() + "(" + this.GetHashCode() + ")");
+                InternalLogger.Warn(CultureInfo.InvariantCulture, "Called Close() without Initialize() on " + this.ToString() + "(" + this.GetHashCode() + ")");
             }
             else
             {
-                InternalLogger.Trace("Closing " + this.ToString() + "(" + this.GetHashCode() + ")...");
+                InternalLogger.Trace(CultureInfo.InvariantCulture, "Closing " + this.ToString() + "(" + this.GetHashCode() + ")...");
             }
 
-            this.initialized = false;
+            this.IsInitialized = false;
         }
 
         /// <summary>

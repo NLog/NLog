@@ -60,7 +60,7 @@ namespace NLog
             this.message = message;
             this.parameters = parameters;
 
-            if (this.NeedToPreformatMessage(parameters))
+            if (NeedToPreformatMessage(parameters))
             {
                 this.CalcFormattedMessage();
             }
@@ -82,6 +82,60 @@ namespace NLog
             }
         }
 
+        private static bool NeedToPreformatMessage(object[] parameters)
+        {
+            // we need to preformat message if it contains any parameters which could possibly
+            // do logging in their ToString()
+            if (parameters == null)
+            {
+                return false;
+            }
+
+            if (parameters.Length == 0)
+            {
+                return false;
+            }
+
+            if (parameters.Length > 3)
+            {
+                // too many parameters, too costly to check
+                return true;
+            }
+
+            if (!IsSafeToDeferFormatting(parameters[0]))
+            {
+                return true;
+            }
+
+            if (parameters.Length >= 2)
+            {
+                if (!IsSafeToDeferFormatting(parameters[1]))
+                {
+                    return true;
+                }
+            }
+
+            if (parameters.Length >= 3)
+            {
+                if (!IsSafeToDeferFormatting(parameters[2]))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsSafeToDeferFormatting(object value)
+        {
+            if (value == null)
+            {
+                return true;
+            }
+
+            return value.GetType().IsPrimitive || value is string;
+        }
+
         private void CalcFormattedMessage()
         {
             this.formattedMessage = this.message;
@@ -99,60 +153,6 @@ namespace NLog
             {
                 this.formattedMessage = String.Format(this.message, this.parameters);
             }
-        }
-
-        private bool NeedToPreformatMessage(object[] parameters)
-        {
-            // we need to preformat message if it contains any parameters which could possibly
-            // do logging in their ToString()
-            if (parameters == null)
-            {
-                return false;
-            }
-
-            if (parameters.Length == 0)
-            {
-                return false;
-            }
-            
-            if (parameters.Length > 3)
-            {
-                // too many parameters, too costly to check
-                return true;
-            }
-
-            if (!this.IsSafeToDeferFormatting(parameters[0]))
-            {
-                return true;
-            }
-
-            if (parameters.Length >= 2)
-            {
-                if (!this.IsSafeToDeferFormatting(parameters[1]))
-                {
-                    return true;
-                }
-            }
-
-            if (parameters.Length >= 3)
-            {
-                if (!this.IsSafeToDeferFormatting(parameters[2]))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private bool IsSafeToDeferFormatting(object value)
-        {
-            if (value == null)
-            {
-                return true;
-            }
-
-            return value.GetType().IsPrimitive || value is string;
         }
     }
 }

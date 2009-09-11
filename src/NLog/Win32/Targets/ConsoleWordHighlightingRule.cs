@@ -45,14 +45,14 @@ namespace NLog.Win32.Targets
     public class ConsoleWordHighlightingRule
     {
         private Regex compiledRegex;
-        private ConsoleOutputColor backgroundColor = ConsoleOutputColor.NoChange;
-        private ConsoleOutputColor foregroundColor = ConsoleOutputColor.NoChange;
 
         /// <summary>
         /// Initializes a new instance of the ConsoleWordHighlightingRule class.
         /// </summary>
         public ConsoleWordHighlightingRule()
         {
+            BackgroundColor = ConsoleOutputColor.NoChange;
+            ForegroundColor = ConsoleOutputColor.NoChange;
         }
 
         /// <summary>
@@ -100,6 +100,7 @@ namespace NLog.Win32.Targets
                 if (this.compiledRegex == null)
                 {
                     string regexpression = this.Regex;
+
                     if (regexpression == null && this.Text != null)
                     {
                         regexpression = System.Text.RegularExpressions.Regex.Escape(this.Text);
@@ -126,21 +127,13 @@ namespace NLog.Win32.Targets
         /// Gets or sets the foreground color.
         /// </summary>
         [DefaultValue("NoChange")]
-        public ConsoleOutputColor ForegroundColor
-        {
-            get { return this.foregroundColor; }
-            set { this.foregroundColor = value; }
-        }
+        public ConsoleOutputColor ForegroundColor { get; set; }
 
         /// <summary>
         /// Gets or sets the background color.
         /// </summary>
         [DefaultValue("NoChange")]
-        public ConsoleOutputColor BackgroundColor
-        {
-            get { return this.backgroundColor; }
-            set { this.backgroundColor = value; }
-        }
+        public ConsoleOutputColor BackgroundColor { get; set; }
 
         internal string MatchEvaluator(Match m)
         {

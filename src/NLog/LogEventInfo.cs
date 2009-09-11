@@ -48,16 +48,11 @@ namespace NLog
         /// <summary>
         /// Gets or sets the date of the first log event created.
         /// </summary>
-        public static readonly DateTime ZeroDate = DateTime.Now;
-        private readonly int sequenceID;
+        internal static readonly DateTime ZeroDate = DateTime.Now;
+        private static int globalSequenceId;
 
-        private static int globalSequenceID;
         private IDictionary<Layout, string> layoutCache;
         private IDictionary<string, object> eventContext;
-#if !NET_CF
-        private StackTrace stackTrace;
-        private int userStackFrame;
-#endif
 
         /// <summary>
         /// Initializes a new instance of the LogEventInfo class.
@@ -69,7 +64,7 @@ namespace NLog
             this.TimeStamp = CurrentTimeGetter.Now;
             this.Level = level;
             this.LoggerName = loggerName;
-            this.sequenceID = Interlocked.Increment(ref globalSequenceID);
+            this.SequenceId = Interlocked.Increment(ref globalSequenceId);
         }
 
         /// <summary>
@@ -88,7 +83,7 @@ namespace NLog
         /// </summary>
         public bool HasStackTrace
         {
-            get { return this.stackTrace != null; }
+            get { return this.StackTrace != null; }
         }
 
         /// <summary>
@@ -96,25 +91,20 @@ namespace NLog
         /// </summary>
         public StackFrame UserStackFrame
         {
-            get { return (this.stackTrace != null) ? this.stackTrace.GetFrame(this.userStackFrame) : null; }
+            get { return (this.StackTrace != null) ? this.StackTrace.GetFrame(this.UserStackFrameNumber) : null; }
         }
 
         /// <summary>
         /// Gets the number index of the stack frame that represents the user
         /// code (not the NLog code).
         /// </summary>
-        public int UserStackFrameNumber
-        {
-            get { return this.userStackFrame; }
-        }
+        public int UserStackFrameNumber { get; private set; }
 
         /// <summary>
         /// Gets the entire stack trace.
         /// </summary>
-        public StackTrace StackTrace
-        {
-            get { return this.stackTrace; }
-        }
+        public StackTrace StackTrace { get; private set; }
+
 #endif
         /// <summary>
         /// Gets the exception information.
@@ -154,10 +144,7 @@ namespace NLog
         /// Gets the unique identifier of log event which is automatically generated
         /// and monotonously increasing.
         /// </summary>
-        public int SequenceId
-        {
-            get { return this.sequenceID; }
-        }
+        public int SequenceId { get; private set; }
 
         /// <summary>
         /// Creates the null event.
@@ -165,7 +152,7 @@ namespace NLog
         /// <returns>Null event (which can be used whenever <see cref="LogEventInfo"/> is required).</returns>
         public static LogEventInfo CreateNullEvent()
         {
-            return LogEventInfo.Create(LogLevel.Off, String.Empty, null, String.Empty);
+            return Create(LogLevel.Off, String.Empty, null, String.Empty);
         }
 
         /// <summary>
@@ -224,8 +211,8 @@ namespace NLog
 #if !NET_CF
         internal void SetStackTrace(StackTrace stackTrace, int userStackFrame)
         {
-            this.stackTrace = stackTrace;
-            this.userStackFrame = userStackFrame;
+            this.StackTrace = stackTrace;
+            this.UserStackFrameNumber = userStackFrame;
         }
 #endif
 

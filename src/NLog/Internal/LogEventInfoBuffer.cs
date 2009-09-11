@@ -40,12 +40,13 @@ namespace NLog.Internal
     /// </summary>
     internal class LogEventInfoBuffer
     {
+        private readonly bool growAsNeeded;
+        private readonly int growLimit = 0;
+
         private LogEventInfo[] buffer;
-        private int getPointer = 0;
-        private int putPointer = 0;
-        private int count = 0;
-        private bool growAsNeeded;
-        private int growLimit = 0;
+        private int getPointer;
+        private int putPointer;
+        private int count;
 
         /// <summary>
         /// Initializes a new instance of the LogEventInfoBuffer class.
@@ -91,7 +92,7 @@ namespace NLog.Internal
                             newLength = this.growLimit;
                         }
 
-                        // InternalLogger.Trace("Enlarging LogEventInfoBuffer from {0} to {1}", this.buffer.Length, this.buffer.Length * 2);
+                        // InternalLogger.Trace(CultureInfo.InvariantCulture, "Enlarging LogEventInfoBuffer from {0} to {1}", this.buffer.Length, this.buffer.Length * 2);
                         LogEventInfo[] newBuffer = new LogEventInfo[newLength];
                         Array.Copy(this.buffer, 0, newBuffer, 0, this.buffer.Length);
                         this.buffer = newBuffer;
@@ -131,7 +132,7 @@ namespace NLog.Internal
                 int cnt = this.count;
                 LogEventInfo[] returnValue = new LogEventInfo[cnt];
 
-                // InternalLogger.Trace("GetEventsAndClear({0},{1},{2})", this.getPointer, this.putPointer, this.count);
+                // InternalLogger.Trace(CultureInfo.InvariantCulture, "GetEventsAndClear({0},{1},{2})", this.getPointer, this.putPointer, this.count);
                 for (int i = 0; i < cnt; ++i)
                 {
                     int p = (this.getPointer + i) % this.buffer.Length;

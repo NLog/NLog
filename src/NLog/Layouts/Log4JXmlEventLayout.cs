@@ -10,15 +10,15 @@ namespace NLog.Layouts
     [Layout("Log4JXmlEventLayout")]
     public class Log4JXmlEventLayout : Layout
     {
-        private Log4JXmlEventLayoutRenderer renderer = new Log4JXmlEventLayoutRenderer();
+        public Log4JXmlEventLayout()
+        {
+            Renderer = new Log4JXmlEventLayoutRenderer();
+        }
 
         /// <summary>
         /// Gets the <see cref="Log4JXmlEventLayoutRenderer"/> instance that renders log events.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer Renderer
-        {
-            get { return this.renderer; }
-        }
+        public Log4JXmlEventLayoutRenderer Renderer { get; private set; }
 
         /// <summary>
         /// Renders the layout for the specified logging event by invoking layout renderers.
@@ -34,9 +34,9 @@ namespace NLog.Layouts
                 return cachedValue;
             }
 
-            StringBuilder sb = new StringBuilder(this.renderer.GetEstimatedBufferSize(logEvent));
+            StringBuilder sb = new StringBuilder(this.Renderer.GetEstimatedBufferSize(logEvent));
 
-            this.renderer.Append(sb, logEvent);
+            this.Renderer.Append(sb, logEvent);
             logEvent.AddCachedLayoutValue(this, sb.ToString());
             return sb.ToString();
         }
@@ -48,7 +48,7 @@ namespace NLog.Layouts
         /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace.</returns>
         public override StackTraceUsage GetStackTraceUsage()
         {
-            return this.renderer.GetStackTraceUsage();
+            return this.Renderer.GetStackTraceUsage();
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace NLog.Layouts
         /// </remarks>
         public override bool IsVolatile()
         {
-            return this.renderer.IsVolatile();
+            return this.Renderer.IsVolatile();
         }
     }
 }

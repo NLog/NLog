@@ -50,7 +50,7 @@ namespace NLog
         /// <returns>An instance of <typeparamref name="T"/>.</returns>
         public new T GetLogger(string name)
         {
-            return (T)base.GetLogger(name, typeof(T));
+            return (T)this.GetLogger(name, typeof(T));
         }
 
 #if !NET_CF
@@ -60,7 +60,7 @@ namespace NLog
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
-        [MethodImpl(MethodImplOptions.NoInlining)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate"), MethodImpl(MethodImplOptions.NoInlining)]
         public new T GetCurrentClassLogger()
         {
             StackFrame frame = new StackFrame(1, false);

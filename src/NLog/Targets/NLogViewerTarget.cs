@@ -67,8 +67,6 @@ namespace NLog.Targets
     [Target("NLogViewer")]
     public class NLogViewerTarget : NetworkTarget
     {
-        private ICollection<NLogViewerParameterInfo> parameters = new List<NLogViewerParameterInfo>();
-
         /// <summary>
         /// Initializes a new instance of the NLogViewerTarget class.
         /// </summary>
@@ -77,8 +75,9 @@ namespace NLog.Targets
         /// </remarks>
         public NLogViewerTarget()
         {
+            Parameters = new List<NLogViewerParameterInfo>();
             this.Layout = new Log4JXmlEventLayout();
-            this.Renderer.Parameters = this.parameters;
+            this.Renderer.Parameters = this.Parameters;
             NewLine = false;
         }
 
@@ -123,7 +122,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsContext"/> dictionary contents.
         /// </summary>
-        public bool IncludeMDC
+        public bool IncludeMdc
         {
             get { return this.Renderer.IncludeMDC; }
             set { this.Renderer.IncludeMDC = value; }
@@ -132,7 +131,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to include <see cref="NestedDiagnosticsContext"/> stack contents.
         /// </summary>
-        public bool IncludeNDC
+        public bool IncludeNdc
         {
             get { return this.Renderer.IncludeNDC; }
             set { this.Renderer.IncludeNDC = value; }
@@ -143,10 +142,7 @@ namespace NLog.Targets
         /// between NLog layout and a named parameter.
         /// </summary>
         [ArrayParameter(typeof(NLogViewerParameterInfo), "parameter")]
-        public ICollection<NLogViewerParameterInfo> Parameters
-        {
-            get { return this.parameters; }
-        }
+        public ICollection<NLogViewerParameterInfo> Parameters { get; private set; }
 
         /// <summary>
         /// Gets or sets the instance of <see cref="Log4JXmlEventLayout"/> that is used to format log messages.

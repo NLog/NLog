@@ -35,6 +35,7 @@
 
 using System;
 using System.Configuration;
+using System.Globalization;
 using System.Xml;
 using NLog.Internal;
 
@@ -62,7 +63,7 @@ namespace NLog.Config
             }
             catch (Exception ex)
             {
-                InternalLogger.Error("ConfigSectionHandler error: {0}", ex);
+                InternalLogger.Error(CultureInfo.InvariantCulture, "ConfigSectionHandler error: {0}", ex);
                 throw;
             }
         }

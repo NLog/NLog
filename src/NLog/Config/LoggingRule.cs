@@ -50,15 +50,15 @@ namespace NLog.Config
         private string loggerNameMatchArgument;
 
         private bool[] logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
-        private ICollection<Target> targets = new List<Target>();
-        private IList<Filter> filters = new List<Filter>();
-        private ICollection<LoggingRule> childRules = new List<LoggingRule>();
 
         /// <summary>
         /// Initializes a new instance of the LoggingRule class.
         /// </summary>
         public LoggingRule()
         {
+            Filters = new List<Filter>();
+            ChildRules = new List<LoggingRule>();
+            Targets = new List<Target>();
         }
 
         /// <summary>
@@ -69,8 +69,11 @@ namespace NLog.Config
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, LogLevel minLevel, Target target)
         {
+            Filters = new List<Filter>();
+            ChildRules = new List<LoggingRule>();
+            Targets = new List<Target>();
             this.LoggerNamePattern = loggerNamePattern;
-            this.targets.Add(target);
+            this.Targets.Add(target);
             for (int i = (int)minLevel.Ordinal; i <= (int)LogLevel.MaxLevel.Ordinal; ++i)
             {
                 this.EnableLoggingForLevel(LogLevel.FromOrdinal(i));
@@ -85,8 +88,11 @@ namespace NLog.Config
         /// <remarks>By default no logging levels are defined. You should call <see cref="EnableLoggingForLevel"/> and <see cref="DisableLoggingForLevel"/> to set them.</remarks>
         public LoggingRule(string loggerNamePattern, Target target)
         {
+            Filters = new List<Filter>();
+            ChildRules = new List<LoggingRule>();
+            Targets = new List<Target>();
             this.LoggerNamePattern = loggerNamePattern;
-            this.targets.Add(target);
+            this.Targets.Add(target);
         }
 
         internal enum MatchMode
@@ -102,26 +108,17 @@ namespace NLog.Config
         /// <summary>
         /// Gets a collection of targets that should be written to when this rule matches.
         /// </summary>
-        public ICollection<Target> Targets
-        {
-            get { return this.targets; }
-        }
+        public ICollection<Target> Targets { get; private set; }
 
         /// <summary>
         /// Gets a collection of child rules to be evaluated when this rule matches.
         /// </summary>
-        public ICollection<LoggingRule> ChildRules
-        {
-            get { return this.childRules; }
-        }
+        public ICollection<LoggingRule> ChildRules { get; private set; }
 
         /// <summary>
         /// Gets a collection of filters to be checked before writing to targets.
         /// </summary>
-        public IList<Filter> Filters
-        {
-            get { return this.filters; }
-        }
+        public IList<Filter> Filters { get; private set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to quit processing any further rule when this one matches.
@@ -264,7 +261,7 @@ namespace NLog.Config
             }
 
             sb.Append("] appendTo: [ ");
-            foreach (Target app in this.targets)
+            foreach (Target app in this.Targets)
             {
                 sb.AppendFormat(CultureInfo.InvariantCulture, "{0} ", app.Name);
             }

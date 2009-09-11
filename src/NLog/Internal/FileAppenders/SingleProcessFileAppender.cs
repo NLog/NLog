@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Globalization;
 using System.IO;
 
 namespace NLog.Internal.FileAppenders
@@ -94,7 +95,7 @@ namespace NLog.Internal.FileAppenders
                 return;
             }
 
-            InternalLogger.Trace("Closing '{0}'", FileName);
+            InternalLogger.Trace(CultureInfo.InvariantCulture, "Closing '{0}'", FileName);
             this.file.Close();
             this.file = null;
         }

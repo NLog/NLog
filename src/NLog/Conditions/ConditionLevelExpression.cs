@@ -31,11 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-
-using System.Xml.Serialization;
-
 namespace NLog.Conditions
 {
     /// <summary>
@@ -43,13 +38,6 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionLevelExpression : ConditionExpression
     {
-        /// <summary>
-        /// Initializes a new instance of the ConditionLevelExpression class.
-        /// </summary>
-        public ConditionLevelExpression()
-        {
-        }
-
         /// <summary>
         /// Evaluates to the current log level.
         /// </summary>

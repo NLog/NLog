@@ -42,15 +42,13 @@ namespace NLog.Internal.NetworkSenders
     /// </summary>
     internal abstract class NetworkSender : IDisposable
     {
-        private string url;
-
         /// <summary>
         /// Initializes a new instance of the NetworkSender class.
         /// </summary>
         /// <param name="url">The network URL.</param>
         protected NetworkSender(string url)
         {
-            this.url = url;
+            this.Address = url;
         }
 
         /// <summary>
@@ -64,10 +62,7 @@ namespace NLog.Internal.NetworkSenders
         /// <summary>
         /// Gets the address of the network endpoint.
         /// </summary>
-        public string Address
-        {
-            get { return this.url; }
-        }
+        public string Address { get; private set; }
 
         /// <summary>
         /// Creates a new instance of the network sender based on a network URL:.

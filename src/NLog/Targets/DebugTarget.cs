@@ -59,24 +59,21 @@ namespace NLog.Targets
     [Target("Debug")]
     public sealed class DebugTarget : TargetWithLayout
     {
-        private int counter = 0;
-        private string lastMessage = String.Empty;
+        public DebugTarget()
+        {
+            LastMessage = String.Empty;
+            Counter = 0;
+        }
 
         /// <summary>
         /// Gets the number of times this target has been called.
         /// </summary>
-        public int Counter
-        {
-            get { return this.counter; }
-        }
+        public int Counter { get; private set; }
 
         /// <summary>
         /// Gets the last message rendered by this target.
         /// </summary>
-        public string LastMessage
-        {
-            get { return this.lastMessage; }
-        }
+        public string LastMessage { get; private set; }
 
         /// <summary>
         /// Increases the number of messages.
@@ -84,8 +81,8 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            this.counter++;
-            this.lastMessage = this.Layout.GetFormattedMessage(logEvent);
+            this.Counter++;
+            this.LastMessage = this.Layout.GetFormattedMessage(logEvent);
         }
     }
 }

@@ -74,6 +74,7 @@
     <Compile Include="Conditions\ConditionTokenType.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Conditions\ConditionEvaluationException.cs" />
     <Compile Include="Config\ArrayParameterAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -121,12 +122,14 @@
     <Compile Include="Config\Factory.cs" />
     <Compile Include="Config\NameAttributeBase.cs" />
     <Compile Include="Internal\StackTraceUsageUtils.cs" />
+    <Compile Include="LayoutRenderers\GarbageCollectorProperty.cs" />
     <Compile Include="LayoutRenderers\Wrappers\UrlEncodeLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\ReplaceLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\LowerCaseLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\UpperCaseLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\PaddingLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBase.cs" />
+    <Compile Include="Layouts\CsvColumnDelimiterMode.cs" />
     <Compile Include="LogFactoryOfT.cs" />
     <Compile Include="FormattedLogEventInfo.cs" />
     <Compile Include="Internal\NativeMethods.cs">
@@ -145,6 +148,9 @@
     <Compile Include="LogMessageDelegate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Config\StackTraceUsage.cs" />
+    <Compile Include="Targets\ArchiveNumberingMode.cs" />
+    <Compile Include="Targets\LineEndingMode.cs" />
+    <Compile Include="Targets\FileArchivePeriod.cs" />
     <Compile Include="Targets\TargetWithLayoutHeaderAndFooter.cs" />
     <Compile Include="Layouts\LayoutWithHeaderAndFooter.cs" />
     <Compile Include="Internal\CurrentTimeGetter.cs" />
@@ -253,22 +259,22 @@
     <Compile Include="LayoutRenderers\LayoutRendererAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ASPNETApplicationValueLayoutRenderer.cs">
+    <Compile Include="LayoutRenderers\AspNetApplicationValueLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ASPNETRequestValueLayoutRenderer.cs">
+    <Compile Include="LayoutRenderers\AspNetRequestValueLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ASPNETSessionValueLayoutRenderer.cs">
+    <Compile Include="LayoutRenderers\AspNetSessionValueLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ASPNETSessionIDLayoutRenderer.cs">
+    <Compile Include="LayoutRenderers\AspNetSessionIDLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ASPNETUserAuthTypeLayoutRenderer.cs">
+    <Compile Include="LayoutRenderers\AspNetUserAuthTypeLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\ASPNETUserIdentityLayoutRenderer.cs">
+    <Compile Include="LayoutRenderers\AspNetUserIdentityLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LayoutRenderers\BaseDirLayoutRenderer.cs">
@@ -277,7 +283,7 @@
     <Compile Include="LayoutRenderers\CallSiteLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\GCLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\GarbageCollectorInfoLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\ProcessInfoLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\SpecialFolderLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TempDirLayoutRenderer.cs" />
@@ -294,7 +300,7 @@
     <Compile Include="LayoutRenderers\ExceptionLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\GDCLayoutRenderer.cs">
+    <Compile Include="LayoutRenderers\GdcLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LayoutRenderers\GuidLayoutRenderer.cs">
@@ -321,13 +327,13 @@
     <Compile Include="LayoutRenderers\MachineNameLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\MDCLayoutRenderer.cs">
+    <Compile Include="LayoutRenderers\MdcLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LayoutRenderers\MessageLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\NDCLayoutRenderer.cs">
+    <Compile Include="LayoutRenderers\NdcLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LayoutRenderers\NewLine.cs">
@@ -486,6 +492,9 @@
     <Compile Include="Targets\Wrappers\BufferingTargetWrapper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Targets\Wrappers\SecurityImpersonationLevel.cs" />
+    <Compile Include="Targets\Wrappers\SecurityLogonType.cs" />
+    <Compile Include="Targets\Wrappers\LogonProviderType.cs" />
     <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\FilteringRule.cs">
       <SubType>Code</SubType>
@@ -554,7 +563,7 @@
     <Compile Include="Win32\Targets\OutputDebugStringTarget.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Win32\Targets\PerfCounterTarget.cs">
+    <Compile Include="Win32\Targets\PerformanceCounterTarget.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LogFactory.cs" />
@@ -562,4 +571,7 @@
   </ItemGroup>
   <Import Project="$(TargetsPath)" Condition="Exists('$(TargetsPath)')" />
   <Import Project="$(StyleCopTargets)" Condition="'$(StyleCopTargets)' != '' and Exists('$(StyleCopTargets)')" />
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+  </ItemGroup>
 </Project>

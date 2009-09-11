@@ -32,7 +32,6 @@
 // 
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using NLog.Config;
@@ -46,17 +45,14 @@ namespace NLog.Conditions
     /// </summary>
     public class ConditionParser 
     {
-        private ConditionTokenizer tokenizer = new ConditionTokenizer();
-        private NLogFactories factories;
+        private readonly ConditionTokenizer tokenizer = new ConditionTokenizer();
 
         /// <summary>
         /// Initializes a new instance of the ConditionParser class.
         /// </summary>
-        /// <param name="factories">The factories.</param>
         /// <param name="expressionText">The expression text.</param>
-        private ConditionParser(NLogFactories factories, string expressionText)
+        private ConditionParser(string expressionText)
         {
-            this.factories = factories;
             this.tokenizer.InitTokenizer(expressionText);
         }
 
@@ -68,7 +64,7 @@ namespace NLog.Conditions
         /// <returns>The root of the expression syntax tree which can be used to get the value of the condition in a specified context.</returns>
         public static ConditionExpression ParseExpression(string expressionText)
         {
-            ConditionParser parser = new ConditionParser(NLogFactories.Default, expressionText);
+            ConditionParser parser = new ConditionParser(expressionText);
             ConditionExpression expression = parser.ParseExpression();
             if (!parser.tokenizer.IsEOF())
             {
@@ -111,16 +107,14 @@ namespace NLog.Conditions
 
             if (this.tokenizer.IsNumber()) 
             {
-                string numberString = (string)this.tokenizer.TokenValue;
+                string numberString = this.tokenizer.TokenValue;
                 this.tokenizer.GetNextToken();
                 if (numberString.IndexOf('.') >= 0)
                 {
                     return new ConditionLiteralExpression(Double.Parse(numberString, CultureInfo.InvariantCulture));
                 }
-                else
-                {
-                    return new ConditionLiteralExpression(Int32.Parse(numberString, CultureInfo.InvariantCulture));
-                }
+
+                return new ConditionLiteralExpression(Int32.Parse(numberString, CultureInfo.InvariantCulture));
             }
 
             if (this.tokenizer.TokenType == ConditionTokenType.String) 
@@ -181,13 +175,13 @@ namespace NLog.Conditions
         {
             ConditionExpression e = this.ParseLiteralExpression();
 
-            if (this.tokenizer.IsToken(ConditionTokenType.EQ)) 
+            if (this.tokenizer.IsToken(ConditionTokenType.EqualTo)) 
             {
                 this.tokenizer.GetNextToken();
                 return new ConditionRelationalExpression(e, this.ParseLiteralExpression(), ConditionRelationalOperator.Equal);
             }
 
-            if (this.tokenizer.IsToken(ConditionTokenType.NE)) 
+            if (this.tokenizer.IsToken(ConditionTokenType.NotEqual)) 
             {
                 this.tokenizer.GetNextToken();
                 return new ConditionRelationalExpression(e, this.ParseLiteralExpression(), ConditionRelationalOperator.NotEqual);
@@ -205,13 +199,13 @@ namespace NLog.Conditions
                 return new ConditionRelationalExpression(e, this.ParseLiteralExpression(), ConditionRelationalOperator.Greater);
             }
 
-            if (this.tokenizer.IsToken(ConditionTokenType.LE)) 
+            if (this.tokenizer.IsToken(ConditionTokenType.LessThanOrEqualTo)) 
             {
                 this.tokenizer.GetNextToken();
                 return new ConditionRelationalExpression(e, this.ParseLiteralExpression(), ConditionRelationalOperator.LessOrEqual);
             }
 
-            if (this.tokenizer.IsToken(ConditionTokenType.GE)) 
+            if (this.tokenizer.IsToken(ConditionTokenType.GreaterThanOrEqualTo)) 
             {
                 this.tokenizer.GetNextToken();
                 return new ConditionRelationalExpression(e, this.ParseLiteralExpression(), ConditionRelationalOperator.GreaterOrEqual);
@@ -225,7 +219,7 @@ namespace NLog.Conditions
             if (this.tokenizer.IsKeyword("not") || this.tokenizer.IsToken(ConditionTokenType.Not)) 
             {
                 this.tokenizer.GetNextToken();
-                return new ConditionNotExpression((ConditionExpression)this.ParseBooleanPredicate());
+                return new ConditionNotExpression(this.ParseBooleanPredicate());
             }
 
             return this.ParseBooleanRelation();
@@ -238,7 +232,7 @@ namespace NLog.Conditions
             while (this.tokenizer.IsKeyword("and") || this.tokenizer.IsToken(ConditionTokenType.And)) 
             {
                 this.tokenizer.GetNextToken();
-                expression = new ConditionAndExpression((ConditionExpression)expression, (ConditionExpression)this.ParseBooleanPredicate());
+                expression = new ConditionAndExpression(expression, this.ParseBooleanPredicate());
             }
 
             return expression;
@@ -251,7 +245,7 @@ namespace NLog.Conditions
             while (this.tokenizer.IsKeyword("or") || this.tokenizer.IsToken(ConditionTokenType.Or)) 
             {
                 this.tokenizer.GetNextToken();
-                expression = new ConditionOrExpression((ConditionExpression)expression, (ConditionExpression)this.ParseBooleanAnd());
+                expression = new ConditionOrExpression(expression, this.ParseBooleanAnd());
             }
 
             return expression;

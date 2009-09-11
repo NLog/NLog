@@ -32,7 +32,7 @@
 // 
 
 using System;
-
+using System.Globalization;
 using NLog.Internal;
 
 namespace NLog.Targets.Compound
@@ -57,8 +57,7 @@ namespace NLog.Targets.Compound
     [Target("FallbackGroup", IsCompound = true)]
     public class FallbackTarget : CompoundTargetBase
     {
-        private int currentTarget = 0;
-        private bool returnToFirstOnSuccess = false;
+        private int currentTarget;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FallbackTarget"/> class.
@@ -79,11 +78,7 @@ namespace NLog.Targets.Compound
         /// <summary>
         /// Gets or sets a value indicating whether to return to the first target after any successful write.
         /// </summary>
-        public bool ReturnToFirstOnSuccess
-        {
-            get { return this.returnToFirstOnSuccess; }
-            set { this.returnToFirstOnSuccess = value; }
-        }
+        public bool ReturnToFirstOnSuccess { get; set; }
 
         /// <summary>
         /// Forwards the log event to the sub-targets until one of them succeeds.
@@ -109,7 +104,7 @@ namespace NLog.Targets.Compound
                         {
                             if (this.ReturnToFirstOnSuccess)
                             {
-                                InternalLogger.Debug("Fallback: target '{0}' succeeded. Returning to the first one.", this.Targets[this.currentTarget]);
+                                InternalLogger.Debug(CultureInfo.InvariantCulture, "Fallback: target '{0}' succeeded. Returning to the first one.", this.Targets[this.currentTarget]);
                                 this.currentTarget = 0;
                             }
                         }
@@ -118,7 +113,7 @@ namespace NLog.Targets.Compound
                     }
                     catch (Exception ex)
                     {
-                        InternalLogger.Warn("Fallback: target '{0}' failed. Proceeding to the next one. Error was: {1}", this.Targets[this.currentTarget], ex);
+                        InternalLogger.Warn(CultureInfo.InvariantCulture, "Fallback: target '{0}' failed. Proceeding to the next one. Error was: {1}", this.Targets[this.currentTarget], ex);
 
                         // error while writing, try another one
                         this.currentTarget = (this.currentTarget + 1) % this.Targets.Count;

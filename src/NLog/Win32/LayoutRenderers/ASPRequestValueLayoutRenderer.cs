@@ -34,6 +34,7 @@
 #if !NET_CF && !SILVERLIGHT
 
 using System;
+using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
 using NLog.Config;
@@ -152,7 +153,7 @@ namespace NLog.Win32.LayoutRenderers
                 return o.GetType().ToString();
             }
 
-            return Convert.ToString(retVal);
+            return Convert.ToString(retVal, CultureInfo.InvariantCulture);
         }
     }
 }

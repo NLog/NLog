@@ -34,6 +34,7 @@
 using System;
 
 using System.Collections.Generic;
+using System.Globalization;
 using NLog.Layouts;
 
 namespace NLog.Conditions
@@ -96,7 +97,7 @@ namespace NLog.Conditions
         /// </returns>
         public override string ToString()
         {
-            return this.LeftExpression.ToString() + " " + this.GetOperatorString() + " " + this.RightExpression.ToString();
+            return this.LeftExpression + " " + this.GetOperatorString() + " " + this.RightExpression;
         }
 
         /// <summary>
@@ -159,61 +160,61 @@ namespace NLog.Conditions
 
             if (val1 is DateTime || val2 is DateTime)
             {
-                val1 = Convert.ToDateTime(val1);
-                val2 = Convert.ToDateTime(val2);
+                val1 = Convert.ToDateTime(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToDateTime(val2, CultureInfo.InvariantCulture);
                 return;
             }
 
             if (val1 is string || val2 is string)
             {
-                val1 = Convert.ToString(val1);
-                val2 = Convert.ToString(val2);
+                val1 = Convert.ToString(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToString(val2, CultureInfo.InvariantCulture);
                 return;
             }
 
             if (val1 is double || val2 is double)
             {
-                val1 = Convert.ToDouble(val1);
-                val2 = Convert.ToDouble(val2);
+                val1 = Convert.ToDouble(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToDouble(val2, CultureInfo.InvariantCulture);
                 return;
             }
 
             if (val1 is float || val2 is float)
             {
-                val1 = Convert.ToSingle(val1);
-                val2 = Convert.ToSingle(val2);
+                val1 = Convert.ToSingle(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToSingle(val2, CultureInfo.InvariantCulture);
                 return;
             }
 
             if (val1 is decimal || val2 is decimal)
             {
-                val1 = Convert.ToDecimal(val1);
-                val2 = Convert.ToDecimal(val2);
+                val1 = Convert.ToDecimal(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToDecimal(val2, CultureInfo.InvariantCulture);
                 return;
             }
 
             if (val1 is long || val2 is long)
             {
-                val1 = Convert.ToInt64(val1);
-                val2 = Convert.ToInt64(val2);
+                val1 = Convert.ToInt64(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToInt64(val2, CultureInfo.InvariantCulture);
                 return;
             }
 
             if (val1 is int || val2 is int)
             {
-                val1 = Convert.ToInt32(val1);
-                val2 = Convert.ToInt32(val2);
+                val1 = Convert.ToInt32(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToInt32(val2, CultureInfo.InvariantCulture);
                 return;
             }
 
             if (val1 is bool || val2 is bool)
             {
-                val1 = Convert.ToBoolean(val1);
-                val2 = Convert.ToBoolean(val2);
+                val1 = Convert.ToBoolean(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToBoolean(val2, CultureInfo.InvariantCulture);
                 return;
             }
 
-            throw new Exception("Cannot promote types " + val1.GetType().Name + " and " + val2.GetType().Name + " to one type.");
+            throw new ConditionEvaluationException("Cannot promote types " + val1.GetType().Name + " and " + val2.GetType().Name + " to one type.");
         }
 
         private string GetOperatorString()

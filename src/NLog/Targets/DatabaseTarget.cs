@@ -37,6 +37,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Globalization;
 using System.Reflection;
 using System.Text;
 using NLog.Config;
@@ -69,7 +70,6 @@ namespace NLog.Targets
         private static Assembly systemDataAssembly = typeof(IDbConnection).Assembly;
 
         private Type connectionType = null;
-        private ICollection<DatabaseParameterInfo> parameters = new List<DatabaseParameterInfo>();
         private IDbConnection activeConnection = null;
         private string connectionStringCache = null;
 
@@ -78,8 +78,9 @@ namespace NLog.Targets
         /// </summary>
         public DatabaseTarget()
         {
-            this.DBProvider = "sqlserver";
-            this.DBHost = ".";
+            Parameters = new List<DatabaseParameterInfo>();
+            this.DbProvider = "sqlserver";
+            this.DbHost = ".";
         }
 
         /// <summary>
@@ -89,7 +90,7 @@ namespace NLog.Targets
         /// </summary>
         [RequiredParameter]
         [DefaultValue("sqlserver")]
-        public string DBProvider
+        public string DbProvider
         {
             get
             {
@@ -124,7 +125,7 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets or sets the connection string. When provided, it overrides the values
-        /// specified in DBHost, DBUserName, DBPassword, DBDatabase.
+        /// specified in DbHost, DbUserName, DbPassword, DbDatabase.
         /// </summary>
         public Layout ConnectionString { get; set; }
 
@@ -147,28 +148,28 @@ namespace NLog.Targets
         /// this value will be used to construct the "Server=" part of the
         /// connection string.
         /// </summary>
-        public Layout DBHost { get; set; }
+        public Layout DbHost { get; set; }
 
         /// <summary>
         /// Gets or sets the database user name. If the ConnectionString is not provided
         /// this value will be used to construct the "User ID=" part of the
         /// connection string.
         /// </summary>
-        public Layout DBUserName { get; set; }
+        public Layout DbUserName { get; set; }
 
         /// <summary>
         /// Gets or sets the database password. If the ConnectionString is not provided
         /// this value will be used to construct the "Password=" part of the
         /// connection string.
         /// </summary>
-        public Layout DBPassword { get; set; }
+        public Layout DbPassword { get; set; }
 
         /// <summary>
         /// Gets or sets the database name. If the ConnectionString is not provided
         /// this value will be used to construct the "Database=" part of the
         /// connection string.
         /// </summary>
-        public Layout DBDatabase { get; set; }
+        public Layout DbDatabase { get; set; }
 
         /// <summary>
         /// Gets or sets the text of the SQL command to be run on each log level.
@@ -189,10 +190,7 @@ namespace NLog.Targets
         /// between NLog layout and a database named or positional parameter.
         /// </summary>
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
-        public ICollection<DatabaseParameterInfo> Parameters
-        {
-            get { return this.parameters; }
-        }
+        public ICollection<DatabaseParameterInfo> Parameters { get; private set; }
 
         /// <summary>
         /// Adds all layouts used by this target to the specified collection.
@@ -202,24 +200,24 @@ namespace NLog.Targets
         {
             base.PopulateLayouts(layouts);
 
-            if (this.DBHost != null)
+            if (this.DbHost != null)
             {
-                this.DBHost.PopulateLayouts(layouts);
+                this.DbHost.PopulateLayouts(layouts);
             }
 
-            if (this.DBUserName != null)
+            if (this.DbUserName != null)
             {
-                this.DBUserName.PopulateLayouts(layouts);
+                this.DbUserName.PopulateLayouts(layouts);
             }
 
-            if (this.DBDatabase != null)
+            if (this.DbDatabase != null)
             {
-                this.DBDatabase.PopulateLayouts(layouts);
+                this.DbDatabase.PopulateLayouts(layouts);
             }
 
-            if (this.DBPassword != null)
+            if (this.DbPassword != null)
             {
-                this.DBPassword.PopulateLayouts(layouts);
+                this.DbPassword.PopulateLayouts(layouts);
             }
 
             if (this.CommandText != null)
@@ -334,30 +332,30 @@ namespace NLog.Targets
             StringBuilder sb = new StringBuilder();
 
             sb.Append("Server=");
-            sb.Append(this.DBHost.GetFormattedMessage(logEvent));
+            sb.Append(this.DbHost.GetFormattedMessage(logEvent));
             sb.Append(";");
-            if (this.DBUserName == null)
+            if (this.DbUserName == null)
             {
                 sb.Append("Trusted_Connection=SSPI;");
             }
             else
             {
                 sb.Append("User id=");
-                sb.Append(this.DBUserName.GetFormattedMessage(logEvent));
+                sb.Append(this.DbUserName.GetFormattedMessage(logEvent));
                 sb.Append(";Password=");
-                sb.Append(this.DBPassword.GetFormattedMessage(logEvent));
+                sb.Append(this.DbPassword.GetFormattedMessage(logEvent));
                 sb.Append(";");
             }
 
-            if (this.DBDatabase != null)
+            if (this.DbDatabase != null)
             {
                 sb.Append("Database=");
-                sb.Append(this.DBDatabase.GetFormattedMessage(logEvent));
+                sb.Append(this.DbDatabase.GetFormattedMessage(logEvent));
             }
 
             this.connectionStringCache = sb.ToString();
 
-            InternalLogger.Debug("Connection string: {0}", this.connectionStringCache);
+            InternalLogger.Debug(CultureInfo.InvariantCulture, "Connection string: {0}", this.connectionStringCache);
             return this.connectionStringCache;
         }
     }

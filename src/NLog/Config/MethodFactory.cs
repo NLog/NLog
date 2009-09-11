@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using NLog.Internal;
 
@@ -14,13 +15,19 @@ namespace NLog.Config
         where TClassAttributeType : Attribute
         where TMethodAttributeType : NameAttributeBase
     {
-        private Dictionary<string, MethodInfo> nameToMethodInfo = new Dictionary<string, MethodInfo>();
+        private readonly Dictionary<string, MethodInfo> nameToMethodInfo = new Dictionary<string, MethodInfo>();
 
         /// <summary>
-        /// Initializes a new instance of the MethodFactory class.
+        /// Gets a collection of all registered items in the factory.
         /// </summary>
-        public MethodFactory()
+        /// <returns>
+        /// Sequence of key/value pairs where each key represents the name
+        /// of the item and value is the <see cref="MethodInfo"/> of
+        /// the item.
+        /// </returns>
+        public IDictionary<string, MethodInfo> AllRegisteredItems
         {
+            get { return this.nameToMethodInfo; }
         }
 
         /// <summary>
@@ -34,7 +41,7 @@ namespace NLog.Config
         {
             try
             {
-                InternalLogger.Debug("ScanAssembly('{0}','{1}','{2}')", theAssembly.FullName, typeof(TClassAttributeType), typeof(TMethodAttributeType));
+                InternalLogger.Debug(CultureInfo.InvariantCulture, "ScanAssembly('{0}','{1}','{2}')", theAssembly.FullName, typeof(TClassAttributeType), typeof(TMethodAttributeType));
                 foreach (Type t in theAssembly.GetTypes())
                 {
                     if (t.IsDefined(typeof(TClassAttributeType), false))
@@ -52,7 +59,7 @@ namespace NLog.Config
             }
             catch (Exception ex)
             {
-                InternalLogger.Error("Failed to add targets from '" + theAssembly.FullName + "': {0}", ex);
+                InternalLogger.Error(CultureInfo.InvariantCulture, "Failed to add targets from '" + theAssembly.FullName + "': {0}", ex);
             }
         }
 
@@ -100,19 +107,6 @@ namespace NLog.Config
             }
 
             throw new ArgumentException("Unknown function: '" + name + "'");
-        }
-
-        /// <summary>
-        /// Gets a collection of all registered items in the factory.
-        /// </summary>
-        /// <returns>
-        /// Sequence of key/value pairs where each key represents the name
-        /// of the item and value is the <typeparamref name="TDefinitionType"/> of
-        /// the item.
-        /// </returns>
-        public IEnumerable<KeyValuePair<string, MethodInfo>> GetAllRegisteredItems()
-        {
-            return this.nameToMethodInfo;
         }
 
         /// <summary>

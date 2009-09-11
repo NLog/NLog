@@ -33,6 +33,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using NLog.Config;
 using NLog.Filters;
 using NLog.Internal;
@@ -43,13 +44,9 @@ namespace NLog
     /// <summary>
     /// Implementation of logging engine.
     /// </summary>
-    internal sealed class LoggerImpl
+    internal static class LoggerImpl
     {
         private const int StackTraceSkipMethods = 0;
-
-        private LoggerImpl()
-        {
-        }
 
         internal static void Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
         {
@@ -61,7 +58,7 @@ namespace NLog
 #if !NET_CF            
             StackTraceUsage stu = targets.GetStackTraceUsage();
 
-            StackTrace stackTrace = null;
+            StackTrace stackTrace;
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
                 int firstUserFrame = 0;
@@ -107,30 +104,26 @@ namespace NLog
                     {
                         if (InternalLogger.IsDebugEnabled)
                         {
-                            InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", logEvent.LoggerName, logEvent.Level);
+                            InternalLogger.Debug(CultureInfo.InvariantCulture, "{0}.{1} Rejecting message because of a filter.", logEvent.LoggerName, logEvent.Level);
                         }
                         
                         if (result == FilterResult.IgnoreFinal)
                         {
                             return;
                         }
-                        else
-                        {
-                            continue;
-                        }
+
+                        continue;
                     }
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error("FilterChain exception: {0}", ex);
+                    InternalLogger.Error(CultureInfo.CurrentCulture, "FilterChain exception: {0}", ex);
                     if (factory.ThrowExceptions)
                     {
                         throw;
                     }
-                    else
-                    {
-                        continue;
-                    }
+
+                    continue;
                 }
 
                 try
@@ -139,15 +132,13 @@ namespace NLog
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error("Target exception: {0}", ex);
+                    InternalLogger.Error(CultureInfo.CurrentCulture, "Target exception: {0}", ex);
                     if (factory.ThrowExceptions)
                     {
                         throw;
                     }
-                    else
-                    {
-                        continue;
-                    }
+
+                    continue;
                 }
 
                 if (result == FilterResult.LogFinal)

@@ -83,7 +83,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Gets or sets the layout that renders event ID.
         /// </summary>
-        public Layout EventID { get; set; }
+        public Layout EventId { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that renders event Category.
@@ -142,11 +142,11 @@ namespace NLog.Win32.Targets
                 entryType = EventLogEntryType.Information;
             }
 
-            int eventID = 0;
+            int eventId = 0;
 
-            if (this.EventID != null)
+            if (this.EventId != null)
             {
-                eventID = Convert.ToInt32(this.EventID.GetFormattedMessage(logEvent), CultureInfo.InvariantCulture);
+                eventId = Convert.ToInt32(this.EventId.GetFormattedMessage(logEvent), CultureInfo.InvariantCulture);
             }
 
             short category = 0;
@@ -156,7 +156,7 @@ namespace NLog.Win32.Targets
                 category = Convert.ToInt16(this.Category.GetFormattedMessage(logEvent), CultureInfo.InvariantCulture);
             }
 
-            EventLog.WriteEntry(this.Source, message, entryType, eventID, category);
+            EventLog.WriteEntry(this.Source, message, entryType, eventId, category);
         }
 
         private void CreateEventSourceIfNeeded()
@@ -171,7 +171,7 @@ namespace NLog.Win32.Targets
                     {
                         // re-create the association between Log and Source
                         EventLog.DeleteEventSource(this.Source, this.MachineName);
-                        EventSourceCreationData escd = new EventSourceCreationData(this.Source, this.Log);
+                        var escd = new EventSourceCreationData(this.Source, this.Log);
                         escd.MachineName = this.MachineName;
                         EventLog.CreateEventSource(escd);
                     }
@@ -182,14 +182,14 @@ namespace NLog.Win32.Targets
                 }
                 else
                 {
-                    EventSourceCreationData escd = new EventSourceCreationData(this.Source, this.Log);
+                    var escd = new EventSourceCreationData(this.Source, this.Log);
                     escd.MachineName = this.MachineName;
                     EventLog.CreateEventSource(escd);
                 }
             }
             catch (Exception ex)
             {
-                InternalLogger.Error("Error when connecting to EventLog: {0}", ex);
+                InternalLogger.Error(CultureInfo.InvariantCulture, "Error when connecting to EventLog: {0}", ex);
                 throw;
             }
         }

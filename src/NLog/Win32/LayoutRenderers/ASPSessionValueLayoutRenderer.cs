@@ -34,6 +34,7 @@
 #if !NET_CF && !SILVERLIGHT
 
 using System;
+using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
 using NLog.Config;
@@ -45,7 +46,7 @@ namespace NLog.Win32.LayoutRenderers
     /// ASP Session variable.
     /// </summary>
     [LayoutRenderer("asp-session")]
-    public class ASPSessionValueLayoutRenderer : LayoutRenderer
+    public class AspSessionValueLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Gets or sets the session variable name.
@@ -81,7 +82,7 @@ namespace NLog.Win32.LayoutRenderers
                 if (this.Variable != null)
                 {
                     object variableValue = session.GetValue(this.Variable);
-                    builder.Append(Convert.ToString(variableValue));
+                    builder.Append(Convert.ToString(variableValue, CultureInfo.InvariantCulture));
                 }
 
                 Marshal.ReleaseComObject(session);

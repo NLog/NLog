@@ -40,7 +40,7 @@ namespace NLog
     /// </summary>
     internal class UnformattedLogEventInfoWithException : UnformattedLogEventInfo
     {
-        private Exception exception;
+        private readonly Exception exception;
 
         /// <summary>
         /// Initializes a new instance of the UnformattedLogEventInfoWithException class.

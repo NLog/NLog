@@ -35,6 +35,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -148,7 +149,7 @@ namespace NLog.Targets
             this.ArchiveNumbering = ArchiveNumberingMode.Sequence;
             this.MaxArchiveFiles = 9;
             this.ConcurrentWriteAttemptDelay = 1;
-            this.ArchiveEvery = ArchiveEveryMode.None;
+            this.ArchiveEvery = FileArchivePeriod.None;
             this.ArchiveAboveSize = -1;
             this.ConcurrentWriteAttempts = 10;
             this.ConcurrentWrites = true;
@@ -170,89 +171,6 @@ namespace NLog.Targets
             this.OpenFileCacheSize = 5;
             this.CreateDirs = true;
             this.logEventComparer = new LogEventComparer(this);
-        }
-
-        /// <summary>
-        /// Line ending mode.
-        /// </summary>
-        public enum LineEndingMode
-        {
-            /// <summary>
-            /// Insert platform-dependent end-of-line sequence after each line.
-            /// </summary>
-            Default,
-
-            /// <summary>
-            /// Insert CR LF sequence (ASCII 13, ASCII 10) after each line.
-            /// </summary>
-            CRLF,
-
-            /// <summary>
-            /// Insert CR character (ASCII 13) after each line.
-            /// </summary>
-            CR,
-
-            /// <summary>
-            /// Insert LF character (ASCII 10) after each line.
-            /// </summary>
-            LF,
-
-            /// <summary>
-            /// Don't insert any line ending.
-            /// </summary>
-            None,
-        }
-
-        /// <summary>
-        /// Specifies the way archive numbering is performed.
-        /// </summary>
-        public enum ArchiveNumberingMode
-        {
-            /// <summary>
-            /// Sequence style numbering. The most recent archive has the highest number.
-            /// </summary>
-            Sequence,
-
-            /// <summary>
-            /// Rolling style numbering (the most recent is always #0 then #1, ..., #N.
-            /// </summary>
-            Rolling,
-        }
-
-        /// <summary>
-        /// Modes of archiving files based on time.
-        /// </summary>
-        public enum ArchiveEveryMode
-        {
-            /// <summary>
-            /// Don't archive based on time.
-            /// </summary>
-            None,
-
-            /// <summary>
-            /// Archive every year.
-            /// </summary>
-            Year,
-
-            /// <summary>
-            /// Archive every month.
-            /// </summary>
-            Month,
-
-            /// <summary>
-            /// Archive daily.
-            /// </summary>
-            Day,
-
-            /// <summary>
-            /// Archive every hour.
-            /// </summary>
-            Hour,
-
-            /// <summary>
-            /// Archive every minute.
-            /// </summary>
-            Minute
         }
 
         /// <summary>
@@ -460,7 +378,7 @@ namespace NLog.Targets
         /// to <c>false</c> for maximum performance.
         /// </p>
         /// </remarks>
-        public ArchiveEveryMode ArchiveEvery { get; set; }
+        public FileArchivePeriod ArchiveEvery { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the file to be used for an archive.
@@ -578,7 +496,7 @@ namespace NLog.Targets
             }
             else
             {
-                if (this.ArchiveAboveSize != -1 || this.ArchiveEvery != ArchiveEveryMode.None)
+                if (this.ArchiveAboveSize != -1 || this.ArchiveEvery != FileArchivePeriod.None)
                 {
                     if (this.NetworkWrites)
                     {
@@ -857,7 +775,7 @@ namespace NLog.Targets
 
             if (InternalLogger.IsTraceEnabled)
             {
-                InternalLogger.Trace("Renaming {0} to {1}", fileName, newFileName);
+                InternalLogger.Trace(CultureInfo.InvariantCulture, "Renaming {0} to {1}", fileName, newFileName);
             }
 
             try
@@ -988,7 +906,7 @@ namespace NLog.Targets
 
         private bool ShouldAutoArchive(string fileName, LogEventInfo ev, int upcomingWriteSize)
         {
-            if (this.ArchiveAboveSize == -1 && this.ArchiveEvery == ArchiveEveryMode.None)
+            if (this.ArchiveAboveSize == -1 && this.ArchiveEvery == FileArchivePeriod.None)
             {
                 return false;
             }
@@ -1009,36 +927,36 @@ namespace NLog.Targets
                 }
             }
 
-            if (this.ArchiveEvery != ArchiveEveryMode.None)
+            if (this.ArchiveEvery != FileArchivePeriod.None)
             {
                 string formatString;
 
                 switch (this.ArchiveEvery)
                 {
-                    case ArchiveEveryMode.Year:
+                    case FileArchivePeriod.Year:
                         formatString = "yyyy";
                         break;
 
-                    case ArchiveEveryMode.Month:
+                    case FileArchivePeriod.Month:
                         formatString = "yyyyMM";
                         break;
 
                     default:
-                    case ArchiveEveryMode.Day:
+                    case FileArchivePeriod.Day:
                         formatString = "yyyyMMdd";
                         break;
 
-                    case ArchiveEveryMode.Hour:
+                    case FileArchivePeriod.Hour:
                         formatString = "yyyyMMddHH";
                         break;
 
-                    case ArchiveEveryMode.Minute:
+                    case FileArchivePeriod.Minute:
                         formatString = "yyyyMMddHHmm";
                         break;
                 }
 
-                string ts = lastWriteTime.ToString(formatString);
-                string ts2 = ev.TimeStamp.ToString(formatString);
+                string ts = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
+                string ts2 = ev.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
 
                 if (ts != ts2)
                 {
@@ -1082,7 +1000,7 @@ namespace NLog.Targets
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Warn("Exception in AutoClosingTimerCallback: {0}", ex);
+                    InternalLogger.Warn(CultureInfo.InvariantCulture, "Exception in AutoClosingTimerCallback: {0}", ex);
                 }
             }
         }
@@ -1125,7 +1043,7 @@ namespace NLog.Targets
                         }
                         catch (Exception ex)
                         {
-                            InternalLogger.Warn("Unable to delete old log file '{0}': {1}", fileName, ex);
+                            InternalLogger.Warn(CultureInfo.InvariantCulture, "Unable to delete old log file '{0}': {1}", fileName, ex);
                         }
                     }
 

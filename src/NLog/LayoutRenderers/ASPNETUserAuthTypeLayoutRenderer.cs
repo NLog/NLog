@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     /// ASP.NET User variable.
     /// </summary>
     [LayoutRenderer("aspnet-user-authtype")]
-    public class ASPNETUserAuthTypeLayoutRenderer : LayoutRenderer
+    public class AspNetUserAuthTypeLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Returns the estimated number of characters that are needed to

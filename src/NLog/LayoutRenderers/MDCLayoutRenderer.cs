@@ -41,7 +41,7 @@ namespace NLog.LayoutRenderers
     /// Mapped Diagnostic Context item. Provided for compatibility with log4net.
     /// </summary>
     [LayoutRenderer("mdc")]
-    public class MDCLayoutRenderer : LayoutRenderer
+    public class MdcLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Gets or sets the name of the item.

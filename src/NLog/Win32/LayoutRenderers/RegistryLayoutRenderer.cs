@@ -47,9 +47,9 @@ namespace NLog.Win32.LayoutRenderers
     [LayoutRenderer("registry")]
     public class RegistryLayoutRenderer : LayoutRenderer
     {
-        private string key = null;
+        private string key;
         private RegistryKey rootKey = Registry.LocalMachine;
-        private string subKey = null;
+        private string subKey;
 
         /// <summary>
         /// Gets or sets the registry value name.

@@ -45,24 +45,19 @@ namespace NLog.Config
     [AttributeUsage(AttributeTargets.Class)]
     public class NameAttributeBase : Attribute
     {
-        private string name;
-
         /// <summary>
         /// Initializes a new instance of the NameAttributeBase class.
         /// </summary>
         /// <param name="name">The name of the item.</param>
         protected NameAttributeBase(string name)
         {
-            this.name = name;
+            this.Name = name;
         }
 
         /// <summary>
         /// Gets the name of the item.
         /// </summary>
         /// <value>The name of the item.</value>
-        public string Name
-        {
-            get { return this.name; }
-        }
+        public string Name { get; private set; }
     }
 }

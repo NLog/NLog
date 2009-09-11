@@ -41,11 +41,5 @@ namespace NLog.Conditions
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class ConditionMethodsAttribute : Attribute
     {
-        /// <summary>
-        /// Initializes a new instance of the ConditionMethodsAttribute class.
-        /// </summary>
-        public ConditionMethodsAttribute()
-        {
-        }
     }
 }

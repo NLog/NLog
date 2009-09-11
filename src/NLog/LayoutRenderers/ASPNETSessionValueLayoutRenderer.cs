@@ -68,7 +68,7 @@ namespace NLog.LayoutRenderers
     /// </code>
     /// </example>
     [LayoutRenderer("aspnet-session")]
-    public class ASPNETSessionValueLayoutRenderer : LayoutRenderer
+    public class AspNetSessionValueLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Gets or sets the session variable name.

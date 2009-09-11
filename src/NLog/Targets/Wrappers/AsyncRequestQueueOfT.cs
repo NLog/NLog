@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using NLog.Internal;
 
 namespace NLog.Targets.Wrappers
@@ -77,18 +78,18 @@ namespace NLog.Targets.Wrappers
                         case AsyncTargetWrapperOverflowAction.Block:
                             while (this.queue.Count >= this.RequestLimit)
                             {
-                                InternalLogger.Debug("Blocking...");
+                                InternalLogger.Debug(CultureInfo.InvariantCulture, "Blocking...");
                                 if (System.Threading.Monitor.Wait(this))
                                 {
-                                    InternalLogger.Debug("Entered critical section.");
+                                    InternalLogger.Debug(CultureInfo.InvariantCulture, "Entered critical section.");
                                 }
                                 else
                                 {
-                                    InternalLogger.Debug("Failed to enter critical section.");
+                                    InternalLogger.Debug(CultureInfo.InvariantCulture, "Failed to enter critical section.");
                                 }
                             }
 
-                            InternalLogger.Debug("Limit ok.");
+                            InternalLogger.Debug(CultureInfo.InvariantCulture, "Limit ok.");
                             break;
 #endif
                     }

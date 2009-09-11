@@ -43,6 +43,7 @@ using NLog.Filters;
 using NLog.Internal;
 using NLog.Layouts;
 using NLog.Targets;
+using NLog.Targets.Compound;
 using NLog.Targets.Wrappers;
 
 namespace NLog.Config
@@ -107,7 +108,7 @@ namespace NLog.Config
             }
             catch (Exception ex)
             {
-                InternalLogger.Error("Error {0}...", ex);
+                InternalLogger.Error(CultureInfo.InvariantCulture, "Error {0}...", ex);
                 if (!ignoreErrors)
                 {
                     throw new NLogConfigurationException("Exception occured when loading configuration from '" + fileName + "'", ex);
@@ -152,7 +153,7 @@ namespace NLog.Config
             }
             catch (Exception ex)
             {
-                InternalLogger.Error("Error {0}...", ex);
+                InternalLogger.Error(CultureInfo.InvariantCulture, "Error {0}...", ex);
                 if (!ignoreErrors)
                 {
                     throw new NLogConfigurationException("Exception occured when loading configuration from XML Element in " + fileName, ex);
@@ -264,7 +265,7 @@ namespace NLog.Config
 
         private void ParseConfigurationElement(XmlReader reader, string baseDirectory)
         {
-            InternalLogger.Trace("ParseConfigurationElement");
+            InternalLogger.Trace(CultureInfo.InvariantCulture, "ParseConfigurationElement");
             Debug.Assert(this.CaseInsensitiveEquals(reader.LocalName, "configuration"), "Expected <configuration /> element.");
 
             if (!reader.IsEmptyElement)
@@ -287,7 +288,7 @@ namespace NLog.Config
 
         private void ParseNLogElement(XmlReader reader, string baseDirectory)
         {
-            InternalLogger.Trace("ParseNLogElement");
+            InternalLogger.Trace(CultureInfo.InvariantCulture, "ParseNLogElement");
             Debug.Assert(this.CaseInsensitiveEquals(reader.LocalName, "nlog"), "Expected <nlog/> element.");
 
             this.AutoReload = this.GetBooleanAttribute(reader, "autoReload", false);
@@ -328,7 +329,7 @@ namespace NLog.Config
                             break;
 
                         default:
-                            InternalLogger.Warn("Skipping unknown node: {0}", reader.Name);
+                            InternalLogger.Warn(CultureInfo.InvariantCulture, "Skipping unknown node: {0}", reader.Name);
                             reader.Skip();
                             break;
                     }
@@ -338,7 +339,7 @@ namespace NLog.Config
 
         private void ParseRulesElement(XmlReader reader, ICollection<LoggingRule> rulesCollection)
         {
-            InternalLogger.Trace("ParseRulesElement");
+            InternalLogger.Trace(CultureInfo.InvariantCulture, "ParseRulesElement");
             Debug.Assert(this.CaseInsensitiveEquals(reader.LocalName, "rules"), "Expected <rules/> element.");
             if (!reader.IsEmptyElement)
             {
@@ -543,7 +544,7 @@ namespace NLog.Config
 
         private void ParseTargetsElement(XmlReader reader)
         {
-            InternalLogger.Trace("ParseTargetsElement");
+            InternalLogger.Trace(CultureInfo.InvariantCulture, "ParseTargetsElement");
             Debug.Assert(this.CaseInsensitiveEquals(reader.LocalName, "targets") || this.CaseInsensitiveEquals(reader.LocalName, "appenders"), "Expected <targets> or <appenders/> element.");
 
             bool asyncWrap = this.CaseInsensitiveEquals(this.GetCaseInsensitiveAttribute(reader, "async", "false"), "true");
@@ -622,10 +623,10 @@ namespace NLog.Config
 
         private void ParseTargetElement(Target target, XmlReader reader)
         {
-            InternalLogger.Trace("ParseTargetElement name={0} type={1}", reader.GetAttribute("name"), reader.GetAttribute("type"));
+            InternalLogger.Trace(CultureInfo.InvariantCulture, "ParseTargetElement name={0} type={1}", reader.GetAttribute("name"), reader.GetAttribute("type"));
 
-            NLog.Targets.Compound.CompoundTargetBase compound = target as NLog.Targets.Compound.CompoundTargetBase;
-            NLog.Targets.Wrappers.WrapperTargetBase wrapper = target as NLog.Targets.Wrappers.WrapperTargetBase;
+            CompoundTargetBase compound = target as CompoundTargetBase;
+            WrapperTargetBase wrapper = target as WrapperTargetBase;
 
             this.ConfigureObjectFromAttributes(target, reader, this.variables, true);
 
@@ -734,7 +735,7 @@ namespace NLog.Config
                             }
                             catch (Exception ex)
                             {
-                                InternalLogger.Error("Error loading extensions: {0}", ex);
+                                InternalLogger.Error(CultureInfo.InvariantCulture, "Error loading extensions: {0}", ex);
                                 if (LogManager.ThrowExceptions)
                                 {
                                     throw new NLogConfigurationException("Error loading extensions: " + assemblyFile, ex);
@@ -756,7 +757,7 @@ namespace NLog.Config
                             }
                             catch (Exception ex)
                             {
-                                InternalLogger.Error("Error loading extensions: {0}", ex);
+                                InternalLogger.Error(CultureInfo.InvariantCulture, "Error loading extensions: {0}", ex);
                                 if (LogManager.ThrowExceptions)
                                 {
                                     throw new NLogConfigurationException("Error loading extensions: " + assemblyName, ex);
@@ -785,7 +786,7 @@ namespace NLog.Config
 
                 if (File.Exists(newFileName))
                 {
-                    InternalLogger.Debug("Including file '{0}'", newFileName);
+                    InternalLogger.Debug(CultureInfo.InvariantCulture, "Including file '{0}'", newFileName);
                     this.ConfigureFromFile(newFileName);
                 }
                 else
@@ -795,7 +796,7 @@ namespace NLog.Config
             }
             catch (Exception ex)
             {
-                InternalLogger.Error("Error when including '{0}' {1}", newFileName, ex);
+                InternalLogger.Error(CultureInfo.InvariantCulture, "Error when including '{0}' {1}", newFileName, ex);
 
                 if (this.CaseInsensitiveEquals(
                     this.GetCaseInsensitiveAttribute(reader, "ignoreErrors", "false"), 
@@ -941,11 +942,11 @@ namespace NLog.Config
 
         private Target WrapWithAsyncTarget(Target t)
         {
-            NLog.Targets.Wrappers.AsyncTargetWrapper atw = new NLog.Targets.Wrappers.AsyncTargetWrapper();
+            AsyncTargetWrapper atw = new AsyncTargetWrapper();
             atw.WrappedTarget = t;
             atw.Name = t.Name;
             t.Name = t.Name + "_wrapped";
-            InternalLogger.Debug("Wrapping target '{0}' with AsyncTargetWrapper and renaming to '{1}", atw.Name, t.Name);
+            InternalLogger.Debug(CultureInfo.InvariantCulture, "Wrapping target '{0}' with AsyncTargetWrapper and renaming to '{1}", atw.Name, t.Name);
             return atw;
         }
 
@@ -979,7 +980,7 @@ namespace NLog.Config
             wrapperTargetInstance.Name = t.Name;
             t.Name = t.Name + "_wrapped";
 
-            InternalLogger.Debug("Wrapping target '{0}' with '{1}' and renaming to '{2}", wrapperTargetInstance.Name, wrapperTargetInstance.GetType().Name, t.Name);
+            InternalLogger.Debug(CultureInfo.InvariantCulture, "Wrapping target '{0}' with '{1}' and renaming to '{2}", wrapperTargetInstance.Name, wrapperTargetInstance.GetType().Name, t.Name);
             return wrapperTargetInstance;
         }
     }

@@ -33,6 +33,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 
 using NLog.Config;
@@ -59,7 +60,7 @@ namespace NLog
             }
             catch (Exception ex)
             {
-                InternalLogger.Warn("Error setting up termiation events: {0}", ex);
+                InternalLogger.Warn(CultureInfo.InvariantCulture, "Error setting up termiation events: {0}", ex);
             }
         }
 #endif
@@ -249,8 +250,8 @@ namespace NLog
 #if !NET_CF && !SILVERLIGHT
         private static void SetupTerminationEvents()
         {
-            AppDomain.CurrentDomain.ProcessExit += new EventHandler(TurnOffLogging);
-            AppDomain.CurrentDomain.DomainUnload += new EventHandler(TurnOffLogging);
+            AppDomain.CurrentDomain.ProcessExit += TurnOffLogging;
+            AppDomain.CurrentDomain.DomainUnload += TurnOffLogging;
         }
 
         private static void TurnOffLogging(object sender, EventArgs args)

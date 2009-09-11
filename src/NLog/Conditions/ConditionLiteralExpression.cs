@@ -31,11 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-
-using System.Xml.Serialization;
-
 namespace NLog.Conditions
 {
     /// <summary>
@@ -43,7 +38,7 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionLiteralExpression : ConditionExpression
     {
-        private object literalValue;
+        private readonly object literalValue;
 
         /// <summary>
         /// Initializes a new instance of the ConditionLiteralExpression class.

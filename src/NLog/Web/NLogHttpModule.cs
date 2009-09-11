@@ -65,8 +65,8 @@ namespace NLog.Web
         /// </param>
         public void Init(HttpApplication application)
         {
-            application.BeginRequest += new EventHandler(this.BeginRequestHandler);
-            application.EndRequest += new EventHandler(this.EndRequestHandler);
+            application.BeginRequest += this.BeginRequestHandler;
+            application.EndRequest += this.EndRequestHandler;
         }
 
         /// <summary>

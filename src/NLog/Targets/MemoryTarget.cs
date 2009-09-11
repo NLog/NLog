@@ -56,16 +56,17 @@ namespace NLog.Targets
     [Target("Memory")]
     public sealed class MemoryTarget : TargetWithLayout
     {
-        private ICollection<string> logs = new List<string>();
         private object lockObject = new object();
+
+        public MemoryTarget()
+        {
+            Logs = new List<string>();
+        }
 
         /// <summary>
         /// Gets the list of logs gathered in the <see cref="MemoryTarget"/>.
         /// </summary>
-        public ICollection<string> Logs
-        {
-            get { return this.logs; }
-        }
+        public ICollection<string> Logs { get; private set; }
 
         /// <summary>
         /// Renders the logging event message and adds it to the internal ArrayList of log messages.
@@ -77,7 +78,7 @@ namespace NLog.Targets
 
             lock (this.lockObject)
             {
-                this.logs.Add(msg);
+                this.Logs.Add(msg);
             }
         }
     }

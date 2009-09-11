@@ -17,7 +17,7 @@ namespace NLog.Config
         /// <returns>Sequence of key/value pairs where each key represents the name 
         /// of the item and value is the <typeparamref name="TDefinitionType"/> of
         /// the item.</returns>
-        IEnumerable<KeyValuePair<string, TDefinitionType>> GetAllRegisteredItems();
+        IDictionary<string, TDefinitionType> AllRegisteredItems { get; }
 
         /// <summary>
         /// Registers new item definition.

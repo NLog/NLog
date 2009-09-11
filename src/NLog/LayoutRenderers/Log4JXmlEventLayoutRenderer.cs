@@ -34,6 +34,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -146,14 +147,14 @@ namespace NLog.LayoutRenderers
                 if (this.IncludeSourceInfo)
                 {
                     xtw.WriteAttributeString("file", frame.GetFileName());
-                    xtw.WriteAttributeString("line", frame.GetFileLineNumber().ToString());
+                    xtw.WriteAttributeString("line", frame.GetFileLineNumber().ToString(CultureInfo.InvariantCulture));
                 }
 
                 xtw.WriteEndElement();
 
                 if (this.IncludeNLogData)
                 {
-                    xtw.WriteElementString("nlog:eventSequenceNumber", logEvent.SequenceId.ToString());
+                    xtw.WriteElementString("nlog:eventSequenceNumber", logEvent.SequenceId.ToString(CultureInfo.InvariantCulture));
                     xtw.WriteStartElement("nlog:locationinfo");
                     xtw.WriteAttributeString("assembly", type.Assembly.FullName);
                     xtw.WriteEndElement();

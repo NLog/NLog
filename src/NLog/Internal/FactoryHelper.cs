@@ -33,6 +33,7 @@
 
 using System;
 using System.Reflection;
+using NLog.Config;
 
 namespace NLog.Internal
 {
@@ -57,7 +58,7 @@ namespace NLog.Internal
             }
             else
             {
-                throw new Exception("Cannot access the constructor of type: " + t.FullName + ". Is the required permission granted?");
+                throw new NLogConfigurationException("Cannot access the constructor of type: " + t.FullName + ". Is the required permission granted?");
             }
         }
     }

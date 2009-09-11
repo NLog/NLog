@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     /// ASP.NET Session ID.
     /// </summary>                 
     [LayoutRenderer("aspnet-sessionid")]
-    public class ASPNETSessionIDLayoutRenderer : LayoutRenderer
+    public class AspNetSessionIDLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Returns the estimated number of characters that are needed to

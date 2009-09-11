@@ -52,16 +52,19 @@ namespace NLog
     public class LogFactory
     {
 #if !NET_CF && !SILVERLIGHT
+        private readonly MultiFileWatcher watcher;
         private const int ReconfigAfterFileChangedTimeout = 1000;
-        private MultiFileWatcher watcher;
-        private Timer reloadTimer = null;
 #endif
 
-        private Dictionary<LoggerCacheKey, Logger> loggerCache = new Dictionary<LoggerCacheKey, Logger>();
+        private readonly Dictionary<LoggerCacheKey, Logger> loggerCache = new Dictionary<LoggerCacheKey, Logger>();
+#if !NET_CF && !SILVERLIGHT
+        private Timer reloadTimer;
+#endif
+
         private LoggingConfiguration config;
         private LogLevel globalThreshold = LogLevel.MinLevel;
-        private bool configLoaded = false;
-        private int logsEnabled = 0;
+        private bool configLoaded;
+        private int logsEnabled;
 
         /// <summary>
         /// Initializes a new instance of the LogFactory class.
@@ -132,11 +135,11 @@ namespace NLog
 #if !SILVERLIGHT
                     if (this.config == null)
                     {
-                        foreach (string configFile in this.GetCandidateFileNames())
+                        foreach (string configFile in GetCandidateFileNames())
                         {
                             if (File.Exists(configFile))
                             {
-                                InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                                InternalLogger.Debug(CultureInfo.InvariantCulture, "Attempting to load config from {0}", configFile);
                                 this.config = new XmlLoggingConfiguration(configFile);
                             }
                         }
@@ -146,7 +149,7 @@ namespace NLog
 #if !NET_CF && !SILVERLIGHT
                     if (this.config != null)
                     {
-                        this.Dump(this.config);
+                        Dump(this.config);
                         this.watcher.Watch(this.config.FileNamesToWatch);
                     }
 #endif
@@ -168,7 +171,7 @@ namespace NLog
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error("Cannot stop file watching: {0}", ex);
+                    InternalLogger.Error(CultureInfo.InvariantCulture, "Cannot stop file watching: {0}", ex);
                 }
 #endif
 
@@ -186,7 +189,7 @@ namespace NLog
 
                     if (this.config != null)
                     {
-                        this.Dump(this.config);
+                        Dump(this.config);
 
                         this.config.InitializeAll();
                         this.ReconfigExistingLoggers(this.config);
@@ -197,7 +200,7 @@ namespace NLog
                         }
                         catch (Exception ex)
                         {
-                            InternalLogger.Warn("Cannot start file watching: {0}", ex);
+                            InternalLogger.Warn(CultureInfo.InvariantCulture, "Cannot start file watching: {0}", ex);
                         }
 #endif
                     }
@@ -399,7 +402,7 @@ namespace NLog
                 {
                     if (this.Configuration != configurationToReload)
                     {
-                        throw new Exception("Config changed in between. Not reloading.");
+                        throw new NLogConfigurationException("Config changed in between. Not reloading.");
                     }
 
                     LoggingConfiguration newConfig = configurationToReload.Reload();
@@ -413,7 +416,7 @@ namespace NLog
                     }
                     else
                     {
-                        throw new Exception("Configuration.Reload() returned null. Not reloading.");
+                        throw new NLogConfigurationException("Configuration.Reload() returned null. Not reloading.");
                     }
                 }
                 catch (Exception ex)
@@ -430,11 +433,11 @@ namespace NLog
         }
 #endif
 
-        internal void ReconfigExistingLoggers(LoggingConfiguration config)
+        internal void ReconfigExistingLoggers(LoggingConfiguration configuration)
         {
             foreach (Logger logger in this.loggerCache.Values)
             {
-                logger.SetConfiguration(this.GetConfigurationForLogger(logger.Name, config));
+                logger.SetConfiguration(this.GetConfigurationForLogger(logger.Name, configuration));
             }
         }
 
@@ -442,35 +445,39 @@ namespace NLog
         {
             foreach (LoggingRule rule in rules)
             {
-                if (rule.NameMatches(name))
+                if (!rule.NameMatches(name))
                 {
-                    for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+                    continue;
+                }
+
+                for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+                {
+                    if (i < this.GlobalThreshold.Ordinal || !rule.IsLoggingEnabledForLevel(LogLevel.FromOrdinal(i)))
                     {
-                        if (i >= this.GlobalThreshold.Ordinal && rule.IsLoggingEnabledForLevel(LogLevel.FromOrdinal(i)))
+                        continue;
+                    }
+
+                    foreach (Target target in rule.Targets)
+                    {
+                        var awf = new TargetWithFilterChain(target, rule.Filters);
+                        if (lastTargetsByLevel[i] != null)
                         {
-                            foreach (Target target in rule.Targets)
-                            {
-                                TargetWithFilterChain awf = new TargetWithFilterChain(target, rule.Filters);
-                                if (lastTargetsByLevel[i] != null)
-                                {
-                                    lastTargetsByLevel[i].NextInChain = awf;
-                                }
-                                else
-                                {
-                                    targetsByLevel[i] = awf;
-                                }
-
-                                lastTargetsByLevel[i] = awf;
-                            }
+                            lastTargetsByLevel[i].NextInChain = awf;
                         }
-                    }
+                        else
+                        {
+                            targetsByLevel[i] = awf;
+                        }
 
-                    this.GetTargetsByLevelForLogger(name, rule.ChildRules, targetsByLevel, lastTargetsByLevel);
-
-                    if (rule.Final)
-                    {
-                        break;
+                        lastTargetsByLevel[i] = awf;
                     }
+                }
+
+                this.GetTargetsByLevelForLogger(name, rule.ChildRules, targetsByLevel, lastTargetsByLevel);
+
+                if (rule.Final)
+                {
+                    break;
                 }
             }
 
@@ -484,17 +491,17 @@ namespace NLog
             }
         }
 
-        internal LoggerConfiguration GetConfigurationForLogger(string name, LoggingConfiguration config)
+        internal LoggerConfiguration GetConfigurationForLogger(string name, LoggingConfiguration configuration)
         {
             TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
             TargetWithFilterChain[] lastTargetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
 
-            if (config != null && this.IsLoggingEnabled())
+            if (configuration != null && this.IsLoggingEnabled())
             {
-                this.GetTargetsByLevelForLogger(name, config.LoggingRules, targetsByLevel, lastTargetsByLevel);
+                this.GetTargetsByLevelForLogger(name, configuration.LoggingRules, targetsByLevel, lastTargetsByLevel);
             }
 
-            InternalLogger.Debug("Targets for {0} by level:", name);
+            InternalLogger.Debug(CultureInfo.InvariantCulture, "Targets for {0} by level:", name);
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
                 StringBuilder sb = new StringBuilder();
@@ -514,7 +521,7 @@ namespace NLog
             return new LoggerConfiguration(targetsByLevel);
         }
 
-        private IEnumerable<string> GetCandidateFileNames()
+        private static IEnumerable<string> GetCandidateFileNames()
         {
 #if NET_CF
             yield return CompactFrameworkHelper.GetExeFileName() + ".nlog";
@@ -546,6 +553,16 @@ namespace NLog
                 yield return globalConfig;
             }
 #endif
+        }
+
+        private static void Dump(LoggingConfiguration config)
+        {
+            if (!InternalLogger.IsDebugEnabled)
+            {
+                return;
+            }
+
+            config.Dump();
         }
 
         private Logger GetLogger(LoggerCacheKey cacheKey)
@@ -596,7 +613,7 @@ namespace NLog
                 if (this.reloadTimer == null)
                 {
                     this.reloadTimer = new Timer(
-                        new TimerCallback(this.ReloadConfigOnTimer),
+                        this.ReloadConfigOnTimer,
                         this.Configuration,
                         ReconfigAfterFileChangedTimeout,
                         Timeout.Infinite);
@@ -609,39 +626,20 @@ namespace NLog
         }
 #endif
 
-        private void Dump(LoggingConfiguration config)
-        {
-            if (!InternalLogger.IsDebugEnabled)
-            {
-                return;
-            }
-
-            config.Dump();
-        }
-
         /// <summary>
         /// Logger cache key.
         /// </summary>
         internal class LoggerCacheKey
         {
-            private Type loggerConcreteType;
-            private string name;
-
             internal LoggerCacheKey(Type loggerConcreteType, string name)
             {
-                this.loggerConcreteType = loggerConcreteType;
-                this.name = name;
+                this.ConcreteType = loggerConcreteType;
+                this.Name = name;
             }
 
-            internal Type ConcreteType
-            {
-                get { return this.loggerConcreteType; }
-            }
+            internal Type ConcreteType { get; private set; }
 
-            internal string Name
-            {
-                get { return this.name; }
-            }
+            internal string Name { get; private set; }
 
             /// <summary>
             /// Serves as a hash function for a particular type.
@@ -651,7 +649,7 @@ namespace NLog
             /// </returns>
             public override int GetHashCode()
             {
-                return this.loggerConcreteType.GetHashCode() ^ this.name.GetHashCode();
+                return this.ConcreteType.GetHashCode() ^ this.Name.GetHashCode();
             }
 
             /// <summary>
@@ -661,13 +659,13 @@ namespace NLog
             /// <returns>True if objects are equal, false otherwise.</returns>
             public override bool Equals(object o)
             {
-                LoggerCacheKey lck2 = (LoggerCacheKey)o;
-                if (lck2 == null)
+                LoggerCacheKey key = o as LoggerCacheKey;
+                if (key == null)
                 {
                     return false;
                 }
 
-                return (this.ConcreteType == lck2.ConcreteType) && (lck2.Name == this.Name);
+                return (this.ConcreteType == key.ConcreteType) && (key.Name == this.Name);
             }
         }
 

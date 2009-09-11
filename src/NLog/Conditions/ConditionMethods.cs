@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+
 namespace NLog.Conditions
 {
     /// <summary>
@@ -38,54 +40,54 @@ namespace NLog.Conditions
     /// condition expressions. Parially inspired by XPath 1.0.
     /// </summary>
     [ConditionMethods]
-    public class ConditionMethods
+    public static class ConditionMethods
     {
         /// <summary>
         /// Compares two objects for equality.
         /// </summary>
-        /// <param name="o1">The first object.</param>
-        /// <param name="o2">The second object.</param>
+        /// <param name="firstObject">The first object.</param>
+        /// <param name="secondObject">The second object.</param>
         /// <returns><b>true</b> when two objects are equal, <b>false</b> otherwise.</returns>
         [ConditionMethod("equals")]
-        public static bool Equals2(object o1, object o2)
+        public static bool Equals2(object firstObject, object secondObject)
         {
-            return o1.Equals(o2);
+            return firstObject.Equals(secondObject);
         }
 
         /// <summary>
         /// Gets or sets a value indicating whether the second string is a substring of the first one.
         /// </summary>
-        /// <param name="s1">The first string.</param>
-        /// <param name="s2">The second string.</param>
+        /// <param name="haystack">The first string.</param>
+        /// <param name="needle">The second string.</param>
         /// <returns><b>true</b> when the second string is a substring of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("contains")]
-        public static bool Contains(string s1, string s2)
+        public static bool Contains(string haystack, string needle)
         {
-            return s1.IndexOf(s2) >= 0;
+            return haystack.IndexOf(needle, StringComparison.InvariantCultureIgnoreCase) >= 0;
         }
 
         /// <summary>
         /// Gets or sets a value indicating whether the second string is a prefix of the first one.
         /// </summary>
-        /// <param name="s1">The first string.</param>
-        /// <param name="s2">The second string.</param>
+        /// <param name="haystack">The first string.</param>
+        /// <param name="needle">The second string.</param>
         /// <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("starts-with")]
-        public static bool StartsWith(string s1, string s2)
+        public static bool StartsWith(string haystack, string needle)
         {
-            return s1.StartsWith(s2);
+            return haystack.StartsWith(needle, StringComparison.InvariantCultureIgnoreCase);
         }
 
         /// <summary>
         /// Gets or sets a value indicating whether the second string is a suffix of the first one.
         /// </summary>
-        /// <param name="s1">The first string.</param>
-        /// <param name="s2">The second string.</param>
+        /// <param name="haystack">The first string.</param>
+        /// <param name="needle">The second string.</param>
         /// <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("ends-with")]
-        public static bool EndsWith(string s1, string s2)
+        public static bool EndsWith(string haystack, string needle)
         {
-            return s1.EndsWith(s2);
+            return haystack.EndsWith(needle, StringComparison.InvariantCultureIgnoreCase);
         }
 
         /// <summary>

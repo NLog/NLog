@@ -114,7 +114,7 @@ namespace NLog.Internal.FileAppenders
         {
             if (this.file == null)
                 return;
-            InternalLogger.Trace("Closing '{0}'", FileName);
+            InternalLogger.Trace(CultureInfo.InvariantCulture, "Closing '{0}'", FileName);
             this.file.Close();
             this.file = null;
             FileTouched();

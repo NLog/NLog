@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NLog
+﻿namespace NLog
 {
     /// <summary>
     /// Returns a log message. Used to defer calculation of 

@@ -42,15 +42,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("tempdir")]
     public class TempDirLayoutRenderer : LayoutRenderer
     {
-        private static string tempDir;
-
-        /// <summary>
-        /// Initializes static members of the TempDirLayoutRenderer class.
-        /// </summary>
-        static TempDirLayoutRenderer()
-        {
-            tempDir = Path.GetTempPath();
-        }
+        private static string tempDir = Path.GetTempPath();
 
         /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with the directory name.

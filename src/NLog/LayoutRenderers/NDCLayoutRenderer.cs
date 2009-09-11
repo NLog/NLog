@@ -42,12 +42,12 @@ namespace NLog.LayoutRenderers
     /// Nested Diagnostic Context item. Provided for compatibility with log4net.
     /// </summary>
     [LayoutRenderer("ndc")]
-    public class NDCLayoutRenderer : LayoutRenderer
+    public class NdcLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Initializes a new instance of the NDCLayoutRenderer class.
         /// </summary>
-        public NDCLayoutRenderer()
+        public NdcLayoutRenderer()
         {
             this.Separator = " ";
             this.BottomFrames = -1;

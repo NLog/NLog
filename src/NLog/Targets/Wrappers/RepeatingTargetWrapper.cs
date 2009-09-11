@@ -54,13 +54,12 @@ namespace NLog.Targets.Wrappers
     [Target("RepeatingWrapper", IsWrapper = true)]
     public class RepeatingTargetWrapper : WrapperTargetBase
     {
-        private int repeatCount = 3;
-
         /// <summary>
         /// Initializes a new instance of the RepeatingTargetWrapper class.
         /// </summary>
         public RepeatingTargetWrapper()
         {
+            this.RepeatCount = 3;
         }
 
         /// <summary>
@@ -78,11 +77,7 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the number of times to repeat each log message.
         /// </summary>
         [DefaultValue(3)]
-        public int RepeatCount
-        {
-            get { return this.repeatCount; }
-            set { this.repeatCount = value; }
-        }
+        public int RepeatCount { get; set; }
 
         /// <summary>
         /// Forwards the log message to the <see cref="WrapperTargetBase.WrappedTarget"/> by calling the <see cref="Target.Write(LogEventInfo)"/> method <see cref="RepeatCount"/> times.

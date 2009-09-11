@@ -33,9 +33,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using System.Text;
-using NLog.Config;
+using NLog.Internal;
 using NLog.Layouts;
 
 namespace NLog.Conditions
@@ -45,10 +46,10 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionMethodExpression : ConditionExpression
     {
-        private string conditionMethodName;
-        private ICollection<ConditionExpression> methodParameters;
-        private MethodInfo methodInfo;
-        private bool acceptsLogEvent;
+        private readonly string conditionMethodName;
+        private readonly bool acceptsLogEvent;
+        private readonly MethodInfo methodInfo;
+        private readonly ICollection<ConditionExpression> methodParameters;
 
         /// <summary>
         /// Initializes a new instance of the ConditionMethodExpression class.
@@ -70,13 +71,9 @@ namespace NLog.Conditions
             this.methodParameters = methodParameters;
 
             ParameterInfo[] formalParameters = this.methodInfo.GetParameters();
-            if (formalParameters.Length >= 0)
+            if (formalParameters.Length >= 0 && formalParameters[0].ParameterType == typeof(LogEventInfo))
             {
-                this.acceptsLogEvent = formalParameters[0].ParameterType == typeof(LogEventInfo);
-            }
-            else
-            {
-                this.acceptsLogEvent = false;
+                this.acceptsLogEvent = true;
             }
 
             int actualParameterCount = this.methodParameters.Count;
@@ -87,8 +84,15 @@ namespace NLog.Conditions
 
             if (formalParameters.Length != actualParameterCount)
             {
-                Internal.InternalLogger.Error("Condition method: '{0}' expects {1} parameters. Passed {2}", conditionMethodName, formalParameters.Length, actualParameterCount);
-                throw new ConditionParseException(String.Format("Condition method: '{0}' expects {1} parameters. Passed {2}", conditionMethodName, formalParameters.Length, actualParameterCount));
+                string message = String.Format(
+                    CultureInfo.InvariantCulture,
+                    "Condition method: '{0}' expects {1} parameters. Passed {2}",
+                    conditionMethodName,
+                    formalParameters.Length,
+                    actualParameterCount);
+
+                InternalLogger.Error(message);
+                throw new ConditionParseException(message);
             }
         }
 
@@ -120,7 +124,7 @@ namespace NLog.Conditions
             }
             catch (Exception ex)
             {
-                Internal.InternalLogger.Error("Error: {0}", ex);
+                InternalLogger.Error(CultureInfo.InvariantCulture, "Error: {0}", ex);
                 return string.Empty;
             }
         }
@@ -133,7 +137,7 @@ namespace NLog.Conditions
         /// </returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append(this.conditionMethodName);
             sb.Append("(");
 

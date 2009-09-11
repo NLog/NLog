@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Globalization;
 using System.Text;
 using NLog.Config;
 using NLog.Internal;
@@ -52,7 +53,6 @@ namespace NLog.Layouts
         private bool isVolatile = false;
 
         private string layoutText;
-        private LayoutRenderer[] renderers;
         private StackTraceUsage stackTraceUsage = StackTraceUsage.None;
 
         #endregion
@@ -112,10 +112,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets a collection of <see cref="LayoutRenderer"/> objects that make up this layout.
         /// </summary>
-        internal LayoutRenderer[] Renderers
-        {
-            get { return this.renderers; }
-        }
+        internal LayoutRenderer[] Renderers { get; private set; }
 
         #endregion
 
@@ -199,9 +196,9 @@ namespace NLog.Layouts
 
             int size = 0;
 
-            for (int i = 0; i < this.renderers.Length; ++i)
+            for (int i = 0; i < this.Renderers.Length; ++i)
             {
-                LayoutRenderer app = this.renderers[i];
+                LayoutRenderer app = this.Renderers[i];
                 try
                 {
                     int ebs = app.GetEstimatedBufferSize(logEvent);
@@ -211,16 +208,16 @@ namespace NLog.Layouts
                 {
                     if (InternalLogger.IsWarnEnabled)
                     {
-                        InternalLogger.Warn("Exception in {0}.GetEstimatedBufferSize(): {1}.", app.GetType().FullName, ex);
+                        InternalLogger.Warn(CultureInfo.InvariantCulture, "Exception in {0}.GetEstimatedBufferSize(): {1}.", app.GetType().FullName, ex);
                     }
                 }
             }
 
             StringBuilder builder = new StringBuilder(size);
 
-            for (int i = 0; i < this.renderers.Length; ++i)
+            for (int i = 0; i < this.Renderers.Length; ++i)
             {
-                LayoutRenderer app = this.renderers[i];
+                LayoutRenderer app = this.Renderers[i];
                 try
                 {
                     app.Append(builder, logEvent);
@@ -229,7 +226,7 @@ namespace NLog.Layouts
                 {
                     if (InternalLogger.IsWarnEnabled)
                     {
-                        InternalLogger.Warn("Exception in {0}.Append(): {1}.", app.GetType().FullName, ex);
+                        InternalLogger.Warn(CultureInfo.InvariantCulture, "Exception in {0}.Append(): {1}.", app.GetType().FullName, ex);
                     }
                 }
             }
@@ -305,10 +302,10 @@ namespace NLog.Layouts
 
         internal void SetRenderers(LayoutRenderer[] renderers, string text)
         {
-            this.renderers = renderers;
-            if (this.renderers.Length == 1 && this.renderers[0] is LiteralLayoutRenderer)
+            this.Renderers = renderers;
+            if (this.Renderers.Length == 1 && this.Renderers[0] is LiteralLayoutRenderer)
             {
-                this.fixedText = ((LiteralLayoutRenderer)this.renderers[0]).Text;
+                this.fixedText = ((LiteralLayoutRenderer)this.Renderers[0]).Text;
             }
             else
             {

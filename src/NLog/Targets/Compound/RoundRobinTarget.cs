@@ -57,7 +57,7 @@ namespace NLog.Targets.Compound
     [Target("RoundRobinGroup", IsCompound = true)]
     public class RoundRobinTarget : CompoundTargetBase
     {
-        private int currentTarget = 0;
+        private int currentTarget;
 
         /// <summary>
         /// Initializes a new instance of the RoundRobinTarget class.

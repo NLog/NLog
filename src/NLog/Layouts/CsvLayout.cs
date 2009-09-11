@@ -26,52 +26,12 @@ namespace NLog.Layouts
         public CsvLayout()
         {
             this.WithHeader = true;
-            this.Delimiter = ColumnDelimiterMode.Auto;
+            this.Delimiter = CsvColumnDelimiterMode.Auto;
             this.Quoting = CsvQuotingMode.Auto;
             this.QuoteChar = "\"";
             this.thisHeader = new CsvHeaderLayout(this);
         }
 
-        /// <summary>
-        /// Specifies allowed column delimiters.
-        /// </summary>
-        public enum ColumnDelimiterMode
-        {
-            /// <summary>
-            /// Automatically detect from regional settings.
-            /// </summary>
-            Auto,
-
-            /// <summary>
-            /// Comma (ASCII 44).
-            /// </summary>
-            Comma,
-
-            /// <summary>
-            /// Semicolon (ASCII 59).
-            /// </summary>
-            Semicolon,
-
-            /// <summary>
-            /// Tab character (ASCII 9).
-            /// </summary>
-            Tab,
-
-            /// <summary>
-            /// Pipe character (ASCII 124).
-            /// </summary>
-            Pipe,
-
-            /// <summary>
-            /// Space character (ASCII 32).
-            /// </summary>
-            Space,
-
-            /// <summary>
-            /// Custom string, specified by the CustomDelimiter.
-            /// </summary>
-            Custom,
-        }
 
         /// <summary>
         /// Gets the array of parameters to be passed.
@@ -92,7 +52,7 @@ namespace NLog.Layouts
         /// Gets or sets the column delimiter.
         /// </summary>
         [DefaultValue("Auto")]
-        public ColumnDelimiterMode Delimiter { get; set; }
+        public CsvColumnDelimiterMode Delimiter { get; set; }
 
         /// <summary>
         /// Gets or sets the quoting mode.
@@ -119,7 +79,7 @@ namespace NLog.Layouts
         public Layout Layout
         {
             get { return this; }
-            set { throw new Exception("Cannot modify the layout of CsvLayout"); }
+            set { throw new InvalidOperationException("Cannot modify the layout of CsvLayout"); }
         }
 
         /// <summary>
@@ -241,31 +201,31 @@ namespace NLog.Layouts
             base.Initialize();
             switch (this.Delimiter)
             {
-                case ColumnDelimiterMode.Auto:
+                case CsvColumnDelimiterMode.Auto:
                     this.actualColumnDelimiter = CultureInfo.CurrentCulture.TextInfo.ListSeparator;
                     break;
 
-                case ColumnDelimiterMode.Comma:
+                case CsvColumnDelimiterMode.Comma:
                     this.actualColumnDelimiter = ",";
                     break;
 
-                case ColumnDelimiterMode.Semicolon:
+                case CsvColumnDelimiterMode.Semicolon:
                     this.actualColumnDelimiter = ";";
                     break;
 
-                case ColumnDelimiterMode.Pipe:
+                case CsvColumnDelimiterMode.Pipe:
                     this.actualColumnDelimiter = "|";
                     break;
 
-                case ColumnDelimiterMode.Tab:
+                case CsvColumnDelimiterMode.Tab:
                     this.actualColumnDelimiter = "\t";
                     break;
 
-                case ColumnDelimiterMode.Space:
+                case CsvColumnDelimiterMode.Space:
                     this.actualColumnDelimiter = " ";
                     break;
 
-                case ColumnDelimiterMode.Custom:
+                case CsvColumnDelimiterMode.Custom:
                     this.actualColumnDelimiter = this.CustomColumnDelimiter;
                     break;
             }

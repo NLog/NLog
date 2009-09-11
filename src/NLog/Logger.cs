@@ -37,8 +37,6 @@ using NLog.Internal;
 
 namespace NLog
 {
-    using Config;
-
     /// <summary>
     /// Provides logging interface and utility functions.
     /// </summary>
@@ -47,8 +45,6 @@ namespace NLog
     {
         private readonly Type loggerType = typeof(Logger);
 
-        private string loggerName;
-        private LogFactory factory;
         private volatile LoggerConfiguration configuration;
         private volatile bool isTraceEnabled;
         private volatile bool isDebugEnabled;
@@ -72,18 +68,12 @@ namespace NLog
         /// <summary>
         /// Gets the name of the logger.
         /// </summary>
-        public string Name
-        {
-            get { return this.loggerName; }
-        }
+        public string Name { get; private set; }
 
         /// <summary>
         /// Gets the factory that created this logger.
         /// </summary>
-        public LogFactory Factory
-        {
-            get { return this.factory; }
-        }
+        public LogFactory Factory { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Trace</c> level.
@@ -287,12 +277,12 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the specified level using the specified parameter and formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="level">The log level.</param>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
-        public void Log<T1>(LogLevel level, IFormatProvider formatProvider, string message, T1 argument)
+        public void Log<TArgument>(LogLevel level, IFormatProvider formatProvider, string message, TArgument argument)
         { 
             if (this.IsEnabled(level))
             {
@@ -303,11 +293,11 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the specified level using the specified parameter.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:" /> argument to format.</param>
-        public void Log<T1>(LogLevel level, string message, T1 argument)
+        /// <param name="argument">The argument to format.</param>
+        public void Log<TArgument>(LogLevel level, string message, TArgument argument)
         { 
             if (this.IsEnabled(level))
             {
@@ -318,14 +308,14 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the specified level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="level">The log level.</param>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Log<T1, T2>(LogLevel level, IFormatProvider formatProvider, string message, T1 argument1, T2 argument2) 
+        public void Log<TArgument1, TArgument2>(LogLevel level, IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (this.IsEnabled(level))
             {
@@ -336,13 +326,13 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the specified level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Log<T1, T2>(LogLevel level, string message, T1 argument1, T2 argument2)
+        public void Log<TArgument1, TArgument2>(LogLevel level, string message, TArgument1 argument1, TArgument2 argument2)
         { 
             if (this.IsEnabled(level))
             {
@@ -353,16 +343,16 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the specified level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="level">The log level.</param>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Log<T1, T2, T3>(LogLevel level, IFormatProvider formatProvider, string message, T1 argument1, T2 argument2, T3 argument3) 
+        public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (this.IsEnabled(level))
             {
@@ -373,15 +363,15 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the specified level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Log<T1, T2, T3>(LogLevel level, string message, T1 argument1, T2 argument2, T3 argument3)
+        public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
             if (this.IsEnabled(level))
             {
@@ -490,11 +480,11 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameter and formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
-        public void Trace<T1>(IFormatProvider formatProvider, string message, T1 argument)
+        public void Trace<TArgument>(IFormatProvider formatProvider, string message, TArgument argument)
         { 
             if (this.IsTraceEnabled)
             {
@@ -505,10 +495,10 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameter.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:" /> argument to format.</param>
-        public void Trace<T1>(string message, T1 argument)
+        /// <param name="argument">The argument to format.</param>
+        public void Trace<TArgument>(string message, TArgument argument)
         { 
             if (this.IsTraceEnabled)
             {
@@ -519,13 +509,13 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Trace<T1, T2>(IFormatProvider formatProvider, string message, T1 argument1, T2 argument2) 
+        public void Trace<TArgument1, TArgument2>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (this.IsTraceEnabled)
             {
@@ -536,12 +526,12 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Trace<T1, T2>(string message, T1 argument1, T2 argument2)
+        public void Trace<TArgument1, TArgument2>(string message, TArgument1 argument1, TArgument2 argument2)
         { 
             if (this.IsTraceEnabled)
             {
@@ -552,15 +542,15 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Trace<T1, T2, T3>(IFormatProvider formatProvider, string message, T1 argument1, T2 argument2, T3 argument3) 
+        public void Trace<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (this.IsTraceEnabled)
             {
@@ -571,14 +561,14 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Trace<T1, T2, T3>(string message, T1 argument1, T2 argument2, T3 argument3)
+        public void Trace<TArgument1, TArgument2, TArgument3>(string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
             if (this.IsTraceEnabled)
             {
@@ -687,11 +677,11 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameter and formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
-        public void Debug<T1>(IFormatProvider formatProvider, string message, T1 argument)
+        public void Debug<TArgument>(IFormatProvider formatProvider, string message, TArgument argument)
         { 
             if (this.IsDebugEnabled)
             {
@@ -702,10 +692,10 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameter.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:" /> argument to format.</param>
-        public void Debug<T1>(string message, T1 argument)
+        /// <param name="argument">The argument to format.</param>
+        public void Debug<TArgument>(string message, TArgument argument)
         { 
             if (this.IsDebugEnabled)
             {
@@ -716,13 +706,13 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Debug<T1, T2>(IFormatProvider formatProvider, string message, T1 argument1, T2 argument2) 
+        public void Debug<TArgument1, TArgument2>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (this.IsDebugEnabled)
             {
@@ -733,12 +723,12 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Debug<T1, T2>(string message, T1 argument1, T2 argument2)
+        public void Debug<TArgument1, TArgument2>(string message, TArgument1 argument1, TArgument2 argument2)
         { 
             if (this.IsDebugEnabled)
             {
@@ -749,15 +739,15 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Debug<T1, T2, T3>(IFormatProvider formatProvider, string message, T1 argument1, T2 argument2, T3 argument3) 
+        public void Debug<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (this.IsDebugEnabled)
             {
@@ -768,14 +758,14 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Debug<T1, T2, T3>(string message, T1 argument1, T2 argument2, T3 argument3)
+        public void Debug<TArgument1, TArgument2, TArgument3>(string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
             if (this.IsDebugEnabled)
             {
@@ -884,11 +874,11 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level using the specified parameter and formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
-        public void Info<T1>(IFormatProvider formatProvider, string message, T1 argument)
+        public void Info<TArgument>(IFormatProvider formatProvider, string message, TArgument argument)
         { 
             if (this.IsInfoEnabled)
             {
@@ -899,10 +889,10 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level using the specified parameter.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:" /> argument to format.</param>
-        public void Info<T1>(string message, T1 argument)
+        /// <param name="argument">The argument to format.</param>
+        public void Info<TArgument>(string message, TArgument argument)
         { 
             if (this.IsInfoEnabled)
             {
@@ -913,13 +903,13 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Info<T1, T2>(IFormatProvider formatProvider, string message, T1 argument1, T2 argument2) 
+        public void Info<TArgument1, TArgument2>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (this.IsInfoEnabled)
             {
@@ -930,12 +920,12 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Info<T1, T2>(string message, T1 argument1, T2 argument2)
+        public void Info<TArgument1, TArgument2>(string message, TArgument1 argument1, TArgument2 argument2)
         { 
             if (this.IsInfoEnabled)
             {
@@ -946,15 +936,15 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Info<T1, T2, T3>(IFormatProvider formatProvider, string message, T1 argument1, T2 argument2, T3 argument3) 
+        public void Info<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (this.IsInfoEnabled)
             {
@@ -965,14 +955,14 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Info<T1, T2, T3>(string message, T1 argument1, T2 argument2, T3 argument3)
+        public void Info<TArgument1, TArgument2, TArgument3>(string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
             if (this.IsInfoEnabled)
             {
@@ -1081,11 +1071,11 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level using the specified parameter and formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
-        public void Warn<T1>(IFormatProvider formatProvider, string message, T1 argument)
+        public void Warn<TArgument>(IFormatProvider formatProvider, string message, TArgument argument)
         { 
             if (this.IsWarnEnabled)
             {
@@ -1096,10 +1086,10 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level using the specified parameter.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:" /> argument to format.</param>
-        public void Warn<T1>(string message, T1 argument)
+        /// <param name="argument">The argument to format.</param>
+        public void Warn<TArgument>(string message, TArgument argument)
         { 
             if (this.IsWarnEnabled)
             {
@@ -1110,13 +1100,13 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Warn<T1, T2>(IFormatProvider formatProvider, string message, T1 argument1, T2 argument2) 
+        public void Warn<TArgument1, TArgument2>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (this.IsWarnEnabled)
             {
@@ -1127,12 +1117,12 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Warn<T1, T2>(string message, T1 argument1, T2 argument2)
+        public void Warn<TArgument1, TArgument2>(string message, TArgument1 argument1, TArgument2 argument2)
         { 
             if (this.IsWarnEnabled)
             {
@@ -1143,15 +1133,15 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Warn<T1, T2, T3>(IFormatProvider formatProvider, string message, T1 argument1, T2 argument2, T3 argument3) 
+        public void Warn<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (this.IsWarnEnabled)
             {
@@ -1162,14 +1152,14 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Warn<T1, T2, T3>(string message, T1 argument1, T2 argument2, T3 argument3)
+        public void Warn<TArgument1, TArgument2, TArgument3>(string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
             if (this.IsWarnEnabled)
             {
@@ -1278,11 +1268,11 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified parameter and formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
-        public void Error<T1>(IFormatProvider formatProvider, string message, T1 argument)
+        public void Error<TArgument>(IFormatProvider formatProvider, string message, TArgument argument)
         { 
             if (this.IsErrorEnabled)
             {
@@ -1293,10 +1283,10 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified parameter.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:" /> argument to format.</param>
-        public void Error<T1>(string message, T1 argument)
+        /// <param name="argument">The argument to format.</param>
+        public void Error<TArgument>(string message, TArgument argument)
         { 
             if (this.IsErrorEnabled)
             {
@@ -1307,13 +1297,13 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Error<T1, T2>(IFormatProvider formatProvider, string message, T1 argument1, T2 argument2) 
+        public void Error<TArgument1, TArgument2>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (this.IsErrorEnabled)
             {
@@ -1324,12 +1314,12 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Error<T1, T2>(string message, T1 argument1, T2 argument2)
+        public void Error<TArgument1, TArgument2>(string message, TArgument1 argument1, TArgument2 argument2)
         { 
             if (this.IsErrorEnabled)
             {
@@ -1340,15 +1330,15 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Error<T1, T2, T3>(IFormatProvider formatProvider, string message, T1 argument1, T2 argument2, T3 argument3) 
+        public void Error<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (this.IsErrorEnabled)
             {
@@ -1359,14 +1349,14 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Error<T1, T2, T3>(string message, T1 argument1, T2 argument2, T3 argument3)
+        public void Error<TArgument1, TArgument2, TArgument3>(string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
             if (this.IsErrorEnabled)
             {
@@ -1475,11 +1465,11 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameter and formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
-        public void Fatal<T1>(IFormatProvider formatProvider, string message, T1 argument)
+        public void Fatal<TArgument>(IFormatProvider formatProvider, string message, TArgument argument)
         { 
             if (this.IsFatalEnabled)
             {
@@ -1490,10 +1480,10 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameter.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:" /> argument to format.</param>
-        public void Fatal<T1>(string message, T1 argument)
+        /// <param name="argument">The argument to format.</param>
+        public void Fatal<TArgument>(string message, TArgument argument)
         { 
             if (this.IsFatalEnabled)
             {
@@ -1504,13 +1494,13 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Fatal<T1, T2>(IFormatProvider formatProvider, string message, T1 argument1, T2 argument2) 
+        public void Fatal<TArgument1, TArgument2>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (this.IsFatalEnabled)
             {
@@ -1521,12 +1511,12 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Fatal<T1, T2>(string message, T1 argument1, T2 argument2)
+        public void Fatal<TArgument1, TArgument2>(string message, TArgument1 argument1, TArgument2 argument2)
         { 
             if (this.IsFatalEnabled)
             {
@@ -1537,15 +1527,15 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Fatal<T1, T2, T3>(IFormatProvider formatProvider, string message, T1 argument1, T2 argument2, T3 argument3) 
+        public void Fatal<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (this.IsFatalEnabled)
             {
@@ -1556,14 +1546,14 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Fatal<T1, T2, T3>(string message, T1 argument1, T2 argument2, T3 argument3)
+        public void Fatal<TArgument1, TArgument2, TArgument3>(string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
             if (this.IsFatalEnabled)
             {
@@ -1574,26 +1564,26 @@ namespace NLog
         #endregion
 
         // end of generated code
-        internal void Initialize(string name, LoggerConfiguration configuration, LogFactory factory)
+        internal void Initialize(string name, LoggerConfiguration loggerConfiguration, LogFactory factory)
         {
-            this.loggerName = name;
-            this.factory = factory;
-            this.SetConfiguration(configuration);
+            this.Name = name;
+            this.Factory = factory;
+            this.SetConfiguration(loggerConfiguration);
         }
 
         internal void WriteToTargets(LogLevel level, IFormatProvider formatProvider, string message, object[] args)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), LogEventInfo.Create(level, this.Name, formatProvider, message, args), this.factory);
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), LogEventInfo.Create(level, this.Name, formatProvider, message, args), this.Factory);
         }
 
         internal void WriteToTargets<T>(LogLevel level, IFormatProvider formatProvider, T value)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), LogEventInfo.Create(level, this.Name, formatProvider, value), this.factory);
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), LogEventInfo.Create(level, this.Name, formatProvider, value), this.Factory);
         }
 
         internal void WriteToTargets(LogLevel level, string message, Exception ex)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), LogEventInfo.Create(level, this.Name, message, ex), this.factory);
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), LogEventInfo.Create(level, this.Name, message, ex), this.Factory);
         }
 
         internal void WriteToTargets(LogLevel level, string message, object[] args)
@@ -1603,25 +1593,25 @@ namespace NLog
 
         internal void WriteToTargets(LogEventInfo logEvent)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(logEvent.Level), logEvent, this.factory);
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(logEvent.Level), logEvent, this.Factory);
         }
 
         internal void WriteToTargets(Type wrapperType, LogEventInfo logEvent)
         {
-            LoggerImpl.Write(wrapperType, this.GetTargetsForLevel(logEvent.Level), logEvent, this.factory);
+            LoggerImpl.Write(wrapperType, this.GetTargetsForLevel(logEvent.Level), logEvent, this.Factory);
         }
 
-        internal void SetConfiguration(LoggerConfiguration configuration)
+        internal void SetConfiguration(LoggerConfiguration newConfiguration)
         {
-            this.configuration = configuration;
+            this.configuration = newConfiguration;
 
             // pre-calculate 'enabled' flags
-            this.isTraceEnabled = configuration.IsEnabled(LogLevel.Trace);
-            this.isDebugEnabled = configuration.IsEnabled(LogLevel.Debug);
-            this.isInfoEnabled = configuration.IsEnabled(LogLevel.Info);
-            this.isWarnEnabled = configuration.IsEnabled(LogLevel.Warn);
-            this.isErrorEnabled = configuration.IsEnabled(LogLevel.Error);
-            this.isFatalEnabled = configuration.IsEnabled(LogLevel.Fatal);
+            this.isTraceEnabled = newConfiguration.IsEnabled(LogLevel.Trace);
+            this.isDebugEnabled = newConfiguration.IsEnabled(LogLevel.Debug);
+            this.isInfoEnabled = newConfiguration.IsEnabled(LogLevel.Info);
+            this.isWarnEnabled = newConfiguration.IsEnabled(LogLevel.Warn);
+            this.isErrorEnabled = newConfiguration.IsEnabled(LogLevel.Error);
+            this.isFatalEnabled = newConfiguration.IsEnabled(LogLevel.Fatal);
 
             var loggerReconfiguredDelegate = this.LoggerReconfigured;
 

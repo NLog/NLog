@@ -45,9 +45,9 @@ namespace NLog.Filters
         /// <summary>
         /// Initializes a new instance of the FilterAttribute class.
         /// </summary>
-        /// <param name="filterName">Name of the filter.</param>
-        public FilterAttribute(string filterName)
-            : base(filterName)
+        /// <param name="name">Name of the filter.</param>
+        public FilterAttribute(string name)
+            : base(name)
         {
         }
     }

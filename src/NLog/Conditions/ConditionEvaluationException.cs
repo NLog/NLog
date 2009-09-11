@@ -31,55 +31,63 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Layouts;
+using System;
+#if !NET_CF
+using System.Runtime.Serialization;
+#endif
 
 namespace NLog.Conditions
 {
     /// <summary>
-    /// Condition <b>not</b> expression.
+    /// Exception during evaluation of condition expression.
     /// </summary>
-    internal sealed class ConditionNotExpression : ConditionExpression 
+#if !NET_CF && !SILVERLIGHT
+    [Serializable]
+#endif
+    public class ConditionEvaluationException : Exception 
     {
-        private readonly ConditionExpression expression;
-
         /// <summary>
-        /// Initializes a new instance of the ConditionNotExpression class.
+        /// Initializes a new instance of the ConditionEvaluationException class.
         /// </summary>
-        /// <param name="expression">The expression.</param>
-        public ConditionNotExpression(ConditionExpression expression) 
+        public ConditionEvaluationException()
         {
-            this.expression = expression;
         }
 
         /// <summary>
-        /// Evaluates the expression.
+        /// Initializes a new instance of the ConditionEvaluationException class.
         /// </summary>
-        /// <param name="context">Evaluation context.</param>
-        /// <returns>Expression result.</returns>
-        public override object Evaluate(LogEventInfo context)
+        /// <param name="message">The message.</param>
+        public ConditionEvaluationException(string message)
+            : base(message)
         {
-            return !(bool)this.expression.Evaluate(context);
         }
 
         /// <summary>
-        /// Returns a string representation of the expression.
+        /// Initializes a new instance of the ConditionEvaluationException class.
         /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String"/> that represents the condition expression.
-        /// </returns>
-        public override string ToString()
+        /// <param name="message">The message.</param>
+        /// <param name="innerException">The inner exception.</param>
+        public ConditionEvaluationException(string message, Exception innerException)
+            : base(message, innerException)
         {
-            return "not(" + this.expression + ")";
         }
 
+#if !NET_CF && !SILVERLIGHT
         /// <summary>
-        /// Adds all layouts used by this expression to the specified collection.
+        /// Initializes a new instance of the ConditionEvaluationException class.
         /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
+        /// <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+        /// <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// The <paramref name="info"/> parameter is null.
+        /// </exception>
+        /// <exception cref="T:System.Runtime.Serialization.SerializationException">
+        /// The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0).
+        /// </exception>
+        protected ConditionEvaluationException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
-            this.expression.PopulateLayouts(layouts);
         }
+#endif
     }
 }

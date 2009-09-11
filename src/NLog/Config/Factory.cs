@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using NLog.Internal;
 
@@ -14,13 +15,24 @@ namespace NLog.Config
         where TBaseType : class 
         where TAttributeType : NameAttributeBase
     {
-        private Dictionary<string, Type> items = new Dictionary<string, Type>(StringComparer.InvariantCultureIgnoreCase);
+        private readonly Dictionary<string, Type> items = new Dictionary<string, Type>(StringComparer.InvariantCultureIgnoreCase);
 
         /// <summary>
         /// Initializes a new instance of the Factory class.
         /// </summary>
         public Factory()
         {
+        }
+
+        /// <summary>
+        /// Gets a collection of all registered items in the factory.
+        /// </summary>
+        /// <returns>Sequence of key/value pairs where each key represents the name 
+        /// of the item and value is the <see cref="Type"/> of
+        /// the item.</returns>
+        public IDictionary<string, Type> AllRegisteredItems
+        {
+            get { return this.items; }
         }
 
         /// <summary>
@@ -32,7 +44,7 @@ namespace NLog.Config
         {
             try
             {
-                InternalLogger.Debug("ScanAssembly('{0}','{1}','{2}')", theAssembly.FullName, typeof(TAttributeType), typeof(TBaseType));
+                InternalLogger.Debug(CultureInfo.InvariantCulture, "ScanAssembly('{0}','{1}','{2}')", theAssembly.FullName, typeof(TAttributeType), typeof(TBaseType));
                 foreach (Type t in theAssembly.GetTypes())
                 {
                     TAttributeType[] attributes = (TAttributeType[])t.GetCustomAttributes(typeof(TAttributeType), false);
@@ -47,7 +59,7 @@ namespace NLog.Config
             }
             catch (Exception ex)
             {
-                InternalLogger.Error("Failed to add targets from '" + theAssembly.FullName + "': {0}", ex);
+                InternalLogger.Error(CultureInfo.InvariantCulture, "Failed to add targets from '" + theAssembly.FullName + "': {0}", ex);
             }
         }
 
@@ -115,17 +127,6 @@ namespace NLog.Config
             }
 
             throw new ArgumentException(typeof(TBaseType).Name + " cannot be found: '" + name + "'");
-        }
-
-        /// <summary>
-        /// Gets a collection of all registered items in the factory.
-        /// </summary>
-        /// <returns>Sequence of key/value pairs where each key represents the name 
-        /// of the item and value is the <typeparamref name="TDefinitionType"/> of
-        /// the item.</returns>
-        public IEnumerable<KeyValuePair<string, Type>> GetAllRegisteredItems()
-        {
-            return this.items;
         }
     }
 }

@@ -34,6 +34,7 @@
 #if !NET_CF && !SILVERLIGHT
 
 using System;
+using System.Globalization;
 using System.Text;
 using NLog.Internal;
 
@@ -103,7 +104,7 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception ex)
             {
-                InternalLogger.Warn("Error getting machine name: {0}", ex);
+                InternalLogger.Warn(CultureInfo.InvariantCulture, "Error getting machine name: {0}", ex);
                 return String.Empty;
             }
         }

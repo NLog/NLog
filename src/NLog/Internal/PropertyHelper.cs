@@ -53,7 +53,7 @@ namespace NLog.Internal
         {
             string value = ExpandVariables(value0, variables);
 
-            InternalLogger.Debug("Setting '{0}.{1}' to '{2}'", o.GetType().Name, name, value);
+            InternalLogger.Debug(CultureInfo.InvariantCulture, "Setting '{0}.{1}' to '{2}'", o.GetType().Name, name, value);
 
             try
             {

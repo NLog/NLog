@@ -32,6 +32,8 @@
 // 
 
 using System;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 
@@ -49,10 +51,6 @@ namespace NLog.Internal.FileAppenders
     internal abstract class BaseFileAppender
     {
         private readonly Random random = new Random();
-        private readonly string fileName;
-        private readonly ICreateFileParameters createParameters;
-        private readonly DateTime openTime;
-        private DateTime lastWriteTime;
 
         /// <summary>
         /// Initializes a new instance of the BaseFileAppender class.
@@ -61,47 +59,35 @@ namespace NLog.Internal.FileAppenders
         /// <param name="createParameters">The create parameters.</param>
         public BaseFileAppender(string fileName, ICreateFileParameters createParameters)
         {
-            this.fileName = fileName;
-            this.createParameters = createParameters;
-            this.openTime = CurrentTimeGetter.Now;
-            this.lastWriteTime = DateTime.MinValue;
+            this.CreateFileParameters = createParameters;
+            this.FileName = fileName;
+            this.OpenTime = CurrentTimeGetter.Now;
+            this.LastWriteTime = DateTime.MinValue;
         }
 
         /// <summary>
         /// Gets the name of the file.
         /// </summary>
         /// <value>The name of the file.</value>
-        public string FileName
-        {
-            get { return this.fileName; }
-        }
+        public string FileName { get; private set; }
 
         /// <summary>
         /// Gets the last write time.
         /// </summary>
         /// <value>The last write time.</value>
-        public DateTime LastWriteTime
-        {
-            get { return this.lastWriteTime; }
-        }
+        public DateTime LastWriteTime { get; private set; }
 
         /// <summary>
         /// Gets the open time of the file.
         /// </summary>
         /// <value>The open time.</value>
-        public DateTime OpenTime
-        {
-            get { return this.openTime; }
-        }
+        public DateTime OpenTime { get; private set; }
 
         /// <summary>
         /// Gets the file creation parameters.
         /// </summary>
         /// <value>The file creation parameters.</value>
-        public ICreateFileParameters CreateFileParameters
-        {
-            get { return this.createParameters; }
-        }
+        public ICreateFileParameters CreateFileParameters { get; private set; }
 
         /// <summary>
         /// Writes the specified bytes.
@@ -132,7 +118,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         protected void FileTouched()
         {
-            this.lastWriteTime = CurrentTimeGetter.Now;
+            this.LastWriteTime = CurrentTimeGetter.Now;
         }
 
         /// <summary>
@@ -141,7 +127,7 @@ namespace NLog.Internal.FileAppenders
         /// <param name="dateTime">Date and time when the last write occured.</param>
         protected void FileTouched(DateTime dateTime)
         {
-            this.lastWriteTime = dateTime;
+            this.LastWriteTime = dateTime;
         }
 
         /// <summary>
@@ -151,10 +137,10 @@ namespace NLog.Internal.FileAppenders
         /// <returns>A <see cref="FileStream"/> object which can be used to write to the file.</returns>
         protected FileStream CreateFileStream(bool allowConcurrentWrite)
         {
-            int currentDelay = this.createParameters.ConcurrentWriteAttemptDelay;
+            int currentDelay = this.CreateFileParameters.ConcurrentWriteAttemptDelay;
 
-            InternalLogger.Trace("Opening {0} with concurrentWrite={1}", this.FileName, allowConcurrentWrite);
-            for (int i = 0; i < this.createParameters.ConcurrentWriteAttempts; ++i)
+            InternalLogger.Trace(CultureInfo.InvariantCulture, "Opening {0} with concurrentWrite={1}", this.FileName, allowConcurrentWrite);
+            for (int i = 0; i < this.CreateFileParameters.ConcurrentWriteAttempts; ++i)
             {
                 try
                 {
@@ -164,7 +150,7 @@ namespace NLog.Internal.FileAppenders
                     }
                     catch (DirectoryNotFoundException)
                     {
-                        if (!this.createParameters.CreateDirs)
+                        if (!this.CreateFileParameters.CreateDirs)
                         {
                             throw;
                         }
@@ -175,19 +161,19 @@ namespace NLog.Internal.FileAppenders
                 }
                 catch (IOException)
                 {
-                    if (!this.createParameters.ConcurrentWrites || !allowConcurrentWrite || i + 1 == this.createParameters.ConcurrentWriteAttempts)
+                    if (!this.CreateFileParameters.ConcurrentWrites || !allowConcurrentWrite || i + 1 == this.CreateFileParameters.ConcurrentWriteAttempts)
                     {
                         throw; // rethrow
                     }
 
                     int actualDelay = this.random.Next(currentDelay);
-                    InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, this.FileName, actualDelay);
+                    InternalLogger.Warn(CultureInfo.InvariantCulture, "Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, this.FileName, actualDelay);
                     currentDelay *= 2;
                     System.Threading.Thread.Sleep(actualDelay);
                 }
             }
 
-            throw new Exception("Should not be reached.");
+            throw new InvalidOperationException("Should not be reached.");
         }
 
 #if !NET_CF && !SILVERLIGHT
@@ -200,7 +186,7 @@ namespace NLog.Internal.FileAppenders
                 fileShare |= Win32FileHelper.FILE_SHARE_WRITE;
             }
 
-            if (this.createParameters.EnableFileDelete && PlatformDetector.GetCurrentRuntimeOS() != RuntimeOS.Windows)
+            if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.GetCurrentRuntimeOS() != RuntimeOS.Windows)
             {
                 fileShare |= Win32FileHelper.FILE_SHARE_DELETE;
             }
@@ -211,7 +197,7 @@ namespace NLog.Internal.FileAppenders
                 fileShare,
                 IntPtr.Zero,
                 Win32FileHelper.CreationDisposition.OpenAlways,
-                this.createParameters.FileAttributes, 
+                this.CreateFileParameters.FileAttributes, 
                 IntPtr.Zero);
 
             if (handle.ToInt32() == -1)
@@ -220,7 +206,7 @@ namespace NLog.Internal.FileAppenders
             }
 
             var safeHandle = new Microsoft.Win32.SafeHandles.SafeFileHandle(handle, true);
-            FileStream returnValue = new FileStream(safeHandle, FileAccess.Write, this.createParameters.BufferSize);
+            FileStream returnValue = new FileStream(safeHandle, FileAccess.Write, this.CreateFileParameters.BufferSize);
             returnValue.Seek(0, SeekOrigin.End);
             return returnValue;
         }
@@ -236,7 +222,7 @@ namespace NLog.Internal.FileAppenders
             }
 
 #if !NET_CF
-            if (this.createParameters.EnableFileDelete && PlatformDetector.GetCurrentRuntimeOS() != RuntimeOS.Windows)
+            if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.GetCurrentRuntimeOS() != RuntimeOS.Windows)
             {
                 fileShare |= FileShare.Delete;
             }
@@ -255,7 +241,7 @@ namespace NLog.Internal.FileAppenders
                 FileMode.Append, 
                 FileAccess.Write, 
                 fileShare, 
-                this.createParameters.BufferSize);
+                this.CreateFileParameters.BufferSize);
         }
     }
 }

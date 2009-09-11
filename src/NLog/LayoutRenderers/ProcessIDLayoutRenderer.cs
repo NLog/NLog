@@ -33,6 +33,7 @@
 
 #if !SILVERLIGHT
 
+using System.Globalization;
 using System.Text;
 
 using NLog.Internal;
@@ -68,7 +69,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(ThreadIDHelper.Instance.CurrentProcessID.ToString());
+            builder.Append(ThreadIDHelper.Instance.CurrentProcessID.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>

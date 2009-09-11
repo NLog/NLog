@@ -38,7 +38,7 @@ namespace NLog
     /// </summary>
     internal class UnformattedLogEventInfo : LogEventInfo
     {
-        private string message;
+        private readonly string message;
 
         /// <summary>
         /// Initializes a new instance of the UnformattedLogEventInfo class.

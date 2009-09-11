@@ -33,6 +33,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using NLog.Config;
 using NLog.Internal;
 using NLog.Layouts;
@@ -189,11 +190,11 @@ namespace NLog.Targets
         {
             if (!this.IsInitialized)
             {
-                InternalLogger.Warn("Called Close() without Initialize() on " + this.ToString() + "(" + this.GetHashCode() + ")");
+                InternalLogger.Warn(CultureInfo.InvariantCulture, "Called Close() without Initialize() on " + this.ToString() + "(" + this.GetHashCode() + ")");
             }
             else
             {
-                InternalLogger.Trace("Closing " + this.ToString() + "(" + this.GetHashCode() + ")...");
+                InternalLogger.Trace(CultureInfo.InvariantCulture, "Closing " + this.ToString() + "(" + this.GetHashCode() + ")...");
             }
 
             foreach (Layout l in this.allLayouts)

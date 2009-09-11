@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     /// ASP.NET User variable.
     /// </summary>
     [LayoutRenderer("aspnet-user-identity")]
-    public class ASPNETUserIdentityLayoutRenderer : LayoutRenderer
+    public class AspNetUserIdentityLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Returns the estimated number of characters that are needed to

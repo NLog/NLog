@@ -50,9 +50,9 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("qpc")]
     public class QpcLayoutRenderer : LayoutRenderer
     {
-        private bool raw = false;
-        private ulong firstQpcValue = 0;
-        private ulong lastQpcValue = 0;
+        private bool raw;
+        private ulong firstQpcValue;
+        private ulong lastQpcValue;
         private bool first = true;
         private double frequency = 1;
 

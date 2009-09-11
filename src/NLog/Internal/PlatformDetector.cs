@@ -74,11 +74,5 @@ namespace NLog.Internal
 
             return RuntimeOS.Unknown;
         }
-
-        private static void FindCompatibleOSes()
-        {
-            currentOSCompatibleWith[GetCurrentRuntimeOS()] = true;
-            currentOSCompatibleWith[RuntimeOS.Any] = true;
-        }
     }
 }

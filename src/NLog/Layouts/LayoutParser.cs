@@ -33,6 +33,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using System.Text;
 using NLog.Config;
@@ -293,7 +294,7 @@ namespace NLog.Layouts
                     }
                     else
                     {
-                        InternalLogger.Warn("{0} has no default property", lr.GetType().FullName);
+                        InternalLogger.Warn(CultureInfo.InvariantCulture, "{0} has no default property", lr.GetType().FullName);
                     }
                 }
 
@@ -303,7 +304,7 @@ namespace NLog.Layouts
             for (int i = orderedWrappers.Count - 1; i >= 0; --i)
             {
                 WrapperLayoutRendererBase newRenderer = (WrapperLayoutRendererBase)orderedWrappers[i];
-                InternalLogger.Trace("Wrapping {0} with {1}", lr.GetType().Name, newRenderer.GetType().Name);
+                InternalLogger.Trace(CultureInfo.InvariantCulture, "Wrapping {0} with {1}", lr.GetType().Name, newRenderer.GetType().Name);
                 if (lr.IsAppDomainFixed())
                 {
                     lr = ConvertToLiteral(lr);
@@ -346,8 +347,7 @@ namespace NLog.Layouts
         /// </summary>
         internal class Tokenizer
         {
-            private string text;
-            private int pos;
+            private readonly string text;
 
             /// <summary>
             /// Initializes a new instance of the Tokenizer class.
@@ -356,19 +356,16 @@ namespace NLog.Layouts
             public Tokenizer(string text)
             {
                 this.text = text;
-                this.pos = 0;
+                this.Position = 0;
             }
 
-            internal int Position
-            {
-                get { return this.pos; }
-            }
+            internal int Position { get; private set; }
 
             internal int Peek()
             {
-                if (this.pos < this.text.Length)
+                if (this.Position < this.text.Length)
                 {
-                    return this.text[this.pos];
+                    return this.text[this.Position];
                 }
                 else
                 {
@@ -378,9 +375,9 @@ namespace NLog.Layouts
 
             internal int Read()
             {
-                if (this.pos < this.text.Length)
+                if (this.Position < this.text.Length)
                 {
-                    return this.text[this.pos++];
+                    return this.text[this.Position++];
                 }
                 else
                 {

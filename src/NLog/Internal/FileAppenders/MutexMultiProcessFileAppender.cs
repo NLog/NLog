@@ -34,6 +34,7 @@
 #if !NET_CF && !SILVERLIGHT
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Threading;
 
@@ -117,7 +118,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Close()
         {
-            InternalLogger.Trace("Closing '{0}'", FileName);
+            InternalLogger.Trace(CultureInfo.InvariantCulture, "Closing '{0}'", FileName);
             if (this.mutex != null)
             {
                 this.mutex.Close();
