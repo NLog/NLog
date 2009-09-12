@@ -181,31 +181,31 @@ namespace NLog.LayoutRenderers
 
             foreach (string s in parts)
             {
-                switch (s.ToLower())
+                switch (s.ToLower(CultureInfo.InvariantCulture))
                 {
                     case "message":
-                        dataTargets.Add(new ExceptionDataTarget(this.AppendMessage));
+                        dataTargets.Add(this.AppendMessage);
                         break;
 
                     case "type":
-                        dataTargets.Add(new ExceptionDataTarget(this.AppendType));
+                        dataTargets.Add(this.AppendType);
                         break;
 
                     case "shorttype":
-                        dataTargets.Add(new ExceptionDataTarget(this.AppendShortType));
+                        dataTargets.Add(this.AppendShortType);
                         break;
 
                     case "tostring":
-                        dataTargets.Add(new ExceptionDataTarget(this.AppendToString));
+                        dataTargets.Add(this.AppendToString);
                         break;
 
 #if !NET_CF && !SILVERLIGHT
                     case "stacktrace":
-                        dataTargets.Add(new ExceptionDataTarget(this.AppendStackTrace));
+                        dataTargets.Add(this.AppendStackTrace);
                         break;
 
                     case "method":
-                        dataTargets.Add(new ExceptionDataTarget(this.AppendMethod));
+                        dataTargets.Add(this.AppendMethod);
                         break;
 #endif
                     default:

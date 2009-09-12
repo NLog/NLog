@@ -37,6 +37,7 @@ using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using NLog.Config;
 using NLog.Targets;
 
@@ -213,7 +214,7 @@ namespace NLog.Win32.Targets
                         }
                         else
                         {
-                            throw new Win32Exception(string.Format("Counter does not exist: {0}|{1}", this.CounterName, this.CategoryName));
+                            throw new Win32Exception(string.Format(CultureInfo.InvariantCulture, "Counter does not exist: {0}|{1}", this.CounterName, this.CategoryName));
                         }
                     }
 

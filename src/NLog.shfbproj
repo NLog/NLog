@@ -7,7 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{ff8480e8-de05-4447-a460-d63ee65bdcbf}</ProjectGuid>
-    <NLogBuildPath Condition="'$(NLogBuildPath)' == ''">NLog\bin\Debug\NetFX3.5</NLogBuildPath>
+    <Framework Condition="">NetFX3.5</Framework>
+    <NLogBuildPath Condition="'$(NLogBuildPath)' == ''">NLog\bin\$(Configuration)\$(Framework)</NLogBuildPath>
     <SHFBSchemaVersion>1.8.0.0</SHFBSchemaVersion>
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
          Studio adds them anyway -->
@@ -60,15 +61,40 @@
     <PlugInConfigurations>
     </PlugInConfigurations>
     <NamingMethod>MemberName</NamingMethod>
+    <ProjectSummary>TODO: Project Summary</ProjectSummary>
   </PropertyGroup>
-
   <!-- There are no properties for these two groups but they need to appear in
        order for Visual Studio to perform the build. -->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
   </PropertyGroup>
-
+  <ItemGroup>
+    <Folder Include="Docs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ContentLayout Include="Docs\Content Layout.content" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Docs\available-conditions.aml" />
+    <None Include="Docs\available-filters.aml" />
+    <None Include="Docs\available-layouts.aml" />
+    <None Include="Docs\available-layout-renderers.aml" />
+    <None Include="Docs\available-targets.aml" />
+    <None Include="Docs\visual-studio.aml" />
+    <None Include="Docs\filters.aml" />
+    <None Include="Docs\conditions.aml" />
+    <None Include="Docs\layouts.aml" />
+    <None Include="Docs\layout-renderers.aml" />
+    <None Include="Docs\targets.aml" />
+    <None Include="Docs\simple-configuration-api.aml" />
+    <None Include="Docs\configuration-api.aml" />
+    <None Include="Docs\configuration-file.aml" />
+    <None Include="Docs\configuration.aml" />
+    <None Include="Docs\how-to.aml" />
+    <None Include="Docs\introduction.aml" />
+    <None Include="Docs\glossary.aml" />
+  </ItemGroup>
   <!-- Import the SHFB build targets -->
   <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
   <Import Project="Frameworks\$(Framework).shfbproj" Condition="Exists('Frameworks\$(Framework).shfbproj')" />

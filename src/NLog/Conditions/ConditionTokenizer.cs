@@ -107,12 +107,6 @@ namespace NLog.Conditions
         public string TokenValue { get; private set; }
 
         /// <summary>
-        /// Gets the lowercase value of the token.
-        /// </summary>
-        /// <value>The token value lowercase.</value>
-        public string TokenValueLowercase { get; private set; }
-
-        /// <summary>
         /// Gets the value of a string token.
         /// </summary>
         /// <value>The string token value.</value>
@@ -166,9 +160,9 @@ namespace NLog.Conditions
                 throw new ConditionParseException("Expected keyword: " + expectedKeyword + ", got " + this.TokenType + ".");
             }
 
-            if (this.TokenValueLowercase != expectedKeyword)
+            if (!this.TokenValue.Equals(expectedKeyword, StringComparison.OrdinalIgnoreCase))
             {
-                throw new ConditionParseException("Expected keyword: " + expectedKeyword + ", got " + this.TokenValueLowercase + ".");
+                throw new ConditionParseException("Expected keyword: " + expectedKeyword + ", got " + this.TokenValue + ".");
             }
 
             this.GetNextToken();
@@ -204,7 +198,7 @@ namespace NLog.Conditions
                 return false;
             }
 
-            if (this.TokenValueLowercase != keyword)
+            if (!this.TokenValue.Equals(keyword, StringComparison.OrdinalIgnoreCase))
             {
                 return false;
             }
@@ -511,7 +505,6 @@ namespace NLog.Conditions
             }
 
             this.TokenValue = sb.ToString();
-            this.TokenValueLowercase = this.TokenValue.ToLower(CultureInfo.InvariantCulture);
         }
 
         private void ParseNumber(char ch)

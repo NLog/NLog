@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using System.ComponentModel;
 using NLog.Config;
 
@@ -43,13 +44,6 @@ namespace NLog.Filters
     [Filter("whenNotContains")]
     public class WhenNotContainsFilter : LayoutBasedFilter
     {
-        /// <summary>
-        /// Initializes a new instance of the WhenNotContainsFilter class.
-        /// </summary>
-        public WhenNotContainsFilter()
-        {
-        }
-
         /// <summary>
         /// Gets or sets the substring to be matched.
         /// </summary>
@@ -73,28 +67,17 @@ namespace NLog.Filters
         /// .</returns>
         protected internal override FilterResult Check(LogEventInfo logEvent)
         {
-            if (this.IgnoreCase)
+            StringComparison comparison = this.IgnoreCase
+                                              ? StringComparison.OrdinalIgnoreCase
+                                              : StringComparison.Ordinal;
+            string result = this.Layout.GetFormattedMessage(logEvent);
+
+            if (result.IndexOf(this.Substring, comparison) < 0)
             {
-                if (this.Layout.GetFormattedMessage(logEvent).ToLower().IndexOf(this.Substring.ToLower()) < 0)
-                {
-                    return this.Action;
-                }
-                else
-                {
-                    return FilterResult.Neutral;
-                }
+                return this.Action;
             }
-            else
-            {
-                if (this.Layout.GetFormattedMessage(logEvent).IndexOf(this.Substring) < 0)
-                {
-                    return this.Action;
-                }
-                else
-                {
-                    return FilterResult.Neutral;
-                }
-            }
+
+            return FilterResult.Neutral;
         }
     }
 }

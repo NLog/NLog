@@ -34,6 +34,7 @@
 #if !NET_CF_1_0 && !SILVERLIGHT
 
 using System;
+using System.Globalization;
 using System.Text;
 using Microsoft.Win32;
 using NLog.Config;
@@ -89,7 +90,7 @@ namespace NLog.Win32.LayoutRenderers
                 if (pos >= 0)
                 {
                     string root = this.key.Substring(0, pos);
-                    switch (root.ToUpper())
+                    switch (root.ToUpper(CultureInfo.InvariantCulture))
                     {
                         case "HKEY_LOCAL_MACHINE":
                         case "HKLM":

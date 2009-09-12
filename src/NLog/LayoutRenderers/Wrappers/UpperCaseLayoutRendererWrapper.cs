@@ -68,11 +68,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Padded and trimmed string.</returns>
         protected override string Transform(string text)
         {
-#if SILVERLIGHT || NET_CF
-            return this.UpperCase ? text.ToUpper() : text;
-#else
-            return this.UpperCase ? text.ToUpperInvariant() : text;
-#endif
+            return this.UpperCase ? text.ToUpper(this.Culture) : text;
         }
     }
 }

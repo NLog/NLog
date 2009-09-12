@@ -36,6 +36,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 namespace NLog.Internal
@@ -70,7 +71,7 @@ namespace NLog.Internal
             {
                 foreach (FileSystemWatcher watcher in this.watchers)
                 {
-                    InternalLogger.Info("Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
+                    InternalLogger.Info(CultureInfo.InvariantCulture, "Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
                     watcher.EnableRaisingEvents = false;
                     watcher.Dispose();
                 }
@@ -106,7 +107,7 @@ namespace NLog.Internal
             watcher.Changed += new FileSystemEventHandler(this.OnWatcherChanged);
             watcher.Deleted += new FileSystemEventHandler(this.OnWatcherChanged);
             watcher.EnableRaisingEvents = true;
-            InternalLogger.Info("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
+            InternalLogger.Info(CultureInfo.InvariantCulture, "Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
 
             lock (this)
             {

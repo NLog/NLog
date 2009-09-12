@@ -398,7 +398,7 @@
     <Compile Include="Targets\TargetAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Targets\ASPNetTraceTarget.cs">
+    <Compile Include="Targets\AspNetTraceTarget.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Targets\ChainsawTarget.cs">
@@ -539,7 +539,7 @@
     <Compile Include="Win32\LayoutRenderers\WindowsIdentityLayoutRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Win32\Targets\ASPResponseTarget.cs">
+    <Compile Include="Win32\Targets\AspResponseTarget.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Win32\Targets\ColoredConsoleTarget.cs">

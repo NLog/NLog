@@ -45,13 +45,6 @@ namespace NLog.Filters
     public class WhenContainsFilter : LayoutBasedFilter
     {
         /// <summary>
-        /// Initializes a new instance of the WhenContainsFilter class.
-        /// </summary>
-        public WhenContainsFilter()
-        {
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether to ignore case when comparing strings.
         /// </summary>
         [DefaultValue(false)]
@@ -74,14 +67,16 @@ namespace NLog.Filters
         /// .</returns>
         protected internal override FilterResult Check(LogEventInfo logEvent)
         {
-            if (this.Layout.GetFormattedMessage(logEvent).IndexOf(this.Substring, this.IgnoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0)
+            StringComparison comparisonType = this.IgnoreCase
+                                              ? StringComparison.OrdinalIgnoreCase
+                                              : StringComparison.Ordinal;
+
+            if (this.Layout.GetFormattedMessage(logEvent).IndexOf(this.Substring, comparisonType) >= 0)
             {
                 return this.Action;
             }
-            else
-            {
-                return FilterResult.Neutral;
-            }
+
+            return FilterResult.Neutral;
         }
     }
 }

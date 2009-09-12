@@ -31,10 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-
-using NLog;
 using NLog.Config;
 using NLog.Layouts;
 

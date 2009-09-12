@@ -46,7 +46,7 @@ namespace NLog.Config
     /// </summary>
     public class LoggingConfiguration
     {
-        private IDictionary<string, Target> targets = new Dictionary<string, Target>();
+        private IDictionary<string, Target> targets = new Dictionary<string, Target>(StringComparer.OrdinalIgnoreCase);
         private ICollection<Target> aliveTargets = new List<Target>();
         private IList<LoggingRule> loggingRules = new List<LoggingRule>();
 
@@ -86,7 +86,7 @@ namespace NLog.Config
             }
 
             InternalLogger.Debug(CultureInfo.InvariantCulture, "Registering target {0}: {1}", name, target.GetType().FullName);
-            this.targets[name.ToLower(CultureInfo.InvariantCulture)] = target;
+            this.targets[name] = target;
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace NLog.Config
         /// <param name="name">Name of the target.</param>
         public void RemoveTarget(string name)
         {
-            this.targets.Remove(name.ToLower(CultureInfo.InvariantCulture));
+            this.targets.Remove(name);
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace NLog.Config
         {
             Target value;
 
-            if (!this.targets.TryGetValue(name.ToLower(CultureInfo.InvariantCulture), out value))
+            if (!this.targets.TryGetValue(name, out value))
             {
                 return null;
             }
@@ -209,13 +209,13 @@ namespace NLog.Config
             InternalLogger.Debug(CultureInfo.InvariantCulture, "Targets:");
             foreach (Target target in this.targets.Values)
             {
-                InternalLogger.Info("{0}", target);
+                InternalLogger.Info(CultureInfo.InvariantCulture, "{0}", target);
             }
 
             InternalLogger.Debug(CultureInfo.InvariantCulture, "Rules:");
             foreach (LoggingRule rule in this.LoggingRules)
             {
-                InternalLogger.Info("{0}", rule);
+                InternalLogger.Info(CultureInfo.InvariantCulture, "{0}", rule);
             }
 
             InternalLogger.Debug(CultureInfo.InvariantCulture, "--- End of NLog configuration dump ---");

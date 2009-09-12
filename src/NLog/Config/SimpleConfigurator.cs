@@ -38,7 +38,7 @@ namespace NLog.Config
     /// <summary>
     /// Provides simple programmatic configuration API used for trivial logging cases.
     /// </summary>
-    public class SimpleConfigurator
+    public static class SimpleConfigurator
     {
 #if !NET_CF
         /// <summary>

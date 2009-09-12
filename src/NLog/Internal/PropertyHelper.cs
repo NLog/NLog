@@ -172,7 +172,7 @@ namespace NLog.Internal
                     parameterInfoCache[targetType] = cache;
                 }
 
-                return cache.TryGetValue(propertyName.ToLower(), out result);
+                return cache.TryGetValue(propertyName, out result);
             }
         }
 
@@ -218,7 +218,7 @@ namespace NLog.Internal
                 foreach (string v in value.Split(','))
                 {
                     FieldInfo enumField = resultType.GetField(v.Trim(), BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
-                    union |= Convert.ToUInt64(enumField.GetValue(null));
+                    union |= Convert.ToUInt64(enumField.GetValue(null), CultureInfo.InvariantCulture);
                 }
 
                 result = Convert.ChangeType(union, Enum.GetUnderlyingType(resultType), CultureInfo.InvariantCulture);
@@ -248,7 +248,7 @@ namespace NLog.Internal
 
         private static bool TryGetPropertyInfo(Type targetType, string propertyName, out PropertyInfo result)
         {
-            if (propertyName != string.Empty)
+            if (!string.IsNullOrEmpty(propertyName))
             {
                 PropertyInfo propInfo = targetType.GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
                 if (propInfo != null)
@@ -268,24 +268,24 @@ namespace NLog.Internal
                     parameterInfoCache[targetType] = cache;
                 }
 
-                return cache.TryGetValue(propertyName.ToLower(), out result);
+                return cache.TryGetValue(propertyName, out result);
             }
         }
 
         private static Dictionary<string, PropertyInfo> BuildPropertyInfoDictionary(Type t)
         {
-            Dictionary<string, PropertyInfo> retVal = new Dictionary<string, PropertyInfo>();
+            Dictionary<string, PropertyInfo> retVal = new Dictionary<string, PropertyInfo>(StringComparer.OrdinalIgnoreCase);
             foreach (PropertyInfo propInfo in t.GetProperties())
             {
                 if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
                 {
                     ArrayParameterAttribute[] attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
 
-                    retVal[attributes[0].ElementName.ToLower()] = propInfo;
+                    retVal[attributes[0].ElementName] = propInfo;
                 }
                 else
                 {
-                    retVal[propInfo.Name.ToLower()] = propInfo;
+                    retVal[propInfo.Name] = propInfo;
                 }
 
                 if (propInfo.IsDefined(typeof(DefaultParameterAttribute), false))

@@ -44,7 +44,7 @@ namespace NLog.Config
     /// <summary>
     /// NLog configuration section handler class for configuring NLog from App.config.
     /// </summary>
-    public class ConfigSectionHandler : IConfigurationSectionHandler
+    public sealed class ConfigSectionHandler : IConfigurationSectionHandler
     {
         /// <summary>
         /// Creates a configuration section handler.

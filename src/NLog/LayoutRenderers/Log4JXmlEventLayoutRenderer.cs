@@ -40,6 +40,7 @@ using System.Reflection;
 using System.Text;
 using System.Xml;
 using NLog.Contexts;
+using NLog.Internal;
 using NLog.Targets;
 
 namespace NLog.LayoutRenderers
@@ -64,9 +65,10 @@ namespace NLog.LayoutRenderers
             this.AppInfo = "Silverlight Application";
 #else
             this.AppInfo = String.Format(
+                CultureInfo.InvariantCulture,
                 "{0}({1})", 
                 AppDomain.CurrentDomain.FriendlyName, 
-                NLog.Internal.ThreadIDHelper.Instance.CurrentProcessID);
+                ThreadIDHelper.Instance.CurrentProcessID);
 #endif
             this.Parameters = new List<NLogViewerParameterInfo>();
         }
@@ -125,7 +127,7 @@ namespace NLog.LayoutRenderers
 
             xtw.WriteStartElement("log4j:event");
             xtw.WriteAttributeString("logger", logEvent.LoggerName);
-            xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpper());
+            xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpper(CultureInfo.InvariantCulture));
             xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds));
             xtw.WriteAttributeString("thread", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString());
 

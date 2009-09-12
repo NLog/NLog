@@ -67,7 +67,7 @@ namespace NLog.UnitTests.Targets
             EventLogTarget elt = new EventLogTarget();
             elt.Log = "NLog.UnitTests";
             elt.Source = "NLog.UnitTests";
-            elt.EventID = "10";
+            elt.EventId = "10";
             elt.Category = "123";
             SimpleConfigurator.ConfigureForTargetLogging(elt);
 

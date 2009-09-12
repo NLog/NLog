@@ -45,7 +45,7 @@ namespace NLog.Win32.Targets
     /// Outputs logging messages through the ASP Response object.
     /// </summary>
     [Target("AspResponse")]
-    public sealed class ASPResponseTarget : TargetWithLayout
+    public sealed class AspResponseTarget : TargetWithLayout
     {
         /// <summary>
         /// Gets or sets a value indicating whether to add &lt;!-- --&gt; comments around all written texts.

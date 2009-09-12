@@ -129,11 +129,11 @@ for $level (@levels) {
         /// <summary>
         /// Writes the diagnostic message at the $level3 level using the specified parameter and formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>$param0
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>$param0
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
-        public void $level<T1>(${arg0}IFormatProvider formatProvider, string message, T1 argument)
+        public void $level<TArgument>(${arg0}IFormatProvider formatProvider, string message, TArgument argument)
         { 
             if ($isenabled)
             {
@@ -144,10 +144,10 @@ for $level (@levels) {
         /// <summary>
         /// Writes the diagnostic message at the $level3 level using the specified parameter.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>$param0
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>$param0
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:$t" /> argument to format.</param>
-        public void $level<T1>(${arg0}string message, T1 argument)
+        /// <param name="argument">The argument to format.</param>
+        public void $level<TArgument>(${arg0}string message, TArgument argument)
         { 
             if ($isenabled)
             {
@@ -158,13 +158,13 @@ for $level (@levels) {
         /// <summary>
         /// Writes the diagnostic message at the $level3 level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>$param0
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>$param0
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void $level<T1, T2>(${arg0}IFormatProvider formatProvider, string message, T1 argument1, T2 argument2) 
+        public void $level<TArgument1, TArgument2>(${arg0}IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if ($isenabled)
             {
@@ -175,12 +175,12 @@ for $level (@levels) {
         /// <summary>
         /// Writes the diagnostic message at the $level3 level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>$param0
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>$param0
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void $level<T1, T2>(${arg0}string message, T1 argument1, T2 argument2)
+        public void $level<TArgument1, TArgument2>(${arg0}string message, TArgument1 argument1, TArgument2 argument2)
         { 
             if ($isenabled)
             {
@@ -191,15 +191,15 @@ for $level (@levels) {
         /// <summary>
         /// Writes the diagnostic message at the $level3 level using the specified arguments formatting it with the supplied format provider.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>$param0
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>$param0
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void $level<T1, T2, T3>(${arg0}IFormatProvider formatProvider, string message, T1 argument1, T2 argument2, T3 argument3) 
+        public void $level<TArgument1, TArgument2, TArgument3>(${arg0}IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if ($isenabled)
             {
@@ -210,14 +210,14 @@ for $level (@levels) {
         /// <summary>
         /// Writes the diagnostic message at the $level3 level using the specified parameters.
         /// </summary>
-        /// <typeparam name="T1">The type of the first argument.</typeparam>
-        /// <typeparam name="T2">The type of the second argument.</typeparam>
-        /// <typeparam name="T3">The type of the third argument.</typeparam>$param0
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>$param0
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void $level<T1, T2, T3>(${arg0}string message, T1 argument1, T2 argument2, T3 argument3)
+        public void $level<TArgument1, TArgument2, TArgument3>(${arg0}string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
             if ($isenabled)
             {

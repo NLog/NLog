@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Globalization;
+
 namespace NLog.LayoutRenderers.Wrappers
 {
     /// <summary>
@@ -41,10 +43,23 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class LowerCaseLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
+        /// Initializes a new instance of the LowerCaseLayoutRendererWrapper class.
+        /// </summary>
+        public LowerCaseLayoutRendererWrapper()
+        {
+            this.Culture = CultureInfo.InvariantCulture;
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether lower case conversion should be applied.
         /// </summary>
         /// <value>A value of <c>true</c> if lower case conversion should be applied; otherwise, <c>false</c>.</value>
         public bool LowerCase { get; set; }
+
+        /// <summary>
+        /// Gets or sets the culture used for rendering. 
+        /// </summary>
+        public CultureInfo Culture { get; set; }
 
         /// <summary>
         /// Post-processes the rendered message. 
@@ -53,11 +68,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Padded and trimmed string.</returns>
         protected override string Transform(string text)
         {
-#if SILVERLIGHT || NET_CF
-            return this.LowerCase ? text.ToLower() : text;
-#else
-            return this.LowerCase ? text.ToLowerInvariant() : text;
-#endif
+            return this.LowerCase ? text.ToLower(this.Culture) : text;
         }
     }
 }

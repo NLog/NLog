@@ -32,9 +32,6 @@
 // 
 
 using System;
-using System.Xml;
-
-using NLog;
 using NLog.Config;
 
 using NUnit.Framework;
@@ -42,10 +39,7 @@ using NLog.Targets;
 using System.IO;
 using System.Text;
 using NLog.Targets.Wrappers;
-using NLog.LayoutRenderers;
 using System.Diagnostics;
-using System.Threading;
-using System.Collections;
 
 namespace NLog.UnitTests.Targets
 {
@@ -63,7 +57,7 @@ namespace NLog.UnitTests.Targets
             ft.KeepFileOpen = true;
             ft.OpenFileCacheTimeout = 10;
             ft.OpenFileCacheSize = 1;
-            ft.LineEnding = FileTarget.LineEndingMode.LF;
+            ft.LineEnding = LineEndingMode.LF;
 
             switch (mode)
             {

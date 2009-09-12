@@ -165,7 +165,7 @@ namespace NLog.UnitTests
                 logger.Debug("aaa");
                 AssertDebugLastMessage("debug", "aaa");
 
-                InternalLogger.Info("Rewriting test file...");
+                InternalLogger.Info(CultureInfo.InvariantCulture, "Rewriting test file...");
 
                 // now write the file again
                 using (StreamWriter fs = File.CreateText(fileName))
@@ -178,7 +178,7 @@ namespace NLog.UnitTests
                 </nlog>");
                 }
 
-                InternalLogger.Info("Rewritten.");
+                InternalLogger.Info(CultureInfo.InvariantCulture, "Rewritten.");
                 WaitForConfigReload(1);
 
                 logger.Debug("aaa");

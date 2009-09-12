@@ -45,12 +45,7 @@ namespace NLog.Filters
     [Filter("when")]
     public class ConditionBasedFilter : Filter
     {
-        /// <summary>
-        /// Initializes a new instance of the ConditionBasedFilter class.
-        /// </summary>
-        public ConditionBasedFilter()
-        {
-        }
+        private static object boxedTrue = true;
 
         /// <summary>
         /// Gets or sets the condition expression.
@@ -74,7 +69,7 @@ namespace NLog.Filters
             }
 
             object val = this.Condition.Evaluate(logEvent);
-            if (val != null && val is bool && ((bool)val))
+            if (boxedTrue.Equals(val))
             {
                 return this.Action;
             }

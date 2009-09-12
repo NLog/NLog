@@ -71,7 +71,7 @@ namespace NLog.Targets
     /// <p/>
     /// </example>
     [Target("AspNetTrace")]
-    public class ASPNetTraceTarget : TargetWithLayout
+    public class AspNetTraceTarget : TargetWithLayout
     {
         /// <summary>
         /// Writes the specified logging event to the ASP.NET Trace facility. Log entries

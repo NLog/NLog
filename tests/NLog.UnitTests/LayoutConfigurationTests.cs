@@ -67,7 +67,7 @@ namespace NLog.UnitTests
         {
             SimpleLayout l = "${mdc:item=AAA}";
             Assert.AreEqual(1, l.Renderers.Length);
-            MDCLayoutRenderer mdc = l.Renderers[0] as MDCLayoutRenderer;
+            MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("AAA", mdc.Item);
         }
@@ -77,7 +77,7 @@ namespace NLog.UnitTests
         {
             SimpleLayout l = "${mdc:item=AAA\\:}";
             Assert.AreEqual(1, l.Renderers.Length);
-            MDCLayoutRenderer mdc = l.Renderers[0] as MDCLayoutRenderer;
+            MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("AAA:", mdc.Item);
         }
@@ -88,7 +88,7 @@ namespace NLog.UnitTests
             SimpleLayout l = "${mdc:item=AAA\\}\\:}";
             Assert.AreEqual("${mdc:item=AAA\\}\\:}", l.Text);
             Assert.AreEqual(1, l.Renderers.Length);
-            MDCLayoutRenderer mdc = l.Renderers[0] as MDCLayoutRenderer;
+            MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("AAA}:", mdc.Item);
         }
@@ -98,7 +98,7 @@ namespace NLog.UnitTests
         {
             SimpleLayout l = "${mdc:BBB}";
             Assert.AreEqual(1, l.Renderers.Length);
-            MDCLayoutRenderer mdc = l.Renderers[0] as MDCLayoutRenderer;
+            MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("BBB", mdc.Item);
         }
@@ -109,7 +109,7 @@ namespace NLog.UnitTests
             SimpleLayout l = "${mdc:AAA\\}\\:}";
             Assert.AreEqual(l.Text,"${mdc:AAA\\}\\:}");
             Assert.AreEqual(1, l.Renderers.Length);
-            MDCLayoutRenderer mdc = l.Renderers[0] as MDCLayoutRenderer;
+            MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("AAA}:", mdc.Item);
         }
@@ -130,7 +130,7 @@ namespace NLog.UnitTests
         {
             SimpleLayout l = "${mdc:item=}";
             Assert.AreEqual(1, l.Renderers.Length);
-            MDCLayoutRenderer mdc = l.Renderers[0] as MDCLayoutRenderer;
+            MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("", mdc.Item);
         }

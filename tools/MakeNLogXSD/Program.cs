@@ -82,7 +82,9 @@ namespace MakeNLogXSD
         static string MakeCamelCase(string s)
         {
             if (s.Length < 1)
-                return s.ToLower();
+            {
+                return s.ToLower(CultureInfo.InvariantCulture);
+            }
 
             int firstLower = s.Length;
             for (int i = 0; i < s.Length; ++i)
@@ -95,12 +97,17 @@ namespace MakeNLogXSD
             }
 
             if (firstLower == 0)
+            {
                 return s;
+            }
 
             // DBType
             if (firstLower != 1 && firstLower != s.Length)
+            {
                 firstLower--;
-            return s.Substring(0, firstLower).ToLower() + s.Substring(firstLower);
+            }
+
+            return s.Substring(0, firstLower).ToLower(CultureInfo.InvariantCulture) + s.Substring(firstLower);
         }
 
         static void DumpEnum(XmlTextWriter xtw, Type t)
@@ -357,15 +364,15 @@ namespace MakeNLogXSD
                 typeDumped[typeof(TargetWithLayoutHeaderAndFooter)] = 1;
                 typeDumped[typeof(Layout)] = 1;
 
-                foreach (var target in factories.TargetFactory.GetAllRegisteredItems())
+                foreach (var target in factories.TargetFactory.AllRegisteredItems)
                 {
                     DumpType(xtw, target.Value);
                 }
-                foreach (var filter in factories.FilterFactory.GetAllRegisteredItems())
+                foreach (var filter in factories.FilterFactory.AllRegisteredItems)
                 {
                     DumpType(xtw, filter.Value);
                 }
-                foreach (var layout in factories.LayoutFactory.GetAllRegisteredItems())
+                foreach (var layout in factories.LayoutFactory.AllRegisteredItems)
                 {
                     DumpType(xtw, layout.Value);
                 }
@@ -394,7 +401,7 @@ namespace MakeNLogXSD
                     n.ParentNode.RemoveChild(n);
 
                     n = doc.SelectSingleNode("//filters-go-here");
-                    foreach (var filter in factories.FilterFactory.GetAllRegisteredItems())
+                    foreach (var filter in factories.FilterFactory.AllRegisteredItems)
                     {
                         XmlElement el = doc.CreateElement("xs:element", XmlSchema.Namespace);
                         el.SetAttribute("name", filter.Key);

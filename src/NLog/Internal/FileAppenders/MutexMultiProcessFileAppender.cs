@@ -157,7 +157,7 @@ namespace NLog.Internal.FileAppenders
 
         private string GetMutexName(string fileName)
         {
-            string canonicalName = Path.GetFullPath(fileName).ToLower();
+            string canonicalName = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
 
             canonicalName = canonicalName.Replace('\\', '_');
             canonicalName = canonicalName.Replace('/', '_');

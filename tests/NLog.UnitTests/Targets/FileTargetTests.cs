@@ -60,7 +60,7 @@ namespace NLog.UnitTests.Targets
             {
                 FileTarget ft = new FileTarget();
                 ft.FileName = SimpleLayout.Escape(tempFile);
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
                 ft.OpenFileCacheTimeout = 0;
 
@@ -87,7 +87,7 @@ namespace NLog.UnitTests.Targets
             {
                 FileTarget ft = new FileTarget();
                 ft.FileName = SimpleLayout.Escape(tempFile);
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
@@ -105,7 +105,7 @@ namespace NLog.UnitTests.Targets
 
                 ft = new FileTarget();
                 ft.FileName = SimpleLayout.Escape(tempFile);
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
@@ -122,7 +122,7 @@ namespace NLog.UnitTests.Targets
 
                 ft = new FileTarget();
                 ft.FileName = SimpleLayout.Escape(tempFile);
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
                 ft.DeleteOldFileOnStartup = true;
 
@@ -153,7 +153,7 @@ namespace NLog.UnitTests.Targets
             {
                 FileTarget ft = new FileTarget();
                 ft.FileName = tempFile;
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
@@ -187,10 +187,10 @@ namespace NLog.UnitTests.Targets
                 ft.FileName = tempFile;
                 ft.ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt");
                 ft.ArchiveAboveSize = 1000;
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${message}";
                 ft.MaxArchiveFiles = 3;
-                ft.ArchiveNumbering = FileTarget.ArchiveNumberingMode.Sequence;
+                ft.ArchiveNumbering = ArchiveNumberingMode.Sequence;
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
@@ -264,8 +264,8 @@ namespace NLog.UnitTests.Targets
                 ft.FileName = tempFile;
                 ft.ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt");
                 ft.ArchiveAboveSize = 1000;
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
-                ft.ArchiveNumbering = FileTarget.ArchiveNumberingMode.Rolling;
+                ft.LineEnding = LineEndingMode.LF;
+                ft.ArchiveNumbering = ArchiveNumberingMode.Rolling;
                 ft.Layout = "${message}";
                 ft.MaxArchiveFiles = 3;
 
@@ -337,7 +337,7 @@ namespace NLog.UnitTests.Targets
             {
                 FileTarget ft = new FileTarget();
                 ft.FileName = Path.Combine(tempPath, "${level}.txt");
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${message}";
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
@@ -391,7 +391,7 @@ namespace NLog.UnitTests.Targets
             {
                 FileTarget ft = new FileTarget();
                 ft.FileName = Path.Combine(tempPath, "${level}.txt");
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${message}";
 
                 SimpleConfigurator.ConfigureForTargetLogging(new BufferingTargetWrapper(ft,10), LogLevel.Debug);
@@ -443,7 +443,7 @@ namespace NLog.UnitTests.Targets
             {
                 FileTarget ft = new FileTarget();
                 ft.FileName = Path.Combine(tempPath, "${level}.txt");
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${message} ${threadid}";
 
                 // this also checks that thread-volatile layouts

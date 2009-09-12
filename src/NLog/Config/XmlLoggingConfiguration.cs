@@ -55,10 +55,10 @@ namespace NLog.Config
     public class XmlLoggingConfiguration : LoggingConfiguration
     {
         private NLogFactories nlogFactories = NLogFactories.Default;
-        private Dictionary<string, bool> visitedFile = new Dictionary<string, bool>();
+        private Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
         private Dictionary<string, string> variables = new Dictionary<string, string>(EqualityComparer<string>.Default);
 
-        private string originalFileName = null;
+        private string originalFileName;
 
         /// <summary>
         /// Initializes a new instance of the XmlLoggingConfiguration class.
@@ -100,7 +100,7 @@ namespace NLog.Config
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         public XmlLoggingConfiguration(string fileName, bool ignoreErrors)
         {
-            InternalLogger.Info("Configuring from {0}...", fileName);
+            InternalLogger.Info(CultureInfo.InvariantCulture, "Configuring from {0}...", fileName);
             this.originalFileName = fileName;
             try
             {
@@ -139,8 +139,8 @@ namespace NLog.Config
                 reader.MoveToContent();
                 if (fileName != null)
                 {
-                    InternalLogger.Info("Configuring from an XML element in {0}...", fileName);
-                    string key = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
+                    InternalLogger.Info(CultureInfo.InvariantCulture, "Configuring from an XML element in {0}...", fileName);
+                    string key = Path.GetFullPath(fileName);
                     this.visitedFile[key] = true;
 
                     this.originalFileName = fileName;
@@ -213,7 +213,7 @@ namespace NLog.Config
 
         private void ConfigureFromFile(string fileName)
         {
-            string key = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
+            string key = Path.GetFullPath(fileName);
             if (this.visitedFile.ContainsKey(key))
             {
                 return;
@@ -345,7 +345,7 @@ namespace NLog.Config
             {
                 while (this.MoveToNextElement(reader))
                 {
-                    if (reader.LocalName.ToLower(CultureInfo.InvariantCulture) != "logger")
+                    if (!reader.LocalName.Equals("logger", StringComparison.OrdinalIgnoreCase))
                     {
                         reader.Skip();
                         continue;
@@ -609,7 +609,7 @@ namespace NLog.Config
                                 }
                             }
 
-                            InternalLogger.Info("Adding target {0}", newTarget);
+                            InternalLogger.Info(CultureInfo.InvariantCulture, "Adding target {0}", newTarget);
                             AddTarget(newTarget.Name, newTarget);
                             break;
 
@@ -728,7 +728,7 @@ namespace NLog.Config
                             try
                             {
                                 string fullFileName = Path.Combine(baseDirectory, assemblyFile);
-                                InternalLogger.Info("Loading assemblyFile: {0}", fullFileName);
+                                InternalLogger.Info(CultureInfo.InvariantCulture, "Loading assemblyFile: {0}", fullFileName);
                                 Assembly asm = Assembly.LoadFrom(fullFileName);
 
                                 this.nlogFactories.RegisterItemsFromAssembly(asm, prefix);
@@ -750,7 +750,7 @@ namespace NLog.Config
                         {
                             try
                             {
-                                InternalLogger.Info("Loading assemblyName: {0}", assemblyName);
+                                InternalLogger.Info(CultureInfo.InvariantCulture, "Loading assemblyName: {0}", assemblyName);
                                 Assembly asm = Assembly.Load(assemblyName);
 
                                 this.nlogFactories.RegisterItemsFromAssembly(asm, prefix);

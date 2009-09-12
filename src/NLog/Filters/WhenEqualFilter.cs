@@ -45,13 +45,6 @@ namespace NLog.Filters
     public class WhenEqualFilter : LayoutBasedFilter
     {
         /// <summary>
-        /// Initializes a new instance of the WhenEqualFilter class.
-        /// </summary>
-        public WhenEqualFilter()
-        {
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether to ignore case when comparing strings.
         /// </summary>
         [DefaultValue(false)]
@@ -74,17 +67,16 @@ namespace NLog.Filters
         /// .</returns>
         protected internal override FilterResult Check(LogEventInfo logEvent)
         {
-            if (0 == String.Compare(
-                this.Layout.GetFormattedMessage(logEvent),
-                this.CompareTo,
-                this.IgnoreCase ? StringComparison.InvariantCultureIgnoreCase : StringComparison.InvariantCulture))
+            StringComparison comparisonType = this.IgnoreCase
+                                                  ? StringComparison.InvariantCultureIgnoreCase
+                                                  : StringComparison.InvariantCulture;
+
+            if (this.Layout.GetFormattedMessage(logEvent).Equals(this.CompareTo, comparisonType))
             {
                 return this.Action;
             }
-            else
-            {
-                return FilterResult.Neutral;
-            }
+
+            return FilterResult.Neutral;
         }
     }
 }

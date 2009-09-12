@@ -258,9 +258,9 @@ namespace NLog
         {
             // reset logging configuration to null
             // this causes old configuration (if any) to be closed.
-            InternalLogger.Info("Shutting down logging...");
+            InternalLogger.Info(CultureInfo.InvariantCulture, "Shutting down logging...");
             Configuration = null;
-            InternalLogger.Info("Logger has been shut down.");
+            InternalLogger.Info(CultureInfo.InvariantCulture, "Logger has been shut down.");
         }
 #endif
     }

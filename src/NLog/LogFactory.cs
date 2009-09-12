@@ -180,7 +180,7 @@ namespace NLog
                     LoggingConfiguration oldConfig = this.config;
                     if (oldConfig != null)
                     {
-                        InternalLogger.Info("Closing old configuration.");
+                        InternalLogger.Info(CultureInfo.InvariantCulture, "Closing old configuration.");
                         oldConfig.Close();
                     }
 
@@ -388,7 +388,7 @@ namespace NLog
         {
             LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
 
-            InternalLogger.Info("Reloading configuration...");
+            InternalLogger.Info(CultureInfo.InvariantCulture, "Reloading configuration...");
             lock (this)
             {
                 if (this.reloadTimer != null)
@@ -547,7 +547,7 @@ namespace NLog
                 yield return nlogAssembly.Location + ".nlog";
             }
 
-            string globalConfig = Environment.GetEnvironmentVariable("NLOG_GLOBAL_config_FILE");
+            string globalConfig = Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE");
             if (!String.IsNullOrEmpty(globalConfig))
             {
                 yield return globalConfig;
@@ -601,7 +601,7 @@ namespace NLog
 #if !NET_CF && !SILVERLIGHT
         private void ConfigFileChanged(object sender, EventArgs args)
         {
-            InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", ReconfigAfterFileChangedTimeout);
+            InternalLogger.Info(CultureInfo.InvariantCulture, "Configuration file change detected! Reloading in {0}ms...", ReconfigAfterFileChangedTimeout);
 
             // In the rare cases we may get multiple notifications here, 
             // but we need to reload config only once.

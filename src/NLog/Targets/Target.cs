@@ -43,7 +43,7 @@ namespace NLog.Targets
     /// <summary>
     /// Represents logging target.
     /// </summary>
-    public abstract class Target
+    public abstract class Target : IDisposable
     {
         private List<Layout> allLayouts = new List<Layout>();
         private StackTraceUsage stackTraceUsage;
@@ -204,5 +204,19 @@ namespace NLog.Targets
 
             this.IsInitialized = false;
         }
+
+        #region IDisposable Members
+
+        void IDisposable.Dispose()
+        {
+            if (this.IsInitialized)
+            {
+                this.Close();
+            }
+
+            GC.SuppressFinalize(true);
+        }
+
+        #endregion
     }
 }
