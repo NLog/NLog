@@ -102,7 +102,7 @@ namespace NLog.UnitTests
             string typename = this.GetType().FullName;
             StringBuilder sb = new StringBuilder();
 #if MONO
-            sb.Append("Runner.exe ");
+            sb.AppendFormat("\"{0}\" ", Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Runner.exe"));
 #endif
             sb.AppendFormat("\"{0}\" \"{1}\" \"{2}\"", assemblyName, typename, methodName);
             foreach (string s in p)
@@ -118,11 +118,11 @@ namespace NLog.UnitTests
 #if MONO
             proc.StartInfo.FileName = "mono";
 #else
-            proc.StartInfo.FileName = "Runner.exe";
+            proc.StartInfo.FileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Runner.exe");
 #endif
             proc.StartInfo.UseShellExecute = false;
             proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-            proc.StartInfo.RedirectStandardInput = true;
+            proc.StartInfo.RedirectStandardInput = false;
             proc.StartInfo.RedirectStandardOutput = true;
             proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             proc.StartInfo.CreateNoWindow = true;

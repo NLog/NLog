@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.ComponentModel;
 using NLog.Config;
 using NLog.Layouts;
 

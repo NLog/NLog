@@ -33,14 +33,11 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System.Runtime.InteropServices;
-
+using NLog.Internal;
 using NLog.Targets;
 
 namespace NLog.Win32.Targets
 {
-    using Internal;
-
     /// <summary>
     /// Outputs logging messages through the <c>OutputDebugString()</c> Win32 API.
     /// </summary>

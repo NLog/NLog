@@ -68,8 +68,8 @@ namespace NLog.Filters
         protected internal override FilterResult Check(LogEventInfo logEvent)
         {
             StringComparison comparisonType = this.IgnoreCase
-                                                  ? StringComparison.InvariantCultureIgnoreCase
-                                                  : StringComparison.InvariantCulture;
+                                                  ? StringComparison.OrdinalIgnoreCase
+                                                  : StringComparison.Ordinal;
 
             if (this.Layout.GetFormattedMessage(logEvent).Equals(this.CompareTo, comparisonType))
             {

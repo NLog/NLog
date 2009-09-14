@@ -32,13 +32,10 @@
 // 
 
 using System;
-using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
-
+using NLog.Common;
 using NLog.Config;
-
 #if !NET_CF && !SILVERLIGHT
 using NLog.Internal.Win32;
 #endif
@@ -139,7 +136,7 @@ namespace NLog.Internal.FileAppenders
         {
             int currentDelay = this.CreateFileParameters.ConcurrentWriteAttemptDelay;
 
-            InternalLogger.Trace(CultureInfo.InvariantCulture, "Opening {0} with concurrentWrite={1}", this.FileName, allowConcurrentWrite);
+            InternalLogger.Trace("Opening {0} with concurrentWrite={1}", this.FileName, allowConcurrentWrite);
             for (int i = 0; i < this.CreateFileParameters.ConcurrentWriteAttempts; ++i)
             {
                 try
@@ -167,7 +164,7 @@ namespace NLog.Internal.FileAppenders
                     }
 
                     int actualDelay = this.random.Next(currentDelay);
-                    InternalLogger.Warn(CultureInfo.InvariantCulture, "Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, this.FileName, actualDelay);
+                    InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, this.FileName, actualDelay);
                     currentDelay *= 2;
                     System.Threading.Thread.Sleep(actualDelay);
                 }

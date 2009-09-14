@@ -63,7 +63,7 @@ namespace NLog.Conditions
         [ConditionMethod("contains")]
         public static bool Contains(string haystack, string needle)
         {
-            return haystack.IndexOf(needle, StringComparison.InvariantCultureIgnoreCase) >= 0;
+            return haystack.IndexOf(needle, StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace NLog.Conditions
         [ConditionMethod("starts-with")]
         public static bool StartsWith(string haystack, string needle)
         {
-            return haystack.StartsWith(needle, StringComparison.InvariantCultureIgnoreCase);
+            return haystack.StartsWith(needle, StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace NLog.Conditions
         [ConditionMethod("ends-with")]
         public static bool EndsWith(string haystack, string needle)
         {
-            return haystack.EndsWith(needle, StringComparison.InvariantCultureIgnoreCase);
+            return haystack.EndsWith(needle, StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>

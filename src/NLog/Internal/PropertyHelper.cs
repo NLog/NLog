@@ -36,6 +36,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
+using NLog.Common;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
@@ -53,7 +54,7 @@ namespace NLog.Internal
         {
             string value = ExpandVariables(value0, variables);
 
-            InternalLogger.Debug(CultureInfo.InvariantCulture, "Setting '{0}.{1}' to '{2}'", o.GetType().Name, name, value);
+            InternalLogger.Debug("Setting '{0}.{1}' to '{2}'", o.GetType().Name, name, value);
 
             try
             {
@@ -144,7 +145,7 @@ namespace NLog.Internal
                 return true;
             }
 
-            if (0 == String.Compare(name, "layout", StringComparison.InvariantCultureIgnoreCase) && typeof(TargetWithLayout).IsAssignableFrom(propInfo.DeclaringType))
+            if (0 == String.Compare(name, "layout", StringComparison.OrdinalIgnoreCase) && typeof(TargetWithLayout).IsAssignableFrom(propInfo.DeclaringType))
             {
                 return true;
             }

@@ -37,11 +37,10 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
+using NLog.Internal;
 
 namespace NLog.Targets.Wrappers
 {
-    using Internal;
-
     /// <summary>
     /// A target wrapper that impersonates another user for the duration of the write.
     /// </summary>

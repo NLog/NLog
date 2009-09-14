@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 using NLog.Internal;
 
 namespace NLog.Config

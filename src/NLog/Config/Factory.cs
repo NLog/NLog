@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Reflection;
-using NLog.Internal;
+using NLog.Common;
 
 namespace NLog.Config
 {
@@ -15,7 +14,7 @@ namespace NLog.Config
         where TBaseType : class 
         where TAttributeType : NameAttributeBase
     {
-        private readonly Dictionary<string, Type> items = new Dictionary<string, Type>(StringComparer.InvariantCultureIgnoreCase);
+        private readonly Dictionary<string, Type> items = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
         /// Initializes a new instance of the Factory class.
@@ -44,7 +43,7 @@ namespace NLog.Config
         {
             try
             {
-                InternalLogger.Debug(CultureInfo.InvariantCulture, "ScanAssembly('{0}','{1}','{2}')", theAssembly.FullName, typeof(TAttributeType), typeof(TBaseType));
+                InternalLogger.Debug("ScanAssembly('{0}','{1}','{2}')", theAssembly.FullName, typeof(TAttributeType), typeof(TBaseType));
                 foreach (Type t in theAssembly.GetTypes())
                 {
                     TAttributeType[] attributes = (TAttributeType[])t.GetCustomAttributes(typeof(TAttributeType), false);
@@ -59,7 +58,7 @@ namespace NLog.Config
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(CultureInfo.InvariantCulture, "Failed to add targets from '" + theAssembly.FullName + "': {0}", ex);
+                InternalLogger.Error("Failed to add targets from '" + theAssembly.FullName + "': {0}", ex);
             }
         }
 

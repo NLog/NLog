@@ -32,8 +32,7 @@
 // 
 
 using System;
-using System.Globalization;
-using NLog.Internal;
+using NLog.Common;
 
 namespace NLog.Targets.Compound
 {
@@ -104,7 +103,7 @@ namespace NLog.Targets.Compound
                         {
                             if (this.ReturnToFirstOnSuccess)
                             {
-                                InternalLogger.Debug(CultureInfo.InvariantCulture, "Fallback: target '{0}' succeeded. Returning to the first one.", this.Targets[this.currentTarget]);
+                                InternalLogger.Debug("Fallback: target '{0}' succeeded. Returning to the first one.", this.Targets[this.currentTarget]);
                                 this.currentTarget = 0;
                             }
                         }
@@ -113,7 +112,7 @@ namespace NLog.Targets.Compound
                     }
                     catch (Exception ex)
                     {
-                        InternalLogger.Warn(CultureInfo.InvariantCulture, "Fallback: target '{0}' failed. Proceeding to the next one. Error was: {1}", this.Targets[this.currentTarget], ex);
+                        InternalLogger.Warn("Fallback: target '{0}' failed. Proceeding to the next one. Error was: {1}", this.Targets[this.currentTarget], ex);
 
                         // error while writing, try another one
                         this.currentTarget = (this.currentTarget + 1) % this.Targets.Count;

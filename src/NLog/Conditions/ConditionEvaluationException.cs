@@ -32,9 +32,6 @@
 // 
 
 using System;
-#if !NET_CF
-using System.Runtime.Serialization;
-#endif
 
 namespace NLog.Conditions
 {
@@ -84,7 +81,7 @@ namespace NLog.Conditions
         /// <exception cref="T:System.Runtime.Serialization.SerializationException">
         /// The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0).
         /// </exception>
-        protected ConditionEvaluationException(SerializationInfo info, StreamingContext context)
+        protected ConditionEvaluationException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
             : base(info, context)
         {
         }

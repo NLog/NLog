@@ -37,11 +37,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Globalization;
 using System.Reflection;
 using System.Text;
+using NLog.Common;
 using NLog.Config;
-using NLog.Internal;
 using NLog.Layouts;
 
 namespace NLog.Targets
@@ -355,7 +354,7 @@ namespace NLog.Targets
 
             this.connectionStringCache = sb.ToString();
 
-            InternalLogger.Debug(CultureInfo.InvariantCulture, "Connection string: {0}", this.connectionStringCache);
+            InternalLogger.Debug("Connection string: {0}", this.connectionStringCache);
             return this.connectionStringCache;
         }
     }

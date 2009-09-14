@@ -33,10 +33,7 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
 using System.Runtime.InteropServices;
-
-using NLog.Config;
 using NLog.Targets;
 
 namespace NLog.Win32.Targets

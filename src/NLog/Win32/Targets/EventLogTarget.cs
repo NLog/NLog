@@ -37,7 +37,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
-using NLog.Internal;
+using NLog.Common;
 using NLog.Layouts;
 using NLog.Targets;
 
@@ -189,7 +189,7 @@ namespace NLog.Win32.Targets
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(CultureInfo.InvariantCulture, "Error when connecting to EventLog: {0}", ex);
+                InternalLogger.Error("Error when connecting to EventLog: {0}", ex);
                 throw;
             }
         }

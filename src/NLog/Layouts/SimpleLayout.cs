@@ -32,10 +32,9 @@
 // 
 
 using System;
-using System.Globalization;
 using System.Text;
+using NLog.Common;
 using NLog.Config;
-using NLog.Internal;
 using NLog.LayoutRenderers;
 
 namespace NLog.Layouts
@@ -208,7 +207,7 @@ namespace NLog.Layouts
                 {
                     if (InternalLogger.IsWarnEnabled)
                     {
-                        InternalLogger.Warn(CultureInfo.InvariantCulture, "Exception in {0}.GetEstimatedBufferSize(): {1}.", app.GetType().FullName, ex);
+                        InternalLogger.Warn("Exception in {0}.GetEstimatedBufferSize(): {1}.", app.GetType().FullName, ex);
                     }
                 }
             }
@@ -226,7 +225,7 @@ namespace NLog.Layouts
                 {
                     if (InternalLogger.IsWarnEnabled)
                     {
-                        InternalLogger.Warn(CultureInfo.InvariantCulture, "Exception in {0}.Append(): {1}.", app.GetType().FullName, ex);
+                        InternalLogger.Warn("Exception in {0}.Append(): {1}.", app.GetType().FullName, ex);
                     }
                 }
             }

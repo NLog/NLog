@@ -34,9 +34,6 @@
 #if !NET_CF && !SILVERLIGHT
 
 using System;
-using System.IO;
-
-using NLog.Config;
 using NLog.Internal.Win32;
 
 namespace NLog.Internal

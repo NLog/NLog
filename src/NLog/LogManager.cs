@@ -33,11 +33,9 @@
 
 using System;
 using System.Diagnostics;
-using System.Globalization;
 using System.Runtime.CompilerServices;
-
+using NLog.Common;
 using NLog.Config;
-using NLog.Internal;
 
 namespace NLog
 {
@@ -60,7 +58,7 @@ namespace NLog
             }
             catch (Exception ex)
             {
-                InternalLogger.Warn(CultureInfo.InvariantCulture, "Error setting up termiation events: {0}", ex);
+                InternalLogger.Warn("Error setting up termiation events: {0}", ex);
             }
         }
 #endif
@@ -129,7 +127,11 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger()
         {
+#if SILVERLIGHT
+            StackFrame frame = new StackTrace().GetFrame(1);
+#else
             StackFrame frame = new StackFrame(1, false);
+#endif
 
             return globalFactory.GetLogger(frame.GetMethod().DeclaringType.FullName);
         }
@@ -144,8 +146,11 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger(Type loggerType)
         {
+#if SILVERLIGHT
+            StackFrame frame = new StackTrace().GetFrame(1);
+#else
             StackFrame frame = new StackFrame(1, false);
-
+#endif
             return globalFactory.GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
         }
 #endif
@@ -258,9 +263,9 @@ namespace NLog
         {
             // reset logging configuration to null
             // this causes old configuration (if any) to be closed.
-            InternalLogger.Info(CultureInfo.InvariantCulture, "Shutting down logging...");
+            InternalLogger.Info("Shutting down logging...");
             Configuration = null;
-            InternalLogger.Info(CultureInfo.InvariantCulture, "Logger has been shut down.");
+            InternalLogger.Info("Logger has been shut down.");
         }
 #endif
     }

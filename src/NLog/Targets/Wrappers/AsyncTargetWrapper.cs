@@ -34,9 +34,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Globalization;
 using System.Threading;
-using NLog.Internal;
+using NLog.Common;
 
 namespace NLog.Targets.Wrappers
 {
@@ -214,8 +213,8 @@ namespace NLog.Targets.Wrappers
         protected virtual void StartLazyWriterTimer()
         {
             this.RequestQueue.Clear();
-            Internal.InternalLogger.Debug(CultureInfo.InvariantCulture, "Starting lazy writer timer...");
-            this.lazyWriterTimer = new Timer(new TimerCallback(this.LazyWriterTimerCallback), null, 0, this.TimeToSleepBetweenBatches);
+            InternalLogger.Debug("Starting lazy writer timer...");
+            this.lazyWriterTimer = new Timer(this.LazyWriterTimerCallback, null, 0, this.TimeToSleepBetweenBatches);
         }
 
         /// <summary>
@@ -265,7 +264,7 @@ namespace NLog.Targets.Wrappers
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(CultureInfo.InvariantCulture, "Error in lazy writer timer procedure: {0}", ex);
+                    InternalLogger.Error("Error in lazy writer timer procedure: {0}", ex);
                 }
             }
         }

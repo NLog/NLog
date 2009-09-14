@@ -36,7 +36,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
-using NLog.Internal;
+using NLog.Common;
 using NLog.Layouts;
 
 namespace NLog.Conditions
@@ -124,7 +124,7 @@ namespace NLog.Conditions
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(CultureInfo.InvariantCulture, "Error: {0}", ex);
+                InternalLogger.Error("Error: {0}", ex);
                 return string.Empty;
             }
         }

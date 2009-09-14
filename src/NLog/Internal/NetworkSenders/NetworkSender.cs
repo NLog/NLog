@@ -32,7 +32,6 @@
 // 
 
 using System;
-using System.Threading;
 
 namespace NLog.Internal.NetworkSenders
 {
@@ -75,12 +74,12 @@ namespace NLog.Internal.NetworkSenders
         /// </returns>
         public static NetworkSender Create(string url)
         {
-            if (url.StartsWith("tcp://"))
+            if (url.StartsWith("tcp://", StringComparison.OrdinalIgnoreCase))
             {
                 return new TcpNetworkSender(url);
             }
 #if !SILVERLIGHT
-            if (url.StartsWith("udp://"))
+            if (url.StartsWith("udp://", StringComparison.OrdinalIgnoreCase))
             {
                 return new UdpNetworkSender(url);
             }

@@ -1,11 +1,11 @@
+using System;
+using System.Runtime.InteropServices;
+using System.Security;
+
 #if !SILVERLIGHT
 
 namespace NLog.Internal
 {
-    using System;
-    using System.Runtime.InteropServices;
-    using System.Security;
-
     internal static class NativeMethods
     {
         [DllImport("kernel32.dll", SetLastError = true)]
@@ -54,14 +54,17 @@ namespace NLog.Internal
 
         // obtains user token
         [DllImport("advapi32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool LogonUser(string pszUsername, string pszDomain, string pszPassword, int dwLogonType, int dwLogonProvider, out IntPtr phToken);
 
         // closes open handes returned by LogonUser
         [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
+        [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool CloseHandle(IntPtr handle);
 
         // creates duplicate token handle
         [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool DuplicateToken(IntPtr existingTokenHandle, int impersonationLevel, out IntPtr duplicateTokenHandle);
 
         [DllImport("kernel32.dll")]
@@ -72,6 +75,7 @@ namespace NLog.Internal
 #else
         [DllImport("coredll.dll")]
 #endif
+        [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool QueryPerformanceCounter(out ulong lpPerformanceCount);
 
 #if !NET_CF
@@ -79,6 +83,7 @@ namespace NLog.Internal
 #else
         [DllImport("coredll.dll")]
 #endif
+        [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool QueryPerformanceFrequency(out ulong lpPerformanceFrequency);
     }
 }

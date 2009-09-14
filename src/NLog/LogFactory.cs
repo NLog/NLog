@@ -40,6 +40,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
+using NLog.Common;
 using NLog.Config;
 using NLog.Internal;
 using NLog.Targets;
@@ -139,7 +140,7 @@ namespace NLog
                         {
                             if (File.Exists(configFile))
                             {
-                                InternalLogger.Debug(CultureInfo.InvariantCulture, "Attempting to load config from {0}", configFile);
+                                InternalLogger.Debug("Attempting to load config from {0}", configFile);
                                 this.config = new XmlLoggingConfiguration(configFile);
                             }
                         }
@@ -171,7 +172,7 @@ namespace NLog
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(CultureInfo.InvariantCulture, "Cannot stop file watching: {0}", ex);
+                    InternalLogger.Error("Cannot stop file watching: {0}", ex);
                 }
 #endif
 
@@ -180,7 +181,7 @@ namespace NLog
                     LoggingConfiguration oldConfig = this.config;
                     if (oldConfig != null)
                     {
-                        InternalLogger.Info(CultureInfo.InvariantCulture, "Closing old configuration.");
+                        InternalLogger.Info("Closing old configuration.");
                         oldConfig.Close();
                     }
 
@@ -200,7 +201,7 @@ namespace NLog
                         }
                         catch (Exception ex)
                         {
-                            InternalLogger.Warn(CultureInfo.InvariantCulture, "Cannot start file watching: {0}", ex);
+                            InternalLogger.Warn("Cannot start file watching: {0}", ex);
                         }
 #endif
                     }
@@ -388,7 +389,7 @@ namespace NLog
         {
             LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
 
-            InternalLogger.Info(CultureInfo.InvariantCulture, "Reloading configuration...");
+            InternalLogger.Info("Reloading configuration...");
             lock (this)
             {
                 if (this.reloadTimer != null)
@@ -501,7 +502,7 @@ namespace NLog
                 this.GetTargetsByLevelForLogger(name, configuration.LoggingRules, targetsByLevel, lastTargetsByLevel);
             }
 
-            InternalLogger.Debug(CultureInfo.InvariantCulture, "Targets for {0} by level:", name);
+            InternalLogger.Debug("Targets for {0} by level:", name);
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
                 StringBuilder sb = new StringBuilder();
@@ -547,11 +548,11 @@ namespace NLog
                 yield return nlogAssembly.Location + ".nlog";
             }
 
-            string globalConfig = Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE");
-            if (!String.IsNullOrEmpty(globalConfig))
-            {
-                yield return globalConfig;
-            }
+            //string globalConfig = Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE");
+            //if (!String.IsNullOrEmpty(globalConfig))
+            //{
+            //    yield return globalConfig;
+            //}
 #endif
         }
 
@@ -601,7 +602,7 @@ namespace NLog
 #if !NET_CF && !SILVERLIGHT
         private void ConfigFileChanged(object sender, EventArgs args)
         {
-            InternalLogger.Info(CultureInfo.InvariantCulture, "Configuration file change detected! Reloading in {0}ms...", ReconfigAfterFileChangedTimeout);
+            InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", ReconfigAfterFileChangedTimeout);
 
             // In the rare cases we may get multiple notifications here, 
             // but we need to reload config only once.

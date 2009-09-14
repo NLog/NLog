@@ -33,7 +33,6 @@
 
 #if !NET_CF && !SILVERLIGHT && !CLIENT_SKU
 
-using System;
 using System.Web;
 
 namespace NLog.Targets
@@ -77,8 +76,8 @@ namespace NLog.Targets
         /// Writes the specified logging event to the ASP.NET Trace facility. Log entries
         /// can then be viewed by navigating to http://server/path/Trace.axd
         /// If the log level is greater than or equal to <see cref="LogLevel.Warn"/> it uses the
-        /// <see cref="System.Web.TraceContext.Warn(String,String)"/> method, otherwise it uses
-        /// <see cref="System.Web.TraceContext.Write(String,String)" /> method.
+        /// <see cref="System.Web.TraceContext.Warn(string,string)"/> method, otherwise it uses
+        /// <see cref="System.Web.TraceContext.Write(string,string)" /> method.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)

@@ -86,6 +86,8 @@
     <Compile Include="Contexts\NDC.cs" />
     <Compile Include="Contexts\MDC.cs" />
     <Compile Include="Contexts\GDC.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Common\ExceptionHelpers.cs" />
     <Compile Include="Internal\PortableThreadIDHelper.cs" />
     <Compile Include="Internal\PortableFileInfoHelper.cs" />
     <Compile Include="Internal\Win32FileInfoHelper.cs">
@@ -224,7 +226,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
-    <Compile Include="Internal\InternalLogger.cs">
+    <Compile Include="Common\InternalLogger.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Internal\LogEventInfoBuffer.cs">

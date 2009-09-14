@@ -33,9 +33,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Reflection;
 using System.Text;
+using NLog.Common;
 using NLog.Config;
 using NLog.Internal;
 using NLog.LayoutRenderers;
@@ -294,7 +294,7 @@ namespace NLog.Layouts
                     }
                     else
                     {
-                        InternalLogger.Warn(CultureInfo.InvariantCulture, "{0} has no default property", lr.GetType().FullName);
+                        InternalLogger.Warn("{0} has no default property", lr.GetType().FullName);
                     }
                 }
 
@@ -304,7 +304,7 @@ namespace NLog.Layouts
             for (int i = orderedWrappers.Count - 1; i >= 0; --i)
             {
                 WrapperLayoutRendererBase newRenderer = (WrapperLayoutRendererBase)orderedWrappers[i];
-                InternalLogger.Trace(CultureInfo.InvariantCulture, "Wrapping {0} with {1}", lr.GetType().Name, newRenderer.GetType().Name);
+                InternalLogger.Trace("Wrapping {0} with {1}", lr.GetType().Name, newRenderer.GetType().Name);
                 if (lr.IsAppDomainFixed())
                 {
                     lr = ConvertToLiteral(lr);

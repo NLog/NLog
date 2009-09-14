@@ -6,7 +6,7 @@
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <SignAssembly>true</SignAssembly>
-    <Framework Condition="'$(Framework)' == ''">NetFX3.5</Framework>
+    <Framework Condition="'$(Framework)' == ''">NetFx3.5</Framework>
     <FrameworksPath Condition="'$(FrameworksPath)' == ''">Frameworks</FrameworksPath>
     <FrameworkDefaults>$(FrameworksPath)\$(Framework).defaults</FrameworkDefaults>
     <DefineConstants>
@@ -16,6 +16,7 @@
     <StyleCopOverrideSettingsFile>..\Settings.StyleCop</StyleCopOverrideSettingsFile>
     <OutputPath>$(NLogBuildPath)\bin\$(Configuration)\$(Framework)</OutputPath>
     <IntermediateOutputPath>$(NLogBuildPath)\obj\$(Configuration)\$(Framework)</IntermediateOutputPath>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <Target Name="Documentation">
      <Error Text="Sandcastle is not installed, cannot generate API documentation for $(AssemblyName) / $(Framework)." Condition="'$(DXROOT)' == ''"/>

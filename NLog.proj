@@ -18,12 +18,11 @@
     <TargetFramework Include="Silverlight2" />
     <TargetFramework Include="Silverlight3" />
     <TargetFramework Include="NetCF2.0" />
-    <!-- <TargetFramework Include="NetCF3.5" /> -->
+    <TargetFramework Include="NetCF3.5" />
     <TargetFramework Include="NetFx2.0" />
     <TargetFramework Include="NetFx3.5" />
-    <!-- <TargetFramework Include="NetFx2.0.Client" />
+    <TargetFramework Include="NetFx2.0.Client" />
     <TargetFramework Include="NetFx3.5.Client" />
-    -->
   </ItemGroup>
 
   <Import Project="NLog.local" Condition="Exists('NLog.local')" />

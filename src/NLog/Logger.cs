@@ -32,7 +32,6 @@
 // 
 
 using System;
-
 using NLog.Internal;
 
 namespace NLog

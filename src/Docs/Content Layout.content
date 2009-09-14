@@ -19,7 +19,6 @@
         <Topic id="deabf7ae-72fe-4691-8d00-230d0eff6e9f" visible="True" title="Available Conditions" />
       </Topic>
       <Topic id="4f980688-d01e-49ff-86f4-ecb07966f544" visible="True" title="Include Files" />
-      <Topic id="86b68ea9-c250-4245-8f27-0249a1a61d58" visible="True" title="Variables" />
     </Topic>
     <Topic id="53e4b2cb-aac1-4d17-8a3b-55b145bf57ba" visible="True" title="Configuration API" />
     <Topic id="711d7e64-66c8-40cd-b473-0219a924fcc9" visible="True" title="Simple Configuration API" />

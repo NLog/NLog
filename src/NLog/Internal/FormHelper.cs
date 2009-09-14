@@ -34,7 +34,6 @@
 #if !MONO && !SILVERLIGHT
 
 using System;
-using System.Text;
 using System.Windows.Forms;
 
 namespace NLog.Internal

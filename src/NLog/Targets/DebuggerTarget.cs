@@ -33,9 +33,7 @@
 
 #if !NET_CF
 
-using System;
 using System.Diagnostics;
-using NLog.Config;
 
 namespace NLog.Targets
 {

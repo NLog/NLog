@@ -32,7 +32,7 @@
 // 
 
 using System.Runtime.InteropServices;
-
+using NLog.Common;
 using NLog.Config;
 
 namespace NLog.ComInterop
@@ -54,8 +54,8 @@ namespace NLog.ComInterop
         /// </value>
         public bool InternalLogToConsole
         {
-            get { return NLog.Internal.InternalLogger.LogToConsole; }
-            set { NLog.Internal.InternalLogger.LogToConsole = value; }
+            get { return InternalLogger.LogToConsole; }
+            set { InternalLogger.LogToConsole = value; }
         }
 
         /// <summary>
@@ -64,8 +64,8 @@ namespace NLog.ComInterop
         /// <value></value>
         public string InternalLogLevel
         {
-            get { return NLog.Internal.InternalLogger.LogLevel.ToString(); }
-            set { NLog.Internal.InternalLogger.LogLevel = NLog.LogLevel.FromString(value); }
+            get { return InternalLogger.LogLevel.ToString(); }
+            set { InternalLogger.LogLevel = NLog.LogLevel.FromString(value); }
         }
 
         /// <summary>
@@ -74,8 +74,8 @@ namespace NLog.ComInterop
         /// <value></value>
         public string InternalLogFile
         {
-            get { return NLog.Internal.InternalLogger.LogFile; }
-            set { NLog.Internal.InternalLogger.LogFile = value; }
+            get { return InternalLogger.LogFile; }
+            set { InternalLogger.LogFile = value; }
         }
 
         /// <summary>

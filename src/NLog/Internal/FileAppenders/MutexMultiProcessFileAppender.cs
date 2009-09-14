@@ -37,6 +37,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Threading;
+using NLog.Common;
 
 namespace NLog.Internal.FileAppenders
 {
@@ -118,7 +119,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Close()
         {
-            InternalLogger.Trace(CultureInfo.InvariantCulture, "Closing '{0}'", FileName);
+            InternalLogger.Trace("Closing '{0}'", FileName);
             if (this.mutex != null)
             {
                 this.mutex.Close();

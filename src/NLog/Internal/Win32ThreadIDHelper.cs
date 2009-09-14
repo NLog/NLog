@@ -4,7 +4,6 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
-using NLog.Config;
 
 namespace NLog.Internal
 {
@@ -16,7 +15,6 @@ namespace NLog.Internal
         private int currentProcessID;
         private string currentProcessName;
         private string currentProcessBaseName;
-        private string currentProcessDirectoryName;
 
         /// <summary>
         /// Initializes a new instance of the Win32ThreadIDHelper class.
@@ -30,7 +28,6 @@ namespace NLog.Internal
             this.currentProcessName = sb.ToString();
 
             this.currentProcessBaseName = Path.GetFileNameWithoutExtension(this.currentProcessName);
-            this.currentProcessDirectoryName = Path.GetDirectoryName(this.currentProcessName);
         }
 
         /// <summary>

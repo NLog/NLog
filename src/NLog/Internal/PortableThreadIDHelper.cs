@@ -1,10 +1,6 @@
 ﻿#if !SILVERLIGHT && !NET_CF
 
-using System;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
-using NLog.Config;
 
 namespace NLog.Internal
 {
@@ -16,7 +12,6 @@ namespace NLog.Internal
         private int currentProcessID;
         private string currentProcessName;
         private string currentProcessBaseName;
-        private string currentProcessDirectoryName;
 
         /// <summary>
         /// Initializes a new instance of the PortableThreadIDHelper class.
@@ -26,7 +21,6 @@ namespace NLog.Internal
             this.currentProcessID = System.Diagnostics.Process.GetCurrentProcess().Id;
             this.currentProcessName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
             this.currentProcessBaseName = Path.GetFileNameWithoutExtension(this.currentProcessName);
-            this.currentProcessDirectoryName = Path.GetDirectoryName(this.currentProcessName);
         }
 
         /// <summary>

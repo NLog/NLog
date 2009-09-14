@@ -36,6 +36,7 @@ using System.Xml;
 using System.Globalization;
 
 using NLog;
+using NLog.Common;
 using NLog.Config;
 
 using NUnit.Framework;
@@ -165,7 +166,7 @@ namespace NLog.UnitTests
                 logger.Debug("aaa");
                 AssertDebugLastMessage("debug", "aaa");
 
-                InternalLogger.Info(CultureInfo.InvariantCulture, "Rewriting test file...");
+                InternalLogger.Info("Rewriting test file...");
 
                 // now write the file again
                 using (StreamWriter fs = File.CreateText(fileName))
@@ -178,7 +179,7 @@ namespace NLog.UnitTests
                 </nlog>");
                 }
 
-                InternalLogger.Info(CultureInfo.InvariantCulture, "Rewritten.");
+                InternalLogger.Info("Rewritten.");
                 WaitForConfigReload(1);
 
                 logger.Debug("aaa");

@@ -31,12 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Globalization;
 using System.IO;
 using System.Text;
+using NLog.Common;
 using NLog.Config;
-using NLog.Internal;
 using NLog.Layouts;
 
 namespace NLog.LayoutRenderers
@@ -114,18 +112,16 @@ namespace NLog.LayoutRenderers
 
         private string ReadFileContents(string fileName)
         {
-            try
-            {
-                using (StreamReader sr = new StreamReader(fileName, this.Encoding))
-                {
-                    return sr.ReadToEnd();
-                }
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Warn(CultureInfo.InvariantCulture, "Cannot read file {0}: {1}", this.FileName, ex);
-                return string.Empty;
-            }
+            return ExceptionHelpers.ReturnDefaultOnException(
+                () =>
+                    {
+                        using (StreamReader reader = new StreamReader(fileName, this.Encoding))
+                        {
+                            return reader.ReadToEnd();
+                        }
+                    },
+                "Cannot read file contents: " + fileName,
+                string.Empty);
         }
     }
 }

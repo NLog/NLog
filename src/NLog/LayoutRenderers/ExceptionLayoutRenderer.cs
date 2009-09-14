@@ -35,8 +35,8 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using NLog.Common;
 using NLog.Config;
-using NLog.Internal;
 
 namespace NLog.LayoutRenderers
 {
@@ -209,7 +209,7 @@ namespace NLog.LayoutRenderers
                         break;
 #endif
                     default:
-                        InternalLogger.Warn(CultureInfo.InvariantCulture, "Unknown exception data target: {0}", s);
+                        InternalLogger.Warn("Unknown exception data target: {0}", s);
                         break;
                 }
             }

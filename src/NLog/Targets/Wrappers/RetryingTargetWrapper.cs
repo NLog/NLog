@@ -33,8 +33,7 @@
 
 using System;
 using System.ComponentModel;
-using System.Globalization;
-using NLog.Internal;
+using NLog.Common;
 
 namespace NLog.Targets.Wrappers
 {
@@ -104,7 +103,7 @@ namespace NLog.Targets.Wrappers
                 {
                     if (i > 0)
                     {
-                        InternalLogger.Warn(CultureInfo.InvariantCulture, "Retry #{0}", i);
+                        InternalLogger.Warn("Retry #{0}", i);
                     }
 
                     WrappedTarget.Write(logEvent);
@@ -112,7 +111,7 @@ namespace NLog.Targets.Wrappers
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Warn(CultureInfo.InvariantCulture, "Error while writing to '{0}': {1}", WrappedTarget, ex);
+                    InternalLogger.Warn("Error while writing to '{0}': {1}", WrappedTarget, ex);
                     if (i == this.RetryCount - 1)
                     {
                         throw;

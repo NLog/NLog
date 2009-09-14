@@ -42,8 +42,8 @@ namespace NLog.Config
     /// Attaches a simple name to an item (such as <see cref="Target"/>, 
     /// <see cref="LayoutRenderer"/>, <see cref="Layout"/>, etc.).
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
-    public class NameAttributeBase : Attribute
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
+    public abstract class NameAttributeBase : Attribute
     {
         /// <summary>
         /// Initializes a new instance of the NameAttributeBase class.

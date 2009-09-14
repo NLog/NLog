@@ -1,5 +1,4 @@
 ﻿using System;
-
 using NLog.Config;
 
 namespace NLog.Internal

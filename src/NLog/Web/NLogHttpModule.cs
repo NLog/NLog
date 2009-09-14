@@ -34,11 +34,7 @@
 #if !NET_CF && !SILVERLIGHT && !CLIENT_SKU
 
 using System;
-using System.Text;
 using System.Web;
-
-using NLog;
-using NLog.Config;
 
 namespace NLog.Web
 {

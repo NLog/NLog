@@ -92,7 +92,7 @@ namespace NLog.Internal
                             newLength = this.growLimit;
                         }
 
-                        // InternalLogger.Trace(CultureInfo.InvariantCulture, "Enlarging LogEventInfoBuffer from {0} to {1}", this.buffer.Length, this.buffer.Length * 2);
+                        // InternalLogger.Trace("Enlarging LogEventInfoBuffer from {0} to {1}", this.buffer.Length, this.buffer.Length * 2);
                         LogEventInfo[] newBuffer = new LogEventInfo[newLength];
                         Array.Copy(this.buffer, 0, newBuffer, 0, this.buffer.Length);
                         this.buffer = newBuffer;
@@ -132,7 +132,7 @@ namespace NLog.Internal
                 int cnt = this.count;
                 LogEventInfo[] returnValue = new LogEventInfo[cnt];
 
-                // InternalLogger.Trace(CultureInfo.InvariantCulture, "GetEventsAndClear({0},{1},{2})", this.getPointer, this.putPointer, this.count);
+                // InternalLogger.Trace("GetEventsAndClear({0},{1},{2})", this.getPointer, this.putPointer, this.count);
                 for (int i = 0; i < cnt; ++i)
                 {
                     int p = (this.getPointer + i) % this.buffer.Length;

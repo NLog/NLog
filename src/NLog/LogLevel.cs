@@ -58,7 +58,7 @@ namespace NLog
             Off = new LogLevel("Off", ordinal);
 
             levelByOrdinal = new[] { Trace, Debug, Info, Warn, Error, Fatal, Off };
-            MaxLevel = levelByOrdinal[0];
+            MinLevel = levelByOrdinal[0];
             MaxLevel = levelByOrdinal[levelByOrdinal.Length - 2]; // ignore the Off level
         }
 

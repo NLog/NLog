@@ -32,10 +32,8 @@
 // 
 
 #if !NET_CF
-using System;
-using System.Text;
 
-using NLog.Config;
+using System.Text;
 
 namespace NLog.LayoutRenderers
 {

@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Threading;
 using NLog.Config;
 
 using NUnit.Framework;
@@ -81,7 +82,11 @@ namespace NLog.UnitTests.Targets
 
         public void Process(string threadName, string numLogsString, string mode)
         {
-            System.Threading.Thread.CurrentThread.Name = threadName;
+            if (threadName != null)
+            {
+                Thread.CurrentThread.Name = threadName;
+            }
+
             ConfigureSharedFile(mode);
             int numLogs = Convert.ToInt32(numLogsString);
             for (int i = 0; i < numLogs; ++i)
@@ -107,7 +112,9 @@ namespace NLog.UnitTests.Targets
             }
             for (int i = 0; i < numProcesses; ++i)
             {
-                processes[i].WaitForExit();
+                // processes[i].WaitForExit();
+                string output = processes[i].StandardOutput.ReadToEnd();
+                Assert.AreEqual(0, processes[i].ExitCode, "Runner returned with an error. Standard output: " + output);
                 processes[i].Dispose();
                 processes[i] = null;
             }

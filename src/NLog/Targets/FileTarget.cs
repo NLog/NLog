@@ -39,9 +39,8 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Threading;
-
+using NLog.Common;
 using NLog.Config;
-using NLog.Internal;
 using NLog.Internal.FileAppenders;
 #if !SILVERLIGHT && !NET_CF
 using NLog.Internal.Win32;
@@ -773,10 +772,7 @@ namespace NLog.Targets
                 this.RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
             }
 
-            if (InternalLogger.IsTraceEnabled)
-            {
-                InternalLogger.Trace(CultureInfo.InvariantCulture, "Renaming {0} to {1}", fileName, newFileName);
-            }
+            InternalLogger.Trace("Renaming {0} to {1}", fileName, newFileName);
 
             try
             {
@@ -1000,7 +996,7 @@ namespace NLog.Targets
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Warn(CultureInfo.InvariantCulture, "Exception in AutoClosingTimerCallback: {0}", ex);
+                    InternalLogger.Warn("Exception in AutoClosingTimerCallback: {0}", ex);
                 }
             }
         }
@@ -1043,7 +1039,7 @@ namespace NLog.Targets
                         }
                         catch (Exception ex)
                         {
-                            InternalLogger.Warn(CultureInfo.InvariantCulture, "Unable to delete old log file '{0}': {1}", fileName, ex);
+                            InternalLogger.Warn("Unable to delete old log file '{0}': {1}", fileName, ex);
                         }
                     }
 

@@ -34,9 +34,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Globalization;
 using System.Text;
-using NLog.Internal;
+using NLog.Common;
 using NLog.Internal.NetworkSenders;
 using NLog.Layouts;
 
@@ -240,7 +239,7 @@ namespace NLog.Targets
                     }
                     catch (Exception ex)
                     {
-                        InternalLogger.Error(CultureInfo.InvariantCulture, "Error when sending {0}", ex);
+                        InternalLogger.Error("Error when sending {0}", ex);
                         this.sender.Close();
                         this.sender = null;
                         throw;

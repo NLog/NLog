@@ -33,7 +33,7 @@
 
 using System;
 using System.Diagnostics;
-using System.Globalization;
+using NLog.Common;
 using NLog.Config;
 using NLog.Filters;
 using NLog.Internal;
@@ -104,7 +104,7 @@ namespace NLog
                     {
                         if (InternalLogger.IsDebugEnabled)
                         {
-                            InternalLogger.Debug(CultureInfo.InvariantCulture, "{0}.{1} Rejecting message because of a filter.", logEvent.LoggerName, logEvent.Level);
+                            InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", logEvent.LoggerName, logEvent.Level);
                         }
                         
                         if (result == FilterResult.IgnoreFinal)
@@ -117,7 +117,7 @@ namespace NLog
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(CultureInfo.CurrentCulture, "FilterChain exception: {0}", ex);
+                    InternalLogger.Error("FilterChain exception: {0}", ex);
                     if (factory.ThrowExceptions)
                     {
                         throw;
@@ -132,7 +132,7 @@ namespace NLog
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(CultureInfo.CurrentCulture, "Target exception: {0}", ex);
+                    InternalLogger.Error("Target exception: {0}", ex);
                     if (factory.ThrowExceptions)
                     {
                         throw;

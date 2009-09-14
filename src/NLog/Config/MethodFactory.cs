@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Reflection;
-using NLog.Internal;
+using NLog.Common;
 
 namespace NLog.Config
 {
@@ -41,7 +40,7 @@ namespace NLog.Config
         {
             try
             {
-                InternalLogger.Debug(CultureInfo.InvariantCulture, "ScanAssembly('{0}','{1}','{2}')", theAssembly.FullName, typeof(TClassAttributeType), typeof(TMethodAttributeType));
+                InternalLogger.Debug("ScanAssembly('{0}','{1}','{2}')", theAssembly.FullName, typeof(TClassAttributeType), typeof(TMethodAttributeType));
                 foreach (Type t in theAssembly.GetTypes())
                 {
                     if (t.IsDefined(typeof(TClassAttributeType), false))
@@ -59,7 +58,7 @@ namespace NLog.Config
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(CultureInfo.InvariantCulture, "Failed to add targets from '" + theAssembly.FullName + "': {0}", ex);
+                InternalLogger.Error("Failed to add targets from '" + theAssembly.FullName + "': {0}", ex);
             }
         }
 

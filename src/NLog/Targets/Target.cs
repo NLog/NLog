@@ -33,9 +33,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
+using NLog.Common;
 using NLog.Config;
-using NLog.Internal;
 using NLog.Layouts;
 
 namespace NLog.Targets
@@ -45,15 +44,8 @@ namespace NLog.Targets
     /// </summary>
     public abstract class Target : IDisposable
     {
-        private List<Layout> allLayouts = new List<Layout>();
+        private readonly List<Layout> allLayouts = new List<Layout>();
         private StackTraceUsage stackTraceUsage;
-
-        /// <summary>
-        /// Initializes a new instance of the Target class.
-        /// </summary>
-        protected Target()
-        {
-        }
 
         /// <summary>
         /// Gets a value indicating whether the target has been initialized by calling <see cref="Initialize" />.
@@ -72,7 +64,7 @@ namespace NLog.Targets
         /// <returns>A string that describes the target.</returns>
         public override string ToString()
         {
-            return ((this.Name != null) ? this.Name : "unnamed") + ":" + this.GetType().Name;
+            return (this.Name ?? "unnamed") + ":" + this.GetType().Name;
         }
 
         /// <summary>
@@ -190,11 +182,11 @@ namespace NLog.Targets
         {
             if (!this.IsInitialized)
             {
-                InternalLogger.Warn(CultureInfo.InvariantCulture, "Called Close() without Initialize() on " + this.ToString() + "(" + this.GetHashCode() + ")");
+                InternalLogger.Warn("Called Close() without Initialize() on {0}({1})", this, this.GetHashCode());
             }
             else
             {
-                InternalLogger.Trace(CultureInfo.InvariantCulture, "Closing " + this.ToString() + "(" + this.GetHashCode() + ")...");
+                InternalLogger.Trace("Closing {0}({1})...", this, this.GetHashCode());
             }
 
             foreach (Layout l in this.allLayouts)

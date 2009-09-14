@@ -128,33 +128,33 @@ namespace NLog.Conditions
             {
                 string keyword = this.tokenizer.EatKeyword();
 
-                if (0 == String.Compare(keyword, "level", StringComparison.InvariantCultureIgnoreCase))
+                if (0 == String.Compare(keyword, "level", StringComparison.OrdinalIgnoreCase))
                 {
                     return new ConditionLevelExpression();
                 }
 
-                if (0 == String.Compare(keyword, "logger", StringComparison.InvariantCultureIgnoreCase))
+                if (0 == String.Compare(keyword, "logger", StringComparison.OrdinalIgnoreCase))
                 {
                     return new ConditionLoggerNameExpression();
                 }
 
-                if (0 == String.Compare(keyword, "message", StringComparison.InvariantCultureIgnoreCase))
+                if (0 == String.Compare(keyword, "message", StringComparison.OrdinalIgnoreCase))
                 {
                     return new ConditionMessageExpression();
                 }
 
-                if (0 == String.Compare(keyword, "loglevel", StringComparison.InvariantCultureIgnoreCase))
+                if (0 == String.Compare(keyword, "loglevel", StringComparison.OrdinalIgnoreCase))
                 {
                     this.tokenizer.Expect(ConditionTokenType.Dot);
                     return new ConditionLiteralExpression(LogLevel.FromString(this.tokenizer.EatKeyword()));
                 }
 
-                if (0 == String.Compare(keyword, "true", StringComparison.InvariantCultureIgnoreCase))
+                if (0 == String.Compare(keyword, "true", StringComparison.OrdinalIgnoreCase))
                 {
                     return new ConditionLiteralExpression(true);
                 }
 
-                if (0 == String.Compare(keyword, "false", StringComparison.InvariantCultureIgnoreCase))
+                if (0 == String.Compare(keyword, "false", StringComparison.OrdinalIgnoreCase))
                 {
                     return new ConditionLiteralExpression(false);
                 }

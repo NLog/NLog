@@ -33,7 +33,6 @@
 
 using System;
 using System.Globalization;
-
 using NLog.Config;
 using NLog.Layouts;
 

@@ -36,15 +36,15 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using NLog.Internal;
 
-namespace NLog.Internal
+namespace NLog.Common
 {
     /// <summary>
     /// NLog internal logger.
     /// </summary>
-    public sealed class InternalLogger
+    public static class InternalLogger
     {
-#if !NET_CF && !SILVERLIGHT
         /// <summary>
         /// Initializes static members of the InternalLogger class.
         /// </summary>
@@ -52,6 +52,7 @@ namespace NLog.Internal
         {
             LogLevel = LogLevel.Info;
 
+#if !NET_CF && !SILVERLIGHT
             string setting = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE");
             if (setting != null)
             {
@@ -103,13 +104,8 @@ namespace NLog.Internal
                     // ignore
                 }
             }
-
             Info("NLog internal logger initialized.");
-        }
 #endif
-
-        private InternalLogger()
-        {
         }
 
         /// <summary>
@@ -185,23 +181,11 @@ namespace NLog.Internal
         /// Logs the specified message at the specified level.
         /// </summary>
         /// <param name="level">Log level.</param>
-        /// <param name="formatProvider">Format provider to be used for formatting.</param>
-        /// <param name="message">Message which may include positional parameters.</param>
-        /// <param name="args">Arguments to the message.</param>
-        public static void Log(LogLevel level, IFormatProvider formatProvider, string message, params object[] args)
-        {
-            Write(level, formatProvider, message, args);
-        }
-
-        /// <summary>
-        /// Logs the specified message at the specified level.
-        /// </summary>
-        /// <param name="level">Log level.</param>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
         public static void Log(LogLevel level, string message, params object[] args)
         {
-            Write(level, null, message, args);
+            Write(level, message, args);
         }
 
         /// <summary>
@@ -211,18 +195,7 @@ namespace NLog.Internal
         /// <param name="message">Log message.</param>
         public static void Log(LogLevel level, string message)
         {
-            Write(level, null, message, null);
-        }
-
-        /// <summary>
-        /// Logs the specified message at the Trace level.
-        /// </summary>
-        /// <param name="formatProvider">Format provider to be used for formatting.</param>
-        /// <param name="message">Message which may include positional parameters.</param>
-        /// <param name="args">Arguments to the message.</param>
-        public static void Trace(IFormatProvider formatProvider, string message, params object[] args)
-        {
-            Write(LogLevel.Trace, formatProvider, message, args);
+            Write(level, message, null);
         }
 
         /// <summary>
@@ -232,7 +205,7 @@ namespace NLog.Internal
         /// <param name="args">Arguments to the message.</param>
         public static void Trace(string message, params object[] args)
         {
-            Write(LogLevel.Trace, null, message, args);
+            Write(LogLevel.Trace, message, args);
         }
 
         /// <summary>
@@ -241,18 +214,7 @@ namespace NLog.Internal
         /// <param name="message">Log message.</param>
         public static void Trace(string message)
         {
-            Write(LogLevel.Trace, null, message, null);
-        }
-
-        /// <summary>
-        /// Logs the specified message at the Debug level.
-        /// </summary>
-        /// <param name="formatProvider">Format provider to be used for formatting.</param>
-        /// <param name="message">Message which may include positional parameters.</param>
-        /// <param name="args">Arguments to the message.</param>
-        public static void Debug(IFormatProvider formatProvider, string message, params object[] args)
-        {
-            Write(LogLevel.Debug, formatProvider, message, args);
+            Write(LogLevel.Trace, message, null);
         }
 
         /// <summary>
@@ -262,7 +224,7 @@ namespace NLog.Internal
         /// <param name="args">Arguments to the message.</param>
         public static void Debug(string message, params object[] args)
         {
-            Write(LogLevel.Debug, null, message, args);
+            Write(LogLevel.Debug, message, args);
         }
 
         /// <summary>
@@ -271,18 +233,7 @@ namespace NLog.Internal
         /// <param name="message">Log message.</param>
         public static void Debug(string message)
         {
-            Write(LogLevel.Debug, null, message, null);
-        }
-
-        /// <summary>
-        /// Logs the specified message at the Info level.
-        /// </summary>
-        /// <param name="formatProvider">Format provider to be used for formatting.</param>
-        /// <param name="message">Message which may include positional parameters.</param>
-        /// <param name="args">Arguments to the message.</param>
-        public static void Info(IFormatProvider formatProvider, string message, params object[] args)
-        {
-            Write(LogLevel.Info, formatProvider, message, args);
+            Write(LogLevel.Debug, message, null);
         }
 
         /// <summary>
@@ -292,7 +243,7 @@ namespace NLog.Internal
         /// <param name="args">Arguments to the message.</param>
         public static void Info(string message, params object[] args)
         {
-            Write(LogLevel.Info, null, message, args);
+            Write(LogLevel.Info, message, args);
         }
 
         /// <summary>
@@ -301,18 +252,7 @@ namespace NLog.Internal
         /// <param name="message">Log message.</param>
         public static void Info(string message)
         {
-            Write(LogLevel.Info, null, message, null);
-        }
-
-        /// <summary>
-        /// Logs the specified message at the Warn level.
-        /// </summary>
-        /// <param name="formatProvider">Format provider to be used for formatting.</param>
-        /// <param name="message">Message which may include positional parameters.</param>
-        /// <param name="args">Arguments to the message.</param>
-        public static void Warn(IFormatProvider formatProvider, string message, params object[] args)
-        {
-            Write(LogLevel.Warn, formatProvider, message, args);
+            Write(LogLevel.Info, message, null);
         }
 
         /// <summary>
@@ -322,7 +262,7 @@ namespace NLog.Internal
         /// <param name="args">Arguments to the message.</param>
         public static void Warn(string message, params object[] args)
         {
-            Write(LogLevel.Warn, null, message, args);
+            Write(LogLevel.Warn, message, args);
         }
 
         /// <summary>
@@ -331,18 +271,7 @@ namespace NLog.Internal
         /// <param name="message">Log message.</param>
         public static void Warn(string message)
         {
-            Write(LogLevel.Warn, null, message, null);
-        }
-
-        /// <summary>
-        /// Logs the specified message at the Error level.
-        /// </summary>
-        /// <param name="formatProvider">Format provider to be used for formatting.</param>
-        /// <param name="message">Message which may include positional parameters.</param>
-        /// <param name="args">Arguments to the message.</param>
-        public static void Error(IFormatProvider formatProvider, string message, params object[] args)
-        {
-            Write(LogLevel.Error, formatProvider, message, args);
+            Write(LogLevel.Warn, message, null);
         }
 
         /// <summary>
@@ -352,7 +281,7 @@ namespace NLog.Internal
         /// <param name="args">Arguments to the message.</param>
         public static void Error(string message, params object[] args)
         {
-            Write(LogLevel.Error, null, message, args);
+            Write(LogLevel.Error, message, args);
         }
 
         /// <summary>
@@ -361,18 +290,7 @@ namespace NLog.Internal
         /// <param name="message">Log message.</param>
         public static void Error(string message)
         {
-            Write(LogLevel.Error, null, message, null);
-        }
-
-        /// <summary>
-        /// Logs the specified message at the Fatal level.
-        /// </summary>
-        /// <param name="formatProvider">Format provider to be used for formatting.</param>
-        /// <param name="message">Message which may include positional parameters.</param>
-        /// <param name="args">Arguments to the message.</param>
-        public static void Fatal(IFormatProvider formatProvider, string message, params object[] args)
-        {
-            Write(LogLevel.Fatal, formatProvider, message, args);
+            Write(LogLevel.Error, message, null);
         }
 
         /// <summary>
@@ -382,7 +300,7 @@ namespace NLog.Internal
         /// <param name="args">Arguments to the message.</param>
         public static void Fatal(string message, params object[] args)
         {
-            Write(LogLevel.Fatal, null, message, args);
+            Write(LogLevel.Fatal, message, args);
         }
 
         /// <summary>
@@ -391,10 +309,10 @@ namespace NLog.Internal
         /// <param name="message">Log message.</param>
         public static void Fatal(string message)
         {
-            Write(LogLevel.Fatal, null, message, null);
+            Write(LogLevel.Fatal, message, null);
         }
 
-        private static void Write(LogLevel level, IFormatProvider formatProvider, string message, object[] args)
+        private static void Write(LogLevel level, string message, object[] args)
         {
             if (level < LogLevel)
             {
@@ -411,7 +329,7 @@ namespace NLog.Internal
                 string formattedMessage = message;
                 if (args != null)
                 {
-                    formattedMessage = String.Format(formatProvider, message, args);
+                    formattedMessage = string.Format(CultureInfo.InvariantCulture, message, args);
                 }
 
                 var builder = new StringBuilder(message.Length + 32);

@@ -36,14 +36,11 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
-using System.Runtime.InteropServices;
-using System.Security;
 using System.Text;
+using NLog.Internal;
 
 namespace NLog.LayoutRenderers
 {
-    using Internal;
-
     /// <summary>
     /// High precision timer, based on the value returned from QueryPerformanceCounter() optionally converted to seconds.
     /// </summary>

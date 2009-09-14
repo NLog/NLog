@@ -32,10 +32,8 @@
 // 
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
-using NLog.Internal;
+using NLog.Common;
 using NLog.Targets;
 
 namespace NLog.Config
@@ -85,7 +83,7 @@ namespace NLog.Config
                 throw new ArgumentException("Target name cannot be null", "name");
             }
 
-            InternalLogger.Debug(CultureInfo.InvariantCulture, "Registering target {0}: {1}", name, target.GetType().FullName);
+            InternalLogger.Debug("Registering target {0}: {1}", name, target.GetType().FullName);
             this.targets[name] = target;
         }
 
@@ -141,21 +139,21 @@ namespace NLog.Config
         /// </summary>
         public void Close()
         {
-            InternalLogger.Debug(CultureInfo.InvariantCulture, "Closing logging configuration...");
+            InternalLogger.Debug("Closing logging configuration...");
             foreach (Target target in this.aliveTargets)
             {
                 try
                 {
-                    InternalLogger.Debug(CultureInfo.InvariantCulture, "Closing target {1} ({0})", target.Name, target.GetType().FullName);
+                    InternalLogger.Debug("Closing target {1} ({0})", target.Name, target.GetType().FullName);
                     target.Close();
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(CultureInfo.InvariantCulture, "Error while closing target: {0} {1}", target.Name, ex); 
+                    InternalLogger.Error("Error while closing target: {0} {1}", target.Name, ex); 
                 }
             }
 
-            InternalLogger.Debug(CultureInfo.InvariantCulture, "Finished closing logging configuration.");
+            InternalLogger.Debug("Finished closing logging configuration.");
         }
 
         /// <summary>
@@ -172,7 +170,7 @@ namespace NLog.Config
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(CultureInfo.InvariantCulture, "Error while flushing target: {0} {1}", target.Name, ex);
+                    InternalLogger.Error("Error while flushing target: {0} {1}", target.Name, ex);
                 }
             }
         }
@@ -198,27 +196,27 @@ namespace NLog.Config
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(CultureInfo.InvariantCulture, "Error while initializing target: {0} {1}", target.Name, ex);
+                    InternalLogger.Error("Error while initializing target: {0} {1}", target.Name, ex);
                 }
             }
         }
 
         internal void Dump()
         {
-            InternalLogger.Debug(CultureInfo.InvariantCulture, "--- NLog configuration dump. ---");
-            InternalLogger.Debug(CultureInfo.InvariantCulture, "Targets:");
+            InternalLogger.Debug("--- NLog configuration dump. ---");
+            InternalLogger.Debug("Targets:");
             foreach (Target target in this.targets.Values)
             {
-                InternalLogger.Info(CultureInfo.InvariantCulture, "{0}", target);
+                InternalLogger.Info("{0}", target);
             }
 
-            InternalLogger.Debug(CultureInfo.InvariantCulture, "Rules:");
+            InternalLogger.Debug("Rules:");
             foreach (LoggingRule rule in this.LoggingRules)
             {
-                InternalLogger.Info(CultureInfo.InvariantCulture, "{0}", rule);
+                InternalLogger.Info("{0}", rule);
             }
 
-            InternalLogger.Debug(CultureInfo.InvariantCulture, "--- End of NLog configuration dump ---");
+            InternalLogger.Debug("--- End of NLog configuration dump ---");
         }
     }
 }

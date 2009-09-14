@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using System.IO;
+
 namespace NLog.Internal.FileAppenders
 {
-    using System;
-    using System.IO;
-
     /// <summary>
     /// Implementation of <see cref="BaseFileAppender"/> which caches 
     /// file information.

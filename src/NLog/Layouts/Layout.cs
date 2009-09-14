@@ -32,9 +32,8 @@
 // 
 
 using System.Collections.Generic;
-using System.Globalization;
+using NLog.Common;
 using NLog.Config;
-using NLog.Internal;
 
 namespace NLog.Layouts
 {
@@ -126,11 +125,11 @@ namespace NLog.Layouts
         {
             if (!this.IsInitialized)
             {
-                InternalLogger.Warn(CultureInfo.InvariantCulture, "Called Close() without Initialize() on " + this.ToString() + "(" + this.GetHashCode() + ")");
+                InternalLogger.Warn("Called Close() without Initialize() on " + this.ToString() + "(" + this.GetHashCode() + ")");
             }
             else
             {
-                InternalLogger.Trace(CultureInfo.InvariantCulture, "Closing " + this.ToString() + "(" + this.GetHashCode() + ")...");
+                InternalLogger.Trace("Closing " + this.ToString() + "(" + this.GetHashCode() + ")...");
             }
 
             this.IsInitialized = false;

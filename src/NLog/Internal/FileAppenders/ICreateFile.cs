@@ -33,6 +33,7 @@
 
 #if !NET_CF && !SILVERLIGHT
 using NLog.Internal.Win32;
+
 #endif
 
 namespace NLog.Internal.FileAppenders

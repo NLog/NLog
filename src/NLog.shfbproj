@@ -82,6 +82,8 @@
     <None Include="Docs\available-layout-renderers.aml" />
     <None Include="Docs\available-targets.aml" />
     <None Include="Docs\visual-studio.aml" />
+    <None Include="Docs\include-files.aml" />
+    <None Include="Docs\variables.aml" />
     <None Include="Docs\filters.aml" />
     <None Include="Docs\conditions.aml" />
     <None Include="Docs\layouts.aml" />

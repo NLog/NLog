@@ -33,10 +33,6 @@
 
 #if !SILVERLIGHT
 
-using System;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
 using NLog.Config;
 
 namespace NLog.Internal

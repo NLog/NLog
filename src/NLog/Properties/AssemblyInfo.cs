@@ -35,18 +35,33 @@ using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Security.Permissions;
 
-#if NET_2_0
-[assembly: AssemblyTitle("NLog for .NET Framework 2.0")]
-#elif NET_3_5
-[assembly: AssemblyTitle("NLog for .NET Framework 3.5")]
-#elif MONO_1_0
-[assembly: AssemblyTitle("NLog for Mono 2.0")]
-#elif NET_CF_2_0
-[assembly: AssemblyTitle("NLog for .NET Compact Framework 2.0")]
+#if NET2_0
+    #if CLIENT_SKU
+        [assembly: AssemblyTitle("NLog for .NET Framework 2.0 Client Profile")]
+    #else
+        [assembly: AssemblyTitle("NLog for .NET Framework 2.0")]
+    #endif
+#elif NET3_5
+    #if CLIENT_SKU
+        [assembly: AssemblyTitle("NLog for .NET Framework 3.5 Client Profile")]
+    #else
+        [assembly: AssemblyTitle("NLog for .NET Framework 3.5")]
+    #endif
+#elif MONO_2_0
+    [assembly: AssemblyTitle("NLog for Mono 2.0")]
+#elif NETCF2_0
+    [assembly: AssemblyTitle("NLog for .NET Compact Framework 2.0")]
+#elif NETCF3_5
+    [assembly: AssemblyTitle("NLog for .NET Compact Framework 3.5")]
+#elif SILVERLIGHT2
+    [assembly: AssemblyTitle("NLog for Silverlight 2.0")]
+#elif SILVERLIGHT3
+    [assembly: AssemblyTitle("NLog for Silverlight 3.0")]
 #elif DOCUMENTATION
-[assembly: AssemblyTitle("NLog Documentation")]
+    [assembly: AssemblyTitle("NLog Documentation")]
+#else
+#error Unrecognized build target - please update AssemblyInfo.cs
 #endif
 
 [assembly: AssemblyDescription("NLog")]

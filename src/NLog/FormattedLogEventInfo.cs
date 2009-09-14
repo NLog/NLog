@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Globalization;
 
 namespace NLog
 {
@@ -151,7 +152,7 @@ namespace NLog
             }
             else
             {
-                this.formattedMessage = String.Format(this.message, this.parameters);
+                this.formattedMessage = String.Format(CultureInfo.CurrentCulture, this.message, this.parameters);
             }
         }
     }

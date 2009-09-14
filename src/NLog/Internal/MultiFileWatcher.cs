@@ -34,10 +34,9 @@
 #if !NET_CF && !SILVERLIGHT
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
+using NLog.Common;
 
 namespace NLog.Internal
 {
@@ -60,6 +59,7 @@ namespace NLog.Internal
         public void Dispose()
         {
             this.StopWatching();
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace NLog.Internal
             {
                 foreach (FileSystemWatcher watcher in this.watchers)
                 {
-                    InternalLogger.Info(CultureInfo.InvariantCulture, "Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
+                    InternalLogger.Info("Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
                     watcher.EnableRaisingEvents = false;
                     watcher.Dispose();
                 }
@@ -107,7 +107,7 @@ namespace NLog.Internal
             watcher.Changed += new FileSystemEventHandler(this.OnWatcherChanged);
             watcher.Deleted += new FileSystemEventHandler(this.OnWatcherChanged);
             watcher.EnableRaisingEvents = true;
-            InternalLogger.Info(CultureInfo.InvariantCulture, "Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
+            InternalLogger.Info("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
 
             lock (this)
             {
