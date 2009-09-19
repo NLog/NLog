@@ -31,7 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NET_CF && !SILVERLIGHT
+
 using System;
+using System.Collections;
 using System.Runtime.InteropServices;
 
 using NLog;
@@ -48,8 +51,7 @@ namespace NLog.ComInterop
     [ClassInterface(ClassInterfaceType.None)]
     public class Logger : ILogger
     {
-        private static NLog.Logger defaultLogger = NLog.LogManager.CreateNullLogger();
-
+        private static readonly NLog.Logger defaultLogger = NLog.LogManager.CreateNullLogger();
         private NLog.Logger logger = defaultLogger;
         private string loggerName = String.Empty;
 
@@ -132,7 +134,7 @@ namespace NLog.ComInterop
         /// <param name="message">A <see langword="string"/> to be written.</param>
         public void Log(string level, string message)
         {
-            this.logger.Log(StringToLevel(level), message);
+            this.logger.Log(LogLevel.FromString(level), message);
         }
 
         /// <summary>
@@ -198,34 +200,9 @@ namespace NLog.ComInterop
         /// </returns>
         public bool IsEnabled(string level)
         {
-            return this.logger.IsEnabled(StringToLevel(level));
-        }
-
-        private static LogLevel StringToLevel(string levelString)
-        {
-            switch (levelString)
-            {
-                case "Trace":
-                    return LogLevel.Trace;
-
-                case "Debug":
-                    return LogLevel.Debug;
-
-                case "Info":
-                    return LogLevel.Info;
-
-                case "Warn":
-                    return LogLevel.Warn;
-
-                case "Error":
-                    return LogLevel.Error;
-
-                case "Fatal":
-                    return LogLevel.Fatal;
-
-                default:
-                    throw new NotSupportedException("LogLevel not supported: " + levelString);
-            }
+            return this.logger.IsEnabled(LogLevel.FromString(level));
         }
     }
 }
+
+#endif

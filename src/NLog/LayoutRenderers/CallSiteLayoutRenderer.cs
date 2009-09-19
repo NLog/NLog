@@ -135,7 +135,14 @@ namespace NLog.LayoutRenderers
                 MethodBase method = frame.GetMethod();
                 if (this.ClassName)
                 {
-                    builder.Append(method.DeclaringType.FullName);
+                    if (method.DeclaringType != null)
+                    {
+                        builder.Append(method.DeclaringType.FullName);
+                    }
+                    else
+                    {
+                        builder.Append("<no type>");
+                    }
                 }
 
                 if (this.MethodName)
@@ -145,7 +152,14 @@ namespace NLog.LayoutRenderers
                         builder.Append(".");
                     }
 
-                    builder.Append(method.Name);
+                    if (method != null)
+                    {
+                        builder.Append(method.Name);
+                    }
+                    else
+                    {
+                        builder.Append("<no method>");
+                    }
                 }
 
                 if (this.FileName)

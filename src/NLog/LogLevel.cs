@@ -213,7 +213,7 @@ namespace NLog
             // case sensitive search first
             for (int i = 0; i < levelByOrdinal.Length; ++i)
             {
-                if (levelByOrdinal[i].Name == levelName)
+                if (0 == String.Compare(levelByOrdinal[i].Name, levelName, StringComparison.OrdinalIgnoreCase))
                 {
                     return levelByOrdinal[i];
                 }

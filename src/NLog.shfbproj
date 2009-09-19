@@ -17,10 +17,10 @@
     <Name>Documentation</Name>
     <!-- SHFB properties -->
     <OutputPath>$(NLogBuildPath)\</OutputPath>
-    <HtmlHelpName>NLog</HtmlHelpName>
+    <HtmlHelpName>$(AssemblyName)</HtmlHelpName>
     <DocumentationSources>
-      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.dll" xmlns="" />
-      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.xml" xmlns="" />
+      <DocumentationSource sourceFile="$(NLogBuildPath)\$(AssemblyName).dll" xmlns="" />
+      <DocumentationSource sourceFile="$(NLogBuildPath)\$(AssemblyName).xml" xmlns="" />
     </DocumentationSources>
     <HelpTitle>NLog - Advanced .NET Logging ($(Framework))</HelpTitle>
     <CopyrightText>Copyright %28c%29 2004-2009 by Jaroslaw Kowalski</CopyrightText>

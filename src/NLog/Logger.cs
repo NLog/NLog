@@ -208,12 +208,12 @@ namespace NLog
         /// Writes the diagnostic message at the specified level.
         /// </summary>
         /// <param name="level">The log level.</param>
-        /// <param name="messageDelegate">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public void Log(LogLevel level, LogMessageDelegate messageDelegate)
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        public void Log(LogLevel level, LogMessageGenerator messageFunc)
         {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargets(level, null, messageDelegate());
+                this.WriteToTargets(level, null, messageFunc());
             }
         }
 
@@ -415,12 +415,12 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
         /// </summary>
-        /// <param name="messageDelegate">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public void Trace(LogMessageDelegate messageDelegate)
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        public void Trace(LogMessageGenerator messageFunc)
         {
             if (this.IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, null, messageDelegate());
+                this.WriteToTargets(LogLevel.Trace, null, messageFunc());
             }
         }
 
@@ -612,12 +612,12 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
         /// </summary>
-        /// <param name="messageDelegate">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public void Debug(LogMessageDelegate messageDelegate)
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        public void Debug(LogMessageGenerator messageFunc)
         {
             if (this.IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, null, messageDelegate());
+                this.WriteToTargets(LogLevel.Debug, null, messageFunc());
             }
         }
 
@@ -809,12 +809,12 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level.
         /// </summary>
-        /// <param name="messageDelegate">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public void Info(LogMessageDelegate messageDelegate)
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        public void Info(LogMessageGenerator messageFunc)
         {
             if (this.IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, null, messageDelegate());
+                this.WriteToTargets(LogLevel.Info, null, messageFunc());
             }
         }
 
@@ -1006,12 +1006,12 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level.
         /// </summary>
-        /// <param name="messageDelegate">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public void Warn(LogMessageDelegate messageDelegate)
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        public void Warn(LogMessageGenerator messageFunc)
         {
             if (this.IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, null, messageDelegate());
+                this.WriteToTargets(LogLevel.Warn, null, messageFunc());
             }
         }
 
@@ -1203,12 +1203,12 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level.
         /// </summary>
-        /// <param name="messageDelegate">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public void Error(LogMessageDelegate messageDelegate)
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        public void Error(LogMessageGenerator messageFunc)
         {
             if (this.IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, null, messageDelegate());
+                this.WriteToTargets(LogLevel.Error, null, messageFunc());
             }
         }
 
@@ -1400,12 +1400,12 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level.
         /// </summary>
-        /// <param name="messageDelegate">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public void Fatal(LogMessageDelegate messageDelegate)
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        public void Fatal(LogMessageGenerator messageFunc)
         {
             if (this.IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, null, messageDelegate());
+                this.WriteToTargets(LogLevel.Fatal, null, messageFunc());
             }
         }
 

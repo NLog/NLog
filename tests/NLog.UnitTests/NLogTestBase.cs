@@ -96,40 +96,6 @@ namespace NLog.UnitTests
             return sb.ToString();
         }
 
-        protected Process SpawnMethod(string methodName, params string[] p)
-        {
-            string assemblyName = this.GetType().Assembly.FullName;
-            string typename = this.GetType().FullName;
-            StringBuilder sb = new StringBuilder();
-#if MONO
-            sb.AppendFormat("\"{0}\" ", Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Runner.exe"));
-#endif
-            sb.AppendFormat("\"{0}\" \"{1}\" \"{2}\"", assemblyName, typename, methodName);
-            foreach (string s in p)
-            {
-                sb.Append(" ");
-                sb.Append("\"");
-                sb.Append(s);
-                sb.Append("\"");
-            }
-
-            Process proc = new Process();
-            proc.StartInfo.Arguments = sb.ToString();
-#if MONO
-            proc.StartInfo.FileName = "mono";
-#else
-            proc.StartInfo.FileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Runner.exe");
-#endif
-            proc.StartInfo.UseShellExecute = false;
-            proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-            proc.StartInfo.RedirectStandardInput = false;
-            proc.StartInfo.RedirectStandardOutput = true;
-            proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            proc.StartInfo.CreateNoWindow = true;
-            proc.Start();
-            return proc;
-        }
-
         protected void AssertLayoutRendererOutput(Layout l, string expected)
         {
             string actual = l.GetFormattedMessage(LogEventInfo.Create(LogLevel.Info, "loggername", "message"));

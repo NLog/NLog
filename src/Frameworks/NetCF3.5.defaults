@@ -1,4 +1,4 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PlatformFamilyName>PocketPC</PlatformFamilyName>
@@ -6,11 +6,12 @@
     <OSVersion>4.20</OSVersion>
     <DeployDirSuffix>NLogCF</DeployDirSuffix>
     <NativePlatformName>Pocket PC 2003</NativePlatformName>
-    <TargetsPath>$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets</TargetsPath>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <DefineConstants>NET_CF;NETCF3_5;PocketPC;$(DefineConstants)</DefineConstants>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\.NET Compact Framework 3.5</OutputPath>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\.NET Compact Framework 3.5</IntermediateOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,4 +32,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+
+  <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
 </Project>

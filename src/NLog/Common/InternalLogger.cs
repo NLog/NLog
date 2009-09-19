@@ -50,60 +50,11 @@ namespace NLog.Common
         /// </summary>
         static InternalLogger()
         {
-            LogLevel = LogLevel.Info;
-
 #if !NET_CF && !SILVERLIGHT
-            string setting = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE");
-            if (setting != null)
-            {
-                try
-                {
-                    LogToConsole = Convert.ToBoolean(setting);
-                }
-                catch
-                {
-                    // ignore
-                }
-            }
-
-            setting = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR");
-            if (setting != null)
-            {
-                try
-                {
-                    LogToConsoleError = Convert.ToBoolean(setting);
-                }
-                catch
-                {
-                    // ignore
-                }
-            }
-
-            setting = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL");
-            if (setting != null)
-            {
-                try
-                {
-                    LogLevel = LogLevel.FromString(setting);
-                }
-                catch
-                {
-                    // ignore
-                }
-            }
-
-            setting = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE");
-            if (setting != null)
-            {
-                try
-                {
-                    LogFile = setting;
-                }
-                catch
-                {
-                    // ignore
-                }
-            }
+            LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
+            LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
+            LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
+            LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
             Info("NLog internal logger initialized.");
 #endif
         }
@@ -319,7 +270,7 @@ namespace NLog.Common
                 return;
             }
 
-            if (LogFile == null && !LogToConsole && !LogToConsoleError)
+            if (String.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError)
             {
                 return;
             }
@@ -340,7 +291,7 @@ namespace NLog.Common
                 builder.Append(formattedMessage);
                 string msg = builder.ToString();
 
-                if (LogFile != null)
+                if (!String.IsNullOrEmpty(LogFile))
                 {
                     using (TextWriter textWriter = File.AppendText(LogFile))
                     {
@@ -365,22 +316,57 @@ namespace NLog.Common
         }
 
 #if !NET_CF && !SILVERLIGHT
-        private static string GetSetting(string configName, string envName)
+        private static string GetSettingString(string configName, string envName)
         {
-            string setting = ConfigurationManager.AppSettings[configName];
-            if (setting == null)
+            string settingValue = ConfigurationManager.AppSettings[configName];
+            if (settingValue == null)
             {
                 try
                 {
-                    setting = Environment.GetEnvironmentVariable(envName);
+                    settingValue = Environment.GetEnvironmentVariable(envName);
                 }
-                catch
+                catch (Exception)
                 {
-                    // ignore
                 }
             }
 
-            return setting;
+            return settingValue;
+        }
+
+        private static LogLevel GetSetting(string configName, string envName, LogLevel defaultValue)
+        {
+            string value = GetSettingString(configName, envName);
+            if (value == null)
+            {
+                return defaultValue;
+            }
+
+            try
+            {
+                return LogLevel.FromString(value);
+            }
+            catch
+            {
+                return defaultValue;
+            }
+        }
+
+        private static T GetSetting<T>(string configName, string envName, T defaultValue)
+        {
+            string value = GetSettingString(configName, envName);
+            if (value == null)
+            {
+                return defaultValue;
+            }
+
+            try
+            {
+                return (T)Convert.ChangeType(value, typeof (T), CultureInfo.InvariantCulture);
+            }
+            catch
+            {
+                return defaultValue;
+            }
         }
 #endif
     }

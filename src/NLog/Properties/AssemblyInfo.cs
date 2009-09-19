@@ -48,6 +48,12 @@ using System.Runtime.InteropServices;
     #else
         [assembly: AssemblyTitle("NLog for .NET Framework 3.5")]
     #endif
+#elif NET4_0
+    #if CLIENT_SKU
+        [assembly: AssemblyTitle("NLog for .NET Framework 4.0 Client Profile")]
+    #else
+        [assembly: AssemblyTitle("NLog for .NET Framework 4.0")]
+    #endif
 #elif MONO_2_0
     [assembly: AssemblyTitle("NLog for Mono 2.0")]
 #elif NETCF2_0

@@ -1,9 +1,10 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <TargetsPath>$(MSBuildExtensionsPath)\Microsoft\Silverlight\v2.0\Microsoft.Silverlight.CSharp.targets</TargetsPath>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <DefineConstants>SILVERLIGHT;SILVERLIGHT2;$(DefineConstants)</DefineConstants>
+    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Silverlight 2.0</OutputPath>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Silverlight 2.0</IntermediateOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,4 +20,6 @@
   <ItemGroup>
     <ReferenceAssemblyDirectory Include="$(ProgramFiles)\Microsoft Silverlight\2.0.40115.0" />
   </ItemGroup>
+
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v2.0\Microsoft.Silverlight.CSharp.targets" />
 </Project>

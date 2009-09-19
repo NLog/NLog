@@ -79,6 +79,7 @@ namespace NLog.Conditions
         /// </summary>
         public ConditionTokenizer()
         {
+            this.IgnoreWhiteSpace = true;
         }
 
         /// <summary>

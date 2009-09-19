@@ -5,5 +5,5 @@
     /// the log message until it's actually needed.
     /// </summary>
     /// <returns>Log message.</returns>
-    public delegate string LogMessageDelegate();
+    public delegate string LogMessageGenerator();
 }

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NET_CF && !SILVERLIGHT
+
 using System;
 using System.Runtime.InteropServices;
 
@@ -41,6 +43,7 @@ namespace NLog.ComInterop
     /// </summary>
     [Guid("757fd55a-cc93-4b53-a7a0-18e85620704a")]
     [InterfaceType(ComInterfaceType.InterfaceIsDual)]
+    [ComVisible(true)]
     public interface ILogger
     {
         /// <summary>
@@ -129,3 +132,5 @@ namespace NLog.ComInterop
         string LoggerName { get; set; }
     }
 }
+
+#endif

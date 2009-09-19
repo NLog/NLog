@@ -1,579 +1,302 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-  <Import Project="..\NLog.targets" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}</ProjectGuid>
-    <ApplicationIcon>
-    </ApplicationIcon>
-    <AssemblyName>NLog</AssemblyName>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v3.5</TargetFrameworkVersion>
+    <TargetFrameworkSubset Condition="'$(TargetFrameworkSubset)'==''">
+    </TargetFrameworkSubset>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B71A9EF1-2493-4B7B-AB82-8C7A83C10952}</ProjectGuid>
     <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NLog</RootNamespace>
-    <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
-    <StyleCopEnabled>true</StyleCopEnabled>
+    <AssemblyName>NLog</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DefineConstants>TRACE;DEBUG;$(DefineConstants)</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputPath>bin\Debug</OutputPath>
+    <CodeAnalysisRules>-Microsoft.Design#CA1020</CodeAnalysisRules>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DefineConstants>TRACE;$(DefineConstants)</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputPath>bin\Release</OutputPath>
   </PropertyGroup>
+  <!-- set up compilation constants -->
+  <PropertyGroup Condition="'$(OverrideTargetsFile)' == ''">
+    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v2.0'">NET2_0;$(DefineConstants)</DefineConstants>
+    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v3.5'">NET3_5;$(DefineConstants)</DefineConstants>
+    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v4.0'">NET4_0;$(DefineConstants)</DefineConstants>
+    <DefineConstants Condition="'$(TargetFrameworkSubset)' == 'Client'">CLIENT_SKU;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(OverrideTargetsFile)' == ''">
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conditions\ConditionMethodAttribute.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionMethodsAttribute.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionAndExpression.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionExpression.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionLayoutExpression.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionLevelExpression.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionLiteralExpression.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionLoggerNameExpression.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionMessageExpression.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionMethodExpression.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionMethods.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionNotExpression.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionOrExpression.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionParseException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionParser.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionRelationalExpression.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionRelationalOperator.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionTokenizer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionTokenType.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Conditions\ConditionEvaluationException.cs" />
-    <Compile Include="Config\ArrayParameterAttribute.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Config\ConfigSectionHandler.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Config\AdvancedAttribute.cs" />
-    <Compile Include="Config\IFactory`2.cs" />
-    <Compile Include="Contexts\NDC.cs" />
-    <Compile Include="Contexts\MDC.cs" />
-    <Compile Include="Contexts\GDC.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Common\ExceptionHelpers.cs" />
-    <Compile Include="Internal\PortableThreadIDHelper.cs" />
-    <Compile Include="Internal\PortableFileInfoHelper.cs" />
-    <Compile Include="Internal\Win32FileInfoHelper.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="Internal\Win32ThreadIDHelper.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="Internal\UrlHelper.cs" />
-    <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
-    <Compile Include="Config\DefaultParameterAttribute.cs" />
-    <Compile Include="Config\LoggingConfiguration.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Config\LoggingRule.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Config\NLogConfigurationException.cs" />
-    <Compile Include="Config\RequiredParameterAttribute.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Config\RuntimeOS.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Config\SimpleConfigurator.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Config\XmlLoggingConfiguration.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="AssemblyBuildInfo.cs" />
-    <Compile Include="Config\MethodFactory.cs" />
-    <Compile Include="Config\IFactory.cs" />
+    <Compile Include="ComInterop\ILogger.cs" />
+    <Compile Include="ComInterop\ILogManager.cs" />
+    <Compile Include="ComInterop\Logger.cs" />
+    <Compile Include="ComInterop\LogManager.cs" />
+    <Compile Include="Common\ExceptionHelpers.cs" />
+    <Compile Include="Common\InternalLogger.cs" />
+    <Compile Include="Conditions\ConditionAndExpression.cs" />
+    <Compile Include="Conditions\ConditionEvaluationException.cs" />
+    <Compile Include="Conditions\ConditionExpression.cs" />
+    <Compile Include="Conditions\ConditionLayoutExpression.cs" />
+    <Compile Include="Conditions\ConditionLevelExpression.cs" />
+    <Compile Include="Conditions\ConditionLiteralExpression.cs" />
+    <Compile Include="Conditions\ConditionLoggerNameExpression.cs" />
+    <Compile Include="Conditions\ConditionMessageExpression.cs" />
+    <Compile Include="Conditions\ConditionMethodAttribute.cs" />
+    <Compile Include="Conditions\ConditionMethodExpression.cs" />
+    <Compile Include="Conditions\ConditionMethods.cs" />
+    <Compile Include="Conditions\ConditionMethodsAttribute.cs" />
+    <Compile Include="Conditions\ConditionNotExpression.cs" />
+    <Compile Include="Conditions\ConditionOrExpression.cs" />
+    <Compile Include="Conditions\ConditionParseException.cs" />
+    <Compile Include="Conditions\ConditionParser.cs" />
+    <Compile Include="Conditions\ConditionRelationalExpression.cs" />
+    <Compile Include="Conditions\ConditionRelationalOperator.cs" />
+    <Compile Include="Conditions\ConditionTokenizer.cs" />
+    <Compile Include="Conditions\ConditionTokenType.cs" />
+    <Compile Include="Config\AdvancedAttribute.cs" />
+    <Compile Include="Config\ArrayParameterAttribute.cs" />
+    <Compile Include="Config\ConfigSectionHandler.cs" />
+    <Compile Include="Config\DefaultParameterAttribute.cs" />
     <Compile Include="Config\Factory.cs" />
-    <Compile Include="Config\NameAttributeBase.cs" />
-    <Compile Include="Internal\StackTraceUsageUtils.cs" />
-    <Compile Include="LayoutRenderers\GarbageCollectorProperty.cs" />
-    <Compile Include="LayoutRenderers\Wrappers\UrlEncodeLayoutRendererWrapper.cs" />
-    <Compile Include="LayoutRenderers\Wrappers\ReplaceLayoutRendererWrapper.cs" />
-    <Compile Include="LayoutRenderers\Wrappers\LowerCaseLayoutRendererWrapper.cs" />
-    <Compile Include="LayoutRenderers\Wrappers\UpperCaseLayoutRendererWrapper.cs" />
-    <Compile Include="LayoutRenderers\Wrappers\PaddingLayoutRendererWrapper.cs" />
-    <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBase.cs" />
-    <Compile Include="Layouts\CsvColumnDelimiterMode.cs" />
-    <Compile Include="LogFactoryOfT.cs" />
-    <Compile Include="FormattedLogEventInfo.cs" />
-    <Compile Include="Internal\NativeMethods.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="Internal\NetworkSenders\UdpNetworkSender.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Layouts\Layout.cs" />
-    <Compile Include="Layouts\LayoutParser.cs" />
-    <Compile Include="LayoutRenderers\Wrappers\Rot13LayoutRendererWrapper.cs" />
-    <Compile Include="LayoutRenderers\FileContentsLayoutRenderer.cs" />
-    <Compile Include="Config\NLogFactories.cs" />
+    <Compile Include="Config\IFactory.cs" />
+    <Compile Include="Config\IFactory`2.cs" />
+    <Compile Include="Config\LoggingConfiguration.cs" />
     <Compile Include="Config\LoggingConfigurationChangedEventArgs.cs" />
     <Compile Include="Config\LoggingConfigurationReloadedEventArgs.cs" />
-    <Compile Include="LogMessageDelegate.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Config\LoggingRule.cs" />
+    <Compile Include="Config\MethodFactory.cs" />
+    <Compile Include="Config\NameAttributeBase.cs" />
+    <Compile Include="Config\NLogConfigurationException.cs" />
+    <Compile Include="Config\NLogFactories.cs" />
+    <Compile Include="Config\RequiredParameterAttribute.cs" />
+    <Compile Include="Config\RuntimeOS.cs" />
+    <Compile Include="Config\SimpleConfigurator.cs" />
     <Compile Include="Config\StackTraceUsage.cs" />
-    <Compile Include="Targets\ArchiveNumberingMode.cs" />
-    <Compile Include="Targets\LineEndingMode.cs" />
-    <Compile Include="Targets\FileArchivePeriod.cs" />
-    <Compile Include="Targets\TargetWithLayoutHeaderAndFooter.cs" />
-    <Compile Include="Layouts\LayoutWithHeaderAndFooter.cs" />
+    <Compile Include="Config\XmlLoggingConfiguration.cs" />
+    <Compile Include="Contexts\GDC.cs" />
+    <Compile Include="Contexts\GlobalDiagnosticsContext.cs" />
+    <Compile Include="Contexts\MappedDiagnosticsContext.cs" />
+    <Compile Include="Contexts\MDC.cs" />
+    <Compile Include="Contexts\NDC.cs" />
+    <Compile Include="Contexts\NestedDiagnosticsContext.cs" />
+    <Compile Include="Filters\ConditionBasedFilter.cs" />
+    <Compile Include="Filters\Filter.cs" />
+    <Compile Include="Filters\FilterAttribute.cs" />
+    <Compile Include="Filters\FilterResult.cs" />
+    <Compile Include="Filters\LayoutBasedFilter.cs" />
+    <Compile Include="Filters\WhenContainsFilter.cs" />
+    <Compile Include="Filters\WhenEqualFilter.cs" />
+    <Compile Include="Filters\WhenNotContainsFilter.cs" />
+    <Compile Include="Filters\WhenNotEqualFilter.cs" />
+    <Compile Include="FormattedLogEventInfo.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Internal\CompactFrameworkHelper.cs" />
     <Compile Include="Internal\CurrentTimeGetter.cs" />
-    <Compile Include="Layouts\LayoutAttribute.cs" />
-    <Compile Include="Filters\Filter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Filters\FilterAttribute.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Filters\FilterResult.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Filters\ConditionBasedFilter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Filters\LayoutBasedFilter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Filters\WhenContainsFilter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Filters\WhenEqualFilter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Filters\WhenNotContainsFilter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Filters\WhenNotEqualFilter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Contexts\GlobalDiagnosticsContext.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\CompactFrameworkHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Internal\EnvironmentHelper.cs" />
+    <Compile Include="Internal\FactoryHelper.cs" />
+    <Compile Include="Internal\FileAppenders\BaseFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\ICreateFile.cs" />
+    <Compile Include="Internal\FileAppenders\IFileAppenderFactory.cs" />
+    <Compile Include="Internal\FileAppenders\MutexMultiProcessFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\RetryingMultiProcessFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\SingleProcessFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileInfoHelper.cs" />
     <Compile Include="Internal\FormHelper.cs" />
-    <Compile Include="Internal\Win32\Win32FileAttributes.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="Internal\Win32\Win32FileHelper.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="Internal\EnvironmentHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\FactoryHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\FileAppenders\BaseFileAppender.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\FileAppenders\IFileAppenderFactory.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\FileAppenders\ICreateFile.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\FileAppenders\MutexMultiProcessFileAppender.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\FileAppenders\RetryingMultiProcessFileAppender.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\FileAppenders\SingleProcessFileAppender.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
-    <Compile Include="Common\InternalLogger.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\LogEventInfoBuffer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\LoggerConfiguration.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\MultiFileWatcher.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Internal\LogEventInfoBuffer.cs" />
+    <Compile Include="Internal\LoggerConfiguration.cs" />
+    <Compile Include="Internal\MultiFileWatcher.cs" />
+    <Compile Include="Internal\NativeMethods.cs" />
     <Compile Include="Internal\NetworkSenders\NetworkSender.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSender.cs" />
-    <Compile Include="Internal\PlatformDetector.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\PropertyHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\TargetWithFilterChain.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Internal\ThreadIDHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Layouts\SimpleLayout.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\LayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\LayoutRendererAttribute.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\AspNetApplicationValueLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\AspNetRequestValueLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\AspNetSessionValueLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\AspNetSessionIDLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\AspNetUserAuthTypeLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\AspNetUserIdentityLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\BaseDirLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\CallSiteLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Internal\NetworkSenders\UdpNetworkSender.cs" />
+    <Compile Include="Internal\PlatformDetector.cs" />
+    <Compile Include="Internal\PortableFileInfoHelper.cs" />
+    <Compile Include="Internal\PortableThreadIDHelper.cs" />
+    <Compile Include="Internal\PropertyHelper.cs" />
+    <Compile Include="Internal\StackTraceUsageUtils.cs" />
+    <Compile Include="Internal\TargetWithFilterChain.cs" />
+    <Compile Include="Internal\ThreadIDHelper.cs" />
+    <Compile Include="Internal\UrlHelper.cs" />
+    <Compile Include="Internal\Win32FileInfoHelper.cs" />
+    <Compile Include="Internal\Win32ThreadIDHelper.cs" />
+    <Compile Include="Internal\Win32\Win32FileAttributes.cs" />
+    <Compile Include="Internal\Win32\Win32FileHelper.cs" />
+    <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
+    <Compile Include="LayoutRenderers\ASPNETApplicationValueLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\ASPNETRequestValueLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\ASPNETSessionIDLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\ASPNETSessionValueLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\ASPNETUserAuthTypeLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\ASPNETUserIdentityLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\BaseDirLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\CallSiteLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\CounterLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\DateLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\EnvironmentLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\EventContextLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\ExceptionLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\FileContentsLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\GarbageCollectorInfoLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\GarbageCollectorProperty.cs" />
+    <Compile Include="LayoutRenderers\GDCLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\GuidLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\IdentityLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\LayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\LayoutRendererAttribute.cs" />
+    <Compile Include="LayoutRenderers\LevelLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\LiteralLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\Log4JXmlEventLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\LoggerNameLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\LongDateLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\MachineNameLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\MDCLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\MessageLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\NDCLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\NewLine.cs" />
+    <Compile Include="LayoutRenderers\NLogDirLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\PerformanceCounterLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\ProcessIDLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\ProcessInfoLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\SpecialFolderLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\TempDirLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\ProcessNameLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\ProcessTimeLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\QpcLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\CounterLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\DateLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\EnvironmentLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\ExceptionLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\GdcLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\GuidLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\IdentityLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\LevelLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\LiteralLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\Log4JXmlEventLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\LoggerNameLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\LongDateLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\MachineNameLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\MdcLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\MessageLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\NdcLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\NewLine.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\NLogDirLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\PerformanceCounterLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\ProcessIDLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\ProcessNameLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\ProcessTimeLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\ShortDateLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\StackTraceLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\ThreadIDLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\ThreadNameLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\TicksLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Layouts\CsvLayout.cs" />
-    <Compile Include="Layouts\Log4JXmlEventLayout.cs" />
-    <Compile Include="LogEventInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Logger.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LoggerImpl.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LogLevel.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LogManager.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Contexts\MappedDiagnosticsContext.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Contexts\NestedDiagnosticsContext.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\Target.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\TargetAttribute.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\AspNetTraceTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\ChainsawTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\Compound\CompoundTargetBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\Compound\FallbackTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\Compound\RandomizeTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\Compound\RoundRobinTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\Compound\SplitTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\ConsoleTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Layouts\CsvQuotingMode.cs" />
+    <Compile Include="LayoutRenderers\ShortDateLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\SpecialFolderLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\StackTraceLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\TempDirLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\ThreadIDLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\ThreadNameLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\TicksLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\LowerCaseLayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\PaddingLayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\ReplaceLayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\Rot13LayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\UpperCaseLayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\UrlEncodeLayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBase.cs" />
     <Compile Include="Layouts\CsvColumn.cs" />
-    <Compile Include="Targets\DatabaseTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\DatabaseParameterInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\DebugTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\DebuggerTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\FileTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Layouts\CsvColumnDelimiterMode.cs" />
+    <Compile Include="Layouts\CsvLayout.cs" />
+    <Compile Include="Layouts\CsvQuotingMode.cs" />
+    <Compile Include="Layouts\Layout.cs" />
+    <Compile Include="Layouts\LayoutAttribute.cs" />
+    <Compile Include="Layouts\LayoutParser.cs" />
+    <Compile Include="Layouts\LayoutWithHeaderAndFooter.cs" />
+    <Compile Include="Layouts\Log4JXmlEventLayout.cs" />
+    <Compile Include="Layouts\SimpleLayout.cs" />
+    <Compile Include="LogEventInfo.cs" />
+    <Compile Include="LogFactory.cs" />
+    <Compile Include="LogFactoryOfT.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="LoggerImpl.cs" />
+    <Compile Include="LogLevel.cs" />
+    <Compile Include="LogManager.cs" />
+    <Compile Include="LogMessageGenerator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Targets\ArchiveNumberingMode.cs" />
+    <Compile Include="Targets\ASPNetTraceTarget.cs" />
+    <Compile Include="Targets\ChainsawTarget.cs" />
+    <Compile Include="Targets\Compound\CompoundTargetBase.cs" />
+    <Compile Include="Targets\Compound\FallbackTarget.cs" />
+    <Compile Include="Targets\Compound\RandomizeTarget.cs" />
+    <Compile Include="Targets\Compound\RoundRobinTarget.cs" />
+    <Compile Include="Targets\Compound\SplitTarget.cs" />
+    <Compile Include="Targets\ConsoleTarget.cs" />
+    <Compile Include="Targets\DatabaseParameterInfo.cs" />
+    <Compile Include="Targets\DatabaseTarget.cs" />
+    <Compile Include="Targets\DebuggerTarget.cs" />
+    <Compile Include="Targets\DebugTarget.cs" />
+    <Compile Include="Targets\FileArchivePeriod.cs" />
+    <Compile Include="Targets\FileTarget.cs" />
     <Compile Include="Targets\FormControlTarget.cs" />
-    <Compile Include="Targets\MailTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\MemoryTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\MessageBoxTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\MethodCallTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\MethodCallParameter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\MethodCallTargetBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\NetworkTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\NLogViewerTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\NLogViewerParameterInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\NullTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\RichTextBoxTarget.cs" />
+    <Compile Include="Targets\LineEndingMode.cs" />
+    <Compile Include="Targets\MailTarget.cs" />
+    <Compile Include="Targets\MemoryTarget.cs" />
+    <Compile Include="Targets\MessageBoxTarget.cs" />
+    <Compile Include="Targets\MethodCallParameter.cs" />
+    <Compile Include="Targets\MethodCallTarget.cs" />
+    <Compile Include="Targets\MethodCallTargetBase.cs" />
+    <Compile Include="Targets\NetworkTarget.cs" />
+    <Compile Include="Targets\NLogViewerParameterInfo.cs" />
+    <Compile Include="Targets\NLogViewerTarget.cs" />
+    <Compile Include="Targets\NullTarget.cs" />
     <Compile Include="Targets\RichTextBoxRowColoringRule.cs" />
+    <Compile Include="Targets\RichTextBoxTarget.cs" />
     <Compile Include="Targets\RichTextBoxWordColoringRule.cs" />
-    <Compile Include="Targets\TraceTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\WebServiceTarget.cs">
-    </Compile>
-    <Compile Include="Targets\Wrappers\ASPNetBufferingTargetWrapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Targets\Target.cs" />
+    <Compile Include="Targets\TargetAttribute.cs" />
+    <Compile Include="Targets\TargetWithLayout.cs" />
+    <Compile Include="Targets\TargetWithLayoutHeaderAndFooter.cs" />
+    <Compile Include="Targets\TraceTarget.cs" />
+    <Compile Include="Targets\WebServiceTarget.cs" />
+    <Compile Include="Targets\Wrappers\ASPNetBufferingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\AsyncRequestQueueOfT.cs" />
-    <Compile Include="Targets\Wrappers\AsyncTargetWrapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Targets\Wrappers\AsyncTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapperOverflowAction.cs" />
-    <Compile Include="Targets\Wrappers\AutoFlushTargetWrapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\Wrappers\BufferingTargetWrapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Targets\Wrappers\AutoFlushTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\BufferingTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\FilteringRule.cs" />
+    <Compile Include="Targets\Wrappers\FilteringTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\LogonProviderType.cs" />
+    <Compile Include="Targets\Wrappers\PostFilteringTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\RepeatingTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\RetryingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\SecurityImpersonationLevel.cs" />
     <Compile Include="Targets\Wrappers\SecurityLogonType.cs" />
-    <Compile Include="Targets\Wrappers\LogonProviderType.cs" />
-    <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapper.cs" />
-    <Compile Include="Targets\Wrappers\FilteringRule.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\Wrappers\FilteringTargetWrapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\Wrappers\PostFilteringTargetWrapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\Wrappers\RepeatingTargetWrapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\Wrappers\RetryingTargetWrapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\Wrappers\WrapperTargetBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Targets\TargetWithLayout.cs" />
+    <Compile Include="Targets\Wrappers\WrapperTargetBase.cs" />
     <Compile Include="UnformattedLogEventInfo.cs" />
     <Compile Include="UnformattedLogEventInfoWithException.cs" />
-    <Compile Include="Web\NLogHttpModule.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Win32\ASPHelper.cs">
-      <SubType>Code</SubType>
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="Win32\LayoutRenderers\ASPApplicationValueLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Win32\LayoutRenderers\ASPRequestValueLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Win32\LayoutRenderers\ASPSessionValueLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Win32\LayoutRenderers\RegistryLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Win32\LayoutRenderers\WindowsIdentityLayoutRenderer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Win32\Targets\AspResponseTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Win32\Targets\ColoredConsoleTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Win32\Targets\ConsoleOutputColor.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Win32\Targets\ConsoleRowHighlightingRule.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Win32\Targets\ConsoleWordHighlightingRule.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Win32\Targets\EventLogTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Win32\Targets\MSMQTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Win32\Targets\OutputDebugStringTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Win32\Targets\PerformanceCounterTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LogFactory.cs" />
-    <Compile Include="LayoutRenderers\EventContextLayoutRenderer.cs" />
+    <Compile Include="Web\NLogHttpModule.cs" />
+    <Compile Include="Win32\ASPHelper.cs" />
+    <Compile Include="Win32\LayoutRenderers\ASPApplicationValueLayoutRenderer.cs" />
+    <Compile Include="Win32\LayoutRenderers\ASPRequestValueLayoutRenderer.cs" />
+    <Compile Include="Win32\LayoutRenderers\ASPSessionValueLayoutRenderer.cs" />
+    <Compile Include="Win32\LayoutRenderers\RegistryLayoutRenderer.cs" />
+    <Compile Include="Win32\LayoutRenderers\WindowsIdentityLayoutRenderer.cs" />
+    <Compile Include="Win32\Targets\ASPResponseTarget.cs" />
+    <Compile Include="Win32\Targets\ColoredConsoleTarget.cs" />
+    <Compile Include="Win32\Targets\ConsoleOutputColor.cs" />
+    <Compile Include="Win32\Targets\ConsoleRowHighlightingRule.cs" />
+    <Compile Include="Win32\Targets\ConsoleWordHighlightingRule.cs" />
+    <Compile Include="Win32\Targets\EventLogTarget.cs" />
+    <Compile Include="Win32\Targets\MSMQTarget.cs" />
+    <Compile Include="Win32\Targets\OutputDebugStringTarget.cs" />
+    <Compile Include="Win32\Targets\PerformanceCounterTarget.cs" />
   </ItemGroup>
-  <Import Project="$(TargetsPath)" Condition="Exists('$(TargetsPath)')" />
-  <Import Project="$(StyleCopTargets)" Condition="'$(StyleCopTargets)' != '' and Exists('$(StyleCopTargets)')" />
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
+  <Import Project="$(StyleCopTargetsFile)" Condition="'$(StyleCopTargetsFile)' != ''" />
+  <Import Project="$(OverrideTargetsFile)" Condition="'$(OverrideTargetsFile)' != ''" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(OverrideTargetsFile)' == ''" />
 </Project>

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NET_CF && !SILVERLIGHT
+
 using System.Runtime.InteropServices;
 using NLog.Common;
 using NLog.Config;
@@ -101,3 +103,5 @@ namespace NLog.ComInterop
         }
     }
 }
+
+#endif

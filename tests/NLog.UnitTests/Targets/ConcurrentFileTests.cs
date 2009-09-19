@@ -108,7 +108,7 @@ namespace NLog.UnitTests.Targets
 
             for (int i = 0; i < numProcesses; ++i)
             {
-                processes[i] = SpawnMethod("Process", i.ToString(), numLogs.ToString(), mode);
+                processes[i] = ProcessRunner.SpawnMethod(this.GetType(), "Process", i.ToString(), numLogs.ToString(), mode);
             }
             for (int i = 0; i < numProcesses; ++i)
             {

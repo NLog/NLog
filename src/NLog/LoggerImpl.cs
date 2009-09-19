@@ -33,6 +33,8 @@
 
 using System;
 using System.Diagnostics;
+using System.Reflection;
+using System.Threading;
 using NLog.Common;
 using NLog.Config;
 using NLog.Filters;
@@ -47,6 +49,7 @@ namespace NLog
     internal static class LoggerImpl
     {
         private const int StackTraceSkipMethods = 0;
+        private static Assembly nlogAssembly = typeof (LoggerImpl).Assembly;
 
         internal static void Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
         {
@@ -66,18 +69,23 @@ namespace NLog
 
                 for (int i = 0; i < stackTrace.FrameCount; ++i)
                 {
-                    System.Reflection.MethodBase mb = stackTrace.GetFrame(i).GetMethod();
-
-                    if (mb.DeclaringType == loggerType)
+                    var frame = stackTrace.GetFrame(i);
+                    MethodBase mb = frame.GetMethod();
+                    Assembly methodAssembly = null;
+                    
+                    if (mb.DeclaringType != null)
+                    {
+                        methodAssembly = mb.DeclaringType.Assembly;
+                    }
+                    
+                    if (methodAssembly == nlogAssembly || mb.DeclaringType == loggerType)
                     {
                         firstUserFrame = i + 1;
                     }
                     else
                     {
                         if (firstUserFrame != 0)
-                        {
                             break;
-                        }
                     }
                 }
 

@@ -1,8 +1,9 @@
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
-    <NLogBuildPath Condition="'$(NLogBuildPath)'==''">$(MSBuildProjectDirectory)\build</NLogBuildPath>
+    <BaseOutputDirectory>$(MSBuildProjectDirectory)\build\</BaseOutputDirectory>
     <ProjectTarget Condition="'$(ProjectTarget)'==''">Build</ProjectTarget>
+    <FrameworksPath>$(MSBuildProjectDirectory)\src\Frameworks</FrameworksPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,42 +16,44 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TargetFramework Include="Silverlight2" />
-    <TargetFramework Include="Silverlight3" />
-    <TargetFramework Include="NetCF2.0" />
-    <TargetFramework Include="NetCF3.5" />
-    <TargetFramework Include="NetFx2.0" />
-    <TargetFramework Include="NetFx3.5" />
-    <TargetFramework Include="NetFx2.0.Client" />
-    <TargetFramework Include="NetFx3.5.Client" />
+    <TargetFramework Include="Silverlight 2.0">
+        <Properties>OverrideTargetsFile=$(FrameworksPath)\Silverlight2.defaults</Properties>
+    </TargetFramework>
+    <TargetFramework Include="Silverlight 3.0">
+        <Properties>OverrideTargetsFile=$(FrameworksPath)\Silverlight3.defaults</Properties>
+    </TargetFramework>
+    <TargetFramework Include=".NET Compact Framework 2.0">
+        <Properties>OverrideTargetsFile=$(FrameworksPath)\NetCF2.0.defaults</Properties>
+    </TargetFramework>
+    <TargetFramework Include=".NET Compact Framework 3.5">
+        <Properties>OverrideTargetsFile=$(FrameworksPath)\NetCF3.5.defaults</Properties>
+    </TargetFramework>
+    <TargetFramework Include=".NET Framework 2.0">
+        <Properties>OverrideTargetsFile=$(FrameworksPath)\DotNetFramework.defaults;TargetFrameworkVersion=v2.0</Properties>
+    </TargetFramework>
+    <TargetFramework Include=".NET Framework 3.5">
+        <Properties>OverrideTargetsFile=$(FrameworksPath)\DotNetFramework.defaults;TargetFrameworkVersion=v3.5</Properties>
+    </TargetFramework>
+    <TargetFramework Include=".NET Framework 3.5 Client Profile">
+        <Properties>OverrideTargetsFile=$(FrameworksPath)\DotNetFramework.defaults;TargetFrameworkVersion=v3.5;TargetFrameworkSubset=Client</Properties>
+    </TargetFramework>
   </ItemGroup>
 
   <Import Project="NLog.local" Condition="Exists('NLog.local')" />
 
   <Target Name="Build">
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" />
+    <MSBuild Projects="src\NLog\NLog.csproj" Targets="Build" Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="true" StopOnFirstFailure="false" />
   </Target>
 
-  <Target Name="BuildAll">
-    <RemoveDir Directories="$(NLogBuildPath)\bin" />
-    <RemoveDir Directories="$(NLogBuildPath)\obj" />
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" Properties="ProjectTarget=BuildWithDocumentation" />
+  <Target Name="Clean">
+     <RemoveDir Directories="$(BaseOutputDirectory)bin" />
+     <RemoveDir Directories="$(BaseOutputDirectory)obj" />
+  </Target>
+
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build">
   </Target>
 
   <Target Name="Installer">
     <MSBuild Projects="Installer\Installer.wixproj" Targets="Rebuild" Properties="NLogBuildPath=$(MSBuildProjectDirectory)\build\Debug" />
-  </Target>
-
-  <Target Name="BuildAllFrameworksAndConfigurations">
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildAllFrameworksForSingleConfiguration" Properties="Configuration=%(TargetConfiguration.Identity);ProjectTarget=$(ProjectTarget)" />
-  </Target>
-
-  <Target Name="BuildAllFrameworksForSingleConfiguration">
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildSingleFramework" Properties="Framework=%(TargetFramework.Identity);ProjectTarget=$(ProjectTarget)" ContinueOnError="true" StopOnFirstFailure="false" />
-  </Target>
-
-  <Target Name="BuildSingleFramework">
-    <Message Text="Building configuration: $(Configuration) for framework: $(Framework) Path: $(NLogBuildPath). Target=$(ProjectTarget)" />
-    <MSBuild Projects="@(ProjectFile)" Targets="$(ProjectTarget)" Properties="NLogBuildPath=$(NLogBuildPath)" />
   </Target>
 </Project>

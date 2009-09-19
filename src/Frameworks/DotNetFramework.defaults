@@ -1,0 +1,40 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+  </PropertyGroup>
+
+  <!-- set up TargetFrameworkName -->
+  <PropertyGroup>
+    <TargetFrameworkName>Unknown .NET Framework Version</TargetFrameworkName>
+    <TargetFrameworkName Condition="'$(TargetFrameworkVersion)' == 'v2.0'">.NET Framework 2.0</TargetFrameworkName>
+    <TargetFrameworkName Condition="'$(TargetFrameworkVersion)' == 'v3.0'">.NET Framework 3.0</TargetFrameworkName>
+    <TargetFrameworkName Condition="'$(TargetFrameworkVersion)' == 'v3.5'">.NET Framework 3.5</TargetFrameworkName>
+    <TargetFrameworkName Condition="'$(TargetFrameworkVersion)' == 'v4.0'">.NET Framework 4.0</TargetFrameworkName>
+    <TargetFrameworkName Condition="'$(TargetFrameworkSubset)' == 'Client'">$(TargetFrameworkName) Client Profile</TargetFrameworkName>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v2.0'">NET2_0;$(DefineConstants)</DefineConstants>
+    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v3.5'">NET3_5;$(DefineConstants)</DefineConstants>
+    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v4.0'">NET4_0;$(DefineConstants)</DefineConstants>
+    <DefineConstants Condition="'$(TargetFrameworkSubset)' == 'Client'">CLIENT_SKU;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Messaging" Condition="'$(TargetFrameworkSubset)' != 'Client'" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core"/>
+    <Reference Include="System.Web" Condition="'$(TargetFrameworkSubset)' != 'Client'" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

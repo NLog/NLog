@@ -96,15 +96,15 @@ namespace NLog.LayoutRenderers
                     break;
 
 #if DOTNET2
-                case GCProperty.CollectionCount0:
+                case GarbageCollectorProperty.CollectionCount0:
                     value = GC.CollectionCount(0);
                     break;
 
-                case GCProperty.CollectionCount1:
+                case GarbageCollectorProperty.CollectionCount1:
                     value = GC.CollectionCount(1);
                     break;
 
-                case GCProperty.CollectionCount2:
+                case GarbageCollectorProperty.CollectionCount2:
                     value = GC.CollectionCount(2);
                     break;
 #endif

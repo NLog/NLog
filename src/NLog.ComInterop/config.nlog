@@ -1,9 +1,0 @@
-<nlog>
-    <targets>
-        <target name="console" type="Console" />
-    </targets>
-
-    <rules>
-        <logger name="*" appendTo="console" />
-    </rules>
-</nlog>

@@ -1,9 +1,10 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <TargetsPath>$(MSBuildExtensionsPath)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets</TargetsPath>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <DefineConstants>SILVERLIGHT;SILVERLIGHT3;$(DefineConstants)</DefineConstants>
+    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Silverlight 3.0</OutputPath>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Silverlight 3.0</IntermediateOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,4 +16,6 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
+
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets" />
 </Project>

@@ -153,7 +153,17 @@ namespace NLog.LayoutRenderers
                             builder.Append(this.Separator);
                         }
 
-                        builder.Append(f.GetMethod().DeclaringType.Name);
+                        var type = f.GetMethod().DeclaringType;
+
+                        if (type != null)
+                        {
+                            builder.Append(type.Name);
+                        }
+                        else
+                        {
+                            builder.Append("<no type>");
+                        }
+
                         builder.Append(".");
                         builder.Append(f.GetMethod().Name);
                         first = false;

@@ -65,12 +65,12 @@ for $level (@levels) {
         /// <summary>
         /// Writes the diagnostic message at the $level3 level.
         /// </summary>$param0
-        /// <param name="messageDelegate">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public void $level(${arg0}LogMessageDelegate messageDelegate)
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        public void $level(${arg0}LogMessageGenerator messageFunc)
         {
             if ($isenabled)
             {
-                this.WriteToTargets($level2, null, messageDelegate());
+                this.WriteToTargets($level2, null, messageFunc());
             }
         }
 
