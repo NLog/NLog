@@ -12,10 +12,11 @@ int main()
 	NLog_ConfigureFromXml(_T(
 		"<nlog>\
 		  <targets>\
-		  <target name='console' type='ColoredConsole' layout='${message}'/>\
+		  <target name='console' type='ColoredConsole' layout='${longdate} ${message}'/>\
+		  <target name='file' type='File' fileName='${basedir}/logs/${level}/${logger}.log' layout='${message}' />\
 	      </targets>\
 		  <rules>\
-		    <logger name='*' minLevel='Trace' writeTo='console' />\
+		    <logger name='*' minLevel='Trace' writeTo='console,file' />\
 		  </rules>\
          </nlog>"));
     int repeatCount = 500;

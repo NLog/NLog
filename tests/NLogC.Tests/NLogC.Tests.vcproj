@@ -18,8 +18,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)build\bin\$(ConfigurationName)\NLogC"
+			IntermediateDirectory="$(SolutionDir)build\obj\$(ConfigurationName)\NLogC"
 			ConfigurationType="1"
 			CharacterSet="1"
 			>
@@ -93,8 +93,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)build\bin\$(ConfigurationName)\NLogC"
+			IntermediateDirectory="$(SolutionDir)build\obj\$(ConfigurationName)\NLogC"
 			ConfigurationType="1"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -171,6 +171,10 @@
 		</Configuration>
 	</Configurations>
 	<References>
+		<ProjectReference
+			ReferencedProjectIdentifier="{63966F8B-B3DA-4538-AF36-FCBBFFF67BF7}"
+			RelativePathToProject=".\src\NLogC\NLogC.vcproj"
+		/>
 	</References>
 	<Files>
 		<Filter
