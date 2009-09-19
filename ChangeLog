@@ -1,6 +1,5 @@
 2009-09-19  Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added binary compatibility test with NLog v1.0
-	
 
 2009-09-18  Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Top-level directory cleanup:
