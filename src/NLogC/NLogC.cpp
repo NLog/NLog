@@ -219,7 +219,7 @@ static bool ConfigureFromXmlW(const wchar_t * xml)
 		LogManager::Configuration = gcnew Config::XmlLoggingConfiguration(xmlreader, "Dummy.config");
         return true;
     }
-    catch (System::Exception^ ex)
+    catch (System::Exception^)
     {
         return false;
     }
@@ -362,6 +362,9 @@ NLOGC_API void NLog_LogVA(NLogLevel level, const char * loggerName, const char *
     }
 }
 
+/// <summary>
+/// AAA
+/// </summary>
 NLOGC_API void NLog_TraceW(const wchar_t * loggerName, const wchar_t * logMessage, ...)
 {
     va_list args;

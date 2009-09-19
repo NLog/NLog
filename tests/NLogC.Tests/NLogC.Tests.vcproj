@@ -18,8 +18,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)build\bin\$(ConfigurationName)\NLogC"
-			IntermediateDirectory="$(SolutionDir)build\obj\$(ConfigurationName)\NLogC"
+			OutputDirectory="$(SolutionDir)..\build\bin\$(ConfigurationName)\NLogC"
+			IntermediateDirectory="$(SolutionDir)..\build\obj\$(ConfigurationName)\NLogC"
 			ConfigurationType="1"
 			CharacterSet="1"
 			>
@@ -64,7 +64,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="NLogC.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(ProjectDir)..\..\src\NLogC\$(ConfigurationName)&quot;"
+				AdditionalLibraryDirectories="$(SolutionDir)..\build\bin\$(ConfigurationName)\NLogC"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -93,8 +93,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)build\bin\$(ConfigurationName)\NLogC"
-			IntermediateDirectory="$(SolutionDir)build\obj\$(ConfigurationName)\NLogC"
+			OutputDirectory="$(SolutionDir)..\build\bin\$(ConfigurationName)\NLogC"
+			IntermediateDirectory="$(SolutionDir)..\build\obj\$(ConfigurationName)\NLogC"
 			ConfigurationType="1"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -140,7 +140,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="NLogC.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;$(ProjectDir)..\..\src\NLogC\$(ConfigurationName)&quot;"
+				AdditionalLibraryDirectories="$(SolutionDir)..\build\bin\$(ConfigurationName)\NLogC"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"

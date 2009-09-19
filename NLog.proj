@@ -4,6 +4,7 @@
     <BaseOutputDirectory>$(MSBuildProjectDirectory)\build\</BaseOutputDirectory>
     <ProjectTarget Condition="'$(ProjectTarget)'==''">Build</ProjectTarget>
     <FrameworksPath>$(MSBuildProjectDirectory)\src\Frameworks</FrameworksPath>
+    <VCBuildPath>C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcpackages</VCBuildPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -42,6 +43,7 @@
   <Import Project="NLog.local" Condition="Exists('NLog.local')" />
 
   <Target Name="Build">
+    <VCBuild SolutionFile="NLogC.sln" Projects="NLogC" Configuration="$(Configuration)" Rebuild="true" ToolPath="$(VCBuildPath)" />
     <MSBuild Projects="src\NLog\NLog.csproj" Targets="Build" Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="true" StopOnFirstFailure="false" />
   </Target>
 
