@@ -1,18 +1,18 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog", "src\NLog\NLog.csproj", "{B71A9EF1-2493-4B7B-AB82-8C7A83C10952}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog", "NLog\NLog.csproj", "{B71A9EF1-2493-4B7B-AB82-8C7A83C10952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Test", "tests\NLog.Test\NLog.Test.csproj", "{5EC49108-97AE-40EA-B550-8960E4522718}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Test", "..\tests\NLog.Test\NLog.Test.csproj", "{5EC49108-97AE-40EA-B550-8960E4522718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeNLogXSD", "tools\MakeNLogXSD\MakeNLogXSD.csproj", "{BB32EC17-234D-477D-AC37-96EB19A52018}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeNLogXSD", "..\tools\MakeNLogXSD\MakeNLogXSD.csproj", "{BB32EC17-234D-477D-AC37-96EB19A52018}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests", "tests\NLog.UnitTests\NLog.UnitTests.csproj", "{1653EE05-2720-4A85-BF14-74C4493787B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests", "..\tests\NLog.UnitTests\NLog.UnitTests.csproj", "{1653EE05-2720-4A85-BF14-74C4493787B1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7638C35C-A8AC-437C-94FD-9DABD9D5839C}"
 	ProjectSection(SolutionItems) = preProject
-		Documentation\Documentation.scproj = Documentation\Documentation.scproj
-		NLog.proj = NLog.proj
-		Installer\NLog.wxs = Installer\NLog.wxs
+		..\Documentation\Documentation.scproj = ..\Documentation\Documentation.scproj
+		..\NLog.proj = ..\NLog.proj
+		..\Installer\NLog.wxs = ..\Installer\NLog.wxs
 	EndProjectSection
 EndProject
 Global

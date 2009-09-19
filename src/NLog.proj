@@ -1,15 +1,10 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
-    <BaseOutputDirectory>$(MSBuildProjectDirectory)\build\</BaseOutputDirectory>
+    <BaseOutputDirectory>$(MSBuildProjectDirectory)\..\build\</BaseOutputDirectory>
     <ProjectTarget Condition="'$(ProjectTarget)'==''">Build</ProjectTarget>
-    <FrameworksPath>$(MSBuildProjectDirectory)\src\Frameworks</FrameworksPath>
-    <VCBuildPath>C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcpackages</VCBuildPath>
+    <FrameworksPath>$(MSBuildProjectDirectory)\Frameworks</FrameworksPath>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectFile Include="src\NLog\NLog.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <TargetConfiguration Include="Debug" />
@@ -43,8 +38,7 @@
   <Import Project="NLog.local" Condition="Exists('NLog.local')" />
 
   <Target Name="Build">
-    <VCBuild SolutionFile="NLogC.sln" Projects="NLogC" Configuration="$(Configuration)" Rebuild="true" ToolPath="$(VCBuildPath)" />
-    <MSBuild Projects="src\NLog\NLog.csproj" Targets="Build" Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="true" StopOnFirstFailure="false" />
+    <MSBuild Projects="NLog\NLog.csproj" Targets="Build" Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="true" StopOnFirstFailure="false" />
   </Target>
 
   <Target Name="Clean">
