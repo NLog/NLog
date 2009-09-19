@@ -37,6 +37,10 @@
 
   <Import Project="NLog.local" Condition="Exists('NLog.local')" />
 
+  <Target Name="Rebuild">
+    <MSBuild Projects="NLog\NLog.csproj" Targets="Rebuild" Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="true" StopOnFirstFailure="false" />
+  </Target>
+
   <Target Name="Build">
     <MSBuild Projects="NLog\NLog.csproj" Targets="Build" Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="true" StopOnFirstFailure="false" />
   </Target>
