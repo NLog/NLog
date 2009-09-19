@@ -160,7 +160,7 @@ namespace NLog.LayoutRenderers
 
                 if (this.IncludeNLogData)
                 {
-                    xtw.WriteElementString("nlog:eventSequenceNumber", logEvent.SequenceId.ToString(CultureInfo.InvariantCulture));
+                    xtw.WriteElementString("nlog:eventSequenceNumber", logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
                     xtw.WriteStartElement("nlog:locationinfo");
                     xtw.WriteAttributeString("assembly", type.Assembly.FullName);
                     xtw.WriteEndElement();

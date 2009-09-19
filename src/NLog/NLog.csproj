@@ -115,7 +115,6 @@
     <Compile Include="Filters\WhenEqualFilter.cs" />
     <Compile Include="Filters\WhenNotContainsFilter.cs" />
     <Compile Include="Filters\WhenNotEqualFilter.cs" />
-    <Compile Include="FormattedLogEventInfo.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Internal\CompactFrameworkHelper.cs" />
     <Compile Include="Internal\CurrentTimeGetter.cs" />
@@ -217,6 +216,7 @@
     <Compile Include="LogFactory.cs" />
     <Compile Include="LogFactoryOfT.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="Logger.v1.cs" />
     <Compile Include="LoggerImpl.cs" />
     <Compile Include="LogLevel.cs" />
     <Compile Include="LogManager.cs" />
@@ -274,8 +274,6 @@
     <Compile Include="Targets\Wrappers\SecurityImpersonationLevel.cs" />
     <Compile Include="Targets\Wrappers\SecurityLogonType.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBase.cs" />
-    <Compile Include="UnformattedLogEventInfo.cs" />
-    <Compile Include="UnformattedLogEventInfoWithException.cs" />
     <Compile Include="Web\NLogHttpModule.cs" />
     <Compile Include="Win32\ASPHelper.cs" />
     <Compile Include="Win32\LayoutRenderers\ASPApplicationValueLayoutRenderer.cs" />

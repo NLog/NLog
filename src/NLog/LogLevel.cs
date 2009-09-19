@@ -43,6 +43,41 @@ namespace NLog
         private static readonly LogLevel[] levelByOrdinal;
 
         /// <summary>
+        /// Trace log level.
+        /// </summary>
+        public static readonly LogLevel Trace;
+
+        /// <summary>
+        /// Debug log level.
+        /// </summary>
+        public static readonly LogLevel Debug;
+
+        /// <summary>
+        /// Info log level.
+        /// </summary>
+        public static readonly LogLevel Info;
+
+        /// <summary>
+        /// Warn log level.
+        /// </summary>
+        public static readonly LogLevel Warn;
+
+        /// <summary>
+        /// Error log level.
+        /// </summary>
+        public static readonly LogLevel Error;
+
+        /// <summary>
+        /// Fatal log level.
+        /// </summary>
+        public static readonly LogLevel Fatal;
+
+        /// <summary>
+        /// Off log level.
+        /// </summary>
+        public static readonly LogLevel Off;
+
+        /// <summary>
         /// Initializes static members of the LogLevel class.
         /// </summary>
         static LogLevel()
@@ -68,41 +103,6 @@ namespace NLog
             this.Name = name;
             this.Ordinal = ordinal;
         }
-
-        /// <summary>
-        /// Gets the Debug level.
-        /// </summary>
-        public static LogLevel Debug { get; private set; }
-
-        /// <summary>
-        /// Gets the Error level.
-        /// </summary>
-        public static LogLevel Error { get; private set; }
-
-        /// <summary>
-        /// Gets the Fatal level.
-        /// </summary>
-        public static LogLevel Fatal { get; private set; }
-
-        /// <summary>
-        /// Gets the Info level.
-        /// </summary>
-        public static LogLevel Info { get; private set; }
-
-        /// <summary>
-        /// Gets the Off level.
-        /// </summary>
-        public static LogLevel Off { get; private set; }
-
-        /// <summary>
-        /// Gets the Trace level.
-        /// </summary>
-        public static LogLevel Trace { get; private set; }
-
-        /// <summary>
-        /// Gets the Warn level.
-        /// </summary>
-        public static LogLevel Warn { get; private set; }
 
         /// <summary>
         /// Gets the name of the log level.
@@ -274,5 +274,5 @@ namespace NLog
 
             return this.Ordinal - level.Ordinal;
         }
-    } 
+    }
 }

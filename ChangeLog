@@ -1,3 +1,69 @@
+2009-09-19  Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added binary compatibility test with NLog v1.0
+	
+
+2009-09-18  Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Top-level directory cleanup:
+		- moved *.sln files to "src"
+		- moved Installer to tools/Installer
+		- moved webtest to 'tests'
+	* Merged NLog.ComInterop.dll with NLog.dll
+	* VS project now supports multitargeting
+	* Upgraded NLogC project to C++/CLI
+	* Added VS project and solution for NLogC
+	* Added protection from null DeclaringType (occurs in C++)
+        Issue: http://nlog.codeplex.com/WorkItem/View.aspx?WorkItemId=2519
+	* Fixed stack trace computation in case of excessive inlining (x64)
+	Issue: http://nlog.codeplex.com/WorkItem/View.aspx?WorkItemId=2518
+	* Cleaned up InternalLogger configuration
+	* More FxCop-driven cleanup
+	* Fixed invalid format parameters in NLogC
+	* Switched to use _vsnwprintf_s
+	* Added ConfigureFromXml API to NLogC
+
+2008-11-22  Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added WrapperLayoutRendererBase for wrapper layout renderer and LowerCaseLayoutRendererWrapper, PaddngLayoutRendererWrapper, UpperCaseLayoutRendererWrapper, ReplaceLayoutRendererWrapper
+	* Added AmbientPropertyAttribute for decorating ambient properties.
+	* Added LoggingRule.Levels
+	* Refactored XmlLoggingConfiguration to use XmlReader (available everywhere) instead of XmlElement
+	* Replace 0,1,2 constants for specifying stack trace usage with StackTraceUsage enumeration
+	* Moved GDC, MDC and NDC to a separate namespace and obsoleted short names
+	* Added special case for converting encoding names to Encoding objects in the configurator
+	* Removed ApplyPadding() method - padding and other common aspects are now abstracted as WrapperLayoutRenderers
+	* Refactored ${rot13} to become a wrapper layout renderer (config-level compatible)
+	* Removed LayoutRendererAttribute.IgnoresPadding and UsingLogEventInfo
+	* Renamed Layout.Initialized as IsInitialized
+	* Refactored configuration file search algorithm
+	* Added some more source-level documentation
+	* Removed LogLevel.UppercaseName and LogLevel.LowercaseName
+	* Removed TargetAttribute.IgnoresLayout
+	* Work-in-progress on MakeNLogDoc
+
+2008-06-21 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* First major refactoring towards NLog v2.
+	* moved certain classes from NLog namespace to NLog.Config, NLog.Targets, NLog.Layouts, NLog.LayoutRenderers
+	* renamed Layout to SimpleLayout
+	* turned ILayout interface into Layout base class
+	* removed CompiledLayout pattern all over the place
+	* removed [AcceptsLayout] by replacing all string properties with actual Layouts (added implicit conversion from string makes the usage clean)
+	* removed [AcceptsCondition] by replacing all string properties with ConditionExpression (added implicit conversion from string makes the usage clean)
+	* removed most of platform detection logic (will use conditional compilation exclusively in v2)
+	* removed NLog.*Factory classes and aggregated all factories NLog.Config.NLogFactories using common interface
+	* removed *Collection and *Dictionary classes and replaced them with generics
+	* public APIs that used to expose *Collection are now ICollection<T> or IList<T>
+	* refactored LogEventInfo into multiple classes for formatted and unformatted events
+	* added delayed evaluation delegate (LogMessageDelegate) and added logging method overloads that accept it:
+		Usage (C# 3.0 using lambda syntax):
+			logger.Info(() => "this is my message, x=" + x + ", y=" + y);
+		Usage (C# 2.0 using inline delegate syntax)
+			logger.Info(delegate { return "this is my message, x=" + x + ", y=" + y });
+	* removed VS 2003 project files
+	* regenerated Logger.cs to use generics
+	* configuration-file-based usage remains unchanged
+	* removed support for .NET 1.x and .NET CF 1.x and many hacks and workarounds to support them
+
+================================================================================
+
 2006-09-18 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Preparing for 1.0 release
 

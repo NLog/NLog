@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -32,9 +32,13 @@
 // 
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Globalization;
 using System.Threading;
+
 using NLog.Internal;
 using NLog.Layouts;
 
@@ -43,29 +47,81 @@ namespace NLog
     /// <summary>
     /// Represents the logging event.
     /// </summary>
-    public abstract class LogEventInfo
+    public class LogEventInfo
     {
         /// <summary>
-        /// Gets or sets the date of the first log event created.
+        /// Gets the date of the first log event created.
         /// </summary>
-        internal static readonly DateTime ZeroDate = DateTime.Now;
+        public static readonly DateTime ZeroDate = DateTime.Now;
+
         private static int globalSequenceId;
 
+        private string formattedMessage;
         private IDictionary<Layout, string> layoutCache;
-        private IDictionary<string, object> eventContext;
+        private IDictionary eventContext;
+
+        /// <summary>
+        /// Initializes a new instance of the LogEventInfo class.
+        /// </summary>
+        public LogEventInfo()
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the LogEventInfo class.
         /// </summary>
         /// <param name="level">Log level.</param>
         /// <param name="loggerName">Logger name.</param>
-        protected LogEventInfo(LogLevel level, string loggerName)
+        /// <param name="message">Log message including parameter placeholders.</param>
+        public LogEventInfo(LogLevel level, string loggerName, string message)
+            : this(level, loggerName, null, message, null, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the LogEventInfo class.
+        /// </summary>
+        /// <param name="level">Log level.</param>
+        /// <param name="loggerName">Logger name.</param>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">Log message including parameter placeholders.</param>
+        /// <param name="parameters">Parameter array.</param>
+        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters) 
+            : this(level, loggerName, formatProvider, message, parameters, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the LogEventInfo class.
+        /// </summary>
+        /// <param name="level">Log level.</param>
+        /// <param name="loggerName">Logger name.</param>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">Log message including parameter placeholders.</param>
+        /// <param name="parameters">Parameter array.</param>
+        /// <param name="exception">Exception information.</param>
+        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters, Exception exception)
         {
             this.TimeStamp = CurrentTimeGetter.Now;
             this.Level = level;
             this.LoggerName = loggerName;
-            this.SequenceId = Interlocked.Increment(ref globalSequenceId);
+            this.Message = message;
+            this.Parameters = parameters;
+            this.FormatProvider = formatProvider;
+            this.Exception = exception;
+            this.SequenceID = Interlocked.Increment(ref globalSequenceId);
+
+            if (NeedToPreformatMessage(parameters))
+            {
+                this.CalcFormattedMessage();
+            }
         }
+
+        /// <summary>
+        /// Gets the unique identifier of log event which is automatically generated
+        /// and monotonously increasing.
+        /// </summary>
+        public int SequenceID { get; private set; }
 
         /// <summary>
         /// Gets or sets the timestamp of the logging event.
@@ -77,13 +133,13 @@ namespace NLog
         /// </summary>
         public LogLevel Level { get; set; }
 
-#if !NET_CF
+#if !NETCF
         /// <summary>
         /// Gets a value indicating whether stack trace has been set for this event.
         /// </summary>
         public bool HasStackTrace
         {
-            get { return this.StackTrace != null; }
+            get { return StackTrace != null; }
         }
 
         /// <summary>
@@ -104,15 +160,12 @@ namespace NLog
         /// Gets the entire stack trace.
         /// </summary>
         public StackTrace StackTrace { get; private set; }
-
 #endif
+
         /// <summary>
-        /// Gets the exception information.
+        /// Gets or sets the exception information.
         /// </summary>
-        public virtual Exception Exception
-        {
-            get { return null; }
-        }
+        public Exception Exception { get; set; }
 
         /// <summary>
         /// Gets or sets the logger name.
@@ -120,20 +173,65 @@ namespace NLog
         public string LoggerName { get; set; }
 
         /// <summary>
+        /// Gets the logger short name.
+        /// </summary>
+        [Obsolete("This property should not be used.")]
+        public string LoggerShortName
+        {
+            get
+            {
+                int lastDot = this.LoggerName.LastIndexOf('.');
+                if (lastDot >= 0)
+                {
+                    return this.LoggerName.Substring(lastDot + 1);
+                }
+
+                return this.LoggerName;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the log message including any parameter placeholders.
+        /// </summary>
+        public string Message { get; set; }
+
+        /// <summary>
+        /// Gets or sets the parameter values or null if no parameters have been specified.
+        /// </summary>
+        public object[] Parameters { get; set; }
+
+        /// <summary>
+        /// Gets or sets the format provider that was provided while logging or <see langword="null" />
+        /// when no formatProvider was specified.
+        /// </summary>
+        public IFormatProvider FormatProvider { get; set; }
+
+        /// <summary>
         /// Gets the formatted message.
         /// </summary>
-        public abstract string FormattedMessage { get; }
+        public string FormattedMessage
+        {
+            get 
+            {
+                if (this.formattedMessage == null)
+                {
+                    this.CalcFormattedMessage();
+                }
+
+                return this.formattedMessage;
+            }
+        }
 
         /// <summary>
         /// Gets the dictionary of per-event context properties.
         /// </summary>
-        public IDictionary<string, object> Context
+        public IDictionary Context
         {
             get
             {
                 if (this.eventContext == null)
                 {
-                    this.eventContext = new Dictionary<string, object>();
+                    this.eventContext = new HybridDictionary();
                 }
 
                 return this.eventContext;
@@ -141,48 +239,28 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the unique identifier of log event which is automatically generated
-        /// and monotonously increasing.
-        /// </summary>
-        public int SequenceId { get; private set; }
-
-        /// <summary>
         /// Creates the null event.
         /// </summary>
-        /// <returns>Null event (which can be used whenever <see cref="LogEventInfo"/> is required).</returns>
+        /// <returns>Null log event.</returns>
         public static LogEventInfo CreateNullEvent()
         {
-            return Create(LogLevel.Off, String.Empty, null, String.Empty);
+            return new LogEventInfo(LogLevel.Off, string.Empty, string.Empty);
         }
 
         /// <summary>
-        /// Creates <see cref="LogEventInfo"/> for a pre-formatted message.
+        /// Creates the log event.
         /// </summary>
         /// <param name="logLevel">The log level.</param>
-        /// <param name="loggerName">Logger name.</param>
-        /// <param name="message">Pre-formatted message.</param>
+        /// <param name="loggerName">Name of the logger.</param>
+        /// <param name="message">The message.</param>
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, string message)
         {
-            return new FormattedLogEventInfo(logLevel, loggerName, null, "{0}", new object[] { message });
+            return new LogEventInfo(logLevel, loggerName, null, message, null);
         }
 
         /// <summary>
-        /// Creates <see cref="LogEventInfo"/> for a given value.
-        /// </summary>
-        /// <typeparam name="T">Type of the value.</typeparam>
-        /// <param name="logLevel">The log level.</param>
-        /// <param name="loggerName">Name of the logger.</param>
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="value">The value to be written.</param>
-        /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
-        public static LogEventInfo Create<T>(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, T value)
-        {
-            return new FormattedLogEventInfo(logLevel, loggerName, formatProvider, "{0}", new object[] { value });
-        }
-
-        /// <summary>
-        /// Creates <see cref="LogEventInfo"/> for a message which requires formatting.
+        /// Creates the log event.
         /// </summary>
         /// <param name="logLevel">The log level.</param>
         /// <param name="loggerName">Name of the logger.</param>
@@ -192,11 +270,24 @@ namespace NLog
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, string message, object[] parameters)
         {
-            return new FormattedLogEventInfo(logLevel, loggerName, formatProvider, message, parameters);
+            return new LogEventInfo(logLevel, loggerName, formatProvider, message, parameters);
         }
 
         /// <summary>
-        /// Creates <see cref="LogEventInfo"/> associated with an exception.
+        /// Creates the log event.
+        /// </summary>
+        /// <param name="logLevel">The log level.</param>
+        /// <param name="loggerName">Name of the logger.</param>
+        /// <param name="formatProvider">The format provider.</param>
+        /// <param name="message">The message.</param>
+        /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
+        public static LogEventInfo Create(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, object message)
+        {
+            return new LogEventInfo(logLevel, loggerName, formatProvider, "{0}", new[] { message });
+        }
+
+        /// <summary>
+        /// Creates the log event.
         /// </summary>
         /// <param name="logLevel">The log level.</param>
         /// <param name="loggerName">Name of the logger.</param>
@@ -205,27 +296,16 @@ namespace NLog
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, string message, Exception exception)
         {
-            return new UnformattedLogEventInfoWithException(logLevel, loggerName, message, exception);
+            return new LogEventInfo(logLevel, loggerName, null, message, null, exception);
         }
 
-#if !NET_CF
+#if !NETCF
         internal void SetStackTrace(StackTrace stackTrace, int userStackFrame)
         {
             this.StackTrace = stackTrace;
             this.UserStackFrameNumber = userStackFrame;
         }
 #endif
-
-        internal bool TryGetCachedLayoutValue(Layout layout, out string result)
-        {
-            if (this.layoutCache == null)
-            {
-                result = null;
-                return false;
-            }
-
-            return this.layoutCache.TryGetValue(layout, out result);
-        }
 
         internal void AddCachedLayoutValue(Layout layout, string value)
         {
@@ -235,6 +315,78 @@ namespace NLog
             }
 
             this.layoutCache[layout] = value;
+        }
+
+        internal bool TryGetCachedLayoutValue(Layout layout, out string value)
+        {
+            if (this.layoutCache == null)
+            {
+                value = null;
+                return false;
+            }
+
+            return this.layoutCache.TryGetValue(layout, out value);
+        }
+
+        private static bool NeedToPreformatMessage(object[] parameters)
+        {
+            // we need to preformat message if it contains any parameters which could possibly
+            // do logging in their ToString()
+            if (parameters == null || parameters.Length == 0)
+            {
+                return false;
+            }
+
+            if (parameters.Length > 3)
+            {
+                // too many parameters, too costly to check
+                return true;
+            }
+
+            if (!IsSafeToDeferFormatting(parameters[0]))
+            {
+                return true;
+            }
+
+            if (parameters.Length >= 2)
+            {
+                if (!IsSafeToDeferFormatting(parameters[1]))
+                {
+                    return true;
+                }
+            }
+
+            if (parameters.Length >= 3)
+            {
+                if (!IsSafeToDeferFormatting(parameters[2]))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsSafeToDeferFormatting(object value)
+        {
+            if (value == null)
+            {
+                return true;
+            }
+
+            return value.GetType().IsPrimitive || (value is string);
+        }
+
+        private void CalcFormattedMessage()
+        {
+            if (this.Parameters == null || this.Parameters.Length == 0)
+            {
+                this.formattedMessage = this.Message;
+            }
+            else
+            {
+                this.formattedMessage = string.Format(this.FormatProvider ?? CultureInfo.CurrentCulture, this.Message, this.Parameters);
+            }
         }
     }
 }

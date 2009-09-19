@@ -39,6 +39,7 @@ using System.Reflection;
 
 using NLog;
 using NLog.Targets;
+using NLog.Common;
 
 namespace NLog.AsyncBenchmark
 {
@@ -99,8 +100,8 @@ namespace NLog.AsyncBenchmark
                 return 0;
             }
 
-            Internal.InternalLogger.LogLevel = LogLevel.Warn;
-            Internal.InternalLogger.LogToConsoleError = true;
+            InternalLogger.LogLevel = LogLevel.Warn;
+            InternalLogger.LogToConsoleError = true;
 
             foreach (string s in Directory.GetFiles(".", "*.log"))
             {

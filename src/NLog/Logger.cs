@@ -40,7 +40,7 @@ namespace NLog
     /// Provides logging interface and utility functions.
     /// </summary>
     [CLSCompliant(true)]
-    public class Logger
+    public partial class Logger
     {
         private readonly Type loggerType = typeof(Logger);
 

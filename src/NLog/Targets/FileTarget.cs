@@ -1267,12 +1267,12 @@ namespace NLog.Targets
                     return val;
                 }
                 
-                if (le1.SequenceId < le2.SequenceId)
+                if (le1.SequenceID < le2.SequenceID)
                 {
                     return -1;
                 }
 
-                if (le1.SequenceId > le2.SequenceId)
+                if (le1.SequenceID > le2.SequenceID)
                 {
                     return 1;
                 }
