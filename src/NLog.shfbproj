@@ -9,6 +9,7 @@
     <ProjectGuid>{ff8480e8-de05-4447-a460-d63ee65bdcbf}</ProjectGuid>
     <Framework Condition="">.NET Framework v3.5</Framework>
     <NLogBuildPath Condition="'$(NLogBuildPath)' == ''">NLog\bin\$(Configuration)</NLogBuildPath>
+    <WorkingPath>Working\</WorkingPath>
     <SHFBSchemaVersion>1.8.0.0</SHFBSchemaVersion>
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
          Studio adds them anyway -->
@@ -99,5 +100,5 @@
   </ItemGroup>
   <!-- Import the SHFB build targets -->
   <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
-  <Import Project="Frameworks\$(Framework).shfbproj" Condition="Exists('Frameworks\$(Framework).shfbproj')" />
+  <Import Project="Docs\Frameworks\$(Framework).shfbproj" Condition="Exists('Docs\Frameworks\$(Framework).shfbproj')" />
 </Project>

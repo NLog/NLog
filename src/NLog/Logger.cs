@@ -138,9 +138,6 @@ namespace NLog
             return this.GetTargetsForLevel(level) != null;
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the specified level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the specified diagnostic message.
         /// </summary>
@@ -153,9 +150,6 @@ namespace NLog
             }
         }
 
-        /// <overloads>
-        /// Writes the diagnostic message at the specified level using the specified format provider and format parameters.
-        /// </overloads>
         /// <summary>
         /// Writes the specified diagnostic message.
         /// </summary>

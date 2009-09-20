@@ -1,7 +1,11 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SL2InstallPath Condition="'$(SL2InstallPath)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v2.0\Install Path@Install Path)</SL2InstallPath>
+  </PropertyGroup>
+
   <ItemGroup>
-    <RefFile Include="$(ProgramFiles)\Microsoft Silverlight\2.0.40115.0\System*.dll" />
-    <RefFile Include="$(ProgramFiles)\Microsoft Silverlight\2.0.40115.0\mscorlib.dll" />
+    <RefFile Include="$(SL2InstallPath)\Reference Assemblies\System*.dll" />
+    <RefFile Include="$(SL2InstallPath)\Reference Assemblies\mscorlib.dll" />
   </ItemGroup>
 
   <!-- copy referenced assemblies to the output path temporarily -->

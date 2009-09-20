@@ -1,7 +1,11 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SL3RefPath Condition="'$(SL3RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v3.0</SL3RefPath>
+  </PropertyGroup>
+
   <ItemGroup>
-    <RefFile Include="$(ProgramFiles)\Microsoft Silverlight\3.0.40723.0\System*.dll" />
-    <RefFile Include="$(ProgramFiles)\Microsoft Silverlight\3.0.40723.0\mscorlib.dll" />
+    <RefFile Include="$(SL3RefPath)\System*.dll" />
+    <RefFile Include="$(SL3RefPath)\mscorlib.dll" />
   </ItemGroup>
 
   <!-- copy referenced assemblies to the output path temporarily -->

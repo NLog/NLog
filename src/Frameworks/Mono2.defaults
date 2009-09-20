@@ -37,7 +37,7 @@
     <MonoCommandLine Condition="'$(DefineConstants)' != ''">$(MonoCommandLine) /define:$(DefineConstants)</MonoCommandLine>
     <MonoCommandLine Condition="'$(DocumentationFile)' != ''">$(MonoCommandLine) /doc:"$(DocumentationFile)"</MonoCommandLine>
     <MonoCommandLine Condition="'$(DebugSymbols)' == 'true'">$(MonoCommandLine) /debug+</MonoCommandLine>
-    <MonoCommandLine Condition="'$(KeyOriginatorFile)' != ''">$(MonoCommandLine) /keyfile:$(KeyContainerName)</MonoCommandLine>
+    <MonoCommandLine Condition="'$(AssemblyOriginatorKeyFile)' != ''">$(MonoCommandLine) /keyfile:$(AssemblyOriginatorKeyFile)</MonoCommandLine>
     <MonoCommandLine Condition="'$(Optimize)' == 'true'">$(MonoCommandLine) /optimize+</MonoCommandLine>
     <MonoCommandLine Condition="'$(TreatWarningsAsErrors)' == 'true'">$(MonoCommandLine) /waraserror+</MonoCommandLine>
     <MonoCommandLine Condition="'$(WarningLevel)' != ''">$(MonoCommandLine) /warn:$(WarningLevel)</MonoCommandLine>
