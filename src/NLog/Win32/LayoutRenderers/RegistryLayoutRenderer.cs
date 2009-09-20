@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF_1_0 && !SILVERLIGHT
+#if !SILVERLIGHT
 
 using System;
 using System.Globalization;

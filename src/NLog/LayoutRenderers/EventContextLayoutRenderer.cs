@@ -74,13 +74,12 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-#if NET_CF_1_0
-            string msg = Convert.ToString(logEvent.Context[Item]);
-#else
-            string msg = Convert.ToString(logEvent.Context[this.Item], CultureInfo.InvariantCulture);
-#endif
+            object value;
 
-            builder.Append(msg);
+            if (logEvent.Properties.TryGetValue(this.Item, out value))
+            {
+                builder.Append(Convert.ToString(value, CultureInfo.InvariantCulture));
+            }
         }
     }
 }

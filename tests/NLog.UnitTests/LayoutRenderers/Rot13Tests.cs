@@ -82,7 +82,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             Layout l = "${rot13:${event-context:aaa}}";
             LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
-            lei.Context["aaa"] = "HELLO";
+            lei.Properties["aaa"] = "HELLO";
             Assert.AreEqual("URYYB", l.GetFormattedMessage(lei));
         }
 

@@ -58,7 +58,8 @@ namespace NLog
 
         private string formattedMessage;
         private IDictionary<Layout, string> layoutCache;
-        private IDictionary eventContext;
+        private IDictionary<object, object> properties;
+        private IDictionary eventContextAdapter;
 
         /// <summary>
         /// Initializes a new instance of the LogEventInfo class.
@@ -133,7 +134,7 @@ namespace NLog
         /// </summary>
         public LogLevel Level { get; set; }
 
-#if !NETCF
+#if !NET_CF
         /// <summary>
         /// Gets a value indicating whether stack trace has been set for this event.
         /// </summary>
@@ -225,16 +226,33 @@ namespace NLog
         /// <summary>
         /// Gets the dictionary of per-event context properties.
         /// </summary>
+        public IDictionary<object, object> Properties
+        {
+            get
+            {
+                if (this.properties == null)
+                {
+                    this.InitEventContext();
+                }
+
+                return this.properties;
+            }
+        }
+
+        /// <summary>
+        /// Gets the dictionary of per-event context properties.
+        /// </summary>
+        [Obsolete("Use LogEventInfo.Properties instead.", true)]
         public IDictionary Context
         {
             get
             {
-                if (this.eventContext == null)
+                if (this.eventContextAdapter == null)
                 {
-                    this.eventContext = new HybridDictionary();
+                    this.InitEventContext();
                 }
 
-                return this.eventContext;
+                return this.eventContextAdapter;
             }
         }
 
@@ -299,7 +317,7 @@ namespace NLog
             return new LogEventInfo(logLevel, loggerName, null, message, null, exception);
         }
 
-#if !NETCF
+#if !NET_CF
         internal void SetStackTrace(StackTrace stackTrace, int userStackFrame)
         {
             this.StackTrace = stackTrace;
@@ -387,6 +405,12 @@ namespace NLog
             {
                 this.formattedMessage = string.Format(this.FormatProvider ?? CultureInfo.CurrentCulture, this.Message, this.Parameters);
             }
+        }
+
+        private void InitEventContext()
+        {
+            this.properties = new Dictionary<object, object>();
+            this.eventContextAdapter = new DictionaryAdapter<object, object>(this.properties);
         }
     }
 }

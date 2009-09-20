@@ -118,6 +118,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Internal\CompactFrameworkHelper.cs" />
     <Compile Include="Internal\CurrentTimeGetter.cs" />
+    <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EnvironmentHelper.cs" />
     <Compile Include="Internal\FactoryHelper.cs" />
     <Compile Include="Internal\FileAppenders\BaseFileAppender.cs" />

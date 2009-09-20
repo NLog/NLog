@@ -139,7 +139,7 @@ namespace NLog.UnitTests
             public void LogWithEventID(int eventID, string message, object[] par)
             {
                 LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, this.Name, null, message, par);
-                lei.Context["EventId"] = eventID;
+                lei.Properties["EventId"] = eventID;
                 base.Log(typeof(MyLogger), lei);
             }
         }

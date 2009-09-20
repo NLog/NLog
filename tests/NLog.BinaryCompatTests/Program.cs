@@ -22,7 +22,6 @@ namespace NLog.BinaryCompatTests
             try
             {
                 RunAll(typeof(LogManagerTests));
-                RunAll(typeof(TargetTests));
                 RunAll(typeof(LoggerTests));
                 RunAll(typeof(LogEventInfoTests));
                 RunAll(typeof(LogFactoryTests));

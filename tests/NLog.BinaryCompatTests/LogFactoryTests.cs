@@ -73,28 +73,17 @@ namespace NLog.BinaryCompatTests
             factory.ReconfigExistingLoggers();
         }
 
+        public static void Configuration()
+        {
+            var factory = new LogFactory();
+            factory.Configuration = new XmlLoggingConfiguration("NLog.config");
+            factory.Configuration = null;
+        }
+
         public static void ThrowExceptions()
         {
             var factory = new LogFactory();
             factory.ThrowExceptions = true;
-        }
-
-        public static void Events()
-        {
-            var factory = new LogFactory();
-            factory.ConfigurationReloaded += new LoggingConfigurationReloaded(factory_ConfigurationReloaded);
-            factory.ConfigurationChanged += new LoggingConfigurationChanged(factory_ConfigurationChanged);
-            factory.ThrowExceptions = true;
-        }
-
-        static void factory_ConfigurationReloaded(bool succeeded, Exception ex)
-        {
-            throw new NotImplementedException();
-        }
-
-        static void factory_ConfigurationChanged(LoggingConfiguration oldConfig, LoggingConfiguration newConfig)
-        {
-            throw new NotImplementedException();
         }
     }
 }

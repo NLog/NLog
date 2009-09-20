@@ -63,7 +63,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Layout l = "${event-context:aaa}";
             LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
             l.Initialize();
-            lei.Context["aaa"] = "bbb";
+            lei.Properties["aaa"] = "bbb";
 
             // empty
             Assert.AreEqual("bbb", l.GetFormattedMessage(lei));

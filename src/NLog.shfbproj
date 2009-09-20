@@ -7,20 +7,20 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{ff8480e8-de05-4447-a460-d63ee65bdcbf}</ProjectGuid>
-    <Framework Condition="">NetFX3.5</Framework>
-    <NLogBuildPath Condition="'$(NLogBuildPath)' == ''">NLog\bin\$(Configuration)\$(Framework)</NLogBuildPath>
+    <Framework Condition="">.NET Framework v3.5</Framework>
+    <NLogBuildPath Condition="'$(NLogBuildPath)' == ''">NLog\bin\$(Configuration)</NLogBuildPath>
     <SHFBSchemaVersion>1.8.0.0</SHFBSchemaVersion>
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
          Studio adds them anyway -->
-    <AssemblyName>Documentation</AssemblyName>
-    <RootNamespace>Documentation</RootNamespace>
+    <AssemblyName>NLog</AssemblyName>
+    <RootNamespace>NLog</RootNamespace>
     <Name>Documentation</Name>
     <!-- SHFB properties -->
     <OutputPath>$(NLogBuildPath)\</OutputPath>
     <HtmlHelpName>$(AssemblyName)</HtmlHelpName>
     <DocumentationSources>
-      <DocumentationSource sourceFile="$(NLogBuildPath)\$(AssemblyName).dll" xmlns="" />
-      <DocumentationSource sourceFile="$(NLogBuildPath)\$(AssemblyName).xml" xmlns="" />
+      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.dll" xmlns="" />
+      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.xml" xmlns="" />
     </DocumentationSources>
     <HelpTitle>NLog - Advanced .NET Logging ($(Framework))</HelpTitle>
     <CopyrightText>Copyright %28c%29 2004-2009 by Jaroslaw Kowalski</CopyrightText>
@@ -41,7 +41,7 @@
         <component id="Post-transform Component" type="SandcastleBuilder.Components.PostTransformComponent" assembly="{@SHFBFolder}SandcastleBuilder.Components.dll">
           <colorizer stylesheet="{@SHFBFolder}Colorizer\highlight.css" scriptFile="{@SHFBFolder}Colorizer\highlight.js" copyImage="{@SHFBFolder}Colorizer\CopyCode.gif" />
           <outputPath value="Output\" />
-          <logoFile filename="{@HtmlEncProjectFolder}\NLogo.png" height="0" width="0" altText="" placement="left" alignment="left" />
+          <logoFile filename="{@HtmlEncProjectFolder}\NLogo.gif" height="0" width="0" altText="" placement="left" alignment="left" />
         </component>
       </ComponentConfig>
     </ComponentConfigurations>
