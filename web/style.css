@@ -401,6 +401,7 @@ pre.example
     border: 1px solid #c0c0ff;
     color: black;
     padding: 4px;
+    font-family: Consolas, Courier New, Courier;
     font-size: 9pt;
     white-space: -moz-pre-wrap;  /* Mozilla, supported since 1999 */
     white-space: -pre-wrap;      /* Opera 4 - 6 */
@@ -642,6 +643,18 @@ img.out_link
     padding: 10px;
 }
 
+a.download
+{
+    width: 194px;
+    height: 38px;
+    background-image: url(/download_now.png);
+}
+
+.download span
+{
+    display: none;
+}
+
 @media print
 {
     .controls
@@ -656,16 +669,29 @@ img.out_link
     {
         display: none;
     }
+
+    #menu
+    {
+        display: none;
+    }
+
+    #content
+    {
+	margin: 12pt;
+	border: none;
+    }
+
+    #page
+    {
+        border: none;
+        padding: 0;
+        margin: 0;
+        width: inherit;
+    }
+
+    pre.example
+    {
+        width: inherit;
+    }
 }
 
-a.download
-{
-    width: 194px;
-    height: 38px;
-    background-image: url(/download_now.png);
-}
-
-.download span
-{
-    display: none;
-}
