@@ -41,6 +41,7 @@ using System.Text;
 using System.Threading;
 using NLog.Common;
 using NLog.Config;
+using NLog.Internal;
 using NLog.Internal.FileAppenders;
 #if !SILVERLIGHT && !NET_CF
 using NLog.Internal.Win32;

@@ -57,6 +57,12 @@ namespace NLog.Targets
     [Target("Debug")]
     public sealed class DebugTarget : TargetWithLayout
     {
+        /// <summary>
+        /// Initializes a new instance of the DebugTarget class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
         public DebugTarget()
         {
             LastMessage = String.Empty;

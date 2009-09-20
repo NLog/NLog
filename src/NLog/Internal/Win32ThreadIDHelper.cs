@@ -68,17 +68,11 @@ namespace NLog.Internal
 
 #if !NET_CF
         [DllImport("kernel32.dll")]
-        private static extern int GetCurrentThreadId();
-
-        [DllImport("kernel32.dll")]
         private static extern int GetCurrentProcessId();
 
         [DllImport("kernel32.dll", SetLastError = true, PreserveSig = true)]
         private static extern uint GetModuleFileName([In] IntPtr hModule, [Out] StringBuilder lpFilename, [In] [MarshalAs(UnmanagedType.U4)] int nSize);
 #else
-        [DllImport("coredll.dll")]
-        private static extern int GetCurrentThreadId();
-
         [DllImport("coredll.dll")]
         private static extern int GetCurrentProcessId();
 

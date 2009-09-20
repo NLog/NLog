@@ -12,6 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TargetFramework Include="Mono 2.x">
+        <Properties>OverrideTargetsFile=$(FrameworksPath)\Mono2.defaults</Properties>
+    </TargetFramework>
     <TargetFramework Include="Silverlight 2.0">
         <Properties>OverrideTargetsFile=$(FrameworksPath)\Silverlight2.defaults</Properties>
     </TargetFramework>

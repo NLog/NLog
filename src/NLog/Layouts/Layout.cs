@@ -42,6 +42,9 @@ namespace NLog.Layouts
     /// </summary>
     public abstract class Layout
     {
+        /// <summary>
+        /// Initializes a new instance of the Layout class.
+        /// </summary>
         protected Layout()
         {
             IsInitialized = false;
@@ -65,9 +68,14 @@ namespace NLog.Layouts
             return new SimpleLayout(text);
         }
 
-        public static Layout FromString(string text)
+        /// <summary>
+        /// Implicitly converts the specified string to a <see cref="SimpleLayout"/>.
+        /// </summary>
+        /// <param name="layoutString">The layout string.</param>
+        /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
+        public static Layout FromString(string layoutString)
         {
-            return new SimpleLayout(text);
+            return new SimpleLayout(layoutString);
         }
 
         /// <summary>

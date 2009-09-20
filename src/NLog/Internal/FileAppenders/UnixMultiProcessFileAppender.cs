@@ -43,6 +43,7 @@ using System.Collections.Specialized;
 
 using NLog;
 using NLog.Config;
+using NLog.Common;
 
 using NLog.Internal;
 

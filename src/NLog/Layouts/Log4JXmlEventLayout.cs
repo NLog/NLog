@@ -10,6 +10,9 @@ namespace NLog.Layouts
     [Layout("Log4JXmlEventLayout")]
     public class Log4JXmlEventLayout : Layout
     {
+        /// <summary>
+        /// Initializes a new instance of the Log4JXmlEventLayout class.
+        /// </summary>
         public Log4JXmlEventLayout()
         {
             Renderer = new Log4JXmlEventLayoutRenderer();
