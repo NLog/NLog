@@ -22,7 +22,7 @@
     <h5>Project News</h5>
     <ul>
        <li><b>2009-09-07</b>&#160;<a href="http://nlog.codeplex.com/Release/ProjectReleases.aspx?ReleaseId=32601">NLog 1.0 Refresh</a> has been released.</li>
-       <li><b>2009-09-06</b>&#160;NLog has moved from CodePlex from SourceForge.net. Source and binary releases as well as 
+       <li><b>2009-09-06</b>&#160;NLog has moved from SourceForge.net to CodePlex. Source and binary releases as well as 
        the issue tracker will be hosted on CodePlex. NLog documentation and Subversion repository will continue to be hosted on nlog-project.org. 
        Existing issues reported on sourceforge.net have been migrated to the "Issue Tracker".</li>
     </ul>
