@@ -42,16 +42,16 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionLayoutExpression : ConditionExpression
     {
-        private SimpleLayout layout;
-
         /// <summary>
         /// Initializes a new instance of the ConditionLayoutExpression class.
         /// </summary>
         /// <param name="layout">The layout.</param>
-        public ConditionLayoutExpression(SimpleLayout layout) 
+        public ConditionLayoutExpression(Layout layout) 
         {
-            this.layout = layout;
+            this.Layout = layout;
         }
+
+        public Layout Layout { get; private set; }
 
         /// <summary>
         /// Evaluates the expression by calculating the value
@@ -61,7 +61,7 @@ namespace NLog.Conditions
         /// <returns>The value of the layout.</returns>
         public override object Evaluate(LogEventInfo context)
         {
-            return this.layout.GetFormattedMessage(context);
+            return this.Layout.GetFormattedMessage(context);
         }
 
         /// <summary>
@@ -70,16 +70,7 @@ namespace NLog.Conditions
         /// <returns>String literal in single quotes.</returns>
         public override string ToString()
         {
-            return "'" + this.layout.Text + "'";
-        }
-
-        /// <summary>
-        /// Adds all layouts used by this expression to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            this.layout.PopulateLayouts(layouts);
+            return "'" + this.Layout + "'";
         }
     }
 }

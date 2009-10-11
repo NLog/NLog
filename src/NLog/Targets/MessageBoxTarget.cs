@@ -85,19 +85,6 @@ namespace NLog.Targets
         public Layout Caption { get; set; }
 
         /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts(layouts);
-            if (this.Caption != null)
-            {
-                this.Caption.PopulateLayouts(layouts);
-            }
-        }
-
-        /// <summary>
         /// Displays the message box with the log message and caption specified in the Caption
         /// parameter.
         /// </summary>

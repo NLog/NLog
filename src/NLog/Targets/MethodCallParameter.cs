@@ -41,7 +41,7 @@ namespace NLog.Targets
     /// <summary>
     /// A parameter to MethodCall.
     /// </summary>
-    public class MethodCallParameter
+    public class MethodCallParameter : INLogConfigurationItem
     {
         /// <summary>
         /// Initializes a new instance of the MethodCallParameter class.

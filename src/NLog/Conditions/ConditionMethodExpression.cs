@@ -49,26 +49,18 @@ namespace NLog.Conditions
         private readonly string conditionMethodName;
         private readonly bool acceptsLogEvent;
         private readonly MethodInfo methodInfo;
-        private readonly ICollection<ConditionExpression> methodParameters;
-
-        /// <summary>
-        /// Initializes a new instance of the ConditionMethodExpression class.
-        /// </summary>
-        public ConditionMethodExpression()
-        {
-        }
 
         /// <summary>
         /// Initializes a new instance of the ConditionMethodExpression class.
         /// </summary>
         /// <param name="conditionMethodName">Name of the condition method.</param>
         /// <param name="methodInfo"><see cref="MethodInfo"/> of the condition method.</param>
-        /// <param name="methodParameters">The method parameters.</param>
-        public ConditionMethodExpression(string conditionMethodName, MethodInfo methodInfo, ICollection<ConditionExpression> methodParameters)
+        /// <param name="MethodParameters">The method parameters.</param>
+        public ConditionMethodExpression(string conditionMethodName, MethodInfo methodInfo, IEnumerable<ConditionExpression> MethodParameters)
         {
             this.methodInfo = methodInfo;
             this.conditionMethodName = conditionMethodName;
-            this.methodParameters = methodParameters;
+            this.MethodParameters = new List<ConditionExpression>(MethodParameters).AsReadOnly();
 
             ParameterInfo[] formalParameters = this.methodInfo.GetParameters();
             if (formalParameters.Length >= 0 && formalParameters[0].ParameterType == typeof(LogEventInfo))
@@ -76,7 +68,7 @@ namespace NLog.Conditions
                 this.acceptsLogEvent = true;
             }
 
-            int actualParameterCount = this.methodParameters.Count;
+            int actualParameterCount = this.MethodParameters.Count;
             if (this.acceptsLogEvent)
             {
                 actualParameterCount++;
@@ -96,6 +88,8 @@ namespace NLog.Conditions
             }
         }
 
+        public ICollection<ConditionExpression> MethodParameters { get; private set; }
+
         /// <summary>
         /// Evaluates the expression.
         /// </summary>
@@ -103,12 +97,11 @@ namespace NLog.Conditions
         /// <returns>Expression result.</returns>
         public override object Evaluate(LogEventInfo context)
         {
-            object[] callParameters;
             int parameterOffset = this.acceptsLogEvent ? 1 : 0;
 
-            callParameters = new object[this.methodParameters.Count + parameterOffset];
+            object[] callParameters = new object[this.MethodParameters.Count + parameterOffset];
             int i = 0;
-            foreach (ConditionExpression ce in this.methodParameters)
+            foreach (ConditionExpression ce in this.MethodParameters)
             {
                 callParameters[i++ + parameterOffset] = ce.Evaluate(context);
             }
@@ -142,7 +135,7 @@ namespace NLog.Conditions
             sb.Append("(");
 
             string separator = string.Empty;
-            foreach (ConditionExpression expr in this.methodParameters)
+            foreach (ConditionExpression expr in this.MethodParameters)
             {
                 sb.Append(separator);
                 sb.Append(expr);
@@ -151,18 +144,6 @@ namespace NLog.Conditions
 
             sb.Append(")");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// Adds all layouts used by this expression to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            foreach (ConditionExpression expr in this.methodParameters)
-            {
-                expr.PopulateLayouts(layouts);
-            }
         }
     }
 }

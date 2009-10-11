@@ -32,9 +32,11 @@
 // 
 
 using System;
+using System.Threading;
 using System.Xml;
 
 using NLog;
+using NLog.Common;
 using NLog.Config;
 
 using NUnit.Framework;
@@ -453,6 +455,8 @@ namespace NLog.UnitTests.Targets
                 string threadID = NLog.Internal.ThreadIDHelper.Instance.CurrentThreadID.ToString();
 
                 SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(ft, 1000, AsyncTargetWrapperOverflowAction.Grow), LogLevel.Debug);
+                InternalLogger.LogToConsole = true;
+                InternalLogger.LogLevel = LogLevel.Trace;
 
                 for (int i = 0; i < 250; ++i)
                 {

@@ -192,45 +192,6 @@ namespace NLog.Targets
         public ICollection<DatabaseParameterInfo> Parameters { get; private set; }
 
         /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts(layouts);
-
-            if (this.DbHost != null)
-            {
-                this.DbHost.PopulateLayouts(layouts);
-            }
-
-            if (this.DbUserName != null)
-            {
-                this.DbUserName.PopulateLayouts(layouts);
-            }
-
-            if (this.DbDatabase != null)
-            {
-                this.DbDatabase.PopulateLayouts(layouts);
-            }
-
-            if (this.DbPassword != null)
-            {
-                this.DbPassword.PopulateLayouts(layouts);
-            }
-
-            if (this.CommandText != null)
-            {
-                this.CommandText.PopulateLayouts(layouts);
-            }
-
-            foreach (DatabaseParameterInfo pi in this.Parameters)
-            {
-                pi.Layout.PopulateLayouts(layouts);
-            }
-        }
-
-        /// <summary>
         /// Writes the specified logging event to the database. It creates
         /// a new database command, prepares parameters for it by calculating
         /// layouts and executes the command.

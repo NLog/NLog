@@ -91,22 +91,6 @@ namespace NLog.Targets.Wrappers
         public ICollection<FilteringRule> Rules { get; private set; }
 
         /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts(layouts);
-            foreach (FilteringRule fr in this.Rules)
-            {
-                fr.Filter.PopulateLayouts(layouts);
-                fr.Exists.PopulateLayouts(layouts);
-            }
-
-            this.DefaultFilter.PopulateLayouts(layouts);
-        }
-
-        /// <summary>
         /// Evaluates all filtering rules to find the first one that matches.
         /// The matching rule determines the filtering condition to be applied
         /// to all items in a buffer. If no condition matches, default filter
@@ -158,7 +142,7 @@ namespace NLog.Targets.Wrappers
             }
 
             // apply the condition to the buffer
-            List<LogEventInfo> resultBuffer = new List<LogEventInfo>();
+            var resultBuffer = new List<LogEventInfo>();
 
             for (int i = 0; i < logEvents.Length; ++i)
             {

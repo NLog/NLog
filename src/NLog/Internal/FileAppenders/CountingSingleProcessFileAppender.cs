@@ -42,17 +42,11 @@ namespace NLog.Internal.FileAppenders
     /// </summary>
     internal class CountingSingleProcessFileAppender : BaseFileAppender
     {
-        #region Constants and Fields
-
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
         private FileStream file;
 
         private long fileLength;
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         /// Initializes a new instance of the CountingSingleProcessFileAppender class.
@@ -76,10 +70,6 @@ namespace NLog.Internal.FileAppenders
 
             this.file = this.CreateFileStream(false);
         }
-
-        #endregion
-
-        #region Public Methods
 
         /// <summary>
         /// Closes this instance of the appender.
@@ -135,8 +125,6 @@ namespace NLog.Internal.FileAppenders
             this.file.Write(bytes, 0, bytes.Length);
             this.FileTouched();
         }
-
-        #endregion
 
         /// <summary>
         /// Factory class which creates <see cref="CountingSingleProcessFileAppender"/> objects.

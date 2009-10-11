@@ -264,7 +264,7 @@ namespace NLog
         public override bool Equals(object obj)
         {
             LogLevel other = obj as LogLevel;
-            if (other == null)
+            if ((object)other == null)
             {
                 return false;
             }

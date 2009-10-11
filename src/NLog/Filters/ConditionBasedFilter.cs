@@ -45,7 +45,7 @@ namespace NLog.Filters
     [Filter("when")]
     public class ConditionBasedFilter : Filter
     {
-        private static object boxedTrue = true;
+        private static readonly object boxedTrue = true;
 
         /// <summary>
         /// Gets or sets the condition expression.
@@ -73,10 +73,8 @@ namespace NLog.Filters
             {
                 return this.Action;
             }
-            else
-            {
-                return FilterResult.Neutral;
-            }
+
+            return FilterResult.Neutral;
         }
     }
 }

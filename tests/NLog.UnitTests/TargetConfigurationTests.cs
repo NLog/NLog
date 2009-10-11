@@ -68,7 +68,7 @@ namespace NLog.UnitTests
             SimpleLayout l = t.Layout as SimpleLayout;
             Assert.AreEqual("${message}", l.Text);
             Assert.IsNotNull(t.Layout);
-            Assert.AreEqual(1, l.Renderers.Length);
+            Assert.AreEqual(1, l.Renderers.Count);
             Assert.IsInstanceOf(typeof(MessageLayoutRenderer), l.Renderers[0]);
         }
 
@@ -90,7 +90,7 @@ namespace NLog.UnitTests
             SimpleLayout l = t.Layout as SimpleLayout;
             Assert.AreEqual("${message} ${level}", l.Text);
             Assert.IsNotNull(l);
-            Assert.AreEqual(3, l.Renderers.Length);
+            Assert.AreEqual(3, l.Renderers.Count);
             Assert.IsInstanceOf(typeof(MessageLayoutRenderer), l.Renderers[0]);
             Assert.IsInstanceOf(typeof(LiteralLayoutRenderer), l.Renderers[1]);
             Assert.IsInstanceOf(typeof(LevelLayoutRenderer), l.Renderers[2]);

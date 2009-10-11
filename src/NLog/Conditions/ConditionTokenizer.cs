@@ -44,8 +44,8 @@ namespace NLog.Conditions
         private static readonly ConditionTokenType[] charIndexToTokenType = new ConditionTokenType[128];
         private static readonly CharToTokenType[] charToTokenType =
         {
-            new CharToTokenType('<', ConditionTokenType.LT),
-            new CharToTokenType('>', ConditionTokenType.GT),
+            new CharToTokenType('<', ConditionTokenType.LessThan),
+            new CharToTokenType('>', ConditionTokenType.GreaterTo),
             new CharToTokenType('=', ConditionTokenType.EqualTo),
             new CharToTokenType('(', ConditionTokenType.LeftParen),
             new CharToTokenType(')', ConditionTokenType.RightParen),

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using NLog.Config;
 using NLog.Internal;
 
@@ -10,13 +9,6 @@ namespace NLog.Layouts
     [Layout("LayoutWithHeaderAndFooter")]
     public class LayoutWithHeaderAndFooter : Layout
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LayoutWithHeaderAndFooter"/> class.
-        /// </summary>
-        public LayoutWithHeaderAndFooter()
-        {
-        }
-
         /// <summary>
         /// Gets or sets the body layout (can be repeated multiple times).
         /// </summary>
@@ -118,74 +110,6 @@ namespace NLog.Layouts
             if (this.Footer != null)
             {
                 this.Footer.Precalculate(logEvent);
-            }
-        }
-
-        /// <summary>
-        /// Initializes the layout.
-        /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize();
-            if (Layout != null)
-            {
-                Layout.Initialize();
-            }
-
-            if (this.Header != null)
-            {
-                this.Header.Initialize();
-            }
-
-            if (this.Footer != null)
-            {
-                this.Footer.Initialize();
-            }
-        }
-
-        /// <summary>
-        /// Closes the layout.
-        /// </summary>
-        public override void Close()
-        {
-            if (Layout != null && Layout.IsInitialized)
-            {
-                Layout.Close();
-            }
-
-            if (this.Header != null && this.Header.IsInitialized)
-            {
-                this.Header.Close();
-            }
-
-            if (this.Footer != null && this.Footer.IsInitialized)
-            {
-                this.Footer.Close();
-            }
-
-            base.Close();
-        }
-
-        /// <summary>
-        /// Add this layout and all sub-layouts to the specified collection..
-        /// </summary>
-        /// <param name="layouts">The collection of layouts.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            layouts.Add(this);
-            if (Layout != null)
-            {
-                Layout.PopulateLayouts(layouts);
-            }
-
-            if (this.Header != null)
-            {
-                this.Header.PopulateLayouts(layouts);
-            }
-
-            if (this.Footer != null)
-            {
-                this.Footer.PopulateLayouts(layouts);
             }
         }
     }

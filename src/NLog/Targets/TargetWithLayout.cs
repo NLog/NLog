@@ -59,43 +59,6 @@ namespace NLog.Targets
         /// </summary>
         [RequiredParameter]
         [DefaultValue("${longdate}|${level:uppercase=true}|${logger}|${message}")]
-        public virtual Layout Layout { get; set; }
-
-        /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            if (this.Layout != null)
-            {
-                this.Layout.PopulateLayouts(layouts);
-            }
-        }
-
-        /// <summary>
-        /// Initializes the target.
-        /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize();
-            if (this.Layout != null)
-            {
-                this.Layout.Initialize();
-            }
-        }
-
-        /// <summary>
-        /// Closes the target and releases any unmanaged resources.
-        /// </summary>
-        protected internal override void Close()
-        {
-            if (this.Layout != null)
-            {
-                this.Layout.Close();
-            }
-
-            base.Close();
-        }
+        public Layout Layout { get; set; }
    }
 }

@@ -207,7 +207,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
-        protected internal override void Close()
+        public override void Close()
         {
             if (Footer != null)
             {

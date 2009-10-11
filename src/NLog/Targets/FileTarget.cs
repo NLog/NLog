@@ -429,19 +429,6 @@ namespace NLog.Targets
         protected string NewLineChars { get; private set; }
 
         /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts(layouts);
-            if (this.FileName != null)
-            {
-                this.FileName.PopulateLayouts(layouts);
-            }
-        }
-
-        /// <summary>
         /// Removes records of initialized files that have not been 
         /// accessed in the last two days.
         /// </summary>
@@ -692,7 +679,7 @@ namespace NLog.Targets
         /// <summary>
         /// Closes the file(s) opened for writing.
         /// </summary>
-        protected internal override void Close()
+        public override void Close()
         {
             base.Close();
 

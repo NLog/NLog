@@ -47,7 +47,7 @@ namespace NLog.Config
                     {
                         foreach (MethodInfo mi in t.GetMethods())
                         {
-                            TMethodAttributeType[] methodAttributes = (TMethodAttributeType[])mi.GetCustomAttributes(typeof(TMethodAttributeType), false);
+                            var methodAttributes = (TMethodAttributeType[])mi.GetCustomAttributes(typeof(TMethodAttributeType), false);
                             foreach (TMethodAttributeType attr in methodAttributes)
                             {
                                 this.RegisterDefinition(prefix + attr.Name, mi);

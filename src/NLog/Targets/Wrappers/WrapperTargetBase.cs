@@ -45,26 +45,8 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the target that is wrapped by this target.
         /// </summary>
+        [RequiredParameter]
         public Target WrappedTarget { get; set; }
-
-        /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts(layouts);
-            this.WrappedTarget.PopulateLayouts(layouts);
-        }
-
-        /// <summary>
-        /// Initializes the target by forwarding the call 
-        /// to <see cref="Target.Initialize"/> to the <see cref="WrapperTargetBase.WrappedTarget"/>.
-        /// </summary>
-        public override void Initialize()
-        {
-            this.WrappedTarget.Initialize();
-        }
 
         /// <summary>
         /// Returns the text representation of the object. Used for diagnostics.
@@ -72,16 +54,16 @@ namespace NLog.Targets.Wrappers
         /// <returns>A string that describes the target.</returns>
         public override string ToString()
         {
-            return ((this.Name != null) ? this.Name : "unnamed") + ":" + this.GetType().Name + "(" + ((this.WrappedTarget != null) ? this.WrappedTarget.ToString() : "null") + ")";
+            return base.ToString() + "(" + this.WrappedTarget + ")";
         }
 
         /// <summary>
-        /// Closes the target by forwarding the call to the <see cref="WrapperTargetBase.WrappedTarget"/> object.
+        /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>
-        protected internal override void Close()
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public override void Flush(System.TimeSpan timeout)
         {
-            base.Close();
-            this.WrappedTarget.Close();
+            this.WrappedTarget.Flush(timeout);
         }
 
         /// <summary>

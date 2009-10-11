@@ -43,13 +43,12 @@ namespace NLog.Config
     /// <summary>
     /// Represents a logging rule. An equivalent of &lt;logger /&gt; configuration element.
     /// </summary>
-    public class LoggingRule
+    public class LoggingRule : INLogConfigurationItem
     {
         private string loggerNamePattern;
         private MatchMode loggerNameMatchMode;
         private string loggerNameMatchArgument;
-
-        private bool[] logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
+        private readonly bool[] logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
 
         /// <summary>
         /// Initializes a new instance of the LoggingRule class.
@@ -74,7 +73,7 @@ namespace NLog.Config
             Targets = new List<Target>();
             this.LoggerNamePattern = loggerNamePattern;
             this.Targets.Add(target);
-            for (int i = (int)minLevel.Ordinal; i <= (int)LogLevel.MaxLevel.Ordinal; ++i)
+            for (int i = minLevel.Ordinal; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
                 this.EnableLoggingForLevel(LogLevel.FromOrdinal(i));
             }
@@ -248,7 +247,7 @@ namespace NLog.Config
         /// </returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             sb.AppendFormat(CultureInfo.InvariantCulture, "logNamePattern: ({0}:{1})", this.loggerNameMatchArgument, this.loggerNameMatchMode);
             sb.Append(" levels: [ ");

@@ -41,16 +41,16 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionNotExpression : ConditionExpression 
     {
-        private readonly ConditionExpression expression;
-
         /// <summary>
         /// Initializes a new instance of the ConditionNotExpression class.
         /// </summary>
         /// <param name="expression">The expression.</param>
         public ConditionNotExpression(ConditionExpression expression) 
         {
-            this.expression = expression;
+            this.Expression = expression;
         }
+
+        public ConditionExpression Expression { get; private set; }
 
         /// <summary>
         /// Evaluates the expression.
@@ -59,7 +59,7 @@ namespace NLog.Conditions
         /// <returns>Expression result.</returns>
         public override object Evaluate(LogEventInfo context)
         {
-            return !(bool)this.expression.Evaluate(context);
+            return !(bool)this.Expression.Evaluate(context);
         }
 
         /// <summary>
@@ -70,16 +70,7 @@ namespace NLog.Conditions
         /// </returns>
         public override string ToString()
         {
-            return "not(" + this.expression + ")";
-        }
-
-        /// <summary>
-        /// Adds all layouts used by this expression to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            this.expression.PopulateLayouts(layouts);
+            return "not(" + this.Expression + ")";
         }
     }
 }

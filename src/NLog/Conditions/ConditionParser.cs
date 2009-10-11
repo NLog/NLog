@@ -187,13 +187,13 @@ namespace NLog.Conditions
                 return new ConditionRelationalExpression(e, this.ParseLiteralExpression(), ConditionRelationalOperator.NotEqual);
             }
 
-            if (this.tokenizer.IsToken(ConditionTokenType.LT)) 
+            if (this.tokenizer.IsToken(ConditionTokenType.LessThan)) 
             {
                 this.tokenizer.GetNextToken();
                 return new ConditionRelationalExpression(e, this.ParseLiteralExpression(), ConditionRelationalOperator.Less);
             }
 
-            if (this.tokenizer.IsToken(ConditionTokenType.GT)) 
+            if (this.tokenizer.IsToken(ConditionTokenType.GreaterTo)) 
             {
                 this.tokenizer.GetNextToken();
                 return new ConditionRelationalExpression(e, this.ParseLiteralExpression(), ConditionRelationalOperator.Greater);

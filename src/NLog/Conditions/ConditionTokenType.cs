@@ -52,9 +52,9 @@ namespace NLog.Conditions
 
         FirstPunct,
 
-        LT,
+        LessThan,
 
-        GT,
+        GreaterTo,
         
         LessThanOrEqualTo,
         

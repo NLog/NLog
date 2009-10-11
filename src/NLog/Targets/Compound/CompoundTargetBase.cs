@@ -59,41 +59,5 @@ namespace NLog.Targets.Compound
         /// Gets the collection of targets managed by this compound target.
         /// </summary>
         public IList<Target> Targets { get; private set; }
-
-        /// <summary>
-        /// Adds all layouts used by this target and sub-targets.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts(layouts);
-            foreach (Target t in this.Targets)
-            {
-                t.PopulateLayouts(layouts);
-            }
-        }
-
-        /// <summary>
-        /// Initializes the target by initializing all sub-targets.
-        /// </summary>
-        public override void Initialize()
-        {
-            foreach (Target t in this.Targets)
-            {
-                t.Initialize();
-            }
-        }
-
-        /// <summary>
-        /// Closes the target by closing all sub-targets.
-        /// </summary>
-        protected internal override void Close()
-        {
-            base.Close();
-            foreach (Target t in this.Targets)
-            {
-                t.Close();
-            }
-        }
-    }
+   }
 }

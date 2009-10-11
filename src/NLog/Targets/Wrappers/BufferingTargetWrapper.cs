@@ -106,11 +106,7 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the number of log events to be buffered.
         /// </summary>
         [DefaultValue(100)]
-        public int BufferSize
-        {
-            get { return this.buffer.Size; }
-            set { this.buffer = new LogEventInfoBuffer(value, false, 0); }
-        }
+        public int BufferSize { get; set; }
 
         /// <summary>
         /// Gets or sets the timeout (in milliseconds) after which the contents of buffer will be flushed 
@@ -125,7 +121,8 @@ namespace NLog.Targets.Wrappers
         public override void Initialize()
         {
             base.Initialize();
-            this.flushTimer = new Timer(new TimerCallback(this.FlushCallback), null, -1, -1);
+            this.buffer = new LogEventInfoBuffer(this.BufferSize, false, 0);
+            this.flushTimer = new Timer(this.FlushCallback, null, -1, -1);
         }
 
         /// <summary>
@@ -138,7 +135,7 @@ namespace NLog.Targets.Wrappers
 
             lock (this)
             {
-                LogEventInfo[] events = this.buffer.GetEventsAndClear();
+                var events = this.buffer.GetEventsAndClear();
                 if (events.Length > 0)
                 {
                     WrappedTarget.Write(events);
@@ -149,7 +146,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Closes the target by flushing pending events in the buffer (if any).
         /// </summary>
-        protected internal override void Close()
+        public override void Close()
         {
             this.Flush(TimeSpan.FromSeconds(3));
             base.Close();
@@ -170,7 +167,7 @@ namespace NLog.Targets.Wrappers
                 int count = this.buffer.Append(logEvent);
                 if (count >= this.BufferSize)
                 {
-                    LogEventInfo[] events = this.buffer.GetEventsAndClear();
+                    var events = this.buffer.GetEventsAndClear();
                     WrappedTarget.Write(events);
                 }
                 else

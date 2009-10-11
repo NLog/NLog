@@ -157,19 +157,6 @@ namespace NLog.Targets
             get { return this.Layout.Renderer; }
         }
 
-        /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts(layouts);
-            foreach (NLogViewerParameterInfo pi in this.Parameters)
-            {
-                pi.Layout.PopulateLayouts(layouts);
-            }
-        }
-
 #if !NET_CF
         /// <summary>
         /// Returns the value indicating whether call site and/or source information should be gathered.

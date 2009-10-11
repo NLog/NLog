@@ -58,7 +58,6 @@ namespace NLog.Targets
     public sealed class ConsoleTarget : TargetWithLayoutHeaderAndFooter
     {
 #if !NET_CF
-
         /// <summary>
         /// Gets or sets a value indicating whether to send the logging messages to the standard error instead of the standard output.
         /// </summary>
@@ -94,7 +93,7 @@ namespace NLog.Targets
         /// <summary>
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
-        protected internal override void Close()
+        public override void Close()
         {
             if (Footer != null)
             {

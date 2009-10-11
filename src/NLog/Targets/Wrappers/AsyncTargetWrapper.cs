@@ -185,7 +185,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Closes the target by stopping the lazy writer thread.
         /// </summary>
-        protected internal override void Close()
+        public override void Close()
         {
             this.StopLazyWriterThread();
             base.Close();
@@ -202,7 +202,7 @@ namespace NLog.Targets.Wrappers
         /// </remarks>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            WrappedTarget.PrecalculateVolatileLayouts(logEvent);
+            this.WrappedTarget.PrecalculateVolatileLayouts(logEvent);
             this.RequestQueue.Enqueue(logEvent);
         }
 

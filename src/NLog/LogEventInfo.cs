@@ -140,7 +140,7 @@ namespace NLog
         /// </summary>
         public bool HasStackTrace
         {
-            get { return StackTrace != null; }
+            get { return this.StackTrace != null; }
         }
 
         /// <summary>

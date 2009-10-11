@@ -33,8 +33,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using NLog.Common;
 using NLog.Config;
+using NLog.Internal;
+using NLog.LayoutRenderers;
 using NLog.Layouts;
 
 namespace NLog.Targets
@@ -42,30 +45,15 @@ namespace NLog.Targets
     /// <summary>
     /// Represents logging target.
     /// </summary>
-    public abstract class Target : IDisposable
+    public abstract class Target : ISupportsInitialize, INLogConfigurationItem, IDisposable
     {
-        private readonly List<Layout> allLayouts = new List<Layout>();
+        private List<Layout> allLayouts;
         private StackTraceUsage stackTraceUsage;
-
-        /// <summary>
-        /// Gets a value indicating whether the target has been initialized by calling <see cref="Initialize" />.
-        /// </summary>
-        public bool IsInitialized { get; private set; }
 
         /// <summary>
         /// Gets or sets the name of the target.
         /// </summary>
-        [RequiredParameter]
         public string Name { get; set; }
-
-        /// <summary>
-        /// Returns the text representation of the object. Used for diagnostics.
-        /// </summary>
-        /// <returns>A string that describes the target.</returns>
-        public override string ToString()
-        {
-            return (this.Name ?? "unnamed") + ":" + this.GetType().Name;
-        }
 
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
@@ -114,33 +102,30 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public virtual void PopulateLayouts(ICollection<Layout> layouts)
-        {
-        }
-
-        /// <summary>
         /// Initializes the target. Can be used by inheriting classes
         /// to initialize logging.
         /// </summary>
         public virtual void Initialize()
         {
-            this.PopulateLayouts(this.allLayouts);
+            this.GetAllLayouts();
 
             foreach (Layout l in this.allLayouts)
             {
-                l.Initialize();
-
                 StackTraceUsage stu = l.GetStackTraceUsage();
                 if (stu > this.stackTraceUsage)
                 {
                     this.stackTraceUsage = stu;
                 }
             }
+        }
 
-            this.IsInitialized = true;
+        private void GetAllLayouts()
+        {
+            var scanner = new ObjectGraphScanner<Layout>();
+            scanner.AddRoot(this);
+            this.allLayouts = new List<Layout>(scanner.Scan());
+
+            InternalLogger.Trace("{0} has {1} layouts", this, allLayouts.Count);
         }
 
         /// <summary>
@@ -178,37 +163,31 @@ namespace NLog.Targets
         /// <summary>
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
-        protected internal virtual void Close()
+        public virtual void Close()
         {
-            if (!this.IsInitialized)
-            {
-                InternalLogger.Warn("Called Close() without Initialize() on {0}({1})", this, this.GetHashCode());
-            }
-            else
-            {
-                InternalLogger.Trace("Closing {0}({1})...", this, this.GetHashCode());
-            }
-
-            foreach (Layout l in this.allLayouts)
-            {
-                l.Close();
-            }
-
-            this.IsInitialized = false;
         }
-
-        #region IDisposable Members
 
         void IDisposable.Dispose()
         {
-            if (this.IsInitialized)
-            {
-                this.Close();
-            }
-
+            this.Close();
             GC.SuppressFinalize(true);
         }
 
-        #endregion
+        /// <summary>
+        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String"/> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            var targetAttribute = (TargetAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(TargetAttribute));
+            if (targetAttribute != null)
+            {
+                return targetAttribute.Name + " Target[" + (this.Name ?? "(unnamed)") + "]";
+            }
+
+            return this.GetType().Name;
+        }
     }
 }

@@ -4,8 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v3.5</TargetFrameworkVersion>
-    <TargetFrameworkSubset Condition="'$(TargetFrameworkSubset)'==''">
-    </TargetFrameworkSubset>
+    <TargetFrameworkSubset Condition="'$(TargetFrameworkSubset)'==''">Full</TargetFrameworkSubset>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{B71A9EF1-2493-4B7B-AB82-8C7A83C10952}</ProjectGuid>
@@ -88,6 +87,8 @@
     <Compile Include="Config\Factory.cs" />
     <Compile Include="Config\IFactory.cs" />
     <Compile Include="Config\IFactory`2.cs" />
+    <Compile Include="Internal\EnumerableHelpers.cs" />
+    <Compile Include="Internal\INLogConfigurationItem.cs" />
     <Compile Include="Config\LoggingConfiguration.cs" />
     <Compile Include="Config\LoggingConfigurationChangedEventArgs.cs" />
     <Compile Include="Config\LoggingConfigurationReloadedEventArgs.cs" />
@@ -132,6 +133,8 @@
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileInfoHelper.cs" />
     <Compile Include="Internal\FormHelper.cs" />
+    <Compile Include="Internal\ObjectGraphScanner.cs" />
+    <Compile Include="Internal\ISupportsInitialize.cs" />
     <Compile Include="Internal\LogEventInfoBuffer.cs" />
     <Compile Include="Internal\LoggerConfiguration.cs" />
     <Compile Include="Internal\MultiFileWatcher.cs" />
@@ -254,6 +257,7 @@
     <Compile Include="Targets\RichTextBoxRowColoringRule.cs" />
     <Compile Include="Targets\RichTextBoxTarget.cs" />
     <Compile Include="Targets\RichTextBoxWordColoringRule.cs" />
+    <Compile Include="Targets\SmtpAuthenticationMode.cs" />
     <Compile Include="Targets\Target.cs" />
     <Compile Include="Targets\TargetAttribute.cs" />
     <Compile Include="Targets\TargetWithLayout.cs" />

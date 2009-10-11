@@ -31,15 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Layouts;
+using NLog.Config;
 
 namespace NLog.Conditions
 {
     /// <summary>
     /// Base class for representing nodes in condition expression trees.
     /// </summary>
-    public abstract class ConditionExpression 
+    public abstract class ConditionExpression : INLogConfigurationItem
     {
         /// <summary>
         /// Converts condition text to a condition expression tree.
@@ -57,14 +56,6 @@ namespace NLog.Conditions
         /// <param name="context">Evaluation context.</param>
         /// <returns>Expression result.</returns>
         public abstract object Evaluate(LogEventInfo context);
-
-        /// <summary>
-        /// Adds all layouts used by this expression to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public virtual void PopulateLayouts(ICollection<Layout> layouts)
-        {
-        }
 
         /// <summary>
         /// Returns a string representation of the expression.

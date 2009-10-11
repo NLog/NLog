@@ -93,27 +93,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// SMTP authentication modes.
-        /// </summary>
-        public enum SmtpAuthenticationMode
-        {
-            /// <summary>
-            /// No authentication.
-            /// </summary>
-            None,
-
-            /// <summary>
-            /// Basic - username and password.
-            /// </summary>
-            Basic,
-
-            /// <summary>
-            /// NTLM Authentication.
-            /// </summary>
-            Ntlm,
-        }
-
-        /// <summary>
         /// Gets or sets sender's email address (e.g. joe@domain.com).
         /// </summary>
         public Layout From { get; set; }
@@ -200,39 +179,6 @@ namespace NLog.Targets
         /// </summary>
         [DefaultValue(25)]
         public int SmtpPort { get; set; }
-
-        /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts(layouts);
-            if (this.From != null)
-            {
-                this.From.PopulateLayouts(layouts);
-            }
-
-            if (this.To != null)
-            {
-                this.To.PopulateLayouts(layouts);
-            }
-
-            if (this.CC != null)
-            {
-                this.CC.PopulateLayouts(layouts);
-            }
-
-            if (this.Bcc != null)
-            {
-                this.Bcc.PopulateLayouts(layouts);
-            }
-
-            if (this.Subject != null)
-            {
-                this.Subject.PopulateLayouts(layouts);
-            }
-        }
 
         /// <summary>
         /// Renders the logging event message and adds it to the internal ArrayList of log messages.

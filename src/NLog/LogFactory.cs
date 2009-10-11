@@ -661,7 +661,7 @@ namespace NLog
             public override bool Equals(object o)
             {
                 LoggerCacheKey key = o as LoggerCacheKey;
-                if (key == null)
+                if ((object)key == null)
                 {
                     return false;
                 }

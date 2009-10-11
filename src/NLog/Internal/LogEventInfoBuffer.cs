@@ -41,7 +41,7 @@ namespace NLog.Internal
     internal class LogEventInfoBuffer
     {
         private readonly bool growAsNeeded;
-        private readonly int growLimit = 0;
+        private readonly int growLimit;
 
         private LogEventInfo[] buffer;
         private int getPointer;

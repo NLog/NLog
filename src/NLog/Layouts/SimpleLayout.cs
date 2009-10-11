@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Collections.ObjectModel;
 using System.Text;
 using NLog.Common;
 using NLog.Config;
@@ -45,18 +46,10 @@ namespace NLog.Layouts
     [Layout("SimpleLayout")]
     public sealed class SimpleLayout : Layout
     {
-        #region Constants and Fields
-
         private string fixedText;
-
-        private bool isVolatile = false;
-
+        private bool isVolatile;
         private string layoutText;
         private StackTraceUsage stackTraceUsage = StackTraceUsage.None;
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         /// Initializes a new instance of the SimpleLayout class.
@@ -79,10 +72,6 @@ namespace NLog.Layouts
         {
             this.SetRenderers(renderers, text);
         }
-
-        #endregion
-
-        #region Properties
 
         /// <summary>
         /// Gets or sets the layout text.
@@ -111,11 +100,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets a collection of <see cref="LayoutRenderer"/> objects that make up this layout.
         /// </summary>
-        internal LayoutRenderer[] Renderers { get; private set; }
-
-        #endregion
-
-        #region Operators
+        public ReadOnlyCollection<LayoutRenderer> Renderers { get; private set; }
 
         /// <summary>
         /// Converts a text to a simple layout.
@@ -126,10 +111,6 @@ namespace NLog.Layouts
         {
             return new SimpleLayout(text);
         }
-
-        #endregion
-
-        #region Public Methods
 
         /// <summary>
         /// Escapes the passed text so that it can
@@ -195,7 +176,7 @@ namespace NLog.Layouts
 
             int size = 0;
 
-            for (int i = 0; i < this.Renderers.Length; ++i)
+            for (int i = 0; i < this.Renderers.Count; ++i)
             {
                 LayoutRenderer app = this.Renderers[i];
                 try
@@ -214,7 +195,7 @@ namespace NLog.Layouts
 
             StringBuilder builder = new StringBuilder(size);
 
-            for (int i = 0; i < this.Renderers.Length; ++i)
+            for (int i = 0; i < this.Renderers.Count; ++i)
             {
                 LayoutRenderer app = this.Renderers[i];
                 try
@@ -251,11 +232,6 @@ namespace NLog.Layouts
         public override void Initialize()
         {
             base.Initialize();
-
-            foreach (LayoutRenderer lr in this.Renderers)
-            {
-                lr.Initialize();
-            }
         }
 
         /// <summary>
@@ -292,17 +268,13 @@ namespace NLog.Layouts
         /// </returns>
         public override string ToString()
         {
-            return this.Text;
+            return "Simple Layout: '" + this.Text + "'";
         }
-
-        #endregion
-
-        #region Methods
 
         internal void SetRenderers(LayoutRenderer[] renderers, string text)
         {
-            this.Renderers = renderers;
-            if (this.Renderers.Length == 1 && this.Renderers[0] is LiteralLayoutRenderer)
+            this.Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
+            if (this.Renderers.Count == 1 && this.Renderers[0] is LiteralLayoutRenderer)
             {
                 this.fixedText = ((LiteralLayoutRenderer)this.Renderers[0]).Text;
             }
@@ -330,7 +302,5 @@ namespace NLog.Layouts
                 }
             }
         }
-
-        #endregion
     }
 }

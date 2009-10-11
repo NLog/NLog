@@ -153,7 +153,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Closes the impersonation context.
         /// </summary>
-        protected internal override void Close()
+        public override void Close()
         {
             using (this.DoImpersonate())
             {

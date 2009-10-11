@@ -31,15 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using System.Text;
 using NLog.Config;
+using NLog.Internal;
 
 namespace NLog.LayoutRenderers
 {
     /// <summary>
     /// Render environmental information related to logging events.
     /// </summary>
-    public abstract class LayoutRenderer
+    public abstract class LayoutRenderer : INLogConfigurationItem, ISupportsInitialize
     {
         /// <summary>
         /// Initializes the layout renderer.
@@ -108,6 +110,23 @@ namespace NLog.LayoutRenderers
         protected internal virtual bool IsAppDomainFixed()
         {
             return false;
+        }
+
+        /// <summary>
+        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String"/> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            var lra = (LayoutRendererAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(LayoutRendererAttribute));
+            if (lra != null)
+            {
+                return "Layout Renderer: ${" + lra.Name + "}";
+            }
+
+            return this.GetType().Name;
         }
     }
 }

@@ -31,36 +31,31 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
+#if !NET_CF && !SILVERLIGHT
 
-namespace NLog.Config
+namespace NLog.Targets
 {
     /// <summary>
-    /// Arguments for <see cref="LogFactory.ConfigurationChanged"/> events.
+    /// SMTP authentication modes.
     /// </summary>
-    public class LoggingConfigurationChangedEventArgs : EventArgs
+    public enum SmtpAuthenticationMode
     {
         /// <summary>
-        /// Initializes a new instance of the LoggingConfigurationChangedEventArgs class.
+        /// No authentication.
         /// </summary>
-        /// <param name="oldConfiguration">The old configuration.</param>
-        /// <param name="newConfiguration">The new configuration.</param>
-        internal LoggingConfigurationChangedEventArgs(LoggingConfiguration oldConfiguration, LoggingConfiguration newConfiguration)
-        {
-            this.OldConfiguration = oldConfiguration;
-            this.NewConfiguration = newConfiguration;
-        }
+        None,
 
         /// <summary>
-        /// Gets the old configuration.
+        /// Basic - username and password.
         /// </summary>
-        /// <value>The old configuration.</value>
-        public LoggingConfiguration OldConfiguration { get; private set; }
+        Basic,
 
         /// <summary>
-        /// Gets the new configuration.
+        /// NTLM Authentication.
         /// </summary>
-        /// <value>The new configuration.</value>
-        public LoggingConfiguration NewConfiguration { get; private set; }
+        Ntlm,
     }
+
 }
+
+#endif

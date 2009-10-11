@@ -33,7 +33,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using NLog.Common;
+using NLog.Internal;
 using NLog.Targets;
 
 namespace NLog.Config
@@ -44,24 +46,21 @@ namespace NLog.Config
     /// </summary>
     public class LoggingConfiguration
     {
-        private IDictionary<string, Target> targets = new Dictionary<string, Target>(StringComparer.OrdinalIgnoreCase);
-        private ICollection<Target> aliveTargets = new List<Target>();
-        private IList<LoggingRule> loggingRules = new List<LoggingRule>();
+        private readonly IDictionary<string, Target> targets = new Dictionary<string, Target>(StringComparer.OrdinalIgnoreCase);
+        private INLogConfigurationItem[] configItems;
 
         /// <summary>
         /// Initializes a new instance of the LoggingConfiguration class.
         /// </summary>
         public LoggingConfiguration()
         {
+            this.LoggingRules = new List<LoggingRule>();
         }
 
         /// <summary>
         /// Gets the collection of logging rules.
         /// </summary>
-        public IList<LoggingRule> LoggingRules
-        {
-            get { return this.loggingRules; }
-        }
+        public IList<LoggingRule> LoggingRules { get; private set; }
 
         /// <summary>
         /// Gets the collection of file names which should be watched for changes by NLog.
@@ -135,28 +134,6 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Closes all targets and releases any unmanaged resources.
-        /// </summary>
-        public void Close()
-        {
-            InternalLogger.Debug("Closing logging configuration...");
-            foreach (Target target in this.aliveTargets)
-            {
-                try
-                {
-                    InternalLogger.Debug("Closing target {1} ({0})", target.Name, target.GetType().FullName);
-                    target.Close();
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error("Error while closing target: {0} {1}", target.Name, ex); 
-                }
-            }
-
-            InternalLogger.Debug("Finished closing logging configuration.");
-        }
-
-        /// <summary>
         /// Flushes any pending log messages on all appenders.
         /// </summary>
         /// <param name="timeout">The timeout.</param>
@@ -177,28 +154,79 @@ namespace NLog.Config
 
         internal void InitializeAll()
         {
+            var scanner = new ObjectGraphScanner<INLogConfigurationItem>();
             foreach (LoggingRule r in this.LoggingRules)
             {
-                foreach (Target t in r.Targets)
-                {
-                    if (!this.aliveTargets.Contains(t))
-                    {
-                        this.aliveTargets.Add(t);
-                    }
-                }
+                scanner.AddRoot(r);
             }
 
-            foreach (Target target in this.aliveTargets)
+            foreach (Target target in this.targets.Values)
             {
+                scanner.AddRoot(target);
+            }
+
+            this.configItems = scanner.Scan();
+
+            // initialize all config items starting from most nested first
+            // so that whenever the container is initialized its children have already been
+            //
+
+            InternalLogger.Info("Found {0} configuration items", configItems.Length);
+
+            foreach (object o in this.configItems)
+            {
+                this.CheckRequiredParameters(o);
+            }
+
+            foreach (ISupportsInitialize initialize in EnumerableHelpers.Reverse(EnumerableHelpers.OfType<ISupportsInitialize>(this.configItems)))
+            {
+                InternalLogger.Trace("Initializing {0}", initialize);
                 try
                 {
-                    target.Initialize();
+                    initialize.Initialize();
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error("Error while initializing target: {0} {1}", target.Name, ex);
+                    throw new NLogConfigurationException("Error during initialization of " + initialize, ex);
                 }
             }
+        }
+
+        private void CheckRequiredParameters(object o)
+        {
+            foreach (PropertyInfo propInfo in o.GetType().GetProperties())
+            {
+                if (propInfo.IsDefined(typeof(RequiredParameterAttribute), false))
+                {
+                    object value = propInfo.GetValue(o, null);
+                    if (value == null)
+                    {
+                        throw new NLogConfigurationException("Required parameter '" + propInfo.Name + "' on '" + o + "' was not specified.");
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Closes all targets and releases any unmanaged resources.
+        /// </summary>
+        public void Close()
+        {
+            InternalLogger.Debug("Closing logging configuration...");
+            foreach (ISupportsInitialize initialize in EnumerableHelpers.OfType<ISupportsInitialize>(this.configItems))
+            {
+                InternalLogger.Trace("Closing {0}", initialize);
+                try
+                {
+                    initialize.Close();
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Warn("Exception while closing {0}", ex);
+                }
+            }
+
+            InternalLogger.Debug("Finished closing logging configuration.");
         }
 
         internal void Dump()

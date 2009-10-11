@@ -36,13 +36,14 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using NLog.Config;
 
 namespace NLog.Targets
 {
     /// <summary>
     /// Highlighting rule for Win32 colorful console.
     /// </summary>
-    public class RichTextBoxWordColoringRule
+    public class RichTextBoxWordColoringRule : INLogConfigurationItem
     {
         private Regex compiledRegex;
 

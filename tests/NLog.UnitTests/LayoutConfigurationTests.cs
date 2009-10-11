@@ -52,7 +52,7 @@ namespace NLog.UnitTests
         public void SimpleTest()
         {
             SimpleLayout l = "${message}";
-            Assert.AreEqual(1, l.Renderers.Length);
+            Assert.AreEqual(1, l.Renderers.Count);
             Assert.IsInstanceOf(typeof(MessageLayoutRenderer), l.Renderers[0]);
         }
 
@@ -66,7 +66,7 @@ namespace NLog.UnitTests
         public void SingleParamTest()
         {
             SimpleLayout l = "${mdc:item=AAA}";
-            Assert.AreEqual(1, l.Renderers.Length);
+            Assert.AreEqual(1, l.Renderers.Count);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("AAA", mdc.Item);
@@ -76,7 +76,7 @@ namespace NLog.UnitTests
         public void ValueWithColonTest()
         {
             SimpleLayout l = "${mdc:item=AAA\\:}";
-            Assert.AreEqual(1, l.Renderers.Length);
+            Assert.AreEqual(1, l.Renderers.Count);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("AAA:", mdc.Item);
@@ -87,7 +87,7 @@ namespace NLog.UnitTests
         {
             SimpleLayout l = "${mdc:item=AAA\\}\\:}";
             Assert.AreEqual("${mdc:item=AAA\\}\\:}", l.Text);
-            Assert.AreEqual(1, l.Renderers.Length);
+            Assert.AreEqual(1, l.Renderers.Count);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("AAA}:", mdc.Item);
@@ -97,7 +97,7 @@ namespace NLog.UnitTests
         public void DefaultValueTest()
         {
             SimpleLayout l = "${mdc:BBB}";
-            Assert.AreEqual(1, l.Renderers.Length);
+            Assert.AreEqual(1, l.Renderers.Count);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("BBB", mdc.Item);
@@ -108,7 +108,7 @@ namespace NLog.UnitTests
         {
             SimpleLayout l = "${mdc:AAA\\}\\:}";
             Assert.AreEqual(l.Text,"${mdc:AAA\\}\\:}");
-            Assert.AreEqual(1, l.Renderers.Length);
+            Assert.AreEqual(1, l.Renderers.Count);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("AAA}:", mdc.Item);
@@ -118,7 +118,7 @@ namespace NLog.UnitTests
         public void DefaultValueWithOtherParametersTest()
         {
             SimpleLayout l = "${exception:message,type:separator=x}";
-            Assert.AreEqual(1, l.Renderers.Length);
+            Assert.AreEqual(1, l.Renderers.Count);
             ExceptionLayoutRenderer elr = l.Renderers[0] as ExceptionLayoutRenderer;
             Assert.IsNotNull(elr);
             Assert.AreEqual("message,type", elr.Format);
@@ -129,7 +129,7 @@ namespace NLog.UnitTests
         public void EmptyValueTest()
         {
             SimpleLayout l = "${mdc:item=}";
-            Assert.AreEqual(1, l.Renderers.Length);
+            Assert.AreEqual(1, l.Renderers.Count);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("", mdc.Item);
@@ -139,12 +139,12 @@ namespace NLog.UnitTests
         public void NestedLayoutTest()
         {
             SimpleLayout l = "${file-contents:fileName=${basedir:padding=10}/aaa.txt:encoding=iso-8859-1}";
-            Assert.AreEqual(1, l.Renderers.Length);
+            Assert.AreEqual(1, l.Renderers.Count);
             FileContentsLayoutRenderer lr = l.Renderers[0] as FileContentsLayoutRenderer;
             Assert.IsNotNull(lr);
             Assert.IsInstanceOf(typeof(SimpleLayout), lr.FileName);
             Assert.AreEqual("${basedir:padding=10}/aaa.txt", ((SimpleLayout)lr.FileName).Text);
-            Assert.AreEqual(1, ((SimpleLayout)lr.FileName).Renderers.Length);
+            Assert.AreEqual(1, ((SimpleLayout)lr.FileName).Renderers.Count);
             Assert.AreEqual(Encoding.GetEncoding("iso-8859-1"), lr.Encoding);
         }
 
@@ -152,12 +152,12 @@ namespace NLog.UnitTests
         public void DoubleNestedLayoutTest()
         {
             SimpleLayout l = "${file-contents:fileName=${basedir}/${file-contents:fileName=${basedir}/aaa.txt}/aaa.txt}";
-            Assert.AreEqual(1, l.Renderers.Length);
+            Assert.AreEqual(1, l.Renderers.Count);
             FileContentsLayoutRenderer lr = l.Renderers[0] as FileContentsLayoutRenderer;
             Assert.IsNotNull(lr);
             Assert.IsInstanceOf(typeof(Layout), lr.FileName);
             Assert.AreEqual("${basedir}/${file-contents:fileName=${basedir}/aaa.txt}/aaa.txt", ((SimpleLayout)lr.FileName).Text);
-            Assert.AreEqual(3, ((SimpleLayout)lr.FileName).Renderers.Length);
+            Assert.AreEqual(3, ((SimpleLayout)lr.FileName).Renderers.Count);
             Assert.IsInstanceOf(typeof(LiteralLayoutRenderer), ((SimpleLayout)lr.FileName).Renderers[0]);
             Assert.IsInstanceOf(typeof(FileContentsLayoutRenderer), ((SimpleLayout)lr.FileName).Renderers[1]);
             Assert.IsInstanceOf(typeof(LiteralLayoutRenderer), ((SimpleLayout)lr.FileName).Renderers[2]);
@@ -174,12 +174,12 @@ namespace NLog.UnitTests
         public void DoubleNestedLayoutWithDefaultLayoutParametersTest()
         {
             SimpleLayout l = "${file-contents:${basedir}/${file-contents:${basedir}/aaa.txt}/aaa.txt}";
-            Assert.AreEqual(1, l.Renderers.Length);
+            Assert.AreEqual(1, l.Renderers.Count);
             FileContentsLayoutRenderer lr = l.Renderers[0] as FileContentsLayoutRenderer;
             Assert.IsNotNull(lr);
             Assert.IsInstanceOf(typeof(Layout), lr.FileName);
             Assert.AreEqual("${basedir}/${file-contents:${basedir}/aaa.txt}/aaa.txt", ((SimpleLayout)lr.FileName).Text);
-            Assert.AreEqual(3, ((SimpleLayout)lr.FileName).Renderers.Length);
+            Assert.AreEqual(3, ((SimpleLayout)lr.FileName).Renderers.Count);
             Assert.IsInstanceOf(typeof(LiteralLayoutRenderer), ((SimpleLayout)lr.FileName).Renderers[0]);
             Assert.IsInstanceOf(typeof(FileContentsLayoutRenderer), ((SimpleLayout)lr.FileName).Renderers[1]);
             Assert.IsInstanceOf(typeof(LiteralLayoutRenderer), ((SimpleLayout)lr.FileName).Renderers[2]);

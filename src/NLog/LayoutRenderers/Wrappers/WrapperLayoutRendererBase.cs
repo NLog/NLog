@@ -53,31 +53,6 @@ namespace NLog.LayoutRenderers.Wrappers
         public Layout Inner { get; set; }
 
         /// <summary>
-        /// Initializes the layout renderer.
-        /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize();
-            if (this.Inner != null)
-            {
-                this.Inner.Initialize();
-            }
-        }
-
-        /// <summary>
-        /// Closes the layout renderer.
-        /// </summary>
-        public override void Close()
-        {
-            if (this.Inner != null && this.Inner.IsInitialized)
-            {
-                this.Inner.Close();
-            }
-
-            base.Close();
-        }
-
-        /// <summary>
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
         /// </summary>

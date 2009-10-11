@@ -38,7 +38,7 @@ namespace NLog.Internal
     /// </summary>
     internal class LoggerConfiguration
     {
-        private TargetWithFilterChain[] targetsByLevel;
+        private readonly TargetWithFilterChain[] targetsByLevel;
 
         /// <summary>
         /// Initializes a new instance of the LoggerConfiguration class.

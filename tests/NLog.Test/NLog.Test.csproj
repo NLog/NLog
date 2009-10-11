@@ -78,6 +78,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="NLog.xsd" />
     <Compile Include="Test.cs">
       <SubType>Code</SubType>
     </Compile>

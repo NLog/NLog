@@ -58,19 +58,6 @@ namespace NLog.Targets
         public ICollection<MethodCallParameter> Parameters { get; private set; }
 
         /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts(layouts);
-            foreach (MethodCallParameter p in this.Parameters)
-            {
-                p.Layout.PopulateLayouts(layouts);
-            }
-        }
-
-        /// <summary>
         /// Prepares an array of parameters to be passed based on the logging event and calls DoInvoke().
         /// </summary>
         /// <param name="logEvent">

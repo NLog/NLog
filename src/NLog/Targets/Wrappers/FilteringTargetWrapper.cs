@@ -85,19 +85,6 @@ namespace NLog.Targets.Wrappers
         public ConditionExpression Condition { get; set; }
 
         /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts(layouts);
-            if (this.Condition != null)
-            {
-                this.Condition.PopulateLayouts(layouts);
-            }
-        }
-
-        /// <summary>
         /// Checks the condition against the passed log event.
         /// If the condition is met, the log event is forwarded to
         /// the wrapped target.

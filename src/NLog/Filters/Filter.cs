@@ -39,7 +39,7 @@ namespace NLog.Filters
     /// An abstract filter class. Provides a way to eliminate log messages
     /// based on properties other than logger name and log level.
     /// </summary>
-    public abstract class Filter
+    public abstract class Filter : INLogConfigurationItem
     {
         /// <summary>
         /// Initializes a new instance of the Filter class.

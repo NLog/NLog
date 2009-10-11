@@ -125,17 +125,6 @@ namespace NLog.Win32.Targets
         public bool Recoverable { get; set; }
 
         /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts(layouts);
-            this.Queue.PopulateLayouts(layouts);
-            this.Label.PopulateLayouts(layouts);
-        }
-
-        /// <summary>
         /// Writes the specified logging event to a queue specified in the Queue 
         /// parameter.
         /// </summary>

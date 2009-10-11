@@ -156,19 +156,6 @@ namespace NLog.Targets
         public Encoding Encoding { get; set; }
 
         /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            base.PopulateLayouts(layouts);
-            if (this.Address != null)
-            {
-                this.Address.PopulateLayouts(layouts);
-            }
-        }
-
-        /// <summary>
         /// Flushes any buffers.
         /// </summary>
         /// <param name="timeout">Flush timeout.</param>
@@ -186,7 +173,7 @@ namespace NLog.Targets
         /// <summary>
         /// Closes the target.
         /// </summary>
-        protected internal override void Close()
+        public override void Close()
         {
             base.Close();
             lock (this)

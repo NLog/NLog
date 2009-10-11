@@ -94,7 +94,7 @@ namespace NLog.Targets.Wrappers
     [Target("AspNetBufferingWrapper", IsWrapper = true)]
     public class AspNetBufferingTargetWrapper : WrapperTargetBase
     {
-        private object dataSlot = new object();
+        private readonly object dataSlot = new object();
         private int growLimit = 0;
 
         /// <summary>
@@ -167,8 +167,8 @@ namespace NLog.Targets.Wrappers
         {
             base.Initialize();
 
-            NLogHttpModule.BeginRequest += new EventHandler(this.OnBeginRequest);
-            NLogHttpModule.EndRequest += new EventHandler(this.OnEndRequest);
+            NLogHttpModule.BeginRequest += this.OnBeginRequest;
+            NLogHttpModule.EndRequest += this.OnEndRequest;
         }
 
         /// <summary>
@@ -189,8 +189,10 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Closes the target by flushing pending events in the buffer (if any).
         /// </summary>
-        protected internal override void Close()
+        public override void Close()
         {
+            NLogHttpModule.BeginRequest -= this.OnBeginRequest;
+            NLogHttpModule.EndRequest -= this.OnEndRequest;
             Flush(TimeSpan.FromSeconds(3));
             base.Close();
         }

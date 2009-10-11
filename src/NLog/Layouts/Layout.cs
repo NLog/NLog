@@ -34,13 +34,14 @@
 using System.Collections.Generic;
 using NLog.Common;
 using NLog.Config;
+using NLog.Internal;
 
 namespace NLog.Layouts
 {
     /// <summary>
     /// Abstract interface that layouts must implement.
     /// </summary>
-    public abstract class Layout
+    public abstract class Layout : ISupportsInitialize, INLogConfigurationItem
     {
         /// <summary>
         /// Initializes a new instance of the Layout class.
@@ -141,15 +142,6 @@ namespace NLog.Layouts
             }
 
             this.IsInitialized = false;
-        }
-
-        /// <summary>
-        /// Add this layout and all sub-layouts to the specified collection..
-        /// </summary>
-        /// <param name="layouts">The collection of layouts.</param>
-        public virtual void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            layouts.Add(this);
         }
 
         /// <summary>

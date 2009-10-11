@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using System.Globalization;
+
 namespace NLog.Conditions
 {
     /// <summary>
@@ -38,16 +41,16 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionLiteralExpression : ConditionExpression
     {
-        private readonly object literalValue;
-
         /// <summary>
         /// Initializes a new instance of the ConditionLiteralExpression class.
         /// </summary>
         /// <param name="literalValue">Literal value.</param>
         public ConditionLiteralExpression(object literalValue) 
         {
-            this.literalValue = literalValue;
+            this.LiteralValue = literalValue;
         }
+
+        public object LiteralValue { get; private set; }
 
         /// <summary>
         /// Evaluates the expression.
@@ -56,7 +59,7 @@ namespace NLog.Conditions
         /// <returns>The literal value as passed in the constructor.</returns>
         public override object Evaluate(LogEventInfo context)
         {
-            return this.literalValue;
+            return this.LiteralValue;
         }
 
         /// <summary>
@@ -65,7 +68,7 @@ namespace NLog.Conditions
         /// <returns>The literal value.</returns>
         public override string ToString()
         {
-            return this.literalValue.ToString();
+            return Convert.ToString(this.LiteralValue, CultureInfo.InvariantCulture);
         }
     }
 }

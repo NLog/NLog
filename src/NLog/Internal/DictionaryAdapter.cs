@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 
 namespace NLog.Internal
 {
@@ -14,8 +12,6 @@ namespace NLog.Internal
         {
             this.implementation = implementation;
         }
-
-        #region IDictionary Members
 
         public void Add(object key, object value)
         {
@@ -68,10 +64,6 @@ namespace NLog.Internal
             set { this.implementation[(TKey) key] = (TValue) value; } 
         }
 
-        #endregion
-
-        #region ICollection Members
-
         public void CopyTo(Array array, int index)
         {
             throw new NotImplementedException();
@@ -92,16 +84,10 @@ namespace NLog.Internal
             get { return this.implementation; }
         }
 
-        #endregion
-
-        #region IEnumerable Members
-
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
         }
-
-        #endregion
 
         class MyEnumerator : IDictionaryEnumerator
         {
@@ -111,8 +97,6 @@ namespace NLog.Internal
             {
                 this.wrapped = wrapped;
             }
-
-            #region IDictionaryEnumerator Members
 
             public DictionaryEntry Entry
             {
@@ -129,10 +113,6 @@ namespace NLog.Internal
                 get { return this.wrapped.Current.Value; }
             }
 
-            #endregion
-
-            #region IEnumerator Members
-
             public object Current
             {
                 get { return this.Entry; }
@@ -147,8 +127,6 @@ namespace NLog.Internal
             {
                 this.wrapped.Reset();
             }
-
-            #endregion
         }
     }
 }

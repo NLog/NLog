@@ -232,11 +232,6 @@ namespace NLog.Layouts
 
             this.quotableCharacters = (this.QuoteChar + "\r\n" + this.actualColumnDelimiter).ToCharArray();
             this.doubleQuoteChar = this.QuoteChar + this.QuoteChar;
-
-            foreach (CsvColumn c in this.Columns)
-            {
-                c.Layout.Initialize();
-            }
         }
 
         /// <summary>

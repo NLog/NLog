@@ -95,15 +95,5 @@ namespace NLog.Conditions
         {
             return "(" + this.Left + ") and (" + this.Right + ")";
         }
-
-        /// <summary>
-        /// Adds all layouts used by this expression to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(ICollection<Layout> layouts)
-        {
-            this.Left.PopulateLayouts(layouts);
-            this.Right.PopulateLayouts(layouts);
-        }
     }
 }

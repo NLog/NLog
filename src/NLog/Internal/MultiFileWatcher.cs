@@ -99,13 +99,13 @@ namespace NLog.Internal
 
         internal void Watch(string fileName)
         {
-            FileSystemWatcher watcher = new FileSystemWatcher();
+            var watcher = new FileSystemWatcher();
             watcher.Path = Path.GetDirectoryName(fileName);
             watcher.Filter = Path.GetFileName(fileName);
             watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.CreationTime | NotifyFilters.Size | NotifyFilters.Security | NotifyFilters.Attributes;
-            watcher.Created += new FileSystemEventHandler(this.OnWatcherChanged);
-            watcher.Changed += new FileSystemEventHandler(this.OnWatcherChanged);
-            watcher.Deleted += new FileSystemEventHandler(this.OnWatcherChanged);
+            watcher.Created += this.OnWatcherChanged;
+            watcher.Changed += this.OnWatcherChanged;
+            watcher.Deleted += this.OnWatcherChanged;
             watcher.EnableRaisingEvents = true;
             InternalLogger.Info("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
 
