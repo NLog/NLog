@@ -33,39 +33,42 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using NLog.Internal;
-using NLog.Targets;
+using System.Runtime.InteropServices;
+using NLog.Internal.Win32;
 
-namespace NLog.Win32.Targets
+namespace NLog.Targets
 {
     /// <summary>
-    /// Outputs logging messages through the <c>OutputDebugString()</c> Win32 API.
+    /// Outputs logging messages through the ASP Response object.
     /// </summary>
-    /// <example>
-    /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
-    /// use the following syntax:
-    /// </p>
-    /// <code lang="XML" source="examples/targets/Configuration File/OutputDebugString/NLog.config" />
-    /// <p>
-    /// This assumes just one target and a single rule. More configuration
-    /// options are described <a href="config.html">here</a>.
-    /// </p>
-    /// <p>
-    /// To set up the log target programmatically use code like this:
-    /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/OutputDebugString/Simple/Example.cs" />
-    /// </example>
-    [Target("OutputDebugString")]
-    public sealed class OutputDebugStringTarget : TargetWithLayout
+    [Target("AspResponse")]
+    public sealed class AspResponseTarget : TargetWithLayout
     {
+        /// <summary>
+        /// Gets or sets a value indicating whether to add &lt;!-- --&gt; comments around all written texts.
+        /// </summary>
+        public bool AddComments { get; set; }
+
         /// <summary>
         /// Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         protected internal override void Write(LogEventInfo logEvent)
         {
-            NativeMethods.OutputDebugString(this.Layout.GetFormattedMessage(logEvent));
+            AspHelper.IResponse response = AspHelper.GetResponseObject();
+            if (response != null)
+            {
+                if (this.AddComments)
+                {
+                    response.Write("<!-- " + this.Layout.GetFormattedMessage(logEvent) + "-->");
+                }
+                else
+                {
+                    response.Write(this.Layout.GetFormattedMessage(logEvent));
+                }
+
+                Marshal.ReleaseComObject(response);
+            }
         }
     }
 }

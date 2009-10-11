@@ -39,9 +39,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using NLog.Config;
-using NLog.Targets;
 
-namespace NLog.Win32.Targets
+namespace NLog.Targets
 {
     /// <summary>
     /// Increments specified performance counter on each write.

@@ -281,24 +281,28 @@
     <Compile Include="Targets\Wrappers\SecurityLogonType.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBase.cs" />
     <Compile Include="Web\NLogHttpModule.cs" />
-    <Compile Include="Win32\ASPHelper.cs" />
-    <Compile Include="Win32\LayoutRenderers\ASPApplicationValueLayoutRenderer.cs" />
-    <Compile Include="Win32\LayoutRenderers\ASPRequestValueLayoutRenderer.cs" />
-    <Compile Include="Win32\LayoutRenderers\ASPSessionValueLayoutRenderer.cs" />
-    <Compile Include="Win32\LayoutRenderers\RegistryLayoutRenderer.cs" />
-    <Compile Include="Win32\LayoutRenderers\WindowsIdentityLayoutRenderer.cs" />
-    <Compile Include="Win32\Targets\ASPResponseTarget.cs" />
-    <Compile Include="Win32\Targets\ColoredConsoleTarget.cs" />
-    <Compile Include="Win32\Targets\ConsoleOutputColor.cs" />
-    <Compile Include="Win32\Targets\ConsoleRowHighlightingRule.cs" />
-    <Compile Include="Win32\Targets\ConsoleWordHighlightingRule.cs" />
-    <Compile Include="Win32\Targets\EventLogTarget.cs" />
-    <Compile Include="Win32\Targets\MSMQTarget.cs" />
-    <Compile Include="Win32\Targets\OutputDebugStringTarget.cs" />
-    <Compile Include="Win32\Targets\PerformanceCounterTarget.cs" />
+    <Compile Include="Internal\Win32\AspHelper.cs" />
+    <Compile Include="LayoutRenderers\ASPApplicationValueLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\ASPRequestValueLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\ASPSessionValueLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\RegistryLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\WindowsIdentityLayoutRenderer.cs" />
+    <Compile Include="Targets\AspResponseTarget.cs" />
+    <Compile Include="Targets\ColoredConsoleTarget.cs" />
+    <Compile Include="Targets\ConsoleOutputColor.cs" />
+    <Compile Include="Targets\ConsoleRowHighlightingRule.cs" />
+    <Compile Include="Targets\ConsoleWordHighlightingRule.cs" />
+    <Compile Include="Targets\EventLogTarget.cs" />
+    <Compile Include="Targets\MsmqTarget.cs" />
+    <Compile Include="Targets\OutputDebugStringTarget.cs" />
+    <Compile Include="Targets\PerformanceCounterTarget.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Win32\LayoutRenderers\" />
+    <Folder Include="Win32\Targets\" />
   </ItemGroup>
   <Import Project="$(StyleCopTargetsFile)" Condition="'$(StyleCopTargetsFile)' != ''" />
   <Import Project="$(OverrideTargetsFile)" Condition="'$(OverrideTargetsFile)' != ''" />

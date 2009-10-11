@@ -40,7 +40,7 @@ using Microsoft.Win32;
 using NLog.Config;
 using NLog.LayoutRenderers;
 
-namespace NLog.Win32.LayoutRenderers
+namespace NLog.LayoutRenderers
 {
     /// <summary>
     /// A value from the Registry.

@@ -34,21 +34,22 @@
 #if !NET_CF && !SILVERLIGHT
 
 using System;
+using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
 using NLog.Config;
-using NLog.LayoutRenderers;
+using NLog.Internal.Win32;
 
-namespace NLog.Win32.LayoutRenderers
+namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// ASP Application variable.
+    /// ASP Session variable.
     /// </summary>
-    [LayoutRenderer("asp-application")]
-    public class ASPApplicationValueLayoutRenderer : LayoutRenderer
+    [LayoutRenderer("asp-session")]
+    public class AspSessionValueLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Gets or sets the ASP Application variable name.
+        /// Gets or sets the session variable name.
         /// </summary>
         [RequiredParameter]
         [DefaultParameter]
@@ -69,25 +70,25 @@ namespace NLog.Win32.LayoutRenderers
         }
 
         /// <summary>
-        /// Renders the specified ASP Application variable and appends it to the specified <see cref="StringBuilder" />.
+        /// Renders the specified ASP Session variable and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            ASPHelper.IApplicationObject app = ASPHelper.GetApplicationObject();
-            if (app != null)
+            var session = AspHelper.GetSessionObject();
+            if (session != null)
             {
                 if (this.Variable != null)
                 {
-                    object variableValue = app.GetValue(this.Variable);
-
-                    builder.Append(Convert.ToString(variableValue));
+                    object variableValue = session.GetValue(this.Variable);
+                    builder.Append(Convert.ToString(variableValue, CultureInfo.InvariantCulture));
                 }
 
-                Marshal.ReleaseComObject(app);
+                Marshal.ReleaseComObject(session);
             }
         }
     }
 }
+
 #endif

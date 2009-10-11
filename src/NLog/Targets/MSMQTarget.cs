@@ -33,15 +33,13 @@
 
 #if !NET_CF && !SILVERLIGHT && !CLIENT_SKU
 
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Messaging;
 using System.Text;
 using NLog.Config;
 using NLog.Layouts;
-using NLog.Targets;
 
-namespace NLog.Win32.Targets
+namespace NLog.Targets
 {
     /// <summary>
     /// Writes log message to the specified message queue handled by MSMQ.
@@ -66,7 +64,7 @@ namespace NLog.Win32.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/MSMQ/Simple/Example.cs" />
     /// </example>
     [Target("MSMQ")]
-    public class MSMQTarget : TargetWithLayout
+    public class MsmqTarget : TargetWithLayout
     {
         private MessagePriority messagePriority = MessagePriority.Normal;
 
@@ -76,7 +74,7 @@ namespace NLog.Win32.Targets
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
         /// </remarks>
-        public MSMQTarget()
+        public MsmqTarget()
         {
             this.Label = "NLog";
             this.Encoding = System.Text.Encoding.UTF8;

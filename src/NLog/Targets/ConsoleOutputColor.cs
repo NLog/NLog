@@ -33,7 +33,7 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-namespace NLog.Win32.Targets
+namespace NLog.Targets
 {
     /// <summary>
     /// Colored console output color.

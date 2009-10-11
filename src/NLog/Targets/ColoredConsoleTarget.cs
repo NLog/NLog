@@ -39,9 +39,8 @@ using System.ComponentModel;
 using System.IO;
 using NLog.Config;
 using NLog.Internal;
-using NLog.Targets;
 
-namespace NLog.Win32.Targets
+namespace NLog.Targets
 {
     /// <summary>
     /// Writes logging messages to the console with customizable coloring.

@@ -37,7 +37,7 @@ using System.ComponentModel;
 using NLog.Conditions;
 using NLog.Config;
 
-namespace NLog.Win32.Targets
+namespace NLog.Targets
 {
     /// <summary>
     /// The row-highlighting condition.

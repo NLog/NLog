@@ -38,9 +38,9 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
 using NLog.Config;
-using NLog.LayoutRenderers;
+using NLog.Internal.Win32;
 
-namespace NLog.Win32.LayoutRenderers
+namespace NLog.LayoutRenderers
 {
     /// <summary>
     /// ASP Request variable.
@@ -95,7 +95,7 @@ namespace NLog.Win32.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            ASPHelper.IRequest request = ASPHelper.GetRequestObject();
+            AspHelper.IRequest request = AspHelper.GetRequestObject();
             if (request != null)
             {
                 if (this.QueryString != null)
@@ -109,7 +109,7 @@ namespace NLog.Win32.LayoutRenderers
                 else if (this.Cookie != null)
                 {
                     object cookie = request.GetCookies().GetItem(this.Cookie);
-                    builder.Append(Convert.ToString(ASPHelper.GetComDefaultProperty(cookie)));
+                    builder.Append(Convert.ToString(AspHelper.GetComDefaultProperty(cookie)));
                 }
                 else if (this.ServerVariable != null)
                 {
@@ -117,8 +117,8 @@ namespace NLog.Win32.LayoutRenderers
                 }
                 else if (this.Item != null)
                 {
-                    ASPHelper.IDispatch o = request.GetItem(this.Item);
-                    ASPHelper.IStringList sl = o as ASPHelper.IStringList;
+                    AspHelper.IDispatch o = request.GetItem(this.Item);
+                    AspHelper.IStringList sl = o as AspHelper.IStringList;
                     if (sl != null)
                     {
                         if (sl.GetCount() > 0)
@@ -134,11 +134,11 @@ namespace NLog.Win32.LayoutRenderers
             }
         }
 
-        private string GetItem(ASPHelper.IRequestDictionary dict, string key)
+        private string GetItem(AspHelper.IRequestDictionary dict, string key)
         {
             object retVal = null;
             object o = dict.GetItem(key);
-            ASPHelper.IStringList sl = o as ASPHelper.IStringList;
+            AspHelper.IStringList sl = o as AspHelper.IStringList;
             if (sl != null)
             {
                 if (sl.GetCount() > 0)

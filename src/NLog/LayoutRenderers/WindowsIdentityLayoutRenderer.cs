@@ -38,7 +38,7 @@ using System.Security.Principal;
 using System.Text;
 using NLog.LayoutRenderers;
 
-namespace NLog.Win32.LayoutRenderers
+namespace NLog.LayoutRenderers
 {
     /// <summary>
     /// Thread Windows identity information (username).

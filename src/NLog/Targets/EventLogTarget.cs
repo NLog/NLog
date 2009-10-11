@@ -39,9 +39,8 @@ using System.Diagnostics;
 using System.Globalization;
 using NLog.Common;
 using NLog.Layouts;
-using NLog.Targets;
 
-namespace NLog.Win32.Targets
+namespace NLog.Targets
 {
     /// <summary>
     /// Writes log message to the Event Log.

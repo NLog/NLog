@@ -37,14 +37,14 @@ using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace NLog.Win32
+namespace NLog.Internal.Win32
 {
     /// <summary>
     /// Various helper methods for accessing state of ASP application.
     /// </summary>
-    internal class ASPHelper
+    internal class AspHelper
     {
-        private ASPHelper()
+        private AspHelper()
         {
         }
 

@@ -38,7 +38,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using NLog.Config;
 
-namespace NLog.Win32.Targets
+namespace NLog.Targets
 {
     /// <summary>
     /// Highlighting rule for Win32 colorful console.

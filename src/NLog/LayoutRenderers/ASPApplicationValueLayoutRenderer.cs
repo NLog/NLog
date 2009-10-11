@@ -34,22 +34,21 @@
 #if !NET_CF && !SILVERLIGHT
 
 using System;
-using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
 using NLog.Config;
-using NLog.LayoutRenderers;
+using NLog.Internal.Win32;
 
-namespace NLog.Win32.LayoutRenderers
+namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// ASP Session variable.
+    /// ASP Application variable.
     /// </summary>
-    [LayoutRenderer("asp-session")]
-    public class AspSessionValueLayoutRenderer : LayoutRenderer
+    [LayoutRenderer("asp-application")]
+    public class ASPApplicationValueLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Gets or sets the session variable name.
+        /// Gets or sets the ASP Application variable name.
         /// </summary>
         [RequiredParameter]
         [DefaultParameter]
@@ -70,25 +69,25 @@ namespace NLog.Win32.LayoutRenderers
         }
 
         /// <summary>
-        /// Renders the specified ASP Session variable and appends it to the specified <see cref="StringBuilder" />.
+        /// Renders the specified ASP Application variable and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            ASPHelper.ISessionObject session = ASPHelper.GetSessionObject();
-            if (session != null)
+            AspHelper.IApplicationObject app = AspHelper.GetApplicationObject();
+            if (app != null)
             {
                 if (this.Variable != null)
                 {
-                    object variableValue = session.GetValue(this.Variable);
-                    builder.Append(Convert.ToString(variableValue, CultureInfo.InvariantCulture));
+                    object variableValue = app.GetValue(this.Variable);
+
+                    builder.Append(Convert.ToString(variableValue));
                 }
 
-                Marshal.ReleaseComObject(session);
+                Marshal.ReleaseComObject(app);
             }
         }
     }
 }
-
 #endif
