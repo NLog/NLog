@@ -155,12 +155,12 @@
     <Compile Include="Internal\Win32\Win32FileAttributes.cs" />
     <Compile Include="Internal\Win32\Win32FileHelper.cs" />
     <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
-    <Compile Include="LayoutRenderers\ASPNETApplicationValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\ASPNETRequestValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\ASPNETSessionIDLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\ASPNETSessionValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\ASPNETUserAuthTypeLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\ASPNETUserIdentityLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\AspNetApplicationValueLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\AspNetRequestValueLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\AspNetSessionIDLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\AspNetSessionValueLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\AspNetUserAuthTypeLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\AspNetUserIdentityLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\BaseDirLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\CallSiteLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\CounterLayoutRenderer.cs" />
@@ -171,7 +171,7 @@
     <Compile Include="LayoutRenderers\FileContentsLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\GarbageCollectorInfoLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\GarbageCollectorProperty.cs" />
-    <Compile Include="LayoutRenderers\GDCLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\GdcLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\GuidLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\IdentityLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\LayoutRenderer.cs" />
@@ -182,9 +182,9 @@
     <Compile Include="LayoutRenderers\LoggerNameLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\LongDateLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\MachineNameLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\MDCLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\MdcLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\MessageLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\NDCLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\NdcLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\NewLine.cs" />
     <Compile Include="LayoutRenderers\NLogDirLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\PerformanceCounterLayoutRenderer.cs" />
@@ -228,7 +228,7 @@
     <Compile Include="LogMessageGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Targets\ArchiveNumberingMode.cs" />
-    <Compile Include="Targets\ASPNetTraceTarget.cs" />
+    <Compile Include="Targets\AspNetTraceTarget.cs" />
     <Compile Include="Targets\ChainsawTarget.cs" />
     <Compile Include="Targets\Compound\CompoundTargetBase.cs" />
     <Compile Include="Targets\Compound\FallbackTarget.cs" />
@@ -264,7 +264,7 @@
     <Compile Include="Targets\TargetWithLayoutHeaderAndFooter.cs" />
     <Compile Include="Targets\TraceTarget.cs" />
     <Compile Include="Targets\WebServiceTarget.cs" />
-    <Compile Include="Targets\Wrappers\ASPNetBufferingTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\AspNetBufferingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\AsyncRequestQueueOfT.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapperOverflowAction.cs" />
@@ -282,9 +282,9 @@
     <Compile Include="Targets\Wrappers\WrapperTargetBase.cs" />
     <Compile Include="Web\NLogHttpModule.cs" />
     <Compile Include="Internal\Win32\AspHelper.cs" />
-    <Compile Include="LayoutRenderers\ASPApplicationValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\ASPRequestValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\ASPSessionValueLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\AspApplicationValueLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\AspRequestValueLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\AspSessionValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\RegistryLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\WindowsIdentityLayoutRenderer.cs" />
     <Compile Include="Targets\AspResponseTarget.cs" />
@@ -293,7 +293,7 @@
     <Compile Include="Targets\ConsoleRowHighlightingRule.cs" />
     <Compile Include="Targets\ConsoleWordHighlightingRule.cs" />
     <Compile Include="Targets\EventLogTarget.cs" />
-    <Compile Include="Targets\MsmqTarget.cs" />
+    <Compile Include="Targets\MessageQueueTarget.cs" />
     <Compile Include="Targets\OutputDebugStringTarget.cs" />
     <Compile Include="Targets\PerformanceCounterTarget.cs" />
   </ItemGroup>
