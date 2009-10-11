@@ -38,14 +38,14 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    [TestClass]
     public class LoggerNameTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void LoggerNameTest()
         {
             XmlDocument doc = new XmlDocument();

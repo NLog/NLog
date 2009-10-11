@@ -38,15 +38,15 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Contexts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    [TestClass]
     public class NDCTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void NDCTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -92,7 +92,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", " 0");
         }
 
-        [Test]
+        [TestMethod]
         public void NDCTopTestTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -139,7 +139,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
-        [Test]
+        [TestMethod]
         public void NDCTop1TestTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -191,7 +191,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.AreEqual(String.Empty, NestedDiagnosticsContext.GetTopMessage());
         }
 
-        [Test]
+        [TestMethod]
         public void NDCBottomTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -237,7 +237,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", " 0");
         }
 
-        [Test]
+        [TestMethod]
         public void NDCSeparatorTest()
         {
             XmlDocument doc = new XmlDocument();

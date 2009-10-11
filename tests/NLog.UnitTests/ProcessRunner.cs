@@ -37,8 +37,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using Microsoft.CSharp;
-
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests
 {

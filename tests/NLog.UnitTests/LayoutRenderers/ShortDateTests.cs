@@ -38,14 +38,14 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    [TestClass]
     public class ShortDateTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void ShortDateTest()
         {
             XmlDocument doc = new XmlDocument();

@@ -32,26 +32,19 @@
 // 
 
 using System;
+using System.IO;
 using System.Xml;
-using System.Globalization;
-
-using NLog;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Common;
 using NLog.Config;
-
-using NUnit.Framework;
 using NLog.Targets;
-using System.IO;
-using System.Threading;
-
-using NLog.Internal;
 
 namespace NLog.UnitTests
 {
-    [TestFixture]
+    [TestClass]
     public class LogManagerTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void GetLoggerTest()
         {
             Logger loggerA = LogManager.GetLogger("A");
@@ -63,14 +56,14 @@ namespace NLog.UnitTests
             Assert.AreEqual("B", loggerB.Name);
         }
 
-        [Test]
+        [TestMethod]
         public void NullLoggerTest()
         {
             Logger l = LogManager.CreateNullLogger();
             Assert.AreEqual("", l.Name);
         }
 
-        [Test]
+        [TestMethod]
         public void ThrowExceptionsTest()
         {
             FileTarget ft = new FileTarget();
@@ -142,8 +135,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
-        [Category("LongRunning")]
+        [TestMethod]
         public void AutoReloadTest()
         {
             string fileName = Path.GetTempFileName();
@@ -224,7 +216,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [TestMethod]
         public void IncludeTest()
         {
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -260,7 +252,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [TestMethod]
         [ExpectedException(typeof(NLogConfigurationException))]
         public void IncludeNotExistingTest()
         {
@@ -286,7 +278,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [TestMethod]
         [ExpectedException(typeof(NLogConfigurationException))]
         public void IncludeNotExistingIgnoredTest()
         {

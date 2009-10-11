@@ -31,20 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
 using System.Xml;
-
-using NLog;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Config;
-
-using NUnit.Framework;
 
 namespace NLog.UnitTests
 {
-    [TestFixture]
+    [TestClass]
     public class RoutingTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void LogThresholdTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -75,7 +71,7 @@ namespace NLog.UnitTests
             AssertDebugCounter("debug", 4);
         }
 
-        [Test]
+        [TestMethod]
         public void LogThresholdTest2()
         {
             XmlDocument doc = new XmlDocument();
@@ -120,7 +116,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug5", "messageE");
         }
 
-        [Test]
+        [TestMethod]
         public void LoggerNameMatchTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -153,7 +149,7 @@ namespace NLog.UnitTests
             AssertDebugCounter("debug4", 2);
         }
 
-        [Test]
+        [TestMethod]
         public void MultiAppenderTest()
         {
             XmlDocument doc = new XmlDocument();

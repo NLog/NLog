@@ -38,20 +38,20 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    [TestClass]
     public class EnvironmentTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void EnvironmentTest()
         {
             AssertLayoutRendererOutput("${environment:variable=PATH}", System.Environment.GetEnvironmentVariable("PATH"));
         }
 
-        [Test]
+        [TestMethod]
         public void EnvironmentSimpleTest()
         {
             AssertLayoutRendererOutput("${environment:PATH}", System.Environment.GetEnvironmentVariable("PATH"));

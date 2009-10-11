@@ -38,15 +38,15 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Contexts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    [TestClass]
     public class GDCTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void GDCTest()
         {
             XmlDocument doc = new XmlDocument();

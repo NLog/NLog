@@ -38,14 +38,14 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    [TestClass]
     public class LongDateTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void LongDateTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -69,7 +69,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.AreEqual(date[19], '.');
         }
 
-        [Test]
+        [TestMethod]
         public void LongDateWithPadding()
         {
             XmlDocument doc = new XmlDocument();

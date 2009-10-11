@@ -39,14 +39,14 @@ using System.IO;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.Filters
 {
-    [TestFixture]
+    [TestClass]
     public class WhenNotContainsTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void WhenNotContainsTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -73,7 +73,7 @@ namespace NLog.UnitTests.Filters
             AssertDebugCounter("debug", 1);
         }
 
-        [Test]
+        [TestMethod]
         public void WhenNotContainsInsensitiveTest()
         {
             XmlDocument doc = new XmlDocument();

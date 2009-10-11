@@ -39,16 +39,16 @@ using System.IO;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Layouts;
 using NLog.Filters;
 
 namespace NLog.UnitTests.Filters
 {
-    [TestFixture]
+    [TestClass]
     public class APITests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void APITest()
         {
             // this is mostly to make Clover happy
@@ -69,7 +69,7 @@ namespace NLog.UnitTests.Filters
             LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
             Assert.IsTrue(LogManager.Configuration.LoggingRules[0].Filters[0] is NLog.Filters.WhenContainsFilter);
             NLog.Filters.WhenContainsFilter wcf = (NLog.Filters.WhenContainsFilter)LogManager.Configuration.LoggingRules[0].Filters[0];
-            Assert.IsInstanceOf(typeof(SimpleLayout), wcf.Layout);
+            Assert.IsInstanceOfType(wcf.Layout, typeof(SimpleLayout));
             Assert.AreEqual(((SimpleLayout)wcf.Layout).Text, "${message}");
             Assert.AreEqual(wcf.Substring, "zzz");
             Assert.AreEqual(FilterResult.Ignore, wcf.Action);

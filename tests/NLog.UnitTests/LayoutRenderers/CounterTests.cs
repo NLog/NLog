@@ -38,14 +38,14 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    [TestClass]
     public class CounterTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void DefaultCounterTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -71,7 +71,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a 4 4");
         }
 
-        [Test]
+        [TestMethod]
         public void PresetCounterTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -97,7 +97,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a 10 4");
         }
 
-        [Test]
+        [TestMethod]
         public void NamedCounterTest()
         {
             XmlDocument doc = new XmlDocument();

@@ -32,20 +32,17 @@
 // 
 
 using System;
-using System.Xml;
 using System.Globalization;
-
-using NLog;
+using System.Xml;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Config;
-
-using NUnit.Framework;
 
 namespace NLog.UnitTests
 {
-    [TestFixture]
+    [TestClass]
     public class LoggerTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void TraceTest()
         {
             // test all possible overloads of the Trace() method
@@ -218,7 +215,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [TestMethod]
         public void DebugTest()
         {
             // test all possible overloads of the Debug() method
@@ -391,7 +388,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [TestMethod]
         public void InfoTest()
         {
             // test all possible overloads of the Info() method
@@ -564,7 +561,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [TestMethod]
         public void WarnTest()
         {
             // test all possible overloads of the Warn() method
@@ -737,7 +734,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [TestMethod]
         public void ErrorTest()
         {
             // test all possible overloads of the Error() method
@@ -910,7 +907,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [TestMethod]
         public void FatalTest()
         {
             // test all possible overloads of the Fatal() method
@@ -1084,7 +1081,7 @@ namespace NLog.UnitTests
         }
 
 
-        [Test]
+        [TestMethod]
         public void LogTest()
         {
             // test all possible overloads of the Log(level) method

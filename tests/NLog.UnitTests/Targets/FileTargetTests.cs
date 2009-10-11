@@ -32,29 +32,23 @@
 // 
 
 using System;
-using System.Threading;
-using System.Xml;
-
-using NLog;
-using NLog.Common;
-using NLog.Config;
-
-using NUnit.Framework;
-using NLog.Targets;
 using System.IO;
 using System.Text;
-using NLog.Targets.Wrappers;
-using NLog.LayoutRenderers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NLog.Common;
+using NLog.Config;
 using NLog.Layouts;
+using NLog.Targets;
+using NLog.Targets.Wrappers;
 
 namespace NLog.UnitTests.Targets
 {
-    [TestFixture]
+    [TestClass]
     public class FileTargetTests : NLogTestBase
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
 
-        [Test]
+        [TestMethod]
         public void SimpleFileTest1()
         {
             string tempFile = Path.GetTempFileName();
@@ -81,7 +75,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [TestMethod]
         public void DeleteFileOnStartTest()
         {
             string tempFile = Path.GetTempFileName();
@@ -144,7 +138,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [TestMethod]
         public void CreateDirsTest()
         {
             // create the file in a not-existent
@@ -176,7 +170,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [TestMethod]
         public void SequentialArchiveTest1()
         {
             // create the file in a not-existent
@@ -253,7 +247,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [TestMethod]
         public void RollingArchiveTest1()
         {
             // create the file in a not-existent
@@ -329,7 +323,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [TestMethod]
         public void MultiFileWrite()
         {
             // create the file in a not-existent
@@ -383,7 +377,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [TestMethod]
         public void BufferedMultiFileWrite()
         {
             // create the file in a not-existent
@@ -437,7 +431,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [TestMethod]
         public void AsyncMultiFileWrite()
         {
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());

@@ -31,18 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
-using NUnit.Framework;
-using System.Text;
 using System.IO;
-using System.Diagnostics;
-using System.Threading;
+using System.Text;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Layouts;
 
 namespace NLog.UnitTests
 {
-    public class NLogTestBase
+    public abstract class NLogTestBase
     {
         public void AssertDebugCounter(string targetName, int val)
         {

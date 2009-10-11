@@ -40,14 +40,14 @@ using System.IO;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    [TestClass]
     public class MessageTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void MessageWithoutPaddingTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -72,7 +72,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a01/01/2005 00:00:00");
         }
 
-        [Test]
+        [TestMethod]
         public void MessageRightPaddingTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -98,7 +98,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
-        [Test]
+        [TestMethod]
         public void MessageFixedLengthRightPaddingTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -123,7 +123,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a01");
         }
 
-        [Test]
+        [TestMethod]
         public void MessageLeftPaddingTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -148,7 +148,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a01/01/2005 00:00:00");
         }
 
-        [Test]
+        [TestMethod]
         public void MessageFixedLengthLeftPaddingTest()
         {
             XmlDocument doc = new XmlDocument();

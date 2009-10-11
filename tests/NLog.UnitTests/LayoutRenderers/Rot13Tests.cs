@@ -38,7 +38,7 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.LayoutRenderers;
 using NLog.Targets;
 using NLog.Layouts;
@@ -46,10 +46,10 @@ using NLog.LayoutRenderers.Wrappers;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    [TestClass]
     public class Rot13Tests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void Test1()
         {
             Assert.AreEqual("NOPQRSTUVWXYZABCDEFGHIJKLM",
@@ -61,7 +61,7 @@ namespace NLog.UnitTests.LayoutRenderers
                             "Ubj pna lbh gryy na rkgebireg sebz na vagebireg ng AFN? In the elevators, the extroverts look at the OTHER guy's shoes."));
         }
 
-        [Test]
+        [TestMethod]
         public void Test2()
         {
             Layout l = "${rot13:HELLO}";
@@ -69,7 +69,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.AreEqual("URYYB", l.GetFormattedMessage(lei));
         }
 
-        [Test]
+        [TestMethod]
         public void Test3()
         {
             Layout l = "${rot13:text=HELLO}";
@@ -77,7 +77,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.AreEqual("URYYB", l.GetFormattedMessage(lei));
         }
 
-        [Test]
+        [TestMethod]
         public void Test4()
         {
             Layout l = "${rot13:${event-context:aaa}}";
@@ -86,7 +86,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.AreEqual("URYYB", l.GetFormattedMessage(lei));
         }
 
-        [Test]
+        [TestMethod]
         public void Test5()
         {
             XmlDocument doc = new XmlDocument();

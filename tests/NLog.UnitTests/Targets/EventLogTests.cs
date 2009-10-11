@@ -31,27 +31,26 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Config;
-
-using NUnit.Framework;
 using NLog.Targets;
 
 namespace NLog.UnitTests.Targets
 {
-    [TestFixture]
+    [TestClass]
     public class EventLogTests : NLogTestBase
     {
-        [SetUp]
+        [TestInitialize]
         public void Init()
         {
         }
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
         }
 
-        [Test]
+        [TestMethod]
         public void Test1()
         {
             EventLogTarget elt = new EventLogTarget();

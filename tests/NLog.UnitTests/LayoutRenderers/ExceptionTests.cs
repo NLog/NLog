@@ -38,14 +38,14 @@ using System.Globalization;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    [TestClass]
     public class ExceptionTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void Test1()
         {
             XmlDocument doc = new XmlDocument();

@@ -38,14 +38,14 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    [TestClass]
     public class DateTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void DefaultDateTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -65,7 +65,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.IsTrue(Math.Abs((dt - now).TotalSeconds) < 5);
         }
 
-        [Test]
+        [TestMethod]
         public void FormattedDateTest()
         {
             XmlDocument doc = new XmlDocument();

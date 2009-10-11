@@ -31,20 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
 using System.Xml;
-
-using NLog;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Config;
-
-using NUnit.Framework;
 
 namespace NLog.UnitTests
 {
-    [TestFixture]
+    [TestClass]
     public class CaseSensitivityTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void LowerCaseTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -84,7 +80,7 @@ namespace NLog.UnitTests
             AssertDebugCounter("debug", 4);
         }
 
-        [Test]
+        [TestMethod]
         public void UpperCaseTest()
         {
             XmlDocument doc = new XmlDocument();

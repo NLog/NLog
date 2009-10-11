@@ -32,20 +32,15 @@
 // 
 
 using System;
-using System.Xml;
-using System.Globalization;
 
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests
 {
-    [TestFixture]
+    [TestClass]
     public class LogLevelTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void OrdinalTest()
         {
             Assert.IsTrue(LogLevel.Trace < LogLevel.Debug);
@@ -77,7 +72,7 @@ namespace NLog.UnitTests
             Assert.IsFalse(LogLevel.Fatal >= LogLevel.Off);
         }
 
-        [Test]
+        [TestMethod]
         public void FromStringTest()
         {
             Assert.AreSame(LogLevel.FromString("trace"), LogLevel.Trace);
@@ -111,14 +106,14 @@ namespace NLog.UnitTests
             Assert.AreSame(LogLevel.FromString("FATAL"), LogLevel.Fatal);
         }
 
-        [Test]
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void FromStringFailingTest()
         {
             LogLevel l = LogLevel.FromString("zzz");
         }
 
-        [Test]
+        [TestMethod]
         public void ToStringTest()
         {
             Assert.AreEqual(LogLevel.Trace.ToString(), "Trace");

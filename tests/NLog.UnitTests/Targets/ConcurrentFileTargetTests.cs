@@ -32,20 +32,18 @@
 // 
 
 using System;
-using System.Threading;
-using NLog.Config;
-
-using NUnit.Framework;
-using NLog.Targets;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NLog.Config;
+using NLog.Targets;
 using NLog.Targets.Wrappers;
-using System.Diagnostics;
 
 namespace NLog.UnitTests.Targets
 {
-    [TestFixture]
-    [Category("LongRunning")]
+    [TestClass]
     public class ConcurrentFileTargetTests : NLogTestBase
 	{
         private Logger logger = LogManager.GetCurrentClassLogger();
@@ -144,25 +142,25 @@ namespace NLog.UnitTests.Targets
             DoConcurrentTest(10, 2000, mode);
         }
 
-        [Test]
+        [TestMethod]
         public void SimpleConcurrentTest()
         {
             DoConcurrentTest("");
         }
 
-        [Test]
+        [TestMethod]
         public void AsyncConcurrentTest()
         {
             DoConcurrentTest(2, 100, "async");
         }
 
-        [Test]
+        [TestMethod]
         public void BufferedConcurrentTest()
         {
             DoConcurrentTest(2, 100, "buffered");
         }
 
-        [Test]
+        [TestMethod]
         public void BufferedTimedFlushConcurrentTest()
         {
             DoConcurrentTest(2, 100, "buffered_timed_flush");

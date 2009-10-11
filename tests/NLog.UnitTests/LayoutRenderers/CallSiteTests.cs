@@ -40,14 +40,14 @@ using System.Diagnostics;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    [TestClass]
     public class CallSiteTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void LineNumberTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -71,7 +71,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #line default
         }
 
-        [Test]
+        [TestMethod]
         public void MethodNameTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -91,7 +91,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
         }
 
-        [Test]
+        [TestMethod]
         public void ClassNameTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -111,7 +111,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + " msg");
         }
 
-        [Test]
+        [TestMethod]
         public void ClassNameWithPaddingTestTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -131,7 +131,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
         }
 
-        [Test]
+        [TestMethod]
         public void MethodNameWithPaddingTestTest()
         {
             XmlDocument doc = new XmlDocument();

@@ -31,26 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
 using System.Xml;
-using System.Globalization;
-
-using NLog;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Config;
-
-using NUnit.Framework;
 using NLog.LayoutRenderers;
-using NLog.Targets;
-using NLog.Targets.Wrappers;
-using NLog.Targets.Compound;
 using NLog.Layouts;
+using NLog.Targets;
+using NLog.Targets.Compound;
+using NLog.Targets.Wrappers;
 
 namespace NLog.UnitTests
 {
-    [TestFixture]
+    [TestClass]
     public class TargetConfigurationTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void SimpleTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -69,10 +64,10 @@ namespace NLog.UnitTests
             Assert.AreEqual("${message}", l.Text);
             Assert.IsNotNull(t.Layout);
             Assert.AreEqual(1, l.Renderers.Count);
-            Assert.IsInstanceOf(typeof(MessageLayoutRenderer), l.Renderers[0]);
+            Assert.IsInstanceOfType(l.Renderers[0], typeof(MessageLayoutRenderer));
         }
 
-        [Test]
+        [TestMethod]
         public void SimpleTest2()
         {
             XmlDocument doc = new XmlDocument();
@@ -91,13 +86,13 @@ namespace NLog.UnitTests
             Assert.AreEqual("${message} ${level}", l.Text);
             Assert.IsNotNull(l);
             Assert.AreEqual(3, l.Renderers.Count);
-            Assert.IsInstanceOf(typeof(MessageLayoutRenderer), l.Renderers[0]);
-            Assert.IsInstanceOf(typeof(LiteralLayoutRenderer), l.Renderers[1]);
-            Assert.IsInstanceOf(typeof(LevelLayoutRenderer), l.Renderers[2]);
+            Assert.IsInstanceOfType(l.Renderers[0], typeof(MessageLayoutRenderer));
+            Assert.IsInstanceOfType(l.Renderers[1], typeof(LiteralLayoutRenderer));
+            Assert.IsInstanceOfType(l.Renderers[2], typeof(LevelLayoutRenderer));
             Assert.AreEqual(" ", ((LiteralLayoutRenderer)l.Renderers[1]).Text);
         }
 
-        [Test]
+        [TestMethod]
         public void WrapperTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -117,9 +112,9 @@ namespace NLog.UnitTests
             Assert.IsNotNull(c.FindTargetByName("b"));
             Assert.IsNotNull(c.FindTargetByName("c"));
 
-            Assert.IsInstanceOf(typeof(BufferingTargetWrapper), c.FindTargetByName("b"));
-            Assert.IsInstanceOf(typeof(AsyncTargetWrapper), c.FindTargetByName("a"));
-            Assert.IsInstanceOf(typeof(DebugTarget), c.FindTargetByName("c"));
+            Assert.IsInstanceOfType(c.FindTargetByName("b"), typeof(BufferingTargetWrapper));
+            Assert.IsInstanceOfType(c.FindTargetByName("a"), typeof(AsyncTargetWrapper));
+            Assert.IsInstanceOfType(c.FindTargetByName("c"), typeof(DebugTarget));
 
             BufferingTargetWrapper btw = c.FindTargetByName("b") as BufferingTargetWrapper;
             AsyncTargetWrapper atw = c.FindTargetByName("a") as AsyncTargetWrapper;
@@ -130,7 +125,7 @@ namespace NLog.UnitTests
             Assert.AreEqual(19, btw.BufferSize);
         }
 
-        [Test]
+        [TestMethod]
         public void CompoundTest()
         {
             XmlDocument doc = new XmlDocument();
@@ -154,11 +149,11 @@ namespace NLog.UnitTests
             Assert.IsNotNull(c.FindTargetByName("d3"));
             Assert.IsNotNull(c.FindTargetByName("d4"));
 
-            Assert.IsInstanceOf(typeof(RoundRobinTarget), c.FindTargetByName("rr"));
-            Assert.IsInstanceOf(typeof(DebugTarget), c.FindTargetByName("d1"));
-            Assert.IsInstanceOf(typeof(DebugTarget), c.FindTargetByName("d2"));
-            Assert.IsInstanceOf(typeof(DebugTarget), c.FindTargetByName("d3"));
-            Assert.IsInstanceOf(typeof(DebugTarget), c.FindTargetByName("d4"));
+            Assert.IsInstanceOfType(c.FindTargetByName("rr"), typeof(RoundRobinTarget));
+            Assert.IsInstanceOfType(c.FindTargetByName("d1"), typeof(DebugTarget));
+            Assert.IsInstanceOfType(c.FindTargetByName("d2"), typeof(DebugTarget));
+            Assert.IsInstanceOfType(c.FindTargetByName("d3"), typeof(DebugTarget));
+            Assert.IsInstanceOfType(c.FindTargetByName("d4"), typeof(DebugTarget));
 
             RoundRobinTarget rr = c.FindTargetByName("rr") as RoundRobinTarget;
             DebugTarget d1 = c.FindTargetByName("d1") as DebugTarget;

@@ -39,14 +39,14 @@ using System.IO;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    [TestClass]
     public class LogLevelTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void LogLevelTest()
         {
             XmlDocument doc = new XmlDocument();

@@ -31,20 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests
 {
-    [TestFixture]
+    [TestClass]
     public class GetLoggerTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void GetCurrentClassLoggerTest()
         {
             Logger logger = LogManager.GetCurrentClassLogger();
@@ -52,7 +46,7 @@ namespace NLog.UnitTests
             Assert.AreEqual("NLog.UnitTests.GetLoggerTests", logger.Name);
         }
 
-        [Test]
+        [TestMethod]
         public void TypedGetLoggerTest()
         {
             LogFactory lf = new LogFactory();
@@ -75,7 +69,7 @@ namespace NLog.UnitTests
             Assert.AreEqual("AAA", l3.Name);
         }
 
-        [Test]
+        [TestMethod]
         public void TypedGetCurrentClassLoggerTest()
         {
             LogFactory lf = new LogFactory();
@@ -100,7 +94,7 @@ namespace NLog.UnitTests
 
 
 #if A
-        [Test]
+        [TestMethod]
         public void GenericGetLoggerTest()
         {
             LogFactory<MyLogger> lf = new LogFactory<MyLogger>();
@@ -116,7 +110,7 @@ namespace NLog.UnitTests
             Assert.AreEqual("BBB", l3.Name);
         }
 
-        [Test]
+        [TestMethod]
         public void GenericGetCurrentClassLoggerTest()
         {
             LogFactory<MyLogger> lf = new LogFactory<MyLogger>();

@@ -38,15 +38,15 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Layouts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    [TestClass]
     public class EventContextTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void Test1()
         {
             Layout l = "${event-context:aaa}";
@@ -57,7 +57,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.AreEqual("", l.GetFormattedMessage(lei));
         }
 
-        [Test]
+        [TestMethod]
         public void Test2()
         {
             Layout l = "${event-context:aaa}";

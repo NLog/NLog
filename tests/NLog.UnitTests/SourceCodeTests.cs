@@ -35,14 +35,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests
 {
     /// <summary>
     /// Source code tests.
     /// </summary>
-    [TestFixture]
+    [TestClass]
     public class SourceCodeTests
     {
         private static Regex classNameRegex = new Regex(@"^    (public |abstract |sealed |static |partial |internal )*(class|interface|struct|enum) (?<className>\w+)\b", RegexOptions.Compiled);
@@ -64,7 +64,7 @@ namespace NLog.UnitTests
         private string licenseFile;
         private string[] licenseLines;
 
-        [SetUp]
+        [TestInitialize]
         public void Initialize()
         {
             this.sourceCodeDirectory = Directory.GetCurrentDirectory();
@@ -82,7 +82,7 @@ namespace NLog.UnitTests
             this.licenseLines = File.ReadAllLines(this.licenseFile);
         }
 
-        [Test]
+        [TestMethod]
         public void VerifyFileHeaders()
         {
             int failedFiles = 0;
@@ -108,7 +108,7 @@ namespace NLog.UnitTests
         }
 
 
-        [Test]
+        [TestMethod]
         public void VerifyNamespacesAndClassNames()
         {
             int failedFiles = 0;

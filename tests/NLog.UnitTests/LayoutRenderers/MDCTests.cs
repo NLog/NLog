@@ -38,15 +38,15 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Contexts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    [TestClass]
     public class MDCTests : NLogTestBase
     {
-        [Test]
+        [TestMethod]
         public void MDCTest()
         {
             XmlDocument doc = new XmlDocument();
