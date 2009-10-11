@@ -1,3 +1,9 @@
+2009-10-10 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Removed PopulateLayouts across the source code and replaced it with a centralized reflection-based utility.
+	* Introduced INLogConfigurationItem which is used to mark classes which should be scanned for Layouts.
+	* Introduced ISupportsInitialize which is used to centralize Initialize and Close handling across the code.
+	* Centralized RequitedParameterAttribute handling.
+
 2009-09-19  Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added binary compatibility test with NLog v1.0
 	* Deprecated LogEventInfo.Context - replaced with LogEventInfo.Properties which uses generic. Added verification that binary compatibility is preserved.
