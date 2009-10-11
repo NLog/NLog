@@ -31,20 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-
-using NLog;
 using NLog.Config;
 
 using NUnit.Framework;
 using NLog.Targets;
-using System.IO;
-using System.Text;
-using NLog.Targets.Wrappers;
-using NLog.LayoutRenderers;
-using NLog.Win32.Targets;
-using System.Diagnostics;
 
 namespace NLog.UnitTests.Targets
 {
