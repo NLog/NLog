@@ -42,8 +42,8 @@ using NUnit.Framework;
 namespace NLog.UnitTests
 {
     [TestFixture]
-	public class GetLoggerTests : NLogTestBase
-	{
+    public class GetLoggerTests : NLogTestBase
+    {
         [Test]
         public void GetCurrentClassLoggerTest()
         {
@@ -129,7 +129,7 @@ namespace NLog.UnitTests
         }
 
 #endif
-        
+
         public class MyLogger : Logger
         {
             public MyLogger()

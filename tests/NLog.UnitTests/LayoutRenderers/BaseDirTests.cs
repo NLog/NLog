@@ -45,8 +45,8 @@ using NLog.Layouts;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class BaseDirTests : NLogTestBase
-	{
+    public class BaseDirTests : NLogTestBase
+    {
         private string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 
         [Test]

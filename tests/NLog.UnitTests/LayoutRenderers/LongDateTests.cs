@@ -43,8 +43,8 @@ using NUnit.Framework;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class LongDateTests : NLogTestBase
-	{
+    public class LongDateTests : NLogTestBase
+    {
         [Test]
         public void LongDateTest()
         {

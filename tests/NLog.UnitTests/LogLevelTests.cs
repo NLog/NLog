@@ -43,8 +43,8 @@ using NUnit.Framework;
 namespace NLog.UnitTests
 {
     [TestFixture]
-	public class LogLevelTests : NLogTestBase
-	{
+    public class LogLevelTests : NLogTestBase
+    {
         [Test]
         public void OrdinalTest()
         {
@@ -129,6 +129,4 @@ namespace NLog.UnitTests
             Assert.AreEqual(LogLevel.Fatal.ToString(), "Fatal");
         }
     }
-
-
 }

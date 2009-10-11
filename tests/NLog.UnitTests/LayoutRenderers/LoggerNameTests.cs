@@ -43,8 +43,8 @@ using NUnit.Framework;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class LoggerNameTests : NLogTestBase
-	{
+    public class LoggerNameTests : NLogTestBase
+    {
         [Test]
         public void LoggerNameTest()
         {

@@ -86,9 +86,9 @@
     <Compile Include="Config\DefaultParameterAttribute.cs" />
     <Compile Include="Config\Factory.cs" />
     <Compile Include="Config\IFactory.cs" />
-    <Compile Include="Config\IFactory`2.cs" />
+    <Compile Include="Config\INamedItemFactory.cs" />
     <Compile Include="Internal\EnumerableHelpers.cs" />
-    <Compile Include="Internal\INLogConfigurationItem.cs" />
+    <Compile Include="Config\INLogConfigurationItem.cs" />
     <Compile Include="Config\LoggingConfiguration.cs" />
     <Compile Include="Config\LoggingConfigurationChangedEventArgs.cs" />
     <Compile Include="Config\LoggingConfigurationReloadedEventArgs.cs" />
@@ -125,7 +125,7 @@
     <Compile Include="Internal\FactoryHelper.cs" />
     <Compile Include="Internal\FileAppenders\BaseFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs" />
-    <Compile Include="Internal\FileAppenders\ICreateFile.cs" />
+    <Compile Include="Internal\FileAppenders\ICreateFileParameters.cs" />
     <Compile Include="Internal\FileAppenders\IFileAppenderFactory.cs" />
     <Compile Include="Internal\FileAppenders\MutexMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\RetryingMultiProcessFileAppender.cs" />
@@ -195,6 +195,7 @@
     <Compile Include="LayoutRenderers\QpcLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\ShortDateLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\SpecialFolderLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\StackTraceFormat.cs" />
     <Compile Include="LayoutRenderers\StackTraceLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TempDirLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\ThreadIDLayoutRenderer.cs" />
@@ -219,9 +220,9 @@
     <Compile Include="Layouts\SimpleLayout.cs" />
     <Compile Include="LogEventInfo.cs" />
     <Compile Include="LogFactory.cs" />
-    <Compile Include="LogFactoryOfT.cs" />
+    <Compile Include="LogFactory-T.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="Logger.v1.cs" />
+    <Compile Include="Logger-V1Compat.cs" />
     <Compile Include="LoggerImpl.cs" />
     <Compile Include="LogLevel.cs" />
     <Compile Include="LogManager.cs" />
@@ -265,7 +266,7 @@
     <Compile Include="Targets\TraceTarget.cs" />
     <Compile Include="Targets\WebServiceTarget.cs" />
     <Compile Include="Targets\Wrappers\AspNetBufferingTargetWrapper.cs" />
-    <Compile Include="Targets\Wrappers\AsyncRequestQueueOfT.cs" />
+    <Compile Include="Targets\Wrappers\AsyncRequestQueue.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapperOverflowAction.cs" />
     <Compile Include="Targets\Wrappers\AutoFlushTargetWrapper.cs" />
@@ -299,10 +300,6 @@
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Win32\LayoutRenderers\" />
-    <Folder Include="Win32\Targets\" />
   </ItemGroup>
   <Import Project="$(StyleCopTargetsFile)" Condition="'$(StyleCopTargetsFile)' != ''" />
   <Import Project="$(OverrideTargetsFile)" Condition="'$(OverrideTargetsFile)' != ''" />

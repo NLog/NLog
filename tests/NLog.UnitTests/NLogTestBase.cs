@@ -42,8 +42,8 @@ using NLog.Layouts;
 
 namespace NLog.UnitTests
 {
-	public class NLogTestBase
-	{
+    public class NLogTestBase
+    {
         public void AssertDebugCounter(string targetName, int val)
         {
             NLog.Targets.DebugTarget debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);

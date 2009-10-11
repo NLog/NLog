@@ -48,8 +48,8 @@ using NLog.Layouts;
 namespace NLog.UnitTests
 {
     [TestFixture]
-	public class TargetConfigurationTests : NLogTestBase
-	{
+    public class TargetConfigurationTests : NLogTestBase
+    {
         [Test]
         public void SimpleTest()
         {

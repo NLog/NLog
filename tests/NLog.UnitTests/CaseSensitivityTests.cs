@@ -42,8 +42,8 @@ using NUnit.Framework;
 namespace NLog.UnitTests
 {
     [TestFixture]
-	public class CaseSensitivityTests : NLogTestBase
-	{
+    public class CaseSensitivityTests : NLogTestBase
+    {
         [Test]
         public void LowerCaseTest()
         {

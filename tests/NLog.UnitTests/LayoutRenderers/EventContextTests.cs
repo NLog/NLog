@@ -44,8 +44,8 @@ using NLog.Layouts;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class EventContextTests : NLogTestBase
-	{
+    public class EventContextTests : NLogTestBase
+    {
         [Test]
         public void Test1()
         {

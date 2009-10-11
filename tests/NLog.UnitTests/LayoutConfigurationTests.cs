@@ -46,8 +46,8 @@ using System.Text;
 namespace NLog.UnitTests
 {
     [TestFixture]
-	public class LayoutConfigurationTests : NLogTestBase
-	{
+    public class LayoutConfigurationTests : NLogTestBase
+    {
         [Test]
         public void SimpleTest()
         {
@@ -107,7 +107,7 @@ namespace NLog.UnitTests
         public void DefaultValueWithBracketTest()
         {
             SimpleLayout l = "${mdc:AAA\\}\\:}";
-            Assert.AreEqual(l.Text,"${mdc:AAA\\}\\:}");
+            Assert.AreEqual(l.Text, "${mdc:AAA\\}\\:}");
             Assert.AreEqual(1, l.Renderers.Count);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);

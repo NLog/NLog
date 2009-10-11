@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers
     /// ASP Request variable.
     /// </summary>
     [LayoutRenderer("asp-request")]
-    public class ASPRequestValueLayoutRenderer : LayoutRenderer
+    public class AspRequestValueLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Gets or sets the item name. The QueryString, Form, Cookies, or ServerVariables collection variables having the specified name are rendered.

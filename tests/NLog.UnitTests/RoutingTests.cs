@@ -42,8 +42,8 @@ using NUnit.Framework;
 namespace NLog.UnitTests
 {
     [TestFixture]
-	public class RoutingTests : NLogTestBase
-	{
+    public class RoutingTests : NLogTestBase
+    {
         [Test]
         public void LogThresholdTest()
         {

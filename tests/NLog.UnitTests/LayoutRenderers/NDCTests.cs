@@ -44,8 +44,8 @@ using NLog.Contexts;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class NDCTests : NLogTestBase
-	{
+    public class NDCTests : NLogTestBase
+    {
         [Test]
         public void NDCTest()
         {

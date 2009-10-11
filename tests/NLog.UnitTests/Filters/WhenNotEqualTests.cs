@@ -44,8 +44,8 @@ using NUnit.Framework;
 namespace NLog.UnitTests.Filters
 {
     [TestFixture]
-	public class WhenNotEqualTests : NLogTestBase
-	{
+    public class WhenNotEqualTests : NLogTestBase
+    {
         [Test]
         public void WhenNotEqualTest()
         {

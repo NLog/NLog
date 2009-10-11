@@ -32,20 +32,33 @@
 // 
 
 using System;
-using System.Xml;
-
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
+using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
+using NUnit.Framework;
 
 namespace NLog.UnitTests
 {
+    /// <summary>
+    /// Source code tests.
+    /// </summary>
     [TestFixture]
-	public class SourceCodeTests
-	{
-        private const string relativeNLogDirectory = "src/NLog";
+    public class SourceCodeTests
+    {
+        private static Regex classNameRegex = new Regex(@"^    (public |abstract |sealed |static |partial |internal )*(class|interface|struct|enum) (?<className>\w+)\b", RegexOptions.Compiled);
+        private static Regex delegateTypeRegex = new Regex(@"^    (public |internal )delegate .*\b(?<delegateType>\w+)\(", RegexOptions.Compiled);
+        private static string[] directoriesToVerify = new[]
+            {
+                "src/NLog",
+                "tests/NLog.UnitTests"
+            };
+
+        private static ICollection<string> fileNamesToIgnore = new List<string>()
+        {
+            "AssemblyInfo.cs",
+            "AssemblyBuildInfo.cs",
+            "GlobalSuppressions.cs",
+        };
 
         private string sourceCodeDirectory;
         private string licenseFile;
@@ -66,7 +79,6 @@ namespace NLog.UnitTests
                 this.sourceCodeDirectory = Path.GetDirectoryName(this.sourceCodeDirectory);
             }
 
-            this.sourceCodeDirectory = Path.Combine(this.sourceCodeDirectory, relativeNLogDirectory);
             this.licenseLines = File.ReadAllLines(this.licenseFile);
         }
 
@@ -75,32 +87,44 @@ namespace NLog.UnitTests
         {
             int failedFiles = 0;
 
-            foreach (string file in Directory.GetFiles(this.sourceCodeDirectory, "*.cs", SearchOption.AllDirectories))
+            foreach (string dir in directoriesToVerify)
             {
-                if (IgnoreFile(file))
+                foreach (string file in Directory.GetFiles(Path.Combine(this.sourceCodeDirectory, dir), "*.cs", SearchOption.AllDirectories))
                 {
-                    continue;
-                }
+                    if (IgnoreFile(file))
+                    {
+                        continue;
+                    }
 
-                if (!VerifySingleFile(file))
-                {
-                    failedFiles++;
-                    Console.WriteLine("Missing header: {0}", file);
+                    if (!VerifySingleFile(file))
+                    {
+                        failedFiles++;
+                        Console.WriteLine("Missing header: {0}", file);
+                    }
                 }
             }
 
             Assert.AreEqual(0, failedFiles, "One or more files don't have valid license headers.");
         }
 
+
+        [Test]
+        public void VerifyNamespacesAndClassNames()
+        {
+            int failedFiles = 0;
+
+            foreach (string dir in directoriesToVerify)
+            {
+                failedFiles += VerifyClassNames(Path.Combine(this.sourceCodeDirectory, dir), Path.GetFileName(dir));
+            }
+
+            Assert.AreEqual(0, failedFiles, "One or more files don't have valid class names and/or namespaces.");
+        }
+
         bool IgnoreFile(string file)
         {
             string baseName = Path.GetFileName(file);
-            if (baseName == "AssemblyBuildInfo.cs")
-            {
-                return true;
-            }
-
-            if (baseName == "GlobalSuppressions.cs")
+            if (fileNamesToIgnore.Contains(baseName))
             {
                 return true;
             }
@@ -124,6 +148,93 @@ namespace NLog.UnitTests
 
                 return true;
             }
+        }
+
+        private int VerifyClassNames(string path, string expectedNamespace)
+        {
+            int failureCount = 0;
+
+            foreach (string file in Directory.GetFiles(path, "*.cs"))
+            {
+                if (IgnoreFile(file))
+                {
+                    continue;
+                }
+
+                string expectedClassName = Path.GetFileNameWithoutExtension(file);
+                int p = expectedClassName.IndexOf('-');
+                if (p >= 0)
+                {
+                    expectedClassName = expectedClassName.Substring(0, p);
+                }
+
+                if (!this.VerifySingleFile(file, expectedNamespace, expectedClassName))
+                {
+                    failureCount++;
+                }
+            }
+
+            foreach (string dir in Directory.GetDirectories(path))
+            {
+                failureCount += VerifyClassNames(dir, expectedNamespace + "." + Path.GetFileName(dir));
+            }
+
+            return failureCount;
+        }
+
+        private bool VerifySingleFile(string file, string expectedNamespace, string expectedClassName)
+        {
+            bool success = true;
+            List<string> classNames = new List<string>();
+            using (StreamReader sr = File.OpenText(file))
+            {
+                string line;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    if (line.StartsWith("namespace ", StringComparison.Ordinal))
+                    {
+                        string ns = line.Substring(10);
+                        if (expectedNamespace != ns)
+                        {
+                            Console.WriteLine("Invalid namespace: '{0}' Expected: '{1}'", ns, expectedNamespace);
+                            success = false;
+                        }
+                    }
+
+                    Match match = classNameRegex.Match(line);
+                    if (match.Success)
+                    {
+                        classNames.Add(match.Groups["className"].Value);
+                    }
+
+                    match = delegateTypeRegex.Match(line);
+                    if (match.Success)
+                    {
+                        classNames.Add(match.Groups["delegateType"].Value);
+                    }
+                }
+            }
+
+            if (classNames.Count == 0)
+            {
+                Console.WriteLine("No classes found in {0}", file);
+                success = false;
+            }
+
+            if (classNames.Count > 1)
+            {
+                Console.WriteLine("More than 1 class name found in {0}", file);
+                success = false;
+            }
+
+            if (classNames.Count == 1 && classNames[0] != expectedClassName)
+            {
+                Console.WriteLine("Invalid class name. Expected '{0}', actual: '{1}'", expectedClassName, classNames[0]);
+                success = false;
+            }
+
+            return success;
         }
     }
 }

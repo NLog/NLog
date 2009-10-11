@@ -49,8 +49,8 @@ using NLog.Internal;
 namespace NLog.UnitTests
 {
     [TestFixture]
-	public class LogManagerTests : NLogTestBase
-	{
+    public class LogManagerTests : NLogTestBase
+    {
         [Test]
         public void GetLoggerTest()
         {

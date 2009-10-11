@@ -43,8 +43,8 @@ using NUnit.Framework;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class DateTests : NLogTestBase
-	{
+    public class DateTests : NLogTestBase
+    {
         [Test]
         public void DefaultDateTest()
         {

@@ -45,8 +45,8 @@ using NUnit.Framework;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class CallSiteTests : NLogTestBase
-	{
+    public class CallSiteTests : NLogTestBase
+    {
         [Test]
         public void LineNumberTest()
         {
@@ -128,7 +128,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
-            AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0,3) + " msg");
+            AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
         }
 
         [Test]

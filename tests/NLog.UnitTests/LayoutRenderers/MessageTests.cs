@@ -45,8 +45,8 @@ using NUnit.Framework;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class MessageTests : NLogTestBase
-	{
+    public class MessageTests : NLogTestBase
+    {
         [Test]
         public void MessageWithoutPaddingTest()
         {
@@ -68,7 +68,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a1");
             logger.Debug("a{0}{1}", 1, "2");
             AssertDebugLastMessage("debug", "a12");
-            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005,1,1));
+            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
             AssertDebugLastMessage("debug", "a01/01/2005 00:00:00");
         }
 
@@ -93,7 +93,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", " a1");
             logger.Debug("a{0}{1}", 1, "2");
             AssertDebugLastMessage("debug", "a12");
-            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005,1,1));
+            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
             AssertDebugLastMessage("debug", "a01/01/2005 00:00:00");
         }
 
@@ -119,7 +119,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", " a1");
             logger.Debug("a{0}{1}", 1, "2");
             AssertDebugLastMessage("debug", "a12");
-            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005,1,1));
+            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
             AssertDebugLastMessage("debug", "a01");
         }
 
@@ -144,7 +144,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a1x");
             logger.Debug("a{0}{1}", 1, "2");
             AssertDebugLastMessage("debug", "a12");
-            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005,1,1));
+            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
             AssertDebugLastMessage("debug", "a01/01/2005 00:00:00");
         }
 
@@ -169,7 +169,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a1x");
             logger.Debug("a{0}{1}", 1, "2");
             AssertDebugLastMessage("debug", "a12");
-            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005,1,1));
+            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
             AssertDebugLastMessage("debug", "a01");
         }
     }

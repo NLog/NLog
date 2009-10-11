@@ -58,6 +58,10 @@
     <MSBuild Projects="NLog\NLog.csproj" Targets="Build" Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="$(BuildAllFrameworks)" StopOnFirstFailure="false" />
   </Target>
 
+  <Target Name="Test">
+    <MSBuild Projects="..\Tests\NLog.UnitTests\NLog.UnitTests.csproj" Targets="Build" Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="$(BuildAllFrameworks)" StopOnFirstFailure="false" />
+  </Target>
+
   <Target Name="Documentation" DependsOnTargets="Build">
     <Exec Command='"$(MSBuildBinPath)\MSBuild.exe" NLog.shfbproj /p:"NLogBuildPath=$(BaseOutputDirectory)bin\$(Configuration)\%(TargetFramework.Identity)" /p:Framework="%(TargetFramework.Identity)"' ContinueOnError="$(BuildAllFrameworks)" />
   </Target>

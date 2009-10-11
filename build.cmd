@@ -75,6 +75,12 @@ if (%1)==(build) (
 	goto next
 )
 
+if (%1)==(test) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Test
+	shift
+	goto next
+)
+
 if (%1)==(rebuild) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Rebuild
 	shift
@@ -109,6 +115,7 @@ echo Targets can be:
 echo.
 echo  clean              Removes output files
 echo  build              Compiles assemblies
+echo  test               Builds and runs unit tests
 echo  doc                Builds documentation
 echo  all                Full build
 exit /b 1

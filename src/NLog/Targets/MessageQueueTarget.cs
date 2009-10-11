@@ -64,7 +64,7 @@ namespace NLog.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/MSMQ/Simple/Example.cs" />
     /// </example>
     [Target("MSMQ")]
-    public class MsmqTarget : TargetWithLayout
+    public class MessageQueueTarget : TargetWithLayout
     {
         private MessagePriority messagePriority = MessagePriority.Normal;
 
@@ -74,7 +74,7 @@ namespace NLog.Targets
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
         /// </remarks>
-        public MsmqTarget()
+        public MessageQueueTarget()
         {
             this.Label = "NLog";
             this.Encoding = System.Text.Encoding.UTF8;

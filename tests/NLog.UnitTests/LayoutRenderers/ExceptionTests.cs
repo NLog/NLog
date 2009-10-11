@@ -43,8 +43,8 @@ using NUnit.Framework;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class ExceptionTests : NLogTestBase
-	{
+    public class ExceptionTests : NLogTestBase
+    {
         [Test]
         public void Test1()
         {

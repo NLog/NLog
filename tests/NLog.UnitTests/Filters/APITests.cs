@@ -46,8 +46,8 @@ using NLog.Filters;
 namespace NLog.UnitTests.Filters
 {
     [TestFixture]
-	public class APITests : NLogTestBase
-	{
+    public class APITests : NLogTestBase
+    {
         [Test]
         public void APITest()
         {

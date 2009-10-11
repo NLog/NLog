@@ -44,8 +44,8 @@ using NUnit.Framework;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class LiteralTests : NLogTestBase
-	{
+    public class LiteralTests : NLogTestBase
+    {
         [Test]
         public void LiteralTest()
         {

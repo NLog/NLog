@@ -50,8 +50,8 @@ using NLog.Layouts;
 namespace NLog.UnitTests.Targets
 {
     [TestFixture]
-	public class FileTargetTests : NLogTestBase
-	{
+    public class FileTargetTests : NLogTestBase
+    {
         private Logger logger = LogManager.GetCurrentClassLogger();
 
         [Test]
@@ -221,13 +221,13 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;
 
-                AssertFileContents(tempFile, 
-                    StringRepeat(250, "eee\n"), 
+                AssertFileContents(tempFile,
+                    StringRepeat(250, "eee\n"),
                     Encoding.ASCII);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0001.txt"), 
-                    StringRepeat(250, "bbb\n"), 
+                    Path.Combine(tempPath, "archive/0001.txt"),
+                    StringRepeat(250, "bbb\n"),
                     Encoding.ASCII);
 
                 AssertFileContents(
@@ -396,7 +396,7 @@ namespace NLog.UnitTests.Targets
                 ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${message}";
 
-                SimpleConfigurator.ConfigureForTargetLogging(new BufferingTargetWrapper(ft,10), LogLevel.Debug);
+                SimpleConfigurator.ConfigureForTargetLogging(new BufferingTargetWrapper(ft, 10), LogLevel.Debug);
 
                 for (int i = 0; i < 250; ++i)
                 {
@@ -473,7 +473,7 @@ namespace NLog.UnitTests.Targets
                 Assert.IsFalse(File.Exists(Path.Combine(tempPath, "Trace.txt")));
 
                 AssertFileContents(Path.Combine(tempPath, "Debug.txt"),
-                    StringRepeat(250, "aaa " + threadID +"\n"), Encoding.ASCII);
+                    StringRepeat(250, "aaa " + threadID + "\n"), Encoding.ASCII);
 
                 AssertFileContents(Path.Combine(tempPath, "Info.txt"),
                     StringRepeat(250, "bbb " + threadID + "\n"), Encoding.ASCII);

@@ -44,8 +44,8 @@ using NUnit.Framework;
 namespace NLog.UnitTests.Filters
 {
     [TestFixture]
-	public class WhenNotContainsTests : NLogTestBase
-	{
+    public class WhenNotContainsTests : NLogTestBase
+    {
         [Test]
         public void WhenNotContainsTest()
         {

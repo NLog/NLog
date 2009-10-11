@@ -47,8 +47,8 @@ using NLog.LayoutRenderers.Wrappers;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class Rot13Tests : NLogTestBase
-	{
+    public class Rot13Tests : NLogTestBase
+    {
         [Test]
         public void Test1()
         {
@@ -109,7 +109,6 @@ namespace NLog.UnitTests.LayoutRenderers
 
             // double rot-13 should be identity
             AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.Rot13Tests");
-
         }
     }
 }

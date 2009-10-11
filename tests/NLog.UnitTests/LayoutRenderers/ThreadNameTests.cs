@@ -43,8 +43,8 @@ using NUnit.Framework;
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
-	public class ThreadNameTests : NLogTestBase
-	{
+    public class ThreadNameTests : NLogTestBase
+    {
         [Test]
         public void ThreadNameTest()
         {

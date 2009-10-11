@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     /// ASP Application variable.
     /// </summary>
     [LayoutRenderer("asp-application")]
-    public class ASPApplicationValueLayoutRenderer : LayoutRenderer
+    public class AspApplicationValueLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Gets or sets the ASP Application variable name.

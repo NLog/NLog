@@ -39,8 +39,8 @@ using NLog.Targets;
 namespace NLog.UnitTests.Targets
 {
     [TestFixture]
-	public class EventLogTests : NLogTestBase
-	{
+    public class EventLogTests : NLogTestBase
+    {
         [SetUp]
         public void Init()
         {

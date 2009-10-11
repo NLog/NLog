@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,35 +31,30 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.Reflection;
+#if !NET_CF
 
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.LayoutRenderers
 {
-    [TestFixture]
-    public class ShortDateTests : NLogTestBase
+    /// <summary>
+    /// Format of the ${stacktrace} layout renderer output.
+    /// </summary>
+    public enum StackTraceFormat
     {
-        [Test]
-        public void ShortDateTest()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${shortdate}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
+        /// <summary>
+        /// Raw format (multiline - as returned by StackFrame.ToString() method).
+        /// </summary>
+        Raw,
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-            LogManager.GetLogger("d").Debug("zzz");
-            AssertDebugLastMessage("debug", DateTime.Now.ToString("yyyy-MM-dd"));
-        }
+        /// <summary>
+        /// Flat format (class and method names displayed in a single line).
+        /// </summary>
+        Flat,
+
+        /// <summary>
+        /// Detailed flat format (method signatures displayed in a single line).
+        /// </summary>
+        DetailedFlat,
     }
 }
+
+#endif
