@@ -50,6 +50,10 @@ namespace NLog.Conditions
             this.Expression = expression;
         }
 
+        /// <summary>
+        /// Gets the expression to be negated.
+        /// </summary>
+        /// <value>The expression.</value>
         public ConditionExpression Expression { get; private set; }
 
         /// <summary>

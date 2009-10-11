@@ -3,6 +3,7 @@
 	* Introduced INLogConfigurationItem which is used to mark classes which should be scanned for Layouts.
 	* Introduced ISupportsInitialize which is used to centralize Initialize and Close handling across the code.
 	* Centralized RequitedParameterAttribute handling.
+	* Removed support for NLOG_GLOBAL_CONFIG_FILE variable and NLog.dll.nlog file
 
 2009-09-19  Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added binary compatibility test with NLog v1.0

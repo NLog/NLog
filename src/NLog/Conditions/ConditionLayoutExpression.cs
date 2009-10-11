@@ -51,6 +51,10 @@ namespace NLog.Conditions
             this.Layout = layout;
         }
 
+        /// <summary>
+        /// Gets the layout.
+        /// </summary>
+        /// <value>The layout.</value>
         public Layout Layout { get; private set; }
 
         /// <summary>

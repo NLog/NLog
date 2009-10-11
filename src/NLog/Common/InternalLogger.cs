@@ -361,7 +361,7 @@ namespace NLog.Common
 
             try
             {
-                return (T)Convert.ChangeType(value, typeof (T), CultureInfo.InvariantCulture);
+                return (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture);
             }
             catch
             {

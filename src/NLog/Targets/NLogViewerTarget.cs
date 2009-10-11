@@ -74,7 +74,7 @@ namespace NLog.Targets
         /// </remarks>
         public NLogViewerTarget()
         {
-            Parameters = new List<NLogViewerParameterInfo>();
+            this.Parameters = new List<NLogViewerParameterInfo>();
             this.Layout = new Log4JXmlEventLayout();
             this.Renderer.Parameters = this.Parameters;
             NewLine = false;

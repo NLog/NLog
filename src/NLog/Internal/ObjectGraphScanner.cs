@@ -49,9 +49,9 @@ namespace NLog.Internal
         {
             var result = new List<T>();
 
-            while (queue.Count > 0)
+            while (this.queue.Count > 0)
             {
-                INLogConfigurationItem o = queue.Dequeue();
+                INLogConfigurationItem o = this.queue.Dequeue();
                 T t = o as T;
                 if (t != null)
                 {
@@ -77,9 +77,9 @@ namespace NLog.Internal
                 return;
             }
 
-            if (!visitedObjects.ContainsKey(o))
+            if (!this.visitedObjects.ContainsKey(o))
             {
-                visitedObjects.Add(o, true);
+                this.visitedObjects.Add(o, true);
                 this.queue.Enqueue(o);
             }
         }

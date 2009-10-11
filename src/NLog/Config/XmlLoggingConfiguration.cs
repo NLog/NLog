@@ -817,7 +817,7 @@ namespace NLog.Config
 
         private bool SetPropertyFromElement(object o, XmlReader reader)
         {
-            if (this.AddArrayItemFromElement(o, reader, variables))
+            if (this.AddArrayItemFromElement(o, reader, this.variables))
             {
                 return true;
             }
@@ -900,9 +900,9 @@ namespace NLog.Config
                     throw new NLogConfigurationException("No 'type' attributespecified for a layout parameter");
                 }
 
-                Layout layout = this.nlogFactories.LayoutFactory.CreateInstance(PropertyHelper.ExpandVariables(layoutTypeName, variables));
-                this.ConfigureObjectFromAttributes(layout, reader, variables, true);
-                this.ConfigureObjectFromElement(layout, reader, variables);
+                Layout layout = this.nlogFactories.LayoutFactory.CreateInstance(PropertyHelper.ExpandVariables(layoutTypeName, this.variables));
+                this.ConfigureObjectFromAttributes(layout, reader, this.variables, true);
+                this.ConfigureObjectFromElement(layout, reader, this.variables);
                 targetPropertyInfo.SetValue(o, layout, null);
                 return true;
             }
@@ -913,10 +913,10 @@ namespace NLog.Config
 
                 if (this.TryGetCaseInsensitiveAttribute(reader, "type", out typeName))
                 {
-                    typeName = PropertyHelper.ExpandVariables(typeName, variables);
+                    typeName = PropertyHelper.ExpandVariables(typeName, this.variables);
                     Layout layout = this.nlogFactories.LayoutFactory.CreateInstance(typeName);
-                    this.ConfigureObjectFromAttributes(layout, reader, variables, true);
-                    this.ConfigureObjectFromElement(layout, reader, variables);
+                    this.ConfigureObjectFromAttributes(layout, reader, this.variables, true);
+                    this.ConfigureObjectFromElement(layout, reader, this.variables);
                     ((TargetWithLayout)o).Layout = layout;
                 }
                 else

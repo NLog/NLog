@@ -48,7 +48,7 @@ namespace NLog.Layouts
         /// </summary>
         public Log4JXmlEventLayout()
         {
-            Renderer = new Log4JXmlEventLayoutRenderer();
+            this.Renderer = new Log4JXmlEventLayoutRenderer();
         }
 
         /// <summary>

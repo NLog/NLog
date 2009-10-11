@@ -328,19 +328,19 @@ namespace NLog.Conditions
 
             if (!this.IgnoreWhiteSpace && Char.IsWhiteSpace(ch))
             {
-                ParseWhitespace();
+                this.ParseWhitespace();
                 return;
             }
 
             if (Char.IsDigit(ch))
             {
-                ParseNumber(ch);
+                this.ParseNumber(ch);
                 return;
             }
 
             if (ch == '\'')
             {
-                ParseSingleQuotedString(ch);
+                this.ParseSingleQuotedString(ch);
                 return;
             }
 

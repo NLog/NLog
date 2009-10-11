@@ -41,8 +41,9 @@ namespace NLog.Common
     public static class ExceptionHelpers
     {
         /// <summary>
-        /// Function which returns the specified data ttype.
+        /// Function which returns the specified data type.
         /// </summary>
+        /// <returns>Value of T</returns>
         public delegate T Func<T>();
 
         /// <summary>

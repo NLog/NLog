@@ -125,6 +125,29 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
+        /// Closes the impersonation context.
+        /// </summary>
+        public override void Close()
+        {
+            using (this.DoImpersonate())
+            {
+                base.Close();
+            }
+
+            if (this.existingTokenHandle != IntPtr.Zero)
+            {
+                NativeMethods.CloseHandle(this.existingTokenHandle);
+                this.existingTokenHandle = IntPtr.Zero;
+            }
+
+            if (this.duplicateTokenHandle != IntPtr.Zero)
+            {
+                NativeMethods.CloseHandle(this.duplicateTokenHandle);
+                this.duplicateTokenHandle = IntPtr.Zero;
+            }
+        }
+
+        /// <summary>
         /// Changes the security context, forwards the call to the <see cref="WrapperTargetBase.WrappedTarget"/>.Write()
         /// and switches the context back to original.
         /// </summary>
@@ -147,29 +170,6 @@ namespace NLog.Targets.Wrappers
             using (this.DoImpersonate())
             {
                 this.WrappedTarget.Write(logEvents);
-            }
-        }
-
-        /// <summary>
-        /// Closes the impersonation context.
-        /// </summary>
-        public override void Close()
-        {
-            using (this.DoImpersonate())
-            {
-                base.Close();
-            }
-
-            if (this.existingTokenHandle != IntPtr.Zero)
-            {
-                NativeMethods.CloseHandle(this.existingTokenHandle);
-                this.existingTokenHandle = IntPtr.Zero;
-            }
-
-            if (this.duplicateTokenHandle != IntPtr.Zero)
-            {
-                NativeMethods.CloseHandle(this.duplicateTokenHandle);
-                this.duplicateTokenHandle = IntPtr.Zero;
             }
         }
 

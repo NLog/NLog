@@ -105,7 +105,7 @@ namespace NLog.Internal.Win32
         }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("00020400-0000-0000-C000-000000000046")]
-        public interface IDispatch{}
+        public interface IDispatch { }
 
         [ComImport, InterfaceType(ComInterfaceType.InterfaceIsDual), Guid("D97A6DA0-A861-11cf-93AE-00A0C90C2BD8")]
         public interface IRequest
@@ -240,7 +240,7 @@ namespace NLog.Internal.Win32
         {
             if (o == null)
                 return null;
-            return o.GetType().InvokeMember("", BindingFlags.GetProperty, null, o, new Object[] {});
+            return o.GetType().InvokeMember(string.Empty, BindingFlags.GetProperty, null, o, new object[] { });
         }
 
     }

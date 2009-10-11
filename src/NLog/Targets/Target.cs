@@ -125,7 +125,7 @@ namespace NLog.Targets
             scanner.AddRoot(this);
             this.allLayouts = new List<Layout>(scanner.Scan());
 
-            InternalLogger.Trace("{0} has {1} layouts", this, allLayouts.Count);
+            InternalLogger.Trace("{0} has {1} layouts", this, this.allLayouts.Count);
         }
 
         /// <summary>

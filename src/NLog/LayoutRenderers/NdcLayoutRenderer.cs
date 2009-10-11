@@ -44,7 +44,7 @@ namespace NLog.LayoutRenderers
     public class NdcLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the NDCLayoutRenderer class.
+        /// Initializes a new instance of the NdcLayoutRenderer class.
         /// </summary>
         public NdcLayoutRenderer()
         {

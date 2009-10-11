@@ -58,6 +58,23 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String"/> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            var lra = (LayoutRendererAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(LayoutRendererAttribute));
+            if (lra != null)
+            {
+                return "Layout Renderer: ${" + lra.Name + "}";
+            }
+
+            return this.GetType().Name;
+        }
+
+        /// <summary>
         /// Returns the estimated number of characters that are needed to
         /// hold the rendered value for the specified logging event.
         /// </summary>
@@ -110,23 +127,6 @@ namespace NLog.LayoutRenderers
         protected internal virtual bool IsAppDomainFixed()
         {
             return false;
-        }
-
-        /// <summary>
-        /// Returns a <see cref="System.String"/> that represents this instance.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String"/> that represents this instance.
-        /// </returns>
-        public override string ToString()
-        {
-            var lra = (LayoutRendererAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(LayoutRendererAttribute));
-            if (lra != null)
-            {
-                return "Layout Renderer: ${" + lra.Name + "}";
-            }
-
-            return this.GetType().Name;
         }
     }
 }

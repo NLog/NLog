@@ -40,8 +40,6 @@ namespace NLog
     /// </summary>
     public class LogLevel : IComparable
     {
-        private static readonly LogLevel[] levelByOrdinal;
-
         /// <summary>
         /// Trace log level.
         /// </summary>
@@ -76,6 +74,8 @@ namespace NLog
         /// Off log level.
         /// </summary>
         public static readonly LogLevel Off;
+
+        private static readonly LogLevel[] levelByOrdinal;
 
         /// <summary>
         /// Initializes static members of the LogLevel class.

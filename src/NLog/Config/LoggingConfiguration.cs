@@ -169,9 +169,7 @@ namespace NLog.Config
 
             // initialize all config items starting from most nested first
             // so that whenever the container is initialized its children have already been
-            //
-
-            InternalLogger.Info("Found {0} configuration items", configItems.Length);
+            InternalLogger.Info("Found {0} configuration items", this.configItems.Length);
 
             foreach (object o in this.configItems)
             {
@@ -192,25 +190,10 @@ namespace NLog.Config
             }
         }
 
-        private void CheckRequiredParameters(object o)
-        {
-            foreach (PropertyInfo propInfo in o.GetType().GetProperties())
-            {
-                if (propInfo.IsDefined(typeof(RequiredParameterAttribute), false))
-                {
-                    object value = propInfo.GetValue(o, null);
-                    if (value == null)
-                    {
-                        throw new NLogConfigurationException("Required parameter '" + propInfo.Name + "' on '" + o + "' was not specified.");
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// Closes all targets and releases any unmanaged resources.
         /// </summary>
-        public void Close()
+        internal void Close()
         {
             InternalLogger.Debug("Closing logging configuration...");
             foreach (ISupportsInitialize initialize in EnumerableHelpers.OfType<ISupportsInitialize>(this.configItems))
@@ -227,6 +210,21 @@ namespace NLog.Config
             }
 
             InternalLogger.Debug("Finished closing logging configuration.");
+        }
+
+        private void CheckRequiredParameters(object o)
+        {
+            foreach (PropertyInfo propInfo in o.GetType().GetProperties())
+            {
+                if (propInfo.IsDefined(typeof(RequiredParameterAttribute), false))
+                {
+                    object value = propInfo.GetValue(o, null);
+                    if (value == null)
+                    {
+                        throw new NLogConfigurationException("Required parameter '" + propInfo.Name + "' on '" + o + "' was not specified.");
+                    }
+                }
+            }
         }
 
         internal void Dump()

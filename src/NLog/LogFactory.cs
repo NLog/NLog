@@ -540,19 +540,6 @@ namespace NLog
             {
                 yield return Path.ChangeExtension(cf, ".nlog");
             }
-
-            // NLog.dll.nlog
-            Assembly nlogAssembly = typeof(LoggingConfiguration).Assembly;
-            if (!nlogAssembly.GlobalAssemblyCache)
-            {
-                yield return nlogAssembly.Location + ".nlog";
-            }
-
-            //string globalConfig = Environment.GetEnvironmentVariable("NLOG_GLOBAL_CONFIG_FILE");
-            //if (!String.IsNullOrEmpty(globalConfig))
-            //{
-            //    yield return globalConfig;
-            //}
 #endif
         }
 

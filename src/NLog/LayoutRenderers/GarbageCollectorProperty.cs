@@ -68,5 +68,4 @@ namespace NLog.LayoutRenderers
         /// </summary>
         MaxGeneration,
     }
-
 }

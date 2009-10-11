@@ -52,8 +52,8 @@ namespace NLog.Targets
         /// </summary>
         public ConsoleWordHighlightingRule()
         {
-            BackgroundColor = ConsoleOutputColor.NoChange;
-            ForegroundColor = ConsoleOutputColor.NoChange;
+            this.BackgroundColor = ConsoleOutputColor.NoChange;
+            this.ForegroundColor = ConsoleOutputColor.NoChange;
         }
 
         /// <summary>

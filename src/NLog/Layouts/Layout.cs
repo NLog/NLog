@@ -48,16 +48,7 @@ namespace NLog.Layouts
         /// </summary>
         protected Layout()
         {
-            IsInitialized = false;
         }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance is initialized.
-        /// </summary>
-        /// <value>
-        /// A value of <c>true</c> if this instance is initialized; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsInitialized { get; private set; }
 
         /// <summary>
         /// Converts a given text to a <see cref="Layout" />.
@@ -124,7 +115,6 @@ namespace NLog.Layouts
         /// </summary>
         public virtual void Initialize()
         {
-            this.IsInitialized = true;
         }
 
         /// <summary>
@@ -132,16 +122,6 @@ namespace NLog.Layouts
         /// </summary>
         public virtual void Close()
         {
-            if (!this.IsInitialized)
-            {
-                InternalLogger.Warn("Called Close() without Initialize() on " + this.ToString() + "(" + this.GetHashCode() + ")");
-            }
-            else
-            {
-                InternalLogger.Trace("Closing " + this.ToString() + "(" + this.GetHashCode() + ")...");
-            }
-
-            this.IsInitialized = false;
         }
 
         /// <summary>

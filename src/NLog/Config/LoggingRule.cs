@@ -55,9 +55,9 @@ namespace NLog.Config
         /// </summary>
         public LoggingRule()
         {
-            Filters = new List<Filter>();
-            ChildRules = new List<LoggingRule>();
-            Targets = new List<Target>();
+            this.Filters = new List<Filter>();
+            this.ChildRules = new List<LoggingRule>();
+            this.Targets = new List<Target>();
         }
 
         /// <summary>
@@ -68,9 +68,9 @@ namespace NLog.Config
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, LogLevel minLevel, Target target)
         {
-            Filters = new List<Filter>();
-            ChildRules = new List<LoggingRule>();
-            Targets = new List<Target>();
+            this.Filters = new List<Filter>();
+            this.ChildRules = new List<LoggingRule>();
+            this.Targets = new List<Target>();
             this.LoggerNamePattern = loggerNamePattern;
             this.Targets.Add(target);
             for (int i = minLevel.Ordinal; i <= LogLevel.MaxLevel.Ordinal; ++i)
@@ -87,9 +87,9 @@ namespace NLog.Config
         /// <remarks>By default no logging levels are defined. You should call <see cref="EnableLoggingForLevel"/> and <see cref="DisableLoggingForLevel"/> to set them.</remarks>
         public LoggingRule(string loggerNamePattern, Target target)
         {
-            Filters = new List<Filter>();
-            ChildRules = new List<LoggingRule>();
-            Targets = new List<Target>();
+            this.Filters = new List<Filter>();
+            this.ChildRules = new List<LoggingRule>();
+            this.Targets = new List<Target>();
             this.LoggerNamePattern = loggerNamePattern;
             this.Targets.Add(target);
         }

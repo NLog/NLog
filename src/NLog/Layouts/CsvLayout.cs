@@ -65,7 +65,6 @@ namespace NLog.Layouts
             this.thisHeader = new CsvHeaderLayout(this);
         }
 
-
         /// <summary>
         /// Gets the array of parameters to be passed.
         /// </summary>

@@ -66,7 +66,7 @@ namespace NLog.Targets
         /// </remarks>
         public MemoryTarget()
         {
-            Logs = new List<string>();
+            this.Logs = new List<string>();
         }
 
         /// <summary>

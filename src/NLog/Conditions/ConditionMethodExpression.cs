@@ -55,12 +55,12 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="conditionMethodName">Name of the condition method.</param>
         /// <param name="methodInfo"><see cref="MethodInfo"/> of the condition method.</param>
-        /// <param name="MethodParameters">The method parameters.</param>
-        public ConditionMethodExpression(string conditionMethodName, MethodInfo methodInfo, IEnumerable<ConditionExpression> MethodParameters)
+        /// <param name="methodParameters">The method parameters.</param>
+        public ConditionMethodExpression(string conditionMethodName, MethodInfo methodInfo, IEnumerable<ConditionExpression> methodParameters)
         {
             this.methodInfo = methodInfo;
             this.conditionMethodName = conditionMethodName;
-            this.MethodParameters = new List<ConditionExpression>(MethodParameters).AsReadOnly();
+            this.MethodParameters = new List<ConditionExpression>(methodParameters).AsReadOnly();
 
             ParameterInfo[] formalParameters = this.methodInfo.GetParameters();
             if (formalParameters.Length >= 0 && formalParameters[0].ParameterType == typeof(LogEventInfo))
@@ -88,6 +88,10 @@ namespace NLog.Conditions
             }
         }
 
+        /// <summary>
+        /// Gets the method parameters.
+        /// </summary>
+        /// <value>The method parameters.</value>
         public ICollection<ConditionExpression> MethodParameters { get; private set; }
 
         /// <summary>

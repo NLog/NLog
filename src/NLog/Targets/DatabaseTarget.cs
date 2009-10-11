@@ -77,7 +77,7 @@ namespace NLog.Targets
         /// </summary>
         public DatabaseTarget()
         {
-            Parameters = new List<DatabaseParameterInfo>();
+            this.Parameters = new List<DatabaseParameterInfo>();
             this.DbProvider = "sqlserver";
             this.DbHost = ".";
         }

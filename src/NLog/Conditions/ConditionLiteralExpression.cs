@@ -50,6 +50,10 @@ namespace NLog.Conditions
             this.LiteralValue = literalValue;
         }
 
+        /// <summary>
+        /// Gets the literal value.
+        /// </summary>
+        /// <value>The literal value.</value>
         public object LiteralValue { get; private set; }
 
         /// <summary>
