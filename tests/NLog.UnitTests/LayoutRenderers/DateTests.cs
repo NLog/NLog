@@ -48,8 +48,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void DefaultDateTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${date}' /></targets>
                 <rules>
@@ -57,7 +56,6 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
             LogManager.GetLogger("d").Debug("zzz");
             DateTime dt = DateTime.Parse(GetDebugLastMessage("debug"));
             DateTime now = DateTime.Now;
@@ -68,8 +66,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void FormattedDateTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${date:format=yyyy-MM-dd}' /></targets>
                 <rules>
@@ -77,7 +74,6 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
             LogManager.GetLogger("d").Debug("zzz");
             AssertDebugLastMessage("debug", DateTime.Now.ToString("yyyy-MM-dd"));
         }

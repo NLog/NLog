@@ -31,9 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NLog.Config;
 
 namespace NLog.UnitTests
 {
@@ -43,16 +41,13 @@ namespace NLog.UnitTests
         [TestMethod]
         public void LogThresholdTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Info' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("message");
@@ -74,8 +69,7 @@ namespace NLog.UnitTests
         [TestMethod]
         public void LogThresholdTest2()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${message}' />
@@ -92,8 +86,6 @@ namespace NLog.UnitTests
                     <logger name='*' minlevel='Fatal' writeTo='debug5' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
 
@@ -119,8 +111,7 @@ namespace NLog.UnitTests
         [TestMethod]
         public void LoggerNameMatchTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${message}' />
@@ -136,8 +127,6 @@ namespace NLog.UnitTests
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
             LogManager.GetLogger("A").Info("message"); // matches 1st, 2nd, 3rd and 4th rule
             LogManager.GetLogger("A2").Info("message"); // matches 2nd rule and 3rd rule
             LogManager.GetLogger("BAD").Info("message"); // matches 3rd rule
@@ -152,8 +141,7 @@ namespace NLog.UnitTests
         [TestMethod]
         public void MultiAppenderTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${message}' />
@@ -170,8 +158,6 @@ namespace NLog.UnitTests
                     <logger name='D' minlevel='Info' writeTo='debug3,debug4' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             LogManager.GetLogger("A").Info("message");
             LogManager.GetLogger("B").Info("message");

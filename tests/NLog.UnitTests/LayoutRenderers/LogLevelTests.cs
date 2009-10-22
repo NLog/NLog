@@ -49,16 +49,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void LogLevelTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${level} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");

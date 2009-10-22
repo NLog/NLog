@@ -35,6 +35,12 @@ using System.IO;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Layouts;
+using NLog.Config;
+#if SILVERLIGHT
+using System.Xml.Linq;
+#else
+using System.Xml;
+#endif
 
 namespace NLog.UnitTests
 {
@@ -42,7 +48,7 @@ namespace NLog.UnitTests
     {
         public void AssertDebugCounter(string targetName, int val)
         {
-            NLog.Targets.DebugTarget debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
+            var debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
 
             Assert.IsNotNull(debugTarget, "Debug target '" + targetName + "' not found");
             Assert.AreEqual(val, debugTarget.Counter, "Unexpected counter value on '" + targetName + "'");
@@ -60,7 +66,7 @@ namespace NLog.UnitTests
 
         public string GetDebugLastMessage(string targetName)
         {
-            NLog.Targets.DebugTarget debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
+            var debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
             return debugTarget.LastMessage;
         }
 
@@ -96,6 +102,19 @@ namespace NLog.UnitTests
         {
             string actual = l.GetFormattedMessage(LogEventInfo.Create(LogLevel.Info, "loggername", "message"));
             Assert.AreEqual(expected, actual);
+        }
+
+        protected XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
+        {
+#if SILVERLIGHT
+            XElement element = XElement.Parse(configXml);
+            return new XmlLoggingConfiguration(element.CreateReader(), null);
+#else
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(configXml);
+
+            return new XmlLoggingConfiguration(doc.DocumentElement, null);
+#endif
         }
     }
 }

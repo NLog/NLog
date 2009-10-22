@@ -89,8 +89,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void Test5()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
                     <targets>
                         <target name='debug' type='Debug' layout='${rot13:${callsite:methodname=false}}' />
@@ -100,9 +99,8 @@ namespace NLog.UnitTests.LayoutRenderers
                         <logger name='*' levels='Trace' writeTo='debug,debug2' />
                     </rules>
                 </nlog>");
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
-            Logger l = LogManager.GetCurrentClassLogger();
+            Logger l = LogManager.GetLogger("NLog.UnitTests.LayoutRenderers.Rot13Tests");
             l.Trace("aaa");
             // this is the rot-13-fied name of current class
             AssertDebugLastMessage("debug", "AYbt.HavgGrfgf.YnlbhgEraqreref.Ebg13Grfgf");

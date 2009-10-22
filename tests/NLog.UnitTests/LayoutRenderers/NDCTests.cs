@@ -49,16 +49,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void NDCTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${ndc} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
@@ -95,16 +92,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void NDCTopTestTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${ndc:topframes=2} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
@@ -142,16 +136,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void NDCTop1TestTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${ndc:topframes=1} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
@@ -194,16 +185,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void NDCBottomTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${ndc:bottomframes=2} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
@@ -240,16 +228,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void NDCSeparatorTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${ndc:separator=\:} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");

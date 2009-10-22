@@ -48,8 +48,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void ShortDateTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${shortdate}' /></targets>
                 <rules>
@@ -57,7 +56,6 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
             LogManager.GetLogger("d").Debug("zzz");
             AssertDebugLastMessage("debug", DateTime.Now.ToString("yyyy-MM-dd"));
         }

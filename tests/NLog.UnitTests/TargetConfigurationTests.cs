@@ -48,15 +48,13 @@ namespace NLog.UnitTests
         [TestMethod]
         public void SimpleTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LoggingConfiguration c = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
                     <target name='d' type='Debug' layout='${message}' />
                 </targets>
             </nlog>");
 
-            LoggingConfiguration c = new XmlLoggingConfiguration(doc.DocumentElement, null);
             DebugTarget t = c.FindTargetByName("d") as DebugTarget;
             Assert.IsNotNull(t);
             Assert.AreEqual(t.Name, "d");
@@ -70,15 +68,13 @@ namespace NLog.UnitTests
         [TestMethod]
         public void SimpleTest2()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LoggingConfiguration c = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
                     <target name='d' type='Debug' layout='${message} ${level}' />
                 </targets>
             </nlog>");
 
-            LoggingConfiguration c = new XmlLoggingConfiguration(doc.DocumentElement, null);
             DebugTarget t = c.FindTargetByName("d") as DebugTarget;
             Assert.IsNotNull(t);
             Assert.AreEqual(t.Name, "d");
@@ -95,8 +91,7 @@ namespace NLog.UnitTests
         [TestMethod]
         public void WrapperTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LoggingConfiguration c = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
                     <target name='b' type='BufferingWrapper' bufferSize='19'>
@@ -107,7 +102,6 @@ namespace NLog.UnitTests
                 </targets>
             </nlog>");
 
-            LoggingConfiguration c = new XmlLoggingConfiguration(doc.DocumentElement, null);
             Assert.IsNotNull(c.FindTargetByName("a"));
             Assert.IsNotNull(c.FindTargetByName("b"));
             Assert.IsNotNull(c.FindTargetByName("c"));
@@ -128,8 +122,7 @@ namespace NLog.UnitTests
         [TestMethod]
         public void CompoundTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LoggingConfiguration c = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
                     <target name='rr' type='RoundRobinGroup'>
@@ -140,8 +133,6 @@ namespace NLog.UnitTests
                     </target>
                 </targets>
             </nlog>");
-
-            LoggingConfiguration c = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Assert.IsNotNull(c.FindTargetByName("rr"));
             Assert.IsNotNull(c.FindTargetByName("d1"));

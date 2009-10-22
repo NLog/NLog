@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !NET_CF
+
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Config;
 using NLog.Targets;
@@ -53,6 +56,7 @@ namespace NLog.UnitTests.Targets
         [TestMethod]
         public void Test1()
         {
+#if TODO
             EventLogTarget elt = new EventLogTarget();
             elt.Log = "NLog.UnitTests";
             elt.Source = "NLog.UnitTests";
@@ -64,6 +68,9 @@ namespace NLog.UnitTests.Targets
 
             Logger l = LogManager.GetCurrentClassLogger();
             l.Info("aaa");
+#endif
         }
     }
 }
+
+#endif

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !NET_CF
+
 using System;
 using System.Xml;
 using System.Reflection;
@@ -68,3 +70,5 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
+
+#endif

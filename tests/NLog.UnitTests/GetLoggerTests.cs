@@ -38,6 +38,7 @@ namespace NLog.UnitTests
     [TestClass]
     public class GetLoggerTests : NLogTestBase
     {
+#if !NET_CF
         [TestMethod]
         public void GetCurrentClassLoggerTest()
         {
@@ -45,6 +46,7 @@ namespace NLog.UnitTests
 
             Assert.AreEqual("NLog.UnitTests.GetLoggerTests", logger.Name);
         }
+#endif
 
         [TestMethod]
         public void TypedGetLoggerTest()
@@ -69,6 +71,7 @@ namespace NLog.UnitTests
             Assert.AreEqual("AAA", l3.Name);
         }
 
+#if !NET_CF
         [TestMethod]
         public void TypedGetCurrentClassLoggerTest()
         {
@@ -91,9 +94,8 @@ namespace NLog.UnitTests
             Assert.AreEqual("NLog.UnitTests.GetLoggerTests", l1.Name);
             Assert.AreEqual("NLog.UnitTests.GetLoggerTests", l3.Name);
         }
+#endif
 
-
-#if A
         [TestMethod]
         public void GenericGetLoggerTest()
         {
@@ -110,6 +112,7 @@ namespace NLog.UnitTests
             Assert.AreEqual("BBB", l3.Name);
         }
 
+#if !NET_CF
         [TestMethod]
         public void GenericGetCurrentClassLoggerTest()
         {
@@ -121,7 +124,6 @@ namespace NLog.UnitTests
             Assert.AreSame(l1, l2);
             Assert.AreEqual("NLog.UnitTests.GetLoggerTests", l1.Name);
         }
-
 #endif
 
         public class MyLogger : Logger

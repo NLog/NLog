@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NET_CF
+
 using System;
 using System.Globalization;
 using System.Xml;
@@ -50,16 +52,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void LineNumberTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:filename=true} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
 #line 100000
@@ -74,16 +73,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void MethodNameTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
@@ -94,16 +90,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void ClassNameTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
@@ -114,16 +107,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void ClassNameWithPaddingTestTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=3:fixedlength=true} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
@@ -134,16 +124,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void MethodNameWithPaddingTestTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=16:fixedlength=true} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
@@ -152,3 +139,5 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
+
+#endif

@@ -50,16 +50,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void MessageWithoutPaddingTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
@@ -75,16 +72,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void MessageRightPaddingTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=3}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
@@ -101,16 +95,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void MessageFixedLengthRightPaddingTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=3:fixedlength=true}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
@@ -126,16 +117,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void MessageLeftPaddingTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=-3:padcharacter=x}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
@@ -151,16 +139,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void MessageFixedLengthLeftPaddingTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=-3:padcharacter=x:fixedlength=true}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");

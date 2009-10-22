@@ -45,11 +45,12 @@ namespace NLog.UnitTests.LayoutRenderers
     [TestClass]
     public class ExceptionTests : NLogTestBase
     {
+        private Logger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionTests");
+
         [TestMethod]
         public void Test1()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -66,22 +67,22 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
             try
             {
                 throw new Exception("Test exception");
             }
             catch (Exception ex)
             {
-                LogManager.GetCurrentClassLogger().ErrorException("msg", ex);
+                logger.ErrorException("msg", ex);
                 AssertDebugLastMessage("debug1", "Test exception");
                 AssertDebugLastMessage("debug2", ex.StackTrace);
                 AssertDebugLastMessage("debug3", typeof(Exception).FullName);
                 AssertDebugLastMessage("debug4", typeof(Exception).Name);
                 AssertDebugLastMessage("debug5", ex.ToString());
                 AssertDebugLastMessage("debug6", "Test exception");
+#if !SILVERLIGHT && !NET_CF
                 AssertDebugLastMessage("debug7", ex.TargetSite.ToString());
+#endif
                 AssertDebugLastMessage("debug8", "Test exception*Exception");
             }
         }

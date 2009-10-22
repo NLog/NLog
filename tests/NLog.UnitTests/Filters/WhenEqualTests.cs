@@ -49,8 +49,7 @@ namespace NLog.UnitTests.Filters
         [TestMethod]
         public void WhenEqualTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
                 <rules>
@@ -61,8 +60,6 @@ namespace NLog.UnitTests.Filters
                     </logger>
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
@@ -76,8 +73,7 @@ namespace NLog.UnitTests.Filters
         [TestMethod]
         public void WhenEqualInsensitiveTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
                 <rules>
@@ -88,8 +84,6 @@ namespace NLog.UnitTests.Filters
                     </logger>
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");

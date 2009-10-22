@@ -9,27 +9,9 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 2.x</OutputPath>
-    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
     <OutputAssemblyPath>$(OutputPath)\$(AssemblyName).dll</OutputAssemblyPath>
     <ResponseFile>$(IntermediateOutputPath)\$(AssemblyName).rsp</ResponseFile>
-    <DefineConstants>MONO;MONO_2_0;$(DefineConstants)</DefineConstants>
-    <DocumentationFile Condition="'$(DocumentationFile)' != ''">$(OutputPath)\$(DocumentationFile)</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Reference Include="mscorlib" />
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Messaging" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Web" />
-    <Reference Include="Mono.Posix" />
-  </ItemGroup>
 
   <PropertyGroup>
     <!-- build mono command line, very limited options for now -->

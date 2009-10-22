@@ -40,7 +40,7 @@ namespace NLog.LayoutRenderers
     /// A newline literal.
     /// </summary>
     [LayoutRenderer("newline")]
-    public class NewLine : LayoutRenderer
+    public class NewLineLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Returns the estimated number of characters that are needed to

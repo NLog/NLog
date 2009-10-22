@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !NET_CF
+
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -46,7 +48,7 @@ namespace NLog.UnitTests.Targets
     [TestClass]
     public class ConcurrentFileTargetTests : NLogTestBase
 	{
-        private Logger logger = LogManager.GetCurrentClassLogger();
+        private Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.ConcurrentFileTargetTests");
 
         private void ConfigureSharedFile(string mode)
         {
@@ -167,3 +169,5 @@ namespace NLog.UnitTests.Targets
         }
     }
 }
+
+#endif

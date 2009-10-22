@@ -49,16 +49,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void GDCTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${gdc:item=myitem} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             GlobalDiagnosticsContext.Set("myitem", "myvalue");
             LogManager.GetLogger("A").Debug("a");

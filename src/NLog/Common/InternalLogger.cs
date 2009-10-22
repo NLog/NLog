@@ -56,7 +56,10 @@ namespace NLog.Common
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
             Info("NLog internal logger initialized.");
+#else
+            LogLevel = LogLevel.Info;
 #endif
+
         }
 
         /// <summary>

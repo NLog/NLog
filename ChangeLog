@@ -1,3 +1,11 @@
+2009-10-21 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added unit test projects for Compact Framework and Silverlight (based on SilverlightUnitTestFramework from MSDN Code Gallery).
+	* Fixed tests to exclude unsupported framework features for SL and CF.
+	* More code cleanup.
+	* Simple console runner for Silverlight.
+	* All frameworks build fine now at this point (build.cmd).
+	* Verified that unit tests are passing 100% for .NET FX 3.5 and 2.0.
+
 2009-10-10 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Removed PopulateLayouts across the source code and replaced it with a centralized reflection-based utility.
 	* Introduced INLogConfigurationItem which is used to mark classes which should be scanned for Layouts.

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !NET_CF
+
 using System;
 using System.CodeDom.Compiler;
 using System.Diagnostics;
@@ -127,3 +129,5 @@ class C1
         }
     }
 }
+
+#endif

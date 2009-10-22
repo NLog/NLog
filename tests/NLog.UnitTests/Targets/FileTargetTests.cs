@@ -40,13 +40,14 @@ using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
 using NLog.Targets.Wrappers;
+using System.Threading;
 
 namespace NLog.UnitTests.Targets
 {
     [TestClass]
     public class FileTargetTests : NLogTestBase
     {
-        private Logger logger = LogManager.GetCurrentClassLogger();
+        private Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
 
         [TestMethod]
         public void SimpleFileTest1()
@@ -66,7 +67,7 @@ namespace NLog.UnitTests.Targets
                 logger.Info("bbb");
                 logger.Warn("ccc");
                 LogManager.Configuration = null;
-                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.ASCII);
+                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
             }
             finally
             {
@@ -94,7 +95,7 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;
 
-                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.ASCII);
+                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
 
                 // configure again, without
                 // DeleteOldFileOnStartup
@@ -111,7 +112,7 @@ namespace NLog.UnitTests.Targets
                 logger.Warn("ccc");
 
                 LogManager.Configuration = null;
-                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n", Encoding.ASCII);
+                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
 
                 // configure again, this time with
                 // DeleteOldFileOnStartup
@@ -128,7 +129,7 @@ namespace NLog.UnitTests.Targets
                 logger.Warn("ccc");
 
                 LogManager.Configuration = null;
-                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.ASCII);
+                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
             }
             finally
             {
@@ -158,7 +159,7 @@ namespace NLog.UnitTests.Targets
                 logger.Info("bbb");
                 logger.Warn("ccc");
                 LogManager.Configuration = null;
-                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.ASCII);
+                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
             }
             finally
             {
@@ -217,22 +218,22 @@ namespace NLog.UnitTests.Targets
 
                 AssertFileContents(tempFile,
                     StringRepeat(250, "eee\n"),
-                    Encoding.ASCII);
+                    Encoding.UTF8);
 
                 AssertFileContents(
                     Path.Combine(tempPath, "archive/0001.txt"),
                     StringRepeat(250, "bbb\n"),
-                    Encoding.ASCII);
+                    Encoding.UTF8);
 
                 AssertFileContents(
                     Path.Combine(tempPath, "archive/0002.txt"),
                     StringRepeat(250, "ccc\n"),
-                    Encoding.ASCII);
+                    Encoding.UTF8);
 
                 AssertFileContents(
                     Path.Combine(tempPath, "archive/0003.txt"),
                     StringRepeat(250, "ddd\n"),
-                    Encoding.ASCII);
+                    Encoding.UTF8);
 
                 Assert.IsTrue(!File.Exists(Path.Combine(tempPath, "archive/0000.txt")));
                 Assert.IsTrue(!File.Exists(Path.Combine(tempPath, "archive/0004.txt")));
@@ -294,22 +295,22 @@ namespace NLog.UnitTests.Targets
 
                 AssertFileContents(tempFile,
                     StringRepeat(250, "eee\n"),
-                    Encoding.ASCII);
+                    Encoding.UTF8);
 
                 AssertFileContents(
                     Path.Combine(tempPath, "archive/0000.txt"),
                     StringRepeat(250, "ddd\n"),
-                    Encoding.ASCII);
+                    Encoding.UTF8);
 
                 AssertFileContents(
                     Path.Combine(tempPath, "archive/0001.txt"),
                     StringRepeat(250, "ccc\n"),
-                    Encoding.ASCII);
+                    Encoding.UTF8);
 
                 AssertFileContents(
                     Path.Combine(tempPath, "archive/0002.txt"),
                     StringRepeat(250, "bbb\n"),
-                    Encoding.ASCII);
+                    Encoding.UTF8);
 
                 Assert.IsTrue(!File.Exists(Path.Combine(tempPath, "archive/0003.txt")));
             }
@@ -353,19 +354,19 @@ namespace NLog.UnitTests.Targets
                 Assert.IsFalse(File.Exists(Path.Combine(tempPath, "Trace.txt")));
 
                 AssertFileContents(Path.Combine(tempPath, "Debug.txt"),
-                    StringRepeat(250, "aaa\n"), Encoding.ASCII);
+                    StringRepeat(250, "aaa\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Info.txt"),
-                    StringRepeat(250, "bbb\n"), Encoding.ASCII);
+                    StringRepeat(250, "bbb\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Warn.txt"),
-                    StringRepeat(250, "ccc\n"), Encoding.ASCII);
+                    StringRepeat(250, "ccc\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Error.txt"),
-                    StringRepeat(250, "ddd\n"), Encoding.ASCII);
+                    StringRepeat(250, "ddd\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Fatal.txt"),
-                    StringRepeat(250, "eee\n"), Encoding.ASCII);
+                    StringRepeat(250, "eee\n"), Encoding.UTF8);
             }
             finally
             {
@@ -407,19 +408,19 @@ namespace NLog.UnitTests.Targets
                 Assert.IsFalse(File.Exists(Path.Combine(tempPath, "Trace.txt")));
 
                 AssertFileContents(Path.Combine(tempPath, "Debug.txt"),
-                    StringRepeat(250, "aaa\n"), Encoding.ASCII);
+                    StringRepeat(250, "aaa\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Info.txt"),
-                    StringRepeat(250, "bbb\n"), Encoding.ASCII);
+                    StringRepeat(250, "bbb\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Warn.txt"),
-                    StringRepeat(250, "ccc\n"), Encoding.ASCII);
+                    StringRepeat(250, "ccc\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Error.txt"),
-                    StringRepeat(250, "ddd\n"), Encoding.ASCII);
+                    StringRepeat(250, "ddd\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Fatal.txt"),
-                    StringRepeat(250, "eee\n"), Encoding.ASCII);
+                    StringRepeat(250, "eee\n"), Encoding.UTF8);
             }
             finally
             {
@@ -446,7 +447,7 @@ namespace NLog.UnitTests.Targets
                 // such as ${threadid} are properly cached and not recalculated
                 // in logging threads.
 
-                string threadID = NLog.Internal.ThreadIDHelper.Instance.CurrentThreadID.ToString();
+                string threadID = Thread.CurrentThread.ManagedThreadId.ToString();
 
                 SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(ft, 1000, AsyncTargetWrapperOverflowAction.Grow), LogLevel.Debug);
                 InternalLogger.LogToConsole = true;
@@ -467,19 +468,19 @@ namespace NLog.UnitTests.Targets
                 Assert.IsFalse(File.Exists(Path.Combine(tempPath, "Trace.txt")));
 
                 AssertFileContents(Path.Combine(tempPath, "Debug.txt"),
-                    StringRepeat(250, "aaa " + threadID + "\n"), Encoding.ASCII);
+                    StringRepeat(250, "aaa " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Info.txt"),
-                    StringRepeat(250, "bbb " + threadID + "\n"), Encoding.ASCII);
+                    StringRepeat(250, "bbb " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Warn.txt"),
-                    StringRepeat(250, "ccc " + threadID + "\n"), Encoding.ASCII);
+                    StringRepeat(250, "ccc " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Error.txt"),
-                    StringRepeat(250, "ddd " + threadID + "\n"), Encoding.ASCII);
+                    StringRepeat(250, "ddd " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Fatal.txt"),
-                    StringRepeat(250, "eee " + threadID + "\n"), Encoding.ASCII);
+                    StringRepeat(250, "eee " + threadID + "\n"), Encoding.UTF8);
             }
             finally
             {

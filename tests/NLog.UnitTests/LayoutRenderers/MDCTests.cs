@@ -49,16 +49,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [TestMethod]
         public void MDCTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${mdc:item=myitem} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             MappedDiagnosticsContext.Set("myitem", "myvalue");
             LogManager.GetLogger("A").Debug("a");

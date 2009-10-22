@@ -31,10 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !NET_CF
+
 using System;
 using System.Collections.Generic;
 using System.IO;
+#if !NET2_0
+using System.Linq;
+#endif
 using System.Text.RegularExpressions;
+#if !NET2_0
+using System.Xml.Linq;
+#endif
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests
@@ -107,6 +115,63 @@ namespace NLog.UnitTests
             Assert.AreEqual(0, failedFiles, "One or more files don't have valid license headers.");
         }
 
+#if !NET2_0
+        [TestMethod]
+        public void VerifyProjectsInSync()
+        {
+            // ensure that 'Compile' and 'EmbeddedResource' project items are all
+            // the same in both product and test projects for .NET, Silverlight and Compact Framework
+            VerifyProjectsInSync(Path.Combine(this.sourceCodeDirectory, "src/NLog"), "NLog");
+            VerifyProjectsInSync(Path.Combine(this.sourceCodeDirectory, "tests/NLog.UnitTests"), "NLog.UnitTests");
+        }
+
+        private void VerifyProjectsInSync(string dir, string masterProjectFileName)
+        {
+            XElement masterProject = XElement.Load(Path.Combine(dir, masterProjectFileName + ".csproj"));
+            foreach (string csproj in Directory.GetFiles(dir, "*.csproj"))
+            {
+                XElement slaveProject = XElement.Load(csproj);
+                RemoveIgnoredElements(slaveProject);
+                VerifyProjectsInSync(masterProject, slaveProject, csproj);
+            }
+        }
+
+        private static XNamespace MSBuildNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
+
+        private void RemoveIgnoredElements(XElement projectElement)
+        {
+            // Silverlight unit test project has additional
+            var xamlCompile = projectElement.Descendants(MSBuildNamespace + "Compile").Where(
+                c => c.Attribute("Include").Value.Contains(".xaml.")).ToList();
+            xamlCompile.Remove();
+        }
+
+        private void VerifyProjectsInSync(XElement masterProject, XElement slaveProject, string fileName)
+        {
+            Console.WriteLine("Verifying {0}", fileName);
+            VerifyProjectItemsInSync(masterProject, slaveProject, fileName, "Compile");
+            VerifyProjectItemsInSync(masterProject, slaveProject, fileName, "EmbeddedResource");
+        }
+
+        private void VerifyProjectItemsInSync(XElement masterProject, XElement slaveProject, string fileName, string itemName)
+        {
+            var masterItemGroups =
+                masterProject.Elements(MSBuildNamespace + "ItemGroup").Where(
+                    ig => ig.Elements(MSBuildNamespace + itemName).Any()).ToList();
+
+            var slaveItemGroups =
+                slaveProject.Elements(MSBuildNamespace + "ItemGroup").Where(
+                    ig => ig.Elements(MSBuildNamespace + itemName).Any()).ToList();
+
+            Assert.AreEqual(masterItemGroups.Count, slaveItemGroups.Count, "<" + itemName + " /> ItemGroups not in sync for " + fileName);
+            var masterItemGroup = masterItemGroups.FirstOrDefault();
+            var slaveItemGroup = slaveItemGroups.FirstOrDefault();
+            if (masterItemGroup != null && slaveItemGroup != null)
+            {
+                Assert.AreEqual(masterItemGroup.ToString(), slaveItemGroup.ToString(), "Invalid section containing <" + itemName + "/> in " + fileName);
+            }
+        }
+#endif
 
         [TestMethod]
         public void VerifyNamespacesAndClassNames()
@@ -125,6 +190,16 @@ namespace NLog.UnitTests
         {
             string baseName = Path.GetFileName(file);
             if (fileNamesToIgnore.Contains(baseName))
+            {
+                return true;
+            }
+
+            if (baseName.IndexOf(".xaml", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                return true;
+            }
+
+            if (baseName.IndexOf(".g.", StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 return true;
             }
@@ -238,3 +313,5 @@ namespace NLog.UnitTests
         }
     }
 }
+
+#endif

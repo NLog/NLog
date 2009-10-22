@@ -38,6 +38,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Common;
 using NLog.Config;
 using NLog.Targets;
+using System.Diagnostics;
 
 namespace NLog.UnitTests
 {
@@ -86,16 +87,13 @@ namespace NLog.UnitTests
 
         public void GlobalThresholdTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog globalThreshold='Info'>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
                         <logger name='*' minlevel='Debug' writeTo='debug' />
                     </rules>
                 </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Assert.AreEqual(LogLevel.Info, LogManager.GlobalThreshold);
 
@@ -121,11 +119,13 @@ namespace NLog.UnitTests
 
         private int _reloadCounter = 0;
 
+#if !SILVERLIGHT && !NET_CF
         private void OnConfigReloaded(object sender, LoggingConfigurationReloadedEventArgs e)
         {
             Console.WriteLine("OnConfigReloaded success={0}", e.Succeeded);
             _reloadCounter++;
         }
+#endif
 
         private void WaitForConfigReload(int counter)
         {
@@ -135,6 +135,7 @@ namespace NLog.UnitTests
             }
         }
 
+#if !SILVERLIGHT && !NET_CF
         [TestMethod]
         public void AutoReloadTest()
         {
@@ -215,6 +216,7 @@ namespace NLog.UnitTests
                     File.Delete(fileName);
             }
         }
+#endif
 
         [TestMethod]
         public void IncludeTest()

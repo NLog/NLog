@@ -43,8 +43,7 @@ namespace NLog.UnitTests
         [TestMethod]
         public void LowerCaseTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='debug' layout='${message}' /></targets>
                 <rules>
@@ -55,8 +54,6 @@ namespace NLog.UnitTests
                     </logger>
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
@@ -83,8 +80,7 @@ namespace NLog.UnitTests
         [TestMethod]
         public void UpperCaseTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog throwExceptions='true'>
                 <TARGETS><TARGET NAME='DEBUG' TYPE='DEBUG' LAYOUT='${MESSAGE}' /></TARGETS>
                 <RULES>
@@ -95,8 +91,6 @@ namespace NLog.UnitTests
                     </LOGGER>
                 </RULES>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
