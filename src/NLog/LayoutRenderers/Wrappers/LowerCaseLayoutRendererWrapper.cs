@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class LowerCaseLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the LowerCaseLayoutRendererWrapper class.
+        /// Initializes a new instance of the <see cref="LowerCaseLayoutRendererWrapper" /> class.
         /// </summary>
         public LowerCaseLayoutRendererWrapper()
         {

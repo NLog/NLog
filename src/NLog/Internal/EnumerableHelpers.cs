@@ -31,22 +31,28 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace NLog.Internal
 {
     /// <summary>
-    /// LINQ-like helpers (cannot use LINQ because we must work with .NET 2.0 profile)
+    /// LINQ-like helpers (cannot use LINQ because we must work with .NET 2.0 profile).
     /// </summary>
     internal static class EnumerableHelpers
     {
         /// <summary>
         /// Filters the given enumerable to return only items of the specified type.
         /// </summary>
-        /// <typeparam name="T">Type of the item</typeparam>
-        /// <param name="enumerable">The enumerable.</param>
-        /// <returns>Items of specified type.</returns>
+        /// <typeparam name="T">
+        /// Type of the item.
+        /// </typeparam>
+        /// <param name="enumerable">
+        /// The enumerable.
+        /// </param>
+        /// <returns>
+        /// Items of specified type.
+        /// </returns>
         public static IEnumerable<T> OfType<T>(IEnumerable enumerable)
             where T : class
         {
@@ -63,9 +69,15 @@ namespace NLog.Internal
         /// <summary>
         /// Reverses the specified enumerable.
         /// </summary>
-        /// <typeparam name="T">Type of enumerable item.</typeparam>
-        /// <param name="enumerable">The enumerable.</param>
-        /// <returns>Reversed enumerable</returns>
+        /// <typeparam name="T">
+        /// Type of enumerable item.
+        /// </typeparam>
+        /// <param name="enumerable">
+        /// The enumerable.
+        /// </param>
+        /// <returns>
+        /// Reversed enumerable.
+        /// </returns>
         public static IEnumerable<T> Reverse<T>(IEnumerable<T> enumerable)
             where T : class
         {

@@ -47,7 +47,7 @@ namespace NLog.Internal
         private string currentProcessBaseName;
 
         /// <summary>
-        /// Initializes a new instance of the PortableThreadIDHelper class.
+        /// Initializes a new instance of the <see cref="PortableThreadIDHelper" /> class.
         /// </summary>
         public PortableThreadIDHelper()
         {

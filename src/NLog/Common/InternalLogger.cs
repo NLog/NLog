@@ -59,7 +59,6 @@ namespace NLog.Common
 #else
             LogLevel = LogLevel.Info;
 #endif
-
         }
 
         /// <summary>

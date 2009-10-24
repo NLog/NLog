@@ -45,7 +45,7 @@ namespace NLog.Internal.FileAppenders
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
         /// <summary>
-        /// Initializes a new instance of the RetryingMultiProcessFileAppender class.
+        /// Initializes a new instance of the <see cref="RetryingMultiProcessFileAppender" /> class.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="parameters">The parameters.</param>

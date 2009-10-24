@@ -58,7 +58,7 @@ namespace NLog.Targets
     public sealed class DebugTarget : TargetWithLayout
     {
         /// <summary>
-        /// Initializes a new instance of the DebugTarget class.
+        /// Initializes a new instance of the <see cref="DebugTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>

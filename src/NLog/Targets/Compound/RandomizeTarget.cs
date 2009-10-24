@@ -59,14 +59,14 @@ namespace NLog.Targets.Compound
         private static Random random = new Random();
 
         /// <summary>
-        /// Initializes a new instance of the RandomizeTarget class.
+        /// Initializes a new instance of the <see cref="RandomizeTarget" /> class.
         /// </summary>
         public RandomizeTarget()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the RandomizeTarget class.
+        /// Initializes a new instance of the <see cref="RandomizeTarget" /> class.
         /// </summary>
         /// <param name="targets">The targets.</param>
         public RandomizeTarget(params Target[] targets)

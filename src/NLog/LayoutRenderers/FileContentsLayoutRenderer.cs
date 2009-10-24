@@ -49,7 +49,7 @@ namespace NLog.LayoutRenderers
         private string currentFileContents;
 
         /// <summary>
-        /// Initializes a new instance of the FileContentsLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="FileContentsLayoutRenderer" /> class.
         /// </summary>
         public FileContentsLayoutRenderer()
         {

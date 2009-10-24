@@ -41,12 +41,11 @@ namespace NLog.Targets
         /// <summary>
         /// Sequence style numbering. The most recent archive has the highest number.
         /// </summary>
-        Sequence,
+        Sequence, 
 
         /// <summary>
         /// Rolling style numbering (the most recent is always #0 then #1, ..., #N.
         /// </summary>
-        Rolling,
+        Rolling, 
     }
-
 }

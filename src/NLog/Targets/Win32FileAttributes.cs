@@ -35,29 +35,29 @@
 
 using System;
 
-namespace NLog.Internal.Win32
+namespace NLog.Targets
 {
     /// <summary>
-    /// Win32 file attributes
+    /// Win32 file attributes.
     /// </summary>
     /// <remarks>
     /// For more information see <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/fileio/fs/createfile.asp">http://msdn.microsoft.com/library/default.asp?url=/library/en-us/fileio/fs/createfile.asp</a>.
     /// </remarks>
     [Flags]
-    public enum Win32FileAttributes : int
+    public enum Win32FileAttributes
     {
         /// <summary>
-        /// Read-only
+        /// Read-only file.
         /// </summary>
         Readonly = 0x00000001,
 
         /// <summary>
-        /// Hidden
+        /// Hidden file.
         /// </summary>
         Hidden = 0x00000002,
 
         /// <summary>
-        /// System
+        /// System file.
         /// </summary>
         System = 0x00000004,
 
@@ -67,18 +67,18 @@ namespace NLog.Internal.Win32
         Archive = 0x00000020,
 
         /// <summary>
-        /// Device
+        /// Device file.
         /// </summary>
         Device = 0x00000040,
 
         /// <summary>
-        /// Normal
+        /// Normal file.
         /// </summary>
         Normal = 0x00000080,
 
         /// <summary>
         /// File is temporary (should be kept in cache and not 
-        /// written to disk if possible)
+        /// written to disk if possible).
         /// </summary>
         Temporary = 0x00000100,
 
@@ -103,7 +103,7 @@ namespace NLog.Internal.Win32
         NotContentIndexed = 0x00002000,
 
         /// <summary>
-        /// Encrypt file.
+        /// Encrypted file.
         /// </summary>
         Encrypted = 0x00004000,
 
@@ -113,7 +113,7 @@ namespace NLog.Internal.Win32
         WriteThrough = unchecked((int)0x80000000),
 
         /// <summary>
-        /// The system opens a file with no system caching
+        /// The system opens a file with no system caching.
         /// </summary>
         NoBuffering = 0x20000000,
 

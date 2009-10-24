@@ -104,7 +104,7 @@ namespace NLog.Targets
         private readonly ushort[] colorStack = new ushort[10];
 
         /// <summary>
-        /// Initializes a new instance of the ColoredConsoleTarget class.
+        /// Initializes a new instance of the <see cref="ColoredConsoleTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
@@ -194,16 +194,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Writes the specified log event to the console highlighting entries
-        /// and words based on a set of defined rules.
-        /// </summary>
-        /// <param name="logEvent">Log event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
-        {
-            this.Output(logEvent, this.Layout.GetFormattedMessage(logEvent));
-        }
-
-        /// <summary>
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
         public override void Close()
@@ -215,6 +205,16 @@ namespace NLog.Targets
             }
 
             base.Close();
+        }
+
+            /// <summary>
+        /// Writes the specified log event to the console highlighting entries
+        /// and words based on a set of defined rules.
+        /// </summary>
+        /// <param name="logEvent">Log event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
+        {
+            this.Output(logEvent, this.Layout.GetFormattedMessage(logEvent));
         }
 
         private void Output(LogEventInfo logEvent, string message)

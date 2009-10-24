@@ -49,7 +49,7 @@ namespace NLog.Internal
         private int count;
 
         /// <summary>
-        /// Initializes a new instance of the LogEventInfoBuffer class.
+        /// Initializes a new instance of the <see cref="LogEventInfoBuffer" /> class.
         /// </summary>
         /// <param name="size">Buffer size.</param>
         /// <param name="growAsNeeded">Whether buffer should grow as it becomes full.</param>

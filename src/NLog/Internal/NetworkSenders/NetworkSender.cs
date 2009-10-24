@@ -42,7 +42,7 @@ namespace NLog.Internal.NetworkSenders
     internal abstract class NetworkSender : IDisposable
     {
         /// <summary>
-        /// Initializes a new instance of the NetworkSender class.
+        /// Initializes a new instance of the <see cref="NetworkSender" /> class.
         /// </summary>
         /// <param name="url">The network URL.</param>
         protected NetworkSender(string url)

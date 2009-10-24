@@ -48,7 +48,7 @@ namespace NLog.Targets
         private Regex compiledRegex;
 
         /// <summary>
-        /// Initializes a new instance of the RichTextBoxWordColoringRule class.
+        /// Initializes a new instance of the <see cref="RichTextBoxWordColoringRule" /> class.
         /// </summary>
         public RichTextBoxWordColoringRule()
         {
@@ -57,7 +57,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initializes a new instance of the RichTextBoxWordColoringRule class.
+        /// Initializes a new instance of the <see cref="RichTextBoxWordColoringRule" /> class.
         /// </summary>
         /// <param name="text">The text to be matched..</param>
         /// <param name="fontColor">Color of the text.</param>
@@ -70,7 +70,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initializes a new instance of the RichTextBoxWordColoringRule class.
+        /// Initializes a new instance of the <see cref="RichTextBoxWordColoringRule" /> class.
         /// </summary>
         /// <param name="text">The text to be matched..</param>
         /// <param name="textColor">Color of the text.</param>

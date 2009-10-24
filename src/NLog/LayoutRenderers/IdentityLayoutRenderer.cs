@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers
     public class IdentityLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the IdentityLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="IdentityLayoutRenderer" /> class.
         /// </summary>
         public IdentityLayoutRenderer()
         {

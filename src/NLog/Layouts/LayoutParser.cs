@@ -350,7 +350,7 @@ namespace NLog.Layouts
             private readonly string text;
 
             /// <summary>
-            /// Initializes a new instance of the Tokenizer class.
+            /// Initializes a new instance of the <see cref="Tokenizer" /> class.
             /// </summary>
             /// <param name="text">The text to be tokenized.</param>
             public Tokenizer(string text)

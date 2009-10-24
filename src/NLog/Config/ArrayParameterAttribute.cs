@@ -43,7 +43,7 @@ namespace NLog.Config
     public sealed class ArrayParameterAttribute : Attribute
     {
         /// <summary>
-        /// Initializes a new instance of the ArrayParameterAttribute class.
+        /// Initializes a new instance of the <see cref="ArrayParameterAttribute" /> class.
         /// </summary>
         /// <param name="itemType">The type of the array item.</param>
         /// <param name="elementName">The XML element name that represents the item.</param>

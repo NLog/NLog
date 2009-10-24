@@ -41,7 +41,7 @@ namespace NLog.Config
     public class LoggingConfigurationChangedEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the LoggingConfigurationChangedEventArgs class.
+        /// Initializes a new instance of the <see cref="LoggingConfigurationChangedEventArgs" /> class.
         /// </summary>
         /// <param name="oldConfiguration">The old configuration.</param>
         /// <param name="newConfiguration">The new configuration.</param>

@@ -34,7 +34,7 @@
 using System;
 using System.Diagnostics;
 using System.Reflection;
-using System.Threading;
+
 using NLog.Common;
 using NLog.Config;
 using NLog.Filters;

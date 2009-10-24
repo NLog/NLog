@@ -42,7 +42,7 @@ namespace NLog.Filters
     public abstract class LayoutBasedFilter : Filter
     {
         /// <summary>
-        /// Initializes a new instance of the LayoutBasedFilter class.
+        /// Initializes a new instance of the <see cref="LayoutBasedFilter" /> class.
         /// </summary>
         protected LayoutBasedFilter()
         {

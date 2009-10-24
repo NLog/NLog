@@ -78,7 +78,7 @@ namespace NLog.Targets
     public class MailTarget : TargetWithLayoutHeaderAndFooter
     {
         /// <summary>
-        /// Initializes a new instance of the MailTarget class.
+        /// Initializes a new instance of the <see cref="MailTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>

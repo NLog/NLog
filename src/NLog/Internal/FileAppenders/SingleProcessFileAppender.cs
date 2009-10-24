@@ -47,7 +47,7 @@ namespace NLog.Internal.FileAppenders
         private FileStream file;
 
         /// <summary>
-        /// Initializes a new instance of the SingleProcessFileAppender class.
+        /// Initializes a new instance of the <see cref="SingleProcessFileAppender" /> class.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="parameters">The parameters.</param>

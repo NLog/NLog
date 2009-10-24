@@ -76,7 +76,7 @@ namespace NLog.Targets
         private bool operational = true;
 
         /// <summary>
-        /// Initializes a new instance of the PerfCounterTarget class.
+        /// Initializes a new instance of the <see cref="PerformanceCounterTarget" /> class.
         /// </summary>
         public PerformanceCounterTarget()
         {

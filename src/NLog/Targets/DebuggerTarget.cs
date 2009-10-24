@@ -71,18 +71,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Writes the specified logging event to the attached debugger.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
-        {
-            if (Debugger.IsLogging())
-            {
-                Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, this.Layout.GetFormattedMessage(logEvent) + "\n");
-            }
-        }
-
-        /// <summary>
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
         public override void Close()
@@ -93,6 +81,18 @@ namespace NLog.Targets
             }
 
             base.Close();
+        }
+
+        /// <summary>
+        /// Writes the specified logging event to the attached debugger.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        protected internal override void Write(LogEventInfo logEvent)
+        {
+            if (Debugger.IsLogging())
+            {
+                Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, this.Layout.GetFormattedMessage(logEvent) + "\n");
+            }
         }
     }
 }

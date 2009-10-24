@@ -42,7 +42,7 @@ namespace NLog.Filters
     public abstract class Filter : INLogConfigurationItem
     {
         /// <summary>
-        /// Initializes a new instance of the Filter class.
+        /// Initializes a new instance of the <see cref="Filter" /> class.
         /// </summary>
         protected Filter()
         {

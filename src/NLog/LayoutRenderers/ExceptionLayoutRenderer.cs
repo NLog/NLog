@@ -51,7 +51,7 @@ namespace NLog.LayoutRenderers
         private ExceptionDataTarget[] exceptionDataTargets = null;
 
         /// <summary>
-        /// Initializes a new instance of the ExceptionLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="ExceptionLayoutRenderer" /> class.
         /// </summary>
         public ExceptionLayoutRenderer()
         {

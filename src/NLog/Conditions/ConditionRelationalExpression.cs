@@ -45,7 +45,7 @@ namespace NLog.Conditions
     internal sealed class ConditionRelationalExpression : ConditionExpression 
     {
         /// <summary>
-        /// Initializes a new instance of the ConditionRelationalExpression class.
+        /// Initializes a new instance of the <see cref="ConditionRelationalExpression" /> class.
         /// </summary>
         /// <param name="leftExpression">The left expression.</param>
         /// <param name="rightExpression">The right expression.</param>

@@ -32,12 +32,14 @@
 // 
 
 #if !NET_CF && !SILVERLIGHT
-using NLog.Internal.Win32;
+using NLog.Internal;
 
 #endif
 
 namespace NLog.Internal.FileAppenders
 {
+    using Targets;
+
     /// <summary>
     /// Interface that provides parameters for create file function.
     /// </summary>

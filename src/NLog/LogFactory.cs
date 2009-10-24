@@ -68,7 +68,7 @@ namespace NLog
         private int logsEnabled;
 
         /// <summary>
-        /// Initializes a new instance of the LogFactory class.
+        /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         public LogFactory()
         {
@@ -79,7 +79,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Initializes a new instance of the LogFactory class.
+        /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         /// <param name="config">The config.</param>
         public LogFactory(LoggingConfiguration config)
@@ -273,7 +273,7 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger(Type loggerType)
         {
-            StackFrame frame = new StackFrame(1, false);
+            var frame = new StackFrame(1, false);
 
             return this.GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
         }
@@ -647,8 +647,8 @@ namespace NLog
             /// <returns>True if objects are equal, false otherwise.</returns>
             public override bool Equals(object o)
             {
-                LoggerCacheKey key = o as LoggerCacheKey;
-                if ((object)key == null)
+                var key = o as LoggerCacheKey;
+                if (ReferenceEquals(key, null))
                 {
                     return false;
                 }
@@ -665,7 +665,7 @@ namespace NLog
             private LogFactory factory;
 
             /// <summary>
-            /// Initializes a new instance of the LogEnabler class.
+            /// Initializes a new instance of the <see cref="LogEnabler" /> class.
             /// </summary>
             /// <param name="factory">The factory.</param>
             public LogEnabler(LogFactory factory)

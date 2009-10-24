@@ -55,7 +55,7 @@ namespace NLog.Targets.Wrappers
     public class RepeatingTargetWrapper : WrapperTargetBase
     {
         /// <summary>
-        /// Initializes a new instance of the RepeatingTargetWrapper class.
+        /// Initializes a new instance of the <see cref="RepeatingTargetWrapper" /> class.
         /// </summary>
         public RepeatingTargetWrapper()
         {
@@ -63,7 +63,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Initializes a new instance of the RepeatingTargetWrapper class.
+        /// Initializes a new instance of the <see cref="RepeatingTargetWrapper" /> class.
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="repeatCount">The repeat count.</param>

@@ -44,14 +44,14 @@ namespace NLog.Config
     public class NLogConfigurationException : Exception
     {
         /// <summary>
-        /// Initializes a new instance of the NLogConfigurationException class.
+        /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
         /// </summary>
         public NLogConfigurationException()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the NLogConfigurationException class.
+        /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
         /// </summary>
         /// <param name="message">The message.</param>
         public NLogConfigurationException(string message)
@@ -60,7 +60,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Initializes a new instance of the NLogConfigurationException class.
+        /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="innerException">The inner exception.</param>
@@ -71,7 +71,7 @@ namespace NLog.Config
 
 #if !NET_CF && !SILVERLIGHT
         /// <summary>
-        /// Initializes a new instance of the NLogConfigurationException class.
+        /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
         /// </summary>
         /// <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
         /// <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>

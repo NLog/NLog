@@ -52,7 +52,7 @@ namespace NLog.Targets.Wrappers
     public class AutoFlushTargetWrapper : WrapperTargetBase
     {
         /// <summary>
-        /// Initializes a new instance of the AutoFlushTargetWrapper class.
+        /// Initializes a new instance of the <see cref="AutoFlushTargetWrapper" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
@@ -63,7 +63,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Initializes a new instance of the AutoFlushTargetWrapper class.
+        /// Initializes a new instance of the <see cref="AutoFlushTargetWrapper" /> class.
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         public AutoFlushTargetWrapper(Target wrappedTarget)

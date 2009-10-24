@@ -44,7 +44,7 @@ namespace NLog
     /// </summary>
     public sealed class LogManager
     {
-        private static LogFactory globalFactory = new LogFactory();
+        private static readonly LogFactory globalFactory = new LogFactory();
 
 #if !NET_CF && !SILVERLIGHT
         /// <summary>

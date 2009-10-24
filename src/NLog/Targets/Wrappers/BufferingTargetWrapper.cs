@@ -60,7 +60,7 @@ namespace NLog.Targets.Wrappers
         private Timer flushTimer;
 
         /// <summary>
-        /// Initializes a new instance of the BufferingTargetWrapper class.
+        /// Initializes a new instance of the <see cref="BufferingTargetWrapper" /> class.
         /// </summary>
         public BufferingTargetWrapper()
         {
@@ -69,7 +69,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Initializes a new instance of the BufferingTargetWrapper class.
+        /// Initializes a new instance of the <see cref="BufferingTargetWrapper" /> class.
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         public BufferingTargetWrapper(Target wrappedTarget)
@@ -78,7 +78,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Initializes a new instance of the BufferingTargetWrapper class.
+        /// Initializes a new instance of the <see cref="BufferingTargetWrapper" /> class.
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="bufferSize">Size of the buffer.</param>
@@ -90,7 +90,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Initializes a new instance of the BufferingTargetWrapper class.
+        /// Initializes a new instance of the <see cref="BufferingTargetWrapper" /> class.
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="bufferSize">Size of the buffer.</param>

@@ -42,7 +42,7 @@ namespace NLog.Conditions
     internal sealed class ConditionLiteralExpression : ConditionExpression
     {
         /// <summary>
-        /// Initializes a new instance of the ConditionLiteralExpression class.
+        /// Initializes a new instance of the <see cref="ConditionLiteralExpression" /> class.
         /// </summary>
         /// <param name="literalValue">Literal value.</param>
         public ConditionLiteralExpression(object literalValue) 

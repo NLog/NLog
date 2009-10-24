@@ -60,14 +60,14 @@ namespace NLog.Targets.Wrappers
         private static object boxedBooleanTrue = true;
 
         /// <summary>
-        /// Initializes a new instance of the FilteringTargetWrapper class.
+        /// Initializes a new instance of the <see cref="FilteringTargetWrapper" /> class.
         /// </summary>
         public FilteringTargetWrapper()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the FilteringTargetWrapper class.
+        /// Initializes a new instance of the <see cref="FilteringTargetWrapper" /> class.
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="condition">The condition.</param>

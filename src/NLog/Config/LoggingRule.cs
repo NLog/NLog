@@ -45,13 +45,14 @@ namespace NLog.Config
     /// </summary>
     public class LoggingRule : INLogConfigurationItem
     {
+        private readonly bool[] logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
+
         private string loggerNamePattern;
         private MatchMode loggerNameMatchMode;
         private string loggerNameMatchArgument;
-        private readonly bool[] logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
 
         /// <summary>
-        /// Initializes a new instance of the LoggingRule class.
+        /// Initializes a new instance of the <see cref="LoggingRule" /> class.
         /// </summary>
         public LoggingRule()
         {
@@ -61,7 +62,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Initializes a new instance of the LoggingRule class.
+        /// Initializes a new instance of the <see cref="LoggingRule" /> class.
         /// </summary>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
@@ -80,7 +81,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Initializes a new instance of the LoggingRule class.
+        /// Initializes a new instance of the <see cref="LoggingRule" /> class.
         /// </summary>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>

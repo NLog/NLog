@@ -34,7 +34,7 @@
 #if !NET_CF && !SILVERLIGHT
 
 using System;
-using NLog.Internal.Win32;
+using NLog.Internal;
 
 namespace NLog.Internal
 {
@@ -55,9 +55,9 @@ namespace NLog.Internal
         /// </returns>
         public override bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime lastWriteTime, out long fileLength)
         {
-            Win32FileHelper.BY_HANDLE_FILE_INFORMATION fi;
+            Win32FileNativeMethods.BY_HANDLE_FILE_INFORMATION fi;
 
-            if (Win32FileHelper.GetFileInformationByHandle(fileHandle, out fi))
+            if (Win32FileNativeMethods.GetFileInformationByHandle(fileHandle, out fi))
             {
                 lastWriteTime = DateTime.FromFileTime(fi.ftLastWriteTime);
                 fileLength = fi.nFileSizeLow + (((long)fi.nFileSizeHigh) << 32);

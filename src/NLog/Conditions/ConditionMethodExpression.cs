@@ -51,7 +51,7 @@ namespace NLog.Conditions
         private readonly MethodInfo methodInfo;
 
         /// <summary>
-        /// Initializes a new instance of the ConditionMethodExpression class.
+        /// Initializes a new instance of the <see cref="ConditionMethodExpression" /> class.
         /// </summary>
         /// <param name="conditionMethodName">Name of the condition method.</param>
         /// <param name="methodInfo"><see cref="MethodInfo"/> of the condition method.</param>

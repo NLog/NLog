@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers
     public class CallSiteLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the CallSiteLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="CallSiteLayoutRenderer" /> class.
         /// </summary>
         public CallSiteLayoutRenderer()
         {

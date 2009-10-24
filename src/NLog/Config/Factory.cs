@@ -45,16 +45,9 @@ namespace NLog.Config
     /// <typeparam name="TAttributeType">The type of the attribute used to annotate itemss.</typeparam>
     internal class Factory<TBaseType, TAttributeType> : INamedItemFactory<TBaseType, Type>, IFactory
         where TBaseType : class 
-        where TAttributeType : NameAttributeBase
+        where TAttributeType : NameBaseAttribute
     {
         private readonly Dictionary<string, Type> items = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
-
-        /// <summary>
-        /// Initializes a new instance of the Factory class.
-        /// </summary>
-        public Factory()
-        {
-        }
 
         /// <summary>
         /// Gets a collection of all registered items in the factory.

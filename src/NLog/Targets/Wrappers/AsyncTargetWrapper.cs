@@ -81,7 +81,7 @@ namespace NLog.Targets.Wrappers
         private Timer lazyWriterTimer;
 
         /// <summary>
-        /// Initializes a new instance of the AsyncTargetWrapper class.
+        /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
         /// </summary>
         public AsyncTargetWrapper()
         {
@@ -91,7 +91,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Initializes a new instance of the AsyncTargetWrapper class.
+        /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         public AsyncTargetWrapper(Target wrappedTarget)
@@ -103,7 +103,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Initializes a new instance of the AsyncTargetWrapper class.
+        /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="queueLimit">Maximum number of requests in the queue.</param>

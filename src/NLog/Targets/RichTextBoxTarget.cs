@@ -97,7 +97,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initializes a new instance of the RichTextBoxTarget class.
+        /// Initializes a new instance of the <see cref="RichTextBoxTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>

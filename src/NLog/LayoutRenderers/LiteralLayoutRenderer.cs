@@ -46,14 +46,14 @@ namespace NLog.LayoutRenderers
     public class LiteralLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the LiteralLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="LiteralLayoutRenderer" /> class.
         /// </summary>
         public LiteralLayoutRenderer()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the LiteralLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="LiteralLayoutRenderer" /> class.
         /// </summary>
         /// <param name="text">The literal text value.</param>
         /// <remarks>This is used by the layout compiler.</remarks>

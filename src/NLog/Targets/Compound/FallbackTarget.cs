@@ -66,7 +66,7 @@ namespace NLog.Targets.Compound
         }
 
         /// <summary>
-        /// Initializes a new instance of the FallbackTarget class.
+        /// Initializes a new instance of the <see cref="FallbackTarget" /> class.
         /// </summary>
         /// <param name="targets">The targets.</param>
         public FallbackTarget(params Target[] targets)

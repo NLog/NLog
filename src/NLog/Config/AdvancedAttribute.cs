@@ -43,7 +43,7 @@ namespace NLog.Config
     public sealed class AdvancedAttribute : Attribute
     {
         /// <summary>
-        /// Initializes a new instance of the AdvancedAttribute class.
+        /// Initializes a new instance of the <see cref="AdvancedAttribute" /> class.
         /// </summary>
         public AdvancedAttribute()
         {

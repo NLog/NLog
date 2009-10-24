@@ -36,18 +36,15 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace NLog.Internal.Win32
+using NLog.Targets;
+
+namespace NLog.Internal
 {
-    internal class Win32FileHelper
+    internal static class Win32FileNativeMethods
     {
-        public const int FILE_SHAREC_READ = 1;
+        public const int FILE_SHARE_READ = 1;
         public const int FILE_SHARE_WRITE = 2;
         public const int FILE_SHARE_DELETE = 4;
-
-        // to prevent construction
-        private Win32FileHelper()
-        {
-        }
 
         [Flags]
         public enum FileAccess : uint

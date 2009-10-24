@@ -39,12 +39,21 @@ using NLog.Config;
 
 namespace NLog.Internal
 {
+    /// <summary>
+    /// Scans (breadth-first) the object graph following all the edges whose are 
+    /// instances implement <see cref="INLogConfigurationItem"/> and returns all objects implementing a specified interfaces.
+    /// </summary>
+    /// <typeparam name="T">Type of the objects to return.</typeparam>
     internal class ObjectGraphScanner<T>
         where T : class
     {
         private readonly Dictionary<object, bool> visitedObjects = new Dictionary<object, bool>();
         private readonly Queue<INLogConfigurationItem> queue = new Queue<INLogConfigurationItem>();
 
+        /// <summary>
+        /// Scans the graph starting from the list of roots specified with AddRoot() calls.
+        /// </summary>
+        /// <returns>Ordered list of objects implementing T.</returns>
         public T[] Scan()
         {
             var result = new List<T>();
@@ -65,9 +74,13 @@ namespace NLog.Internal
             return result.ToArray();
         }
 
-        public void AddRoot(INLogConfigurationItem o)
+        /// <summary>
+        /// Adds the specified root object.
+        /// </summary>
+        /// <param name="rootObject">The root object.</param>
+        public void AddRoot(INLogConfigurationItem rootObject)
         {
-            this.Enqueue(o);
+            this.Enqueue(rootObject);
         }
 
         private void Enqueue(INLogConfigurationItem o)

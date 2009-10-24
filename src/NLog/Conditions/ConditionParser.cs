@@ -48,7 +48,7 @@ namespace NLog.Conditions
         private readonly ConditionTokenizer tokenizer = new ConditionTokenizer();
 
         /// <summary>
-        /// Initializes a new instance of the ConditionParser class.
+        /// Initializes a new instance of the <see cref="ConditionParser" /> class.
         /// </summary>
         /// <param name="expressionText">The expression text.</param>
         private ConditionParser(string expressionText)

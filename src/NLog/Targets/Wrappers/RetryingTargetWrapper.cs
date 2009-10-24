@@ -58,7 +58,7 @@ namespace NLog.Targets.Wrappers
     public class RetryingTargetWrapper : WrapperTargetBase
     {
         /// <summary>
-        /// Initializes a new instance of the RetryingTargetWrapper class.
+        /// Initializes a new instance of the <see cref="RetryingTargetWrapper" /> class.
         /// </summary>
         public RetryingTargetWrapper()
         {
@@ -67,7 +67,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Initializes a new instance of the RetryingTargetWrapper class.
+        /// Initializes a new instance of the <see cref="RetryingTargetWrapper" /> class.
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="retryCount">The retry count.</param>

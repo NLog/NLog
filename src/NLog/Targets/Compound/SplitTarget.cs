@@ -55,14 +55,14 @@ namespace NLog.Targets.Compound
     public class SplitTarget : CompoundTargetBase
     {
         /// <summary>
-        /// Initializes a new instance of the SplitTarget class.
+        /// Initializes a new instance of the <see cref="SplitTarget" /> class.
         /// </summary>
         public SplitTarget()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the SplitTarget class.
+        /// Initializes a new instance of the <see cref="SplitTarget" /> class.
         /// </summary>
         /// <param name="targets">The targets.</param>
         public SplitTarget(params Target[] targets)

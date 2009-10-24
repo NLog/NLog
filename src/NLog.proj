@@ -14,6 +14,9 @@
     <BuildAllFrameworks Condition="'$(BuildNetCF20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF35)' == 'true'">false</BuildAllFrameworks>
     <MSTest>"$(VS90COMNTOOLS)..\IDE\MSTest.exe"</MSTest>
+    <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
+    <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
+    <StyleCopProperties Condition="'$(DisableStyleCop)' == 'false' and Exists('$(StyleCopTargetsFile)')">StyleCopTargetsFile=$(StyleCopTargetsFile)</StyleCopProperties>
   </PropertyGroup>
 
   <ItemGroup>
@@ -66,7 +69,7 @@
   </Target>
 
   <Target Name="Build">
-    <MSBuild Projects="NLog\NLog%(TargetFramework.ProjectFileSuffix).csproj" Targets="Build" Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="$(BuildAllFrameworks)" StopOnFirstFailure="false" />
+    <MSBuild Projects="NLog\NLog%(TargetFramework.ProjectFileSuffix).csproj" Targets="Build" Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="$(BuildAllFrameworks)" StopOnFirstFailure="false" />
     <MSBuild Projects="..\tests\NLog.UnitTests\NLog%(TargetFramework.ProjectFileSuffix).UnitTests.csproj" Targets="Build" Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="$(BuildAllFrameworks)" StopOnFirstFailure="false" />
   </Target>
 

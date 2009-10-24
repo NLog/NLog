@@ -45,7 +45,7 @@ namespace NLog.Filters
     public class WhenNotEqualFilter : LayoutBasedFilter
     {
         /// <summary>
-        /// Initializes a new instance of the WhenNotEqualFilter class.
+        /// Initializes a new instance of the <see cref="WhenNotEqualFilter" /> class.
         /// </summary>
         public WhenNotEqualFilter()
         {

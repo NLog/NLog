@@ -69,7 +69,7 @@ namespace NLog.Targets
     public sealed class MessageBoxTarget : TargetWithLayout
     {
         /// <summary>
-        /// Initializes a new instance of the MessageBoxTarget class.
+        /// Initializes a new instance of the <see cref="MessageBoxTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>

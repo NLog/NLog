@@ -41,14 +41,14 @@ namespace NLog.Layouts
     public class CsvColumn : INLogConfigurationItem
     {
         /// <summary>
-        /// Initializes a new instance of the CsvColumn class.
+        /// Initializes a new instance of the <see cref="CsvColumn" /> class.
         /// </summary>
         public CsvColumn()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the CsvColumn class.
+        /// Initializes a new instance of the <see cref="CsvColumn" /> class.
         /// </summary>
         /// <param name="name">The name of the column.</param>
         /// <param name="layout">The layout of the column.</param>

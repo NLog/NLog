@@ -54,7 +54,7 @@ namespace NLog.LayoutRenderers
         private PropertyInfo propertyInfo;
 
         /// <summary>
-        /// Initializes a new instance of the ProcessInfoLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="ProcessInfoLayoutRenderer" /> class.
         /// </summary>
         public ProcessInfoLayoutRenderer()
         {

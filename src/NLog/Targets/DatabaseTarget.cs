@@ -73,7 +73,7 @@ namespace NLog.Targets
         private string connectionStringCache = null;
 
         /// <summary>
-        /// Initializes a new instance of the DatabaseTarget class.
+        /// Initializes a new instance of the <see cref="DatabaseTarget" /> class.
         /// </summary>
         public DatabaseTarget()
         {

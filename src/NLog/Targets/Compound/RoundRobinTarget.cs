@@ -60,14 +60,14 @@ namespace NLog.Targets.Compound
         private int currentTarget;
 
         /// <summary>
-        /// Initializes a new instance of the RoundRobinTarget class.
+        /// Initializes a new instance of the <see cref="RoundRobinTarget" /> class.
         /// </summary>
         public RoundRobinTarget()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the RoundRobinTarget class.
+        /// Initializes a new instance of the <see cref="RoundRobinTarget" /> class.
         /// </summary>
         /// <param name="targets">The targets.</param>
         public RoundRobinTarget(params Target[] targets)

@@ -44,7 +44,7 @@ namespace NLog.Targets
     public class MethodCallParameter : INLogConfigurationItem
     {
         /// <summary>
-        /// Initializes a new instance of the MethodCallParameter class.
+        /// Initializes a new instance of the <see cref="MethodCallParameter" /> class.
         /// </summary>
         public MethodCallParameter()
         {
@@ -52,7 +52,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initializes a new instance of the MethodCallParameter class.
+        /// Initializes a new instance of the <see cref="MethodCallParameter" /> class.
         /// </summary>
         /// <param name="layout">The layout to use for parameter value.</param>
         public MethodCallParameter(Layout layout)
@@ -62,7 +62,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initializes a new instance of the MethodCallParameter class.
+        /// Initializes a new instance of the <see cref="MethodCallParameter" /> class.
         /// </summary>
         /// <param name="parameterName">Name of the parameter.</param>
         /// <param name="layout">The layout.</param>
@@ -74,7 +74,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initializes a new instance of the MethodCallParameter class.
+        /// Initializes a new instance of the <see cref="MethodCallParameter" /> class.
         /// </summary>
         /// <param name="name">The name of the parameter.</param>
         /// <param name="layout">The layout.</param>

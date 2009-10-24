@@ -41,7 +41,7 @@ namespace NLog.Internal
         private readonly TargetWithFilterChain[] targetsByLevel;
 
         /// <summary>
-        /// Initializes a new instance of the LoggerConfiguration class.
+        /// Initializes a new instance of the <see cref="LoggerConfiguration" /> class.
         /// </summary>
         /// <param name="targetsByLevel">The targets by level.</param>
         public LoggerConfiguration(TargetWithFilterChain[] targetsByLevel)

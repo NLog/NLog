@@ -73,7 +73,7 @@ namespace NLog.Targets
         private const string Soap12EnvelopeNamespace = "http://www.w3.org/2003/05/soap-envelope";
 
         /// <summary>
-        /// Initializes a new instance of the WebServiceTarget class.
+        /// Initializes a new instance of the <see cref="WebServiceTarget" /> class.
         /// </summary>
         public WebServiceTarget()
         {

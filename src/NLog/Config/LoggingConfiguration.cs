@@ -34,6 +34,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+
 using NLog.Common;
 using NLog.Internal;
 using NLog.Targets;
@@ -46,21 +47,18 @@ namespace NLog.Config
     /// </summary>
     public class LoggingConfiguration
     {
-        private readonly IDictionary<string, Target> targets = new Dictionary<string, Target>(StringComparer.OrdinalIgnoreCase);
+        private readonly IDictionary<string, Target> targets =
+            new Dictionary<string, Target>(StringComparer.OrdinalIgnoreCase);
+
         private INLogConfigurationItem[] configItems;
 
         /// <summary>
-        /// Initializes a new instance of the LoggingConfiguration class.
+        /// Initializes a new instance of the <see cref="LoggingConfiguration" /> class.
         /// </summary>
         public LoggingConfiguration()
         {
             this.LoggingRules = new List<LoggingRule>();
         }
-
-        /// <summary>
-        /// Gets the collection of logging rules.
-        /// </summary>
-        public IList<LoggingRule> LoggingRules { get; private set; }
 
         /// <summary>
         /// Gets the collection of file names which should be watched for changes by NLog.
@@ -71,10 +69,19 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Gets the collection of logging rules.
+        /// </summary>
+        public IList<LoggingRule> LoggingRules { get; private set; }
+
+        /// <summary>
         /// Registers the specified target object under a given name.
         /// </summary>
-        /// <param name="name">Name of the target.</param>
-        /// <param name="target">The target object.</param>
+        /// <param name="name">
+        /// Name of the target.
+        /// </param>
+        /// <param name="target">
+        /// The target object.
+        /// </param>
         public void AddTarget(string name, Target target)
         {
             if (name == null)
@@ -87,19 +94,14 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Removes the specified named target.
-        /// </summary>
-        /// <param name="name">Name of the target.</param>
-        public void RemoveTarget(string name)
-        {
-            this.targets.Remove(name);
-        }
-
-        /// <summary>
         /// Finds the target with the specified name.
         /// </summary>
-        /// <param name="name">The name of the target to be found.</param>
-        /// <returns>Found target or <see langword="null" /> when the target is not found.</returns>
+        /// <param name="name">
+        /// The name of the target to be found.
+        /// </param>
+        /// <returns>
+        /// Found target or <see langword="null"/> when the target is not found.
+        /// </returns>
         public Target FindTargetByName(string name)
         {
             Target value;
@@ -113,18 +115,11 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Called by LogManager when one of the log configuration files changes.
-        /// </summary>
-        /// <returns>A new instance of <see cref="LoggingConfiguration" /> that represents the updated configuration.</returns>
-        public virtual LoggingConfiguration Reload()
-        {
-            return this;
-        }
-
-        /// <summary>
         /// Returns a collection of named targets specified in the configuration.
         /// </summary>
-        /// <returns>A list of named targets.</returns>
+        /// <returns>
+        /// A list of named targets.
+        /// </returns>
         /// <remarks>
         /// Unnamed targets (such as those wrapped by other targets) are not returned.
         /// </remarks>
@@ -134,9 +129,73 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Called by LogManager when one of the log configuration files changes.
+        /// </summary>
+        /// <returns>
+        /// A new instance of <see cref="LoggingConfiguration"/> that represents the updated configuration.
+        /// </returns>
+        public virtual LoggingConfiguration Reload()
+        {
+            return this;
+        }
+
+        /// <summary>
+        /// Removes the specified named target.
+        /// </summary>
+        /// <param name="name">
+        /// Name of the target.
+        /// </param>
+        public void RemoveTarget(string name)
+        {
+            this.targets.Remove(name);
+        }
+
+        /// <summary>
+        /// Closes all targets and releases any unmanaged resources.
+        /// </summary>
+        internal void Close()
+        {
+            InternalLogger.Debug("Closing logging configuration...");
+            foreach (ISupportsInitialize initialize in EnumerableHelpers.OfType<ISupportsInitialize>(this.configItems))
+            {
+                InternalLogger.Trace("Closing {0}", initialize);
+                try
+                {
+                    initialize.Close();
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Warn("Exception while closing {0}", ex);
+                }
+            }
+
+            InternalLogger.Debug("Finished closing logging configuration.");
+        }
+
+        internal void Dump()
+        {
+            InternalLogger.Debug("--- NLog configuration dump. ---");
+            InternalLogger.Debug("Targets:");
+            foreach (Target target in this.targets.Values)
+            {
+                InternalLogger.Info("{0}", target);
+            }
+
+            InternalLogger.Debug("Rules:");
+            foreach (LoggingRule rule in this.LoggingRules)
+            {
+                InternalLogger.Info("{0}", rule);
+            }
+
+            InternalLogger.Debug("--- End of NLog configuration dump ---");
+        }
+
+        /// <summary>
         /// Flushes any pending log messages on all appenders.
         /// </summary>
-        /// <param name="timeout">The timeout.</param>
+        /// <param name="timeout">
+        /// The timeout.
+        /// </param>
         internal void FlushAllTargets(TimeSpan timeout)
         {
             foreach (Target target in this.targets.Values)
@@ -171,12 +230,14 @@ namespace NLog.Config
             // so that whenever the container is initialized its children have already been
             InternalLogger.Info("Found {0} configuration items", this.configItems.Length);
 
-            foreach (object o in this.configItems)
+            foreach (INLogConfigurationItem o in this.configItems)
             {
-                this.CheckRequiredParameters(o);
+                CheckRequiredParameters(o);
             }
 
-            foreach (ISupportsInitialize initialize in EnumerableHelpers.Reverse(EnumerableHelpers.OfType<ISupportsInitialize>(this.configItems)))
+            foreach (
+                ISupportsInitialize initialize in
+                    EnumerableHelpers.Reverse(EnumerableHelpers.OfType<ISupportsInitialize>(this.configItems)))
             {
                 InternalLogger.Trace("Initializing {0}", initialize);
                 try
@@ -190,29 +251,7 @@ namespace NLog.Config
             }
         }
 
-        /// <summary>
-        /// Closes all targets and releases any unmanaged resources.
-        /// </summary>
-        internal void Close()
-        {
-            InternalLogger.Debug("Closing logging configuration...");
-            foreach (ISupportsInitialize initialize in EnumerableHelpers.OfType<ISupportsInitialize>(this.configItems))
-            {
-                InternalLogger.Trace("Closing {0}", initialize);
-                try
-                {
-                    initialize.Close();
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Warn("Exception while closing {0}", ex);
-                }
-            }
-
-            InternalLogger.Debug("Finished closing logging configuration.");
-        }
-
-        private void CheckRequiredParameters(object o)
+        private static void CheckRequiredParameters(object o)
         {
             foreach (PropertyInfo propInfo in o.GetType().GetProperties())
             {
@@ -221,28 +260,11 @@ namespace NLog.Config
                     object value = propInfo.GetValue(o, null);
                     if (value == null)
                     {
-                        throw new NLogConfigurationException("Required parameter '" + propInfo.Name + "' on '" + o + "' was not specified.");
+                        throw new NLogConfigurationException(
+                            "Required parameter '" + propInfo.Name + "' on '" + o + "' was not specified.");
                     }
                 }
             }
-        }
-
-        internal void Dump()
-        {
-            InternalLogger.Debug("--- NLog configuration dump. ---");
-            InternalLogger.Debug("Targets:");
-            foreach (Target target in this.targets.Values)
-            {
-                InternalLogger.Info("{0}", target);
-            }
-
-            InternalLogger.Debug("Rules:");
-            foreach (LoggingRule rule in this.LoggingRules)
-            {
-                InternalLogger.Info("{0}", rule);
-            }
-
-            InternalLogger.Debug("--- End of NLog configuration dump ---");
         }
     }
 }

@@ -45,7 +45,7 @@ namespace NLog.Conditions
         private static readonly object boxedTrue = true;
 
         /// <summary>
-        /// Initializes a new instance of the ConditionAndExpression class.
+        /// Initializes a new instance of the <see cref="ConditionAndExpression" /> class.
         /// </summary>
         /// <param name="left">Left hand side of the AND expression.</param>
         /// <param name="right">Right hand side of the AND expression.</param>

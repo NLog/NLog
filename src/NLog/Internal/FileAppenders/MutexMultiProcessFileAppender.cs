@@ -60,7 +60,7 @@ namespace NLog.Internal.FileAppenders
         private Mutex mutex;
 
         /// <summary>
-        /// Initializes a new instance of the MutexMultiProcessFileAppender class.
+        /// Initializes a new instance of the <see cref="MutexMultiProcessFileAppender" /> class.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="parameters">The parameters.</param>

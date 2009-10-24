@@ -52,7 +52,7 @@ namespace NLog.Layouts
         private StackTraceUsage stackTraceUsage = StackTraceUsage.None;
 
         /// <summary>
-        /// Initializes a new instance of the SimpleLayout class.
+        /// Initializes a new instance of the <see cref="SimpleLayout" /> class.
         /// </summary>
         public SimpleLayout()
         {
@@ -60,7 +60,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Initializes a new instance of the SimpleLayout class.
+        /// Initializes a new instance of the <see cref="SimpleLayout" /> class.
         /// </summary>
         /// <param name="txt">The layout string to parse.</param>
         public SimpleLayout(string txt)

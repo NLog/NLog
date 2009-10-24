@@ -42,7 +42,7 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class UrlEncodeLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the UrlEncodeLayoutRendererWrapper class.
+        /// Initializes a new instance of the <see cref="UrlEncodeLayoutRendererWrapper" /> class.
         /// </summary>
         public UrlEncodeLayoutRendererWrapper()
         {

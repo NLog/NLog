@@ -42,7 +42,7 @@ namespace NLog.Targets
     public class NLogViewerParameterInfo : INLogConfigurationItem
     {
         /// <summary>
-        /// Initializes a new instance of the NLogViewerParameterInfo class.
+        /// Initializes a new instance of the <see cref="NLogViewerParameterInfo" /> class.
         /// </summary>
         public NLogViewerParameterInfo()
         {

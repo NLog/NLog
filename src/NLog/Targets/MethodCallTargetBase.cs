@@ -44,7 +44,7 @@ namespace NLog.Targets
     public abstract class MethodCallTargetBase : Target
     {
         /// <summary>
-        /// Initializes a new instance of the MethodCallTargetBase class.
+        /// Initializes a new instance of the <see cref="MethodCallTargetBase" /> class.
         /// </summary>
         public MethodCallTargetBase()
         {

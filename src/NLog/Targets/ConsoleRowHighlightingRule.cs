@@ -53,7 +53,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initializes a new instance of the ConsoleRowHighlightingRule class.
+        /// Initializes a new instance of the <see cref="ConsoleRowHighlightingRule" /> class.
         /// </summary>
         public ConsoleRowHighlightingRule()
             : this(null, ConsoleOutputColor.NoChange, ConsoleOutputColor.NoChange)
@@ -61,7 +61,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initializes a new instance of the ConsoleRowHighlightingRule class.
+        /// Initializes a new instance of the <see cref="ConsoleRowHighlightingRule" /> class.
         /// </summary>
         /// <param name="condition">The condition.</param>
         /// <param name="foregroundColor">Color of the foreground.</param>

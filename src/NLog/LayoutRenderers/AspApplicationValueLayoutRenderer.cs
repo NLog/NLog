@@ -37,7 +37,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using NLog.Config;
-using NLog.Internal.Win32;
+using NLog.Internal;
 
 namespace NLog.LayoutRenderers
 {

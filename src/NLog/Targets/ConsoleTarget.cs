@@ -78,19 +78,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Writes the specified logging event to the Console.Out or
-        /// Console.Error depending on the value of the Error flag.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <remarks>
-        /// Note that the Error option is not supported on .NET Compact Framework.
-        /// </remarks>
-        protected internal override void Write(LogEventInfo logEvent)
-        {
-            this.Output(this.Layout.GetFormattedMessage(logEvent));
-        }
-
-        /// <summary>
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
         public override void Close()
@@ -101,6 +88,19 @@ namespace NLog.Targets
             }
 
             base.Close();
+        }
+
+        /// <summary>
+        /// Writes the specified logging event to the Console.Out or
+        /// Console.Error depending on the value of the Error flag.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        /// <remarks>
+        /// Note that the Error option is not supported on .NET Compact Framework.
+        /// </remarks>
+        protected internal override void Write(LogEventInfo logEvent)
+        {
+            this.Output(this.Layout.GetFormattedMessage(logEvent));
         }
 
         private void Output(string s)

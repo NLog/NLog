@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class UpperCaseLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the UpperCaseLayoutRendererWrapper class.
+        /// Initializes a new instance of the <see cref="UpperCaseLayoutRendererWrapper" /> class.
         /// </summary>
         public UpperCaseLayoutRendererWrapper()
         {

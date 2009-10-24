@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers
     public class WindowsIdentityLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the WindowsIdentityLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="WindowsIdentityLayoutRenderer" /> class.
         /// </summary>
         public WindowsIdentityLayoutRenderer()
         {

@@ -54,7 +54,7 @@ namespace NLog.Internal.NetworkSenders
 #endif
 
         /// <summary>
-        /// Initializes a new instance of the TcpNetworkSender class.
+        /// Initializes a new instance of the <see cref="TcpNetworkSender" /> class.
         /// </summary>
         /// <param name="url">URL. Must start with tcp://.</param>
         public TcpNetworkSender(string url)

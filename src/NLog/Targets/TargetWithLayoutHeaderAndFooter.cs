@@ -42,7 +42,7 @@ namespace NLog.Targets
     public abstract class TargetWithLayoutHeaderAndFooter : TargetWithLayout
     {
         /// <summary>
-        /// Initializes a new instance of the TargetWithLayoutHeaderAndFooter class.
+        /// Initializes a new instance of the <see cref="TargetWithLayoutHeaderAndFooter" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>

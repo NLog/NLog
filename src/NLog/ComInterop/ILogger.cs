@@ -38,6 +38,8 @@ using System.Runtime.InteropServices;
 
 namespace NLog.ComInterop
 {
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     /// NLog COM Interop logger interface.
     /// </summary>
@@ -99,36 +101,50 @@ namespace NLog.ComInterop
         /// <summary>
         /// Gets a value indicating whether the Trace level is enabled.
         /// </summary>
+        [SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1201:ElementsMustAppearInTheCorrectOrder",
+            Justification = "This is COM object and properties cannot be reordered")]
         bool IsTraceEnabled { get; }
 
         /// <summary>
         /// Gets a value indicating whether the Debug level is enabled.
         /// </summary>
+        [SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1201:ElementsMustAppearInTheCorrectOrder",
+            Justification = "This is COM object and properties cannot be reordered")]
         bool IsDebugEnabled { get; }
 
         /// <summary>
         /// Gets a value indicating whether the Info level is enabled.
         /// </summary>
+        [SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1201:ElementsMustAppearInTheCorrectOrder",
+            Justification = "This is COM object and properties cannot be reordered")]
         bool IsInfoEnabled { get; }
 
         /// <summary>
         /// Gets a value indicating whether the Warn level is enabled.
         /// </summary>
+        [SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1201:ElementsMustAppearInTheCorrectOrder",
+            Justification = "This is COM object and properties cannot be reordered")]
         bool IsWarnEnabled { get; }
 
         /// <summary>
         /// Gets a value indicating whether the Error level is enabled.
         /// </summary>
+        [SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1201:ElementsMustAppearInTheCorrectOrder",
+            Justification = "This is COM object and properties cannot be reordered")]
         bool IsErrorEnabled { get; }
 
         /// <summary>
         /// Gets a value indicating whether the Fatal level is enabled.
         /// </summary>
+        [SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1201:ElementsMustAppearInTheCorrectOrder",
+            Justification = "This is COM object and properties cannot be reordered")]
         bool IsFatalEnabled { get; }
 
         /// <summary>
         /// Gets or sets the logger name.
         /// </summary>
+        [SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1201:ElementsMustAppearInTheCorrectOrder",
+            Justification = "This is COM object and properties cannot be reordered")]
         string LoggerName { get; set; }
     }
 }

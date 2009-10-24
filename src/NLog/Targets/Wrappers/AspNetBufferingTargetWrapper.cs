@@ -95,10 +95,10 @@ namespace NLog.Targets.Wrappers
     public class AspNetBufferingTargetWrapper : WrapperTargetBase
     {
         private readonly object dataSlot = new object();
-        private int growLimit = 0;
+        private int growLimit;
 
         /// <summary>
-        /// Initializes a new instance of the AspNetBufferingTargetWrapper class.
+        /// Initializes a new instance of the <see cref="AspNetBufferingTargetWrapper" /> class.
         /// </summary>
         public AspNetBufferingTargetWrapper()
             : this(null)
@@ -106,7 +106,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Initializes a new instance of the AspNetBufferingTargetWrapper class.
+        /// Initializes a new instance of the <see cref="AspNetBufferingTargetWrapper" /> class.
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         public AspNetBufferingTargetWrapper(Target wrappedTarget)
@@ -115,7 +115,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Initializes a new instance of the AspNetBufferingTargetWrapper class.
+        /// Initializes a new instance of the <see cref="AspNetBufferingTargetWrapper" /> class.
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="bufferSize">Size of the buffer.</param>
@@ -172,6 +172,17 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
+        /// Closes the target by flushing pending events in the buffer (if any).
+        /// </summary>
+        public override void Close()
+        {
+            NLogHttpModule.BeginRequest -= this.OnBeginRequest;
+            NLogHttpModule.EndRequest -= this.OnEndRequest;
+            Flush(TimeSpan.FromSeconds(3));
+            base.Close();
+        }
+
+        /// <summary>
         /// Adds the specified log event to the buffer.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
@@ -184,17 +195,6 @@ namespace NLog.Targets.Wrappers
             {
                 buffer.Append(logEvent);
             }
-        }
-
-        /// <summary>
-        /// Closes the target by flushing pending events in the buffer (if any).
-        /// </summary>
-        public override void Close()
-        {
-            NLogHttpModule.BeginRequest -= this.OnBeginRequest;
-            NLogHttpModule.EndRequest -= this.OnEndRequest;
-            Flush(TimeSpan.FromSeconds(3));
-            base.Close();
         }
 
         private LogEventInfoBuffer GetRequestBuffer()

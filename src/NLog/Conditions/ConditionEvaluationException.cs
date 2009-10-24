@@ -44,14 +44,14 @@ namespace NLog.Conditions
     public class ConditionEvaluationException : Exception 
     {
         /// <summary>
-        /// Initializes a new instance of the ConditionEvaluationException class.
+        /// Initializes a new instance of the <see cref="ConditionEvaluationException" /> class.
         /// </summary>
         public ConditionEvaluationException()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the ConditionEvaluationException class.
+        /// Initializes a new instance of the <see cref="ConditionEvaluationException" /> class.
         /// </summary>
         /// <param name="message">The message.</param>
         public ConditionEvaluationException(string message)
@@ -60,7 +60,7 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Initializes a new instance of the ConditionEvaluationException class.
+        /// Initializes a new instance of the <see cref="ConditionEvaluationException" /> class.
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="innerException">The inner exception.</param>
@@ -71,7 +71,7 @@ namespace NLog.Conditions
 
 #if !NET_CF && !SILVERLIGHT
         /// <summary>
-        /// Initializes a new instance of the ConditionEvaluationException class.
+        /// Initializes a new instance of the <see cref="ConditionEvaluationException" /> class.
         /// </summary>
         /// <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
         /// <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>

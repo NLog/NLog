@@ -69,7 +69,7 @@ namespace NLog.Targets
         private MessagePriority messagePriority = MessagePriority.Normal;
 
         /// <summary>
-        /// Initializes a new instance of the MSMQTarget class.
+        /// Initializes a new instance of the <see cref="MessageQueueTarget"/> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>

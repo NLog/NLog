@@ -45,7 +45,7 @@ namespace NLog.Config
     /// <typeparam name="TMethodAttributeType">The type of the method marker attribute.</typeparam>
     internal class MethodFactory<TClassAttributeType, TMethodAttributeType> : INamedItemFactory<MethodInfo, MethodInfo>, IFactory
         where TClassAttributeType : Attribute
-        where TMethodAttributeType : NameAttributeBase
+        where TMethodAttributeType : NameBaseAttribute
     {
         private readonly Dictionary<string, MethodInfo> nameToMethodInfo = new Dictionary<string, MethodInfo>();
 

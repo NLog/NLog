@@ -62,7 +62,7 @@ namespace NLog.Config
         private string originalFileName;
 
         /// <summary>
-        /// Initializes a new instance of the XmlLoggingConfiguration class.
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
         public XmlLoggingConfiguration(string fileName)
@@ -73,7 +73,7 @@ namespace NLog.Config
 #if !SILVERLIGHT
 
         /// <summary>
-        /// Initializes a new instance of the XmlLoggingConfiguration class.
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
@@ -83,7 +83,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Initializes a new instance of the XmlLoggingConfiguration class.
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
@@ -95,7 +95,7 @@ namespace NLog.Config
 #endif
 
         /// <summary>
-        /// Initializes a new instance of the XmlLoggingConfiguration class.
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
@@ -118,7 +118,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Initializes a new instance of the XmlLoggingConfiguration class.
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files).</param>
@@ -128,7 +128,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Initializes a new instance of the XmlLoggingConfiguration class.
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files).</param>

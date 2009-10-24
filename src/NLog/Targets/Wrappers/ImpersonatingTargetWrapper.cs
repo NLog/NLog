@@ -52,7 +52,7 @@ namespace NLog.Targets.Wrappers
         private IntPtr duplicateTokenHandle = IntPtr.Zero;
 
         /// <summary>
-        /// Initializes a new instance of the ImpersonatingTargetWrapper class.
+        /// Initializes a new instance of the <see cref="ImpersonatingTargetWrapper" /> class.
         /// </summary>
         public ImpersonatingTargetWrapper()
         {
@@ -63,7 +63,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Initializes a new instance of the ImpersonatingTargetWrapper class.
+        /// Initializes a new instance of the <see cref="ImpersonatingTargetWrapper" /> class.
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         public ImpersonatingTargetWrapper(Target wrappedTarget)
@@ -229,7 +229,7 @@ namespace NLog.Targets.Wrappers
             private WindowsImpersonationContext wic;
 
             /// <summary>
-            /// Initializes a new instance of the ContextReverter class.
+            /// Initializes a new instance of the <see cref="ContextReverter" /> class.
             /// </summary>
             /// <param name="windowsImpersonationContext">The windows impersonation context.</param>
             public ContextReverter(WindowsImpersonationContext windowsImpersonationContext)

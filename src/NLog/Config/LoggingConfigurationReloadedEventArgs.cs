@@ -43,7 +43,7 @@ namespace NLog.Config
     public class LoggingConfigurationReloadedEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the LoggingConfigurationReloadedEventArgs class.
+        /// Initializes a new instance of the <see cref="LoggingConfigurationReloadedEventArgs" /> class.
         /// </summary>
         /// <param name="succeeded">Whether configuration reload has succeeded.</param>
         /// <param name="exception">The exception during configuration reload.</param>

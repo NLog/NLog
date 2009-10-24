@@ -58,7 +58,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Initializes a new instance of the NLogFactories class.
+        /// Initializes a new instance of the <see cref="NLogFactories" /> class.
         /// </summary>
         public NLogFactories()
         {

@@ -70,7 +70,7 @@ namespace NLog.Targets.Wrappers
     public class PostFilteringTargetWrapper : WrapperTargetBase
     {
         /// <summary>
-        /// Initializes a new instance of the PostFilteringTargetWrapper class.
+        /// Initializes a new instance of the <see cref="PostFilteringTargetWrapper" /> class.
         /// </summary>
         public PostFilteringTargetWrapper()
         {

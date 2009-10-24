@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers.Wrappers
     public sealed class PaddingLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the PaddingLayoutRendererWrapper class.
+        /// Initializes a new instance of the <see cref="PaddingLayoutRendererWrapper" /> class.
         /// </summary>
         public PaddingLayoutRendererWrapper()
         {

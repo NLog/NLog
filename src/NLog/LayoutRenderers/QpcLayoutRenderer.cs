@@ -54,7 +54,7 @@ namespace NLog.LayoutRenderers
         private double frequency = 1;
 
         /// <summary>
-        /// Initializes a new instance of the QpcLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="QpcLayoutRenderer" /> class.
         /// </summary>
         public QpcLayoutRenderer()
         {

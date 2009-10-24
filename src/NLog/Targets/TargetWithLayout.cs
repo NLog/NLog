@@ -44,7 +44,7 @@ namespace NLog.Targets
     public abstract class TargetWithLayout : Target
     {
         /// <summary>
-        /// Initializes a new instance of the TargetWithLayout class.
+        /// Initializes a new instance of the <see cref="TargetWithLayout" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>

@@ -47,7 +47,7 @@ namespace NLog.Internal
         private StackTraceUsage stackTraceUsage = StackTraceUsage.None;
 
         /// <summary>
-        /// Initializes a new instance of the TargetWithFilterChain class.
+        /// Initializes a new instance of the <see cref="TargetWithFilterChain" /> class.
         /// </summary>
         /// <param name="target">The target.</param>
         /// <param name="filterChain">The filter chain.</param>

@@ -55,7 +55,6 @@ namespace NLog.Targets
         /// </summary>
         Ntlm,
     }
-
 }
 
 #endif

@@ -37,7 +37,7 @@ using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace NLog.Internal.Win32
+namespace NLog.Internal
 {
     /// <summary>
     /// Various helper methods for accessing state of ASP application.
@@ -159,7 +159,7 @@ namespace NLog.Internal.Win32
         }
 
         [DllImport("ole32.dll")]
-        extern static int CoGetObjectContext(ref Guid iid, out IObjectContext g);
+        static extern int CoGetObjectContext(ref Guid iid, out IObjectContext g);
 
         static Guid IID_IObjectContext = new Guid("51372ae0-cae7-11cf-be81-00aa00a2fa25");
 

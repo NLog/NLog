@@ -59,7 +59,7 @@ namespace NLog.Targets
         private object lockObject = new object();
 
         /// <summary>
-        /// Initializes a new instance of the MemoryTarget class.
+        /// Initializes a new instance of the <see cref="MemoryTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>

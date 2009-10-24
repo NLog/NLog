@@ -43,7 +43,7 @@ namespace NLog.Conditions
     internal sealed class ConditionLayoutExpression : ConditionExpression
     {
         /// <summary>
-        /// Initializes a new instance of the ConditionLayoutExpression class.
+        /// Initializes a new instance of the <see cref="ConditionLayoutExpression" /> class.
         /// </summary>
         /// <param name="layout">The layout.</param>
         public ConditionLayoutExpression(Layout layout) 

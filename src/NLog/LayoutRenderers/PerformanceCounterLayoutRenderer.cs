@@ -49,7 +49,7 @@ namespace NLog.LayoutRenderers
         private PerformanceCounter perfCounter = null;
 
         /// <summary>
-        /// Initializes a new instance of the PerformanceCounterLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="PerformanceCounterLayoutRenderer" /> class.
         /// </summary>
         public PerformanceCounterLayoutRenderer()
         {

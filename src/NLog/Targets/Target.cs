@@ -33,11 +33,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+
 using NLog.Common;
 using NLog.Config;
 using NLog.Internal;
-using NLog.LayoutRenderers;
 using NLog.Layouts;
 
 namespace NLog.Targets
@@ -48,6 +47,7 @@ namespace NLog.Targets
     public abstract class Target : ISupportsInitialize, INLogConfigurationItem, IDisposable
     {
         private List<Layout> allLayouts;
+
         private StackTraceUsage stackTraceUsage;
 
         /// <summary>
@@ -66,7 +66,9 @@ namespace NLog.Targets
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>
-        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        /// <param name="timeout">
+        /// Maximum time to allow for the flush. Any messages after that time will be discarded.
+        /// </param>
         public virtual void Flush(TimeSpan timeout)
         {
             // do nothing
@@ -75,7 +77,9 @@ namespace NLog.Targets
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>
-        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        /// <param name="timeoutMilliseconds">
+        /// Maximum time to allow for the flush. Any messages after that time will be discarded.
+        /// </param>
         public void Flush(int timeoutMilliseconds)
         {
             this.Flush(TimeSpan.FromMilliseconds(timeoutMilliseconds));
@@ -85,7 +89,9 @@ namespace NLog.Targets
         /// Calls the <see cref="Layout.Precalculate"/> on each volatile layout
         /// used by this target.
         /// </summary>
-        /// <param name="logEvent">The log event.</param>
+        /// <param name="logEvent">
+        /// The log event.
+        /// </param>
         /// <remarks>
         /// A layout is volatile if it contains at least one <see cref="Layout"/> for 
         /// which <see cref="Layout.IsVolatile"/> returns true.
@@ -99,6 +105,39 @@ namespace NLog.Targets
                     l.Precalculate(logEvent);
                 }
             }
+        }
+
+        /// <summary>
+        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String"/> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            var targetAttribute = (TargetAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(TargetAttribute));
+            if (targetAttribute != null)
+            {
+                return targetAttribute.Name + " Target[" + (this.Name ?? "(unnamed)") + "]";
+            }
+
+            return this.GetType().Name;
+        }
+
+        /// <summary>
+        /// Closes the target.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Close();
+            GC.SuppressFinalize(true);
+        }
+
+        /// <summary>
+        /// Closes the target and releases any unmanaged resources.
+        /// </summary>
+        public virtual void Close()
+        {
         }
 
         /// <summary>
@@ -119,36 +158,6 @@ namespace NLog.Targets
             }
         }
 
-        private void GetAllLayouts()
-        {
-            var scanner = new ObjectGraphScanner<Layout>();
-            scanner.AddRoot(this);
-            this.allLayouts = new List<Layout>(scanner.Scan());
-
-            InternalLogger.Trace("{0} has {1} layouts", this, this.allLayouts.Count);
-        }
-
-        /// <summary>
-        /// Writes logging event to the log target. Must be overridden in inheriting
-        /// classes.
-        /// </summary>
-        /// <param name="logEvent">Logging event to be written out.</param>
-        protected internal abstract void Write(LogEventInfo logEvent);
-
-        /// <summary>
-        /// Writes an array of logging events to the log target. By default it iterates on all
-        /// events and passes them to "Append" method. Inheriting classes can use this method to
-        /// optimize batch writes.
-        /// </summary>
-        /// <param name="logEvents">Logging events to be written out.</param>
-        protected internal virtual void Write(LogEventInfo[] logEvents)
-        {
-            for (int i = 0; i < logEvents.Length; ++i)
-            {
-                this.Write(logEvents[i]);
-            }
-        }
-
         /// <summary>
         /// Gets or sets a value indicating whether stack trace information should be gathered during log event processing.
         /// </summary>
@@ -161,33 +170,37 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Closes the target and releases any unmanaged resources.
+        /// Writes logging event to the log target. Must be overridden in inheriting
+        /// classes.
         /// </summary>
-        public virtual void Close()
-        {
-        }
-
-        void IDisposable.Dispose()
-        {
-            this.Close();
-            GC.SuppressFinalize(true);
-        }
+        /// <param name="logEvent">
+        /// Logging event to be written out.
+        /// </param>
+        protected internal abstract void Write(LogEventInfo logEvent);
 
         /// <summary>
-        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Append" method. Inheriting classes can use this method to
+        /// optimize batch writes.
         /// </summary>
-        /// <returns>
-        /// A <see cref="System.String"/> that represents this instance.
-        /// </returns>
-        public override string ToString()
+        /// <param name="logEvents">
+        /// Logging events to be written out.
+        /// </param>
+        protected internal virtual void Write(LogEventInfo[] logEvents)
         {
-            var targetAttribute = (TargetAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(TargetAttribute));
-            if (targetAttribute != null)
+            for (int i = 0; i < logEvents.Length; ++i)
             {
-                return targetAttribute.Name + " Target[" + (this.Name ?? "(unnamed)") + "]";
+                this.Write(logEvents[i]);
             }
+        }
 
-            return this.GetType().Name;
+        private void GetAllLayouts()
+        {
+            var scanner = new ObjectGraphScanner<Layout>();
+            scanner.AddRoot(this);
+            this.allLayouts = new List<Layout>(scanner.Scan());
+
+            InternalLogger.Trace("{0} has {1} layouts", this, this.allLayouts.Count);
         }
     }
 }

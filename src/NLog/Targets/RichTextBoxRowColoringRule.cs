@@ -54,7 +54,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initializes a new instance of the RichTextBoxRowColoringRule class.
+        /// Initializes a new instance of the <see cref="RichTextBoxRowColoringRule" /> class.
         /// </summary>
         public RichTextBoxRowColoringRule()
         {
@@ -63,7 +63,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initializes a new instance of the RichTextBoxRowColoringRule class.
+        /// Initializes a new instance of the <see cref="RichTextBoxRowColoringRule" /> class.
         /// </summary>
         /// <param name="condition">The condition.</param>
         /// <param name="fontColor">Color of the foregroung text.</param>
@@ -78,7 +78,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initializes a new instance of the RichTextBoxRowColoringRule class.
+        /// Initializes a new instance of the <see cref="RichTextBoxRowColoringRule" /> class.
         /// </summary>
         /// <param name="condition">The condition.</param>
         /// <param name="fontColor">Color of the text.</param>

@@ -34,9 +34,11 @@
 #if !SILVERLIGHT
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 
 namespace NLog.Internal
 {
@@ -46,17 +48,19 @@ namespace NLog.Internal
     internal class Win32ThreadIDHelper : ThreadIDHelper
     {
         private int currentProcessID;
+
         private string currentProcessName;
+
         private string currentProcessBaseName;
 
         /// <summary>
-        /// Initializes a new instance of the Win32ThreadIDHelper class.
+        /// Initializes a new instance of the <see cref="Win32ThreadIDHelper" /> class.
         /// </summary>
         public Win32ThreadIDHelper()
         {
             this.currentProcessID = GetCurrentProcessId();
 
-            StringBuilder sb = new StringBuilder(512);
+            var sb = new StringBuilder(512);
             GetModuleFileName(IntPtr.Zero, sb, sb.Capacity);
             this.currentProcessName = sb.ToString();
 
@@ -69,7 +73,7 @@ namespace NLog.Internal
         /// <value></value>
         public override int CurrentThreadID
         {
-            get { return System.Threading.Thread.CurrentThread.ManagedThreadId; }
+            get { return Thread.CurrentThread.ManagedThreadId; }
         }
 
         /// <summary>
@@ -103,8 +107,11 @@ namespace NLog.Internal
         [DllImport("kernel32.dll")]
         private static extern int GetCurrentProcessId();
 
+        [SuppressMessage("Microsoft.StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation",
+            Justification = "Reviewed. Suppression is OK here.")]
         [DllImport("kernel32.dll", SetLastError = true, PreserveSig = true)]
-        private static extern uint GetModuleFileName([In] IntPtr hModule, [Out] StringBuilder lpFilename, [In] [MarshalAs(UnmanagedType.U4)] int nSize);
+        private static extern uint GetModuleFileName(
+            [In] IntPtr hModule, [Out] StringBuilder lpFilename, [In] [MarshalAs(UnmanagedType.U4)] int nSize);
 #else
         [DllImport("coredll.dll")]
         private static extern int GetCurrentProcessId();

@@ -43,7 +43,7 @@ namespace NLog.Targets.Compound
     public abstract class CompoundTargetBase : Target
     {
         /// <summary>
-        /// Initializes a new instance of the CompoundTargetBase class.
+        /// Initializes a new instance of the <see cref="CompoundTargetBase" /> class.
         /// </summary>
         /// <param name="targets">The targets.</param>
         protected CompoundTargetBase(params Target[] targets)

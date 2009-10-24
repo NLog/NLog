@@ -43,9 +43,6 @@ using NLog.Common;
 using NLog.Config;
 using NLog.Internal;
 using NLog.Internal.FileAppenders;
-#if !SILVERLIGHT && !NET_CF
-using NLog.Internal.Win32;
-#endif
 using NLog.Layouts;
 
 namespace NLog.Targets
@@ -139,7 +136,7 @@ namespace NLog.Targets
         private int initializedFilesCounter = 0;
 
         /// <summary>
-        /// Initializes a new instance of the FileTarget class.
+        /// Initializes a new instance of the <see cref="FileTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
@@ -562,6 +559,40 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Closes the file(s) opened for writing.
+        /// </summary>
+        public override void Close()
+        {
+            base.Close();
+
+            lock (this)
+            {
+                foreach (string fileName in new List<string>(this.initializedFiles.Keys))
+                {
+                    this.WriteFooterAndUninitialize(fileName);
+                }
+
+                if (this.autoClosingTimer != null)
+                {
+                    this.autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
+                    this.autoClosingTimer.Dispose();
+                    this.autoClosingTimer = null;
+                }
+            }
+
+            for (int i = 0; i < this.recentAppenders.Length; ++i)
+            {
+                if (this.recentAppenders[i] == null)
+                {
+                    break;
+                }
+
+                this.recentAppenders[i].Close();
+                this.recentAppenders[i] = null;
+            }
+        }
+
+        /// <summary>
         /// Flushes all pending file operations.
         /// </summary>
         /// <param name="timeout">The timeout.</param>
@@ -673,40 +704,6 @@ namespace NLog.Targets
 
                     this.WriteToFile(currentFileName, ms.ToArray(), false);
                 }
-            }
-        }
-
-        /// <summary>
-        /// Closes the file(s) opened for writing.
-        /// </summary>
-        public override void Close()
-        {
-            base.Close();
-
-            lock (this)
-            {
-                foreach (string fileName in new List<string>(this.initializedFiles.Keys))
-                {
-                    this.WriteFooterAndUninitialize(fileName);
-                }
-
-                if (this.autoClosingTimer != null)
-                {
-                    this.autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
-                    this.autoClosingTimer.Dispose();
-                    this.autoClosingTimer = null;
-                }
-            }
-
-            for (int i = 0; i < this.recentAppenders.Length; ++i)
-            {
-                if (this.recentAppenders[i] == null)
-                {
-                    break;
-                }
-
-                this.recentAppenders[i].Close();
-                this.recentAppenders[i] = null;
             }
         }
 
@@ -1213,7 +1210,7 @@ namespace NLog.Targets
             private FileTarget fileTarget;
 
             /// <summary>
-            /// Initializes a new instance of the LogEventComparer class.
+            /// Initializes a new instance of the <see cref="LogEventComparer" /> class.
             /// </summary>
             /// <param name="fileTarget">The file target.</param>
             public LogEventComparer(FileTarget fileTarget)

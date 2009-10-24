@@ -45,7 +45,7 @@ namespace NLog.Conditions
         private static readonly object boxedTrue = true;
 
         /// <summary>
-        /// Initializes a new instance of the ConditionOrExpression class.
+        /// Initializes a new instance of the <see cref="ConditionOrExpression" /> class.
         /// </summary>
         /// <param name="left">Left hand side of the OR expression.</param>
         /// <param name="right">Right hand side of the OR expression.</param>

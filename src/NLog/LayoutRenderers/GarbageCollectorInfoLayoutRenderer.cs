@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers
     public class GarbageCollectorInfoLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the GarbageCollectorInfoLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="GarbageCollectorInfoLayoutRenderer" /> class.
         /// </summary>
         public GarbageCollectorInfoLayoutRenderer()
         {

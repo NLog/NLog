@@ -67,7 +67,7 @@ namespace NLog.Targets
     public class NLogViewerTarget : NetworkTarget
     {
         /// <summary>
-        /// Initializes a new instance of the NLogViewerTarget class.
+        /// Initializes a new instance of the <see cref="NLogViewerTarget" /> class.
         /// </summary>
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>

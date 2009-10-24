@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     public class GuidLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the GuidLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="GuidLayoutRenderer" /> class.
         /// </summary>
         public GuidLayoutRenderer()
         {

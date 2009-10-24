@@ -53,8 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyBuildInfo.cs" />
-    <Compile Include="ComInterop\ILogManager.cs" />
-    <Compile Include="ComInterop\ILogger.cs" />
+    <Compile Include="ComInterop\ILogManager.cs">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="ComInterop\ILogger.cs">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="ComInterop\LogManager.cs" />
     <Compile Include="ComInterop\Logger.cs" />
     <Compile Include="Common\ExceptionHelpers.cs" />
@@ -94,7 +98,7 @@
     <Compile Include="Config\MethodFactory.cs" />
     <Compile Include="Config\NLogConfigurationException.cs" />
     <Compile Include="Config\NLogFactories.cs" />
-    <Compile Include="Config\NameAttributeBase.cs" />
+    <Compile Include="Config\NameBaseAttribute.cs" />
     <Compile Include="Config\RequiredParameterAttribute.cs" />
     <Compile Include="Config\RuntimeOS.cs" />
     <Compile Include="Config\SimpleConfigurator.cs" />
@@ -136,7 +140,9 @@
     <Compile Include="Internal\LogEventInfoBuffer.cs" />
     <Compile Include="Internal\LoggerConfiguration.cs" />
     <Compile Include="Internal\MultiFileWatcher.cs" />
-    <Compile Include="Internal\NativeMethods.cs" />
+    <Compile Include="Internal\NativeMethods.cs">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Internal\NetworkSenders\NetworkSender.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSender.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSender.cs" />
@@ -151,9 +157,13 @@
     <Compile Include="Internal\UrlHelper.cs" />
     <Compile Include="Internal\Win32FileInfoHelper.cs" />
     <Compile Include="Internal\Win32ThreadIDHelper.cs" />
-    <Compile Include="Internal\Win32\AspHelper.cs" />
-    <Compile Include="Internal\Win32\Win32FileAttributes.cs" />
-    <Compile Include="Internal\Win32\Win32FileHelper.cs" />
+    <Compile Include="Internal\AspHelper.cs">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Targets\Win32FileAttributes.cs" />
+    <Compile Include="Internal\Win32FileNativeMethods.cs">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
     <Compile Include="LayoutRenderers\AspApplicationValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspNetApplicationValueLayoutRenderer.cs" />
@@ -229,7 +239,9 @@
     <Compile Include="LogLevel.cs" />
     <Compile Include="LogManager.cs" />
     <Compile Include="LogMessageGenerator.cs" />
-    <Compile Include="Logger-V1Compat.cs" />
+    <Compile Include="Logger-V1Compat.cs">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Logger.cs" />
     <Compile Include="LoggerImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -280,7 +292,7 @@
     <Compile Include="Targets\TraceTarget.cs" />
     <Compile Include="Targets\WebServiceTarget.cs" />
     <Compile Include="Targets\Wrappers\AspNetBufferingTargetWrapper.cs" />
-    <Compile Include="Targets\Wrappers\AsyncRequestQueue.cs" />
+    <Compile Include="Targets\Wrappers\AsyncRequestQueue-T.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapperOverflowAction.cs" />
     <Compile Include="Targets\Wrappers\AutoFlushTargetWrapper.cs" />
@@ -300,6 +312,5 @@
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
-  <Import Project="$(StyleCopTargetsFile)" Condition="'$(StyleCopTargetsFile)' != ''" />
   <Import Project="..\Mono.targets" />
 </Project>

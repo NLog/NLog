@@ -48,7 +48,7 @@ namespace NLog.Targets
         private Regex compiledRegex;
 
         /// <summary>
-        /// Initializes a new instance of the ConsoleWordHighlightingRule class.
+        /// Initializes a new instance of the <see cref="ConsoleWordHighlightingRule" /> class.
         /// </summary>
         public ConsoleWordHighlightingRule()
         {
@@ -57,7 +57,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initializes a new instance of the ConsoleWordHighlightingRule class.
+        /// Initializes a new instance of the <see cref="ConsoleWordHighlightingRule" /> class.
         /// </summary>
         /// <param name="text">The text to be matched..</param>
         /// <param name="foregroundColor">Color of the foreground.</param>

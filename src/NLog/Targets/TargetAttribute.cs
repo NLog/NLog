@@ -40,10 +40,10 @@ namespace NLog.Targets
     /// Marks class as a logging target and assigns a name to it.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class TargetAttribute : NameAttributeBase
+    public sealed class TargetAttribute : NameBaseAttribute
     {
         /// <summary>
-        /// Initializes a new instance of the TargetAttribute class.
+        /// Initializes a new instance of the <see cref="TargetAttribute" /> class.
         /// </summary>
         /// <param name="targetName">Name of the target.</param>
         public TargetAttribute(string targetName)

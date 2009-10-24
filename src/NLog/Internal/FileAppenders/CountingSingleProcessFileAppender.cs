@@ -49,7 +49,7 @@ namespace NLog.Internal.FileAppenders
         private long fileLength;
 
         /// <summary>
-        /// Initializes a new instance of the CountingSingleProcessFileAppender class.
+        /// Initializes a new instance of the <see cref="CountingSingleProcessFileAppender" /> class.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="parameters">The parameters.</param>

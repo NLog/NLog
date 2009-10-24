@@ -44,7 +44,7 @@ namespace NLog.Layouts
     public class Log4JXmlEventLayout : Layout
     {
         /// <summary>
-        /// Initializes a new instance of the Log4JXmlEventLayout class.
+        /// Initializes a new instance of the <see cref="Log4JXmlEventLayout" /> class.
         /// </summary>
         public Log4JXmlEventLayout()
         {

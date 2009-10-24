@@ -242,7 +242,7 @@ namespace NLog.Internal
             private IEnumerator<KeyValuePair<TKey, TValue>> wrapped;
 
             /// <summary>
-            /// Initializes a new instance of the MyEnumerator class.
+            /// Initializes a new instance of the <see cref="MyEnumerator" /> class.
             /// </summary>
             /// <param name="wrapped">The wrapped.</param>
             public MyEnumerator(IEnumerator<KeyValuePair<TKey, TValue>> wrapped)

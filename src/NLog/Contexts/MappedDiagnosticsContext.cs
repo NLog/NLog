@@ -51,7 +51,7 @@ namespace NLog.Contexts
 #endif
 
         /// <summary>
-        /// Initializes a new instance of the MappedDiagnosticsContext class.
+        /// Initializes a new instance of the <see cref="MappedDiagnosticsContext" /> class.
         /// </summary>
         internal MappedDiagnosticsContext()
         {

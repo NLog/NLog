@@ -37,7 +37,7 @@ using System.Runtime.InteropServices;
 using NLog.Common;
 using NLog.Config;
 #if !NET_CF && !SILVERLIGHT
-using NLog.Internal.Win32;
+using NLog.Internal;
 #endif
 
 namespace NLog.Internal.FileAppenders
@@ -50,7 +50,7 @@ namespace NLog.Internal.FileAppenders
         private readonly Random random = new Random();
 
         /// <summary>
-        /// Initializes a new instance of the BaseFileAppender class.
+        /// Initializes a new instance of the <see cref="BaseFileAppender" /> class.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="createParameters">The create parameters.</param>
@@ -176,24 +176,24 @@ namespace NLog.Internal.FileAppenders
 #if !NET_CF && !SILVERLIGHT
         private FileStream WindowsCreateFile(string fileName, bool allowConcurrentWrite)
         {
-            int fileShare = Win32FileHelper.FILE_SHAREC_READ;
+            int fileShare = Win32FileNativeMethods.FILE_SHARE_READ;
 
             if (allowConcurrentWrite)
             {
-                fileShare |= Win32FileHelper.FILE_SHARE_WRITE;
+                fileShare |= Win32FileNativeMethods.FILE_SHARE_WRITE;
             }
 
             if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.GetCurrentRuntimeOS() != RuntimeOS.Windows)
             {
-                fileShare |= Win32FileHelper.FILE_SHARE_DELETE;
+                fileShare |= Win32FileNativeMethods.FILE_SHARE_DELETE;
             }
 
-            IntPtr handle = Win32FileHelper.CreateFile(
+            IntPtr handle = Win32FileNativeMethods.CreateFile(
                 fileName,
-                Win32FileHelper.FileAccess.GenericWrite,
+                Win32FileNativeMethods.FileAccess.GenericWrite,
                 fileShare,
                 IntPtr.Zero,
-                Win32FileHelper.CreationDisposition.OpenAlways,
+                Win32FileNativeMethods.CreationDisposition.OpenAlways,
                 this.CreateFileParameters.FileAttributes, 
                 IntPtr.Zero);
 

@@ -75,7 +75,7 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Initializes a new instance of the ConditionTokenizer class.
+        /// Initializes a new instance of the <see cref="ConditionTokenizer" /> class.
         /// </summary>
         public ConditionTokenizer()
         {

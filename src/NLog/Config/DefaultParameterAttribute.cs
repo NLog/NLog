@@ -42,7 +42,7 @@ namespace NLog.Config
     public sealed class DefaultParameterAttribute : Attribute
     {
         /// <summary>
-        /// Initializes a new instance of the DefaultParameterAttribute class.
+        /// Initializes a new instance of the <see cref="DefaultParameterAttribute" /> class.
         /// </summary>
         public DefaultParameterAttribute()
         {

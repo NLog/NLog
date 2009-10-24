@@ -48,7 +48,7 @@ namespace NLog.Internal.NetworkSenders
         private IPEndPoint endpoint;
 
         /// <summary>
-        /// Initializes a new instance of the UdpNetworkSender class.
+        /// Initializes a new instance of the <see cref="UdpNetworkSender" /> class.
         /// </summary>
         /// <param name="url">URL. Must start with udp://.</param>
         public UdpNetworkSender(string url)

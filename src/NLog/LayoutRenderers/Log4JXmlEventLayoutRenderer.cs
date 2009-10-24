@@ -54,7 +54,7 @@ namespace NLog.LayoutRenderers
         private static DateTime log4jDateBase = new DateTime(1970, 1, 1);
 
         /// <summary>
-        /// Initializes a new instance of the Log4JXmlEventLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
         public Log4JXmlEventLayoutRenderer()
         {

@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers
         private string baseDir;
 
         /// <summary>
-        /// Initializes a new instance of the BaseDirLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
         /// </summary>
         public BaseDirLayoutRenderer()
         {

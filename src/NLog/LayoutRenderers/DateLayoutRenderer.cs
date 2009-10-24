@@ -44,7 +44,7 @@ namespace NLog.LayoutRenderers
     public class DateLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the DateLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="DateLayoutRenderer" /> class.
         /// </summary>
         public DateLayoutRenderer()
         {

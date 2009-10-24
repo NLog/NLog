@@ -45,7 +45,7 @@ namespace NLog.Targets
     public class DatabaseParameterInfo : INLogConfigurationItem
     {
         /// <summary>
-        /// Initializes a new instance of the DatabaseParameterInfo class.
+        /// Initializes a new instance of the <see cref="DatabaseParameterInfo" /> class.
         /// </summary>
         public DatabaseParameterInfo()
             : this(null, null)
@@ -53,7 +53,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initializes a new instance of the DatabaseParameterInfo class.
+        /// Initializes a new instance of the <see cref="DatabaseParameterInfo" /> class.
         /// </summary>
         /// <param name="parameterName">Name of the parameter.</param>
         /// <param name="parameterLayout">The parameter layout.</param>

@@ -158,7 +158,7 @@ namespace NLog.Contexts
             private int previousCount;
 
             /// <summary>
-            /// Initializes a new instance of the StackPopper class.
+            /// Initializes a new instance of the <see cref="StackPopper" /> class.
             /// </summary>
             /// <param name="stack">The stack.</param>
             /// <param name="previousCount">The previous count.</param>

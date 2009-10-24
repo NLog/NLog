@@ -34,7 +34,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
@@ -62,14 +61,14 @@ namespace NLog
         private IDictionary eventContextAdapter;
 
         /// <summary>
-        /// Initializes a new instance of the LogEventInfo class.
+        /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
         /// </summary>
         public LogEventInfo()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the LogEventInfo class.
+        /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
         /// </summary>
         /// <param name="level">Log level.</param>
         /// <param name="loggerName">Logger name.</param>
@@ -80,7 +79,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Initializes a new instance of the LogEventInfo class.
+        /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
         /// </summary>
         /// <param name="level">Log level.</param>
         /// <param name="loggerName">Logger name.</param>
@@ -93,7 +92,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Initializes a new instance of the LogEventInfo class.
+        /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
         /// </summary>
         /// <param name="level">Log level.</param>
         /// <param name="loggerName">Logger name.</param>

@@ -38,6 +38,8 @@ using System.Runtime.InteropServices;
 
 namespace NLog.ComInterop
 {
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     /// NLog COM Interop LogManager interface.
     /// </summary>
@@ -50,6 +52,8 @@ namespace NLog.ComInterop
         /// Loads NLog configuration from the specified file.
         /// </summary>
         /// <param name="fileName">The name of the file to load NLog configuration from.</param>
+        [SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1201:ElementsMustAppearInTheCorrectOrder",
+            Justification = "Cannot change this, this is for backwards compatibility.")]
         void LoadConfigFromFile(string fileName);
 
         /// <summary>

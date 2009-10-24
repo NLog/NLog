@@ -43,17 +43,19 @@ namespace NLog.Common
         /// <summary>
         /// Function which returns the specified data type.
         /// </summary>
-        /// <returns>Value of T</returns>
+        /// <typeparam name="T">Function return type.</typeparam>
+        /// <returns>Value of T.</returns>
+        /// <remarks>This is needed temporarily because Func type is not available in .NET 2.0</remarks>
         public delegate T Func<T>();
 
         /// <summary>
         /// Tries to evaluate function, returns the default on exception.
         /// </summary>
-        /// <typeparam name="T">Function return type</typeparam>
+        /// <typeparam name="T">Function return type.</typeparam>
         /// <param name="function">The function.</param>
         /// <param name="errorMessage">The error message to be logged when the function throws.</param>
         /// <param name="defaultValue">The default value.</param>
-        /// <returns></returns>
+        /// <returns>Value of the function or the default value in case the function throws an exception.</returns>
         public static T ReturnDefaultOnException<T>(Func<T> function, string errorMessage, T defaultValue)
         {
             try

@@ -44,7 +44,7 @@ namespace NLog.Layouts
     public abstract class Layout : ISupportsInitialize, INLogConfigurationItem
     {
         /// <summary>
-        /// Initializes a new instance of the Layout class.
+        /// Initializes a new instance of the <see cref="Layout" /> class.
         /// </summary>
         protected Layout()
         {

@@ -61,7 +61,7 @@ namespace NLog.Targets
     public class ChainsawTarget : NLogViewerTarget
     {
         /// <summary>
-        /// Initializes a new instance of the ChainsawTarget class.
+        /// Initializes a new instance of the <see cref="ChainsawTarget" /> class.
         /// </summary>
         public ChainsawTarget()
         {

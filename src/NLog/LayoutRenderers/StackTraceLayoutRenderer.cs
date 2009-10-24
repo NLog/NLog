@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers
     public class StackTraceLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the StackTraceLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="StackTraceLayoutRenderer" /> class.
         /// </summary>
         public StackTraceLayoutRenderer()
         {

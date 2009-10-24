@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers
         private static Dictionary<string, int> sequences = new Dictionary<string, int>();
 
         /// <summary>
-        /// Initializes a new instance of the CounterLayoutRenderer class.
+        /// Initializes a new instance of the <see cref="CounterLayoutRenderer" /> class.
         /// </summary>
         public CounterLayoutRenderer()
         {

@@ -42,7 +42,7 @@ namespace NLog.Conditions
     internal sealed class ConditionNotExpression : ConditionExpression 
     {
         /// <summary>
-        /// Initializes a new instance of the ConditionNotExpression class.
+        /// Initializes a new instance of the <see cref="ConditionNotExpression" /> class.
         /// </summary>
         /// <param name="expression">The expression.</param>
         public ConditionNotExpression(ConditionExpression expression) 
