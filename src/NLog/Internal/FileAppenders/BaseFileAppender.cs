@@ -36,9 +36,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using NLog.Common;
 using NLog.Config;
-#if !NET_CF && !SILVERLIGHT
 using NLog.Internal;
-#endif
 
 namespace NLog.Internal.FileAppenders
 {

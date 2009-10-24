@@ -104,8 +104,4 @@
      <RemoveDir Directories="$(BaseOutputDirectory)bin\$(Configuration)\%(TargetFramework.Identity)" ContinueOnError="$(BuildAllFrameworks)" />
      <RemoveDir Directories="$(BaseOutputDirectory)obj\$(Configuration)\%(TargetFramework.Identity)" ContinueOnError="$(BuildAllFrameworks)" />
   </Target>
-
-  <Target Name="Installer">
-    <MSBuild Projects="Installer\Installer.wixproj" Targets="Rebuild" Properties="NLogBuildPath=$(MSBuildProjectDirectory)\build\Debug" />
-  </Target>
 </Project>

@@ -8,13 +8,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeNLogXSD", "..\tools\Mak
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests", "..\tests\NLog.UnitTests\NLog.UnitTests.csproj", "{1653EE05-2720-4A85-BF14-74C4493787B1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7638C35C-A8AC-437C-94FD-9DABD9D5839C}"
-	ProjectSection(SolutionItems) = preProject
-		..\Documentation\Documentation.scproj = ..\Documentation\Documentation.scproj
-		..\NLog.proj = ..\NLog.proj
-		..\Installer\NLog.wxs = ..\Installer\NLog.wxs
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
