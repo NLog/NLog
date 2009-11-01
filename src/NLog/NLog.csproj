@@ -4,7 +4,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v3.5</TargetFrameworkVersion>
-    <TargetFrameworkSubset Condition="'$(TargetFrameworkSubset)'==''">Full</TargetFrameworkSubset>
+    <TargetFrameworkSubset Condition="'$(TargetFrameworkSubset)'==''">
+    </TargetFrameworkSubset>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{B71A9EF1-2493-4B7B-AB82-8C7A83C10952}</ProjectGuid>
@@ -44,8 +45,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v2.0'">NET2_0;$(DefineConstants)</DefineConstants>
-    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v3.5'">NET3_5;$(DefineConstants)</DefineConstants>
-    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v4.0'">NET4_0;$(DefineConstants)</DefineConstants>
+    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v3.5'">NET3_5;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
+    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v4.0'">NET4_0;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
     <DefineConstants Condition="'$(TargetFrameworkSubset)' == 'Client'">CLIENT_SKU;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup>
@@ -54,16 +55,19 @@
     <DocumentationFile>$(OutputPath)\NLog.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="mscorlib" />
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Messaging" Condition="'$(TargetFrameworkSubset)' != 'Client'" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" Condition="'$(TargetFrameworkVersion)' != 'v2.0'" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" Condition="'$(TargetFrameworkSubset)' != 'Client'" />
+    <Reference Include="System.Runtime.Serialization" Condition="'$(TargetFrameworkVersion)' != 'v2.0'" />
+    <Reference Include="System.ServiceModel" Condition="'$(TargetFrameworkVersion)' != 'v2.0'" />
     <Reference Include="System.Web" Condition="'$(TargetFrameworkSubset)' != 'Client'" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="mscorlib" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyBuildInfo.cs" />
@@ -134,6 +138,9 @@
     <Compile Include="Filters\WhenNotContainsFilter.cs" />
     <Compile Include="Filters\WhenNotEqualFilter.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Internal\AspHelper.cs">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Internal\CompactFrameworkHelper.cs" />
     <Compile Include="Internal\CurrentTimeGetter.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
@@ -170,14 +177,10 @@
     <Compile Include="Internal\ThreadIDHelper.cs" />
     <Compile Include="Internal\UrlHelper.cs" />
     <Compile Include="Internal\Win32FileInfoHelper.cs" />
-    <Compile Include="Internal\Win32ThreadIDHelper.cs" />
-    <Compile Include="Internal\AspHelper.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="Targets\Win32FileAttributes.cs" />
     <Compile Include="Internal\Win32FileNativeMethods.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Internal\Win32ThreadIDHelper.cs" />
     <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
     <Compile Include="LayoutRenderers\AspApplicationValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspNetApplicationValueLayoutRenderer.cs" />
@@ -192,6 +195,7 @@
     <Compile Include="LayoutRenderers\CallSiteLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\CounterLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\DateLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\DocumentUriLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\EnvironmentLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\EventContextLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\ExceptionLayoutRenderer.cs" />
@@ -253,6 +257,16 @@
     <Compile Include="LogLevel.cs" />
     <Compile Include="LogManager.cs" />
     <Compile Include="LogMessageGenerator.cs" />
+    <Compile Include="LogReceiverService\ILogReceiverClient.cs" />
+    <Compile Include="LogReceiverService\ILogReceiverClientChannel.cs" />
+    <Compile Include="LogReceiverService\ILogReceiverServer.cs" />
+    <Compile Include="LogReceiverService\ListOfStrings.cs" />
+    <Compile Include="LogReceiverService\LogReceiverServiceConfig.cs" />
+    <Compile Include="LogReceiverService\NLogEvent.cs" />
+    <Compile Include="LogReceiverService\NLogEvents.cs" />
+    <Compile Include="LogReceiverService\SoapLogReceiverClient.cs">
+    </Compile>
+    <Compile Include="LogReceiverService\WcfLogReceiverClient.cs" />
     <Compile Include="Logger-V1Compat.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
@@ -282,6 +296,7 @@
     <Compile Include="Targets\FileTarget.cs" />
     <Compile Include="Targets\FormControlTarget.cs" />
     <Compile Include="Targets\LineEndingMode.cs" />
+    <Compile Include="Targets\LogReceiverWebServiceTarget.cs" />
     <Compile Include="Targets\MailTarget.cs" />
     <Compile Include="Targets\MemoryTarget.cs" />
     <Compile Include="Targets\MessageBoxTarget.cs" />
@@ -304,7 +319,9 @@
     <Compile Include="Targets\TargetWithLayout.cs" />
     <Compile Include="Targets\TargetWithLayoutHeaderAndFooter.cs" />
     <Compile Include="Targets\TraceTarget.cs" />
+    <Compile Include="Targets\WebServiceProtocol.cs" />
     <Compile Include="Targets\WebServiceTarget.cs" />
+    <Compile Include="Targets\Win32FileAttributes.cs" />
     <Compile Include="Targets\Wrappers\AspNetBufferingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\AsyncRequestQueue-T.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapper.cs" />

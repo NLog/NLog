@@ -56,8 +56,8 @@
     <TargetFrameworkName Condition="'$(SilverlightVersion)' == 'v3.0'">Silverlight 3.0</TargetFrameworkName>
   </PropertyGroup>
   <PropertyGroup>
-    <DefineConstants Condition="'$(SilverlightVersion)' == 'v2.0'">SILVERLIGHT;SILVERLIGHT2;$(DefineConstants)</DefineConstants>
-    <DefineConstants Condition="'$(SilverlightVersion)' == 'v3.0'">SILVERLIGHT;SILVERLIGHT3;$(DefineConstants)</DefineConstants>
+    <DefineConstants Condition="'$(SilverlightVersion)' == 'v2.0'">SILVERLIGHT;SILVERLIGHT2;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
+    <DefineConstants Condition="'$(SilverlightVersion)' == 'v3.0'">SILVERLIGHT;SILVERLIGHT3;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup>
     <NoStdLib>true</NoStdLib>
@@ -90,14 +90,6 @@
     <Compile Include="CaseSensitivityTests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SourceCodeTests.cs" />
-    <Compile Include="LayoutRenderers\Rot13Tests.cs" />
-    <Compile Include="LayoutRenderers\EventContextTests.cs" />
-    <Compile Include="ProcessRunner.cs" />
-    <Compile Include="TargetConfigurationTests.cs" />
-    <Compile Include="LayoutConfigurationTests.cs" />
-    <Compile Include="LayoutRenderers\ExceptionTests.cs" />
-    <Compile Include="LogManagerTests.cs" />
     <Compile Include="Filters\APITests.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -116,13 +108,13 @@
     <Compile Include="GetLoggerTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LayoutConfigurationTests.cs" />
     <Compile Include="LayoutRenderers\BaseDirTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LayoutRenderers\CallSiteTests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\GDCTests.cs" />
     <Compile Include="LayoutRenderers\CounterTests.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -132,13 +124,16 @@
     <Compile Include="LayoutRenderers\EnvironmentTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LayoutRenderers\EventContextTests.cs" />
+    <Compile Include="LayoutRenderers\ExceptionTests.cs" />
+    <Compile Include="LayoutRenderers\GDCTests.cs" />
     <Compile Include="LayoutRenderers\LiteralTests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\LoggerNameTests.cs">
+    <Compile Include="LayoutRenderers\LogLevelTests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LayoutRenderers\LogLevelTests.cs">
+    <Compile Include="LayoutRenderers\LoggerNameTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LayoutRenderers\LongDateTests.cs">
@@ -153,27 +148,33 @@
     <Compile Include="LayoutRenderers\NDCTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LayoutRenderers\Rot13Tests.cs" />
     <Compile Include="LayoutRenderers\ShortDateTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LayoutRenderers\ThreadNameTests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LoggerTests.cs">
+    <Compile Include="LogLevelTests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LogLevelTests.cs">
+    <Compile Include="LogManagerTests.cs" />
+    <Compile Include="LoggerTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="NLogTestBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ProcessRunner.cs" />
     <Compile Include="RoutingTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SourceCodeTests.cs" />
+    <Compile Include="TargetConfigurationTests.cs" />
     <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
     <Compile Include="Targets\EventLogTests.cs" />
     <Compile Include="Targets\FileTargetTests.cs" />
+    <Compile Include="Targets\LogReceiverWebServiceTargetTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -193,7 +194,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\NLog\NLog.Silverlight.csproj">
       <Project>{D1E21F1C-4FAB-4F01-8101-FE2A59109D2B}</Project>
-      <Name>NLog.Silverlight3</Name>
+      <Name>NLog.Silverlight</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

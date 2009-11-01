@@ -31,19 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NLog.Common;
-using NLog.Config;
-using NLog.Layouts;
-using NLog.Targets;
-using NLog.Targets.Wrappers;
-using System.Threading;
-
 namespace NLog.UnitTests.Targets
 {
+    using System;
+    using System.IO;
+    using System.Text;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Layouts;
+    using NLog.Targets;
+    using NLog.Targets.Wrappers;
+
+    using System.Threading;
+
     [TestClass]
     public class FileTargetTests : NLogTestBase
     {

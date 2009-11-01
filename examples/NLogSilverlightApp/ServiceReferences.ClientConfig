@@ -1,0 +1,23 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+          <customBinding>
+          </customBinding>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_ILogReceiverServer" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None">
+                        <transport>
+                            <extendedProtectionPolicy policyEnforcement="Never" />
+                        </transport>
+                    </security>
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://localhost:11093/NLogReceiver.svc" binding="basicHttpBinding"
+                bindingConfiguration="BasicHttpBinding_ILogReceiverServer"
+                contract="NLog.LogReceiverService.ILogReceiverClient" name="NLogReceiver" />
+        </client>
+    </system.serviceModel>
+</configuration>
