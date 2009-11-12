@@ -52,7 +52,7 @@ namespace NLog.Targets
     /// <p>
     /// The result is:
     /// </p>
-    /// <img source="examples/targets/Screenshots/FormControl/FormControl.gif" />
+    /// <img src="examples/targets/Screenshots/FormControl/FormControl.gif" />
     /// <p>
     /// To set up the log target programmatically similar to above use code like this:
     /// </p>

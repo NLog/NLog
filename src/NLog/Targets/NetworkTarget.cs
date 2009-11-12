@@ -64,7 +64,7 @@ namespace NLog.Targets
     /// a simple but very powerful command-line tool that can be used for that. This image
     /// demonstrates the NetCat tool receiving log messages from Network target.
     /// </p>
-    /// <img source="examples/targets/Screenshots/Network/Output.gif" />
+    /// <img src="examples/targets/Screenshots/Network/Output.gif" />
     /// <p>
     /// NOTE: If your receiver application is ever likely to be off-line, don't use TCP protocol
     /// or you'll get TCP timeouts and your application will crawl. 

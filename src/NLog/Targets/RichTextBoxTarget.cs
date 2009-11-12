@@ -54,7 +54,7 @@ namespace NLog.Targets
     /// </code>
     /// <p>
     /// The result is:
-    /// </p><img source="examples/targets/Screenshots/RichTextBox/Simple.gif"/><p>
+    /// </p><img src="examples/targets/Screenshots/RichTextBox/Simple.gif"/><p>
     /// To set up the target with coloring rules in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p><code lang="XML" source="examples/targets/Configuration File/RichTextBox/RowColoring/NLog.config">
@@ -63,7 +63,7 @@ namespace NLog.Targets
     /// </code>
     /// <p>
     /// The result is:
-    /// </p><img source="examples/targets/Screenshots/RichTextBox/RowColoring.gif"/><img source="examples/targets/Screenshots/RichTextBox/WordColoring.gif"/><p>
+    /// </p><img src="examples/targets/Screenshots/RichTextBox/RowColoring.gif"/><img src="examples/targets/Screenshots/RichTextBox/WordColoring.gif"/><p>
     /// To set up the log target programmatically similar to above use code like this:
     /// </p><code lang="C#" source="examples/targets/Configuration API/RichTextBox/Simple/Form1.cs">
     /// </code>

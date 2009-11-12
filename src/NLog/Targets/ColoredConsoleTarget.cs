@@ -62,7 +62,7 @@ namespace NLog.Targets
     /// <p>
     /// The result is a colorful console, where each color represents a single log level.
     /// </p>
-    /// <img source="examples/targets/Screenshots/ColoredConsole/Simple.gif" />
+    /// <img src="examples/targets/Screenshots/ColoredConsole/Simple.gif" />
     /// <p>
     /// In addition you can configure your own word highlighting rules so that 
     /// particular words or regular expressions will be marked with 
@@ -74,7 +74,7 @@ namespace NLog.Targets
     /// <p>
     /// Here's the result:
     /// </p>
-    /// <img source="examples/targets/Screenshots/ColoredConsole/Word Highlighting.gif" />
+    /// <img src="examples/targets/Screenshots/ColoredConsole/Word Highlighting.gif" />
     /// <p>
     /// Custom row highlighting lets you colorize the output by any <a href="conditions.html">condition</a>.
     /// This example shows how to mark all entries containing the word "serious" with white color on red background
@@ -86,7 +86,7 @@ namespace NLog.Targets
     /// <p>
     /// Here's the result:
     /// </p>
-    /// <img source="examples/targets/Screenshots/ColoredConsole/Row Highlighting.gif" />
+    /// <img src="examples/targets/Screenshots/ColoredConsole/Row Highlighting.gif" />
     /// </example>
     [Target("ColoredConsole")]
     public sealed class ColoredConsoleTarget : TargetWithLayoutHeaderAndFooter

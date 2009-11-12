@@ -62,11 +62,11 @@ namespace NLog.Targets
     /// Resulting log entries can be viewed by navigating to http://server/path/Trace.axd.
     /// <br/>
     /// <b>HTTP Request List:</b><br/>
-    /// <img source="examples/targets/Screenshots/ASPNetTrace/ASPNetTraceOutput1.gif" />
+    /// <img src="examples/targets/Screenshots/ASPNetTrace/ASPNetTraceOutput1.gif" />
     /// <p/>
     /// <b>HTTP Request Details:</b>
     /// <br/>
-    /// <img source="examples/targets/Screenshots/ASPNetTrace/ASPNetTraceOutput2.gif" />
+    /// <img src="examples/targets/Screenshots/ASPNetTrace/ASPNetTraceOutput2.gif" />
     /// <p/>
     /// </example>
     [Target("AspNetTrace")]

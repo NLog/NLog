@@ -59,7 +59,7 @@ namespace NLog.Targets
     /// <p>
     /// The result is a message box:
     /// </p>
-    /// <img source="examples/targets/Screenshots/MessageBox/MessageBoxTarget.gif" />
+    /// <img src="examples/targets/Screenshots/MessageBox/MessageBoxTarget.gif" />
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
