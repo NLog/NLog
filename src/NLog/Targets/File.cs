@@ -223,7 +223,6 @@ namespace NLog.Targets
 #endif
         private LineEndingMode _lineEndingMode = LineEndingMode.Default;
 
-        private bool _autoFlush = true;
         private bool _concurrentWrites = true;
         private bool _networkWrites = false;
         private int _concurrentWriteAttempts = 10;
@@ -271,6 +270,7 @@ namespace NLog.Targets
         /// All <c>Debug</c> messages will go to <c>Debug.log</c>, all <c>Info</c> messages will go to <c>Info.log</c> and so on.
         /// You can combine as many of the layout renderers as you want to produce an arbitrary log file name.
         /// </example>
+        /// <docgen category="File Output" order="0" />
         [RequiredParameter]
         [AcceptsLayout]
         public string FileName
@@ -286,6 +286,7 @@ namespace NLog.Targets
         /// Setting this to false may improve performance a bit, but you'll receive an error
         /// when attempting to write to a directory that's not present.
         /// </remarks>
+        /// <docgen category="File Output" order="1" />
         [System.ComponentModel.DefaultValue(true)]
         public bool CreateDirs
         {
@@ -305,6 +306,7 @@ namespace NLog.Targets
         /// a very high value. A number like 10-15 shouldn't be exceeded, because you'd
         /// be keeping a large number of files open which consumes system resources.
         /// </remarks>
+        /// <docgen category="Performance Optimizations" order="1" />
         [System.ComponentModel.DefaultValue(5)]
         public int OpenFileCacheSize
         {
@@ -315,6 +317,7 @@ namespace NLog.Targets
         /// <summary>
         /// Maximum number of seconds that files are kept open. If this number is negative.
         /// </summary>
+        /// <docgen category="Performance Optimizations" order="1" />
         [System.ComponentModel.DefaultValue(-1)]
         public int OpenFileCacheTimeout
         {
@@ -328,6 +331,7 @@ namespace NLog.Targets
         /// <remarks>
         /// This option works only when the "fileName" parameter denotes a single file.
         /// </remarks>
+        /// <docgen category="File Output" order="3" />
         [System.ComponentModel.DefaultValue(false)]
         public bool DeleteOldFileOnStartup
         {
@@ -338,6 +342,7 @@ namespace NLog.Targets
         /// <summary>
         /// Replace file contents on each write instead of appending log message at the end.
         /// </summary>
+        /// <docgen category="File Output" order="2" />
         [System.ComponentModel.DefaultValue(false)]
         public bool ReplaceFileContentsOnEachWrite
         {
@@ -351,6 +356,7 @@ namespace NLog.Targets
         /// <remarks>
         /// Setting this property to <c>True</c> helps improve performance.
         /// </remarks>
+        /// <docgen category="Performance Optimizations" order="0" />
         [System.ComponentModel.DefaultValue(false)]
         public bool KeepFileOpen
         {
@@ -361,6 +367,7 @@ namespace NLog.Targets
         /// <summary>
         /// Enable log file(s) to be deleted.
         /// </summary>
+        /// <docgen category="File Output" order="4" />
         [System.ComponentModel.DefaultValue(true)]
         public bool EnableFileDelete
         {
@@ -372,6 +379,7 @@ namespace NLog.Targets
         /// <summary>
         /// File attributes (Windows only).
         /// </summary>
+        /// <docgen category="File Output" order="5" />
         public Win32FileAttributes FileAttributes
         {
             get { return _fileAttributes; }
@@ -389,6 +397,7 @@ namespace NLog.Targets
         /// <summary>
         /// Line ending mode.
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         public LineEndingMode LineEnding
         {
             get { return _lineEndingMode; }
@@ -425,18 +434,9 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Automatically flush the file buffers after each log message.
-        /// </summary>
-        [System.ComponentModel.DefaultValue(true)]
-        public bool AutoFlush
-        {
-            get { return _autoFlush; }
-            set { _autoFlush = value; }
-        }
-
-        /// <summary>
         /// Log file buffer size in bytes.
         /// </summary>
+        /// <docgen category="Performance Optimizations" order="1" />
         [System.ComponentModel.DefaultValue(32768)]
         public int BufferSize
         {
@@ -449,6 +449,7 @@ namespace NLog.Targets
         /// <remarks>
         /// Can be any encoding name supported by System.Text.Encoding.GetEncoding() e.g. <c>windows-1252</c>, <c>iso-8859-2</c>.
         /// </remarks>
+        /// <docgen category="Layout" order="10" />
         public string Encoding
         {
             get { return _encoding.WebName; }
@@ -462,6 +463,7 @@ namespace NLog.Targets
         /// This makes multi-process logging possible. NLog uses a special technique
         /// that lets it keep the files open for writing.
         /// </remarks>
+        /// <docgen category="Performance Optimizations" order="0" />
         [System.ComponentModel.DefaultValue(true)]
         public bool ConcurrentWrites
         {
@@ -472,6 +474,7 @@ namespace NLog.Targets
         /// <summary>
         /// Disables open-fi
         /// </summary>
+        /// <docgen category="Performance Optimizations" order="0" />
         [System.ComponentModel.DefaultValue(false)]
         public bool NetworkWrites
         {
@@ -483,6 +486,7 @@ namespace NLog.Targets
         /// The number of times the write is appended on the file before NLog
         /// discards the log message.
         /// </summary>
+        /// <docgen category="Performance Optimizations" order="0" />
         [System.ComponentModel.DefaultValue(10)]
         public int ConcurrentWriteAttempts
         {
@@ -499,6 +503,7 @@ namespace NLog.Targets
         /// be writing to the file, consider setting <c>ConcurrentWrites</c>
         /// to <c>false</c> for maximum performance.
         /// </remarks>
+        /// <docgen category="Archival" order="0" />
         public long ArchiveAboveSize
         {
             get { return _archiveAboveSize; }
@@ -520,6 +525,7 @@ namespace NLog.Targets
         /// to <c>false</c> for maximum performance.
         /// </p>
         /// </remarks>
+        /// <docgen category="Archival" order="1" />
         public ArchiveEveryMode ArchiveEvery
         {
             get { return _archiveEvery; }
@@ -533,6 +539,7 @@ namespace NLog.Targets
         /// the archiving strategy. The number of hash characters used determines
         /// the number of numerical digits to be used for numbering files.
         /// </summary>
+        /// <docgen category="Archival" order="2" />
         [AcceptsLayout]
         public string ArchiveFileName
         {
@@ -562,6 +569,7 @@ namespace NLog.Targets
         /// ...<p/>
         /// and so on.
         /// </example>
+        /// <docgen category="Performance Optimizations" order="0" />
         [System.ComponentModel.DefaultValue(1)]
         public int ConcurrentWriteAttemptDelay
         {
@@ -572,6 +580,7 @@ namespace NLog.Targets
         /// <summary>
         /// Maximum number of archive files that should be kept.
         /// </summary>
+        /// <docgen category="Archival" order="3" />
         [System.ComponentModel.DefaultValue(9)]
         public int MaxArchiveFiles
         {
@@ -582,6 +591,7 @@ namespace NLog.Targets
         /// <summary>
         /// Determines the way file archives are numbered. 
         /// </summary>
+        /// <docgen category="Archival" order="4" />
         public ArchiveNumberingMode ArchiveNumbering
         {
             get { return _archiveNumbering; }

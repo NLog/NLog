@@ -24,15 +24,17 @@
     <p>
         You can also download NLog directly from the Subversion repository.
     </p>
+<!--
     <p>
-        To view the repository contents in your web browser, click <a nomangle="1" href="http://svn.nlog-project.org/viewvc/nlog">http://svn.nlog-project.org/viewvc/nlog</a>.
+        To view the repository contents in your web browser, click <a href="http://svn.nlog-project.org/viewvc/nlog">http://svn.nlog-project.org/viewvc/nlog</a>.
     </p>
+-->
     <p>
-        To download latest sources, use an <a href="http://subversion.tigris.org/" nomangle="1">Subversion</a> client (such as <a href="http://tortoisesvn.net/" nomangle="1">TortoiseSVN</a>) and point it at:
+        To download latest sources, use an <a href="http://subversion.tigris.org/">Subversion</a> client (such as <a href="http://tortoisesvn.net/" nomangle="1">TortoiseSVN</a>) and point it at:
     </p>
     <ul>
-        <li><a nomangle="1" href="http://svn.nlog-project.org/repos/nlog/trunk/NLog">http://svn.nlog-project.org/repos/nlog/trunk/NLog</a> - for current NLog 1.x release</li>
-        <li><a nomangle="1" href="http://svn.nlog-project.org/repos/nlog/branches/NLog2">http://svn.nlog-project.org/repos/nlog/branches/NLog2</a> - for upcoming NLog v2.0 release</li>
+        <li><a href="http://svn.nlog-project.org/repos/nlog/trunk/NLog">http://svn.nlog-project.org/repos/nlog/trunk/NLog</a> - for current NLog 1.x release</li>
+        <li><a href="http://svn.nlog-project.org/repos/nlog/branches/NLog2">http://svn.nlog-project.org/repos/nlog/branches/NLog2</a> - for upcoming NLog v2.0 release</li>
     </ul>
     <p>
         Subversion is available to everybody in read-only mode.

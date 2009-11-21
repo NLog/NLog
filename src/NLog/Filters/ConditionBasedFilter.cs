@@ -60,6 +60,7 @@ namespace NLog.Filters
         /// <summary>
         /// The condition expression.
         /// </summary>
+        [AcceptsCondition]
         public string Condition
         {
             get { return _condition.ToString(); }

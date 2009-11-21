@@ -88,6 +88,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Default filter to be applied when no specific rule matches.
         /// </summary>
+        [AcceptsCondition]
         public string DefaultFilter
         {
             get { return _defaultFilter.ToString(); }

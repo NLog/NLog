@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
+<content lang="en" id="blog">
+   <p>NLog Blog can be found <a nomangle="1" href="http://nlog-project.org/blog.html">here</a>.</p>
+</content>
