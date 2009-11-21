@@ -104,6 +104,7 @@ namespace NLog
         /// <summary>
         /// The name of the target.
         /// </summary>
+        /// <docgen category="General" order="0" />
         [RequiredParameter]
         public string Name
         {

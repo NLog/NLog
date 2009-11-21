@@ -38,6 +38,11 @@
                         </div>
                     </xsl:when>
                     <xsl:otherwise>
+<div id="pagetop">
+</div>
+
+<div id="pageborder">
+
 <div id="page">
 
 <div id="header">
@@ -57,12 +62,18 @@
           </xsl:if>
 
 	  <div id="logo">
-                    <img src="NLog.png" title="NLog - Advanced .NET Logging" />
+                    <a href="http://nlog-project.org/"><img style="border: none" src="NLog.png" title="NLog - Advanced .NET Logging" /></a>
           </div>
 </div>
 
 <div id="menu">
    <xsl:call-template name="controls" />
+
+<div id="sidebar" style="padding: 10px">
+<a href="http://nlog-project.org/gibraltar-ad-target"><img style="border: 0" src="http://nlog-project.org/GibraltarNLog.png" /></a>
+<br/>
+</div>
+
 </div>
 
 <div id="content">
@@ -70,21 +81,30 @@
 </div>
 
 <div id="footer">
-     Copyright &#169; 2004-2009 by <a style="text-decoration: none" href="http://www.nlog-project.org/disclaimer.html">Jaroslaw Kowalski</a> | <a style="text-decoration: none" href="http://www.nlog-project.org/disclaimer.html">Disclaimer</a>
+     Copyright &#169; 2004-2009 by Jaroslaw Kowalski<br/>
+     Powered by <a href="http://www.wordpress.org">WordPress</a> |
+     <a href="http://nlog-project.org/blog/contact">Contact</a> | 
+     <a href="http://www.nlog-project.org/disclaimer.html">Disclaimer</a> | 
+     <a href="http://nlog-project.org/blog/feed">RSS <img src="http://nlog-project.org/rss.png" /></a>
 </div>
 
 </div>
+
+</div>
+
+<div id="pagebottom">
+</div>
+
             </xsl:otherwise>
         </xsl:choose>
         <xsl:if test="$mode = 'web'">
                 <div id="counterCode">
                     <!-- Google Analytics -->
-                    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-                    </script>
-                    <script type="text/javascript">
-                        _uacct = "UA-256960-2";
-                        urchinTracker();
-                    </script>
+<script src='http://www.google-analytics.com/ga.js' type='text/javascript'>
+</script><script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-256960-2");
+pageTracker._trackPageview();
+</script>
                     <!-- End of Google Analytics -->
                 </div>
             </xsl:if>
@@ -122,11 +142,11 @@
 	</ul>
     </xsl:template>
 
-    <xsl:template match="a[starts-with(@href,'http://') and not(starts-with(@href,'http://www.nlog-project')) and not(@nomangle)]">
+    <xsl:template match="a[starts-with(@href,'http://') and not(starts-with(@href,'http://www.nlog-project.')) and not(@nomangle)]">
         <xsl:if test="$mode!='plain'">
             <img class="out_link" src="out_link.gif" />
         </xsl:if>
-        <a style="padding-left: 4px" href="http://www.nlog-project.org/external/{substring-after(@href,'http://')}">
+        <a style="padding-left: 4px" onclick="javascript:pageTracker._trackPageview('/outgoing/{substring-after(@href,'http://')}');" href="{@href}">
             <xsl:apply-templates />
         </a>
     </xsl:template>

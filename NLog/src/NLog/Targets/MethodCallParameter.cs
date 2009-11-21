@@ -114,6 +114,7 @@ namespace NLog.Targets
         /// The layout that should be use to calcuate the value for the parameter.
         /// </summary>
         [RequiredParameter]
+        [AcceptsLayout]
         public string Layout
         {
             get { return _compiledlayout.Text; }

@@ -130,6 +130,8 @@ namespace NLog.Targets
         /// <summary>
         /// Sender's email address (e.g. joe@domain.com)
         /// </summary>
+        /// <docgen category="E-mail addresses" order="0" />
+        [AcceptsLayout]
         public string From
         {
             get { return _from.Text; }
@@ -138,7 +140,9 @@ namespace NLog.Targets
 
         /// <summary>
         /// Recipients' email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com)
+        /// <docgen category="E-mail addresses" order="1" />
         /// </summary>
+        [AcceptsLayout]
         public string To
         {
             get { return _to.Text; }
@@ -148,6 +152,8 @@ namespace NLog.Targets
         /// <summary>
         /// CC email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com)
         /// </summary>
+        /// <docgen category="E-mail addresses" order="2" />
+        [AcceptsLayout]
         public string CC
         {
             get { return _cc.Text; }
@@ -157,6 +163,8 @@ namespace NLog.Targets
         /// <summary>
         /// BCC email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com)
         /// </summary>
+        /// <docgen category="E-mail addresses" order="3" />
+        [AcceptsLayout]
         public string BCC
         {
             get { return _bcc.Text; }
@@ -167,6 +175,7 @@ namespace NLog.Targets
         /// Whether to add new lines between log entries.
         /// </summary>
         /// <value><c>true</c> if new lines should be added; otherwise, <c>false</c>.</value>
+        /// <docgen category="Layout" order="10" />
         public bool AddNewLines
         {
             get { return _newLines; }
@@ -176,7 +185,9 @@ namespace NLog.Targets
         /// <summary>
         /// Mail subject.
         /// </summary>
+        /// <docgen category="Layout" order="3" />
         [System.ComponentModel.DefaultValue("Message from NLog on ${machinename}")]
+        [AcceptsLayout]
         public string Subject
         {
             get { return _subject.Text; }
@@ -186,7 +197,9 @@ namespace NLog.Targets
         /// <summary>
         /// Mail message body (repeated for each log message send in one mail)
         /// </summary>
+        /// <docgen category="Layout" order="4" />
         [System.ComponentModel.DefaultValue("${message}")]
+        [AcceptsLayout]
         public string Body
         {
             get { return base.Layout; }
@@ -196,6 +209,7 @@ namespace NLog.Targets
         /// <summary>
         /// Encoding to be used for sending e-mail.
         /// </summary>
+        /// <docgen category="Layout" order="8" />
         [System.ComponentModel.DefaultValue("UTF8")]
         public string Encoding
         {
@@ -206,6 +220,7 @@ namespace NLog.Targets
         /// <summary>
         /// Send message as HTML instead of plain text.
         /// </summary>
+        /// <docgen category="Layout" order="9" />
         [System.ComponentModel.DefaultValue(false)]
         public bool HTML
         {
@@ -216,6 +231,7 @@ namespace NLog.Targets
         /// <summary>
         /// SMTP Server to be used for sending.
         /// </summary>
+        /// <docgen category="Server Parameters" order="0" />
         public string SmtpServer
         {
             get { return _smtpServer; }
@@ -225,6 +241,7 @@ namespace NLog.Targets
         /// <summary>
         /// SMTP Authentication mode.
         /// </summary>
+        /// <docgen category="Server Parameters" order="1" />
         [System.ComponentModel.DefaultValue("None")]
         public SmtpAuthenticationMode SmtpAuthentication
         {
@@ -241,6 +258,7 @@ namespace NLog.Targets
         /// <summary>
         /// The username used to connect to SMTP server (used when SmtpAuthentication is set to "basic").
         /// </summary>
+        /// <docgen category="Server Parameters" order="2" />
         public string SmtpUsername
         {
             get { return _smtpUsername; }
@@ -256,6 +274,7 @@ namespace NLog.Targets
         /// <summary>
         /// The password used to authenticate against SMTP server (used when SmtpAuthentication is set to "basic").
         /// </summary>
+        /// <docgen category="Server Parameters" order="2" />
         public string SmtpPassword
         {
             get { return _smtpPassword; }
@@ -271,6 +290,7 @@ namespace NLog.Targets
         /// <summary>
         /// The port that SMTP Server is listening on.
         /// </summary>
+        /// <docgen category="Server Parameters" order="3" />
         [System.ComponentModel.DefaultValue(25)]
         public int SmtpPort
         {

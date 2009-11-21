@@ -1,3 +1,8 @@
+2009-11-21 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* added missing [AcceptsLayout] and [AcceptsCondition], 
+	* added some <docgen /> hints which will be used to generate better documentation
+	* removed FileTarget.AutoFlush which was not used
+
 2009-09-06 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Preparing for NLog 1.0 Refresh
         Cleaned up the build process and source tree by removing unused stuff.

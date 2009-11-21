@@ -1,8 +1,7 @@
-
 html, body
 {
     margin: 0px;
-    background-color: #c0c0c0;
+    background-color: #D3D3D3;
     color: black;
     font-family: Segoe UI, Verdana;
     font-size: 12pt;
@@ -12,15 +11,46 @@ html, body
 {
 }
 
+#pageborder
+{
+	margin-left: auto;
+	margin-right: auto;
+	width: 983px;
+        background-image: url(page_bg.gif);
+        background-repeat: repeat-y;
+}
+
+#pagetop
+{
+	margin-top: 16px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 983px;
+        background-image: url(page_top.gif);
+        background-repeat: no-repeat;
+        height: 20px;
+}
+
+#pagebottom
+{
+	margin-bottom: 16px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 983px;
+        background-image: url(page_bottom.gif);
+        background-repeat: no-repeat;
+        height: 20px;
+}
+
+#pagebottom
+{
+}
+
 #page
 {
 	background-color: #ffffff;
-	width: 960px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 16px;
-	margin-bottom: 16px;
-	border: 1px solid #a0a0a0;
+	width: 958px;
+	margin-left: 9px;
 }
 
 #content
@@ -34,6 +64,7 @@ html, body
 #logo
 {
 	padding: 8px;
+        padding-top: 0px;
 }
 
 #footer
@@ -42,6 +73,17 @@ html, body
 	text-align: center;
 	padding: 10px;
 }
+
+#footer a
+{
+	text-decoration: none;
+}
+
+#footer img
+{
+	border: none;
+}
+
 
 #menu
 {

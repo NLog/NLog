@@ -8,5 +8,6 @@
         <nav href="forum" label="Forum" />
         <nav href="issuetracker" label="Issue Tracker" />
         <nav href="mailinglists" label="Mailing Lists" />
+        <nav href="blog" label="Blog" />
     </navigation>
 </common>

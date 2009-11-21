@@ -37,6 +37,7 @@ using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Threading;
 
+using NLog.Config;
 using NLog.Internal;
 using NLog.Internal.NetworkSenders;
 using System.Text;
@@ -117,6 +118,7 @@ namespace NLog.Targets
         /// <remarks>
         /// For HTTP Support use the WebService target.
         /// </remarks>
+        [AcceptsLayout]
         public string Address
         {
             get { return _addressLayout.Text; }
