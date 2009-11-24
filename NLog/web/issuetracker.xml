@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="windows-1250" ?>
-<?xml-stylesheet type="text/xsl" href="style.xsl" ?>
-<content lang="en" id="issuetracker">
-    <h1>Issue tracker</h1>
-    <p>
-        Issue tracker for NLog is available <a href="http://www.nlog-project.org/issuetracker.html" target="_blank">here</a>.
-    </p>
-</content>

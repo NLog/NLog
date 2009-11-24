@@ -6,19 +6,11 @@
 
     <property name="nlog.debug" value="true" />
     <property name="nlog.optimize" value="true" />
+    <property name="buildconfigdir" value="${if(nlog.debug,'Debug','Release')}" dynamic="true" />
     <property name="nlog.define" value="NANT" />
 
-    <property name="scp.program" value="pscp" />
-    <property name="ssh.program" value="plink" />
-    <property name="scp.args" value="-q -batch" />
-    <property name="ssh.args" value="-batch" />
-
     <property name="nlog.csc.args" value="/nowarn:1591" />
-    <property name="ndoc.version" value="2.0" />
-    <property name="ndoc.basedir" value="tools\NDoc" unless="${property::exists('ndoc.basedir')}" />
-    <property name="ndoc.path" value="${ndoc.basedir}/${ndoc.version}" dynamic="true" />
-    <property name="ndoc.console.exe" value="${ndoc.path}/NDocConsole.exe" dynamic="true" />
-    <property name="ndoc.console.args" value="-referencepath &quot;${framework::get-assembly-directory(framework::get-target-framework())}&quot;" dynamic="true" />
+
     <property name="ndocsyntax.path" value="tools/NDocSyntax.exe" />
 
     <property name="csc.warninglevel" value="4" />
@@ -26,51 +18,110 @@
     <property name="nlog.package.name" value="${tstamp.date}" unless="${property::exists('nlog.package.name')}" />
     <property name="nlog.release.dir" value="releases/${nlog.package.name}" />
 
-    <property name="installer.name" value="${nlog.release.dir}/NLog-${nlog.package.name}-setup.exe" />
-    <property name="installer.debug.name" value="${nlog.release.dir}/NLog-${nlog.package.name}-setup-debug.exe" />
-    <property name="source_snapshot.name" value="${nlog.release.dir}/NLog-${nlog.package.name}-src.zip" />
-    <property name="nlog.optionaldebug" value="${if(nlog.debug,'-debug','')}" dynamic="true" />
-    <property name="binary_snapshot.name" value="${nlog.release.dir}/NLog-${nlog.package.name}-${framework::get-target-framework()}${nlog.optionaldebug}.zip" dynamic="true" />
-    <property name="merged_binary_snapshot.name" value="${nlog.release.dir}/NLog-${nlog.package.name}-bin${nlog.optionaldebug}.zip" dynamic="true" />
-    <property name="help_package.name" value="${nlog.release.dir}/NLog-${nlog.package.name}-help.zip" />
-    <property name="webtest.dir" value="${project::get-base-directory()}/webtest" />
-
     <property name="nlog.version.major" value="1" />
     <property name="nlog.version.minor" value="0" />
     <property name="nlog.version.revision" value="0" />
     <property name="nlog.version.build" value="505" />
     <property name="nlog.version" value="${nlog.version.major}.${nlog.version.minor}.${nlog.version.revision}.${nlog.version.build}" />
 
-    <target name="detectversion">
+    <target name="configure-mono-1.0">
+        <property name="nlog.define" value="${nlog.define};MONO;MONO_1_0" />
+        <property name="nlog.csc.args" value="/nowarn:0618" />
+        <property name="buildsubdir" value="Mono 1.0" />
+    </target>
+
+    <target name="configure-mono-2.0">
+        <property name="nlog.define" value="${nlog.define};MONO;MONO_2_0;NET_2_API" />
+        <property name="nlog.csc.args" value="/nowarn:1591,1699,0618" />
+        <property name="buildsubdir" value="Mono 2.0" />
+    </target>
+
+    <target name="configure-net-1.0">
+        <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET_1_0" />
+        <property name="buildsubdir" value=".NET Framework 1.0" />
+    </target>
+    
+    <target name="configure-net-1.1">
+        <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET_1_1" />
+        <property name="buildsubdir" value=".NET Framework 1.1" />
+    </target>
+
+    <target name="configure-net-2.0">
+        <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET2;DOTNET_2_0;NET_2_API" />
+        <property name="nlog.csc.args" value="/nowarn:1591,1699" />
+        <property name="buildsubdir" value=".NET Framework 2.0" />
+    </target>
+
+    <target name="configure-netcf-1.0">
+        <property name="nlog.define" value="${nlog.define};NETCF;NETCF_1_0" />
+        <property name="buildsubdir" value=".NET Compact Framework 1.0" />
+    </target>
+
+    <target name="configure-netcf-2.0">
+        <property name="nlog.define" value="${nlog.define};NETCF;NETCF_2_0;NET_2_API" />
+        <property name="nlog.csc.args" value="/nowarn:1591,1699" />
+        <property name="buildsubdir" value=".NET Compact Framework 2.0" />
+    </target>
+
+    <target name="build-mono-1.0" depends="NLog, publisher-policy" />
+    <target name="build-mono-2.0" depends="NLog, publisher-policy" />
+    <target name="build-net-1.0" depends="NLog, NLog.ComInterop, NLogC, publisher-policy" />
+    <target name="build-net-1.1" depends="NLog, NLog.ComInterop, NLogC, publisher-policy" />
+    <target name="build-net-2.0" depends="NLog, NLog.ComInterop, NLogC, publisher-policy" />
+    <target name="build-netcf-1.0" depends="NLog" />
+    <target name="build-netcf-2.0" depends="NLog" />
+
+    <target name="NLogC-net-1.0">
+        <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\7.0\Setup\VS\ProductDir" />
+        <readregistry property="visualc.dir" key="SOFTWARE\Microsoft\VisualStudio\7.0\Setup\VC\ProductDir" failonerror="false" />
+        <if test="${not property::exists('visualc.dir')}">
+            <property name="visualc.dir" value="${visualstudio.dir}\VC7" />
+        </if>
+        <property name="nlogc.compile.extraoptions" value="/clr" />
+        <call target="NLogC-compile" />
+    </target>
+
+    <target name="NLogC-net-1.1">
+        <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\7.1\Setup\VS\ProductDir" />
+        <readregistry property="visualc.dir" key="SOFTWARE\Microsoft\VisualStudio\7.1\Setup\VC\ProductDir" failonerror="false" />
+        <if test="${not property::exists('visualc.dir')}">
+            <property name="visualc.dir" value="${visualstudio.dir}\VC7" />
+        </if>
+        <property name="nlogc.compile.extraoptions" value="/clr" />
+        <call target="NLogC-compile" />
+    </target>
+
+    <target name="NLogC-net-2.0" depends="configure">
+        <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VS\ProductDir" />
+        <readregistry property="visualc.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VC\ProductDir" failonerror="false" />
+        <if test="${not property::exists('visualc.dir')}">
+            <property name="visualc.dir" value="${visualstudio.dir}\VC" />
+        </if>
+        <property name="nlogc.compile.extraoptions" value="/clr:oldsyntax" />
+        <call target="NLogC-compile" />
+    </target>
+
+    <!-- unsupported platforms -->
+    <target name="NLogC-mono-1.0" />
+    <target name="NLogC-mono-2.0" />
+    <target name="NLogC-netcf-1.0" />
+    <target name="NLogC-netcf-2.0" />
+
+    <target name="build" depends="configure, build-${framework::get-target-framework()}">
     </target>
 
     <target name="configure">
         <call target="configure-${framework::get-target-framework()}" />
-        <property name="buildsubdir" value="${framework::get-target-framework()}${nlog.optionaldebug}" />
-        <property name="nlog.dir" value="${project::get-base-directory()}/build/${buildsubdir}/bin" unless="${property::exists('nlog.dir')}" />
-        <property name="nlog.help.dir" value="build/${buildsubdir}/help" unless="${property::exists('nlog.help.dir')}" />
+        <property name="nlog.dir" value="${project::get-base-directory()}/build/bin/${buildconfigdir}/${buildsubdir}" unless="${property::exists('nlog.dir')}" />
 
         <echo message="Building NLog for ${framework::get-target-framework()}" />
         <echo message="Package name: ${nlog.package.name}" />
         <echo message="Target dir: ${nlog.dir}" />
 
         <mkdir dir="${nlog.dir}" />
-        <mkdir dir="${nlog.release.dir}" />
     </target>
 
-    <target name="build" depends="configure, build-${framework::get-target-framework()}">
-    </target>
-
-    <target name="fullrelease">
-        <call target="clean_all" />
-        <call target="allframeworksdebugandrelease" />
-        <call target="clean_examples" />
-        <call target="help" />
-        <call target="vs2005templates" />
-        <call target="buildinstaller" />
-        <call target="source_snapshot" />
-        <exec program="nant" commandline="-D:nlog.package.name=${nlog.package.name} debug merged_binary_snapshot" />
-        <exec program="nant" commandline="-D:nlog.package.name=${nlog.package.name} release merged_binary_snapshot" />
+    <target name="detectversion">
     </target>
 
     <target name="debug">
@@ -85,7 +136,7 @@
 
     <target name="binary_snapshot" depends="build">
         <zip zipfile="${binary_snapshot.name}" if="false">
-            <fileset basedir="build/${buildsubdir}">
+            <fileset basedir="build/bin/${buildconfigdir}${buildsubdir}">
                 <include name="bin/*" />
             </fileset>
             <fileset basedir=".">
@@ -152,7 +203,8 @@
     </target>
 
     <target name="clean" depends="configure">
-        <delete dir="build/${buildsubdir}" failonerror="false" />
+        <delete dir="build/bin" failonerror="false" />
+        <delete dir="build/obj" failonerror="false" />
         <delete verbose="true">
             <fileset basedir=".">
                 <include name="**/*.suo" />
@@ -214,129 +266,6 @@
         </csc>
     </target>
 
-    <target name="xmldoc" depends="configure">
-        <mkdir dir="build/doc" />
-
-        <property name="oldframework" value="${nant.settings.currentframework}" />
-        
-        <property name="nant.settings.currentframework" value="mono-2.0" failonerror="false" />
-        <property name="nant.settings.currentframework" value="net-2.0" failonerror="false" />
-
-        <csc target="library" output="build/doc/NLog.dll" doc="build/doc/NLog.xml" warninglevel="0" define="DOCUMENTATION;NANT">
-            <sources basedir="src">
-                <include name="NLog/**/*.cs" />
-            </sources>
-            <references>
-                <include name="mscorlib.dll" />
-                <include name="System.dll" />
-                <include name="System.Xml.dll" />
-                <include name="System.Data.dll" />
-                <include name="System.Messaging.dll" />
-                <include name="System.Windows.Forms.dll" />
-                <include name="System.Web.dll" />
-                <include name="System.Web.Services.dll" />
-                <include name="Mono.Posix.dll" />
-            </references>
-        </csc>
-
-        <exec program="${ndocsyntax.path}" 
-              commandline="build/doc/NLog.xml" 
-              workingdir="." useruntimeengine="true" />
-        <uptodate property="xmldoc.uptodate">
-            <targetfiles>
-                <include name="build/doc/doc.xml" />
-            </targetfiles>
-            <sourcefiles basedir="build/doc">
-                <include name="**/*.dll" />
-            </sourcefiles>
-        </uptodate>
-        <if test="${not xmldoc.uptodate}">
-            <exec program="${ndoc.console.exe}" 
-                  verbose="true" workingdir="." 
-                  commandline="${ndoc.console.args} -documenter=XML -project=./NLog.ndoc" 
-                  useruntimeengine="true" />
-            <exec program="${ndocsyntax.path}" 
-                  commandline="build/doc/doc.xml" 
-                  workingdir="." useruntimeengine="true" />
-        </if>
-        <echo message="Getting target, filter and layout renderer names from build/doc/doc.xml ..." />
-        <script language="C#">
-            <code><![CDATA[
-                public static void ScriptMain(Project project) {
-                    System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
-                    doc.Load(project.ExpandProperties("${project::get-base-directory()}/build/doc/doc.xml", Location.UnknownLocation));
-                    string targets = "";
-                    string layoutRenderers = "";
-                    string filters = "";
-                    string layouts = "";
-
-                    // NDoc 2.0 XML layout
-                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@id='T:NLog.TargetAttribute']/argument[position()=1]/@value"))
-                    {
-                        if (targets != "")
-                        targets += ",";
-                        targets += node.InnerText;
-                    }
-                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@id='T:NLog.LayoutRendererAttribute']/argument[position()=1]/@value"))
-                    {
-                        if (layoutRenderers != "")
-                        layoutRenderers += ",";
-                        layoutRenderers += node.InnerText;
-                    }
-                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@id='T:NLog.FilterAttribute']/argument[position()=1]/@value"))
-                    {
-                        if (filters != "")
-                        filters += ",";
-                        filters += node.InnerText;
-                    }
-
-                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@id='T:NLog.LayoutAttribute']/argument[position()=1]/@value"))
-                    {
-                        if (layouts != "")
-                            layouts += ",";
-                        layouts += node.InnerText;
-                    }
-
-                    // NDoc 1.1 XML layout
-                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@name='NLog.TargetAttribute']/property[@name='Name']/@value"))
-                    {
-                        if (targets != "")
-                        targets += ",";
-                        targets += node.InnerText;
-                    }
-                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@name='NLog.LayoutRendererAttribute']/property[@name='FormatString']/@value"))
-                    {
-                        if (layoutRenderers != "")
-                        layoutRenderers += ",";
-                        layoutRenderers += node.InnerText;
-                    }
-                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@name='NLog.FilterAttribute']/property[@name='Name']/@value"))
-                    {
-                        if (filters != "")
-                        filters += ",";
-                        filters += node.InnerText;
-                    }
-                    foreach (System.Xml.XmlNode node in doc.SelectNodes("//attribute[@name='NLog.LayoutAttribute']/property[@name='Name']/@value"))
-                    {
-                        if (layouts != "")
-                            layouts += ",";
-                        layouts += node.InnerText;
-                    }
-
-                    project.Properties["nlog.targetNames"] = targets;
-                    project.Properties["nlog.layoutRendererNames"] = layoutRenderers;
-                    project.Properties["nlog.filterNames"] = filters;
-                    project.Properties["nlog.layoutNames"] = layouts;
-                  
-                }
-                ]]></code>
-        </script>
-        <echo message="Target names: ${nlog.targetNames}" />
-        <echo message="Layout renderer names: ${nlog.layoutRendererNames}" />
-        <echo message="Filter names: ${nlog.filterNames}" />
-        <property name="nant.settings.currentframework" value="${oldframework}" />
-    </target>
-
     <target name="NLog.ComInterop" depends="NLog">
         <csc target="library" output="${nlog.dir}/NLog.ComInterop.dll" doc="${nlog.dir}/NLog.ComInterop.xml" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
             <sources basedir="src/NLog.ComInterop">
@@ -381,25 +310,6 @@
                 <include name="${nlog.dir}/nunit.framework.dll" />
             </references>
         </csc>
-    </target>
-
-    <target name="NLog.Test" depends="NLog">
-        <csc target="exe" output="${nlog.dir}/NLog.Test.exe" define="${nlog.define}" debug="${nlog.debug}" optimize="${nlog.optimize}" warninglevel="${csc.warninglevel}">
-            <sources basedir="tests/NLog.Test">
-                <include name="**/*.cs" />
-            </sources>
-            <references>
-                <include name="${nlog.dir}/NLog.dll" />
-                <include name="mscorlib.dll" />
-                <include name="System.dll" />
-                <include name="System.Xml.dll" />
-            </references>
-        </csc>
-        <copy file="tests/NLog.Test/App.config" tofile="${nlog.dir}/NLog.Test.exe.config" />
-    </target>
-
-    <target name="pfiles">
-        <property name="nlog.dir" value="${environment::get-folder-path('ProgramFiles')}\NLog\bin\${framework::get-target-framework()}" unless="${property::exists('nlog.dir')}" />
     </target>
 
     <target name="NLogC" depends="NLog, NLogC-${framework::get-target-framework()}">
@@ -460,175 +370,6 @@
         <delete dir="${nlog.dir}/obj" />
     </target>
 
-    <target name="NLogC-net-1.0">
-        <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\7.0\Setup\VS\ProductDir" />
-        <readregistry property="visualc.dir" key="SOFTWARE\Microsoft\VisualStudio\7.0\Setup\VC\ProductDir" failonerror="false" />
-        <if test="${not property::exists('visualc.dir')}">
-            <property name="visualc.dir" value="${visualstudio.dir}\VC7" />
-        </if>
-        <property name="nlogc.compile.extraoptions" value="/clr" />
-        <call target="NLogC-compile" />
-    </target>
-
-    <target name="NLogC-net-1.1">
-        <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\7.1\Setup\VS\ProductDir" />
-        <readregistry property="visualc.dir" key="SOFTWARE\Microsoft\VisualStudio\7.1\Setup\VC\ProductDir" failonerror="false" />
-        <if test="${not property::exists('visualc.dir')}">
-            <property name="visualc.dir" value="${visualstudio.dir}\VC7" />
-        </if>
-        <property name="nlogc.compile.extraoptions" value="/clr" />
-        <call target="NLogC-compile" />
-    </target>
-
-    <target name="NLogC-net-2.0" depends="configure">
-        <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VS\ProductDir" />
-        <readregistry property="visualc.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VC\ProductDir" failonerror="false" />
-        <if test="${not property::exists('visualc.dir')}">
-            <property name="visualc.dir" value="${visualstudio.dir}\VC" />
-        </if>
-        <property name="nlogc.compile.extraoptions" value="/clr:oldsyntax" />
-        <call target="NLogC-compile" />
-    </target>
-
-    <!-- unsupported platforms -->
-    <target name="NLogC-mono-1.0" />
-    <target name="NLogC-mono-2.0" />
-    <target name="NLogC-netcf-1.0" />
-    <target name="NLogC-netcf-2.0" />
-
-    <target name="test" depends="NLog.UnitTests">
-        <if test="${framework::get-family(framework::get-target-framework())=='net'}">
-            <nunit2 failonerror="false">
-                <formatter type="Xml" usefile="true" extension=".xml" outputdir="build/${buildsubdir}/test_results_xml" />
-                <test assemblyname="${nlog.dir}/NLog.UnitTests.dll" />
-            </nunit2>
-        </if>
-
-        <if test="${framework::get-family(framework::get-target-framework())=='mono'}">
-            <mkdir dir="build/${buildsubdir}/test_results_xml" />
-            <exec workingdir="${nlog.dir}" program="nunit-console" verbose="true" 
-                commandline="NLog.UnitTests.dll /labels /xml=${project::get-base-directory()}/build/${buildsubdir}/test_results_xml/NLog.UnitTests.dll-results.xml" />
-        </if>
-    </target>
-
-    <target name="webtest" depends="NLog, NLog.ComInterop, NLog.UnitTests.Web">
-        <!-- stop IIS on local machine -->
-
-        <echo message="Stopping IIS..." />
-        <exec program="iisreset.exe" commandline="/stop" />
-
-        <!-- copy binaries to the "bin" directory -->
-
-        <copy todir="${webtest.dir}/bin" verbose="true">
-            <fileset basedir="${nlog.dir}">
-                <include name="NLog.dll" />
-                <include name="NLog.ComInterop.dll" />
-            </fileset>
-        </copy>
-
-        <!-- register NLog.ComInterop.dll COM component -->
-
-        <echo message="Registering COM interop library..." />
-
-        <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'regasm.exe')}"
-            commandline="/tlb /codebase ${webtest.dir}/bin/NLog.ComInterop.dll" />
-
-        <!-- start IIS -->
-        
-        <echo message="Starting IIS..." />
-        <exec program="iisreset.exe" commandline="/start" />
-
-        <sleep seconds="5" />
-
-        <!-- run unit tests -->
-        
-        <echo message="Running tests..." />
-
-        <nunit2 failonerror="false">
-            <formatter type="Xml" usefile="true" extension=".xml" outputdir="build/${buildsubdir}/test_results_xml" />
-            <test assemblyname="${nlog.dir}/NLog.UnitTests.Web.dll" />
-        </nunit2>
-
-        <sleep seconds="5" />
-        
-        <echo message="Running tests again..." />
-        
-        <nunit2 failonerror="false">
-            <formatter type="Xml" usefile="true" extension=".xml" outputdir="build/${buildsubdir}/test_results_xml" />
-            <test assemblyname="${nlog.dir}/NLog.UnitTests.Web.dll" />
-        </nunit2>
-
-        <if test="false">
-
-            <sleep seconds="5" /> <!-- give Clover some time to dump its statistics -->
-
-            <!-- stop IIS -->
-
-            <echo message="Stopping IIS..." />
-            <exec program="iisreset.exe" commandline="/stop" />
-
-            <!-- unregister COM components -->
-
-            <echo message="Unregistering COM interop library..." />
-
-            <exec program="${path::combine(framework::get-framework-directory(framework::get-target-framework()),'regasm.exe')}"
-                commandline="/unregister /tlb ${webtest.dir}/bin/NLog.ComInterop.dll" if="false" />
-
-            <!-- start IIS -->
-            <echo message="Starting IIS..." />
-            <exec program="iisreset.exe" commandline="/start" />
-        </if>
-
-    </target>
-
-    <target name="dowebtest" depends="NLog, NLog.ComInterop, NLog.UnitTests.Web">
-        <echo message="Running tests..." />
-
-        <nunit2 failonerror="false">
-            <formatter type="Xml" usefile="true" extension=".xml" outputdir="build/${buildsubdir}/test_results_xml" />
-            <test assemblyname="${nlog.dir}/NLog.UnitTests.Web.dll" />
-        </nunit2>
-    </target>
-
-    <target name="configure-mono-1.0">
-        <property name="nlog.define" value="${nlog.define};MONO;MONO_1_0" />
-        <property name="nlog.csc.args" value="/nowarn:0618" />
-    </target>
-    <target name="configure-mono-2.0">
-        <property name="nlog.define" value="${nlog.define};MONO;MONO_2_0;NET_2_API" />
-        <property name="nlog.csc.args" value="/nowarn:1591,1699,0618" />
-    </target>
-
-    <target name="configure-net-1.0">
-        <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET_1_0" />
-    </target>
-    
-    <target name="configure-net-1.1">
-        <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET_1_1" />
-    </target>
-
-    <target name="configure-net-2.0">
-        <property name="nlog.define" value="${nlog.define};DOTNET;DOTNET2;DOTNET_2_0;NET_2_API" />
-        <property name="nlog.csc.args" value="/nowarn:1591,1699" />
-    </target>
-
-    <target name="configure-netcf-1.0">
-        <property name="nlog.define" value="${nlog.define};NETCF;NETCF_1_0" />
-    </target>
-
-    <target name="configure-netcf-2.0">
-        <property name="nlog.define" value="${nlog.define};NETCF;NETCF_2_0;NET_2_API" />
-        <property name="nlog.csc.args" value="/nowarn:1591,1699" />
-    </target>
-
-    <target name="build-mono-1.0" depends="NLog, publisher-policy" />
-    <target name="build-mono-2.0" depends="NLog, publisher-policy" />
-    <target name="build-net-1.0" depends="NLog, NLog.ComInterop, NLogC, publisher-policy" />
-    <target name="build-net-1.1" depends="NLog, NLog.ComInterop, NLogC, publisher-policy" />
-    <target name="build-net-2.0" depends="NLog, NLog.ComInterop, NLogC, publisher-policy" />
-    <target name="build-netcf-1.0" depends="NLog" />
-    <target name="build-netcf-2.0" depends="NLog" />
-
     <target name="publisher-policy" depends="configure">
         <uptodate property="publisherpolicy.uptodate">
             <targetfiles>
@@ -659,67 +400,6 @@
         </if>
     </target>
 
-    <target name="installer" depends="allframeworksdebugandrelease, clean_examples, help, vs2005templates">
-        <call target="buildinstaller" />
-    </target>
-
-    <target name="buildinstaller">
-        <readregistry property="nsis.dir" key="SOFTWARE\NSIS\" />
-        <property name="makensis.exe" value="${nsis.dir}/makensis.exe" />
-
-        <property name="dotnet.defines" value="" />
-        <property name="mono.defines" value="" />
-        <property name="netcf.defines" value="" />
-
-        <if test="${file::exists('build\net-1.0\bin\NLog.dll')}">
-            <property name="dotnet.defines" value="${dotnet.defines} /DHAVE_NET_1_0" />
-        </if>
-
-        <if test="${file::exists('build\net-1.1\bin\NLog.dll')}">
-            <property name="dotnet.defines" value="${dotnet.defines} /DHAVE_NET_1_1" />
-        </if>
-
-        <if test="${file::exists('build\net-2.0\bin\NLog.dll')}">
-            <property name="dotnet.defines" value="${dotnet.defines} /DHAVE_NET_2_0" />
-        </if>
-
-        <if test="${dotnet.defines != ''}">
-            <property name="dotnet.defines" value="${dotnet.defines} /DHAVE_NET" />
-        </if>
-
-        <if test="${file::exists('build\mono-1.0\bin\NLog.dll')}">
-            <property name="mono.defines" value="${mono.defines} /DHAVE_MONO_1_0" />
-        </if>
-
-        <if test="${file::exists('build\mono-2.0\bin\NLog.dll')}">
-            <property name="mono.defines" value="${mono.defines} /DHAVE_MONO_2_0" />
-        </if>
-
-        <if test="${mono.defines != ''}">
-            <property name="mono.defines" value="${mono.defines} /DHAVE_MONO" />
-        </if>
-
-        <if test="${file::exists('build\netcf-1.0\bin\NLog.dll')}">
-            <property name="netcf.defines" value="${netcf.defines} /DHAVE_NETCF_1_0" />
-        </if>
-
-        <if test="${file::exists('build\netcf-2.0\bin\NLog.dll')}">
-            <property name="netcf.defines" value="${netcf.defines} /DHAVE_NETCF_2_0" />
-        </if>
-
-        <if test="${netcf.defines != ''}">
-            <property name="netcf.defines" value="${netcf.defines} /DHAVE_NETCF" />
-        </if>
-
-        <property name="supportedframeworks.defines" value="${dotnet.defines}${mono.defines}${netcf.defines}" />
-	<echo message="DEFINES: ${supportedframeworks.defines}" />
-
-        <exec program="${makensis.exe}" commandline="/DNLOGVERSION=${nlog.package.name} ${supportedframeworks.defines} /DOPTIONALDEBUG= tools\SetupNLog.nsi" verbose="true" />
-        <move file="SetupNLog.exe" tofile="${installer.name}" overwrite="true" />
-        <exec program="${makensis.exe}" commandline="/DNLOGVERSION=${nlog.package.name}-debug ${supportedframeworks.defines} /DOPTIONALDEBUG=-debug tools\SetupNLog.nsi" verbose="true" />
-        <move file="SetupNLog.exe" tofile="${installer.debug.name}" overwrite="true" />
-    </target>
-
     <target name="allframeworksdebugandrelease">
         <call target="debug" />
         <call target="allframeworks" />
@@ -730,133 +410,13 @@
     <target name="allframeworks">
         <property name="debugrelease" value="release" />
         <property name="debugrelease" value="debug" if="${nlog.debug}" />
-        <exec program="nant" commandline="-t:net-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build schema binary_snapshot" />
-        <exec program="nant" commandline="-t:net-1.1 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build schema binary_snapshot" />
-        <exec program="nant" commandline="-t:net-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build schema binary_snapshot" />
-        <exec program="nant" commandline="-t:netcf-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
-        <exec program="nant" commandline="-t:netcf-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build binary_snapshot" />
-        <exec program="nant" commandline="-t:mono-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build schema binary_snapshot" />
-        <exec program="nant" commandline="-t:mono-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build schema binary_snapshot" />
-    </target>
-
-    <target name="help" depends="xmldoc, helpwebsite">
-        <copy file="${project::get-base-directory()}/web/syntax.xsl" tofile="build/doc/syntax.xsl" overwrite="true" />
-        <xmlpoke file="build/doc/syntax.xsl" xpath="//xsl:param[@name='external-base']" value="file://${webbuild.dir}">
-            <namespaces>
-                <namespace prefix="xsl" uri="http://www.w3.org/1999/XSL/Transform" />
-            </namespaces>
-        </xmlpoke>
-        <copy todir="build/doc/help/examples">
-            <fileset basedir="build/doc/helpweb/examples">
-                <include name="**/*" />
-            </fileset>
-        </copy>
-        <uptodate property="help.uptodate">
-            <targetfiles>
-                <include name="${help_package.name}" />
-            </targetfiles>
-            <sourcefiles basedir=".">
-                <include name="build/doc/NLog.dll" />
-                <include name="build/doc/helpweb/**/*" />
-                <include name="NLog-${ndoc.version}.ndoc" />
-            </sourcefiles>
-        </uptodate>
-        <if test="${not help.uptodate}">
-            <exec program="${ndoc.console.exe}" verbose="true" workingdir="." commandline="${ndoc.console.args} -documenter=MSDN -project=.\NLog.ndoc" />
-            <zip zipfile="${help_package.name}">
-                <fileset basedir="build/doc/help">
-                    <include name="NLog.chm" />
-                </fileset>
-            </zip>
-        </if>
-    </target>
-
-    <target name="cleanwebsite">
-       <delete dir="build/doc" />
-       <call target="xmldoc" />
-       <call target="website" />
-    </target>
-
-    <target name="source_snapshot" depends="configure">
-        <delete dir="build/source_snapshot" if="${directory::exists('build/source_snapshot')}" />
-        <property name="snapshot.dir" value="build/source_snapshot/NLog-${nlog.package.name}" />
-        <mkdir dir="build/source_snapshot" if="${not directory::exists('build/source_snapshot')}" />
-        <exec program="svn" commandline="export . ${snapshot.dir}" />
-        <delete dir="${snapshot.dir}/tools/NDoc/2.0" />
-        <zip zipfile="${source_snapshot.name}">
-            <fileset basedir="build/source_snapshot">
-                <include name="**/*" />
-                <exclude name=".svn" />
-                <exclude name="_svn" />
-            </fileset>
-        </zip>
-    </target>
-
-    <target name="astyle">
-        <astyle style="NAnt" cleanup="true" >
-            <fileset>
-                <include name="**/*.cs" />
-                <exclude name="**/_*.cs" />
-            </fileset>
-        </astyle>
-    </target>
-
-    <target name="sln">
-        <call target="clean" />
-
-
-        <property name="oldframework" value="${nant.settings.currentframework}" />
-        
-        <property name="nant.settings.currentframework" value="net-1.1" failonerror="false" />
-
-        <solution configuration="Release" solutionfile="NLog.vs2003.sln" />
-        <solution configuration="Debug" solutionfile="NLog.vs2003.sln" />
-        <solution configuration="Release" solutionfile="tests/NLogTests.vs2003.sln" />
-        <solution configuration="Debug" solutionfile="tests/NLogTests.vs2003.sln" />
-        <property name="nant.settings.currentframework" value="${oldframework}" failonerror="false" />
-
-        <call target="clean" />
-
-        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Debug /t:Rebuild NLog.vs2005.sln" />
-        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Release /t:Rebuild NLog.vs2005.sln" />
-        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Debug /t:Rebuild tests\NLogTests.vs2005.sln" />
-        <exec program="${framework::get-framework-directory('net-2.0')}/msbuild.exe" commandline="/p:Configuration=Release /t:Rebuild tests\NLogTests.vs2005.sln" />
-
-        <call target="clean" />
-    </target>
-
-    <target name="schema" depends="NLog, xmldoc">
-        <uptodate property="schema.uptodate">
-            <targetfiles>
-                <include name="${nlog.dir}/NLog.xsd" />
-            </targetfiles>
-            <sourcefiles>
-                <include name="${nlog.dir}/NLog.dll" />
-                <include name="build/doc/doc.xml" />
-                <include name="tools/MakeNLogXSD/TemplateNLog.xsd" />
-                <include name="tools/MakeNLogXSD/Program.cs" />
-            </sourcefiles>
-        </uptodate>
-        <if test="${not schema.uptodate}">
-            <csc target="exe" output="${nlog.dir}/MakeNLogXSD.exe" define="${nlog.define}" warninglevel="${csc.warninglevel}" failonerror="false">
-                <sources>
-                    <include name="tools/MakeNLogXSD/Program.cs" />
-                </sources>
-                <references>
-                    <include name="${nlog.dir}/NLog.dll" />
-                    <include name="mscorlib.dll" />
-                    <include name="System.dll" />
-                    <include name="System.Xml.dll" />
-                </references>
-                <resources basedir="tools/MakeNLogXSD" prefix="MakeNLogXSD" dynamicprefix="true">
-                    <include name="TemplateNLog.xsd" />
-                </resources>
-            </csc>
-            <exec program="${nlog.dir}/MakeNLogXSD.exe" 
-                commandline="NLog.xsd &quot;${project::get-base-directory()}/build/doc/doc.xml&quot;"
-                workingdir="${nlog.dir}" useruntimeengine="true" />
-            <delete file="${nlog.dir}/MakeNLogXSD.exe" />
-        </if>
+        <exec program="nant" commandline="-t:net-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build" />
+        <exec program="nant" commandline="-t:net-1.1 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build" />
+        <exec program="nant" commandline="-t:net-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build" />
+        <exec program="nant" commandline="-t:netcf-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build" />
+        <exec program="nant" commandline="-t:netcf-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build" />
+        <exec program="nant" commandline="-t:mono-1.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build" />
+        <exec program="nant" commandline="-t:mono-2.0 -D:nlog.package.name=${nlog.package.name} ${debugrelease} build" />
     </target>
 
     <target name="vs2005templates">
@@ -901,273 +461,6 @@
             </foreach>
         </foreach>
         <delete dir="tmp_dir" failonerror="false" />
-    </target>
-
-    <target name="install-schema-vs2005" depends="schema">
-        <readregistry property="visualstudio.dir" key="SOFTWARE\Microsoft\VisualStudio\8.0\Setup\VS\ProductDir" />
-        <copy file="${nlog.dir}/NLog.xsd" tofile="${visualstudio.dir}/Xml/Schemas/NLog.xsd" />
-    </target>
-
-    <target name="clean_all" depends="clean_examples">
-        <delete>
-            <fileset basedir="build">
-                <include name="**/*" />
-                <include name="*" />
-                <exclude name="readme.txt" />
-            </fileset>
-        </delete>
-    </target>
-
-    <target name="snapshot" depends="clean_all, sync-vs-projects, allframeworksdebugandrelease, source_snapshot, help, installer">
-    </target>
-
-    <target name="webxmlwithsyntax">
-        <mkdir dir="build/doc/webxmlwithsyntax" />
-        <exec program="${ndocsyntax.path}" 
-              commandline="-outDir build/doc/webxmlwithsyntax web/*.xml" 
-              workingdir="." useruntimeengine="true" />
-        <exec program="${ndocsyntax.path}" 
-              commandline="-outDir build/doc/webxmlwithsyntax web/*.xsl" 
-              workingdir="." useruntimeengine="true" />
-    </target>
-
-    <target name="website" depends="xmldoc, webxmlwithsyntax">
-        <property name="webbuild.dir" value="${path::combine(project::get-base-directory(),'build/doc/web')}" />
-        <property name="web.buildmode" value="web" />
-        <property name="web.sourceforge" value="1" />
-        <call target="buildwebsite" />
-        <copy file="build/doc/web/introduction.html" tofile="build/doc/web/index.html" />
-    </target>
-
-    <target name="helpwebsite" depends="xmldoc, webxmlwithsyntax">
-        <property name="webbuild.dir" value="${path::combine(project::get-base-directory(),'build/doc/helpweb')}" />
-        <property name="web.buildmode" value="help" />
-        <property name="web.sourceforge" value="0" />
-        <call target="buildwebsite" />
-    </target>
-
-    <target name="buildwebsite" depends="clean_examples">
-        <mkdir dir="${webbuild.dir}" />
-        <mkdir dir="${webbuild.dir}/examples" />
-
-        <copy todir="${webbuild.dir}">
-            <fileset basedir="web">
-                <include name="*.css" />
-                <include name="*.png" />
-                <include name="*.jpg" />
-                <include name="*.gif" />
-            </fileset>
-        </copy>
-
-        <copy todir="${webbuild.dir}/examples">
-            <fileset basedir="examples">
-                <include name="**/*" />
-            </fileset>
-        </copy>
-
-        <style out="${webbuild.dir}/targets.html" style="web/targets.xsl" in="build/doc/doc.xml">
-            <parameters>
-                <parameter name="build_time" value="${buildtime}" />
-                <parameter name="nlog_package" value="${nlog.package.name}" />
-                <parameter name="external-base" value="${webbuild.dir}" />
-                <parameter name="file_extension" value="html" />
-                <parameter name="sourceforge" value="${web.sourceforge}" />
-                <parameter name="page_id_override" value="documentation" />
-                <parameter name="subpage_id_override" value="targets" />
-                <parameter name="mode" value="${web.buildmode}" />
-            </parameters>
-        </style>
-
-        <style out="${webbuild.dir}/layoutrenderers.html" style="web/layoutrenderers.xsl" in="build/doc/doc.xml">
-            <parameters>
-                <parameter name="build_time" value="${buildtime}" />
-                <parameter name="nlog_package" value="${nlog.package.name}" />
-                <parameter name="external-base" value="${webbuild.dir}" />
-                <parameter name="file_extension" value="html" />
-                <parameter name="sourceforge" value="${web.sourceforge}" />
-                <parameter name="page_id_override" value="documentation" />
-                <parameter name="subpage_id_override" value="layoutrenderers" />
-                <parameter name="mode" value="${web.buildmode}" />
-            </parameters>
-        </style>
-        
-        <style out="${webbuild.dir}/layouts.html" style="web/layouts.xsl" in="build/doc/doc.xml">
-            <parameters>
-                <parameter name="build_time" value="${buildtime}" />
-                <parameter name="nlog_package" value="${nlog.package.name}" />
-                <parameter name="external-base" value="${webbuild.dir}" />
-                <parameter name="file_extension" value="html" />
-                <parameter name="sourceforge" value="${web.sourceforge}" />
-                <parameter name="page_id_override" value="documentation" />
-                <parameter name="subpage_id_override" value="layouts" />
-                <parameter name="mode" value="${web.buildmode}" />
-            </parameters>
-        </style>
-        
-        <style out="${webbuild.dir}/filters.html" style="web/filters.xsl" in="build/doc/doc.xml">
-            <parameters>
-                <parameter name="build_time" value="${buildtime}" />
-                <parameter name="nlog_package" value="${nlog.package.name}" />
-                <parameter name="external-base" value="${webbuild.dir}" />
-                <parameter name="file_extension" value="html" />
-                <parameter name="sourceforge" value="${web.sourceforge}" />
-                <parameter name="page_id_override" value="documentation" />
-                <parameter name="subpage_id_override" value="filters" />
-                <parameter name="mode" value="${web.buildmode}" />
-            </parameters>
-        </style>
-        
-        <style out="${webbuild.dir}/conditions.html" style="web/conditions.xsl" in="build/doc/doc.xml">
-            <parameters>
-                <parameter name="build_time" value="${buildtime}" />
-                <parameter name="nlog_package" value="${nlog.package.name}" />
-                <parameter name="external-base" value="${webbuild.dir}" />
-                <parameter name="file_extension" value="html" />
-                <parameter name="sourceforge" value="${web.sourceforge}" />
-                <parameter name="page_id_override" value="documentation" />
-                <parameter name="subpage_id_override" value="conditions" />
-                <parameter name="mode" value="${web.buildmode}" />
-            </parameters>
-        </style>
-
-        <foreach item="String" in="${nlog.targetNames}" delim="," property="t">
-            <style out="${webbuild.dir}/target.${t}.html" style="web/targets.xsl" in="build/doc/doc.xml">
-                <parameters>
-                    <parameter name="build_time" value="${buildtime}" />
-                    <parameter name="nlog_package" value="${nlog.package.name}" />
-                    <parameter name="external-base" value="${webbuild.dir}" />
-                    <parameter name="file_extension" value="html" />
-                    <parameter name="sourceforge" value="${web.sourceforge}" />
-                    <parameter name="page_id_override" value="documentation" />
-                    <parameter name="subpage_id_override" value="targets" />
-                    <parameter name="mode" value="${web.buildmode}" />
-                    <parameter name="target_name" value="${t}" />
-                </parameters>
-            </style>
-        </foreach>
-
-        <foreach item="String" in="${nlog.layoutRendererNames}" delim="," property="t">
-            <style out="${webbuild.dir}/lr.${t}.html" style="web/layoutrenderers.xsl" in="build/doc/doc.xml">
-                <parameters>
-                    <parameter name="build_time" value="${buildtime}" />
-                    <parameter name="nlog_package" value="${nlog.package.name}" />
-                    <parameter name="external-base" value="${webbuild.dir}" />
-                    <parameter name="file_extension" value="html" />
-                    <parameter name="sourceforge" value="${web.sourceforge}" />
-                    <parameter name="page_id_override" value="documentation" />
-                    <parameter name="subpage_id_override" value="layoutrenderers" />
-                    <parameter name="mode" value="${web.buildmode}" />
-                    <parameter name="lr_name" value="${t}" />
-                </parameters>
-            </style>
-        </foreach>
-
-        <foreach item="String" in="${nlog.layoutNames}" delim="," property="t">
-            <style out="${webbuild.dir}/layout.${t}.html" style="web/layouts.xsl" in="build/doc/doc.xml">
-                <parameters>
-                    <parameter name="build_time" value="${buildtime}" />
-                    <parameter name="nlog_package" value="${nlog.package.name}" />
-                    <parameter name="external-base" value="${webbuild.dir}" />
-                    <parameter name="file_extension" value="html" />
-                    <parameter name="sourceforge" value="${web.sourceforge}" />
-                    <parameter name="page_id_override" value="documentation" />
-                    <parameter name="subpage_id_override" value="layouts" />
-                    <parameter name="mode" value="${web.buildmode}" />
-                    <parameter name="l_name" value="${t}" />
-                </parameters>
-            </style>
-        </foreach>
-
-        <foreach item="String" in="${nlog.filterNames}" delim="," property="t">
-            <style out="${webbuild.dir}/filter.${t}.html" style="web/filters.xsl" in="build/doc/doc.xml">
-                <parameters>
-                    <parameter name="build_time" value="${buildtime}" />
-                    <parameter name="nlog_package" value="${nlog.package.name}" />
-                    <parameter name="external-base" value="${webbuild.dir}" />
-                    <parameter name="file_extension" value="html" />
-                    <parameter name="sourceforge" value="${web.sourceforge}" />
-                    <parameter name="page_id_override" value="documentation" />
-                    <parameter name="subpage_id_override" value="filters" />
-                    <parameter name="mode" value="${web.buildmode}" />
-                    <parameter name="filter_name" value="${t}" />
-                </parameters>
-            </style>
-        </foreach>
-
-        <style destdir="${webbuild.dir}" style="web/style.xsl">
-            <infiles basedir="build/doc/webxmlwithsyntax">
-                <include name="*.xml" />
-                <exclude name="common.en.xml" />
-            </infiles>
-            <parameters>
-                <parameter name="build_time" value="${buildtime}" />
-                <parameter name="nlog_package" value="${nlog.package.name}" />
-                <parameter name="external-base" value="${webbuild.dir}" />
-                <parameter name="file_extension" value="html" />
-                <parameter name="sourceforge" value="${web.sourceforge}" />
-                <parameter name="mode" value="${web.buildmode}" />
-            </parameters>
-        </style>
-    </target>
-    
-    <target name="setup_unittest_website">
-        <mkiisdir dirpath="${project::get-base-directory()}/nlogtest" vdirname="nlogtest" 
-            authntlm="false" 
-            authanonymous="true" 
-            authbasic="false" 
-            failonerror="false"
-            />
-    </target>
-
-    <target name="sync-vs-projects">
-        <csc target="library" output="build/SyncVSProjectItems.dll">
-            <sources basedir="tools">
-                <include name="SyncVSProjectItems.cs" />
-            </sources>
-            <references>
-                <include name="${nant::get-base-directory()}/NAnt.Core.dll" />
-            </references>
-        </csc>
-        <loadtasks assembly="build/SyncVSProjectItems.dll" />
-        <sync-vs-project-items>
-            <project-files basedir="src/NLog">
-                <include name="*.csproj" />
-                <include name="*.csdproj" />
-            </project-files>
-            <source-files basedir="src/NLog">
-                <include name="**/*.cs" />
-            </source-files>
-        </sync-vs-project-items>
-
-        <sync-vs-project-items>
-            <project-files basedir="src/NLog.ComInterop">
-                <include name="*.csproj" />
-                <include name="*.csdproj" />
-            </project-files>
-            <source-files basedir="src/NLog.ComInterop">
-                <include name="**/*.cs" />
-            </source-files>
-        </sync-vs-project-items>
-
-        <sync-vs-project-items>
-            <project-files basedir="tests/NLog.Test">
-                <include name="*.csproj" />
-                <include name="*.csdproj" />
-            </project-files>
-            <source-files basedir="tests/NLog.Test">
-                <include name="**/*.cs" />
-            </source-files>
-        </sync-vs-project-items>
-
-        <sync-vs-project-items>
-            <project-files basedir="tests/NLog.UnitTests">
-                <include name="*.csproj" />
-                <include name="*.csdproj" />
-            </project-files>
-            <source-files basedir="tests/NLog.UnitTests">
-                <include name="**/*.cs" />
-            </source-files>
-        </sync-vs-project-items>
     </target>
 
     <target name="clean_examples">
