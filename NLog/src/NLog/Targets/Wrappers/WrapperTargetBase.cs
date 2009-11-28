@@ -55,6 +55,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// The target that this target wraps.
         /// </summary>
+        /// <docgen category="General" order="10" />
         public Target WrappedTarget
         {
             get { return _wrappedTarget; }

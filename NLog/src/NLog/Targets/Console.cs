@@ -63,6 +63,7 @@ namespace NLog.Targets
         /// <summary>
         /// Send the logging messages to the standard error instead of the standard output.
         /// </summary>
+        /// <docgen category="Console Output" order="10" />
         [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
         [System.ComponentModel.DefaultValue(false)]
         public bool Error

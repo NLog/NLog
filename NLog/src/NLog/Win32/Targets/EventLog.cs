@@ -84,6 +84,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Machine name on which Event Log service is running.
         /// </summary>
+        /// <docgen category="Event Log Parameters" order="10" />
         [System.ComponentModel.DefaultValue(".")]
         public string MachineName
         {
@@ -98,6 +99,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Layout that renders event ID.
         /// </summary>
+        /// <docgen category="Event Parameters" order="10" />
         [AcceptsLayout]
         public string EventID
         {
@@ -108,6 +110,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Layout that renders event Category.
         /// </summary>
+        /// <docgen category="Event Parameters" order="10" />
         [AcceptsLayout]
         public string Category
         {
@@ -121,6 +124,7 @@ namespace NLog.Win32.Targets
         /// <remarks>
         /// By default this is the friendly name of the current AppDomain.
         /// </remarks>
+        /// <docgen category="Event Log Parameters" order="10" />
         public string Source
         {
             get { return _sourceName; }
@@ -135,6 +139,7 @@ namespace NLog.Win32.Targets
         /// Name of the Event Log to write to. This can be System, Application or 
         /// any user-defined name.
         /// </summary>
+        /// <docgen category="Event Log Parameters" order="10" />
         [System.ComponentModel.DefaultValue("Application")]
         public string Log
         {

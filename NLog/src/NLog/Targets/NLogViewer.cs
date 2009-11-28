@@ -94,6 +94,7 @@ namespace NLog.Targets
         /// <summary>
         /// Include NLog-specific extensions to log4j schema.
         /// </summary>
+        /// <docgen category="" order="10" />
         public bool IncludeNLogData
         {
             get { return Renderer.IncludeNLogData; }
@@ -114,6 +115,7 @@ namespace NLog.Targets
         /// <summary>
         /// The AppInfo field. By default it's the friendly name of the current AppDomain.
         /// </summary>
+        /// <docgen category="Detail Level" order="10" />
         public string AppInfo
         {
             get { return Renderer.AppInfo; }
@@ -124,6 +126,7 @@ namespace NLog.Targets
         /// <summary>
         /// Include call site (class and method name) in the information sent over the network.
         /// </summary>
+        /// <docgen category="Detail Level" order="10" />
         public bool IncludeCallSite
         {
             get { return Renderer.IncludeCallSite; }
@@ -133,6 +136,7 @@ namespace NLog.Targets
         /// <summary>
         /// Include source info (file name and line number) in the information sent over the network.
         /// </summary>
+        /// <docgen category="Detail Level" order="10" />
         public bool IncludeSourceInfo
         {
             get { return Renderer.IncludeSourceInfo; }
@@ -168,6 +172,7 @@ namespace NLog.Targets
         /// <summary>
         /// Include MDC dictionary in the information sent over the network.
         /// </summary>
+        /// <docgen category="Detail Level" order="10" />
         public bool IncludeMDC
         {
             get { return Renderer.IncludeMDC; }
@@ -177,15 +182,18 @@ namespace NLog.Targets
         /// <summary>
         /// Include NDC stack.
         /// </summary>
+        /// <docgen category="Detail Level" order="10" />
         public bool IncludeNDC
         {
             get { return Renderer.IncludeNDC; }
             set { Renderer.IncludeNDC = value; }
         }
+
         /// <summary>
         /// The collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a named parameter.
         /// </summary>
+        /// <docgen category="Detail Level" order="10" />
         [ArrayParameter(typeof(NLogViewerParameterInfo), "parameter")]
         public NLogViewerParameterInfoCollection Parameters
         {

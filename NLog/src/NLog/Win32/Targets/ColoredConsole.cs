@@ -115,6 +115,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Determines whether the error stream (stderr) should be used instead of the output stream (stdout).
         /// </summary>
+        /// <docgen category="Console Output" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         public bool ErrorStream
         {
@@ -165,6 +166,7 @@ namespace NLog.Win32.Targets
         /// </tr>
         /// </table>
         /// </remarks>
+        /// <docgen category="Console Output" order="10" />
         [System.ComponentModel.DefaultValue(true)]
         public bool UseDefaultRowHighlightingRules
         {
@@ -175,6 +177,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Row highlighting rules.
         /// </summary>
+        /// <docgen category="Console Output" order="10" />
         [ArrayParameter(typeof(ConsoleRowHighlightingRule), "highlight-row")]
         public ConsoleRowHighlightingRuleCollection RowHighlightingRules
         {
@@ -184,6 +187,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Word highlighting rules.
         /// </summary>
+        /// <docgen category="Console Output" order="10" />
         [ArrayParameter(typeof(ConsoleWordHighlightingRule), "highlight-word")]
         public ConsoleWordHighlightingRuleCollection WordHighlightingRules
         {

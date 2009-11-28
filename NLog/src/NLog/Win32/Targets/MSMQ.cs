@@ -84,6 +84,7 @@ namespace NLog.Win32.Targets
         /// To write to a private queue on a local machine use <c>.\private$\QueueName</c>.
         /// For other available queue names, consult MSMQ documentation.
         /// </remarks>
+        /// <docgen category="Message Queue Parameters" order="10" />
         [RequiredParameter]
         [AcceptsLayout]
         public string Queue
@@ -98,6 +99,7 @@ namespace NLog.Win32.Targets
         /// <remarks>
         /// By default no label is associated.
         /// </remarks>
+        /// <docgen category="Message Parameters" order="10" />
         [AcceptsLayout]
         [DefaultValue("NLog")]
         public string Label
@@ -109,6 +111,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Create the queue if it doesn't exists.
         /// </summary>
+        /// <docgen category="Message Queue Parameters" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         public bool CreateQueueIfNotExists
         {
@@ -119,6 +122,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Encoding to be used when writing text to the queue.
         /// </summary>
+        /// <docgen category="Message Parameters" order="10" />
         public string Encoding
         {
             get { return _encoding.WebName; }
@@ -128,6 +132,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Use the XML format when serializing message.
         /// </summary>
+        /// <docgen category="Message Parameters" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         public bool UseXmlEncoding
         {
@@ -138,6 +143,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Use recoverable messages (with guaranteed delivery).
         /// </summary>
+        /// <docgen category="Message Queue Parameters" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         public bool Recoverable
         {
