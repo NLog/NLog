@@ -136,6 +136,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// The number of log events to be buffered.
         /// </summary>
+        /// <docgen category="Buffering Options" order="10" />
         [System.ComponentModel.DefaultValue(4000)]
         public int BufferSize
         {
@@ -150,6 +151,7 @@ namespace NLog.Targets.Wrappers
         /// true causes the buffer to expand until <see cref="BufferGrowLimit" /> is hit,
         /// false causes the buffer to never expand and lose the earliest entries in case of overflow.
         /// </remarks>
+        /// <docgen category="Buffering Options" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         public bool GrowBufferAsNeeded
         {
@@ -160,6 +162,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// The maximum number of log events that the buffer can keep.
         /// </summary>
+        /// <docgen category="Buffering Options" order="10" />
         public int BufferGrowLimit
         {
             get { return _growLimit; }

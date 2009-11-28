@@ -75,6 +75,7 @@ namespace NLog.Targets
         /// <summary>
         /// Name of control to which Nlog will log
         /// </summary>
+        /// <docgen category="WinForms Parameters" order="10" />
         [RequiredParameter]
         public string ControlName
         {
@@ -85,6 +86,7 @@ namespace NLog.Targets
         /// <summary>
         /// Setting to tell to append or overwrite the Text property of control
         /// </summary>
+        /// <docgen category="WinForms Parameters" order="10" />
         public bool Append
         {
             get { return _append; }
@@ -94,6 +96,7 @@ namespace NLog.Targets
         /// <summary>
         /// Name of the Form on which the control is located.
         /// </summary>
+        /// <docgen category="WinForms Parameters" order="10" />
         public string FormName
         {
             get { return _formName; }

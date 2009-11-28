@@ -118,6 +118,7 @@ namespace NLog.Targets
         /// <remarks>
         /// For HTTP Support use the WebService target.
         /// </remarks>
+        /// <docgen category="Connection Options" order="10" />
         [AcceptsLayout]
         public string Address
         {
@@ -145,6 +146,7 @@ namespace NLog.Targets
         /// <summary>
         /// Keep connection open whenever possible.
         /// </summary>
+        /// <docgen category="Connection Options" order="10" />
         [System.ComponentModel.DefaultValue(true)]
         public bool KeepConnection
         {
@@ -155,6 +157,7 @@ namespace NLog.Targets
         /// <summary>
         /// Append newline at the end of log message.
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         public bool NewLine
         {
@@ -167,6 +170,7 @@ namespace NLog.Targets
         /// <summary>
         /// Maximum message size in bytes.
         /// </summary>
+        /// <docgen category="Advanced Options" order="10" />
         [DefaultValue(65000)]
         public int MaxMessageSize
         {
@@ -179,6 +183,7 @@ namespace NLog.Targets
         /// Action that should be taken if the message is larger than
         /// maxMessageSize
         /// </summary>
+        /// <docgen category="Advanced Options" order="10" />
         public OverflowAction OnOverflow
         {
             get { return _onOverflow; }
@@ -191,6 +196,7 @@ namespace NLog.Targets
         /// <remarks>
         /// Can be any encoding name supported by System.Text.Encoding.GetEncoding() e.g. <c>windows-1252</c>, <c>iso-8859-2</c>.
         /// </remarks>
+        /// <docgen category="Layout" order="10" />
         [System.ComponentModel.DefaultValue("utf-8")]
         public string Encoding
         {

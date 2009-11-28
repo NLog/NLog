@@ -117,6 +117,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Whether performance counter should be automatically created.
         /// </summary>
+        /// <docgen category="Performance Counter Options" order="10" />
         public bool AutoCreate
         {
             get {return _autoCreate; }
@@ -126,6 +127,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Performance counter category.
         /// </summary>
+        /// <docgen category="Performance Counter Options" order="10" />
         [RequiredParameter]
         public string CategoryName
         {
@@ -136,6 +138,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Name of the performance counter.
         /// </summary>
+        /// <docgen category="Performance Counter Options" order="10" />
         [RequiredParameter]
         public string CounterName
         {
@@ -146,6 +149,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Instance name.
         /// </summary>
+        /// <docgen category="Performance Counter Options" order="10" />
         public string InstanceName
         {
             get {return _instanceName; }
@@ -155,6 +159,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Performance counter type.
         /// </summary>
+        /// <docgen category="Performance Counter Options" order="10" />
         public PerformanceCounterType CounterType
         {
             get { return _counterType; }

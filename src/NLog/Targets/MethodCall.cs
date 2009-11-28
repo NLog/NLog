@@ -70,6 +70,7 @@ namespace NLog.Targets
         /// <summary>
         /// The class name.
         /// </summary>
+        /// <docgen category="Method To Invoke" order="10" />
         public string ClassName
         {
             get { return _className; }
@@ -83,6 +84,7 @@ namespace NLog.Targets
         /// <summary>
         /// The method name. The method must be public and static.
         /// </summary>
+        /// <docgen category="Method To Invoke" order="10" />
         public string MethodName
         {
             get { return _methodName; }

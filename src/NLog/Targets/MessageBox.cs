@@ -81,6 +81,7 @@ namespace NLog.Targets
         /// <summary>
         /// Message box title.
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         [AcceptsLayout]
         public string Caption
         {
