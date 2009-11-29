@@ -61,7 +61,7 @@ namespace NLog.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/Network/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/Network/Simple/Example.cs" />
     /// <p>
     /// To print the results, use any application that's able to receive messages over
     /// TCP or UDP. <a href="http://m.nu/program/util/netcat/netcat.html">NetCat</a> is
@@ -157,7 +157,7 @@ namespace NLog.Targets
         /// <summary>
         /// Append newline at the end of log message.
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         public bool NewLine
         {
@@ -196,7 +196,7 @@ namespace NLog.Targets
         /// <remarks>
         /// Can be any encoding name supported by System.Text.Encoding.GetEncoding() e.g. <c>windows-1252</c>, <c>iso-8859-2</c>.
         /// </remarks>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         [System.ComponentModel.DefaultValue("utf-8")]
         public string Encoding
         {

@@ -63,7 +63,7 @@ namespace NLog.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/MessageBox/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/MessageBox/Simple/Example.cs" />
     /// </example>
     [Target("MessageBox")]
     public sealed class MessageBoxTarget: TargetWithLayout
@@ -81,7 +81,7 @@ namespace NLog.Targets
         /// <summary>
         /// Message box title.
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         [AcceptsLayout]
         public string Caption
         {

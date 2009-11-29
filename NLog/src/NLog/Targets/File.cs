@@ -86,41 +86,41 @@ namespace NLog.Targets
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/File/Asynchronous/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/File/Asynchronous/Example.cs" />
     /// <p>
     /// More configuration options are described <a href="config.html">here</a>.
     /// </p>
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/File/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/File/Simple/Example.cs" />
     /// <p>
     /// File target can also do file archiving, meaning that the log file is automatically
     /// moved to another place based on its size and time. This example demonstrates 
     /// file archiving based on size. Files after 10000 bytes are moved to a separate folder
     /// and renamed log.00000.txt, log.00001.txt and so on.
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/File/Archive1/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/File/Archive1/Example.cs" />
     /// <p>
     /// File archiving can also be done on date/time changes. For example, to create a new 
     /// archive file every minute use this code:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/File/Archive2/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/File/Archive2/Example.cs" />
     /// <p>
     /// You can combine both methods as demonstrated here:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/File/Archive3/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/File/Archive3/Example.cs" />
     /// <p>
     /// Note that file archiving works even when you use a single target instance
     /// to write to multiple files, such as putting each log level in a separate place:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/File/Archive4/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/File/Archive4/Example.cs" />
     /// <p>
     /// You can write texts using alternative layouts, such as CSV (comma-separated values).
     /// This example writes files which are properly CSV-quoted (can handle messages with line breaks
     /// and quotes)
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/File/CSV/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/File/CSV/Example.cs" />
     /// <para>
     /// This is the configuration file version:
     /// </para>
@@ -397,7 +397,7 @@ namespace NLog.Targets
         /// <summary>
         /// Line ending mode.
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         public LineEndingMode LineEnding
         {
             get { return _lineEndingMode; }
@@ -449,7 +449,7 @@ namespace NLog.Targets
         /// <remarks>
         /// Can be any encoding name supported by System.Text.Encoding.GetEncoding() e.g. <c>windows-1252</c>, <c>iso-8859-2</c>.
         /// </remarks>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         public string Encoding
         {
             get { return _encoding.WebName; }

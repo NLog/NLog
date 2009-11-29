@@ -54,7 +54,7 @@ namespace NLog.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/Null/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/Null/Simple/Example.cs" />
     /// </example>
     [Target("Null")]
     public sealed class NullTarget: TargetWithLayout
@@ -64,7 +64,7 @@ namespace NLog.Targets
         /// <summary>
         /// Perform layout calculation.
         /// </summary>
-        /// <docgen category="Layout" order="1" />
+        /// <docgen category="Layout Options" order="1" />
         [System.ComponentModel.DefaultValue(false)]
         public bool FormatMessage
         {

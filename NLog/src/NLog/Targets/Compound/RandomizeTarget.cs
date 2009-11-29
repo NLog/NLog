@@ -62,7 +62,7 @@ namespace NLog.Targets.Compound
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/RandomizeGroup/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/RandomizeGroup/Simple/Example.cs" />
     /// </example>
     [Target("RandomizeGroup", IgnoresLayout = true, IsCompound = true)]
     public class RandomizeTarget: CompoundTargetBase

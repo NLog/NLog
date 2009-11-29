@@ -61,7 +61,7 @@ namespace NLog.Targets.Wrappers
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/RetryingWrapper/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/RetryingWrapper/Simple/Example.cs" />
     /// </example>
     [Target("RetryingWrapper", IgnoresLayout = true, IsWrapper = true)]
     public class RetryingTargetWrapper: WrapperTargetBase

@@ -65,7 +65,7 @@ namespace NLog.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/Mail/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/Mail/Simple/Example.cs" />
     /// <p>
     /// Mail target works best when used with BufferingWrapper target
     /// which lets you send multiple logging messages in single mail
@@ -78,7 +78,7 @@ namespace NLog.Targets
     /// <p>
     /// To set up the buffered mail target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/Mail/Buffered/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/Mail/Buffered/Example.cs" />
     /// </example>
     [Target("Mail",IgnoresLayout=true)]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
@@ -175,7 +175,7 @@ namespace NLog.Targets
         /// Whether to add new lines between log entries.
         /// </summary>
         /// <value><c>true</c> if new lines should be added; otherwise, <c>false</c>.</value>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         public bool AddNewLines
         {
             get { return _newLines; }
@@ -185,7 +185,7 @@ namespace NLog.Targets
         /// <summary>
         /// Mail subject.
         /// </summary>
-        /// <docgen category="Layout" order="3" />
+        /// <docgen category="Layout Options" order="3" />
         [System.ComponentModel.DefaultValue("Message from NLog on ${machinename}")]
         [AcceptsLayout]
         public string Subject
@@ -197,7 +197,7 @@ namespace NLog.Targets
         /// <summary>
         /// Mail message body (repeated for each log message send in one mail)
         /// </summary>
-        /// <docgen category="Layout" order="4" />
+        /// <docgen category="Layout Options" order="4" />
         [System.ComponentModel.DefaultValue("${message}")]
         [AcceptsLayout]
         public string Body
@@ -209,7 +209,7 @@ namespace NLog.Targets
         /// <summary>
         /// Encoding to be used for sending e-mail.
         /// </summary>
-        /// <docgen category="Layout" order="8" />
+        /// <docgen category="Layout Options" order="8" />
         [System.ComponentModel.DefaultValue("UTF8")]
         public string Encoding
         {
@@ -220,7 +220,7 @@ namespace NLog.Targets
         /// <summary>
         /// Send message as HTML instead of plain text.
         /// </summary>
-        /// <docgen category="Layout" order="9" />
+        /// <docgen category="Layout Options" order="9" />
         [System.ComponentModel.DefaultValue(false)]
         public bool HTML
         {

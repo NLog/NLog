@@ -95,7 +95,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Literal text.
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         public string Text
         {
             get { return _txt; }

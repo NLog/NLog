@@ -57,7 +57,7 @@ namespace NLog.Targets
     /// piece of code in your <c>Application_OnStart()</c> handler in Global.asax.cs 
     /// or some other place that gets executed at the very beginning of your code:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/ASPNetTrace/Global.asax.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/ASPNetTrace/Global.asax.cs" />
     /// <p>
     /// Fully working C# project can be found in the <c>Examples/Targets/Configuration API/ASPNetTrace</c>
     /// directory along with usage instructions.

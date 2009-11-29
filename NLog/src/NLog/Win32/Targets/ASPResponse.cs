@@ -54,7 +54,7 @@ namespace NLog.Win32.Targets
         /// <summary>
         /// Add &lt;!-- --&gt; comments around all written texts.
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         public bool AddComments
         {
             get { return _addComments; }

@@ -64,7 +64,7 @@ namespace NLog.Targets.Compound
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/RoundRobinGroup/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/RoundRobinGroup/Simple/Example.cs" />
     /// </example>
     [Target("RoundRobinGroup", IgnoresLayout = true, IsCompound = true)]
     public class RoundRobinTarget: CompoundTargetBase

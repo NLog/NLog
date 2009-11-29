@@ -82,7 +82,7 @@ namespace NLog
         /// <summary>
         /// The layout text
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         [AcceptsLayout]
         public string Text
         {

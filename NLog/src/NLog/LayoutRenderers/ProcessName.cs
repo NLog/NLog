@@ -50,7 +50,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Write the full path to the process executable.
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         public bool FullName
         {
