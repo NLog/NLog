@@ -108,6 +108,7 @@ namespace NLog.Targets
         /// <summary>
         /// Web service URL.
         /// </summary>
+        /// <docgen category="Web Service Options" order="0" />
         public string Url
         {
             get { return _url; }
@@ -117,6 +118,7 @@ namespace NLog.Targets
         /// <summary>
         /// Web service method name.
         /// </summary>
+        /// <docgen category="Web Service Options" order="0" />
         public string MethodName
         {
             get { return _methodName; }
@@ -126,6 +128,7 @@ namespace NLog.Targets
         /// <summary>
         /// Web service namespace.
         /// </summary>
+        /// <docgen category="Web Service Options" order="0" />
         public string Namespace
         {
             get { return _namespace; }
@@ -135,6 +138,7 @@ namespace NLog.Targets
         /// <summary>
         /// The protocol to be used when calling web service.
         /// </summary>
+        /// <docgen category="Web Service Options" order="0" />
         [System.ComponentModel.DefaultValue("Soap11")]
         public WebServiceProtocol Protocol
         {

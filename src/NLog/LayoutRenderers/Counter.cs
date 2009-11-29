@@ -51,6 +51,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The initial value of the counter
         /// </summary>
+        /// <docgen category="Counter Behavior" order="10" />
         [System.ComponentModel.DefaultValue(1)]
         public int Value
         {
@@ -61,6 +62,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The value to be added to the counter after each layout rendering.
         /// </summary>
+        /// <docgen category="Counter Behavior" order="10" />
         [System.ComponentModel.DefaultValue(1)]
         public int Increment
         {
@@ -71,6 +73,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The name of the sequence. Different named sequences can have individual values.
         /// </summary>
+        /// <docgen category="Counter Behavior" order="10" />
         public string Sequence
         {
             get { return _sequence; }

@@ -76,6 +76,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The output format of the stack trace.
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         [System.ComponentModel.DefaultValue("Flat")]
         public StackTraceFormat Format
         {
@@ -86,6 +87,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The number of top stack frames to be rendered.
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         [System.ComponentModel.DefaultValue(3)]
         public int TopFrames
         {
@@ -96,6 +98,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Stack frame separator string.
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         [System.ComponentModel.DefaultValue(" => ")]
         public string Separator
         {

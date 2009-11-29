@@ -56,6 +56,7 @@ namespace NLog.Win32.LayoutRenderers
         /// <summary>
         /// Session variable name.
         /// </summary>
+        /// <docgen category="ASP Options" order="10" />
         [RequiredParameter]
         [DefaultParameter]
         public string Variable

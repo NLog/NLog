@@ -54,6 +54,7 @@ namespace NLog.Filters
         /// <summary>
         /// The layout text;
         /// </summary>
+        /// <docgen category="Filtering Options" order="0" />
         [RequiredParameter]
         public string Layout
         {

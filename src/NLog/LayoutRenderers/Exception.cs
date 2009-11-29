@@ -70,6 +70,7 @@ namespace NLog.LayoutRenderers
         /// properties: Message, Type, ShortType, ToString, Method, StackTrace.
         /// This parameter value is case-insensitive.
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         [DefaultParameter]
         public string Format
         {
@@ -80,6 +81,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The separator used to concatenate parts specified in the Format.
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         public string Separator
         {
             get { return _separator; }

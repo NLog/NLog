@@ -75,6 +75,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Array of parameters to be passed.
         /// </summary>
+        /// <docgen category="CSV Format Options" order="10" />
         [ArrayParameter(typeof(CsvColumn), "column")]
         public CsvColumnCollection Columns
         {
@@ -85,6 +86,7 @@ namespace NLog.Layouts
         /// Whether CVS should include header.
         /// </summary>
         /// <value><c>true</c> if CVS should include header; otherwise, <c>false</c>.</value>
+        /// <docgen category="CSV Format Options" order="10" />
         public bool WithHeader
         {
             get { return _withHeader; }
@@ -94,6 +96,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Column delimiter.
         /// </summary>
+        /// <docgen category="CSV Format Options" order="10" />
         [System.ComponentModel.DefaultValue("Auto")]
         public ColumnDelimiterMode Delimiter
         {
@@ -104,6 +107,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Quoting mode.
         /// </summary>
+        /// <docgen category="CSV Format Options" order="10" />
         public CsvQuotingMode Quoting
         {
             get { return _quotingMode; }
@@ -113,6 +117,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Quote Character
         /// </summary>
+        /// <docgen category="CSV Format Options" order="10" />
         [System.ComponentModel.DefaultValue("\"")]
         public string QuoteChar
         {
@@ -123,6 +128,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Custom column delimiter value (valid when ColumnDelimiter is set to 'Custom')
         /// </summary>
+        /// <docgen category="CSV Format Options" order="10" />
         public string CustomColumnDelimiter
         {
             get { return _customColumnDelimiter; }

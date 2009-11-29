@@ -63,6 +63,7 @@ namespace NLog.Targets
         /// <summary>
         /// The regular expression to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
+        /// <docgen category="Search Criteria" order="10" />
         public string Regex
         {
             get { return _regex; }
@@ -72,6 +73,7 @@ namespace NLog.Targets
         /// <summary>
         /// The text to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
+        /// <docgen category="Search Criteria" order="10" />
         public string Text
         {
             get { return _text; }
@@ -82,6 +84,7 @@ namespace NLog.Targets
         /// Font style of matched text. 
         /// Possible values are the same as in <c>FontStyle</c> enum in <c>System.Drawing</c>
         /// </summary>
+        /// <docgen category="Formatting Options" order="10" />
         public FontStyle Style
         {
             get { return _style; }
@@ -91,6 +94,7 @@ namespace NLog.Targets
         /// <summary>
         /// Match whole words only.
         /// </summary>
+        /// <docgen category="Search Criteria" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         public bool WholeWords
         {
@@ -101,6 +105,7 @@ namespace NLog.Targets
         /// <summary>
         /// Ignore case when comparing texts.
         /// </summary>
+        /// <docgen category="Search Criteria" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         public bool IgnoreCase
         {
@@ -140,6 +145,7 @@ namespace NLog.Targets
         /// The font color.
         /// Names are identical with KnownColor enum extended with Empty value which means that font color won't be changed
         /// </summary>
+        /// <docgen category="Formatting Options" order="10" />
         [System.ComponentModel.DefaultValue("Empty")]
         public string FontColor
         {
@@ -152,6 +158,7 @@ namespace NLog.Targets
         /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed
         /// Background color will be set only in .net 2.0
         /// </summary>
+        /// <docgen category="Formatting Options" order="10" />
         [System.ComponentModel.DefaultValue("Empty")]
         [SupportedRuntime(Framework = RuntimeFramework.DotNetFramework, MinRuntimeVersion = "2.0")]
         public string BackgroundColor

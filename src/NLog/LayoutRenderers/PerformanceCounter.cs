@@ -59,6 +59,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Name of the counter category.
         /// </summary>
+        /// <docgen category="Performance Counter" order="10" />
         [RequiredParameter]
         public string Category
         {
@@ -73,6 +74,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Name of the performance counter.
         /// </summary>
+        /// <docgen category="Performance Counter" order="10" />
         [RequiredParameter]
         public string Counter
         {
@@ -87,6 +89,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Name of the performance counter instance (e.g. _Global_).
         /// </summary>
+        /// <docgen category="Performance Counter" order="10" />
         public string Instance
         {
             get { return _instanceName; }
@@ -100,6 +103,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Name of the machine to read the performance counter from.
         /// </summary>
+        /// <docgen category="Performance Counter" order="10" />
         public string MachineName
         {
             get { return _machineName; }

@@ -140,8 +140,8 @@ namespace NLog.Targets
 
         /// <summary>
         /// Recipients' email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com)
-        /// <docgen category="E-mail addresses" order="1" />
         /// </summary>
+        /// <docgen category="E-mail addresses" order="1" />
         [AcceptsLayout]
         public string To
         {

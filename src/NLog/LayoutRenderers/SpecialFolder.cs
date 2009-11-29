@@ -67,6 +67,7 @@ namespace NLog.LayoutRenderers
         /// <li><b>System</b> - System directory</li>
         /// </ul>
         /// </remarks>
+        /// <docgen category="Special Folder" order="10" />
         [DefaultParameter]
         public System.Environment.SpecialFolder Folder
         {
@@ -77,6 +78,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The name of the file to be Path.Combine()'d with the directory name.
         /// </summary>
+        /// <docgen category="Relative Paths" order="10" />
         public string File
         {
             get { return _fileName; }
@@ -86,6 +88,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The name of the directory to be Path.Combine()'d with the directory name.
         /// </summary>
+        /// <docgen category="Relative Paths" order="10" />
         public string Dir
         {
             get { return _directoryName; }

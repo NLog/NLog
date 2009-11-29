@@ -60,6 +60,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Condition to be tested.
         /// </summary>
+        /// <docgen category="Filtering Options" order="0" />
         [RequiredParameter]
         [AcceptsCondition]
         public string Exists
@@ -71,6 +72,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Resulting filter to be applied when the condition matches.
         /// </summary>
+        /// <docgen category="Filtering Options" order="0" />
         [RequiredParameter]
         [AcceptsCondition]
         public string Filter

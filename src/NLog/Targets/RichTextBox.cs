@@ -103,6 +103,7 @@ namespace NLog.Targets
         /// <summary>
         /// Name of RichTextBox to which Nlog will log
         /// </summary>
+        /// <docgen category="Control Options" order="10" />
         [RequiredParameter]
         public string ControlName
         {
@@ -114,6 +115,7 @@ namespace NLog.Targets
         /// Name of the Form on which the control is located. 
         /// If there is no open form of a specified name than NLog will create a new one.
         /// </summary>
+        /// <docgen category="Control Options" order="10" />
         public string FormName
         {
             get { return _formName; }
@@ -123,6 +125,7 @@ namespace NLog.Targets
         /// <summary>
         /// Use default coloring rules
         /// </summary>
+        /// <docgen category="Highlighting Options" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         public bool UseDefaultRowColoringRules
         {
@@ -133,6 +136,7 @@ namespace NLog.Targets
         /// <summary>
         /// Row coloring rules.
         /// </summary>
+        /// <docgen category="Highlighting Options" order="10" />
         [ArrayParameter(typeof(RichTextBoxRowColoringRule), "row-coloring")]
         public RichTextBoxRowColoringRuleCollection RowColoringRules
         {
@@ -142,6 +146,7 @@ namespace NLog.Targets
         /// <summary>
         /// Word highlighting rules.
         /// </summary>
+        /// <docgen category="Highlighting Options" order="10" />
         [ArrayParameter(typeof(RichTextBoxWordColoringRule), "word-coloring")]
         public RichTextBoxWordColoringRuleCollection WordColoringRules
         {

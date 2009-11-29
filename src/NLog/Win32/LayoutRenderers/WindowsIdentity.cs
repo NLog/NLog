@@ -53,6 +53,7 @@ namespace NLog.Win32.LayoutRenderers
         /// <summary>
         /// Whether domain name should be included.
         /// </summary>
+        /// <docgen category="Identity Options" order="10" />
         [System.ComponentModel.DefaultValue(true)]
         public bool Domain
         {
@@ -63,6 +64,7 @@ namespace NLog.Win32.LayoutRenderers
         /// <summary>
         /// Whether username should be included.
         /// </summary>
+        /// <docgen category="Identity Options" order="10" />
         [System.ComponentModel.DefaultValue(true)]
         public bool UserName
         {

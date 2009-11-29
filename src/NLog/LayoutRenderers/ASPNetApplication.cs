@@ -77,6 +77,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The variable name.
         /// </summary>
+        /// <docgen category="ASP.NET Options" order="10" />
         [RequiredParameter]
         [DefaultParameter]
         public string Variable

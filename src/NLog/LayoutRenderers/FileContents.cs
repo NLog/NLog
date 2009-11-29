@@ -70,6 +70,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Name of the file.
         /// </summary>
+        /// <docgen category="File Options" order="10" />
         [DefaultParameter]
         public Layout FileName
         {
@@ -81,6 +82,7 @@ namespace NLog.LayoutRenderers
         /// File encoding.
         /// </summary>
         /// <value>The encoding.</value>
+        /// <docgen category="File Options" order="10" />
         public string Encoding
         {
             get { return _encoding.WebName; }

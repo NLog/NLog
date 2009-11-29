@@ -72,6 +72,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The item name. The QueryString, Form, Cookies, or ServerVariables collection variables having the specified name are rendered.
         /// </summary>
+        /// <docgen category="ASP.NET Options" order="10" />
         [DefaultParameter]
         public string Item
         {
@@ -83,6 +84,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The QueryString variable to be rendered.
         /// </summary>
+        /// <docgen category="ASP.NET Options" order="10" />
         public string QueryString
         {
             get { return _queryStringKey; }
@@ -92,6 +94,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The form variable to be rendered.
         /// </summary>
+        /// <docgen category="ASP.NET Options" order="10" />
         public string Form
         {
             get { return _formKey; }
@@ -101,6 +104,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The cookie to be rendered.
         /// </summary>
+        /// <docgen category="ASP.NET Options" order="10" />
         public string Cookie
         {
             get { return _cookie; }
@@ -110,6 +114,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The ServerVariables item to be rendered.
         /// </summary>
+        /// <docgen category="ASP.NET Options" order="10" />
         public string ServerVariable
         {
             get { return _serverVariable; }

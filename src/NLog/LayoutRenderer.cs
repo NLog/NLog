@@ -106,6 +106,7 @@ namespace NLog
         /// <summary>
         /// Padding value.
         /// </summary>
+        /// <docgen category="Padding" order="0" />
         public int Padding
         {
             get { return _padding; }
@@ -127,6 +128,7 @@ namespace NLog
         /// <summary>
         /// The padding character.
         /// </summary>
+        /// <docgen category="Padding" order="0" />
         public char PadCharacter
         {
             get { return _padCharacter; }
@@ -136,6 +138,7 @@ namespace NLog
         /// <summary>
         /// Trim the rendered text to the AbsolutePadding value.
         /// </summary>
+        /// <docgen category="Padding" order="0" />
         [System.ComponentModel.DefaultValue(false)]
         public bool FixedLength
         {
@@ -146,6 +149,7 @@ namespace NLog
         /// <summary>
         /// Render an upper-case string.
         /// </summary>
+        /// <docgen category="Formatting" order="0" />
         [System.ComponentModel.DefaultValue(false)]
         public bool UpperCase
         {
@@ -156,6 +160,7 @@ namespace NLog
         /// <summary>
         /// Render an upper-case string.
         /// </summary>
+        /// <docgen category="Formatting" order="0" />
         [System.ComponentModel.DefaultValue(false)]
         public bool LowerCase
         {
@@ -176,6 +181,7 @@ namespace NLog
         /// <li><b>ar-SA</b> - Arabic (Saudi Arabia)</li>
         /// </ul>
         /// </example>
+        /// <docgen category="Formatting" order="0" />
         public string Culture
         {
             get { return _cultureInfo.Name; }

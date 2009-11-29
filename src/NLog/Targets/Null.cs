@@ -64,6 +64,7 @@ namespace NLog.Targets
         /// <summary>
         /// Perform layout calculation.
         /// </summary>
+        /// <docgen category="Layout" order="1" />
         [System.ComponentModel.DefaultValue(false)]
         public bool FormatMessage
         {
