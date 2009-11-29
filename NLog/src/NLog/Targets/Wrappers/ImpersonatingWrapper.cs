@@ -78,6 +78,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Username to change context to
         /// </summary>
+        /// <docgen category="Credentials" order="0" />
         public string Username
         {
             get { return _username; }
@@ -87,6 +88,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Password
         /// </summary>
+        /// <docgen category="Credentials" order="0" />
         public string Password
         {
             get { return _password; }
@@ -96,6 +98,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Windows domain name to change context to.
         /// </summary>
+        /// <docgen category="Credentials" order="0" />
         [DefaultValue(".")]
         public string Domain
         {
@@ -106,6 +109,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Logon Type.
         /// </summary>
+        /// <docgen category="Impersonation Options" order="0" />
         public SecurityLogonType LogonType
         {
             get { return _logonType; }
@@ -115,6 +119,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Logon Provider.
         /// </summary>
+        /// <docgen category="Impersonation Options" order="0" />
         public LogonProviderType LogonProvider
         {
             get { return _logonProvider; }
@@ -124,6 +129,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Impersonation level.
         /// </summary>
+        /// <docgen category="Impersonation Options" order="0" />
         public SecurityImpersonationLevel ImpersonationLevel
         {
             get { return _impersonationLevel; }
@@ -133,6 +139,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Revert to the credentials of the process instead of impersonating another user.
         /// </summary>
+        /// <docgen category="Impersonation Options" order="0" />
         [DefaultValue(false)]
         public bool RevertToSelf
         {

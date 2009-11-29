@@ -49,6 +49,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Name of the item.
         /// </summary>
+        /// <docgen category="Context Options" order="10" />
         [RequiredParameter]
         [DefaultParameter]
         public string Item

@@ -146,6 +146,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The property to retrieve.
         /// </summary>
+        /// <docgen category="Process Information" order="10" />
         [DefaultValue("Id")]
         [DefaultParameter]
         public ProcessInfoProperty Property

@@ -322,6 +322,22 @@
     </target>
 
     <target name="NLogC-compile">
+        <uptodate property="NLogC.uptodate">
+            <sourcefiles>
+                <include name="src/NLogC/**/*.cpp" />
+                <include name="${nlog.dir}/NLog.dll" />
+            </sourcefiles>
+            <targetfiles>
+                <include name="${nlog.dir}/NLogC.dll" />
+            </targetfiles>
+        </uptodate>
+
+        <if test="${NLogC.uptodate}">
+            <echo message="NLogC.dll is up-to-date" />
+        </if>
+
+        <if test="${not NLogC.uptodate}">
+
         <path id="build.path.include">
             <pathelement dir="${visualc.dir}/INCLUDE" />
         </path>
@@ -368,6 +384,8 @@
             </sources>
         </link>
         <delete dir="${nlog.dir}/obj" />
+
+        </if>
     </target>
 
     <target name="publisher-policy" depends="configure">

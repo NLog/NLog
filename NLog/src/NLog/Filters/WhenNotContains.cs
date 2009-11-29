@@ -58,6 +58,7 @@ namespace NLog.Filters
         /// <summary>
         /// Substring to be matched.
         /// </summary>
+        /// <docgen category="Filtering Options" order="10" />
         [RequiredParameter]
         public string Substring
         {
@@ -70,6 +71,7 @@ namespace NLog.Filters
         /// <summary>
         /// Ignore case when comparing strings.
         /// </summary>
+        /// <docgen category="Filtering Options" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         public bool IgnoreCase
         {

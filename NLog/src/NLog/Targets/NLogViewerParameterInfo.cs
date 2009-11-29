@@ -59,6 +59,7 @@ namespace NLog.Targets
         /// <summary>
         /// Viewer parameter name.
         /// </summary>
+        /// <docgen category="Parameter Information" order="10" />
         [RequiredParameter]
         public string Name
         {
@@ -69,6 +70,7 @@ namespace NLog.Targets
         /// <summary>
         /// The layout that should be use to calcuate the value for the parameter.
         /// </summary>
+        /// <docgen category="Parameter Information" order="10" />
         [RequiredParameter]
         [AcceptsLayout]
         public string Layout

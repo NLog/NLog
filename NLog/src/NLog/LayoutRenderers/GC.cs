@@ -93,6 +93,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The property to retrieve.
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         [DefaultValue("TotalMemory")]
         public GCProperty Property
         {

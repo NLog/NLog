@@ -56,6 +56,7 @@ namespace NLog.Filters
         /// <summary>
         /// String to compare the layout to.
         /// </summary>
+        /// <docgen category="Filtering Options" order="10" />
         [RequiredParameter]
         public string CompareTo
         {
@@ -68,6 +69,7 @@ namespace NLog.Filters
         /// <summary>
         /// Ignore case when comparing strings.
         /// </summary>
+        /// <docgen category="Filtering Options" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         public bool IgnoreCase
         {

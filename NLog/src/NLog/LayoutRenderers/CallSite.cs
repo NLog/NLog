@@ -57,6 +57,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render the class name.
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         [System.ComponentModel.DefaultValue(true)]
         public bool ClassName
         {
@@ -67,6 +68,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render the method name.
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         [System.ComponentModel.DefaultValue(true)]
         public bool MethodName
         {
@@ -77,6 +79,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render the source file name and line number.
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         public bool FileName
         {
@@ -87,6 +90,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Include source file path.
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         [System.ComponentModel.DefaultValue(true)]
         public bool IncludeSourcePath
         {

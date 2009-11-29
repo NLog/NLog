@@ -60,6 +60,7 @@ namespace NLog.Filters
         /// <summary>
         /// The condition expression.
         /// </summary>
+        /// <docgen category="Filtering Options" order="10" />
         [AcceptsCondition]
         public string Condition
         {

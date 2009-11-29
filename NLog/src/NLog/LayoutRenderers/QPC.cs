@@ -64,6 +64,7 @@ namespace NLog.LayoutRenderers
         /// Normalize the result by subtracting it from the result of the
         /// first call (so that it's effectively zero-based).
         /// </summary>
+        /// <docgen category="Counter Options" order="10" />
         [System.ComponentModel.DefaultValue(true)]
         private bool Normalize
         {
@@ -75,6 +76,7 @@ namespace NLog.LayoutRenderers
         /// Output the difference between the result of QueryPerformanceCounter 
         /// and the previous one.
         /// </summary>
+        /// <docgen category="Counter Options" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         private bool Difference
         {
@@ -85,6 +87,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Convert the result to seconds by dividing by the result of QueryPerformanceFrequency().
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         [System.ComponentModel.DefaultValue(true)]
         public bool Seconds
         {
@@ -95,6 +98,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Number of decimal digits to be included in output.
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         [System.ComponentModel.DefaultValue(4)]
         public int Precision
         {
@@ -105,6 +109,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Align decimal point (emit non-significant zeros)
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         [System.ComponentModel.DefaultValue(true)]
         public bool AlignDecimalPoint
         {

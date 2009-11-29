@@ -63,9 +63,7 @@ namespace NLog
         /// <summary>
         /// User-requested action to be taken when filter matches.
         /// </summary>
-        /// <remarks>
-        /// Allowed values are <c>log</c>, <c>ignore</c>, <c>neutral</c>.
-        /// </remarks>
+        /// <docgen category="Filtering Options" order="0" />
         [RequiredParameter]
         public FilterResult Action
         {

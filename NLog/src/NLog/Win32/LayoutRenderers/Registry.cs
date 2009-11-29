@@ -62,6 +62,7 @@ namespace NLog.Win32.LayoutRenderers
         /// <summary>
         /// Registry value.
         /// </summary>
+        /// <docgen category="Registry Location" order="10" />
         public string Value
         {
             get { return _value; }
@@ -71,6 +72,7 @@ namespace NLog.Win32.LayoutRenderers
         /// <summary>
         /// The value to be output when the specified registry key or value is not found.
         /// </summary>
+        /// <docgen category="Registry Location" order="10" />
         public string DefaultValue
         {
             get { return _defaultValue; }
@@ -89,6 +91,7 @@ namespace NLog.Win32.LayoutRenderers
         /// <li>HKEY_CURRENT_USER\Key\Full\Name</li>
         /// </ul>
         /// </remarks>
+        /// <docgen category="Registry Location" order="10" />
         [RequiredParameter]
         public string Key
         {

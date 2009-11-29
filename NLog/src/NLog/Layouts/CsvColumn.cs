@@ -70,6 +70,7 @@ namespace NLog.Layouts
         /// <summary>
         /// The name of the column.
         /// </summary>
+        /// <docgen category="CSV Format Options" order="10" />
         public string Name
         {
             get { return _name; }
@@ -79,6 +80,7 @@ namespace NLog.Layouts
         /// <summary>
         /// The layout that should be written in the column.
         /// </summary>
+        /// <docgen category="CSV Format Options" order="10" />
         [AcceptsLayout]
         [RequiredParameter]
         public string Layout

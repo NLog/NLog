@@ -54,6 +54,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Name of the environment variable.
         /// </summary>
+        /// <docgen category="Environment Options" order="10" />
         [RequiredParameter]
         [DefaultParameter]
         public string Variable

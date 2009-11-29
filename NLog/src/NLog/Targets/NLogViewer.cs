@@ -94,7 +94,7 @@ namespace NLog.Targets
         /// <summary>
         /// Include NLog-specific extensions to log4j schema.
         /// </summary>
-        /// <docgen category="" order="10" />
+        /// <docgen category="Detail Level" order="10" />
         public bool IncludeNLogData
         {
             get { return Renderer.IncludeNLogData; }

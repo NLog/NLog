@@ -59,6 +59,7 @@ namespace NLog.Targets
         /// <summary>
         /// The condition that must be met in order to set the specified font color.
         /// </summary>
+        /// <docgen category="Condition" order="10" />
         [AcceptsCondition]
         [RequiredParameter]
         public string Condition
@@ -83,6 +84,7 @@ namespace NLog.Targets
         /// The font color.
         /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed
         /// </summary>
+        /// <docgen category="Formatting Options" order="10" />
         [System.ComponentModel.DefaultValue("Empty")]
         public string FontColor
         {
@@ -95,6 +97,7 @@ namespace NLog.Targets
         /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed
         /// Background color will be set only in .net 2.0
         /// </summary>
+        /// <docgen category="Formatting Options" order="10" />
         [System.ComponentModel.DefaultValue("Empty")]
         [SupportedRuntime(Framework = RuntimeFramework.DotNetFramework, MinRuntimeVersion = "2.0")]
         public string BackgroundColor
@@ -107,6 +110,7 @@ namespace NLog.Targets
         /// Font style of matched text. 
         /// Possible values are the same as in <c>FontStyle</c> enum in <c>System.Drawing</c>
         /// </summary>
+        /// <docgen category="Formatting Options" order="10" />
         public FontStyle Style
         {
             get { return _style; }

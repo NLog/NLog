@@ -72,6 +72,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Include NLog-specific extensions to log4j schema.
         /// </summary>
+        /// <docgen category="Detail Level" order="10" />
         [System.ComponentModel.DefaultValue(true)]
         public bool IncludeNLogData
         {
@@ -82,6 +83,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Whether the XML should use spaces for indentation.
         /// </summary>
+        /// <docgen category="Layout" order="10" />
         public bool IndentXml
         {
             get { return _indentXml; }
@@ -107,6 +109,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The AppInfo field. By default it's the friendly name of the current AppDomain.
         /// </summary>
+        /// <docgen category="Detail Level" order="10" />
         public string AppInfo
         {
             get { return _appInfo; }
@@ -120,6 +123,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Include call site (class and method name) in the information sent over the network.
         /// </summary>
+        /// <docgen category="Detail Level" order="10" />
         public bool IncludeCallSite
         {
             get { return _includeCallSite; }
@@ -129,6 +133,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Include source info (file name and line number) in the information sent over the network.
         /// </summary>
+        /// <docgen category="Detail Level" order="10" />
         public bool IncludeSourceInfo
         {
             get { return _includeSourceInfo; }
@@ -139,6 +144,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Include MDC dictionary in the information sent over the network.
         /// </summary>
+        /// <docgen category="Detail Level" order="10" />
         public bool IncludeMDC
         {
             get { return _includeMDC; }
@@ -148,12 +154,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Include NDC stack.
         /// </summary>
+        /// <docgen category="Detail Level" order="10" />
         public bool IncludeNDC
         {
             get { return _includeNDC; }
             set { _includeNDC = value; }
         }
 
+        /// <docgen category="Detail Level" order="10" />
         internal NLogViewerParameterInfoCollection Parameters
         {
             get { return _parameters; }

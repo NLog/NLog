@@ -63,6 +63,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The name of the file to be Path.Combine()'d with with the base directory.
         /// </summary>
+        /// <docgen category="Relative Paths" order="10" />
         public string File
         {
             get { return _fileName; }
@@ -72,6 +73,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The name of the directory to be Path.Combine()'d with with the base directory.
         /// </summary>
+        /// <docgen category="Relative Paths" order="10" />
         public string Dir
         {
             get { return _directoryName; }
