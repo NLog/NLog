@@ -105,7 +105,7 @@ namespace NLog
         /// The name of the target. You can reference targets by their name in the
         /// &lt;rules /&gt; section of the NLog configuration file.
         /// </summary>
-        /// <docgen category="General" order="0" />
+        /// <docgen category="General Options" order="0" />
         [RequiredParameter]
         public string Name
         {

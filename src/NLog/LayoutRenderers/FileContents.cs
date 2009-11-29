@@ -72,6 +72,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category="File Options" order="10" />
         [DefaultParameter]
+        [RequiredParameter]
         public Layout FileName
         {
             get { return _fileName; }

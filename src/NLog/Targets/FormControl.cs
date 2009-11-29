@@ -62,7 +62,7 @@ namespace NLog.Targets
     /// <p>
     /// To set up the log target programmatically similar to above use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/FormControl/Form1.cs" />,
+    /// <code lang="C#" source="examples/targets/Configuration API/FormControl/Form1.cs" />,
     /// </example>
     [Target("FormControl")]
     [SupportedRuntime(Framework=RuntimeFramework.DotNetFramework, MinRuntimeVersion="1.1")]

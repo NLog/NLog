@@ -55,7 +55,7 @@ namespace NLog.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/Debugger/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/Debugger/Simple/Example.cs" />
     /// </example>
     [Target("Debugger")]
     [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]

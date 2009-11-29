@@ -62,7 +62,7 @@ namespace NLog.Targets
     /// <code lang="XML" src="examples/targets/Configuration File/Database/Oracle.OleDb/NLog.config" height="350" />
     /// 
     /// <para>To set up the log target programmatically use code like this (an equivalent of MSSQL configuration):</para>
-    /// <code lang="C#" src="examples/targets/Configuration API/Database/MSSQL/Example.cs" height="630" />
+    /// <code lang="C#" source="examples/targets/Configuration API/Database/MSSQL/Example.cs" height="630" />
     /// </example>
     [Target("Database", IgnoresLayout=true)]
     public sealed class DatabaseTarget: Target

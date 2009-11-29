@@ -50,7 +50,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The date format. Can be any argument accepted by DateTime.ToString(format)
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         [DefaultParameter]
         public string Format
         {

@@ -54,7 +54,7 @@ namespace NLog.LayoutRenderers
         /// The separator to be used when concatenating 
         /// parts of identity information.
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         [System.ComponentModel.DefaultValue(":")]
         public string Separator
         {
@@ -65,7 +65,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render Thread.CurrentPrincipal.Identity.Name.
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         [System.ComponentModel.DefaultValue(true)]
         public bool Name
         {
@@ -76,7 +76,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render Thread.CurrentPrincipal.Identity.AuthenticationType.
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         [System.ComponentModel.DefaultValue(true)]
         public bool AuthType
         {
@@ -87,7 +87,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render Thread.CurrentPrincipal.Identity.IsAuthenticated.
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         [System.ComponentModel.DefaultValue(true)]
         public bool IsAuthenticated
         {
@@ -99,7 +99,7 @@ namespace NLog.LayoutRenderers
         /// When true the output of this renderer is modified so it can be used as a part of file path
         /// (illegal characters are replaced with '_')
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         [System.ComponentModel.DefaultValue(false)]
         public bool FSNormalize
         {

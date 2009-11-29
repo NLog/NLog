@@ -59,7 +59,7 @@ namespace NLog.Win32.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/ColoredConsole/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/ColoredConsole/Simple/Example.cs" />
     /// <p>
     /// The result is a colorful console, where each color represents a single log level.
     /// </p>
@@ -71,7 +71,7 @@ namespace NLog.Win32.Targets
     /// </p>
     /// <code lang="XML" src="examples/targets/Configuration File/ColoredConsole/Word Highlighting/NLog.config" />
     /// <p>Programmatic equivalent of the above configuration:</p>
-    /// <code lang="C#" src="examples/targets/Configuration API/ColoredConsole/Word Highlighting/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/ColoredConsole/Word Highlighting/Example.cs" />
     /// <p>
     /// Here's the result:
     /// </p>
@@ -83,7 +83,7 @@ namespace NLog.Win32.Targets
     /// </p>
     /// <code lang="XML" src="examples/targets/Configuration File/ColoredConsole/Row Highlighting/NLog.config" />
     /// <p>Programmatic equivalent of the above configuration:</p>
-    /// <code lang="C#" src="examples/targets/Configuration API/ColoredConsole/Row Highlighting/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/ColoredConsole/Row Highlighting/Example.cs" />
     /// <p>
     /// Here's the result:
     /// </p>

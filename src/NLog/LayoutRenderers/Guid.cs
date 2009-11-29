@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The GUID format as accepted by Guid.ToString() method.
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         [System.ComponentModel.DefaultValue("N")]
         public string Format
         {

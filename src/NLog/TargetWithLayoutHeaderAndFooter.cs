@@ -58,7 +58,7 @@ namespace NLog
         /// <summary>
         /// The text to be rendered.
         /// </summary>
-        /// <docgen category="Layout" order="1" />
+        /// <docgen category="Layout Options" order="1" />
         [RequiredParameter]
         [AcceptsLayout]
         [System.ComponentModel.DefaultValue("${longdate}|${level:uppercase=true}|${logger}|${message}")]
@@ -75,7 +75,7 @@ namespace NLog
         /// <summary>
         /// Header
         /// </summary>
-        /// <docgen category="Layout" order="2" />
+        /// <docgen category="Layout Options" order="2" />
         [AcceptsLayout]
         public string Header
         {
@@ -86,7 +86,7 @@ namespace NLog
         /// <summary>
         /// Footer
         /// </summary>
-        /// <docgen category="Layout" order="3" />
+        /// <docgen category="Layout Options" order="3" />
         [AcceptsLayout]
         public string Footer
         {

@@ -75,9 +75,9 @@ namespace NLog.Targets
     /// <p>
     /// To set up the log target programmatically similar to above use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/RichTextBox/Simple/Form1.cs" />,
-    /// <code lang="C#" src="examples/targets/Configuration API/RichTextBox/RowColoring/Form1.cs" /> for RowColoring,
-    /// <code lang="C#" src="examples/targets/Configuration API/RichTextBox/WordColoring/Form1.cs" /> for WordColoring
+    /// <code lang="C#" source="examples/targets/Configuration API/RichTextBox/Simple/Form1.cs" />,
+    /// <code lang="C#" source="examples/targets/Configuration API/RichTextBox/RowColoring/Form1.cs" /> for RowColoring,
+    /// <code lang="C#" source="examples/targets/Configuration API/RichTextBox/WordColoring/Form1.cs" /> for WordColoring
     /// </example>
     [Target("RichTextBox")]
     [SupportedRuntime(Framework = RuntimeFramework.DotNetFramework, MinRuntimeVersion = "1.1")]

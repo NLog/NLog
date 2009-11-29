@@ -70,7 +70,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The text to be decoded.
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         [DefaultParameter]
         public Layout Text
         {

@@ -55,7 +55,7 @@ namespace NLog.Win32.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/OutputDebugString/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/OutputDebugString/Simple/Example.cs" />
     /// </example>
     [Target("OutputDebugString")]
     [SupportedRuntime(OS=RuntimeOS.Windows)]

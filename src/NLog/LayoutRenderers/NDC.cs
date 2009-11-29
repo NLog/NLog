@@ -51,7 +51,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The number of top stack frames to be rendered.
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         public int TopFrames
         {
             get { return _topFrames; }
@@ -61,7 +61,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The number of bottom stack frames to be rendered.
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         public int BottomFrames
         {
             get { return _bottomFrames; }
@@ -71,7 +71,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The separator to be used for concatenating NDC output.
         /// </summary>
-        /// <docgen category="Layout" order="10" />
+        /// <docgen category="Layout Options" order="10" />
         public string Separator
         {
             get { return _separator; }

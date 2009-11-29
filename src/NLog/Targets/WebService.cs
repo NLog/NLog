@@ -64,9 +64,9 @@ namespace NLog.Targets
     /// <p>
     /// To set up the log target programmatically use code like this:
     /// </p>
-    /// <code lang="C#" src="examples/targets/Configuration API/WebService/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/WebService/Simple/Example.cs" />
     /// <p>The example web service that works with this example is shown below</p>
-    /// <code lang="C#" src="examples/targets/Configuration API/WebService/Simple/WebService1/Service1.asmx.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/WebService/Simple/WebService1/Service1.asmx.cs" />
     /// </example>
     [Target("WebService")]
     public sealed class WebServiceTarget: MethodCallTargetBase
