@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="Mono.Posix" />
   </ItemGroup>
   <ItemGroup>

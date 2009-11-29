@@ -364,8 +364,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to automatically archive log files every time the specified time passes.
         /// </summary>
         /// <remarks>
-        /// Possible options are: <c>year</c>, <c>month</c>, <c>day</c>, <c>hour</c>, <c>minute</c>. Files are 
-        /// moved to the archive as part of the write operation if the current period of time changes. For example
+        /// Files are moved to the archive as part of the write operation if the current period of time changes. For example
         /// if the current <c>hour</c> changes from 10 to 11, the first write that will occur
         /// on or after 11:00 will trigger the archiving.
         /// <p>

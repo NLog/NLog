@@ -1,6 +1,13 @@
 @echo off
-set MSBUILD_ARGUMENTS=
+rem Try to find the highest version of MSBuild available...
+set MSBUILD=C:\Windows\Microsoft.NET\Framework\v4.0.21006\msbuild.exe
+if not exist %MSBUILD% set MSBUILD=%WINDIR%\Microsoft.NET\Framework\v3.5\msbuild.exe
+if not exist %MSBUILD% (
+	echo MSBuild not found, please update %0
+	exit /b 1
+) 
 
+set MSBUILD_ARGUMENTS=
 :next
 if (%1)==() goto build
 if (%1)==(netfx20) (
@@ -17,6 +24,18 @@ if (%1)==(netfx35) (
 
 if (%1)==(netfx35client) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildNetFX35Client=true
+	shift
+	goto next
+)
+
+if (%1)==(netfx40) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildNetFX40=true
+	shift
+	goto next
+)
+
+if (%1)==(netfx40client) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildNetFX40Client=true
 	shift
 	goto next
 )
@@ -81,6 +100,12 @@ if (%1)==(build) (
 	goto next
 )
 
+if (%1)==(buildtests) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:BuildTests
+	shift
+	goto next
+)
+
 if (%1)==(test) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Test
 	shift
@@ -121,12 +146,14 @@ echo Targets can be:
 echo.
 echo  clean              Removes output files
 echo  build              Compiles assemblies
-echo  test               Builds and runs unit tests
+echo  buildtests         Compiles tests
+echo  test               Runs unit tests
 echo  doc                Builds documentation
 echo  all                Full build
 exit /b 1
 
 
 :build
+echo MSBUILD: %MSBUILD%
 echo MSBUILD_ARGUMENTS: %MSBUILD_ARGUMENTS%
-%WINDIR%\Microsoft.NET\Framework\v3.5\msbuild.exe /nologo /fl %~dp0src\NLog.proj %MSBUILD_ARGUMENTS%
+%MSBUILD% /nologo /fl %~dp0src\NLog.proj %MSBUILD_ARGUMENTS%

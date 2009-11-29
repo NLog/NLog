@@ -11,6 +11,8 @@
     <BuildAllFrameworks Condition="'$(BuildNetFX20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX35)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX35Client)' == 'true'">false</BuildAllFrameworks>
+    <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
+    <BuildAllFrameworks Condition="'$(BuildNetFX40Client)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF35)' == 'true'">false</BuildAllFrameworks>
     <MSTest>"$(VS90COMNTOOLS)..\IDE\MSTest.exe"</MSTest>
@@ -58,6 +60,15 @@
         <ProjectFileSuffix></ProjectFileSuffix>
         <Properties>TargetFrameworkVersion=v3.5;TargetFrameworkSubset=Client</Properties>
     </TargetFramework>
+    <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX40)'=='true'">
+        <ProjectFileSuffix></ProjectFileSuffix>
+        <Properties>TargetFrameworkVersion=v4.0;ToolsVersion=4.0</Properties>
+        <TestCommand>MSTest.exe</TestCommand>
+    </TargetFramework>
+    <TargetFramework Include=".NET Framework 4.0 Client Profile" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFx40Client)'=='true'">
+        <ProjectFileSuffix></ProjectFileSuffix>
+        <Properties>TargetFrameworkVersion=v4.0;TargetFrameworkProfile=Client;ToolsVersion=4.0</Properties>
+    </TargetFramework>
   </ItemGroup>
 
   <Import Project="NLog.local" Condition="Exists('NLog.local')" />
@@ -70,10 +81,13 @@
 
   <Target Name="Build">
     <MSBuild Projects="NLog\NLog%(TargetFramework.ProjectFileSuffix).csproj" Targets="Build" Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="$(BuildAllFrameworks)" StopOnFirstFailure="false" />
+  </Target>
+
+  <Target Name="BuildTests" DependsOnTargets="Build">
     <MSBuild Projects="..\tests\NLog.UnitTests\NLog%(TargetFramework.ProjectFileSuffix).UnitTests.csproj" Targets="Build" Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="$(BuildAllFrameworks)" StopOnFirstFailure="false" />
   </Target>
 
-  <Target Name="Test">
+  <Target Name="Test" DependsOnTargets="BuildTests">
     <CallTarget Targets="NetFx20Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX20)'=='true'"/>
     <CallTarget Targets="NetFx35Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX35)'=='true'"/>
     <CallTarget Targets="NetFx35ClientTest" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX35Client)'=='true'"/>

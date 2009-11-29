@@ -1,11 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v3.5</TargetFrameworkVersion>
-    <TargetFrameworkSubset Condition="'$(TargetFrameworkSubset)'==''">
-    </TargetFrameworkSubset>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{B71A9EF1-2493-4B7B-AB82-8C7A83C10952}</ProjectGuid>
@@ -16,6 +14,8 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
+    <IsClientSku>false</IsClientSku>
+    <IsClientSku Condition="'$(TargetFrameworkSubset)' == 'Client' or '$(TargetFrameworkProfile)' == 'Client'">true</IsClientSku>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,13 +41,13 @@
     <TargetFrameworkName Condition="'$(TargetFrameworkVersion)' == 'v3.0'">.NET Framework 3.0</TargetFrameworkName>
     <TargetFrameworkName Condition="'$(TargetFrameworkVersion)' == 'v3.5'">.NET Framework 3.5</TargetFrameworkName>
     <TargetFrameworkName Condition="'$(TargetFrameworkVersion)' == 'v4.0'">.NET Framework 4.0</TargetFrameworkName>
-    <TargetFrameworkName Condition="'$(TargetFrameworkSubset)' == 'Client'">$(TargetFrameworkName) Client Profile</TargetFrameworkName>
+    <TargetFrameworkName Condition="'$(IsClientSku)' == 'true'">$(TargetFrameworkName) Client Profile</TargetFrameworkName>
   </PropertyGroup>
   <PropertyGroup>
     <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v2.0'">NET2_0;$(DefineConstants)</DefineConstants>
     <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v3.5'">NET3_5;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
     <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v4.0'">NET4_0;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
-    <DefineConstants Condition="'$(TargetFrameworkSubset)' == 'Client'">CLIENT_SKU;$(DefineConstants)</DefineConstants>
+    <DefineConstants Condition="'$(IsClientSku)' == 'true'">CLIENT_SKU;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
@@ -60,14 +60,13 @@
     <Reference Include="System.Core" Condition="'$(TargetFrameworkVersion)' != 'v2.0'" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Messaging" Condition="'$(TargetFrameworkSubset)' != 'Client'" />
+    <Reference Include="System.Messaging" Condition="'$(IsClientSku)' != 'true'" />
     <Reference Include="System.Runtime.Serialization" Condition="'$(TargetFrameworkVersion)' != 'v2.0'" />
     <Reference Include="System.ServiceModel" Condition="'$(TargetFrameworkVersion)' != 'v2.0'" />
-    <Reference Include="System.Web" Condition="'$(TargetFrameworkSubset)' != 'Client'" />
+    <Reference Include="System.Web" Condition="'$(IsClientSku)' != 'true'" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="mscorlib" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyBuildInfo.cs" />
