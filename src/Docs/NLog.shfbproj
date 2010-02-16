@@ -7,17 +7,18 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{ff8480e8-de05-4447-a460-d63ee65bdcbf}</ProjectGuid>
-    <Framework Condition="">.NET Framework v3.5</Framework>
-    <NLogBuildPath Condition="'$(NLogBuildPath)' == ''">NLog\bin\$(Configuration)</NLogBuildPath>
+    <Framework>.NET Framework 3.5</Framework>
+    <NLogPath>..\..\</NLogPath>
     <WorkingPath>Working\</WorkingPath>
-    <SHFBSchemaVersion>1.8.0.0</SHFBSchemaVersion>
+    <SHFBSchemaVersion>1.8.0.3</SHFBSchemaVersion>
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
          Studio adds them anyway -->
     <AssemblyName>NLog</AssemblyName>
     <RootNamespace>NLog</RootNamespace>
     <Name>Documentation</Name>
+    <NLogBuildPath>$(NLogPath)\build\bin\$(Configuration)\$(Framework)</NLogBuildPath>
     <!-- SHFB properties -->
-    <OutputPath>$(NLogBuildPath)\</OutputPath>
+    <OutputPath>$(NLogBuildPath)\doc</OutputPath>
     <HtmlHelpName>$(AssemblyName)</HtmlHelpName>
     <DocumentationSources>
       <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.dll" xmlns="" />
@@ -31,7 +32,7 @@
     <ComponentConfigurations>
       <ComponentConfig id="Code Block Component" enabled="True">
         <component id="Code Block Component" type="SandcastleBuilder.Components.CodeBlockComponent" assembly="{@SHFBFolder}SandcastleBuilder.Components.dll">
-          <basePath value="{@HtmlEncProjectFolder}\..\" />
+          <basePath value="{@HtmlEncProjectFolder}..\.." />
           <languageFilter value="true" />
           <allowMissingSource value="false" />
           <removeRegionMarkers value="false" />
@@ -42,7 +43,7 @@
         <component id="Post-transform Component" type="SandcastleBuilder.Components.PostTransformComponent" assembly="{@SHFBFolder}SandcastleBuilder.Components.dll">
           <colorizer stylesheet="{@SHFBFolder}Colorizer\highlight.css" scriptFile="{@SHFBFolder}Colorizer\highlight.js" copyImage="{@SHFBFolder}Colorizer\CopyCode.gif" />
           <outputPath value="Output\" />
-          <logoFile filename="{@HtmlEncProjectFolder}\NLogo.gif" height="0" width="0" altText="" placement="left" alignment="left" />
+          <logoFile filename="{@HtmlEncProjectFolder}NLogo.gif" height="0" width="0" altText="" placement="left" alignment="left" />
         </component>
       </ComponentConfig>
     </ComponentConfigurations>
@@ -63,6 +64,7 @@
     </PlugInConfigurations>
     <NamingMethod>MemberName</NamingMethod>
     <ProjectSummary>TODO: Project Summary</ProjectSummary>
+    <HelpFileFormat>HtmlHelp1, Website</HelpFileFormat>
   </PropertyGroup>
   <!-- There are no properties for these two groups but they need to appear in
        order for Visual Studio to perform the build. -->
@@ -71,34 +73,31 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Docs\" />
+    <ContentLayout Include="Content Layout.content" />
   </ItemGroup>
   <ItemGroup>
-    <ContentLayout Include="Docs\Content Layout.content" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Docs\available-conditions.aml" />
-    <None Include="Docs\available-filters.aml" />
-    <None Include="Docs\available-layouts.aml" />
-    <None Include="Docs\available-layout-renderers.aml" />
-    <None Include="Docs\available-targets.aml" />
-    <None Include="Docs\visual-studio.aml" />
-    <None Include="Docs\include-files.aml" />
-    <None Include="Docs\variables.aml" />
-    <None Include="Docs\filters.aml" />
-    <None Include="Docs\conditions.aml" />
-    <None Include="Docs\layouts.aml" />
-    <None Include="Docs\layout-renderers.aml" />
-    <None Include="Docs\targets.aml" />
-    <None Include="Docs\simple-configuration-api.aml" />
-    <None Include="Docs\configuration-api.aml" />
-    <None Include="Docs\configuration-file.aml" />
-    <None Include="Docs\configuration.aml" />
-    <None Include="Docs\how-to.aml" />
-    <None Include="Docs\introduction.aml" />
-    <None Include="Docs\glossary.aml" />
+    <None Include="available-conditions.aml" />
+    <None Include="available-filters.aml" />
+    <None Include="available-layouts.aml" />
+    <None Include="available-layout-renderers.aml" />
+    <None Include="available-targets.aml" />
+    <None Include="visual-studio.aml" />
+    <None Include="include-files.aml" />
+    <None Include="variables.aml" />
+    <None Include="filters.aml" />
+    <None Include="conditions.aml" />
+    <None Include="layouts.aml" />
+    <None Include="layout-renderers.aml" />
+    <None Include="targets.aml" />
+    <None Include="simple-configuration-api.aml" />
+    <None Include="configuration-api.aml" />
+    <None Include="configuration-file.aml" />
+    <None Include="configuration.aml" />
+    <None Include="how-to.aml" />
+    <None Include="introduction.aml" />
+    <None Include="glossary.aml" />
   </ItemGroup>
   <!-- Import the SHFB build targets -->
   <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
-  <Import Project="Docs\Frameworks\$(Framework).shfbproj" Condition="Exists('Docs\Frameworks\$(Framework).shfbproj')" />
+  <Import Project="Frameworks\$(Framework).shfbproj" Condition="Exists('Frameworks\$(Framework).shfbproj')" />
 </Project>

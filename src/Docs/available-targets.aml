@@ -12,17 +12,69 @@
            a specific number of sub-topics when creating the outline.  Specify
            zero (0) to limit it to top-level sections only.  -->
       <!-- <autoOutline /> -->
-      <para>Required introduction</para>
+      <para>
+        Targets represents possible log outputs. You can define one or more targets in 
+        the configuration file or programmatically.</para>
     </introduction>
     <!-- Add one or more top-level section elements.  These are collapsible.
          If using <autoOutline />, add an address attribute to identify it
          and specify a title so that it can be jumped to with a hyperlink. -->
     <section address="Section1">
-      <title>Optional section title</title>
+      <title>Regular Targets</title>
       <content>
         <!-- Uncomment this to create a sub-section outline
         <autoOutline /> -->
-        <para>Add one or more sections with content</para>
+        <para>The following targets are available</para>
+        <table>
+          <tableHeader>
+            <row>
+              <entry>
+                <para>
+                   Name
+                </para>
+              </entry>
+              <entry>
+                <para>Value</para>
+              </entry>
+            </row>
+          </tableHeader>
+          <row>
+            <entry>
+              <para>
+                <link xlink:href="15697271-dda9-4cf2-9bf7-1a3c03124242">ASPNetTrace</link>
+                
+              </para>
+            </entry>
+            <entry>
+              <para>Writes logging messages to the ASP.NET trace.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>ASPResponse</para>
+            </entry>
+            <entry>
+              <para>Outputs logging messages through the ASP Response object.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>Chainsaw</para>
+            </entry>
+            <entry>
+              <para>Sends logging messages to the remote instance of Chainsaw application from log4j.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>ColoredConsole</para>
+            </entry>
+            <entry>
+              <para>Writes logging messages to the console with customizable coloring.</para>
+            </entry>
+          </row>
+
+        </table>
       </content>
       <!-- If a section contains a sections element, its content creates
            sub-sections.  These are not collapsible.

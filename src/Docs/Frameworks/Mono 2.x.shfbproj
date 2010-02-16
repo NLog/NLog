@@ -13,11 +13,11 @@
 
   <!-- copy referenced assemblies to the output path temporarily -->
   <Target Name="BeforeBuildHelp">
-    <Copy SourceFiles="@(RefFile)" DestinationFolder="$(OutputPath)" />
+    <Copy SourceFiles="@(RefFile)" DestinationFolder="$(NLogBuildPath)" />
   </Target>
 
   <!-- delete them after the help has been built -->
   <Target Name="AfterBuildHelp">
-    <Delete Files="@(RefFile -> '$(OutputPath)%(Filename)%(Extension)')" />
+    <Delete Files="@(RefFile -> '$(NLogBuildPath)%(Filename)%(Extension)')" />
   </Target>
 </Project>

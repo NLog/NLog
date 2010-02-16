@@ -111,7 +111,7 @@
   </Target>
 
   <Target Name="Documentation" DependsOnTargets="Build">
-    <Exec Command='"$(MSBuildBinPath)\MSBuild.exe" NLog.shfbproj /p:"NLogBuildPath=$(BaseOutputDirectory)bin\$(Configuration)\%(TargetFramework.Identity)" /p:Framework="%(TargetFramework.Identity)"' ContinueOnError="$(BuildAllFrameworks)" />
+    <Exec Command='"$(MSBuildBinPath)\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="%(TargetFramework.Identity)"' ContinueOnError="$(BuildAllFrameworks)" />
   </Target>
 
   <Target Name="Clean">

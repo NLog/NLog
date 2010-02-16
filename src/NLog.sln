@@ -8,11 +8,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeNLogXSD", "..\tools\Mak
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests", "..\tests\NLog.UnitTests\NLog.UnitTests.csproj", "{1653EE05-2720-4A85-BF14-74C4493787B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docs", "Docs\Docs.csproj", "{42ADE8CA-DF00-4F2F-B01D-60CED2718FAB}"
+EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -34,9 +32,17 @@ Global
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42ADE8CA-DF00-4F2F-B01D-60CED2718FAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42ADE8CA-DF00-4F2F-B01D-60CED2718FAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42ADE8CA-DF00-4F2F-B01D-60CED2718FAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42ADE8CA-DF00-4F2F-B01D-60CED2718FAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
 		DPCodeReviewSolutionGUID = {C4811F53-E779-47F0-8C06-71551FBDB047}
