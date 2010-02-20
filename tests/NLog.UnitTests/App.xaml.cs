@@ -63,7 +63,7 @@ namespace NLog.UnitTests
                 {
                     var result = (ScenarioResult)logMessage[UnitTestLogDecorator.ScenarioResult];
 
-                    HtmlPage.Window.Invoke("scenarioResult",
+                    InvokeDomMethod("scenarioResult",
                                            result.Started.Ticks,
                                            result.Finished.Ticks,
                                            (result.TestClass != null) ? result.TestClass.Type.FullName : null,
@@ -99,7 +99,7 @@ namespace NLog.UnitTests
             var harness = new MyHarness();
 
             vsProvider.WriteLogFile(harness);
-            HtmlPage.Window.Invoke("testCompleted", harness.TrxContent);
+            InvokeDomMethod("testCompleted", harness.TrxContent);
         }
 
         private void Application_Exit(object sender, EventArgs e)
@@ -132,6 +132,17 @@ namespace NLog.UnitTests
                 System.Windows.Browser.HtmlPage.Window.Eval("throw new Error(\"Unhandled Error in Silverlight Application " + errorMsg + "\");");
             }
             catch (Exception)
+            {
+            }
+        }
+
+        private static void InvokeDomMethod(string methodName, params object[] arguments)
+        {
+            try
+            {
+                HtmlPage.Window.Invoke(methodName, arguments);
+            }
+            catch
             {
             }
         }

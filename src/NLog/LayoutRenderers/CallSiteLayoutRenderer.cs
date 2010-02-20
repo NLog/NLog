@@ -54,8 +54,10 @@ namespace NLog.LayoutRenderers
         {
             this.ClassName = true;
             this.MethodName = true;
+#if !SILVERLIGHT
             this.FileName = false;
             this.IncludeSourcePath = true;
+#endif
         }
 
         /// <summary>
@@ -70,6 +72,7 @@ namespace NLog.LayoutRenderers
         [DefaultValue(true)]
         public bool MethodName { get; set; }
 
+#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to render the source file name and line number.
         /// </summary>
@@ -81,6 +84,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         [DefaultValue(true)]
         public bool IncludeSourcePath { get; set; }
+#endif
 
         /// <summary>
         /// Returns the estimated number of characters that are needed to
@@ -104,7 +108,11 @@ namespace NLog.LayoutRenderers
         /// <returns>2 when the source file information is requested, 1 otherwise.</returns>
         protected internal override StackTraceUsage GetStackTraceUsage()
         {
+#if SILVERLIGHT
+            return StackTraceUsage.WithoutSource;
+#else
             return this.FileName ? StackTraceUsage.WithSource : StackTraceUsage.WithoutSource;
+#endif
         }
 
         /// <summary>
@@ -162,6 +170,7 @@ namespace NLog.LayoutRenderers
                     }
                 }
 
+#if !SILVERLIGHT
                 if (this.FileName)
                 {
                     string fileName = frame.GetFileName();
@@ -182,6 +191,7 @@ namespace NLog.LayoutRenderers
                         builder.Append(")");
                     }
                 }
+#endif
             }
         }
     }

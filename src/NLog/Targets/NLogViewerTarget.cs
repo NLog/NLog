@@ -108,6 +108,7 @@ namespace NLog.Targets
             set { this.Renderer.IncludeCallSite = value; }
         }
 
+#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to include source info (file name and line number) in the information sent over the network.
         /// </summary>
@@ -116,6 +117,8 @@ namespace NLog.Targets
             get { return this.Renderer.IncludeSourceInfo; }
             set { this.Renderer.IncludeSourceInfo = value; }
         }
+#endif
+
 #endif
 
         /// <summary>
@@ -164,10 +167,12 @@ namespace NLog.Targets
         /// <returns>2 - when IncludeSourceInfo is set, 1 when IncludeCallSite is set, 0 otherwise.</returns>
         protected internal override StackTraceUsage GetStackTraceUsage()
         {
+#if !SILVERLIGHT
             if (this.IncludeSourceInfo)
             {
                 return StackTraceUsage.WithSource;
             }
+#endif
 
             if (this.IncludeCallSite)
             {

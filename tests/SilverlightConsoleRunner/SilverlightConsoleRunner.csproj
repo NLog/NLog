@@ -69,8 +69,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Silverlight.js" />
-    <EmbeddedResource Include="XapHost.html" />
+    <EmbeddedResource Include="Silverlight3.js" />
+    <EmbeddedResource Include="XapHost3.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Silverlight2.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="XapHost2.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -117,15 +117,8 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "yyy");
         }
 
-        private int _reloadCounter = 0;
-
 #if !SILVERLIGHT && !NET_CF
-        private void OnConfigReloaded(object sender, LoggingConfigurationReloadedEventArgs e)
-        {
-            Console.WriteLine("OnConfigReloaded success={0}", e.Succeeded);
-            _reloadCounter++;
-        }
-#endif
+        private int _reloadCounter = 0;
 
         private void WaitForConfigReload(int counter)
         {
@@ -135,7 +128,12 @@ namespace NLog.UnitTests
             }
         }
 
-#if !SILVERLIGHT && !NET_CF
+        private void OnConfigReloaded(object sender, LoggingConfigurationReloadedEventArgs e)
+        {
+            Console.WriteLine("OnConfigReloaded success={0}", e.Succeeded);
+            _reloadCounter++;
+        }
+
         [TestMethod]
         public void AutoReloadTest()
         {
@@ -218,6 +216,7 @@ namespace NLog.UnitTests
         }
 #endif
 
+#if !SILVERLIGHT
         [TestMethod]
         public void IncludeTest()
         {
@@ -311,5 +310,6 @@ namespace NLog.UnitTests
                     Directory.Delete(tempPath, true);
             }
         }
+#endif
     }
 }

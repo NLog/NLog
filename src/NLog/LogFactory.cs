@@ -258,7 +258,11 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger()
         {
-            StackFrame frame = new StackFrame(1, false);
+#if SILVERLIGHT
+            var frame = new StackFrame(1);
+#else
+            var frame = new StackFrame(1, false);
+#endif
 
             return this.GetLogger(frame.GetMethod().DeclaringType.FullName);
         }
@@ -273,7 +277,11 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger(Type loggerType)
         {
+#if !SILVERLIGHT
             var frame = new StackFrame(1, false);
+#else
+            var frame = new StackFrame(1);
+#endif
 
             return this.GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
         }

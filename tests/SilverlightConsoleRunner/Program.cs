@@ -1,22 +1,39 @@
-﻿using System;
-using System.IO;
-
-namespace SilverlightConsoleRunner
+﻿namespace SilverlightConsoleRunner
 {
-    class Program
+    using System;
+    using System.IO;
+
+    internal class Program
     {
         [STAThread]
-        static int Main(string[] args)
+        public static int Main(string[] args)
         {
             try
             {
+                if (args.Length < 2)
+                {
+                    Console.WriteLine("Usage: SilverlightConsoleRunner testfile.xap [SL2|SL3] [logfile.log]");
+                    return 1;
+                }
+
+                string logfile = "UnitTests.log";
+                if (args.Length > 2)
+                {
+                    logfile = args[2];
+                }
+
                 string xapFile = args[0];
                 var runner = new ConsoleRunner()
-                                 {
-                                     XapFile = xapFile
-                                 };
+                {
+                    XapFile = xapFile,
+                    SilverlightVersion = args[1],
+                };
 
-                using (StreamWriter log = new StreamWriter("Test.log"))
+                Console.WriteLine("Running tests in '{0}'", Path.GetFullPath(runner.XapFile));
+                Console.WriteLine("Silverlight version: '{0}'", runner.SilverlightVersion);
+                Console.WriteLine("Log file: '{0}'", Path.GetFullPath(logfile));
+
+                using (var log = new StreamWriter(logfile))
                 {
                     runner.LogWriter = log;
                     runner.Run();
@@ -30,6 +47,5 @@ namespace SilverlightConsoleRunner
                 return 1;
             }
         }
-
     }
 }

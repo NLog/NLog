@@ -42,6 +42,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System.Collections.Generic;
+
     [TestClass]
     public class ExceptionTests : NLogTestBase
     {
@@ -67,23 +69,50 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
+            string exceptionMessage = "Test exception";
+            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            logger.ErrorException("msg", ex);
+            AssertDebugLastMessage("debug1", exceptionMessage);
+            AssertDebugLastMessage("debug2", ex.StackTrace);
+            AssertDebugLastMessage("debug3", typeof(InvalidOperationException).FullName);
+            AssertDebugLastMessage("debug4", typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug5", ex.ToString());
+            AssertDebugLastMessage("debug6", exceptionMessage);
+
+#if SILVERLIGHT
+            // silverlight stack trace is a litte different than .NET
+            AssertDebugLastMessage("debug7", "NLog.UnitTests.LayoutRenderers.ExceptionTests.GenericClass`3.Method2[T1,T2,T3](T1 aaa, T2 b, T3 o, Int32 i, DateTime now, Nullable`1 gfff, List`1[] something)");
+#elif !NET_CF
+            AssertDebugLastMessage("debug7", "Int32 Method2[T1,T2,T3](T1, T2, T3, Int32, System.DateTime, System.Nullable`1[System.Int32], System.Collections.Generic.List`1[System.Int32][])");
+#endif
+
+            AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
+        }
+
+        private Exception GetExceptionWithStackTrace(string exceptionMessage)
+        {
             try
             {
-                throw new Exception("Test exception");
+                GenericClass<int, string, bool>.Method1("aaa", true, null, 42, DateTime.Now);
+                return null;
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                logger.ErrorException("msg", ex);
-                AssertDebugLastMessage("debug1", "Test exception");
-                AssertDebugLastMessage("debug2", ex.StackTrace);
-                AssertDebugLastMessage("debug3", typeof(Exception).FullName);
-                AssertDebugLastMessage("debug4", typeof(Exception).Name);
-                AssertDebugLastMessage("debug5", ex.ToString());
-                AssertDebugLastMessage("debug6", "Test exception");
-#if !SILVERLIGHT && !NET_CF
-                AssertDebugLastMessage("debug7", ex.TargetSite.ToString());
-#endif
-                AssertDebugLastMessage("debug8", "Test exception*Exception");
+                return exception;
+            }
+        }
+
+        private class GenericClass<TA, TB, TC>
+        {
+            internal static List<GenericClass<TA, TB, TC>> Method1(string aaa, bool b, object o, int i, DateTime now)
+            {
+                Method2(aaa, b, o, i, now, null, null);
+                return null;
+            }
+
+            internal static int Method2<T1, T2, T3>(T1 aaa, T2 b, T3 o, int i, DateTime now, Nullable<int> gfff, List<int>[] something)
+            {
+                throw new InvalidOperationException("Test exception");
             }
         }
     }

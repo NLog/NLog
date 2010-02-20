@@ -65,7 +65,8 @@ namespace SilverlightConsoleRunner
 
                 url = match.Groups["url"].Value;
                 byte[] data = this.handlers[url]();
-                Console.WriteLine("URL: {0} {1} bytes {2}", url, data.Length, contentTypes[url]);
+
+                // Console.WriteLine("Serving: {0} {1} bytes {2}", url, data.Length, contentTypes[url]);
                 sw.WriteLine("HTTP/1.0 200 OK");
                 sw.WriteLine("Content-Type: {0}", contentTypes[url]);
                 sw.WriteLine("Content-Length: {0}", data.Length);

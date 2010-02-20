@@ -48,9 +48,21 @@ namespace NLog.Config
         /// </summary>
         WithoutSource = 1,
 
+#if !SILVERLIGHT
         /// <summary>
         /// Stack trace should be captured including source-level information such as line numbers.
         /// </summary>
         WithSource = 2,
+
+        /// <summary>
+        /// Capture maximum amount of the stack trace information supported on the plaform.
+        /// </summary>
+        Max = 2,
+#else
+        /// <summary>
+        /// Capture maximum amount of the stack trace information supported on the plaform.
+        /// </summary>
+        Max = 1,
+#endif
     }
 }

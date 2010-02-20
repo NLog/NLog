@@ -91,7 +91,7 @@ namespace NLog.Internal
 
             for (TargetWithFilterChain awf = this; awf != null; awf = awf.NextInChain)
             {
-                if (this.stackTraceUsage >= StackTraceUsage.WithSource)
+                if (this.stackTraceUsage >= StackTraceUsage.Max)
                 {
                     break;
                 }

@@ -101,7 +101,14 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </returns>
         protected internal override bool IsAppDomainFixed()
         {
-            return this.Inner.IsAppDomainFixed();
+            if (this.Inner != null)
+            {
+                return this.Inner.IsAppDomainFixed();
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>

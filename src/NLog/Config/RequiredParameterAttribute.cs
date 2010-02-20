@@ -42,11 +42,5 @@ namespace NLog.Config
     [AttributeUsage(AttributeTargets.Property)]
     public sealed class RequiredParameterAttribute : Attribute
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RequiredParameterAttribute" /> class.
-        /// </summary>
-        public RequiredParameterAttribute()
-        {
-        }
     }
 }

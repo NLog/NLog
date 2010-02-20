@@ -64,7 +64,11 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public new T GetCurrentClassLogger()
         {
+#if SILVERLIGHT
+            StackFrame frame = new StackFrame(1);
+#else
             StackFrame frame = new StackFrame(1, false);
+#endif
 
             return this.GetLogger(frame.GetMethod().DeclaringType.FullName);
         }

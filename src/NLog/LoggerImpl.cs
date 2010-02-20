@@ -65,7 +65,11 @@ namespace NLog
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
                 int firstUserFrame = 0;
+#if !SILVERLIGHT
                 stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
+#else
+                stackTrace = new StackTrace();
+#endif
 
                 for (int i = 0; i < stackTrace.FrameCount; ++i)
                 {

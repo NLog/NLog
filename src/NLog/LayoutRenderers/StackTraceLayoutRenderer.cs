@@ -95,7 +95,7 @@ namespace NLog.LayoutRenderers
         /// <returns>2 when the source file information is requested, 1 otherwise.</returns>
         protected internal override StackTraceUsage GetStackTraceUsage()
         {
-            return StackTraceUsage.WithSource;
+            return StackTraceUsage.Max;
         }
 
         /// <summary>

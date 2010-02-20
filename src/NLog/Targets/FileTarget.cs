@@ -259,7 +259,6 @@ namespace NLog.Targets
         /// </summary>
         [Advanced]
         public Win32FileAttributes FileAttributes { get; set; }
-
 #endif
 
         /// <summary>
