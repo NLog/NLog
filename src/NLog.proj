@@ -30,6 +30,8 @@
      <BuildNetFX35 Condition="!Exists('$(WinDir)\Microsoft.NET\Framework\v3.5\csc.exe')">false</BuildNetFX35>
      <BuildNetFX40 Condition="!Exists('$(WinDir)\Microsoft.NET\Framework\v4.0.30128\csc.exe')">false</BuildNetFX40>
      <BuildNetFX40Client Condition="!Exists('$(WinDir)\Microsoft.NET\Framework\v4.0.30128\csc.exe')">false</BuildNetFX40Client>
+     <BuildNetFX40 Condition="'$(ToolsVersion)' == '3.5'">false</BuildNetFX40>
+     <BuildNetFX40Client Condition="'$(ToolsVersion)' == '3.5'">false</BuildNetFX40Client>
   </PropertyGroup>
 
   <ItemGroup>
@@ -41,42 +43,52 @@
     <TargetFramework Include="Mono 2.x" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildMono2)'=='true'">
         <ProjectFileSuffix>.Mono</ProjectFileSuffix>
         <Properties>OverrideTargetsFile=$(FrameworksPath)\Mono2.defaults</Properties>
+        <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
     <TargetFramework Include="Silverlight 2.0" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildSL2)'=='true'">
         <ProjectFileSuffix>.Silverlight</ProjectFileSuffix>
         <Properties>SilverlightVersion=v2.0</Properties>
+        <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
     <TargetFramework Include="Silverlight 3.0" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildSL3)'=='true'">
         <ProjectFileSuffix>.Silverlight</ProjectFileSuffix>
         <Properties>SilverlightVersion=v3.0</Properties>
+        <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
     <TargetFramework Include=".NET Compact Framework 2.0" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetCF20)'=='true'">
         <ProjectFileSuffix>.CompactFramework</ProjectFileSuffix>
         <Properties>TargetFrameworkVersion=v2.0</Properties>
+        <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
     <TargetFramework Include=".NET Compact Framework 3.5" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetCF35)'=='true'">
         <ProjectFileSuffix>.CompactFramework</ProjectFileSuffix>
         <Properties>TargetFrameworkVersion=v3.5</Properties>
+        <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 2.0" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX20)'=='true'">
         <ProjectFileSuffix></ProjectFileSuffix>
         <Properties>TargetFrameworkVersion=v2.0</Properties>
+        <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 3.5" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX35)'=='true'">
         <ProjectFileSuffix></ProjectFileSuffix>
         <Properties>TargetFrameworkVersion=v3.5</Properties>
+        <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 3.5 Client Profile" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFx35Client)'=='true'">
         <ProjectFileSuffix></ProjectFileSuffix>
         <Properties>TargetFrameworkVersion=v3.5;TargetFrameworkSubset=Client</Properties>
+        <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX40)'=='true'">
         <ProjectFileSuffix></ProjectFileSuffix>
         <Properties>TargetFrameworkVersion=v4.0;ToolsVersion=4.0</Properties>
+        <ToolsVersion>4.0</ToolsVersion>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 4.0 Client Profile" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFx40Client)'=='true'">
         <ProjectFileSuffix></ProjectFileSuffix>
         <Properties>TargetFrameworkVersion=v4.0;TargetFrameworkProfile=Client;ToolsVersion=4.0</Properties>
+        <ToolsVersion>4.0</ToolsVersion>
     </TargetFramework>
   </ItemGroup>
 
@@ -89,7 +101,7 @@
   </Target>
 
   <Target Name="Build">
-    <MSBuild Projects="NLog\NLog%(TargetFramework.ProjectFileSuffix).csproj" Targets="Build" Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="$(BuildAllFrameworks)" StopOnFirstFailure="false" />
+    <MSBuild Projects="NLog\NLog%(TargetFramework.ProjectFileSuffix).csproj" Targets="Build" Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ToolsVersion="%(TargetFramework.ToolsVersion)" ContinueOnError="$(BuildAllFrameworks)" StopOnFirstFailure="false" />
   </Target>
 
   <Target Name="BuildTests" DependsOnTargets="Build">
