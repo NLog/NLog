@@ -164,4 +164,4 @@ exit /b 1
 :build
 echo MSBUILD: %MSBUILD%
 echo MSBUILD_ARGUMENTS: %MSBUILD_ARGUMENTS%
-%MSBUILD% /nologo /fl %~dp0src\NLog.proj %MSBUILD_ARGUMENTS%
+%MSBUILD% /nologo /fl "%~dp0src\NLog.proj" %MSBUILD_ARGUMENTS%
