@@ -1,6 +1,6 @@
 2010-02-20 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Fixed handling of StackFrame/StackTrace in Silverlight - updated unit tests to deal with that.
-	* All unit tests are now passing on SL2 and SL3
+	* All unit tests are now passing on SL2 and SL3 and Compact Framework
 	* Made Silverlight unit tests runnable from VS directly.
 	* Disabled filename-related stuff from Silverlight stacktrace reporting.
 	* Added support for ${exception:method} on Silverlight by parsing the stack frame.

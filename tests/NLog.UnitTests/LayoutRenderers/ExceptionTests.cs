@@ -82,7 +82,9 @@ namespace NLog.UnitTests.LayoutRenderers
 #if SILVERLIGHT
             // silverlight stack trace is a litte different than .NET
             AssertDebugLastMessage("debug7", "NLog.UnitTests.LayoutRenderers.ExceptionTests.GenericClass`3.Method2[T1,T2,T3](T1 aaa, T2 b, T3 o, Int32 i, DateTime now, Nullable`1 gfff, List`1[] something)");
-#elif !NET_CF
+#elif NET_CF
+            AssertDebugLastMessage("debug7", "NLog.UnitTests.LayoutRenderers.ExceptionTests.GenericClass`3.Method2[T1,T2,T3](String aaa, Boolean b, Object o, Int32 i, DateTime now, Nullable`1 gfff, List`1[] something)");
+#else
             AssertDebugLastMessage("debug7", "Int32 Method2[T1,T2,T3](T1, T2, T3, Int32, System.DateTime, System.Nullable`1[System.Int32], System.Collections.Generic.List`1[System.Int32][])");
 #endif
 

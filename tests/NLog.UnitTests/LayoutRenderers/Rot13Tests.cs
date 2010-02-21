@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Diagnostics;
 using System.Xml;
 using System.Reflection;
 
@@ -39,6 +40,7 @@ using NLog;
 using NLog.Config;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NLog.Contexts;
 using NLog.LayoutRenderers;
 using NLog.Targets;
 using NLog.Layouts;
@@ -92,21 +94,22 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
                     <targets>
-                        <target name='debug' type='Debug' layout='${rot13:${callsite:methodname=false}}' />
-                        <target name='debug2' type='Debug' layout='${rot13:${rot13:${callsite:methodname=false}}}' />
+                        <target name='debug' type='Debug' layout='${rot13:${mdc:A}}' />
+                        <target name='debug2' type='Debug' layout='${rot13:${rot13:${mdc:A}}}' />
                      </targets>
                     <rules>
                         <logger name='*' levels='Trace' writeTo='debug,debug2' />
                     </rules>
                 </nlog>");
 
+            MappedDiagnosticsContext.Set("A", "Foo.Bar!");
             Logger l = LogManager.GetLogger("NLog.UnitTests.LayoutRenderers.Rot13Tests");
             l.Trace("aaa");
-            // this is the rot-13-fied name of current class
-            AssertDebugLastMessage("debug", "AYbt.HavgGrfgf.YnlbhgEraqreref.Ebg13Grfgf");
+
+            AssertDebugLastMessage("debug", "Sbb.One!");
 
             // double rot-13 should be identity
-            AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.Rot13Tests");
+            AssertDebugLastMessage("debug2", "Foo.Bar!");
         }
     }
 }

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Diagnostics;
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -457,6 +459,7 @@ namespace NLog.UnitTests.Targets
                 SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(ft, 1000, AsyncTargetWrapperOverflowAction.Grow), LogLevel.Debug);
                 InternalLogger.LogToConsole = true;
                 InternalLogger.LogLevel = LogLevel.Trace;
+                LogManager.ThrowExceptions = true;
 
                 for (int i = 0; i < 250; ++i)
                 {

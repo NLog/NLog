@@ -1,6 +1,6 @@
 @echo off
 rem Try to find the highest version of MSBuild available...
-set MSBUILD=C:\Windows\Microsoft.NET\Framework\v4.0.21006\msbuild.exe
+set MSBUILD=%WINDIR%\Microsoft.NET\Framework\v4.0.30128\msbuild.exe
 if not exist %MSBUILD% set MSBUILD=%WINDIR%\Microsoft.NET\Framework\v3.5\msbuild.exe
 if not exist %MSBUILD% (
 	echo MSBuild not found, please update %0
@@ -10,6 +10,12 @@ if not exist %MSBUILD% (
 set MSBUILD_ARGUMENTS=
 :next
 if (%1)==() goto build
+if (%1)==(usemsbuild35) (
+	set MSBUILD=%WINDIR%\Microsoft.NET\Framework\v3.5\msbuild.exe
+	shift
+	goto next
+)
+
 if (%1)==(netfx20) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildNetFX20=true
 	shift
@@ -106,8 +112,8 @@ if (%1)==(buildtests) (
 	goto next
 )
 
-if (%1)==(test) (
-	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Test
+if (%1)==(runtests) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:RunTests
 	shift
 	goto next
 )
@@ -131,6 +137,8 @@ echo.
 echo  netfx20            .NET Framework 2.0
 echo  netfx35            .NET Framework 3.5
 echo  netfx35client      .NET Framework 3.5 Client Profile
+echo  netfx40            .NET Framework 4.0
+echo  netfx40client      .NET Framework 4.0 Client Profile
 echo  netcf20            .NET Compact Framework 2.0
 echo  netcf35            .NET Compact Framework 3.5
 echo  sl2                Silverlight 2.0
@@ -147,7 +155,7 @@ echo.
 echo  clean              Removes output files
 echo  build              Compiles assemblies
 echo  buildtests         Compiles tests
-echo  test               Runs unit tests
+echo  runtests           Runs unit tests
 echo  doc                Builds documentation
 echo  all                Full build
 exit /b 1
