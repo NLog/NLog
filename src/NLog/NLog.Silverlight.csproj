@@ -255,7 +255,9 @@
     <Compile Include="LogReceiverService\LogReceiverServiceConfig.cs" />
     <Compile Include="LogReceiverService\NLogEvent.cs" />
     <Compile Include="LogReceiverService\NLogEvents.cs" />
-    <Compile Include="LogReceiverService\SoapLogReceiverClient.cs"></Compile>
+    <Compile Include="LogReceiverService\SoapLogReceiverClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="LogReceiverService\WcfLogReceiverClient.cs" />
     <Compile Include="Logger-V1Compat.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>

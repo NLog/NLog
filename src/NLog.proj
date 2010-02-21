@@ -16,10 +16,20 @@
     <BuildAllFrameworks Condition="'$(BuildNetCF20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF35)' == 'true'">false</BuildAllFrameworks>
     <SLTestRunner>$(MSBuildProjectDirectory)\..\tests\SilverlightConsoleRunner\bin\$(Configuration)\SilverlightConsoleRunner.exe</SLTestRunner>
-    <MSTest>"$(VS90COMNTOOLS)..\IDE\MSTest.exe"</MSTest>
+    <MSTest9>$(VS90COMNTOOLS)..\IDE\MSTest.exe</MSTest9>
+    <MSTest10>$(VS100COMNTOOLS)..\IDE\MSTest.exe</MSTest10>
+    <MSTest>$(MSTest10)</MSTest>
+    <MSTest Condition="!Exists('$(MSTest)')">$(MSTest9)</MSTest>
+    <DeployNetCF>..\tools\DeployNetCF.exe</DeployNetCF>
     <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopProperties Condition="'$(DisableStyleCop)' == 'false' and Exists('$(StyleCopTargetsFile)')">StyleCopTargetsFile=$(StyleCopTargetsFile)</StyleCopProperties>
+  </PropertyGroup>
+
+  <PropertyGroup>
+     <BuildNetFX35 Condition="!Exists('$(WinDir)\Microsoft.NET\Framework\v3.5\csc.exe')">false</BuildNetFX35>
+     <BuildNetFX40 Condition="!Exists('$(WinDir)\Microsoft.NET\Framework\v4.0.30128\csc.exe')">false</BuildNetFX40>
+     <BuildNetFX40Client Condition="!Exists('$(WinDir)\Microsoft.NET\Framework\v4.0.30128\csc.exe')">false</BuildNetFX40Client>
   </PropertyGroup>
 
   <ItemGroup>
@@ -72,7 +82,7 @@
 
   <Import Project="NLog.local" Condition="Exists('NLog.local')" />
 
-  <Target Name="All" DependsOnTargets="Clean;Build;Documentation">
+  <Target Name="All" DependsOnTargets="Clean;Build;BuildTests;RunTests;Documentation">
   </Target>
 
   <Target Name="Rebuild" DependsOnTargets="Clean;Build">
@@ -86,41 +96,79 @@
     <MSBuild Projects="..\tests\NLog.UnitTests\NLog%(TargetFramework.ProjectFileSuffix).UnitTests.csproj" Targets="Build" Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="$(BuildAllFrameworks)" StopOnFirstFailure="false" />
   </Target>
 
-  <Target Name="Test">
+  <Target Name="RunTests">
     <CallTarget Targets="NetFx20Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX20)'=='true'"/>
     <CallTarget Targets="NetFx35Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX35)'=='true'"/>
     <CallTarget Targets="NetFx35ClientTest" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX35Client)'=='true'"/>
+    <CallTarget Targets="NetFx40Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX40)'=='true'"/>
+    <CallTarget Targets="NetFx40ClientTest" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX40Client)'=='true'"/>
     <CallTarget Targets="NetCF20Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetCF20)'=='true'"/>
+    <CallTarget Targets="NetCF35Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetCF35)'=='true'"/>
     <CallTarget Targets="SL2Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildSL2)'=='true'"/>
     <CallTarget Targets="SL3Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildSL3)'=='true'"/>
   </Target>
 
   <Target Name="NetFx20Test">
-    <Exec Command="$(MSTest) /nologo /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 2.0\NLog.UnitTests.dll&quot;" />
-  </Target>
+    <Exec Command="&quot;$(MSTest9)&quot; /nologo /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 2.0\NLog.UnitTests.dll&quot;" 
+          Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
+  </Target>                
 
   <Target Name="NetFx35Test">
-    <Exec Command="$(MSTest) /nologo /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.dll&quot;" />
+    <Exec Command="&quot;$(MSTest9)&quot; /nologo /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.dll&quot;"
+          Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="NetFx35ClientTest">
-    <Exec Command="$(MSTest) /nologo /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5 Client Profile\NLog.UnitTests.dll&quot;"  Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX35Client)'=='true'" IgnoreExitCode="true" />
+    <Exec Command="&quot;$(MSTest9)&quot; /nologo /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5 Client Profile\NLog.UnitTests.dll&quot;"
+          Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
   </Target>
 
-  <Target Name="NetCf20Test">
-    <Exec Command="$(MSTest) /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 2.0\NLog.UnitTests.dll&quot;" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetCF20)'=='true'" IgnoreExitCode="true" />
+  <Target Name="NetFx40Test">
+    <Exec Command="&quot;$(MSTest10)&quot; /nologo /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLog.UnitTests.dll&quot;"
+          Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
   </Target>
 
-  <Target Name="SL2Test">
+  <Target Name="NetFx40ClientTest">
+    <Exec Command="&quot;$(MSTest10)&quot; /nologo /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0 Client Profile\NLog.UnitTests.dll&quot;"
+          Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
+  </Target>
+
+  <Target Name="NetCf20Test" DependsOnTargets="DeployNetCf20ToEmulator">
+    <Exec Command="&quot;$(MSTest9)&quot; /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 2.0\NLog.UnitTests.dll&quot;"
+          Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
+    <Exec Command="TaskKill /f /im DeviceEmulator.exe" IgnoreExitCode="true" />
+  </Target>
+
+  <Target Name="NetCf35Test" DependsOnTargets="DeployNetCf35ToEmulator">
+    <Exec Command="&quot;$(MSTest9)&quot; /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 3.5\NLog.UnitTests.dll&quot;"
+          Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
+    <Exec Command="TaskKill /f /im DeviceEmulator.exe" IgnoreExitCode="true" />
+  </Target>
+
+  <Target Name="SL2Test" DependsOnTargets="BuildSLTestRunner">
     <Exec Command="$(SLTestRunner) NLog.UnitTests.xap SL2" WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 2.0" />
   </Target>
 
-  <Target Name="SL3Test">
+  <Target Name="SL3Test" DependsOnTargets="BuildSLTestRunner">
     <Exec Command="$(SLTestRunner) NLog.UnitTests.xap SL3" WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 3.0" />
   </Target>
 
   <Target Name="Documentation" DependsOnTargets="Build">
     <Exec Command='"$(MSBuildBinPath)\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="%(TargetFramework.Identity)"' ContinueOnError="$(BuildAllFrameworks)" />
+  </Target>
+
+  <Target Name="DeployNetCf20ToEmulator">
+    <Exec Command="TaskKill /f /im DeviceEmulator.exe" IgnoreExitCode="true" />
+    <Exec Command="$(DeployNetCF) 3C41C503-53EF-4c2a-8DD4-A8217CAD115E E282E6BE-C7C3-4ece-916A-88FB1CF8AF3C 2.0 \Windows\NETCFv2.ppc.armv4.cab" />
+  </Target>
+
+  <Target Name="DeployNetCf35ToEmulator">
+    <Exec Command="TaskKill /f /im DeviceEmulator.exe" IgnoreExitCode="true" />
+    <Exec Command="$(DeployNetCF) 3C41C503-53EF-4c2a-8DD4-A8217CAD115E E282E6BE-C7C3-4ece-916A-88FB1CF8AF3C 3.5 \Windows\NETCFv35.ppc.armv4.cab" />
+  </Target>
+
+  <Target Name="BuildSLTestRunner">
+    <MSBuild Projects="..\tests\SilverlightConsoleRunner\SilverlightConsoleRunner.csproj" />
   </Target>
 
   <Target Name="Clean">

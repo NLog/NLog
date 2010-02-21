@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
-
 using System.Text;
 
 namespace NLog.LayoutRenderers
@@ -70,5 +68,3 @@ namespace NLog.LayoutRenderers
         }
     }
 }
-
-#endif

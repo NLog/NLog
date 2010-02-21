@@ -150,11 +150,9 @@ namespace NLog.LayoutRenderers
             sb.Append(ex.Message);
         }
 
-#if !NET_CF
-        
         private void AppendMethod(StringBuilder sb, Exception ex)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT || NET_CF
             sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));
 #else
             sb.Append(ex.TargetSite.ToString());
@@ -165,7 +163,6 @@ namespace NLog.LayoutRenderers
         {
             sb.Append(ex.StackTrace);
         }
-#endif
 
         private void AppendToString(StringBuilder sb, Exception ex)
         {
@@ -207,7 +204,6 @@ namespace NLog.LayoutRenderers
                         dataTargets.Add(this.AppendToString);
                         break;
 
-#if !NET_CF
                     case "method":
                         dataTargets.Add(this.AppendMethod);
                         break;
@@ -215,7 +211,7 @@ namespace NLog.LayoutRenderers
                     case "stacktrace":
                         dataTargets.Add(this.AppendStackTrace);
                         break;
-#endif
+
                     default:
                         InternalLogger.Warn("Unknown exception data target: {0}", s);
                         break;
@@ -225,7 +221,7 @@ namespace NLog.LayoutRenderers
             this.exceptionDataTargets = dataTargets.ToArray();
         }
 
-#if SILVERLIGHT
+#if SILVERLIGHT || NET_CF
         private string ParseMethodNameFromStackTrace(string stackTrace)
         {
             // get the first line of the stack trace

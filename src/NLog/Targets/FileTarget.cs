@@ -761,9 +761,14 @@ namespace NLog.Targets
             {
                 File.Move(fileName, newFileName);
             }
-            catch (DirectoryNotFoundException)
+            catch (IOException)
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(newFileName));
+                string dir = Path.GetDirectoryName(newFileName);
+                if (!Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+
                 File.Move(fileName, newFileName);
             }
         }
