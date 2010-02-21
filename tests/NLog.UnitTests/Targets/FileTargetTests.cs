@@ -456,9 +456,9 @@ namespace NLog.UnitTests.Targets
 
                 string threadID = Thread.CurrentThread.ManagedThreadId.ToString();
 
+                //InternalLogger.LogToConsole = true;
+                //InternalLogger.LogLevel = LogLevel.Trace;
                 SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(ft, 1000, AsyncTargetWrapperOverflowAction.Grow), LogLevel.Debug);
-                InternalLogger.LogToConsole = true;
-                InternalLogger.LogLevel = LogLevel.Trace;
                 LogManager.ThrowExceptions = true;
 
                 for (int i = 0; i < 250; ++i)

@@ -99,7 +99,7 @@ namespace NLog.Internal
 
         private void ScanProperties(INLogConfigurationItem o)
         {
-            foreach (PropertyInfo prop in o.GetType().GetProperties())
+            foreach (PropertyInfo prop in PropertyHelper.GetAllReadableProperties(o.GetType()))
             {
                 if (prop.PropertyType.IsPrimitive || prop.PropertyType.IsEnum || prop.PropertyType == typeof(string))
                 {

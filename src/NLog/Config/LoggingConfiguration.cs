@@ -253,7 +253,7 @@ namespace NLog.Config
 
         private static void CheckRequiredParameters(object o)
         {
-            foreach (PropertyInfo propInfo in o.GetType().GetProperties())
+            foreach (PropertyInfo propInfo in PropertyHelper.GetAllReadableProperties(o.GetType()))
             {
                 if (propInfo.IsDefined(typeof(RequiredParameterAttribute), false))
                 {

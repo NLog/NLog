@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
@@ -275,12 +276,12 @@ namespace NLog.Internal
 
         private static Dictionary<string, PropertyInfo> BuildPropertyInfoDictionary(Type t)
         {
-            Dictionary<string, PropertyInfo> retVal = new Dictionary<string, PropertyInfo>(StringComparer.OrdinalIgnoreCase);
-            foreach (PropertyInfo propInfo in t.GetProperties())
+            var retVal = new Dictionary<string, PropertyInfo>(StringComparer.OrdinalIgnoreCase);
+            foreach (PropertyInfo propInfo in GetAllReadableProperties(t))
             {
                 if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
                 {
-                    ArrayParameterAttribute[] attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
+                    var attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
 
                     retVal[attributes[0].ElementName] = propInfo;
                 }
@@ -296,6 +297,29 @@ namespace NLog.Internal
             }
 
             return retVal;
+        }
+
+        internal static IEnumerable<PropertyInfo> GetAllReadableProperties(Type type)
+        {
+#if NETCF2_0
+            // .NET Compact Framework 2.0 understands 'Public' differently
+            // it only returns properties where getter and setter are public
+
+            var allProperties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic);
+            var readableProperties = new List<PropertyInfo>();
+            foreach (var prop in allProperties)
+            {
+                if (prop.CanRead)
+                {
+                    readableProperties.Add(prop);
+                }
+            }
+
+            return readableProperties;
+#else
+            // other frameworks don't have this problem
+            return type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+#endif
         }
     }
 }

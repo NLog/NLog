@@ -4,6 +4,7 @@
 	* Made Silverlight unit tests runnable from VS directly.
 	* Disabled filename-related stuff from Silverlight stacktrace reporting.
 	* Added support for ${exception:method} on Silverlight by parsing the stack frame.
+	* Fixed a bug in .NET Compact Framework 2.0 support where read-only properties were not discovered correctly (works fine for other versions).
 
 2009-11-01 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added skeleton for LogReceiverService which sends parameterized log messages in batches to a web service (WCF/SOAP).
