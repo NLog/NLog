@@ -175,7 +175,7 @@
   </Target>
 
   <Target Name="SL3Test" DependsOnTargets="BuildSLTestRunner">
-    <Exec Command='"$(SLTestRunner) NLog.UnitTests.xap SL3'
+    <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap SL3'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 3.0" />
   </Target>
 
