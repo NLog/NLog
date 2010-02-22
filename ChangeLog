@@ -1,4 +1,6 @@
 2010-02-21 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Fixed bug #3990 - Stack overflow in NLogViewerTarget constructor
+	* Changed LoggingRule.Targets and LoggingRule.ChildRules to use IList<T> instead of ICollection<T>
 	* Added Makefile for building and running tests on Unix
 
 2010-02-20 Jaroslaw Kowalski <jaak@jkowalski.net>

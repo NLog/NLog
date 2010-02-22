@@ -121,44 +121,54 @@
   </Target>
 
   <Target Name="NetFx20Test">
-    <Exec Command="&quot;$(MSTest9)&quot; /nologo /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 2.0\NLog.UnitTests.dll&quot;" 
+    <Exec Command="&quot;$(MSTest9)&quot; /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx" 
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 2.0" 
           Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
   </Target>                
 
   <Target Name="NetFx35Test">
-    <Exec Command="&quot;$(MSTest9)&quot; /nologo /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.dll&quot;"
+    <Exec Command="&quot;$(MSTest9)&quot; /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx" 
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5" 
           Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="NetFx35ClientTest">
-    <Exec Command="&quot;$(MSTest9)&quot; /nologo /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5 Client Profile\NLog.UnitTests.dll&quot;"
+    <Exec Command="&quot;$(MSTest9)&quot; /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx" 
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5 Client Profile" 
           Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="NetFx40Test">
-    <Exec Command="&quot;$(MSTest10)&quot; /nologo /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLog.UnitTests.dll&quot;"
+    <Exec Command="&quot;$(MSTest10)&quot; /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx"
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0" 
           Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="NetFx40ClientTest">
-    <Exec Command="&quot;$(MSTest10)&quot; /nologo /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0 Client Profile\NLog.UnitTests.dll&quot;"
+    <Exec Command="&quot;$(MSTest10)&quot; /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx"
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0 Client Profile" 
           Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="NetCf20Test" DependsOnTargets="DeployNetCf20ToEmulator">
-    <Exec Command="&quot;$(MSTest9)&quot; /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 2.0\NLog.UnitTests.dll&quot;"
+    <Copy SourceFiles="SmartDeviceTestRun.testrunConfig" DestinationFolder="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 2.0" />
+    <Exec Command="&quot;$(MSTest9)&quot; /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx"
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 2.0"
           Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
     <Exec Command="TaskKill /f /im DeviceEmulator.exe" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="NetCf35Test" DependsOnTargets="DeployNetCf35ToEmulator">
-    <Exec Command="&quot;$(MSTest9)&quot; /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:&quot;$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 3.5\NLog.UnitTests.dll&quot;"
+    <Copy SourceFiles="SmartDeviceTestRun.testrunConfig" DestinationFolder="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 3.5" />
+    <Exec Command="&quot;$(MSTest9)&quot; /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx"
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 3.5"
           Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
     <Exec Command="TaskKill /f /im DeviceEmulator.exe" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="SL2Test" DependsOnTargets="BuildSLTestRunner">
-    <Exec Command="$(SLTestRunner) NLog.UnitTests.xap SL2" WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 2.0" />
+    <Exec Command="$(SLTestRunner) NLog.UnitTests.xap SL2" 
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 2.0" />
   </Target>
 
   <Target Name="SL3Test" DependsOnTargets="BuildSLTestRunner">

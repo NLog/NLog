@@ -160,6 +160,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ProcessRunner.cs" />
+    <Compile Include="RegressionTests.cs" />
     <Compile Include="RoutingTests.cs">
       <SubType>Code</SubType>
     </Compile>

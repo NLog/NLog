@@ -152,7 +152,7 @@ namespace NLog.Targets
         protected new Log4JXmlEventLayout Layout
         {
             get { return base.Layout as Log4JXmlEventLayout; }
-            set { this.Layout = value; }
+            set { base.Layout = value; }
         }
 
         private Log4JXmlEventLayoutRenderer Renderer

@@ -108,12 +108,12 @@ namespace NLog.Config
         /// <summary>
         /// Gets a collection of targets that should be written to when this rule matches.
         /// </summary>
-        public ICollection<Target> Targets { get; private set; }
+        public IList<Target> Targets { get; private set; }
 
         /// <summary>
         /// Gets a collection of child rules to be evaluated when this rule matches.
         /// </summary>
-        public ICollection<LoggingRule> ChildRules { get; private set; }
+        public IList<LoggingRule> ChildRules { get; private set; }
 
         /// <summary>
         /// Gets a collection of filters to be checked before writing to targets.
