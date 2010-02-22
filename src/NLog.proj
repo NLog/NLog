@@ -20,7 +20,7 @@
     <MSTest10>$(VS100COMNTOOLS)..\IDE\MSTest.exe</MSTest10>
     <MSTest>$(MSTest10)</MSTest>
     <MSTest Condition="!Exists('$(MSTest)')">$(MSTest9)</MSTest>
-    <DumpTestResultSummary>$(MSBuildProjectDirectory)\..\tools\DumpTestResultSummary\DumpTestResultSummary\bin\$(Configuration)\DumpTestResultSummary.exe</DumpTestResultSummary>
+    <DumpTestResultSummary>$(MSBuildProjectDirectory)\..\tools\DumpTestResultSummary\bin\$(Configuration)\DumpTestResultSummary.exe</DumpTestResultSummary>
     <DeployNetCF>..\tools\DeployNetCF.exe</DeployNetCF>
     <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
@@ -180,6 +180,7 @@
   </Target>
 
   <Target Name="CheckinSuite">
+    <CallTarget Targets="DeepClean" />
     <CallTarget Targets="Rebuild" />
     <CallTarget Targets="BuildTests" />
     <CallTarget Targets="RunTests" />
@@ -217,7 +218,7 @@
   </Target>
 
   <Target Name="BuildTestResultSummaryTool">
-    <MSBuild Projects="..\tools\DumpTestResultSummary\DumpTestResultSummary\DumpTestResultSummary.csproj" />
+    <MSBuild Projects="..\tools\DumpTestResultSummary\DumpTestResultSummary.csproj" />
   </Target>
 
   <Target Name="Clean">
