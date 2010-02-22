@@ -221,7 +221,44 @@
   </Target>
 
   <Target Name="Clean">
-     <RemoveDir Directories="$(BaseOutputDirectory)bin\$(Configuration)\%(TargetFramework.Identity)" ContinueOnError="$(BuildAllFrameworks)" />
-     <RemoveDir Directories="$(BaseOutputDirectory)obj\$(Configuration)\%(TargetFramework.Identity)" ContinueOnError="$(BuildAllFrameworks)" />
+     <RemoveDir Directories="@(TargetFramework -> '$(BaseOutputDirectory)bin\$(Configuration)\%(Identity)')" />
+     <RemoveDir Directories="@(TargetFramework -> '$(BaseOutputDirectory)obj\$(Configuration)\%(Identity)')" />
+  </Target>
+
+  <ItemGroup>
+    <FilesToCleanup Include="..\**\*.suo" />
+    <FilesToCleanup Include="..\**\*.ncb" />
+    <FilesToCleanup Include="..\**\*.user" />
+    <FilesToCleanup Include="..\**\*.cache" />
+    <FilesToCleanup Include="LastTestRunSummary.cmd" />
+    <DirectoriesToCleanup Include="_ReSharper.*" />
+    <DirectoriesToCleanup Include="..\build\bin" />
+    <DirectoriesToCleanup Include="..\build\obj" />
+    <DirectoriesToCleanup Include="Docs\Working" />
+    <DirectoriesToCleanup Include="TestResults" />
+    <ProjectsToCleanup Include="NLog" />
+    <ProjectsToCleanup Include="NLogC" />
+    <ProjectsToCleanup Include="Doc" />
+    <ProjectsToCleanup Include="..\tests\NLog.AsyncBenchmark" />
+    <ProjectsToCleanup Include="..\tests\NLog.Benchmark" />
+    <ProjectsToCleanup Include="..\tests\NLog.BinaryCompatTests" />
+    <ProjectsToCleanup Include="..\tests\NLog.Test" />
+    <ProjectsToCleanup Include="..\tests\NLog.UnitTests" />
+    <ProjectsToCleanup Include="..\tests\NLog.UnitTests.Web" />
+    <ProjectsToCleanup Include="..\tests\NLog.VBTest" />
+    <ProjectsToCleanup Include="..\tests\NLogC.Tests" />
+    <ProjectsToCleanup Include="..\tests\SilverlightConsoleRunner" />
+    <ProjectsToCleanup Include="..\tools\MakeNLogXSD" />
+    <ProjectsToCleanup Include="..\tools\DeployNetCF" />
+    <ProjectsToCleanup Include="..\tools\DumpTestResultSummary" />
+    <SolutionFiles Include="..\**\*.sln" />
+  </ItemGroup>
+
+  <Target Name="DeepClean">
+     <Delete Files="@(FilesToCleanup)" />
+     <RemoveDir Directories="@(DirectoriesToCleanup)" />
+     <RemoveDir Directories="@(ProjectsToCleanup -> '%(Identity)\bin')" />
+     <RemoveDir Directories="@(ProjectsToCleanup -> '%(Identity)\obj')" />
+     <RemoveDir Directories="@(SolutionFiles -> '%(RelativeDir)_ReSharper.%(filename)')" />
   </Target>
 </Project>

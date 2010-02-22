@@ -100,6 +100,12 @@ if (%1)==(clean) (
 	goto next
 )
 
+if (%1)==(deepclean) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:DeepClean
+	shift
+	goto next
+)
+
 if (%1)==(build) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Build
 	shift
@@ -162,6 +168,7 @@ echo.
 echo Targets can be:
 echo.
 echo  clean              Removes output files
+echo  deepclean          Removes temporary and intermediate files
 echo  build              Compiles assemblies
 echo  buildtests         Compiles tests
 echo  runtests           Runs unit tests
