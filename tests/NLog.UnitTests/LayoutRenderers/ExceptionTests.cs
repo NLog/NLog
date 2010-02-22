@@ -79,18 +79,10 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug5", ex.ToString());
             AssertDebugLastMessage("debug6", exceptionMessage);
 
-            // each version of the framework produces slightly different information
-#if SILVERLIGHT
-            AssertDebugLastMessage("debug7", "NLog.UnitTests.LayoutRenderers.ExceptionTests.GenericClass`3.Method2[T1,T2,T3](T1 aaa, T2 b, T3 o, Int32 i, DateTime now, Nullable`1 gfff, List`1[] something)");
-#elif NETCF2_0
-            // NET Compact Framework 2.0 is not very chatty
-            AssertDebugLastMessage("debug7", "GenericClass`3.Method2()");
-#elif NET_CF
-            // 3.5 is better...
-            AssertDebugLastMessage("debug7", "NLog.UnitTests.LayoutRenderers.ExceptionTests.GenericClass`3.Method2[T1,T2,T3](String aaa, Boolean b, Object o, Int32 i, DateTime now, Nullable`1 gfff, List`1[] something)");
-#else
-            AssertDebugLastMessage("debug7", "Int32 Method2[T1,T2,T3](T1, T2, T3, Int32, System.DateTime, System.Nullable`1[System.Int32], System.Collections.Generic.List`1[System.Int32][])");
-#endif
+            // each version of the framework produces slightly different information for MethodInfo, so we just 
+            // make sure it's not empty
+            var debug7Target = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
+            Assert.IsFalse(string.IsNullOrEmpty(debug7Target.LastMessage));
 
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
         }

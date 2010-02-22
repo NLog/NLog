@@ -128,11 +128,19 @@ namespace NLog.UnitTests.Targets
                 while ((line = sr.ReadLine()) != null)
                 {
                     string[] tokens = line.Split(' ');
-                    int thread = Convert.ToInt32(tokens[0]);
-                    int number = Convert.ToInt32(tokens[1]);
+                    Assert.AreEqual(2, tokens.Length, "invalid output line: '" + line + "' expected two numbers.");
+		    try
+		    {
+                        int thread = Convert.ToInt32(tokens[0]);
+                        int number = Convert.ToInt32(tokens[1]);
 
-                    Assert.AreEqual(maxNumber[thread], number);
-                    maxNumber[thread]++;
+                        Assert.AreEqual(maxNumber[thread], number);
+                        maxNumber[thread]++;
+		    }
+		    catch (Exception ex)
+		    {
+		    	throw new InvalidOperationException("Error when parsing line '" + line + "'", ex);
+		    }
                 }
             }
         }
