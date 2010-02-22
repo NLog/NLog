@@ -20,6 +20,7 @@
     <MSTest10>$(VS100COMNTOOLS)..\IDE\MSTest.exe</MSTest10>
     <MSTest>$(MSTest10)</MSTest>
     <MSTest Condition="!Exists('$(MSTest)')">$(MSTest9)</MSTest>
+    <DumpTestResultSummary>$(MSBuildProjectDirectory)\..\tools\DumpTestResultSummary\DumpTestResultSummary\bin\$(Configuration)\DumpTestResultSummary.exe</DumpTestResultSummary>
     <DeployNetCF>..\tools\DeployNetCF.exe</DeployNetCF>
     <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
@@ -109,6 +110,7 @@
   </Target>
 
   <Target Name="RunTests">
+    <CallTarget Targets="DeleteTrxFiles" />
     <CallTarget Targets="NetFx20Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX20)'=='true'"/>
     <CallTarget Targets="NetFx35Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX35)'=='true'"/>
     <CallTarget Targets="NetFx35ClientTest" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX35Client)'=='true'"/>
@@ -118,41 +120,42 @@
     <CallTarget Targets="NetCF35Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetCF35)'=='true'"/>
     <CallTarget Targets="SL2Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildSL2)'=='true'"/>
     <CallTarget Targets="SL3Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildSL3)'=='true'"/>
+    <CallTarget Targets="PrepareTestResultSummary" />
   </Target>
 
   <Target Name="NetFx20Test">
-    <Exec Command="&quot;$(MSTest9)&quot; /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx" 
+    <Exec Command='"$(MSTest9)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx' 
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 2.0" 
           Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
   </Target>                
 
   <Target Name="NetFx35Test">
-    <Exec Command="&quot;$(MSTest9)&quot; /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx" 
+    <Exec Command='"$(MSTest9)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx' 
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5" 
           Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="NetFx35ClientTest">
-    <Exec Command="&quot;$(MSTest9)&quot; /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx" 
+    <Exec Command='"$(MSTest9)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx' 
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5 Client Profile" 
           Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="NetFx40Test">
-    <Exec Command="&quot;$(MSTest10)&quot; /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx"
+    <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0" 
           Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="NetFx40ClientTest">
-    <Exec Command="&quot;$(MSTest10)&quot; /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx"
+    <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0 Client Profile" 
           Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="NetCf20Test" DependsOnTargets="DeployNetCf20ToEmulator">
     <Copy SourceFiles="SmartDeviceTestRun.testrunConfig" DestinationFolder="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 2.0" />
-    <Exec Command="&quot;$(MSTest9)&quot; /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx"
+    <Exec Command='"$(MSTest9)" /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 2.0"
           Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
     <Exec Command="TaskKill /f /im DeviceEmulator.exe" IgnoreExitCode="true" />
@@ -160,19 +163,39 @@
 
   <Target Name="NetCf35Test" DependsOnTargets="DeployNetCf35ToEmulator">
     <Copy SourceFiles="SmartDeviceTestRun.testrunConfig" DestinationFolder="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 3.5" />
-    <Exec Command="&quot;$(MSTest9)&quot; /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx"
+    <Exec Command='"$(MSTest9)" /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 3.5"
           Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
     <Exec Command="TaskKill /f /im DeviceEmulator.exe" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="SL2Test" DependsOnTargets="BuildSLTestRunner">
-    <Exec Command="$(SLTestRunner) NLog.UnitTests.xap SL2" 
+    <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap SL2'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 2.0" />
   </Target>
 
   <Target Name="SL3Test" DependsOnTargets="BuildSLTestRunner">
-    <Exec Command="$(SLTestRunner) NLog.UnitTests.xap SL3" WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 3.0" />
+    <Exec Command='"$(SLTestRunner) NLog.UnitTests.xap SL3'
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 3.0" />
+  </Target>
+
+  <Target Name="CheckinSuite">
+    <CallTarget Targets="Rebuild" />
+    <CallTarget Targets="BuildTests" />
+    <CallTarget Targets="RunTests" />
+    <CallTarget Targets="PrepareTestResultSummary" />
+  </Target>
+
+  <Target Name="DeleteTrxFiles">
+    <Delete Files='$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\TestResults.trx' />
+  </Target>
+
+  <Target Name="PrepareTestResultSummary" DependsOnTargets="BuildTestResultSummaryTool">
+    <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='@echo off' Overwrite="true" />
+    <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='echo ---------------------' />
+    <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='echo Test run summary:' />
+    <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='echo ---------------------' />
+    <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='"$(DumpTestResultSummary)" "%(TargetFramework.Identity)" "$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\TestResults.trx"' />
   </Target>
 
   <Target Name="Documentation" DependsOnTargets="Build">
@@ -191,6 +214,10 @@
 
   <Target Name="BuildSLTestRunner">
     <MSBuild Projects="..\tests\SilverlightConsoleRunner\SilverlightConsoleRunner.csproj" />
+  </Target>
+
+  <Target Name="BuildTestResultSummaryTool">
+    <MSBuild Projects="..\tools\DumpTestResultSummary\DumpTestResultSummary\DumpTestResultSummary.csproj" />
   </Target>
 
   <Target Name="Clean">

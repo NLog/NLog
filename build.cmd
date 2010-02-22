@@ -114,6 +114,7 @@ if (%1)==(buildtests) (
 
 if (%1)==(runtests) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:RunTests
+	set POST_BUILD_COMMAND="%~dp0src\LastTestRunSummary.cmd"
 	shift
 	goto next
 )
@@ -124,8 +125,16 @@ if (%1)==(rebuild) (
 	goto next
 )
 
+if (%1)==(checkinsuite) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:CheckinSuite
+	set POST_BUILD_COMMAND="%~dp0src\LastTestRunSummary.cmd"
+	shift
+	goto next
+)
+
 if (%1)==(all) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:All
+	set POST_BUILD_COMMAND="%~dp0src\LastTestRunSummary.cmd"
 	shift
 	goto next
 )
@@ -156,6 +165,7 @@ echo  clean              Removes output files
 echo  build              Compiles assemblies
 echo  buildtests         Compiles tests
 echo  runtests           Runs unit tests
+echo  checkinsuite       Cleans, builds and runs all tests
 echo  doc                Builds documentation
 echo  all                Full build
 exit /b 1
@@ -165,3 +175,4 @@ exit /b 1
 echo MSBUILD: %MSBUILD%
 echo MSBUILD_ARGUMENTS: %MSBUILD_ARGUMENTS%
 %MSBUILD% /nologo /fl "%~dp0src\NLog.proj" %MSBUILD_ARGUMENTS%
+%POST_BUILD_COMMAND%

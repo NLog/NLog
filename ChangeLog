@@ -1,5 +1,7 @@
 2010-02-21 Jaroslaw Kowalski <jaak@jkowalski.net>
-	* Fixed bug #3990 - Stack overflow in NLogViewerTarget constructor
+	* Added 'build checkinsuite' option which cleans and builds everything then runs tests and presents a synthetic view of the results.
+	* Added DumpTestResultSummary tool which displays readable summary of a *.TRX file
+	* Added TRX output to SilverlightConsoleRunner.	* Fixed bug #3990 - Stack overflow in NLogViewerTarget constructor
 	* Changed LoggingRule.Targets and LoggingRule.ChildRules to use IList<T> instead of ICollection<T>
 	* Added Makefile for building and running tests on Unix
 

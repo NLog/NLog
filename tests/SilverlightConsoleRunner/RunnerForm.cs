@@ -13,7 +13,7 @@ namespace SilverlightConsoleRunner
 
         public string Url { get; set; }
 
-        public event EventHandler<EventArgs> OnCompleted;
+        public event EventHandler<TestCompletedEventArgs> OnCompleted;
         public event EventHandler<LogEventArgs> OnLogEvent;
 
         private void RunnerForm_Load(object sender, EventArgs e)

@@ -48,6 +48,7 @@
                 using (var form = new RunnerForm())
                 {
                     form.OnLogEvent += this.OnLogEvent;
+                    form.OnCompleted += this.OnCompleted;
                     form.Url = "http://localhost:" + httpServer.ListenPort + "/XapHost.html";
                     form.ShowDialog();
                 }
@@ -60,6 +61,11 @@
                         this.FailedCount,
                         Math.Round(100.0 * this.PassedCount / (this.PassedCount + this.FailedCount + this.OtherCount), 2)));
             }
+        }
+
+        private void OnCompleted(object sender, TestCompletedEventArgs e)
+        {
+            File.WriteAllText("TestResults.trx", e.TrxFileContents);
         }
 
         private void OnLogEvent(object sender, LogEventArgs e)
