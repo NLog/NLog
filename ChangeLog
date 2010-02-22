@@ -1,3 +1,6 @@
+2010-02-21 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added Makefile for building and running tests on Unix
+
 2010-02-20 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Fixed handling of StackFrame/StackTrace in Silverlight - updated unit tests to deal with that.
 	* All unit tests are now passing on SL2 and SL3 and Compact Framework
