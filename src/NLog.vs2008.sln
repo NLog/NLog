@@ -2,8 +2,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7638C35C-A8AC-437C-94FD-9DABD9D5839C}"
 	ProjectSection(SolutionItems) = preProject
-		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
-		NLog.Silverlight.vsmdi = NLog.Silverlight.vsmdi
+		LocalTestRun.vs2008.testrunconfig = LocalTestRun.vs2008.testrunconfig
+		NLog.vs2008.vsmdi = NLog.vs2008.vsmdi
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightConsoleRunner", "..\tests\SilverlightConsoleRunner\SilverlightConsoleRunner.csproj", "{9F781FD8-1E0F-4248-BDB1-F07DB925E69C}"
@@ -33,6 +33,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.netcf35", "..\tests\NLog.UnitTests\NLog.UnitTests.netcf35.csproj", "{2A1AFF0C-0C26-4B2E-95C5-BCFBBE347031}"
 EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = NLog.vs2008.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
