@@ -199,8 +199,8 @@
     <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='"$(DumpTestResultSummary)" "%(TargetFramework.Identity)" "$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\TestResults.trx"' />
   </Target>
 
-  <Target Name="Documentation" DependsOnTargets="Build">
-    <Exec Command='"$(MSBuildBinPath)\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="%(TargetFramework.Identity)"' ContinueOnError="$(BuildAllFrameworks)" />
+  <Target Name="Documentation">
+    <Exec Command='"$(MSBuildBinPath)\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="%(TargetFramework.Identity)" /p:Configuration=$(Configuration)' ContinueOnError="$(BuildAllFrameworks)" />
   </Target>
 
   <Target Name="DeployNetCf20ToEmulator">
