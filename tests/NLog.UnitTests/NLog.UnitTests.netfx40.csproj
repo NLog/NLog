@@ -1,15 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1653EE05-2720-4A85-BF14-74C4493787B1}</ProjectGuid>
+    <ProjectGuid>{FE067913-E9A8-41F0-89FA-C1126F8FB6A8}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v3.5</TargetFrameworkVersion>
-    <ApplicationIcon></ApplicationIcon>
-    <AssemblyKeyContainerName></AssemblyKeyContainerName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -18,8 +20,6 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <SignAssembly>true</SignAssembly>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <IsClientSku>false</IsClientSku>
-    <IsClientSku Condition="'$(TargetFrameworkSubset)' == 'Client' or '$(TargetFrameworkProfile)' == 'Client'">true</IsClientSku>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -48,24 +48,14 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworkName>Unknown .NET Framework Version</TargetFrameworkName>
-    <TargetFrameworkName Condition="'$(TargetFrameworkVersion)' == 'v2.0'">.NET Framework 2.0</TargetFrameworkName>
-    <TargetFrameworkName Condition="'$(TargetFrameworkVersion)' == 'v3.0'">.NET Framework 3.0</TargetFrameworkName>
-    <TargetFrameworkName Condition="'$(TargetFrameworkVersion)' == 'v3.5'">.NET Framework 3.5</TargetFrameworkName>
-    <TargetFrameworkName Condition="'$(TargetFrameworkVersion)' == 'v4.0'">.NET Framework 4.0</TargetFrameworkName>
-    <TargetFrameworkName Condition="'$(IsClientSku)' == 'true'">$(TargetFrameworkName) Client Profile</TargetFrameworkName>
-  </PropertyGroup>
-  <PropertyGroup>
-    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v2.0'">NET2_0;$(DefineConstants)</DefineConstants>
-    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v3.5'">NET3_5;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
-    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v4.0'">NET4_0;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
-    <DefineConstants Condition="'$(IsClientSku)' == 'true'">CLIENT_SKU;$(DefineConstants)</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup>
+    <TargetFrameworkName>.NET Framework 4.0</TargetFrameworkName>
+    <DefineConstants>NET4_0;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
+    <DocumentationFile>$(OutputPath)\NLog.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" Condition="'$(TargetFrameworkVersion)' != 'v2.0'" />
@@ -76,14 +66,6 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" Condition="'$(TargetFrameworkVersion)' != 'v2.0'" />
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog\NLog.csproj">
-      <Name>NLog</Name>
-      <Project>{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs">
@@ -181,6 +163,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="NLogTests.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NLog\NLog.netfx40.csproj">
+      <Project>{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}</Project>
+      <Name>NLog.netfx40</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(StyleCopTargetsFile)" Condition="'$(StyleCopTargetsFile)' != ''" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

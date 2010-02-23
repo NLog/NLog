@@ -3,10 +3,9 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v3.5</TargetFrameworkVersion>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B71A9EF1-2493-4B7B-AB82-8C7A83C10952}</ProjectGuid>
+    <ProjectGuid>{63381160-DCF9-4011-9EE6-98AEFA6462C8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NLog</RootNamespace>
@@ -14,8 +13,15 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <IsClientSku>false</IsClientSku>
-    <IsClientSku Condition="'$(TargetFrameworkSubset)' == 'Client' or '$(TargetFrameworkProfile)' == 'Client'">true</IsClientSku>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>PocketPC</PlatformFamilyName>
+    <PlatformID>3C41C503-53EF-4c2a-8DD4-A8217CAD115E</PlatformID>
+    <OSVersion>4.20</OSVersion>
+    <DeployDirSuffix>NLog</DeployDirSuffix>
+    <NativePlatformName>Pocket PC 2003</NativePlatformName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FormFactorID>
+    </FormFactorID>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,8 +30,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <OutputPath>bin\Debug</OutputPath>
     <CodeAnalysisRules>-Microsoft.Design#CA1020</CodeAnalysisRules>
+    <GenerateSerializationAssemblies>off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,37 +39,25 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <OutputPath>bin\Release</OutputPath>
+    <GenerateSerializationAssemblies>off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworkName>Unknown .NET Framework Version</TargetFrameworkName>
-    <TargetFrameworkName Condition="'$(TargetFrameworkVersion)' == 'v2.0'">.NET Framework 2.0</TargetFrameworkName>
-    <TargetFrameworkName Condition="'$(TargetFrameworkVersion)' == 'v3.0'">.NET Framework 3.0</TargetFrameworkName>
-    <TargetFrameworkName Condition="'$(TargetFrameworkVersion)' == 'v3.5'">.NET Framework 3.5</TargetFrameworkName>
-    <TargetFrameworkName Condition="'$(TargetFrameworkVersion)' == 'v4.0'">.NET Framework 4.0</TargetFrameworkName>
-    <TargetFrameworkName Condition="'$(IsClientSku)' == 'true'">$(TargetFrameworkName) Client Profile</TargetFrameworkName>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <DefineConstants>PocketPC;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup>
-    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v2.0'">NET2_0;$(DefineConstants)</DefineConstants>
-    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v3.5'">NET3_5;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
-    <DefineConstants Condition="'$(TargetFrameworkVersion)' == 'v4.0'">NET4_0;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
-    <DefineConstants Condition="'$(IsClientSku)' == 'true'">CLIENT_SKU;$(DefineConstants)</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup>
+    <TargetFrameworkName>.NET Compact Framework 2.0</TargetFrameworkName>
+    <DefineConstants>NET_CF;NETCF2_0;$(DefineConstants)</DefineConstants>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
     <DocumentationFile>$(OutputPath)\NLog.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="mscorlib" />
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" Condition="'$(TargetFrameworkVersion)' == 'v3.5'" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Messaging" Condition="'$(IsClientSku)' != 'true'" />
-    <Reference Include="System.Runtime.Serialization" Condition="'$(TargetFrameworkVersion)' != 'v2.0'" />
-    <Reference Include="System.ServiceModel" Condition="'$(TargetFrameworkVersion)' != 'v2.0'" />
-    <Reference Include="System.Web" Condition="'$(IsClientSku)' != 'true'" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -343,9 +337,12 @@
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Internal\Win32\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(StyleCopTargetsFile)" Condition="'$(StyleCopTargetsFile)' != ''" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

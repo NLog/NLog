@@ -5,16 +5,21 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</ProjectGuid>
+    <ProjectGuid>{0D90976A-D1FD-4FEF-B7A9-9A40731C19EB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NLog</RootNamespace>
     <AssemblyName>NLog</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
-    <SilverlightVersion Condition="'$(SilverlightVersion)' == ''">v3.0</SilverlightVersion>
+    <SilverlightVersion Condition="'$(SilverlightVersion)' == ''">v2.0</SilverlightVersion>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,15 +38,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworkName>Unknown Silverlight Version</TargetFrameworkName>
-    <TargetFrameworkName Condition="'$(SilverlightVersion)' == 'v2.0'">Silverlight 2.0</TargetFrameworkName>
-    <TargetFrameworkName Condition="'$(SilverlightVersion)' == 'v3.0'">Silverlight 3.0</TargetFrameworkName>
-  </PropertyGroup>
-  <PropertyGroup>
-    <DefineConstants Condition="'$(SilverlightVersion)' == 'v2.0'">SILVERLIGHT;SILVERLIGHT2;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
-    <DefineConstants Condition="'$(SilverlightVersion)' == 'v3.0'">SILVERLIGHT;SILVERLIGHT3;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup>
+    <TargetFrameworkName>Silverlight 2.0</TargetFrameworkName>
+    <DefineConstants>SILVERLIGHT;SILVERLIGHT2;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
@@ -335,7 +333,7 @@
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\v2.0\Microsoft.Silverlight.CSharp.targets" Condition="" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
