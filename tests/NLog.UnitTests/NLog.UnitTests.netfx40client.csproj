@@ -7,7 +7,7 @@
     <ProjectGuid>{77C4FF4D-744B-4490-98E1-3686CE629442}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v4.0</TargetFrameworkVersion>
     <ApplicationIcon>
     </ApplicationIcon>
     <AssemblyKeyContainerName>
@@ -20,8 +20,6 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <SignAssembly>true</SignAssembly>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <IsClientSku>false</IsClientSku>
-    <IsClientSku Condition="'$(TargetFrameworkSubset)' == 'Client' or '$(TargetFrameworkProfile)' == 'Client'">true</IsClientSku>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -57,6 +55,7 @@
     <DocumentationFile>$(OutputPath)\NLog.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" Condition="'$(TargetFrameworkVersion)' != 'v2.0'" />
@@ -67,14 +66,6 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" Condition="'$(TargetFrameworkVersion)' != 'v2.0'" />
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog\NLog.csproj">
-      <Name>NLog</Name>
-      <Project>{020354EE-5073-4BB5-9AA2-A7EADA8CAD09}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs">
@@ -172,6 +163,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="NLogTests.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NLog\NLog.netfx40client.csproj">
+      <Project>{7D5159DF-A3D2-47A1-9A21-20A6B725077C}</Project>
+      <Name>NLog.netfx40client</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(StyleCopTargetsFile)" Condition="'$(StyleCopTargetsFile)' != ''" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
