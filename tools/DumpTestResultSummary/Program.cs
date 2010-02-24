@@ -9,8 +9,6 @@ namespace DumpTestResultSummary
 {
     class Program
     {
-        static XNamespace mstest2006Namespace = "http://microsoft.com/schemas/VisualStudio/TeamTest/2006";
-
         static int Main(string[] args)
         {
             var oldColor = Console.ForegroundColor;
@@ -33,7 +31,7 @@ namespace DumpTestResultSummary
                 }
 
                 XElement element = XElement.Load(trxFileName);
-                var analyzer = new MSTestResultsFileAnalyzer(mstest2006Namespace);
+                var analyzer = new MSTestResultsFileAnalyzer(element.Name.Namespace);
                 analyzer.Label = args[0];
                 analyzer.DumpSummary(element);
 

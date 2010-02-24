@@ -121,8 +121,8 @@ namespace NLog.UnitTests
         {
             // ensure that 'Compile' and 'EmbeddedResource' project items are all
             // the same in both product and test projects for .NET, Silverlight and Compact Framework
-            VerifyProjectsInSync(Path.Combine(this.sourceCodeDirectory, "src/NLog"), "NLog");
-            VerifyProjectsInSync(Path.Combine(this.sourceCodeDirectory, "tests/NLog.UnitTests"), "NLog.UnitTests");
+            VerifyProjectsInSync(Path.Combine(this.sourceCodeDirectory, "src/NLog"), "NLog.netfx35");
+            VerifyProjectsInSync(Path.Combine(this.sourceCodeDirectory, "tests/NLog.UnitTests"), "NLog.UnitTests.netfx35");
         }
 
         private void VerifyProjectsInSync(string dir, string masterProjectFileName)

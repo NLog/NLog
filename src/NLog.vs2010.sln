@@ -6,15 +6,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		NLog.vs2010.vsmdi = NLog.vs2010.vsmdi
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightConsoleRunner", "..\tests\SilverlightConsoleRunner\SilverlightConsoleRunner.csproj", "{9F781FD8-1E0F-4248-BDB1-F07DB925E69C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.netfx40", "NLog\NLog.netfx40.csproj", "{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.netfx40client", "NLog\NLog.netfx40client.csproj", "{7D5159DF-A3D2-47A1-9A21-20A6B725077C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.netfx40", "..\tests\NLog.UnitTests\NLog.UnitTests.netfx40.csproj", "{FE067913-E9A8-41F0-89FA-C1126F8FB6A8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.netfx40client", "..\tests\NLog.UnitTests\NLog.UnitTests.netfx40client.csproj", "{77C4FF4D-744B-4490-98E1-3686CE629442}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -25,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9F781FD8-1E0F-4248-BDB1-F07DB925E69C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F781FD8-1E0F-4248-BDB1-F07DB925E69C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F781FD8-1E0F-4248-BDB1-F07DB925E69C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F781FD8-1E0F-4248-BDB1-F07DB925E69C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,10 +33,6 @@ Global
 		{FE067913-E9A8-41F0-89FA-C1126F8FB6A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE067913-E9A8-41F0-89FA-C1126F8FB6A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE067913-E9A8-41F0-89FA-C1126F8FB6A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77C4FF4D-744B-4490-98E1-3686CE629442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77C4FF4D-744B-4490-98E1-3686CE629442}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77C4FF4D-744B-4490-98E1-3686CE629442}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77C4FF4D-744B-4490-98E1-3686CE629442}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
