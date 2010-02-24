@@ -1,4 +1,5 @@
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
     <BaseOutputDirectory>$(MSBuildProjectDirectory)\..\build\</BaseOutputDirectory>
@@ -16,74 +17,102 @@
     <BuildAllFrameworks Condition="'$(BuildNetCF20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF35)' == 'true'">false</BuildAllFrameworks>
     <SLTestRunner>$(MSBuildProjectDirectory)\..\tests\SilverlightConsoleRunner\bin\$(Configuration)\SilverlightConsoleRunner.exe</SLTestRunner>
-    <MSTest9>$(VS90COMNTOOLS)..\IDE\MSTest.exe</MSTest9>
-    <MSTest10>$(VS100COMNTOOLS)..\IDE\MSTest.exe</MSTest10>
-    <MSTest>$(MSTest10)</MSTest>
-    <MSTest Condition="!Exists('$(MSTest)')">$(MSTest9)</MSTest>
     <DumpTestResultSummary>$(MSBuildProjectDirectory)\..\tools\DumpTestResultSummary\bin\$(Configuration)\DumpTestResultSummary.exe</DumpTestResultSummary>
     <DeployNetCF>..\tools\DeployNetCF.exe</DeployNetCF>
     <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
+  </PropertyGroup>
+
+  <!-- detect location of various SDKs and tools-->
+  <PropertyGroup>
+    <DotNet4Version>v4.0.30128</DotNet4Version>
+    <SL2RefPath Condition="'$(SL2InstallPath)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v2.0\Install Path@Install Path)</SL2RefPath>
+    <SL3RefPath Condition="'$(SL3RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v3.0</SL3RefPath>
+    <NetCF20InstallRoot>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\InstallRoot)</NetCF20InstallRoot>
+    <NetCF35InstallRoot>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\InstallRoot)</NetCF35InstallRoot>
+
+    <!-- yes, this is broken but MSBuild does not support recursive registry access (where registry path is parameterized)
+    so this will have to do. -->
+    <MonoDefaultClr>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Novell\Mono@DefaultCLR)</MonoDefaultClr>
+    <MonoInstallLocation Condition="'$(MonoInstallLocation)' == '' and $(MonoDefaultClr) != ''">$(ProgramFiles)\Mono-$(MonoDefaultClr)</MonoInstallLocation>
+
+    <MSTest9>$(VS90COMNTOOLS)..\IDE\MSTest.exe</MSTest9>
+    <MSTest10>$(VS100COMNTOOLS)..\IDE\MSTest.exe</MSTest10>
+
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopProperties Condition="'$(DisableStyleCop)' == 'false' and Exists('$(StyleCopTargetsFile)')">StyleCopTargetsFile=$(StyleCopTargetsFile)</StyleCopProperties>
   </PropertyGroup>
 
-  <PropertyGroup>
-     <BuildNetFX35 Condition="!Exists('$(WinDir)\Microsoft.NET\Framework\v3.5\csc.exe')">false</BuildNetFX35>
-     <BuildNetFX40 Condition="!Exists('$(WinDir)\Microsoft.NET\Framework\v4.0.30128\csc.exe')">false</BuildNetFX40>
-     <BuildNetFX40Client Condition="!Exists('$(WinDir)\Microsoft.NET\Framework\v4.0.30128\csc.exe')">false</BuildNetFX40Client>
-     <BuildNetFX40 Condition="'$(ToolsVersion)' == '3.5'">false</BuildNetFX40>
-     <BuildNetFX40Client Condition="'$(ToolsVersion)' == '3.5'">false</BuildNetFX40Client>
+  <!-- at this point, if $(BuildAllFrameworks)=='true' it means that the user has not requested 
+    any specific framework, so we build all that are available -->
+  <PropertyGroup Condition="'$(BuildAllFrameworks)' == 'true'">
+    <BuildMono2>true</BuildMono2>
+    <BuildSL2>true</BuildSL2>
+    <BuildSL3>true</BuildSL3>
+    <BuildNetFX20>true</BuildNetFX20>
+    <BuildNetFX35>true</BuildNetFX35>
+    <BuildNetFX40>true</BuildNetFX40>
+    <BuildNetCF20>true</BuildNetCF20>
+    <BuildNetCF35>true</BuildNetCF35>
+
+    <!-- now disable those that we know cannot be built -->
+    <BuildMono2 Condition="'$(MonoInstallLocation)'==''">false</BuildMono2>
+    <BuildSL2 Condition="'$(SL2RefPath)' == ''">false</BuildSL2>
+    <BuildSL3 Condition="'$(SL3RefPath)' == ''">false</BuildSL3>
+    <BuildNetCF20 Condition="'$(NetCF20InstallRoot)' == ''">false</BuildNetCF20>
+    <BuildNetCF35 Condition="'$(NetCF35InstallRoot)' == ''">false</BuildNetCF35>
+    <BuildNetFX20 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v2.0.50727') == ''">false</BuildNetFX20>
+    <BuildNetFX35 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v3.5') == ''">false</BuildNetFX35>
+    <BuildNetFX40 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\$(DotNet4Version)') == ''">false</BuildNetFX40>
+
+    <!-- don't build 4.0 if we're using MSBuild 3.5 -->
+    <BuildNetFX40 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX40>
+
+    <BuildNetFX35Client>$(BuildNetFX35)</BuildNetFX35Client>
+    <BuildNetFX40Client>$(BuildNetFX40)</BuildNetFX40Client>
   </PropertyGroup>
 
   <ItemGroup>
-    <TargetConfiguration Include="Debug" />
-    <TargetConfiguration Include="Release" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TargetFramework Include="Mono 2.x" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildMono2)'=='true'">
+    <TargetFramework Include="Mono 2.x" Condition="'$(BuildMono2)' == 'true'">
         <ProjectFileSuffix>.mono2</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
-    <TargetFramework Include="Silverlight 2.0" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildSL2)'=='true'">
+    <TargetFramework Include="Silverlight 2.0" Condition="'$(BuildSL2)'=='true'">
         <ProjectFileSuffix>.sl2</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
-    <TargetFramework Include="Silverlight 3.0" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildSL3)'=='true'">
+    <TargetFramework Include="Silverlight 3.0" Condition="'$(BuildSL3)'=='true'">
         <ProjectFileSuffix>.sl3</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
-    <TargetFramework Include=".NET Compact Framework 2.0" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetCF20)'=='true'">
+    <TargetFramework Include=".NET Compact Framework 2.0" Condition="'$(BuildNetCF20)'=='true'">
         <ProjectFileSuffix>.netcf20</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
-    <TargetFramework Include=".NET Compact Framework 3.5" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetCF35)'=='true'">
+    <TargetFramework Include=".NET Compact Framework 3.5" Condition="'$(BuildNetCF35)'=='true'">
         <ProjectFileSuffix>.netcf35</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
-    <TargetFramework Include=".NET Framework 2.0" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX20)'=='true'">
+    <TargetFramework Include=".NET Framework 2.0" Condition="'$(BuildNetFX20)'=='true'">
         <ProjectFileSuffix>.netfx20</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
-    <TargetFramework Include=".NET Framework 3.5" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX35)'=='true'">
+    <TargetFramework Include=".NET Framework 3.5" Condition="'$(BuildNetFX35)'=='true'">
         <ProjectFileSuffix>.netfx35</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
-    <TargetFramework Include=".NET Framework 3.5 Client Profile" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFx35Client)'=='true'">
+    <TargetFramework Include=".NET Framework 3.5 Client Profile" Condition="'$(BuildNetFx35Client)'=='true'">
         <ProjectFileSuffix>.netfx35client</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
-    <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX40)'=='true'">
+    <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildNetFX40)'=='true'">
         <ProjectFileSuffix>.netfx40</ProjectFileSuffix>
         <ToolsVersion>4.0</ToolsVersion>
     </TargetFramework>
-    <TargetFramework Include=".NET Framework 4.0 Client Profile" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFx40Client)'=='true'">
+    <TargetFramework Include=".NET Framework 4.0 Client Profile" Condition="'$(BuildNetFx40Client)'=='true'">
         <ProjectFileSuffix>.netfx40client</ProjectFileSuffix>
         <ToolsVersion>4.0</ToolsVersion>
     </TargetFramework>
   </ItemGroup>
-
-  <Import Project="NLog.local" Condition="Exists('NLog.local')" />
 
   <Target Name="All" DependsOnTargets="Clean;Build;BuildTests;RunTests;Documentation">
   </Target>
@@ -92,24 +121,33 @@
   </Target>
 
   <Target Name="Build">
-    <MSBuild Projects="NLog\NLog%(TargetFramework.ProjectFileSuffix).csproj" Targets="Build" Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ToolsVersion="%(TargetFramework.ToolsVersion)" ContinueOnError="$(BuildAllFrameworks)" StopOnFirstFailure="false" />
+    <MSBuild Projects="NLog\NLog%(TargetFramework.ProjectFileSuffix).csproj" 
+             Targets="Build" 
+             Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
+             ToolsVersion="%(TargetFramework.ToolsVersion)" 
+             ContinueOnError="$(BuildAllFrameworks)" 
+             StopOnFirstFailure="false" />
   </Target>
 
   <Target Name="BuildTests" DependsOnTargets="Build">
-    <MSBuild Projects="..\tests\NLog.UnitTests\NLog.UnitTests%(TargetFramework.ProjectFileSuffix).csproj" Targets="Build" Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" ContinueOnError="$(BuildAllFrameworks)" StopOnFirstFailure="false" />
+    <MSBuild Projects="..\tests\NLog.UnitTests\NLog.UnitTests%(TargetFramework.ProjectFileSuffix).csproj" 
+             Targets="Build" 
+             Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
+             ContinueOnError="$(BuildAllFrameworks)" 
+             StopOnFirstFailure="false" />
   </Target>
 
   <Target Name="RunTests">
     <CallTarget Targets="DeleteTrxFiles" />
-    <CallTarget Targets="NetFx20Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX20)'=='true'"/>
-    <CallTarget Targets="NetFx35Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX35)'=='true'"/>
-    <CallTarget Targets="NetFx35ClientTest" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX35Client)'=='true'"/>
-    <CallTarget Targets="NetFx40Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX40)'=='true'"/>
-    <CallTarget Targets="NetFx40ClientTest" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetFX40Client)'=='true'"/>
-    <CallTarget Targets="NetCF20Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetCF20)'=='true'"/>
-    <CallTarget Targets="NetCF35Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildNetCF35)'=='true'"/>
-    <CallTarget Targets="SL2Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildSL2)'=='true'"/>
-    <CallTarget Targets="SL3Test" Condition="'$(BuildAllFrameworks)' == 'true' or '$(BuildSL3)'=='true'"/>
+    <CallTarget Targets="NetFx20Test" Condition="'$(BuildNetFX20)'=='true'"/>
+    <CallTarget Targets="NetFx35Test" Condition="'$(BuildNetFX35)'=='true'"/>
+    <CallTarget Targets="NetFx35ClientTest" Condition="'$(BuildNetFX35Client)'=='true'"/>
+    <CallTarget Targets="NetFx40Test" Condition="'$(BuildNetFX40)'=='true'"/>
+    <CallTarget Targets="NetFx40ClientTest" Condition="'$(BuildNetFX40Client)'=='true'"/>
+    <CallTarget Targets="NetCF20Test" Condition="'$(BuildNetCF20)'=='true'"/>
+    <CallTarget Targets="NetCF35Test" Condition="'$(BuildNetCF35)'=='true'"/>
+    <CallTarget Targets="SL2Test" Condition="'$(BuildSL2)'=='true'"/>
+    <CallTarget Targets="SL3Test" Condition="'$(BuildSL3)'=='true'"/>
     <CallTarget Targets="PrepareTestResultSummary" />
   </Target>
 
@@ -252,4 +290,6 @@
      <RemoveDir Directories="@(ProjectsToCleanup -> '%(Identity)\obj')" />
      <RemoveDir Directories="@(SolutionFiles -> '%(RelativeDir)_ReSharper.%(filename)')" />
   </Target>
+
+  <Import Project="NLog.local" Condition="Exists('NLog.local')" />
 </Project>

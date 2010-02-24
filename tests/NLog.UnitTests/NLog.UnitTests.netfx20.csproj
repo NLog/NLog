@@ -7,7 +7,7 @@
     <ProjectGuid>{1653EE05-2720-4A85-BF14-74C4493787B1}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v2.0</TargetFrameworkVersion>
     <ApplicationIcon>
     </ApplicationIcon>
     <AssemblyKeyContainerName>
