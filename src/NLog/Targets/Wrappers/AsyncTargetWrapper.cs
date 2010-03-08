@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -200,7 +200,7 @@ namespace NLog.Targets.Wrappers
         /// The <see cref="Target.PrecalculateVolatileLayouts"/> is called
         /// to ensure that the log event can be processed in another thread.
         /// </remarks>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             this.WrappedTarget.PrecalculateVolatileLayouts(logEvent);
             this.RequestQueue.Enqueue(logEvent);
@@ -253,7 +253,7 @@ namespace NLog.Targets.Wrappers
                                 break;
                             }
 
-                            WrappedTarget.Write(pendingRequests.ToArray());
+                            WrappedTarget.WriteLogEvents(pendingRequests.ToArray());
                         }
                         finally
                         {

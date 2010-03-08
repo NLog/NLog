@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers
         /// expensive to calculate this function should return a rough estimate
         /// that's big enough in most cases, but not too big, in order to conserve memory.
         /// </remarks>
-        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
             return logEvent.FormattedMessage.Length;
         }
@@ -62,7 +62,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
-        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             builder.Append(logEvent.FormattedMessage);
         }
@@ -77,7 +77,7 @@ namespace NLog.LayoutRenderers
         /// Volatile layout renderers are dependent on information not contained
         /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
         /// </remarks>
-        protected internal override bool IsVolatile()
+        public override bool IsVolatile()
         {
             return false;
         }

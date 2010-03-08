@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -98,7 +98,7 @@ namespace NLog.Targets
         /// <remarks>
         /// Note that the Error option is not supported on .NET Compact Framework.
         /// </remarks>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             this.Output(this.Layout.GetFormattedMessage(logEvent));
         }

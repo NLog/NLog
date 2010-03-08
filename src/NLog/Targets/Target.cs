@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -164,7 +164,7 @@ namespace NLog.Targets
         /// <returns>
         /// A <see cref="StackTraceUsage"/> value which determines stack trace information to be gathered.
         /// </returns>
-        protected internal virtual StackTraceUsage GetStackTraceUsage()
+        public virtual StackTraceUsage GetStackTraceUsage()
         {
             return this.stackTraceUsage;
         }
@@ -176,7 +176,7 @@ namespace NLog.Targets
         /// <param name="logEvent">
         /// Logging event to be written out.
         /// </param>
-        protected internal abstract void Write(LogEventInfo logEvent);
+        protected abstract void Write(LogEventInfo logEvent);
 
         /// <summary>
         /// Writes an array of logging events to the log target. By default it iterates on all
@@ -186,7 +186,7 @@ namespace NLog.Targets
         /// <param name="logEvents">
         /// Logging events to be written out.
         /// </param>
-        protected internal virtual void Write(LogEventInfo[] logEvents)
+        protected virtual void Write(LogEventInfo[] logEvents)
         {
             for (int i = 0; i < logEvents.Length; ++i)
             {
@@ -201,6 +201,16 @@ namespace NLog.Targets
             this.allLayouts = new List<Layout>(scanner.Scan());
 
             InternalLogger.Trace("{0} has {1} layouts", this, this.allLayouts.Count);
+        }
+
+        public void WriteLogEvent(LogEventInfo logEvent)
+        {
+            this.Write(logEvent);
+        }
+
+        public void WriteLogEvents(LogEventInfo[] logEvents)
+        {
+            this.Write(logEvents);
         }
     }
 }

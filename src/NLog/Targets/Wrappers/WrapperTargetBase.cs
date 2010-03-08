@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -70,7 +70,7 @@ namespace NLog.Targets.Wrappers
         /// Forwards the call to <see cref="WrapperTargetBase.WrappedTarget"/>.GetStackTraceUsage().
         /// </summary>
         /// <returns>The value of forwarded call.</returns>
-        protected internal override StackTraceUsage GetStackTraceUsage()
+        public override StackTraceUsage GetStackTraceUsage()
         {
             return this.WrappedTarget.GetStackTraceUsage();
         }

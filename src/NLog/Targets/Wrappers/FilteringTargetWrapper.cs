@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -90,12 +90,12 @@ namespace NLog.Targets.Wrappers
         /// the wrapped target.
         /// </summary>
         /// <param name="logEvent">Log event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             object v = this.Condition.Evaluate(logEvent);
             if (boxedBooleanTrue.Equals(v))
             {
-                WrappedTarget.Write(logEvent);
+                WrappedTarget.WriteLogEvent(logEvent);
             }
         }
     }

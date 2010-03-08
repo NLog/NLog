@@ -11,9 +11,7 @@
     <BuildAllFrameworks Condition="'$(BuildSL3)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX35)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildNetFX35Client)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildNetFX40Client)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF35)' == 'true'">false</BuildAllFrameworks>
     <SLTestRunner>$(MSBuildProjectDirectory)\..\tests\SilverlightConsoleRunner\bin\$(Configuration)\SilverlightConsoleRunner.exe</SLTestRunner>
@@ -66,9 +64,6 @@
 
     <!-- don't build 4.0 if we're using MSBuild 3.5 -->
     <BuildNetFX40 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX40>
-
-    <BuildNetFX35Client>$(BuildNetFX35)</BuildNetFX35Client>
-    <BuildNetFX40Client>$(BuildNetFX40)</BuildNetFX40Client>
   </PropertyGroup>
 
   <ItemGroup>
@@ -100,16 +95,8 @@
         <ProjectFileSuffix>.netfx35</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
-    <TargetFramework Include=".NET Framework 3.5 Client Profile" Condition="'$(BuildNetFx35Client)'=='true'">
-        <ProjectFileSuffix>.netfx35client</ProjectFileSuffix>
-        <ToolsVersion>3.5</ToolsVersion>
-    </TargetFramework>
     <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildNetFX40)'=='true'">
         <ProjectFileSuffix>.netfx40</ProjectFileSuffix>
-        <ToolsVersion>4.0</ToolsVersion>
-    </TargetFramework>
-    <TargetFramework Include=".NET Framework 4.0 Client Profile" Condition="'$(BuildNetFx40Client)'=='true'">
-        <ProjectFileSuffix>.netfx40client</ProjectFileSuffix>
         <ToolsVersion>4.0</ToolsVersion>
     </TargetFramework>
   </ItemGroup>
@@ -127,6 +114,13 @@
              ToolsVersion="%(TargetFramework.ToolsVersion)" 
              ContinueOnError="$(BuildAllFrameworks)" 
              StopOnFirstFailure="false" />
+    <MSBuild Projects="NLog\NLog.Extended%(TargetFramework.ProjectFileSuffix).csproj" 
+             Targets="Build" 
+             Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
+             ToolsVersion="%(TargetFramework.ToolsVersion)" 
+             ContinueOnError="$(BuildAllFrameworks)" 
+             StopOnFirstFailure="false"
+             Condition="Exists('NLog\NLog.Extended%(TargetFramework.ProjectFileSuffix).csproj')" />
   </Target>
 
   <Target Name="BuildTests" DependsOnTargets="Build">
@@ -141,9 +135,7 @@
     <CallTarget Targets="DeleteTrxFiles" />
     <CallTarget Targets="NetFx20Test" Condition="'$(BuildNetFX20)'=='true'"/>
     <CallTarget Targets="NetFx35Test" Condition="'$(BuildNetFX35)'=='true'"/>
-    <CallTarget Targets="NetFx35ClientTest" Condition="'$(BuildNetFX35Client)'=='true'"/>
     <CallTarget Targets="NetFx40Test" Condition="'$(BuildNetFX40)'=='true'"/>
-    <CallTarget Targets="NetFx40ClientTest" Condition="'$(BuildNetFX40Client)'=='true'"/>
     <CallTarget Targets="NetCF20Test" Condition="'$(BuildNetCF20)'=='true'"/>
     <CallTarget Targets="NetCF35Test" Condition="'$(BuildNetCF35)'=='true'"/>
     <CallTarget Targets="SL2Test" Condition="'$(BuildSL2)'=='true'"/>
@@ -163,21 +155,9 @@
           Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
   </Target>
 
-  <Target Name="NetFx35ClientTest">
-    <Exec Command='"$(MSTest9)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx' 
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5 Client Profile" 
-          Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
-  </Target>
-
   <Target Name="NetFx40Test">
     <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0" 
-          Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
-  </Target>
-
-  <Target Name="NetFx40ClientTest">
-    <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0 Client Profile" 
           Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
   </Target>
 

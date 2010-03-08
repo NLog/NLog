@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -88,7 +88,7 @@ namespace NLog.Targets
         /// classes.
         /// </summary>
         /// <param name="logEvent">Logging event to be written out.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             this.Write(new[] { logEvent });
         }
@@ -99,7 +99,7 @@ namespace NLog.Targets
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
-        protected internal override void Write(LogEventInfo[] logEvents)
+        protected override void Write(LogEventInfo[] logEvents)
         {
             var networkLogEvents = this.TranslateLogEvents(logEvents);
 

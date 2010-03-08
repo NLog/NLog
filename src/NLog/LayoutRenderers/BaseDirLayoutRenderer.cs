@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -80,7 +80,7 @@ namespace NLog.LayoutRenderers
         /// expensive to calculate this function should return a rough estimate
         /// that's big enough in most cases, but not too big, in order to conserve memory.
         /// </remarks>
-        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
             return 32;
         }
@@ -90,7 +90,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
-        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (this.File != null)
             {
@@ -111,7 +111,7 @@ namespace NLog.LayoutRenderers
         /// is fixed per current app-domain.
         /// </summary>
         /// <returns>A value of <see langword="true"/>.</returns>
-        protected internal override bool IsAppDomainFixed()
+        protected override bool IsAppDomainFixed()
         {
             return true;
         }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -89,7 +89,7 @@ namespace NLog.Targets
         /// parameter.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
 #if SILVERLIGHT
             HtmlPage.Window.Alert(this.Caption.GetFormattedMessage(logEvent) + "\r\n\r\n" + this.Layout.GetFormattedMessage(logEvent));
@@ -103,7 +103,7 @@ namespace NLog.Targets
         /// parameter.
         /// </summary>
         /// <param name="logEvents">The array of logging events.</param>
-        protected internal override void Write(LogEventInfo[] logEvents)
+        protected override void Write(LogEventInfo[] logEvents)
         {
             if (logEvents.Length == 0)
             {

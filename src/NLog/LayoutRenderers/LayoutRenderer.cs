@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -43,6 +43,11 @@ namespace NLog.LayoutRenderers
     /// </summary>
     public abstract class LayoutRenderer : INLogConfigurationItem, ISupportsInitialize
     {
+        public int GetBufferSize(LogEventInfo logEvent)
+        {
+            return this.GetEstimatedBufferSize(logEvent);
+        }
+
         /// <summary>
         /// Initializes the layout renderer.
         /// </summary>
@@ -85,14 +90,14 @@ namespace NLog.LayoutRenderers
         /// expensive to calculate this function should return a rough estimate
         /// that's big enough in most cases, but not too big, in order to conserve memory.
         /// </remarks>
-        protected internal abstract int GetEstimatedBufferSize(LogEventInfo logEvent);
+        protected abstract int GetEstimatedBufferSize(LogEventInfo logEvent);
 
         /// <summary>
         /// Determines whether stack trace information should be gathered
         /// during log event processing.
         /// </summary>
         /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
-        protected internal virtual StackTraceUsage GetStackTraceUsage()
+        public virtual StackTraceUsage GetStackTraceUsage()
         {
             return StackTraceUsage.None;
         }
@@ -105,7 +110,7 @@ namespace NLog.LayoutRenderers
         /// Volatile layout renderers are dependent on information not contained 
         /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
         /// </remarks>
-        protected internal virtual bool IsVolatile()
+        public virtual bool IsVolatile()
         {
             return true;
         }
@@ -115,7 +120,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
-        protected internal abstract void Append(StringBuilder builder, LogEventInfo logEvent);
+        protected abstract void Append(StringBuilder builder, LogEventInfo logEvent);
 
         /// <summary>
         /// Determines whether the value produced by the layout renderer
@@ -124,9 +129,24 @@ namespace NLog.LayoutRenderers
         /// <returns>The boolean value of <c>true</c> makes the value
         /// of the layout renderer be precalculated and inserted as a literal
         /// in the resulting layout string.</returns>
-        protected internal virtual bool IsAppDomainFixed()
+        protected virtual bool IsAppDomainFixed()
         {
             return false;
+        }
+
+        public bool CanBeConvertedToLiteral()
+        {
+            return this.IsAppDomainFixed();
+        }
+
+        public int GetEstimatedBufferSize2(LogEventInfo logEvent)
+        {
+            return this.GetEstimatedBufferSize(logEvent);
+        }
+
+        public void Render(StringBuilder builder, LogEventInfo logEvent)
+        {
+            this.Append(builder, logEvent);
         }
     }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -37,22 +37,18 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 #if NET2_0
-    #if CLIENT_SKU
-        [assembly: AssemblyTitle("NLog for .NET Framework 2.0 Client Profile")]
-    #else
-        [assembly: AssemblyTitle("NLog for .NET Framework 2.0")]
-    #endif
+    [assembly: AssemblyTitle("NLog for .NET Framework 2.0")]
 #elif NET3_5
     #if CLIENT_SKU
-        [assembly: AssemblyTitle("NLog for .NET Framework 3.5 Client Profile")]
-    #else
         [assembly: AssemblyTitle("NLog for .NET Framework 3.5")]
+    #else
+        [assembly: AssemblyTitle("NLog for .NET Framework 3.5 Extended Profile")]
     #endif
 #elif NET4_0
     #if CLIENT_SKU
-        [assembly: AssemblyTitle("NLog for .NET Framework 4.0 Client Profile")]
-    #else
         [assembly: AssemblyTitle("NLog for .NET Framework 4.0")]
+    #else
+        [assembly: AssemblyTitle("NLog for .NET Framework 4.0 Extended Profile")]
     #endif
 #elif MONO_2_0
     [assembly: AssemblyTitle("NLog for Mono 2.0")]
@@ -74,7 +70,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NLog")]
 [assembly: AssemblyProduct("NLog - Advanced .NET Logging")]
-[assembly: AssemblyCopyright("Copyright (c) 2004-2009 by Jaroslaw Kowalski")]
+[assembly: AssemblyCopyright("Copyright (c) 2004-2010 by Jaroslaw Kowalski")]
 [assembly: AssemblyCulture("")]
 
 [assembly: CLSCompliant(true)]

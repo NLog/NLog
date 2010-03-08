@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -90,7 +90,7 @@ namespace NLog.Targets.Compound
         /// resets the target to the first target 
         /// stored in <see cref="Targets"/>.
         /// </remarks>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             lock (this)
             {
@@ -98,7 +98,7 @@ namespace NLog.Targets.Compound
                 {
                     try
                     {
-                        this.Targets[this.currentTarget].Write(logEvent);
+                        this.Targets[this.currentTarget].WriteLogEvent(logEvent);
                         if (this.currentTarget != 0)
                         {
                             if (this.ReturnToFirstOnSuccess)

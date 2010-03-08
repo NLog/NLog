@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -97,7 +97,7 @@ namespace NLog.Targets.Wrappers
         /// is applied to the array of log events.
         /// </summary>
         /// <param name="logEvents">Array of log events to be post-filtered.</param>
-        protected internal override void Write(LogEventInfo[] logEvents)
+        protected override void Write(LogEventInfo[] logEvents)
         {
             ConditionExpression resultFilter = null;
 
@@ -160,7 +160,7 @@ namespace NLog.Targets.Wrappers
 
             if (resultBuffer.Count > 0)
             {
-                this.WrappedTarget.Write(resultBuffer.ToArray());
+                this.WrappedTarget.WriteLogEvents(resultBuffer.ToArray());
             }
         }
 
@@ -169,7 +169,7 @@ namespace NLog.Targets.Wrappers
         /// wrapper.
         /// </summary>
         /// <param name="logEvent">Log event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             this.Write(new LogEventInfo[] { logEvent });
         }

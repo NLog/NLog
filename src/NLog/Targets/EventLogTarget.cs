@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -117,7 +117,7 @@ namespace NLog.Targets
         /// Writes the specified logging event to the event log. 
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             string message = this.Layout.GetFormattedMessage(logEvent);
             if (message.Length > 16384)

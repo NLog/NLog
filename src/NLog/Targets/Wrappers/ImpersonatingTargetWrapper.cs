@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -152,11 +152,11 @@ namespace NLog.Targets.Wrappers
         /// and switches the context back to original.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             using (this.DoImpersonate())
             {
-                this.WrappedTarget.Write(logEvent);
+                this.WrappedTarget.WriteLogEvent(logEvent);
             }
         }
 
@@ -165,11 +165,11 @@ namespace NLog.Targets.Wrappers
         /// and switches the context back to original.
         /// </summary>
         /// <param name="logEvents">Log events.</param>
-        protected internal override void Write(LogEventInfo[] logEvents)
+        protected override void Write(LogEventInfo[] logEvents)
         {
             using (this.DoImpersonate())
             {
-                this.WrappedTarget.Write(logEvents);
+                this.WrappedTarget.WriteLogEvents(logEvents);
             }
         }
 

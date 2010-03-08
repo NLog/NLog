@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -212,7 +212,7 @@ namespace NLog.Targets
         /// and words based on a set of defined rules.
         /// </summary>
         /// <param name="logEvent">Log event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             this.Output(logEvent, this.Layout.GetFormattedMessage(logEvent));
         }

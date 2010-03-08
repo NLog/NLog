@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -39,6 +39,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Xml;
+using NLog.Config;
 using NLog.Contexts;
 using NLog.Internal;
 using NLog.Targets;
@@ -118,7 +119,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
-        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             StringWriter sw = new StringWriter(builder);
             XmlWriterSettings settings = new XmlWriterSettings();
@@ -219,7 +220,7 @@ namespace NLog.LayoutRenderers
         /// expensive to calculate this function should return a rough estimate
         /// that's big enough in most cases, but not too big, in order to conserve memory.
         /// </remarks>
-        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
             return 512;
         }
@@ -234,9 +235,19 @@ namespace NLog.LayoutRenderers
         /// Volatile layout renderers are dependent on information not contained
         /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
         /// </remarks>
-        protected internal override bool IsVolatile()
+        public override bool IsVolatile()
         {
             return false;
+        }
+
+        public void AppendToStringBuilder(StringBuilder sb, LogEventInfo logEvent)
+        {
+            this.Append(sb, logEvent);
+        }
+
+        public StackTraceUsage GetStackTraceUsage2()
+        {
+            return this.GetStackTraceUsage();
         }
     }
 }

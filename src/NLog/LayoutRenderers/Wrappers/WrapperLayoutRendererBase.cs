@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -63,7 +63,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// expensive to calculate this function should return a rough estimate
         /// that's big enough in most cases, but not too big, in order to conserve memory.
         /// </remarks>
-        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
             return 30;
         }
@@ -73,7 +73,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
-        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             string msg = this.Inner.GetFormattedMessage(logEvent);
             builder.Append(this.Transform(msg));
@@ -85,7 +85,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <see cref="Layout"/>.
         /// </summary>
         /// <returns>A <see cref="StackTraceUsage" /> value.</returns>
-        protected internal override StackTraceUsage GetStackTraceUsage()
+        public override StackTraceUsage GetStackTraceUsage()
         {
             return StackTraceUsageUtils.Max(base.GetStackTraceUsage(), this.Inner.GetStackTraceUsage());
         }
@@ -99,7 +99,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// of the layout renderer be precalculated and inserted as a literal
         /// in the resulting layout string.
         /// </returns>
-        protected internal override bool IsAppDomainFixed()
+        protected override bool IsAppDomainFixed()
         {
             if (this.Inner != null)
             {

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -87,10 +87,10 @@ namespace NLog.Targets.Compound
         /// first target when there are no more targets available.
         /// In general request N goes to Targets[N % Targets.Count].
         /// </remarks>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             int currentTarget = Interlocked.Increment(ref this.currentTarget);
-            this.Targets[currentTarget % this.Targets.Count].Write(logEvent);
+            this.Targets[currentTarget % this.Targets.Count].WriteLogEvent(logEvent);
         }
     }
 }

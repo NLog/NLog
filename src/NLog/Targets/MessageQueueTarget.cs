@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF && !SILVERLIGHT && !CLIENT_SKU
+#if !NET_CF && !SILVERLIGHT
 
 using System.ComponentModel;
 using System.Messaging;
@@ -127,7 +127,7 @@ namespace NLog.Targets
         /// parameter.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             if (this.Queue == null)
             {

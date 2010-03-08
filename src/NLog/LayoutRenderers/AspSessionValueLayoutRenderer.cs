@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -64,7 +64,7 @@ namespace NLog.LayoutRenderers
         /// <remarks>
         /// Because ASP target uses COM Interop which is quite expensive, this method always returns 64.
         /// </remarks>
-        protected internal override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
         {
             return 64;
         }
@@ -74,7 +74,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
-        protected internal override void Append(StringBuilder builder, LogEventInfo logEvent)
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var session = AspHelper.GetSessionObject();
             if (session != null)

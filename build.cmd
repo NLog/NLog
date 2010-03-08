@@ -28,20 +28,8 @@ if (%1)==(netfx35) (
 	goto next
 )
 
-if (%1)==(netfx35client) (
-	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildNetFX35Client=true
-	shift
-	goto next
-)
-
 if (%1)==(netfx40) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildNetFX40=true
-	shift
-	goto next
-)
-
-if (%1)==(netfx40client) (
-	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildNetFX40Client=true
 	shift
 	goto next
 )
@@ -151,9 +139,7 @@ echo Where platform is one or more of the following:
 echo.
 echo  netfx20            .NET Framework 2.0
 echo  netfx35            .NET Framework 3.5
-echo  netfx35client      .NET Framework 3.5 Client Profile
 echo  netfx40            .NET Framework 4.0
-echo  netfx40client      .NET Framework 4.0 Client Profile
 echo  netcf20            .NET Compact Framework 2.0
 echo  netcf35            .NET Compact Framework 3.5
 echo  sl2                Silverlight 2.0

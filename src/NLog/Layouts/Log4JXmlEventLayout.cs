@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -70,9 +70,9 @@ namespace NLog.Layouts
                 return cachedValue;
             }
 
-            StringBuilder sb = new StringBuilder(this.Renderer.GetEstimatedBufferSize(logEvent));
+            StringBuilder sb = new StringBuilder(this.Renderer.GetBufferSize(logEvent));
 
-            this.Renderer.Append(sb, logEvent);
+            this.Renderer.AppendToStringBuilder(sb, logEvent);
             logEvent.AddCachedLayoutValue(this, sb.ToString());
             return sb.ToString();
         }
@@ -84,7 +84,7 @@ namespace NLog.Layouts
         /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace.</returns>
         public override StackTraceUsage GetStackTraceUsage()
         {
-            return this.Renderer.GetStackTraceUsage();
+            return this.Renderer.GetStackTraceUsage2();
         }
 
         /// <summary>

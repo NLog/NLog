@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -181,7 +181,7 @@ namespace NLog.Layouts
                 LayoutRenderer app = this.Renderers[i];
                 try
                 {
-                    int ebs = app.GetEstimatedBufferSize(logEvent);
+                    int ebs = app.GetEstimatedBufferSize2(logEvent);
                     size += ebs;
                 }
                 catch (Exception ex)
@@ -200,7 +200,7 @@ namespace NLog.Layouts
                 LayoutRenderer app = this.Renderers[i];
                 try
                 {
-                    app.Append(builder, logEvent);
+                    app.Render(builder, logEvent);
                 }
                 catch (Exception ex)
                 {

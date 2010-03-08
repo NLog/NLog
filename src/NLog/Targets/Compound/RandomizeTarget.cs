@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -79,10 +79,10 @@ namespace NLog.Targets.Compound
         /// The sub-target is randomly chosen.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             int pos = random.Next(this.Targets.Count);
-            this.Targets[pos].Write(logEvent);
+            this.Targets[pos].WriteLogEvent(logEvent);
         }
     }
 }

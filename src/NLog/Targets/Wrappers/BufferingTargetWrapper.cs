@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -138,7 +138,7 @@ namespace NLog.Targets.Wrappers
                 var events = this.buffer.GetEventsAndClear();
                 if (events.Length > 0)
                 {
-                    WrappedTarget.Write(events);
+                    WrappedTarget.WriteLogEvents(events);
                 }
             }
         }
@@ -159,7 +159,7 @@ namespace NLog.Targets.Wrappers
         /// the buffer in case the buffer gets full.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             lock (this)
             {
@@ -168,7 +168,7 @@ namespace NLog.Targets.Wrappers
                 if (count >= this.BufferSize)
                 {
                     var events = this.buffer.GetEventsAndClear();
-                    WrappedTarget.Write(events);
+                    WrappedTarget.WriteLogEvents(events);
                 }
                 else
                 {
@@ -187,7 +187,7 @@ namespace NLog.Targets.Wrappers
                 LogEventInfo[] events = this.buffer.GetEventsAndClear();
                 if (events.Length > 0)
                 {
-                    WrappedTarget.Write(events);
+                    WrappedTarget.WriteLogEvents(events);
                 }
             }
         }

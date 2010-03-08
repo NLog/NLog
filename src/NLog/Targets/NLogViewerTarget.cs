@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -165,7 +165,7 @@ namespace NLog.Targets
         /// Returns the value indicating whether call site and/or source information should be gathered.
         /// </summary>
         /// <returns>2 - when IncludeSourceInfo is set, 1 when IncludeCallSite is set, 0 otherwise.</returns>
-        protected internal override StackTraceUsage GetStackTraceUsage()
+        public override StackTraceUsage GetStackTraceUsage()
         {
 #if !SILVERLIGHT
             if (this.IncludeSourceInfo)

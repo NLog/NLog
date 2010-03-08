@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -95,7 +95,7 @@ namespace NLog.Targets.Wrappers
         /// Writes the specified log event to the wrapped target, retrying and pausing in case of an error.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             for (int i = 0; i < this.RetryCount; ++i)
             {
@@ -106,7 +106,7 @@ namespace NLog.Targets.Wrappers
                         InternalLogger.Warn("Retry #{0}", i);
                     }
 
-                    WrappedTarget.Write(logEvent);
+                    WrappedTarget.WriteLogEvent(logEvent);
                     return;
                 }
                 catch (Exception ex)

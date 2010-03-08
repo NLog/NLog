@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -61,7 +61,7 @@ namespace NLog.Filters
         /// <see cref="FilterResult.Neutral"/> - if the filter doesn't want to decide<br/>
         /// <see cref="FilterResult.Log"/> - if the log event should be logged<br/>
         /// .</returns>
-        protected internal override FilterResult Check(LogEventInfo logEvent)
+        protected override FilterResult Check(LogEventInfo logEvent)
         {
             if (this.Condition == null)
             {

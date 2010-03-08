@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using NLog.Config;
 
 namespace NLog.Filters
@@ -55,6 +56,11 @@ namespace NLog.Filters
         [RequiredParameter]
         public FilterResult Action { get; set; }
 
+        public FilterResult GetFilterResult(LogEventInfo logEvent)
+        {
+            return this.Check(logEvent);
+        }
+
         /// <summary>
         /// Gets or sets a value indicating whether stack trace information should be gathered
         /// during log event processing. 
@@ -74,6 +80,6 @@ namespace NLog.Filters
         /// <see cref="FilterResult.Neutral"/> - if the filter doesn't want to decide<br/>
         /// <see cref="FilterResult.Log"/> - if the log event should be logged<br/>
         /// .</returns>
-        protected internal abstract FilterResult Check(LogEventInfo logEvent);
+        protected abstract FilterResult Check(LogEventInfo logEvent);
     }
 }

@@ -1,0 +1,47 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7638C35C-A8AC-437C-94FD-9DABD9D5839C}"
+	ProjectSection(SolutionItems) = preProject
+		LocalTestRun.vs2008.testrunconfig = LocalTestRun.vs2008.testrunconfig
+		NLog.vs2008.vsmdi = NLog.vs2008.vsmdi
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.netfx35", "NLog\NLog.netfx35.csproj", "{C124B63D-1658-4311-9BA8-9C3CFAF9B32E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.netfx35", "..\tests\NLog.UnitTests\NLog.UnitTests.netfx35.csproj", "{A8CA32F1-BD4C-4A99-B307-99A93DB64B8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.netfx35", "NLog\NLog.Extended.netfx35.csproj", "{F801A1F9-1024-4446-BF9E-A923137340B8}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = NLog.vs2008.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C124B63D-1658-4311-9BA8-9C3CFAF9B32E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C124B63D-1658-4311-9BA8-9C3CFAF9B32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C124B63D-1658-4311-9BA8-9C3CFAF9B32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C124B63D-1658-4311-9BA8-9C3CFAF9B32E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8CA32F1-BD4C-4A99-B307-99A93DB64B8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8CA32F1-BD4C-4A99-B307-99A93DB64B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8CA32F1-BD4C-4A99-B307-99A93DB64B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8CA32F1-BD4C-4A99-B307-99A93DB64B8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F801A1F9-1024-4446-BF9E-A923137340B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F801A1F9-1024-4446-BF9E-A923137340B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F801A1F9-1024-4446-BF9E-A923137340B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F801A1F9-1024-4446-BF9E-A923137340B8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {C4811F53-E779-47F0-8C06-71551FBDB047}
+	EndGlobalSection
+EndGlobal

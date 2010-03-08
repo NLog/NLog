@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -96,7 +96,7 @@ namespace NLog.Targets
         /// <param name="logEvent">
         /// The logging event.
         /// </param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             string logMessage = this.Layout.GetFormattedMessage(logEvent);
             

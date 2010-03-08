@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -107,7 +107,7 @@ namespace NLog
                 {
                     foreach (Filter f in awf.FilterChain)
                     {
-                        result = f.Check(logEvent);
+                        result = f.GetFilterResult(logEvent);
                         if (result != FilterResult.Neutral)
                         {
                             break;
@@ -142,7 +142,7 @@ namespace NLog
 
                 try
                 {
-                    app.Write(logEvent);
+                    app.WriteLogEvent(logEvent);
                 }
                 catch (Exception ex)
                 {

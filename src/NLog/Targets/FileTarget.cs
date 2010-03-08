@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -616,7 +616,7 @@ namespace NLog.Targets
         /// parameter.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             lock (this)
             {
@@ -643,7 +643,7 @@ namespace NLog.Targets
         /// the requests by filename. This optimizes the number of open/close calls
         /// and can help improve performance.
         /// </remarks>
-        protected internal override void Write(LogEventInfo[] logEvents)
+        protected override void Write(LogEventInfo[] logEvents)
         {
             if (this.FileName.IsAppDomainFixed())
             {

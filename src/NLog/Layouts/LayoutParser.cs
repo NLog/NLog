@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -75,7 +75,7 @@ namespace NLog.Layouts
                     }
 
                     LayoutRenderer newLayoutRenderer = ParseLayoutRenderer(sr);
-                    if (newLayoutRenderer.IsAppDomainFixed())
+                    if (newLayoutRenderer.CanBeConvertedToLiteral())
                     {
                         newLayoutRenderer = ConvertToLiteral(newLayoutRenderer);
                     }
@@ -305,7 +305,7 @@ namespace NLog.Layouts
             {
                 WrapperLayoutRendererBase newRenderer = (WrapperLayoutRendererBase)orderedWrappers[i];
                 InternalLogger.Trace("Wrapping {0} with {1}", lr.GetType().Name, newRenderer.GetType().Name);
-                if (lr.IsAppDomainFixed())
+                if (lr.CanBeConvertedToLiteral())
                 {
                     lr = ConvertToLiteral(lr);
                 }
@@ -337,8 +337,8 @@ namespace NLog.Layouts
 
         private static LayoutRenderer ConvertToLiteral(LayoutRenderer renderer)
         {
-            StringBuilder sb = new StringBuilder();
-            renderer.Append(sb, LogEventInfo.CreateNullEvent());
+            var sb = new StringBuilder();
+            renderer.Render(sb, LogEventInfo.CreateNullEvent());
             return new LiteralLayoutRenderer(sb.ToString());
         }
 

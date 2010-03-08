@@ -165,8 +165,12 @@
     <None Include="NLogTests.snk" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\NLog\NLog.Extended.netfx35.csproj">
+      <Project>{F801A1F9-1024-4446-BF9E-A923137340B8}</Project>
+      <Name>NLog.Extended.netfx35</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\NLog\NLog.netfx35.csproj">
-      <Project>{68157BB2-B199-4F86-91BC-0365F7816EF9}</Project>
+      <Project>{C124B63D-1658-4311-9BA8-9C3CFAF9B32E}</Project>
       <Name>NLog.netfx35</Name>
     </ProjectReference>
   </ItemGroup>

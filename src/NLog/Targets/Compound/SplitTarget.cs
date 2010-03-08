@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -74,11 +74,11 @@ namespace NLog.Targets.Compound
         /// Forwards the specified log event to all sub-targets.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
             for (int i = 0; i < this.Targets.Count; ++i)
             {
-                this.Targets[i].Write(logEvent);
+                this.Targets[i].WriteLogEvent(logEvent);
             }
         }
     }

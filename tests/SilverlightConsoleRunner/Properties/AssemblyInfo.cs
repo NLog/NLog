@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NLog Project")]
 [assembly: AssemblyProduct("SilverlightConsoleRunner")]
-[assembly: AssemblyCopyright("Copyright © Jaroslaw Kowalski 2009")]
+[assembly: AssemblyCopyright("Copyright © Jaroslaw Kowalski 2004-2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
