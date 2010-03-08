@@ -1,6 +1,7 @@
 @echo off
 rem Try to find the highest version of MSBuild available...
 set MSBUILD=%WINDIR%\Microsoft.NET\Framework\v4.0.30128\msbuild.exe
+set POST_BUILD_COMMAND=
 if not exist %MSBUILD% set MSBUILD=%WINDIR%\Microsoft.NET\Framework\v3.5\msbuild.exe
 if not exist %MSBUILD% (
 	echo MSBuild not found, please update %0

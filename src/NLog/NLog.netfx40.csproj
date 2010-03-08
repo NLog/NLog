@@ -14,6 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,7 +36,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkName>.NET Framework 4.0</TargetFrameworkName>
-    <DefineConstants>NET4_0;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
+    <DefineConstants>NET4_0;CLIENT_SKU;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
     <DocumentationFile>$(OutputPath)\NLog.xml</DocumentationFile>
@@ -49,7 +50,6 @@
     <Reference Include="System.Messaging" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -168,12 +168,6 @@
     <Compile Include="Internal\Win32ThreadIDHelper.cs" />
     <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
     <Compile Include="LayoutRenderers\AspApplicationValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetApplicationValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetRequestValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetSessionIDLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetSessionValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetUserAuthTypeLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetUserIdentityLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspRequestValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspSessionValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\BaseDirLayoutRenderer.cs" />
@@ -260,7 +254,6 @@
     <Compile Include="LoggerImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Targets\ArchiveNumberingMode.cs" />
-    <Compile Include="Targets\AspNetTraceTarget.cs" />
     <Compile Include="Targets\AspResponseTarget.cs" />
     <Compile Include="Targets\ChainsawTarget.cs" />
     <Compile Include="Targets\ColoredConsoleTarget.cs" />
@@ -308,7 +301,6 @@
     <Compile Include="Targets\WebServiceProtocol.cs" />
     <Compile Include="Targets\WebServiceTarget.cs" />
     <Compile Include="Targets\Win32FileAttributes.cs" />
-    <Compile Include="Targets\Wrappers\AspNetBufferingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\AsyncRequestQueue-T.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapperOverflowAction.cs" />
@@ -324,7 +316,6 @@
     <Compile Include="Targets\Wrappers\SecurityImpersonationLevel.cs" />
     <Compile Include="Targets\Wrappers\SecurityLogonType.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBase.cs" />
-    <Compile Include="Web\NLogHttpModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />

@@ -164,6 +164,10 @@
     <None Include="NLogTests.snk" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\NLog\NLog.Extended.netfx40.csproj">
+      <Project>{A961A1F9-1024-4446-BF9E-A923137340B8}</Project>
+      <Name>NLog.Extended.netfx40</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\NLog\NLog.netfx40.csproj">
       <Project>{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}</Project>
       <Name>NLog.netfx40</Name>
