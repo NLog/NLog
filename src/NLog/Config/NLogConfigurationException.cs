@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Config
 {
+    using System;
+
     /// <summary>
     /// Exception thrown during configuration.
     /// </summary>

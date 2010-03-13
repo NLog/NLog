@@ -33,13 +33,13 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using NLog.Common;
-
 namespace NLog.Internal
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using NLog.Common;
+
     /// <summary>
     /// Watches multiple files at the same time and raises an event whenever 
     /// a single change is detected in any of those files.

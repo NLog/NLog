@@ -1,3 +1,17 @@
+2010-03-12 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Refactored project structure for client SKU support. On .NET 3.5 and 4.0 there are now two assemblies: NLog.dll (client-only) and NLog.Extended.dll (extended SKU)
+	* Removed StyleCop exclusion for usings-must-be-in-namespace and fixed all sources
+	* Removed GetEstimatedBufferSize() for layout renderers - now computed automatically and faster
+	* Added [AppDomainFixedOutput] and [ThreadAgnostic] attributes for marking layouts and renderers - removed IsAppDomainFixed() and IsVolatile() and centralized 
+          its computation
+        * Added IUsesStackTrace and removed other methods of determining whether stack trace is needed (should be more robust)
+	* Fixed a bug where output from C++ was not properly serialized in log4j XML format (nullref)
+	* Changed Initialize() and Close() to be protected
+	* Refactored ObjectGraphScanner for better usage
+	* Removed micro-optimizations which were not really needed (FileTarget)
+	* Added IRenderable interface (common to layouts and renderers)
+	* Refactored solutions to one-per-framework
+
 2010-02-21 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added 'build checkinsuite' option which cleans and builds everything then runs tests and presents a synthetic view of the results.
 	* Added DumpTestResultSummary tool which displays readable summary of a *.TRX file

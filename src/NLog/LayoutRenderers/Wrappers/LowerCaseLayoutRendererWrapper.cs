@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Globalization;
-
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System.Globalization;
+
     /// <summary>
     /// Converts the result of another layout output to lower case.
     /// </summary>

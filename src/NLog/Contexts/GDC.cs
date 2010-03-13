@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Contexts
 {
+    using System;
+
     /// <summary>
     /// Global Diagnostics Context - used for log4net compatibility.
     /// </summary>

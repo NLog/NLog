@@ -88,6 +88,8 @@
     <Compile Include="Config\AdvancedAttribute.cs" />
     <Compile Include="Config\ArrayParameterAttribute.cs" />
     <Compile Include="Config\ConfigSectionHandler.cs" />
+    <Compile Include="Config\AppDomainFixedOutputAttribute.cs" />
+    <Compile Include="Config\ThreadAgnosticAttribute.cs" />
     <Compile Include="Config\DefaultParameterAttribute.cs" />
     <Compile Include="Config\Factory.cs" />
     <Compile Include="Config\IFactory.cs" />
@@ -126,6 +128,8 @@
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Internal\CompactFrameworkHelper.cs" />
+    <Compile Include="Internal\IRenderable.cs" />
+    <Compile Include="Internal\IUsesStackTrace.cs" />
     <Compile Include="Internal\CurrentTimeGetter.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EnumerableHelpers.cs" />

@@ -33,15 +33,15 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Globalization;
-using NLog.Config;
-
 namespace NLog.Targets
 {
+    using System;
+    using System.Collections;
+    using System.ComponentModel;
+    using System.Diagnostics;
+    using System.Globalization;
+    using NLog.Config;
+
     /// <summary>
     /// Increments specified performance counter on each write.
     /// </summary>

@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections;
-using System.Collections.Generic;
-
 namespace NLog.Internal
 {
+    using System.Collections;
+    using System.Collections.Generic;
+
     /// <summary>
     /// LINQ-like helpers (cannot use LINQ because we must work with .NET 2.0 profile).
     /// </summary>

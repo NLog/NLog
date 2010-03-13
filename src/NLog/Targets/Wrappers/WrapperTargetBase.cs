@@ -31,12 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Config;
-using NLog.Layouts;
-
 namespace NLog.Targets.Wrappers
 {
+    using NLog.Config;
+
     /// <summary>
     /// Base class for targets wrap other (single) targets.
     /// </summary>
@@ -64,15 +62,6 @@ namespace NLog.Targets.Wrappers
         public override void Flush(System.TimeSpan timeout)
         {
             this.WrappedTarget.Flush(timeout);
-        }
-
-        /// <summary>
-        /// Forwards the call to <see cref="WrapperTargetBase.WrappedTarget"/>.GetStackTraceUsage().
-        /// </summary>
-        /// <returns>The value of forwarded call.</returns>
-        public override StackTraceUsage GetStackTraceUsage()
-        {
-            return this.WrappedTarget.GetStackTraceUsage();
         }
     }
 }

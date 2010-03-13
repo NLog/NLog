@@ -31,13 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Globalization;
-using NLog.Config;
-using NLog.Layouts;
-
 namespace NLog.Targets
 {
+    using System;
+    using System.Globalization;
+    using NLog.Config;
+    using NLog.Layouts;
+
     /// <summary>
     /// A parameter to MethodCall.
     /// </summary>

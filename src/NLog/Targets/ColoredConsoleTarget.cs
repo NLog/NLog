@@ -33,15 +33,15 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using NLog.Config;
-using NLog.Internal;
-
 namespace NLog.Targets
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.IO;
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// Writes logging messages to the console with customizable coloring.
     /// </summary>
@@ -183,7 +183,7 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes the target.
         /// </summary>
-        public override void Initialize()
+        protected override void Initialize()
         {
             base.Initialize();
             if (Header != null)
@@ -196,7 +196,7 @@ namespace NLog.Targets
         /// <summary>
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
-        public override void Close()
+        protected override void Close()
         {
             if (Footer != null)
             {

@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using System.Reflection;
-
 namespace NLog.Config
 {
+    using System.Collections.Generic;
+    using System.Reflection;
+
     /// <summary>
     /// Represents a factory of named items (such as targets, layouts, layout renderers, etc.).
     /// </summary>

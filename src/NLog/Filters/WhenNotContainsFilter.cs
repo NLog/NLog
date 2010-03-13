@@ -31,12 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.ComponentModel;
-using NLog.Config;
-
 namespace NLog.Filters
 {
+    using System;
+    using System.ComponentModel;
+    using NLog.Config;
+
     /// <summary>
     /// Matches when the calculated layout does NOT contain the specified substring.
     /// This filter is deprecated in favour of <c>&lt;when /&gt;</c> which is based on <a href="conditions.html">contitions</a>.

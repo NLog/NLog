@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Threading;
-
 namespace NLog.Targets.Compound
 {
+    using System.Threading;
+
     /// <summary>
     /// A compound target that forwards writes to the sub-targets in a
     /// round-robin fashion.

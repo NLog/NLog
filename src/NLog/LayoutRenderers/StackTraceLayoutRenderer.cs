@@ -32,18 +32,22 @@
 // 
 
 #if !NET_CF
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Text;
-using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
+    using System.ComponentModel;
+    using System.Diagnostics;
+    using System.Text;
+    using NLog.Config;
+
+    using NLog.Internal;
+
     /// <summary>
     /// Stack trace renderer.
     /// </summary>
     [LayoutRenderer("stacktrace")]
-    public class StackTraceLayoutRenderer : LayoutRenderer
+    [ThreadAgnostic]
+    public class StackTraceLayoutRenderer : LayoutRenderer, IUsesStackTrace
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StackTraceLayoutRenderer" /> class.
@@ -74,28 +78,12 @@ namespace NLog.LayoutRenderers
         public string Separator { get; set; }
 
         /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
+        /// Gets the level of stack trace information required by the implementing class.
         /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        /// <value></value>
+        StackTraceUsage IUsesStackTrace.StackTraceUsage
         {
-            return 200;
-        }
-
-        /// <summary>
-        /// Checks whether the stack trace is requested.
-        /// </summary>
-        /// <returns>2 when the source file information is requested, 1 otherwise.</returns>
-        public override StackTraceUsage GetStackTraceUsage()
-        {
-            return StackTraceUsage.Max;
+            get { return StackTraceUsage.WithoutSource; }
         }
 
         /// <summary>
@@ -167,21 +155,6 @@ namespace NLog.LayoutRenderers
 
                     break;
             }
-        }
-
-        /// <summary>
-        /// Determines whether the layout renderer is volatile.
-        /// </summary>
-        /// <returns>
-        /// A boolean indicating whether the layout renderer is volatile.
-        /// </returns>
-        /// <remarks>
-        /// Volatile layout renderers are dependent on information not contained
-        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
-        /// </remarks>
-        public override bool IsVolatile()
-        {
-            return false;
         }
     }
 }

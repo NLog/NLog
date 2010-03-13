@@ -33,14 +33,14 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
-using System.Globalization;
-using System.IO;
-using System.Threading;
-using NLog.Common;
-
 namespace NLog.Internal.FileAppenders
 {
+    using System;
+    using System.Globalization;
+    using System.IO;
+    using System.Threading;
+    using NLog.Common;
+
     /// <summary>
     /// Provides a multiprocess-safe atomic file appends while
     /// keeping the files open.

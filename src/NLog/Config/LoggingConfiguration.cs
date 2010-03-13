@@ -31,16 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-
-using NLog.Common;
-using NLog.Internal;
-using NLog.Targets;
-
 namespace NLog.Config
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+
+    using NLog.Common;
+    using NLog.Internal;
+    using NLog.Targets;
+
     /// <summary>
     /// Keeps logging configuration and provides simple API
     /// to modify it.
@@ -213,18 +213,18 @@ namespace NLog.Config
 
         internal void InitializeAll()
         {
-            var scanner = new ObjectGraphScanner<INLogConfigurationItem>();
+            var roots = new List<INLogConfigurationItem>();
             foreach (LoggingRule r in this.LoggingRules)
             {
-                scanner.AddRoot(r);
+                roots.Add(r);
             }
 
             foreach (Target target in this.targets.Values)
             {
-                scanner.AddRoot(target);
+                roots.Add(target);
             }
 
-            this.configItems = scanner.Scan();
+            this.configItems = ObjectGraphScanner.FindReachableObjects<INLogConfigurationItem>(roots.ToArray());
 
             // initialize all config items starting from most nested first
             // so that whenever the container is initialized its children have already been
@@ -235,9 +235,7 @@ namespace NLog.Config
                 CheckRequiredParameters(o);
             }
 
-            foreach (
-                ISupportsInitialize initialize in
-                    EnumerableHelpers.Reverse(EnumerableHelpers.OfType<ISupportsInitialize>(this.configItems)))
+            foreach (ISupportsInitialize initialize in EnumerableHelpers.Reverse(EnumerableHelpers.OfType<ISupportsInitialize>(this.configItems)))
             {
                 InternalLogger.Trace("Initializing {0}", initialize);
                 try

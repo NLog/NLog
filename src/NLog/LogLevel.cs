@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog
 {
+    using System;
+
     /// <summary>
     /// Defines available log levels.
     /// </summary>

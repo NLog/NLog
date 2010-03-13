@@ -31,14 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF && !SILVERLIGHT
-using NLog.Internal;
-
-#endif
-
 namespace NLog.Internal.FileAppenders
 {
-    using Targets;
+    using NLog.Targets;
 
     /// <summary>
     /// Interface that provides parameters for create file function.

@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.Layouts
 {
+    using NLog.Config;
+
     /// <summary>
     /// A column in the CSV.
     /// </summary>

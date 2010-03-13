@@ -33,16 +33,16 @@
 
 #if !NET_CF && !MONO && !SILVERLIGHT
 
-using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Globalization;
-using System.Reflection;
-using System.Text;
-using NLog.Config;
-
 namespace NLog.LayoutRenderers
 {
+    using System;
+    using System.ComponentModel;
+    using System.Diagnostics;
+    using System.Globalization;
+    using System.Reflection;
+    using System.Text;
+    using NLog.Config;
+
     /// <summary>
     /// The information about the running process.
     /// </summary>
@@ -271,7 +271,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes the layout renderer.
         /// </summary>
-        public override void Initialize()
+        protected override void Initialize()
         {
             base.Initialize();
             this.propertyInfo = typeof(Process).GetProperty(this.Property.ToString());
@@ -286,7 +286,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Closes the layout renderer.
         /// </summary>
-        public override void Close()
+        protected override void Close()
         {
             if (this.process != null)
             {
@@ -295,22 +295,6 @@ namespace NLog.LayoutRenderers
             }
 
             base.Close();
-        }
-
-        /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
-        {
-            return 32;
         }
 
         /// <summary>

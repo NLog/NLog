@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Conditions
 {
+    using System;
+
     /// <summary>
     /// Marks the class as containing condition methods.
     /// </summary>

@@ -31,12 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.ComponentModel;
-using NLog.Common;
-
 namespace NLog.Targets.Wrappers
 {
+    using System;
+    using System.ComponentModel;
+    using NLog.Common;
+
     /// <summary>
     /// A target wrapper that causes retries on wrapped target errors.
     /// </summary>

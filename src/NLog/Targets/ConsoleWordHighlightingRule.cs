@@ -33,13 +33,13 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System.ComponentModel;
-using System.Text;
-using System.Text.RegularExpressions;
-using NLog.Config;
-
 namespace NLog.Targets
 {
+    using System.ComponentModel;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using NLog.Config;
+
     /// <summary>
     /// Highlighting rule for Win32 colorful console.
     /// </summary>

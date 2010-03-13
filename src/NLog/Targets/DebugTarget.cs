@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Targets
 {
+    using System;
+
     /// <summary>
     /// Counts logging messages but does not output them anywhere. Provides 
     /// the counter of logged messages and remembers the latest one.

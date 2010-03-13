@@ -33,15 +33,15 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
-using System.Globalization;
-using System.Runtime.InteropServices;
-using System.Text;
-using NLog.Config;
-using NLog.Internal;
-
 namespace NLog.LayoutRenderers
 {
+    using System;
+    using System.Globalization;
+    using System.Runtime.InteropServices;
+    using System.Text;
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// ASP Session variable.
     /// </summary>
@@ -54,20 +54,6 @@ namespace NLog.LayoutRenderers
         [RequiredParameter]
         [DefaultParameter]
         public string Variable { get; set; }
-
-        /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// Because ASP target uses COM Interop which is quite expensive, this method always returns 64.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
-        {
-            return 64;
-        }
 
         /// <summary>
         /// Renders the specified ASP Session variable and appends it to the specified <see cref="StringBuilder" />.

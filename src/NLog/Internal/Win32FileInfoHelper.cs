@@ -33,11 +33,10 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
-using NLog.Internal;
-
 namespace NLog.Internal
 {
+    using System;
+
     /// <summary>
     /// Win32-optimized implementation of <see cref="FileInfoHelper"/>.
     /// </summary>

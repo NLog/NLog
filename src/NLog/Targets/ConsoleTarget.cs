@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.ComponentModel;
-
 namespace NLog.Targets
 {
+    using System;
+    using System.ComponentModel;
+
     /// <summary>
     /// Writes logging messages to the console.
     /// </summary>
@@ -68,7 +68,7 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes the target.
         /// </summary>
-        public override void Initialize()
+        protected override void Initialize()
         {
             base.Initialize();
             if (Header != null)
@@ -80,7 +80,7 @@ namespace NLog.Targets
         /// <summary>
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
-        public override void Close()
+        protected override void Close()
         {
             if (Footer != null)
             {

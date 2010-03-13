@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.ComponentModel;
-
 namespace NLog.Targets
 {
+    using System.ComponentModel;
+
     /// <summary>
     /// Discards logging messages optionally forcing the layouts to be calculated. Used mainly for debugging and benchmarking.
     /// </summary>

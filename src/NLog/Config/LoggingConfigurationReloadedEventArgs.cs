@@ -33,10 +33,10 @@
 
 #if !SILVERLIGHT && !NET_CF
 
-using System;
-
 namespace NLog.Config
 {
+    using System;
+
     /// <summary>
     /// Arguments for <see cref="LogFactory.ConfigurationReloaded"/>.
     /// </summary>

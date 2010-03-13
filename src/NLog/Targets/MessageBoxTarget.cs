@@ -31,18 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using System.Text;
+namespace NLog.Targets
+{
+    using System.Collections.Generic;
+    using System.Text;
 #if SILVERLIGHT
 using System.Windows.Browser;
 #else
-using System.Windows.Forms;
+    using System.Windows.Forms;
 #endif
 
-using NLog.Layouts;
+    using NLog.Layouts;
 
-namespace NLog.Targets
-{
     /// <summary>
     /// Pops up logging messages as message boxes.
     /// </summary>

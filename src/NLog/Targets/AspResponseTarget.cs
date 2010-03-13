@@ -33,11 +33,11 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System.Runtime.InteropServices;
-using NLog.Internal;
-
 namespace NLog.Targets
 {
+    using System.Runtime.InteropServices;
+    using NLog.Internal;
+
     /// <summary>
     /// Outputs logging messages through the ASP Response object.
     /// </summary>

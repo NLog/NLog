@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Config
 {
+    using System;
+
     /// <summary>
     /// Attribute used to mark the required parameters for targets,
     /// layout targets and filters.

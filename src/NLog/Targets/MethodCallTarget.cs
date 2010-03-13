@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Reflection;
-
 namespace NLog.Targets
 {
+    using System;
+    using System.Reflection;
+
     /// <summary>
     /// Calls the specified static method on each logging message and passes contextual parameters to it.
     /// </summary>
@@ -72,7 +72,7 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes the target.
         /// </summary>
-        public override void Initialize()
+        protected override void Initialize()
         {
             base.Initialize();
 

@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Common
 {
+    using System;
+
     /// <summary>
     /// Helper functions for handling exceptions.
     /// </summary>

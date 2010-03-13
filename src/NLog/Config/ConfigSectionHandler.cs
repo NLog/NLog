@@ -33,13 +33,13 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
-using System.Configuration;
-using System.Xml;
-using NLog.Common;
-
 namespace NLog.Config
 {
+    using System;
+    using System.Configuration;
+    using System.Xml;
+    using NLog.Common;
+
     /// <summary>
     /// NLog configuration section handler class for configuring NLog from App.config.
     /// </summary>

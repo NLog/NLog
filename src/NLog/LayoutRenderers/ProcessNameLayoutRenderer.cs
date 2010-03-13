@@ -33,16 +33,18 @@
 
 #if !SILVERLIGHT
 
-using System.ComponentModel;
-using System.Text;
-using NLog.Internal;
-
 namespace NLog.LayoutRenderers
 {
+    using System.ComponentModel;
+    using System.Text;
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// The name of the current process.
     /// </summary>
     [LayoutRenderer("processname")]
+    [AppDomainFixedOutput]
     public class ProcessNameLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -50,22 +52,6 @@ namespace NLog.LayoutRenderers
         /// </summary>
         [DefaultValue(false)]
         public bool FullName { get; set; }
-
-        /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
-        {
-            return 32;
-        }
 
         /// <summary>
         /// Renders the current process name (optionally with a full path).
@@ -82,16 +68,6 @@ namespace NLog.LayoutRenderers
             {
                 builder.Append(ThreadIDHelper.Instance.CurrentProcessBaseName);
             }
-        }
-
-        /// <summary>
-        /// Determines whether the value produced by the layout renderer
-        /// is fixed per current app-domain.
-        /// </summary>
-        /// <returns>A value of <see langword="true"/>.</returns>
-        protected override bool IsAppDomainFixed()
-        {
-            return true;
         }
     }
 }

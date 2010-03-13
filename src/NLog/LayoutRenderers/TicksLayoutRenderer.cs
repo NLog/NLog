@@ -31,33 +31,20 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Globalization;
-using System.Text;
-
 namespace NLog.LayoutRenderers
 {
+    using System.Globalization;
+    using System.Text;
+
+    using NLog.Config;
+
     /// <summary>
     /// The Ticks value of current date and time.
     /// </summary>
     [LayoutRenderer("ticks")]
+    [ThreadAgnostic]
     public class TicksLayoutRenderer : LayoutRenderer
     {
-        /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
-        {
-            return 32;
-        }
-
         /// <summary>
         /// Renders the ticks value of current time and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
@@ -66,21 +53,6 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             builder.Append(logEvent.TimeStamp.Ticks.ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        /// Determines whether the layout renderer is volatile.
-        /// </summary>
-        /// <returns>
-        /// A boolean indicating whether the layout renderer is volatile.
-        /// </returns>
-        /// <remarks>
-        /// Volatile layout renderers are dependent on information not contained
-        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
-        /// </remarks>
-        public override bool IsVolatile()
-        {
-            return false;
         }
     }
 }

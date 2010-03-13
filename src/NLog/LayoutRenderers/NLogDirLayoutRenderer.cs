@@ -31,15 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-using System.Text;
-
 namespace NLog.LayoutRenderers
 {
+    using System.IO;
+    using System.Text;
+
+    using NLog.Config;
+
     /// <summary>
     /// The directory where NLog.dll is located.
     /// </summary>
     [LayoutRenderer("nlogdir")]
+    [AppDomainFixedOutput]
     public class NLogDirLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -67,22 +70,6 @@ namespace NLog.LayoutRenderers
         private static string NLogDir { get; set; }
 
         /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
-        {
-            return 32;
-        }
-
-        /// <summary>
         /// Renders the directory where NLog is located and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
@@ -103,20 +90,6 @@ namespace NLog.LayoutRenderers
             {
                 builder.Append(baseDir);
             }
-        }
-
-        /// <summary>
-        /// Determines whether the value produced by the layout renderer
-        /// is fixed per current app-domain.
-        /// </summary>
-        /// <returns>
-        /// The boolean value of <c>true</c> makes the value
-        /// of the layout renderer be precalculated and inserted as a literal
-        /// in the resulting layout string.
-        /// </returns>
-        protected override bool IsAppDomainFixed()
-        {
-            return true;
         }
     }
 }

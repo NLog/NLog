@@ -31,18 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Diagnostics;
-using System.Reflection;
-
-using NLog.Common;
-using NLog.Config;
-using NLog.Filters;
-using NLog.Internal;
-using NLog.Targets;
-
 namespace NLog
 {
+    using System;
+    using System.Diagnostics;
+    using System.Reflection;
+
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Filters;
+    using NLog.Internal;
+    using NLog.Targets;
+
     /// <summary>
     /// Implementation of logging engine.
     /// </summary>

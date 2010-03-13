@@ -31,24 +31,24 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Xml;
-using NLog.Common;
-using NLog.Filters;
-using NLog.Internal;
-using NLog.Layouts;
-using NLog.Targets;
-using NLog.Targets.Compound;
-using NLog.Targets.Wrappers;
-
 namespace NLog.Config
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Globalization;
+    using System.IO;
+    using System.Reflection;
+    using System.Xml;
+    using NLog.Common;
+    using NLog.Filters;
+    using NLog.Internal;
+    using NLog.Layouts;
+    using NLog.Targets;
+    using NLog.Targets.Compound;
+    using NLog.Targets.Wrappers;
+
     /// <summary>
     /// A class for configuring NLog through an XML configuration file 
     /// (App.config style or App.nlog style).

@@ -33,18 +33,18 @@
 
 #if !SILVERLIGHT
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Reflection;
-using System.Text;
-using NLog.Common;
-using NLog.Config;
-using NLog.Layouts;
-
 namespace NLog.Targets
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Reflection;
+    using System.Text;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Layouts;
+
     /// <summary>
     /// Writes logging messages to the database using an ADO.NET provider.
     /// </summary>

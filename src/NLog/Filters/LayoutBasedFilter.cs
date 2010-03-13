@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-using NLog.Layouts;
-
 namespace NLog.Filters
 {
+    using NLog.Config;
+    using NLog.Layouts;
+
     /// <summary>
     /// A base class for filters that are based on comparing a value to a layout.
     /// </summary>
@@ -54,17 +54,5 @@ namespace NLog.Filters
         /// <value>The layout.</value>
         [RequiredParameter]
         public Layout Layout { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether stack trace information should be gathered
-        /// during log event processing.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="StackTraceUsage"/> value that determines stack trace handling.
-        /// </returns>
-        public override StackTraceUsage GetStackTraceUsage()
-        {
-            return this.Layout.GetStackTraceUsage();
-        }
     }
 }

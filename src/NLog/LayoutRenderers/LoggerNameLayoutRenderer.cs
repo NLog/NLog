@@ -31,15 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.ComponentModel;
-using System.Text;
-
 namespace NLog.LayoutRenderers
 {
+    using System.ComponentModel;
+    using System.Text;
+
+    using NLog.Config;
+
     /// <summary>
     /// The logger name.
     /// </summary>
     [LayoutRenderer("logger")]
+    [ThreadAgnostic]
     public class LoggerNameLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -47,22 +50,6 @@ namespace NLog.LayoutRenderers
         /// </summary>
         [DefaultValue(false)]
         public bool ShortName { get; set; }
-
-        /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
-        {
-            return 32;
-        }
 
         /// <summary>
         /// Renders the logger name and appends it to the specified <see cref="StringBuilder" />.
@@ -87,21 +74,6 @@ namespace NLog.LayoutRenderers
             {
                 builder.Append(logEvent.LoggerName);
             }
-        }
-
-        /// <summary>
-        /// Determines whether the layout renderer is volatile.
-        /// </summary>
-        /// <returns>
-        /// A boolean indicating whether the layout renderer is volatile.
-        /// </returns>
-        /// <remarks>
-        /// Volatile layout renderers are dependent on information not contained
-        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
-        /// </remarks>
-        public override bool IsVolatile()
-        {
-            return false;
         }
     }
 }

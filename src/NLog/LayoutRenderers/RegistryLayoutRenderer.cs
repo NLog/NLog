@@ -33,15 +33,14 @@
 
 #if !SILVERLIGHT
 
-using System;
-using System.Globalization;
-using System.Text;
-using Microsoft.Win32;
-using NLog.Config;
-using NLog.LayoutRenderers;
-
 namespace NLog.LayoutRenderers
 {
+    using System;
+    using System.Globalization;
+    using System.Text;
+    using Microsoft.Win32;
+    using NLog.Config;
+
     /// <summary>
     /// A value from the Registry.
     /// </summary>
@@ -113,20 +112,6 @@ namespace NLog.LayoutRenderers
                     throw new ArgumentException("Key name is invalid");
                 }
             }
-        }
-
-        /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// This function always returns 32.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
-        {
-            return 32;
         }
 
         /// <summary>

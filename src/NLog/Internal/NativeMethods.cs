@@ -31,14 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Runtime.InteropServices;
-using System.Security;
-
 #if !SILVERLIGHT
 
 namespace NLog.Internal
 {
+    using System;
+    using System.Runtime.InteropServices;
+    using System.Security;
+
     internal static class NativeMethods
     {
         [DllImport("kernel32.dll", SetLastError = true)]

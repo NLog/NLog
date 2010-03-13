@@ -31,14 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-using System.Text;
-using NLog.Common;
-using NLog.Config;
-using NLog.Layouts;
-
 namespace NLog.LayoutRenderers
 {
+    using System.IO;
+    using System.Text;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Layouts;
+
     /// <summary>
     /// Renders contents of the specified file.
     /// </summary>
@@ -92,22 +92,6 @@ namespace NLog.LayoutRenderers
             }
 
             builder.Append(this.currentFileContents);
-        }
-
-        /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
-        {
-            return 8;
         }
 
         private string ReadFileContents(string fileName)

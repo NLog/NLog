@@ -31,19 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Reflection;
-using System.Text;
-using NLog.Common;
-using NLog.Config;
-using NLog.Layouts;
-using NLog.Targets;
-
 namespace NLog.Internal
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Reflection;
+    using System.Text;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Layouts;
+    using NLog.Targets;
+
     /// <summary>
     /// Reflection helpers for accessing properties.
     /// </summary>

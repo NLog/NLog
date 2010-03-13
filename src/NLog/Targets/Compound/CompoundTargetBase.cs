@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Layouts;
-
 namespace NLog.Targets.Compound
 {
+    using System.Collections.Generic;
+    using NLog.Layouts;
+
     /// <summary>
     /// A base class for targets which wrap other (multiple) targets
     /// and provide various forms of target routing.

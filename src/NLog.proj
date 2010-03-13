@@ -133,6 +133,7 @@
 
   <Target Name="RunTests">
     <CallTarget Targets="DeleteTrxFiles" />
+    <CallTarget Targets="PrepareTestResultSummary" />
     <CallTarget Targets="NetFx20Test" Condition="'$(BuildNetFX20)'=='true'"/>
     <CallTarget Targets="NetFx35Test" Condition="'$(BuildNetFX35)'=='true'"/>
     <CallTarget Targets="NetFx40Test" Condition="'$(BuildNetFX40)'=='true'"/>
@@ -140,7 +141,6 @@
     <CallTarget Targets="NetCF35Test" Condition="'$(BuildNetCF35)'=='true'"/>
     <CallTarget Targets="SL2Test" Condition="'$(BuildSL2)'=='true'"/>
     <CallTarget Targets="SL3Test" Condition="'$(BuildSL3)'=='true'"/>
-    <CallTarget Targets="PrepareTestResultSummary" />
   </Target>
 
   <Target Name="NetFx20Test">

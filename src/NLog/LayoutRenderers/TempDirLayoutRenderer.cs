@@ -31,15 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-using System.Text;
-
 namespace NLog.LayoutRenderers
 {
+    using System.IO;
+    using System.Text;
+
+    using NLog.Config;
+
     /// <summary>
     /// A temporary directory.
     /// </summary>
     [LayoutRenderer("tempdir")]
+    [AppDomainFixedOutput]
     public class TempDirLayoutRenderer : LayoutRenderer
     {
         private static string tempDir = Path.GetTempPath();
@@ -53,22 +56,6 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the name of the directory to be Path.Combine()'d with the directory name.
         /// </summary>
         public string Dir { get; set; }
-
-        /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
-        {
-            return 32;
-        }
 
         /// <summary>
         /// Renders the directory where NLog is located and appends it to the specified <see cref="StringBuilder" />.
@@ -91,20 +78,6 @@ namespace NLog.LayoutRenderers
             {
                 builder.Append(baseDir);
             }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the value produced by the layout renderer
-        /// is fixed per current app-domain.
-        /// </summary>
-        /// <returns>
-        /// The boolean value of <c>true</c> makes the value
-        /// of the layout renderer be precalculated and inserted as a literal
-        /// in the resulting layout string.
-        /// </returns>
-        protected override bool IsAppDomainFixed()
-        {
-            return true;
         }
     }
 }

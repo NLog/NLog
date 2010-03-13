@@ -31,13 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.ComponentModel;
-using System.Threading;
-using NLog.Internal;
-
 namespace NLog.Targets.Wrappers
 {
+    using System;
+    using System.ComponentModel;
+    using System.Threading;
+    using NLog.Internal;
+
     /// <summary>
     /// A target that buffers log events and sends them in batches to the wrapped target.
     /// </summary>
@@ -116,16 +116,6 @@ namespace NLog.Targets.Wrappers
         public int FlushTimeout { get; set; }
 
         /// <summary>
-        /// Initializes the target.
-        /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize();
-            this.buffer = new LogEventInfoBuffer(this.BufferSize, false, 0);
-            this.flushTimer = new Timer(this.FlushCallback, null, -1, -1);
-        }
-
-        /// <summary>
         /// Flushes pending events in the buffer (if any).
         /// </summary>
         /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
@@ -144,9 +134,19 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
+        /// Initializes the target.
+        /// </summary>
+        protected override void Initialize()
+        {
+            base.Initialize();
+            this.buffer = new LogEventInfoBuffer(this.BufferSize, false, 0);
+            this.flushTimer = new Timer(this.FlushCallback, null, -1, -1);
+        }
+
+        /// <summary>
         /// Closes the target by flushing pending events in the buffer (if any).
         /// </summary>
-        public override void Close()
+        protected override void Close()
         {
             this.Flush(TimeSpan.FromSeconds(3));
             base.Close();

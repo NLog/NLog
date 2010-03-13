@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-
 namespace NLog.Targets
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Writes logging messages to an ArrayList in memory for programmatic retrieval.
     /// </summary>

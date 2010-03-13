@@ -33,11 +33,11 @@
 
 #if !MONO && !SILVERLIGHT
 
-using System;
-using System.Windows.Forms;
-
 namespace NLog.Internal
 {
+    using System;
+    using System.Windows.Forms;
+
     /// <summary>
     /// Form helper methods.
     /// </summary>

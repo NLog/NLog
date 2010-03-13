@@ -31,14 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-#if !NET_CF && !SILVERLIGHT
-
-#endif
-
 namespace NLog.Internal
 {
+    using System;
+    using System.IO;
+
     /// <summary>
     /// Portable implementation of <see cref="FileInfoHelper"/>.
     /// </summary>

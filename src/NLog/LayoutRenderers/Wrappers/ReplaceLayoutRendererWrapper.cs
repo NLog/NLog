@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Text.RegularExpressions;
-
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System.Text.RegularExpressions;
+
     /// <summary>
     /// Replaces a string in the output of another layout with another string.
     /// </summary>
@@ -76,7 +76,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Initializes the layout renderer.
         /// </summary>
-        public override void Initialize()
+        protected override void Initialize()
         {
             base.Initialize();
             string regexString = this.SearchFor;

@@ -31,17 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Sockets;
+namespace NLog.Internal.NetworkSenders
+{
+    using System;
+    using System.IO;
+    using System.Net;
+    using System.Net.Sockets;
 
 #if SILVERLIGHT
 using System.Threading;
 #endif
 
-namespace NLog.Internal.NetworkSenders
-{
     /// <summary>
     /// Sends messages over a TCP network connection.
     /// </summary>

@@ -33,16 +33,16 @@
 
 #if !SILVERLIGHT
 
-using System;
-using System.ComponentModel;
-using System.IO;
-using System.Net;
-using System.Text;
-using System.Xml;
-using NLog.Internal;
-
 namespace NLog.Targets
 {
+    using System;
+    using System.ComponentModel;
+    using System.IO;
+    using System.Net;
+    using System.Text;
+    using System.Xml;
+    using NLog.Internal;
+
     /// <summary>
     /// Calls the specified web service on each logging message. 
     /// </summary>

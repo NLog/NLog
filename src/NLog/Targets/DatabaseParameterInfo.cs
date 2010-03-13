@@ -33,12 +33,12 @@
 
 #if !SILVERLIGHT
 
-using System.ComponentModel;
-using NLog.Config;
-using NLog.Layouts;
-
 namespace NLog.Targets
 {
+    using System.ComponentModel;
+    using NLog.Config;
+    using NLog.Layouts;
+
     /// <summary>
     /// Represents a parameter to a Database target.
     /// </summary>

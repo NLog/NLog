@@ -31,12 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Reflection;
-using NLog.Config;
-
 namespace NLog.Internal
 {
+    using System;
+    using System.Reflection;
+    using NLog.Config;
+
     /// <summary>
     /// Object construction helper.
     /// </summary>

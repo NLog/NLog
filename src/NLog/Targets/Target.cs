@@ -31,24 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-
-using NLog.Common;
-using NLog.Config;
-using NLog.Internal;
-using NLog.Layouts;
-
 namespace NLog.Targets
 {
+    using System;
+    using System.Collections.Generic;
+
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Layouts;
+
     /// <summary>
     /// Represents logging target.
     /// </summary>
     public abstract class Target : ISupportsInitialize, INLogConfigurationItem, IDisposable
     {
         private List<Layout> allLayouts;
-
-        private StackTraceUsage stackTraceUsage;
 
         /// <summary>
         /// Gets or sets the name of the target.
@@ -86,24 +84,35 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Writes the log to the target.
+        /// </summary>
+        /// <param name="logEvent">Log event to write.</param>
+        public void WriteLogEvent(LogEventInfo logEvent)
+        {
+            this.Write(logEvent);
+        }
+
+        /// <summary>
+        /// Writes the array of log events.
+        /// </summary>
+        /// <param name="logEvents">The log events.</param>
+        public void WriteLogEvents(LogEventInfo[] logEvents)
+        {
+            this.Write(logEvents);
+        }
+
+        /// <summary>
         /// Calls the <see cref="Layout.Precalculate"/> on each volatile layout
         /// used by this target.
         /// </summary>
         /// <param name="logEvent">
         /// The log event.
         /// </param>
-        /// <remarks>
-        /// A layout is volatile if it contains at least one <see cref="Layout"/> for 
-        /// which <see cref="Layout.IsVolatile"/> returns true.
-        /// </remarks>
         public void PrecalculateVolatileLayouts(LogEventInfo logEvent)
         {
             foreach (Layout l in this.allLayouts)
             {
-                if (l.IsVolatile())
-                {
-                    l.Precalculate(logEvent);
-                }
+                l.Precalculate(logEvent);
             }
         }
 
@@ -134,9 +143,25 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes this instance.
+        /// </summary>
+        void ISupportsInitialize.Initialize()
+        {
+            this.Initialize();
+        }
+
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
+        void ISupportsInitialize.Close()
+        {
+            this.Close();
+        }
+
+        /// <summary>
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
-        public virtual void Close()
+        protected virtual void Close()
         {
         }
 
@@ -144,29 +169,9 @@ namespace NLog.Targets
         /// Initializes the target. Can be used by inheriting classes
         /// to initialize logging.
         /// </summary>
-        public virtual void Initialize()
+        protected virtual void Initialize()
         {
             this.GetAllLayouts();
-
-            foreach (Layout l in this.allLayouts)
-            {
-                StackTraceUsage stu = l.GetStackTraceUsage();
-                if (stu > this.stackTraceUsage)
-                {
-                    this.stackTraceUsage = stu;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether stack trace information should be gathered during log event processing.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="StackTraceUsage"/> value which determines stack trace information to be gathered.
-        /// </returns>
-        public virtual StackTraceUsage GetStackTraceUsage()
-        {
-            return this.stackTraceUsage;
         }
 
         /// <summary>
@@ -180,7 +185,7 @@ namespace NLog.Targets
 
         /// <summary>
         /// Writes an array of logging events to the log target. By default it iterates on all
-        /// events and passes them to "Append" method. Inheriting classes can use this method to
+        /// events and passes them to "Write" method. Inheriting classes can use this method to
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">
@@ -196,21 +201,8 @@ namespace NLog.Targets
 
         private void GetAllLayouts()
         {
-            var scanner = new ObjectGraphScanner<Layout>();
-            scanner.AddRoot(this);
-            this.allLayouts = new List<Layout>(scanner.Scan());
-
+            this.allLayouts = new List<Layout>(ObjectGraphScanner.FindReachableObjects<Layout>(this));
             InternalLogger.Trace("{0} has {1} layouts", this, this.allLayouts.Count);
-        }
-
-        public void WriteLogEvent(LogEventInfo logEvent)
-        {
-            this.Write(logEvent);
-        }
-
-        public void WriteLogEvents(LogEventInfo[] logEvents)
-        {
-            this.Write(logEvents);
         }
     }
 }

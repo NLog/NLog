@@ -31,25 +31,28 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.ObjectModel;
-using System.Text;
-using NLog.Common;
-using NLog.Config;
-using NLog.LayoutRenderers;
-
 namespace NLog.Layouts
 {
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Text;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.LayoutRenderers;
+
     /// <summary>
     /// Represents a string with embedded placeholders that can render contextual information.
     /// </summary>
     [Layout("SimpleLayout")]
+    [ThreadAgnostic]
+    [AppDomainFixedOutput]
     public sealed class SimpleLayout : Layout
     {
+        private const int MaxInitialRenderBufferLength = 16384;
+        private int maxRenderedLength;
+
         private string fixedText;
-        private bool isVolatile;
         private string layoutText;
-        private StackTraceUsage stackTraceUsage = StackTraceUsage.None;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleLayout" /> class.
@@ -174,90 +177,37 @@ namespace NLog.Layouts
                 return cachedValue;
             }
 
-            int size = 0;
-
-            for (int i = 0; i < this.Renderers.Count; ++i)
+            int initialSize = this.maxRenderedLength;
+            if (initialSize > MaxInitialRenderBufferLength)
             {
-                LayoutRenderer app = this.Renderers[i];
+                initialSize = MaxInitialRenderBufferLength;
+            }
+
+            var builder = new StringBuilder(initialSize);
+
+            foreach (LayoutRenderer renderer in this.Renderers)
+            {
                 try
                 {
-                    int ebs = app.GetEstimatedBufferSize2(logEvent);
-                    size += ebs;
+                    renderer.Render(builder, logEvent);
                 }
                 catch (Exception ex)
                 {
                     if (InternalLogger.IsWarnEnabled)
                     {
-                        InternalLogger.Warn("Exception in {0}.GetEstimatedBufferSize(): {1}.", app.GetType().FullName, ex);
+                        InternalLogger.Warn("Exception in {0}.Append(): {1}.", renderer.GetType().FullName, ex);
                     }
                 }
             }
 
-            StringBuilder builder = new StringBuilder(size);
-
-            for (int i = 0; i < this.Renderers.Count; ++i)
+            if (builder.Length > this.maxRenderedLength)
             {
-                LayoutRenderer app = this.Renderers[i];
-                try
-                {
-                    app.Render(builder, logEvent);
-                }
-                catch (Exception ex)
-                {
-                    if (InternalLogger.IsWarnEnabled)
-                    {
-                        InternalLogger.Warn("Exception in {0}.Append(): {1}.", app.GetType().FullName, ex);
-                    }
-                }
+                this.maxRenderedLength = builder.Length;
             }
 
             string value = builder.ToString();
             logEvent.AddCachedLayoutValue(this, value);
             return value;
-        }
-
-        /// <summary>
-        /// Returns the value indicating whether a stack trace and/or the source file
-        /// information should be gathered during layout processing.
-        /// </summary>
-        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace.</returns>
-        public override StackTraceUsage GetStackTraceUsage()
-        {
-            return this.stackTraceUsage;
-        }
-
-        /// <summary>
-        /// Initializes the layout.
-        /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the value of layout is fixed for current AppDomain.
-        /// </summary>
-        /// <returns>
-        /// A value of <c>true</c> if value of layout is fixed for current AppDomain, otherwise <c>false</c>.
-        /// </returns>
-        public override bool IsAppDomainFixed()
-        {
-            return this.fixedText != null;
-        }
-
-        /// <summary>
-        /// Returns the value indicating whether this layout includes any volatile 
-        /// layout renderers.
-        /// </summary>
-        /// <returns>A value of <see langword="true" /> when the layout includes at least 
-        /// one volatile renderer, <see langword="false"/> otherwise.</returns>
-        /// <remarks>
-        /// Volatile layout renderers are dependent on information not contained 
-        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
-        /// </remarks>
-        public override bool IsVolatile()
-        {
-            return this.isVolatile;
         }
 
         /// <summary>
@@ -284,23 +234,6 @@ namespace NLog.Layouts
             }
 
             this.layoutText = text;
-
-            this.isVolatile = false;
-            this.stackTraceUsage = StackTraceUsage.None;
-
-            foreach (LayoutRenderer lr in renderers)
-            {
-                StackTraceUsage stu = lr.GetStackTraceUsage();
-                if (stu > this.stackTraceUsage)
-                {
-                    this.stackTraceUsage = stu;
-                }
-
-                if (lr.IsVolatile())
-                {
-                    this.isVolatile = true;
-                }
-            }
         }
     }
 }

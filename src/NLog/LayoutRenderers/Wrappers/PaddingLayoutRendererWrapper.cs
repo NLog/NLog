@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.ComponentModel;
-
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
+    using System.ComponentModel;
+
     /// <summary>
     /// Applies padding to another layout output.
     /// </summary>

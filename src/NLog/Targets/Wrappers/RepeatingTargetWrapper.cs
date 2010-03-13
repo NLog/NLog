@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.ComponentModel;
-
 namespace NLog.Targets.Wrappers
 {
+    using System.ComponentModel;
+
     /// <summary>
     /// A target wrapper that repeats each log event the specified number of times.
     /// </summary>

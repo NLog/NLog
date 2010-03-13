@@ -33,12 +33,12 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System.Runtime.InteropServices;
-using NLog.Common;
-using NLog.Config;
-
 namespace NLog.ComInterop
 {
+    using System.Runtime.InteropServices;
+    using NLog.Common;
+    using NLog.Config;
+
     /// <summary>
     /// NLog COM Interop LogManager implementation.
     /// </summary>

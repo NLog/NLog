@@ -31,13 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Text;
-using NLog.Config;
-using NLog.Internal;
-using NLog.Layouts;
-
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System.Text;
+    using NLog.Config;
+    using NLog.Layouts;
+
     /// <summary>
     /// Decodes text "encrypted" with ROT-13.
     /// </summary>
@@ -53,22 +52,6 @@ namespace NLog.LayoutRenderers.Wrappers
         public Layout Inner { get; set; }
 
         /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
-        {
-            return 30;
-        }
-
-        /// <summary>
         /// Renders the inner message, processes it and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
@@ -77,38 +60,6 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             string msg = this.Inner.GetFormattedMessage(logEvent);
             builder.Append(this.Transform(msg));
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether stack trace information should be gathered
-        /// during log event processing. By default it calls <see cref="Layout.GetStackTraceUsage"/> on
-        /// <see cref="Layout"/>.
-        /// </summary>
-        /// <returns>A <see cref="StackTraceUsage" /> value.</returns>
-        public override StackTraceUsage GetStackTraceUsage()
-        {
-            return StackTraceUsageUtils.Max(base.GetStackTraceUsage(), this.Inner.GetStackTraceUsage());
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the value produced by the layout renderer
-        /// is fixed per current app-domain.
-        /// </summary>
-        /// <returns>
-        /// The boolean value of <c>true</c> makes the value
-        /// of the layout renderer be precalculated and inserted as a literal
-        /// in the resulting layout string.
-        /// </returns>
-        protected override bool IsAppDomainFixed()
-        {
-            if (this.Inner != null)
-            {
-                return this.Inner.IsAppDomainFixed();
-            }
-            else
-            {
-                return false;
-            }
         }
 
         /// <summary>

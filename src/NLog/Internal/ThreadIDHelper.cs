@@ -33,10 +33,10 @@
 
 #if !SILVERLIGHT
 
-using NLog.Config;
-
 namespace NLog.Internal
 {
+    using NLog.Config;
+
     /// <summary>
     /// Returns details about current process and thread in a portable manner.
     /// </summary>

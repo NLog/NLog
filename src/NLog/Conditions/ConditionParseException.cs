@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Conditions
 {
+    using System;
+
     /// <summary>
     /// Exception during parsing of condition expression.
     /// </summary>

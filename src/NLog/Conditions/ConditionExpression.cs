@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.Conditions
 {
+    using NLog.Config;
+
     /// <summary>
     /// Base class for representing nodes in condition expression trees.
     /// </summary>

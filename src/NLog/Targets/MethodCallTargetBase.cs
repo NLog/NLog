@@ -31,12 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Config;
-using NLog.Layouts;
-
 namespace NLog.Targets
 {
+    using System.Collections.Generic;
+    using NLog.Config;
+
     /// <summary>
     /// The base class for all targets which call methods (local or remote). 
     /// Manages parameters and type coercion.

@@ -39,6 +39,7 @@ using NLog;
 using NLog.Config;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NLog.Internal;
 using NLog.Layouts;
 
 namespace NLog.UnitTests.LayoutRenderers
@@ -50,7 +51,6 @@ namespace NLog.UnitTests.LayoutRenderers
         public void Test1()
         {
             Layout l = "${event-context:aaa}";
-            l.Initialize();
             LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
 
             // empty
@@ -62,7 +62,6 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             Layout l = "${event-context:aaa}";
             LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
-            l.Initialize();
             lei.Properties["aaa"] = "bbb";
 
             // empty

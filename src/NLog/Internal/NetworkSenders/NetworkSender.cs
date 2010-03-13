@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Internal.NetworkSenders
 {
+    using System;
+
     /// <summary>
     /// A base class for all network senders. Supports one-way sending of messages
     /// over various protocols.

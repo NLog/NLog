@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
-
 namespace NLog.Config
 {
+    using NLog.Internal;
+
     /// <summary>
     /// Supported operating systems.
     /// </summary>

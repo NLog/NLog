@@ -31,74 +31,68 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using NLog.Config;
-
 namespace NLog.Internal
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using NLog.Common;
+    using NLog.Config;
+
     /// <summary>
     /// Scans (breadth-first) the object graph following all the edges whose are 
     /// instances implement <see cref="INLogConfigurationItem"/> and returns all objects implementing a specified interfaces.
     /// </summary>
-    /// <typeparam name="T">Type of the objects to return.</typeparam>
-    internal class ObjectGraphScanner<T>
-        where T : class
+    internal class ObjectGraphScanner
     {
-        private readonly Dictionary<object, bool> visitedObjects = new Dictionary<object, bool>();
-        private readonly Queue<INLogConfigurationItem> queue = new Queue<INLogConfigurationItem>();
-
         /// <summary>
-        /// Scans the graph starting from the list of roots specified with AddRoot() calls.
+        /// Finds the objects which implement <see cref="INLogConfigurationItem"/> which are reachable
+        /// from any of the given root objects when traversing the object graph over public properties.
         /// </summary>
+        /// <typeparam name="T">Type of the objects to return.</typeparam>
+        /// <param name="rootObjects">The root objects.</param>
         /// <returns>Ordered list of objects implementing T.</returns>
-        public T[] Scan()
+        public static T[] FindReachableObjects<T>(params INLogConfigurationItem[] rootObjects)
+            where T : class
         {
+            InternalLogger.Trace("FindReachableObject<{0}>:", typeof(T));
             var result = new List<T>();
+            var visitedObjects = new Dictionary<INLogConfigurationItem, int>();
 
-            while (this.queue.Count > 0)
+            foreach (var rootObject in rootObjects)
             {
-                INLogConfigurationItem o = this.queue.Dequeue();
-                T t = o as T;
-                if (t != null)
-                {
-                    result.Add(t);
-                }
-
-                // Console.WriteLine("Scanning {0}", o);
-                this.ScanProperties(o);
+                ScanProperties(result, rootObject, 0, visitedObjects);
             }
 
             return result.ToArray();
         }
 
-        /// <summary>
-        /// Adds the specified root object.
-        /// </summary>
-        /// <param name="rootObject">The root object.</param>
-        public void AddRoot(INLogConfigurationItem rootObject)
-        {
-            this.Enqueue(rootObject);
-        }
-
-        private void Enqueue(INLogConfigurationItem o)
+        private static void ScanProperties<T>(List<T> result, INLogConfigurationItem o, int level, Dictionary<INLogConfigurationItem, int> visitedObjects)
+            where T : class
         {
             if (o == null)
             {
                 return;
             }
 
-            if (!this.visitedObjects.ContainsKey(o))
+            if (visitedObjects.ContainsKey(o))
             {
-                this.visitedObjects.Add(o, true);
-                this.queue.Enqueue(o);
+                return;
             }
-        }
 
-        private void ScanProperties(INLogConfigurationItem o)
-        {
+            visitedObjects.Add(o, 0);
+
+            var t = o as T;
+            if (t != null)
+            {
+                result.Add(t);
+            }
+
+            if (InternalLogger.IsTraceEnabled)
+            {
+                InternalLogger.Trace("{0}Scanning {1} '{2}'", new string(' ', level), o.GetType().Name, o);
+            }
+
             foreach (PropertyInfo prop in PropertyHelper.GetAllReadableProperties(o.GetType()))
             {
                 if (prop.PropertyType.IsPrimitive || prop.PropertyType.IsEnum || prop.PropertyType == typeof(string))
@@ -117,13 +111,13 @@ namespace NLog.Internal
                 {
                     foreach (object element in enumerable)
                     {
-                        this.Enqueue(element as INLogConfigurationItem);
+                        ScanProperties(result, element as INLogConfigurationItem, level + 1, visitedObjects);
                     }
-
-                    continue;
                 }
-
-                this.Enqueue(value as INLogConfigurationItem);
+                else
+                {
+                    ScanProperties(result, value as INLogConfigurationItem, level + 1, visitedObjects);
+                }
             }
         }
     }

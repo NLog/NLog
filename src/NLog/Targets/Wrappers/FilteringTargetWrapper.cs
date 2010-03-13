@@ -31,13 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Conditions;
-using NLog.Config;
-using NLog.Layouts;
-
 namespace NLog.Targets.Wrappers
 {
+    using NLog.Conditions;
+    using NLog.Config;
+
     /// <summary>
     /// A target wrapper that filters log entries based on a condition.
     /// </summary>

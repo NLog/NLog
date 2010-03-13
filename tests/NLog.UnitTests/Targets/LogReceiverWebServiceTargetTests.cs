@@ -61,9 +61,6 @@ namespace NLog.UnitTests.Targets
             var logger = LogManager.GetLogger("Aaa");
             var target = new LogReceiverWebServiceTarget();
             target.EndpointAddress = "http://notimportant:9999/";
-#if WCF_SUPPORTED
-            target.EndpointConfigurationName = "NLogReceiver";
-#endif
             target.Parameters.Add(new MethodCallParameter("message", "${message}"));
             target.Parameters.Add(new MethodCallParameter("date", "${longdate}"));
 

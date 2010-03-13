@@ -31,12 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using NLog.Common;
-
 namespace NLog.Internal.FileAppenders
 {
+    using System;
+    using System.IO;
+    using NLog.Common;
+
     /// <summary>
     /// Optimized single-process file appender which keeps the file open for exclusive write.
     /// </summary>

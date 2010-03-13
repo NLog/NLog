@@ -33,11 +33,11 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
-using System.Security;
-
 namespace NLog.Internal
 {
+    using System;
+    using System.Security;
+
     /// <summary>
     /// Safe way to get environment variables.
     /// </summary>

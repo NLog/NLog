@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Globalization;
-
 namespace NLog.Conditions
 {
+    using System;
+    using System.Globalization;
+
     /// <summary>
     /// Condition literal expression (numeric, <b>LogLevel.XXX</b>, <b>true</b> or <b>false</b>).
     /// </summary>

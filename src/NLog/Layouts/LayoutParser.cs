@@ -31,18 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
-using NLog.Common;
-using NLog.Config;
-using NLog.Internal;
-using NLog.LayoutRenderers;
-using NLog.LayoutRenderers.Wrappers;
-
 namespace NLog.Layouts
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Text;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.LayoutRenderers;
+    using NLog.LayoutRenderers.Wrappers;
+
     /// <summary>
     /// Parses layout strings.
     /// </summary>
@@ -50,8 +50,8 @@ namespace NLog.Layouts
     {
         internal static LayoutRenderer[] CompileLayout(Tokenizer sr, bool isNested, out string text)
         {
-            List<LayoutRenderer> result = new List<LayoutRenderer>();
-            StringBuilder literalBuf = new StringBuilder();
+            var result = new List<LayoutRenderer>();
+            var literalBuf = new StringBuilder();
 
             int ch;
 
@@ -75,7 +75,7 @@ namespace NLog.Layouts
                     }
 
                     LayoutRenderer newLayoutRenderer = ParseLayoutRenderer(sr);
-                    if (newLayoutRenderer.CanBeConvertedToLiteral())
+                    if (CanBeConvertedToLiteral(newLayoutRenderer))
                     {
                         newLayoutRenderer = ConvertToLiteral(newLayoutRenderer);
                     }
@@ -107,7 +107,7 @@ namespace NLog.Layouts
         {
             int ch;
 
-            StringBuilder nameBuf = new StringBuilder();
+            var nameBuf = new StringBuilder();
             while ((ch = sr.Peek()) != -1)
             {
                 if (ch == ':' || ch == '}')
@@ -127,7 +127,7 @@ namespace NLog.Layouts
             int ch;
             int nestLevel = 0;
 
-            StringBuilder nameBuf = new StringBuilder();
+            var nameBuf = new StringBuilder();
             while ((ch = sr.Peek()) != -1)
             {
                 if ((ch == '=' || ch == '}' || ch == ':') && nestLevel == 0)
@@ -175,7 +175,7 @@ namespace NLog.Layouts
         {
             int ch;
 
-            StringBuilder nameBuf = new StringBuilder();
+            var nameBuf = new StringBuilder();
             while ((ch = sr.Peek()) != -1)
             {
                 if (ch == ':' || ch == '}')
@@ -202,9 +202,7 @@ namespace NLog.Layouts
 
         private static LayoutRenderer ParseLayoutRenderer(Tokenizer sr)
         {
-            int ch;
-
-            ch = sr.Read();
+            int ch = sr.Read();
             if (ch != '{')
             {
                 throw new NLogConfigurationException("'{' expected in layout specification");
@@ -213,8 +211,8 @@ namespace NLog.Layouts
             string name = ParseLayoutRendererName(sr);
             LayoutRenderer lr = NLogFactories.Default.LayoutRendererFactory.CreateInstance(name);
 
-            Dictionary<Type, LayoutRenderer> wrappers = new Dictionary<Type, LayoutRenderer>();
-            List<LayoutRenderer> orderedWrappers = new List<LayoutRenderer>();
+            var wrappers = new Dictionary<Type, LayoutRenderer>();
+            var orderedWrappers = new List<LayoutRenderer>();
 
             ch = sr.Read();
             while (ch != -1 && ch != '}')
@@ -223,7 +221,7 @@ namespace NLog.Layouts
                 if (sr.Peek() == '=')
                 {
                     sr.Read(); // skip the '='
-                    PropertyInfo pi = null;
+                    PropertyInfo pi;
                     LayoutRenderer parameterTarget = lr;
 
                     if (!PropertyHelper.TryGetPropertyInfo(lr, parameterName, out pi))
@@ -260,7 +258,7 @@ namespace NLog.Layouts
                     {
                         if (typeof(Layout).IsAssignableFrom(pi.PropertyType))
                         {
-                            SimpleLayout nestedLayout = new SimpleLayout();
+                            var nestedLayout = new SimpleLayout();
                             string txt;
                             LayoutRenderer[] renderers = CompileLayout(sr, true, out txt);
 
@@ -303,26 +301,44 @@ namespace NLog.Layouts
 
             for (int i = orderedWrappers.Count - 1; i >= 0; --i)
             {
-                WrapperLayoutRendererBase newRenderer = (WrapperLayoutRendererBase)orderedWrappers[i];
+                var newRenderer = (WrapperLayoutRendererBase)orderedWrappers[i];
                 InternalLogger.Trace("Wrapping {0} with {1}", lr.GetType().Name, newRenderer.GetType().Name);
-                if (lr.CanBeConvertedToLiteral())
+                if (CanBeConvertedToLiteral(lr))
                 {
                     lr = ConvertToLiteral(lr);
                 }
 
-                newRenderer.Inner = new SimpleLayout(new LayoutRenderer[] { lr }, string.Empty);
+                newRenderer.Inner = new SimpleLayout(new[] { lr }, string.Empty);
                 lr = newRenderer;
             }
 
             return lr;
         }
 
+        private static bool CanBeConvertedToLiteral(LayoutRenderer lr)
+        {
+            foreach (IRenderable renderable in ObjectGraphScanner.FindReachableObjects<IRenderable>(lr))
+            {
+                if (renderable.GetType() == typeof(SimpleLayout))
+                {
+                    continue;
+                }
+
+                if (!renderable.GetType().IsDefined(typeof(AppDomainFixedOutputAttribute), false))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         private static void MergeLiterals(List<LayoutRenderer> list)
         {
             for (int i = 0; i + 1 < list.Count;)
             {
-                LiteralLayoutRenderer lr1 = list[i] as LiteralLayoutRenderer;
-                LiteralLayoutRenderer lr2 = list[i + 1] as LiteralLayoutRenderer;
+                var lr1 = list[i] as LiteralLayoutRenderer;
+                var lr2 = list[i + 1] as LiteralLayoutRenderer;
                 if (lr1 != null && lr2 != null)
                 {
                     lr1.Text += lr2.Text;
@@ -337,9 +353,7 @@ namespace NLog.Layouts
 
         private static LayoutRenderer ConvertToLiteral(LayoutRenderer renderer)
         {
-            var sb = new StringBuilder();
-            renderer.Render(sb, LogEventInfo.CreateNullEvent());
-            return new LiteralLayoutRenderer(sb.ToString());
+            return new LiteralLayoutRenderer(renderer.Render(LogEventInfo.CreateNullEvent()));
         }
 
         /// <summary>
@@ -367,10 +381,8 @@ namespace NLog.Layouts
                 {
                     return this.text[this.Position];
                 }
-                else
-                {
-                    return -1;
-                }
+
+                return -1;
             }
 
             internal int Read()
@@ -379,10 +391,8 @@ namespace NLog.Layouts
                 {
                     return this.text[this.Position++];
                 }
-                else
-                {
-                    return -1;
-                }
+
+                return -1;
             }
 
             internal string Substring(int p0, int p1)

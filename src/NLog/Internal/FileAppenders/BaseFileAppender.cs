@@ -31,15 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Runtime.InteropServices;
-using NLog.Common;
-using NLog.Config;
-using NLog.Internal;
-
 namespace NLog.Internal.FileAppenders
 {
+    using System;
+    using System.IO;
+    using System.Runtime.InteropServices;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// Base class for optimized file appenders.
     /// </summary>

@@ -31,36 +31,20 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using NLog.Config;
-using NLog.Internal;
-
 namespace NLog.LayoutRenderers
 {
+    using System;
+    using System.Text;
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// Render environmental information related to logging events.
     /// </summary>
-    public abstract class LayoutRenderer : INLogConfigurationItem, ISupportsInitialize
+    public abstract class LayoutRenderer : INLogConfigurationItem, ISupportsInitialize, IRenderable
     {
-        public int GetBufferSize(LogEventInfo logEvent)
-        {
-            return this.GetEstimatedBufferSize(logEvent);
-        }
-
-        /// <summary>
-        /// Initializes the layout renderer.
-        /// </summary>
-        public virtual void Initialize()
-        {
-        }
-
-        /// <summary>
-        /// Closes the layout renderer.
-        /// </summary>
-        public virtual void Close()
-        {
-        }
+        private const int MaxInitialRenderBufferLength = 16384;
+        private int maxRenderedLength;
 
         /// <summary>
         /// Returns a <see cref="System.String"/> that represents this instance.
@@ -80,39 +64,48 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
+        /// Renders the the value of layout renderer in the context of the specified log event.
         /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected abstract int GetEstimatedBufferSize(LogEventInfo logEvent);
-
-        /// <summary>
-        /// Determines whether stack trace information should be gathered
-        /// during log event processing.
-        /// </summary>
-        /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
-        public virtual StackTraceUsage GetStackTraceUsage()
+        /// <param name="logEvent">The log event.</param>
+        /// <returns>String representation of a layout renderer.</returns>
+        public string Render(LogEventInfo logEvent)
         {
-            return StackTraceUsage.None;
+            int initialLength = this.maxRenderedLength;
+            if (initialLength > MaxInitialRenderBufferLength)
+            {
+                initialLength = MaxInitialRenderBufferLength;
+            }
+
+            var builder = new StringBuilder(initialLength);
+
+            this.Render(builder, logEvent);
+            if (builder.Length > this.maxRenderedLength)
+            {
+                this.maxRenderedLength = builder.Length;
+            }
+
+            return builder.ToString();
         }
 
         /// <summary>
-        /// Determines whether the layout renderer is volatile.
+        /// Initializes this instance.
         /// </summary>
-        /// <returns>A boolean indicating whether the layout renderer is volatile.</returns>
-        /// <remarks>
-        /// Volatile layout renderers are dependent on information not contained 
-        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
-        /// </remarks>
-        public virtual bool IsVolatile()
+        void ISupportsInitialize.Initialize()
         {
-            return true;
+            this.Initialize();
+        }
+
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
+        void ISupportsInitialize.Close()
+        {
+            this.Close();
+        }
+
+        internal void Render(StringBuilder builder, LogEventInfo logEvent)
+        {
+            this.Append(builder, logEvent);
         }
 
         /// <summary>
@@ -123,30 +116,17 @@ namespace NLog.LayoutRenderers
         protected abstract void Append(StringBuilder builder, LogEventInfo logEvent);
 
         /// <summary>
-        /// Determines whether the value produced by the layout renderer
-        /// is fixed per current app-domain.
+        /// Initializes the layout renderer.
         /// </summary>
-        /// <returns>The boolean value of <c>true</c> makes the value
-        /// of the layout renderer be precalculated and inserted as a literal
-        /// in the resulting layout string.</returns>
-        protected virtual bool IsAppDomainFixed()
+        protected virtual void Initialize()
         {
-            return false;
         }
 
-        public bool CanBeConvertedToLiteral()
+        /// <summary>
+        /// Closes the layout renderer.
+        /// </summary>      
+        protected virtual void Close()
         {
-            return this.IsAppDomainFixed();
-        }
-
-        public int GetEstimatedBufferSize2(LogEventInfo logEvent)
-        {
-            return this.GetEstimatedBufferSize(logEvent);
-        }
-
-        public void Render(StringBuilder builder, LogEventInfo logEvent)
-        {
-            this.Append(builder, logEvent);
         }
     }
 }

@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using NLog.Config;
-
 namespace NLog.LayoutRenderers
 {
+    using System;
+    using NLog.Config;
+
     /// <summary>
     /// Designates a property of the class as an ambient property.
     /// </summary>

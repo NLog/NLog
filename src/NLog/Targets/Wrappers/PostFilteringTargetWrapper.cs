@@ -31,14 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Common;
-using NLog.Conditions;
-using NLog.Config;
-using NLog.Layouts;
-
 namespace NLog.Targets.Wrappers
 {
+    using System.Collections.Generic;
+    using NLog.Common;
+    using NLog.Conditions;
+    using NLog.Config;
+
     /// <summary>
     /// A target wrapper that filters buffered log entries based on a set of conditions
     /// that are evaluated on all events.
@@ -136,31 +135,38 @@ namespace NLog.Targets.Wrappers
                 resultFilter = this.DefaultFilter;
             }
 
-            if (InternalLogger.IsTraceEnabled)
+            if (resultFilter == null)
             {
-                InternalLogger.Trace("Filter to apply: {0}", resultFilter);
+                this.WrappedTarget.WriteLogEvents(logEvents);
             }
-
-            // apply the condition to the buffer
-            var resultBuffer = new List<LogEventInfo>();
-
-            for (int i = 0; i < logEvents.Length; ++i)
+            else
             {
-                object v = resultFilter.Evaluate(logEvents[i]);
-                if (v is bool && (bool)v)
+                if (InternalLogger.IsTraceEnabled)
                 {
-                    resultBuffer.Add(logEvents[i]);
+                    InternalLogger.Trace("Filter to apply: {0}", resultFilter);
                 }
-            }
 
-            if (InternalLogger.IsTraceEnabled)
-            {
-                InternalLogger.Trace("After filtering: {0} events", resultBuffer.Count);
-            }
+                // apply the condition to the buffer
+                var resultBuffer = new List<LogEventInfo>();
 
-            if (resultBuffer.Count > 0)
-            {
-                this.WrappedTarget.WriteLogEvents(resultBuffer.ToArray());
+                for (int i = 0; i < logEvents.Length; ++i)
+                {
+                    object v = resultFilter.Evaluate(logEvents[i]);
+                    if (v is bool && (bool)v)
+                    {
+                        resultBuffer.Add(logEvents[i]);
+                    }
+                }
+
+                if (InternalLogger.IsTraceEnabled)
+                {
+                    InternalLogger.Trace("After filtering: {0} events", resultBuffer.Count);
+                }
+
+                if (resultBuffer.Count > 0)
+                {
+                    this.WrappedTarget.WriteLogEvents(resultBuffer.ToArray());
+                }
             }
         }
 

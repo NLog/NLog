@@ -33,15 +33,15 @@
 
 #if !SILVERLIGHT
 
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-
 namespace NLog.Internal
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using System.Runtime.InteropServices;
+    using System.Text;
+    using System.Threading;
+
     /// <summary>
     /// Win32-optimized implementation of <see cref="ThreadIDHelper"/>.
     /// </summary>

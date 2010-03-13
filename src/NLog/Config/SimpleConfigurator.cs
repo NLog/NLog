@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Targets;
-
 namespace NLog.Config
 {
+    using NLog.Targets;
+
     /// <summary>
     /// Provides simple programmatic configuration API used for trivial logging cases.
     /// </summary>

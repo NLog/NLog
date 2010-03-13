@@ -33,10 +33,10 @@
 
 #if !SILVERLIGHT && !NET_CF
 
-using System.IO;
-
 namespace NLog.Internal
 {
+    using System.IO;
+
     /// <summary>
     /// Portable implementation of <see cref="ThreadIDHelper"/>.
     /// </summary>

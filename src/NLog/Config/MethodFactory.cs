@@ -31,13 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using NLog.Common;
-
 namespace NLog.Config
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using NLog.Common;
+
     /// <summary>
     /// Factory for locating methods.
     /// </summary>

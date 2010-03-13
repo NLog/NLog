@@ -33,15 +33,15 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Globalization;
-using NLog.Common;
-using NLog.Layouts;
-
 namespace NLog.Targets
 {
+    using System;
+    using System.ComponentModel;
+    using System.Diagnostics;
+    using System.Globalization;
+    using NLog.Common;
+    using NLog.Layouts;
+
     /// <summary>
     /// Writes log message to the Event Log.
     /// </summary>
@@ -107,7 +107,7 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes the target.
         /// </summary>
-        public override void Initialize()
+        protected override void Initialize()
         {
             base.Initialize();
             this.CreateEventSourceIfNeeded();

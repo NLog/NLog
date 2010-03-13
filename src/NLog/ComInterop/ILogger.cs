@@ -33,11 +33,9 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
-using System.Runtime.InteropServices;
-
 namespace NLog.ComInterop
 {
+    using System.Runtime.InteropServices;
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>

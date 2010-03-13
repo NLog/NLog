@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Conditions;
-
 namespace NLog.Filters
 {
+    using NLog.Conditions;
+
     /// <summary>
     /// Matches when the specified condition is met.
     /// </summary>

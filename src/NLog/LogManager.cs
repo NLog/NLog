@@ -31,15 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using NLog.Common;
-using NLog.Config;
-
 namespace NLog
 {
-    /// <summary>
+    using System;
+    using System.Diagnostics;
+    using System.Runtime.CompilerServices;
+    using NLog.Common;
+    using NLog.Config;
+
+        /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
     /// </summary>
     public sealed class LogManager

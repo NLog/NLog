@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Targets.Compound
 {
+    using System;
+
     /// <summary>
     /// A compound target writes to a randomly-chosen target among the sub-targets.
     /// </summary>

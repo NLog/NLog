@@ -33,12 +33,12 @@
 
 #if !SILVERLIGHT
 
-using System;
-using System.Net;
-using System.Net.Sockets;
-
 namespace NLog.Internal.NetworkSenders
 {
+    using System;
+    using System.Net;
+    using System.Net.Sockets;
+
     /// <summary>
     /// Sends messages over the network as UDP datagrams.
     /// </summary>

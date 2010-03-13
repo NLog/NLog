@@ -31,25 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Common;
-using NLog.Config;
-using NLog.Internal;
-
 namespace NLog.Layouts
 {
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// Abstract interface that layouts must implement.
     /// </summary>
-    public abstract class Layout : ISupportsInitialize, INLogConfigurationItem
+    public abstract class Layout : ISupportsInitialize, INLogConfigurationItem, IRenderable
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Layout" /> class.
-        /// </summary>
-        protected Layout()
-        {
-        }
-
         /// <summary>
         /// Converts a given text to a <see cref="Layout" />.
         /// </summary>
@@ -78,24 +69,6 @@ namespace NLog.Layouts
         public abstract string GetFormattedMessage(LogEventInfo logEvent);
 
         /// <summary>
-        /// Gets or sets a value indicating whether stack trace information should be gathered during log event processing. 
-        /// </summary>
-        /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
-        public abstract StackTraceUsage GetStackTraceUsage();
-
-        /// <summary>
-        /// Returns the value indicating whether this layout includes any volatile 
-        /// layout renderers.
-        /// </summary>
-        /// <returns>A value of <see langword="true" /> when the layout includes at least 
-        /// one volatile renderer, <see langword="false"/> otherwise.</returns>
-        /// <remarks>
-        /// Volatile layout renderers are dependent on information not contained 
-        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
-        /// </remarks>
-        public abstract bool IsVolatile();
-
-        /// <summary>
         /// Precalculates the layout for the specified log event and stores the result
         /// in per-log event cache.
         /// </summary>
@@ -111,28 +84,43 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Renders the event info in layout.
+        /// </summary>
+        /// <param name="eventInfo">The event info.</param>
+        /// <returns>String representing log event.</returns>
+        public string Render(LogEventInfo eventInfo)
+        {
+            return this.GetFormattedMessage(eventInfo);
+        }
+
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
+        void ISupportsInitialize.Initialize()
+        {
+            this.Initialize();
+        }
+
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
+        void ISupportsInitialize.Close()
+        {
+            this.Close();
+        }
+
+        /// <summary>
         /// Initializes the layout.
         /// </summary>
-        public virtual void Initialize()
+        protected virtual void Initialize()
         {
         }
 
         /// <summary>
         /// Closes the layout.
         /// </summary>
-        public virtual void Close()
+        protected virtual void Close()
         {
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the value of layout is fixed for current AppDomain.
-        /// </summary>
-        /// <returns>
-        /// A value of <c>true</c> if value of layout is fixed for current AppDomain, otherwise <c>false</c>.
-        /// </returns>
-        public virtual bool IsAppDomainFixed()
-        {
-            return false;
         }
     }
 }

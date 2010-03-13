@@ -31,13 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using NLog.LayoutRenderers;
-using NLog.Layouts;
-using NLog.Targets;
-
 namespace NLog.Config
 {
+    using System;
+    using NLog.LayoutRenderers;
+    using NLog.Layouts;
+    using NLog.Targets;
+
     /// <summary>
     /// Attaches a simple name to an item (such as <see cref="Target"/>, 
     /// <see cref="LayoutRenderer"/>, <see cref="Layout"/>, etc.).

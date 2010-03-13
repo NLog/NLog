@@ -31,11 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using NLog.Config;
-
 namespace NLog.Filters
 {
+    using NLog.Config;
+
     /// <summary>
     /// An abstract filter class. Provides a way to eliminate log messages
     /// based on properties other than logger name and log level.
@@ -56,19 +55,14 @@ namespace NLog.Filters
         [RequiredParameter]
         public FilterResult Action { get; set; }
 
-        public FilterResult GetFilterResult(LogEventInfo logEvent)
+        /// <summary>
+        /// Gets the result of evaluating filter against given log event.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
+        /// <returns>Filter result.</returns>
+        internal FilterResult GetFilterResult(LogEventInfo logEvent)
         {
             return this.Check(logEvent);
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether stack trace information should be gathered
-        /// during log event processing. 
-        /// </summary>
-        /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
-        public virtual StackTraceUsage GetStackTraceUsage()
-        {
-            return 0;
         }
 
         /// <summary>

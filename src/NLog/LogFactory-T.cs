@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-
 namespace NLog
 {
+    using System.Diagnostics;
+    using System.Runtime.CompilerServices;
+
     /// <summary>
     /// Specialized LogFactory that can return instances of custom logger types.
     /// </summary>

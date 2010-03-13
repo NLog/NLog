@@ -31,16 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using NLog.Common;
-using NLog.Internal.NetworkSenders;
-using NLog.Layouts;
-
 namespace NLog.Targets
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Text;
+    using NLog.Common;
+    using NLog.Internal.NetworkSenders;
+    using NLog.Layouts;
+
     /// <summary>
     /// Sends logging messages over the network.
     /// </summary>
@@ -173,7 +173,7 @@ namespace NLog.Targets
         /// <summary>
         /// Closes the target.
         /// </summary>
-        public override void Close()
+        protected override void Close()
         {
             base.Close();
             lock (this)

@@ -33,16 +33,16 @@
 
 #if !NET_CF && !MONO && !SILVERLIGHT
 
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
-using NLog.Config;
-using NLog.Internal;
-
 namespace NLog.Targets
 {
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Drawing;
+    using System.Text.RegularExpressions;
+    using System.Windows.Forms;
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// Log text to Text property of  RichTextBox of specified Name.
     /// </summary>

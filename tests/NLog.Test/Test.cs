@@ -69,6 +69,9 @@ namespace NLog.Test
 
         static void Main(string[]args)
         {
+            Target t;
+
+            // t.WriteLogEvent()
             //ConsoleTarget ct = new ConsoleTarget();
             //ct.Layout = "${message} ${longdate} ${replace:searchFor=(..):regex=true:wholeWords=true:replaceWith=[xx'$1'yy]:inner=${rot13:inner=${message}:uppercase=true:padding=-10}}";
 

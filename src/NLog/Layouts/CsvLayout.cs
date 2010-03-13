@@ -31,33 +31,35 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.Text;
-using NLog.Config;
-using NLog.Internal;
-
 namespace NLog.Layouts
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Globalization;
+    using System.Text;
+    using NLog.Config;
+
     /// <summary>
     /// A specialized layout that renders CSV-formatted events.
     /// </summary>
     [Layout("CsvLayout")]
+    [ThreadAgnostic]
+    [AppDomainFixedOutput]
     public class CsvLayout : Layout
     {
-        private ICollection<CsvColumn> columns = new List<CsvColumn>();
-        private char[] quotableCharacters;
-        private string doubleQuoteChar;
+        private readonly Layout thisHeader;
+
         private string actualColumnDelimiter;
-        private Layout thisHeader;
+        private string doubleQuoteChar;
+        private char[] quotableCharacters;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CsvLayout"/> class.
         /// </summary>
         public CsvLayout()
         {
+            this.Columns = new List<CsvColumn>();
             this.WithHeader = true;
             this.Delimiter = CsvColumnDelimiterMode.Auto;
             this.Quoting = CsvQuotingMode.Auto;
@@ -69,10 +71,7 @@ namespace NLog.Layouts
         /// Gets the array of parameters to be passed.
         /// </summary>
         [ArrayParameter(typeof(CsvColumn), "column")]
-        public ICollection<CsvColumn> Columns
-        {
-            get { return this.columns; }
-        }
+        public IList<CsvColumn> Columns { get; private set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether CVS should include header.
@@ -119,21 +118,8 @@ namespace NLog.Layouts
         /// </summary>
         public Layout Header
         {
-            get
-            {
-                if (this.WithHeader)
-                {
-                    return this.thisHeader;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-
-            set
-            {
-            }
+            get { return this.WithHeader ? this.thisHeader : null; }
+            set { }
         }
 
         /// <summary>
@@ -162,7 +148,7 @@ namespace NLog.Layouts
                 return cachedValue;
             }
 
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             bool first = true;
 
             foreach (CsvColumn col in this.Columns)
@@ -226,105 +212,13 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Initializes the layout.
-        /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize();
-            switch (this.Delimiter)
-            {
-                case CsvColumnDelimiterMode.Auto:
-                    this.actualColumnDelimiter = CultureInfo.CurrentCulture.TextInfo.ListSeparator;
-                    break;
-
-                case CsvColumnDelimiterMode.Comma:
-                    this.actualColumnDelimiter = ",";
-                    break;
-
-                case CsvColumnDelimiterMode.Semicolon:
-                    this.actualColumnDelimiter = ";";
-                    break;
-
-                case CsvColumnDelimiterMode.Pipe:
-                    this.actualColumnDelimiter = "|";
-                    break;
-
-                case CsvColumnDelimiterMode.Tab:
-                    this.actualColumnDelimiter = "\t";
-                    break;
-
-                case CsvColumnDelimiterMode.Space:
-                    this.actualColumnDelimiter = " ";
-                    break;
-
-                case CsvColumnDelimiterMode.Custom:
-                    this.actualColumnDelimiter = this.CustomColumnDelimiter;
-                    break;
-            }
-
-            this.quotableCharacters = (this.QuoteChar + "\r\n" + this.actualColumnDelimiter).ToCharArray();
-            this.doubleQuoteChar = this.QuoteChar + this.QuoteChar;
-        }
-
-        /// <summary>
-        /// Returns the value indicating whether a stack trace and/or the source file
-        /// information should be gathered during layout processing.
-        /// </summary>
-        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace.</returns>
-        public override StackTraceUsage GetStackTraceUsage()
-        {
-            StackTraceUsage stu = StackTraceUsage.None;
-
-            foreach (CsvColumn cc in this.columns)
-            {
-                stu = StackTraceUsageUtils.Max(stu, cc.Layout.GetStackTraceUsage());
-            }
-
-            return stu;
-        }
-
-        /// <summary>
-        /// Returns the value indicating whether this layout includes any volatile 
-        /// layout renderers.
-        /// </summary>
-        /// <returns>A value of <see langword="true" /> when the layout includes at least 
-        /// one volatile renderer, <see langword="false"/> otherwise.</returns>
-        /// <remarks>
-        /// Volatile layout renderers are dependent on information not contained 
-        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
-        /// </remarks>
-        public override bool IsVolatile()
-        {
-            foreach (CsvColumn cc in this.columns)
-            {
-                if (cc.Layout.IsVolatile())
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Closes the layout.
-        /// </summary>
-        public override void Close()
-        {
-            foreach (CsvColumn c in this.Columns)
-            {
-                c.Layout.Close();
-            }
-        }
-
-        /// <summary>
         /// Gets the header.
         /// </summary>
         /// <param name="logEvent">The log event to be formatted.</param>
         /// <returns>A string representation of the log event.</returns>
         public string GetHeader(LogEventInfo logEvent)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             bool first = true;
 
@@ -388,6 +282,47 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Initializes the layout.
+        /// </summary>
+        protected override void Initialize()
+        {
+            base.Initialize();
+            switch (this.Delimiter)
+            {
+                case CsvColumnDelimiterMode.Auto:
+                    this.actualColumnDelimiter = CultureInfo.CurrentCulture.TextInfo.ListSeparator;
+                    break;
+
+                case CsvColumnDelimiterMode.Comma:
+                    this.actualColumnDelimiter = ",";
+                    break;
+
+                case CsvColumnDelimiterMode.Semicolon:
+                    this.actualColumnDelimiter = ";";
+                    break;
+
+                case CsvColumnDelimiterMode.Pipe:
+                    this.actualColumnDelimiter = "|";
+                    break;
+
+                case CsvColumnDelimiterMode.Tab:
+                    this.actualColumnDelimiter = "\t";
+                    break;
+
+                case CsvColumnDelimiterMode.Space:
+                    this.actualColumnDelimiter = " ";
+                    break;
+
+                case CsvColumnDelimiterMode.Custom:
+                    this.actualColumnDelimiter = this.CustomColumnDelimiter;
+                    break;
+            }
+
+            this.quotableCharacters = (this.QuoteChar + "\r\n" + this.actualColumnDelimiter).ToCharArray();
+            this.doubleQuoteChar = this.QuoteChar + this.QuoteChar;
+        }
+
+        /// <summary>
         /// Header for CSV layout.
         /// </summary>
         private class CsvHeaderLayout : Layout
@@ -411,35 +346,6 @@ namespace NLog.Layouts
             public override string GetFormattedMessage(LogEventInfo logEvent)
             {
                 return this.parent.GetHeader(logEvent);
-            }
-
-            /// <summary>
-            /// Returns the value indicating whether a stack trace and/or the source file
-            /// information should be gathered during layout processing.
-            /// </summary>
-            /// <returns>
-            /// 0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace
-            /// .</returns>
-            public override StackTraceUsage GetStackTraceUsage()
-            {
-                return 0;
-            }
-
-            /// <summary>
-            /// Returns the value indicating whether this layout includes any volatile
-            /// layout renderers.
-            /// </summary>
-            /// <returns>
-            /// A value of <see langword="true"/> when the layout includes at least
-            /// one volatile renderer, <see langword="false"/> otherwise.
-            /// </returns>
-            /// <remarks>
-            /// Volatile layout renderers are dependent on information not contained
-            /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
-            /// </remarks>
-            public override bool IsVolatile()
-            {
-                return false;
             }
         }
     }

@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-
 namespace NLog.Conditions
 {
+    using System;
+    using System.Text;
+
     /// <summary>
     /// Hand-written tokenizer for conditions.
     /// </summary>

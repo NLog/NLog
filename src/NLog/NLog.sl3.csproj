@@ -89,6 +89,7 @@
     <Compile Include="Conditions\ConditionTokenType.cs" />
     <Compile Include="Conditions\ConditionTokenizer.cs" />
     <Compile Include="Config\AdvancedAttribute.cs" />
+    <Compile Include="Config\AppDomainFixedOutputAttribute.cs" />
     <Compile Include="Config\ArrayParameterAttribute.cs" />
     <Compile Include="Config\ConfigSectionHandler.cs" />
     <Compile Include="Config\DefaultParameterAttribute.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Config\RuntimeOS.cs" />
     <Compile Include="Config\SimpleConfigurator.cs" />
     <Compile Include="Config\StackTraceUsage.cs" />
+    <Compile Include="Config\ThreadAgnosticAttribute.cs" />
     <Compile Include="Config\XmlLoggingConfiguration.cs" />
     <Compile Include="Contexts\GDC.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContext.cs" />
@@ -144,7 +146,9 @@
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileInfoHelper.cs" />
     <Compile Include="Internal\FormHelper.cs" />
+    <Compile Include="Internal\IRenderable.cs" />
     <Compile Include="Internal\ISupportsInitialize.cs" />
+    <Compile Include="Internal\IUsesStackTrace.cs" />
     <Compile Include="Internal\LogEventInfoBuffer.cs" />
     <Compile Include="Internal\LoggerConfiguration.cs" />
     <Compile Include="Internal\MultiFileWatcher.cs" />

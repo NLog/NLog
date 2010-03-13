@@ -33,13 +33,13 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
-using System.ComponentModel;
-using System.Security.Principal;
-using System.Text;
-
 namespace NLog.LayoutRenderers
 {
+    using System;
+    using System.ComponentModel;
+    using System.Security.Principal;
+    using System.Text;
+
     /// <summary>
     /// Thread identity information (name and authentication information).
     /// </summary>
@@ -89,22 +89,6 @@ namespace NLog.LayoutRenderers
         /// </summary>
         [DefaultValue(false)]
         public bool FSNormalize { get; set; }
-
-        /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
-        {
-            return 32;
-        }
 
         /// <summary>
         /// Renders the specified identity information and appends it to the specified <see cref="StringBuilder" />.

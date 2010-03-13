@@ -31,12 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using NLog.Config;
-
 namespace NLog.Internal
 {
+    using System;
+    using System.Collections.Generic;
+    using NLog.Config;
+
     /// <summary>
     /// Detects the platform the NLog is running on.
     /// </summary>

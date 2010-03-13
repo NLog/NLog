@@ -31,18 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Config;
-using NLog.Filters;
-using NLog.Targets;
-
 namespace NLog.Internal
 {
+    using System.Collections.Generic;
+    using NLog.Config;
+    using NLog.Filters;
+    using NLog.Targets;
+
     /// <summary>
     /// Represents target with a chain of filters which determine
     /// whether logging should happen.
     /// </summary>
-    internal class TargetWithFilterChain
+    internal class TargetWithFilterChain : INLogConfigurationItem
     {
         private StackTraceUsage stackTraceUsage = StackTraceUsage.None;
 
@@ -89,27 +89,19 @@ namespace NLog.Internal
         {
             this.stackTraceUsage = StackTraceUsage.None;
 
-            for (TargetWithFilterChain awf = this; awf != null; awf = awf.NextInChain)
+            // find all objects which may need stack trace
+            // and determine maximum
+            foreach (var item in ObjectGraphScanner.FindReachableObjects<IUsesStackTrace>(this))
             {
-                if (this.stackTraceUsage >= StackTraceUsage.Max)
-                {
-                    break;
-                }
+                var stu = item.StackTraceUsage;
 
-                Target app = awf.Target;
-
-                StackTraceUsage stu = app.GetStackTraceUsage();
                 if (stu > this.stackTraceUsage)
                 {
                     this.stackTraceUsage = stu;
-                }
 
-                foreach (Filter filter in awf.FilterChain)
-                {
-                    stu = filter.GetStackTraceUsage();
-                    if (stu > this.stackTraceUsage)
+                    if (this.stackTraceUsage >= StackTraceUsage.Max)
                     {
-                        this.stackTraceUsage = stu;
+                        break;
                     }
                 }
             }

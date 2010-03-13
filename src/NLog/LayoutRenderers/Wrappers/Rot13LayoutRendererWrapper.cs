@@ -31,10 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Layouts;
-
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using NLog.Config;
+    using NLog.Layouts;
+
     /// <summary>
     /// Decodes text "encrypted" with ROT-13.
     /// </summary>
@@ -42,6 +43,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// See <a href="http://en.wikipedia.org/wiki/ROT13">http://en.wikipedia.org/wiki/ROT13</a>.
     /// </remarks>
     [LayoutRenderer("rot13")]
+    [AppDomainFixedOutput]
     public sealed class Rot13LayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

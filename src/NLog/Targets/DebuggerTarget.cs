@@ -33,10 +33,10 @@
 
 #if !NET_CF
 
-using System.Diagnostics;
-
 namespace NLog.Targets
 {
+    using System.Diagnostics;
+
     /// <summary>
     /// Writes logging messages to the attached managed debugger (for example Visual Studio .NET or DbgCLR).
     /// </summary>
@@ -61,7 +61,7 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes the target.
         /// </summary>
-        public override void Initialize()
+        protected override void Initialize()
         {
             base.Initialize();
             if (Header != null)
@@ -73,7 +73,7 @@ namespace NLog.Targets
         /// <summary>
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
-        public override void Close()
+        protected override void Close()
         {
             if (Footer != null)
             {

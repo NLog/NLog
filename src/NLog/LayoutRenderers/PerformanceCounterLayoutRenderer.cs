@@ -33,13 +33,13 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System.Diagnostics;
-using System.Globalization;
-using System.Text;
-using NLog.Config;
-
 namespace NLog.LayoutRenderers
 {
+    using System.Diagnostics;
+    using System.Globalization;
+    using System.Text;
+    using NLog.Config;
+
     /// <summary>
     /// The performance counter.
     /// </summary>
@@ -80,7 +80,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes the layout renderer.
         /// </summary>
-        public override void Initialize()
+        protected override void Initialize()
         {
             base.Initialize();
 
@@ -97,7 +97,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Closes the layout renderer.
         /// </summary>
-        public override void Close()
+        protected override void Close()
         {
             base.Close();
             if (this.perfCounter != null)
@@ -105,22 +105,6 @@ namespace NLog.LayoutRenderers
                 this.perfCounter.Close();
                 this.perfCounter = null;
             }
-        }
-
-        /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
-        {
-            return 32;
         }
 
         /// <summary>

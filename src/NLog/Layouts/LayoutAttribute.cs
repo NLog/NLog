@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using NLog.Config;
-
 namespace NLog.Layouts
 {
+    using System;
+    using NLog.Config;
+
     /// <summary>
     /// Marks class as a layout renderer and assigns a format string to it.
     /// </summary>

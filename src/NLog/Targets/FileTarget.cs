@@ -31,22 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.IO;
-using System.Text;
-using System.Threading;
-using NLog.Common;
-using NLog.Config;
-using NLog.Internal;
-using NLog.Internal.FileAppenders;
-using NLog.Layouts;
-
 namespace NLog.Targets
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Globalization;
+    using System.IO;
+    using System.Text;
+    using System.Threading;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Internal.FileAppenders;
+    using NLog.Layouts;
+
     /// <summary>
     /// Writes logging messages to one or more files.
     /// </summary>
@@ -465,10 +465,31 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Flushes all pending file operations.
+        /// </summary>
+        /// <param name="timeout">The timeout.</param>
+        /// <remarks>
+        /// The timeout parameter is ignored, because file APIs don't provide
+        /// the needed functionality.
+        /// </remarks>
+        public override void Flush(TimeSpan timeout)
+        {
+            for (int i = 0; i < this.recentAppenders.Length; ++i)
+            {
+                if (this.recentAppenders[i] == null)
+                {
+                    break;
+                }
+
+                this.recentAppenders[i].Flush();
+            }
+        }
+
+        /// <summary>
         /// Initializes file logging by creating data structures that
         /// enable efficient multi-file logging.
         /// </summary>
-        public override void Initialize()
+        protected override void Initialize()
         {
             base.Initialize();
 
@@ -559,7 +580,7 @@ namespace NLog.Targets
         /// <summary>
         /// Closes the file(s) opened for writing.
         /// </summary>
-        public override void Close()
+        protected override void Close()
         {
             base.Close();
 
@@ -587,27 +608,6 @@ namespace NLog.Targets
 
                 this.recentAppenders[i].Close();
                 this.recentAppenders[i] = null;
-            }
-        }
-
-        /// <summary>
-        /// Flushes all pending file operations.
-        /// </summary>
-        /// <param name="timeout">The timeout.</param>
-        /// <remarks>
-        /// The timeout parameter is ignored, because file APIs don't provide
-        /// the needed functionality.
-        /// </remarks>
-        public override void Flush(TimeSpan timeout)
-        {
-            for (int i = 0; i < this.recentAppenders.Length; ++i)
-            {
-                if (this.recentAppenders[i] == null)
-                {
-                    break;
-                }
-
-                this.recentAppenders[i].Flush();
             }
         }
 
@@ -645,22 +645,12 @@ namespace NLog.Targets
         /// </remarks>
         protected override void Write(LogEventInfo[] logEvents)
         {
-            if (this.FileName.IsAppDomainFixed())
-            {
-                foreach (LogEventInfo lei in logEvents)
-                {
-                    this.Write(lei);
-                }
-
-                return;
-            }
-
             Array.Sort(logEvents, 0, logEvents.Length, this.logEventComparer);
 
             lock (this)
             {
                 string currentFileName = null;
-                MemoryStream ms = new MemoryStream();
+                var ms = new MemoryStream();
                 LogEventInfo firstLogEvent = null;
 
                 for (int i = 0; i < logEvents.Length; ++i)

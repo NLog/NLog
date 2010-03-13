@@ -35,10 +35,10 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System.Diagnostics;
-
 namespace NLog.Targets
 {
+    using System.Diagnostics;
+
     /// <summary>
     /// Sends logging messages through System.Diagnostics.Trace.
     /// </summary>

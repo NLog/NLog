@@ -31,15 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Configuration;
-using System.Globalization;
-using System.IO;
-using System.Text;
-using NLog.Internal;
-
 namespace NLog.Common
 {
+    using System;
+    using System.Configuration;
+    using System.Globalization;
+    using System.IO;
+    using System.Text;
+    using NLog.Internal;
+
     /// <summary>
     /// NLog internal logger.
     /// </summary>

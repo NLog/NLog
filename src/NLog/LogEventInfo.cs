@@ -31,18 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Threading;
-
-using NLog.Internal;
-using NLog.Layouts;
-
 namespace NLog
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Globalization;
+    using System.Threading;
+
+    using NLog.Internal;
+    using NLog.Layouts;
+
     /// <summary>
     /// Represents the logging event.
     /// </summary>

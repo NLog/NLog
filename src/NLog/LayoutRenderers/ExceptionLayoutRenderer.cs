@@ -31,23 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
-using NLog.Common;
-using NLog.Config;
-
 namespace NLog.LayoutRenderers
 {
-    using System.IO;
-    using System.Text.RegularExpressions;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Text;
+    using NLog.Common;
+    using NLog.Config;
 
     /// <summary>
     /// Exception information provided through 
     /// a call to one of the Logger.*Exception() methods.
     /// </summary>
     [LayoutRenderer("exception")]
+    [ThreadAgnostic]
     public class ExceptionLayoutRenderer : LayoutRenderer
     {
         private string format;
@@ -90,22 +88,6 @@ namespace NLog.LayoutRenderers
         public string Separator { get; set; }
 
         /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
-        {
-            return 32;
-        }
-
-        /// <summary>
         /// Renders the specified exception information and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
@@ -114,35 +96,18 @@ namespace NLog.LayoutRenderers
         {
             if (logEvent.Exception != null)
             {
-                StringBuilder sb2 = new StringBuilder(128);
+                var sb2 = new StringBuilder(128);
+                string separator = string.Empty;
 
-                for (int i = 0; i < this.exceptionDataTargets.Length; ++i)
+                foreach (ExceptionDataTarget targetRenderFunc in this.exceptionDataTargets)
                 {
-                    if (i != 0)
-                    {
-                        sb2.Append(this.Separator);
-                    }
-
-                    this.exceptionDataTargets[i](sb2, logEvent.Exception);
+                    sb2.Append(separator);
+                    targetRenderFunc(sb2, logEvent.Exception);
+                    separator = this.Separator;
                 }
 
                 builder.Append(sb2.ToString());
             }
-        }
-
-        /// <summary>
-        /// Determines whether the layout renderer is volatile.
-        /// </summary>
-        /// <returns>
-        /// A boolean indicating whether the layout renderer is volatile.
-        /// </returns>
-        /// <remarks>
-        /// Volatile layout renderers are dependent on information not contained
-        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
-        /// </remarks>
-        public override bool IsVolatile()
-        {
-            return false;
         }
 
         private void AppendMessage(StringBuilder sb, Exception ex)

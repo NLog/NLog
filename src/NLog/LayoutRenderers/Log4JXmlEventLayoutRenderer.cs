@@ -31,26 +31,26 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Text;
-using System.Xml;
-using NLog.Config;
-using NLog.Contexts;
-using NLog.Internal;
-using NLog.Targets;
-
 namespace NLog.LayoutRenderers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Globalization;
+    using System.IO;
+    using System.Reflection;
+    using System.Text;
+    using System.Xml;
+    using NLog.Config;
+    using NLog.Contexts;
+    using NLog.Internal;
+    using NLog.Targets;
+
     /// <summary>
     /// XML event description compatible with log4j, Chainsaw and NLogViewer.
     /// </summary>
     [LayoutRenderer("log4jxmlevent")]
-    public class Log4JXmlEventLayoutRenderer : LayoutRenderer
+    public class Log4JXmlEventLayoutRenderer : LayoutRenderer, IUsesStackTrace
     {
         private static DateTime log4jDateBase = new DateTime(1970, 1, 1);
 
@@ -112,7 +112,35 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public bool IncludeNDC { get; set; }
 
-        internal ICollection<NLogViewerParameterInfo> Parameters { get; set; }
+        /// <summary>
+        /// Gets the level of stack trace information required by the implementing class.
+        /// </summary>
+        StackTraceUsage IUsesStackTrace.StackTraceUsage
+        {
+            get
+            {
+#if !NET_CF
+                if (this.IncludeSourceInfo)
+                {
+                    return StackTraceUsage.Max;
+                }
+
+                if (this.IncludeCallSite)
+                {
+                    return StackTraceUsage.WithoutSource;
+                }
+#endif
+
+                return StackTraceUsage.None;
+            }
+        }
+
+        internal IList<NLogViewerParameterInfo> Parameters { get; set; }
+
+        internal void AppendToStringBuilder(StringBuilder sb, LogEventInfo logEvent)
+        {
+            this.Append(sb, logEvent);
+        }
 
         /// <summary>
         /// Renders the XML logging event and appends it to the specified <see cref="StringBuilder" />.
@@ -121,8 +149,8 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            StringWriter sw = new StringWriter(builder);
-            XmlWriterSettings settings = new XmlWriterSettings();
+            var sw = new StringWriter(builder);
+            var settings = new XmlWriterSettings();
             settings.Indent = this.IndentXml;
             XmlWriter xtw = XmlWriter.Create(sw, settings);
 
@@ -137,6 +165,7 @@ namespace NLog.LayoutRenderers
             {
                 xtw.WriteElementString("log4j:NDC", String.Join(" ", NestedDiagnosticsContext.GetAllMessages()));
             }
+
 #if !NET_CF
             if (this.IncludeCallSite || this.IncludeSourceInfo)
             {
@@ -163,11 +192,16 @@ namespace NLog.LayoutRenderers
                 {
                     xtw.WriteElementString("nlog:eventSequenceNumber", logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
                     xtw.WriteStartElement("nlog:locationinfo");
-                    xtw.WriteAttributeString("assembly", type.Assembly.FullName);
+                    if (type != null)
+                    {
+                        xtw.WriteAttributeString("assembly", type.Assembly.FullName);
+                    }
+
                     xtw.WriteEndElement();
                 }
             }
 #endif
+
             xtw.WriteStartElement("log4j:properties");
             if (this.IncludeMDC)
             {
@@ -207,47 +241,6 @@ namespace NLog.LayoutRenderers
 
             xtw.WriteEndElement();
             xtw.Flush();
-        }
-
-        /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
-        /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
-        {
-            return 512;
-        }
-
-        /// <summary>
-        /// Determines whether the layout renderer is volatile.
-        /// </summary>
-        /// <returns>
-        /// A boolean indicating whether the layout renderer is volatile.
-        /// </returns>
-        /// <remarks>
-        /// Volatile layout renderers are dependent on information not contained
-        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
-        /// </remarks>
-        public override bool IsVolatile()
-        {
-            return false;
-        }
-
-        public void AppendToStringBuilder(StringBuilder sb, LogEventInfo logEvent)
-        {
-            this.Append(sb, logEvent);
-        }
-
-        public StackTraceUsage GetStackTraceUsage2()
-        {
-            return this.GetStackTraceUsage();
         }
     }
 }

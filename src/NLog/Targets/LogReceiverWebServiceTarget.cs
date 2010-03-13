@@ -31,16 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-#if WCF_SUPPORTED
-using System.ServiceModel;
-#endif
-
-using NLog.Config;
-using NLog.LogReceiverService;
-
 namespace NLog.Targets
 {
+    using System.Collections.Generic;
+#if WCF_SUPPORTED
+    using System.ServiceModel;
+#endif
+
+    using NLog.Config;
+    using NLog.LogReceiverService;
+
     /// <summary>
     /// Sends log messages to a NLog Receiver Service (using WCF or Web Services).
     /// </summary>
@@ -67,7 +67,6 @@ namespace NLog.Targets
         /// Gets or sets the name of the endpoint configuration in WCF configuration file.
         /// </summary>
         /// <value>The name of the endpoint configuration.</value>
-        [RequiredParameter]
         public string EndpointConfigurationName { get; set; }
 #endif
 
@@ -133,7 +132,19 @@ namespace NLog.Targets
         private void Send(NLogEvents events)
         {
 #if WCF_SUPPORTED
-            var client = new WcfLogReceiverClient(this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
+            WcfLogReceiverClient client;
+
+            if (string.IsNullOrEmpty(this.EndpointConfigurationName))
+            {
+                // endpoint not specified - use BasicHttpBinding
+                var binding = new BasicHttpBinding();
+                client = new WcfLogReceiverClient(binding, new EndpointAddress(this.EndpointAddress));
+            }
+            else
+            {
+                client = new WcfLogReceiverClient(this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
+            }
+
             client.ProcessLogMessagesAsync(events);
 #endif
         }

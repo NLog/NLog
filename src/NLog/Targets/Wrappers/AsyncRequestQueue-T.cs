@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Common;
-
 namespace NLog.Targets.Wrappers
 {
+    using System.Collections.Generic;
+    using NLog.Common;
+
     /// <summary>
     /// Asynchronous request queue.
     /// </summary>

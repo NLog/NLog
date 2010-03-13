@@ -31,15 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-using NLog.Internal;
-
 namespace NLog.Layouts
 {
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// A specialized layout that supports header and footer.
     /// </summary>
     [Layout("LayoutWithHeaderAndFooter")]
+    [ThreadAgnostic]
     public class LayoutWithHeaderAndFooter : Layout
     {
         /// <summary>
@@ -68,58 +69,6 @@ namespace NLog.Layouts
         public override string GetFormattedMessage(LogEventInfo logEvent)
         {
             return this.Layout.GetFormattedMessage(logEvent);
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether stack trace information should be gathered during log event processing. 
-        /// </summary>
-        /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
-        public override StackTraceUsage GetStackTraceUsage()
-        {
-            StackTraceUsage max = Layout.GetStackTraceUsage();
-            if (this.Header != null)
-            {
-                max = StackTraceUsageUtils.Max(max, this.Header.GetStackTraceUsage());
-            }
-
-            if (this.Footer != null)
-            {
-                max = StackTraceUsageUtils.Max(max, this.Footer.GetStackTraceUsage());
-            }
-
-            return max;
-        }
-
-        /// <summary>
-        /// Returns the value indicating whether this layout includes any volatile
-        /// layout renderers.
-        /// </summary>
-        /// <returns>
-        /// A value of <see langword="true"/> when the layout includes at least
-        /// one volatile renderer, <see langword="false"/> otherwise.
-        /// .</returns>
-        /// <remarks>
-        /// Volatile layout renderers are dependent on information not contained
-        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
-        /// </remarks>
-        public override bool IsVolatile()
-        {
-            if (Layout.IsVolatile())
-            {
-                return true;
-            }
-
-            if (this.Header != null && this.Header.IsVolatile())
-            {
-                return true;
-            }
-
-            if (this.Footer != null && this.Footer.IsVolatile())
-            {
-                return true;
-            }
-
-            return false;
         }
 
         /// <summary>

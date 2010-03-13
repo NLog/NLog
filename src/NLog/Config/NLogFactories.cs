@@ -31,23 +31,23 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using NLog.Conditions;
-using NLog.Filters;
-using NLog.LayoutRenderers;
-using NLog.Layouts;
-using NLog.Targets;
-
 namespace NLog.Config
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using NLog.Conditions;
+    using NLog.Filters;
+    using NLog.LayoutRenderers;
+    using NLog.Layouts;
+    using NLog.Targets;
+
     /// <summary>
     /// Provides registration information for named items (targets, layouts, layout renderers, etc.) managed by NLog.
     /// </summary>
     public class NLogFactories
     {
-        private ICollection<object> allFactories;
+        private readonly ICollection<object> allFactories;
 
         /// <summary>
         /// Initializes static members of the NLogFactories class.

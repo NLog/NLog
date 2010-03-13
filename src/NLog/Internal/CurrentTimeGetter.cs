@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Internal
 {
+    using System;
+
     /// <summary>
     /// Optimized methods to get current time.
     /// </summary>

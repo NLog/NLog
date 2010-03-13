@@ -31,13 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using NLog.Layouts;
-
 namespace NLog.Conditions
 {
+    using System;
+    using System.Globalization;
+
     /// <summary>
     /// Condition relational (<b>==</b>, <b>!=</b>, <b>&lt;</b>, <b>&lt;=</b>,
     /// <b>&gt;</b> or <b>&gt;=</b>) expression.

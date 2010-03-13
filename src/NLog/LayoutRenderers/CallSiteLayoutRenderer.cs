@@ -32,20 +32,23 @@
 // 
 
 #if !NET_CF
-using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
-using System.Text;
-using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
+    using System.ComponentModel;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Reflection;
+    using System.Text;
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// The call site (class name, method name and source information).
     /// </summary>
     [LayoutRenderer("callsite")]
-    public class CallSiteLayoutRenderer : LayoutRenderer
+    [ThreadAgnostic]
+    public class CallSiteLayoutRenderer : LayoutRenderer, IUsesStackTrace
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CallSiteLayoutRenderer" /> class.
@@ -87,47 +90,19 @@ namespace NLog.LayoutRenderers
 #endif
 
         /// <summary>
-        /// Returns the estimated number of characters that are needed to
-        /// hold the rendered value for the specified logging event.
+        /// Gets the level of stack trace information required by the implementing class.
         /// </summary>
-        /// <param name="logEvent">Logging event information.</param>
-        /// <returns>The number of characters.</returns>
-        /// <remarks>
-        /// If the exact number is not known or
-        /// expensive to calculate this function should return a rough estimate
-        /// that's big enough in most cases, but not too big, in order to conserve memory.
-        /// </remarks>
-        protected override int GetEstimatedBufferSize(LogEventInfo logEvent)
+        StackTraceUsage IUsesStackTrace.StackTraceUsage
         {
-            return 200;
-        }
+            get
+            {
+                if (this.FileName)
+                {
+                    return StackTraceUsage.Max;
+                }
 
-        /// <summary>
-        /// Checks whether the stack trace is requested.
-        /// </summary>
-        /// <returns>2 when the source file information is requested, 1 otherwise.</returns>
-        public override StackTraceUsage GetStackTraceUsage()
-        {
-#if SILVERLIGHT
-            return StackTraceUsage.WithoutSource;
-#else
-            return this.FileName ? StackTraceUsage.WithSource : StackTraceUsage.WithoutSource;
-#endif
-        }
-
-        /// <summary>
-        /// Determines whether the layout renderer is volatile.
-        /// </summary>
-        /// <returns>
-        /// A boolean indicating whether the layout renderer is volatile.
-        /// </returns>
-        /// <remarks>
-        /// Volatile layout renderers are dependent on information not contained
-        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
-        /// </remarks>
-        public override bool IsVolatile()
-        {
-            return false;
+                return StackTraceUsage.WithoutSource;
+            }
         }
 
         /// <summary>

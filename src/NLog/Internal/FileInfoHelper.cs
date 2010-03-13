@@ -31,14 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using NLog.Config;
-#if !NET_CF && !SILVERLIGHT
-
-#endif
-
 namespace NLog.Internal
 {
+    using System;
+    using NLog.Config;
+
     /// <summary>
     /// Optimized routines to get the size and last write time of the specified file.
     /// </summary>

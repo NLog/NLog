@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using NLog.Common;
-
 namespace NLog.Targets.Compound
 {
+    using System;
+    using NLog.Common;
+
     /// <summary>
     /// A compound target that provides fallback-on-error functionality.
     /// </summary>

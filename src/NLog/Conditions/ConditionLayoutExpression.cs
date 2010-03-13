@@ -31,11 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Layouts;
-
 namespace NLog.Conditions
 {
+    using NLog.Layouts;
+
     /// <summary>
     /// Condition layout expression (represented by a string literal
     /// with embedded ${}).

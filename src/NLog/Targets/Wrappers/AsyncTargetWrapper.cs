@@ -31,14 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Threading;
-using NLog.Common;
-
 namespace NLog.Targets.Wrappers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Threading;
+    using NLog.Common;
+
     /// <summary>
     /// A target wrapper that provides asynchronous, buffered execution of target writes.
     /// </summary>
@@ -158,15 +158,6 @@ namespace NLog.Targets.Wrappers
         protected AsyncRequestQueue<LogEventInfo> RequestQueue { get; private set; }
 
         /// <summary>
-        /// Initializes the target by starting the lazy writer thread.
-        /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize();
-            this.StartLazyWriterTimer();
-        }
-
-        /// <summary>
         /// Waits for the lazy writer thread to finish writing messages.
         /// </summary>
         /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
@@ -185,25 +176,19 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Closes the target by stopping the lazy writer thread.
         /// </summary>
-        public override void Close()
+        protected override void Close()
         {
             this.StopLazyWriterThread();
             base.Close();
         }
 
         /// <summary>
-        /// Adds the log event to asynchronous queue to be processed by 
-        /// the lazy writer thread.
+        /// Initializes the target by starting the lazy writer thread.
         /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        /// <remarks>
-        /// The <see cref="Target.PrecalculateVolatileLayouts"/> is called
-        /// to ensure that the log event can be processed in another thread.
-        /// </remarks>
-        protected override void Write(LogEventInfo logEvent)
+        protected override void Initialize()
         {
-            this.WrappedTarget.PrecalculateVolatileLayouts(logEvent);
-            this.RequestQueue.Enqueue(logEvent);
+            base.Initialize();
+            this.StartLazyWriterTimer();
         }
 
         /// <summary>
@@ -235,6 +220,21 @@ namespace NLog.Targets.Wrappers
             this.RequestQueue.Clear();
         }
 
+        /// <summary>
+        /// Adds the log event to asynchronous queue to be processed by 
+        /// the lazy writer thread.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
+        /// <remarks>
+        /// The <see cref="Target.PrecalculateVolatileLayouts"/> is called
+        /// to ensure that the log event can be processed in another thread.
+        /// </remarks>
+        protected override void Write(LogEventInfo logEvent)
+        {
+            this.PrecalculateVolatileLayouts(logEvent);
+            this.RequestQueue.Enqueue(logEvent);
+        }
+
         private void LazyWriterTimerCallback(object state)
         {
             lock (this.inLazyWriterMonitor)
@@ -243,7 +243,6 @@ namespace NLog.Targets.Wrappers
                 {
                     do
                     {
-                        // Console.WriteLine("q: {0}", RequestQueue.RequestCount);
                         List<LogEventInfo> pendingRequests = this.RequestQueue.DequeueBatch(this.BatchSize);
 
                         try
@@ -253,7 +252,7 @@ namespace NLog.Targets.Wrappers
                                 break;
                             }
 
-                            WrappedTarget.WriteLogEvents(pendingRequests.ToArray());
+                            this.WrappedTarget.WriteLogEvents(pendingRequests.ToArray());
                         }
                         finally
                         {

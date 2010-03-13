@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using NLog.Config;
-
 namespace NLog.Internal
 {
+    using System;
+    using NLog.Config;
+
     /// <summary>
     /// Utilities for dealing with <see cref="StackTraceUsage"/> values.
     /// </summary>

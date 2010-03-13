@@ -33,16 +33,15 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Net;
-using System.Net.Mail;
-using System.Text;
-using NLog.Common;
-using NLog.Layouts;
-
 namespace NLog.Targets
 {
+    using System.ComponentModel;
+    using System.Net;
+    using System.Net.Mail;
+    using System.Text;
+    using NLog.Common;
+    using NLog.Layouts;
+
     /// <summary>
     /// Sends logging messages by email using SMTP protocol.
     /// </summary>

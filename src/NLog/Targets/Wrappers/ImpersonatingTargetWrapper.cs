@@ -33,14 +33,14 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-using System.Security.Principal;
-using NLog.Internal;
-
 namespace NLog.Targets.Wrappers
 {
+    using System;
+    using System.ComponentModel;
+    using System.Runtime.InteropServices;
+    using System.Security.Principal;
+    using NLog.Internal;
+
     /// <summary>
     /// A target wrapper that impersonates another user for the duration of the write.
     /// </summary>
@@ -111,7 +111,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes the impersonation context.
         /// </summary>
-        public override void Initialize()
+        protected override void Initialize()
         {
             if (!this.RevertToSelf)
             {
@@ -127,7 +127,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Closes the impersonation context.
         /// </summary>
-        public override void Close()
+        protected override void Close()
         {
             using (this.DoImpersonate())
             {

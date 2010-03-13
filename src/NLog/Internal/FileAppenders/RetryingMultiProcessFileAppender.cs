@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-
 namespace NLog.Internal.FileAppenders
 {
+    using System;
+    using System.IO;
+
     /// <summary>
     /// Multi-process and multi-host file appender which attempts
     /// to get exclusive write access and retries if it's not available.
