@@ -127,6 +127,12 @@ if (%1)==(checkinsuite) (
 	goto next
 )
 
+if (%1)==(archive) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Archive
+	shift
+	goto next
+)
+
 if (%1)==(all) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:All
 	set POST_BUILD_COMMAND="%~dp0src\LastTestRunSummary.cmd"
@@ -156,6 +162,7 @@ echo Targets can be:
 echo.
 echo  clean              Removes output files
 echo  deepclean          Removes temporary and intermediate files
+echo  archive            Produce ZIP files for each framework
 echo  build              Compiles assemblies
 echo  buildtests         Compiles tests
 echo  runtests           Runs unit tests

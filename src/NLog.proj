@@ -18,6 +18,8 @@
     <DumpTestResultSummary>$(MSBuildProjectDirectory)\..\tools\DumpTestResultSummary\bin\$(Configuration)\DumpTestResultSummary.exe</DumpTestResultSummary>
     <DeployNetCF>..\tools\DeployNetCF.exe</DeployNetCF>
     <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
+    <InfoZip>zip.exe</InfoZip>
+    <ArchiveOutputPath>$(BaseOutputDirectory)\archive</ArchiveOutputPath>
   </PropertyGroup>
 
   <!-- detect location of various SDKs and tools-->
@@ -232,6 +234,12 @@
   <Target Name="Clean">
      <RemoveDir Directories="@(TargetFramework -> '$(BaseOutputDirectory)bin\$(Configuration)\%(Identity)')" />
      <RemoveDir Directories="@(TargetFramework -> '$(BaseOutputDirectory)obj\$(Configuration)\%(Identity)')" />
+  </Target>
+
+  <Target Name="Archive">
+    <MakeDir Directories="$(ArchiveOutputPath)" />
+    <Exec Command="$(InfoZip) $(ArchiveOutputPath)\NLog2$(ArchiveSuffix)%(TargetFramework.ProjectFileSuffix).zip NLog.*" 
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)" />
   </Target>
 
   <ItemGroup>
