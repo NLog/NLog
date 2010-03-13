@@ -128,7 +128,8 @@ if (%1)==(checkinsuite) (
 )
 
 if (%1)==(archive) (
-	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Archive
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Archive /p:ArchiveSuffix=%2
+	shift
 	shift
 	goto next
 )
@@ -162,7 +163,7 @@ echo Targets can be:
 echo.
 echo  clean              Removes output files
 echo  deepclean          Removes temporary and intermediate files
-echo  archive            Produce ZIP files for each framework
+echo  archive {suffix}   Produce ZIP files for each framework
 echo  build              Compiles assemblies
 echo  buildtests         Compiles tests
 echo  runtests           Runs unit tests
@@ -171,9 +172,13 @@ echo  doc                Builds documentation
 echo  all                Full build
 exit /b 1
 
-
 :build
 echo MSBUILD: %MSBUILD%
 echo MSBUILD_ARGUMENTS: %MSBUILD_ARGUMENTS%
 %MSBUILD% /nologo /fl "%~dp0src\NLog.proj" %MSBUILD_ARGUMENTS%
 %POST_BUILD_COMMAND%
+exit /b 0
+
+:getsvnversion
+echo SVN_VERSION=%SVN_VERSION%
+exit /b 0

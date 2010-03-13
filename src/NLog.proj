@@ -20,6 +20,7 @@
     <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
     <InfoZip>zip.exe</InfoZip>
     <ArchiveOutputPath>$(BaseOutputDirectory)\archive</ArchiveOutputPath>
+    <ConfigurationSuffix Condition="'$(Configuration)' == 'Debug'">-debug</ConfigurationSuffix>
   </PropertyGroup>
 
   <!-- detect location of various SDKs and tools-->
@@ -238,7 +239,7 @@
 
   <Target Name="Archive">
     <MakeDir Directories="$(ArchiveOutputPath)" />
-    <Exec Command="$(InfoZip) $(ArchiveOutputPath)\NLog2$(ArchiveSuffix)%(TargetFramework.ProjectFileSuffix).zip NLog.*" 
+    <Exec Command="$(InfoZip) $(ArchiveOutputPath)\NLog2%(TargetFramework.ProjectFileSuffix)$(ArchiveSuffix)$(ConfigurationSuffix).zip NLog.*" 
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)" />
   </Target>
 
