@@ -34,8 +34,8 @@
     <TargetFrameworkName>.NET Framework 3.5</TargetFrameworkName>
     <DefineConstants>NET3_5;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
-    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
-    <DocumentationFile>$(OutputPath)\NLog.xml</DocumentationFile>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName) Extended</IntermediateOutputPath>
+    <DocumentationFile>$(OutputPath)\NLog.Extended.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -33,14 +33,14 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
-using System.ComponentModel;
-using System.Web;
-using NLog.Internal;
-using NLog.Web;
-
 namespace NLog.Targets.Wrappers
 {
+    using System;
+    using System.ComponentModel;
+    using System.Web;
+    using NLog.Internal;
+    using NLog.Web;
+
     /// <summary>
     /// A target that buffers log events for the duration of 
     /// the ASP.NET Request and sends them down to the wrapped target

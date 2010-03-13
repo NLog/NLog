@@ -33,11 +33,11 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
-using System.Web;
-
 namespace NLog.Web
 {
+    using System;
+    using System.Web;
+
     /// <summary>
     /// ASP.NET HttpModule that enables NLog to hook BeginRequest and EndRequest events easily.
     /// </summary>

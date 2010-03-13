@@ -33,10 +33,10 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System.Web;
-
 namespace NLog.Targets
 {
+    using System.Web;
+
     /// <summary>
     /// Writes logging messages to the ASP.NET trace.
     /// </summary>

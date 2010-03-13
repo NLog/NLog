@@ -33,14 +33,14 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System;
-using System.Globalization;
-using System.Text;
-using System.Web;
-using NLog.Config;
-
 namespace NLog.LayoutRenderers
 {
+    using System;
+    using System.Globalization;
+    using System.Text;
+    using System.Web;
+    using NLog.Config;
+
     /// <summary>
     /// ASP.NET Application variable.
     /// </summary>

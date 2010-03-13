@@ -24,6 +24,12 @@
       <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.dll" xmlns="" />
       <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.xml" xmlns="" />
     </DocumentationSources>
+    <DocumentationSources Condition="Exists('$(NLogBuildPath)\NLog.Extended.dll')">
+      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.dll" xmlns="" />
+      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.xml" xmlns="" />
+      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.Extended.dll" xmlns="" />
+      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.Extended.xml" xmlns="" />
+    </DocumentationSources>
     <HelpTitle>NLog - Advanced .NET Logging ($(Framework))</HelpTitle>
     <CopyrightText>Copyright %28c%29 2004-2009 by Jaroslaw Kowalski</CopyrightText>
     <FeedbackEMailAddress>feedback%40nlog-project.org</FeedbackEMailAddress>

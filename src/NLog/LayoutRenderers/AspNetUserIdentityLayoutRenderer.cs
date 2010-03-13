@@ -33,11 +33,11 @@
 
 #if !NET_CF && !SILVERLIGHT
 
-using System.Text;
-using System.Web;
-
 namespace NLog.LayoutRenderers
 {
+    using System.Text;
+    using System.Web;
+
     /// <summary>
     /// ASP.NET User variable.
     /// </summary>
