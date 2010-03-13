@@ -96,10 +96,12 @@ namespace NLog.LayoutRenderers
         {
             get
             {
+#if !SILVERLIGHT
                 if (this.FileName)
                 {
                     return StackTraceUsage.Max;
                 }
+#endif
 
                 return StackTraceUsage.WithoutSource;
             }
