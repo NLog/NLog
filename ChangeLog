@@ -1,3 +1,6 @@
+2010-03-13 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* NLog2-preview1 release
+
 2010-03-12 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Refactored project structure for client SKU support. On .NET 3.5 and 4.0 there are now two assemblies: NLog.dll (client-only) and NLog.Extended.dll (extended SKU)
 	* Removed StyleCop exclusion for usings-must-be-in-namespace and fixed all sources
