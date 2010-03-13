@@ -19,7 +19,8 @@
     <DeployNetCF>..\tools\DeployNetCF.exe</DeployNetCF>
     <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
     <InfoZip>zip.exe</InfoZip>
-    <ArchiveOutputPath>$(BaseOutputDirectory)\archive</ArchiveOutputPath>
+    <Svn>svn.exe</Svn>
+    <ArchiveOutputPath>$(BaseOutputDirectory)Archive</ArchiveOutputPath>
     <ConfigurationSuffix Condition="'$(Configuration)' == 'Debug'">-debug</ConfigurationSuffix>
   </PropertyGroup>
 
@@ -239,8 +240,12 @@
 
   <Target Name="Archive">
     <MakeDir Directories="$(ArchiveOutputPath)" />
-    <Exec Command="$(InfoZip) $(ArchiveOutputPath)\NLog2%(TargetFramework.ProjectFileSuffix)$(ArchiveSuffix)$(ConfigurationSuffix).zip NLog.*" 
+    <Exec Command='$(InfoZip) "$(ArchiveOutputPath)\NLog2%(TargetFramework.ProjectFileSuffix)$(ArchiveSuffix)$(ConfigurationSuffix).zip" NLog.*' 
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)" />
+    <RemoveDir Directories="$(ArchiveOutputPath)\sources" />
+    <Exec Command='$(Svn) export . "$(ArchiveOutputPath)\sources"' WorkingDirectory=".." />
+    <Exec Command='$(InfoZip) -r "..\NLog2-sources$(ArchiveSuffix).zip" *.*' 
+          WorkingDirectory="$(ArchiveOutputPath)\sources" />
   </Target>
 
   <ItemGroup>
