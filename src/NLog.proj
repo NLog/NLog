@@ -77,11 +77,9 @@
     </TargetFramework>
     <TargetFramework Include="Silverlight 2.0" Condition="'$(BuildSL2)'=='true'">
         <ProjectFileSuffix>.sl2</ProjectFileSuffix>
-        <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
     <TargetFramework Include="Silverlight 3.0" Condition="'$(BuildSL3)'=='true'">
         <ProjectFileSuffix>.sl3</ProjectFileSuffix>
-        <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
     <TargetFramework Include=".NET Compact Framework 2.0" Condition="'$(BuildNetCF20)'=='true'">
         <ProjectFileSuffix>.netcf20</ProjectFileSuffix>
