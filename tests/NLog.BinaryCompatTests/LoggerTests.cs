@@ -1,61 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using NLog.Config;
-using NLog.Targets;
-
-namespace NLog.BinaryCompatTests
+﻿namespace NLog.BinaryCompatTests
 {
+    using System;
+    using System.Globalization;
+
     public static class LoggerTests
     {
-        public static void TraceTest()
-        {
-            Logger logger = LogManager.GetLogger("A");
-
-            bool isEnabled = logger.IsTraceEnabled;
-            logger.Trace("message");
-            logger.Trace("message{0}", (ulong) 1);
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (ulong) 2);
-            logger.Trace("message{0}", (long) 1);
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (long) 2);
-            logger.Trace("message{0}", (uint) 1);
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (uint) 2);
-            logger.Trace("message{0}", (int) 1);
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (int) 2);
-            logger.Trace("message{0}", (ushort) 1);
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (ushort) 2);
-            logger.Trace("message{0}", (sbyte) 1);
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (sbyte) 2);
-            logger.Trace("message{0}", new object());
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}", new object());
-            logger.Trace("message{0}", (short) 1);
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (short) 2);
-            logger.Trace("message{0}", (byte) 1);
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (byte) 2);
-            logger.Trace("message{0}", 'c');
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}", 'd');
-            logger.Trace("message{0}", "ddd");
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}", "eee");
-            logger.Trace("message{0}{1}", "ddd", 1);
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}{1}", "eee", 2);
-            logger.Trace("message{0}{1}{2}", "ddd", 1, "eee");
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}{1}{2}", "eee", 2, "fff");
-            logger.Trace("message{0}{1}{2}{3}", "eee", 2, "fff", "ggg");
-            logger.Trace("message{0}", true);
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}", false);
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (float) 2.5);
-            logger.Trace((double) 1.5);
-            logger.Trace(CultureInfo.InvariantCulture, (double) 1.5);
-            logger.Trace("message{0}", (double) 1.5);
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (double) 2.5);
-            logger.Trace("message{0}", (decimal) 1.5);
-            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (decimal) 2.5);
-            logger.TraceException("message", new Exception("test"));
-        }
-
         public static void DebugTest()
         {
             Logger logger = LogManager.GetLogger("A");
@@ -99,96 +48,6 @@ namespace NLog.BinaryCompatTests
             logger.Debug("message{0}", (decimal)1.5);
             logger.Debug(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
             logger.DebugException("message", new Exception("test"));
-        }
-
-        public static void InfoTest()
-        {
-            Logger logger = LogManager.GetLogger("A");
-
-            bool isEnabled = logger.IsInfoEnabled;
-            logger.Info("message");
-            logger.Info("message{0}", (ulong)1);
-            logger.Info(CultureInfo.InvariantCulture, "message{0}", (ulong)2);
-            logger.Info("message{0}", (long)1);
-            logger.Info(CultureInfo.InvariantCulture, "message{0}", (long)2);
-            logger.Info("message{0}", (uint)1);
-            logger.Info(CultureInfo.InvariantCulture, "message{0}", (uint)2);
-            logger.Info("message{0}", (int)1);
-            logger.Info(CultureInfo.InvariantCulture, "message{0}", (int)2);
-            logger.Info("message{0}", (ushort)1);
-            logger.Info(CultureInfo.InvariantCulture, "message{0}", (ushort)2);
-            logger.Info("message{0}", (sbyte)1);
-            logger.Info(CultureInfo.InvariantCulture, "message{0}", (sbyte)2);
-            logger.Info("message{0}", new object());
-            logger.Info(CultureInfo.InvariantCulture, "message{0}", new object());
-            logger.Info("message{0}", (short)1);
-            logger.Info(CultureInfo.InvariantCulture, "message{0}", (short)2);
-            logger.Info("message{0}", (byte)1);
-            logger.Info(CultureInfo.InvariantCulture, "message{0}", (byte)2);
-            logger.Info("message{0}", 'c');
-            logger.Info(CultureInfo.InvariantCulture, "message{0}", 'd');
-            logger.Info("message{0}", "ddd");
-            logger.Info(CultureInfo.InvariantCulture, "message{0}", "eee");
-            logger.Info("message{0}{1}", "ddd", 1);
-            logger.Info(CultureInfo.InvariantCulture, "message{0}{1}", "eee", 2);
-            logger.Info("message{0}{1}{2}", "ddd", 1, "eee");
-            logger.Info(CultureInfo.InvariantCulture, "message{0}{1}{2}", "eee", 2, "fff");
-            logger.Info("message{0}{1}{2}{3}", "eee", 2, "fff", "ggg");
-            logger.Info("message{0}", true);
-            logger.Info(CultureInfo.InvariantCulture, "message{0}", false);
-            logger.Info(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
-            logger.Info((double)1.5);
-            logger.Info(CultureInfo.InvariantCulture, (double)1.5);
-            logger.Info("message{0}", (double)1.5);
-            logger.Info(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
-            logger.Info("message{0}", (decimal)1.5);
-            logger.Info(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
-            logger.InfoException("message", new Exception("test"));
-        }
-
-        public static void WarnTest()
-        {
-            Logger logger = LogManager.GetLogger("A");
-
-            bool isEnabled = logger.IsWarnEnabled;
-            logger.Warn("message");
-            logger.Warn("message{0}", (ulong)1);
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (ulong)2);
-            logger.Warn("message{0}", (long)1);
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (long)2);
-            logger.Warn("message{0}", (uint)1);
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (uint)2);
-            logger.Warn("message{0}", (int)1);
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (int)2);
-            logger.Warn("message{0}", (ushort)1);
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (ushort)2);
-            logger.Warn("message{0}", (sbyte)1);
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (sbyte)2);
-            logger.Warn("message{0}", new object());
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}", new object());
-            logger.Warn("message{0}", (short)1);
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (short)2);
-            logger.Warn("message{0}", (byte)1);
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (byte)2);
-            logger.Warn("message{0}", 'c');
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}", 'd');
-            logger.Warn("message{0}", "ddd");
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}", "eee");
-            logger.Warn("message{0}{1}", "ddd", 1);
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}{1}", "eee", 2);
-            logger.Warn("message{0}{1}{2}", "ddd", 1, "eee");
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}{1}{2}", "eee", 2, "fff");
-            logger.Warn("message{0}{1}{2}{3}", "eee", 2, "fff", "ggg");
-            logger.Warn("message{0}", true);
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}", false);
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
-            logger.Warn((double)1.5);
-            logger.Warn(CultureInfo.InvariantCulture, (double)1.5);
-            logger.Warn("message{0}", (double)1.5);
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
-            logger.Warn("message{0}", (decimal)1.5);
-            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
-            logger.WarnException("message", new Exception("test"));
         }
 
         public static void ErrorTest()
@@ -281,6 +140,51 @@ namespace NLog.BinaryCompatTests
             logger.FatalException("message", new Exception("test"));
         }
 
+        public static void InfoTest()
+        {
+            Logger logger = LogManager.GetLogger("A");
+
+            bool isEnabled = logger.IsInfoEnabled;
+            logger.Info("message");
+            logger.Info("message{0}", (ulong)1);
+            logger.Info(CultureInfo.InvariantCulture, "message{0}", (ulong)2);
+            logger.Info("message{0}", (long)1);
+            logger.Info(CultureInfo.InvariantCulture, "message{0}", (long)2);
+            logger.Info("message{0}", (uint)1);
+            logger.Info(CultureInfo.InvariantCulture, "message{0}", (uint)2);
+            logger.Info("message{0}", (int)1);
+            logger.Info(CultureInfo.InvariantCulture, "message{0}", (int)2);
+            logger.Info("message{0}", (ushort)1);
+            logger.Info(CultureInfo.InvariantCulture, "message{0}", (ushort)2);
+            logger.Info("message{0}", (sbyte)1);
+            logger.Info(CultureInfo.InvariantCulture, "message{0}", (sbyte)2);
+            logger.Info("message{0}", new object());
+            logger.Info(CultureInfo.InvariantCulture, "message{0}", new object());
+            logger.Info("message{0}", (short)1);
+            logger.Info(CultureInfo.InvariantCulture, "message{0}", (short)2);
+            logger.Info("message{0}", (byte)1);
+            logger.Info(CultureInfo.InvariantCulture, "message{0}", (byte)2);
+            logger.Info("message{0}", 'c');
+            logger.Info(CultureInfo.InvariantCulture, "message{0}", 'd');
+            logger.Info("message{0}", "ddd");
+            logger.Info(CultureInfo.InvariantCulture, "message{0}", "eee");
+            logger.Info("message{0}{1}", "ddd", 1);
+            logger.Info(CultureInfo.InvariantCulture, "message{0}{1}", "eee", 2);
+            logger.Info("message{0}{1}{2}", "ddd", 1, "eee");
+            logger.Info(CultureInfo.InvariantCulture, "message{0}{1}{2}", "eee", 2, "fff");
+            logger.Info("message{0}{1}{2}{3}", "eee", 2, "fff", "ggg");
+            logger.Info("message{0}", true);
+            logger.Info(CultureInfo.InvariantCulture, "message{0}", false);
+            logger.Info(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
+            logger.Info((double)1.5);
+            logger.Info(CultureInfo.InvariantCulture, (double)1.5);
+            logger.Info("message{0}", (double)1.5);
+            logger.Info(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
+            logger.Info("message{0}", (decimal)1.5);
+            logger.Info(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+            logger.InfoException("message", new Exception("test"));
+        }
+
         public static void LogTest()
         {
             Logger logger = LogManager.GetLogger("A");
@@ -323,6 +227,96 @@ namespace NLog.BinaryCompatTests
             logger.Log(LogLevel.Trace, "message{0}", (decimal)1.5);
             logger.Log(LogLevel.Trace, CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
             logger.LogException(LogLevel.Trace, "message", new Exception("test"));
+        }
+
+        public static void TraceTest()
+        {
+            Logger logger = LogManager.GetLogger("A");
+
+            bool isEnabled = logger.IsTraceEnabled;
+            logger.Trace("message");
+            logger.Trace("message{0}", (ulong)1);
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (ulong)2);
+            logger.Trace("message{0}", (long)1);
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (long)2);
+            logger.Trace("message{0}", (uint)1);
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (uint)2);
+            logger.Trace("message{0}", (int)1);
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (int)2);
+            logger.Trace("message{0}", (ushort)1);
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (ushort)2);
+            logger.Trace("message{0}", (sbyte)1);
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (sbyte)2);
+            logger.Trace("message{0}", new object());
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}", new object());
+            logger.Trace("message{0}", (short)1);
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (short)2);
+            logger.Trace("message{0}", (byte)1);
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (byte)2);
+            logger.Trace("message{0}", 'c');
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}", 'd');
+            logger.Trace("message{0}", "ddd");
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}", "eee");
+            logger.Trace("message{0}{1}", "ddd", 1);
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}{1}", "eee", 2);
+            logger.Trace("message{0}{1}{2}", "ddd", 1, "eee");
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}{1}{2}", "eee", 2, "fff");
+            logger.Trace("message{0}{1}{2}{3}", "eee", 2, "fff", "ggg");
+            logger.Trace("message{0}", true);
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}", false);
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
+            logger.Trace((double)1.5);
+            logger.Trace(CultureInfo.InvariantCulture, (double)1.5);
+            logger.Trace("message{0}", (double)1.5);
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
+            logger.Trace("message{0}", (decimal)1.5);
+            logger.Trace(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+            logger.TraceException("message", new Exception("test"));
+        }
+
+        public static void WarnTest()
+        {
+            Logger logger = LogManager.GetLogger("A");
+
+            bool isEnabled = logger.IsWarnEnabled;
+            logger.Warn("message");
+            logger.Warn("message{0}", (ulong)1);
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (ulong)2);
+            logger.Warn("message{0}", (long)1);
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (long)2);
+            logger.Warn("message{0}", (uint)1);
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (uint)2);
+            logger.Warn("message{0}", (int)1);
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (int)2);
+            logger.Warn("message{0}", (ushort)1);
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (ushort)2);
+            logger.Warn("message{0}", (sbyte)1);
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (sbyte)2);
+            logger.Warn("message{0}", new object());
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}", new object());
+            logger.Warn("message{0}", (short)1);
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (short)2);
+            logger.Warn("message{0}", (byte)1);
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (byte)2);
+            logger.Warn("message{0}", 'c');
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}", 'd');
+            logger.Warn("message{0}", "ddd");
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}", "eee");
+            logger.Warn("message{0}{1}", "ddd", 1);
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}{1}", "eee", 2);
+            logger.Warn("message{0}{1}{2}", "ddd", 1, "eee");
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}{1}{2}", "eee", 2, "fff");
+            logger.Warn("message{0}{1}{2}{3}", "eee", 2, "fff", "ggg");
+            logger.Warn("message{0}", true);
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}", false);
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
+            logger.Warn((double)1.5);
+            logger.Warn(CultureInfo.InvariantCulture, (double)1.5);
+            logger.Warn("message{0}", (double)1.5);
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
+            logger.Warn("message{0}", (decimal)1.5);
+            logger.Warn(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+            logger.WarnException("message", new Exception("test"));
         }
     }
 }

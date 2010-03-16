@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using NLog.Config;
-using NLog.Targets;
-using System.Collections;
-
-namespace NLog.BinaryCompatTests
+﻿namespace NLog.BinaryCompatTests
 {
+    using System;
+    using System.Collections;
+    using System.Globalization;
+
     public static class LogEventInfoTests
     {
         public static void LogEventInfoTest1()
@@ -56,7 +49,6 @@ namespace NLog.BinaryCompatTests
             {
                 throw new InvalidOperationException("Assertion failed.");
             }
-
         }
     }
 }

@@ -131,6 +131,12 @@
              Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
              ContinueOnError="$(BuildAllFrameworks)" 
              StopOnFirstFailure="false" />
+    <MSBuild Projects="..\tests\NLog.BinaryCompatTests\NLog.BinaryCompatTests%(TargetFramework.ProjectFileSuffix).csproj" 
+             Targets="Build" 
+             Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
+             ContinueOnError="$(BuildAllFrameworks)" 
+             Condition="Exists('..\tests\NLog.BinaryCompatTests\NLog.BinaryCompatTests%(TargetFramework.ProjectFileSuffix).csproj')" 
+             StopOnFirstFailure="false" />
   </Target>
 
   <Target Name="RunTests">

@@ -1,42 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using NLog.Config;
-using NLog.Targets;
-
-namespace NLog.BinaryCompatTests
+﻿namespace NLog.BinaryCompatTests
 {
+    using System;
+    using NLog.Config;
+
     public static class LogManagerTests
     {
-        public class MyLogger : Logger
+        public static void Configuration()
         {
-        }
-
-        public static void GetCurrentClassLoggerWithoutType()
-        {
-            LogManager.GetCurrentClassLogger();
-        }
-
-        public static void GetCurrentClassLoggerWithType()
-        {
-            LogManager.GetCurrentClassLogger(typeof(MyLogger));
-        }
-
-        public static void GetLoggerWithoutType()
-        {
-            LogManager.GetLogger("AAA");
-        }
-
-        public static void GetLoggerWithType()
-        {
-            LogManager.GetLogger("AAA", typeof(MyLogger));
+            LogManager.Configuration = new XmlLoggingConfiguration("NLog.config");
+            LogManager.Configuration = null;
         }
 
         public static void CreateNullLogger()
         {
-            var logger = LogManager.CreateNullLogger();
+            Logger logger = LogManager.CreateNullLogger();
         }
 
         public static void EnableDisableLogging()
@@ -53,6 +30,26 @@ namespace NLog.BinaryCompatTests
             LogManager.Flush(TimeSpan.FromSeconds(1));
         }
 
+        public static void GetCurrentClassLoggerWithType()
+        {
+            LogManager.GetCurrentClassLogger(typeof(MyLogger));
+        }
+
+        public static void GetCurrentClassLoggerWithoutType()
+        {
+            LogManager.GetCurrentClassLogger();
+        }
+
+        public static void GetLoggerWithType()
+        {
+            LogManager.GetLogger("AAA", typeof(MyLogger));
+        }
+
+        public static void GetLoggerWithoutType()
+        {
+            LogManager.GetLogger("AAA");
+        }
+
         public static void GlobalThreshold()
         {
             LogManager.GlobalThreshold = LogLevel.Off;
@@ -64,15 +61,13 @@ namespace NLog.BinaryCompatTests
             LogManager.ReconfigExistingLoggers();
         }
 
-        public static void Configuration()
-        {
-            LogManager.Configuration = new XmlLoggingConfiguration("NLog.config");
-            LogManager.Configuration = null;
-        }
-
         public static void ThrowExceptions()
         {
             LogManager.ThrowExceptions = true;
+        }
+
+        public class MyLogger : Logger
+        {
         }
     }
 }

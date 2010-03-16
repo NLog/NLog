@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using NLog.Config;
-using NLog.Targets;
-using System.Reflection;
-
-namespace NLog.BinaryCompatTests
+﻿namespace NLog.BinaryCompatTests
 {
+    using System;
+    using System.Reflection;
+
     public class Program
     {
         private static int PassedCount = 0;
         private static int FailedCount = 0;
 
-        static int Main(string[] args)
+        private static int Main(string[] args)
         {
-            var oldColor = Console.ForegroundColor;
+            ConsoleColor oldColor = Console.ForegroundColor;
 
             try
             {
@@ -28,7 +21,7 @@ namespace NLog.BinaryCompatTests
                 if (FailedCount == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("All passed.");
+                    Console.WriteLine("All binary compatibility tests have passed.");
                 }
                 else
                 {
@@ -46,7 +39,6 @@ namespace NLog.BinaryCompatTests
             finally
             {
                 Console.ForegroundColor = oldColor;
-                
             }
         }
 
@@ -55,15 +47,15 @@ namespace NLog.BinaryCompatTests
             Console.WriteLine("Running {0}:", testClass.Name);
             foreach (MethodInfo mi in testClass.GetMethods(BindingFlags.Static | BindingFlags.Public))
             {
-                var oldColor = Console.ForegroundColor;
+                ConsoleColor oldColor = Console.ForegroundColor;
                 try
                 {
                     mi.Invoke(null, null);
                     PassedCount++;
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write("    OK ");
-                    Console.ForegroundColor = oldColor;
-                    Console.WriteLine("{0}", mi.Name);
+                    // Console.ForegroundColor = ConsoleColor.Green;
+                    // Console.Write("    OK ");
+                    // Console.ForegroundColor = oldColor;
+                    // Console.WriteLine("{0}", mi.Name);
                 }
                 catch (TargetInvocationException ex)
                 {
@@ -77,7 +69,6 @@ namespace NLog.BinaryCompatTests
                 {
                     Console.ForegroundColor = oldColor;
                 }
-
             }
         }
     }
