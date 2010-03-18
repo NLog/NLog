@@ -57,6 +57,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
+            MappedDiagnosticsContext.Clear();
             MappedDiagnosticsContext.Set("myitem", "myvalue");
             LogManager.GetLogger("A").Debug("a");
             AssertDebugLastMessage("debug", "myvalue a");

@@ -16,8 +16,7 @@
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
-    </SupportedCultures>
+    <SupportedCultures></SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
@@ -31,8 +30,7 @@
     <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
     <UsePlatformExtensions>false</UsePlatformExtensions>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <LinkedServerProject>
-    </LinkedServerProject>
+    <LinkedServerProject></LinkedServerProject>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
@@ -114,6 +112,7 @@
     <Compile Include="LayoutRenderers\CallSiteTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LayoutRenderers\Log4JXmlTests.cs" />
     <Compile Include="LayoutRenderers\CounterTests.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -1,3 +1,7 @@
+2010-03-17 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Fixed issue mentioned in bug #4182 - after refactoring XmlTextWriter to XmlWriter.Create() ${log4jxmlevent} stopped working.
+	Added regression tests.
+
 2010-03-13 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* NLog2-preview1 release
 

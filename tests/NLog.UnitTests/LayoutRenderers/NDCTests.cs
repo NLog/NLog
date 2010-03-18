@@ -57,6 +57,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
+            NestedDiagnosticsContext.Clear();
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
             using (NestedDiagnosticsContext.Push("ala"))
@@ -100,6 +101,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
+            NestedDiagnosticsContext.Clear();
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
             using (NestedDiagnosticsContext.Push("ala"))
@@ -144,6 +146,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
+            NestedDiagnosticsContext.Clear();
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
             using (NestedDiagnosticsContext.Push("ala"))
@@ -193,6 +196,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
+            NestedDiagnosticsContext.Clear();
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
             using (NestedDiagnosticsContext.Push("ala"))
@@ -236,6 +240,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
+            NestedDiagnosticsContext.Clear();
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
             using (NestedDiagnosticsContext.Push("ala"))

@@ -33,7 +33,9 @@
 
 namespace NLog.Layouts
 {
+    using System.ComponentModel;
     using System.Text;
+    using NLog.Contexts;
     using NLog.LayoutRenderers;
 
     /// <summary>

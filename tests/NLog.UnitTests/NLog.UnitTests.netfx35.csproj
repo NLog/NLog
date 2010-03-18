@@ -101,6 +101,7 @@
     <Compile Include="LayoutRenderers\CallSiteTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LayoutRenderers\Log4JXmlTests.cs" />
     <Compile Include="LayoutRenderers\CounterTests.cs">
       <SubType>Code</SubType>
     </Compile>
