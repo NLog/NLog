@@ -162,7 +162,7 @@ namespace NLog.LayoutRenderers
 
             xtw.WriteStartElement("log4j", "wrapper", dummyNamespace);
             xtw.WriteStartElement("nlog", "wrapper", dummyNamespace);
-            xtw.WriteRaw("");
+            xtw.WriteRaw(string.Empty);
             xtw.Flush();
             sb.Length = 0;
 
