@@ -84,6 +84,12 @@ if (%1)==(doc) (
 	goto next
 )
 
+if (%1)==(dumpapi) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:DumpApi
+	shift
+	goto next
+)
+
 if (%1)==(clean) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Clean
 	shift

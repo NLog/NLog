@@ -17,6 +17,7 @@
     <SLTestRunner>$(MSBuildProjectDirectory)\..\tests\SilverlightConsoleRunner\bin\$(Configuration)\SilverlightConsoleRunner.exe</SLTestRunner>
     <DumpTestResultSummary>$(MSBuildProjectDirectory)\..\tools\DumpTestResultSummary\bin\$(Configuration)\DumpTestResultSummary.exe</DumpTestResultSummary>
     <DeployNetCF>..\tools\DeployNetCF.exe</DeployNetCF>
+    <DumpApiXml>$(MSBuildProjectDirectory)\..\tools\DumpApiXml\bin\$(Configuration)\DumpApiXml.exe</DumpApiXml>
     <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
     <InfoZip>zip.exe</InfoZip>
     <Svn>svn.exe</Svn>
@@ -70,36 +71,57 @@
     <BuildNetFX40 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX40>
   </PropertyGroup>
 
+  <PropertyGroup>
+     <DocReferencesNetFX20>-ref "$(WinDir)\Microsoft.NET\Framework\v2.0.50727"</DocReferencesNetFX20>
+     <DocReferencesNetFX30>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\v3.0"</DocReferencesNetFX30>
+     <DocReferencesNetFX35>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\v3.5"</DocReferencesNetFX35>
+     <DocReferencesNetFX40>-ref "$(WinDir)\Microsoft.NET\Framework\$(DotNet4Version)"</DocReferencesNetFX40>
+     <DocReferencesSL2>-ref "$(ProgramFiles)\Microsoft SDKs\Silverlight\v2.0\Reference Assemblies"</DocReferencesSL2>
+     <DocReferencesSL3>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v3.0"</DocReferencesSL3>
+     <DocReferencesSL4>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0"</DocReferencesSL4>
+     <DocReferencesNetCF20>-ref "$(ProgramFiles)\Microsoft.NET\SDK\CompactFramework\v2.0\WindowsCE"</DocReferencesNetCF20>
+     <DocReferencesNetCF35>-ref "$(ProgramFiles)\Microsoft.NET\SDK\CompactFramework\v3.5\WindowsCE"</DocReferencesNetCF35>
+     <DocReferencesMono2>-ref "$(MonoInstallLocation)\lib\mono\2.0"</DocReferencesMono2>
+  </PropertyGroup>
+
   <ItemGroup>
     <TargetFramework Include="Mono 2.x" Condition="'$(BuildMono2)' == 'true'">
         <ProjectFileSuffix>.mono2</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
+        <DocReferences>$(DocReferencesMono2)</DocReferences>
     </TargetFramework>
     <TargetFramework Include="Silverlight 2.0" Condition="'$(BuildSL2)'=='true'">
         <ProjectFileSuffix>.sl2</ProjectFileSuffix>
+        <DocReferences>$(DocReferencesSL2)</DocReferences>
     </TargetFramework>
     <TargetFramework Include="Silverlight 3.0" Condition="'$(BuildSL3)'=='true'">
         <ProjectFileSuffix>.sl3</ProjectFileSuffix>
+        <DocReferences>$(DocReferencesSL3)</DocReferences>
     </TargetFramework>
     <TargetFramework Include=".NET Compact Framework 2.0" Condition="'$(BuildNetCF20)'=='true'">
         <ProjectFileSuffix>.netcf20</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
+        <DocReferences>$(DocReferencesNetCF20)</DocReferences>
     </TargetFramework>
     <TargetFramework Include=".NET Compact Framework 3.5" Condition="'$(BuildNetCF35)'=='true'">
         <ProjectFileSuffix>.netcf35</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
+        <DocReferences>$(DocReferencesNetCF35)</DocReferences>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 2.0" Condition="'$(BuildNetFX20)'=='true'">
         <ProjectFileSuffix>.netfx20</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
+        <DocReferences>$(DocReferencesNetFX20)</DocReferences>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 3.5" Condition="'$(BuildNetFX35)'=='true'">
         <ProjectFileSuffix>.netfx35</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
+        <DocReferences>$(DocReferencesNetFX20) $(DocReferencesNetFX30) $(DocReferencesNetFX35)</DocReferences>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildNetFX40)'=='true'">
         <ProjectFileSuffix>.netfx40</ProjectFileSuffix>
         <ToolsVersion>4.0</ToolsVersion>
+        <DocReferences>$(DocReferencesNetFX40)</DocReferences>
     </TargetFramework>
   </ItemGroup>
 
@@ -230,11 +252,21 @@
   </Target>
 
   <Target Name="BuildSLTestRunner">
-    <MSBuild Projects="..\tests\SilverlightConsoleRunner\SilverlightConsoleRunner.csproj" />
+    <MSBuild Projects="..\tests\SilverlightConsoleRunner\SilverlightConsoleRunner.csproj" Targets="Rebuild" />
   </Target>
 
   <Target Name="BuildTestResultSummaryTool">
-    <MSBuild Projects="..\tools\DumpTestResultSummary\DumpTestResultSummary.csproj" />
+    <MSBuild Projects="..\tools\DumpTestResultSummary\DumpTestResultSummary.csproj" Targets="Rebuild" />
+  </Target>
+
+  <Target Name="BuildApiDumpTool">
+    <MSBuild Projects="..\tools\DumpApiXml\DumpApiXml.csproj" Targets="Rebuild" />
+  </Target>
+
+  <Target Name="DumpApi" DependsOnTargets="BuildApiDumpTool">
+    <Exec Command='"$(DumpApiXml)" -assembly NLog.dll -assembly NLog.Extended.dll -output NLog.api %(TargetFramework.DocReferences)'
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)"
+          ContinueOnError="$(BuildAllFrameworks)" />
   </Target>
 
   <Target Name="Clean">
@@ -278,6 +310,7 @@
     <ProjectsToCleanup Include="..\tools\MakeNLogXSD" />
     <ProjectsToCleanup Include="..\tools\DeployNetCF" />
     <ProjectsToCleanup Include="..\tools\DumpTestResultSummary" />
+    <ProjectsToCleanup Include="..\tools\DumpApiXml" />
     <SolutionFiles Include="..\**\*.sln" />
   </ItemGroup>
 
