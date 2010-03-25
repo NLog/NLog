@@ -60,11 +60,13 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Positive padding values cause left padding, negative values 
         /// cause right padding to the desired width.
         /// </remarks>
+        /// <docgen category='Transformation Options' order='10' />
         public int Padding { get; set; }
 
         /// <summary>
         /// Gets or sets the padding character.
         /// </summary>
+        /// <docgen category='Transformation Options' order='10' />
         [DefaultValue(' ')]
         public char PadCharacter { get; set; }
 
@@ -72,6 +74,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets a value indicating whether to trim the 
         /// rendered text to the absolute value of the padding length.
         /// </summary>
+        /// <docgen category='Transformation Options' order='10' />
         [DefaultValue(false)]
         public bool FixedLength { get; set; }
 

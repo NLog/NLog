@@ -48,6 +48,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the name of the environment variable.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [RequiredParameter]
         [DefaultParameter]
         public string Variable { get; set; }

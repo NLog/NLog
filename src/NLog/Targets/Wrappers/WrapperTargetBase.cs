@@ -43,6 +43,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the target that is wrapped by this target.
         /// </summary>
+        /// <docgen category='General Options' order='11' />
         [RequiredParameter]
         public Target WrappedTarget { get; set; }
 

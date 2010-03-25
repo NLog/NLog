@@ -105,6 +105,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the number of log events to be buffered.
         /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
         [DefaultValue(100)]
         public int BufferSize { get; set; }
 
@@ -112,6 +113,7 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the timeout (in milliseconds) after which the contents of buffer will be flushed 
         /// if there's no write in the specified period of time. Use -1 to disable timed flushes.
         /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
         [DefaultValue(-1)]
         public int FlushTimeout { get; set; }
 

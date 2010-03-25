@@ -51,6 +51,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the session variable name.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [RequiredParameter]
         [DefaultParameter]
         public string Variable { get; set; }

@@ -95,28 +95,33 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether performance counter should be automatically created.
         /// </summary>
+        /// <docgen category='Performance Counter Options' order='10' />
         public bool AutoCreate { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the performance counter category.
         /// </summary>
+        /// <docgen category='Performance Counter Options' order='10' />
         [RequiredParameter]
         public string CategoryName { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the performance counter.
         /// </summary>
+        /// <docgen category='Performance Counter Options' order='10' />
         [RequiredParameter]
         public string CounterName { get; set; }
 
         /// <summary>
         /// Gets or sets the performance counter instance name.
         /// </summary>
+        /// <docgen category='Performance Counter Options' order='10' />
         public string InstanceName { get; set; }
 
         /// <summary>
         /// Gets or sets the performance counter type.
         /// </summary>
+        /// <docgen category='Performance Counter Options' order='10' />
         public PerformanceCounterType CounterType { get; set; }
 
         /// <summary>

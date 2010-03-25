@@ -66,12 +66,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets a value indicating whether to render the class name.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
         public bool ClassName { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to render the method name.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
         public bool MethodName { get; set; }
 
@@ -79,12 +81,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets a value indicating whether to render the source file name and line number.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(false)]
         public bool FileName { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include source file path.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
         public bool IncludeSourcePath { get; set; }
 #endif

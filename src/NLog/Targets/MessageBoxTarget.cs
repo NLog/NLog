@@ -82,6 +82,7 @@ using System.Windows.Browser;
         /// <summary>
         /// Gets or sets the message box title.
         /// </summary>
+        /// <docgen category='UI Options' order='10' />
         public Layout Caption { get; set; }
 
         /// <summary>

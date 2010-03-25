@@ -56,6 +56,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the GUID format as accepted by Guid.ToString() method.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue("N")]
         public string Format { get; set; }
 

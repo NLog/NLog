@@ -79,6 +79,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the layout text.
         /// </summary>
+        /// <docgen category='Layout Options' order='10' />
         public string Text
         {
             get

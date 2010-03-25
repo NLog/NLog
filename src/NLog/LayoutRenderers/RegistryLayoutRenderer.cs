@@ -54,11 +54,13 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the registry value name.
         /// </summary>
+        /// <docgen category='Registry Options' order='10' />
         public string Value { get; set; }
 
         /// <summary>
         /// Gets or sets the value to be output when the specified registry key or value is not found.
         /// </summary>
+        /// <docgen category='Registry Options' order='10' />
         public string DefaultValue { get; set; }
 
         /// <summary>
@@ -73,6 +75,7 @@ namespace NLog.LayoutRenderers
         /// <li>HKEY_CURRENT_USER\Key\Full\Name</li>
         /// </ul>
         /// </remarks>
+        /// <docgen category='Registry Options' order='10' />
         [RequiredParameter]
         public string Key
         {

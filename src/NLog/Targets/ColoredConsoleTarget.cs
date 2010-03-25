@@ -119,6 +119,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether the error stream (stderr) should be used instead of the output stream (stdout).
         /// </summary>
+        /// <docgen category='Output Options' order='10' />
         [DefaultValue(false)]
         public bool ErrorStream { get; set; }
 
@@ -165,18 +166,21 @@ namespace NLog.Targets
         /// </tr>
         /// </table>
         /// </remarks>
+        /// <docgen category='Highlighting Rules' order='9' />
         [DefaultValue(true)]
         public bool UseDefaultRowHighlightingRules { get; set; }
 
         /// <summary>
         /// Gets the row highlighting rules.
         /// </summary>
+        /// <docgen category='Highlighting Rules' order='10' />
         [ArrayParameter(typeof(ConsoleRowHighlightingRule), "highlight-row")]
         public ICollection<ConsoleRowHighlightingRule> RowHighlightingRules { get; private set; }
 
         /// <summary>
         /// Gets the word highlighting rules.
         /// </summary>
+        /// <docgen category='Highlighting Rules' order='11' />
         [ArrayParameter(typeof(ConsoleWordHighlightingRule), "highlight-word")]
         public ICollection<ConsoleWordHighlightingRule> WordHighlightingRules { get; private set; }
 

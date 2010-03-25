@@ -64,6 +64,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the name of the file.
         /// </summary>
+        /// <docgen category='File Options' order='10' />
         [DefaultParameter]
         public Layout FileName { get; set; }
 
@@ -71,6 +72,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the encoding used in the file.
         /// </summary>
         /// <value>The encoding.</value>
+        /// <docgen category='File Options' order='10' />
         public Encoding Encoding { get; set; }
 
         /// <summary>

@@ -61,11 +61,13 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the name of the column.
         /// </summary>
+        /// <docgen category='CSV Column Options' order='10' />
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the layout of the column.
         /// </summary>
+        /// <docgen category='CSV Column Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get; set; }
     }

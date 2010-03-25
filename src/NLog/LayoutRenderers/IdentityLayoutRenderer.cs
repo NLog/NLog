@@ -62,24 +62,28 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the separator to be used when concatenating 
         /// parts of identity information.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(":")]
         public string Separator { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to render Thread.CurrentPrincipal.Identity.Name.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
         public bool Name { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to render Thread.CurrentPrincipal.Identity.AuthenticationType.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
         public bool AuthType { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to render Thread.CurrentPrincipal.Identity.IsAuthenticated.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
         public bool IsAuthenticated { get; set; }
 
@@ -87,6 +91,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to modify the output of this renderer so it can be used as a part of file path
         /// (illegal characters are replaced with '_').
         /// </summary>
+        /// <docgen category='Advanced Options' order='10' />
         [DefaultValue(false)]
         public bool FSNormalize { get; set; }
 

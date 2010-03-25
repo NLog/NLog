@@ -56,16 +56,19 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the number of top stack frames to be rendered.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         public int TopFrames { get; set; }
 
         /// <summary>
         /// Gets or sets the number of bottom stack frames to be rendered.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         public int BottomFrames { get; set; }
 
         /// <summary>
         /// Gets or sets the separator to be used for concatenating nested diagnostics context output.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         public string Separator { get; set; }
 
         /// <summary>

@@ -62,27 +62,32 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the item name. The QueryString, Form, Cookies, or ServerVariables collection variables having the specified name are rendered.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultParameter]
         public string Item { get; set; }
 
         /// <summary>
         /// Gets or sets the QueryString variable to be rendered.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         public string QueryString { get; set; }
 
         /// <summary>
         /// Gets or sets the form variable to be rendered.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         public string Form { get; set; }
 
         /// <summary>
         /// Gets or sets the cookie to be rendered.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         public string Cookie { get; set; }
         
         /// <summary>
         /// Gets or sets the ServerVariables item to be rendered.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         public string ServerVariable { get; set; }
 
         /// <summary>

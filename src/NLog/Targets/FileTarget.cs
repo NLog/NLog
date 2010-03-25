@@ -184,6 +184,7 @@ namespace NLog.Targets
         /// All <c>Debug</c> messages will go to <c>Debug.log</c>, all <c>Info</c> messages will go to <c>Info.log</c> and so on.
         /// You can combine as many of the layout renderers as you want to produce an arbitrary log file name.
         /// </example>
+        /// <docgen category='Output Options' order='1' />
         [RequiredParameter]
         public Layout FileName { get; set; }
 
@@ -194,33 +195,10 @@ namespace NLog.Targets
         /// Setting this to false may improve performance a bit, but you'll receive an error
         /// when attempting to write to a directory that's not present.
         /// </remarks>
+        /// <docgen category='Output Options' order='10' />
         [DefaultValue(true)]
         [Advanced]
         public bool CreateDirs { get; set; }
-
-        /// <summary>
-        /// Gets or sets the number of files to be kept open. Setting this to a higher value may improve performance
-        /// in a situation where a single File target is writing to many files
-        /// (such as splitting by level or by logger).
-        /// </summary>
-        /// <remarks>
-        /// The files are managed on a LRU (least recently used) basis, which flushes
-        /// the files that have not been used for the longest period of time should the
-        /// cache become full. As a rule of thumb, you shouldn't set this parameter to 
-        /// a very high value. A number like 10-15 shouldn't be exceeded, because you'd
-        /// be keeping a large number of files open which consumes system resources.
-        /// </remarks>
-        [DefaultValue(5)]
-        [Advanced]
-        public int OpenFileCacheSize { get; set; }
-
-        /// <summary>
-        /// Gets or sets the maximum number of seconds that files are kept open. If this number is negative the files are 
-        /// not automatically closed after a period of inactivity.
-        /// </summary>
-        [DefaultValue(-1)]
-        [Advanced]
-        public int OpenFileCacheTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to delete old log file on startup.
@@ -228,12 +206,14 @@ namespace NLog.Targets
         /// <remarks>
         /// This option works only when the "FileName" parameter denotes a single file.
         /// </remarks>
+        /// <docgen category='Output Options' order='10' />
         [DefaultValue(false)]
         public bool DeleteOldFileOnStartup { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to replace file contents on each write instead of appending log message at the end.
         /// </summary>
+        /// <docgen category='Output Options' order='10' />
         [DefaultValue(false)]
         [Advanced]
         public bool ReplaceFileContentsOnEachWrite { get; set; }
@@ -244,12 +224,14 @@ namespace NLog.Targets
         /// <remarks>
         /// Setting this property to <c>True</c> helps improve performance.
         /// </remarks>
+        /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(false)]
         public bool KeepFileOpen { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to enable log file(s) to be deleted.
         /// </summary>
+        /// <docgen category='Output Options' order='10' />
         [DefaultValue(true)]
         public bool EnableFileDelete { get; set; }
 
@@ -257,6 +239,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the file attributes (Windows only).
         /// </summary>
+        /// <docgen category='Output Options' order='10' />
         [Advanced]
         public Win32FileAttributes FileAttributes { get; set; }
 #endif
@@ -264,6 +247,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the line ending mode.
         /// </summary>
+        /// <docgen category='Layout Options' order='10' />
         [Advanced]
         public LineEndingMode LineEnding
         {
@@ -307,18 +291,47 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to automatically flush the file buffers after each log message.
         /// </summary>
+        /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(true)]
         public bool AutoFlush { get; set; }
 
         /// <summary>
+        /// Gets or sets the number of files to be kept open. Setting this to a higher value may improve performance
+        /// in a situation where a single File target is writing to many files
+        /// (such as splitting by level or by logger).
+        /// </summary>
+        /// <remarks>
+        /// The files are managed on a LRU (least recently used) basis, which flushes
+        /// the files that have not been used for the longest period of time should the
+        /// cache become full. As a rule of thumb, you shouldn't set this parameter to 
+        /// a very high value. A number like 10-15 shouldn't be exceeded, because you'd
+        /// be keeping a large number of files open which consumes system resources.
+        /// </remarks>
+        /// <docgen category='Performance Tuning Options' order='10' />
+        [DefaultValue(5)]
+        [Advanced]
+        public int OpenFileCacheSize { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum number of seconds that files are kept open. If this number is negative the files are 
+        /// not automatically closed after a period of inactivity.
+        /// </summary>
+        /// <docgen category='Performance Tuning Options' order='10' />
+        [DefaultValue(-1)]
+        [Advanced]
+        public int OpenFileCacheTimeout { get; set; }
+
+        /// <summary>
         /// Gets or sets the log file buffer size in bytes.
         /// </summary>
+        /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(32768)]
         public int BufferSize { get; set; }
 
         /// <summary>
         /// Gets or sets the file encoding.
         /// </summary>
+        /// <docgen category='Layout Options' order='10' />
         public Encoding Encoding { get; set; }
 
         /// <summary>
@@ -328,6 +341,7 @@ namespace NLog.Targets
         /// This makes multi-process logging possible. NLog uses a special technique
         /// that lets it keep the files open for writing.
         /// </remarks>
+        /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(true)]
         public bool ConcurrentWrites { get; set; }
 
@@ -337,6 +351,7 @@ namespace NLog.Targets
         /// <remarks>
         /// This effectively prevents files from being kept open.
         /// </remarks>
+        /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(false)]
         public bool NetworkWrites { get; set; }
 
@@ -344,47 +359,10 @@ namespace NLog.Targets
         /// Gets or sets the number of times the write is appended on the file before NLog
         /// discards the log message.
         /// </summary>
+        /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(10)]
         [Advanced]
         public int ConcurrentWriteAttempts { get; set; }
-
-        /// <summary>
-        /// Gets or sets the size in bytes above which log files will be automatically archived.
-        /// </summary>
-        /// <remarks>
-        /// Caution: Enabling this option can considerably slow down your file 
-        /// logging in multi-process scenarios. If only one process is going to
-        /// be writing to the file, consider setting <c>ConcurrentWrites</c>
-        /// to <c>false</c> for maximum performance.
-        /// </remarks>
-        public long ArchiveAboveSize { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to automatically archive log files every time the specified time passes.
-        /// </summary>
-        /// <remarks>
-        /// Files are moved to the archive as part of the write operation if the current period of time changes. For example
-        /// if the current <c>hour</c> changes from 10 to 11, the first write that will occur
-        /// on or after 11:00 will trigger the archiving.
-        /// <p>
-        /// Caution: Enabling this option can considerably slow down your file 
-        /// logging in multi-process scenarios. If only one process is going to
-        /// be writing to the file, consider setting <c>ConcurrentWrites</c>
-        /// to <c>false</c> for maximum performance.
-        /// </p>
-        /// </remarks>
-        public FileArchivePeriod ArchiveEvery { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name of the file to be used for an archive.
-        /// </summary>
-        /// <remarks>
-        /// It may contain a special placeholder {#####}
-        /// that will be replaced with a sequence of numbers depending on 
-        /// the archiving strategy. The number of hash characters used determines
-        /// the number of numerical digits to be used for numbering files.
-        /// </remarks>
-        public Layout ArchiveFileName { get; set; }
 
         /// <summary>
         /// Gets or sets the delay in milliseconds to wait before attempting to write to the file again.
@@ -403,19 +381,63 @@ namespace NLog.Targets
         /// ...<p/>
         /// and so on.
         /// </example>
+        /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(1)]
         [Advanced]
         public int ConcurrentWriteAttemptDelay { get; set; }
 
         /// <summary>
+        /// Gets or sets the size in bytes above which log files will be automatically archived.
+        /// </summary>
+        /// <remarks>
+        /// Caution: Enabling this option can considerably slow down your file 
+        /// logging in multi-process scenarios. If only one process is going to
+        /// be writing to the file, consider setting <c>ConcurrentWrites</c>
+        /// to <c>false</c> for maximum performance.
+        /// </remarks>
+        /// <docgen category='Archival Options' order='10' />
+        public long ArchiveAboveSize { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to automatically archive log files every time the specified time passes.
+        /// </summary>
+        /// <remarks>
+        /// Files are moved to the archive as part of the write operation if the current period of time changes. For example
+        /// if the current <c>hour</c> changes from 10 to 11, the first write that will occur
+        /// on or after 11:00 will trigger the archiving.
+        /// <p>
+        /// Caution: Enabling this option can considerably slow down your file 
+        /// logging in multi-process scenarios. If only one process is going to
+        /// be writing to the file, consider setting <c>ConcurrentWrites</c>
+        /// to <c>false</c> for maximum performance.
+        /// </p>
+        /// </remarks>
+        /// <docgen category='Archival Options' order='10' />
+        public FileArchivePeriod ArchiveEvery { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the file to be used for an archive.
+        /// </summary>
+        /// <remarks>
+        /// It may contain a special placeholder {#####}
+        /// that will be replaced with a sequence of numbers depending on 
+        /// the archiving strategy. The number of hash characters used determines
+        /// the number of numerical digits to be used for numbering files.
+        /// </remarks>
+        /// <docgen category='Archival Options' order='10' />
+        public Layout ArchiveFileName { get; set; }
+
+        /// <summary>
         /// Gets or sets the maximum number of archive files that should be kept.
         /// </summary>
+        /// <docgen category='Archival Options' order='10' />
         [DefaultValue(9)]
         public int MaxArchiveFiles { get; set; }
 
         /// <summary>
         /// Gets or sets the way file archives are numbered. 
         /// </summary>
+        /// <docgen category='Archival Options' order='10' />
         public ArchiveNumberingMode ArchiveNumbering { get; set; }
 
         /// <summary>

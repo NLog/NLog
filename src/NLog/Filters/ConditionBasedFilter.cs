@@ -50,6 +50,7 @@ namespace NLog.Filters
         /// <summary>
         /// Gets or sets the condition expression.
         /// </summary>
+        /// <docgen category='Filtering Options' order='10' />
         public ConditionExpression Condition { get; set; }
 
         /// <summary>

@@ -58,23 +58,27 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the name of the counter category.
         /// </summary>
+        /// <docgen category='Performance Counter Options' order='10' />
         [RequiredParameter]
         public string Category { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the performance counter.
         /// </summary>
+        /// <docgen category='Performance Counter Options' order='10' />
         [RequiredParameter]
         public string Counter { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the performance counter instance (e.g. this.Global_).
         /// </summary>
+        /// <docgen category='Performance Counter Options' order='10' />
         public string Instance { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the machine to read the performance counter from.
         /// </summary>
+        /// <docgen category='Performance Counter Options' order='10' />
         public string MachineName { get; set; }
 
         /// <summary>

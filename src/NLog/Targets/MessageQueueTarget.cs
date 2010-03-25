@@ -87,6 +87,7 @@ namespace NLog.Targets
         /// To write to a private queue on a local machine use <c>.\private$\QueueName</c>.
         /// For other available queue names, consult MSMQ documentation.
         /// </remarks>
+        /// <docgen category='Queue Options' order='10' />
         [RequiredParameter]
         public Layout Queue { get; set; }
 
@@ -96,31 +97,36 @@ namespace NLog.Targets
         /// <remarks>
         /// By default no label is associated.
         /// </remarks>
+        /// <docgen category='Queue Options' order='10' />
         [DefaultValue("NLog")]
         public Layout Label { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to create the queue if it doesn't exists.
         /// </summary>
+        /// <docgen category='Queue Options' order='10' />
         [DefaultValue(false)]
         public bool CreateQueueIfNotExists { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to use recoverable messages (with guaranteed delivery).
+        /// </summary>
+        /// <docgen category='Queue Options' order='10' />
+        [DefaultValue(false)]
+        public bool Recoverable { get; set; }
+
+        /// <summary>
         /// Gets or sets the encoding to be used when writing text to the queue.
         /// </summary>
+        /// <docgen category='Layout Options' order='10' />
         public Encoding Encoding { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to use the XML format when serializing message.
         /// </summary>
+        /// <docgen category='Layout Options' order='10' />
         [DefaultValue(false)]
         public bool UseXmlEncoding { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to use recoverable messages (with guaranteed delivery).
-        /// </summary>
-        [DefaultValue(false)]
-        public bool Recoverable { get; set; }
 
         /// <summary>
         /// Writes the specified logging event to a queue specified in the Queue 

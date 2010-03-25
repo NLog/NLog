@@ -81,18 +81,21 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the condition that must be met in order to set the specified foreground and background color.
         /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
         [RequiredParameter]
         public ConditionExpression Condition { get; set; }
 
         /// <summary>
         /// Gets or sets the foreground color.
         /// </summary>
+        /// <docgen category='Formatting Options' order='10' />
         [DefaultValue("NoChange")]
         public ConsoleOutputColor ForegroundColor { get; set; }
 
         /// <summary>
         /// Gets or sets the background color.
         /// </summary>
+        /// <docgen category='Formatting Options' order='10' />
         [DefaultValue("NoChange")]
         public ConsoleOutputColor BackgroundColor { get; set; }
 

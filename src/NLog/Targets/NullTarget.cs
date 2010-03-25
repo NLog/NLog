@@ -59,6 +59,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to perform layout calculation.
         /// </summary>
+        /// <docgen category='Layout Options' order='10' />
         [DefaultValue(false)]
         public bool FormatMessage { get; set; }
 

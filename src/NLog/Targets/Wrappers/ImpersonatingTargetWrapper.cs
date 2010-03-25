@@ -74,37 +74,44 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets username to change context to.
         /// </summary>
+        /// <docgen category='Impersonation Options' order='10' />
         public string UserName { get; set; }
 
         /// <summary>
         /// Gets or sets the user account password.
         /// </summary>
+        /// <docgen category='Impersonation Options' order='10' />
         public string Password { get; set; }
 
         /// <summary>
         /// Gets or sets Windows domain name to change context to.
         /// </summary>
+        /// <docgen category='Impersonation Options' order='10' />
         [DefaultValue(".")]
         public string Domain { get; set; }
 
         /// <summary>
         /// Gets or sets the Logon Type.
         /// </summary>
+        /// <docgen category='Impersonation Options' order='10' />
         public SecurityLogonType LogonType { get; set; }
 
         /// <summary>
         /// Gets or sets the type of the logon provider.
         /// </summary>
+        /// <docgen category='Impersonation Options' order='10' />
         public LogonProviderType LogonProvider { get; set; }
 
         /// <summary>
         /// Gets or sets the required impersonation level.
         /// </summary>
+        /// <docgen category='Impersonation Options' order='10' />
         public SecurityImpersonationLevel ImpersonationLevel { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to revert to the credentials of the process instead of impersonating another user.
         /// </summary>
+        /// <docgen category='Impersonation Options' order='10' />
         [DefaultValue(false)]
         public bool RevertToSelf { get; set; }
 

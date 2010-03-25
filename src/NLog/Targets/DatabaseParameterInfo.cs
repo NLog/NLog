@@ -66,30 +66,35 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the database parameter name.
         /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
         [RequiredParameter]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that should be use to calcuate the value for the parameter.
         /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get; set; }
 
         /// <summary>
         /// Gets or sets the database parameter size.
         /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
         [DefaultValue(0)]
         public int Size { get; set; }
 
         /// <summary>
         /// Gets or sets the database parameter precision.
         /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
         [DefaultValue(0)]
         public byte Precision { get; set; }
 
         /// <summary>
         /// Gets or sets the database parameter scale.
         /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
         [DefaultValue(0)]
         public byte Scale { get; set; }
     }

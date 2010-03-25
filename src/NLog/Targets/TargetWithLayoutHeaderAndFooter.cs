@@ -57,6 +57,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the text to be rendered.
         /// </summary>
+        /// <docgen category='Layout Options' order='1' />
         [RequiredParameter]
         public new Layout Layout
         {
@@ -81,6 +82,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the footer.
         /// </summary>
+        /// <docgen category='Layout Options' order='3' />
         public Layout Footer
         {
             get { return this.LHF.Footer; }
@@ -90,6 +92,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the header.
         /// </summary>
+        /// <docgen category='Layout Options' order='2' />
         public Layout Header
         {
             get { return this.LHF.Header; }

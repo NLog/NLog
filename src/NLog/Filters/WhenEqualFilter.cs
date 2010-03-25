@@ -47,12 +47,14 @@ namespace NLog.Filters
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case when comparing strings.
         /// </summary>
+        /// <docgen category='Filtering Options' order='10' />
         [DefaultValue(false)]
         public bool IgnoreCase { get; set; }
 
         /// <summary>
         /// Gets or sets a string to compare the layout to.
         /// </summary>
+        /// <docgen category='Filtering Options' order='10' />
         [RequiredParameter]
         public string CompareTo { get; set; }
 

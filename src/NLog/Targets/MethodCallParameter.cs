@@ -89,16 +89,19 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the name of the parameter.
         /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the type of the parameter.
         /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
         public Type Type { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that should be use to calcuate the value for the parameter.
         /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get; set; }
 

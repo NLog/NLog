@@ -87,30 +87,35 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the regular expression to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
         public string Regex { get; set; }
 
         /// <summary>
         /// Gets or sets the text to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
         public string Text { get; set; }
-
-        /// <summary>
-        /// Gets or sets the font style of matched text. 
-        /// Possible values are the same as in <c>FontStyle</c> enum in <c>System.Drawing</c>.
-        /// </summary>
-        public FontStyle Style { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to match whole words only.
         /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
         [DefaultValue(false)]
         public bool WholeWords { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case when comparing texts.
         /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
         [DefaultValue(false)]
         public bool IgnoreCase { get; set; }
+
+        /// <summary>
+        /// Gets or sets the font style of matched text. 
+        /// Possible values are the same as in <c>FontStyle</c> enum in <c>System.Drawing</c>.
+        /// </summary>
+        /// <docgen category='Formatting Options' order='10' />
+        public FontStyle Style { get; set; }
 
         /// <summary>
         /// Gets the compiled regular expression that matches either Text or Regex property.
@@ -148,6 +153,7 @@ namespace NLog.Targets
         /// Gets or sets the font color.
         /// Names are identical with KnownColor enum extended with Empty value which means that font color won't be changed.
         /// </summary>
+        /// <docgen category='Formatting Options' order='10' />
         [DefaultValue("Empty")]
         public string FontColor { get; set; }
 
@@ -156,6 +162,7 @@ namespace NLog.Targets
         /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed
         /// Background color will be set only in .net 2.0.
         /// </summary>
+        /// <docgen category='Formatting Options' order='10' />
         [DefaultValue("Empty")]
         public string BackgroundColor { get; set; }
     }

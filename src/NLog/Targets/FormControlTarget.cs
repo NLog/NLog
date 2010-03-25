@@ -77,17 +77,20 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the name of control to which NLog will log write log text.
         /// </summary>
+        /// <docgen category='Form Options' order='10' />
         [RequiredParameter]
         public string ControlName { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether log text should be appended to the text of the control instead of overwriting it. </summary>
+        /// <docgen category='Form Options' order='10' />
         [DefaultValue(true)]
         public bool Append { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the Form on which the control is located.
         /// </summary>
+        /// <docgen category='Form Options' order='10' />
         public string FormName { get; set; }
 
         /// <summary>

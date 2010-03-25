@@ -79,6 +79,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the default filter to be applied when no specific rule matches.
         /// </summary>
+        /// <docgen category='Filtering Options' order='10' />
         public ConditionExpression DefaultFilter { get; set; }
 
         /// <summary>
@@ -86,6 +87,7 @@ namespace NLog.Targets.Wrappers
         /// and the first rule that matches determines the filtering condition to
         /// be applied to log events.
         /// </summary>
+        /// <docgen category='Filtering Rules' order='10' />
         [ArrayParameter(typeof(FilteringRule), "when")]
         public ICollection<FilteringRule> Rules { get; private set; }
 

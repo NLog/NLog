@@ -1,0 +1,93 @@
+﻿body
+{
+	font-family: Segoe UI;
+}
+
+.config-element
+{
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+ul.config-properties
+{
+	background-color: #ffffd0;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 12pt;
+}
+
+ul.property-groups
+{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+li.property-group
+{
+	padding: 0;
+	padding-top: 1em;
+	margin: 0;
+	font-size: 13pt;
+	font-weight: bold;
+}
+
+ul.config-properties li.config-property
+{
+	padding: 0.2em 30px;
+}
+
+div.summary
+{
+	padding-left: 20px;
+}
+
+pre
+{
+	font-family: Consolas;
+	font-size: 11pt;
+	background-color: #ffffd0;
+	padding: 4px;
+	overflow-x: auto;
+	width: 100%;
+}
+
+.typeName
+{
+	color: blue;
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+.defaultValue
+{
+	font-style: italic;
+	text-decoration: underline;
+}
+
+.propertyName
+{
+	font-weight: bold;
+}
+
+.usage-example
+{
+	font-family: Consolas, Courier New;
+	font-size: 10pt;
+	padding: 10px;
+	background-color: #ffffd0;
+}
+
+.typeplaceholder
+{
+	font-style: Italic;
+	color: #808080;
+}
+
+.requiredparameter
+{
+	font-weight: 900;
+}

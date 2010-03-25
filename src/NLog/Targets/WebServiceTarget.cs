@@ -83,21 +83,25 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the web service URL.
         /// </summary>
+        /// <docgen category='Web Service Options' order='10' />
         public string Url { get; set; }
 
         /// <summary>
         /// Gets or sets the Web service method name.
         /// </summary>
+        /// <docgen category='Web Service Options' order='10' />
         public string MethodName { get; set; }
 
         /// <summary>
         /// Gets or sets the Web service namespace.
         /// </summary>
+        /// <docgen category='Web Service Options' order='10' />
         public string Namespace { get; set; }
 
         /// <summary>
         /// Gets or sets the protocol to be used when calling web service.
         /// </summary>
+        /// <docgen category='Web Service Options' order='10' />
         [DefaultValue("Soap11")]
         public WebServiceProtocol Protocol { get; set; }
 

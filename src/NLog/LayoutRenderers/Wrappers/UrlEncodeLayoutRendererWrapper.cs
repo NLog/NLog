@@ -53,6 +53,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets a value indicating whether spaces should be translated to '+' or '%20'.
         /// </summary>
         /// <value>A value of <c>true</c> if space should be translated to '+'; otherwise, <c>false</c>.</value>
+        /// <docgen category='Transformation Options' order='10' />
         public bool SpaceAsPlus { get; set; }
 
         /// <summary>

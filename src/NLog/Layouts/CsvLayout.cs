@@ -70,6 +70,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets the array of parameters to be passed.
         /// </summary>
+        /// <docgen category='CSV Options' order='10' />
         [ArrayParameter(typeof(CsvColumn), "column")]
         public IList<CsvColumn> Columns { get; private set; }
 
@@ -77,29 +78,34 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether CVS should include header.
         /// </summary>
         /// <value>A value of <c>true</c> if CVS should include header; otherwise, <c>false</c>.</value>
+        /// <docgen category='CSV Options' order='10' />
         public bool WithHeader { get; set; }
 
         /// <summary>
         /// Gets or sets the column delimiter.
         /// </summary>
+        /// <docgen category='CSV Options' order='10' />
         [DefaultValue("Auto")]
         public CsvColumnDelimiterMode Delimiter { get; set; }
 
         /// <summary>
         /// Gets or sets the quoting mode.
         /// </summary>
+        /// <docgen category='CSV Options' order='10' />
         [DefaultValue("Auto")]
         public CsvQuotingMode Quoting { get; set; }
 
         /// <summary>
         /// Gets or sets the quote Character.
         /// </summary>
+        /// <docgen category='CSV Options' order='10' />
         [DefaultValue("\"")]
         public string QuoteChar { get; set; }
 
         /// <summary>
         /// Gets or sets the custom column delimiter value (valid when ColumnDelimiter is set to 'Custom').
         /// </summary>
+        /// <docgen category='CSV Options' order='10' />
         public string CustomColumnDelimiter { get; set; }
 
         /// <summary>
@@ -107,6 +113,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <value>
         /// </value>
+        /// <docgen category='Layout Options' order='10' />
         public Layout Layout
         {
             get { return this; }
@@ -116,6 +123,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the CSV Header.
         /// </summary>
+        /// <docgen category='Layout Options' order='10' />
         public Layout Header
         {
             get { return this.WithHeader ? this.thisHeader : null; }
@@ -128,6 +136,7 @@ namespace NLog.Layouts
         /// <remarks>
         /// CSV has no footer.
         /// </remarks>
+        /// <docgen category='Layout Options' order='10' />
         public Layout Footer
         {
             get { return null; }

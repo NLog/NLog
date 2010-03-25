@@ -18,6 +18,7 @@
             { typeof(long).FullName, "Long" },
             { typeof(bool).FullName, "Boolean" },
             { typeof(char).FullName, "Char" },
+            { typeof(byte).FullName, "Byte" },
             { typeof(CultureInfo).FullName, "Culture" },
             { typeof(Encoding).FullName, "Encoding" },
             { "NLog.Layouts.Layout", "Layout" },
@@ -303,8 +304,8 @@
 
                 if (string.IsNullOrEmpty(category))
                 {
-                    //Console.WriteLine("WARNING: Property {0}.{1} does not have <docgen /> element defined.",
-                    //    propInfo.DeclaringType.Name, propInfo.Name);
+                    Console.WriteLine("WARNING: Property {0}.{1} does not have <docgen /> element defined.",
+                        propInfo.DeclaringType.Name, propInfo.Name);
 
                     category = "Other";
                 }
@@ -362,6 +363,10 @@
                     if (HasAttribute(propInfo, "NLog.Config.RequiredParameterAttribute"))
                     {
                         writer.WriteAttributeString("required", "1");
+                    }
+                    else
+                    {
+                        writer.WriteAttributeString("required", "0");
                     }
 
                     if (propInfo.Name == "Encoding")
@@ -587,7 +592,7 @@
 
         private bool IncludeProperty(PropertyInfo pi)
         {
-            if (pi.CanRead && pi.CanWrite)
+            if (pi.CanRead && pi.CanWrite && pi.GetSetMethod() != null && pi.GetSetMethod().IsPublic)
             {
                 if (pi.Name == "CultureInfo")
                 {

@@ -77,39 +77,46 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets a value indicating whether to include NLog-specific extensions to log4j schema.
         /// </summary>
+        /// <docgen category='Payload Options' order='10' />
         [DefaultValue(true)]
         public bool IncludeNLogData { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the XML should use spaces for indentation.
         /// </summary>
+        /// <docgen category='Payload Options' order='10' />
         public bool IndentXml { get; set; }
 
         /// <summary>
         /// Gets or sets the AppInfo field. By default it's the friendly name of the current AppDomain.
         /// </summary>
+        /// <docgen category='Payload Options' order='10' />
         public string AppInfo { get; set; }
 
 #if !NET_CF
         /// <summary>
         /// Gets or sets a value indicating whether to include call site (class and method name) in the information sent over the network.
         /// </summary>
+        /// <docgen category='Payload Options' order='10' />
         public bool IncludeCallSite { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include source info (file name and line number) in the information sent over the network.
         /// </summary>
+        /// <docgen category='Payload Options' order='10' />
         public bool IncludeSourceInfo { get; set; }
 #endif
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
+        /// <docgen category='Payload Options' order='10' />
         public bool IncludeMDC { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
         /// </summary>
+        /// <docgen category='Payload Options' order='10' />
         public bool IncludeNDC { get; set; }
 
         /// <summary>

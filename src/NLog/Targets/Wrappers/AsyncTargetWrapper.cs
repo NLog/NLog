@@ -122,12 +122,14 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the number of log events that should be processed in a batch
         /// by the lazy writer thread.
         /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
         [DefaultValue(100)]
         public int BatchSize { get; set; }
 
         /// <summary>
         /// Gets or sets the time in milliseconds to sleep between batches.
         /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
         [DefaultValue(50)]
         public int TimeToSleepBetweenBatches { get; set; }
 
@@ -135,6 +137,7 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the action to be taken when the lazy writer thread request queue count
         /// exceeds the set limit.
         /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
         [DefaultValue("Discard")]
         public AsyncTargetWrapperOverflowAction OverflowAction
         {
@@ -145,6 +148,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the limit on the number of requests in the lazy writer thread request queue.
         /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
         [DefaultValue(10000)]
         public int QueueLimit
         {

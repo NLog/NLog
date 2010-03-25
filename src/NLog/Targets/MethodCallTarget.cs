@@ -60,11 +60,13 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the class name.
         /// </summary>
+        /// <docgen category='Invocation Options' order='10' />
         public string ClassName { get; set; }
 
         /// <summary>
         /// Gets or sets the method name. The method must be public and static.
         /// </summary>
+        /// <docgen category='Invocation Options' order='10' />
         public string MethodName { get; set; }
 
         private MethodInfo Method { get; set; }

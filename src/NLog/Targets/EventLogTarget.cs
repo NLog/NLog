@@ -76,17 +76,20 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the name of the machine on which Event Log service is running.
         /// </summary>
+        /// <docgen category='Event Log Options' order='10' />
         [DefaultValue(".")]
         public string MachineName { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that renders event ID.
         /// </summary>
+        /// <docgen category='Event Log Options' order='10' />
         public Layout EventId { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that renders event Category.
         /// </summary>
+        /// <docgen category='Event Log Options' order='10' />
         public Layout Category { get; set; }
 
         /// <summary>
@@ -95,12 +98,14 @@ namespace NLog.Targets
         /// <remarks>
         /// By default this is the friendly name of the current AppDomain.
         /// </remarks>
+        /// <docgen category='Event Log Options' order='10' />
         public string Source { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the Event Log to write to. This can be System, Application or 
         /// any user-defined name.
         /// </summary>
+        /// <docgen category='Event Log Options' order='10' />
         [DefaultValue("Application")]
         public string Log { get; set; }
 

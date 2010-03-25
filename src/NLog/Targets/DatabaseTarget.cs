@@ -87,6 +87,7 @@ namespace NLog.Targets
         /// <c>sqlserver, mssql, microsoft, msde</c> (all for MSSQL database), <c>oledb, odbc</c> or other name in which case
         /// it's treated as a fully qualified type name of the data provider *Connection class.
         /// </summary>
+        /// <docgen category='Connection Options' order='10' />
         [RequiredParameter]
         [DefaultValue("sqlserver")]
         public string DbProvider
@@ -126,12 +127,14 @@ namespace NLog.Targets
         /// Gets or sets the connection string. When provided, it overrides the values
         /// specified in DbHost, DbUserName, DbPassword, DbDatabase.
         /// </summary>
+        /// <docgen category='Connection Options' order='10' />
         public Layout ConnectionString { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to keep the 
         /// database connection open between the log events.
         /// </summary>
+        /// <docgen category='Connection Options' order='10' />
         [DefaultValue(true)]
         public bool KeepConnection { get; set; }
 
@@ -139,6 +142,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to use database transactions. 
         /// Some data providers require this.
         /// </summary>
+        /// <docgen category='Connection Options' order='10' />
         [DefaultValue(false)]
         public bool UseTransactions { get; set; }
 
@@ -147,6 +151,7 @@ namespace NLog.Targets
         /// this value will be used to construct the "Server=" part of the
         /// connection string.
         /// </summary>
+        /// <docgen category='Connection Options' order='10' />
         public Layout DbHost { get; set; }
 
         /// <summary>
@@ -154,6 +159,7 @@ namespace NLog.Targets
         /// this value will be used to construct the "User ID=" part of the
         /// connection string.
         /// </summary>
+        /// <docgen category='Connection Options' order='10' />
         public Layout DbUserName { get; set; }
 
         /// <summary>
@@ -161,6 +167,7 @@ namespace NLog.Targets
         /// this value will be used to construct the "Password=" part of the
         /// connection string.
         /// </summary>
+        /// <docgen category='Connection Options' order='10' />
         public Layout DbPassword { get; set; }
 
         /// <summary>
@@ -168,6 +175,7 @@ namespace NLog.Targets
         /// this value will be used to construct the "Database=" part of the
         /// connection string.
         /// </summary>
+        /// <docgen category='Connection Options' order='10' />
         public Layout DbDatabase { get; set; }
 
         /// <summary>
@@ -181,6 +189,7 @@ namespace NLog.Targets
         /// because the latter is prone to SQL injection attacks.
         /// The layout renderers should be specified as &lt;parameters />&gt; instead.
         /// </remarks>
+        /// <docgen category='SQL Statement' order='10' />
         [RequiredParameter]
         public Layout CommandText { get; set; }
 
@@ -188,6 +197,7 @@ namespace NLog.Targets
         /// Gets the collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a database named or positional parameter.
         /// </summary>
+        /// <docgen category='SQL Statement' order='11' />
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
         public ICollection<DatabaseParameterInfo> Parameters { get; private set; }
 

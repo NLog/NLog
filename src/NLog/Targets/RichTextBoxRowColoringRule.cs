@@ -94,11 +94,13 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the default highlighting rule. Doesn't change the color.
         /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
         public static RichTextBoxRowColoringRule Default { get; private set; }
         
         /// <summary>
         /// Gets or sets the condition that must be met in order to set the specified font color.
         /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
         [RequiredParameter]
         public ConditionExpression Condition { get; set; }
 
@@ -108,6 +110,7 @@ namespace NLog.Targets
         /// <remarks>
         /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed.
         /// </remarks>
+        /// <docgen category='Formatting Options' order='10' />
         [DefaultValue("Empty")]
         public string FontColor { get; set; }
 
@@ -117,6 +120,7 @@ namespace NLog.Targets
         /// <remarks>
         /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed.
         /// </remarks>
+        /// <docgen category='Formatting Options' order='10' />
         [DefaultValue("Empty")]
         public string BackgroundColor { get; set; }
 
@@ -126,6 +130,7 @@ namespace NLog.Targets
         /// <remarks>
         /// Possible values are the same as in <c>FontStyle</c> enum in <c>System.Drawing</c>
         /// </remarks>
+        /// <docgen category='Formatting Options' order='10' />
         public FontStyle Style { get; set; }
 
         /// <summary>

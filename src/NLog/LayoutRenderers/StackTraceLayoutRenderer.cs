@@ -62,18 +62,21 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the output format of the stack trace.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue("Flat")]
         public StackTraceFormat Format { get; set; }
 
         /// <summary>
         /// Gets or sets the number of top stack frames to be rendered.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(3)]
         public int TopFrames { get; set; }
 
         /// <summary>
         /// Gets or sets the stack frame separator string.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(" => ")]
         public string Separator { get; set; }
 

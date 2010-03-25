@@ -79,6 +79,7 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the condition expression. Log events who meet this condition will be forwarded 
         /// to the wrapped target.
         /// </summary>
+        /// <docgen category='Filtering Options' order='10' />
         [RequiredParameter]
         public ConditionExpression Condition { get; set; }
 

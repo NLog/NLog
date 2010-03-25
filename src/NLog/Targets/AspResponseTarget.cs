@@ -47,6 +47,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to add &lt;!-- --&gt; comments around all written texts.
         /// </summary>
+        /// <docgen category='Layout Options' order='100' />
         public bool AddComments { get; set; }
 
         /// <summary>

@@ -68,6 +68,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to normalize the result by subtracting 
         /// it from the result of the first call (so that it's effectively zero-based).
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
         public bool Normalize { get; set; }
 
@@ -75,6 +76,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to output the difference between the result 
         /// of QueryPerformanceCounter and the previous one.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(false)]
         public bool Difference { get; set; }
 
@@ -82,6 +84,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to convert the result to seconds by dividing 
         /// by the result of QueryPerformanceFrequency().
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
         public bool Seconds
         {
@@ -92,12 +95,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the number of decimal digits to be included in output.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(4)]
         public int Precision { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to align decimal point (emit non-significant zeros).
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
         public bool AlignDecimalPoint { get; set; }
 

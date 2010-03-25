@@ -265,6 +265,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the property to retrieve.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue("Id"), DefaultParameter]
         public ProcessInfoProperty Property { get; set; }
 

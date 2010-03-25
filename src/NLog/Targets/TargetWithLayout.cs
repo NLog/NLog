@@ -56,6 +56,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the layout used to format log messages.
         /// </summary>
+        /// <docgen category='Layout Options' order='1' />
         [RequiredParameter]
         [DefaultValue("${longdate}|${level:uppercase=true}|${logger}|${message}")]
         public Layout Layout { get; set; }

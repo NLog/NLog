@@ -46,19 +46,19 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the body layout (can be repeated multiple times).
         /// </summary>
-        /// <value></value>
+        /// <docgen category='Layout Options' order='10' />
         public Layout Layout { get; set; }
 
         /// <summary>
         /// Gets or sets the header layout.
         /// </summary>
-        /// <value></value>
+        /// <docgen category='Layout Options' order='10' />
         public Layout Header { get; set; }
 
         /// <summary>
         /// Gets or sets the footer layout.
         /// </summary>
-        /// <value></value>
+        /// <docgen category='Layout Options' order='10' />
         public Layout Footer { get; set; }
 
         /// <summary>

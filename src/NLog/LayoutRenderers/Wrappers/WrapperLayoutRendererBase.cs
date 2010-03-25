@@ -48,6 +48,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets the wrapped layout.
         /// </summary>
+        /// <docgen category='Transformation Options' order='10' />
         [DefaultParameter]
         public Layout Inner { get; set; }
 

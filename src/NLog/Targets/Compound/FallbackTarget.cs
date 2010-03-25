@@ -77,6 +77,7 @@ namespace NLog.Targets.Compound
         /// <summary>
         /// Gets or sets a value indicating whether to return to the first target after any successful write.
         /// </summary>
+        /// <docgen category='Fallback Options' order='10' />
         public bool ReturnToFirstOnSuccess { get; set; }
 
         /// <summary>

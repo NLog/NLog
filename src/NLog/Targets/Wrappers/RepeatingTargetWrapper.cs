@@ -76,6 +76,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets or sets the number of times to repeat each log message.
         /// </summary>
+        /// <docgen category='Repeating Options' order='10' />
         [DefaultValue(3)]
         public int RepeatCount { get; set; }
 

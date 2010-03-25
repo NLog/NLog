@@ -53,6 +53,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the array of parameters to be passed.
         /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
         [ArrayParameter(typeof(MethodCallParameter), "parameter")]
         public ICollection<MethodCallParameter> Parameters { get; private set; }
 

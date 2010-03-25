@@ -47,6 +47,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the name of the item.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [RequiredParameter]
         [DefaultParameter]
         public string Item { get; set; }

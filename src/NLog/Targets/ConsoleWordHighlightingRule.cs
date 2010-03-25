@@ -72,22 +72,26 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the regular expression to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
         public string Regex { get; set; }
 
         /// <summary>
         /// Gets or sets the text to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
         public string Text { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to match whole words only.
         /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
         [DefaultValue(false)]
         public bool WholeWords { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case when comparing texts.
         /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
         [DefaultValue(false)]
         public bool IgnoreCase { get; set; }
 
@@ -127,12 +131,14 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the foreground color.
         /// </summary>
+        /// <docgen category='Formatting Options' order='10' />
         [DefaultValue("NoChange")]
         public ConsoleOutputColor ForegroundColor { get; set; }
 
         /// <summary>
         /// Gets or sets the background color.
         /// </summary>
+        /// <docgen category='Formatting Options' order='10' />
         [DefaultValue("NoChange")]
         public ConsoleOutputColor BackgroundColor { get; set; }
 

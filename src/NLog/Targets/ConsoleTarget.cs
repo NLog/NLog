@@ -61,6 +61,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to send the logging messages to the standard error instead of the standard output.
         /// </summary>
+        /// <docgen category='Console Options' order='10' />
         [DefaultValue(false)]
         public bool Error { get; set; }
 #endif

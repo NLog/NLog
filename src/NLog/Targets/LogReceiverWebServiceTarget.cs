@@ -59,6 +59,7 @@ namespace NLog.Targets
         /// Gets or sets the endpoint address.
         /// </summary>
         /// <value>The endpoint address.</value>
+        /// <docgen category='Connection Options' order='10' />
         [RequiredParameter]
         public string EndpointAddress { get; set; }
 
@@ -67,6 +68,7 @@ namespace NLog.Targets
         /// Gets or sets the name of the endpoint configuration in WCF configuration file.
         /// </summary>
         /// <value>The name of the endpoint configuration.</value>
+        /// <docgen category='Connection Options' order='10' />
         public string EndpointConfigurationName { get; set; }
 #endif
 
@@ -74,12 +76,15 @@ namespace NLog.Targets
         /// Gets or sets the client ID.
         /// </summary>
         /// <value>The client ID.</value>
+        /// <docgen category='Payload Options' order='10' />
         public string ClientID { get; set; }
 
         /// <summary>
         /// Gets the list of parameters.
         /// </summary>
         /// <value>The parameters.</value>
+        /// <docgen category='Payload Options' order='10' />
+        [ArrayParameter(typeof(MethodCallParameter), "parameter")]
         public IList<MethodCallParameter> Parameters { get; private set; }
 
         /// <summary>

@@ -94,32 +94,38 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets sender's email address (e.g. joe@domain.com).
         /// </summary>
+        /// <docgen category='Message Options' order='10' />
         public Layout From { get; set; }
 
         /// <summary>
         /// Gets or sets recipients' email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com).
         /// </summary>
+        /// <docgen category='Message Options' order='11' />
         public Layout To { get; set; }
 
         /// <summary>
         /// Gets or sets CC email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com).
         /// </summary>
+        /// <docgen category='Message Options' order='12' />
         public Layout CC { get; set; }
 
         /// <summary>
         /// Gets or sets BCC email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com).
         /// </summary>
+        /// <docgen category='Message Options' order='13' />
         public Layout Bcc { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to add new lines between log entries.
         /// </summary>
         /// <value>A value of <c>true</c> if new lines should be added; otherwise, <c>false</c>.</value>
+        /// <docgen category='Layout Options' order='99' />
         public bool AddNewLines { get; set; }
 
         /// <summary>
         /// Gets or sets the mail subject.
         /// </summary>
+        /// <docgen category='Message Options' order='5' />
         [DefaultValue("Message from NLog on ${machinename}")]
         public Layout Subject { get; set; }
 
@@ -127,6 +133,7 @@ namespace NLog.Targets
         /// Gets or sets mail message body (repeated for each log message send in one mail).
         /// </summary>
         /// <remarks>Alias for <see cref="Layout"/> property.</remarks>
+        /// <docgen category='Message Options' order='6' />
         [DefaultValue("${message}")]
         public Layout Body
         {
@@ -137,45 +144,53 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets encoding to be used for sending e-mail.
         /// </summary>
+        /// <docgen category='Layout Options' order='20' />
         [DefaultValue("UTF8")]
         public Encoding Encoding { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to send message as HTML instead of plain text.
         /// </summary>
+        /// <docgen category='Layout Options' order='11' />
         [DefaultValue(false)]
         public bool Html { get; set; }
         
         /// <summary>
         /// Gets or sets SMTP Server to be used for sending.
         /// </summary>
+        /// <docgen category='SMTP Options' order='10' />
         public Layout SmtpServer { get; set; }
 
         /// <summary>
         /// Gets or sets SMTP Authentication mode.
         /// </summary>
+        /// <docgen category='SMTP Options' order='11' />
         [DefaultValue("None")]
         public SmtpAuthenticationMode SmtpAuthentication { get; set; }
 
         /// <summary>
         /// Gets or sets the username used to connect to SMTP server (used when SmtpAuthentication is set to "basic").
         /// </summary>
+        /// <docgen category='SMTP Options' order='12' />
         public Layout SmtpUsername { get; set; }
 
         /// <summary>
         /// Gets or sets the password used to authenticate against SMTP server (used when SmtpAuthentication is set to "basic").
         /// </summary>
+        /// <docgen category='SMTP Options' order='13' />
         public Layout SmtpPassword { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether SSL (secure sockets layer) should be used when communicating with SMTP server.
         /// </summary>
+        /// <docgen category='SMTP Options' order='14' />
         [DefaultValue(false)]
         public bool EnableSsl { get; set; }
 
         /// <summary>
         /// Gets or sets the port number that SMTP Server is listening on.
         /// </summary>
+        /// <docgen category='SMTP Options' order='15' />
         [DefaultValue(25)]
         public int SmtpPort { get; set; }
 
