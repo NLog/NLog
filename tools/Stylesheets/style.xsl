@@ -42,12 +42,6 @@
           <xsl:apply-templates select="doc/remarks" />
         </p>
       </xsl:if>
-      <xsl:if test="doc/example">
-        <h4>Examples</h4>
-        <p class="examples">
-          <xsl:apply-templates select="doc/example" />
-        </p>
-      </xsl:if>
     </div>
   </xsl:template>
 
@@ -110,17 +104,25 @@
         </span>
       </xsl:for-each>
 
-      <xsl:if test="property[@type='Collection' or @type='Target']">
+      <xsl:if test="property[@type='Collection' or @type='Target'] or @iswrapper or @iscompound">
         &gt;<br/>
       </xsl:if>
 
-      <xsl:for-each select="property[@type='Target']">
+      <xsl:if test="@iswrapper">
         &#160;&#160;&#160;&#160;<span class="requiredparameter">&lt;target xsi:type="wrappedTargetType" ... /&gt;</span><br/>
-      </xsl:for-each>
+      </xsl:if>
+
+      <xsl:if test="@iscompound">
+        &#160;&#160;&#160;&#160;<span class="requiredparameter">&lt;target xsi:type="wrappedTargetType1" ... /&gt;</span><br/>
+        &#160;&#160;&#160;&#160;<span class="requiredparameter">&lt;target xsi:type="wrappedTargetType2" ... /&gt;</span><br/>
+        &#160;&#160;&#160;&#160;<span class="requiredparameter">&lt;target xsi:type="wrappedTargetTypeN" ... /&gt;</span><br/>
+      </xsl:if>
 
       <xsl:for-each select="property[@type='Collection']">
         &#160;&#160;&#160;&#160;&lt;<xsl:value-of select="elementType/@elementTag"/>&#160;
         <xsl:for-each select="elementType/property[not(@type='Collection')]">
+          sss
+
           <xsl:call-template name="property-link" />="<span class="typeplaceholder">
             <xsl:value-of select="@type"/>
           </span>"
@@ -129,7 +131,7 @@
       </xsl:for-each>
 
       <xsl:choose>
-        <xsl:when test="property[@type='Collection' or @type='Target']">
+        <xsl:when test="property[@type='Collection' or @type='Target'] or @iswrapper or @iscompound">
           &#160;&#160;&lt;/target&gt;
         </xsl:when>
         <xsl:otherwise> /&gt;</xsl:otherwise>
@@ -144,7 +146,18 @@
       &#160;&#160;&lt;target <span class="requiredparameter">
         xsi:type="<xsl:value-of select="@name"/>"
       </span> ...&gt;<br/>
-      <xsl:for-each select="property[@type!='Collection']">
+
+      <xsl:if test="@iswrapper">
+        &#160;&#160;&#160;&#160;<span class="requiredparameter">&lt;target xsi:type="wrappedTargetType" ... /&gt;</span><br/>
+      </xsl:if>
+
+      <xsl:if test="@iscompound">
+        &#160;&#160;&#160;&#160;<span class="requiredparameter">&lt;target xsi:type="wrappedTargetType1" ... /&gt;</span><br/>
+        &#160;&#160;&#160;&#160;<span class="requiredparameter">&lt;target xsi:type="wrappedTargetType2" ... /&gt;</span><br/>
+        &#160;&#160;&#160;&#160;<span class="requiredparameter">&lt;target xsi:type="wrappedTargetTypeN" ... /&gt;</span><br/>
+      </xsl:if>
+
+      <xsl:for-each select="property[@type != 'Collection']">
         <xsl:variable name="lastCategory" select="preceding-sibling::property[1]/@category" />
         <xsl:if test="$lastCategory != @category or position() = 1">
           <br/>
@@ -165,6 +178,7 @@
           </span>&lt;/<xsl:call-template name="property-link" />&gt;<br/>
         </span>
       </xsl:for-each>
+
       <xsl:for-each select="property[@type='Collection']">
         &#160;&#160;&#160;&#160;&lt;<xsl:value-of select="elementType/@elementTag"/>&#160;
         <xsl:for-each select="elementType/property[not(@type='Collection')]">

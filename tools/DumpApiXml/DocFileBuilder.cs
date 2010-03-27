@@ -250,10 +250,38 @@
                     writer.WriteAttributeString("advanced", "1");
                 }
 
+                if (InheritsFrom(type, "CompoundTargetBase"))
+                {
+                    writer.WriteAttributeString("iscompound", "1");
+                }
+
+                if (InheritsFrom(type, "WrapperTargetBase"))
+                {
+                    writer.WriteAttributeString("iswrapper", "1");
+                }
+
+                if (InheritsFrom(type, "WrapperLayoutRendererBase"))
+                {
+                    writer.WriteAttributeString("iswrapper", "1");
+                }
+
                 this.DumpTypeMembers(writer, type);
 
                 writer.WriteEndElement();
             }
+        }
+
+        private bool InheritsFrom(Type type, string typeName)
+        {
+            for (var t = type; t != null; t = t.BaseType)
+            {
+                if (t.Name == typeName)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void DumpTypeMembers(XmlWriter writer, Type type)
@@ -595,6 +623,11 @@
             if (pi.CanRead && pi.CanWrite && pi.GetSetMethod() != null && pi.GetSetMethod().IsPublic)
             {
                 if (pi.Name == "CultureInfo")
+                {
+                    return false;
+                }
+
+                if (pi.Name == "WrappedTarget")
                 {
                     return false;
                 }
