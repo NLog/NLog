@@ -9,6 +9,7 @@
     <BuildAllFrameworks Condition="'$(BuildMono2)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildSL2)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildSL3)' == 'true'">false</BuildAllFrameworks>
+    <BuildAllFrameworks Condition="'$(BuildSL4)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX35)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
@@ -27,9 +28,10 @@
 
   <!-- detect location of various SDKs and tools-->
   <PropertyGroup>
-    <DotNet4Version>v4.0.30128</DotNet4Version>
+    <DotNet4Version>v4.0.30319</DotNet4Version>
     <SL2RefPath Condition="'$(SL2InstallPath)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v2.0\Install Path@Install Path)</SL2RefPath>
     <SL3RefPath Condition="'$(SL3RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v3.0</SL3RefPath>
+    <SL4RefPath Condition="'$(SL4RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0</SL4RefPath>
     <NetCF20InstallRoot>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\InstallRoot)</NetCF20InstallRoot>
     <NetCF35InstallRoot>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\InstallRoot)</NetCF35InstallRoot>
 
@@ -51,6 +53,7 @@
     <BuildMono2>true</BuildMono2>
     <BuildSL2>true</BuildSL2>
     <BuildSL3>true</BuildSL3>
+    <BuildSL4>true</BuildSL4>
     <BuildNetFX20>true</BuildNetFX20>
     <BuildNetFX35>true</BuildNetFX35>
     <BuildNetFX40>true</BuildNetFX40>
@@ -61,6 +64,7 @@
     <BuildMono2 Condition="'$(MonoInstallLocation)'==''">false</BuildMono2>
     <BuildSL2 Condition="'$(SL2RefPath)' == ''">false</BuildSL2>
     <BuildSL3 Condition="'$(SL3RefPath)' == ''">false</BuildSL3>
+    <BuildSL4 Condition="'$(SL4RefPath)' == ''">false</BuildSL4>
     <BuildNetCF20 Condition="'$(NetCF20InstallRoot)' == ''">false</BuildNetCF20>
     <BuildNetCF35 Condition="'$(NetCF35InstallRoot)' == ''">false</BuildNetCF35>
     <BuildNetFX20 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v2.0.50727') == ''">false</BuildNetFX20>
@@ -68,6 +72,7 @@
     <BuildNetFX40 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\$(DotNet4Version)') == ''">false</BuildNetFX40>
 
     <!-- don't build 4.0 if we're using MSBuild 3.5 -->
+    <BuildSL4 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildSL4>
     <BuildNetFX40 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX40>
   </PropertyGroup>
 
@@ -97,6 +102,10 @@
     <TargetFramework Include="Silverlight 3.0" Condition="'$(BuildSL3)'=='true'">
         <ProjectFileSuffix>.sl3</ProjectFileSuffix>
         <DocReferences>$(DocReferencesSL3)</DocReferences>
+    </TargetFramework>
+    <TargetFramework Include="Silverlight 4.0" Condition="'$(BuildSL4)'=='true'">
+        <ProjectFileSuffix>.sl4</ProjectFileSuffix>
+        <DocReferences>$(DocReferencesSL4)</DocReferences>
     </TargetFramework>
     <TargetFramework Include=".NET Compact Framework 2.0" Condition="'$(BuildNetCF20)'=='true'">
         <ProjectFileSuffix>.netcf20</ProjectFileSuffix>
@@ -171,6 +180,7 @@
     <CallTarget Targets="NetCF35Test" Condition="'$(BuildNetCF35)'=='true'"/>
     <CallTarget Targets="SL2Test" Condition="'$(BuildSL2)'=='true'"/>
     <CallTarget Targets="SL3Test" Condition="'$(BuildSL3)'=='true'"/>
+    <CallTarget Targets="SL4Test" Condition="'$(BuildSL4)'=='true'"/>
   </Target>
 
   <Target Name="NetFx20Test">
@@ -196,7 +206,7 @@
     <Exec Command='"$(MSTest9)" /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 2.0"
           Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
-    <Exec Command="TaskKill /f /im DeviceEmulator.exe" IgnoreExitCode="true" />
+    <Exec Command="TaskKill /f /im DeviceEmulator.exe 2&gt; nul" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="NetCf35Test" DependsOnTargets="DeployNetCf35ToEmulator">
@@ -204,7 +214,7 @@
     <Exec Command='"$(MSTest9)" /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 3.5"
           Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
-    <Exec Command="TaskKill /f /im DeviceEmulator.exe" IgnoreExitCode="true" />
+    <Exec Command="TaskKill /f /im DeviceEmulator.exe 2&gt; nul" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="SL2Test" DependsOnTargets="BuildSLTestRunner">
@@ -215,6 +225,11 @@
   <Target Name="SL3Test" DependsOnTargets="BuildSLTestRunner">
     <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap SL3'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 3.0" />
+  </Target>
+
+  <Target Name="SL4Test" DependsOnTargets="BuildSLTestRunner">
+    <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap SL4'
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 4.0" />
   </Target>
 
   <Target Name="CheckinSuite">
@@ -242,12 +257,12 @@
   </Target>
 
   <Target Name="DeployNetCf20ToEmulator">
-    <Exec Command="TaskKill /f /im DeviceEmulator.exe" IgnoreExitCode="true" />
+    <Exec Command="TaskKill /f /im DeviceEmulator.exe 2&gt; nul" IgnoreExitCode="true" />
     <Exec Command="$(DeployNetCF) 3C41C503-53EF-4c2a-8DD4-A8217CAD115E E282E6BE-C7C3-4ece-916A-88FB1CF8AF3C 2.0 \Windows\NETCFv2.ppc.armv4.cab" />
   </Target>
 
   <Target Name="DeployNetCf35ToEmulator">
-    <Exec Command="TaskKill /f /im DeviceEmulator.exe" IgnoreExitCode="true" />
+    <Exec Command="TaskKill /f /im DeviceEmulator.exe 2&gt; nul" IgnoreExitCode="true" />
     <Exec Command="$(DeployNetCF) 3C41C503-53EF-4c2a-8DD4-A8217CAD115E E282E6BE-C7C3-4ece-916A-88FB1CF8AF3C 3.5 \Windows\NETCFv35.ppc.armv4.cab" />
   </Target>
 

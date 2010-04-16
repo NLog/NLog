@@ -64,6 +64,7 @@ namespace NLog.UnitTests
             Assert.AreEqual("", l.Name);
         }
 
+#if !SILVERLIGHT2 && !SILVERLIGHT3 
         [TestMethod]
         public void ThrowExceptionsTest()
         {
@@ -84,6 +85,7 @@ namespace NLog.UnitTests
             }
             LogManager.ThrowExceptions = false;
         }
+#endif
 
         public void GlobalThresholdTest()
         {

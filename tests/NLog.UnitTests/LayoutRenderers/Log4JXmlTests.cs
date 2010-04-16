@@ -80,7 +80,6 @@ namespace NLog.UnitTests.LayoutRenderers
             string wrappedResult = "<log4j:dummyRoot xmlns:log4j='http://log4j' xmlns:nlog='http://nlog'>" + result + "</log4j:dummyRoot>";
 
             Assert.AreNotEqual("", result);
-            Console.WriteLine(wrappedResult);
             // make sure the XML can be read back and verify some fields
             StringReader stringReader = new StringReader(wrappedResult);
             using (XmlReader reader = XmlReader.Create(stringReader))

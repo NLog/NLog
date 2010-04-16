@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT2 && !SILVERLIGHT3
+
 namespace NLog.Targets
 {
     using System;
@@ -812,8 +814,11 @@ namespace NLog.Targets
 
             try
             {
-                // Console.WriteLine("dirName: {0}", dirName);
+#if SILVERLIGHT
+                foreach (string s in Directory.EnumerateFiles(dirName, fileNameMask))
+#else
                 foreach (string s in Directory.GetFiles(dirName, fileNameMask))
+#endif
                 {
                     string baseName = Path.GetFileName(s);
                     string number = baseName.Substring(firstPart, baseName.Length - trailerLength - firstPart);
@@ -1282,3 +1287,5 @@ namespace NLog.Targets
         }
     }
 }
+
+#endif

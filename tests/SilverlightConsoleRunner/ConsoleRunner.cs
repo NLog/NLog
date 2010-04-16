@@ -38,6 +38,11 @@
                         httpServer.AddResourceHandler("/XapHost.html", "text/html", typeof(ConsoleRunner), "XapHost3.html");
                         break;
 
+                    case "SL4":
+                        httpServer.AddResourceHandler("/Silverlight.js", "text/plain", typeof(ConsoleRunner), "Silverlight4.js");
+                        httpServer.AddResourceHandler("/XapHost.html", "text/html", typeof(ConsoleRunner), "XapHost4.html");
+                        break;
+
                     default:
                         throw new NotSupportedException("Unsupported silverlight version: '" + SilverlightVersion + "'"); 
                 }

@@ -1,6 +1,6 @@
 @echo off
 rem Try to find the highest version of MSBuild available...
-set MSBUILD=%WINDIR%\Microsoft.NET\Framework\v4.0.30128\msbuild.exe
+set MSBUILD=%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe
 set MSBUILD_SCRIPT="%~dp0src\NLog.proj"
 set POST_BUILD_COMMAND=
 if not exist %MSBUILD% set MSBUILD=%WINDIR%\Microsoft.NET\Framework\v3.5\msbuild.exe
@@ -62,6 +62,12 @@ if (%1)==(sl2) (
 
 if (%1)==(sl3) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildSL3=true
+	shift
+	goto next
+)
+
+if (%1)==(sl4) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildSL4=true
 	shift
 	goto next
 )

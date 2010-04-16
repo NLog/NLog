@@ -1,3 +1,6 @@
+2010-04-15 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added Silverlight 4.0 GDR support and updated .NET Framework 4.0 build number to reflect the final release.
+
 2010-03-17 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Fixed issue mentioned in bug #4182 - after refactoring XmlTextWriter to XmlWriter.Create() ${log4jxmlevent} stopped working.
 	Added regression tests.

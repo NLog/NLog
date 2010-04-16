@@ -133,6 +133,7 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netcf35.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl2.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl3.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl4.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.mono2.csproj");
 
             filesToCompile.Clear();
@@ -145,6 +146,7 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netcf35.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl2.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl3.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl4.csproj");
             //failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.mono2.csproj");
 
             Assert.AreEqual(0, failures, "Failures found.");
@@ -192,7 +194,7 @@ namespace NLog.UnitTests
                     continue;
                 }
 
-                if (file.EndsWith(".g.cs"))
+                if (file.Contains(".g."))
                 {
                     continue;
                 }

@@ -12,7 +12,7 @@
             {
                 if (args.Length < 2)
                 {
-                    Console.WriteLine("Usage: SilverlightConsoleRunner testfile.xap [SL2|SL3] [logfile.log]");
+                    Console.WriteLine("Usage: SilverlightConsoleRunner testfile.xap [SL2|SL3|SL4] [logfile.log]");
                     return 1;
                 }
 

@@ -46,9 +46,9 @@ using System.Runtime.InteropServices;
     #endif
 #elif NET4_0
     #if CLIENT_SKU
-        [assembly: AssemblyTitle("NLog for .NET Framework 4.0")]
+        [assembly: AssemblyTitle("NLog for .NET Framework 4")]
     #else
-        [assembly: AssemblyTitle("NLog for .NET Framework 4.0 Extended Profile")]
+        [assembly: AssemblyTitle("NLog for .NET Framework 4 Extended Profile")]
     #endif
 #elif MONO_2_0
     [assembly: AssemblyTitle("NLog for Mono 2.0")]
@@ -60,6 +60,8 @@ using System.Runtime.InteropServices;
     [assembly: AssemblyTitle("NLog for Silverlight 2.0")]
 #elif SILVERLIGHT3
     [assembly: AssemblyTitle("NLog for Silverlight 3.0")]
+#elif SILVERLIGHT4
+    [assembly: AssemblyTitle("NLog for Silverlight 4.0")]
 #elif DOCUMENTATION
     [assembly: AssemblyTitle("NLog Documentation")]
 #else

@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C48047FF-7E14-443D-906D-7E021AB5707A}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NLog.UnitTests</RootNamespace>
+    <AssemblyName>NLog.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>NLog.UnitTests.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>NLog.UnitTests.App</SilverlightAppEntry>
+    <TestPageFileName>TestPage.html</TestPageFileName>
+    <CreateTestPage>true</CreateTestPage>
+    <ValidateXaml>true</ValidateXaml>
+    <EnableOutOfBrowser>false</EnableOutOfBrowser>
+    <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
+    <UsePlatformExtensions>false</UsePlatformExtensions>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <LinkedServerProject>
+    </LinkedServerProject>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkName>Silverlight 4.0</TargetFrameworkName>
+    <DefineConstants>SILVERLIGHT;SILVERLIGHT4;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Silverlight.Testing, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\external\SilverlightUnitTestFramework\SL3\Microsoft.Silverlight.Testing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\external\SilverlightUnitTestFramework\SL3\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="mscorlib" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml.Linq, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CaseSensitivityTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\APITests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\WhenContainsTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\WhenEqualTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\WhenNotContainsTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\WhenNotEqualTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GetLoggerTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutConfigurationTests.cs" />
+    <Compile Include="LayoutRenderers\BaseDirTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\CallSiteTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\Log4JXmlTests.cs" />
+    <Compile Include="LayoutRenderers\CounterTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\DateTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\EnvironmentTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\EventContextTests.cs" />
+    <Compile Include="LayoutRenderers\ExceptionTests.cs" />
+    <Compile Include="LayoutRenderers\GDCTests.cs" />
+    <Compile Include="LayoutRenderers\LiteralTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\LogLevelTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\LoggerNameTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\LongDateTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\MDCTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\MessageTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\NDCTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\Rot13Tests.cs" />
+    <Compile Include="LayoutRenderers\ShortDateTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LayoutRenderers\ThreadNameTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LogLevelTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LogManagerTests.cs" />
+    <Compile Include="LoggerTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NLogTestBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProcessRunner.cs" />
+    <Compile Include="RegressionTests.cs" />
+    <Compile Include="RoutingTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SourceCodeTests.cs" />
+    <Compile Include="TargetConfigurationTests.cs" />
+    <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
+    <Compile Include="Targets\EventLogTests.cs" />
+    <Compile Include="Targets\FileTargetTests.cs" />
+    <Compile Include="Targets\LogReceiverWebServiceTargetTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NLogTests.snk" />
+    <None Include="Properties\AppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\OutOfBrowserSettings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NLog\NLog.sl4.csproj">
+      <Project>{E7AB20BF-6920-442A-B876-CC06BC5CEC79}</Project>
+      <Name>NLog.sl4</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
