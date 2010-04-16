@@ -20,7 +20,7 @@
     <DeployNetCF>..\tools\DeployNetCF.exe</DeployNetCF>
     <DumpApiXml>$(MSBuildProjectDirectory)\..\tools\DumpApiXml\bin\$(Configuration)\DumpApiXml.exe</DumpApiXml>
     <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
-    <InfoZip>zip.exe</InfoZip>
+    <InfoZip>$(MSBuildProjectDirectory)\..\tools\zip.exe</InfoZip>
     <Svn>svn.exe</Svn>
     <ArchiveOutputPath>$(BaseOutputDirectory)Archive</ArchiveOutputPath>
     <ConfigurationSuffix Condition="'$(Configuration)' == 'Debug'">-debug</ConfigurationSuffix>
@@ -291,11 +291,11 @@
 
   <Target Name="Archive">
     <MakeDir Directories="$(ArchiveOutputPath)" />
-    <Exec Command='$(InfoZip) "$(ArchiveOutputPath)\NLog2%(TargetFramework.ProjectFileSuffix)$(ArchiveSuffix)$(ConfigurationSuffix).zip" NLog.*' 
+    <Exec Command='"$(InfoZip)" "$(ArchiveOutputPath)\NLog2%(TargetFramework.ProjectFileSuffix)$(ArchiveSuffix)$(ConfigurationSuffix).zip" NLog.*' 
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)" />
     <RemoveDir Directories="$(ArchiveOutputPath)\sources" />
     <Exec Command='$(Svn) export . "$(ArchiveOutputPath)\sources"' WorkingDirectory=".." />
-    <Exec Command='$(InfoZip) -r "..\NLog2-sources$(ArchiveSuffix).zip" *.*' 
+    <Exec Command='"$(InfoZip)" -r "..\NLog2-sources$(ArchiveSuffix).zip" *.*' 
           WorkingDirectory="$(ArchiveOutputPath)\sources" />
   </Target>
 
