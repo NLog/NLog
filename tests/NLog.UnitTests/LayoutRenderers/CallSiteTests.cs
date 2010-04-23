@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,7 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NET_CF
+
 using System;
+using System.Globalization;
 using System.Xml;
 using System.Reflection;
 using System.Diagnostics;
@@ -39,18 +42,18 @@ using System.Diagnostics;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
-	public class CallSiteTests : NLogTestBase
-	{
-        [Test]
+    [TestClass]
+    public class CallSiteTests : NLogTestBase
+    {
+#if !SILVERLIGHT
+        [TestMethod]
         public void LineNumberTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:filename=true} ${message}' /></targets>
                 <rules>
@@ -58,23 +61,21 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
             Logger logger = LogManager.GetLogger("A");
 #line 100000
             logger.Debug("msg");
             string lastMessage = GetDebugLastMessage("debug");
             // There's a difference in handling line numbers between .NET and Mono
             // We're just interested in checking if it's above 100000
-            Assert.IsTrue(lastMessage.ToLower().IndexOf("callsitetests.cs:10000") >= 0, "Invalid line number. Expected prefix of 10000, got: " + lastMessage);
+            Assert.IsTrue(lastMessage.ToLower(CultureInfo.InvariantCulture).IndexOf("callsitetests.cs:10000") >= 0, "Invalid line number. Expected prefix of 10000, got: " + lastMessage);
 #line default
         }
+#endif
 
-        [Test]
+        [TestMethod]
         public void MethodNameTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite} ${message}' /></targets>
                 <rules>
@@ -82,19 +83,16 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
         }
 
-        [Test]
+        [TestMethod]
         public void ClassNameTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false} ${message}' /></targets>
                 <rules>
@@ -102,19 +100,16 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + " msg");
         }
 
-        [Test]
+        [TestMethod]
         public void ClassNameWithPaddingTestTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=3:fixedlength=true} ${message}' /></targets>
                 <rules>
@@ -122,27 +117,22 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
-            AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0,3) + " msg");
+            AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
         }
 
-        [Test]
+        [TestMethod]
         public void MethodNameWithPaddingTestTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=16:fixedlength=true} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
@@ -151,3 +141,5 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
+
+#endif

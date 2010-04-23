@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,134 +31,121 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF && !MONO
-
-using System;
-using System.Text;
-using System.Drawing;
-
-using NLog.Conditions;
-using NLog.Config;
+#if !NET_CF && !MONO && !SILVERLIGHT
 
 namespace NLog.Targets
 {
+    using System.ComponentModel;
+    using System.Drawing;
+    using NLog.Conditions;
+    using NLog.Config;
+
     /// <summary>
     /// The row-coloring condition.
     /// </summary>
-    public class RichTextBoxRowColoringRule
+    public class RichTextBoxRowColoringRule : INLogConfigurationItem
     {
-        private ConditionExpression _condition = null;
-        private string _fontColor = "Empty";
-        private string _backColor = "Empty";
-        private FontStyle _style;
         /// <summary>
-        /// Default highlighting rule. Doesn't change the color.
+        /// Initializes static members of the RichTextBoxRowColoringRule class.
         /// </summary>
-        public static readonly RichTextBoxRowColoringRule Default = new RichTextBoxRowColoringRule(null, "Empty", "Empty");
-        
-        /// <summary>
-        /// The condition that must be met in order to set the specified font color.
-        /// </summary>
-        /// <docgen category="Condition" order="10" />
-        [AcceptsCondition]
-        [RequiredParameter]
-        public string Condition
+        static RichTextBoxRowColoringRule()
         {
-            get 
-            { 
-                if (_condition == null)
-                    return null;
-                else
-                    return _condition.ToString();
-            }
-            set 
-            { 
-                if (value != null)
-                    _condition = ConditionParser.ParseExpression(value);
-                else
-                    _condition = null;
-            }
+            Default = new RichTextBoxRowColoringRule(null, "Empty", "Empty");
         }
 
         /// <summary>
-        /// The font color.
-        /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed
-        /// </summary>
-        /// <docgen category="Formatting Options" order="10" />
-        [System.ComponentModel.DefaultValue("Empty")]
-        public string FontColor
-        {
-            get { return _fontColor; }
-            set { _fontColor = value; }
-        }
-
-        /// <summary>
-        /// The background color. 
-        /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed
-        /// Background color will be set only in .net 2.0
-        /// </summary>
-        /// <docgen category="Formatting Options" order="10" />
-        [System.ComponentModel.DefaultValue("Empty")]
-        [SupportedRuntime(Framework = RuntimeFramework.DotNetFramework, MinRuntimeVersion = "2.0")]
-        public string BackgroundColor
-        {
-            get { return _backColor; }
-            set { _backColor = value; }
-        }
-
-        /// <summary>
-        /// Font style of matched text. 
-        /// Possible values are the same as in <c>FontStyle</c> enum in <c>System.Drawing</c>
-        /// </summary>
-        /// <docgen category="Formatting Options" order="10" />
-        public FontStyle Style
-        {
-            get { return _style; }
-            set { _style = value; }
-        }
-
-        /// <summary>
-        /// Creates a new instance of <see cref="RichTextBoxRowColoringRule"/>
+        /// Initializes a new instance of the <see cref="RichTextBoxRowColoringRule" /> class.
         /// </summary>
         public RichTextBoxRowColoringRule()
         {
+            this.FontColor = "Empty";
+            this.BackgroundColor = "Empty";
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="RichTextBoxRowColoringRule"/> and
-        /// assigns Condition, FontColor and FontStyle properties.
+        /// Initializes a new instance of the <see cref="RichTextBoxRowColoringRule" /> class.
         /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <param name="fontColor">Color of the foregroung text.</param>
+        /// <param name="backColor">Color of the background text.</param>
+        /// <param name="fontStyle">The font style.</param>
         public RichTextBoxRowColoringRule(string condition, string fontColor, string backColor, FontStyle fontStyle)
         {
-            Condition = condition;
-            FontColor = fontColor;
-            BackgroundColor = backColor;
-            Style = fontStyle;
+            this.Condition = condition;
+            this.FontColor = fontColor;
+            this.BackgroundColor = backColor;
+            this.Style = fontStyle;
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="RichTextBoxRowColoringRule"/> and
-        /// assigns Condition and FontColor properties with regular style of font
+        /// Initializes a new instance of the <see cref="RichTextBoxRowColoringRule" /> class.
         /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <param name="fontColor">Color of the text.</param>
+        /// <param name="backColor">Color of the background.</param>
         public RichTextBoxRowColoringRule(string condition, string fontColor, string backColor)
         {
-            Condition = condition;
-            FontColor = fontColor;
-            BackgroundColor = backColor;
-            Style = FontStyle.Regular;
+            this.Condition = condition;
+            this.FontColor = fontColor;
+            this.BackgroundColor = backColor;
+            this.Style = FontStyle.Regular;
         }
 
         /// <summary>
-        /// Checks whether the specified log event matches the condition (if any)
+        /// Gets the default highlighting rule. Doesn't change the color.
         /// </summary>
-        /// <param name="logEvent">log event</param>
-        /// <returns><see langword="true"/> if the condition is not defined or 
-        /// if it matches, <see langword="false"/> otherwise</returns>
+        /// <docgen category='Rule Matching Options' order='10' />
+        public static RichTextBoxRowColoringRule Default { get; private set; }
+        
+        /// <summary>
+        /// Gets or sets the condition that must be met in order to set the specified font color.
+        /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
+        [RequiredParameter]
+        public ConditionExpression Condition { get; set; }
+
+        /// <summary>
+        /// Gets or sets the font color.
+        /// </summary>
+        /// <remarks>
+        /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed.
+        /// </remarks>
+        /// <docgen category='Formatting Options' order='10' />
+        [DefaultValue("Empty")]
+        public string FontColor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the background color.
+        /// </summary>
+        /// <remarks>
+        /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed.
+        /// </remarks>
+        /// <docgen category='Formatting Options' order='10' />
+        [DefaultValue("Empty")]
+        public string BackgroundColor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the font style of matched text. 
+        /// </summary>
+        /// <remarks>
+        /// Possible values are the same as in <c>FontStyle</c> enum in <c>System.Drawing</c>
+        /// </remarks>
+        /// <docgen category='Formatting Options' order='10' />
+        public FontStyle Style { get; set; }
+
+        /// <summary>
+        /// Checks whether the specified log event matches the condition (if any).
+        /// </summary>
+        /// <param name="logEvent">
+        /// Log event.
+        /// </param>
+        /// <returns>
+        /// A value of <see langword="true"/> if the condition is not defined or 
+        /// if it matches, <see langword="false"/> otherwise.
+        /// </returns>
         public bool CheckCondition(LogEventInfo logEvent)
         {
-            if (_condition == null)
-                return true;
-            return true.Equals(_condition.Evaluate(logEvent));
+            return true.Equals(this.Condition.Evaluate(logEvent));
         }
     }
 }

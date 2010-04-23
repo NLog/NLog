@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
     /// <summary>
     /// Relational operators used in conditions.
@@ -39,32 +39,32 @@ namespace NLog.Conditions
     internal enum ConditionRelationalOperator
     {
         /// <summary>
-        /// Equality (==)
+        /// Equality (==).
         /// </summary>
         Equal,
 
         /// <summary>
-        /// Inequality (!=)
+        /// Inequality (!=).
         /// </summary>
         NotEqual,
 
         /// <summary>
-        /// Less than (&lt;)
+        /// Less than (&lt;).
         /// </summary>
         Less,
 
         /// <summary>
-        /// Greater than (&gt;)
+        /// Greater than (&gt;).
         /// </summary>
         Greater,
 
         /// <summary>
-        /// Less than or equal (&lt;=)
+        /// Less than or equal (&lt;=).
         /// </summary>
         LessOrEqual,
 
         /// <summary>
-        /// Greater than or equal (&gt;=)
+        /// Greater than or equal (&gt;=).
         /// </summary>
         GreaterOrEqual,
     }

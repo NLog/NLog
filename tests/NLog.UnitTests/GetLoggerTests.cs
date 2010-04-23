@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,28 +31,24 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests
 {
-    [TestFixture]
-	public class GetLoggerTests : NLogTestBase
-	{
-        [Test]
+    [TestClass]
+    public class GetLoggerTests : NLogTestBase
+    {
+#if !NET_CF
+        [TestMethod]
         public void GetCurrentClassLoggerTest()
         {
             Logger logger = LogManager.GetCurrentClassLogger();
 
             Assert.AreEqual("NLog.UnitTests.GetLoggerTests", logger.Name);
         }
+#endif
 
-        [Test]
+        [TestMethod]
         public void TypedGetLoggerTest()
         {
             LogFactory lf = new LogFactory();
@@ -75,7 +71,8 @@ namespace NLog.UnitTests
             Assert.AreEqual("AAA", l3.Name);
         }
 
-        [Test]
+#if !NET_CF
+        [TestMethod]
         public void TypedGetCurrentClassLoggerTest()
         {
             LogFactory lf = new LogFactory();
@@ -97,10 +94,9 @@ namespace NLog.UnitTests
             Assert.AreEqual("NLog.UnitTests.GetLoggerTests", l1.Name);
             Assert.AreEqual("NLog.UnitTests.GetLoggerTests", l3.Name);
         }
+#endif
 
-
-#if A
-        [Test]
+        [TestMethod]
         public void GenericGetLoggerTest()
         {
             LogFactory<MyLogger> lf = new LogFactory<MyLogger>();
@@ -116,7 +112,8 @@ namespace NLog.UnitTests
             Assert.AreEqual("BBB", l3.Name);
         }
 
-        [Test]
+#if !NET_CF
+        [TestMethod]
         public void GenericGetCurrentClassLoggerTest()
         {
             LogFactory<MyLogger> lf = new LogFactory<MyLogger>();
@@ -127,9 +124,8 @@ namespace NLog.UnitTests
             Assert.AreSame(l1, l2);
             Assert.AreEqual("NLog.UnitTests.GetLoggerTests", l1.Name);
         }
-
 #endif
-        
+
         public class MyLogger : Logger
         {
             public MyLogger()
@@ -138,8 +134,8 @@ namespace NLog.UnitTests
 
             public void LogWithEventID(int eventID, string message, object[] par)
             {
-                LogEventInfo lei = new LogEventInfo(LogLevel.Info, this.Name, null, message, par);
-                lei.Context["EventID"] = eventID;
+                LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, this.Name, null, message, par);
+                lei.Properties["EventId"] = eventID;
                 base.Log(typeof(MyLogger), lei);
             }
         }

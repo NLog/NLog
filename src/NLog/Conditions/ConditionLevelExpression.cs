@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,11 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-
-using System.Xml.Serialization;
-
 namespace NLog.Conditions
 {
     /// <summary>
@@ -43,11 +38,6 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionLevelExpression : ConditionExpression
     {
-        /// <summary>
-        /// Creates a new instance of <see cref="ConditionLevelExpression"/>.
-        /// </summary>
-        public ConditionLevelExpression() {}
-
         /// <summary>
         /// Evaluates to the current log level.
         /// </summary>
@@ -61,7 +51,7 @@ namespace NLog.Conditions
         /// <summary>
         /// Returns a string representation of the expression.
         /// </summary>
-        /// <returns><b>level</b> string.</returns>
+        /// <returns>The '<b>level</b>' string.</returns>
         public override string ToString()
         {
             return "level";

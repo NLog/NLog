@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,29 +31,34 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
-using System;
-using System.Security;
+#if !NET_CF && !SILVERLIGHT
 
 namespace NLog.Internal
 {
-    internal sealed class EnvironmentHelper
-    {
-        private EnvironmentHelper(){}
+    using System;
+    using System.Security;
 
-        public static string GetSafeEnvironmentVariable(string name)
+    /// <summary>
+    /// Safe way to get environment variables.
+    /// </summary>
+    internal static class EnvironmentHelper
+    {
+        internal static string GetSafeEnvironmentVariable(string name)
         {
             try
             {
                 string s = Environment.GetEnvironmentVariable(name);
-                if (s == "")
+
+                if (s == null || s.Length == 0)
+                {
                     return null;
-                else
-                    return s;
+                }
+
+                return s;
             }
             catch (SecurityException)
             {
-                return "";
+                return string.Empty;
             }
         }
     }

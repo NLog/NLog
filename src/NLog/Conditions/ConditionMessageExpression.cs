@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,11 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-
-using System.Xml.Serialization;
-
 namespace NLog.Conditions
 {
     /// <summary>
@@ -44,24 +39,19 @@ namespace NLog.Conditions
     internal sealed class ConditionMessageExpression : ConditionExpression
     {
         /// <summary>
-        /// Creates a new instance of <see cref="ConditionMessageExpression"/>.
-        /// </summary>
-        public ConditionMessageExpression() {}
-
-        /// <summary>
         /// Evaluates to the logger message.
         /// </summary>
-        /// <param name="context">evaluation context</param>
-        /// <returns>The logger message</returns>
+        /// <param name="context">Evaluation context.</param>
+        /// <returns>The logger message.</returns>
         public override object Evaluate(LogEventInfo context)
         {
             return context.FormattedMessage;
         }
 
         /// <summary>
-        /// Returns a string representation of this expression
+        /// Returns a string representation of this expression.
         /// </summary>
-        /// <returns>a <b>message</b> string</returns>
+        /// <returns>The '<b>message</b>' string.</returns>
         public override string ToString()
         {
             return "message";

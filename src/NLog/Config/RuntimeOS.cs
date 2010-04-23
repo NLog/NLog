@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,12 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
-using NLog.Internal;
-
 namespace NLog.Config
 {
+    using NLog.Internal;
+
     /// <summary>
     /// Supported operating systems.
     /// </summary>
@@ -52,28 +50,28 @@ namespace NLog.Config
         Any,
 
         /// <summary>
-        /// Unix/Linux operating systems
+        /// Unix/Linux operating systems.
         /// </summary>
         Unix,
 
         /// <summary>
-        /// Windows CE
+        /// Windows CE.
         /// </summary>
         WindowsCE,
 
         /// <summary>
-        /// Desktop versions of Windows (95,98,ME)
+        /// Desktop versions of Windows (95,98,ME).
         /// </summary>
         Windows,
 
         /// <summary>
-        /// Windows NT, 2000, 2003 and future versions based on NT technology
+        /// Windows NT, 2000, 2003 and future versions based on NT technology.
         /// </summary>
         WindowsNT,
 
         /// <summary>
-        /// Unknown operating system
+        /// Unknown operating system.
         /// </summary>
-        Unknown
+        Unknown,
     }
 }

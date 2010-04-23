@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -38,18 +38,18 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NLog.Contexts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
-	public class GDCTests : NLogTestBase
-	{
-        [Test]
+    [TestClass]
+    public class GDCTests : NLogTestBase
+    {
+        [TestMethod]
         public void GDCTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${gdc:item=myitem} ${message}' /></targets>
                 <rules>
@@ -57,17 +57,15 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
-            NLog.GDC.Set("myitem", "myvalue");
+            GlobalDiagnosticsContext.Set("myitem", "myvalue");
             LogManager.GetLogger("A").Debug("a");
             AssertDebugLastMessage("debug", "myvalue a");
 
-            NLog.GDC.Set("myitem", "value2");
+            GlobalDiagnosticsContext.Set("myitem", "value2");
             LogManager.GetLogger("A").Debug("b");
             AssertDebugLastMessage("debug", "value2 b");
 
-            NLog.GDC.Remove("myitem");
+            GlobalDiagnosticsContext.Remove("myitem");
             LogManager.GetLogger("A").Debug("c");
             AssertDebugLastMessage("debug", " c");
         }

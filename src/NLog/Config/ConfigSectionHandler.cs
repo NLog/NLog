@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,29 +31,34 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
-
-using System;
-using System.Xml;
-using System.Configuration;
-using System.IO;
-
-using NLog.Internal;
+#if !NET_CF && !SILVERLIGHT
 
 namespace NLog.Config
 {
+    using System;
+    using System.Configuration;
+    using System.Xml;
+    using NLog.Common;
+
     /// <summary>
-    /// NLog configuration section handler class for configuring NLog from App.config
+    /// NLog configuration section handler class for configuring NLog from App.config.
     /// </summary>
-    public class ConfigSectionHandler: IConfigurationSectionHandler
+    public sealed class ConfigSectionHandler : IConfigurationSectionHandler
     {
+        /// <summary>
+        /// Creates a configuration section handler.
+        /// </summary>
+        /// <param name="parent">Parent object.</param>
+        /// <param name="configContext">Configuration context object.</param>
+        /// <param name="section">Section XML node.</param>
+        /// <returns>The created section handler object.</returns>
         object IConfigurationSectionHandler.Create(object parent, object configContext, XmlNode section)
         {
             try
             {
                 string configFileName = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
 
-                return new XmlLoggingConfiguration((XmlElement)section, configFileName);
+                return new XmlLoggingConfiguration(configFileName);
             }
             catch (Exception ex)
             {

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,18 +31,25 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
+    using NLog.Config;
+
     /// <summary>
     /// Base class for representing nodes in condition expression trees.
     /// </summary>
-    public abstract class ConditionExpression 
+    public abstract class ConditionExpression : INLogConfigurationItem
     {
+        /// <summary>
+        /// Converts condition text to a condition expression tree.
+        /// </summary>
+        /// <param name="text">Condition text to be converted.</param>
+        /// <returns>Condition expression tree.</returns>
+        public static implicit operator ConditionExpression(string text)
+        {
+            return ConditionParser.ParseExpression(text);
+        }
+
         /// <summary>
         /// Evaluates the expression.
         /// </summary>
@@ -51,11 +58,11 @@ namespace NLog.Conditions
         public abstract object Evaluate(LogEventInfo context);
 
         /// <summary>
-        /// Adds all layouts used by this expression to the specified collection.
+        /// Returns a string representation of the expression.
         /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public virtual void PopulateLayouts(LayoutCollection layouts)
-        {
-        }
+        /// <returns>
+        /// A <see cref="T:System.String"/> that represents the condition expression.
+        /// </returns>
+        public abstract override string ToString();
     }
 }

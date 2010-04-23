@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,213 +31,234 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.Collections;
-using System.Globalization;
-
-using NLog.Conditions;
-
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using NLog.Config;
+    using NLog.Layouts;
+
     /// <summary>
     /// Condition parser. Turns a string representation of condition expression
     /// into an expression tree.
     /// </summary>
     public class ConditionParser 
     {
-        private ConditionTokenizer tokenizer = new ConditionTokenizer();
+        private readonly ConditionTokenizer tokenizer = new ConditionTokenizer();
 
-        private ConditionParser(string query) 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConditionParser" /> class.
+        /// </summary>
+        /// <param name="expressionText">The expression text.</param>
+        private ConditionParser(string expressionText)
         {
-            tokenizer.InitTokenizer(query);
-        }
-
-        private ConditionMethodExpression ParsePredicate(string functionName) 
-        {
-            ConditionExpressionCollection par = new ConditionExpressionCollection();
-
-            while (!tokenizer.IsEOF() && tokenizer.TokenType != ConditionTokenType.RightParen) 
-            {
-                par.Add(ParseExpression());
-                if (tokenizer.TokenType != ConditionTokenType.Comma)
-                    break;
-                tokenizer.GetNextToken();
-            }
-            tokenizer.Expect(ConditionTokenType.RightParen);
-
-            return new ConditionMethodExpression(functionName, par);
-        }
-
-        private ConditionExpression ParseLiteralExpression() 
-        {
-            if (tokenizer.IsToken(ConditionTokenType.LeftParen)) 
-            {
-                tokenizer.GetNextToken();
-                ConditionExpression e = ParseExpression();
-                tokenizer.Expect(ConditionTokenType.RightParen);
-                return e;
-            };
-
-            if (tokenizer.IsNumber()) 
-            {
-                string numberString = (string)tokenizer.TokenValue;
-                tokenizer.GetNextToken();
-                if (numberString.IndexOf('.') >= 0)
-                {
-                    return new ConditionLiteralExpression(Double.Parse(numberString, CultureInfo.InvariantCulture));
-                }
-                else
-                {
-                    return new ConditionLiteralExpression(Int32.Parse(numberString, CultureInfo.InvariantCulture));
-                }
-            }
-
-            if (tokenizer.TokenType == ConditionTokenType.String) 
-            {
-                ConditionExpression e = new ConditionLayoutExpression(tokenizer.StringTokenValue);
-                tokenizer.GetNextToken();
-                return e;
-            }
-
-            if (tokenizer.TokenType == ConditionTokenType.Keyword)
-            {
-                string keyword = tokenizer.EatKeyword();
-
-                if (0 == String.Compare(keyword, "level", true))
-                    return new ConditionLevelExpression();
-
-                if (0 == String.Compare(keyword, "logger", true))
-                    return new ConditionLoggerNameExpression();
-
-                if (0 == String.Compare(keyword, "message", true))
-                    return new ConditionMessageExpression();
-
-                if (0 == String.Compare(keyword, "loglevel", true))
-                {
-                    tokenizer.Expect(ConditionTokenType.Dot);
-                    return new ConditionLiteralExpression(LogLevel.FromString(tokenizer.EatKeyword()));
-                }
-
-                if (0 == String.Compare(keyword, "true", true))
-                    return new ConditionLiteralExpression(true);
-
-                if (0 == String.Compare(keyword, "false", true))
-                    return new ConditionLiteralExpression(false);
-
-                if (tokenizer.TokenType == ConditionTokenType.LeftParen)
-                {
-                    tokenizer.GetNextToken();
-
-                    ConditionMethodExpression predicateExpression = ParsePredicate(keyword);
-                    return predicateExpression;
-                }
-            }
-
-            throw new ConditionParseException("Unexpected token: " + tokenizer.TokenValue);
-        }
-
-        private ConditionExpression ParseBooleanRelation() 
-        {
-            ConditionExpression e = ParseLiteralExpression();
-
-            if (tokenizer.IsToken(ConditionTokenType.EQ)) 
-            {
-                tokenizer.GetNextToken();
-                return new ConditionRelationalExpression(e, ParseLiteralExpression(), ConditionRelationalOperator.Equal);
-            };
-
-            if (tokenizer.IsToken(ConditionTokenType.NE)) 
-            {
-                tokenizer.GetNextToken();
-                return new ConditionRelationalExpression(e, ParseLiteralExpression(), ConditionRelationalOperator.NotEqual);
-            };
-
-            if (tokenizer.IsToken(ConditionTokenType.LT)) 
-            {
-                tokenizer.GetNextToken();
-                return new ConditionRelationalExpression(e, ParseLiteralExpression(), ConditionRelationalOperator.Less);
-            };
-
-            if (tokenizer.IsToken(ConditionTokenType.GT)) 
-            {
-                tokenizer.GetNextToken();
-                return new ConditionRelationalExpression(e, ParseLiteralExpression(), ConditionRelationalOperator.Greater);
-            };
-
-            if (tokenizer.IsToken(ConditionTokenType.LE)) 
-            {
-                tokenizer.GetNextToken();
-                return new ConditionRelationalExpression(e, ParseLiteralExpression(), ConditionRelationalOperator.LessOrEqual);
-            };
-
-            if (tokenizer.IsToken(ConditionTokenType.GE)) 
-            {
-                tokenizer.GetNextToken();
-                return new ConditionRelationalExpression(e, ParseLiteralExpression(), ConditionRelationalOperator.GreaterOrEqual);
-            };
-
-            return e;
-        }
-
-        private ConditionExpression ParseBooleanPredicate() 
-        {
-            if (tokenizer.IsKeyword("not") || tokenizer.IsToken(ConditionTokenType.Not)) 
-            {
-                tokenizer.GetNextToken();
-                return new ConditionNotExpression((ConditionExpression)ParseBooleanPredicate());
-            }
-
-            return ParseBooleanRelation();
-        }
-
-        private ConditionExpression ParseBooleanAnd() 
-        {
-            ConditionExpression e = ParseBooleanPredicate();
-
-            while (tokenizer.IsKeyword("and") || tokenizer.IsToken(ConditionTokenType.And)) 
-            {
-                tokenizer.GetNextToken();
-                e = new ConditionAndExpression((ConditionExpression)e, (ConditionExpression)ParseBooleanPredicate());
-            }
-            return e;
-        }
-
-        private ConditionExpression ParseBooleanOr() 
-        {
-            ConditionExpression e = ParseBooleanAnd();
-
-            while (tokenizer.IsKeyword("or") || tokenizer.IsToken(ConditionTokenType.Or)) 
-            {
-                tokenizer.GetNextToken();
-                e = new ConditionOrExpression((ConditionExpression)e, (ConditionExpression)ParseBooleanAnd());
-            }
-            return e;
-        }
-
-        private ConditionExpression ParseBooleanExpression() 
-        {
-            return ParseBooleanOr();
-        }
-
-        private ConditionExpression ParseExpression() 
-        {
-            return ParseBooleanExpression();
+            this.tokenizer.InitTokenizer(expressionText);
         }
 
         /// <summary>
         /// Parses the specified condition string and turns it into
         /// <see cref="ConditionExpression"/> tree.
         /// </summary>
-        /// <param name="expr">The expression to be parsed.</param>
-        /// <returns>The root of the expression syntax tree which can be used to get the value of the condition in a specified context</returns>
-        public static ConditionExpression ParseExpression(string expr) 
+        /// <param name="expressionText">The expression to be parsed.</param>
+        /// <returns>The root of the expression syntax tree which can be used to get the value of the condition in a specified context.</returns>
+        public static ConditionExpression ParseExpression(string expressionText)
         {
-            ConditionParser parser = new ConditionParser(expr);
-            ConditionExpression e = parser.ParseExpression();
+            ConditionParser parser = new ConditionParser(expressionText);
+            ConditionExpression expression = parser.ParseExpression();
             if (!parser.tokenizer.IsEOF())
+            {
                 throw new ConditionParseException("Unexpected token: " + parser.tokenizer.TokenValue);
+            }
+
+            return expression;
+        }
+
+        private ConditionMethodExpression ParsePredicate(string functionName) 
+        {
+            ICollection<ConditionExpression> par = new List<ConditionExpression>();
+
+            while (!this.tokenizer.IsEOF() && this.tokenizer.TokenType != ConditionTokenType.RightParen) 
+            {
+                par.Add(ParseExpression());
+                if (this.tokenizer.TokenType != ConditionTokenType.Comma)
+                {
+                    break;
+                }
+
+                this.tokenizer.GetNextToken();
+            }
+
+            this.tokenizer.Expect(ConditionTokenType.RightParen);
+
+            var methodInfo = NLogFactories.Default.ConditionMethodFactory.CreateInstance(functionName);
+            return new ConditionMethodExpression(functionName, methodInfo, par);
+        }
+
+        private ConditionExpression ParseLiteralExpression() 
+        {
+            if (this.tokenizer.IsToken(ConditionTokenType.LeftParen)) 
+            {
+                this.tokenizer.GetNextToken();
+                ConditionExpression e = this.ParseExpression();
+                this.tokenizer.Expect(ConditionTokenType.RightParen);
+                return e;
+            }
+
+            if (this.tokenizer.IsNumber()) 
+            {
+                string numberString = this.tokenizer.TokenValue;
+                this.tokenizer.GetNextToken();
+                if (numberString.IndexOf('.') >= 0)
+                {
+                    return new ConditionLiteralExpression(Double.Parse(numberString, CultureInfo.InvariantCulture));
+                }
+
+                return new ConditionLiteralExpression(Int32.Parse(numberString, CultureInfo.InvariantCulture));
+            }
+
+            if (this.tokenizer.TokenType == ConditionTokenType.String) 
+            {
+                ConditionExpression e = new ConditionLayoutExpression(new SimpleLayout(this.tokenizer.StringTokenValue));
+                this.tokenizer.GetNextToken();
+                return e;
+            }
+
+            if (this.tokenizer.TokenType == ConditionTokenType.Keyword)
+            {
+                string keyword = this.tokenizer.EatKeyword();
+
+                if (0 == String.Compare(keyword, "level", StringComparison.OrdinalIgnoreCase))
+                {
+                    return new ConditionLevelExpression();
+                }
+
+                if (0 == String.Compare(keyword, "logger", StringComparison.OrdinalIgnoreCase))
+                {
+                    return new ConditionLoggerNameExpression();
+                }
+
+                if (0 == String.Compare(keyword, "message", StringComparison.OrdinalIgnoreCase))
+                {
+                    return new ConditionMessageExpression();
+                }
+
+                if (0 == String.Compare(keyword, "loglevel", StringComparison.OrdinalIgnoreCase))
+                {
+                    this.tokenizer.Expect(ConditionTokenType.Dot);
+                    return new ConditionLiteralExpression(LogLevel.FromString(this.tokenizer.EatKeyword()));
+                }
+
+                if (0 == String.Compare(keyword, "true", StringComparison.OrdinalIgnoreCase))
+                {
+                    return new ConditionLiteralExpression(true);
+                }
+
+                if (0 == String.Compare(keyword, "false", StringComparison.OrdinalIgnoreCase))
+                {
+                    return new ConditionLiteralExpression(false);
+                }
+
+                if (this.tokenizer.TokenType == ConditionTokenType.LeftParen)
+                {
+                    this.tokenizer.GetNextToken();
+
+                    ConditionMethodExpression predicateExpression = this.ParsePredicate(keyword);
+                    return predicateExpression;
+                }
+            }
+
+            throw new ConditionParseException("Unexpected token: " + this.tokenizer.TokenValue);
+        }
+
+        private ConditionExpression ParseBooleanRelation() 
+        {
+            ConditionExpression e = this.ParseLiteralExpression();
+
+            if (this.tokenizer.IsToken(ConditionTokenType.EqualTo)) 
+            {
+                this.tokenizer.GetNextToken();
+                return new ConditionRelationalExpression(e, this.ParseLiteralExpression(), ConditionRelationalOperator.Equal);
+            }
+
+            if (this.tokenizer.IsToken(ConditionTokenType.NotEqual)) 
+            {
+                this.tokenizer.GetNextToken();
+                return new ConditionRelationalExpression(e, this.ParseLiteralExpression(), ConditionRelationalOperator.NotEqual);
+            }
+
+            if (this.tokenizer.IsToken(ConditionTokenType.LessThan)) 
+            {
+                this.tokenizer.GetNextToken();
+                return new ConditionRelationalExpression(e, this.ParseLiteralExpression(), ConditionRelationalOperator.Less);
+            }
+
+            if (this.tokenizer.IsToken(ConditionTokenType.GreaterTo)) 
+            {
+                this.tokenizer.GetNextToken();
+                return new ConditionRelationalExpression(e, this.ParseLiteralExpression(), ConditionRelationalOperator.Greater);
+            }
+
+            if (this.tokenizer.IsToken(ConditionTokenType.LessThanOrEqualTo)) 
+            {
+                this.tokenizer.GetNextToken();
+                return new ConditionRelationalExpression(e, this.ParseLiteralExpression(), ConditionRelationalOperator.LessOrEqual);
+            }
+
+            if (this.tokenizer.IsToken(ConditionTokenType.GreaterThanOrEqualTo)) 
+            {
+                this.tokenizer.GetNextToken();
+                return new ConditionRelationalExpression(e, this.ParseLiteralExpression(), ConditionRelationalOperator.GreaterOrEqual);
+            }
+
             return e;
+        }
+
+        private ConditionExpression ParseBooleanPredicate() 
+        {
+            if (this.tokenizer.IsKeyword("not") || this.tokenizer.IsToken(ConditionTokenType.Not)) 
+            {
+                this.tokenizer.GetNextToken();
+                return new ConditionNotExpression(this.ParseBooleanPredicate());
+            }
+
+            return this.ParseBooleanRelation();
+        }
+
+        private ConditionExpression ParseBooleanAnd() 
+        {
+            ConditionExpression expression = this.ParseBooleanPredicate();
+
+            while (this.tokenizer.IsKeyword("and") || this.tokenizer.IsToken(ConditionTokenType.And)) 
+            {
+                this.tokenizer.GetNextToken();
+                expression = new ConditionAndExpression(expression, this.ParseBooleanPredicate());
+            }
+
+            return expression;
+        }
+
+        private ConditionExpression ParseBooleanOr() 
+        {
+            ConditionExpression expression = this.ParseBooleanAnd();
+
+            while (this.tokenizer.IsKeyword("or") || this.tokenizer.IsToken(ConditionTokenType.Or)) 
+            {
+                this.tokenizer.GetNextToken();
+                expression = new ConditionOrExpression(expression, this.ParseBooleanAnd());
+            }
+
+            return expression;
+        }
+
+        private ConditionExpression ParseBooleanExpression() 
+        {
+            return this.ParseBooleanOr();
+        }
+
+        private ConditionExpression ParseExpression() 
+        {
+            return this.ParseBooleanExpression();
         }
     }
 }

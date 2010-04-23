@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="a93e5783-ae19-41cb-a99d-4b04de0b0193" Name="NLog" Language="1033" Version="1.0.0.0" Manufacturer="http://www.nlog-project.org/" UpgradeCode="ecae2a6d-d653-40b8-9025-e0b9e68d0ea9">
+		<Package InstallerVersion="200" Compressed="yes" />
+
+    <Property Id="ApplicationFolderName" Value="NLog" />
+    <Property Id="WixAppFolder" Value="WixPerMachineFolder" />
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="TopBanner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="Background.bmp" />
+
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="APPLICATIONFOLDER" Name="NLog">
+
+          <Directory Id="NetFX2.0" Name="NetFX2.0">
+            <Component Id="NetFX20Component" Guid="9ac5085c-26fc-432e-a1bc-ed9e215d7eb4">
+              <File Id="NLog20.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\NetFX2.0\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
+              <File Id="NLog20.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\NetFX2.0\NLog.pdb" KeyPath="no" DiskId="1" />
+            </Component>
+          </Directory>
+
+          <Directory Id="NetCF2.0" Name="NetCF2.0">
+            <Component Id="NetCF20Component" Guid="6bc94fb5-a041-448e-b1ab-5dc54d5c757d">
+              <File Id="NLogCF20.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\NetCF2.0\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
+              <File Id="NLogCF20.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\NetCF2.0\NLog.pdb" KeyPath="no" DiskId="1" />
+            </Component>
+          </Directory>
+
+          <Directory Id="Silverlight2" Name="Silverlight2">
+            <Component Id="Silverlight2Component" Guid="1e3bb0be-f05f-467e-92dc-1a9e24b8a332">
+              <File Id="NLogSL2.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\Silverlight2\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
+              <File Id="NLogSL2.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\Silverlight2\NLog.pdb" KeyPath="no" DiskId="1" />
+            </Component>
+          </Directory>
+        </Directory>
+			</Directory>
+		</Directory>
+
+		<Feature Id="NetFX20Feature" Title=".NET Framework 2.0 Support" Level="1">
+			<ComponentRef Id="NetFX20Component" />
+		</Feature>
+
+    <Feature Id="NetCF20Feature" Title=".NET Compact Framework 2.0 Support" Level="1">
+      <ComponentRef Id="NetCF20Component" />
+    </Feature>
+
+    <Feature Id="Silverlight2Feature" Title="Silverlight 2.0 Support" Level="1">
+      <ComponentRef Id="Silverlight2Component" />
+    </Feature>
+
+    <UIRef Id="WixUI_Advanced"/>
+  </Product>
+</Wix>

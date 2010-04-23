@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,35 +31,40 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
+using System.Diagnostics;
 
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-using NLog.Targets;
-using System.IO;
-using System.Text;
-using NLog.Targets.Wrappers;
-using NLog.LayoutRenderers;
+#if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
 {
-    [TestFixture]
-	public class FileTargetTests : NLogTestBase
-	{
-        private Logger logger = LogManager.GetCurrentClassLogger();
+    using System;
+    using System.IO;
+    using System.Text;
 
-        [Test]
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Layouts;
+    using NLog.Targets;
+    using NLog.Targets.Wrappers;
+
+    using System.Threading;
+
+    [TestClass]
+    public class FileTargetTests : NLogTestBase
+    {
+        private Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
+
+        [TestMethod]
         public void SimpleFileTest1()
         {
             string tempFile = Path.GetTempFileName();
             try
             {
                 FileTarget ft = new FileTarget();
-                ft.FileName = Layout.Escape(tempFile);
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.FileName = SimpleLayout.Escape(tempFile);
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
                 ft.OpenFileCacheTimeout = 0;
 
@@ -69,7 +74,7 @@ namespace NLog.UnitTests.Targets
                 logger.Info("bbb");
                 logger.Warn("ccc");
                 LogManager.Configuration = null;
-                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.ASCII);
+                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
             }
             finally
             {
@@ -78,15 +83,15 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [TestMethod]
         public void DeleteFileOnStartTest()
         {
             string tempFile = Path.GetTempFileName();
             try
             {
                 FileTarget ft = new FileTarget();
-                ft.FileName = Layout.Escape(tempFile);
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.FileName = SimpleLayout.Escape(tempFile);
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
@@ -97,14 +102,14 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;
 
-                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.ASCII);
+                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
 
                 // configure again, without
                 // DeleteOldFileOnStartup
 
                 ft = new FileTarget();
-                ft.FileName = Layout.Escape(tempFile);
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.FileName = SimpleLayout.Escape(tempFile);
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
@@ -114,14 +119,14 @@ namespace NLog.UnitTests.Targets
                 logger.Warn("ccc");
 
                 LogManager.Configuration = null;
-                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n", Encoding.ASCII);
+                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
 
                 // configure again, this time with
                 // DeleteOldFileOnStartup
 
                 ft = new FileTarget();
-                ft.FileName = Layout.Escape(tempFile);
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.FileName = SimpleLayout.Escape(tempFile);
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
                 ft.DeleteOldFileOnStartup = true;
 
@@ -131,7 +136,7 @@ namespace NLog.UnitTests.Targets
                 logger.Warn("ccc");
 
                 LogManager.Configuration = null;
-                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.ASCII);
+                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
             }
             finally
             {
@@ -141,7 +146,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [TestMethod]
         public void CreateDirsTest()
         {
             // create the file in a not-existent
@@ -152,7 +157,7 @@ namespace NLog.UnitTests.Targets
             {
                 FileTarget ft = new FileTarget();
                 ft.FileName = tempFile;
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
@@ -161,7 +166,7 @@ namespace NLog.UnitTests.Targets
                 logger.Info("bbb");
                 logger.Warn("ccc");
                 LogManager.Configuration = null;
-                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.ASCII);
+                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
             }
             finally
             {
@@ -173,7 +178,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [TestMethod]
         public void SequentialArchiveTest1()
         {
             // create the file in a not-existent
@@ -186,10 +191,10 @@ namespace NLog.UnitTests.Targets
                 ft.FileName = tempFile;
                 ft.ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt");
                 ft.ArchiveAboveSize = 1000;
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${message}";
                 ft.MaxArchiveFiles = 3;
-                ft.ArchiveNumbering = FileTarget.ArchiveNumberingMode.Sequence;
+                ft.ArchiveNumbering = ArchiveNumberingMode.Sequence;
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
@@ -218,24 +223,24 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;
 
-                AssertFileContents(tempFile, 
-                    StringRepeat(250, "eee\n"), 
-                    Encoding.ASCII);
+                AssertFileContents(tempFile,
+                    StringRepeat(250, "eee\n"),
+                    Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0001.txt"), 
-                    StringRepeat(250, "bbb\n"), 
-                    Encoding.ASCII);
+                    Path.Combine(tempPath, "archive/0001.txt"),
+                    StringRepeat(250, "bbb\n"),
+                    Encoding.UTF8);
 
                 AssertFileContents(
                     Path.Combine(tempPath, "archive/0002.txt"),
                     StringRepeat(250, "ccc\n"),
-                    Encoding.ASCII);
+                    Encoding.UTF8);
 
                 AssertFileContents(
                     Path.Combine(tempPath, "archive/0003.txt"),
                     StringRepeat(250, "ddd\n"),
-                    Encoding.ASCII);
+                    Encoding.UTF8);
 
                 Assert.IsTrue(!File.Exists(Path.Combine(tempPath, "archive/0000.txt")));
                 Assert.IsTrue(!File.Exists(Path.Combine(tempPath, "archive/0004.txt")));
@@ -250,7 +255,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [TestMethod]
         public void RollingArchiveTest1()
         {
             // create the file in a not-existent
@@ -263,8 +268,8 @@ namespace NLog.UnitTests.Targets
                 ft.FileName = tempFile;
                 ft.ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt");
                 ft.ArchiveAboveSize = 1000;
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
-                ft.ArchiveNumbering = FileTarget.ArchiveNumberingMode.Rolling;
+                ft.LineEnding = LineEndingMode.LF;
+                ft.ArchiveNumbering = ArchiveNumberingMode.Rolling;
                 ft.Layout = "${message}";
                 ft.MaxArchiveFiles = 3;
 
@@ -297,22 +302,22 @@ namespace NLog.UnitTests.Targets
 
                 AssertFileContents(tempFile,
                     StringRepeat(250, "eee\n"),
-                    Encoding.ASCII);
+                    Encoding.UTF8);
 
                 AssertFileContents(
                     Path.Combine(tempPath, "archive/0000.txt"),
                     StringRepeat(250, "ddd\n"),
-                    Encoding.ASCII);
+                    Encoding.UTF8);
 
                 AssertFileContents(
                     Path.Combine(tempPath, "archive/0001.txt"),
                     StringRepeat(250, "ccc\n"),
-                    Encoding.ASCII);
+                    Encoding.UTF8);
 
                 AssertFileContents(
                     Path.Combine(tempPath, "archive/0002.txt"),
                     StringRepeat(250, "bbb\n"),
-                    Encoding.ASCII);
+                    Encoding.UTF8);
 
                 Assert.IsTrue(!File.Exists(Path.Combine(tempPath, "archive/0003.txt")));
             }
@@ -326,7 +331,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [TestMethod]
         public void MultiFileWrite()
         {
             // create the file in a not-existent
@@ -336,7 +341,7 @@ namespace NLog.UnitTests.Targets
             {
                 FileTarget ft = new FileTarget();
                 ft.FileName = Path.Combine(tempPath, "${level}.txt");
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${message}";
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
@@ -356,19 +361,19 @@ namespace NLog.UnitTests.Targets
                 Assert.IsFalse(File.Exists(Path.Combine(tempPath, "Trace.txt")));
 
                 AssertFileContents(Path.Combine(tempPath, "Debug.txt"),
-                    StringRepeat(250, "aaa\n"), Encoding.ASCII);
+                    StringRepeat(250, "aaa\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Info.txt"),
-                    StringRepeat(250, "bbb\n"), Encoding.ASCII);
+                    StringRepeat(250, "bbb\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Warn.txt"),
-                    StringRepeat(250, "ccc\n"), Encoding.ASCII);
+                    StringRepeat(250, "ccc\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Error.txt"),
-                    StringRepeat(250, "ddd\n"), Encoding.ASCII);
+                    StringRepeat(250, "ddd\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Fatal.txt"),
-                    StringRepeat(250, "eee\n"), Encoding.ASCII);
+                    StringRepeat(250, "eee\n"), Encoding.UTF8);
             }
             finally
             {
@@ -380,7 +385,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [TestMethod]
         public void BufferedMultiFileWrite()
         {
             // create the file in a not-existent
@@ -390,10 +395,10 @@ namespace NLog.UnitTests.Targets
             {
                 FileTarget ft = new FileTarget();
                 ft.FileName = Path.Combine(tempPath, "${level}.txt");
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${message}";
 
-                SimpleConfigurator.ConfigureForTargetLogging(new BufferingTargetWrapper(ft,10), LogLevel.Debug);
+                SimpleConfigurator.ConfigureForTargetLogging(new BufferingTargetWrapper(ft, 10), LogLevel.Debug);
 
                 for (int i = 0; i < 250; ++i)
                 {
@@ -410,19 +415,19 @@ namespace NLog.UnitTests.Targets
                 Assert.IsFalse(File.Exists(Path.Combine(tempPath, "Trace.txt")));
 
                 AssertFileContents(Path.Combine(tempPath, "Debug.txt"),
-                    StringRepeat(250, "aaa\n"), Encoding.ASCII);
+                    StringRepeat(250, "aaa\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Info.txt"),
-                    StringRepeat(250, "bbb\n"), Encoding.ASCII);
+                    StringRepeat(250, "bbb\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Warn.txt"),
-                    StringRepeat(250, "ccc\n"), Encoding.ASCII);
+                    StringRepeat(250, "ccc\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Error.txt"),
-                    StringRepeat(250, "ddd\n"), Encoding.ASCII);
+                    StringRepeat(250, "ddd\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Fatal.txt"),
-                    StringRepeat(250, "eee\n"), Encoding.ASCII);
+                    StringRepeat(250, "eee\n"), Encoding.UTF8);
             }
             finally
             {
@@ -434,7 +439,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [TestMethod]
         public void AsyncMultiFileWrite()
         {
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -442,16 +447,19 @@ namespace NLog.UnitTests.Targets
             {
                 FileTarget ft = new FileTarget();
                 ft.FileName = Path.Combine(tempPath, "${level}.txt");
-                ft.LineEnding = FileTarget.LineEndingMode.LF;
+                ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${message} ${threadid}";
 
                 // this also checks that thread-volatile layouts
                 // such as ${threadid} are properly cached and not recalculated
                 // in logging threads.
 
-                string threadID = NLog.Internal.ThreadIDHelper.Instance.CurrentThreadID.ToString();
+                string threadID = Thread.CurrentThread.ManagedThreadId.ToString();
 
+                //InternalLogger.LogToConsole = true;
+                //InternalLogger.LogLevel = LogLevel.Trace;
                 SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(ft, 1000, AsyncTargetWrapperOverflowAction.Grow), LogLevel.Debug);
+                LogManager.ThrowExceptions = true;
 
                 for (int i = 0; i < 250; ++i)
                 {
@@ -468,19 +476,19 @@ namespace NLog.UnitTests.Targets
                 Assert.IsFalse(File.Exists(Path.Combine(tempPath, "Trace.txt")));
 
                 AssertFileContents(Path.Combine(tempPath, "Debug.txt"),
-                    StringRepeat(250, "aaa " + threadID +"\n"), Encoding.ASCII);
+                    StringRepeat(250, "aaa " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Info.txt"),
-                    StringRepeat(250, "bbb " + threadID + "\n"), Encoding.ASCII);
+                    StringRepeat(250, "bbb " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Warn.txt"),
-                    StringRepeat(250, "ccc " + threadID + "\n"), Encoding.ASCII);
+                    StringRepeat(250, "ccc " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Error.txt"),
-                    StringRepeat(250, "ddd " + threadID + "\n"), Encoding.ASCII);
+                    StringRepeat(250, "ddd " + threadID + "\n"), Encoding.UTF8);
 
                 AssertFileContents(Path.Combine(tempPath, "Fatal.txt"),
-                    StringRepeat(250, "eee " + threadID + "\n"), Encoding.ASCII);
+                    StringRepeat(250, "eee " + threadID + "\n"), Encoding.UTF8);
             }
             finally
             {
@@ -493,3 +501,5 @@ namespace NLog.UnitTests.Targets
         }
     }
 }
+
+#endif

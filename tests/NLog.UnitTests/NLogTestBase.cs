@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,21 +31,24 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
-using NUnit.Framework;
-using System.Text;
 using System.IO;
-using System.Diagnostics;
-using System.Threading;
+using System.Text;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NLog.Layouts;
+using NLog.Config;
+#if SILVERLIGHT
+using System.Xml.Linq;
+#else
+using System.Xml;
+#endif
 
 namespace NLog.UnitTests
 {
-	public class NLogTestBase
-	{
+    public abstract class NLogTestBase
+    {
         public void AssertDebugCounter(string targetName, int val)
         {
-            NLog.Targets.DebugTarget debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
+            var debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
 
             Assert.IsNotNull(debugTarget, "Debug target '" + targetName + "' not found");
             Assert.AreEqual(val, debugTarget.Counter, "Unexpected counter value on '" + targetName + "'");
@@ -63,7 +66,7 @@ namespace NLog.UnitTests
 
         public string GetDebugLastMessage(string targetName)
         {
-            NLog.Targets.DebugTarget debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
+            var debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
             return debugTarget.LastMessage;
         }
 
@@ -95,43 +98,23 @@ namespace NLog.UnitTests
             return sb.ToString();
         }
 
-        protected Process SpawnMethod(string methodName, params string[] p)
-        {
-            string assemblyName = this.GetType().Assembly.FullName;
-            string typename = this.GetType().FullName;
-            StringBuilder sb = new StringBuilder();
-#if MONO
-            sb.Append("Runner.exe ");
-#endif
-            sb.AppendFormat("\"{0}\" \"{1}\" \"{2}\"", assemblyName, typename, methodName);
-            foreach (string s in p)
-            {
-                sb.Append(" ");
-                sb.Append("\"");
-                sb.Append(s);
-                sb.Append("\"");
-            }
-
-            Process proc = new Process();
-            proc.StartInfo.Arguments = sb.ToString();
-#if MONO
-            proc.StartInfo.FileName = "mono";
-#else
-            proc.StartInfo.FileName = "Runner.exe";
-#endif
-            proc.StartInfo.UseShellExecute = false;
-            proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-            proc.StartInfo.RedirectStandardInput = true;
-            proc.StartInfo.RedirectStandardOutput = true;
-            proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            proc.Start();
-            return proc;
-        }
-
         protected void AssertLayoutRendererOutput(Layout l, string expected)
         {
-            string actual = l.GetFormattedMessage(new LogEventInfo(LogLevel.Info, "loggername", "message"));
+            string actual = l.GetFormattedMessage(LogEventInfo.Create(LogLevel.Info, "loggername", "message"));
             Assert.AreEqual(expected, actual);
+        }
+
+        protected XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
+        {
+#if SILVERLIGHT
+            XElement element = XElement.Parse(configXml);
+            return new XmlLoggingConfiguration(element.CreateReader(), null);
+#else
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(configXml);
+
+            return new XmlLoggingConfiguration(doc.DocumentElement, null);
+#endif
         }
     }
 }

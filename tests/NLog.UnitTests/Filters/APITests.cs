@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -39,20 +39,21 @@ using System.IO;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NLog.Layouts;
+using NLog.Filters;
 
 namespace NLog.UnitTests.Filters
 {
-    [TestFixture]
-	public class APITests : NLogTestBase
-	{
-        [Test]
+    [TestClass]
+    public class APITests : NLogTestBase
+    {
+        [TestMethod]
         public void APITest()
         {
             // this is mostly to make Clover happy
 
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
                 <rules>
@@ -64,10 +65,10 @@ namespace NLog.UnitTests.Filters
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-            Assert.IsTrue(LogManager.Configuration.LoggingRules[0].Filters[0] is NLog.Filters.WhenContainsFilter);
-            NLog.Filters.WhenContainsFilter wcf = (NLog.Filters.WhenContainsFilter)LogManager.Configuration.LoggingRules[0].Filters[0];
-            Assert.AreEqual(wcf.Layout, "${message}");
+            Assert.IsTrue(LogManager.Configuration.LoggingRules[0].Filters[0] is WhenContainsFilter);
+            var wcf = (WhenContainsFilter)LogManager.Configuration.LoggingRules[0].Filters[0];
+            Assert.IsInstanceOfType(wcf.Layout, typeof(SimpleLayout));
+            Assert.AreEqual(((SimpleLayout)wcf.Layout).Text, "${message}");
             Assert.AreEqual(wcf.Substring, "zzz");
             Assert.AreEqual(FilterResult.Ignore, wcf.Action);
         }

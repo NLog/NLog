@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,42 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.IO;
-using System.Threading;
-using System.Collections;
-using System.Collections.Specialized;
-
-using NLog;
-using NLog.Config;
-
-using NLog.Internal;
-
 namespace NLog.Targets.Wrappers
 {
-    /// <summary>
-    /// The action to be taken when the queue overflows
-    /// </summary>
-    public enum AsyncTargetWrapperOverflowAction
-    {
-        /// <summary>
-        /// Grow the queue.
-        /// </summary>
-        Grow,
-
-        /// <summary>
-        /// Discard the overflowing item.
-        /// </summary>
-        Discard,
-
-#if !NETCF
-        /// <summary>
-        /// Block until there's more room in the queue.
-        /// </summary>
-        Block,
-#endif
-    }
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Threading;
+    using NLog.Common;
 
     /// <summary>
     /// A target wrapper that provides asynchronous, buffered execution of target writes.
@@ -95,125 +66,162 @@ namespace NLog.Targets.Wrappers
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/AsyncWrapper/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/AsyncWrapper/NLog.config" />
     /// <p>
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
     /// <code lang="C#" source="examples/targets/Configuration API/AsyncWrapper/Wrapping File/Example.cs" />
     /// </example>
-    [Target("AsyncWrapper",IsWrapper=true)]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
-    public class AsyncTargetWrapper: WrapperTargetBase
+    [Target("AsyncWrapper", IsWrapper = true)]
+    public class AsyncTargetWrapper : WrapperTargetBase
     {
-        private int _batchSize = 100;
-        private int _timeToSleepBetweenBatches = 50;
+        private readonly object inLazyWriterMonitor = new object();
+        private bool flushAll;
+        private Timer lazyWriterTimer;
 
         /// <summary>
-        /// Creates a new instance of <see cref="AsyncTargetWrapper"/>.
+        /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
         /// </summary>
         public AsyncTargetWrapper()
         {
+            this.RequestQueue = new AsyncRequestQueue<LogEventInfo>(10000, AsyncTargetWrapperOverflowAction.Discard);
+            this.TimeToSleepBetweenBatches = 50;
+            this.BatchSize = 100;
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="AsyncTargetWrapper"/>
-        /// which wraps the specified target.
+        /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
         /// </summary>
-        /// <param name="wrappedTarget">The target to be wrapped.</param>
+        /// <param name="wrappedTarget">The wrapped target.</param>
         public AsyncTargetWrapper(Target wrappedTarget)
         {
-            WrappedTarget = wrappedTarget;
+            this.RequestQueue = new AsyncRequestQueue<LogEventInfo>(10000, AsyncTargetWrapperOverflowAction.Discard);
+            this.TimeToSleepBetweenBatches = 50;
+            this.BatchSize = 100;
+            this.WrappedTarget = wrappedTarget;
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="AsyncTargetWrapper"/>
-        /// which wraps the specified target.
+        /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
         /// </summary>
-        /// <param name="wrappedTarget">The target to be wrapped.</param>
+        /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="queueLimit">Maximum number of requests in the queue.</param>
         /// <param name="overflowAction">The action to be taken when the queue overflows.</param>
         public AsyncTargetWrapper(Target wrappedTarget, int queueLimit, AsyncTargetWrapperOverflowAction overflowAction)
         {
-            WrappedTarget = wrappedTarget;
-            QueueLimit = queueLimit;
-            OverflowAction = overflowAction;
+            this.RequestQueue = new AsyncRequestQueue<LogEventInfo>(10000, AsyncTargetWrapperOverflowAction.Discard);
+            this.TimeToSleepBetweenBatches = 50;
+            this.BatchSize = 100;
+            this.WrappedTarget = wrappedTarget;
+            this.QueueLimit = queueLimit;
+            this.OverflowAction = overflowAction;
         }
 
         /// <summary>
-        /// Initializes the target by starting the lazy writer thread.
+        /// Gets or sets the number of log events that should be processed in a batch
+        /// by the lazy writer thread.
         /// </summary>
-        public override void Initialize()
+        /// <docgen category='Buffering Options' order='100' />
+        [DefaultValue(100)]
+        public int BatchSize { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time in milliseconds to sleep between batches.
+        /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
+        [DefaultValue(50)]
+        public int TimeToSleepBetweenBatches { get; set; }
+
+        /// <summary>
+        /// Gets or sets the action to be taken when the lazy writer thread request queue count
+        /// exceeds the set limit.
+        /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
+        [DefaultValue("Discard")]
+        public AsyncTargetWrapperOverflowAction OverflowAction
         {
-            base.Initialize();
-            StartLazyWriterTimer();
+            get { return this.RequestQueue.OnOverflow; }
+            set { this.RequestQueue.OnOverflow = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the limit on the number of requests in the lazy writer thread request queue.
+        /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
+        [DefaultValue(10000)]
+        public int QueueLimit
+        {
+            get { return this.RequestQueue.RequestLimit; }
+            set { this.RequestQueue.RequestLimit = value; }
+        }
+
+        /// <summary>
+        /// Gets the queue of lazy writer thread requests.
+        /// </summary>
+        protected AsyncRequestQueue<LogEventInfo> RequestQueue { get; private set; }
+
+        /// <summary>
+        /// Waits for the lazy writer thread to finish writing messages.
+        /// </summary>
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public override void Flush(TimeSpan timeout)
+        {
+            this.lazyWriterTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            lock (this.inLazyWriterMonitor)
+            {
+                this.flushAll = true;
+                this.LazyWriterTimerCallback(null);
+            }
+
+            this.lazyWriterTimer.Change(this.TimeToSleepBetweenBatches, this.TimeToSleepBetweenBatches);
         }
 
         /// <summary>
         /// Closes the target by stopping the lazy writer thread.
         /// </summary>
-        protected internal override void Close()
+        protected override void Close()
         {
-            StopLazyWriterThread();
+            this.StopLazyWriterThread();
             base.Close();
         }
 
         /// <summary>
-        /// The number of log events that should be processed in a batch
-        /// by the lazy writer thread.
+        /// Initializes the target by starting the lazy writer thread.
         /// </summary>
-        /// <docgen category="Buffering Options" order="10" />
-        [System.ComponentModel.DefaultValue(100)]
-        public int BatchSize
+        protected override void Initialize()
         {
-            get { return _batchSize; }
-            set { _batchSize = value; }
+            base.Initialize();
+            this.StartLazyWriterTimer();
         }
 
         /// <summary>
-        /// The time in milliseconds to sleep between batches.
+        /// Starts the lazy writer thread which periodically writes
+        /// queued log messages.
         /// </summary>
-        /// <docgen category="Buffering Options" order="10" />
-        [System.ComponentModel.DefaultValue(50)]
-        public int TimeToSleepBetweenBatches
+        protected virtual void StartLazyWriterTimer()
         {
-            get { return _timeToSleepBetweenBatches; }
-            set { _timeToSleepBetweenBatches = value; }
+            this.RequestQueue.Clear();
+            InternalLogger.Debug("Starting lazy writer timer...");
+            this.lazyWriterTimer = new Timer(this.LazyWriterTimerCallback, null, 0, this.TimeToSleepBetweenBatches);
         }
 
-        private object _inLazyWriterMonitor = new object();
-        private bool _flushAll = false;
-
-        private void LazyWriterTimerCallback(object state)
+        /// <summary>
+        /// Starts the lazy writer thread.
+        /// </summary>
+        protected virtual void StopLazyWriterThread()
         {
-            lock (_inLazyWriterMonitor)
+            if (this.lazyWriterTimer == null)
             {
-                try
-                {
-                    do
-                    {
-                        // Console.WriteLine("q: {0}", RequestQueue.RequestCount);
-                        ArrayList pendingRequests = RequestQueue.DequeueBatch(BatchSize);
-
-                        try
-                        {
-                            if (pendingRequests.Count == 0)
-                                break;
-
-                            LogEventInfo[] events = (LogEventInfo[])pendingRequests.ToArray(typeof(LogEventInfo));
-                            WrappedTarget.Write(events);
-                        }
-                        finally
-                        {
-                            RequestQueue.BatchProcessed(pendingRequests);
-                        }
-                    } while (_flushAll);
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error("Error in lazy writer timer procedure: {0}", ex);
-                }
+                return;
             }
+
+            this.Flush();
+            this.lazyWriterTimer.Change(0, 0);
+            this.lazyWriterTimer.Dispose();
+            this.lazyWriterTimer = null;
+
+            this.RequestQueue.Clear();
         }
 
         /// <summary>
@@ -225,234 +233,43 @@ namespace NLog.Targets.Wrappers
         /// The <see cref="Target.PrecalculateVolatileLayouts"/> is called
         /// to ensure that the log event can be processed in another thread.
         /// </remarks>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
-            WrappedTarget.PrecalculateVolatileLayouts(logEvent);
-            RequestQueue.Enqueue(logEvent);
+            this.PrecalculateVolatileLayouts(logEvent);
+            this.RequestQueue.Enqueue(logEvent);
         }
 
-        private Timer _lazyWriterTimer = null;
-        private AsyncRequestQueue _lazyWriterRequestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
-
-        /// <summary>
-        /// The queue of lazy writer thread requests.
-        /// </summary>
-        protected AsyncRequestQueue RequestQueue
+        private void LazyWriterTimerCallback(object state)
         {
-            get { return _lazyWriterRequestQueue; }
-        }
-
-        /// <summary>
-        /// The action to be taken when the lazy writer thread request queue count
-        /// exceeds the set limit.
-        /// </summary>
-        /// <docgen category="Buffering Options" order="10" />
-        [System.ComponentModel.DefaultValue("Discard")]
-        public AsyncTargetWrapperOverflowAction OverflowAction
-        {
-            get { return _lazyWriterRequestQueue.OnOverflow; }
-            set { _lazyWriterRequestQueue.OnOverflow = value; }
-        }
-
-        /// <summary>
-        /// The limit on the number of requests in the lazy writer thread request queue.
-        /// </summary>
-        /// <docgen category="Buffering Options" order="10" />
-        [System.ComponentModel.DefaultValue(10000)]
-        public int QueueLimit
-        {
-            get { return _lazyWriterRequestQueue.RequestLimit; }
-            set { _lazyWriterRequestQueue.RequestLimit = value; }
-        }
-
-        /// <summary>
-        /// Starts the lazy writer thread which periodically writes
-        /// queued log messages.
-        /// </summary>
-        protected virtual void StartLazyWriterTimer()
-        {
-            _lazyWriterRequestQueue.Clear();
-            Internal.InternalLogger.Debug("Starting lazy writer timer...");
-            _lazyWriterTimer = new Timer(new TimerCallback(LazyWriterTimerCallback), null, 0, this.TimeToSleepBetweenBatches);
-        }
-
-        /// <summary>
-        /// Starts the lazy writer thread.
-        /// </summary>
-        protected virtual void StopLazyWriterThread()
-        {
-            if (_lazyWriterTimer == null)
-                return;
-
-            Flush();
-            _lazyWriterTimer.Change(0, 0);
-            _lazyWriterTimer.Dispose();
-            _lazyWriterTimer = null;
-
-            _lazyWriterRequestQueue.Clear();
-        }
-
-        /// <summary>
-        /// Waits for the lazy writer thread to finish writing messages.
-        /// </summary>
-        public override void Flush(TimeSpan timeout)
-        {
-            _lazyWriterTimer.Change(Timeout.Infinite, Timeout.Infinite);
-            lock (_inLazyWriterMonitor)
+            lock (this.inLazyWriterMonitor)
             {
-                _flushAll = true;
-                LazyWriterTimerCallback(null);
-            }
-            _lazyWriterTimer.Change(TimeToSleepBetweenBatches, TimeToSleepBetweenBatches);
-        }
-
-        /// <summary>
-        /// Asynchronous request queue
-        /// </summary>
-        public class AsyncRequestQueue
-        {
-            private Queue _queue = new Queue();
-            private int _batchedItems = 0;
-            private AsyncTargetWrapperOverflowAction _overflowAction = AsyncTargetWrapperOverflowAction.Discard;
-            private int _requestLimit = 10000;
-
-            /// <summary>
-            /// Creates a new instance of <see cref="AsyncRequestQueue"/> and
-            /// sets the request limit and overflow action.
-            /// </summary>
-            /// <param name="requestLimit">Request limit.</param>
-            /// <param name="overflowAction">The overflow action.</param>
-            public AsyncRequestQueue(int requestLimit, AsyncTargetWrapperOverflowAction overflowAction)
-            {
-                _requestLimit = requestLimit;
-                _overflowAction = overflowAction;
-            }
-
-            /// <summary>
-            /// The request limit.
-            /// </summary>
-            public int RequestLimit
-            {
-                get { return _requestLimit; }
-                set { _requestLimit = value; }
-            }
-
-            /// <summary>
-            /// Action to be taken when there's no more room in
-            /// the queue and another request is enqueued.
-            /// </summary>
-            public AsyncTargetWrapperOverflowAction OnOverflow
-            {
-                get { return _overflowAction; }
-                set { _overflowAction = value; }
-            }
-
-            /// <summary>
-            /// Enqueues another item. If the queue is overflown the appropriate
-            /// action is taken as specified by <see cref="OnOverflow"/>.
-            /// </summary>
-            /// <param name="o">The item to be queued.</param>
-            public void Enqueue(object o)
-            {
-                lock (this)
+                try
                 {
-                    if (_queue.Count >= RequestLimit)
+                    do
                     {
-                        switch (OnOverflow)
+                        List<LogEventInfo> pendingRequests = this.RequestQueue.DequeueBatch(this.BatchSize);
+
+                        try
                         {
-                            case AsyncTargetWrapperOverflowAction.Discard:
-                                return;
-
-                            case AsyncTargetWrapperOverflowAction.Grow:
+                            if (pendingRequests.Count == 0)
+                            {
                                 break;
+                            }
 
-#if !NETCF
-                            case AsyncTargetWrapperOverflowAction.Block:
-                                while (_queue.Count >= RequestLimit)
-                                {
-                                    InternalLogger.Debug("Blocking...");
-                                    if (System.Threading.Monitor.Wait(this))
-                                    {
-                                        InternalLogger.Debug("Entered critical section.");
-                                    }
-                                    else
-                                    {
-                                        InternalLogger.Debug("Failed to enter critical section.");
-                                    }
-                                }
-                                InternalLogger.Debug("Limit ok.");
-                                break;
-#endif
+                            this.WrappedTarget.WriteLogEvents(pendingRequests.ToArray());
+                        }
+                        finally
+                        {
+                            this.RequestQueue.BatchProcessed(pendingRequests);
                         }
                     }
-                    _queue.Enqueue(o);
+                    while (this.flushAll);
                 }
-            }
-
-            /// <summary>
-            /// Dequeues a maximum of <c>count</c> items from the queue
-            /// and adds returns the <see cref="ArrayList"/> containing them.
-            /// </summary>
-            /// <param name="count">Maximum number of items to be dequeued.</param>
-            public ArrayList DequeueBatch(int count)
-            {
-                ArrayList target = new ArrayList();
-                lock (this)
+                catch (Exception ex)
                 {
-                    for (int i = 0; i < count; ++i)
-                    {
-                        if (_queue.Count <= 0)
-                            break;
-
-                        object o = _queue.Dequeue();
-
-                        target.Add(o);
-                    }
-#if !NETCF
-                    if (OnOverflow == AsyncTargetWrapperOverflowAction.Block)
-                        System.Threading.Monitor.PulseAll(this);
-#endif
+                    InternalLogger.Error("Error in lazy writer timer procedure: {0}", ex);
                 }
-                _batchedItems = target.Count;
-                return target;
-            }
-
-            /// <summary>
-            /// Notifies the queue that the request batch has been processed.
-            /// </summary>
-            /// <param name="batch">The batch.</param>
-            public void BatchProcessed(ArrayList batch)
-            {
-                _batchedItems = 0;
-            }
-
-            /// <summary>
-            /// Clears the queue.
-            /// </summary>
-            public void Clear()
-            {
-                lock (this)
-                {
-                    _queue.Clear();
-                }
-            }
-
-            /// <summary>
-            /// Number of requests currently in the queue.
-            /// </summary>
-            public int RequestCount
-            {
-                get { return _queue.Count; }
-            }
-
-            /// <summary>
-            /// Number of requests currently being processed (in the queue + batched)
-            /// </summary>
-            public int UnprocessedRequestCount
-            {
-                get { return _queue.Count + _batchedItems; }
             }
         }
-
     }
 }

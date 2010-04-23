@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -32,32 +32,30 @@
 // 
 
 using System;
+using System.Diagnostics;
 using System.Xml;
 using System.Reflection;
 
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
-	public class ThreadNameTests : NLogTestBase
-	{
-        [Test]
+    [TestClass]
+    public class ThreadNameTests : NLogTestBase
+    {
+        [TestMethod]
         public void ThreadNameTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${threadname} ${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             if (System.Threading.Thread.CurrentThread.Name == null)
                 System.Threading.Thread.CurrentThread.Name = "mythreadname";

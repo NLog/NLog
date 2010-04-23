@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -38,18 +38,21 @@ using System.Globalization;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
-	public class ExceptionTests : NLogTestBase
-	{
-        [Test]
+    using System.Collections.Generic;
+
+    [TestClass]
+    public class ExceptionTests : NLogTestBase
+    {
+        private Logger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionTests");
+
+        [TestMethod]
         public void Test1()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -66,23 +69,48 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
+            string exceptionMessage = "Test exception";
+            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            logger.ErrorException("msg", ex);
+            AssertDebugLastMessage("debug1", exceptionMessage);
+            AssertDebugLastMessage("debug2", ex.StackTrace);
+            AssertDebugLastMessage("debug3", typeof(InvalidOperationException).FullName);
+            AssertDebugLastMessage("debug4", typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug5", ex.ToString());
+            AssertDebugLastMessage("debug6", exceptionMessage);
 
+            // each version of the framework produces slightly different information for MethodInfo, so we just 
+            // make sure it's not empty
+            var debug7Target = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
+            Assert.IsFalse(string.IsNullOrEmpty(debug7Target.LastMessage));
+
+            AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
+        }
+
+        private Exception GetExceptionWithStackTrace(string exceptionMessage)
+        {
             try
             {
-                throw new Exception("Test exception");
+                GenericClass<int, string, bool>.Method1("aaa", true, null, 42, DateTime.Now);
+                return null;
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                LogManager.GetCurrentClassLogger().ErrorException("msg", ex);
-                AssertDebugLastMessage("debug1", "Test exception");
-                AssertDebugLastMessage("debug2", ex.StackTrace);
-                AssertDebugLastMessage("debug3", typeof(Exception).FullName);
-                AssertDebugLastMessage("debug4", typeof(Exception).Name);
-                AssertDebugLastMessage("debug5", ex.ToString());
-                AssertDebugLastMessage("debug6", "Test exception");
-                AssertDebugLastMessage("debug7", ex.TargetSite.ToString());
-                AssertDebugLastMessage("debug8", "Test exception*Exception");
+                return exception;
+            }
+        }
+
+        private class GenericClass<TA, TB, TC>
+        {
+            internal static List<GenericClass<TA, TB, TC>> Method1(string aaa, bool b, object o, int i, DateTime now)
+            {
+                Method2(aaa, b, o, i, now, null, null);
+                return null;
+            }
+
+            internal static int Method2<T1, T2, T3>(T1 aaa, T2 b, T3 o, int i, DateTime now, Nullable<int> gfff, List<int>[] something)
+            {
+                throw new InvalidOperationException("Test exception");
             }
         }
     }

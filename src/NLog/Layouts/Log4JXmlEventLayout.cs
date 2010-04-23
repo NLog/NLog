@@ -1,102 +1,78 @@
-using NLog.LayoutRenderers;
-using System.Text;
+// 
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
+// 
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+// * Redistributions of source code must retain the above copyright notice, 
+//   this list of conditions and the following disclaimer. 
+// 
+// * Redistributions in binary form must reproduce the above copyright notice,
+//   this list of conditions and the following disclaimer in the documentation
+//   and/or other materials provided with the distribution. 
+// 
+// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   contributors may be used to endorse or promote products derived from this
+//   software without specific prior written permission. 
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// THE POSSIBILITY OF SUCH DAMAGE.
+// 
+
 namespace NLog.Layouts
 {
+    using System.ComponentModel;
+    using System.Text;
+    using NLog.Contexts;
+    using NLog.LayoutRenderers;
+
     /// <summary>
     /// A specialized layout that renders Log4j-compatible XML events.
     /// </summary>
     [Layout("Log4JXmlEventLayout")]
-    public class Log4JXmlEventLayout : ILayout
+    public class Log4JXmlEventLayout : Layout
     {
-        private Log4JXmlEventLayoutRenderer _renderer = new Log4JXmlEventLayoutRenderer();
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Log4JXmlEventLayout" /> class.
+        /// </summary>
+        public Log4JXmlEventLayout()
+        {
+            this.Renderer = new Log4JXmlEventLayoutRenderer();
+        }
 
         /// <summary>
-        /// Returns the <see cref="Log4JXmlEventLayoutRenderer"/> instance that renders log events.
+        /// Gets the <see cref="Log4JXmlEventLayoutRenderer"/> instance that renders log events.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer Renderer
-        {
-            get { return _renderer; }
-        }
+        public Log4JXmlEventLayoutRenderer Renderer { get; private set; }
 
         /// <summary>
         /// Renders the layout for the specified logging event by invoking layout renderers.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         /// <returns>The rendered layout.</returns>
-        public string GetFormattedMessage(LogEventInfo logEvent)
+        public override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            string cachedValue = logEvent.GetCachedLayoutValue(this);
-            if (cachedValue != null)
-                return cachedValue;
+            string cachedValue;
 
-            StringBuilder sb = new StringBuilder(_renderer.GetEstimatedBufferSize(logEvent));
+            if (!logEvent.TryGetCachedLayoutValue(this, out cachedValue))
+            {
+                cachedValue = this.Renderer.Render(logEvent);
+                logEvent.AddCachedLayoutValue(this, cachedValue);
+            }
 
-            _renderer.Append(sb, logEvent);
-            logEvent.AddCachedLayoutValue(this, sb.ToString());
-            return sb.ToString();
-        }
-
-        /// <summary>
-        /// Returns the value indicating whether a stack trace and/or the source file
-        /// information should be gathered during layout processing.
-        /// </summary>
-        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
-        public int NeedsStackTrace()
-        {
-            return _renderer.NeedsStackTrace();
-        }
-
-        /// <summary>
-        /// Returns the value indicating whether this layout includes any volatile 
-        /// layout renderers.
-        /// </summary>
-        /// <returns><see langword="true" /> when the layout includes at least 
-        /// one volatile renderer, <see langword="false"/> otherwise.</returns>
-        /// <remarks>
-        /// Volatile layout renderers are dependent on information not contained 
-        /// in <see cref="LogEventInfo"/> (such as thread-specific data, MDC data, NDC data).
-        /// </remarks>
-        public bool IsVolatile()
-        {
-            return _renderer.IsVolatile();
-        }
-
-        /// <summary>
-        /// Precalculates the layout for the specified log event and stores the result
-        /// in per-log event cache.
-        /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        /// <remarks>
-        /// Calling this method enables you to store the log event in a buffer
-        /// and/or potentially evaluate it in another thread even though the 
-        /// layout may contain thread-dependent renderer.
-        /// </remarks>
-        public void Precalculate(LogEventInfo logEvent)
-        {
-            GetFormattedMessage(logEvent);
-        }
-
-        /// <summary>
-        /// Initializes the layout.
-        /// </summary>
-        public void Initialize()
-        {
-        }
-
-        /// <summary>
-        /// Closes the layout.
-        /// </summary>
-        public void Close()
-        {
-        }
-
-        /// <summary>
-        /// Add this layout and all sub-layouts to the specified collection..
-        /// </summary>
-        /// <param name="layouts">The collection of layouts.</param>
-        public void PopulateLayouts(LayoutCollection layouts)
-        {
-            layouts.Add(this);
+            return cachedValue;
         }
     }
 }

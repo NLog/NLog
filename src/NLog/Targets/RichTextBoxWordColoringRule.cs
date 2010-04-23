@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,172 +31,140 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF && !MONO
-
-using System;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
-
-using NLog.Config;
-using NLog.Conditions;
-using NLog.Targets;
-using System.Drawing;
+#if !NET_CF && !MONO && !SILVERLIGHT
 
 namespace NLog.Targets
 {
+    using System.ComponentModel;
+    using System.Drawing;
+    using System.Text.RegularExpressions;
+    using NLog.Config;
+
     /// <summary>
     /// Highlighting rule for Win32 colorful console.
     /// </summary>
-    public class RichTextBoxWordColoringRule
+    public class RichTextBoxWordColoringRule : INLogConfigurationItem
     {
-        private string _text;
-        private string _regex;
-        private bool _wholeWords = false;
-        private bool _ignoreCase = false;
-        private Regex _compiledRegex;
-        private string _fontColor = "Empty";
-        private string _backColor = "Empty";
-        private FontStyle _style;
+        private Regex compiledRegex;
 
         /// <summary>
-        /// The regular expression to be matched. You must specify either <c>text</c> or <c>regex</c>.
+        /// Initializes a new instance of the <see cref="RichTextBoxWordColoringRule" /> class.
         /// </summary>
-        /// <docgen category="Search Criteria" order="10" />
-        public string Regex
+        public RichTextBoxWordColoringRule()
         {
-            get { return _regex; }
-            set { _regex = value; }
+            this.FontColor = "Empty";
+            this.BackgroundColor = "Empty";
         }
 
         /// <summary>
-        /// The text to be matched. You must specify either <c>text</c> or <c>regex</c>.
+        /// Initializes a new instance of the <see cref="RichTextBoxWordColoringRule" /> class.
         /// </summary>
-        /// <docgen category="Search Criteria" order="10" />
-        public string Text
+        /// <param name="text">The text to be matched..</param>
+        /// <param name="fontColor">Color of the text.</param>
+        /// <param name="backgroundColor">Color of the background.</param>
+        public RichTextBoxWordColoringRule(string text, string fontColor, string backgroundColor)
         {
-            get { return _text; }
-            set { _text = value; }
+            this.Text = text;
+            this.FontColor = fontColor;
+            this.BackgroundColor = backgroundColor;
         }
 
         /// <summary>
-        /// Font style of matched text. 
-        /// Possible values are the same as in <c>FontStyle</c> enum in <c>System.Drawing</c>
+        /// Initializes a new instance of the <see cref="RichTextBoxWordColoringRule" /> class.
         /// </summary>
-        /// <docgen category="Formatting Options" order="10" />
-        public FontStyle Style
+        /// <param name="text">The text to be matched..</param>
+        /// <param name="textColor">Color of the text.</param>
+        /// <param name="backgroundColor">Color of the background.</param>
+        /// <param name="fontStyle">The font style.</param>
+        public RichTextBoxWordColoringRule(string text, string textColor, string backgroundColor, FontStyle fontStyle)
         {
-            get { return _style; }
-            set { _style = value; }
+            this.Text = text;
+            this.FontColor = textColor;
+            this.BackgroundColor = backgroundColor;
+            this.Style = fontStyle;
         }
 
         /// <summary>
-        /// Match whole words only.
+        /// Gets or sets the regular expression to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
-        /// <docgen category="Search Criteria" order="10" />
-        [System.ComponentModel.DefaultValue(false)]
-        public bool WholeWords
-        {
-            get { return _wholeWords; }
-            set { _wholeWords = value; }
-        }
+        /// <docgen category='Rule Matching Options' order='10' />
+        public string Regex { get; set; }
 
         /// <summary>
-        /// Ignore case when comparing texts.
+        /// Gets or sets the text to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
-        /// <docgen category="Search Criteria" order="10" />
-        [System.ComponentModel.DefaultValue(false)]
-        public bool IgnoreCase
-        {
-            get { return _ignoreCase; }
-            set { _ignoreCase = value; }
-        }
+        /// <docgen category='Rule Matching Options' order='10' />
+        public string Text { get; set; }
 
         /// <summary>
-        /// Compiled regular expression that matches either Text or Regex property.
+        /// Gets or sets a value indicating whether to match whole words only.
+        /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
+        [DefaultValue(false)]
+        public bool WholeWords { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to ignore case when comparing texts.
+        /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
+        [DefaultValue(false)]
+        public bool IgnoreCase { get; set; }
+
+        /// <summary>
+        /// Gets or sets the font style of matched text. 
+        /// Possible values are the same as in <c>FontStyle</c> enum in <c>System.Drawing</c>.
+        /// </summary>
+        /// <docgen category='Formatting Options' order='10' />
+        public FontStyle Style { get; set; }
+
+        /// <summary>
+        /// Gets the compiled regular expression that matches either Text or Regex property.
         /// </summary>
         public Regex CompiledRegex
         {
             get
             {
-                if (_compiledRegex == null)
+                if (this.compiledRegex == null)
                 {
-                    string regexpression = _regex;
-                    if (regexpression == null && _text != null)
+                    string regexpression = this.Regex;
+                    if (regexpression == null && this.Text != null)
                     {
-                        regexpression = System.Text.RegularExpressions.Regex.Escape(_text);
-                        if (WholeWords)
+                        regexpression = System.Text.RegularExpressions.Regex.Escape(this.Text);
+                        if (this.WholeWords)
+                        {
                             regexpression = "\b" + regexpression + "\b";
+                        }
                     }
 
                     RegexOptions regexOptions = RegexOptions.Compiled;
-                    if (IgnoreCase)
+                    if (this.IgnoreCase)
+                    {
                         regexOptions |= RegexOptions.IgnoreCase;
+                    }
 
-                    _compiledRegex = new Regex(regexpression, regexOptions);
+                    this.compiledRegex = new Regex(regexpression, regexOptions);
                 }
 
-                return _compiledRegex;
+                return this.compiledRegex;
             }
         }
 
         /// <summary>
-        /// The font color.
-        /// Names are identical with KnownColor enum extended with Empty value which means that font color won't be changed
+        /// Gets or sets the font color.
+        /// Names are identical with KnownColor enum extended with Empty value which means that font color won't be changed.
         /// </summary>
-        /// <docgen category="Formatting Options" order="10" />
-        [System.ComponentModel.DefaultValue("Empty")]
-        public string FontColor
-        {
-            get { return _fontColor; }
-            set { _fontColor = value; }
-        }
+        /// <docgen category='Formatting Options' order='10' />
+        [DefaultValue("Empty")]
+        public string FontColor { get; set; }
 
         /// <summary>
-        /// The background color. 
+        /// Gets or sets the background color. 
         /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed
-        /// Background color will be set only in .net 2.0
+        /// Background color will be set only in .net 2.0.
         /// </summary>
-        /// <docgen category="Formatting Options" order="10" />
-        [System.ComponentModel.DefaultValue("Empty")]
-        [SupportedRuntime(Framework = RuntimeFramework.DotNetFramework, MinRuntimeVersion = "2.0")]
-        public string BackgroundColor
-        {
-            get { return _backColor; }
-            set { _backColor = value; }
-        }
-
-        /// <summary>
-        /// Creates a new instance of <see cref="RichTextBoxWordColoringRule"/>
-        /// </summary>
-        public RichTextBoxWordColoringRule()
-        {
-        }
-
-        /// <summary>
-        /// Creates a new instance of <see cref="RichTextBoxWordColoringRule"/>
-        /// and sets Text, BackgroundColor and ForegroundColor properties.
-        /// </summary>
-        public RichTextBoxWordColoringRule(string text, string fontColor, string backgroundColor)
-        {
-            Text = text;
-            FontColor = fontColor;
-            BackgroundColor = backgroundColor;
-        }
-
-        /// <summary>
-        /// Creates a new instance of <see cref="RichTextBoxWordColoringRule"/>
-        /// and sets Text, BackgroundColor, FontColor and Style properties.
-        /// </summary>
-        public RichTextBoxWordColoringRule(string text, string fontColor, string backgroundColor, FontStyle fontStyle)
-        {
-            Text = text;
-            FontColor = fontColor;
-            BackgroundColor = backgroundColor;
-            Style = fontStyle;
-        }
-
+        /// <docgen category='Formatting Options' order='10' />
+        [DefaultValue("Empty")]
+        public string BackgroundColor { get; set; }
     }
 }
 #endif

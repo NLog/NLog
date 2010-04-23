@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,24 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
 using System.Xml;
-
-using NLog;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Config;
-
-using NUnit.Framework;
 
 namespace NLog.UnitTests
 {
-    [TestFixture]
-	public class CaseSensitivityTests : NLogTestBase
-	{
-        [Test]
-        public void UpperCaseTest()
+    [TestClass]
+    public class CaseSensitivityTests : NLogTestBase
+    {
+        [TestMethod]
+        public void LowerCaseTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='debug' layout='${message}' /></targets>
                 <rules>
@@ -59,8 +54,6 @@ namespace NLog.UnitTests
                     </logger>
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
@@ -84,12 +77,11 @@ namespace NLog.UnitTests
             AssertDebugCounter("debug", 4);
         }
 
-        [Test]
-        public void LowerCaseTest()
+        [TestMethod]
+        public void UpperCaseTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
-            <nlog>
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
                 <TARGETS><TARGET NAME='DEBUG' TYPE='DEBUG' LAYOUT='${MESSAGE}' /></TARGETS>
                 <RULES>
                     <LOGGER NAME='*' MINLEVEL='INFO' APPENDTO='DEBUG'>
@@ -99,8 +91,6 @@ namespace NLog.UnitTests
                     </LOGGER>
                 </RULES>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("msg");

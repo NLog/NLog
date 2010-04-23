@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,74 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.IO;
-using System.Threading;
-using System.Collections;
-using System.Collections.Specialized;
-
-using NLog;
-using NLog.Config;
-
-using NLog.Internal;
-
 namespace NLog.Targets.Wrappers
 {
+    using NLog.Config;
+
     /// <summary>
     /// Base class for targets wrap other (single) targets.
     /// </summary>
-    public abstract class WrapperTargetBase: Target
+    public abstract class WrapperTargetBase : Target
     {
-        private Target _wrappedTarget = null;
-
         /// <summary>
-        /// The target that this target wraps.
+        /// Gets or sets the target that is wrapped by this target.
         /// </summary>
-        /// <docgen category="General Options" order="10" />
+        /// <docgen category='General Options' order='11' />
         [RequiredParameter]
-        public Target WrappedTarget
-        {
-            get { return _wrappedTarget; }
-            set { _wrappedTarget = value; }
-        }
-
-        /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
-        {
-            base.PopulateLayouts (layouts);
-            WrappedTarget.PopulateLayouts(layouts);
-        }
-
-        /// <summary>
-        /// Closes the target by forwarding the call to the <see cref="WrapperTargetBase.WrappedTarget"/> object.
-        /// </summary>
-        protected internal override void Close()
-        {
-            base.Close();
-            WrappedTarget.Close();
-        }
-
-        /// <summary>
-        /// Forwards the call to <see cref="WrapperTargetBase.WrappedTarget"/>.NeedsStackTrace().
-        /// </summary>
-        /// <returns>The value of forwarded call</returns>
-        protected internal override int NeedsStackTrace()
-        {
-            return WrappedTarget.NeedsStackTrace();
-        }
-
-        /// <summary>
-        /// Initializes the target by forwarding the call 
-        /// to <see cref="Target.Initialize"/> to the <see cref="WrapperTargetBase.WrappedTarget"/>.
-        /// </summary>
-        public override void Initialize()
-        {
-            WrappedTarget.Initialize();
-        }
+        public Target WrappedTarget { get; set; }
 
         /// <summary>
         /// Returns the text representation of the object. Used for diagnostics.
@@ -106,7 +53,16 @@ namespace NLog.Targets.Wrappers
         /// <returns>A string that describes the target.</returns>
         public override string ToString()
         {
-            return ((this.Name != null) ? this.Name : "unnamed") + ":" + this.GetType().Name + "(" + ((WrappedTarget != null) ? WrappedTarget.ToString() : "null") + ")";
+            return base.ToString() + "(" + this.WrappedTarget + ")";
+        }
+
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public override void Flush(System.TimeSpan timeout)
+        {
+            this.WrappedTarget.Flush(timeout);
         }
     }
 }

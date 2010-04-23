@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="NLogSilverlightApp.Web.NLogReceiver" CodeBehind="NLogReceiver.svc.cs" %>

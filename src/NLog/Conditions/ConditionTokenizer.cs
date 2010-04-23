@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,429 +31,565 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Collections;
-
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
+    using System;
+    using System.Text;
+
     /// <summary>
     /// Hand-written tokenizer for conditions.
     /// </summary>
-    internal sealed class ConditionTokenizer 
+    internal sealed class ConditionTokenizer
     {
-        private string _inputString = null;
-        private int _position = 0;
-        private int _tokenPosition = 0;
-
-        private ConditionTokenType _tokenType;
-        private string _tokenValue;
-        private string _tokenValueLowercase;
-
-        public bool IgnoreWhiteSpace = true;
-
-        public int TokenPosition
+        private static readonly ConditionTokenType[] charIndexToTokenType = new ConditionTokenType[128];
+        private static readonly CharToTokenType[] charToTokenType =
         {
-            get { return _tokenPosition; }
+            new CharToTokenType('<', ConditionTokenType.LessThan),
+            new CharToTokenType('>', ConditionTokenType.GreaterTo),
+            new CharToTokenType('=', ConditionTokenType.EqualTo),
+            new CharToTokenType('(', ConditionTokenType.LeftParen),
+            new CharToTokenType(')', ConditionTokenType.RightParen),
+            new CharToTokenType('.', ConditionTokenType.Dot),
+            new CharToTokenType(',', ConditionTokenType.Comma),
+            new CharToTokenType('!', ConditionTokenType.Not),
+        };
+
+        private string inputString;
+        private int position;
+
+        /// <summary>
+        /// Initializes static members of the ConditionTokenizer class.
+        /// </summary>
+        static ConditionTokenizer()
+        {
+            for (int i = 0; i < 128; ++i)
+            {
+                charIndexToTokenType[i] = ConditionTokenType.Invalid;
+            }
+
+            foreach (CharToTokenType cht in charToTokenType)
+            {
+                // Console.WriteLine("Setting up {0} to {1}", cht.ch, cht.tokenType);
+                charIndexToTokenType[(int)cht.Character] = cht.TokenType;
+            }
         }
 
-        public ConditionTokenType TokenType
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConditionTokenizer" /> class.
+        /// </summary>
+        public ConditionTokenizer()
         {
-            get { return _tokenType; }
-            set { _tokenType = value; }
+            this.IgnoreWhiteSpace = true;
         }
 
-        public string TokenValue
-        {
-            get { return _tokenValue; }
-        }
+        /// <summary>
+        /// Gets or sets a value indicating whether to ignore white space.
+        /// </summary>
+        /// <value>A value of <c>true</c> if white space should be ignored; otherwise, <c>false</c>.</value>
+        public bool IgnoreWhiteSpace { get; set; }
 
+        /// <summary>
+        /// Gets the token position.
+        /// </summary>
+        /// <value>The token position.</value>
+        public int TokenPosition { get; private set; }
+
+        /// <summary>
+        /// Gets the type of the token.
+        /// </summary>
+        /// <value>The type of the token.</value>
+        public ConditionTokenType TokenType { get; private set; }
+
+        /// <summary>
+        /// Gets the token value.
+        /// </summary>
+        /// <value>The token value.</value>
+        public string TokenValue { get; private set; }
+
+        /// <summary>
+        /// Gets the value of a string token.
+        /// </summary>
+        /// <value>The string token value.</value>
         public string StringTokenValue
         {
-            get 
+            get
             {
-                string s = _tokenValue;
+                string s = this.TokenValue;
 
                 return s.Substring(1, s.Length - 2).Replace("''", "'");
             }
         }
 
-        public ConditionTokenizer() {}
-
-        void SkipWhitespace() 
+        /// <summary>
+        /// Initializes the tokenizer with a given input string.
+        /// </summary>
+        /// <param name="inputString">The input string.</param>
+        public void InitTokenizer(string inputString)
         {
-            int ch;
+            this.inputString = inputString;
+            this.position = 0;
+            this.TokenType = ConditionTokenType.BeginningOfInput;
 
-            while ((ch = PeekChar()) != -1) 
-            {
-                if (!Char.IsWhiteSpace((char)ch))
-                    break;
-                ReadChar();
-            };
+            this.GetNextToken();
         }
 
-        public void InitTokenizer(string s) 
+        /// <summary>
+        /// Asserts current token type and advances to the next token.
+        /// </summary>
+        /// <param name="tokenType">Expected token type.</param>
+        /// <remarks>If token type doesn't match, an exception is thrown.</remarks>
+        public void Expect(ConditionTokenType tokenType)
         {
-            _inputString = s;
-            _position = 0;
-            _tokenType = ConditionTokenType.BOF;
-
-            GetNextToken();
-        }
-
-        int PeekChar() 
-        {
-            if (_position < _inputString.Length) 
+            if (this.TokenType != tokenType)
             {
-                return (int)_inputString[_position];
-            } 
-            else 
-            {
-                return -1;
+                throw new ConditionParseException("Expected token of type: " + tokenType + ", got " + this.TokenType + " (" + this.TokenValue + ").");
             }
+
+            this.GetNextToken();
         }
 
-        int ReadChar() 
+        /// <summary>
+        /// Asserts that current token is a specific keyword and advances to the next token.
+        /// </summary>
+        /// <param name="expectedKeyword">The expected keyword.</param>
+        /// <remarks>If token is not the expected keyword, an exception is thrown.</remarks>
+        public void ExpectKeyword(string expectedKeyword)
         {
-            if (_position < _inputString.Length) 
+            if (this.TokenType != ConditionTokenType.Keyword)
             {
-                return (int)_inputString[_position++];
-            } 
-            else 
-            {
-                return -1;
+                throw new ConditionParseException("Expected keyword: " + expectedKeyword + ", got " + this.TokenType + ".");
             }
+
+            if (!this.TokenValue.Equals(expectedKeyword, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new ConditionParseException("Expected keyword: " + expectedKeyword + ", got " + this.TokenValue + ".");
+            }
+
+            this.GetNextToken();
         }
 
-        public void Expect(ConditionTokenType type) 
+        /// <summary>
+        /// Asserts that current token is a keyword and returns its value and advances to the next token.
+        /// </summary>
+        /// <returns>Keyword value.</returns>
+        public string EatKeyword()
         {
-            if (_tokenType != type)
-                throw new ConditionParseException("Expected token of type: " + type + ", got " + _tokenType + " (" + _tokenValue + ").");
-
-            GetNextToken();
-        }
-
-
-        public void ExpectKeyword(string s) 
-        {
-            if (_tokenType != ConditionTokenType.Keyword)
-                throw new ConditionParseException("Expected keyword: " + s + ", got " + _tokenType + ".");
-
-            if (_tokenValueLowercase != s)
-                throw new ConditionParseException("Expected keyword: " + s + ", got " + _tokenValueLowercase + ".");
-
-            GetNextToken();
-        }
-
-        public string EatKeyword() 
-        {
-            if (_tokenType != ConditionTokenType.Keyword)
+            if (this.TokenType != ConditionTokenType.Keyword)
+            {
                 throw new ConditionParseException("Identifier expected");
+            }
 
-            string s = (string)_tokenValue;
-            GetNextToken();
+            string s = (string)this.TokenValue;
+            this.GetNextToken();
             return s;
         }
 
-        public bool IsKeyword(string s) 
+        /// <summary>
+        /// Gets or sets a value indicating whether current keyword is equal to the specified value.
+        /// </summary>
+        /// <param name="keyword">The keyword.</param>
+        /// <returns>
+        /// A value of <c>true</c> if current keyword is equal to the specified value; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsKeyword(string keyword)
         {
-            if (_tokenType != ConditionTokenType.Keyword)
-                return false;
-
-            if (_tokenValueLowercase != s)
-                return false;
-
-            return true;
-        }
-
-        public bool IsKeyword() 
-        {
-            if (_tokenType != ConditionTokenType.Keyword)
-                return false;
-
-            return true;
-        }
-
-        public bool IsEOF() 
-        {
-            if (_tokenType != ConditionTokenType.EOF)
-                return false;
-            return true;
-        }
-
-        public bool IsNumber() 
-        {
-            return _tokenType == ConditionTokenType.Number;
-        }
-
-        public bool IsToken(ConditionTokenType token) 
-        {
-            return _tokenType == token;
-        }
-
-        public bool IsToken(object[] tokens) 
-        {
-            for (int i = 0; i < tokens.Length; ++i) 
+            if (this.TokenType != ConditionTokenType.Keyword)
             {
-                if (tokens[i] is string) 
+                return false;
+            }
+
+            if (!this.TokenValue.Equals(keyword, StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether current token is a keyword.
+        /// </summary>
+        /// <returns>
+        /// A value of <c>true</c> if current token is a keyword; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsKeyword()
+        {
+            if (this.TokenType != ConditionTokenType.Keyword)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the tokenizer has reached the end of the token stream.
+        /// </summary>
+        /// <returns>
+        /// A value of <c>true</c> if the tokenizer has reached the end of the token stream; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsEOF()
+        {
+            if (this.TokenType != ConditionTokenType.EndOfInput)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether current token is a number.
+        /// </summary>
+        /// <returns>
+        /// A value of <c>true</c> if current token is a number; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsNumber()
+        {
+            return this.TokenType == ConditionTokenType.Number;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the specified token is of specified type.
+        /// </summary>
+        /// <param name="tokenType">The token type.</param>
+        /// <returns>
+        /// A value of <c>true</c> if current token is of specified type; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsToken(ConditionTokenType tokenType)
+        {
+            return this.TokenType == tokenType;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the current token is equal to one of the specified values (keyword names or token types).
+        /// </summary>
+        /// <param name="tokens">Possible token values.</param>
+        /// <returns>A value of <c>true</c> if the specified token is equal to one of the specified values; otherwise, <c>false</c>.</returns>
+        public bool IsToken(object[] tokens)
+        {
+            for (int i = 0; i < tokens.Length; ++i)
+            {
+                if (tokens[i] is string)
                 {
-                    if (IsKeyword((string)tokens[i]))
+                    if (this.IsKeyword((string)tokens[i]))
+                    {
                         return true;
-                } 
-                else 
+                    }
+                }
+                else
                 {
-                    if (_tokenType == (ConditionTokenType)tokens[i])
+                    if (this.TokenType == (ConditionTokenType)tokens[i])
+                    {
                         return true;
+                    }
                 }
             }
+
             return false;
         }
 
-        public bool IsPunctuation() 
+        /// <summary>
+        /// Gets or sets a value indicating whether current token is a punctuation.
+        /// </summary>
+        /// <returns>
+        /// A value of <c>true</c> if this instance is punctuation; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsPunctuation()
         {
-            return (_tokenType >= ConditionTokenType.FirstPunct && _tokenType < ConditionTokenType.LastPunct);
+            return this.TokenType >= ConditionTokenType.FirstPunct && this.TokenType < ConditionTokenType.LastPunct;
         }
 
-        struct CharToTokenType 
+        /// <summary>
+        /// Gets the next token and sets <see cref="TokenType"/> and <see cref="TokenValue"/> properties.
+        /// </summary>
+        public void GetNextToken()
         {
-            public char ch;
-            public ConditionTokenType tokenType;
-
-            public CharToTokenType(char ch, ConditionTokenType tokenType) 
+            if (this.TokenType == ConditionTokenType.EndOfInput)
             {
-                this.ch = ch;
-                this.tokenType = tokenType;
+                throw new ConditionParseException("Cannot read past end of stream.");
             }
-        }
 
-        static CharToTokenType[] charToTokenType =
+            if (this.IgnoreWhiteSpace)
             {
-                new CharToTokenType('<', ConditionTokenType.LT),
-                new CharToTokenType('>', ConditionTokenType.GT),
-                new CharToTokenType('=', ConditionTokenType.EQ),
-                new CharToTokenType('(', ConditionTokenType.LeftParen),
-                new CharToTokenType(')', ConditionTokenType.RightParen),
-                new CharToTokenType('.', ConditionTokenType.Dot),
-                new CharToTokenType(',', ConditionTokenType.Comma),
-                new CharToTokenType('!', ConditionTokenType.Not),
-        };
-
-        static ConditionTokenType[] charIndexToTokenType = new ConditionTokenType[128];
-        
-        static ConditionTokenizer() 
-        {
-            for (int i = 0; i < 128; ++i) 
-            {
-                charIndexToTokenType[i] = ConditionTokenType.Invalid;
-            };
-
-            foreach (CharToTokenType cht in charToTokenType) 
-            {
-                // Console.WriteLine("Setting up {0} to {1}", cht.ch, cht.tokenType);
-                charIndexToTokenType[(int)cht.ch] = cht.tokenType;
+                this.SkipWhitespace();
             }
-        }
 
-        public void GetNextToken() 
-        {
-            if (_tokenType == ConditionTokenType.EOF)
-                throw new Exception("Cannot read past end of stream.");
+            this.TokenPosition = this.position;
 
-            if (IgnoreWhiteSpace) 
+            int i = this.PeekChar();
+            if (i == -1)
             {
-                SkipWhitespace();
-            };
-
-            _tokenPosition = _position;
-
-            int i = PeekChar();
-            if (i == -1) 
-            {
-                TokenType = ConditionTokenType.EOF;
-                return ;
+                this.TokenType = ConditionTokenType.EndOfInput;
+                return;
             }
 
             char ch = (char)i;
 
-            if (!IgnoreWhiteSpace && Char.IsWhiteSpace(ch)) 
+            if (!this.IgnoreWhiteSpace && Char.IsWhiteSpace(ch))
             {
-                StringBuilder sb = new StringBuilder();
-                int ch2;
-
-                while ((ch2 = PeekChar()) != -1) 
-                {
-                    if (!Char.IsWhiteSpace((char)ch2))
-                        break;
-
-                    sb.Append((char)ch2);
-                    ReadChar();
-                };
-
-                TokenType = ConditionTokenType.Whitespace;
-                _tokenValue = sb.ToString();
-                return ;
+                this.ParseWhitespace();
+                return;
             }
 
-            if (Char.IsDigit(ch)) 
+            if (Char.IsDigit(ch))
             {
-                TokenType = ConditionTokenType.Number;
-                string s = "";
-
-                s += ch;
-                ReadChar();
-
-                while ((i = PeekChar()) != -1) 
-                {
-                    ch = (char)i;
-
-                    if (Char.IsDigit(ch) || (ch == '.')) 
-                    {
-                        s += (char)ReadChar();
-                    } 
-                    else 
-                    {
-                        break;
-                    };
-                };
-
-                _tokenValue = s;
-                return ;
+                this.ParseNumber(ch);
+                return;
             }
 
-            if (ch == '\'') 
+            if (ch == '\'')
             {
-                TokenType = ConditionTokenType.String;
-
-                StringBuilder sb = new StringBuilder();
-
-                sb.Append(ch);
-                ReadChar();
-
-                while ((i = PeekChar()) != -1) 
-                {
-                    ch = (char)i;
-
-                    sb.Append((char)ReadChar());
-
-                    if (ch == '\'') 
-                    {
-                        if (PeekChar() == (int)'\'') 
-                        {
-                            sb.Append('\'');
-                            ReadChar();
-                        } 
-                        else
-                            break;
-                    }
-                };
-
-                _tokenValue = sb.ToString();
-                return ;
+                this.ParseSingleQuotedString(ch);
+                return;
             }
 
-            if (ch == '_' || Char.IsLetter(ch)) 
+            if (ch == '_' || Char.IsLetter(ch))
             {
-                TokenType = ConditionTokenType.Keyword;
-
-                StringBuilder sb = new StringBuilder();
-
-                sb.Append((char)ch);
-
-                ReadChar();
-
-                while ((i = PeekChar()) != -1) 
-                {
-                    if ((char)i == '_' || (char)i == '-' || Char.IsLetterOrDigit((char)i)) 
-                    {
-                        sb.Append((char)ReadChar());
-                    } 
-                    else 
-                    {
-                        break;
-                    };
-                };
-
-                _tokenValue = sb.ToString();
-                _tokenValueLowercase = _tokenValue.ToLower();
-                return ;
+                this.ParseKeyword(ch);
+                return;
             }
 
-            ReadChar();
-            _tokenValue = ch.ToString();
+            this.ReadChar();
+            this.TokenValue = ch.ToString();
 
-            if (ch == '<' && PeekChar() == (int)'>') 
+            int nextChar = this.PeekChar();
+
+            if (ch == '<' && nextChar == '>')
             {
-                TokenType = ConditionTokenType.NE;
-                _tokenValue = "<>";
-                ReadChar();
-                return ;
+                this.TokenType = ConditionTokenType.NotEqual;
+                this.TokenValue = "<>";
+                this.ReadChar();
+                return;
             }
 
-            if (ch == '!' && PeekChar() == (int)'=') 
+            if (ch == '!' && nextChar == '=')
             {
-                TokenType = ConditionTokenType.NE;
-                _tokenValue = "!=";
-                ReadChar();
-                return ;
+                this.TokenType = ConditionTokenType.NotEqual;
+                this.TokenValue = "!=";
+                this.ReadChar();
+                return;
             }
 
-            if (ch == '&' && PeekChar() == (int)'&') 
+            if (ch == '&' && nextChar == '&')
             {
-                TokenType = ConditionTokenType.And;
-                _tokenValue = "&&";
-                ReadChar();
-                return ;
+                this.TokenType = ConditionTokenType.And;
+                this.TokenValue = "&&";
+                this.ReadChar();
+                return;
             }
 
-            if (ch == '|' && PeekChar() == (int)'|') 
+            if (ch == '|' && nextChar == '|')
             {
-                TokenType = ConditionTokenType.Or;
-                _tokenValue = "||";
-                ReadChar();
-                return ;
+                this.TokenType = ConditionTokenType.Or;
+                this.TokenValue = "||";
+                this.ReadChar();
+                return;
             }
 
-            if (ch == '<' && PeekChar() == (int)'=') 
+            if (ch == '<' && nextChar == '=')
             {
-                TokenType = ConditionTokenType.LE;
-                _tokenValue = "<=";
-                ReadChar();
-                return ;
+                this.TokenType = ConditionTokenType.LessThanOrEqualTo;
+                this.TokenValue = "<=";
+                this.ReadChar();
+                return;
             }
 
-            if (ch == '>' && PeekChar() == (int)'=') 
+            if (ch == '>' && nextChar == '=')
             {
-                TokenType = ConditionTokenType.GE;
-                _tokenValue = ">=";
-                ReadChar();
-                return ;
+                this.TokenType = ConditionTokenType.GreaterThanOrEqualTo;
+                this.TokenValue = ">=";
+                this.ReadChar();
+                return;
             }
 
-            if (ch == '=' && PeekChar() == (int)'=') 
+            if (ch == '=' && nextChar == '=')
             {
-                TokenType = ConditionTokenType.EQ;
-                _tokenValue = "==";
-                ReadChar();
-                return ;
+                this.TokenType = ConditionTokenType.EqualTo;
+                this.TokenValue = "==";
+                this.ReadChar();
+                return;
             }
 
-            if (ch >= 32 && ch < 128) 
+            if (ch >= 32 && ch < 128)
             {
                 ConditionTokenType tt = charIndexToTokenType[ch];
 
-                if (tt != ConditionTokenType.Invalid) 
+                if (tt != ConditionTokenType.Invalid)
                 {
-                    TokenType = tt;
-                    _tokenValue = new String(ch, 1);
-                    return ;
-                } 
-                else 
+                    this.TokenType = tt;
+                    this.TokenValue = new string(ch, 1);
+                    return;
+                }
+
+                throw new ConditionParseException("Invalid punctuation: " + ch);
+            }
+
+            throw new ConditionParseException("Invalid token: " + ch);
+        }
+
+        private void ParseWhitespace()
+        {
+            StringBuilder sb = new StringBuilder();
+            int ch2;
+
+            while ((ch2 = this.PeekChar()) != -1)
+            {
+                if (!Char.IsWhiteSpace((char)ch2))
                 {
-                    throw new Exception("Invalid punctuation: " + ch);
+                    break;
+                }
+
+                sb.Append((char)ch2);
+                this.ReadChar();
+            }
+
+            this.TokenType = ConditionTokenType.Whitespace;
+            this.TokenValue = sb.ToString();
+        }
+
+        private void ParseSingleQuotedString(char ch)
+        {
+            int i;
+            this.TokenType = ConditionTokenType.String;
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(ch);
+            this.ReadChar();
+
+            while ((i = this.PeekChar()) != -1)
+            {
+                ch = (char)i;
+
+                sb.Append((char)this.ReadChar());
+
+                if (ch == '\'')
+                {
+                    if (this.PeekChar() == (int)'\'')
+                    {
+                        sb.Append('\'');
+                        this.ReadChar();
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
-            throw new Exception("Invalid token: " + ch);
+
+            this.TokenValue = sb.ToString();
+        }
+
+        private void ParseKeyword(char ch)
+        {
+            int i;
+            this.TokenType = ConditionTokenType.Keyword;
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append((char)ch);
+
+            this.ReadChar();
+
+            while ((i = this.PeekChar()) != -1)
+            {
+                if ((char)i == '_' || (char)i == '-' || Char.IsLetterOrDigit((char)i))
+                {
+                    sb.Append((char)this.ReadChar());
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            this.TokenValue = sb.ToString();
+        }
+
+        private void ParseNumber(char ch)
+        {
+            int i;
+            this.TokenType = ConditionTokenType.Number;
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(ch);
+            this.ReadChar();
+
+            while ((i = this.PeekChar()) != -1)
+            {
+                ch = (char)i;
+
+                if (Char.IsDigit(ch) || (ch == '.'))
+                {
+                    sb.Append((char)this.ReadChar());
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            this.TokenValue = sb.ToString();
+        }
+
+        private void SkipWhitespace()
+        {
+            int ch;
+
+            while ((ch = this.PeekChar()) != -1)
+            {
+                if (!Char.IsWhiteSpace((char)ch))
+                {
+                    break;
+                }
+
+                this.ReadChar();
+            }
+        }
+
+        private int PeekChar()
+        {
+            if (this.position < this.inputString.Length)
+            {
+                return (int)this.inputString[this.position];
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        private int ReadChar()
+        {
+            if (this.position < this.inputString.Length)
+            {
+                return (int)this.inputString[this.position++];
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        /// <summary>
+        /// Mapping between characters and token types for punctuations.
+        /// </summary>
+        private struct CharToTokenType
+        {
+            public readonly char Character;
+            public readonly ConditionTokenType TokenType;
+
+            /// <summary>
+            /// Initializes a new instance of the CharToTokenType struct.
+            /// </summary>
+            /// <param name="character">The character.</param>
+            /// <param name="tokenType">Type of the token.</param>
+            public CharToTokenType(char character, ConditionTokenType tokenType)
+            {
+                this.Character = character;
+                this.TokenType = tokenType;
+            }
         }
     }
 }

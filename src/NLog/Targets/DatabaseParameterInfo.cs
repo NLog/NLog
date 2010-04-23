@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,102 +31,73 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.Diagnostics;
-using System.Reflection;
-using System.Data;
-using System.Collections;
-
-using NLog.Internal;
-using NLog.Config;
+#if !SILVERLIGHT
 
 namespace NLog.Targets
 {
+    using System.ComponentModel;
+    using NLog.Config;
+    using NLog.Layouts;
+
     /// <summary>
     /// Represents a parameter to a Database target.
     /// </summary>
-    public class DatabaseParameterInfo
+    public class DatabaseParameterInfo : INLogConfigurationItem
     {
         /// <summary>
-        /// Creates a new instance of <see cref="DatabaseParameterInfo"/>.
+        /// Initializes a new instance of the <see cref="DatabaseParameterInfo" /> class.
         /// </summary>
-        public DatabaseParameterInfo(){}
-
-        /// <summary>
-        /// Creates a new instance of <see cref="DatabaseParameterInfo"/>
-        /// and sets Name and Layout properties to the specified values.
-        /// </summary>
-        public DatabaseParameterInfo(string name, string layout)
+        public DatabaseParameterInfo()
+            : this(null, null)
         {
-            Name = name;
-            Layout = layout;
         }
 
-        private Layout _compiledlayout;
-        private string _name;
-        private int _size = 0;
-        private byte _precision = 0;
-        private byte _scale = 0;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatabaseParameterInfo" /> class.
+        /// </summary>
+        /// <param name="parameterName">Name of the parameter.</param>
+        /// <param name="parameterLayout">The parameter layout.</param>
+        public DatabaseParameterInfo(string parameterName, Layout parameterLayout)
+        {
+            this.Name = parameterName;
+            this.Layout = parameterLayout;
+        }
 
         /// <summary>
-        /// Database parameter name.
+        /// Gets or sets the database parameter name.
         /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
         [RequiredParameter]
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
 
         /// <summary>
-        /// The layout that should be use to calcuate the value for the parameter.
+        /// Gets or sets the layout that should be use to calcuate the value for the parameter.
         /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
         [RequiredParameter]
-        [AcceptsLayout]
-        public string Layout
-        {
-            get { return _compiledlayout.Text; }
-            set { _compiledlayout = new Layout(value); }
-        }
+        public Layout Layout { get; set; }
 
         /// <summary>
-        /// The compiled representation of the Layout property.
+        /// Gets or sets the database parameter size.
         /// </summary>
-        public Layout CompiledLayout
-        {
-            get { return _compiledlayout; }
-            set { _compiledlayout = value; }
-        }
+        /// <docgen category='Parameter Options' order='10' />
+        [DefaultValue(0)]
+        public int Size { get; set; }
 
         /// <summary>
-        /// Database parameter size.
+        /// Gets or sets the database parameter precision.
         /// </summary>
-        [System.ComponentModel.DefaultValue(0)]
-        public int Size
-        {
-            get { return _size; }
-            set { _size = value; }
-        }
+        /// <docgen category='Parameter Options' order='10' />
+        [DefaultValue(0)]
+        public byte Precision { get; set; }
 
         /// <summary>
-        /// Database parameter precision.
+        /// Gets or sets the database parameter scale.
         /// </summary>
-        [System.ComponentModel.DefaultValue(0)]
-        public byte Precision
-        {
-            get { return _precision; }
-            set { _precision = value; }
-        }
-
-        /// <summary>
-        /// Database parameter scale.
-        /// </summary>
-        [System.ComponentModel.DefaultValue(0)]
-        public byte Scale
-        {
-            get { return _scale; }
-            set { _scale = value; }
-        }
+        /// <docgen category='Parameter Options' order='10' />
+        [DefaultValue(0)]
+        public byte Scale { get; set; }
     }
 }
+
+#endif

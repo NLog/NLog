@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,76 +31,67 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
 using System.Xml;
-using System.Globalization;
-
-using NLog;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Config;
-
-using NUnit.Framework;
 using NLog.LayoutRenderers;
+using NLog.Layouts;
 using NLog.Targets;
-using NLog.Targets.Wrappers;
 using NLog.Targets.Compound;
+using NLog.Targets.Wrappers;
 
 namespace NLog.UnitTests
 {
-    [TestFixture]
-	public class TargetConfigurationTests : NLogTestBase
-	{
-        [Test]
+    [TestClass]
+    public class TargetConfigurationTests : NLogTestBase
+    {
+        [TestMethod]
         public void SimpleTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LoggingConfiguration c = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
                     <target name='d' type='Debug' layout='${message}' />
                 </targets>
             </nlog>");
 
-            LoggingConfiguration c = new XmlLoggingConfiguration(doc.DocumentElement, null);
             DebugTarget t = c.FindTargetByName("d") as DebugTarget;
             Assert.IsNotNull(t);
             Assert.AreEqual(t.Name, "d");
-            Assert.AreEqual("${message}", t.Layout);
-            Layout l = t.CompiledLayout as Layout;
-            Assert.IsNotNull(l);
-            Assert.AreEqual(1, l.Renderers.Length);
-            Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), l.Renderers[0]);
+            SimpleLayout l = t.Layout as SimpleLayout;
+            Assert.AreEqual("${message}", l.Text);
+            Assert.IsNotNull(t.Layout);
+            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.IsInstanceOfType(l.Renderers[0], typeof(MessageLayoutRenderer));
         }
 
-        [Test]
+        [TestMethod]
         public void SimpleTest2()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LoggingConfiguration c = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
-                    <target name='d' type='Debug' layout='${message:padding=10} ${level}' />
+                    <target name='d' type='Debug' layout='${message} ${level}' />
                 </targets>
             </nlog>");
 
-            LoggingConfiguration c = new XmlLoggingConfiguration(doc.DocumentElement, null);
             DebugTarget t = c.FindTargetByName("d") as DebugTarget;
             Assert.IsNotNull(t);
             Assert.AreEqual(t.Name, "d");
-            Assert.AreEqual("${message:padding=10} ${level}", t.Layout);
-            Layout l = t.CompiledLayout as Layout;
+            SimpleLayout l = t.Layout as SimpleLayout;
+            Assert.AreEqual("${message} ${level}", l.Text);
             Assert.IsNotNull(l);
-            Assert.AreEqual(3, l.Renderers.Length);
-            Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), l.Renderers[0]);
-            Assert.IsInstanceOfType(typeof(LiteralLayoutRenderer), l.Renderers[1]);
-            Assert.IsInstanceOfType(typeof(LevelLayoutRenderer), l.Renderers[2]);
-            Assert.AreEqual(10, l.Renderers[0].Padding);
+            Assert.AreEqual(3, l.Renderers.Count);
+            Assert.IsInstanceOfType(l.Renderers[0], typeof(MessageLayoutRenderer));
+            Assert.IsInstanceOfType(l.Renderers[1], typeof(LiteralLayoutRenderer));
+            Assert.IsInstanceOfType(l.Renderers[2], typeof(LevelLayoutRenderer));
+            Assert.AreEqual(" ", ((LiteralLayoutRenderer)l.Renderers[1]).Text);
         }
 
-        [Test]
+        [TestMethod]
         public void WrapperTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LoggingConfiguration c = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
                     <target name='b' type='BufferingWrapper' bufferSize='19'>
@@ -111,14 +102,13 @@ namespace NLog.UnitTests
                 </targets>
             </nlog>");
 
-            LoggingConfiguration c = new XmlLoggingConfiguration(doc.DocumentElement, null);
             Assert.IsNotNull(c.FindTargetByName("a"));
             Assert.IsNotNull(c.FindTargetByName("b"));
             Assert.IsNotNull(c.FindTargetByName("c"));
 
-            Assert.IsInstanceOfType(typeof(BufferingTargetWrapper), c.FindTargetByName("b"));
-            Assert.IsInstanceOfType(typeof(AsyncTargetWrapper), c.FindTargetByName("a"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("c"));
+            Assert.IsInstanceOfType(c.FindTargetByName("b"), typeof(BufferingTargetWrapper));
+            Assert.IsInstanceOfType(c.FindTargetByName("a"), typeof(AsyncTargetWrapper));
+            Assert.IsInstanceOfType(c.FindTargetByName("c"), typeof(DebugTarget));
 
             BufferingTargetWrapper btw = c.FindTargetByName("b") as BufferingTargetWrapper;
             AsyncTargetWrapper atw = c.FindTargetByName("a") as AsyncTargetWrapper;
@@ -129,11 +119,10 @@ namespace NLog.UnitTests
             Assert.AreEqual(19, btw.BufferSize);
         }
 
-        [Test]
+        [TestMethod]
         public void CompoundTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LoggingConfiguration c = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
                     <target name='rr' type='RoundRobinGroup'>
@@ -145,19 +134,17 @@ namespace NLog.UnitTests
                 </targets>
             </nlog>");
 
-            LoggingConfiguration c = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
             Assert.IsNotNull(c.FindTargetByName("rr"));
             Assert.IsNotNull(c.FindTargetByName("d1"));
             Assert.IsNotNull(c.FindTargetByName("d2"));
             Assert.IsNotNull(c.FindTargetByName("d3"));
             Assert.IsNotNull(c.FindTargetByName("d4"));
 
-            Assert.IsInstanceOfType(typeof(RoundRobinTarget), c.FindTargetByName("rr"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d1"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d2"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d3"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d4"));
+            Assert.IsInstanceOfType(c.FindTargetByName("rr"), typeof(RoundRobinTarget));
+            Assert.IsInstanceOfType(c.FindTargetByName("d1"), typeof(DebugTarget));
+            Assert.IsInstanceOfType(c.FindTargetByName("d2"), typeof(DebugTarget));
+            Assert.IsInstanceOfType(c.FindTargetByName("d3"), typeof(DebugTarget));
+            Assert.IsInstanceOfType(c.FindTargetByName("d4"), typeof(DebugTarget));
 
             RoundRobinTarget rr = c.FindTargetByName("rr") as RoundRobinTarget;
             DebugTarget d1 = c.FindTargetByName("d1") as DebugTarget;
@@ -171,10 +158,10 @@ namespace NLog.UnitTests
             Assert.AreSame(d3, rr.Targets[2]);
             Assert.AreSame(d4, rr.Targets[3]);
 
-            Assert.AreEqual(d1.Layout, "${message}1");
-            Assert.AreEqual(d2.Layout, "${message}2");
-            Assert.AreEqual(d3.Layout, "${message}3");
-            Assert.AreEqual(d4.Layout, "${message}4");
+            Assert.AreEqual(((SimpleLayout)d1.Layout).Text, "${message}1");
+            Assert.AreEqual(((SimpleLayout)d2.Layout).Text, "${message}2");
+            Assert.AreEqual(((SimpleLayout)d3.Layout).Text, "${message}3");
+            Assert.AreEqual(((SimpleLayout)d4.Layout).Text, "${message}4");
         }
     }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,75 +31,80 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Text;
-
-using NLog.Targets;
-using NLog.Filters;
-
 namespace NLog.Internal
 {
-    internal class TargetWithFilterChain
+    using System.Collections.Generic;
+    using NLog.Config;
+    using NLog.Filters;
+    using NLog.Targets;
+
+    /// <summary>
+    /// Represents target with a chain of filters which determine
+    /// whether logging should happen.
+    /// </summary>
+    internal class TargetWithFilterChain : INLogConfigurationItem
     {
-        private Target _target;
-        private FilterCollection _filterChain;
-        private TargetWithFilterChain _next;
-        private int _needsStackTrace = 0;
+        private StackTraceUsage stackTraceUsage = StackTraceUsage.None;
 
-        public TargetWithFilterChain(Target a, FilterCollection filterChain)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TargetWithFilterChain" /> class.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <param name="filterChain">The filter chain.</param>
+        public TargetWithFilterChain(Target target, ICollection<Filter> filterChain)
         {
-            _target = a;
-            _filterChain = filterChain;
-            _needsStackTrace = 0;
+            this.Target = target;
+            this.FilterChain = filterChain;
+            this.stackTraceUsage = StackTraceUsage.None;
         }
 
-        public Target Target
+        /// <summary>
+        /// Gets the target.
+        /// </summary>
+        /// <value>The target.</value>
+        public Target Target { get; private set; }
+
+        /// <summary>
+        /// Gets the filter chain.
+        /// </summary>
+        /// <value>The filter chain.</value>
+        public ICollection<Filter> FilterChain { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the next <see cref="TargetWithFilterChain"/> item in the chain.
+        /// </summary>
+        /// <value>The next item in the chain.</value>
+        public TargetWithFilterChain NextInChain { get; set; }
+
+        /// <summary>
+        /// Gets the stack trace usage.
+        /// </summary>
+        /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
+        public StackTraceUsage GetStackTraceUsage()
         {
-            get { return _target; }
+            return this.stackTraceUsage;
         }
 
-        public int NeedsStackTrace
+        internal void PrecalculateStackTraceUsage()
         {
-            get { return _needsStackTrace; }
-            set { _needsStackTrace = value; }
-        }
+            this.stackTraceUsage = StackTraceUsage.None;
 
-        public FilterCollection FilterChain
-        {
-            get { return _filterChain; }
-        }
-
-        public TargetWithFilterChain Next
-        {
-            get { return _next; }
-            set { _next = value; }
-        }
-
-        public void PrecalculateNeedsStackTrace()
-        {
-            _needsStackTrace = 0;
-
-            for (TargetWithFilterChain awf = this; awf != null; awf = awf.Next)
+            // find all objects which may need stack trace
+            // and determine maximum
+            foreach (var item in ObjectGraphScanner.FindReachableObjects<IUsesStackTrace>(this))
             {
-                if (_needsStackTrace >= 2)
-                    break;
-                Target app = awf.Target;
+                var stu = item.StackTraceUsage;
 
-                int nst = app.NeedsStackTrace();
-                _needsStackTrace = Math.Max(_needsStackTrace, nst);
-
-                FilterCollection filterChain = awf.FilterChain;
-
-                for (int i = 0; i < filterChain.Count; ++i)
+                if (stu > this.stackTraceUsage)
                 {
-                    Filter filter = filterChain[i];
+                    this.stackTraceUsage = stu;
 
-                    nst = filter.NeedsStackTrace();
-                    _needsStackTrace = Math.Max(_needsStackTrace, nst);
+                    if (this.stackTraceUsage >= StackTraceUsage.Max)
+                    {
+                        break;
+                    }
                 }
             }
-
         }
     }
 }

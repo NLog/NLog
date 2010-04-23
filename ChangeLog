@@ -1,17 +1,128 @@
-2009-11-21 Jaroslaw Kowalski <jaak@jkowalski.net>
-	* added missing [AcceptsLayout] and [AcceptsCondition], 
-	* added some <docgen /> hints which will be used to generate better documentation
-	* removed FileTarget.AutoFlush which was not used
+2010-04-15 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added Silverlight 4.0 GDR support and updated .NET Framework 4.0 build number to reflect the final release.
 
-2009-09-06 Jaroslaw Kowalski <jaak@jkowalski.net>
-	* Preparing for NLog 1.0 Refresh
-        Cleaned up the build process and source tree by removing unused stuff.
-        Locked version number to 1.0.0.505 (compatible with 1.0)
-        Added installer support for VS2008 and VS2010 Beta.
+2010-03-17 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Fixed issue mentioned in bug #4182 - after refactoring XmlTextWriter to XmlWriter.Create() ${log4jxmlevent} stopped working.
+	Added regression tests.
 
-2009-01-14 Jaroslaw Kowalski <jaak@jkowalski.net>
-	* Fixed log4j interoperability - log4j:locationInfo was using lower case
-	instead of camelCase. Reported by Juergen Heusler.
+2010-03-13 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* NLog2-preview1 release
+
+2010-03-12 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Refactored project structure for client SKU support. On .NET 3.5 and 4.0 there are now two assemblies: NLog.dll (client-only) and NLog.Extended.dll (extended SKU)
+	* Removed StyleCop exclusion for usings-must-be-in-namespace and fixed all sources
+	* Removed GetEstimatedBufferSize() for layout renderers - now computed automatically and faster
+	* Added [AppDomainFixedOutput] and [ThreadAgnostic] attributes for marking layouts and renderers - removed IsAppDomainFixed() and IsVolatile() and centralized 
+          its computation
+        * Added IUsesStackTrace and removed other methods of determining whether stack trace is needed (should be more robust)
+	* Fixed a bug where output from C++ was not properly serialized in log4j XML format (nullref)
+	* Changed Initialize() and Close() to be protected
+	* Refactored ObjectGraphScanner for better usage
+	* Removed micro-optimizations which were not really needed (FileTarget)
+	* Added IRenderable interface (common to layouts and renderers)
+	* Refactored solutions to one-per-framework
+
+2010-02-21 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added 'build checkinsuite' option which cleans and builds everything then runs tests and presents a synthetic view of the results.
+	* Added DumpTestResultSummary tool which displays readable summary of a *.TRX file
+	* Added TRX output to SilverlightConsoleRunner.	* Fixed bug #3990 - Stack overflow in NLogViewerTarget constructor
+	* Changed LoggingRule.Targets and LoggingRule.ChildRules to use IList<T> instead of ICollection<T>
+	* Added Makefile for building and running tests on Unix
+
+2010-02-20 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Fixed handling of StackFrame/StackTrace in Silverlight - updated unit tests to deal with that.
+	* All unit tests are now passing on SL2 and SL3 and Compact Framework
+	* Made Silverlight unit tests runnable from VS directly.
+	* Disabled filename-related stuff from Silverlight stacktrace reporting.
+	* Added support for ${exception:method} on Silverlight by parsing the stack frame.
+	* Fixed a bug in .NET Compact Framework 2.0 support where read-only properties were not discovered correctly (works fine for other versions).
+
+2009-11-01 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added skeleton for LogReceiverService which sends parameterized log messages in batches to a web service (WCF/SOAP).
+
+2009-10-24 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* NLog now passes StyleCop 4.3.2.1 verification using all but couple of rules.
+
+2009-10-21 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added unit test projects for Compact Framework and Silverlight (based on SilverlightUnitTestFramework from MSDN Code Gallery).
+	* Fixed tests to exclude unsupported framework features for SL and CF.
+	* More code cleanup.
+	* Simple console runner for Silverlight.
+	* All frameworks build fine now at this point (build.cmd).
+	* Verified that unit tests are passing 100% for .NET FX 3.5 and 2.0.
+
+2009-10-10 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Removed PopulateLayouts across the source code and replaced it with a centralized reflection-based utility.
+	* Introduced INLogConfigurationItem which is used to mark classes which should be scanned for Layouts.
+	* Introduced ISupportsInitialize which is used to centralize Initialize and Close handling across the code.
+	* Centralized RequitedParameterAttribute handling.
+	* Removed support for NLOG_GLOBAL_CONFIG_FILE variable and NLog.dll.nlog file
+
+2009-09-19  Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added binary compatibility test with NLog v1.0
+	* Deprecated LogEventInfo.Context - replaced with LogEventInfo.Properties which uses generic. Added verification that binary compatibility is preserved.
+
+2009-09-18  Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Top-level directory cleanup:
+		- moved *.sln files to "src"
+		- moved Installer to tools/Installer
+		- moved webtest to 'tests'
+	* Merged NLog.ComInterop.dll with NLog.dll
+	* VS project now supports multitargeting
+	* Upgraded NLogC project to C++/CLI
+	* Added VS project and solution for NLogC
+	* Added protection from null DeclaringType (occurs in C++)
+        Issue: http://nlog.codeplex.com/WorkItem/View.aspx?WorkItemId=2519
+	* Fixed stack trace computation in case of excessive inlining (x64)
+	Issue: http://nlog.codeplex.com/WorkItem/View.aspx?WorkItemId=2518
+	* Cleaned up InternalLogger configuration
+	* More FxCop-driven cleanup
+	* Fixed invalid format parameters in NLogC
+	* Switched to use _vsnwprintf_s
+	* Added ConfigureFromXml API to NLogC
+
+2008-11-22  Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added WrapperLayoutRendererBase for wrapper layout renderer and LowerCaseLayoutRendererWrapper, PaddngLayoutRendererWrapper, UpperCaseLayoutRendererWrapper, ReplaceLayoutRendererWrapper
+	* Added AmbientPropertyAttribute for decorating ambient properties.
+	* Added LoggingRule.Levels
+	* Refactored XmlLoggingConfiguration to use XmlReader (available everywhere) instead of XmlElement
+	* Replace 0,1,2 constants for specifying stack trace usage with StackTraceUsage enumeration
+	* Moved GDC, MDC and NDC to a separate namespace and obsoleted short names
+	* Added special case for converting encoding names to Encoding objects in the configurator
+	* Removed ApplyPadding() method - padding and other common aspects are now abstracted as WrapperLayoutRenderers
+	* Refactored ${rot13} to become a wrapper layout renderer (config-level compatible)
+	* Removed LayoutRendererAttribute.IgnoresPadding and UsingLogEventInfo
+	* Renamed Layout.Initialized as IsInitialized
+	* Refactored configuration file search algorithm
+	* Added some more source-level documentation
+	* Removed LogLevel.UppercaseName and LogLevel.LowercaseName
+	* Removed TargetAttribute.IgnoresLayout
+	* Work-in-progress on MakeNLogDoc
+
+2008-06-21 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* First major refactoring towards NLog v2.
+	* moved certain classes from NLog namespace to NLog.Config, NLog.Targets, NLog.Layouts, NLog.LayoutRenderers
+	* renamed Layout to SimpleLayout
+	* turned ILayout interface into Layout base class
+	* removed CompiledLayout pattern all over the place
+	* removed [AcceptsLayout] by replacing all string properties with actual Layouts (added implicit conversion from string makes the usage clean)
+	* removed [AcceptsCondition] by replacing all string properties with ConditionExpression (added implicit conversion from string makes the usage clean)
+	* removed most of platform detection logic (will use conditional compilation exclusively in v2)
+	* removed NLog.*Factory classes and aggregated all factories NLog.Config.NLogFactories using common interface
+	* removed *Collection and *Dictionary classes and replaced them with generics
+	* public APIs that used to expose *Collection are now ICollection<T> or IList<T>
+	* refactored LogEventInfo into multiple classes for formatted and unformatted events
+	* added delayed evaluation delegate (LogMessageDelegate) and added logging method overloads that accept it:
+		Usage (C# 3.0 using lambda syntax):
+			logger.Info(() => "this is my message, x=" + x + ", y=" + y);
+		Usage (C# 2.0 using inline delegate syntax)
+			logger.Info(delegate { return "this is my message, x=" + x + ", y=" + y });
+	* removed VS 2003 project files
+	* regenerated Logger.cs to use generics
+	* configuration-file-based usage remains unchanged
+	* removed support for .NET 1.x and .NET CF 1.x and many hacks and workarounds to support them
+
+================================================================================
 
 2006-09-18 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Preparing for 1.0 release

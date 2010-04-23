@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,15 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-
-using NLog;
-using NLog.Config;
-using NLog.Conditions;
-
 namespace NLog.Filters
 {
+    using NLog.Conditions;
+
     /// <summary>
     /// Matches when the specified condition is met.
     /// </summary>
@@ -48,25 +43,15 @@ namespace NLog.Filters
     /// described <a href="conditions.html">here</a>.
     /// </remarks>
     [Filter("when")]
-    public class ConditionBasedFilter: Filter
+    public class ConditionBasedFilter : Filter
     {
-        private ConditionExpression _condition = null;
+        private static readonly object boxedTrue = true;
 
         /// <summary>
-        /// Initializes a new instance of the filter object.
+        /// Gets or sets the condition expression.
         /// </summary>
-        public ConditionBasedFilter(){}
-
-        /// <summary>
-        /// The condition expression.
-        /// </summary>
-        /// <docgen category="Filtering Options" order="10" />
-        [AcceptsCondition]
-        public string Condition
-        {
-            get { return _condition.ToString(); }
-            set { _condition = ConditionParser.ParseExpression(value); }
-        }
+        /// <docgen category='Filtering Options' order='10' />
+        public ConditionExpression Condition { get; set; }
 
         /// <summary>
         /// Checks whether log event should be logged or not.
@@ -76,17 +61,21 @@ namespace NLog.Filters
         /// <see cref="FilterResult.Ignore"/> - if the log event should be ignored<br/>
         /// <see cref="FilterResult.Neutral"/> - if the filter doesn't want to decide<br/>
         /// <see cref="FilterResult.Log"/> - if the log event should be logged<br/>
-        /// </returns>
-        protected internal override FilterResult Check(LogEventInfo logEvent)
+        /// .</returns>
+        protected override FilterResult Check(LogEventInfo logEvent)
         {
-            if (_condition == null)
+            if (this.Condition == null)
+            {
                 return FilterResult.Neutral;
+            }
 
-            object val = _condition.Evaluate(logEvent);
-            if (val != null && val is bool && ((bool)val))
-                return Result;
-            else
-                return FilterResult.Neutral;
+            object val = this.Condition.Evaluate(logEvent);
+            if (boxedTrue.Equals(val))
+            {
+                return this.Action;
+            }
+
+            return FilterResult.Neutral;
         }
     }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,67 +31,105 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.IO;
-using System.Threading;
-using System.Collections;
-using System.Collections.Specialized;
-
-using NLog;
-using NLog.Config;
-
-using NLog.Internal;
-
 namespace NLog.Internal.FileAppenders
 {
+    using System;
+    using System.IO;
+    using NLog.Common;
+
+    /// <summary>
+    /// Optimized single-process file appender which keeps the file open for exclusive write.
+    /// </summary>
     internal class SingleProcessFileAppender : BaseFileAppender
     {
-        private FileStream _file;
-
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
-        class Factory : IFileAppenderFactory
-        {
-            public BaseFileAppender Open(string fileName, ICreateFileParameters parameters)
-            {
-                return new SingleProcessFileAppender(fileName, parameters);
-            }
-        }
+        private FileStream file;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SingleProcessFileAppender" /> class.
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="parameters">The parameters.</param>
         public SingleProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
-            _file = CreateFileStream(false);
+            this.file = CreateFileStream(false);
         }
 
+        /// <summary>
+        /// Writes the specified bytes.
+        /// </summary>
+        /// <param name="bytes">The bytes.</param>
         public override void Write(byte[] bytes)
         {
-            if (_file == null)
+            if (this.file == null)
+            {
                 return;
-            _file.Write(bytes, 0, bytes.Length);
+            }
+
+            this.file.Write(bytes, 0, bytes.Length);
             FileTouched();
         }
 
+        /// <summary>
+        /// Flushes this instance.
+        /// </summary>
         public override void Flush()
         {
-            if (_file == null)
+            if (this.file == null)
+            {
                 return;
-            _file.Flush();
+            }
+
+            this.file.Flush();
             FileTouched();
         }
 
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
         public override void Close()
         {
-            if (_file == null)
+            if (this.file == null)
+            {
                 return;
+            }
+
             InternalLogger.Trace("Closing '{0}'", FileName);
-            _file.Close();
-            _file = null;
+            this.file.Close();
+            this.file = null;
         }
 
+        /// <summary>
+        /// Gets the file info.
+        /// </summary>
+        /// <param name="lastWriteTime">The last write time.</param>
+        /// <param name="fileLength">Length of the file.</param>
+        /// <returns>
+        /// True if the operation succeeded, false otherwise.
+        /// </returns>
         public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
         {
             throw new NotSupportedException("SimpleProcessFileAppender doesn't support GetFileInfo");
+        }
+
+        /// <summary>
+        /// Factory class.
+        /// </summary>
+        private class Factory : IFileAppenderFactory
+        {
+            /// <summary>
+            /// Opens the appender for given file name and parameters.
+            /// </summary>
+            /// <param name="fileName">Name of the file.</param>
+            /// <param name="parameters">Creation parameters.</param>
+            /// <returns>
+            /// Instance of <see cref="BaseFileAppender"/> which can be used to write to the file.
+            /// </returns>
+            BaseFileAppender IFileAppenderFactory.Open(string fileName, ICreateFileParameters parameters)
+            {
+                return new SingleProcessFileAppender(fileName, parameters);
+            }
         }
     }
 }

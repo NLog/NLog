@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,70 +31,70 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Collections;
-
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
     /// <summary>
     /// Condition <b>or</b> expression.
     /// </summary>
     internal sealed class ConditionOrExpression : ConditionExpression 
     {
-        public readonly ConditionExpression Left;
-        public readonly ConditionExpression Right;
-
-        private static object _boxedFalse = false;
-        private static object _boxedTrue = true;
+        private static readonly object boxedFalse = false;
+        private static readonly object boxedTrue = true;
 
         /// <summary>
-        /// Creates a new instance of <see cref="ConditionOrExpression"/> and assigns
-        /// its Left and Right properties;
+        /// Initializes a new instance of the <see cref="ConditionOrExpression" /> class.
         /// </summary>
         /// <param name="left">Left hand side of the OR expression.</param>
         /// <param name="right">Right hand side of the OR expression.</param>
-        public ConditionOrExpression(ConditionExpression left, ConditionExpression right) 
+        public ConditionOrExpression(ConditionExpression left, ConditionExpression right)
         {
-            this.Left = left;
-            this.Right = right;
+            this.LeftExpression = left;
+            this.RightExpression = right;
         }
 
         /// <summary>
-        /// Evaluates the expression by evaluating <see cref="Left"/> and <see cref="Right"/> recursively.
+        /// Gets the left expression.
+        /// </summary>
+        /// <value>The left expression.</value>
+        public ConditionExpression LeftExpression { get; private set; }
+
+        /// <summary>
+        /// Gets the right expression.
+        /// </summary>
+        /// <value>The right expression.</value>
+        public ConditionExpression RightExpression { get; private set; }
+
+        /// <summary>
+        /// Evaluates the expression by evaluating <see cref="LeftExpression"/> and <see cref="RightExpression"/> recursively.
         /// </summary>
         /// <param name="context">Evaluation context.</param>
         /// <returns>The value of the alternative operator.</returns>
         public override object Evaluate(LogEventInfo context)
         {
-            bool bval1 = (bool)Left.Evaluate(context);
+            bool bval1 = (bool)this.LeftExpression.Evaluate(context);
             if (bval1)
-                return _boxedTrue;
+            {
+                return boxedTrue;
+            }
 
-            bool bval2 = (bool)Right.Evaluate(context);
+            bool bval2 = (bool)this.RightExpression.Evaluate(context);
             if (bval2)
-                return _boxedTrue;
+            {
+                return boxedTrue;
+            }
 
-            return _boxedFalse;
+            return boxedFalse;
         }
 
         /// <summary>
-        /// Returns a string representation of this expression.
+        /// Returns a string representation of the expression.
         /// </summary>
-        /// <returns>(Left) or (Right) string</returns>
+        /// <returns>
+        /// A <see cref="T:System.String"/> that represents the condition expression.
+        /// </returns>
         public override string ToString()
         {
-            return "(" + Left + ") or (" + Right + ")";
-        }
-
-        /// <summary>
-        /// Adds all layouts used by this expression to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
-        {
-            Left.PopulateLayouts(layouts);
-            Right.PopulateLayouts(layouts);
+            return "(" + this.LeftExpression + ") or (" + this.RightExpression + ")";
         }
     }
 }

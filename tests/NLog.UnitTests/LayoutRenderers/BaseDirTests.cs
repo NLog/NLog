@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !NET_CF
+
 using System;
 using System.Xml;
 using System.Reflection;
@@ -39,34 +41,34 @@ using System.IO;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NLog.Layouts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
-	public class BaseDirTests : NLogTestBase
-	{
+    [TestClass]
+    public class BaseDirTests : NLogTestBase
+    {
         private string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 
-        [Test]
+        [TestMethod]
         public void BaseDirTest()
         {
-            Layout l = new Layout("${basedir}");
-            AssertLayoutRendererOutput(l, baseDir);
+            AssertLayoutRendererOutput("${basedir}", baseDir);
         }
 
-        [Test]
+        [TestMethod]
         public void BaseDirCombineTest()
         {
-            Layout l = new Layout("${basedir:dir=aaa}");
-            AssertLayoutRendererOutput(l, Path.Combine(baseDir,"aaa"));
+            AssertLayoutRendererOutput("${basedir:dir=aaa}", Path.Combine(baseDir, "aaa"));
         }
 
-        [Test]
+        [TestMethod]
         public void BaseDirFileCombineTest()
         {
-            Layout l = new Layout("${basedir:file=aaa.txt}");
-            AssertLayoutRendererOutput(l, Path.Combine(baseDir, "aaa.txt"));
+            AssertLayoutRendererOutput("${basedir:file=aaa.txt}", Path.Combine(baseDir, "aaa.txt"));
         }
     }
 }
+
+#endif

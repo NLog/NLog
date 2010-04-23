@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,71 +31,44 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Reflection;
-using System.Globalization;
-
-using NLog.Config;
-
 namespace NLog.Layouts
 {
-    /// <summary>
-    /// A column in the CSV
-    /// </summary>
-    public class CsvColumn
-    {
-        private Layout _compiledlayout;
-        private string _name;
+    using NLog.Config;
 
+    /// <summary>
+    /// A column in the CSV.
+    /// </summary>
+    public class CsvColumn : INLogConfigurationItem
+    {
         /// <summary>
-        /// Constructs a new instance of <see cref="CsvColumn"/>.
+        /// Initializes a new instance of the <see cref="CsvColumn" /> class.
         /// </summary>
         public CsvColumn()
         {
         }
 
         /// <summary>
-        /// Constructs a new instance of <see cref="CsvColumn"/> and
-        /// initializes Name and Layout properties.
+        /// Initializes a new instance of the <see cref="CsvColumn" /> class.
         /// </summary>
-        public CsvColumn(string name, string layout)
+        /// <param name="name">The name of the column.</param>
+        /// <param name="layout">The layout of the column.</param>
+        public CsvColumn(string name, Layout layout)
         {
-            Name = name;
-            Layout = layout;
+            this.Name = name;
+            this.Layout = layout;
         }
 
         /// <summary>
-        /// The name of the column.
+        /// Gets or sets the name of the column.
         /// </summary>
-        /// <docgen category="CSV Format Options" order="10" />
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        /// <docgen category='CSV Column Options' order='10' />
+        public string Name { get; set; }
 
         /// <summary>
-        /// The layout that should be written in the column.
+        /// Gets or sets the layout of the column.
         /// </summary>
-        /// <docgen category="CSV Format Options" order="10" />
-        [AcceptsLayout]
+        /// <docgen category='CSV Column Options' order='10' />
         [RequiredParameter]
-        public string Layout
-        {
-            get { return _compiledlayout.Text; }
-            set { _compiledlayout = new Layout(value); }
-        }
-
-        /// <summary>
-        /// The compiled layout that should be written in the column.
-        /// </summary>
-        public Layout CompiledLayout
-        {
-            get { return _compiledlayout; }
-            set { _compiledlayout = value; }
-        }
+        public Layout Layout { get; set; }
     }
 }

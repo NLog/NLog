@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,36 +31,44 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Xml;
-using System.IO;
-using System.Reflection;
-using System.Globalization;
-using System.Text;
-
-using NLog.Config;
-
 namespace NLog.Internal
 {
+    /// <summary>
+    /// Logger configuration.
+    /// </summary>
     internal class LoggerConfiguration
     {
-        private TargetWithFilterChain[] _targetsByLevel;
+        private readonly TargetWithFilterChain[] targetsByLevel;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoggerConfiguration" /> class.
+        /// </summary>
+        /// <param name="targetsByLevel">The targets by level.</param>
         public LoggerConfiguration(TargetWithFilterChain[] targetsByLevel)
         {
-            _targetsByLevel = targetsByLevel;
+            this.targetsByLevel = targetsByLevel;
         }
 
+        /// <summary>
+        /// Gets targets for the specified level.
+        /// </summary>
+        /// <param name="level">The level.</param>
+        /// <returns>Chain of targets with attached filters.</returns>
         public TargetWithFilterChain GetTargetsForLevel(LogLevel level)
         {
-            return _targetsByLevel[level.Ordinal];
+            return this.targetsByLevel[level.Ordinal];
         }
 
+        /// <summary>
+        /// Determines whether the specified level is enabled.
+        /// </summary>
+        /// <param name="level">The level.</param>
+        /// <returns>
+        /// A value of <c>true</c> if the specified level is enabled; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsEnabled(LogLevel level)
         {
-            return _targetsByLevel[level.Ordinal] != null;
+            return this.targetsByLevel[level.Ordinal] != null;
         }
-
     }
 }

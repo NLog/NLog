@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,29 +31,30 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-
-using System.Xml.Serialization;
-
 namespace NLog.Conditions
 {
+    using System;
+    using System.Globalization;
+
     /// <summary>
-    /// Condition literal expression (numeric, <b>LogLevel.XXX</b>, <b>true</b> or <b>false</b>)
+    /// Condition literal expression (numeric, <b>LogLevel.XXX</b>, <b>true</b> or <b>false</b>).
     /// </summary>
     internal sealed class ConditionLiteralExpression : ConditionExpression
     {
-        private object _literal;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConditionLiteralExpression" /> class.
+        /// </summary>
+        /// <param name="literalValue">Literal value.</param>
+        public ConditionLiteralExpression(object literalValue) 
+        {
+            this.LiteralValue = literalValue;
+        }
 
         /// <summary>
-        /// Creates a new instance of <see cref="ConditionLiteralExpression"/>
-        /// and initializes it with the specified value.
+        /// Gets the literal value.
         /// </summary>
-        /// <param name="literal"></param>
-        public ConditionLiteralExpression(object literal) 
-        {
-            _literal = literal;
-        }
+        /// <value>The literal value.</value>
+        public object LiteralValue { get; private set; }
 
         /// <summary>
         /// Evaluates the expression.
@@ -62,7 +63,7 @@ namespace NLog.Conditions
         /// <returns>The literal value as passed in the constructor.</returns>
         public override object Evaluate(LogEventInfo context)
         {
-            return _literal;
+            return this.LiteralValue;
         }
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace NLog.Conditions
         /// <returns>The literal value.</returns>
         public override string ToString()
         {
-            return _literal.ToString();
+            return Convert.ToString(this.LiteralValue, CultureInfo.InvariantCulture);
         }
     }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,108 +31,122 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Reflection;
-
-using System.Xml.Serialization;
-
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Reflection;
+    using System.Text;
+    using NLog.Common;
+
     /// <summary>
     /// Condition method invocation expression (represented by <b>method(p1,p2,p3)</b> syntax).
     /// </summary>
     internal sealed class ConditionMethodExpression : ConditionExpression
     {
-        private string _name;
-        private ConditionExpressionCollection _parameters;
-        private MethodInfo _methodInfo;
-        private bool _acceptsLogEvent;
+        private readonly string conditionMethodName;
+        private readonly bool acceptsLogEvent;
+        private readonly MethodInfo methodInfo;
 
-        public ConditionMethodExpression() {}
-        public ConditionMethodExpression(string name, ConditionExpressionCollection parameters) 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConditionMethodExpression" /> class.
+        /// </summary>
+        /// <param name="conditionMethodName">Name of the condition method.</param>
+        /// <param name="methodInfo"><see cref="MethodInfo"/> of the condition method.</param>
+        /// <param name="methodParameters">The method parameters.</param>
+        public ConditionMethodExpression(string conditionMethodName, MethodInfo methodInfo, IEnumerable<ConditionExpression> methodParameters)
         {
-            _name = name;
-            _parameters = parameters;
+            this.methodInfo = methodInfo;
+            this.conditionMethodName = conditionMethodName;
+            this.MethodParameters = new List<ConditionExpression>(methodParameters).AsReadOnly();
 
-            _methodInfo = ConditionMethodFactory.CreateConditionMethod(_name);
-            if (_methodInfo == null)
+            ParameterInfo[] formalParameters = this.methodInfo.GetParameters();
+            if (formalParameters.Length >= 0 && formalParameters[0].ParameterType == typeof(LogEventInfo))
             {
-                Internal.InternalLogger.Error("Condition method: '{0}' not found", name);
-                throw new ArgumentException("Condition method not found: '" + name + "'");
-            }
-            ParameterInfo[] formalParameters = _methodInfo.GetParameters();
-            if (formalParameters.Length >= 0)
-            {
-                _acceptsLogEvent = (formalParameters[0].ParameterType == typeof(LogEventInfo));
-                }
-            else
-            {
-                _acceptsLogEvent = false;
+                this.acceptsLogEvent = true;
             }
 
-            int actualParameterCount = _parameters.Count;
-            if (_acceptsLogEvent)
+            int actualParameterCount = this.MethodParameters.Count;
+            if (this.acceptsLogEvent)
+            {
                 actualParameterCount++;
+            }
+
             if (formalParameters.Length != actualParameterCount)
             {
-                Internal.InternalLogger.Error("Condition method: '{0}' expects {1} parameters. Passed {2}", name, formalParameters.Length, actualParameterCount);
-                throw new ConditionParseException(String.Format("Condition method: '{0}' expects {1} parameters. Passed {2}", name, formalParameters.Length, actualParameterCount));
+                string message = String.Format(
+                    CultureInfo.InvariantCulture,
+                    "Condition method: '{0}' expects {1} parameters. Passed {2}",
+                    conditionMethodName,
+                    formalParameters.Length,
+                    actualParameterCount);
+
+                InternalLogger.Error(message);
+                throw new ConditionParseException(message);
             }
         }
 
+        /// <summary>
+        /// Gets the method parameters.
+        /// </summary>
+        /// <value>The method parameters.</value>
+        public ICollection<ConditionExpression> MethodParameters { get; private set; }
+
+        /// <summary>
+        /// Evaluates the expression.
+        /// </summary>
+        /// <param name="context">Evaluation context.</param>
+        /// <returns>Expression result.</returns>
         public override object Evaluate(LogEventInfo context)
         {
-            object[] callParameters;
-            int parameterOffset = _acceptsLogEvent ? 1 : 0;
+            int parameterOffset = this.acceptsLogEvent ? 1 : 0;
 
-            callParameters = new object[_parameters.Count + parameterOffset];
-            for (int i = 0; i < _parameters.Count; ++i)
+            object[] callParameters = new object[this.MethodParameters.Count + parameterOffset];
+            int i = 0;
+            foreach (ConditionExpression ce in this.MethodParameters)
             {
-                callParameters[i + parameterOffset] = _parameters[i].Evaluate(context);
+                callParameters[i++ + parameterOffset] = ce.Evaluate(context);
             }
 
-            if (_acceptsLogEvent)
+            if (this.acceptsLogEvent)
+            {
                 callParameters[0] = context;
+            }
 
             try
             {
-                return _methodInfo.Invoke(null, callParameters);
+                return this.methodInfo.Invoke(null, callParameters);
             }
             catch (Exception ex)
             {
-                Internal.InternalLogger.Error("Error: {0}", ex);
-                return "";
+                InternalLogger.Error("Error: {0}", ex);
+                return string.Empty;
             }
         }
-
-        public override string ToString()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(_name);
-            sb.Append("(");
-            for (int i = 0; i < _parameters.Count; ++i)
-            {
-                if (i != 0)
-                    sb.Append(",");
-                sb.Append(_parameters[i]);
-            }
-            sb.Append(")");
-            return sb.ToString();
-        }
-
 
         /// <summary>
-        /// Adds all layouts used by this expression to the specified collection.
+        /// Returns a string representation of the expression.
         /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        /// <returns>
+        /// A <see cref="T:System.String"/> that represents the condition expression.
+        /// </returns>
+        public override string ToString()
         {
-            foreach (ConditionExpression expr in _parameters)
+            var sb = new StringBuilder();
+            sb.Append(this.conditionMethodName);
+            sb.Append("(");
+
+            string separator = string.Empty;
+            foreach (ConditionExpression expr in this.MethodParameters)
             {
-                expr.PopulateLayouts(layouts);
+                sb.Append(separator);
+                sb.Append(expr);
+                separator = ",";
             }
+
+            sb.Append(")");
+            return sb.ToString();
         }
     }
 }

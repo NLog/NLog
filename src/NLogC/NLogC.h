@@ -62,6 +62,7 @@ NLOGC_API void NLog_WarnA(const char *loggerName, const char *logMessage, ...);
 NLOGC_API void NLog_ErrorA(const char *loggerName, const char *logMessage, ...); 
 NLOGC_API void NLog_FatalA(const char *loggerName, const char *logMessage, ...); 
 NLOGC_API void NLog_LogVA(NLogLevel level, const char *loggerName, const char *logMessage, va_list args);
+NLOGC_API int NLog_ConfigureFromXmlA(const char *configFileContents);
 
 NLOGC_API int NLog_InitW(const wchar_t *nlogDllFileName);
 NLOGC_API int NLog_ConfigureFromFileW(const wchar_t *fileName);
@@ -73,9 +74,9 @@ NLOGC_API void NLog_WarnW(const wchar_t *loggerName, const wchar_t *logMessage, 
 NLOGC_API void NLog_ErrorW(const wchar_t *loggerName, const wchar_t *logMessage, ...); 
 NLOGC_API void NLog_FatalW(const wchar_t *loggerName, const wchar_t *logMessage, ...); 
 NLOGC_API void NLog_LogVW(NLogLevel level, const wchar_t *loggerName, const wchar_t *logMessage, va_list args); 
+NLOGC_API int NLog_ConfigureFromXmlW(const wchar_t *configFileContents);
 
 NLOGC_API int NLog_InitLocal();
-
 }
 
 #ifdef UNICODE
@@ -89,6 +90,7 @@ NLOGC_API int NLog_InitLocal();
 #define NLog_Error NLog_ErrorW
 #define NLog_Fatal NLog_FatalW
 #define NLog_ConfigureFromFile NLog_ConfigureFromFileW
+#define NLog_ConfigureFromXml NLog_ConfigureFromXmlW
 
 #else
 
@@ -101,6 +103,7 @@ NLOGC_API int NLog_InitLocal();
 #define NLog_Error NLog_ErrorA
 #define NLog_Fatal NLog_FatalA
 #define NLog_ConfigureFromFile NLog_ConfigureFromFileA
+#define NLog_ConfigureFromXml NLog_ConfigureFromXmlA
 
 #endif
 

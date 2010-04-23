@@ -1,29 +1,18 @@
-About NLog
-----------
-NLog is a logging platform for .NET with rich log routing and management 
-capabilities. It makes it easy to produce and manage high-quality logs 
-for your application regardless of its size or complexity.
+What is NLog 2.0
+----------------
+NLog is a free logging platform for .NET with rich log routing and management 
+capabilities. It makes it easy to produce and manage high-quality logs for 
+your application regardless of its size or complexity. 
 
-NLog can process diagnostic messages emitted from any .NET language, augment
+It can process diagnostic messages emitted from any .NET language, augment 
 them with contextual information, format them according to your preference 
 and send them to one or more targets such as file or database. 
 
-NLog supports .NET, C/C++ and COM interop API so that all your application components 
-including legacy modules written in C++/COM can send their messages through a common 
-log routing engine. 
+.NET, C/C++ and COM interop APIs are supported so that all your application 
+components including legacy modules written in C++/COM can route their log 
+messages through a common engine. 
 
-Website
--------
-To download the latest version of NLog, go to http://www.nlog-project.org/
+NLog is open source software, licensed under the terms of BSD license. 
+See LICENSE.txt for details.
 
-Support
--------
-The following support options are available:
-
-* NLog Forum - http://www.nlog-project.org/forum.html
-* Issue Tracker - http://www.nlog-project.org/issuetracker.html
-* Mailing List - http://www.nlog-project.org/mailinglists.html
-
-License
--------
-NLog is licensed under the terms of BSD license. See LICENSE.txt for details.
+Project Homepage: http://nlog-project.org/

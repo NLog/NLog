@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -32,24 +32,20 @@
 // 
 
 using System;
-using System.Runtime.InteropServices;
-
-using NLog;
 using NLog.Config;
-using NLog.Targets.Compound;
-using NLog.Targets.Wrappers;
-using NLog.Conditions;
 using NLog.Targets;
-using NLog.Win32.Targets;
-using NLog.Internal;
-using System.IO;
-using System.Threading;
+using NLog.Layouts;
 
-namespace NLog.Tester
+namespace NLog.Test
 {
+    public static class ExtensionMethods
+    {
+
+    }
+
     public class Test
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public static void LogProc(string msg)
         {
@@ -73,8 +69,25 @@ namespace NLog.Tester
 
         static void Main(string[]args)
         {
+            Target t;
+
+            // t.WriteLogEvent()
+            //ConsoleTarget ct = new ConsoleTarget();
+            //ct.Layout = "${message} ${longdate} ${replace:searchFor=(..):regex=true:wholeWords=true:replaceWith=[xx'$1'yy]:inner=${rot13:inner=${message}:uppercase=true:padding=-10}}";
+
+            //CsvLayout csv = new CsvLayout();
+            //csv.Columns.Add(new CsvColumn("msg", "${message}"));
+            //csv.Columns.Add(new CsvColumn("date", "${longdate}"));
+            //csv.Columns.Add(new CsvColumn("level", "${level}"));
+            //csv.WithHeader = true;
+            ////ct.Layout = csv;
+
+            //SimpleConfigurator.ConfigureForTargetLogging(ct);
+
             //InternalLogger.LogToConsole = true;
             //InternalLogger.LogLevel = LogLevel.Debug;
+
+            logger.Debug(() => "foo bar");
 
             for (int i = 0; i < 3; ++i)
             {

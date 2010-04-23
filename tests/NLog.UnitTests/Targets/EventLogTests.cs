@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,44 +31,36 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
+#if !SILVERLIGHT && !NET_CF
 
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-using NLog.Targets;
-using System.IO;
-using System.Text;
-using NLog.Targets.Wrappers;
-using NLog.LayoutRenderers;
-using NLog.Win32.Targets;
 using System.Diagnostics;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NLog.Config;
+using NLog.Targets;
 
 namespace NLog.UnitTests.Targets
 {
-    [TestFixture]
-	public class EventLogTests : NLogTestBase
-	{
-        [SetUp]
+    [TestClass]
+    public class EventLogTests : NLogTestBase
+    {
+        [TestInitialize]
         public void Init()
         {
         }
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
         }
 
-        [Test]
-        [Ignore]
+        [TestMethod]
         public void Test1()
         {
+#if TODO
             EventLogTarget elt = new EventLogTarget();
             elt.Log = "NLog.UnitTests";
             elt.Source = "NLog.UnitTests";
-            elt.EventID = "10";
+            elt.EventId = "10";
             elt.Category = "123";
             SimpleConfigurator.ConfigureForTargetLogging(elt);
 
@@ -76,6 +68,9 @@ namespace NLog.UnitTests.Targets
 
             Logger l = LogManager.GetCurrentClassLogger();
             l.Info("aaa");
+#endif
         }
     }
 }
+
+#endif

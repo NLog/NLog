@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,28 +31,34 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Reflection;
-using System.Globalization;
-using NLog.Internal;
-
 namespace NLog.Internal
 {
+    using System;
+    using System.Reflection;
+    using NLog.Config;
+
+    /// <summary>
+    /// Object construction helper.
+    /// </summary>
     internal class FactoryHelper
     {
-        private static Type[]EmptyTypes = new Type[0];
-        private static object[]EmptyParams = new object[0];
+        private static Type[] emptyTypes = new Type[0];
+        private static object[] emptyParams = new object[0];
 
-        public static object CreateInstance(Type t)
+        private FactoryHelper()
         {
-            ConstructorInfo constructor = t.GetConstructor(EmptyTypes); //t.GetConstructor(BindingFlags.Public | BindingFlags.Instance, null, Type.EmptyTypes, null);
+        }
+
+        internal static object CreateInstance(Type t)
+        {
+            ConstructorInfo constructor = t.GetConstructor(emptyTypes);
             if (constructor != null)
             {
-                return constructor.Invoke(EmptyParams);
+                return constructor.Invoke(emptyParams);
             }
             else
             {
-                throw new Exception("Cannot access the constructor of type: " + t.FullName + ". Is the required permission granted?");
+                throw new NLogConfigurationException("Cannot access the constructor of type: " + t.FullName + ". Is the required permission granted?");
             }
         }
     }

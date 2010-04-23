@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,19 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
-using NLog.Config;
-
 namespace NLog.Targets.Compound
 {
     /// <summary>
@@ -57,29 +44,29 @@ namespace NLog.Targets.Compound
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/SplitGroup/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/SplitGroup/NLog.config" />
     /// <p>
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
     /// <code lang="C#" source="examples/targets/Configuration API/SplitGroup/Simple/Example.cs" />
     /// </example>
-    [Target("SplitGroup", IgnoresLayout = true, IsCompound = true)]
-    public class SplitTarget: CompoundTargetBase
+    [Target("SplitGroup", IsCompound = true)]
+    public class SplitTarget : CompoundTargetBase
     {
         /// <summary>
-        /// Creates a new instance of <see cref="SplitTarget"/>.
+        /// Initializes a new instance of the <see cref="SplitTarget" /> class.
         /// </summary>
         public SplitTarget()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="SplitTarget"/> and
-        /// initializes the <see cref="Targets"/> collection to the
-        /// provided array of <see cref="Target"/> objects.
+        /// Initializes a new instance of the <see cref="SplitTarget" /> class.
         /// </summary>
-        public SplitTarget(params Target[] targets) : base(targets)
+        /// <param name="targets">The targets.</param>
+        public SplitTarget(params Target[] targets)
+            : base(targets)
         {
         }
 
@@ -87,12 +74,12 @@ namespace NLog.Targets.Compound
         /// Forwards the specified log event to all sub-targets.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
-            for (int i = 0; i < Targets.Count; ++i)
+            for (int i = 0; i < this.Targets.Count; ++i)
             {
-                Targets[i].Write(logEvent);
+                this.Targets[i].WriteLogEvent(logEvent);
             }
         }
-   }
+    }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,54 +31,29 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-
-using NLog;
-using NLog.Config;
-
 namespace NLog.Filters
 {
+    using NLog.Config;
+    using NLog.Layouts;
+
     /// <summary>
     /// A base class for filters that are based on comparing a value to a layout.
     /// </summary>
-    public abstract class LayoutBasedFilter: Filter
+    public abstract class LayoutBasedFilter : Filter
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="LayoutBasedFilter"/>.
+        /// Initializes a new instance of the <see cref="LayoutBasedFilter" /> class.
         /// </summary>
-        protected LayoutBasedFilter(){}
-
-        private Layout _compiledlayout;
+        protected LayoutBasedFilter()
+        {
+        }
 
         /// <summary>
-        /// The layout text;
+        /// Gets or sets the layout to be used to filter log messages.
         /// </summary>
-        /// <docgen category="Filtering Options" order="0" />
+        /// <value>The layout.</value>
+        /// <docgen category='Filtering Options' order='10' />
         [RequiredParameter]
-        public string Layout
-        {
-            get { return _compiledlayout.Text; }
-            set { _compiledlayout = new Layout(value); }
-        }
-
-        /// <summary>
-        /// Compiled layout.
-        /// </summary>
-        protected Layout CompiledLayout
-        {
-            get { return _compiledlayout; }
-        }
-
-        /// <summary>
-        /// Determines whether stack trace information should be gathered
-        /// during log event processing. By default it calls <see cref="NLog.Layout.NeedsStackTrace" /> on
-        /// <see cref="TargetWithLayout.CompiledLayout" />.
-        /// </summary>
-        /// <returns>0 - don't include stack trace<br/>1 - include stack trace without source file information<br/>2 - include full stack trace</returns>
-        public override int NeedsStackTrace()
-        {
-            return CompiledLayout.NeedsStackTrace();
-        }
+        public Layout Layout { get; set; }
     }
 }

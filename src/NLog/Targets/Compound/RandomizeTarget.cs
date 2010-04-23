@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,21 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
-using NLog.Config;
-
 namespace NLog.Targets.Compound
 {
+    using System;
+
     /// <summary>
     /// A compound target writes to a randomly-chosen target among the sub-targets.
     /// </summary>
@@ -57,31 +46,31 @@ namespace NLog.Targets.Compound
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/RandomizeGroup/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/RandomizeGroup/NLog.config" />
     /// <p>
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
     /// <code lang="C#" source="examples/targets/Configuration API/RandomizeGroup/Simple/Example.cs" />
     /// </example>
-    [Target("RandomizeGroup", IgnoresLayout = true, IsCompound = true)]
-    public class RandomizeTarget: CompoundTargetBase
+    [Target("RandomizeGroup", IsCompound = true)]
+    public class RandomizeTarget : CompoundTargetBase
     {
-        private static Random _random = new Random();
+        private static Random random = new Random();
 
         /// <summary>
-        /// Creates an instance of <see cref="RandomizeTarget"/>.
+        /// Initializes a new instance of the <see cref="RandomizeTarget" /> class.
         /// </summary>
         public RandomizeTarget()
         {
         }
 
         /// <summary>
-        /// Creates an instance of <see cref="RandomizeTarget"/> and
-        /// initializes the <see cref="Targets"/> collection with the
-        /// specified list of <see cref="Target"/> objects.
+        /// Initializes a new instance of the <see cref="RandomizeTarget" /> class.
         /// </summary>
-        public RandomizeTarget(params Target[] targets) : base(targets)
+        /// <param name="targets">The targets.</param>
+        public RandomizeTarget(params Target[] targets)
+            : base(targets)
         {
         }
 
@@ -90,10 +79,10 @@ namespace NLog.Targets.Compound
         /// The sub-target is randomly chosen.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
-            int pos = _random.Next(Targets.Count);
-            Targets[pos].Write(logEvent);
+            int pos = random.Next(this.Targets.Count);
+            this.Targets[pos].WriteLogEvent(logEvent);
         }
-   }
+    }
 }

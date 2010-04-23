@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -38,31 +38,31 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NLog.Internal;
+using NLog.Layouts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
-	public class EventContextTests : NLogTestBase
-	{
-        [Test]
+    [TestClass]
+    public class EventContextTests : NLogTestBase
+    {
+        [TestMethod]
         public void Test1()
         {
-            Layout l = new Layout("${event-context:aaa}");
-            l.Initialize();
-            LogEventInfo lei = new LogEventInfo(LogLevel.Info, "aaa", "bbb");
+            Layout l = "${event-context:aaa}";
+            LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
 
             // empty
             Assert.AreEqual("", l.GetFormattedMessage(lei));
         }
 
-        [Test]
+        [TestMethod]
         public void Test2()
         {
-            Layout l = new Layout("${event-context:aaa}");
-            LogEventInfo lei = new LogEventInfo(LogLevel.Info, "aaa", "bbb");
-            l.Initialize();
-            lei.Context["aaa"] = "bbb";
+            Layout l = "${event-context:aaa}";
+            LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
+            lei.Properties["aaa"] = "bbb";
 
             // empty
             Assert.AreEqual("bbb", l.GetFormattedMessage(lei));

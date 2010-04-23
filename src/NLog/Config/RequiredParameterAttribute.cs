@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,22 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Config
 {
+    using System;
+
     /// <summary>
     /// Attribute used to mark the required parameters for targets,
     /// layout targets and filters.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class RequiredParameterAttribute: Attribute
+    public sealed class RequiredParameterAttribute : Attribute
     {
-        /// <summary>
-        /// Creates a new RequiredParameterAttribute object.
-        /// </summary>
-        public RequiredParameterAttribute()
-        {
-        }
     }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -43,6 +43,7 @@ using System.Collections.Specialized;
 
 using NLog;
 using NLog.Config;
+using NLog.Common;
 
 using NLog.Internal;
 
@@ -62,7 +63,7 @@ namespace NLog.Internal.FileAppenders
     /// </remarks>
     internal class UnixMultiProcessFileAppender : BaseFileAppender
     {
-        private UnixStream _file;
+        private UnixStream file;
 
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
@@ -93,7 +94,7 @@ namespace NLog.Internal.FileAppenders
 
             try
             {
-                _file = new UnixStream(fd, true);
+                this.file = new UnixStream(fd, true);
             }
             catch
             {
@@ -104,19 +105,19 @@ namespace NLog.Internal.FileAppenders
 
         public override void Write(byte[] bytes)
         {
-            if (_file == null)
+            if (this.file == null)
                 return;
-            _file.Write(bytes, 0, bytes.Length);
+            this.file.Write(bytes, 0, bytes.Length);
             FileTouched();
         }
 
         public override void Close()
         {
-            if (_file == null)
+            if (this.file == null)
                 return;
             InternalLogger.Trace("Closing '{0}'", FileName);
-            _file.Close();
-            _file = null;
+            this.file.Close();
+            this.file = null;
             FileTouched();
         }
 

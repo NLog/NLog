@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,88 +31,33 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-
-using NLog.Config;
-
 namespace NLog.Targets.Compound
 {
+    using System.Collections.Generic;
+    using NLog.Layouts;
+
     /// <summary>
     /// A base class for targets which wrap other (multiple) targets
     /// and provide various forms of target routing.
     /// </summary>
-    public abstract class CompoundTargetBase: Target
+    public abstract class CompoundTargetBase : Target
     {
-        private TargetCollection _targets = new TargetCollection();
-
         /// <summary>
-        /// Creates a new instance of <see cref="CompoundTargetBase"/>.
+        /// Initializes a new instance of the <see cref="CompoundTargetBase" /> class.
         /// </summary>
-        public CompoundTargetBase()
+        /// <param name="targets">The targets.</param>
+        protected CompoundTargetBase(params Target[] targets)
         {
-        }
-
-        /// <summary>
-        /// Creates a new instance of <see cref="CompoundTargetBase"/> and
-        /// initializes the <see cref="Targets"/> collection to the provided
-        /// list of <see cref="Target"/> objects.
-        /// </summary>
-        public CompoundTargetBase(params Target[] targets)
-        {
-            _targets.AddRange(targets);
-        }
-
-        /// <summary>
-        /// A collection of targets managed by this compound target.
-        /// </summary>
-        public TargetCollection Targets
-        {
-            get { return _targets; }
-        }
-
-        /// <summary>
-        /// Adds all layouts used by this target and sub-targets.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
-        {
-            base.PopulateLayouts (layouts);
-            foreach (Target t in Targets)
+            this.Targets = new List<Target>();
+            foreach (Target t in targets)
             {
-                t.PopulateLayouts(layouts);
+                this.Targets.Add(t);
             }
         }
 
         /// <summary>
-        /// Initializes the target by initializing all sub-targets.
+        /// Gets the collection of targets managed by this compound target.
         /// </summary>
-        public override void Initialize()
-        {
-            foreach (Target t in Targets)
-            {
-                t.Initialize();
-            }
-        }
-
-        /// <summary>
-        /// Closes the target by closing all sub-targets.
-        /// </summary>
-        protected internal override void Close()
-        {
-            base.Close ();
-            foreach (Target t in Targets)
-            {
-                t.Close();
-            }
-        }
+        public IList<Target> Targets { get; private set; }
    }
 }

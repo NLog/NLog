@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,61 +31,35 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using System.Diagnostics;
-using System.Reflection;
-using System.Data;
-using System.Collections;
-
-using NLog.Internal;
-using NLog.Config;
-
 namespace NLog.Targets
 {
+    using NLog.Config;
+    using NLog.Layouts;
+
     /// <summary>
     /// Represents a parameter to a NLogViewer target.
     /// </summary>
-    public class NLogViewerParameterInfo
+    public class NLogViewerParameterInfo : INLogConfigurationItem
     {
-        /// <summary>ba
-        /// Creates a new instance of <see cref="NLogViewerParameterInfo"/>.
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NLogViewerParameterInfo" /> class.
         /// </summary>
-        public NLogViewerParameterInfo(){}
-
-        private Layout _compiledlayout;
-        private string _name;
+        public NLogViewerParameterInfo()
+        {
+        }
 
         /// <summary>
-        /// Viewer parameter name.
+        /// Gets or sets viewer parameter name.
         /// </summary>
-        /// <docgen category="Parameter Information" order="10" />
+        /// <docgen category='Parameter Options' order='10' />
         [RequiredParameter]
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
 
         /// <summary>
-        /// The layout that should be use to calcuate the value for the parameter.
+        /// Gets or sets the layout that should be use to calcuate the value for the parameter.
         /// </summary>
-        /// <docgen category="Parameter Information" order="10" />
+        /// <docgen category='Parameter Options' order='10' />
         [RequiredParameter]
-        [AcceptsLayout]
-        public string Layout
-        {
-            get { return _compiledlayout.Text; }
-            set { _compiledlayout = new Layout(value); }
-        }
-
-        /// <summary>
-        /// The compiled representation of the Layout property.
-        /// </summary>
-        public Layout CompiledLayout
-        {
-            get { return _compiledlayout; }
-            set { _compiledlayout = value; }
-        }
+        public Layout Layout { get; set; }
     }
 }

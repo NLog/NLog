@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -38,26 +38,23 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
-	public class CounterTests : NLogTestBase
-	{
-        [Test]
+    [TestClass]
+    public class CounterTests : NLogTestBase
+    {
+        [TestMethod]
         public void DefaultCounterTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message} ${counter} ${counter}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Info' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
@@ -71,19 +68,16 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a 4 4");
         }
 
-        [Test]
+        [TestMethod]
         public void PresetCounterTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message} ${counter:value=1:increment=3} ${counter}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Info' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
@@ -97,11 +91,10 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a 10 4");
         }
 
-        [Test]
+        [TestMethod]
         public void NamedCounterTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${message} ${counter:sequence=aaa}' />
@@ -114,8 +107,6 @@ namespace NLog.UnitTests.LayoutRenderers
                     <logger name='debug3' minlevel='Debug' writeTo='debug3' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             LogManager.GetLogger("debug1").Debug("a");
             AssertDebugLastMessage("debug1", "a 1");

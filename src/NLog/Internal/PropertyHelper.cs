@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,76 +31,26 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Reflection;
-using System.Globalization;
-using System.Collections.Specialized;
-using System.Xml;
-
-using NLog.Internal;
-using NLog.Config;
-using System.ComponentModel;
-
 namespace NLog.Internal
 {
-    internal sealed class PropertyHelper
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Reflection;
+    using System.Text;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Layouts;
+    using NLog.Targets;
+
+    /// <summary>
+    /// Reflection helpers for accessing properties.
+    /// </summary>
+    internal static class PropertyHelper
     {
-        private static TypeToPropertyInfoDictionaryAssociation _parameterInfoCache = new TypeToPropertyInfoDictionaryAssociation();
+        private static Dictionary<Type, Dictionary<string, PropertyInfo>> parameterInfoCache = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
 
-        private PropertyHelper(){}
-
-        public static string ExpandVariables(string input, NameValueCollection variables)
-        {
-            if (variables == null || variables.Count == 0)
-                return input;
-
-            string output = input;
-
-            // TODO - make this case-insensitive, will probably require a different
-            // approach
-
-            foreach (string s in variables.Keys)
-            {
-                output = output.Replace("${" + s + "}", variables[s]);
-            }
-
-            return output;
-        }
-
-        private static object GetEnumValue(Type enumType, string value)
-        {
-            if (enumType.IsDefined(typeof(FlagsAttribute), false))
-            {
-                ulong union = 0;
-
-                foreach (string v in value.Split(','))
-                {
-                    FieldInfo enumField = enumType.GetField(v.Trim(), BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
-                    union |= Convert.ToUInt64(enumField.GetValue(null));
-                }
-                object retval = Convert.ChangeType(union, Enum.GetUnderlyingType(enumType), CultureInfo.InvariantCulture);
-                return retval;
-            }
-            else
-            {
-                FieldInfo enumField = enumType.GetField(value, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
-                return enumField.GetValue(null);
-            }
-        }
-
-        public static bool SetPropertyFromElement(object o, XmlElement el, NameValueCollection variables)
-        {
-            if (AddArrayItemFromElement(o, el, variables))
-                return true;
-
-            if (SetLayoutFromElement(o, el, variables))
-                return true;
-
-            return SetPropertyFromString(o, el.LocalName, el.InnerText, variables);
-        }
-
-        public static bool SetPropertyFromString(object o, string name, string value0, NameValueCollection variables)
+        internal static bool SetPropertyFromString(object o, string name, string value0, IDictionary<string, string> variables)
         {
             string value = ExpandVariables(value0, variables);
 
@@ -108,8 +58,9 @@ namespace NLog.Internal
 
             try
             {
-                PropertyInfo propInfo = GetPropertyInfo(o, name);
-                if (propInfo == null)
+                PropertyInfo propInfo;
+
+                if (!TryGetPropertyInfo(o, name, out propInfo))
                 {
                     throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
                 }
@@ -121,14 +72,17 @@ namespace NLog.Internal
 
                 object newValue;
 
-                if (propInfo.PropertyType.IsEnum)
+                if (!TryGetEnumValue(propInfo.PropertyType, value, out newValue))
                 {
-                    newValue = GetEnumValue(propInfo.PropertyType, value);
+                    if (!TryImplicitConversion(propInfo.PropertyType, value, out newValue))
+                    {
+                        if (!TrySpecialConversion(propInfo.PropertyType, value, out newValue))
+                        {
+                            newValue = Convert.ChangeType(value, propInfo.PropertyType, CultureInfo.InvariantCulture);
+                        }
+                    }
                 }
-                else
-                {
-                    newValue = Convert.ChangeType(value, propInfo.PropertyType, CultureInfo.InvariantCulture);
-                }
+
                 propInfo.SetValue(o, newValue, null);
                 return true;
             }
@@ -139,104 +93,33 @@ namespace NLog.Internal
             }
         }
 
-        public static bool AddArrayItemFromElement(object o, XmlElement el, NameValueCollection variables)
+        internal static string ExpandVariables(string input, IDictionary<string, string> variables)
         {
-            string name = el.Name;
-            if (!IsArrayProperty(o.GetType(), name))
-                return false;
-            PropertyInfo propInfo = GetPropertyInfo(o, name);
-            if (propInfo == null)
-                throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
+            if (variables == null || variables.Count == 0)
+            {
+                return input;
+            }
 
-            IList propertyValue = (IList)propInfo.GetValue(o, null);
-            Type elementType = GetArrayItemType(propInfo);
-            object arrayItem = FactoryHelper.CreateInstance(elementType);
-            ConfigureObjectFromAttributes(arrayItem, el.Attributes, variables, true);
-            ConfigureObjectFromElement(arrayItem, el, variables);
-            propertyValue.Add(arrayItem);
-            return true;
+            string output = input;
+
+            // TODO - make this case-insensitive, will probably require a different
+            // approach
+            foreach (string s in variables.Keys)
+            {
+                output = output.Replace("${" + s + "}", variables[s]);
+            }
+
+            return output;
         }
 
-        internal static PropertyInfo GetPropertyInfo(object o, string propertyName)
+        internal static bool IsArrayProperty(Type t, string name)
         {
-            PropertyInfo propInfo = o.GetType().GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-            if (propInfo != null)
-                return propInfo;
+            PropertyInfo propInfo;
 
-            lock(_parameterInfoCache)
+            if (!TryGetPropertyInfo(t, name, out propInfo))
             {
-                Type targetType = o.GetType();
-                PropertyInfoDictionary cache = _parameterInfoCache[targetType];
-                if (cache == null)
-                {
-                    cache = BuildPropertyInfoDictionary(targetType);
-                    _parameterInfoCache[targetType] = cache;
-                }
-                return cache[propertyName.ToLower()];
-            }
-        }
-
-        private static PropertyInfo GetPropertyInfo(Type targetType, string propertyName)
-        {
-            if (propertyName != "")
-            {
-                PropertyInfo propInfo = targetType.GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-                if (propInfo != null)
-                    return propInfo;
-            }
-
-            lock(_parameterInfoCache)
-            {
-                PropertyInfoDictionary cache = _parameterInfoCache[targetType];
-                if (cache == null)
-                {
-                    cache = BuildPropertyInfoDictionary(targetType);
-                    _parameterInfoCache[targetType] = cache;
-                }
-                return cache[propertyName.ToLower()];
-            }
-        }
-
-        private static PropertyInfoDictionary BuildPropertyInfoDictionary(Type t)
-        {
-            PropertyInfoDictionary retVal = new PropertyInfoDictionary();
-            foreach (PropertyInfo propInfo in t.GetProperties())
-            {
-                if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
-                {
-                    ArrayParameterAttribute[]attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
-
-                    retVal[attributes[0].ElementName.ToLower()] = propInfo;
-                }
-                else
-                {
-                    retVal[propInfo.Name.ToLower()] = propInfo;
-                }
-                if (propInfo.IsDefined(typeof(DefaultParameterAttribute), false))
-                    retVal[""] = propInfo;
-            }
-            return retVal;
-        }
-
-        private static Type GetArrayItemType(PropertyInfo propInfo)
-        {
-            if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
-            {
-                ArrayParameterAttribute[]attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
-
-                return attributes[0].ItemType;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public static bool IsArrayProperty(Type t, string name)
-        {
-            PropertyInfo propInfo = GetPropertyInfo(t, name);
-            if (propInfo == null)
                 throw new NotSupportedException("Parameter " + name + " not supported on " + t.Name);
+            }
 
             if (!propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
             {
@@ -248,145 +131,194 @@ namespace NLog.Internal
             }
         }
 
-        public static bool IsLayoutProperty(Type t, string name)
+        internal static bool IsLayoutProperty(Type t, string name)
         {
-            PropertyInfo propInfo = GetPropertyInfo(t, name);
-            if (propInfo == null)
+            PropertyInfo propInfo;
+
+            if (!TryGetPropertyInfo(t, name, out propInfo))
+            {
                 throw new NotSupportedException("Parameter " + name + " not supported on " + t.Name);
-
-            if (typeof(ILayout).IsAssignableFrom(propInfo.PropertyType))
-                return true;
-
-            if (0 == String.Compare(name, "layout", true) && typeof(TargetWithLayout).IsAssignableFrom(propInfo.DeclaringType))
-                return true;
-
-            return false;
-        }
-
-        public static bool EqualsCI(string p1, string p2)
-        {
-            return String.Compare(p1, p2, true) == 0;
-        }
-
-        public static string GetCaseInsensitiveAttribute(XmlElement element, string name, NameValueCollection variables)
-        {
-            // first try a case-sensitive match
-            string s = element.GetAttribute(name);
-            if (s != null && s != "")
-                return PropertyHelper.ExpandVariables(s, variables);
-
-            // then look through all attributes and do a case-insensitive compare
-            // this isn't very fast, but we don't need ultra speed here
-
-            foreach (XmlAttribute a in element.Attributes)
-            {
-                if (EqualsCI(a.LocalName, name))
-                    return PropertyHelper.ExpandVariables(a.Value, variables);
             }
 
-            return null;
-        }
-
-        public static bool HasCaseInsensitiveAttribute(XmlElement element, string name)
-        {
-            // first try a case-sensitive match
-            if (element.HasAttribute(name))
-                return true;
-
-            // then look through all attributes and do a case-insensitive compare
-            // this isn't very fast, but we don't need ultra speed here because usually we have about
-            // 3 attributes per element
-
-            foreach (XmlAttribute a in element.Attributes)
+            if (typeof(Layout).IsAssignableFrom(propInfo.PropertyType))
             {
-                if (EqualsCI(a.LocalName, name))
-                    return true;
+                return true;
+            }
+
+            if (0 == String.Compare(name, "layout", StringComparison.OrdinalIgnoreCase) && typeof(TargetWithLayout).IsAssignableFrom(propInfo.DeclaringType))
+            {
+                return true;
             }
 
             return false;
         }
-
-        public static bool SetLayoutFromElement(object o, XmlElement el, NameValueCollection variables)
+        
+        internal static bool TryGetPropertyInfo(object o, string propertyName, out PropertyInfo result)
         {
-            string name = el.LocalName;
-            if (!IsLayoutProperty(o.GetType(), name))
-                return false;
-
-            PropertyInfo targetPropertyInfo = o.GetType().GetProperty(name, BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy | BindingFlags.IgnoreCase);
-
-            if (targetPropertyInfo != null && typeof(ILayout).IsAssignableFrom(targetPropertyInfo.PropertyType))
+            PropertyInfo propInfo = o.GetType().GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+            if (propInfo != null)
             {
-                ILayout layout = LayoutFactory.CreateLayout(GetCaseInsensitiveAttribute(el, "type", variables));
-                ConfigureObjectFromAttributes(layout, el.Attributes, variables, true);
-                ConfigureObjectFromElement(layout, el, variables);
-                targetPropertyInfo.SetValue(o, layout, null);
+                result = propInfo;
                 return true;
             }
 
-            if (name == "layout" && (o is TargetWithLayout))
+            lock (parameterInfoCache)
             {
-                if (HasCaseInsensitiveAttribute(el, "type"))
+                Type targetType = o.GetType();
+                Dictionary<string, PropertyInfo> cache;
+
+                if (!parameterInfoCache.TryGetValue(targetType, out cache))
                 {
-                    ILayout layout = LayoutFactory.CreateLayout(GetCaseInsensitiveAttribute(el, "type", variables));
-                    ConfigureObjectFromAttributes(layout, el.Attributes, variables, true);
-                    ConfigureObjectFromElement(layout, el, variables);
-                    ((TargetWithLayout)o).CompiledLayout = layout;
+                    cache = BuildPropertyInfoDictionary(targetType);
+                    parameterInfoCache[targetType] = cache;
+                }
+
+                return cache.TryGetValue(propertyName, out result);
+            }
+        }
+
+        internal static Type GetArrayItemType(PropertyInfo propInfo)
+        {
+            if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
+            {
+                ArrayParameterAttribute[] attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
+
+                return attributes[0].ItemType;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        internal static IEnumerable<PropertyInfo> GetAllReadableProperties(Type type)
+        {
+#if NETCF2_0
+            // .NET Compact Framework 2.0 understands 'Public' differently
+            // it only returns properties where getter and setter are public
+
+            var allProperties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic);
+            var readableProperties = new List<PropertyInfo>();
+            foreach (var prop in allProperties)
+            {
+                if (prop.CanRead)
+                {
+                    readableProperties.Add(prop);
+                }
+            }
+
+            return readableProperties;
+#else
+            // other frameworks don't have this problem
+            return type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+#endif
+        }
+
+        private static bool TryImplicitConversion(Type resultType, string value, out object result)
+        {
+            MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { typeof(string) }, null);
+            if (operatorImplicitMethod == null)
+            {
+                result = null;
+                return false;
+            }
+
+            result = operatorImplicitMethod.Invoke(null, new object[] { value });
+            return true;
+        }
+
+        private static bool TryGetEnumValue(Type resultType, string value, out object result)
+        {
+            if (!resultType.IsEnum)
+            {
+                result = null;
+                return false;
+            }
+
+            if (resultType.IsDefined(typeof(FlagsAttribute), false))
+            {
+                ulong union = 0;
+
+                foreach (string v in value.Split(','))
+                {
+                    FieldInfo enumField = resultType.GetField(v.Trim(), BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
+                    union |= Convert.ToUInt64(enumField.GetValue(null), CultureInfo.InvariantCulture);
+                }
+
+                result = Convert.ChangeType(union, Enum.GetUnderlyingType(resultType), CultureInfo.InvariantCulture);
+                return true;
+            }
+            else
+            {
+                FieldInfo enumField = resultType.GetField(value, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
+                result = enumField.GetValue(null);
+                return true;
+            }
+        }
+
+        private static bool TrySpecialConversion(Type type, string value, out object newValue)
+        {
+            if (type == typeof(Encoding) && value is string)
+            {
+                newValue = Encoding.GetEncoding(value);
+                return true;
+            }
+            else
+            {
+                newValue = null;
+                return false;
+            }
+        }
+
+        private static bool TryGetPropertyInfo(Type targetType, string propertyName, out PropertyInfo result)
+        {
+            if (!string.IsNullOrEmpty(propertyName))
+            {
+                PropertyInfo propInfo = targetType.GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                if (propInfo != null)
+                {
+                    result = propInfo;
+                    return true;
+                }
+            }
+
+            lock (parameterInfoCache)
+            {
+                Dictionary<string, PropertyInfo> cache;
+
+                if (!parameterInfoCache.TryGetValue(targetType, out cache))
+                {
+                    cache = BuildPropertyInfoDictionary(targetType);
+                    parameterInfoCache[targetType] = cache;
+                }
+
+                return cache.TryGetValue(propertyName, out result);
+            }
+        }
+
+        private static Dictionary<string, PropertyInfo> BuildPropertyInfoDictionary(Type t)
+        {
+            var retVal = new Dictionary<string, PropertyInfo>(StringComparer.OrdinalIgnoreCase);
+            foreach (PropertyInfo propInfo in GetAllReadableProperties(t))
+            {
+                if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
+                {
+                    var attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
+
+                    retVal[attributes[0].ElementName] = propInfo;
                 }
                 else
                 {
-                    ((TargetWithLayout)o).Layout = el.InnerText;
+                    retVal[propInfo.Name] = propInfo;
                 }
-                return true;
+
+                if (propInfo.IsDefined(typeof(DefaultParameterAttribute), false))
+                {
+                    retVal[string.Empty] = propInfo;
+                }
             }
 
-            return false;
-        }
-
-        public static void ConfigureObjectFromAttributes(object targetObject, XmlAttributeCollection attrs, NameValueCollection variables, bool ignoreType)
-        {
-            foreach (XmlAttribute attrib in attrs)
-            {
-                string childName = attrib.LocalName;
-                string childValue = attrib.InnerText;
-
-                if (ignoreType && 0 == String.Compare(childName, "type", true))
-                    continue;
-
-                PropertyHelper.SetPropertyFromString(targetObject, childName, childValue, variables);
-            }
-        }
-
-        public static void ConfigureObjectFromElement(object targetObject, XmlElement el, NameValueCollection variables)
-        {
-            foreach (XmlElement el2 in GetChildElements(el))
-            {
-                SetPropertyFromElement(targetObject, el2, variables);
-            }
-        }
-
-        internal static XmlNode[] GetChildElements(XmlElement element)
-        {
-            ArrayList list = new ArrayList();
-            foreach (XmlNode n in element.ChildNodes)
-            {
-                if (n is XmlElement)
-                    list.Add(n);
-            }
-            return (XmlElement[])list.ToArray(typeof(XmlElement));
-        }
-
-        internal static XmlNode[] GetChildElements(XmlElement element, string localName)
-        {
-            ArrayList list = new ArrayList();
-            foreach (XmlNode n in element.ChildNodes)
-            {
-                if (0 != String.Compare(localName, n.LocalName, true))
-                    continue;
-
-                if (n is XmlElement)
-                    list.Add(n);
-            }
-            return (XmlElement[])list.ToArray(typeof(XmlElement));
+            return retVal;
         }
     }
 }

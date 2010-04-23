@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !NET_CF
+
 using System;
 using System.Xml;
 using System.Reflection;
@@ -38,25 +40,25 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
-	public class EnvironmentTests : NLogTestBase
-	{
-        [Test]
+    [TestClass]
+    public class EnvironmentTests : NLogTestBase
+    {
+        [TestMethod]
         public void EnvironmentTest()
         {
-            Layout l = new Layout("${environment:variable=PATH}");
-            AssertLayoutRendererOutput(l, System.Environment.GetEnvironmentVariable("PATH"));
+            AssertLayoutRendererOutput("${environment:variable=PATH}", System.Environment.GetEnvironmentVariable("PATH"));
         }
 
-        [Test]
+        [TestMethod]
         public void EnvironmentSimpleTest()
         {
-            Layout l = new Layout("${environment:PATH}");
-            AssertLayoutRendererOutput(l, System.Environment.GetEnvironmentVariable("PATH"));
+            AssertLayoutRendererOutput("${environment:PATH}", System.Environment.GetEnvironmentVariable("PATH"));
         }
     }
 }
+
+#endif

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,86 +31,101 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Diagnostics;
-using System.Reflection;
-
-using NLog.Filters;
-using NLog.Targets;
-using NLog.Internal;
-
 namespace NLog
 {
-    internal sealed class LoggerImpl
+    using System;
+    using System.Diagnostics;
+    using System.Reflection;
+
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Filters;
+    using NLog.Internal;
+    using NLog.Targets;
+
+    /// <summary>
+    /// Implementation of logging engine.
+    /// </summary>
+    internal static class LoggerImpl
     {
-        private LoggerImpl() { }
-        
-        private const int STACK_TRACE_SKIP_METHODS = 0;
+        private const int StackTraceSkipMethods = 0;
+        private static Assembly nlogAssembly = typeof(LoggerImpl).Assembly;
 
         internal static void Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
         {
             if (targets == null)
+            {
                 return;
+            }
 
-#if !NETCF            
-            bool needTrace = false;
-            bool needTraceSources = false;
+#if !NET_CF
+            StackTraceUsage stu = targets.GetStackTraceUsage();
 
-            int nst = targets.NeedsStackTrace;
-
-            if (nst > 0)
-                needTrace = true;
-            if (nst > 1)
-                needTraceSources = true;
-
-            StackTrace stackTrace = null;
-            if (needTrace && !logEvent.HasStackTrace)
+            StackTrace stackTrace;
+            if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
                 int firstUserFrame = 0;
-                stackTrace = new StackTrace(STACK_TRACE_SKIP_METHODS, needTraceSources);
+#if !SILVERLIGHT
+                stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
+#else
+                stackTrace = new StackTrace();
+#endif
 
                 for (int i = 0; i < stackTrace.FrameCount; ++i)
                 {
-                    System.Reflection.MethodBase mb = stackTrace.GetFrame(i).GetMethod();
+                    var frame = stackTrace.GetFrame(i);
+                    MethodBase mb = frame.GetMethod();
+                    Assembly methodAssembly = null;
 
-                    if (mb.DeclaringType == loggerType)
+                    if (mb.DeclaringType != null)
+                    {
+                        methodAssembly = mb.DeclaringType.Assembly;
+                    }
+
+                    if (methodAssembly == nlogAssembly || mb.DeclaringType == loggerType)
                     {
                         firstUserFrame = i + 1;
                     }
                     else
                     {
                         if (firstUserFrame != 0)
+                        {
                             break;
+                        }
                     }
                 }
+
                 logEvent.SetStackTrace(stackTrace, firstUserFrame);
             }
-#endif 
-            for (TargetWithFilterChain awf = targets; awf != null; awf = awf.Next)
+#endif
+            for (TargetWithFilterChain awf = targets; awf != null; awf = awf.NextInChain)
             {
                 Target app = awf.Target;
                 FilterResult result = FilterResult.Neutral;
 
                 try
                 {
-                    FilterCollection filterChain = awf.FilterChain;
-
-                    for (int i = 0; i < filterChain.Count; ++i)
+                    foreach (Filter f in awf.FilterChain)
                     {
-                        Filter f = filterChain[i];
-                        result = f.Check(logEvent);
+                        result = f.GetFilterResult(logEvent);
                         if (result != FilterResult.Neutral)
+                        {
                             break;
+                        }
                     }
+
                     if ((result == FilterResult.Ignore) || (result == FilterResult.IgnoreFinal))
                     {
                         if (InternalLogger.IsDebugEnabled)
                         {
                             InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", logEvent.LoggerName, logEvent.Level);
                         }
+
                         if (result == FilterResult.IgnoreFinal)
+                        {
                             return;
+                        }
+
                         continue;
                     }
                 }
@@ -118,25 +133,32 @@ namespace NLog
                 {
                     InternalLogger.Error("FilterChain exception: {0}", ex);
                     if (factory.ThrowExceptions)
+                    {
                         throw;
-                    else
-                        continue;
+                    }
+
+                    continue;
                 }
 
                 try
                 {
-                    app.Write(logEvent);
+                    app.WriteLogEvent(logEvent);
                 }
                 catch (Exception ex)
                 {
                     InternalLogger.Error("Target exception: {0}", ex);
                     if (factory.ThrowExceptions)
+                    {
                         throw;
-                    else
-                        continue;
+                    }
+
+                    continue;
                 }
+
                 if (result == FilterResult.LogFinal)
+                {
                     return;
+                }
             }
         }
     }

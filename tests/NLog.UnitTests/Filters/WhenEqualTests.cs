@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -39,18 +39,17 @@ using System.IO;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.Filters
 {
-    [TestFixture]
-	public class WhenEqualTests : NLogTestBase
-	{
-        [Test]
+    [TestClass]
+    public class WhenEqualTests : NLogTestBase
+    {
+        [TestMethod]
         public void WhenEqualTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
                 <rules>
@@ -62,8 +61,6 @@ namespace NLog.UnitTests.Filters
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 1);
@@ -73,11 +70,10 @@ namespace NLog.UnitTests.Filters
             AssertDebugCounter("debug", 2);
         }
 
-        [Test]
+        [TestMethod]
         public void WhenEqualInsensitiveTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
                 <rules>
@@ -88,8 +84,6 @@ namespace NLog.UnitTests.Filters
                     </logger>
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");

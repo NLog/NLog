@@ -14,13 +14,16 @@ using System.Xml.Schema;
 using NLog.Conditions;
 using System.ComponentModel;
 using System.Globalization;
+using NLog.Layouts;
+using NLog.Targets;
+using NLog.Filters;
 
 namespace MakeNLogXSD
 {
     class Program
     {
-        static Hashtable _typeDumped = new Hashtable();
-        static XmlDocument _docXml = new XmlDocument();
+        static Hashtable typeDumped = new Hashtable();
+        static XmlDocument docXml = new XmlDocument();
 
         static string XmlDefaultValue(object v)
         {
@@ -37,7 +40,7 @@ namespace MakeNLogXSD
         static string FindAnnotation(PropertyInfo pi)
         {
             string xpath = "//class[@id='T:" + pi.DeclaringType.FullName + "']/property[@name='" + pi.Name + "']/documentation/summary";
-            XmlNode n = _docXml.SelectSingleNode(xpath);
+            XmlNode n = docXml.SelectSingleNode(xpath);
             if (n != null)
             {
                 string suffix = "";
@@ -79,7 +82,9 @@ namespace MakeNLogXSD
         static string MakeCamelCase(string s)
         {
             if (s.Length < 1)
-                return s.ToLower();
+            {
+                return s.ToLower(CultureInfo.InvariantCulture);
+            }
 
             int firstLower = s.Length;
             for (int i = 0; i < s.Length; ++i)
@@ -92,12 +97,17 @@ namespace MakeNLogXSD
             }
 
             if (firstLower == 0)
+            {
                 return s;
+            }
 
             // DBType
             if (firstLower != 1 && firstLower != s.Length)
+            {
                 firstLower--;
-            return s.Substring(0, firstLower).ToLower() + s.Substring(firstLower);
+            }
+
+            return s.Substring(0, firstLower).ToLower(CultureInfo.InvariantCulture) + s.Substring(firstLower);
         }
 
         static void DumpEnum(XmlTextWriter xtw, Type t)
@@ -123,10 +133,10 @@ namespace MakeNLogXSD
 
         static void DumpType(XmlTextWriter xtw, Type t)
         {
-            if (_typeDumped[t] != null)
+            if (typeDumped[t] != null)
                 return;
 
-            _typeDumped[t] = t;
+            typeDumped[t] = t;
 
             if (t.IsArray)
                 return;
@@ -186,7 +196,7 @@ namespace MakeNLogXSD
                     xtw.WriteEndElement();
                     typesToDump.Add(apa.ItemType);
                 }
-                else if (pi.PropertyType.IsValueType || pi.PropertyType.IsEnum || pi.PropertyType == typeof(string) || typeof(ILayout).IsAssignableFrom(pi.PropertyType))
+                else if (pi.PropertyType.IsValueType || pi.PropertyType.IsEnum || pi.PropertyType == typeof(string) || typeof(Layout).IsAssignableFrom(pi.PropertyType))
                 {
                     if (pi.CanWrite && pi.CanRead && ((pi.GetSetMethod().Attributes & MethodAttributes.ReuseSlot) == 0) && (pi.Name != "Layout" || !typeof(TargetWithLayout).IsAssignableFrom(pi.DeclaringType)))
                     {
@@ -266,12 +276,7 @@ namespace MakeNLogXSD
 
                 xtw.WriteStartElement("xs:attribute");
                 xtw.WriteAttributeString("name", MakeCamelCase(pi.Name));
-                if (pi.IsDefined(typeof(AcceptsLayoutAttribute), false))
-                    xtw.WriteAttributeString("type", "NLogLayout");
-                else if (pi.IsDefined(typeof(AcceptsConditionAttribute), false))
-                    xtw.WriteAttributeString("type", "NLogCondition");
-                else
-                    xtw.WriteAttributeString("type", SimpleTypeName(pi.PropertyType));
+                xtw.WriteAttributeString("type", SimpleTypeName(pi.PropertyType));
                 DefaultValueAttribute dva = (DefaultValueAttribute)Attribute.GetCustomAttribute(pi, typeof(DefaultValueAttribute));
                 if (dva != null)
                     xtw.WriteAttributeString("default", XmlDefaultValue(dva.Value));
@@ -326,19 +331,18 @@ namespace MakeNLogXSD
                 return 1;
             }
 
+            var factories = new NLogFactories();
+
             try
             {
-                _docXml.Load(args[1]);
+                docXml.Load(args[1]);
 
                 for (int i = 2; i < args.Length; ++i)
                 {
                     try
                     {
                         Assembly asm = Assembly.Load(args[i]);
-                        TargetFactory.AddTargetsFromAssembly(asm, "");
-                        LayoutRendererFactory.AddLayoutRenderersFromAssembly(asm, "");
-                        FilterFactory.AddFiltersFromAssembly(asm, "");
-                        LayoutFactory.AddLayoutsFromAssembly(asm, "");
+                        factories.RegisterItemsFromAssembly(asm, "");
                     }
                     catch (Exception ex)
                     {
@@ -354,24 +358,23 @@ namespace MakeNLogXSD
                 xtw.Namespaces = false;
                 xtw.Formatting = Formatting.Indented;
 
-                _typeDumped[typeof(object)] = 1;
-                _typeDumped[typeof(Target)] = 1;
-                _typeDumped[typeof(TargetWithLayout)] = 1;
-                _typeDumped[typeof(TargetWithLayoutHeaderAndFooter)] = 1;
-                _typeDumped[typeof(ILayout)] = 1;
-                _typeDumped[typeof(ILayoutWithHeaderAndFooter)] = 1;
+                typeDumped[typeof(object)] = 1;
+                typeDumped[typeof(Target)] = 1;
+                typeDumped[typeof(TargetWithLayout)] = 1;
+                typeDumped[typeof(TargetWithLayoutHeaderAndFooter)] = 1;
+                typeDumped[typeof(Layout)] = 1;
 
-                foreach (Type targetType in NLog.TargetFactory.TargetTypes)
+                foreach (var target in factories.TargetFactory.AllRegisteredItems)
                 {
-                    DumpType(xtw, targetType);
+                    DumpType(xtw, target.Value);
                 }
-                foreach (Type t in FilterFactory.FilterTypes)
+                foreach (var filter in factories.FilterFactory.AllRegisteredItems)
                 {
-                    DumpType(xtw, t);
+                    DumpType(xtw, filter.Value);
                 }
-                foreach (Type t in LayoutFactory.LayoutTypes)
+                foreach (var layout in factories.LayoutFactory.AllRegisteredItems)
                 {
-                    DumpType(xtw, t);
+                    DumpType(xtw, layout.Value);
                 }
                 xtw.Flush();
                 sw.Write("</root>");
@@ -398,12 +401,11 @@ namespace MakeNLogXSD
                     n.ParentNode.RemoveChild(n);
 
                     n = doc.SelectSingleNode("//filters-go-here");
-                    foreach (Type t in FilterFactory.FilterTypes)
+                    foreach (var filter in factories.FilterFactory.AllRegisteredItems)
                     {
-                        FilterAttribute fa = (FilterAttribute)Attribute.GetCustomAttribute(t, typeof(FilterAttribute));
                         XmlElement el = doc.CreateElement("xs:element", XmlSchema.Namespace);
-                        el.SetAttribute("name", fa.Name);
-                        el.SetAttribute("type", SimpleTypeName(t));
+                        el.SetAttribute("name", filter.Key);
+                        el.SetAttribute("type", SimpleTypeName(filter.Value));
                         n.ParentNode.InsertBefore(el, n);
                     }
                     n.ParentNode.RemoveChild(n);
@@ -412,7 +414,6 @@ namespace MakeNLogXSD
                     doc.Save(args[0]);
                     return 0;
                 }
-
 
             }
             catch (Exception ex)

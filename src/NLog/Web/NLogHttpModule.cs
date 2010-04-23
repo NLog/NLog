@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,17 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
-
-using System;
-using System.Text;
-using System.Web;
-
-using NLog;
-using NLog.Config;
+#if !NET_CF && !SILVERLIGHT
 
 namespace NLog.Web
 {
+    using System;
+    using System.Web;
+
     /// <summary>
     /// ASP.NET HttpModule that enables NLog to hook BeginRequest and EndRequest events easily.
     /// </summary>
@@ -58,13 +54,15 @@ namespace NLog.Web
         public static event EventHandler BeginRequest;
 
         /// <summary>
-        /// Initializes the HttpModule
+        /// Initializes the HttpModule.
         /// </summary>
-        /// <param name="application">ASP.NET application</param>
+        /// <param name="application">
+        /// ASP.NET application.
+        /// </param>
         public void Init(HttpApplication application)
         {
-            application.BeginRequest += new EventHandler(this.BeginRequestHandler);
-            application.EndRequest += new EventHandler(this.EndRequestHandler);
+            application.BeginRequest += this.BeginRequestHandler;
+            application.EndRequest += this.EndRequestHandler;
         }
 
         /// <summary>

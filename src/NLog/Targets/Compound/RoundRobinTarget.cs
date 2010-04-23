@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,22 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Net;
-using System.Net.Sockets;
-using System.Threading;
-
-using NLog.Config;
-
 namespace NLog.Targets.Compound
 {
+    using System.Threading;
+
     /// <summary>
     /// A compound target that forwards writes to the sub-targets in a
     /// round-robin fashion.
@@ -59,31 +47,31 @@ namespace NLog.Targets.Compound
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/RoundRobinGroup/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/RoundRobinGroup/NLog.config" />
     /// <p>
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
     /// <code lang="C#" source="examples/targets/Configuration API/RoundRobinGroup/Simple/Example.cs" />
     /// </example>
-    [Target("RoundRobinGroup", IgnoresLayout = true, IsCompound = true)]
-    public class RoundRobinTarget: CompoundTargetBase
+    [Target("RoundRobinGroup", IsCompound = true)]
+    public class RoundRobinTarget : CompoundTargetBase
     {
-        private int _currentTarget = 0;
+        private int currentTarget;
 
         /// <summary>
-        /// Creates a new instance of <see cref="RoundRobinTarget"/>.
+        /// Initializes a new instance of the <see cref="RoundRobinTarget" /> class.
         /// </summary>
         public RoundRobinTarget()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="RoundRobinTarget"/> and initializes
-        /// the <see cref="Targets"/> collection to the provided
-        /// array of <see cref="Target"/> objects.
+        /// Initializes a new instance of the <see cref="RoundRobinTarget" /> class.
         /// </summary>
-        public RoundRobinTarget(params Target[] targets) : base(targets)
+        /// <param name="targets">The targets.</param>
+        public RoundRobinTarget(params Target[] targets)
+            : base(targets)
         {
         }
 
@@ -99,10 +87,10 @@ namespace NLog.Targets.Compound
         /// first target when there are no more targets available.
         /// In general request N goes to Targets[N % Targets.Count].
         /// </remarks>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
-            int currentTarget = Interlocked.Increment(ref _currentTarget);
-            Targets[currentTarget % Targets.Count].Write(logEvent);
+            int currentTarget = Interlocked.Increment(ref this.currentTarget);
+            this.Targets[currentTarget % this.Targets.Count].WriteLogEvent(logEvent);
         }
-   }
+    }
 }

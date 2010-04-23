@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,41 +31,47 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Collections;
-
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
     /// <summary>
     /// Condition <b>not</b> expression.
     /// </summary>
     internal sealed class ConditionNotExpression : ConditionExpression 
     {
-        private ConditionExpression expr;
-
-        public ConditionNotExpression(ConditionExpression expr) 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConditionNotExpression" /> class.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        public ConditionNotExpression(ConditionExpression expression) 
         {
-            this.expr = expr;
-        }
-
-        public override object Evaluate(LogEventInfo context)
-        {
-            return !((bool)expr.Evaluate(context));
-        }
-
-        public override string ToString()
-        {
-            return "not(" + expr + ")";
+            this.Expression = expression;
         }
 
         /// <summary>
-        /// Adds all layouts used by this expression to the specified collection.
+        /// Gets the expression to be negated.
         /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
+        /// <value>The expression.</value>
+        public ConditionExpression Expression { get; private set; }
+
+        /// <summary>
+        /// Evaluates the expression.
+        /// </summary>
+        /// <param name="context">Evaluation context.</param>
+        /// <returns>Expression result.</returns>
+        public override object Evaluate(LogEventInfo context)
         {
-            expr.PopulateLayouts(layouts);
+            return !(bool)this.Expression.Evaluate(context);
+        }
+
+        /// <summary>
+        /// Returns a string representation of the expression.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"/> that represents the condition expression.
+        /// </returns>
+        public override string ToString()
+        {
+            return "not(" + this.Expression + ")";
         }
     }
 }

@@ -17,20 +17,19 @@ for $level (@levels) {
     if ($level eq "Log") {
         $level2 = "level";
         $level3 = "specified";
-        $isenabled = "IsEnabled(level)";
+        $isenabled = "this.IsEnabled(level)";
         $arg0 = "LogLevel level, ";
-        $param0 = qq!\n        /// <param name="level">the log level.</param>!;
+        $param0 = qq!\n        /// <param name="level">The log level.</param>!;
     } else {
         $level2 = "LogLevel.$level";
         $level3 = "<c>$level</c>";
-        $isenabled = "Is${level}Enabled";
+        $isenabled = "this.Is${level}Enabled";
         $arg0 = "";
         $param0 = "";
     }
 
 
     print OUT <<EOT;
-
         #region $level() overloads 
 
         /// <overloads>
@@ -38,30 +37,41 @@ for $level (@levels) {
         /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the $level3 level.
-        /// </summary>$param0
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        public void $level(${arg0}string message) {
+        /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>$param0
+        /// <param name="value">The value to be written.</param>
+        public void $level<T>(${arg0}T value)
+        {
             if ($isenabled)
-                WriteToTargets($level2, message);
+            {
+                this.WriteToTargets($level2, null, value);
+            }
         }
 
         /// <summary>
         /// Writes the diagnostic message at the $level3 level.
-        /// </summary>$param0
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void $level(${arg0}object obj) {
-            if ($isenabled)
-                WriteToTargets($level2, "{0}", new object[] { obj } );
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message at the $level3 level.
-        /// </summary>$param0
+        /// </summary>
+        /// <typeparam name="T">Type of the value.</typeparam>$param0
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
-        public void $level(${arg0}IFormatProvider formatProvider, object obj) {
+        /// <param name="value">The value to be written.</param>
+        public void $level<T>(${arg0}IFormatProvider formatProvider, T value)
+        {
             if ($isenabled)
-                WriteToTargets($level2, formatProvider, "{0}", new object[] { obj }, null);
+            {
+                this.WriteToTargets($level2, formatProvider, value);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the $level3 level.
+        /// </summary>$param0
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        public void $level(${arg0}LogMessageGenerator messageFunc)
+        {
+            if ($isenabled)
+            {
+                this.WriteToTargets($level2, null, messageFunc());
+            }
         }
 
         /// <summary>
@@ -69,9 +79,12 @@ for $level (@levels) {
         /// </summary>$param0
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        public void ${level}Exception(${arg0}string message, Exception exception) {
+        public void ${level}Exception(${arg0}string message, Exception exception)
+        {
             if ($isenabled)
-                WriteToTargets($level2, null, message, null, exception);
+            {
+                this.WriteToTargets($level2, message, exception);
+            }
         }
 
         /// <summary>
@@ -80,93 +93,137 @@ for $level (@levels) {
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
-        public void $level(${arg0}IFormatProvider formatProvider, string message, params object[] args) { 
+        public void $level(${arg0}IFormatProvider formatProvider, string message, params object[] args)
+        { 
             if ($isenabled)
-                WriteToTargets($level2, formatProvider, message, args, null); 
+            {
+                this.WriteToTargets($level2, formatProvider, message, args); 
+            }
         }
+
+        /// <summary>
+        /// Writes the diagnostic message at the $level3 level.
+        /// </summary>$param0
+        /// <param name="message">Log message.</param>
+        public void $level(${arg0}string message) 
+        { 
+            if ($isenabled)
+            {
+                this.WriteToTargets($level2, null, message);
+            }
+        }
+
         /// <summary>
         /// Writes the diagnostic message at the $level3 level using the specified parameters.
         /// </summary>$param0
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
-        public void $level(${arg0}string message, params object[] args) { 
+        public void $level(${arg0}string message, params object[] args) 
+        { 
             if ($isenabled)
-                WriteToTargets($level2, message, args);
+            {
+                this.WriteToTargets($level2, message, args);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the $level3 level using the specified parameter and formatting it with the supplied format provider.
+        /// </summary>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>$param0
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing one format item.</param>
+        /// <param name="argument">The argument to format.</param>
+        public void $level<TArgument>(${arg0}IFormatProvider formatProvider, string message, TArgument argument)
+        { 
+            if ($isenabled)
+            {
+                this.WriteToTargets($level2, formatProvider, message, new object[] { argument }); 
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the $level3 level using the specified parameter.
+        /// </summary>
+        /// <typeparam name="TArgument">The type of the argument.</typeparam>$param0
+        /// <param name="message">A <see langword="string" /> containing one format item.</param>
+        /// <param name="argument">The argument to format.</param>
+        public void $level<TArgument>(${arg0}string message, TArgument argument)
+        { 
+            if ($isenabled)
+            {
+                this.WriteToTargets($level2, message, new object[] { argument });
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the $level3 level using the specified arguments formatting it with the supplied format provider.
+        /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>$param0
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing one format item.</param>
+        /// <param name="argument1">The first argument to format.</param>
+        /// <param name="argument2">The second argument to format.</param>
+        public void $level<TArgument1, TArgument2>(${arg0}IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2) 
+        { 
+            if ($isenabled)
+            {
+                this.WriteToTargets($level2, formatProvider, message, new object[] { argument1, argument2 }); 
+            }
         }
 
         /// <summary>
         /// Writes the diagnostic message at the $level3 level using the specified parameters.
-        /// </summary>$param0
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="arg1">First argument to format.</param>
-        /// <param name="arg2">Second argument to format.</param>
-        public void $level(${arg0}string message, System.Object arg1, System.Object arg2) { 
+        /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>$param0
+        /// <param name="message">A <see langword="string" /> containing one format item.</param>
+        /// <param name="argument1">The first argument to format.</param>
+        /// <param name="argument2">The second argument to format.</param>
+        public void $level<TArgument1, TArgument2>(${arg0}string message, TArgument1 argument1, TArgument2 argument2)
+        { 
             if ($isenabled)
-                WriteToTargets($level2, message, new object[] { arg1, arg2 });
+            {
+                this.WriteToTargets($level2, message, new object[] { argument1, argument2 });
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the $level3 level using the specified arguments formatting it with the supplied format provider.
+        /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>$param0
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing one format item.</param>
+        /// <param name="argument1">The first argument to format.</param>
+        /// <param name="argument2">The second argument to format.</param>
+        /// <param name="argument3">The third argument to format.</param>
+        public void $level<TArgument1, TArgument2, TArgument3>(${arg0}IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
+        { 
+            if ($isenabled)
+            {
+                this.WriteToTargets($level2, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
+            }
         }
 
         /// <summary>
         /// Writes the diagnostic message at the $level3 level using the specified parameters.
-        /// </summary>$param0
-        /// <param name="message">A <see langword="string" /> containing format items.</param>
-        /// <param name="arg1">First argument to format.</param>
-        /// <param name="arg2">Second argument to format.</param>
-        /// <param name="arg3">Third argument to format.</param>
-        public void $level(${arg0}string message, System.Object arg1, System.Object arg2, System.Object arg3) { 
-            if ($isenabled)
-                WriteToTargets($level2, message, new object[] { arg1, arg2, arg3 });
-        }
-EOT
-    for $t (@clitypes) {
-        print OUT <<EOT;
-        /// <summary>
-        /// Writes the diagnostic message at the $level3 level using the specified <see cref="T:$t" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>$param0
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// </summary>
+        /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
+        /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
+        /// <typeparam name="TArgument3">The type of the third argument.</typeparam>$param0
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:$t" /> argument to format.</param>
-        public void $level(${arg0}IFormatProvider formatProvider, string message, $t argument) { 
+        /// <param name="argument1">The first argument to format.</param>
+        /// <param name="argument2">The second argument to format.</param>
+        /// <param name="argument3">The third argument to format.</param>
+        public void $level<TArgument1, TArgument2, TArgument3>(${arg0}string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        { 
             if ($isenabled)
-                WriteToTargets($level2, formatProvider, message, new object[] { argument }, null); 
+            {
+                this.WriteToTargets($level2, message, new object[] { argument1, argument2, argument3 });
+            }
         }
-        /// <summary>
-        /// Writes the diagnostic message at the $level3 level using the specified <see cref="T:$t" /> as a parameter.
-        /// </summary>$param0
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:$t" /> argument to format.</param>
-        public void $level(${arg0}string message, $t argument) { 
-            if ($isenabled)
-                WriteToTargets($level2, message, new object[] { argument });
-        }
-EOT
-    }
-    for $t (@nonclstypes) {
-        print OUT <<EOT;
-        /// <summary>
-        /// Writes the diagnostic message at the $level3 level using the specified <see cref="T:$t" /> as a parameter and formatting it with the supplied format provider.
-        /// </summary>$param0
-        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:$t" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void $level(${arg0}IFormatProvider formatProvider, string message, $t argument) { 
-            if ($isenabled)
-                WriteToTargets($level2, formatProvider, message, new object[] { argument }, null); 
-        }
-        /// <summary>
-        /// Writes the diagnostic message at the $level3 level using the specified <see cref="T:$t" /> as a parameter.
-        /// </summary>$param0
-        /// <param name="message">A <see langword="string" /> containing one format item.</param>
-        /// <param name="argument">The <see cref="T:$t" /> argument to format.</param>
-        [CLSCompliant(false)]
-        public void $level(${arg0}string message, $t argument) { 
-            if ($isenabled)
-                WriteToTargets($level2, message, new object[] { argument });
-        }
-EOT
-    }
-
-    print OUT <<EOT;
 
         #endregion
 

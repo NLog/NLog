@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,43 +31,55 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Text;
-using System.Collections;
-
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
     /// <summary>
     /// Token types for condition expressions.
     /// </summary>
     internal enum ConditionTokenType
     {
-        EOF,
-        BOF,
+        EndOfInput,
+
+        BeginningOfInput,
+
         Number,
+
         String,
+
         Keyword,
-        //Punct,
+
         Whitespace,
 
         FirstPunct,
 
-        LT,
-        GT,
-        LE,
-        GE,
-        EQ,
-        NE,
+        LessThan,
+
+        GreaterTo,
+        
+        LessThanOrEqualTo,
+        
+        GreaterThanOrEqualTo,
+        
+        EqualTo,
+        
+        NotEqual,
+
         LeftParen,
+        
         RightParen,
+        
         Dot,
+        
         Comma,
+        
         Not,
+        
         And,
+        
         Or,
 
         LastPunct,
+        
         Invalid,
-    };
+    }
 }

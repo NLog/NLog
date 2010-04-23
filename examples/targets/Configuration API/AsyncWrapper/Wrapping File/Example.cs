@@ -1,6 +1,7 @@
 using NLog;
 using NLog.Targets;
 using NLog.Targets.Wrappers;
+using System.Text;
 
 class Example
 {
@@ -10,7 +11,7 @@ class Example
         target.Layout = "${longdate} ${logger} ${message}";
         target.FileName = "${basedir}/logs/logfile.txt";
         target.KeepFileOpen = false;
-        target.Encoding = "iso-8859-2";
+        target.Encoding = Encoding.UTF8;
 
         AsyncTargetWrapper wrapper = new AsyncTargetWrapper();
         wrapper.WrappedTarget = target;

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,18 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Config
 {
+    using System;
+
     /// <summary>
     /// Attribute used to mark the default parameters for layout renderers.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class DefaultParameterAttribute: Attribute
+    public sealed class DefaultParameterAttribute : Attribute
     {
         /// <summary>
-        /// Creates a new DefaultParameterAttribute object.
+        /// Initializes a new instance of the <see cref="DefaultParameterAttribute" /> class.
         /// </summary>
         public DefaultParameterAttribute()
         {

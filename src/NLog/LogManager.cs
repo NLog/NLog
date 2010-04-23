@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,63 +31,93 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Xml;
-using System.IO;
-using System.Reflection;
-using System.Threading;
-using System.Diagnostics;
-using System.Security;
-using System.Text;
-using System.Runtime.CompilerServices;
-using System.Globalization;
-
-using NLog.Config;
-using NLog.Internal;
-using NLog.Targets;
-
 namespace NLog
 {
-    /// <summary>
+    using System;
+    using System.Diagnostics;
+    using System.Runtime.CompilerServices;
+    using NLog.Common;
+    using NLog.Config;
+
+        /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
     /// </summary>
     public sealed class LogManager
     {
-        private static LogFactory _globalFactory = new LogFactory();
+        private static readonly LogFactory globalFactory = new LogFactory();
+
+#if !NET_CF && !SILVERLIGHT
+        /// <summary>
+        /// Initializes static members of the LogManager class.
+        /// </summary>
+        static LogManager()
+        {
+            try
+            {
+                SetupTerminationEvents();
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn("Error setting up termiation events: {0}", ex);
+            }
+        }
+#endif
+
+        /// <summary>
+        /// Prevents a default instance of the LogManager class from being created.
+        /// </summary>
+        private LogManager()
+        {
+        }
 
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> changes.
         /// </summary>
-        public static event LoggingConfigurationChanged ConfigurationChanged
+        public static event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged
         {
-            add { _globalFactory.ConfigurationChanged += value; }
-            remove { _globalFactory.ConfigurationChanged -= value; }
+            add { globalFactory.ConfigurationChanged += value; }
+            remove { globalFactory.ConfigurationChanged -= value; }
         }
 
-#if !NETCF
+#if !NET_CF && !SILVERLIGHT
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
-        public static event LoggingConfigurationReloaded ConfigurationReloaded
+        public static event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded
         {
-            add { _globalFactory.ConfigurationReloaded += value; }
-            remove { _globalFactory.ConfigurationReloaded -= value; }
+            add { globalFactory.ConfigurationReloaded += value; }
+            remove { globalFactory.ConfigurationReloaded -= value; }
         }
 #endif
         /// <summary>
-        /// Specified whether NLog should throw exceptions. By default exceptions
-        /// are not thrown under any circumstances.
+        /// Gets or sets a value indicating whether NLog should throw exceptions. 
+        /// By default exceptions are not thrown under any circumstances.
         /// </summary>
         public static bool ThrowExceptions
         {
-            get { return _globalFactory.ThrowExceptions; }
-            set { _globalFactory.ThrowExceptions = value; }
+            get { return globalFactory.ThrowExceptions; }
+            set { globalFactory.ThrowExceptions = value; }
         }
 
-        private LogManager(){}
+        /// <summary>
+        /// Gets or sets the current logging configuration.
+        /// </summary>
+        public static LoggingConfiguration Configuration
+        {
+            get { return globalFactory.Configuration; }
+            set { globalFactory.Configuration = value; }
+        }
 
-#if !NETCF
+        /// <summary>
+        /// Gets or sets the global log threshold. Log events below this threshold are not logged.
+        /// </summary>
+        public static LogLevel GlobalThreshold
+        {
+            get { return globalFactory.GlobalThreshold; }
+            set { globalFactory.GlobalThreshold = value; }
+        }
+
+#if !NET_CF
         /// <summary>
         /// Gets the logger named after the currently-being-initialized class.
         /// </summary>
@@ -97,67 +127,63 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger()
         {
+#if SILVERLIGHT
+            StackFrame frame = new StackTrace().GetFrame(1);
+#else
             StackFrame frame = new StackFrame(1, false);
+#endif
 
-            return _globalFactory.GetLogger(frame.GetMethod().DeclaringType.FullName);
+            return globalFactory.GetLogger(frame.GetMethod().DeclaringType.FullName);
         }
 
         /// <summary>
         /// Gets the logger named after the currently-being-initialized class.
         /// </summary>
-        /// <param name="loggerType">the logger class. The class must inherit from <see cref="Logger" /></param>
+        /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger(Type loggerType)
         {
+#if SILVERLIGHT
+            StackFrame frame = new StackTrace().GetFrame(1);
+#else
             StackFrame frame = new StackFrame(1, false);
-
-            return _globalFactory.GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
+#endif
+            return globalFactory.GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
         }
 #endif
 
         /// <summary>
         /// Creates a logger that discards all log messages.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Null logger which discards all log messages.</returns>
         public static Logger CreateNullLogger()
         {
-            return _globalFactory.CreateNullLogger();
-
+            return globalFactory.CreateNullLogger();
         }
 
         /// <summary>
         /// Gets the specified named logger.
         /// </summary>
-        /// <param name="name">name of the logger</param>
+        /// <param name="name">Name of the logger.</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         public static Logger GetLogger(string name)
         {
-            return _globalFactory.GetLogger(name);
+            return globalFactory.GetLogger(name);
         }
 
         /// <summary>
         /// Gets the specified named logger.
         /// </summary>
-        /// <param name="name">name of the logger</param>
-        /// <param name="loggerType">the logger class. The class must inherit from <see cref="Logger" /></param>
+        /// <param name="name">Name of the logger.</param>
+        /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         public static Logger GetLogger(string name, Type loggerType)
         {
-            return _globalFactory.GetLogger(name, loggerType);
+            return globalFactory.GetLogger(name, loggerType);
         }
-
-        /// <summary>
-        /// Gets or sets the current logging configuration.
-        /// </summary>
-        public static LoggingConfiguration Configuration
-        {
-            get { return _globalFactory.Configuration; }
-            set { _globalFactory.Configuration = value; }
-        }
-
 
         /// <summary>
         /// Loops through all loggers previously returned by GetLogger.
@@ -166,7 +192,7 @@ namespace NLog
         /// </summary>
         public static void ReconfigExistingLoggers()
         {
-            _globalFactory.ReconfigExistingLoggers();
+            globalFactory.ReconfigExistingLoggers();
         }
 
         /// <summary>
@@ -174,7 +200,7 @@ namespace NLog
         /// </summary>
         public static void Flush()
         {
-            _globalFactory.Flush();
+            globalFactory.Flush();
         }
 
         /// <summary>
@@ -183,7 +209,7 @@ namespace NLog
         /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public static void Flush(TimeSpan timeout)
         {
-            _globalFactory.Flush(timeout);
+            globalFactory.Flush(timeout);
         }
 
         /// <summary>
@@ -192,7 +218,7 @@ namespace NLog
         /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public static void Flush(int timeoutMilliseconds)
         {
-            _globalFactory.Flush(timeoutMilliseconds);
+            globalFactory.Flush(timeoutMilliseconds);
         }
 
         /// <summary>Decreases the log enable counter and if it reaches -1 
@@ -203,7 +229,7 @@ namespace NLog
         /// reenables logging. To be used with C# <c>using ()</c> statement.</returns>
         public static IDisposable DisableLogging()
         {
-            return _globalFactory.DisableLogging();
+            return globalFactory.DisableLogging();
         }
 
         /// <summary>Increases the log enable counter and if it reaches 0 the logs are disabled.</summary>
@@ -211,59 +237,36 @@ namespace NLog
         /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
         public static void EnableLogging()
         {
-            _globalFactory.EnableLogging();
+            globalFactory.EnableLogging();
         }
 
         /// <summary>
         /// Returns <see langword="true" /> if logging is currently enabled.
         /// </summary>
-        /// <returns><see langword="true" /> if logging is currently enabled, 
+        /// <returns>A value of <see langword="true" /> if logging is currently enabled, 
         /// <see langword="false"/> otherwise.</returns>
         /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
         /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
         public static bool IsLoggingEnabled()
         {
-            return _globalFactory.IsLoggingEnabled();
+            return globalFactory.IsLoggingEnabled();
         }
 
-        /// <summary>
-        /// Global log threshold. Log events below this threshold are not logged.
-        /// </summary>
-        public static LogLevel GlobalThreshold
-        {
-            get { return _globalFactory.GlobalThreshold; }
-            set { _globalFactory.GlobalThreshold = value; }
-        }
-
-#if !NETCF
+#if !NET_CF && !SILVERLIGHT
         private static void SetupTerminationEvents()
         {
-            AppDomain.CurrentDomain.ProcessExit += new EventHandler(TurnOffLogging);
-            AppDomain.CurrentDomain.DomainUnload += new EventHandler(TurnOffLogging);
+            AppDomain.CurrentDomain.ProcessExit += TurnOffLogging;
+            AppDomain.CurrentDomain.DomainUnload += TurnOffLogging;
         }
 
         private static void TurnOffLogging(object sender, EventArgs args)
         {
             // reset logging configuration to null
             // this causes old configuration (if any) to be closed.
-
             InternalLogger.Info("Shutting down logging...");
             Configuration = null;
             InternalLogger.Info("Logger has been shut down.");
         }
 #endif
-        static LogManager()
-        {
-#if !NETCF
-            try
-            {
-                SetupTerminationEvents();
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Warn("Error setting up termiation events: {0}", ex);
-            }
-#endif
-        }
     }
 }

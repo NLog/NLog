@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,164 +31,162 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.Globalization;
-
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
+using System.Text;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.LayoutRenderers;
+using NLog.Layouts;
 
 namespace NLog.UnitTests
 {
-    [TestFixture]
-	public class LayoutConfigurationTests : NLogTestBase
-	{
-        [Test]
+    using NLog.LayoutRenderers.Wrappers;
+
+    [TestClass]
+    public class LayoutConfigurationTests : NLogTestBase
+    {
+        [TestMethod]
         public void SimpleTest()
         {
-            Layout l = new Layout("${message}");
-            Assert.AreEqual(1, l.Renderers.Length);
-            Assert.IsInstanceOfType(typeof(NLog.LayoutRenderers.MessageLayoutRenderer), l.Renderers[0]);
+            SimpleLayout l = "${message}";
+            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.IsInstanceOfType(l.Renderers[0], typeof(MessageLayoutRenderer));
         }
 
-        [Test]
+        [TestMethod]
         public void UnclosedTest()
         {
-            Layout l = new Layout("${message");
+            Layout l = "${message";
         }
 
-        [Test]
+        [TestMethod]
         public void SingleParamTest()
         {
-            Layout l = new Layout("${mdc:item=AAA}");
-            Assert.AreEqual(1, l.Renderers.Length);
-            MDCLayoutRenderer mdc = l.Renderers[0] as MDCLayoutRenderer;
+            SimpleLayout l = "${mdc:item=AAA}";
+            Assert.AreEqual(1, l.Renderers.Count);
+            MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("AAA", mdc.Item);
         }
 
-        [Test]
+        [TestMethod]
         public void ValueWithColonTest()
         {
-            Layout l = new Layout("${mdc:item=AAA\\:}");
-            Assert.AreEqual(1, l.Renderers.Length);
-            MDCLayoutRenderer mdc = l.Renderers[0] as MDCLayoutRenderer;
+            SimpleLayout l = "${mdc:item=AAA\\:}";
+            Assert.AreEqual(1, l.Renderers.Count);
+            MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("AAA:", mdc.Item);
         }
 
-        [Test]
+        [TestMethod]
         public void ValueWithBracketTest()
         {
-            Layout l = new Layout("${mdc:item=AAA\\}\\:}");
+            SimpleLayout l = "${mdc:item=AAA\\}\\:}";
             Assert.AreEqual("${mdc:item=AAA\\}\\:}", l.Text);
-            Assert.AreEqual(1, l.Renderers.Length);
-            MDCLayoutRenderer mdc = l.Renderers[0] as MDCLayoutRenderer;
+            Assert.AreEqual(1, l.Renderers.Count);
+            MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("AAA}:", mdc.Item);
         }
 
-        [Test]
+        [TestMethod]
         public void DefaultValueTest()
         {
-            Layout l = new Layout("${mdc:BBB}");
-            Assert.AreEqual(1, l.Renderers.Length);
-            MDCLayoutRenderer mdc = l.Renderers[0] as MDCLayoutRenderer;
+            SimpleLayout l = "${mdc:BBB}";
+            Assert.AreEqual(1, l.Renderers.Count);
+            MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("BBB", mdc.Item);
         }
 
-        [Test]
+        [TestMethod]
         public void DefaultValueWithBracketTest()
         {
-            Layout l = new Layout("${mdc:AAA\\}\\:}");
-            Assert.AreEqual(l.Text,"${mdc:AAA\\}\\:}");
-            Assert.AreEqual(1, l.Renderers.Length);
-            MDCLayoutRenderer mdc = l.Renderers[0] as MDCLayoutRenderer;
+            SimpleLayout l = "${mdc:AAA\\}\\:}";
+            Assert.AreEqual(l.Text, "${mdc:AAA\\}\\:}");
+            Assert.AreEqual(1, l.Renderers.Count);
+            MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("AAA}:", mdc.Item);
         }
 
-        [Test]
+        [TestMethod]
         public void DefaultValueWithOtherParametersTest()
         {
-            Layout l = new Layout("${mdc:BBB:padding=3:padcharacter=X}");
-            Assert.AreEqual(1, l.Renderers.Length);
-            MDCLayoutRenderer mdc = l.Renderers[0] as MDCLayoutRenderer;
-            Assert.IsNotNull(mdc);
-            Assert.AreEqual("BBB", mdc.Item);
-            Assert.AreEqual(3, mdc.Padding);
-            Assert.AreEqual('X', mdc.PadCharacter);
+            SimpleLayout l = "${exception:message,type:separator=x}";
+            Assert.AreEqual(1, l.Renderers.Count);
+            ExceptionLayoutRenderer elr = l.Renderers[0] as ExceptionLayoutRenderer;
+            Assert.IsNotNull(elr);
+            Assert.AreEqual("message,type", elr.Format);
+            Assert.AreEqual("x", elr.Separator);
         }
 
-        [Test]
+        [TestMethod]
         public void EmptyValueTest()
         {
-            Layout l = new Layout("${mdc:item=}");
-            Assert.AreEqual(1, l.Renderers.Length);
-            MDCLayoutRenderer mdc = l.Renderers[0] as MDCLayoutRenderer;
+            SimpleLayout l = "${mdc:item=}";
+            Assert.AreEqual(1, l.Renderers.Count);
+            MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.IsNotNull(mdc);
             Assert.AreEqual("", mdc.Item);
         }
 
-        [Test]
+        [TestMethod]
         public void NestedLayoutTest()
         {
-            Layout l = new Layout("${file-contents:fileName=${basedir:padding=10}/aaa.txt:padding=12}");
-            Assert.AreEqual(1, l.Renderers.Length);
-            FileContentsLayoutRenderer lr = l.Renderers[0] as FileContentsLayoutRenderer;
+            SimpleLayout l = "${rot13:inner=${ndc:topFrames=3:separator=x}}";
+            Assert.AreEqual(1, l.Renderers.Count);
+            var lr = l.Renderers[0] as Rot13LayoutRendererWrapper;
             Assert.IsNotNull(lr);
-            Assert.IsInstanceOfType(typeof(Layout), lr.FileName);
-            Assert.AreEqual("${basedir:padding=10}/aaa.txt", lr.FileName.Text);
-            Assert.AreEqual(1, lr.FileName.Renderers.Length);
-            Assert.AreEqual(12, lr.Padding);
+            var nestedLayout = lr.Inner as SimpleLayout;
+            Assert.IsNotNull(nestedLayout);
+            Assert.AreEqual("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
+            Assert.AreEqual(1, nestedLayout.Renderers.Count);
+            var ndcLayoutRenderer = nestedLayout.Renderers[0] as NdcLayoutRenderer;
+            Assert.IsNotNull(ndcLayoutRenderer);
+            Assert.AreEqual(3, ndcLayoutRenderer.TopFrames);
+            Assert.AreEqual("x", ndcLayoutRenderer.Separator);
         }
 
-        [Test]
+        [TestMethod]
         public void DoubleNestedLayoutTest()
         {
-            Layout l = new Layout("${file-contents:fileName=${basedir}/${file-contents:fileName=${basedir}/aaa.txt}/aaa.txt}");
-            Assert.AreEqual(1, l.Renderers.Length);
-            FileContentsLayoutRenderer lr = l.Renderers[0] as FileContentsLayoutRenderer;
+            SimpleLayout l = "${rot13:inner=${rot13:inner=${ndc:topFrames=3:separator=x}}}";
+            Assert.AreEqual(1, l.Renderers.Count);
+            var lr = l.Renderers[0] as Rot13LayoutRendererWrapper;
             Assert.IsNotNull(lr);
-            Assert.IsInstanceOfType(typeof(Layout), lr.FileName);
-            Assert.AreEqual("${basedir}/${file-contents:fileName=${basedir}/aaa.txt}/aaa.txt", lr.FileName.Text);
-            Assert.AreEqual(3, lr.FileName.Renderers.Length);
-            Assert.IsInstanceOfType(typeof(LiteralLayoutRenderer), lr.FileName.Renderers[0]);
-            Assert.IsInstanceOfType(typeof(FileContentsLayoutRenderer), lr.FileName.Renderers[1]);
-            Assert.IsInstanceOfType(typeof(LiteralLayoutRenderer), lr.FileName.Renderers[2]);
-
-            LiteralLayoutRenderer lr1 = (LiteralLayoutRenderer)lr.FileName.Renderers[0];
-            FileContentsLayoutRenderer fc = (FileContentsLayoutRenderer)lr.FileName.Renderers[1];
-            LiteralLayoutRenderer lr2 = (LiteralLayoutRenderer)lr.FileName.Renderers[2];
-
-            Assert.AreEqual("${basedir}/aaa.txt", fc.FileName.Text);
-
+            var nestedLayout0 = lr.Inner as SimpleLayout;
+            Assert.IsNotNull(nestedLayout0);
+            Assert.AreEqual("${rot13:inner=${ndc:topFrames=3:separator=x}}", nestedLayout0.Text);
+            var innerRot13 = nestedLayout0.Renderers[0] as Rot13LayoutRendererWrapper;
+            var nestedLayout = innerRot13.Inner as SimpleLayout;
+            Assert.IsNotNull(nestedLayout);
+            Assert.AreEqual("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
+            Assert.AreEqual(1, nestedLayout.Renderers.Count);
+            var ndcLayoutRenderer = nestedLayout.Renderers[0] as NdcLayoutRenderer;
+            Assert.IsNotNull(ndcLayoutRenderer);
+            Assert.AreEqual(3, ndcLayoutRenderer.TopFrames);
+            Assert.AreEqual("x", ndcLayoutRenderer.Separator);
         }
 
-        [Test]
+        [TestMethod]
         public void DoubleNestedLayoutWithDefaultLayoutParametersTest()
         {
-            Layout l = new Layout("${file-contents:${basedir}/${file-contents:${basedir}/aaa.txt}/aaa.txt}");
-            Assert.AreEqual(1, l.Renderers.Length);
-            FileContentsLayoutRenderer lr = l.Renderers[0] as FileContentsLayoutRenderer;
+            SimpleLayout l = "${rot13:${rot13:${ndc:topFrames=3:separator=x}}}";
+            Assert.AreEqual(1, l.Renderers.Count);
+            var lr = l.Renderers[0] as Rot13LayoutRendererWrapper;
             Assert.IsNotNull(lr);
-            Assert.IsInstanceOfType(typeof(Layout), lr.FileName);
-            Assert.AreEqual("${basedir}/${file-contents:${basedir}/aaa.txt}/aaa.txt", lr.FileName.Text);
-            Assert.AreEqual(3, lr.FileName.Renderers.Length);
-            Assert.IsInstanceOfType(typeof(LiteralLayoutRenderer), lr.FileName.Renderers[0]);
-            Assert.IsInstanceOfType(typeof(FileContentsLayoutRenderer), lr.FileName.Renderers[1]);
-            Assert.IsInstanceOfType(typeof(LiteralLayoutRenderer), lr.FileName.Renderers[2]);
-
-            LiteralLayoutRenderer lr1 = (LiteralLayoutRenderer)lr.FileName.Renderers[0];
-            FileContentsLayoutRenderer fc = (FileContentsLayoutRenderer)lr.FileName.Renderers[1];
-            LiteralLayoutRenderer lr2 = (LiteralLayoutRenderer)lr.FileName.Renderers[2];
-
-            Assert.AreEqual("${basedir}/aaa.txt", fc.FileName.Text);
-
+            var nestedLayout0 = lr.Inner as SimpleLayout;
+            Assert.IsNotNull(nestedLayout0);
+            Assert.AreEqual("${rot13:${ndc:topFrames=3:separator=x}}", nestedLayout0.Text);
+            var innerRot13 = nestedLayout0.Renderers[0] as Rot13LayoutRendererWrapper;
+            var nestedLayout = innerRot13.Inner as SimpleLayout;
+            Assert.IsNotNull(nestedLayout);
+            Assert.AreEqual("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
+            Assert.AreEqual(1, nestedLayout.Renderers.Count);
+            var ndcLayoutRenderer = nestedLayout.Renderers[0] as NdcLayoutRenderer;
+            Assert.IsNotNull(ndcLayoutRenderer);
+            Assert.AreEqual(3, ndcLayoutRenderer.TopFrames);
+            Assert.AreEqual("x", ndcLayoutRenderer.Separator);
         }
     }
 }

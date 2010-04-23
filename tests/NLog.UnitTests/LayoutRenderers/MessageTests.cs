@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -40,26 +40,23 @@ using System.IO;
 using NLog;
 using NLog.Config;
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
-	public class MessageTests : NLogTestBase
-	{
-        [Test]
+    [TestClass]
+    public class MessageTests : NLogTestBase
+    {
+        [TestMethod]
         public void MessageWithoutPaddingTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
@@ -68,15 +65,14 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a1");
             logger.Debug("a{0}{1}", 1, "2");
             AssertDebugLastMessage("debug", "a12");
-            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005,1,1));
+            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
             AssertDebugLastMessage("debug", "a01/01/2005 00:00:00");
         }
 
-        [Test]
+        [TestMethod]
         public void MessageRightPaddingTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=3}' /></targets>
                 <rules>
@@ -84,8 +80,6 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "  a");
@@ -93,16 +87,15 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", " a1");
             logger.Debug("a{0}{1}", 1, "2");
             AssertDebugLastMessage("debug", "a12");
-            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005,1,1));
+            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
             AssertDebugLastMessage("debug", "a01/01/2005 00:00:00");
         }
 
 
-        [Test]
+        [TestMethod]
         public void MessageFixedLengthRightPaddingTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=3:fixedlength=true}' /></targets>
                 <rules>
@@ -110,8 +103,6 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "  a");
@@ -119,15 +110,14 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", " a1");
             logger.Debug("a{0}{1}", 1, "2");
             AssertDebugLastMessage("debug", "a12");
-            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005,1,1));
+            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
             AssertDebugLastMessage("debug", "a01");
         }
 
-        [Test]
+        [TestMethod]
         public void MessageLeftPaddingTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=-3:padcharacter=x}' /></targets>
                 <rules>
@@ -135,8 +125,6 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "axx");
@@ -144,15 +132,14 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a1x");
             logger.Debug("a{0}{1}", 1, "2");
             AssertDebugLastMessage("debug", "a12");
-            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005,1,1));
+            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
             AssertDebugLastMessage("debug", "a01/01/2005 00:00:00");
         }
 
-        [Test]
+        [TestMethod]
         public void MessageFixedLengthLeftPaddingTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=-3:padcharacter=x:fixedlength=true}' /></targets>
                 <rules>
@@ -160,8 +147,6 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
-
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "axx");
@@ -169,7 +154,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a1x");
             logger.Debug("a{0}{1}", 1, "2");
             AssertDebugLastMessage("debug", "a12");
-            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005,1,1));
+            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
             AssertDebugLastMessage("debug", "a01");
         }
     }

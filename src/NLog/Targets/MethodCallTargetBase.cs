@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,65 +31,55 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Reflection;
-using System.Globalization;
-
-using NLog.Config;
-
 namespace NLog.Targets
 {
+    using System.Collections.Generic;
+    using NLog.Config;
+
     /// <summary>
     /// The base class for all targets which call methods (local or remote). 
     /// Manages parameters and type coercion.
     /// </summary>
-    public abstract class MethodCallTargetBase: Target
+    public abstract class MethodCallTargetBase : Target
     {
-        private MethodCallParameterCollection _parameters = new MethodCallParameterCollection();
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MethodCallTargetBase" /> class.
+        /// </summary>
+        public MethodCallTargetBase()
+        {
+            this.Parameters = new List<MethodCallParameter>();
+        }
 
         /// <summary>
-        /// Prepares an array of parameters to be passed based on the logging event and calls DoInvoke()
+        /// Gets the array of parameters to be passed.
         /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        /// <docgen category='Parameter Options' order='10' />
+        [ArrayParameter(typeof(MethodCallParameter), "parameter")]
+        public ICollection<MethodCallParameter> Parameters { get; private set; }
+
+        /// <summary>
+        /// Prepares an array of parameters to be passed based on the logging event and calls DoInvoke().
+        /// </summary>
+        /// <param name="logEvent">
+        /// The logging event.
+        /// </param>
+        protected override void Write(LogEventInfo logEvent)
         {
-            object[]parameters = new object[Parameters.Count];
-            for (int i = 0; i < parameters.Length; ++i)
+            object[] parameters = new object[this.Parameters.Count];
+            int i = 0;
+
+            foreach (MethodCallParameter mcp in this.Parameters)
             {
-                parameters[i] = Parameters[i].GetValue(logEvent);
+                parameters[i++] = mcp.GetValue(logEvent);
             }
 
-            DoInvoke(parameters);
+            this.DoInvoke(parameters);
         }
 
         /// <summary>
         /// Calls the target method. Must be implemented in concrete classes.
         /// </summary>
-        /// <param name="parameters">Method call parameters</param>
-        protected abstract void DoInvoke(object[]parameters);
-
-        /// <summary>
-        /// Adds all layouts used by this target to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
-        {
-            base.PopulateLayouts (layouts);
-            for (int i = 0; i < Parameters.Count; ++i)
-                Parameters[i].CompiledLayout.PopulateLayouts(layouts);
-        }
-
-        /// <summary>
-        /// Array of parameters to be passed.
-        /// </summary>
-        /// <docgen category="Method Options" order="10" />
-        [ArrayParameter(typeof(MethodCallParameter), "parameter")]
-        public MethodCallParameterCollection Parameters
-        {
-            get { return _parameters; }
-        }
+        /// <param name="parameters">Method call parameters.</param>
+        protected abstract void DoInvoke(object[] parameters);
     }
 }

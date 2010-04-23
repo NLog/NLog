@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -32,25 +32,20 @@
 // 
 
 using System;
-using System.Xml;
-using System.Globalization;
-
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-using NLog.Targets;
 using System.IO;
-using System.Threading;
-
-using NLog.Internal;
+using System.Xml;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NLog.Common;
+using NLog.Config;
+using NLog.Targets;
+using System.Diagnostics;
 
 namespace NLog.UnitTests
 {
-    [TestFixture]
-	public class LogManagerTests : NLogTestBase
-	{
-        [Test]
+    [TestClass]
+    public class LogManagerTests : NLogTestBase
+    {
+        [TestMethod]
         public void GetLoggerTest()
         {
             Logger loggerA = LogManager.GetLogger("A");
@@ -62,14 +57,15 @@ namespace NLog.UnitTests
             Assert.AreEqual("B", loggerB.Name);
         }
 
-        [Test]
+        [TestMethod]
         public void NullLoggerTest()
         {
             Logger l = LogManager.CreateNullLogger();
             Assert.AreEqual("", l.Name);
         }
 
-        [Test]
+#if !SILVERLIGHT2 && !SILVERLIGHT3 
+        [TestMethod]
         public void ThrowExceptionsTest()
         {
             FileTarget ft = new FileTarget();
@@ -89,19 +85,17 @@ namespace NLog.UnitTests
             }
             LogManager.ThrowExceptions = false;
         }
+#endif
 
         public void GlobalThresholdTest()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(@"
+            LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog globalThreshold='Info'>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules>
                         <logger name='*' minlevel='Debug' writeTo='debug' />
                     </rules>
                 </nlog>");
-
-            LogManager.Configuration = new XmlLoggingConfiguration(doc.DocumentElement, null);
 
             Assert.AreEqual(LogLevel.Info, LogManager.GlobalThreshold);
 
@@ -125,13 +119,8 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "yyy");
         }
 
+#if !SILVERLIGHT && !NET_CF
         private int _reloadCounter = 0;
-
-        private void OnConfigReloaded(bool success, Exception ex)
-        {
-            Console.WriteLine("OnConfigReloaded success={0}", success);
-            _reloadCounter++;
-        }
 
         private void WaitForConfigReload(int counter)
         {
@@ -141,15 +130,20 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
-        [Category("LongRunning")]
+        private void OnConfigReloaded(object sender, LoggingConfigurationReloadedEventArgs e)
+        {
+            Console.WriteLine("OnConfigReloaded success={0}", e.Succeeded);
+            _reloadCounter++;
+        }
+
+        [TestMethod]
         public void AutoReloadTest()
         {
             string fileName = Path.GetTempFileName();
             try
             {
                 _reloadCounter = 0;
-                LogManager.ConfigurationReloaded += new LoggingConfigurationReloaded(OnConfigReloaded);
+                LogManager.ConfigurationReloaded += OnConfigReloaded;
                 using (StreamWriter fs = File.CreateText(fileName))
                 {
                     fs.Write(@"<nlog autoReload='true'>
@@ -216,14 +210,16 @@ namespace NLog.UnitTests
             }
             finally
             {
-                LogManager.ConfigurationReloaded -= new LoggingConfigurationReloaded(OnConfigReloaded);
+                LogManager.ConfigurationReloaded -= OnConfigReloaded;
                 LogManager.Configuration = null;
                 if (File.Exists(fileName))
                     File.Delete(fileName);
             }
         }
+#endif
 
-        [Test]
+#if !SILVERLIGHT
+        [TestMethod]
         public void IncludeTest()
         {
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -259,7 +255,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [TestMethod]
         [ExpectedException(typeof(NLogConfigurationException))]
         public void IncludeNotExistingTest()
         {
@@ -285,7 +281,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [TestMethod]
         [ExpectedException(typeof(NLogConfigurationException))]
         public void IncludeNotExistingIgnoredTest()
         {
@@ -316,5 +312,6 @@ namespace NLog.UnitTests
                     Directory.Delete(tempPath, true);
             }
         }
+#endif
     }
 }

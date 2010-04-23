@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,39 +31,28 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Reflection;
-using System.Globalization;
-using System.Xml;
-using System.IO;
-using System.Text;
-using System.Runtime.InteropServices;
-
-using NLog.Internal;
-using NLog.Config;
+#if !SILVERLIGHT
 
 namespace NLog.Internal
 {
+    using NLog.Config;
+
     /// <summary>
     /// Returns details about current process and thread in a portable manner.
     /// </summary>
-    public abstract class ThreadIDHelper
+    internal abstract class ThreadIDHelper
     {
         /// <summary>
-        /// Singleton instance.
+        /// Initializes static members of the ThreadIDHelper class.
         /// </summary>
-        public readonly static ThreadIDHelper Instance;
-
         static ThreadIDHelper()
         {
-#if NETCF
+#if NET_CF
             Instance = new Win32ThreadIDHelper();
 #else
             if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Windows)
              || PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.WindowsCE)
-             || PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.WindowsNT)
-             )
+             || PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.WindowsNT))
             {
                 Instance = new Win32ThreadIDHelper();
             }
@@ -72,165 +61,35 @@ namespace NLog.Internal
                 Instance = new PortableThreadIDHelper();
             }
 #endif
-        }        
-        
+        }
+
         /// <summary>
-        /// Returns current unmanaged thread ID.
+        /// Gets the singleton instance of PortableThreadIDHelper or
+        /// Win32ThreadIDHelper depending on runtime environment.
         /// </summary>
-        public abstract int CurrentUnmanagedThreadID { get; }
-        
+        /// <value>The instance.</value>
+        public static ThreadIDHelper Instance { get; private set; }
+
         /// <summary>
-        /// Returns current thread ID.
+        /// Gets current thread ID.
         /// </summary>
         public abstract int CurrentThreadID { get; }
-        
+
         /// <summary>
-        /// Returns current process ID.
+        /// Gets current process ID.
         /// </summary>
         public abstract int CurrentProcessID { get; }
 
         /// <summary>
-        /// Returns current process name.
+        /// Gets current process name.
         /// </summary>
-        public abstract string CurrentProcessName { get; } 
+        public abstract string CurrentProcessName { get; }
 
         /// <summary>
-        /// Returns current process name (excluding filename extension, if any).
+        /// Gets current process name (excluding filename extension, if any).
         /// </summary>
         public abstract string CurrentProcessBaseName { get; }
-        
-        /// <summary>
-        /// Returns the base directory where process EXE file resides.
-        /// </summary>
-        public abstract string CurrentProcessDirectory { get; }
-    }
-
-#if !NETCF
-    internal class PortableThreadIDHelper : ThreadIDHelper
-    {
-        private int _currentProcessID;
-        private string _currentProcessName;
-        private string _currentProcessBaseName;
-        private string _currentProcessDirectoryName;
-
-        public PortableThreadIDHelper()
-        {
-            _currentProcessID = System.Diagnostics.Process.GetCurrentProcess().Id;
-            _currentProcessName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
-            _currentProcessBaseName = Path.GetFileNameWithoutExtension(_currentProcessName);
-            _currentProcessDirectoryName = Path.GetDirectoryName(_currentProcessName);
-        }
-
-        public override int CurrentThreadID
-        {
-            get {
-#if NET_2_API
-                return System.Threading.Thread.CurrentThread.ManagedThreadId;
-#else
-                return AppDomain.GetCurrentThreadId();
-#endif
-            }
-        }
-
-        public override int CurrentUnmanagedThreadID
-        {
-            get { return CurrentThreadID; }
-        }
-
-        public override int CurrentProcessID
-        {
-            get { return _currentProcessID; }
-        }
-
-        public override string CurrentProcessName
-        {
-            get { return _currentProcessName; }
-        }
-
-        public override string CurrentProcessBaseName
-        {
-            get { return _currentProcessBaseName; }
-        }
-        
-        public override string CurrentProcessDirectory
-        {
-            get { return _currentProcessDirectoryName; }
-        }
-    }
-#endif
-
-    internal class Win32ThreadIDHelper : ThreadIDHelper
-    {
-        private static int _currentProcessID;
-        private static string _currentProcessName;
-        private static string _currentProcessBaseName;
-        private static string _currentProcessDirectoryName;
-
-        public Win32ThreadIDHelper()
-        {
-            _currentProcessID = GetCurrentProcessId();
-            StringBuilder sb = new StringBuilder(512);
-            GetModuleFileName(IntPtr.Zero, sb, sb.Capacity);
-            _currentProcessName = sb.ToString();
-            _currentProcessBaseName = Path.GetFileNameWithoutExtension(_currentProcessName);
-            _currentProcessDirectoryName = Path.GetDirectoryName(_currentProcessName);
-        }
-            
-#if !NETCF
-        [DllImport("kernel32.dll")]
-        private extern static int GetCurrentThreadId();
-
-        [DllImport("kernel32.dll")]
-        private extern static int GetCurrentProcessId();
-
-        [DllImport("kernel32.dll", SetLastError=true, PreserveSig=true)]
-        private static extern uint GetModuleFileName([In] IntPtr hModule, [Out] StringBuilder lpFilename, [In] [MarshalAs(UnmanagedType.U4)] int nSize);
-#else
-        [DllImport("coredll.dll")]
-        private extern static int GetCurrentThreadId();
-
-        [DllImport("coredll.dll")]
-        private extern static int GetCurrentProcessId();
-
-        [DllImport("coredll.dll", SetLastError=true)]
-        private static extern uint GetModuleFileName([In] IntPtr hModule, [Out] StringBuilder lpFilename, [In] int nSize);
-#endif
-        public override int CurrentUnmanagedThreadID
-        {
-            get { return GetCurrentThreadId(); }
-        }
-
-        public override int CurrentThreadID
-        {
-            get {
-#if NETCF
-                return CurrentUnmanagedThreadID;
-#elif NET_2_API
-                return System.Threading.Thread.CurrentThread.ManagedThreadId;
-#else
-                return AppDomain.GetCurrentThreadId();
-#endif
-            }
-        }
-        
-        public override int CurrentProcessID
-        {
-            get { return _currentProcessID; }
-        }
-
-        public override string CurrentProcessName
-        {
-            get { return _currentProcessName; }
-        }
-
-        public override string CurrentProcessBaseName
-        {
-            get { return _currentProcessBaseName; }
-        }
-        
-        public override string CurrentProcessDirectory
-        {
-            get { return _currentProcessDirectoryName; }
-        }
     }
 }
+
+#endif

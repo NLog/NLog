@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,22 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-
-using NLog;
-using NLog.Targets;
-using NLog.Filters;
-
 namespace NLog.Config
 {
+    using NLog.Targets;
+
     /// <summary>
     /// Provides simple programmatic configuration API used for trivial logging cases.
     /// </summary>
-    public class SimpleConfigurator
+    public static class SimpleConfigurator
     {
-#if !NETCF
+#if !NET_CF
         /// <summary>
         /// Configures NLog for console logging so that all messages above and including
         /// the <see cref="LogLevel.Info"/> level are output to the console.
@@ -96,6 +90,7 @@ namespace NLog.Config
             LogManager.Configuration = config;
         }
 
+#if !SILVERLIGHT2 && !SILVERLIGHT3
         /// <summary>
         /// Configures NLog for file logging so that all messages above and including
         /// the <see cref="LogLevel.Info"/> level are written to the specified file.
@@ -118,5 +113,6 @@ namespace NLog.Config
             target.FileName = fileName;
             ConfigureForTargetLogging(target, minLevel);
         }
+#endif
     }
 }

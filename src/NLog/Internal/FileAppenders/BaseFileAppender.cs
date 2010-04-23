@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,144 +31,177 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.IO;
-using System.Threading;
-using System.Collections;
-using System.Collections.Specialized;
-
-using NLog;
-using NLog.Config;
-
-using NLog.Internal;
-using System.Runtime.InteropServices;
-#if !NETCF
-using NLog.Internal.Win32;
-#endif
-
 namespace NLog.Internal.FileAppenders
 {
+    using System;
+    using System.IO;
+    using System.Runtime.InteropServices;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+
+    /// <summary>
+    /// Base class for optimized file appenders.
+    /// </summary>
     internal abstract class BaseFileAppender
     {
-        private Random _random = new Random();
-        private string _fileName;
-        private ICreateFileParameters _createParameters;
-        private DateTime _openTime;
-        private DateTime _lastWriteTime;
+        private readonly Random random = new Random();
 
-        public string FileName
-        {
-            get { return _fileName; }
-        }
-
-        public DateTime LastWriteTime
-        {
-            get { return _lastWriteTime; }
-        }
-
-        public DateTime OpenTime
-        {
-            get { return _openTime; }
-        }
-
-        public ICreateFileParameters CreateFileParameters
-        {
-            get { return _createParameters; }
-        }
-
-        protected void FileTouched()
-        {
-            _lastWriteTime = CurrentTimeGetter.Now;
-        }
-
-        protected void FileTouched(DateTime dt)
-        {
-            _lastWriteTime = dt;
-        }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseFileAppender" /> class.
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="createParameters">The create parameters.</param>
         public BaseFileAppender(string fileName, ICreateFileParameters createParameters)
         {
-            _fileName = fileName;
-            _createParameters = createParameters;
-            _openTime = CurrentTimeGetter.Now;
-            _lastWriteTime = DateTime.MinValue;
+            this.CreateFileParameters = createParameters;
+            this.FileName = fileName;
+            this.OpenTime = CurrentTimeGetter.Now;
+            this.LastWriteTime = DateTime.MinValue;
         }
 
+        /// <summary>
+        /// Gets the name of the file.
+        /// </summary>
+        /// <value>The name of the file.</value>
+        public string FileName { get; private set; }
+
+        /// <summary>
+        /// Gets the last write time.
+        /// </summary>
+        /// <value>The last write time.</value>
+        public DateTime LastWriteTime { get; private set; }
+
+        /// <summary>
+        /// Gets the open time of the file.
+        /// </summary>
+        /// <value>The open time.</value>
+        public DateTime OpenTime { get; private set; }
+
+        /// <summary>
+        /// Gets the file creation parameters.
+        /// </summary>
+        /// <value>The file creation parameters.</value>
+        public ICreateFileParameters CreateFileParameters { get; private set; }
+
+        /// <summary>
+        /// Writes the specified bytes.
+        /// </summary>
+        /// <param name="bytes">The bytes.</param>
         public abstract void Write(byte[] bytes);
 
+        /// <summary>
+        /// Flushes this instance.
+        /// </summary>
         public abstract void Flush();
+
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
         public abstract void Close();
 
+        /// <summary>
+        /// Gets the file info.
+        /// </summary>
+        /// <param name="lastWriteTime">The last write time.</param>
+        /// <param name="fileLength">Length of the file.</param>
+        /// <returns>True if the operation succeeded, false otherwise.</returns>
         public abstract bool GetFileInfo(out DateTime lastWriteTime, out long fileLength);
 
+        /// <summary>
+        /// Records the last write time for a file.
+        /// </summary>
+        protected void FileTouched()
+        {
+            this.LastWriteTime = CurrentTimeGetter.Now;
+        }
+
+        /// <summary>
+        /// Records the last write time for a file to be specific date.
+        /// </summary>
+        /// <param name="dateTime">Date and time when the last write occured.</param>
+        protected void FileTouched(DateTime dateTime)
+        {
+            this.LastWriteTime = dateTime;
+        }
+
+        /// <summary>
+        /// Creates the file stream.
+        /// </summary>
+        /// <param name="allowConcurrentWrite">If set to <c>true</c> allow concurrent writes.</param>
+        /// <returns>A <see cref="FileStream"/> object which can be used to write to the file.</returns>
         protected FileStream CreateFileStream(bool allowConcurrentWrite)
         {
-            int currentDelay = _createParameters.ConcurrentWriteAttemptDelay;
+            int currentDelay = this.CreateFileParameters.ConcurrentWriteAttemptDelay;
 
-            InternalLogger.Trace("Opening {0} with concurrentWrite={1}", FileName, allowConcurrentWrite);
-            for (int i = 0; i < _createParameters.ConcurrentWriteAttempts; ++i)
+            InternalLogger.Trace("Opening {0} with concurrentWrite={1}", this.FileName, allowConcurrentWrite);
+            for (int i = 0; i < this.CreateFileParameters.ConcurrentWriteAttempts; ++i)
             {
                 try
                 {
                     try
                     {
-                        return TryCreateFileStream(allowConcurrentWrite);
+                        return this.TryCreateFileStream(allowConcurrentWrite);
                     }
                     catch (DirectoryNotFoundException)
                     {
-                        if (!_createParameters.CreateDirs)
+                        if (!this.CreateFileParameters.CreateDirs)
+                        {
                             throw;
+                        }
 
-                        Directory.CreateDirectory(Path.GetDirectoryName(FileName));
-                        return TryCreateFileStream(allowConcurrentWrite);
+                        Directory.CreateDirectory(Path.GetDirectoryName(this.FileName));
+                        return this.TryCreateFileStream(allowConcurrentWrite);
                     }
                 }
                 catch (IOException)
                 {
-                    if (!_createParameters.ConcurrentWrites || !allowConcurrentWrite || i + 1 == _createParameters.ConcurrentWriteAttempts)
+                    if (!this.CreateFileParameters.ConcurrentWrites || !allowConcurrentWrite || i + 1 == this.CreateFileParameters.ConcurrentWriteAttempts)
+                    {
                         throw; // rethrow
+                    }
 
-                    int actualDelay = _random.Next(currentDelay);
-                    InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, FileName, actualDelay);
+                    int actualDelay = this.random.Next(currentDelay);
+                    InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, this.FileName, actualDelay);
                     currentDelay *= 2;
                     System.Threading.Thread.Sleep(actualDelay);
                 }
             }
-            throw new Exception("Should not be reached.");
+
+            throw new InvalidOperationException("Should not be reached.");
         }
 
-
-#if !NETCF
+#if !NET_CF && !SILVERLIGHT
         private FileStream WindowsCreateFile(string fileName, bool allowConcurrentWrite)
         {
-            int fileShare = Win32FileHelper.FILE_SHARE_READ;
+            int fileShare = Win32FileNativeMethods.FILE_SHARE_READ;
 
             if (allowConcurrentWrite)
-                fileShare |= Win32FileHelper.FILE_SHARE_WRITE;
+            {
+                fileShare |= Win32FileNativeMethods.FILE_SHARE_WRITE;
+            }
 
-            if (_createParameters.EnableFileDelete && PlatformDetector.GetCurrentRuntimeOS() != RuntimeOS.Windows)
-                fileShare |= Win32FileHelper.FILE_SHARE_DELETE;
+            if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.GetCurrentRuntimeOS() != RuntimeOS.Windows)
+            {
+                fileShare |= Win32FileNativeMethods.FILE_SHARE_DELETE;
+            }
 
-            IntPtr hFile = Win32FileHelper.CreateFile(
+            IntPtr handle = Win32FileNativeMethods.CreateFile(
                 fileName,
-                Win32FileHelper.FileAccess.GenericWrite,
+                Win32FileNativeMethods.FileAccess.GenericWrite,
                 fileShare,
                 IntPtr.Zero,
-                Win32FileHelper.CreationDisposition.OpenAlways,
-                _createParameters.FileAttributes, IntPtr.Zero);
+                Win32FileNativeMethods.CreationDisposition.OpenAlways,
+                this.CreateFileParameters.FileAttributes, 
+                IntPtr.Zero);
 
-            if (hFile.ToInt32() == -1)
+            if (handle.ToInt32() == -1)
+            {
                 Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+            }
 
-            FileStream returnValue;
-
-#if DOTNET_2_0 || NETCF_2_0
-            Microsoft.Win32.SafeHandles.SafeFileHandle safeHandle = new Microsoft.Win32.SafeHandles.SafeFileHandle(hFile, true);
-            returnValue = new FileStream(safeHandle, FileAccess.Write, _createParameters.BufferSize);
-#else
-            returnValue = new FileStream(hFile, FileAccess.Write, true, _createParameters.BufferSize);
-#endif
+            var safeHandle = new Microsoft.Win32.SafeHandles.SafeFileHandle(handle, true);
+            FileStream returnValue = new FileStream(safeHandle, FileAccess.Write, this.CreateFileParameters.BufferSize);
             returnValue.Seek(0, SeekOrigin.End);
             return returnValue;
         }
@@ -179,28 +212,31 @@ namespace NLog.Internal.FileAppenders
             FileShare fileShare = FileShare.Read;
 
             if (allowConcurrentWrite)
+            {
                 fileShare = FileShare.ReadWrite;
+            }
 
-#if DOTNET_2_0
-            if (_createParameters.EnableFileDelete && PlatformDetector.GetCurrentRuntimeOS() != RuntimeOS.Windows)
+#if !NET_CF
+            if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.GetCurrentRuntimeOS() != RuntimeOS.Windows)
             {
                 fileShare |= FileShare.Delete;
             }
 #endif
 
-#if !NETCF
+#if !NET_CF && !SILVERLIGHT
             if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.WindowsNT) ||
-                    PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Windows))
+                PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Windows))
             {
-                return WindowsCreateFile(FileName, allowConcurrentWrite);
+                return this.WindowsCreateFile(this.FileName, allowConcurrentWrite);
             }
 #endif
 
-            return new FileStream(FileName, 
+            return new FileStream(
+                this.FileName, 
                 FileMode.Append, 
                 FileAccess.Write, 
                 fileShare, 
-                _createParameters.BufferSize);
+                this.CreateFileParameters.BufferSize);
         }
     }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,40 +31,40 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-
-using System.Xml.Serialization;
-
 namespace NLog.Conditions
 {
+    using NLog.Layouts;
+
     /// <summary>
     /// Condition layout expression (represented by a string literal
-    /// with embedded ${})
+    /// with embedded ${}).
     /// </summary>
     internal sealed class ConditionLayoutExpression : ConditionExpression
     {
-        private Layout _layout;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConditionLayoutExpression" /> class.
+        /// </summary>
+        /// <param name="layout">The layout.</param>
+        public ConditionLayoutExpression(Layout layout) 
+        {
+            this.Layout = layout;
+        }
 
         /// <summary>
-        /// Creates a new instance of <see cref="ConditionLayoutExpression"/>
-        /// and initializes the layout.
+        /// Gets the layout.
         /// </summary>
-        /// <param name="layout"></param>
-        public ConditionLayoutExpression(string layout) 
-        {
-            _layout = new Layout(layout);
-        }
+        /// <value>The layout.</value>
+        public Layout Layout { get; private set; }
 
         /// <summary>
         /// Evaluates the expression by calculating the value
         /// of the layout in the specified evaluation context.
         /// </summary>
-        /// <param name="context">Evaluation context</param>
+        /// <param name="context">Evaluation context.</param>
         /// <returns>The value of the layout.</returns>
         public override object Evaluate(LogEventInfo context)
         {
-            return _layout.GetFormattedMessage(context);
+            return this.Layout.GetFormattedMessage(context);
         }
 
         /// <summary>
@@ -73,16 +73,7 @@ namespace NLog.Conditions
         /// <returns>String literal in single quotes.</returns>
         public override string ToString()
         {
-            return "'" + _layout.Text + "'";
-        }
-
-        /// <summary>
-        /// Adds all layouts used by this expression to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
-        {
-            _layout.PopulateLayouts(layouts);
+            return "'" + this.Layout + "'";
         }
     }
 }

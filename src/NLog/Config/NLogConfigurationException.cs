@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,46 +31,60 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-#if !NETCF
-using System.Runtime.Serialization;
-#endif
-
-namespace NLog.Config 
+namespace NLog.Config
 {
+    using System;
+
     /// <summary>
-    /// Exception during configuration
+    /// Exception thrown during configuration.
     /// </summary>
-#if !NETCF
+#if !NET_CF && !SILVERLIGHT
     [Serializable]
 #endif
-    public class NLogConfigurationException : ApplicationException 
+    public class NLogConfigurationException : Exception
     {
         /// <summary>
-        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
+        /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
         /// </summary>
-        public NLogConfigurationException() {}
+        public NLogConfigurationException()
+        {
+        }
 
         /// <summary>
-        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
+        /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
         /// </summary>
-        /// <param name="desc">Error message</param>
-        public NLogConfigurationException(string desc) : base(desc) {}
+        /// <param name="message">The message.</param>
+        public NLogConfigurationException(string message)
+            : base(message)
+        {
+        }
 
         /// <summary>
-        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
+        /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
         /// </summary>
-        /// <param name="desc">Error message</param>
-        /// <param name="inner">Inner exception</param>
-        public NLogConfigurationException(string desc, Exception inner) : base(desc, inner) {}
+        /// <param name="message">The message.</param>
+        /// <param name="innerException">The inner exception.</param>
+        public NLogConfigurationException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
 
-#if !NETCF
+#if !NET_CF && !SILVERLIGHT
         /// <summary>
-        /// Creates a new instance of <see cref="NLogConfigurationException"/>.
+        /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
         /// </summary>
-        /// <param name="info">Serialization info</param>
-        /// <param name="context">Streaming context</param>
-        protected NLogConfigurationException(SerializationInfo info, StreamingContext context) : base(info, context) {}
+        /// <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+        /// <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// The <paramref name="info"/> parameter is null.
+        /// </exception>
+        /// <exception cref="T:System.Runtime.Serialization.SerializationException">
+        /// The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0).
+        /// </exception>
+        protected NLogConfigurationException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
+            : base(info, context)
+        {
+        }
 #endif
     }
 }

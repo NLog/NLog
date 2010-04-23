@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,165 +31,204 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Collections;
-using System.ComponentModel;
-
-using System.Globalization;
-
-using System.Xml.Serialization;
-
-namespace NLog.Conditions 
+namespace NLog.Conditions
 {
+    using System;
+    using System.Globalization;
+
     /// <summary>
-    /// Condition relational (<b>==</b>, <b>!=</b>, <b>&lt;</b>, <b>&lt;=</b>, 
+    /// Condition relational (<b>==</b>, <b>!=</b>, <b>&lt;</b>, <b>&lt;=</b>,
     /// <b>&gt;</b> or <b>&gt;=</b>) expression.
     /// </summary>
     internal sealed class ConditionRelationalExpression : ConditionExpression 
     {
-        public ConditionExpression par1;
-        public ConditionExpression par2;
-        public ConditionRelationalOperator op;
-
-        public ConditionRelationalExpression() {}
-
-        public ConditionRelationalExpression(ConditionExpression par1, ConditionExpression par2, ConditionRelationalOperator op) 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConditionRelationalExpression" /> class.
+        /// </summary>
+        /// <param name="leftExpression">The left expression.</param>
+        /// <param name="rightExpression">The right expression.</param>
+        /// <param name="relationalOperator">The relational operator.</param>
+        public ConditionRelationalExpression(ConditionExpression leftExpression, ConditionExpression rightExpression, ConditionRelationalOperator relationalOperator) 
         {
-            this.par1 = par1;
-            this.par2 = par2;
-            this.op = op;
+            this.LeftExpression = leftExpression;
+            this.RightExpression = rightExpression;
+            this.RelationalOperator = relationalOperator;
+        }
+
+        /// <summary>
+        /// Gets the left expression.
+        /// </summary>
+        /// <value>The left expression.</value>
+        public ConditionExpression LeftExpression { get; private set; }
+
+        /// <summary>
+        /// Gets the right expression.
+        /// </summary>
+        /// <value>The right expression.</value>
+        public ConditionExpression RightExpression { get; private set; }
+
+        /// <summary>
+        /// Gets the relational operator.
+        /// </summary>
+        /// <value>The operator.</value>
+        public ConditionRelationalOperator RelationalOperator { get; private set; }
+
+        /// <summary>
+        /// Evaluates the expression.
+        /// </summary>
+        /// <param name="context">Evaluation context.</param>
+        /// <returns>Expression result.</returns>
+        public override object Evaluate(LogEventInfo context)
+        {
+            object v1 = this.LeftExpression.Evaluate(context);
+            object v2 = this.RightExpression.Evaluate(context);
+
+            return Compare(v1, v2, this.RelationalOperator);
+        }
+
+        /// <summary>
+        /// Returns a string representation of the expression.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"/> that represents the condition expression.
+        /// </returns>
+        public override string ToString()
+        {
+            return this.LeftExpression + " " + this.GetOperatorString() + " " + this.RightExpression;
+        }
+
+        /// <summary>
+        /// Compares the specified values using specified relational operator.
+        /// </summary>
+        /// <param name="leftValue">The first value.</param>
+        /// <param name="rightValue">The second value.</param>
+        /// <param name="relationalOperator">The relational operator.</param>
+        /// <returns>Result of the given relational operator.</returns>
+        private static object Compare(object leftValue, object rightValue, ConditionRelationalOperator relationalOperator)
+        {
+            if (leftValue == null || rightValue == null)
+            {
+                return null;
+            }
+
+            StringComparer comparer = StringComparer.InvariantCulture;
+            PromoteTypes(ref leftValue, ref rightValue);
+            switch (relationalOperator)
+            {
+                case ConditionRelationalOperator.Equal:
+                    return comparer.Compare(leftValue, rightValue) == 0;
+
+                case ConditionRelationalOperator.NotEqual:
+                    return comparer.Compare(leftValue, rightValue) != 0;
+
+                case ConditionRelationalOperator.Greater:
+                    return comparer.Compare(leftValue, rightValue) > 0;
+
+                case ConditionRelationalOperator.GreaterOrEqual:
+                    return comparer.Compare(leftValue, rightValue) >= 0;
+
+                case ConditionRelationalOperator.LessOrEqual:
+                    return comparer.Compare(leftValue, rightValue) <= 0;
+
+                case ConditionRelationalOperator.Less:
+                    return comparer.Compare(leftValue, rightValue) < 0;
+
+                default:
+                    throw new NotSupportedException("Relational operator " + relationalOperator + " is not supported.");
+            }
         }
 
         private static void PromoteTypes(ref object val1, ref object val2)
         {
             if (val1.GetType() == val2.GetType())
+            {
                 return;
+            }
 
             if (val1 is DateTime || val2 is DateTime)
             {
-                val1 = Convert.ToDateTime(val1);
-                val2 = Convert.ToDateTime(val2);
+                val1 = Convert.ToDateTime(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToDateTime(val2, CultureInfo.InvariantCulture);
                 return;
             }
 
             if (val1 is string || val2 is string)
             {
-                val1 = Convert.ToString(val1);
-                val2 = Convert.ToString(val2);
+                val1 = Convert.ToString(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToString(val2, CultureInfo.InvariantCulture);
                 return;
             }
+
             if (val1 is double || val2 is double)
             {
-                val1 = Convert.ToDouble(val1);
-                val2 = Convert.ToDouble(val2);
+                val1 = Convert.ToDouble(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToDouble(val2, CultureInfo.InvariantCulture);
                 return;
             }
 
             if (val1 is float || val2 is float)
             {
-                val1 = Convert.ToSingle(val1);
-                val2 = Convert.ToSingle(val2);
+                val1 = Convert.ToSingle(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToSingle(val2, CultureInfo.InvariantCulture);
                 return;
             }
+
             if (val1 is decimal || val2 is decimal)
             {
-                val1 = Convert.ToDecimal(val1);
-                val2 = Convert.ToDecimal(val2);
+                val1 = Convert.ToDecimal(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToDecimal(val2, CultureInfo.InvariantCulture);
                 return;
             }
+
             if (val1 is long || val2 is long)
             {
-                val1 = Convert.ToInt64(val1);
-                val2 = Convert.ToInt64(val2);
+                val1 = Convert.ToInt64(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToInt64(val2, CultureInfo.InvariantCulture);
                 return;
             }
+
             if (val1 is int || val2 is int)
             {
-                val1 = Convert.ToInt32(val1);
-                val2 = Convert.ToInt32(val2);
+                val1 = Convert.ToInt32(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToInt32(val2, CultureInfo.InvariantCulture);
                 return;
             }
 
             if (val1 is bool || val2 is bool)
             {
-                val1 = Convert.ToBoolean(val1);
-                val2 = Convert.ToBoolean(val2);
+                val1 = Convert.ToBoolean(val1, CultureInfo.InvariantCulture);
+                val2 = Convert.ToBoolean(val2, CultureInfo.InvariantCulture);
                 return;
             }
-            throw new Exception("Cannot promote types " + val1.GetType().Name + " and " + val2.GetType().Name + " to one type.");
+
+            throw new ConditionEvaluationException("Cannot promote types " + val1.GetType().Name + " and " + val2.GetType().Name + " to one type.");
         }
 
-        public static object Compare(object v1, object v2, ConditionRelationalOperator op) 
+        private string GetOperatorString()
         {
-            if (v1 == null || v2 == null)
-                return null;
-
-            IComparer comparer = Comparer.Default;
-            PromoteTypes(ref v1, ref v2);
-            switch (op)
+            switch (this.RelationalOperator)
             {
                 case ConditionRelationalOperator.Equal:
-                    return comparer.Compare(v1, v2) == 0;
+                    return "==";
 
                 case ConditionRelationalOperator.NotEqual:
-                    return comparer.Compare(v1, v2) != 0;
+                    return "!=";
 
                 case ConditionRelationalOperator.Greater:
-                    return comparer.Compare(v1, v2) > 0;
-
-                case ConditionRelationalOperator.GreaterOrEqual:
-                    return comparer.Compare(v1, v2) >= 0;
-
-                case ConditionRelationalOperator.LessOrEqual:
-                    return comparer.Compare(v1, v2) <= 0;
+                    return ">";
 
                 case ConditionRelationalOperator.Less:
-                    return comparer.Compare(v1, v2) < 0;
+                    return "<";
+
+                case ConditionRelationalOperator.GreaterOrEqual:
+                    return ">=";
+
+                case ConditionRelationalOperator.LessOrEqual:
+                    return "<=";
 
                 default:
-                    throw new NotSupportedException("Relational operator " + op + " is not supported.");
+                    return string.Empty;
             }
-        }
-
-        public override object Evaluate(LogEventInfo context)
-        {
-            object v1 = par1.Evaluate(context);
-            object v2 = par2.Evaluate(context);
-
-            return Compare(v1, v2, op);
-        }
-
-        public string OperatorString
-        {
-            get 
-            {
-                switch (op)
-                {
-                    case ConditionRelationalOperator.Equal: return "==";
-                    case ConditionRelationalOperator.NotEqual: return "!=";
-                    case ConditionRelationalOperator.Greater: return ">";
-                    case ConditionRelationalOperator.Less: return "<";
-                    case ConditionRelationalOperator.GreaterOrEqual: return ">=";
-                    case ConditionRelationalOperator.LessOrEqual: return "<=";
-                }
-                return "";
-            }
-        }
-
-        public override string ToString()
-        {
-            return par1.ToString() + " " + OperatorString + " " + par2.ToString();
-        }
-
-        /// <summary>
-        /// Adds all layouts used by this expression to the specified collection.
-        /// </summary>
-        /// <param name="layouts">The collection to add layouts to.</param>
-        public override void PopulateLayouts(LayoutCollection layouts)
-        {
-            par1.PopulateLayouts(layouts);
-            par2.PopulateLayouts(layouts);
         }
     }
 }
