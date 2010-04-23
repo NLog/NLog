@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,22 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETCF
-
-using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-
-using NLog.Internal;
-using System.Web;
-
-using NLog.Config;
+#if !NET_CF && !SILVERLIGHT
 
 namespace NLog.Targets.Wrappers
 {
+    using System;
+    using System.ComponentModel;
+    using System.Web;
+    using NLog.Internal;
+    using NLog.Web;
+
     /// <summary>
     /// A target that buffers log events for the duration of 
     /// the ASP.NET Request and sends them down to the wrapped target
@@ -81,7 +75,7 @@ namespace NLog.Targets.Wrappers
     /// that PostFilteringWrapper is used to provide the filtering and actual logs go to
     /// a file).
     /// </p>
-    /// <code lang="XML" src="examples/targets/Configuration File/ASPNetBufferingWrapper/web.nlog" />
+    /// <code lang="XML" source="examples/targets/Configuration File/ASPNetBufferingWrapper/web.nlog" />
     /// <p>
     /// This assumes just one target and a single rule. More configuration
     /// options are described <a href="config.html">here</a>.
@@ -97,138 +91,141 @@ namespace NLog.Targets.Wrappers
     /// directory along with usage instructions.
     /// </p>
     /// </example>
-    [Target("ASPNetBufferingWrapper", IgnoresLayout = true, IsWrapper = true)]
-    [NotSupportedRuntime(Framework=RuntimeFramework.DotNetCompactFramework)]
-    public class ASPNetBufferingTargetWrapper: WrapperTargetBase
+    [Target("AspNetBufferingWrapper", IsWrapper = true)]
+    public class AspNetBufferingTargetWrapper : WrapperTargetBase
     {
-        private object _dataSlot = new object();
-        private int _bufferSize = 100;
-        private int _growLimit = 0;
-        private bool _growBufferAsNeeded = true;
+        private readonly object dataSlot = new object();
+        private int growLimit;
 
         /// <summary>
-        /// Creates a new instance of the <see cref="ASPNetBufferingTargetWrapper"/> and initializes <see cref="BufferSize"/> to 100.
+        /// Initializes a new instance of the <see cref="AspNetBufferingTargetWrapper" /> class.
         /// </summary>
-        public ASPNetBufferingTargetWrapper()
-        {
-            BufferSize = 100;
-            GrowBufferAsNeeded = true;
-        }
-
-        /// <summary>
-        /// Creates a new instance of the <see cref="ASPNetBufferingTargetWrapper"/>, initializes <see cref="BufferSize"/> to 100 and
-        /// sets the <see cref="WrapperTargetBase.WrappedTarget"/> to the specified value.
-        /// </summary>
-        public ASPNetBufferingTargetWrapper(Target writeTo) : this(writeTo, 100)
+        public AspNetBufferingTargetWrapper()
+            : this(null)
         {
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="ASPNetBufferingTargetWrapper"/>, initializes <see cref="BufferSize"/> and
-        /// the <see cref="WrapperTargetBase.WrappedTarget"/> to the specified values.
+        /// Initializes a new instance of the <see cref="AspNetBufferingTargetWrapper" /> class.
         /// </summary>
-        public ASPNetBufferingTargetWrapper(Target writeTo, int bufferSize)
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        public AspNetBufferingTargetWrapper(Target wrappedTarget)
+            : this(wrappedTarget, 100)
         {
-            WrappedTarget = writeTo;
-            BufferSize = bufferSize;
         }
 
         /// <summary>
-        /// The number of log events to be buffered.
+        /// Initializes a new instance of the <see cref="AspNetBufferingTargetWrapper" /> class.
         /// </summary>
-        /// <docgen category="Buffering Options" order="10" />
-        [System.ComponentModel.DefaultValue(4000)]
-        public int BufferSize
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        /// <param name="bufferSize">Size of the buffer.</param>
+        public AspNetBufferingTargetWrapper(Target wrappedTarget, int bufferSize)
         {
-            get { return _bufferSize; }
-            set { _bufferSize = value; }
+            this.WrappedTarget = wrappedTarget;
+            this.BufferSize = bufferSize;
+            this.GrowBufferAsNeeded = true;
         }
 
         /// <summary>
-        /// Grow the buffer when it gets full.
+        /// Gets or sets the number of log events to be buffered.
         /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
+        [DefaultValue(100)]
+        public int BufferSize { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether buffer should grow as needed.
+        /// </summary>
+        /// <value>A value of <c>true</c> if buffer should grow as needed; otherwise, <c>false</c>.</value>
         /// <remarks>
-        /// true causes the buffer to expand until <see cref="BufferGrowLimit" /> is hit,
-        /// false causes the buffer to never expand and lose the earliest entries in case of overflow.
+        /// Value of <c>true</c> causes the buffer to expand until <see cref="BufferGrowLimit"/> is hit,
+        /// <c>false</c> causes the buffer to never expand and lose the earliest entries in case of overflow.
         /// </remarks>
-        /// <docgen category="Buffering Options" order="10" />
-        [System.ComponentModel.DefaultValue(false)]
-        public bool GrowBufferAsNeeded
-        {
-            get { return _growBufferAsNeeded; }
-            set { _growBufferAsNeeded = value; }
-        }
-
+        /// <docgen category='Buffering Options' order='100' />
+        [DefaultValue(false)]
+        public bool GrowBufferAsNeeded { get; set; }
+        
         /// <summary>
-        /// The maximum number of log events that the buffer can keep.
+        /// Gets or sets the maximum number of log events that the buffer can keep.
         /// </summary>
-        /// <docgen category="Buffering Options" order="10" />
+        /// <docgen category='Buffering Options' order='100' />
         public int BufferGrowLimit
         {
-            get { return _growLimit; }
-            set 
+            get
             {
-                _growLimit = value; 
-                GrowBufferAsNeeded = (value >= _bufferSize) ? true : false;
+                return this.growLimit;
+            }
+
+            set
+            {
+                this.growLimit = value;
+                this.GrowBufferAsNeeded = (value >= this.BufferSize) ? true : false;
             }
         }
 
         /// <summary>
         /// Initializes the target by hooking up the NLogHttpModule BeginRequest and EndRequest events.
         /// </summary>
-        public override void Initialize()
+        protected override void Initialize()
         {
             base.Initialize();
-            NLog.Web.NLogHttpModule.BeginRequest += new EventHandler(this.OnBeginRequest);
-            NLog.Web.NLogHttpModule.EndRequest += new EventHandler(this.OnEndRequest);
+
+            NLogHttpModule.BeginRequest += this.OnBeginRequest;
+            NLogHttpModule.EndRequest += this.OnEndRequest;
+        }
+
+        /// <summary>
+        /// Closes the target by flushing pending events in the buffer (if any).
+        /// </summary>
+        protected override void Close()
+        {
+            NLogHttpModule.BeginRequest -= this.OnBeginRequest;
+            NLogHttpModule.EndRequest -= this.OnEndRequest;
+            Flush(TimeSpan.FromSeconds(3));
+            base.Close();
         }
 
         /// <summary>
         /// Adds the specified log event to the buffer.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        protected internal override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent)
         {
-            WrappedTarget.PrecalculateVolatileLayouts(logEvent);
-            LogEventInfoBuffer buffer = GetRequestBuffer();
+            this.WrappedTarget.PrecalculateVolatileLayouts(logEvent);
+
+            LogEventInfoBuffer buffer = this.GetRequestBuffer();
             if (buffer != null)
             {
                 buffer.Append(logEvent);
             }
         }
 
-        /// <summary>
-        /// Closes the target by flushing pending events in the buffer (if any).
-        /// </summary>
-        protected internal override void Close()
-        {
-            Flush(TimeSpan.FromSeconds(3));
-            base.Close ();
-        }
-
         private LogEventInfoBuffer GetRequestBuffer()
         {
             HttpContext context = HttpContext.Current;
             if (context == null)
+            {
                 return null;
-            return context.Items[_dataSlot] as LogEventInfoBuffer;
+            }
+
+            return context.Items[this.dataSlot] as LogEventInfoBuffer;
         }
 
         private void OnBeginRequest(object sender, EventArgs args)
         {
             HttpContext context = HttpContext.Current;
-            context.Items[_dataSlot] = new LogEventInfoBuffer(this.BufferSize, this.GrowBufferAsNeeded, this.BufferGrowLimit);
+            context.Items[this.dataSlot] = new LogEventInfoBuffer(this.BufferSize, this.GrowBufferAsNeeded, this.BufferGrowLimit);
         }
 
         private void OnEndRequest(object sender, EventArgs args)
         {
-            LogEventInfoBuffer buffer = GetRequestBuffer();
+            LogEventInfoBuffer buffer = this.GetRequestBuffer();
             if (buffer != null)
             {
                 LogEventInfo[] events = buffer.GetEventsAndClear();
                 if (events.Length > 0)
                 {
-                    WrappedTarget.Write(events);
+                    WrappedTarget.WriteLogEvents(events);
                 }
             }
         }
