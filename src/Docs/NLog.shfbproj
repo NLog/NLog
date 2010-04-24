@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{ff8480e8-de05-4447-a460-d63ee65bdcbf}</ProjectGuid>
     <Framework>.NET Framework 3.5</Framework>
-    <NLogPath>..\..\</NLogPath>
+    <NLogPath>$(MSBuildProjectDirectory)\..\..\</NLogPath>
     <WorkingPath>Working\</WorkingPath>
     <SHFBSchemaVersion>1.8.0.3</SHFBSchemaVersion>
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
@@ -31,9 +31,9 @@
       <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.Extended.xml" xmlns="" />
     </DocumentationSources>
     <HelpTitle>NLog - Advanced .NET Logging ($(Framework))</HelpTitle>
-    <CopyrightText>Copyright %28c%29 2004-2009 by Jaroslaw Kowalski</CopyrightText>
+    <CopyrightText>Copyright %28c%29 2004-2010 by Jaroslaw Kowalski</CopyrightText>
     <FeedbackEMailAddress>feedback%40nlog-project.org</FeedbackEMailAddress>
-    <CopyrightHref>http://www.nlog-project.org/</CopyrightHref>
+    <CopyrightHref>http://nlog-project.org/</CopyrightHref>
     <FrameworkVersion>2.0.50727</FrameworkVersion>
     <ComponentConfigurations>
       <ComponentConfig id="Code Block Component" enabled="True">

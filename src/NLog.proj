@@ -134,7 +134,7 @@
     </TargetFramework>
   </ItemGroup>
 
-  <Target Name="All" DependsOnTargets="Clean;Build;BuildTests;RunTests;Documentation">
+  <Target Name="All" DependsOnTargets="DeepClean;Clean;Build;BuildTests;RunTests;Documentation">
   </Target>
 
   <Target Name="Rebuild" DependsOnTargets="Clean;Build">
@@ -253,7 +253,7 @@
   </Target>
 
   <Target Name="Documentation">
-    <Exec Command='"$(MSBuildBinPath)\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="%(TargetFramework.Identity)" /p:Configuration=$(Configuration)' ContinueOnError="$(BuildAllFrameworks)" />
+    <Exec Command='"$(WinDir)\Microsoft.NET\Framework\v3.5\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="%(TargetFramework.Identity)" /p:Configuration=$(Configuration)' ContinueOnError="$(BuildAllFrameworks)" />
   </Target>
 
   <Target Name="DeployNetCf20ToEmulator">

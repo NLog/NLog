@@ -18,6 +18,6 @@
 
   <!-- delete them after the help has been built -->
   <Target Name="AfterBuildHelp">
-    <Delete Files="@(RefFile -> '$(NLogBuildPath)%(Filename)%(Extension)')" />
+    <Delete Files="@(RefFile -> '$(NLogBuildPath)\%(Filename)%(Extension)')" />
   </Target>
 </Project>
