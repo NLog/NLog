@@ -21,6 +21,8 @@
     <DumpApiXml>$(MSBuildProjectDirectory)\..\tools\DumpApiXml\bin\$(Configuration)\DumpApiXml.exe</DumpApiXml>
     <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
     <InfoZip>$(MSBuildProjectDirectory)\..\tools\zip.exe</InfoZip>
+    <Tar>$(MSBuildProjectDirectory)\..\tools\tar.exe</Tar>
+    <BZip2>$(MSBuildProjectDirectory)\..\tools\bzip2.exe</BZip2>
     <Svn>svn.exe</Svn>
     <ArchiveOutputPath>$(BaseOutputDirectory)Archive</ArchiveOutputPath>
     <ConfigurationSuffix Condition="'$(Configuration)' == 'Debug'">-debug</ConfigurationSuffix>
@@ -252,8 +254,24 @@
     <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='"$(DumpTestResultSummary)" "%(TargetFramework.Identity)" "$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\TestResults.trx"' />
   </Target>
 
-  <Target Name="Documentation">
+  <Target Name="BuildDocumentation">
     <Exec Command='"$(WinDir)\Microsoft.NET\Framework\v3.5\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="%(TargetFramework.Identity)" /p:Configuration=$(Configuration)' ContinueOnError="$(BuildAllFrameworks)" />
+  </Target>
+
+  <Target Name="PostProcessDocumentation">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="PostProcessSingleDoc" Properties="DocBuildDir=$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)" ContinueOnError="$(BuildAllFrameworks)" />
+  </Target>
+
+  <Target Name="PostProcessSingleDoc">
+    <Copy SourceFiles="$(DocBuildDir)\doc\NLog.chm" DestinationFolder="$(DocBuildDir)" />
+    <Delete Files="$(DocBuildDir)\doc.tar" />
+    <Delete Files="$(DocBuildDir)\doc.tar.bz2" />
+    <Exec Command='"$(Tar)" --exclude=*.chm --exclude=*.log -c -f doc.tar doc' WorkingDirectory="$(DocBuildDir)" />
+    <Exec Command='"$(BZip2)" doc.tar' WorkingDirectory="$(DocBuildDir)" />
+    <RemoveDir Directories="$(DocBuildDir)\doc" />
+  </Target>
+
+  <Target Name="Documentation" DependsOnTargets="BuildDocumentation;PostProcessDocumentation">
   </Target>
 
   <Target Name="DeployNetCf20ToEmulator">
