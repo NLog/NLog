@@ -1,4 +1,4 @@
-*What is NLog 2.0*
+= Welcome to NLog
 
 NLog is a free logging platform for .NET with rich log routing and management 
 capabilities. It makes it easy to produce and manage high-quality logs for 
@@ -15,4 +15,10 @@ messages through a common engine.
 NLog is open source software, licensed under the terms of BSD license. 
 See LICENSE.txt for details.
 
-Project Homepage: http://nlog-project.org/
+Project Homepage: http://nlog-project.org
+
+Project RSS Feed: http://nlog-project.org/feed/
+
+== Latest News:
+
+http://feeds.feedburner.com/nlog.2.gif
