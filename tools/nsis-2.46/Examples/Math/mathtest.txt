@@ -1,0 +1,7 @@
+Math Tester.
+
+This demo allows you to test your Math::Script expressions without need to compile anything. Just enter your expressions into multiline editbox (every single line is a separate call to Math::Script) or select one of sample expressions and press Execute.
+
+Every call to Math::Script can accept up to 1kb of script, but this demo is limited to the summ of 1 kb at all lines. And... watch your scripts. No.... Watch your errors at scripts!
+
+(c) Brainsucker, 2003.

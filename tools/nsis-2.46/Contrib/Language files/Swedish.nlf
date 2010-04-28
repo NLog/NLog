@@ -1,0 +1,190 @@
+# Header, don't edit
+NLF v6
+# Language ID
+1053
+# Font and size - dash (-) means default
+-
+-
+# Codepage - dash (-) means ANSI code page
+1252
+# RTL - anything else than RTL means LTR
+-
+# Translation by Magnus Bonnevier (magnus.bonnevier@telia.com)
+# ^Branding
+Nullsoft Install System %s
+# ^SetupCaption
+$(^Name) Installation
+# ^UninstallCaption
+$(^Name) Avinstallation
+# ^LicenseSubCaption
+: Licensavtal
+# ^ComponentsSubCaption
+: Installationsval
+# ^DirSubCaption
+: Installationskatalog
+# ^InstallingSubCaption
+: Installerar
+# ^CompletedSubCaption
+: Slutförd
+# ^UnComponentsSubCaption
+: Avinstallationsval
+# ^UnDirSubCaption
+: Avinstallationskatalog
+# ^ConfirmSubCaption
+: Bekräftelse
+# ^UninstallingSubCaption
+: Avinstallerar
+# ^UnCompletedSubCaption
+: Slutförd
+# ^BackBtn
+< &Tillbaka
+# ^NextBtn
+&Nästa >
+# ^AgreeBtn
+Jag &Godkänner
+# ^AcceptBtn
+Jag &Godkänner villkoren i licensavtalet
+# ^DontAcceptBtn
+Jag &Godkänner inte villkoren i licensavtalet
+# ^InstallBtn
+&Installera
+# ^UninstallBtn
+&Avinstallera
+# ^CancelBtn
+Avbryt
+# ^CloseBtn
+&Stäng
+# ^BrowseBtn
+B&läddra...
+# ^ShowDetailsBtn
+Visa &detaljer
+# ^ClickNext
+Klicka på Nästa för att fortsätta.
+# ^ClickInstall
+Klicka på Installera för att starta installationen.
+# ^ClickUninstall
+Klicka på Avinstallera för att starta avinstallationen.
+# ^Name
+Namn
+# ^Completed
+Slutförd
+# ^LicenseText
+Var vänlig läs igenom licensvillkoren innan du installerar $(^NameDA). Om du accepterar villkoren i avtalet, klicka Jag Godkänner.
+# ^LicenseTextCB
+Var vänlig läs igenom licensvillkoren innan du installerar $(^NameDA). Om du accepterar villkoren i avtalet, klicka i checkrutan nedan. $_CLICK
+# ^LicenseTextRB
+Var vänlig läs igenom licensvillkoren innan du installerar $(^NameDA). Om du accepterar villkoren i avtalet, välj det första alternativet nedan. $_CLICK
+# ^UnLicenseText
+Var vänlig läs igenom licensvillkoren innan du avinstallerar $(^NameDA). Om du accepterar villkoren i avtalet, klicka Jag Godkänner.
+# ^UnLicenseTextCB
+Var vänlig läs igenom licensvillkoren innan du avinstallerar $(^NameDA). Om du accepterar villkoren i avtalet, klicka i checkrutan nedan. $_CLICK
+# ^UnLicenseTextRB
+Var vänlig läs igenom licensvillkoren innan du avinstallerar $(^NameDA). Om du accepterar villkoren i avtalet, välj det första alternativet nedan. $_CLICK
+# ^Custom
+Valfri
+# ^ComponentsText
+Markera de komponenter du vill installera och avmarkera de komponenter du inte vill installera. $_CLICK
+# ^ComponentsSubText1
+Välj typ av installation:
+# ^ComponentsSubText2_NoInstTypes
+Välj komponenter att installera:
+# ^ComponentsSubText2
+Eller, välj de alternativa komponenter du önskar installera:
+# ^UnComponentsText
+Markera de komponenter du vill avinstallera och avmarkera de komponenter du inte vill avinstallera. $_CLICK
+# ^UnComponentsSubText1
+Välj typ av avinstallation:
+# ^UnComponentsSubText2_NoInstTypes
+Välj komponenter att avinstallera:
+# ^UnComponentsSubText2
+Eller, välj de alternativa komponenter du önskar avinstallera:
+# ^DirText
+Guiden kommer att installera $(^NameDA) i följande katalog. För att installera i en annan katalog, klicka Bläddra och välj en alternativ katalog. $_CLICK
+# ^DirSubText
+Målkatalog
+# ^DirBrowseText
+Välj katalog att installera $(^NameDA) i:
+# ^UnDirText
+Installationsguiden kommer att avinstallera $(^NameDA) från följande katalog. För att avinstallera från en annan katalog, klicka Bläddra och välj en annan katalog. $_CLICK
+# ^UnDirSubText
+""
+# ^UnDirBrowseText
+Välj katalog att avinstallera $(^NameDA) från:
+# ^SpaceAvailable
+"Utrymme tillgängligt: "
+# ^SpaceRequired
+"Utrymme som behövs: "
+# ^UninstallingText
+$(^NameDA) kommer att avinstalleras från följande katalog. $_CLICK
+# ^UninstallingSubText
+Avinstallerar från:
+# ^FileError
+Fel vid Öppning av fil för skrivning: \r\n\t"$0"\r\nKlicka på avbryt för att avbryta installationen,\r\nförsök igen för att försöka skriva till filen igen, eller\r\nIgnorera för att skippa denna fil
+# ^FileError_NoIgnore
+Fel vid Öppning av fil för skrivning: \r\n\t"$0"\r\nKlicka på försök igen för att skriva till filen igen, eller\r\navbryt för att avbryta installationen
+# ^CantWrite
+"Kan inte skriva: "
+# ^CopyFailed
+Kopiering misslyckades
+# ^CopyTo
+"Kopiera till "
+# ^Registering
+"Registrerar: "
+# ^Unregistering
+"Avregistrerar: "
+# ^SymbolNotFound
+"Kunde inte hitta symbol: "
+# ^CouldNotLoad
+"Kunde inte ladda: "
+# ^CreateFolder
+"Skapa katalog: "
+# ^CreateShortcut
+"Skapa genväg: "
+# ^CreatedUninstaller
+"Skapade avinstallationsprogram: "
+# ^Delete
+"Radera fil: "
+# ^DeleteOnReboot
+"Radera vid omstart: "
+# ^ErrorCreatingShortcut
+"Fel vid skapande av genväg: "
+# ^ErrorCreating
+"Fel vid skapande: "
+# ^ErrorDecompressing
+Fel vid uppackning av data! Skadat installationspaket?
+# ^ErrorRegistering
+Fel vid registrering av DLL
+# ^ExecShell
+"ExecShell: "
+# ^Exec
+"Kör: "
+# ^Extract
+"Extrahera: "
+# ^ErrorWriting
+"Extrahera: fel vid skrivning till fil "
+# ^InvalidOpcode
+Installationspaket skadat: ogiltig opcode
+# ^NoOLE
+"Ingen OLE för: "
+# ^OutputFolder
+"Målkatalog: "
+# ^RemoveFolder
+"Ta bort katalog: "
+# ^RenameOnReboot
+"Döp om vid omstart: "
+# ^Rename
+"Döp om: "
+# ^Skipped
+"Ignorerad: "
+# ^CopyDetails
+Kopiera detaljinformation till klippbordet
+# ^LogInstall
+Logga installationsförfarandet
+# ^Byte
+B
+# ^Kilo
+K
+# ^Mega
+M
+# ^Giga
+G

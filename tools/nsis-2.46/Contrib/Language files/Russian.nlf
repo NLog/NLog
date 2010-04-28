@@ -1,0 +1,191 @@
+# Header, don't edit
+NLF v6
+# Language ID
+1049
+# Font and size - dash (-) means default
+-
+-
+# Codepage - dash (-) means ANSI code page
+1251
+# RTL - anything else than RTL means LTR
+-
+# Translation by Timon [ timon@front.ru ] + 20030919
+# Translation updated by Dmitry Yerokhin [erodim@mail.ru] (050424)
+# ^Branding
+Nullsoft Install System %s
+# ^SetupCaption
+Установка $(^Name)
+# ^UninstallCaption
+Удаление $(^Name)
+# ^LicenseSubCaption
+: Лицензионное соглашение
+# ^ComponentsSubCaption
+: Параметры установки
+# ^DirSubCaption
+: Папка установки
+# ^InstallingSubCaption
+: Копирование файлов
+# ^CompletedSubCaption
+: Операция завершена
+# ^UnComponentsSubCaption
+: Параметры удаления
+# ^UnDirSubCaption
+: Папка удаления
+# ^ConfirmSubCaption
+: Подтверждение
+# ^UninstallingSubCaption
+: Удаление файлов
+# ^UnCompletedSubCaption
+: Операция завершена
+# ^BackBtn
+< &Назад
+# ^NextBtn
+&Далее >
+# ^AgreeBtn
+Принима&ю
+# ^AcceptBtn
+Я &принимаю условия соглашения
+# ^DontAcceptBtn
+Я &не принимаю условия соглашения
+# ^InstallBtn
+&Установить
+# ^UninstallBtn
+Уд&алить
+# ^CancelBtn
+Отмена
+# ^CloseBtn
+&Закрыть
+# ^BrowseBtn
+О&бзор ...
+# ^ShowDetailsBtn
+&Детали...
+# ^ClickNext
+Нажмите кнопку 'Далее' для продолжения.
+# ^ClickInstall
+Нажмите кнопку 'Установить', чтобы установить программу.
+# ^ClickUninstall
+Нажмите кнопку 'Удалить', чтобы удалить программу.
+# ^Name
+Имя
+# ^Completed
+Готово
+# ^LicenseText
+Перед установкой $(^NameDA) ознакомьтесь с лицензионным соглашением. Если вы принимаете условия соглашения, нажмите кнопку 'Принимаю'.
+# ^LicenseTextCB
+Перед установкой $(^NameDA) ознакомьтесь с лицензионным соглашением. Если вы принимаете условия соглашения, установите флажок ниже. $_CLICK
+# ^LicenseTextRB
+Перед установкой $(^NameDA) ознакомьтесь с лицензионным соглашением. Если вы принимаете условия соглашения, выберите первый вариант из предложенных ниже. $_CLICK
+# ^UnLicenseText
+Перед установкой $(^NameDA) ознакомьтесь с лицензионным соглашением. Если вы принимаете условия соглашения, нажмите кнопку 'Принимаю'.
+# ^UnLicenseTextCB
+Перед установкой $(^NameDA) ознакомьтесь с лицензионным соглашением. Если вы принимаете условия соглашения, установите флажок ниже. $_CLICK
+# ^UnLicenseTextRB
+Перед установкой $(^NameDA) ознакомьтесь с лицензионным соглашением. Если вы принимаете условия соглашения, выберите первый вариант из предложенных ниже. $_CLICK
+# ^Custom
+По выбору
+# ^ComponentsText
+Выберите компоненты программы, которые вы хотите установить. $_CLICK
+# ^ComponentsSubText1
+Выберите тип установки:
+# ^ComponentsSubText2_NoInstTypes
+Выберите компоненты программы для установки:
+# ^ComponentsSubText2
+или выберите дополнительные компоненты для установки:
+# ^UnComponentsText
+Выберите компоненты, которые вы хотите удалить. $_CLICK
+# ^UnComponentsSubText1
+Выберите тип удаления:
+# ^UnComponentsSubText2_NoInstTypes
+Выберите компоненты для удаления:
+# ^UnComponentsSubText2
+или выберите дополнительные компоненты для удаления:
+# ^DirText
+Программа установит $(^NameDA) в указанную папку. Чтобы установить приложение в другую папку, нажмите кнопку 'Обзор' и укажите ее. $_CLICK
+# ^DirSubText
+Папка установки
+# ^DirBrowseText
+Укажите папку для установки $(^NameDA):
+# ^UnDirText
+Программа удалит $(^NameDA) из указанной папки. Чтобы выполнить удаление из другой папки, нажмите кнопку 'Обзор' и укажите ее. $_CLICK
+# ^UnDirSubText
+""
+# ^UnDirBrowseText
+Укажите папку, из которой нужно удалить $(^NameDA):
+# ^SpaceAvailable
+"Доступно на диске: "
+# ^SpaceRequired
+"Требуется на диске: "
+# ^UninstallingText
+Программа $(^NameDA) будет удалена из вашего ПК. $_CLICK
+# ^UninstallingSubText
+Удаление из:
+# ^FileError
+Невозможно открыть файл для записи: \r\n\t"$0"\r\n'Прервать': остановить установку;\r\n"Повтор": повторить попытку;\r\n"Пропуск": пропустить это действие.
+# ^FileError_NoIgnore
+Невозможно открыть файл для записи: \r\n\t"$0"\r\n'Повтор': повторить попытку;\r\n'Отмена': прервать процесс установки.
+# ^CantWrite
+"Невозможно записать: "
+# ^CopyFailed
+Ошибка при копировании
+# ^CopyTo
+"Копирование в "
+# ^Registering
+"Регистрация: "
+# ^Unregistering
+"Де-регистрация: "
+# ^SymbolNotFound
+"Невозможно найти символ: "
+# ^CouldNotLoad
+"Невозможно загрузить: "
+# ^CreateFolder
+"Создание папки: "
+# ^CreateShortcut
+"Создание ярлыка: "
+# ^CreatedUninstaller
+"Создание программы удаления: "
+# ^Delete
+"Удаление файла: "
+# ^DeleteOnReboot
+"Удаление при перезагрузке ПК: "
+# ^ErrorCreatingShortcut
+"Ошибка создания ярлыка: " 
+# ^ErrorCreating
+"Ошибка создания: "
+# ^ErrorDecompressing
+Ошибка распаковки данных! Возможно, повреждён дистрибутив.
+# ^ErrorRegistering
+Невозможно зарегистрировать библиотеку (DLL)
+# ^ExecShell
+"Выполнение команды оболочки: " 
+# ^Exec
+"Выполнение: "
+# ^Extract
+"Извлечение: "
+# ^ErrorWriting
+"Извлечение: ошибка записи файла "
+# ^InvalidOpcode
+Дистрибутив поврежден: недопустимый код
+# ^NoOLE
+"Нет OLE для: " 
+# ^OutputFolder
+"Папка установки: "
+# ^RemoveFolder
+"Удаление папки: "
+# ^RenameOnReboot
+"Переименование при перезагрузке ПК: "
+# ^Rename
+"Переименование: "
+# ^Skipped
+"Пропуск: "
+# ^CopyDetails
+Копировать сведения в буфер обмена 
+# ^LogInstall
+Вести отчет установки
+# byte
+байт
+# kilo
+ К
+# mega
+ М
+# giga
+ Г

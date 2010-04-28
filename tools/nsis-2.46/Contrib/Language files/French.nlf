@@ -1,0 +1,191 @@
+# Header, don't edit
+NLF v6
+# Language ID
+1036
+# Font and size - dash (-) means default
+-
+-
+# Codepage - dash (-) means ANSI code page
+1252
+# RTL - anything else than RTL means LTR
+-
+# Translation by the French NSIS team <veekee@winampfr.com> - http://www.winampfr.com/nsis.
+# Updated to v6 by Jerome Charaoui (lavamind@inetflex.com)
+# ^Branding
+Nullsoft Install System %s
+# ^SetupCaption
+Installation de $(^Name)
+# ^UninstallCaption
+Désinstallation de $(^Name)
+# ^LicenseSubCaption
+: Licence
+# ^ComponentsSubCaption
+: Options d'installation
+# ^DirSubCaption
+: Dossier d'installation
+# ^InstallingSubCaption
+: Installation des fichiers
+# ^CompletedSubCaption
+: Terminé
+# ^UnComponentsSubCaption
+: Options de désinstallation
+# ^UnDirSubCaption
+: Dossier de désinstallation
+# ^ConfirmSubCaption
+: Confirmation
+# ^UninstallingSubCaption
+: Désinstallation des fichiers
+# ^UnCompletedSubCaption
+: Terminé
+# ^BackBtn
+< &Précédent
+# ^NextBtn
+&Suivant >
+# ^AgreeBtn
+J'a&ccepte
+# ^AcceptBtn
+J'a&ccepte les termes de la licence
+# ^DontAcceptBtn
+Je &n'accepte pas les termes de la licence
+# ^InstallBtn
+&Installer
+# ^UninstallBtn
+&Désinstaller
+# ^CancelBtn
+Annuler
+# ^CloseBtn
+&Fermer
+# ^BrowseBtn
+P&arcourir...
+# ^ShowDetailsBtn
+P&lus d'infos
+# ^ClickNext
+Cliquez sur Suivant pour continuer.
+# ^ClickInstall
+Cliquez sur Installer pour démarrer l'installation.
+# ^ClickUninstall
+Cliquez sur Désinstaller pour démarrer la désinstallation.
+# ^Name
+Nom
+# ^Completed
+Terminé
+# ^LicenseText
+Veuillez examiner le contrat de licence avant d'installer $(^NameDA). Si vous acceptez tous les termes du contrat, cliquez sur J'accepte.
+# ^LicenseTextCB
+Veuillez examiner le contrat de licence avant d'installer $(^NameDA). Si vous acceptez tous les termes du contrat, cochez la boîte de contrôle ci-dessous. $_CLICK
+# ^LicesnseTextRB
+Veuillez examiner le contrat de licence avant d'installer $(^NameDA). Si vous acceptez tous les termes du contrat, sélectionnez la première option ci-dessous. $_CLICK
+# ^UnLicenseText
+Veuillez examiner le contrat de licence avant de désinstaller $(^NameDA). Si vous acceptez tous les termes du contrat, cliquez sur J'accepte.
+# ^UnLicenseTextCB
+Veuillez examiner le contrat de licence avant de désinstaller $(^NameDA). Si vous acceptez tous les termes du contrat, cochez la boîte de contrôle ci-dessous. $_CLICK
+# ^UnLicesnseTextRB
+Veuillez examiner le contrat de licence avant de désinstaller $(^NameDA). Si vous acceptez tous les termes du contrat, sélectionnez la première option ci-dessous. $_CLICK
+# ^Custom
+Personnalisée
+# ^ComponentsText
+Cochez les composants que vous désirez installer et décochez ceux que vous ne désirez pas installer. $_CLICK
+# ^ComponentsSubText1
+Type d'installation :
+# ^ComponentsSubText2_NoInstTypes
+Sélectionnez les composants à installer :
+# ^ComponentsSubText2
+Ou, sélectionnez les composants optionnels que vous voulez installer :
+# ^UnComponentsText
+Cochez les composants que vous désirez désinstaller et décochez ceux que vous ne désirez pas désinstaller. $_CLICK
+# ^UnComponentsSubText1
+Sélectionnez le type de désinstallation :
+# ^UnComponentsSubText2_NoInstTypes
+Sélectionnez les composants à désinstaller :
+# ^UnComponentsSubText2
+Ou, sélectionnez les composants optionnels que vous voulez désinstaller :
+# ^DirText
+Ceci installera $(^NameDA) dans le dossier suivant. Pour installer dans un autre dossier, cliquez sur Parcourir et choisissez un autre dossier. $_CLICK
+# ^DirSubText
+Dossier d'installation
+# ^DirBrowseText
+Sélectionnez le dossier d'installation pour $(^NameDA) :
+# ^UnDirText
+Ceci désinstallera $(^NameDA) du dossier suivant. Pour désinstaller d'un autre dossier, cliquez sur Parcourir et choisissez un autre dossier. $_CLICK
+# ^UnDirSubText
+""
+# ^UnDirBrowseText
+Sélectionnez le dossier de désinstallation pour $(^NameDA) :
+# ^SpaceAvailable
+"Espace disponible : "
+# ^SpaceRequired
+"Espace requis : "
+# ^UninstallingText
+Ce programme désinstallera $(^NameDA) de votre ordinateur. $_CLICK
+# ^UninstallingSubText
+Désinstallation à partir de :
+# ^FileError
+Erreur lors de l'ouverture du fichier en écriture : \r\n\t"$0"\r\nAppuyez sur Abandonner pour annuler l'installation,\r\nRéessayer pour réessayer l'écriture du fichier, ou\r\nIgnorer pour passer ce fichier
+# ^FileError_NoIgnore
+Erreur lors de l'ouverture du fichier en écriture : \r\n\t"$0"\r\nAppuyez sur Réessayez pour re-écrire le fichier, ou\r\nAnnuler pour abandonner l'installation
+# ^CantWrite
+"Impossible d'écrire : "
+# ^CopyFailed
+Échec de la copie
+# ^CopyTo
+"Copier vers "
+# ^Registering
+"Enregistrement : "
+# ^Unregistering
+"Suppression de l'enregistrement : "
+# ^SymbolNotFound
+"Impossible de trouver un symbole : "
+# ^CouldNotLoad
+"Impossible de charger : "
+# ^CreateFolder
+"Création du dossier : "
+# ^CreateShortcut
+"Création du raccourci : "
+# ^CreatedUninstaller
+"Création de la désinstallation : "
+# ^Delete
+"Suppression : "
+# ^DeleteOnReboot
+"Suppression au redémarrage : "
+# ^ErrorCreatingShortcut
+"Erreur lors de la création du raccourci : "
+# ^ErrorCreating
+"Erreur de la création : "
+# ^ErrorDecompressing
+Erreur lors de la décompression des données ! Installation corrompue ?
+# ^ErrorRegistering
+Erreur lors de l'enregistrement de la DLL
+# ^ExecShell
+"ExecShell: "
+# ^Exec
+"Exécution : "
+# ^Extract
+"Extraction : "
+# ^ErrorWriting
+"Extraction : erreur d'écriture du fichier "
+# ^InvalidOpcode
+Installation corrompue : opcode incorrect
+# ^NoOLE
+"Pas de OLE pour : "
+# ^OutputFolder
+"Destination : "
+# ^RemoveFolder
+"Suppression du dossier : "
+# ^RenameOnReboot
+"Renommer au redémarrage : "
+# ^Rename
+"Renommer : "
+# ^Skipped
+"Passé : "
+# ^CopyDetails
+Copier les Détails dans le Presse-papier
+# ^LogInstall
+Enregistrer le déroulement de l'installation
+# ^Byte
+o
+# ^Kilo
+K
+# ^Mega
+M
+# ^Giga
+G

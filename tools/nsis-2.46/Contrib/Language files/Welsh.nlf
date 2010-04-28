@@ -1,0 +1,191 @@
+# Header, don't edit
+NLF v6
+# Start editing here
+# Language ID
+1160
+# Font and size - dash (-) means default
+-
+-
+# Codepage - dash (-) means ANSI code page
+-
+# RTL - anything else than RTL means LTR
+-
+# Translation by Rhoslyn Prys, Meddal.com
+# ^Branding
+Nullsoft Install System %s
+# ^SetupCaption
+Rhaglen Osod $(^Name)
+# ^UninstallCaption
+Rhaglen Dadosod $(^Name)
+# ^LicenseSubCaption
+: Cytundeb Trwyddedu
+# ^ComponentsSubCaption
+: Dewisiadau Gosod
+# ^DirSubCaption
+: Ffolder Gosod
+# ^InstallingSubCaption
+: Gosod
+# ^CompletedSubCaption
+: Cwblhawyd
+# ^UnComponentsSubCaption
+: Dewisiadau Dadosod
+# ^UnDirSubCaption
+: Ffolder Dadosod
+# ^ConfirmSubCaption
+: Cadarnhad
+# ^UninstallingSubCaption
+: Dadosod
+# ^UnCompletedSubCaption
+: Cwblhawyd
+# ^BackBtn
+< &Nôl
+# ^NextBtn
+&Nesaf >
+# ^AgreeBtn
+&Cytuno
+# ^AcceptBtn
+Rwy'n &derbyn Amodau'r Drwydded
+# ^DontAcceptBtn
+Rwy'n &gwrthod Amodau'r Drwydded
+# ^InstallBtn
+&Gosod
+# ^UninstallBtn
+&Dadosod
+# ^CancelBtn
+Diddymu
+# ^CloseBtn
+C&au
+# ^BrowseBtn
+&Pori...
+# ^ShowDetailsBtn
+&Dangos manylion
+# ^ClickNext
+Cliciwch Nesaf i barhau.
+# ^ClickInstall
+Cliciwch Gosod i gychwyn gosod.
+# ^ClickUninstall
+Cliciwch Dadosod i gychwyn dadosod.
+# ^Name
+Enw
+# ^Completed
+Cwblhawyd
+# ^LicenseText
+Darllenwch y cytundeb trwyddedu cyn gosod $(^NameDA). Os ydych yn derbyn holl amodau'r cytundeb, cliciwch Cytuno.
+# ^LicenseTextCB
+Darllenwch y cytundeb trwyddedu cyn gosod $(^NameDA). Os ydych yn derbyn holl amodau'r cytundeb, cliciwch y blwch ticio isod. $_CLICK
+# ^LicenseTextRB
+Darllenwch y cytundeb trwyddedu cyn gosod $(^NameDA). Os ydych yn derbyn holl amodau'r cytundeb, ticiwch y dewis cyntaf isod. $_CLICK
+# ^UnLicenseText
+Darllenwch y cytundeb trwyddedu cyn dadosod $(^NameDA). Os ydych yn derbyn holl amodau'r cytundeb, cliciwch Cytuno.
+# ^UnLicenseTextCB
+Darllenwch y cytundeb trwyddedu cyn dadosod $(^NameDA). Os ydych yn derbyn holl amodau'r cytundeb, cliciwch y blwch ticio isod. $_CLICK
+# ^UnLicenseTextRB
+Darllenwch y cytundeb trwyddedu cyn dadosod $(^NameDA). Os ydych yn derbyn holl amodau'r cytundeb, ticiwch y dewis cyntaf isod. $_CLICK
+# ^Custom
+Addasu
+# ^ComponentsText
+Ticiwch y cydrannau rydych am eu gosod a dad-dicio'r cydrannau nad ydych am eu gosod. $_CLICK
+# ^ComponentsSubText1
+Dewis y math o osod:
+# ^ComponentsSubText2_NoInstTypes
+Dewis cydrannau i'w gosod:
+# ^ComponentsSubText2
+Neu, ddewis y cydrannau ychwanegol i'w gosod:
+# ^UnComponentsText
+Ticiwch y cydrannau rydych am eu dadosod a dad-dicio'r cydrannau nad ydych am eu dadosod. $_CLICK
+# ^UnComponentsSubText1
+Dewis y math o ddadosod:
+# ^UnComponentsSubText2_NoInstTypes
+Dewis cydrannau i'w dadosod:
+# ^UnComponentsSubText2
+Neu, ddewis y cydrannau ychwanegol i'w dadosod:
+# ^DirText
+Bydd y Rhaglen Osod yn gosod $(^NameDA) yn y ffolder canlynol. I'w osod mewn ffolder gwahanol, cliciwch Pori a dewis ffolder arall. $_CLICK
+# ^DirSubText
+Ffolder Cyrchfan
+# ^DirBrowseText
+Dewis y ffolder i osod $(^NameDA) ynddo:
+# ^UnDirText
+Bydd y Rhegen Osod yn dadosod $(^NameDA) o'r ffolder canlynol. I ddadosod o ffolder gwahanol, cliciwch Pori a dewis ffolder arall. $_CLICK
+# ^UnDirSubText
+""
+# ^UnDirBrowseText
+Dewis ffolder i ddadosod $(^NameDA) ohono:
+# ^SpaceAvailable
+"Lle ar gael: "
+# ^SpaceRequired
+"Lle angenrheidiol: "
+# ^UninstallingText
+Bydd $(^NameDA) yn cael ei ddadosod o'r ffolder canlynol. $_CLICK
+# ^UninstallingSubText
+Dadosod o:
+# ^FileError
+Gwall agor ffeil i'w hysgrifennu: \r\n\r\n$0\r\n\r\nCliciwch Atal i atal y gosod,\r\nEto i geisio eto, neu\r\nAnwybyddu i hepgor y ffeil.
+# ^FileError_NoIgnore
+Gwall agor ffeil i'w hysgrifennu: \r\n\r\n$0\r\n\r\nCliciwch Eto i geisio eto, neu\r\nDiddymu i atal y gosod.
+# ^CantWrite
+"Methu ysgrifennu: "
+# ^CopyFailed
+Methu Copïo
+# ^CopyTo
+"Copïo i "
+# ^Registering
+"Cofrestru: "
+# ^Unregistering
+"Dadgofrestru: "
+# ^SymbolNotFound
+"Methu canfod symbol: "
+# ^CouldNotLoad
+"Methu llwytho: "
+# ^CreateFolder
+"Creu ffolder: "
+# ^CreateShortcut
+"Creu llwybr byr: "
+# ^CreatedUninstaller
+"Creu dadosodwr: "
+# ^Delete
+"Dileu ffeil: "
+# ^DeleteOnReboot
+"Dileu wrth ailgychwyn: "
+# ^ErrorCreatingShortcut
+"Gwall wrth greu llwybr byr: "
+# ^ErrorCreating
+"Gwall wrth greu: "
+# ^ErrorDecompressing
+Gwall wrth ddatgywasgu data! Gosodwr llwgr?
+# ^ErrorRegistering
+Gwall cofrestru DLL
+# ^ExecShell
+"ExecShell: "
+# ^Exec
+"Gweithredu: "
+# ^Extract
+"Echdynnu: "
+# ^ErrorWriting
+"Echdynnu: gwall ysgrifennu i ffeil "
+# ^InvalidOpcode
+Gosodwr llwgr: opcode annilys
+# ^NoOLE
+"Dim OLE ar gyfer: "
+# ^OutputFolder
+"Ffolder allbwn: "
+# ^RemoveFolder
+"Tynnu ffolder: "
+# ^RenameOnReboot
+"Ailenwi wrth ailgychwyn: "
+# ^Rename
+"Ailenwi: "
+# ^Skipped
+"Hepgor: "
+# ^CopyDetails
+Copïo Manylion i'r Clipfwrdd
+# ^LogInstall
+Cofnodi'r brosed gosod
+# ^Byte
+B
+# ^Kilo
+K
+# ^Mega
+M
+# ^Giga
+G

@@ -1,0 +1,191 @@
+# Header, don't edit
+NLF v6
+# Start editing here
+# Language ID
+2070
+# Font and size - dash (-) means default
+-
+-
+# Codepage - dash (-) means ANSI code page
+1252
+# RTL - anything else than RTL means LTR
+-
+# Translation v4.0.3 by DragonSoull <dragonsoull@madalien.tk> with help from Dre` - Updated by Ramon
+# ^Branding
+Sistema de Instalação Nullsoft %s
+# ^SetupCaption
+Instalação de $(^Name)
+# ^UninstallCaption
+Desinstalação de $(^Name)
+# ^LicenseSubCaption
+: Contrato de Licença
+# ^ComponentsSubCaption
+: Opções de instalação
+# ^DirSubCaption
+: Diretório de instalação
+# ^InstallingSubCaption
+: Instalando Ficheiros
+# ^CompletedSubCaption
+: Concluído
+# ^UnComponentsSubCaption
+: Opções de Desinstalação
+# ^UnDirSubCaption
+: Pasta de Desinstalação
+# ^ConfirmSubCaption
+: Confirmação
+# ^UninstallingSubCaption
+: Desinstalando
+# ^UnCompletedSubCaption
+: Concluído
+# ^BackBtn
+< &Anterior
+# ^NextBtn
+&Seguinte >
+# ^AgreeBtn
+&Aceito
+# ^AcceptBtn
+Eu &aceito os termos do Contrato de Licença
+# ^DontAcceptBtn
+Eu &não aceito os termos do Contrato de Licença
+# ^InstallBtn
+&Instalar
+# ^UninstallBtn
+&Desinstalar
+# ^CancelBtn
+Cancelar
+# ^CloseBtn
+&Fechar
+# ^BrowseBtn
+&Procurar...
+# ^ShowDetailsBtn
+Ver &Detalhes
+# ^ClickNext
+Clique em 'Seguinte' para continuar.
+# ^ClickInstall
+Clique em 'Instalar' para iniciar a instalação.
+# ^ClickUninstall
+Clique em 'Desinstalar' para iniciar a desinstalação.
+# ^Name
+Nome
+# ^Completed
+Concluído
+# ^LicenseText
+Por favor reveja o acordo de licensa antes de instalar $(^NameDA). Se concorda com todos os termos da licensa, clique em 'Aceito'.
+# ^LicenseTextCB
+Por favor reveja o acordo de licensa antes de instalar $(^NameDA). Se concorda com todos os termos da licensa, clique na caixa de seleção abaixo. $_CLICK
+# ^LicenseTextRB
+Por favor reveja o acordo de licensa antes de instalar $(^NameDA). Se concorda com todos os termos da licensa, escolha a primeira opção abaixo. $_CLICK
+# ^UnLicenseText
+Por favor reveja o acordo de licensa antes de desinstalar $(^NameDA). Se concorda com todos os termos da licensa, clique em 'Aceito'.
+# ^UnLicenseTextCB
+Por favor reveja o acordo de licensa antes de desinstalar $(^NameDA). Se concorda com todos os termos da licensa, clique na caixa de seleção abaixo. $_CLICK
+# ^UnLicenseTextRB
+Por favor reveja o acordo de licensa antes de desinstalar $(^NameDA). Se concorda com todos os termos da licensa, escolha a primeira opção abaixo. $_CLICK
+# ^Custom
+Personalizado
+# ^ComponentsText
+Marque os componentes que deseja instalar e desmarque os componentes que não deseja instalar. $_CLICK
+# ^ComponentsSubText1
+Escolha o tipo de instalação:
+# ^ComponentsSubText2_NoInstTypes
+Escolha os componentes para instalar:
+# ^ComponentsSubText2
+Ou, escolha os componentes opcionais que deseja instalar:
+# ^UnComponentsText
+Marque os componentes que queira desinstalar e vice versa. $_CLICK
+# ^UnComponentsSubText1
+Escolha o tipo de desinstalação: 
+# ^UnComponentsSubText2_NoInstTypes
+Escolha os componentes para desinstalar:
+# ^UnComponentsSubText2
+Ou, escolha os componentes opcionais que queira desinstalar:
+# ^DirText
+O $(^NameDA) será instalado na seguinte pasta. Para instalar numa pasta diferente, clique em 'Procurar...' e escolha outra pasta. $_CLICK
+# ^DirSubText
+Pasta de Destino
+# ^DirBrowseText
+Escolha uma pasta para instalar o $(^NameDA):
+# ^UnDirText
+O $(^NameDA) será desinstalado da seguinte pasta. Para desinstalar de uma pasta diferente, clique em 'Procurar...' e escolha outra pasta. $_CLICK
+# ^UnDirSubText
+""
+# ^UnDirBrowseText
+Escolha uma pasta de onde será desinstalado o $(^NameDA):
+# ^SpaceAvailable
+"Espaço disponível: "
+# ^SpaceRequired
+"Espaço necessário: "
+# ^UninstallingText
+$(^NameDA) será desinstalado da seguinte pasta. $_CLICK
+# ^UninstallingSubText
+Desinstalando de:
+# ^FileError
+Erro ao abrir ficheiro para escrita: \r\n\t"$0"\r\nClique em Abortar para abortar a instalação,\r\nRepetir para tentar novamente a escrita do ficheiro, ou\r\nIgnorar para ignorar este ficheiro.
+# ^FileError_NoIgnore
+Erro ao abrir ficheiro para escrita: \r\n\t"$0"\r\nClique em Repetir para tentar novamente a gravação do ficheiro, ou\r\nCancelar para abortar a instalação.
+# ^CantWrite
+"Não foi possível escrever: "
+# ^CopyFailed
+Falha ao copiar
+# ^CopyTo
+"Copiar para "
+# ^Registering
+"Registando: "
+# ^Unregistering
+"Desregistando: "
+# ^SymbolNotFound
+"Símbolo não encontrado: "
+# ^CouldNotLoad
+"Não foi possível carregar: "
+# ^CreateFolder
+"Criando diretório: "
+# ^CreateShortcut
+"Criando atalho: "
+# ^CreatedUninstaller
+"Criando desinstalador: "
+# ^Delete
+"Apagando ficheiro: "
+# ^DeleteOnReboot
+"Apagar ao reiniciar: "
+# ^ErrorCreatingShortcut
+"Erro ao criar atalho: "
+# ^ErrorCreating
+"Erro ao criar: "
+# ^ErrorDecompressing
+Erro ao descomprimir dados! Instalador corrompido?
+# ^ErrorRegistering
+Erro ao registar DLL
+# ^ExecShell
+"Executando pelo Shell: "
+# ^Exec
+"Executando: "
+# ^Extract
+"Extraindo: "
+# ^ErrorWriting
+"Extraindo: erro ao escrever ficheiro "
+# ^InvalidOpcode
+Instalador corrompido: código de operação inválido
+# ^NoOLE
+"Sem OLE para: "
+# ^OutputFolder
+"Pasta de destino: "
+# ^RemoveFolder
+"Removendo pasta: "
+# ^RenameOnReboot
+"Renomear ao reiniciar: "
+# ^Rename
+"Renomeando: "
+# ^Skipped
+"Ignorado: "
+# ^CopyDetails
+Copiar detalhes para a Área de Transfêrencia
+# ^LogInstall
+Registar processo de instalação
+# ^Byte
+B
+# kilo
+K
+# mega
+M
+# giga
+G

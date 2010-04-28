@@ -1,0 +1,907 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>InstallOptions 2</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+    <style type="text/css">
+        /*<![CDATA[*/body
+        {
+            padding: 10px;
+            background-color: #F0F0F0;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            font-weight: normal;
+            text-align: left;
+        }
+        p, li
+        {
+            font-size: 13px;
+        }
+        .center
+        {
+            text-align: center;
+        }
+        table
+        {
+            margin: auto;
+            font-size: 13px;
+            background-color: #FFFFFF;
+        }
+        .maintable
+        {
+            border: 2px solid #376EAB;
+        }
+        .parameter
+        {
+            font-weight: bold;
+            color: #6586AC;
+        }
+        h1
+        {
+            font-size: 30px;
+            color: #333333;
+            font-weight: normal;
+            text-align: center;
+            margin-top: 20px;
+        }
+        h2
+        {
+            font-size: 20px;
+            color: #7A7272;
+            font-weight: normal;
+        }
+        h3
+        {
+            font-size: 17px;
+            font-weight: bold;
+            color: #303030;
+        }
+        pre
+        {
+            font-size: 13px;
+        }
+        div
+        {
+            margin: 20px;
+        }
+        a:link, a:visited, a:active
+        {
+            color: #294F75;
+            text-decoration: none;
+        }
+        a:hover
+        {
+            color: #182634;
+            text-decoration: underline;
+        }
+        .subtable
+        {
+            border: 0px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .lefttable
+        {
+            background-color: #CCCCCC;
+            vertical-align: top;
+        }
+        .righttable
+        {
+            background-color: #EEEEEE;
+            vertical-align: top;
+        }
+        /*]]>*/</style>
+</head>
+<body>
+    <table width="750" class="maintable" cellspacing="0" cellpadding="0" align="center">
+        <tr>
+            <td>
+                <h1>
+                    InstallOptions 2</h1>
+                <div>
+                    <p>
+                        The InstallOptions plug-in is deprecated. For new scripts, it is recommended to
+                        use the new nsDialogs plug-in instead.</p>
+                </div>
+                <div>
+                    <h2>
+                        Introduction</h2>
+                    <div>
+                        <p>
+                            InstallOptions is an NSIS plugin which allows you to create custom pages for NSIS
+                            installers, to prompt the user for extra information.</p>
+                        <p>
+                            The dialogs created by InstallOptions are based on INI files which define the controls
+                            on the dialog and their properties. These INI files can be modified from the script
+                            to adjust the dialogs on runtime.</p>
+                        <p>
+                            The format of INI files is described in a <a href="http://en.wikipedia.org/wiki/Ini_file">
+                                Wikipedia article</a>.</p>
+                    </div>
+                    <h2>
+                        INI file structure</h2>
+                    <div>
+                        <p>
+                            The INI file has one required section. This section includes the number of controls
+                            to be created as well as general window attributes. The INI file also includes a
+                            variable number of Field sections which are used to create the controls to be displayed.</p>
+                        <p>
+                            The required section is named &quot;<em>Settings</em>&quot;. It can contain the
+                            following values:</p>
+                        <table class="subtable">
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>NumFields</strong></td>
+                                <td class="lefttable">
+                                    <em>(required)</em></td>
+                                <td class="righttable">
+                                    The number of control elements to be displayed on the dialog window.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>Title</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    If specified, gives the text to set the titlebar to. Otherwise, the titlebar text
+                                    is not changed.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>CancelEnabled</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    If specified, overrides NSIS settings and enables or disables the cancel button.
+                                    If set to 1, the cancel button will be enabled. If set to 0, the cancel button will
+                                    be disabled.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>CancelShow</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    If specified, overrides NSIS settings and shows or hides the cancel button If set
+                                    to 1, the cancel button will be shown. If set to 0, the cancel button will be hidden.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>BackEnabled</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    If specified, overrides NSIS settings and enables or disables the back button. If
+                                    set to 1, the back button will be enabled. If set to 0, the back button will be
+                                    disabled.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>CancelButtonText</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    Overrides the text for the cancel button. If not specified, the cancel button text
+                                    will not be changed.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>NextButtonText</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    Overrides the text for the next button. If not specified, the next button text will
+                                    not be changed.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>BackButtonText</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    Overrides the text for the back button. If not specified, the back button text will
+                                    not be changed.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>Rect</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    Overrides the default rect ID to run over. This will make IO resize itself according
+                                    to a different rect than NSIS's dialogs rect.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>RTL</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    If 1 is specified the dialog will be mirrored and all texts will be aligned to the
+                                    right. The INSTALLOPTIONS_EXTRACT macros automatically set this field to the right
+                                    value for the current installer language as given by the NSIS string $(^RTL).</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>State</strong></td>
+                                <td class="lefttable">
+                                    <em>(output)</em></td>
+                                <td class="righttable">
+                                    This is not something you have to supply yourself but is set by InstallOptions,
+                                    before calling your custom page validation function, to the field number of the
+                                    custom Button control (or other control having the Notify flag) the user pressed,
+                                    if any.</td>
+                            </tr>
+                        </table>
+                        <p>
+                            Each field section has the heading &quot;Field #&quot; where # must be sequential
+                            numbers from 1 to NumFields. Each Field section can contain the following values:</p>
+                        <table class="subtable">
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>Type</strong></td>
+                                <td class="lefttable">
+                                    <em>(required)</em></td>
+                                <td class="righttable">
+                                    Type of control to be created. Valid values are &quot;<em>Label</em>&quot;, &quot;<em>Text</em>&quot;,
+                                    &quot;<em>Password</em>&quot;, &quot;<em>Combobox</em>&quot;, &quot;<em>DropList</em>&quot;,
+                                    &quot;<em>Listbox</em>&quot;, &quot;<em>CheckBox</em>&quot;, &quot;<em>RadioButton</em>&quot;,
+                                    &quot;<em>FileRequest</em>&quot;, &quot;<em>DirRequest</em>&quot; &quot;<em>Icon</em>&quot;,
+                                    &quot;<em>Bitmap</em>&quot;, &quot;<em>GroupBox</em>&quot;, &quot;<em>HLine</em>&quot;,
+                                    &quot;<em>VLine</em>&quot;, &quot;<em>Link</em>&quot; or &quot;<em>Button</em>&quot;.<br />
+                                    <br />
+                                    A &quot;<em>Label</em>&quot; is used to display static text. (i.e. a caption for
+                                    a textbox)<br />
+                                    A &quot;<em>Text</em>&quot; and &quot;<em>Password</em>&quot; accept text input
+                                    from the user. &quot;<em>Password</em>&quot; masks the input with * characters.<br />
+                                    A &quot;<em>Combobox</em>&quot; allows the user to type text not in the popup list,
+                                    a &quot;<em>Droplist</em>&quot; only allows selection of items in the list.<br />
+                                    A &quot;<em>Listbox</em>&quot; shows multiple items and can optionally allow the
+                                    user to select more than one item.<br />
+                                    A &quot;<em>CheckBox</em>&quot; control displays a check box with label.<br />
+                                    A &quot;<em>RadioButton</em>&quot; control displays a radio button with label.<br />
+                                    A &quot;<em>FileRequest</em>&quot; control displays a textbox and a browse button.
+                                    Clicking the browse button will display a file requester where the user can browse
+                                    for a file.<br />
+                                    A &quot;<em>DirRequest</em>&quot; control displays a textbox and a browse button.
+                                    Clicking the browse button will display a directory requester where the user can
+                                    browse for a directory.<br />
+                                    An &quot;<em>Icon</em>&quot; control displays an icon. Use no Text to use the installer
+                                    icon.<br />
+                                    A &quot;<em>Bitmap</em>&quot; control displays a bitmap.<br />
+                                    A &quot;<em>GroupBox</em>&quot; control displays a frame to group controls.<br />
+                                    A &quot;<em>HLine</em>&quot; control displays a horizontal line to separate controls.<br />
+                                    A &quot;<em>VLine</em>&quot; control displays a vertical line to separate controls.<br />
+                                    A &quot;<em>Link</em>&quot; control displays a static hot text. When the user clicks
+                                    the control the contents of <strong>State</strong> (e.g. http://...) will be executed
+                                    using ShellExecute. Alternatively <strong>State</strong> can be omitted and the
+                                    <em>NOTIFY</em> flag used to have your NSIS script called. See the &quot;<em>NOTIFY</em>&quot;
+                                    flag below for more information.<br />
+                                    A &quot;<em>Button</em>&quot; control displays a push button that can be used in
+                                    the same way as the &quot;<em>Link</em>&quot; control above.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>Text</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    Specifies the caption of a label, checkbox, or radio button control. For DirRequest
+                                    control this specifies the title of the browse dialog. For icon and bitmaps control
+                                    this specifies the path to the image.<br />
+                                    <br />
+                                    <strong>Note:</strong> For labels, \r\n will be converted to a newline. To use a
+                                    back-slash in your text you have to escape it using another back-slash - \\. Described
+                                    <a href="#escaping">below</a> are NSIS functions for converting text to/from this
+                                    format.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>State</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    Specifies the state of the control. This is updated when the user closes the window,
+                                    so you can read from it from NSIS. For edit texts and dir and file request boxes,
+                                    this is the string that is specified. For radio button and check boxes, this can
+                                    be '0' or '1' (for unchecked or checked). For list boxes, combo boxes and drop lists
+                                    this is the selected items separated by pipes ('|'). For Links and Buttons this
+                                    can specify something to be executed or opened (using ShellExecute).<br />
+                                    <br />
+                                    <strong>Note:</strong> For Text fields with the MULTILINE flag, \r\n will be converted
+                                    to a newline. To use a back-slash in your text you have to escape it using another
+                                    back-slash - \\. Described <a href="#escaping">below</a> are NSIS functions for
+                                    converting text to/from this format.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>ListItems</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    A list of items to display in a combobox, droplist, or listbox.<br />
+                                    This is a single line of text with each item separated by a pipe character '|'</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>MaxLen</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    Causes validation on the selected control to limit the maximum length of text.<br />
+                                    If the user specifies more text than this, a message box will appear when they click
+                                    &quot;OK&quot; and the dialog will not be dismissed.<br />
+                                    You should not use this on a &quot;<em>combobox</em>&quot; since the user can not
+                                    control what is selected.<br />
+                                    This should be set to a maximum of 260 for &quot;<em>FileRequest</em>&quot; and
+                                    &quot;<em>DirRequest</em>&quot; controls.<br />
+                                    Ignored on &quot;<em>Label</em>&quot; controls.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>MinLen</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    Causes validation on the selected control to force the user to enter a minimum amount
+                                    of text.<br />
+                                    If the user specifies less text than this, a message box will appear when they click
+                                    &quot;OK&quot; and the dialog will not be dismissed.<br />
+                                    Unlike MaxLen, this is useful for &quot;<em>Combobox</em>&quot; controls. By setting
+                                    this to a value of &quot;1&quot; the program will force the user to select an item.<br />
+                                    Ignored on &quot;<em>Label</em>&quot; controls.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>ValidateText</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    If the field fails the test for &quot;<em>MinLen</em>&quot; or &quot;<em>MaxLen</em>&quot;,
+                                    a messagebox will be displayed with this text.<br />
+                                    <br />
+                                    <strong>Note:</strong> \r\n will be converted to a newline, two back-slashes will
+                                    be converted to one - \\. Described <a href="#escaping">below</a> are NSIS functions
+                                    for converting text to/from this format.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>Left<br />
+                                        Right<br />
+                                        Top<br />
+                                        Bottom</strong></td>
+                                <td class="lefttable">
+                                    <em>(required)</em></td>
+                                <td class="righttable">
+                                    The position on the dialog where this control appears. All sizes should be set in
+                                    dialog units. To get the right dimensions for your controls, design your dialog
+                                    using a resource editor and copy the dimensions to the INI file.<br />
+                                    <br />
+                                    <strong>Note:</strong> You can specify negative coordinates to specify the distance
+                                    from the right or bottom edge.<br />
+                                    <br />
+                                    <strong>Note (2):</strong> For combobox or droplist, the &quot;<em>bottom</em>&quot;
+                                    value is not used in the same way.<br />
+                                    In this case, the bottom value is the maximum size of the window when the pop-up
+                                    list is being displayed. All other times, the combobox is automatically sized to
+                                    be one element tall. If you have trouble where you can not see the combobox drop-down,
+                                    then check the bottom value and ensure it is large enough. A rough guide for the
+                                    height required is the number of items in the list multiplied by 8, plus 20.<br />
+                                    <br />
+                                    <strong>Note (3):</strong> FileRequest and DirRequest controls will allocate 15
+                                    dialog units to the browse button. Make this control wide enough the contents of
+                                    the textbox can be seen.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>Filter</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    Specifies the filter to be used in the &quot;<em>FileRequest</em>&quot; control.<br />
+                                    This is constructed by putting pairs of entries together, each item separated by
+                                    a | character.<br />
+                                    The first value in each pair is the text to display for the filter.<br />
+                                    The second value is the pattern to use to match files.<br />
+                                    For example, you might specify:<br />
+                                    Filter=Text Files|*.txt|Programs|*.exe;*.com|All Files|*.*<br />
+                                    If not specified, then the filter defaults to All Files|*.*<br />
+                                    <br />
+                                    <strong>Note:</strong> you should not put any extra spaces around the | characters.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>Root</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    Used by <strong>DirRequest</strong> controls to specify the root directory of the
+                                    search. By default, this allows the user to browse any directory on the computer.
+                                    This will limit the search to a particular directory on the system.</td>
+                            </tr>
+                            <tr>
+                                <td class="lefttable">
+                                    <strong>Flags</strong></td>
+                                <td class="lefttable">
+                                    <em>(optional)</em></td>
+                                <td class="righttable">
+                                    This specifies additional flags for the display of different controls. Each value
+                                    should be separated by a | character, and you should be careful not to put any spaces
+                                    around the | character.<br />
+                                    <table class="righttable">
+                                        <tr>
+                                            <td class="righttable">
+                                                <strong>Value</strong></td>
+                                            <td class="righttable">
+                                                <strong>Meaning</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="righttable">
+                                                REQ_SAVE</td>
+                                            <td class="righttable">
+                                                This causes &quot;<em>FileRequest</em>&quot; controls to display a Save As dialog.
+                                                If not specified, an Open dialog is used.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="righttable">
+                                                FILE_MUST_EXIST</td>
+                                            <td class="righttable">
+                                                Used by &quot;<em>FileRequest</em>&quot; to determine if the selected file must
+                                                exist.<br />
+                                                This only applies if an &quot;Open&quot; dialog is being displayed.<br />
+                                                This currently does not force the file to exist other than through the browse button.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="righttable">
+                                                FILE_EXPLORER</td>
+                                            <td class="righttable">
+                                                Used by &quot;<em>FileRequest</em>&quot;, enables new file request look (recommended)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="righttable">
+                                                FILE_HIDEREADONLY</td>
+                                            <td class="righttable">
+                                                Used by &quot;<em>FileRequest</em>&quot;, hides &quot;open read only&quot; checkbox
+                                                in open dialog.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="righttable">
+                                                WARN_IF_EXIST</td>
+                                            <td class="righttable">
+                                                Used by &quot;<em>FileRequest</em>&quot; to display a warning message if the selected
+                                                file already exists.<br />
+                                                The warning message is only displayed for files selected with the browse button.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="righttable">
+                                                PATH_MUST_EXIST</td>
+                                            <td class="righttable">
+                                                Used by &quot;<em>FileRequest</em>&quot; to force the path to exist. Prevents the
+                                                user from typing a non-existent path into the browse dialog window.<br />
+                                                This only validates path's selected with the browse button.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="righttable">
+                                                PROMPT_CREATE</td>
+                                            <td class="righttable">
+                                                Used by &quot;<em>FileRequest</em>&quot; to display a warning if the selected file
+                                                does not exist. However, it still allows the user to select the file.<br />
+                                                This only displays the warning for files selected with the browse button.<br />
+                                                Doesn't work along with REQ_SAVE.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="righttable">
+                                                RIGHT</td>
+                                            <td class="righttable">
+                                                Used by &quot;<em>Checkbox</em>&quot; and &quot;<em>Radiobutton</em>&quot; controls
+                                                to specify you want the checkbox to the right of the text instead of the left as
+                                                is the default.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="righttable">
+                                                MULTISELECT</td>
+                                            <td class="righttable">
+                                                Used by &quot;<em>Listbox</em>&quot; controls. Turns string selection on or off
+                                                each time the user clicks or double-clicks a string in the list box. The user can
+                                                select any number of strings. If this flag and EXTENDEDSELCT are not specified,
+                                                only one item can be selected from the list.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="righttable">
+                                                EXTENDEDSELCT</td>
+                                            <td class="righttable">
+                                                Used by &quot;<em>Listbox</em>&quot; controls. Allows multiple items to be selected
+                                                by using the SHIFT key and the mouse or special key combinations. If this flag and
+                                                MULTISELECT are not specified, only one item can be selected from the list.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="righttable">
+                                                RESIZETOFIT</td>
+                                            <td class="righttable">
+                                                This causes &quot;<em>Bitmap</em>&quot; controls to resize the image to the size
+                                                of the control. Also useful to support custom DPI settings. Without this, the image
+                                                will be centered within the specified area.</td>
+                                        </tr>
+                                        <td class="righttable">
+                                            TRANSPARENT</td>
+                                        <td class="righttable">
+                                            Used by &quot;<em>Bitmap</em>&quot; controls. Hides every pixel with the same color
+                                            as of the top left pixel. This allows to see-through to controls behind it. This
+                                            flag doesn't work well with a combination of the RESIZETOFIT flag and bitmaps with
+                                            more than 256 colors.</td>
+                            </tr>
+                            <tr>
+                                <td class="righttable">
+                                    GROUP</td>
+                                <td class="righttable">
+                                    Add this flag to the first control of a group of controls to group them. Grouping
+                                    controls allows you to create multiple groups of radio button and makes keyboard
+                                    navigation using arrow keys easier.</td>
+                            </tr>
+                            <tr>
+                                <td class="righttable">
+                                    FOCUS</td>
+                                <td class="righttable">
+                                    Sets focus on the specified control, instead of the first focusable control. If
+                                    more than one field is specified with this flag, only the first one will receive
+                                    focus.</td>
+                            </tr>
+                            <tr>
+                                <td class="righttable">
+                                    NOTABSTOP</td>
+                                <td class="righttable">
+                                    Do not stop on the control when the user pressed the Tab key. Add NOTABSTOP to all
+                                    controls of a group except the first one to allow navigation between groups with
+                                    the Tab key.</td>
+                            </tr>
+                            <tr>
+                                <td class="righttable">
+                                    DISABLED</td>
+                                <td class="righttable">
+                                    Causes a control to be disabled.</td>
+                            </tr>
+                            <tr>
+                                <td class="righttable">
+                                    ONLY_NUMBERS</td>
+                                <td class="righttable">
+                                    Used by &quot;<em>Text</em>&quot; controls. Forces the user to enter only numbers
+                                    into the edit box.</td>
+                            </tr>
+                            <tr>
+                                <td class="righttable">
+                                    MULTILINE</td>
+                                <td class="righttable">
+                                    Used by &quot;<em>Text</em>&quot; controls. Causes the control to accept multiple-lines.</td>
+                            </tr>
+                            <tr>
+                                <td class="righttable">
+                                    WANTRETURN</td>
+                                <td class="righttable">
+                                    Used by &quot;<em>Text</em>&quot; controls with multiple-line. Specifies that a
+                                    carriage return be inserted when the user presses the ENTER key while entering text
+                                    into the text box.</td>
+                            </tr>
+                            <tr>
+                                <td class="righttable">
+                                    NOWORDWRAP</td>
+                                <td class="righttable">
+                                    Used by &quot;<em>Text</em>&quot; controls with multiple-line. Disables the word-wrap
+                                    that occurs when long lines are entered. Long lines instead scroll off to the side.
+                                    Specifying the HSCROLL flag also has this effect.</td>
+                            </tr>
+                            <tr>
+                                <td class="righttable">
+                                    HSCROLL</td>
+                                <td class="righttable">
+                                    Show a horizontal scrollbar. When used by &quot;<em>Text</em>&quot; controls with
+                                    multiple-lines this also disables word-wrap.</td>
+                            </tr>
+                            <tr>
+                                <td class="righttable">
+                                    VSCROLL</td>
+                                <td class="righttable">
+                                    Show a vertical scrollbar.</td>
+                            </tr>
+                            <tr>
+                                <td class="righttable">
+                                    READONLY</td>
+                                <td class="righttable">
+                                    Used by &quot;<em>Text</em>&quot; controls. Prevents the user from entering or editing
+                                    text in the edit control, but allow the user to select and copy the text.</td>
+                            </tr>
+                            <tr>
+                                <td class="righttable">
+                                    NOTIFY</td>
+                                <td class="righttable">
+                                    Used by &quot;<em>Button</em>&quot;, &quot;<em>Link</em>&quot;, &quot;<em>CheckBox</em>&quot;,
+                                    &quot;<em>RadioButton</em>&quot;, &quot;<em>ListBox</em>&quot; and &quot;<em>DropList</em>&quot;
+                                    controls. Causes InstallOptions to call your NSIS custom page validation/leave function
+                                    whenever the control's selection changes. Your validation/leave function can read
+                                    the &quot;<em>State</em>&quot; value from the &quot;<em>Settings</em>&quot; section
+                                    to determine which control caused the notification, if any, and perform some appropriate
+                                    action followed by an Abort instruction (to tell NSIS to return to the page). The
+                                    Examples\InstallOptions folder contains an example script showing how this might
+                                    be used.</td>
+                            </tr>
+                        </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="lefttable">
+                <strong>TxtColor</strong></td>
+            <td class="lefttable">
+                <em>(optional)</em></td>
+            <td class="righttable">
+                Used by <strong>Link</strong> controls to specify the foreground color of the text.
+                Format: 0xBBGGRR (hexadecimal).</td>
+        </tr>
+        <tr>
+            <td class="lefttable">
+                <strong>HWND<br>
+                    HWND2</strong></td>
+            <td class="lefttable">
+                <em>(output)</em></td>
+            <td class="righttable">
+                After initDialog returns, this will contain the HWND of the control created by this
+                field. It can be used instead of FindWindow and GetDlgItem. HWND2 contains the HWND
+                of an additional control, such as the browse button.</td>
+        </tr>
+    </table>
+    </div>
+    <h2>
+        Header file</h2>
+    <div>
+        <p>
+            The InstallOptions header files provides macros and functions to easily create custom
+            dialogs. You can include it on the top of your script as follows:
+            <pre>
+!include InstallOptions.nsh
+</pre>
+    </div>
+    <h2>
+        Creating dialogs</h2>
+    <div>
+        <h3>
+            Extracting the INI file</h3>
+        <div>
+            <p>
+                First, you have to extract your InstallOptions INI files in the .onInit function
+                (or un.onInit for the uninstaller) using the INSTALLOPTIONS_EXTRACT macro. The files
+                will be extracted to a temporary folder (the NSIS plug-ins folder) that is automatically
+                created.</p>
+            <pre>
+Function .onInit
+  !insertmacro INSTALLOPTIONS_EXTRACT &quot;ioFile.ini&quot;
+FunctionEnd
+</pre>
+            <p>
+                If the INI file is located in another directory, use INSTALLOPTIONS_EXTRACT_AS.
+                The second parameter is the filename in the temporary folder, which is the filename
+                that should be used as input for the other macros.</p>
+            <pre>
+Function .onInit
+  !insertmacro INSTALLOPTIONS_EXTRACT_AS &quot;..\ioFile.ini&quot; &quot;ioFile.ini&quot;
+FunctionEnd
+</pre>
+        </div>
+        <h3>
+            Displaying the dialog</h3>
+        <div>
+            <p>
+                You can call InstallOptions in a page function defined with the Page or UninstPage
+                command. Check the NSIS documentation (Scripting Reference -&gt; Pages) for information
+                about the page system.</p>
+            <pre>
+Page custom CustomPageFunction</pre>
+            <p>
+                To display the dialog, use the INSTALLOPTIONS_DISPLAY macro:<pre>
+Function CustomPageFunction ;Function name defined with Page command
+  !insertmacro INSTALLOPTIONS_DISPLAY &quot;ioFile.ini&quot;
+FunctionEnd
+</pre>
+        </div>
+    </div>
+    <h2>
+        User input</h2>
+    <div>
+        <p>
+            To get the input of the user, read the State value of a Field using the INSTALLOPTIONS_READ
+            macro:</p>
+        <pre>
+!insertmacro INSTALLOPTIONS_READ $VAR &quot;ioFile.ini&quot; &quot;Field #&quot; &quot;Name&quot;
+</pre>
+    </div>
+    <h2>
+        Writing to INI files</h2>
+    <div>
+        <p>
+            The INSTALLOPTIONS_WRITE macro allows you to write values to the INI file to change
+            texts or control settings on runtime:
+            <pre>
+!insertmacro INSTALLOPTIONS_WRITE &quot;ioFile.ini&quot; &quot;Field #&quot; &quot;Name&quot; &quot;Value&quot;
+</pre>
+    </div>
+    <h2>
+        Escaped values</h2>
+    <div>
+        <p>
+            Some InstallOptions values are escaped (in a similar manner to &quot;C&quot; strings)
+            to allow characters to be used that are not normally valid in INI file values. The
+            affected values are:</p>
+        <ul>
+            <li>The ValidateText field</li>
+            <li>The Text value of Label fields</li>
+            <li>The State value of Text fields that have the MULTILINE flag</li>
+        </ul>
+        <p>
+            The escape character is the back-slash character (&quot;\&quot;) and the available
+            escape sequences are:</p>
+        <table class="subtable">
+            <tr>
+                <td class="lefttable">
+                    &quot;\\&quot;</td>
+                <td class="righttable">
+                    Back-slash</td>
+            </tr>
+            <tr>
+                <td class="lefttable">
+                    &quot;\r&quot;</td>
+                <td class="righttable">
+                    Carriage return (ASCII 13)</td>
+            </tr>
+            <tr>
+                <td class="lefttable">
+                    &quot;\n&quot;</td>
+                <td class="righttable">
+                    Line feed (ASCII 10)</td>
+            </tr>
+            <tr>
+                <td class="lefttable">
+                    &quot;\t&quot;</td>
+                <td class="righttable">
+                    Tab (ASCII 9)</td>
+            </tr>
+        </table>
+        <p>
+            The INSTALLOPTIONS_READ_CONVERT and INSTALLOPTIONS_WRITE_CONVERT macros automatically
+            convert these characters in installer code. In uninstaller code, use INSTALLOPTIONS_READ_UNCONVERT
+            and INSTALLOPTIONS_WRITE_UNCONVERT.</p>
+        <p>
+            To use these macros in your script, the conversion functions need to be included:</p>
+        <pre>
+;For INSTALLOPTIONS_READ_CONVERT
+  !insertmacro INSTALLOPTIONS_FUNCTION_READ_CONVERT
+;For INSTALLOPTIONS_WRITE_CONVERT
+  !insertmacro INSTALLOPTIONS_FUNCTION_WRITE_CONVERT
+;For INSTALLOPTIONS_READ_UNCONVERT
+  !insertmacro INSTALLOPTIONS_UNFUNCTION_READ_CONVERT
+;For INSTALLOPTIONS_WRITE_UNCONVERT
+  !insertmacro INSTALLOPTIONS_UNFUNCTION_WRITE_CONVERT
+</pre>
+    </div>
+    <h2>
+        Input validation</h2>
+    <div>
+        <p>
+            To validate the user input (for example, to check whether the user has filled in
+            a textbox) use the leave function of the Page command and Abort when the validation
+            has failed:</p>
+        <pre>
+Function ValidateCustom
+
+  !insertmacro INSTALLOPTIONS_READ $R0 "test.ini" "Field 1" "State"
+  StrCmp $R0 "" 0 +3
+    MessageBox MB_ICONEXCLAMATION|MB_OK "Please enter your name."
+    Abort
+
+FunctionEnd
+</pre>
+    </div>
+    <h2>
+        Return value</h2>
+    <div>
+        After a dialog is created (using display or show), a return value is available:</p>
+        <ul>
+            <li>success - The user has pressed the Next button</li>
+            <li>back - The user has pressed the Back button</li>
+            <li>cancel - The user has pressed the Cancel button</li>
+            <li>error - An error has occurred, the dialog cannot be displayed.</li>
+        </ul>
+        <p>
+            You only have to check this value if you need something really special, such as
+            doing something when the user pressed the Back button.</p>
+        <p>
+            If you need the return value, use the INSTALLOPTIONS_DISPLAY_RETURN or INSTALLOPTIONS_SHOW_RETURN
+            macro. The return value will be added to the stack, so you can use the Pop command
+            to get it.</p>
+    </div>
+    <h2>
+        Reserve files</h2>
+    <div>
+        <p>
+            When using solid compression, it's important that files which are being extracted
+            in user interface functions are located before other files in the data block. Otherwise
+            there may be a delay before a page can be displayed.</p>
+        <p>
+            To ensure that this is the case, add ReserveFile commands for InstallOptions and
+            the INI files before all sections and functions:</p>
+        <pre>
+ReserveFile &quot;test.ini&quot;
+ReserveFile &quot;${NSISDIR}\Plugins\InstallOptions.dll&quot;
+</pre>
+    </div>
+    <h2>
+        Fonts and colors</h2>
+    <div>
+        <p>
+            To customize fonts or colors on InstallOptions dialogs, the INSTALLOPTIONS_INITDIALOG
+            and INSTALLOPTIONS_SHOW macro can be used.</p>
+        <p>
+            INSTALLOPTIONS_INITDIALOG creates the dialog in memory, but does not show it. After
+            inserting this macro, you can set the fonts and colors, and then insert INSTALLOPTIONS_SHOW
+            to show the dialog.</p>
+        <p>
+            The INSTALLOPTIONS_INITDIALOG macro also pushes the HWND of the custom dialog to
+            the stack. Control HWND's are available for each control in the HWND entry of the
+            corresponding field in the INI file.</p>
+        <p>
+            Example of using a custom font:</p>
+        <pre>
+Var HWND
+Var DLGITEM
+Var FONT
+
+Function FunctionName ;FunctionName defined with Page command
+
+  !insertmacro INSTALLOPTIONS_INITDIALOG &quot;ioFile.ini&quot;
+  Pop $HWND ;HWND of dialog
+    
+  !insertmacro INSTALLOPTIONS_READ $DLGITEM &quot;ioFile.ini&quot; &quot;Field 1&quot; &quot;HWND&quot;
+    
+  ;$DLGITEM contains the HWND of the first field
+  CreateFont $FONT &quot;Tahoma&quot; 10 700 
+  SendMessage $DLGITEM ${WM_SETFONT} $FONT 0
+        
+  !insertmacro INSTALLOPTIONS_SHOW
+
+FunctionEnd
+</pre>
+    </div>
+    <h2>
+        Credits</h2>
+    <div>
+        <p>
+            Original version by Michael Bishop<br />
+            DLL version by Nullsoft, Inc.<br />
+            DLL version 2 by Amir Szekely, ORTIM, Joost Verburg<br />
+            New documentation by Joost Verburg</p>
+    </div>
+    <h2>
+        License</h2>
+    <div>
+        <pre>
+Original version Copyright &copy; 2001 Michael Bishop
+DLL version 1 Copyright &copy; 2001-2002 Nullsoft, Inc., ORTIM
+DLL version 2 Copyright &copy; 2003-2009 Amir Szekely, Joost Verburg, Dave Laundon
+
+This software is provided 'as-is', without any express or implied
+warranty. In no event will the authors be held liable for any damages
+arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute
+it freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented;
+   you must not claim that you wrote the original software.
+   If you use this software in a product, an acknowledgment in the
+   product documentation would be appreciated but is not required.
+2. Altered versions must be plainly marked as such,
+   and must not be misrepresented as being the original software.
+3. This notice may not be removed or altered from any distribution.
+</pre>
+    </div>
+    </div> </td> </tr> </table>
+</body>
+</html>

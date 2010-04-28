@@ -1,0 +1,197 @@
+Math::Script NSIS plugin.
+
+C-like style scripting (operators at least).
+Tip1: plugin watches the case of the letters.
+Tip2: plugin makes almost no error checks. So YOU should check your script
+twice before run :)
+
+New HOW TO USE: run the MathTest.Exe, and try yourself. After spending 
+some minutes your should be able to write your script by yourself.
+To include it to your NSIS script just insert that: 
+        Math::Script "YourScript1"
+        Math::Script "YourScript2"
+        Math::Script "YourScriptFinal"
+
+How to use it? Simple:
+        Strcpy $0 "Brainsucker"
+        Math::Script "a = 'Math'; B = 'Script'; r0 += ' wants to use ' + a + '::' + b +'!'"
+        DetailPrint "$0"
+That string will fill r0 with some shit. 
+
+Here are some other samples:
+        10! (factorial, r0 will contain '10! = 362880'):
+                r0 = '10! = ' + (1*2*3*4*5*6*7*8*9)
+        the same:
+                a = b = 1; #{++a <= 10, b = b*a}; r0 = (a-1) + '! = ' + b
+        Some floating point:
+                Strcpy $R0 "1e1"
+                Math::Script "pi = 3.14159; R1 = 2*pi*R0; r0 = 'Length of circle with radius ' + R0 + ' is equal to ' + R1 + '.'"
+                Detailprint "$0"        
+
+Ok. Variables. 
+NSIS: r0-r9 -> $0-$9. R0-R9 -> $R0-$R9. 
+Also CL ($CMDLINE), ID ($INSTDIR), OD ($OUTDIR), LG ($LANG), ED ($EXEDIR).
+User definable: name starting from character, up to 28 letters long.
+
+Stacks. Two stacks are supported: NSIS stack and plugin's own stack. I see no 
+reasons for using plugin stack, but if you will, remember - the plugin stores
+variables used at function to that stack before function execution, and restores
+after execution. Even less I recommend you to use NSIS stack. You should use it
+only for input/output.
+How to use? It's variable styled. Plugins stack is associated with S variable,
+and NSIS stack associated with NS variable. To push to stack just do "S=0" or
+"NS=0", to pop from stack "a=S" or "b=NS". Combined operations supported too: 
+"S += 1.5" will increment value at the top of stack by 1.5.
+
+Supported types: int (in fact that is __int64), float (double in fact),
+string.
+Int: just numbers, may include sign.
+Float: -123.456, 123.456e-78, 123e-45
+String: something in quotes ("", '', ``).
+
+There is also an array type. It is actually a reference type, so if b is array
+and you will perform "a=b", the a and b will reference a single array.
+To create a copy of array, use ca func: dest = ca(source). Btw - you couldn't
+control dimensions of arrays - they are autosized.
+To declare array:
+a = {};
+To declare array and initialize some items with values:
+{"Hello!", "Use", "mixed types", 1.01e23, "like that" ,1234};
+To access array:
+a[index] = "Cool";
+
+Also [] operation could be used to strings. str[x] gives you a single char with
+index x (zero-based) as new string. str[-x] - the same, but x counts from the
+string end (so the last char is -1). str[x,y] gives you characters in range x-y
+(inclusive), both x and y could be <0 - in this case they counted from the end
+of the string.
+
+The function could be useful - is conversion of arrays to strings and back.
+Example:
+a = a("Hello"); str = s(a);
+After running such script array a will contain 6 integers (chars and last zero 
+- end of string), and str will contain your string back.
+
+Operators (some binary, some unary):
+>>= <<= -= += /= *= |= &= ^= %= -- ++ >> << && || <= =< >= => != ==
+= + - * / % < > & | ^ ~ !
+Only some are applicable to float (logic & arithmetic) and string (+ and logic) 
+of course. 
+Additional case: reference/de-reference operators (& and *). & will
+give you the reference to argument which should be a variable (NSIS, user, array
+item, stack), and * will convert it back to original variable. For example 
+(a=&b; *a=10) will set b to 10. Expression (*&a) is equal to simple (a).
+
+Script is set of expressions (mathematical in general) delimited with ';'.
+Processing is mathematically right (2+2*2 will give 6), operations are performed
+in a C like order (precedence).
+
+Flow control:
+        if-then-else like:      #[if-expression, then-expr, else-expr]
+                example:
+                        #[a==0, b=1; c=2, b *= (--c); c/=10]               
+                C eq:
+                        if (a==0) { b=1; c=2;} else { b*=(c++);c-=10; }
+        while (expr) do; like   #{expr, do}
+                example:
+                        #{(c<1.1e25)&&(b < 10), b++; c*=1.23}
+                C eq:
+                        while ((c<1.1e25)&&(b<10)) { b++; c*=1.23; }
+
+WATCH OUT! Comma (,) separates if-expr, then-expr, and else-expr from each 
+other. All sub-expressions separated by (;) are the part of one expression,
+and the result of the last one of these sub-exprs gives you the result of 
+expression.
+
+All the shit (like variables and functions) will be saved between calls.
+
+Functions:
+        type conversions:
+                l(string)       returns the length of string or array argument
+                s(source)       converts source to string type
+                i(source)       converts source to int type
+                f(source)       converts source to float type
+                c(source)       if source is string, returns int value of first
+                        char, if source is int, returns string which consists
+                        of a single char (source) (+0 terminator).
+                a(source)       converts source to array (only string supported)
+                ff(float, format)       converts float to string, with format
+                                        options.
+                        options = precision + flags.
+                        Precision shows how many digits after decimal point
+                        will be shown. Flags:
+                                16 (or 0x10) - No Exponential View 
+                                        (number will be shown as 123.123)
+                                32 (or 0x20) - Only exponential view
+                                        (number will be shown as 123.12e123)
+                                64 (or 0x40) - use 'E' character instead of 'e' 
+                        By default the plugin decides itself how to show your
+                        number.
+
+        math (description of all these functions is available at MSDN, use the
+            second given name for search):
+                sin(x),         sin     Sine of argument
+                cos(x),         cos     Cosine of argument
+                cel(x),         ceil    Ceil of argument (no fract. part) 
+                csh(x),         cosh    Hyperbolic Cosine of Argument        
+                exp(x),         exp     Exponential
+                abs(x),         abs     Absolute value (warning: float)
+                flr(x),         floor   Floor of argument (no fract. part) 
+                asn(x),         asin    ArcSine of argument
+                acs(x),         acos    ArcCosine of argument
+                atn(x),         atan    ArcTangent of argument
+                ln(x),          log     Exponential Logarithm
+                log(x),         log10   Decimal logarithm
+                snh(x),         sinh    Hyperbolic Sine of Argument
+                sqt(x),         sqrt    Square root of argument
+                tan(x),         tan     Tangent of argument
+                tnh(x),         tanh    Hyperbolic tangent  of argument
+
+          functions taking two arguments
+                at2(x, y)       atan2    Arctangent of the value (y/x)
+                pow(x, y)       pow      power, x^y
+                fmd(x, y)       fmod     floating point remainder
+                fex(x, o)       frexp    Gets the mantissa (result = r) 
+                                        and exponent (o) of floating-point 
+                                        number (x): x = r*(2^o)
+                mdf(x, o)       modf    Splits a floating-point value into 
+                                        fractional and integer parts.
+
+User-defined functions.
+It's very simple. Example:
+        test(a,b) (a+b);
+After that test(1,2) will give you 3. 
+        test2(a,b) (a=a+b; b *= a);
+The result of function is always the result of last expression.
+As said before it better not to use stack (S) in between function calls.
+It will be better to develop variable-safe functions, i.e. functions which will
+not corrupt variables. For this you should either push/pop them to stack, or
+declare as additional arguments, which will never be used. Example:
+        test3(a,b,c) (c=10; #{--c > 0, a=sqrt(a*b)}; a)
+No matter how many arguments will be passed to function, the values of all three 
+vars (a,b,c) will be saved. 
+Such variable-safe functions could be recursive:
+        Math::Script 'rec(a) (#[a > 0, rec(a-1), 0]+a);'
+        Math::Script 'R1 = rec(10)'
+will set R1 to right result 55.
+Sometimes functions will need to return more than one value, in this case you
+could declare argument as referent (b at example):
+        test4(a, &b) (*b = a*a; a*a*a)
+In this case test4 will return a^3, and if we will call it like that test4(a,c),
+it will place a^2 to c. BUT! Note: you should use de-referencer (*) with variable,
+at example *b. CAUTION: never use the same variable as function internal reference
+variable and external argument variable (for example test4(a,b)). It will surely 
+fail. Also: if you declared argument as reference - you should never supply
+a constant expression to it. It could be either array item (array[1]), NSIS
+register R0, any of the user variables (beside the variable with the same name:), 
+but never the constant.
+
+Another may-be-useful possibility is to redeclare the function (the usual 
+declaration at the time when function already defined will simply call that
+function). For such task you could use "#name", like "func()(1); #func()(2);".
+But beware, function declaration occurs at time of parsing, so it's not possible
+to perform flow controlled declaration. 
+SUCH IS NOT POSSIBLE: "#[a<0, #func()(1), #func()(2)]"
+IT WILL SIMPLY DEFINE #func as (2), as the latest variant.
+        
+(c) Nik Medved (brainsucker)

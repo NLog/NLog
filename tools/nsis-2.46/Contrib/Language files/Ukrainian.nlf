@@ -1,0 +1,192 @@
+# Header, don't edit
+NLF v6
+# Language ID
+1058
+# Font and size - dash (-) means default
+-
+-
+# Codepage - dash (-) means ANSI code page
+1251
+# RTL - anything else than RTL means LTR
+-
+# Translation by Yuri Holubow, Nash-Soft.com <http://www.Nash-Soft.com>
+# Corrections by Dmitriy Kononchuk [http://gri3ly.kiev.ua]
+# New corrections by Osidach Vitaly
+# ^Branding
+Nullsoft Install System %s
+# ^SetupCaption
+$(^Name) Встановлення
+# ^UninstallCaption
+$(^Name) Видалення
+# ^LicenseSubCaption
+: Ліцензійна угода
+# ^ComponentsSubCaption
+: Опції встановлення
+# ^DirSubCaption
+: Тека встановлення
+# ^InstallingSubCaption
+: Копіювання файлів
+# ^CompletedSubCaption
+: Завершено
+# ^UnComponentsSubCaption
+: Опції видалення
+# ^UnDirSubCaption
+: Тека видалення
+# ^ConfirmSubCaption
+: Підтверждення
+# ^UninstallingSubCaption
+: Видалення файлів
+# ^UnCompletedSubCaption
+: Завершено
+# ^BackBtn
+< &Назад
+# ^NextBtn
+&Далі >
+# ^AgreeBtn
+&Згоден
+# ^AcceptBtn
+Я &приймаю умови Ліцензійної угоди
+# ^DontAcceptBtn
+Я &не приймаю умови Ліцензійної угоди
+# ^InstallBtn
+&Встановити
+# ^UninstallBtn
+Видалити
+# ^CancelBtn
+Скасувати
+# ^CloseBtn
+&Закрити
+# ^BrowseBtn
+О&гляд...
+# ^ShowDetailsBtn
+Подробиці
+# ^ClickNext
+Натисніть Далі щоб продовжити
+# ^ClickInstall
+Натисніть Встановити для початку процессу встановлення
+# ^ClickUninstall
+Натисніть Видалить для початку процессу видалення
+# ^Name
+Ім'я
+# ^Completed
+Завершено
+# ^LicenseText
+Прочитайте умови ліцензійної угоди перед встановленням $(^NameDA). Якщо Ви приймаєте умови угоди, натисніть на кнопку Згоден.
+# ^LicenseTextCB
+Прочитайте умови ліцензійної угоди перед встановленням $(^NameDA). Якщо Ви приймаєте умови угоди, встановіть відмітку у квадратику нижче. $_CLICK
+# ^LicenseTextRB
+Прочитайте умови ліцензійної угоди перед встановленням $(^NameDA). Якщо Ви приймаєте умови угоди, виберіть перший варіант. $_CLICK
+# ^UnLicenseText
+Прочитайте умови ліцензійної угоди перед встановленням $(^NameDA). Якщо Ви приймаєте умови ліцензійної угоди, натисніть на кнопку Згоден.
+# ^UnLicenseTextCB
+Прочитайте умови ліцензійної угоди перед встановленням $(^NameDA). Якщо Ви приймаєте умови угоди, встановіть відмітку у квадратику нижче. $_CLICK
+# ^UnLicenseTextRB
+Прочитайте умови ліцензійної угоди перед видаленням $(^NameDA). Якщо Ви приймаєте умови угоди, виберіть перший варіант. $_CLICK
+# ^Custom
+По вибору
+# ^ComponentsText
+Виберіть які компоненти програми Ви бажаєте встановити. $_CLICK
+# ^ComponentsSubText1
+Виберіть тип встановлення:
+# ^ComponentsSubText2_NoInstTypes
+Виберіть компоненти для встановлення:
+# ^ComponentsSubText2
+Чи, виберіть вручну компоненти, які Ви хочете встановити:
+# ^UnComponentsText
+Виберіть які компоненти Ви бажаєте видалити. Відмітьте компоненти для видалення і зніміть відмітку з тих, які Ви видаляти не бажаєте. $_CLICK
+# ^UnComponentsSubText1
+Виберіть тип видалення:
+# ^UnComponentsSubText2_NoInstTypes
+Вибір компонентів для видалення:
+# ^UnComponentsSubText2
+Чи виберіть компоненти програми для видалення по своєму бажанні:
+# ^DirText
+Программа встановить $(^NameDA) у вказану теку. Для того, щоб встановити программу в іншу теку, натисніть Огляд і вкажіть потрібну теку. $_CLICK
+# ^DirSubText
+Тека призначення
+# ^DirBrowseText
+Виберіть теку для встановлення $(^NameDA):
+# ^UnDirText
+Программа встановлення видалить $(^NameDA) із вказанної теки. Для того, щоб провести видалення з іншої теки, натисніть Огляд і вкажіть потрібну теку. $_CLICK
+# ^UnDirSubText
+""
+# ^UnDirBrowseText
+Виберіть теку, з якої Ви бажаєте видалити $(^NameDA):
+# ^SpaceAvailable
+"Доступно місця: "
+# ^SpaceRequired
+"Необхідно місця: "
+# ^UninstallingText
+Майстер встановлення допоможе Вам видалити $(^NameDA) з Вашого комп'ютера. $_CLICK
+# ^UninstallingSubText
+Видалення з:
+# ^FileError
+Неможливо відкрити файл для запису: \r\n\t"$0"\r\nНатисніть Перервати для того, щоб перервати встановлення,\r\nПовторити для того, щоб повторити спробу запису у файл, чи\r\nІгнорувати для того, щоб пропустити цю дію
+# ^FileError_NoIgnore
+Неможливо відкрити файл для запису: \r\n\t"$0"\r\nНатисніть Повторити для того, щоб повторити спробу запису у файл, чи\r\nСкасувати для того, щоб перервати встановлення
+# ^CantWrite
+"Неможливо записати: "
+# ^CopyFailed
+Копіювання невділе
+# ^CopyTo
+"Копіювання в "
+# ^Registering
+"Реєстрація: "
+# ^Unregistering
+"Видалення реєстрації: "
+# ^SymbolNotFound
+"Неможливо знайти символ: "
+# ^CouldNotLoad
+"Неможливо завантажити: "
+# ^CreateFolder
+"Створення теки: "
+# ^CreateShortcut
+"Створення ярлика: "
+# ^CreatedUninstaller
+"Створення програми видалення: "
+# ^Delete
+"Видалення файлу: "
+# ^DeleteOnReboot
+"Видалення після перезавантаження: "
+# ^ErrorCreatingShortcut
+"Помилка створення ярлика: " 
+# ^ErrorCreating
+"Помилка створення: "
+# ^ErrorDecompressing
+Неможливо витягнути дані. Можливо пошкоджений дистрибутив.
+# ^ErrorRegistering
+Неможливо зареєструвати бібліотеку (DLL)
+# ^ExecShell
+"Виконання команди оболонки: " 
+# ^Exec
+"Виконання: "
+# ^Extract
+"Витягнення: "
+# ^ErrorWriting
+"Витягнення: помилка запису файла"
+# ^InvalidOpcode
+Дистрибутив пошкоджений: помилковий код відповіді
+# ^NoOLE
+"Немає OLE для: " 
+# ^OutputFolder
+"Тека призначення: "
+# ^RemoveFolder
+"Видалення теки: "
+# ^RenameOnReboot
+"Переіменування після перезаванаження: "
+# ^Rename
+"Перейменування: "
+# ^Skipped
+"Пропущено: "
+# ^CopyDetails
+Копіювати деталі у буфер обміну 
+# ^LogInstall
+Записувати в лог процес встновлення
+# byte
+б
+# kilo
+К
+# mega
+М
+# giga
+Г

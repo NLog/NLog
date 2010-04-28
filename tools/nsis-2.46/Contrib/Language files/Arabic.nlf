@@ -1,0 +1,190 @@
+# Header, don't edit
+NLF v6
+# Language ID
+1025
+# Font and size - dash (-) means default
+-
+-
+# Codepage - dash (-) means ANSI code page
+1256
+# RTL - anything else than RTL means LTR
+RTL
+# Translation by asdfuae@msn.com, updated by Rami Kattan
+# ^Branding
+ไูวใ วแสไีํศ ไแำๆÝส %s
+# ^SetupCaption
+สไีํศ $(^Name)
+# ^UninstallCaption
+ลาวแษ $(^Name)
+# ^LicenseSubCaption
+ลสÝวÞํษþ วแสัฮํี :
+# ^ComponentsSubCaption
+ฮํวัวส วแสไีํศ :
+# ^DirSubCaption
+ใฬแฯ วแสไีํศ :
+# ^InstallingSubCaption
+สไีํศ :
+# ^CompletedSubCaption
+ลไสๅ์ :
+# ^UnComponentsSubCaption
+ฮํวัวส วแลาวแษ :
+# ^UnDirSubCaption
+ใฬแฯ วแลาวแษ :
+# ^ConfirmSubCaption
+สร฿ํฯ :
+# ^UninstallingSubCaption
+ลาวแษ :
+# ^UnCompletedSubCaption
+ลไสๅ์ :
+# ^BackBtn
+< วแ&ำวศÞ
+# ^NextBtn
+วแ&สวแํ >
+# ^AgreeBtn
+ใๆวÝÞ&
+# ^AcceptBtn
+&รๆวÝÞ ฺแ์ ิัๆุ วสÝวÞํษ วแสัฮํี
+# ^DontAcceptBtn
+&แว รๆวÝÞ ฺแ์ ิัๆุ วสÝวÞํษ วแสัฮํี
+# ^InstallBtn
+&สไีํศ
+# ^UninstallBtn
+&ลาวแษ
+# ^CancelBtn
+ลแÛวม
+# ^CloseBtn
+ล&ÛแวÞ
+# ^BrowseBtn
+&ฺัึ...
+# ^ShowDetailsBtn
+ล&ูๅวั วแสÝวีํแ
+# ^ClickNext
+ลึÛุ ฺแ์ วแสวแํ แแใสวศฺษ.
+# ^ClickInstall
+ลึÛุ ฺแ์ สไีํศ แสิÛํแ วแสไีํศ.
+# ^ClickUninstall
+ลึÛุ ฺแ์ ลาวแษ แสิÛํแ วแลาวแษ.
+# ^Name
+วแลำใ
+# ^Completed
+ลไสๅ์
+# ^LicenseText
+วแัฬวม ใัวฬฺษ ลสÝวÞํษ วแสัฮํี Þศแ สไีํศ $(^NameDA). ฺไฯ วแใๆวÝÞษ ฺแ์ ฬใํฺ ิัๆุ วแลสÝวÞํษก ลึÛุ ใๆวÝÞ.
+# ^LicenseTextCB
+วแัฬวม ใัวฬฺษ ลสÝวÞํษ วแสัฮํี Þศแ สไีํศ $(^NameDA). ฺไฯ วแใๆวÝÞษ ฺแ์ ฬใํฺ ิัๆุ วแลสÝวÞํษก ลึÛุ ฺแ์ ใัศฺ วแใฤิั วแสวแํ. $_CLICK.
+# ^LicenseTextRB
+วแัฬวม ใัวฬฺษ ลสÝวÞํษ วแสัฮํี Þศแ สไีํศ $(^NameDA). ฺไฯ วแใๆวÝÞษ ฺแ์ ฬใํฺ ิัๆุ วแลสÝวÞํษก ลฮสั วแฮํวั วแรๆแ วแสวแํ. $_CLICK
+# ^UnLicenseText
+วแัฬวม ใัวฬฺษ ลสÝวÞํษ วแสัฮํี Þศแ ลาวแษ $(^NameDA). ฺไฯ วแใๆวÝÞษ ฺแ์ ฬใํฺ ิัๆุ วแลสÝวÞํษก ลึÛุ ใๆวÝÞ.
+# ^UnLicenseTextCB
+วแัฬวม ใัวฬฺษ ลสÝวÞํษ วแสัฮํี Þศแ ลาวแษ $(^NameDA). ฺไฯ วแใๆวÝÞษ ฺแ์ ฬใํฺ ิัๆุ วแลสÝวÞํษก วึÛุ ฺแ์ ใัศฺ วแใฤิั วแสวแํ. $_CLICK
+# ^UnLicenseTextRB
+วแัฬวม ใัวฬฺษ ลสÝวÞํษ วแสัฮํี Þศแ ลาวแษ $(^NameDA). ฺไฯ วแใๆวÝÞษ ฺแ์ ฬใํฺ ิัๆุ วแลสÝวÞํษก ลฮสั วแฮํวั วแรๆแ วแสวแํ. $_CLICK
+# ^Custom
+ลฮสํวัํ
+# ^ComponentsText
+ฺแ๘ใ วแใ฿ๆไวส วแใัวฯ สไีํศๅว ๆลาแ วแฺแวใษ ฺไ วแใ฿ๆไวส วแÛํั ใัวฯ สไีํศๅว. $_CLICK
+# ^ComponentsSubText1
+ลฮสั ไๆฺ วแสไีํศ:
+# ^ComponentsSubText2_NoInstTypes
+ลฮสั วแใ฿ๆไวส แแสไีํศ:
+# ^ComponentsSubText2
+รๆก Þใ ศลฮสํวั วแใ฿ๆไวส วแลฮสํวัํษ วแใัวฯ สไีํศๅว:
+# ^UnComponentsText
+ฺแ๘ใ วแใ฿ๆไวส วแใัวฯ ลาวแสๅว ๆราแ วแฺแวใษ ฺไ วแใ฿ๆไวส วแÛํั ใัวฯ ลาวแสๅว. $_CLICK
+# ^UnComponentsSubText1
+ลฮสั ไๆฺ วแลาวแษ:
+# ^UnComponentsSubText2_NoInstTypes
+ลฮสั วแใ฿ๆไวส แแลาวแษ:
+# ^UnComponentsSubText2
+รๆก ลฮสั วแใ฿ๆไวส วแลฮสํวัํษ วแใัวฯ ลาวแสๅว:
+# ^DirText
+ำํสใ สไีํศ $(^NameDA) Ýํ วแใฬแฯ วแสวแํ. แแสไีํศ Ýํ ใฬแฯ ยฮัก ลึÛุ ฺัึ ๆลฮสั ใฬแฯ ยฮั. $_CLICK
+# ^DirSubText
+ใฬแฯ วแๅฯÝ
+# ^DirBrowseText
+ลฮสั วแใฬแฯ แสไีํศ $(^NameDA) Ýํๅ:
+# ^UnDirText
+ำํสใ ลาวแษ $(^NameDA) ใไ วแใฬแฯ วแสวแํ. แแลาวแษ ใไ ใฬแฯ ยฮัก ลึÛุ ฺัึ ๆรฮสั ใฬแฯ ยฮั. $_CLICK
+# ^UnDirSubText
+""
+# ^UnDirBrowseText
+ลฮสั วแใฬแฯ แลาวแษ $(^NameDA) ใไๅ:
+# ^SpaceAvailable
+"วแใำวอษ วแใสๆÝัษ: "
+# ^SpaceRequired
+"วแใำวอษ วแใุแๆศษ: "
+# ^UninstallingText
+ำํสใ ลาวแษ $(^NameDA) ใไ วแใฬแฯ วแสวแํ. $_CLICK
+# ^UninstallingSubText
+ลาวแษ ใไ:
+# ^FileError
+อฯห ฮแแ รหไวม Ýสอ ใแÝ แแ฿สวศษ: \r\n\t\"$0\"\r\nลึÛุ ลแÛวม แลแÛวม วแสไีํศก\r\nใอวๆแษ แลฺวฯษ ใอวๆแษ ฿สวศษ วแใแÝก\r\n สฬวๅแ แสฮุํ วแใแÝ
+# ^FileError_NoIgnore
+อฯห ฮแแ รหไวม Ýสอ ใแÝ แแ฿สวศษ: \r\n\t\"$0\"\r\nลึÛุ ใอวๆแษ แลฺวฯษ ใอวๆแษ ฿สวศษ วแใแÝก รๆ\r\nลแÛวม แลแÛวม วแสไีํศ
+# ^CantWrite
+"แว ํำสุํฺ วแ฿สวศษ: "
+# ^CopyFailed
+Ýิแ วแไำฮ
+# ^CopyTo
+"ไำฮ ลแ์"
+# ^Registering
+"สำฬํแ: "
+# ^Unregistering
+"ลแÛวม สำฬํแ: "
+# ^SymbolNotFound
+"แใ ํสใ฿ไ ใไ ลํฬวฯ วแัใา :"
+# ^CouldNotLoad
+"แใ ํสใ฿ไ ใไ สอใํแ :"
+# ^CreateFolder
+"ลไิวม ใฬแฯ"
+# ^CreateShortcut
+"ลไิวม ลฮสีวั: "
+# ^CreatedUninstaller
+"ลไิวม ใาํแ: "
+# ^Delete
+"อะÝ ใแÝ: "
+# ^DeleteOnReboot
+"อะÝ ศฺฯ ลฺวฯษ วแสิÛํแ: "
+# ^ErrorCreatingShortcut
+"ฮแแ รหไวม ลไิวม ลฮสีวั: "
+# ^ErrorCreating
+"ฮแแ รหไวม ลไิวม :"
+# ^ErrorDecompressing
+ฮแแ รหไวม Ýสอ วแศํวไวส วแใึÛๆุษ! ใไีศ สวแÝฟ
+# ^ErrorRegistering
+ฮแแ รหไวม สำฬํแ DLL
+# ^ExecShell
+"สไÝํะ ExecShell:"
+# ^Exec
+"สไÝํะ: "
+# ^Extract
+"ลำสฮัวฬ: "
+# ^ErrorWriting
+"ลำสฮัวฬ: ฮแแ รหไวม วแ฿สวศษ ลแ์ ใแÝ "
+# ^InvalidOpcode
+วแใไี๘ศ สวแÝ: ิÝัษ Ûํั ีวแอษ
+# ^NoOLE
+"แว สๆฬฯ OLE แÜ๖: "
+# ^OutputFolder
+"ใฬแฯ วแลฮัวฬ: "
+# ^RemoveFolder
+"ลาวแษ ใฬแฯ: "
+# ^RenameOnReboot
+"ลฺวฯษ สำใํษ ศฺฯ ลฺวฯษ วแสิÛํแ: "
+# ^Rename
+"ลฺวฯษ สำใํษ: "
+# ^Skipped
+"สฮุ์: "
+# ^CopyDetails
+ไำฮ วแสÝวีํแ ลแ์ วแะว฿ัษ
+# ^LogInstall
+ำฬ๘แ ฺใแํษ วแสไีํศ
+# ^Byte
+ศวํส
+# ^Kilo
+฿ํแๆ
+# ^Mega
+ใํÛว
+# ^Giga
+ฬํÛว

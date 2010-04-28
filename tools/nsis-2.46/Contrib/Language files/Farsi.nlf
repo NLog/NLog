@@ -1,0 +1,191 @@
+# Header, don't edit
+NLF v6
+# Start editing here
+# Language ID
+1065
+# Font and size - dash (-) means default
+-
+-
+# Codepage - dash (-) means ANSI code page
+1256
+# RTL - anything else than RTL means LTR
+RTL
+# Translation By FzerorubigD - FzerorubigD@gmail.com - Thanx to all people help me in forum.persiantools.com, Elnaz Sarbar <elnaz@farsiweb.info>
+# ^Branding
+ÓíÓÊã äÕÈ äÇáÓÇİÊ %s
+# ^SetupCaption
+äÕÈ $(^Name) 
+# ^UninstallCaption
+ÍĞİ $(^Name) 
+# ^LicenseSubCaption
+: ãÌæÒ äÕÈ
+# ^ComponentsSubCaption
+: ÒíäååÇì äÕÈ
+# ^DirSubCaption
+: æÔå äÕÈ
+# ^InstallingSubCaption
+: ÏÑ ÍÇá äÕÈ
+# ^CompletedSubCaption
+: ÇíÇä íÇİÊ
+# ^UnComponentsSubCaption
+: ÒíäååÇì ÍĞİ
+# ^UnDirSubCaption
+: æÔå ÍĞİ
+# ^ConfirmSubCaption
+: ÊÃííÏ
+# ^UninstallingSubCaption
+: ÏÑ ÍÇá ÍĞİ
+# ^UnCompletedSubCaption
+: ÇíÇä íÇİÊ
+# ^BackBtn
+&ŞÈá 
+# ^NextBtn
+&ÈÚÏ
+# ^AgreeBtn
+&ãæÇİŞã
+# ^AcceptBtn
+ãä åãå ÈäÏåÇì ãÌæÒ ÑÇ ŞÈæá &ÏÇÑã
+# ^DontAcceptBtn
+ãä ÈäÏåÇì ãÌæÒ ÑÇ ŞÈæá &äÏÇÑã
+# ^InstallBtn
+&äÕÈ
+# ^UninstallBtn
+&ÍĞİ
+# ^CancelBtn
+ÇäÕÑÇİ
+# ^CloseBtn
+&ÈÓÊä
+# ^BrowseBtn
+&ãÑæÑ...
+# ^ShowDetailsBtn
+äãÇíÔ ÌÒÆíÇÊ
+# ^ClickNext
+ÈÑÇì ÇÏÇãå Ñæì Ï˜ãå  ÈÚÏ ˜áí˜ ˜äíÏ.
+# ^ClickInstall
+ÈÑÇì ÔÑæÚ äÕÈ Ñæì Ï˜ãå äÕÈ ˜áí˜ ˜äíÏ.
+# ^ClickUninstall
+ÈÑÇì ÔÑæÚ ÍĞİ Ñæì Ï˜ãå ÍĞİ ˜áí˜ ˜äíÏ.
+# ^Name
+äÇã
+# ^Completed
+ÇíÇä íÇİÊ
+# ^LicenseText
+áØİÇğ ŞÈá ÇÒ äÕÈ $(^NameDA) ãÊä ãÌæÒ ÑÇ ÈÎæÇäíÏ. ÇÑ åãå ÈäÏåÇì Âä ÑÇ ŞÈæá ÏÇÑíÏ Ñæì Ï˜ãå ãæÇİŞã ˜áí˜ ˜äíÏ.
+# ^LicenseTextCB
+áØİÇğ ŞÈá ÇÒ äÕÈ $(^NameDA) ãÊä ãÌæÒ ÑÇ ÈÎæÇäíÏ. ÇÑ åãå ÈäÏåÇì Âä ÑÇ ŞÈæá ÏÇÑíÏ Ñæì ÌÚÈå äÔÇäåÒäì ÒíÑ ˜áí˜ ˜äíÏ. $_CLICK
+# ^LicenseTextRB
+áØİÇğ ŞÈá ÇÒ äÕÈ $(^NameDA) ãÊä ãÌæÒ ÑÇ ÈÎæÇäíÏ. ÇÑ åãå ÈäÏåÇì Âä ÑÇ ŞÈæá ÏÇÑíÏ Òíäå Çæá ÑÇ ÇäÊÎÇÈ ˜äíÏ. $_CLICK
+# ^UnLicenseText
+áØİÇğ ŞÈá ÇÒ ÍĞİ $(^NameDA) ãÊä ãÌæÒ ÑÇ ÈÎæÇäíÏ. ÇÑ åãå ÈäÏåÇì Âä ÑÇ ŞÈæá ÏÇÑíÏ Ñæì Ï˜ãå ãæÇİŞã ˜áí˜ ˜äíÏ.
+# ^UnLicenseTextCB
+áØİÇğ ŞÈá ÇÒ ÍĞİ $(^NameDA) ãÊä ãÌæÒ ÑÇ ÈÎæÇäíÏ. ÇÑ åãå ÈäÏåÇì Âä ÑÇ ŞÈæá ÏÇÑíÏ Ñæì ÌÚÈå äÔÇäåÒäì ÒíÑ ˜áí˜ ˜äíÏ. $_CLICK
+# ^UnLicenseTextRB
+áØİÇğ ŞÈá ÇÒ ÍĞİ $(^NameDA) ãÊä ãÌæÒ ÑÇ ÈÎæÇäíÏ. ÇÑ åãå ÈäÏåÇì Âä ÑÇ ŞÈæá ÏÇÑíÏ Òíäå Çæá ÑÇ ÇäÊÎÇÈ ˜äíÏ. $_CLICK
+# ^Custom
+ÓİÇÑÔì
+# ^ComponentsText
+˜äÇÑ ÈÎÔåÇíì ˜å ãìÎæÇåíÏ äÕÈ ÔæäÏ äÔÇäå ÈÒäíÏ æ äÔÇäå ÈÎÔåÇíì ÑÇ ˜å äãìÎæÇåíÏ äÕÈ ÔæäÏ ÈÑÏÇÑíÏ. $_CLICK
+# ^ComponentsSubText1
+äæÚ äÕÈ ÑÇ ãÔÎÕ ˜äíÏ: 
+# ^ComponentsSubText2_NoInstTypes
+ÈÎÔåÇíì ÑÇ ˜å ãìÎæÇåíÏ äÕÈ ÔæäÏ ÇäÊÎÇÈ ˜äíÏ:
+# ^ComponentsSubText2
+íÇ¡ ÈÎÔåÇì ÇÎÊíÇÑì ÑÇ ˜å ãìÎæÇåíÏ äÕÈ ÔæäÏ ÇäÊÎÇÈ ˜äíÏ: 
+# ^UnComponentsText
+˜äÇÑ ÈÎÔåÇíì ˜å ãìÎæÇåíÏ ÍĞİ ÔæäÏ äÔÇäå ÈÒäíÏ æ äÔÇäå ÈÎÔåÇíì ÑÇ ˜å äãìÎæÇåíÏ ÍĞİ ÔæäÏ ÈÑÏÇÑíÏ. $_CLICK
+# ^UnComponentsSubText1
+äæÚ ÍĞİ ÑÇ ÇäÊÎÇÈ ˜äíÏ: 
+# ^UnComponentsSubText2_NoInstTypes
+ÈÎÔåÇíì ÑÇ ˜å ãìÎæÇåíÏ ÍĞİ ÔæäÏ ÇäÊÎÇÈ ˜äíÏ:
+# ^UnComponentsSubText2
+íÇ¡ ÈÎÔåÇì ÇÎÊíÇÑì ÑÇ ˜å ãìÎæÇåíÏ ÍĞİ ÔæäÏ ÇäÊÎÇÈ ˜äíÏ: 
+# ^DirText
+ÈÑäÇãå äÕÈ¡ $(^NameDA) ÑÇ ÏÑ æÔå ÒíÑ äÕÈ ÎæÇåÏ ˜ÑÏ. ÈÑÇì äÕÈ ÏÑ æÔå ÏíÑ Ñæì Ï˜ãå ãÑæÑ ˜áí˜ ˜äíÏ æ æÔå ÏíÑì ÇäÊÎÇÈ ˜äíÏ. $_CLICK
+# ^DirSubText
+æÔå ãŞÕÏ
+# ^DirBrowseText
+ÇäÊÎÇÈ æÔå ÈÑÇì äÕÈ $(^NameDA):
+# ^UnDirText
+ÈÑäÇãå äÕÈ¡ $(^NameDA) ÑÇ ÇÒ æÔå ÒíÑ ÍĞİ ÎæÇåÏ ˜ÑÏ. ÈÑÇì äÕÈ ÏÑ æÔå ÏíÑ Ñæì Ï˜ãå ãÑæÑ ˜áí˜ ˜äíÏ æ æÔå ÏíÑì ÇäÊÎÇÈ ˜äíÏ. $_CLICK
+# ^UnDirSubText
+""
+# ^UnDirBrowseText
+ÇäÊÎÇÈ æÔå ÈÑÇì ÍĞİ $(^NameDA):
+# ^SpaceAvailable
+"İÖÇì ãæÌæÏ: "
+# ^SpaceRequired
+"İÖÇì ãæÑÏ äíÇÒ: "
+# ^UninstallingText
+ş(^NameDA) ÇÒ æÔå ÒíÑ ÍĞİ ÎæÇåÏ ÔÏ. $_CLICK
+# ^UninstallingSubText
+ÍĞİ ÇÒ: 
+# ^FileError
+ÎØÇ åäÇã ÈÇÒ ˜ÑÏä ÑæäÏå ÈÑÇì äæÔÊä: \r\n\r\n$0\r\n\n ÈÑÇì ÊæŞİ äÕÈ Ñæì Abort \r\n ÈÑÇì ÊáÇÔ ãÌÏÏ Ñæì Retry \r\n æ ÈÑÇì ÕÑİäÙÑ ÇÒ Çíä ÑæäÏå Ñæì Ignore ˜áí˜ ˜äíÏ.
+# ^FileError_NoIgnore
+ÎØÇ åäÇã ÈÇÒ ˜ÑÏä ÑæäÏå ÈÑÇì äæÔÊä: \r\n\r\n$0\r\n\nÈÑÇì ÊáÇÔ ãÌÏÏ Ñæì Retry\r\næ ÈÑÇì ÇäÕÑÇİ Ñæì Cancel ˜áí˜ ˜äíÏ.
+# ^CantWrite
+"äæÔÊä ãã˜ä äíÓÊ: "
+# ^CopyFailed
+äÓÎåÈÑÏÇÑì äÇãæİŞ ÈæÏ.
+# ^CopyTo
+"äÓÎåÈÑÏÇÑì ÏÑ: "
+# ^Registering
+"ÏÑ ÍÇá ËÈÊ: "
+# ^Unregistering
+"ÏÑ ÍÇá ÍĞİ ËÈÊ: "
+# ^SymbolNotFound
+"ÚáÇãÊ íÏÇ äÔÏ: "
+# ^CouldNotLoad
+"ÈÇÑĞÇÑì ãã˜ä äíÓÊ: "
+# ^CreateFolder
+"ÇíÌÇÏ æÔå: "
+# ^CreateShortcut
+"ÇíÌÇÏ ãíÇäÈõÑ: "
+# ^CreatedUninstaller
+"ÍĞİ˜ääÏå ÇíÌÇÏ ÔÏ: "
+# ^Delete
+"ÍĞİ ÑæäÏå: "
+# ^DeleteOnReboot
+"ÍĞİ åäÇã ÑÇå ÇäÏÇÒì ãÌÏÏ: "
+# ^ErrorCreatingShortcut
+"ÎØÇ åäÇã ÇíÌÇÏ ãíÇäÈõÑ: "
+# ^ErrorCreating
+"ÎØÇ åäÇã ÇíÌÇÏ: "
+# ^ErrorDecompressing
+ÎØÇ åäÇã ÈÇÒ ˜ÑÏä ÇØáÇÚÇÊ! äÕÈ˜ääÏå ÎÑÇÈ ÇÓÊ¿
+# ^ErrorRegistering
+ÎØÇ åäÇã ËÈÊ DLL
+# ^ExecShell
+"æÓÊå ÇÌÑÇíì: "
+# ^Exec
+"ÇÌÑÇ: "
+# ^Extract
+"ÇÓÊÎÑÇÌ: "
+# ^ErrorWriting
+"ÇÓÊÎÑÇÌ: ÎØÇ åäÇã äæÔÊä ÏÑ ÑæäÏå"
+# ^InvalidOpcode
+äÕÈ˜ääÏå ÎÑÇÈ ÇÓÊ: ˜Ï ÚãáíÇÊì äÇãÚÊÈÑ.
+# ^NoOLE
+"şOLE æÌæÏ äÏÇÑÏ: "
+# ^OutputFolder
+"æÔå ÎÑæÌì: "
+# ^RemoveFolder
+"ÍĞİ æÔå: "
+# ^RenameOnReboot
+"ÊÛííÑ äÇã åäÇã ÑÇå ÇäÏÇÒì ãÌÏÏ: "
+# ^Rename
+"ÊÛííÑ äÇã: "
+# ^Skipped
+"Ôã æÔì ÔÏ: "
+# ^CopyDetails
+äÓÎåÈÑÏÇÑì ÌÒÆíÇÊ ÏÑ ˜áíÈÑÏ
+# ^LogInstall
+ËÈÊ ÑæäÏ äÕÈ
+# ^Byte
+ ÈÇíÊ
+# ^Kilo
+ ˜íáæ
+# ^Mega
+ ãÇ
+# ^Giga
+ íÇ

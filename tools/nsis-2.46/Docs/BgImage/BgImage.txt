@@ -1,0 +1,92 @@
+BgImage.DLL - NSIS extension DLL
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Displays an image or a gradient with user defined texts and/or images behind the NSIS window.
+Can also play WAVs.
+
+See Example.nsi for a usage example.
+
+Usage
+~~~~~
+
+1) Call SetBg to set the background
+2) Call AddText, or AddImage to add texts and images
+3) Call Redraw to update the background window
+4) Optional - repeat steps 2-3 to add more images
+           -or-
+   call Clear and repeat steps 1-3 for a completely new background.
+5) Call Destroy when the background is no longer required (.onGUIEnd for example)
+
+Notes
+~~~~~
+
+* This plugin requires NSIS 2.42 and above.
+
+* Do not call SetBg (which creates the window) from a section or a function called by a section.
+   BgImge must be run from the GUI thread as the installation thread is not built to handle GUI.
+
+Available functions
+~~~~~~~~~~~~~~
+
+SetBg [/FILLSCREEN|/TILED] path_to_bitmap
+SetBg /GRADIENT R G B R G B
+   Sets the background and creates the window if necessary
+   Use /FILLSCREEN to make the image fill the screen
+   Use /TILED to set a tiled background
+   Use /GRADIENT to set a gradient background
+
+   If SetReturn on was called returns "success" on the stack
+     or an error string if there was an error
+
+   Do not use in .onInit!
+
+AddImage [/TRANSPARENT R G B] path_to_bitmap X Y
+   Adds an image to the background window at (X,Y)
+     X and Y can be negative to specify distance from right/bottom
+   Use /TRANSPARENT to make BgImage draw the image transparently
+     Define the transparent color using R G B
+
+   If SetReturn on was called returns "success" on the stack
+     or an error string if there was an error
+
+AddText text font_handle R G B X Y X Y
+  Adds text to the background window
+  Use NSIS's CreateFont to create a font and pass it as font_handle
+  Use R G B to set the text color
+  The first X Y is for the top left corner of the text box
+  The second X Y is for the bottom right corner of the text box
+  X and Y can be negative to specify distance from right/bottoms
+
+  If SetReturn on was called returns "success" on the stack
+     or an error string if there was an error
+
+Clear
+   Clears all of the current background, images and texts
+
+Destroy
+   Destroys the current background window
+   Destroy calls Clear automatically
+
+Sound [/WAIT|/LOOP] path_to_wav
+Sound /STOP
+   Plays a wave file
+   Use /WAIT to wait for the sound to finish playing
+   Use /LOOP to loop the sound
+   Use Sound /STOP to stop the loop
+
+SetReturn on|off
+   Enable return values from SetBg, AddImage and AddText
+   Default value is off because all of the possible errors
+     are either things you should handle when debugging your script
+     such as "can't load bitmap" or errors you can do nothing about
+     such as "memory allocation error"
+
+Credits
+~~~~~~~
+
+Coded by Amir Szekely, aka KiCHiK
+
+Ximon Eighteen, aka Sunjammer - Fixed window title bar issues
+iceman_k - Text idea and original implementation
+Lajos Molnar, aka orfanik - Tile idea and original implementation
+Jason Reis - Coding help

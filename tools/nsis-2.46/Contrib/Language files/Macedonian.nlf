@@ -1,0 +1,191 @@
+# Header, don't edit
+NLF v6
+# Start editing here
+# Language ID
+1071
+# Font and size - dash (-) means default
+-
+-
+# Codepage - dash (-) means ANSI code page
+1251
+# RTL - anything else than RTL means LTR
+-
+# Translation by Sasko Zdravkin [wingman2083@yahoo.com]
+# ^Branding
+Nullsoft Install System %s
+# ^SetupCaption
+Инсталирање на $(^Name)
+# ^UninstallCaption
+Деинсталирање на $(^Name)
+# ^LicenseSubCaption
+: Лиценцен Договор
+# ^ComponentsSubCaption
+: Инсталациони Опции
+# ^DirSubCaption
+: Инсталационен Директориум
+# ^InstallingSubCaption
+: Инсталира
+# ^CompletedSubCaption
+: Завршено
+# ^UnComponentsSubCaption
+: Деинсталациони Опции
+# ^UnDirSubCaption
+: Деинсталационен Директориум
+# ^ConfirmSubCaption
+: Потврда
+# ^UninstallingSubCaption
+: Деинсталира
+# ^UnCompletedSubCaption
+: Завршено
+# ^BackBtn
+< &Назад
+# ^NextBtn
+Н&апред >
+# ^AgreeBtn
+&Да
+# ^AcceptBtn
+&Ги прифаќам условите од Лиценцниот Договор
+# ^DontAcceptBtn
+Н&е ги прифаќам условите од Лиценцниот Договор
+# ^InstallBtn
+&Инсталирај
+# ^UninstallBtn
+&Деинсталирај
+# ^CancelBtn
+Откажи
+# ^CloseBtn
+&Затвори
+# ^BrowseBtn
+&Пребарувај...
+# ^ShowDetailsBtn
+П&окажи Детали
+# ^ClickNext
+Притиснете 'Напред' за да продолжите.
+# ^ClickInstall
+Притиснете 'Инсталирај' за да се инсталира.
+# ^ClickUninstall
+Притиснете 'Деинсталирај' за да се деинсталира.
+# ^Name
+Име
+# ^Completed
+Завршено
+# ^LicenseText
+Ве молиме прочитајте го Лиценцниот Договор пред да се инсталира $(^NameDA). Ако ги прифаќате сите услови, притиснете 'Да'.
+# ^LicenseTextCB
+Ве молиме прочитајте го Лиценцниот Договор пред да се инсталира $(^NameDA). Ако ги прифаќате сите услови, притиснете го Check box-от подоле. $_CLICK
+# ^LicenseTextRB
+Ве молиме прочитајте го Лиценцниот Договор пред да се инсталира $(^NameDA). Ако ги прифаќате сите услови, одберете ја првата опција подоле. $_CLICK
+# ^UnLicenseText
+Ве молиме прочитајте го Лиценцниот Договор пред да се деинсталира $(^NameDA). Ако ги прифаќате сите услови, притиснете 'Да'.
+# ^UnLicenseTextCB
+Ве молиме прочитајте го Лиценцниот Договор пред да се деинсталира $(^NameDA). Ако ги прифаќате сите услови, притиснете го Check box-от подоле. $_CLICK
+# ^UnLicenseTextRB
+Ве молиме прочитајте го Лиценцниот Договор пред да се деинсталира $(^NameDA). Ако ги прифаќате сите услови, одберете ја првата опција подоле. $_CLICK
+# ^Custom
+Подесено
+# ^ComponentsText
+Чекирајте ги компонентите што сакате да се инсталираат или дечекирајте ги тие што не сакате да се инсталираат. $_CLICK 
+# ^ComponentsSubText1
+Одберете вид на инсталација:
+# ^ComponentsSubText2_NoInstTypes
+Одберете ги компонентите што ќе се инсталираат:
+# ^ComponentsSubText2
+или, одберете други компоненти што сакате да се инсталираат:
+# ^UnComponentsText
+Чекирајте ги компонентите што сакате да се деинсталираат или дечекирајте ги тие што не сакате да се деинсталираат. $_CLICK
+# ^UnComponentsSubText1
+Одберете го видот на деинсталацијата:
+# ^UnComponentsSubText2_NoInstTypes
+Одберете ги компонентите што ќе се деинсталираат:
+# ^UnComponentsSubText2
+или, одберете други компоненти што сакате да се деинсталираат:
+# ^DirText
+Инсталациониот програм ќе го инсталира $(^NameDA) во следниов директориум. За да инсталирате во друг, притиснете 'Пребарувај' и одберете друг директориум. $_CLICK
+# ^DirSubText
+Директориум каде што ќе се инсталира
+# ^DirBrowseText
+Одберете директориум за инсталирање на $(^NameDA):
+# ^UnDirText
+Инсталациониот програм ќе го деинсталира $(^NameDA) од следниов директориум. За да деинсталирате од друг, притиснете 'Пребарувај' и одберете друг директориум. $_CLICK
+# ^UnDirSubText
+""
+# ^UnDirBrowseText
+Одберете го директориумот за деинсталирање на $(^NameDA):
+# ^SpaceAvailable
+"Слободен простор: "
+# ^SpaceRequired
+"Потребен простор: "
+# ^UninstallingText
+$(^NameDA) ќе биде деинсталиран од следниов директориум. $_CLICK
+# ^UninstallingSubText
+Деинсталира од:
+# ^FileError
+Грешка при отварањето на датотеката за запишување: \r\n\t"$0"\r\nПритиснете 'Откажи' за да ја откажете инсталацијата,\r\n'Пробај' за да проба да ја запише датотеката, или\r\n'Игнорирај' за да ја прерипа датотеката
+# ^FileError_NoIgnore
+Грешка при отварањето на датотеката за запишување: \r\n\t"$0"\r\nПритиснете 'Пробај' за да проба да ја запише датотеката, или\r\n'Откажи' за да ја откаже инсталацијата
+# ^CantWrite
+"Не може да запише: "
+# ^CopyFailed
+Копирањето не успеа
+# ^CopyTo
+"Копирај до "
+# ^Registering
+"Регистрира: "
+# ^Unregistering
+"Дерегистрира: "
+# ^SymbolNotFound
+"Не може да го најде симболот: "
+# ^CouldNotLoad
+"Не може да лоадира: "
+# ^CreateFolder
+"Создади директориум: "
+# ^CreateShortcut
+"Создади кратеница: "
+# ^CreatedUninstaller
+"Создаден деинсталатор: "
+# ^Delete
+"Избришана датотека: "
+# ^DeleteOnReboot
+"Избриши после рестартирање: "
+# ^ErrorCreatingShortcut
+"Грешка при создавањето на скратеницата: "
+# ^ErrorCreating
+"Грешка при создавањето: "
+# ^ErrorDecompressing
+Грешка при отпакувањето на податоците! Расипан инсталационен програм?
+# ^ErrorRegistering
+Грешка при регистрирањето на DLL
+# ^ExecShell
+"ExecShell: "
+# ^Exec
+"Покрени: "
+# ^Extract
+"Отпакувано: "
+# ^ErrorWriting
+"Отпакувај: грешка при снимањето во датотеката "
+# ^InvalidOpcode
+Расипан инсталационен програм: погрешен код
+# ^NoOLE
+"Нема OLE за: "
+# ^OutputFolder
+"Инсталационен директориум: "
+# ^RemoveFolder
+"Избришан директориум: "
+# ^RenameOnReboot
+"Преименувај после рестартирање: "
+# ^Rename
+"Преименувај: "
+# ^Skipped
+"Прерипано: "
+# ^CopyDetails
+Копирај ги Деталите во Clipboard-от
+# ^LogInstall
+Сними лог за инсталационите процеси
+# ^Byte
+б
+# ^Kilo
+К
+# ^Mega
+М
+# ^Giga
+Г

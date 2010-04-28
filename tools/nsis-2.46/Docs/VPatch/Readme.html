@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>VPatch 3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+<style type="text/css">
+/*<![CDATA[*/
+
+body
+        {
+        padding: 10px;
+        background-color: #F0F0F0;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        font-weight: normal;
+        text-align: left;
+        }
+
+p, li
+        {
+        font-size: 13px;
+        }
+
+.center
+        {
+        text-align: center;
+        }
+
+table
+        {
+        margin: auto;
+        font-size: 13px;
+        background-color: #FFFFFF;
+        }
+
+.maintable
+        {
+        border: 2px solid #376EAB;
+        }
+
+.parameter
+        {
+        font-weight: bold;
+        color: #6586AC;
+        }
+
+
+h1
+        {
+        font-size: 30px;
+        color: #333333;
+        font-weight: normal;
+        text-align: center;
+        margin-top: 20px;
+        }
+
+h2
+        {
+        font-size: 20px;
+        color: #7A7272;
+        font-weight: normal;
+        }
+
+h3
+        {
+        font-size: 17px;
+        font-weight: bold;
+        color: #303030;
+        }
+
+pre     {
+        font-size: 13px;
+        }
+
+div
+        {
+        margin: 20px;
+        }
+
+a:link, a:visited, a:active
+        {
+        color: #294F75;
+        text-decoration: none;
+        }
+
+a:hover
+        {
+        color: #182634;
+        text-decoration: underline;
+        }
+
+/*]]>*/
+</style>
+</head>
+<body>
+<table width="750" class="maintable" cellspacing="0" cellpadding="0" align="center">
+    <tr> 
+      <td> 
+        
+      <h1>VPatch 3.1</h1>
+        <div> 
+          <h2>Introduction</h2>
+          <div>
+          <p>VPatch allows to create a patch file to update previous versions 
+            of your software. The GenPat utility generates the patch file. The 
+            plug-in can use the patch to update a file. Using a patch, you can 
+            reduce the download size of your updates, because only the differences 
+            between the files are included in the patch file.</p>
+          </div>
+          <h2>How to use</h2>
+          <div>
+          <h3>Generate the patch file</h3>
+          <div>
+          <p>Make sure you have the source file (original version) and the target 
+            file (version to update to). For example, DATA.DTA (currently on user 
+            system) and DATA_20.DTA (version 2.0 of this data file). Now call 
+            the command line tool GenPat.exe:</p>
+          <pre>
+GENPAT oldfile.txt newfile.txt patch.pat
+</pre>
+          <p>Now, the patch will be generated, this will take some time.</p>
+            <p>Using the /B=(BlockSize) parameter of the GenPat utility (put it 
+              after the filenames), you can use a different block size. A smaller 
+              block size may result in a smaller patch, but the generation will 
+              take more time (the default blocksize is 64).</p>
+            <p>If you have trouble using this command-line utility, you can download 
+              a GUI (graphical user interface) for VPatch from its own website: 
+              <a href="http://www.tibed.net/vpatch">http://www.tibed.net/vpatch</a>.</p>
+          </div>
+          <h3>Update the file during installation</h3>
+          <div>
+          <p>Use the VPatch plug-in to update a file using a patch file:</p>
+          <pre>
+vpatch::vpatchfile "patch.pat" "oldfile.txt" "temporary_newfile.txt"
+</pre>
+          <p>The result of the patch operating will be added to the stack and 
+            can be one of the following texts:</p>
+          <ul>
+            <li>OK</li>
+            <li>OK, new version already installed</li>
+            <li>An error occurred while patching</li>
+            <li>Patch data is invalid or corrupt</li>
+            <li>No suitable patches were found</li>
+          </ul>
+            <p>Check <a href="../../Examples/VPatch/example.nsi">example.nsi</a> for an example. You 
+              should check whether the stack string starts with &quot;OK&quot; 
+              because then the patch has succeeded and you can rename &quot;temporary_newfile.txt&quot; 
+              to &quot;oldfile.txt&quot; to replace the original, if you want.</p>
+          </div>
+          <h3>Multiple patches in one file</h3>
+          <div>
+          <p>GenPat appends a patch to the file you specified. If there is already 
+            a patch for the same original file, with the same CRC/MD5, in the patch file,
+            the patch will be replaced. For example, if you want to be able to upgrade
+            version 1 and 2 to version 3, you can put a 1 &gt; 3 and 2 &gt; 3 patch in 
+            one file.</p>
+          <p>You can also put patches for different files in one patch file, for 
+            example, a patch from file A version 1 to file A version 2 and a patch 
+            from file B version 1 to file B version 2. Just call the plug-in multiple 
+            times with the same patch file. It will automatically select the right 
+            patch (based on the file CRC).</p>
+          </div>
+          <h3>Patch generator (GenPat) exit codes</h3>
+          <div>
+            <p>In version 3 the following exit codes (known as error levels in 
+              the DOS period) can be returned by GenPat. GenPat will return an 
+              exit code based on success of the patch generation. Here is a list 
+              of the possible exit codes:</p>
+            <table width="547" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td><b>Exit code</b></td>
+                <td><b>Description</b></td>
+              </tr>
+              <tr> 
+                <td>0</td>
+                <td>Success</td>
+              </tr>
+              <tr> 
+                <td>1</td>
+                <td>Arguments missing</td>
+              </tr>
+              <tr> 
+                <td>2</td>
+                <td>Other error</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Source file already has a patch in specified patch file (ERROR), 
+                  use /R switch to override</td>
+              </tr>
+            </table>
+            <p>These exit codes can be useful when you generate patch files through 
+              a NSIS script.</p>
+        </div>
+        </div>
+        </div>
+        <div>
+          <h2>Source code</h2>
+          <div>
+          <p>Source code is available in the original package and in the SVN repository of NSIS.</p>
+          <h3>NSIS plug-in (C++)</h3>
+          <div>
+          <p>The source of the NSIS plug-in that applies patches can be found 
+            in the Source\Plugin folder.</p>
+          </div>
+          <h3>Patch Generator (C++)</h3>
+          <div>
+            <p>The most interesting part of VPatch, the actual patch generation 
+              algorithm, can be found in Source\GenPat\PatchGenerator.cpp. The 
+              header of that file contains a brief explanation of the algorithm 
+              as well.</p>
+          </div>
+          <h3>User interface (Delphi)</h3>
+          <div>
+          <p>A user interface is included as well, which you will have to build 
+            yourself because the GUI executable was too large to include. Besides 
+            Borland Delphi 6 or higher (you can use the freely available Personal 
+            edition), you will also need to install the <a href=
+"http://www.delphi-gems.com">VirtualTreeView</a> component by Mike Lischke.</p>
+          </div>
+          </div>
+          <h2>Version history</h2>
+          <div>
+          <ul>
+            <li>3.1 
+              <ul>
+                <li>GenPat now compiles on POSIX platforms (MinGW/GCC), Visual 
+                  C++ 6 and Borland C++.</li>
+                <li>More test cases to verify functionality of GenPat.</li>
+              </ul>
+            </li>
+            <li>3.0 
+              <ul>
+                <li><b>Final</b>: Updates to the GUI, installer</li>
+                <li><b>RC8</b>: GenPat will now flag replacement of a patch (e.g. 
+                  the source file has the same contents as a previous patch inside 
+                  a patch file) as an error. You can specifically allow it using 
+                  the /R switch. Added license to source files.</li>
+                <li><b>RC7</b>: Fixed critical bug in GenPat with multiple patches 
+                  in a single file. Fixed serious bug in stand-alone EXE runtime: 
+                  process kept on running forever. Included case testing through 
+                  a Python script to test common usage (and prevent bugs like 
+                  the one in GenPat in the future).</li>
+                <li><b>RC6</b>: Upgraded to non-beta compiler. Added /A switch 
+                  to change block match limit and /O to deactivate the limit. 
+                  Updated GUI to support the /O switch.</li>
+                <li><b>RC4a to RC5a</b>: input block size is now checked for power 
+                  of 2 and fixed if incorrect. When patch file does not yet exist, 
+                  no longer forgets to create the header. No longer tries to allocate 
+                  memory when there are no chunks. Fixed memory leaks.</li>
+                <li>Target file date is now preserved inside a patch and restored 
+                  on the user system.</li>
+                <li>MD5 checksums are now used instead of CRC32 checksums, unless 
+                  existing patches in a file already are in CRC32 mode.</li>
+                <li>The patch generator, GenPat, has been completely rewritten 
+                  in C++. It no longer needs to keep the entire files in memory, 
+                  instead memory usage is a certain percentage of the source file 
+                  size. The percentage is based on the block size, larger block 
+                  sizes will reduce memory usage.</li>
+                <li>All runtimes now share a common codebase, perform proper error 
+                  checking and don't leave behind files if the input file was 
+                  already up to date.</li>
+                <li>Bug Fix: The patch generator algorithm no longer reduces to 
+                  a quadratic runtime if there are many blocks with the same content 
+                  in the files to patch.</li>
+                <li>Bug Fix: The documentation of the command-line utilities was 
+                  incorrect and no warnings would be given by the runtimes, causing 
+                  the patch not to work (this does not apply to NSIS patches).</li>
+              </ul>
+            </li>
+            <li>2.1 
+              <ul>
+                <li>Added argument checking and error handling to GenPat. Now 
+                  returns exit codes as well to indicate success/failure (and 
+                  the reason for failure). Only GenPat has changed in this version 
+                  compared to 2.0 final.</li>
+                <li>Bug Fix: GenPat no longer gives an Access Violation when attempting 
+                  to patch a file smaller than 64 bytes into a file larger than 
+                  64 bytes.</li>
+              </ul>
+            </li>
+            <li>2.0 final 
+              <ul>
+                <li>Cleaned up source code for the patch generator, which is now 
+                  included (this code is written in Borland Delphi 6 and compiles 
+                  with the freely available Personal edition).</li>
+              </ul>
+            </li>
+            <li>2.0 beta 2 
+              <ul>
+                <li>All new algorithm used in the patch generator: much faster 
+                  (up to 90%) while using smaller block sizes (higher compression)</li>
+                <li>Created a NSIS 2 plugin</li>
+                <li>Works with small files</li>
+                <li>Replaces existing patch in file if original file CRC is identical</li>
+              </ul>
+            </li>
+          </ul>
+          </div>
+          <h2>Credits</h2>
+          <div>
+          <p>Written by Koen van de Sande<br />
+            C plug-in initially by Edgewize, updated by Koen van de Sande<br />
+            New documentation and example by Joost Verburg and Koen van de Sande</p>
+          </div>
+          <h2>License</h2>
+          <div>
+          <pre>
+Copyright (C) 2001-2005 Koen van de Sande / Van de Sande Productions
+
+This software is provided 'as-is', without any express or implied
+warranty. In no event will the authors be held liable for any damages
+arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute
+it freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; 
+   you must not claim that you wrote the original software.
+   If you use this software in a product, an acknowledgment in the
+   product documentation would be appreciated but is not required.
+2. Altered versions must be plainly marked as such,
+   and must not be misrepresented as being the original software.
+3. This notice may not be removed or altered from any distribution.
+</pre>
+</div>
+        </div>
+      </td>
+</tr>
+</table>
+</body>
+</html>

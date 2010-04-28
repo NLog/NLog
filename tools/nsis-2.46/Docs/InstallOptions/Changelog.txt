@@ -1,0 +1,144 @@
+DLL version 2.47 (4/27/2007)
+* Line breaks support in Link control
+* Added HLine and VLine controls
+
+DLL version 2.46 (3/31/2007)
+* Use installer's name for message boxes
+
+DLL version 2.45 (1/23/2007)
+* Added FOCUS flag for setting focus to a control other than the first
+
+DLL version 2.44 (10/11/2005)
+* Added HWND and HWND2 entries to the INI file to avoid messy calculations of the correct control id
+
+DLL version 2.43 (10/4/2005)
+* Fixed alteration of the working directory by FileRequest
+* Added WS_EX_LEFTSCROLLBAR in RTL mode
+
+DLL version 2.42 (1/21/2005)
+* Added TRANSPARENT flag for BITMAP fields (funded by Chris Morgan)
+
+DLL version 2.41 (8/5/2004)
+* Bitmaps are now automatically centered
+* Fixed a bug which prevented enabling the next button from the leave function of InstallOptions pages
+* Fixed a rare freeze
+
+DLL version 2.4 (1/4/2004)
+* Initial focus is set in "initDialog" making it possible to override it from NSIS prior to calling "show"
+* When initial focus is to a Text field InstallOptions now follows standard Windows behaviour by having the text selected
+* Label and other static fields no longer have State= written to the INI file when leaving the dialog
+* NOTIFY flag can now be used with Link fields (State should be omitted in this case)
+* Likewise, State can now be used with Button fields (behaves the same as with Link fields)
+* NOTIFY flag can also now be used with ListBox and DropList fields to have NSIS notified when the selection changes
+* Meaning of RIGHT flag is now reversed in right-to-left language mode
+* HSCROLL and VSCROLL flags are no longer restricted to Text fields
+* Various Link field fixes
+
+DLL version 2.3 (12/4/2003)
+* Added new control type "Button"
+* Added new flag "NOTIFY"
+* Added new flag "NOWORDWRAP" for multi-line text boxes
+* Reduced size down to 12K
+* Better RTL support
+
+DLL version 2.2 (6/10/2003)
+* Added New control type LINK
+* \r\n converts to newline in Multiline edit box
+* Support for multiline edit box
+* Better tab order in DirRequest and FileRequest
+* Added READONLY option to text box
+* Minor fixes
+
+DLL version 2.1 (3/15/2003)
+* \r\n converts to newline in both label Text and ValidateText
+* New browse dialog style (modern)
+* Word wrapping for check boxes and radio buttons
+* No ugly border for edit fields under XP
+* Scroll bar for list boxes
+* Works with SetStaticBkColor
+* DISABLED dir and file request fields now disable the browse button too
+* No more STATE value for labels
+* Minor fixes
+
+DLL version 2.0 (1/4/2003)
+* Supports custom font and DPI settings (by Joost Verburg)
+* INI files should contain dialog units now, no pixels (by Joost Verburg)
+* RESIZETOFIT flag for Bitmap control (by Amir Szekely)
+* New documentation (by Joost Verburg)
+* New GROUP/NOTABSTOP/DISABLED flags
+
+DLL version 1.7 beta (11/2/2002)
+* Added initDialog and show DLL functions
+
+DLL version 1.6 beta (9/30/2002)
+* CancelConfirmIcon becomes CancelConfirmFlags and can now take the other common MessageBox flags
+
+DLL version 1.5 beta (9/26/2002)
+* Made close [x] button behave like Cancel (thanks brainsucker)
+
+DLL version 1.4 beta (9/4/2002)
+* Added Icon and Bitmap controls (by Amir Szekely)
+
+DLL version 1.3 beta (8/15/2002)
+* Added CancelShow (by ORTIM)
+* Added pixel transformation for widgets (by ORTIM)
+
+DLL version 1.2 beta (7/31/2002)
+* Added CancelEnabled (by ORTIM)
+* Added CancelConfirmCaption and CancelConfirmIcon (by Amir Szekely)
+
+DLL version 1.1 beta (7/22/2002)
+* Font is now taken from the main NSIS window (by Amir Szekely)
+
+DLL version 1.0 beta (12/16/2001)
+* Moved to DLL, no longer need parentwnd ini writing
+* Tons of changes - no longer fully compatible (see source for a big list)
+* removed support for silent installers (it seems the old version would bring up it's own dialog)
+
+version 1.4 (11/18/2001)
+* Added Listbox controls.
+* Added MULTISELECT flag.
+* Made the HWND list for the parent window controls dynamically allocated. This prevents a crash if NSIS ever gets more than 150 controls on it's main window.
+* The TEXT property of DirRequest control can be used to specify an initial directory. The current directory is automatically selected when clicking the browse button of the DirRequest control.
+* Added ROOT property to DirRequest which can be used to set the root directory (mostly due to felfert)
+* Edit controls will now auto scroll (thanks felfert)
+* Fixed a problem where the window wouldn't draw properly on some systems (thanks felfert)
+
+version 1.3 (11/03/2001)
+* Got rid of the call to RedrawWindow() because it's no longer needed with the WS_CLIPCHILDREN flag for NSIS.
+* Removed a few hardcoded limits of buffer sizes
+* Added Checkbox and RadioButton controls
+* Added RIGHT and CHECKED flags
+
+version 1.2.2 (10/30/2001)
+* Additional size reductions. Further reduced the size down to 8k.
+* The text parameter to a combobox can now be used to specify the initial value
+* Changed from InvalidateRect() to RedrawWindow() to force a redraw after a browse dialog
+* On startup, set the flags of the NSIS window to include WS_CLIPCHILDREN. Otherwise, our controls don't get drawn right.
+
+version 1.2.1 (10/28/2001)
+* Bug fix. ControlID for the caption and the OK button were reused by the first two controls. (Thanks Schultz)
+
+version 1.2j (10/28/2001)
+* 8.5kb from 44kb. heh. (by Justin Frankel)
+
+version 1.2 (10/28/2001)
+* Still 44k
+* Added the "FileRequest" and "DirRequest" control types (thanks Schultz)
+* Added "MinLen", "MaxLen", and "ValidateText" properties to fields
+* Added "Flags" as a way to specify additional parameters for controls
+* Few more changes to the documentation
+* Cleaned the code in a few places...still trying to make it smaller
+
+version 1.1 (10/27/2001)
+* Added the "Title" option (thanks Alex)
+* Moved the OK button so it is in the same location as the buttons on the main NSIS window (thanks Alex)
+* Pressing "ENTER" will now automatically select the OK button (thanks Alex)
+* Slightly improved the documentation
+
+version 1.01 (10/25/2001)
+* Fixed the SetFocus loop so it exits after the first control like it was supposed to
+* Added the license to the documentation
+
+version 1.0 (10/25/2001)
+* Barely qualifies as a distribution

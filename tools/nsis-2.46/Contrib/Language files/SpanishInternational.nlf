@@ -1,0 +1,191 @@
+# Header, don't edit ;Español (Alfabetización Internacional)
+NLF v6
+# Language ID
+3082
+# Font and size - dash (-) means default
+-
+-
+# Codepage - dash (-) means ANSI code page
+1252
+# RTL - anything else than RTL means LTR
+-
+# Translation by Darwin Rodrigo Toledo Cáceres - www.winamp-es.com - nwrad777@gmail.com
+# Base traslation by MoNKi & Joel
+# ^Branding
+Nullsoft Install System %s
+# ^SetupCaption
+Instalación de $(^Name)
+# ^UninstallCaption
+Desinstalación de $(^Name)
+# ^LicenseSubCaption
+: Acuerdo de Licencia
+# ^ComponentsSubCaption
+: Opciones de Instalación
+# ^DirSubCaption
+: Carpeta de Instalación
+# ^InstallingSubCaption
+: Instalando
+# ^CompletedSubCaption
+: Finalizado
+# ^UnComponentsSubCaption
+: Opciones de Desinstalación
+# ^UnDirSubCaption
+: Carpeta de Desinstalación
+# ^ConfirmSubCaption
+: Confirmación
+# ^UninstallingSubCaption
+: Desinstalando
+# ^UnCompletedSubCaption
+: Finalizado
+# ^BackBtn
+< &Atrás
+# ^NextBtn
+&Siguiente >
+# ^AgreeBtn
+&Acepto
+# ^AcceptBtn
+&Acepto las condiciones del Acuerdo de Licencia
+# ^DontAcceptBtn
+No &acepto las condiciones del Acuerdo de Licencia
+# ^InstallBtn
+&Instalar
+# ^UninstallBtn
+&Desinstalar
+# ^CancelBtn
+Cancelar
+# ^CloseBtn
+&Cerrar
+# ^BrowseBtn
+&Examinar...
+# ^ShowDetailsBtn
+Mostrar &detalles
+# ^ClickNext
+Presione Siguiente para continuar.
+# ^ClickInstall
+Presione Instalar para iniciar la instalación.
+# ^ClickUninstall
+Presione Desinstalar para iniciar la desinstalación.
+# ^Name
+Nombre
+# ^Completed
+Finalizado
+# ^LicenseText
+Por favor, revise el acuerdo de licencia antes de instalar $(^NameDA). Si usted acepta todas las condiciones del acuerdo, presione Acepto.
+# ^LicenseTextCB
+Por favor, revise el acuerdo de licencia antes de instalar $(^NameDA). Si usted acepta todas las condiciones del acuerdo, marque abajo la casilla. $_CLICK
+# ^LicenseTextRB
+Por favor, revise el acuerdo de licencia antes de instalar $(^NameDA). Si usted acepta todas las condiciones del acuerdo, seleccione abajo la primera opción. $_CLICK
+# ^UnLicenseText
+Por favor, revise el acuerdo de licencia antes de desinstalar $(^NameDA). Si usted acepta todas las condiciones del acuerdo, presione Acepto.
+# ^UnLicenseTextCB
+Por favor, revise el acuerdo de licencia antes de desinstalar $(^NameDA). Si usted acepta todas las condiciones del acuerdo, marque abajo la casilla. $_CLICK
+# ^UnLicenseTextRB
+Por favor, revise el acuerdo de licencia antes de desinstalar $(^NameDA). Si usted acepta todas las condiciones del acuerdo, seleccione abajo la primera opción. $_CLICK
+# ^Custom
+Personalizada
+# ^ComponentsText
+Marque los componentes que desee instalar y desmarque los componentes que no desee instalar. $_CLICK
+# ^ComponentsSubText1
+Seleccione el tipo de instalación:
+# ^ComponentsSubText2_NoInstTypes
+Seleccione los componentes a instalar:
+# ^ComponentsSubText2
+O seleccione los componentes opcionales que desee instalar:
+# ^UnComponentsText
+Marque los componentes que desee desinstalar y desmarque los componentes que no desee desinstalar. $_CLICK
+# ^UnComponentsSubText1
+Seleccione el tipo de desinstalación:
+# ^UnComponentsSubText2_NoInstTypes
+Seleccione los componentes a desinstalar:
+# ^UnComponentsSubText2
+O seleccione los componentes opcionales que desee desinstalar:
+# ^DirText
+El programa de instalación instalará $(^NameDA) en la siguiente carpeta. Para instalar en una carpeta diferente, presione Examinar y seleccione otra carpeta. $_CLICK
+# ^DirSubText
+Carpeta de Destino
+# ^DirBrowseText
+Seleccione la carpeta en la que instalará $(^NameDA):
+# ^UnDirText
+El programa de instalación desinstalará $(^NameDA) de la siguiente carpeta. Para desinstalar de una carpeta diferente, presione Examinar y seleccione otra carpeta. $_CLICK
+# ^UnDirSubText
+""
+# ^UnDirBrowseText
+Seleccione la carpeta desde la que desinstalará $(^NameDA):
+# ^SpaceAvailable
+Espacio disponible:
+# ^SpaceRequired
+Espacio requerido:
+# ^UninstallingText
+$(^NameDA) será desinstalado de la siguiente carpeta. $_CLICK
+# ^UninstallingSubText
+Desinstalando desde:
+# ^FileError
+Error abriendo archivo para escribir: \r\n\r\n$0\r\n\r\nPresione Abortar para detener la instalación,\r\nReintentar para probar otra vez, o\r\nOmitir para ignorar este archivo.
+# ^FileError_NoIgnore
+Error abriendo archivo para escribir: \r\n\r\n$0\r\n\r\nPresione Reintentar para probar otra vez, o\r\nCancelar para detener la instalación.
+# ^CantWrite
+"No pudo escribirse: "
+# ^CopyFailed
+Copia fallida
+# ^CopyTo
+"Copiar a "
+# ^Registering
+"Registrando: "
+# ^Unregistering
+"Eliminando registro: "
+# ^SymbolNotFound
+"No se encontró simbolo: "
+# ^CouldNotLoad
+"No pudo cargarse: "
+# ^CreateFolder
+"Crear carpeta: "
+# ^CreateShortcut
+"Crear acceso directo: "
+# ^CreatedUninstaller
+"Crear desinstalador: "
+# ^Delete
+"Borrar archivo: "
+# ^DeleteOnReboot
+"Borrar al reinicio: "
+# ^ErrorCreatingShortcut
+"Error creando acceso directo: "
+# ^ErrorCreating
+"Error creando: "
+# ^ErrorDecompressing
+¡Error descomprimiendo datos! ¿Instalador corrupto?
+# ^ErrorRegistering
+Error registrando DLL
+# ^ExecShell
+"Ejecutar comando: "
+# ^Exec
+"Ejecutar: "
+# ^Extract
+"Extraer: "
+# ^ErrorWriting
+"Extraer: error escribiendo al archivo "
+# ^InvalidOpcode
+Instalador corrupto: código de operación no válido
+# ^NoOLE
+"Sin OLE para: "
+# ^OutputFolder
+"Carpeta de salida: "
+# ^RemoveFolder
+"Eliminar carpeta: "
+# ^RenameOnReboot
+"Renombrar al reinicio: "
+# ^Rename
+"Renombrar: "
+# ^Skipped
+"Omitido: "
+# ^CopyDetails
+Copiar Detalles al Portapapeles
+# ^LogInstall
+Registrar proceso de instalación
+# ^Byte
+B
+# ^Kilo
+K
+# ^Mega
+M
+# ^Giga
+G

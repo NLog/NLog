@@ -1,0 +1,191 @@
+# Header, don't edit
+NLF v6
+# Start editing here
+# Language ID
+1042
+# Font and size - dash (-) means default
+굴림
+9
+# Codepage - dash (-) means ANSI code page
+949
+# RTL - anything else than RTL means LTR
+-
+# Translation by dTomoyo dtomoyo@empal.com ( ~V2.0 BETA2 ) / By hardkoder@gmail.com (V2.0 BETA3 ~ )
+# ^Branding
+널소프트 설치 시스템 %s
+# ^SetupCaption
+$(^Name) 설치
+# ^UninstallCaption
+$(^Name) 제거
+# ^LicenseSubCaption
+: 사용권 계약 동의
+# ^ComponentsSubCaption
+: 설치 옵션
+# ^DirSubCaption
+: 폴더 지정
+# ^InstallingSubCaption
+: 파일 설치중
+# ^CompletedSubCaption
+: 설치 완료
+# ^UnComponentsSubCaption
+: 제거 옵션
+# ^UnDirSubCaption
+: 제거 폴더
+# ^ConfirmSubCaption
+: 확인 
+# ^UninstallingSubCaption
+: 제거중
+# ^UnCompletedSubCaption
+: 제거 완료
+# ^BackBtn
+< 뒤로
+# ^NextBtn
+다음 >
+# ^AgreeBtn
+동의함
+# ^AcceptBtn
+위 사항에 동의합니다.
+# ^DontAcceptBtn
+동의하지 않습니다.
+# ^InstallBtn
+설치
+# ^UninstallBtn
+제거
+# ^CancelBtn
+취소
+# ^CloseBtn
+닫음
+# ^BrowseBtn
+찾아보기...
+# ^ShowDetailsBtn
+자세히 보기
+# ^ClickNext
+계속하시려면 '다음' 버튼을 눌러 주세요.
+# ^ClickInstall
+설치를 시작하시려면 '설치' 버튼을 눌러 주세요.
+# ^ClickUninstall
+'제거' 버튼을 누르면 제거가 시작됩니다.
+# ^Name
+이름
+# ^Completed
+완료
+# ^LicenseText
+$(^NameDA)(을)를 설치하기 전에 사용권 계약 내용을 살펴보시기 바랍니다. 내용에 동의하셨다면 '동의함'을 눌러 주세요.
+# ^LicenseTextCB
+$(^NameDA)(을)를 설치하기 전에 사용권 계약 내용을 살펴보시기 바랍니다. 내용에 동의하셨다면 아래 사항을 체크해 주세요. $_CLICK
+# ^LicesnseTextRB
+$(^NameDA)(을)를 설치하기 전에 사용권 계약 내용을 살펴보시기 바랍니다. 내용에 동의하셨다면 아래 옵션을 선택해 주세요. $_CLICK
+# ^UnLicenseText
+$(^NameDA)(을)를 제거하기 전에 사용권 계약 내용을 살펴보시기 바랍니다. 내용에 동의하셨다면 '동의함'을 눌러 주세요.
+# ^UnLicenseTextCB
+$(^NameDA)(을)를 제거하기 전에 사용권 계약 내용을 살펴보시기 바랍니다. 내용에 동의하셨다면 아래 사항을 체크해 주세요. $_CLICK
+# ^UnLicesnseTextRB
+$(^NameDA)(을)를 제거하기 전에 사용권 계약 내용을 살펴보시기 바랍니다. 내용에 동의하셨다면 아래 옵션을 선택해 주세요. $_CLICK
+# ^Custom
+사용자 정의
+# ^ComponentsText
+설치를 원하시는 구성 요소를 선택하여 주시기 바랍니다. $_CLICK
+# ^ComponentsSubText1
+설치 형태 선택:
+# ^ComponentsSubText2_NoInstTypes
+설치하려는 구성 요소 선택:
+# ^ComponentsSubText2
+구성요소 직접 선택:
+# ^UnComponentsText
+제거를 원하는 구성 요소를 체크해 주시기 바랍니다. $_CLICK
+# ^UnComponentsSubText1
+제거 형태 선택:
+# ^UnComponentsSubText2_NoInstTypes
+제거하려는 구성 요소 선택:
+# ^UnComponentsSubText2
+제거하려는 구성요소 직접 선택:
+# ^DirText
+$(^NameDA)(을)를 다음 폴더에 설치할 예정입니다. \r\n다른 폴더에 설치하고 싶으시면 '찾아보기' 버튼을 눌러서 다른 폴더를 선택해 주세요. $_CLICK
+# ^DirSubText
+설치 폴더
+# ^DirBrowseText
+$(^NameDA)(을)를 다음 폴더에 설치합니다:
+# ^UnDirText
+$(^NameDA)(을)를 다음 폴더에서 제거할 예정입니다. \r\n다른 폴더에서 제거하고 싶으시면 '찾아보기' 버튼을 눌러서 다른 폴더를 선택해 주세요. $_CLICK
+# ^UnDirSubText
+""
+# ^UnDirBrowseText
+$(^NameDA)(을)를 다음 폴더에서 제거 합니다:
+# ^SpaceAvailable
+"남은 디스크 공간: "
+# ^SpaceRequired
+"필요한 디스크 공간: "
+# ^UninstallingText
+시스템에서 $(^NameDA)(을)를 제거 할 것입니다. $_CLICK
+# ^UninstallingText
+제거 대상:
+# ^FileError
+다음 파일을 열 수 없습니다.: \r\n\t"$0"\r\n'중단'을 눌러 설치를 종료하거나,\r'다시 시도'를 눌러 다시 시도해 보거나,\r'무시'를 눌러 이 파일을 건너 뛰세요.
+# ^FileError_NoIgnore
+다음 파일을 열 수 없습니다.: \r\n\t"$0"\r\n'다시 시도'를 눌러 다시 시도해 보거나,\r'취소'를 눌러 설치를 종료하세요.
+# ^CantWrite
+"기록할 수 없음: "
+# ^CopyFailed
+복사 실패
+# ^CopyTo
+"파일 복사 "
+# ^Registering
+"등록중: "
+# ^Unregistering
+"등록 해제중: "
+# ^SymbolNotFound
+"심볼을 찾을 수 없음: "
+# ^CouldNotLoad
+"불러올 수 없음: "
+# ^CreateFolder
+"폴더 생성: "
+# ^CreateShortcut
+"바로 가기 생성: "
+# ^CreatedUninstaller
+"언인스톨러 생성: "
+# ^Delete
+"파일 삭제: "
+# ^DeleteOnReboot
+"재부팅시 삭제: "
+# ^ErrorCreatingShortcut
+"바로 가기 생성 오류: "
+# ^ErrorCreating
+"생성 실패: "
+# ^ErrorDecompressing
+압축 해제중 오류 발생! 설치 파일이 손상되었습니다.
+# ^ErrorRegistering
+DLL 등록 실패
+# ^ExecShell
+"쉘 실행: "
+# ^Exec
+"실행: "
+# ^Extract
+"압축 해제: "
+# ^ErrorWriting
+"압축 해제: 파일을 기록하는 도중 오류 발생 "
+# ^InvalidOpcode
+인스톨러 손상됨: 잘못된 실행코드
+# ^NoOLE
+"OLE 정보 없음: "
+# ^OutputFolder
+"대상 폴더: "
+# ^RemoveFolder
+"폴더 삭제: "
+# ^RenameOnReboot
+"재부팅시 이름 변경: "
+# ^Rename
+"이름 변경: "
+# ^Skipped
+"건너뜀: "
+# ^CopyDetails
+자세한 내용을 클립보드로 복사
+# ^LogInstall
+설치 로그 작성
+# ^Byte
+B
+# ^Kilo
+K
+# ^Mega
+M
+# ^Giga
+G

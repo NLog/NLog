@@ -1,0 +1,53 @@
+AdvSplash.dll - small (5.5k), simple plugin that lets you throw 
+up a splash screen in NSIS installers with cool fading effects (win2k/xp)
+and transparency.
+
+To use:
+
+Create a .BMP file of your splash screen.
+(optional) Create a .WAV file to play while your splash screen shows.
+
+Add the following lines to your .NSI file:
+
+Function .onInit
+  SetOutPath $TEMP
+  File /oname=spltmp.bmp "my_splash.bmp"
+
+; optional
+; File /oname=spltmp.wav "my_splashshit.wav"
+
+  advsplash::show 1000 600 400 -1 $TEMP\spltmp
+
+  Pop $0 ; $0 has '1' if the user closed the splash screen early,
+         ; '0' if everything closed normally, and '-1' if some error occurred.
+
+  Delete $TEMP\spltmp.bmp
+;  Delete $TEMP\spltmp.wav
+FunctionEnd
+
+Calling format
+        advsplash::show Delay FadeIn FadeOut KeyColor FileName
+
+Delay - length to show the screen for (in milliseconds)
+FadeIn - length to show the fadein scene (in ms) (not included in Delay)
+FadeOut - length to show the fadeout scene (in ms) (not included in Delay)
+KeyColor - color used for transparency, could be any RGB value 
+        (for ex. R=255 G=100 B=16 -> KeyColor=0xFF6410), 
+        use KeyColor=-1 if there is no transparent color at your image.
+FileName - splash bitmap filename (without the .bmp). The BMP file used will be 
+        this parameter.bmp, and the wave file used (if present) will be this 
+        parameter.wav.
+
+(If you already have an .onInit function, put that in it)
+
+Note 1: fadein/fadeout supported only on win2k/winxp systems, all other systems
+will show simple splash screen with Delay = Delay + FadeIn + FadeOut. Also, I've
+noted my winXP uses no transparent color at 16 bpp, so at bpps lower than 32
+for images with transparent color no fading effect will occur.
+
+Note 2: the return value of splash is 1 if the user closed the splash 
+screen early (pop it from the stack)
+
+-Justin
+Converted to a plugin DLL by Amir Szekely (kichik)
+Fading and transparency by Nik Medved (brainsucker)

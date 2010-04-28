@@ -1,0 +1,191 @@
+# Header, don't edit
+NLF v6
+# Start editing here
+# Language ID
+1150
+# Font and size - dash (-) means default
+-
+-
+# Codepage - dash (-) means ANSI code page
+1252
+# RTL - anything else than RTL means LTR
+-
+# Translation by KAD-Korvigelloù an Drouizig (drouizig@drouizig.org)
+# ^Branding
+Reizhiad staliañ Nullsoft %s
+# ^SetupCaption
+Staliañ ha kefluniañ $(^Name)
+# ^UninstallCaption
+Distaliañ $(^Name)
+# ^LicenseSubCaption
+: Aotre arverañ
+# ^ComponentsSubCaption
+: Dibaboù staliañ
+# ^DirSubCaption
+: Kavlec'h staliañ
+# ^InstallingSubCaption
+: O staliañ ar restroù
+# ^CompletedSubCaption
+: Echu eo
+# ^UnComponentsSubCaption
+: Dibaboù distaliañ
+# ^UnDirSubCaption
+: Kavlec'h distaliañ
+# ^ConfirmSubCaption
+: Kadarnañ
+# ^UninstallingSubCaption
+: O tistaliañ ar restroù
+# ^UnCompletedSubCaption
+: Echu eo
+# ^BackBtn
+< &Kent
+# ^NextBtn
+&War-lerc'h >
+# ^AgreeBtn
+&A-du emaon
+# ^AcceptBtn
+&Degemer holl dermoù al lañvaz emglev
+# ^DontAcceptBtn
+&Chom hep degemer termoù al lañvaz emglev
+# ^InstallBtn
+&Staliañ
+# ^UninstallBtn
+&Distaliañ
+# ^CancelBtn
+Nullañ
+# ^CloseBtn
+&Serriñ
+# ^BrowseBtn
+F&urchal...
+# ^ShowDetailsBtn
+Muioc'h a &ditouroù
+# ^ClickNext
+Klikit war « War-lerc'h » evit mont war-raok.
+# ^ClickInstall
+Klikit war « Staliañ » evit kregiñ gant ar staliadur.
+# ^ClickUninstall
+Klikit war « Distaliañ » evit kregiñ gant an distaliadur.
+# ^Name
+Anv
+# ^Completed
+Echu eo
+# ^LicenseText
+Bezit aketus en ur lenn an aotre arverañ a-raok staliañ $(^NameDA) mar plij. Mar degemerit pep term eus an aotre, klikit war « A-du emaon ».
+# ^LicenseTextCB
+Bezit aketus en ur lenn an aotre arverañ a-raok staliañ $(^NameDA) mar plij. Mar degemerit pep term eus an aotre, klikit war al log a-zindan. $_CLICK
+# ^LicenseTextRB
+Bezit aketus en ur lenn an aotre arverañ a-raok staliañ $(^NameDA) mar plij. Mar degemerit pep term eus an aotre, dizuzit an dibab kentañ a-zindan. $_CLICK
+# ^UnLicenseText
+Bezit aketus en ur lenn an aotre arverañ a-raok distaliañ $(^NameDA) mar plij. Mar degemerit pep term eus an aotre, klikit war « A-du emaon ».
+# ^UnLicenseTextCB
+Bezit aketus en ur lenn an aotre arverañ a-raok distaliañ $(^NameDA) mar plij. Mar degemerit pep term eus an aotre, klikit war al log a-zindan. $_CLICK
+# ^UnLicenseTextRB
+Bezit aketus en ur lenn an aotre arverañ a-raok distaliañ $(^NameDA) mar plij. Mar degemerit pep term eus an aotre, diuzit an dibab kentañ a-zindan. $_CLICK
+# ^Custom
+Diouzh ho kiz
+# ^ComponentsText
+Dibabit an elfennoù a fell deoc'h staliañ pe diziuzit an elfennoù a fell deoc'h leuskel a-gostez. $_CLICK
+# ^ComponentsSubText1
+Dibabit pe seurt staliañ a vo :
+# ^ComponentsSubText2_NoInstTypes
+Dibabit an elfennoù da staliañ :
+# ^ComponentsSubText2
+Pe dibabit an elfennoù diret a fell deoc'h staliañ :
+# ^UnComponentsText
+Dibabit an elfennoù a fell deoc'h distaliañ pe diziuzit an elfennoù a fell deoc'h mirout. $_CLICK
+# ^UnComponentsSubText1
+Dibabit peseurt distaliañ a vo :
+# ^UnComponentsSubText2_NoInstTypes
+Dibabit an elfennoù da zistaliañ :
+# ^UnComponentsSubText2
+Pe dibabit an elfennoù diret a fell deoc'h distaliañ :
+# ^DirText
+Staliet e vo $(^NameDA) gant ar goulev-mañ er c'havlec'h da-heul. Mar fell deoc'h dibab ur c'havlec'h all, klikit war « Furchal » ha dibabit ur c'havlec'h all. $_CLICK
+# ^DirSubText
+Kavlec'h bukenn
+# ^DirBrowseText
+Dibabit ar c'havlec'h e vo diazezet $(^NameDA) ennañ :
+# ^UnDirText
+Distaliet e vo $(^NameDA) gant ar goulev-mañ adalek ar c'havlec'h da heul. Ma fell deoc'h distaliañ adalek ur c'havlec'h all, klikit war « Furchal » ha diuzit ur c'havlec'h all. $_CLICK
+# ^UnDirSubText
+""
+# ^UnDirBrowseText
+Diuzit ar c'havlec'h evit distaliañ $(^NameDA) adalek :
+# ^SpaceAvailable
+"Egor kantenn vak : "
+# ^SpaceRequired
+"Egor kantenn rekis : "
+# ^UninstallingText
+Distaliet e vo $(^NameDA) adalek ar c'havelec'h da-heul. $_CLICK
+# ^UninstallingSubText
+Distaliañ adalek :
+# ^FileError
+Fazi en ur zigeriñ ur restr evit skrivañ : \r\n\r\n$0\r\n\r\nKlikit war « Paouez » evit paouez gant ar staliañ,\r\n« Adober » evit eseañ en-dro, pe\r\n« Tremen » evit leuskel a-gostez ar restr-mañ.
+# ^FileError_NoIgnore
+Fazi en ur zigeriñ ur restr a-benn skrivañ : \r\n\r\n$0\r\n\r\nKlikit war « Adober » evit esaeañ en-dro, pe\r\nwar « Nullañ » evit paouez gant ar staliañ.
+# ^CantWrite
+"N'haller ket skrivañ : "
+# ^CopyFailed
+Kopiañ faziet
+# ^CopyTo
+"Kopiañ da "
+# ^Registering
+"Oc'h enskrivañ : "
+# ^Unregistering
+"O tienskrivañ : "
+# ^SymbolNotFound
+"N'haller ket kavout ur simbolenn : "
+# ^CouldNotLoad
+"N'haller ket kargañ : "
+# ^CreateFolder
+"Krouiñ kavlec'h : "
+# ^CreateShortcut
+"Krouiñ berradenn : "
+# ^CreatedUninstaller
+"Skoazeller distaliañ krouet : "
+# ^Delete
+"Dilemel restr : "
+# ^DeleteOnReboot
+"Dilemel en ur adloc'hañ : "
+# ^ErrorCreatingShortcut
+"Fazi en ur grouiñ berradenn : "
+# ^ErrorCreating
+"Fazi en ur grouiñ : "
+# ^ErrorDecompressing
+Fazi en ur ziwaskañ stlenn ! Skoazeller staliañ gwastet ?
+# ^ErrorRegistering
+Fazi en ur enskrivañ an DLL
+# ^ExecShell
+"ExecShell : "
+# ^Exec
+"Lañsañ : "
+# ^Extract
+"Eztennañ : "
+# ^ErrorWriting
+"Eztennañ : fazi en ur skrivañ restr "
+# ^InvalidOpcode
+Skoazeller staliañ gwastet : opcode direizh
+# ^NoOLE
+"OLE ebet evit : "
+# ^OutputFolder
+"Kavlec'h ec'hank : "
+# ^RemoveFolder
+"Dilemel ar c'havlec'h : "
+# ^RenameOnReboot
+"Adenvel pa vez adloc'het : "
+# ^Rename
+"Adenvel : "
+# ^Skipped
+"Laosket a-gostez: "
+# ^CopyDetails
+Kopiañ ar munudoù er golver
+# ^LogInstall
+Tresañ an argerzh staliañ
+# ^Byte
+E
+# ^Kilo
+K
+# ^Mega
+M
+# ^Giga
+G

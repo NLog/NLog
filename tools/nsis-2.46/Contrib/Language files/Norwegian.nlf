@@ -1,0 +1,190 @@
+# Header, don't edit
+NLF v6
+# Language ID
+1044
+# Font and size - dash (-) means default
+-
+-
+# Codepage - dash (-) means ANSI code page
+1252
+# RTL - anything else than RTL means LTR
+-
+# Translation by Jonas Lindstrøm (jonasc_88@hotmail.com). Reviewed and fixed by Jan Ivar Beddari <d0der at online.no>
+# ^Branding
+Nullsoft Install System %s
+# ^SetupCaption
+$(^Name) installasjon
+# ^UninstallCaption
+$(^Name) avinstallasjon
+# ^LicenseSubCaption
+: Lisensavtale
+# ^ComponentsSubCaption
+: Installasjonsvalg
+# ^DirSubCaption
+: Installasjonsmappe
+# ^InstallingSubCaption
+: Installerer
+# ^CompletedSubCaption
+: Ferdig
+# ^UnComponentsSubCaption
+: Avinstallasjonsvalg
+# ^UnDirSubCaption
+: Avinstallasjonsmappe
+# ^ConfirmSubCaption
+: Bekreft
+# ^UninstallingSubCaption
+: Avinstallerer
+# ^UnCompletedSubCaption
+: Ferdig
+# ^BackBtn
+< &Tilbake
+# ^NextBtn
+&Neste >
+# ^AgreeBtn
+&Godta
+# ^AcceptBtn
+Jeg &godtar vilkårene i lisensavtalen
+# ^DontAcceptBtn
+Jeg godtar &ikke vilkårene i lisensavtalen
+# ^InstallBtn
+&Installer
+# ^UninstallBtn
+&Avinstaller
+# ^CancelBtn
+Avbryt
+# ^CloseBtn
+&Lukk
+# ^BrowseBtn
+Bla &gjennom...
+# ^ShowDetailsBtn
+Vis &detaljer
+# ^ClickNext
+Trykk Neste for å fortsette.
+# ^ClickInstall
+Trykk Installer for å starte installasjonen.
+# ^ClickUninstall
+Trykk Avinstaller for å starte avinstallasjonen.
+# ^Name
+Navn
+# ^Completed
+Ferdig
+# ^LicenseText
+Vennligst les gjennom lisensavtalen før du installerer $(^Name). Hvis du godtar vilkårene i avtalen, trykk på Godta.
+# ^LicenseTextCB
+Vennligst les gjennom lisensavtalen før du installerer $(^Name). Hvis du godtar vilkårene i avtalen, merk av under. $_CLICK
+# ^LicenseTextRB
+Vennligst les gjennom lisensavtalen før du installerer $(^Name). Hvis du godtar vilkårene i avtalen, velg det første alternativet. $_CLICK
+# ^UnLicenseText
+Vennligst les gjennom lisensavtalen før du avinstallerer $(^Name). Hvis du godtar vilkårene i avtalen, trykk på Godta.
+# ^UnLicenseTextCB
+Vennligst les gjennom lisensavtalen før du avinstallerer $(^Name). Hvis du godtar vilkårene i avtalen, merk av under. $_CLICK
+# ^UnLicenseTextRB
+Vennligst les gjennom lisensavtalen før du avinstallerer $(^Name). Hvis du godtar vilkårene i avtalen, velg det første alternativet. $_CLICK
+# ^Custom
+Egendefinert
+# ^ComponentsText
+Merk komponentene du vil installere og fjern merkingen for de du ikke vil installere. $_CLICK
+# ^ComponentsSubText1
+Velg hvilken måte du vil installere på:
+# ^ComponentsSubText2_NoInstTypes
+Merk komponenter du vil installere:
+# ^ComponentsSubText2
+Eller merk de valgfrie komponentene du ønsker å installere:
+# ^UnComponentsText
+Merk komponentene du vil avinstallere og fjern merkingen for de du vil beholde. $_CLICK
+# ^UnComponentsSubText1
+Velg hvilken måte du vil avinstallere på:
+# ^UnComponentsSubText2_NoInstTypes
+Merk komponenter du vil avinstallere:
+# ^UnComponentsSubText2
+Eller merk de valgfrie komponentene du ønsker å avinstallere:
+# ^DirText
+$(^Name) vil bli installert i følgende mappe. For å velge en annen mappe, trykk Bla gjennom. $_CLICK
+# ^DirSubText
+Målmappe
+# ^DirBrowseText
+Velg mappe du vil installere $(^Name) i:
+# ^UnDirText
+$(^Name) i følgende mappe vil bli avinstallert. For å velge en annen mappe, trykk Bla gjennom. $_CLICK
+# ^UnDirSubText
+""
+# ^UnDirBrowseText
+Velg mappe du vil avinstallere $(^Name) fra:
+# ^SpaceAvailable
+"Ledig plass: "
+# ^SpaceRequired
+"Nødvendig plass: "
+# ^UninstallingText
+Denne veiviseren vil avinstallere $(^Name) fra din datamaskin. $_CLICK
+# ^UninstallingSubText
+Avinstallerer fra:
+# ^FileError
+Feil under åpning av fil for skriving: \r\n\t\"$0\"\r\nTrykk Avbryt for å avbryte installasjonen,\r\nPrøv igjen for å prøve igjen, eller\r\nIgnorer for å hoppe over denne filen
+# ^FileError_NoIgnore
+Feil under åpning av fil for skriving: \r\n\t\"$0\"\r\nTrykk Prøv igjen for å prøve igjen, or\r\neller Avbryt for å avbryte installasjonen
+# ^CantWrite
+"Kan ikke skrive: "
+# ^CopyFailed
+Kopiering mislyktes
+# ^CopyTo
+"Kopier til "
+# ^Registering
+"Registrerer: "
+# ^Unregistering
+""Avregistrerer: "
+# ^SymbolNotFound
+"Kunne ikke finne symbol: "
+# ^CouldNotLoad
+"Kunne ikke laste: "
+# ^CreateFolder
+"Lag mappe: "
+# ^CreateShortcut
+"Lag snarvei: "
+# ^CreatedUninstaller
+"Avinstallasjon laget: "
+# ^Delete
+"Slett fil: "
+# ^DeleteOnReboot
+"Slett ved omstart: "
+# ^ErrorCreatingShortcut
+"Feil under opprettelse av snarvei: "
+# ^ErrorCreating
+"Feil under opprettelse av: "
+# ^ErrorDecompressing
+Feil under utpakking av data! Installasjonsprogrammet kan være skadet.
+# ^ErrorRegistering
+Feil under registrering av DLL
+# ^ExecShell
+"ExecShell: "
+# ^Exec
+"Kjøre: "
+# ^Extract
+"Pakk ut: "
+# ^ErrorWriting
+"Pakk ut: Feil under skriving til fil "
+# ^InvalidOpcode
+Installasjonsprogrammet er skadet: ukjent kode
+# ^NoOLE
+"Ingen OLE for: "
+# ^OutputFolder
+"Ut-mappe: "
+# ^RemoveFolder
+"Fjern mappe: "
+# ^RenameOnReboot
+"Gi nytt navn ved omstart: "
+# ^Rename
+"Gi nytt navn: "
+# ^Skipped
+"Hoppet over: "
+# ^CopyDetails
+Kopier detaljer til utklippstavlen
+# ^LogInstall
+Loggfør installasjonsprosessen
+# ^Byte
+B
+# ^Kilo
+K
+# ^Mega
+M
+# ^Giga
+G

@@ -1,0 +1,190 @@
+# Header, don't edit
+NLF v6
+# Language ID
+1091
+# Font and size - dash (-) means default
+-
+-
+# Codepage - dash (-) means ANSI code page
+1252
+# RTL - anything else than RTL means LTR
+-
+# Translation by Emil Garipov [emil.garipov@gmail.com]
+# ^Branding
+Nullsoft Install System %s
+# ^SetupCaption
+O'rnatish $(^Name)
+# ^UninstallCaption
+O'chirish $(^Name)
+# ^LicenseSubCaption
+: Lisenzion kelishuv
+# ^ComponentsSubCaption
+: O'rnatish parametrlari 
+# ^DirSubCaption
+: O'rnatish papkasi
+# ^InstallingSubCaption
+: Fayllarni kopiya qilish
+# ^CompletedSubCaption
+: Operatsiya yakunlandi
+# ^UnComponentsSubCaption
+: O'chirish parametrlari
+# ^UnDirSubCaption
+: O'chirsh papkasi
+# ^ConfirmSubCaption
+: Tasdiqlash
+# ^UninstallingSubCaption
+: Fayllarni o'chirish
+# ^UnCompletedSubCaption
+: Operatsiya yakunlandi
+# ^BackBtn
+< &Orqaga
+# ^NextBtn
+&Oldinga >
+# ^AgreeBtn
+&Qabul qilaman
+# ^AcceptBtn
+Men &kelishuv shartlarini qabul qilaman
+# ^DontAcceptBtn
+Men &kelishuv shartlarini qabul qilmayman
+# ^InstallBtn
+&O'rnatish
+# ^UninstallBtn
+&O'chirish
+# ^CancelBtn
+Bekor qilish
+# ^CloseBtn
+&Yopish
+# ^BrowseBtn
+&Ko'rish ...
+# ^ShowDetailsBtn
+&Детали...
+# ^ClickNext
+Davom etish uchun 'Oldinga'tugmachasini bosing.
+# ^ClickInstall
+Dasturni o'rnatish uchun'O'rnatish' tugmachasini bosing.
+# ^ClickUninstall
+Dasturni o'chirish uchun 'O'chirsh' tugmachasini bosing.
+# ^Name
+Ism
+# ^Completed
+Tayor
+# ^LicenseText
+$(^NameDA)ni o'rnatishdan oldin lisenzion kelishuv bilan tanishib oling. Kelishuv shartlarini qabul qilsangiz 'Qabul qilaman' tugmachasini bosing.
+# ^LicenseTextCB
+$(^NameDA)ni o'rnatishdan oldin lisenzion kelishuv bilan tanishib oling. Kelishuv shartlarini qabul qilsangiz bayroqchani joylashtiring. $_CLICK
+# ^LicenseTextRB
+$(^NameDA)ni o'rnatishdan oldin lisenzion kelishuv bilan tanishib oling. Kelishuv shartlarini qabul qilsangiz quyida taklif etilganlardan birinchi variantni tanlang. $_CLICK
+# ^UnLicenseText
+$(^NameDA)ni o'rnatishdan oldin lisenzion kelishuv bilan tanishib oling. Kelishuv shartlarini qabul qilsangiz 'Qabul qilaman' tugmachasini bosing.
+# ^UnLicenseTextCB
+$(^NameDA)ni o'rnatishdan oldin lisenzion kelishuv bilan tanishib oling. Kelishuv shartlarini qabul qilsangiz bayroqchani joylashtiring. $_CLICK
+# ^UnLicenseTextRB
+$(^NameDA)ni o'rnatishdan oldin lisenzion kelishuv bilan tanishib oling. Kelishuv shartlarini qabul qilsangiz quyida taklif etilganlardan birinchi variantni tanlang. $_CLICK
+# ^Custom
+Tanlash bo'icha
+# ^ComponentsText
+O'rnatish ucun dastur komponentlarini tanlang. $_CLICK
+# ^ComponentsSubText1
+O'rnatish jarayonini tanlang:
+# ^ComponentsSubText2_NoInstTypes
+O'rnatish uchun dastur komponentlarini tanlang:
+# ^ComponentsSubText2
+Yoki o'rnatish uchun qushimcha komponentlarini tanlang:
+# ^UnComponentsText
+O'chirish uchun dastur komponentlarini tanlang. $_CLICK
+# ^UnComponentsSubText1
+O'chirish jarayonini tanlang:
+# ^UnComponentsSubText2_NoInstTypes
+O'chirish uchun dastur komponentlarini tanlang:
+# ^UnComponentsSubText2
+Yoki o'chirish uchun qushimcha komponentlarini tanlang:
+# ^DirText
+Dastur $(^NameDA)ni ko'rsatilgan papkaga o'rnatadi. Boshqa papkaga o'rnatish uchun, 'Ko'rish'tugmachasini bosing va uni ko'rsatib bering. $_CLICK
+# ^DirSubText
+O'rnatish papkasi
+# ^DirBrowseText
+O'rnatish papkasini ko'rsating $(^NameDA):
+# ^UnDirText
+Dastur $(^NameDA)ni ko'rsatilgan papkadan o'chiradi. Boshqa papkaga o'rnatish uchun, 'Ko'rish'tugmachasini bosing va uni ko'rsatib bering. $_CLICK
+# ^UnDirSubText
+""
+# ^UnDirBrowseText
+$(^NameDA)ni o'chirish uchun papkani ko'rsating:
+# ^SpaceAvailable
+"Diskda joriy qilingan: "
+# ^SpaceRequired
+"Diskda talab qilinadigan: "
+# ^UninstallingText
+$(^NameDA) dasturi kompyuterizdan uchiriladi. $_CLICK
+# ^UninstallingSubText
+O'chirilish:
+# ^FileError
+Yozish uchun faylni ochish imkoniyati yuq: \r\n\t"$0"\r\n'Tuxtashish': O'rnatishni tuxtatish;\r\n"Takrorlash":yana bir o'rinib ko'rish;\r\n"Taylab ketish": shu xarakatni taylab ketish.
+# ^FileError_NoIgnore
+Yozish uchun faylni ochish imkoniyati yuq: \r\n\t"$0"\r\n'Takrorlash': yana bir o'rinib ko'rish;\r\n'Bekor qilish': o'rnatish protsessini bekor qilish.
+# ^CantWrite
+"Yozish uchun imkoniyat yuq: "
+# ^CopyFailed
+Kopiya qilganda xato bor
+# ^CopyTo
+"Kopiya qilish "
+# ^Registering
+"Ro'yxatga olish: "
+# ^Unregistering
+"Ro'xatdan chiqish: "
+# ^SymbolNotFound
+"Simvolni topish imkoniyati yuq: "
+# ^CouldNotLoad
+"Zagruzka qilish imkoniyati yuq: "
+# ^CreateFolder
+"Papkani yaratish: "
+# ^CreateShortcut
+"Belgini yaratish: "
+# ^CreatedUninstaller
+"O'chirish dasturini yaratish: "
+# ^Delete
+"Faylni o'chirish: "
+# ^DeleteOnReboot
+"Kompyuter qayta yuklash jaraonida o'chirish: "
+# ^ErrorCreatingShortcut
+"Belgini yaratish jarayonida xato: " 
+# ^ErrorCreating
+"Yaratish xatosi: "
+# ^ErrorDecompressing
+Ma'lumotlarni asilga qaytarish xatosi! Distributiv ziyonlangan bulishi mumkin.
+# ^ErrorRegistering
+Kutubxonani ro'xatga olish imkoniyati yuq (DLL)
+# ^ExecShell
+"Qoplang'ich komandasini bajarish: " 
+# ^Exec
+"Bajarish: "
+# ^Extract
+"Ichidan olish: "
+# ^ErrorWriting
+"Ichidan olish: fayl yozish xatosi "
+# ^InvalidOpcode
+Distributiv ziyonlangan: ruxsatlanmangan kod
+# ^NoOLE
+"Quydagilarga OLE yuq: " 
+# ^OutputFolder
+"Papkani o'rnatish: "
+# ^RemoveFolder
+"Papkani o'chirish: "
+# ^RenameOnReboot
+"Kompyuter qayta yuklanish jarayonida ismni qaita quyish: "
+# ^Rename
+"Ismni qayta quyish: "
+# ^Skipped
+"O'tkazib yuborish: "
+# ^CopyDetails
+Bufer obmenaga ma'lumotlarni kopiya qilish
+# ^LogInstall
+O'rnatish xisobotini chiqorish
+# byte
+байт
+# kilo
+ К
+# mega
+ М
+# giga
+ Г
