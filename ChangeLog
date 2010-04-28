@@ -1,3 +1,6 @@
+2010-04-27 Jaroslaw Kowalski <jaak@jkowalski.net>
+	* Added NightlyBuild target to NLog.proj 
+
 2010-04-15 Jaroslaw Kowalski <jaak@jkowalski.net>
 	* Added Silverlight 4.0 GDR support and updated .NET Framework 4.0 build number to reflect the final release.
 

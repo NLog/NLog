@@ -154,6 +154,12 @@ if (%1)==(all) (
 	goto next
 )
 
+if (%1)==(nightlybuild) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:NightlyBuild
+	shift
+	goto next
+)
+
 echo Usage: %0 [configuration] [platform]... [target]...
 echo.
 echo Where platform is one or more of the following:
@@ -184,6 +190,7 @@ echo  runtests           Runs unit tests
 echo  checkinsuite       Cleans, builds and runs all tests
 echo  doc                Builds documentation
 echo  all                Full build
+echo  nightlybuild       Nightly build
 exit /b 1
 
 :build
