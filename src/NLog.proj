@@ -139,6 +139,11 @@
   <Target Name="All" DependsOnTargets="DeepClean;Clean;Build;BuildTests;RunTests;Documentation">
   </Target>
 
+  <Target Name="NightlyBuild">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="DeepClean;Clean;Build;BuildTests;RunTests;Documentation" Properties="Configuration=Release" />
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Clean;Build;BuildTests;RunTests" Properties="Configuration=Debug" />
+  </Target>
+
   <Target Name="Rebuild" DependsOnTargets="Clean;Build">
   </Target>
 
