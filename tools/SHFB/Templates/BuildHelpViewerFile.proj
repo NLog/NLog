@@ -1,0 +1,56 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <!-- Sandcastle Help File Builder Tasks.  http://SHFB.CodePlex.com -->
+  <UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.BuildHelpViewerFile"
+    AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
+
+  <!-- Task properties -->
+  <PropertyGroup>
+    <WorkingFolder>{@HtmlEncWorkingFolder}Output</WorkingFolder>
+    <OutputFolder>{@HtmlEncOutputFolder}</OutputFolder>
+    <HtmlHelpName>{@HTMLEncHelpName}</HtmlHelpName>
+    <StopWordList>{@StopWordListFilename}</StopWordList>
+  </PropertyGroup>
+
+  <!-- File groups -->
+  <ItemGroup>
+    <OldHelpFiles Include="$(OutputFolder)\$(HtmlHelpName).MSHC" />
+  </ItemGroup>
+
+  <!-- This defines the dependencies for the Build target -->
+  <PropertyGroup>
+    <BuildDependsOn>
+      BeforeBuildHelpViewerFile;
+      BuildHelpViewerFile;
+      AfterBuildHelpViewerFile
+    </BuildDependsOn>
+  </PropertyGroup>
+
+  <Target Name="Build" DependsOnTargets="$(BuildDependsOn)" />
+
+  <!-- The Build MS Help Viewer file target -->
+  <Target Name="BuildHelpViewerFile">
+    <!-- Delete the old files if they are there -->
+    <Delete Files="@(OldHelpFiles)" />
+
+    <!-- Copy the stop word list if specified -->
+    <Copy Condition="'$(StopWordList)' != ''"
+      SourceFiles="$(StopWordList)"
+      DestinationFiles="$(WorkingFolder)\$(StopWordList)" />
+
+    <!-- Build the help file -->
+    <BuildHelpViewerFile
+      WorkingFolder="$(WorkingFolder)"
+      OutputFolder="$(OutputFolder)"
+      HtmlHelpName="$(HtmlHelpName)" />
+
+    <!-- We must remove these in case we are building a 1x file or a website
+         as well -->
+    <Delete Files="$(WorkingFolder)\$(StopWordList)" />
+
+  </Target>
+
+  <!-- The following targets may be overridden or replaced to perform
+       additional processing. -->
+  <Target Name="BeforeBuildHelpViewerFile" />
+  <Target Name="AfterBuildHelpViewerFile" />
+</Project>

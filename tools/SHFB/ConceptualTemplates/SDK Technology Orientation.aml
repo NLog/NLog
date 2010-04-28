@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="00000000-0000-0000-0000-000000000000" revisionNumber="1">
+  <developerSDKTechnologyOverviewOrientationDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <!--
+    <summary>
+      <para>Optional summary abstract</para>
+    </summary>
+    -->
+
+    <introduction>
+      <para>Required introduction</para>
+    </introduction>
+
+    <inThisSection>
+      <content>
+        <para>"In This Section" info</para>
+      </content>
+    </inThisSection>
+
+    <!-- <reference>Optional reference info</reference> -->
+
+    <!-- <relatedSections>Optional related sections info</relatedSections> -->
+
+    <!-- <externalResources>Optional external resources info</externalResources> -->
+
+  </developerSDKTechnologyOverviewOrientationDocument>
+</topic>

@@ -1,0 +1,118 @@
+/* tab styles */
+
+/* unselected label */
+div.section table.filter tr.tabs td.tab {
+	width: 10em;
+	background: white;
+	text-align: center;
+	color: #0481DA;
+	font-weight: normal;
+	overflow: hidden;
+	cursor: pointer;
+	border-bottom: solid 1px #cad1da;
+	font-size: xx-small;
+}
+
+/* selected label */
+div.section table.filter tr.tabs td.activeTab {
+	width: 10em;
+	background: #E3E6EB;
+	text-align: center;
+	color: #000066;
+	font-weight: bold;
+	overflow: hidden;
+	font-size: xx-small;
+}
+
+/* unselected upper left corner */
+td.LeftTab {
+	width: 5px;
+	height: 5px;
+	background-image: url("../icons/tab_unsel_lft_cnr.gif");
+	background-repeat: no-repeat;
+	font-size:2pt;
+}
+
+/* selected upper left corner */
+td.activeLeftTab {
+	width: 5px;
+	height: 5px;
+	background-image: url("../icons/tab_sel_lft_cnr.gif");
+	background-repeat: no-repeat;
+	font-size:2pt;
+}
+
+/* unselected upper right corner */
+td.RightTab {
+	width: 5px;
+	height: 5px;
+	background-image: url("../icons/tab_unsel_rt_cnr.gif");
+	background-repeat: no-repeat;
+	font-size:2pt;
+}
+
+/* selected upper right corner */
+td.activeRightTab {
+	width: 5px;
+	height: 5px;
+	background-image: url("../icons/tab_sel_rt_cnr.gif");
+	background-repeat: no-repeat;
+	font-size:2pt;
+}
+
+/* unselected left gradient */
+td.leftGrad {
+	width: 5px;
+	border-bottom: solid 1px #cad1da;
+	background-image: url("../icons/tab_unsel_lft_grad.gif");
+	background-repeat: repeat-y;
+	font-size:2pt;
+}
+
+/* selected left gradient */
+td.activeLeftGrad {
+	width: 5px;
+	background-image: url("../icons/tab_sel_lft_grad.gif");
+	background-repeat: repeat-y;
+	font-size:2pt;
+}
+
+/* unselected right gradient */
+td.RightGrad {
+	width: 5px;
+	border-bottom: solid 1px #cad1da;
+	background-image: url("../icons/tab_unsel_rt_grad.gif");
+	background-repeat: repeat-y;
+	white-space:nowrap;
+	font-size:2pt;
+}
+
+/* selected right gradient */
+td.activeRightGrad {
+	width: 5px;
+	background-image: url("../icons/tab_sel_rt_grad.gif");
+	background-repeat: repeat-y;
+	white-space:nowrap;
+	font-size:2pt;
+}
+
+/* unselected label top */
+td.middleTab {
+	width: 10em;
+	background: white;
+	height: 5px;
+	border-top: solid 1px #cad1da;
+	font-size:2pt;
+}
+
+/* selected label top */
+td.activeMiddleTab 
+{
+	width: 10em;
+	background: #E3E6EB;
+	height: 5px;
+	border-top: solid 1px #bdc6d2;
+	font-size:2pt;
+}
+
+

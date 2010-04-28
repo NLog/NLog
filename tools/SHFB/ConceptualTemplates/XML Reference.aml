@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="00000000-0000-0000-0000-000000000000" revisionNumber="1">
+  <developerXmlReference
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <!--
+    <summary>
+      <para>Optional summary abstract</para>
+    </summary>
+    -->
+
+    <introduction>
+      <para>Required introduction</para>
+    </introduction>
+
+    <!-- Optional schema hierarchy
+    <schemaHierarchy>
+      <link xlink:href="Other Topic's ID">Link 1</link>
+      <link xlink:href="Other Topic's ID">Link 2</link>
+    </schemaHierarchy> -->
+
+    <syntaxSection>
+      <sections>
+        <section>
+          <title>Syntax section title</title>
+          <content>
+            <para>Syntax content</para>
+          </content>
+        </section>
+      </sections>
+      <legacySyntax>
+        <parameterReference>Parameter reference</parameterReference>
+      </legacySyntax>
+    </syntaxSection>
+
+    <attributesandElements>
+      <para>Attributes and elements syntax introduction</para>
+      <attributes>
+        <para>Attributes syntax</para>
+      </attributes>
+      <attribute>
+        <title>Syntax title</title>
+        <table>
+          <tableHeader>
+            <row>
+              <entry>
+                <para>Attribute header</para>
+              </entry>
+            </row>
+          </tableHeader>
+          <row>
+            <entry>
+              <para>Attribute value</para>
+            </entry>
+          </row>
+        </table>
+      </attribute>
+      <childElement>
+        <para>Child element syntax</para>
+      </childElement>
+      <parentElement>
+        <para>Parent element syntax</para>
+      </parentElement>
+    </attributesandElements>
+
+    <!-- <codeExample>Optional code example.</codeExample> -->
+
+    <!-- <elementInformation>Optional element info</elementInformation> -->
+
+    <relatedTopics>
+      <!-- One or more of the following:
+           - A local link
+           - An external link
+           - A code entity reference
+
+      <link xlink:href="Other Topic's ID">Link text</link>
+      <externalLink>
+          <linkText>Link text</linkText>
+          <linkAlternateText>Optional alternate link text</linkAlternateText>
+          <linkUri>URI</linkUri>
+      </externalLink>
+      <codeEntityReference>API member ID</codeEntityReference>
+
+      Examples:
+
+      <link xlink:href="00e97994-e9e6-46e0-b420-5be86b2f8278">Some other topic</link>
+
+      <externalLink>
+          <linkText>SHFB on CodePlex</linkText>
+          <linkAlternateText>Go to CodePlex</linkAlternateText>
+          <linkUri>http://shfb.codeplex.com</linkUri>
+      </externalLink>
+
+      <codeEntityReference>T:TestDoc.TestClass</codeEntityReference>
+      <codeEntityReference>P:TestDoc.TestClass.SomeProperty</codeEntityReference>
+      <codeEntityReference>M:TestDoc.TestClass.#ctor</codeEntityReference>
+      <codeEntityReference>M:TestDoc.TestClass.#ctor(System.String,System.Int32)</codeEntityReference>
+      <codeEntityReference>M:TestDoc.TestClass.ToString</codeEntityReference>
+      <codeEntityReference>M:TestDoc.TestClass.FirstMethod</codeEntityReference>
+      <codeEntityReference>M:TestDoc.TestClass.SecondMethod(System.Int32,System.String)</codeEntityReference>
+      -->
+    </relatedTopics>
+  </developerXmlReference>
+</topic>

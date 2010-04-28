@@ -11,6 +11,8 @@
     <NLogPath>$(MSBuildProjectDirectory)\..\..\</NLogPath>
     <WorkingPath>Working\</WorkingPath>
     <SHFBSchemaVersion>1.8.0.3</SHFBSchemaVersion>
+    <SHFBROOT>..\..\Tools\SHFB</SHFBROOT>
+    <SandcastlePath>..\..\Tools\Sandcastle</SandcastlePath>
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
          Studio adds them anyway -->
     <AssemblyName>NLog</AssemblyName>

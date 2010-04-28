@@ -2,3 +2,4 @@ obj/
 bin/
 msbuild.log
 LastTestRunSummary.cmd
+src/Docs/Working/

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<stockSharedContentDefinitions fileAssetGuid="776527bc-b900-4355-ad24-f6e1ca90ea1c" assetTypeId="ProjSettings">
+  <item id="PBM_ProjectName">aspnet_howto</item>
+  <item id="PBM_FileVersion" />
+  <item id="PBM_CreateFullTextIndex">True</item>
+  <item id="PBM_SingleOutputFile">False</item>
+  <item id="PBM_NamedURLIndexFilePath" />
+  <item id="PBM_HomeTopic" />
+  <item id="PBM_CopySharedFiles">False</item>
+</stockSharedContentDefinitions>

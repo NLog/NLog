@@ -1,0 +1,1 @@
+This is a directory where Sandcastle stores reflection data.

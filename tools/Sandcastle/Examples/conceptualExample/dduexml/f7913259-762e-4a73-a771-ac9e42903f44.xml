@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="f7913259-762e-4a73-a771-ac9e42903f44" revisionNumber="7">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>How to: Configure the Login Service with Windows Communication Framework</title>
+  <introduction>
+    <para>This topic shows how to set up the ASP.NET Login service as a Windows Communication Framework (WCF) service on a Web server that runs Internet Information Services (IIS). The example includes configuring the Login service to run over Secure Sockets Layer (SSL). </para>
+    <alert class="note">
+      <para>Always use the Login service together with SSL to protect sensitive data.</para>
+    </alert>
+  </introduction>
+  <procedure>
+    <title>To set up SSL on a Web server</title>
+    <steps class="bullet">
+      <step>
+        <content>
+          <para>If the Web server is not already set up for SSL, obtain and install a server certificate. </para>
+          <para>For information about how to set up SSL, see How to: Set Up SSL on a Web Server.</para>
+        </content>
+      </step>
+    </steps>
+  </procedure>
+  <procedure>
+    <title>To set up the Login service</title>
+    <steps class="ordered">
+      <step>
+        <content>
+          <para>If you do not already have one, create an ASP.NET Web application.</para>
+        </content>
+      </step>
+      <step>
+        <content>
+          <para>Add a WCF service file (.svc) file to the Web site and add to it the following directive that references the <codeEntityReference autoUpgrade="true">T:System.Web.Security.LoginService</codeEntityReference> class:</para>
+          <code language="c#">&lt;% @ServiceHost Language="C#" Service="System.Web.Security.LoginService" %&gt;
+
+&lt;% @ServiceHost Language="VB" Service="System.Web.Security.LoginService" %&gt;</code>
+        </content>
+      </step>
+      <step>
+        <content>
+          <para>Save the .svc file and close it.</para>
+        </content>
+      </step>
+      <step>
+        <content>
+          <para>Add values to the Web.config file to configure the service and require that it be accessed over SSL. </para>
+          <list class="bullet">
+            <listItem>
+              <para>Define the endpoint contract in the <languageKeyword>&lt;services&gt;</languageKeyword> element and the service behavior in the <languageKeyword>&lt;behaviors&gt;</languageKeyword> element. For more information about WCF endpoints, see Endpoints in WCF.</para>
+            </listItem>
+            <listItem>
+              <para>Configure the <languageKeyword>&lt;serviceHostingEnvironment&gt;</languageKeyword> element for ASP.NET compatibility. For more information about hosting WCF services, see WCF Services and ASP.NET.</para>
+            </listItem>
+            <listItem>
+              <para>Create a binding in the <languageKeyword>&lt;bindings&gt;</languageKeyword> element that requires SSL. For more information about transport security in WCF, see Transport Security.</para>
+            </listItem>
+          </list>
+          <code>&lt;system.serviceModel&gt;
+    &lt;services&gt;
+        &lt;service name="System.Web.Security.LoginService"
+        behaviorConfiguration="MyServiceTypeBehaviors"&gt;
+            &lt;endpoint contract=
+                "System.Web.Security.LoginService"
+                binding="basicHttpBinding"
+                bindingConfiguration="userHttps" /&gt;
+        &lt;/service&gt;
+    &lt;/services&gt;
+    &lt;bindings&gt;
+        &lt;basicHttpBinding&gt;
+            &lt;binding name="userHttps"&gt;
+                &lt;security mode="Transport" /&gt;
+            &lt;/binding&gt;
+        &lt;/basicHttpBinding&gt;
+    &lt;/bindings&gt;
+    &lt;behaviors&gt;
+        &lt;serviceBehaviors&gt;
+          &lt;behavior name="MyServiceTypeBehaviors"&gt;
+            &lt;serviceMetadata httpGetEnabled="true"/&gt;
+          &lt;/behavior&gt;
+        &lt;/serviceBehaviors&gt;
+    &lt;/behaviors&gt;
+    &lt;serviceHostingEnvironment
+    aspNetCompatibilityEnabled="true"/&gt;
+&lt;/system.serviceModel&gt;</code>
+        </content>
+      </step>
+    </steps>
+  </procedure>
+  <procedure>
+    <title>To set up forms authentication</title>
+    <steps class="bullet">
+      <step>
+        <content>
+          <para>In the Web.config file, configure the Web application to use forms authentication. The Login service requires cookies to be enabled, so in the <languageKeyword>&lt;authentication&gt;</languageKeyword> element, set the <languageKeyword>cookieless</languageKeyword> attribute to "UseCookies". Setting the <languageKeyword>protection</languageKeyword> attribute to "All" guarantees that the server will encrypt the authentication cookie when it is created and validate it contents when returned from client.</para>
+          <para>The following example shows the <languageKeyword>&lt;authentication&gt;</languageKeyword> element in a Web.config file, configured to use forms authentication.</para>
+          <code>&lt;authentication mode="Forms"&gt;
+    &lt;forms name=".SVCAuthCookie" cookieless="UseCookies" 
+    protection="All"/&gt;
+&lt;/authentication&gt;</code>
+        </content>
+      </step>
+    </steps>
+  </procedure>
+  <procedure>
+    <title>To set up the Membership provider </title>
+    <steps class="bullet">
+      <step>
+        <content>
+          <para>Set the default membership provider for use with the Login service. Make sure that the password is hashed by setting the <languageKeyword>hashAlgorithmType</languageKeyword> attribute to "SHA1". </para>
+          <para>The following example shows how to set up a custom membership provider. For more information about membership providers, see <link xlink:href="d8658b8e-c962-4f64-95e1-4acce35e4582">Implementing a Membership Provider</link>.</para>
+          <code>&lt;membership defaultProvider="CustomSqlProvider" 
+    hashAlgorithmType="SHA1" &gt;
+    &lt;providers&gt;
+        &lt;remove name="AspNetSqlMembershipProvider" /&gt;
+        &lt;add name="CustomSqlProvider"
+        type="System.Web.Security.SqlMembershipProvider"
+        connectionStringName="SqlServices"
+        enablePasswordRetrieval="false"
+        requiresQuestionAndAnswer="false"
+        passwordFormat="Hashed" 
+        applicationName="/" /&gt; 
+    &lt;/providers&gt;
+&lt;/membership&gt;</code>
+        </content>
+      </step>
+    </steps>
+  </procedure>
+  <codeExample>
+    <description>
+      <content>
+        <para>The following code example shows the complete Web.config file for setting up the Login service for use over SSL.</para>
+      </content>
+    </description>
+    <codeReference>System.Web.Security.LoginService_Setup#1</codeReference>
+    <comments>
+      <content>
+      </content>
+    </comments>
+  </codeExample>
+  <security>
+    <content>
+    </content>
+  </security>
+  <relatedTopics>
+    <link xlink:href="6e121a28-89e8-4974-88a8-70aaa6a7d52b">Login Service Overview</link>
+  </relatedTopics>
+</developerHowToDocument>
+</topic>

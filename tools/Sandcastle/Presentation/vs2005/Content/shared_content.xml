@@ -1,0 +1,250 @@
+<content xml:space="preserve"
+ xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+
+	<!-- paths -->
+	<item id="iconPath">../icons/{0}</item>
+	<item id="scriptPath">../scripts/{0}</item>
+	<item id="artPath">../art/{0}</item>
+	<item id="stylePath">../styles/{0}</item>
+
+	<!-- locale -->
+	<item id="locale">en-us</item>
+
+	<item id="desktopTechnologyAttribute">kbNetFramewk</item>
+	<item id="netcfTechnologyAttribute">kbNetCompactFramewk</item>
+	<item id="netcfDocSetAttribute">NetCompactFramework</item>
+  <item id="xnaTechnologyAttribute">kbXNA</item>
+	<item id="xnaDocSetAttribute">XNA</item>
+
+  	<!-- header -->
+	<item id="header"><font color="DarkGray"></font><p/> </item>
+  
+  <!-- freshness date -->
+  <item id="UpdateTitle"><font color="DarkGray">Updated: {0}</font></item>
+  
+  <!-- topic title -->
+  <item id="nsrTitle">{0}</item>
+
+	<!-- alert titles -->
+	<item id="tipTitle"><b>Tip:</b></item>
+	<item id="cautionTitle"><b>Caution:</b></item>
+	<item id="securityTitle"><b>Security Note:</b></item>
+	<item id="noteTitle"><b>Note:</b></item>
+	<item id="importantTitle"><b>Important Note:</b></item>
+	<item id="visualBasicTitle"><b>Visual Basic Note:</b></item>
+	<item id="visualC#Title"><b>C# Note:</b></item>
+	<item id="visualC++Title"><b>C++ Note:</b></item>
+	<item id="visualJ#Title"><b>J# Note:</b></item>
+
+	<!-- alert alt text -->
+	<item id="tipAltText">Tip</item>
+	<item id="cautionAltText">Caution note</item>
+	<item id="securityAltText">Security note</item>
+	<item id="noteAltText">Note</item>
+	<item id="importantAltText">Important note</item>
+	<item id="visualBasicAltText">Visual Basic note</item>
+	<item id="visualC#AltText">C# note</item>
+	<item id="visualC++AltText">C++ note</item>
+	<item id="visualJ#AltText">J# note</item>	
+	
+	<!-- code labels -->
+	<item id="CSharpLabel">C#</item>
+	<item id="VisualBasicLabel">Visual Basic</item>
+	<item id="ManagedCPlusPlusLabel">Visual C++</item>
+	<item id="JSharpLabel">J#</item>
+	<item id="JScriptLabel">JScript</item>
+  <item id="JavaScriptLabel">JavaScript</item>
+  <item id="XAMLLabel">XAML</item>
+
+  <!-- section titles -->
+  <item id="exceptionsTitle">Exceptions</item>
+  <item id="SeeAlso">See&#160;Also</item>
+  <item id="SeeAlsoTasks">Tasks</item>
+  <item id="SeeAlsoReference">Reference</item>
+  <item id="SeeAlsoConcepts">Concepts</item>
+  <item id="SeeAlsoOtherResources">Other Resources</item>
+
+	<!-- tool tips -->
+	<item id="collapseAllImage">CollapseAll image</item>
+	<item id="expandAllImage">ExpandAll image</item>
+	<item id="dropDownImage">DropDown image</item>
+	<item id="dropDownHoverImage">DropDownHover image</item>
+	<item id="collapseImage">Collapse image</item>
+	<item id="expandImage">Expand Image</item>
+	<item id="copyHoverImage">CopyHover image</item>
+	<item id="copyImage">Copy image</item>
+	<item id="footerImage">Footer image</item>
+	
+  	 <!-- product labels -->
+  	<item id="framework">.NET Framework</item>
+  	<item id="compact">.NET Compact Framework</item>
+  	<item id="everett">1.1</item>
+  	<item id="whidbey">2.0</item>
+
+	<item id="copyCode">Copy Code</item>
+  	
+  
+   <!-- dynamic Link Information -->
+  <item id="mshelpKTable"><MSHelp:ktable keywords='{0}' locHeader='Location' topicHeader = 'Topic' disambiguator='table' indexMoniker='!DefaultDynamicLinkIndex' /></item>
+
+  <item id="dynamicLinkInlinePreFixText">For more information, see </item>
+  <item id="dynamicLinkInlinePostFixText">.</item>
+  <item id="dynamicLinkInlineSeperatorText"> and </item>
+    
+  <item id="remarksTitle">Remarks</item>
+  
+  <!-- devlangs filter -->
+  <item id="devlangsDropdown">Code: {0}</item>
+  <item id="all">All</item>
+  <item id="multiple">Multiple</item>
+  <item id="VisualBasic">Visual Basic</item>
+  <item id="VBScript">Visual Basic Script</item>
+  <item id="CSharp">C#</item>
+  <item id="ManagedCPlusPlus">Visual C++</item>
+  <item id="JSharp">J#</item>
+  <item id="JScript">JScript</item>
+  <item id="xmlLang">Xml</item>
+  <item id="JavaScript">JavaScript</item>
+  <item id="html">Html</item>
+  <item id="visualbasicANDcsharp"><include item="VisualBasic"/> and <include item="CSharp"/></item>
+  <item id="other"></item>
+  <item id="XAML">XAML</item>
+  <item id="usage">Usage</item>
+  <item id="AspNet">ASP.NET</item>
+  <item id="VisualBasicDeclaration"><include item="VisualBasic"/> (Declaration)</item>
+  <item id="VisualBasicUsage"><include item="VisualBasic"/> (<include item="usage"/>)</item>
+  
+  <item id="dropdownSeparator"><span>&#160;&#160;&#160;&#160;</span></item>
+  <item id="nsrLinkSeparator"> </item>
+  
+  <!-- language keywords -->
+  <item id="nullKeyword">a null reference (<span class="keyword">Nothing</span> in Visual Basic)</item>
+  <item id="staticKeyword"><span class="keyword">static</span> (<span class="keyword">Shared</span> in Visual Basic)</item>
+  <item id="virtualKeyword"><span class="keyword">virtual</span> (<span class="keyword">Overridable</span> in Visual Basic)</item>
+  <item id="trueKeyword"><span class="keyword">true</span> (<span class="keyword">True</span> in Visual Basic)</item>
+  <item id="falseKeyword"><span class="keyword">false</span> (<span class="keyword">False</span> in Visual Basic)</item>
+  <item id="abstractKeyword"><span class="keyword">abstract</span> (<span class="keyword">MustInherit</span> in Visual Basic)</item>
+  
+  <!-- transforms insert K Index Technology qualifiers based on a conceptual topic's //metadata/attribute[@name='DocSet'] value />-->
+	<!-- If you add new docset values, the item/@id must = "kIndexTechTag_" + the lower-case DocSet name. -->
+  <item id="kIndexTermWithTechQualifier">{0}<include item="kIndexTechTag_{1}" />{2}</item>
+	<item id="kIndexTechTag_avalon"> [WPF]</item>
+	<item id="kIndexTechTag_wpf"> [WPF]</item>
+	<item id="kIndexTechTag_wcf"> [Windows Communication Foundation]</item>
+	<item id="kindextechtag_windowsforms"> [Windows Forms]</item>
+
+	<!-- values for MSHelp:Attr Name="TopicType" -->
+  <item id="TT_developerConceptualDocument">kbArticle</item>
+  <item id="TT_developerErrorMessageDocument">kbRef</item>
+  <item id="TT_developerGlossaryDocument">kbRef</item>
+  <item id="TT_developerHowToDocument">kbHowTo</item>
+  <item id="TT_developerOrientationDocument">kbOrient</item>
+  <item id="TT_developerReferenceWithSyntaxDocument">kbSyntax</item>
+  <item id="TT_developerReferenceWithoutSyntaxDocument">kbRef</item>
+  <item id="TT_developerSampleDocument">kbSampleProd</item>
+  <item id="TT_developerSDKTechnologyOverviewArchitectureDocument">kbArticle</item>
+  <item id="TT_developerSDKTechnologyOverviewCodeDirectoryDocument">kbOrient</item>
+  <item id="TT_developerSDKTechnologyOverviewOrientationDocument">kbOrient</item>
+  <item id="TT_developerSDKTechnologyOverviewScenariosDocument">kbHowTo</item>
+  <item id="TT_developerSDKTechnologyOverviewTechnologySummaryDocument">kbRef</item>
+  <item id="TT_developerTroubleshootingDocument">kbHowTo</item>
+  <item id="TT_developerUIReferenceDocument">kbRef</item>
+  <item id="TT_developerWalkthroughDocument">kbHowTo</item>
+  <item id="TT_developerWhitePaperDocument">kbArticle</item>
+  <item id="TT_developerXmlReference">kbSyntax</item>
+  <item id="TT_ManagedReference">apiref</item>
+
+  <item id="top">Top</item>
+
+  <!-- footer -->	
+	    
+<!--	<item id="footer">
+		<p/>	
+		<span>
+			Send
+		<a>
+			<includeAttribute name="href" item="MailToLink">
+				<parameter>{0}</parameter>
+				<parameter>{1}</parameter>
+			</includeAttribute>
+			comments
+		</a>
+			about this topic to Microsoft.
+		</span>
+	</item>
+
+	<item id="MailToLink">javascript:sendfeedback('Documentation Feedback (Sandcastle CTP): ', '{1}', '');</item>
+  -->
+
+<item id="footer">
+<span id="feedbackarea">
+			Send
+		<a>
+			<includeAttribute name="href" item="MailToLink">
+        <parameter>{2}</parameter>
+        <parameter>{3}</parameter>
+      </includeAttribute>
+      feedback
+		</a>
+			on this topic to Microsoft.
+		</span>
+</item>
+  
+<item id="feedbackHeader">
+  <span id="headfeedbackarea" class="feedbackhead">
+      <a>
+        <includeAttribute name="href" item="MailToLink">
+          <parameter>{0}</parameter>
+          <parameter>{1}</parameter>
+          </includeAttribute>
+        <include item="fb_headerFeedBack" />
+      </a>
+	</span>
+</item> 
+<item id="MailToLink">javascript:SubmitFeedback('<include item="fb_alias" />','<include item="fb_product" />','<include item="fb_deliverable" />','{0}','{1}','<include item="fb_body" />','<include item="fb_subject" />');</item>  
+ 
+<!-- 5 star rating feedback control in sandcastle scenario--> 
+<!--
+<item id="footer">
+  <A NAME="feedback"></A>
+  <span id="fb" class="feedbackcss">
+    <div ID="feedbackarea">
+	    <FORM METHOD="post" ENCTYPE="text/plain" NAME="formRating">
+	      <H5><include item="fb_Title" /></H5>
+	      <P><include item="fb_Introduction" /></P>
+        <table>
+	        <tr>
+	          <td><include item="fb_Poor" /></td>
+	          <td class="fbinputId" align="right">1<BR/><input name="fbRating" type="radio" value="0"></input></td>
+	          <td class="fbinputId" align="right">2<BR/><input name="fbRating" type="radio" value="0"></input></td>
+            <td class="fbinputId" align="right">3<BR/><input name="fbRating" type="radio" value="0"></input></td>
+            <td class="fbinputId" align="right">4<BR/><input name="fbRating" type="radio" value="0"></input></td>
+            <td class="fbinputId" align="right">5<BR/><input name="fbRating" type="radio" value="0"></input></td>
+	          <td><include item="fb_Excellent" /></td>
+	        </tr>
+	      </table>
+	      <P>
+          <include item="fb_EnterFeedbackText" />
+	        <input id="submitFeedback" type="button"><includeAttribute name="value" item="fb_Send"/><includeAttribute name="onclick" item="MailtoLink" /></input> 
+        </P>
+	    </FORM>
+    </div>
+  </span>
+</item>
+
+<item id="feedbackHeader">
+  <span id="headfeedbackarea" class="feedbackhead">
+      <a href="#feedback" ID="IconFB" Target="_self">
+        <include item="fb_headerFeedBack" />
+      </a>
+	</span>
+</item>
+
+<item id="MailToLink">javascript:SubmitFeedback('<include item="feedback_alias" />','<include item="feedback_product" />','<include item="feedback_deliverable" />','<include item="feedback_fileVersion" />','<include item="feedback_topicVersion" />','<include item="feedback_body" />','<include item="feedback_subject" />');</item> 
+-->
+  
+<item id="copyrightStatement"><include item="copyrightText"/></item>
+
+<item id="copyrightText">&#169; 2005 Microsoft Corporation. All rights reserved.</item> 
+
+</content>

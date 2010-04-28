@@ -1,0 +1,54 @@
+<content xml:space="preserve" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+
+	<!-- paths -->
+	<item id="iconPath">../icons/{0}</item>
+	<item id="scriptPath">../scripts/{0}</item>
+	<item id="stylePath">../styles/{0}</item>
+	<item id="artPath">../media/{0}</item>
+
+	<!-- locale -->
+	<item id="locale">en-us</item>
+
+	<!-- header -->
+	<item id="header"><div id="header">This is experimental documentation.</div></item>
+
+	<!-- alert titles -->
+	<item id="cautionTitle"><b>Caution:</b></item>
+	<item id="securityTitle"><b>Security Note:</b></item>
+	<item id="noteTitle"><b>Note:</b></item>
+	<item id="importantTitle"><b>Important Note:</b></item>
+	<item id="visualBasicTitle"><b>Visual Basic Note:</b></item>
+	<item id="visualC#Title"><b>C# Note:</b></item>
+	<item id="visualC++Title"><b>C++ Note:</b></item>
+	<item id="visualJ#Title"><b>J# Note:</b></item>
+
+	<!-- code labels -->
+	<item id="CSharpLabel">C#</item>
+	<item id="VisualBasicLabel">Visual Basic</item>
+	<item id="ManagedCPlusPlusLabel">Visual C++</item>
+	<item id="JSharpLabel">J#</item>
+	<item id="JScriptLabel">JScript</item>
+  <item id="CSharpUsageLabel">C#</item>
+  <item id="VisualBasicUsageLabel">Visual Basic Usage</item>
+  <item id="AspNetUsageLabel">ASP.NET</item>
+  <item id="JavaScriptLabel">JavaScript</item>
+  <item id="XAMLLabel">XAML</item>
+  
+  <!-- product labels -->
+  <item id="framework">.NET Framework</item>
+  <item id="compact">.NET Compact Framework</item>
+  <item id="everett">1.1</item>
+  <item id="whidbey">2.0</item>
+
+<!-- dynamic Link Information -->
+  <item id="mshelpKTable"><MSHelp:ktable keywords='{0}' locHeader='Location' topicHeader = 'Topic' disambiguator='table' indexMoniker='!DefaultDynamicLinkIndex' /></item>
+
+  <item id="dynamicLinkInlinePreFixText">For more information, see </item>
+  <item id="dynamicLinkInlinePostFixText">.</item>
+  <item id="dynamicLinkInlineSeperatorText"> and </item> 
+
+	<!-- footer -->	
+	<item id="footer"><div id="footer"><include item="copyright"/> </div></item>
+	<item id="copyright">2008 Microsoft Corporation. All rights reserved.</item>
+		
+</content>

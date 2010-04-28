@@ -1,0 +1,39 @@
+﻿
+<Project DefaultTargets="Reflection" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <!-- Project Setup -->
+    <NetfxVer>2.0</NetfxVer>
+    <PresentationStyle >vs2005</PresentationStyle>
+    <ProductionTools>$(DxRoot)\ProductionTools</ProductionTools>
+    <ProductionTransforms>$(DxRoot)\ProductionTransforms</ProductionTransforms>
+    <TmpPath>$(DxRoot)\Data\Tmp</TmpPath>
+    <DestPath>$(DxRoot)\Data\Reflection</DestPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyFolders Include="$(WINDIR)\Microsoft.NET\Framework\v2.0.50727\*.dll"/>
+    <AssemblyFolders Include="$(WINDIR)\Microsoft.NET\Framework\v3.0\**\*.dll" Condition="$(NetfxVer)>2.0"/>
+    <AssemblyFolders Include="$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\v3.0\*.dll" Condition="$(NetfxVer)>2.0"/>
+    <AssemblyFolders Include="$(WINDIR)\Microsoft.NET\Framework\v3.5\**\*.dll" Condition="$(NetfxVer)>3.0"/>
+    <AssemblyFolders Include="$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\v3.5\*.dll" Condition="$(NetfxVer)>3.0"/>
+  </ItemGroup>
+
+  <Target Name="Reflection">
+    <MakeDir Directories="$(TmpPath)" Condition="!Exists('$(TmpPath)')" />
+    <MakeDir Directories="$(DestPath)" Condition="!Exists('$(DestPath)')" />
+    <CreateItem Include="@(AssemblyFolders->'%(FullPath)')">
+      <Output ItemName="Assemblies"
+              TaskParameter="Include"/>
+    </CreateItem>    
+    <!--<Message Text="%(Assemblies.FullPath)" />--> 
+    <Exec  ContinueOnError="true" IgnoreExitCode="true"
+      Command="&quot;$(DXROOT)\productiontools\Mrefbuilder.exe&quot; &quot;%(Assemblies.FullPath)&quot; /out:&quot;$(TmpPath)\%(Assemblies.FileName).xml&quot;" />
+    <Exec Condition="'$(PresentationStyle)' == 'prototype'" ContinueOnError="true" IgnoreExitCode="true"
+          Command="&quot;$(ProductionTools)\XslTransform.exe&quot; /xsl:&quot;$(ProductionTransforms)\ApplyPrototypeDocModel.xsl&quot; /xsl:&quot;$(ProductionTransforms)\AddGuidFilenames.xsl&quot; &quot;$(TmpPath)\%(Assemblies.FileName).xml&quot; /out:&quot;$(DestPath)\%(Assemblies.FileName).xml&quot; /arg:IncludeAllMembersTopic=false /arg:IncludeInheritedOverloadTopics=true" />
+    <Exec Condition="'$(PresentationStyle)' == 'vs2005'" ContinueOnError="true" IgnoreExitCode="true"
+          Command="&quot;$(ProductionTools)\XslTransform.exe&quot; /xsl:&quot;$(ProductionTransforms)\ApplyVSDocModel.xsl&quot; /xsl:&quot;$(ProductionTransforms)\AddFriendlyFilenames.xsl&quot; &quot;$(TmpPath)\%(Assemblies.FileName).xml&quot; /out:&quot;$(DestPath)\%(Assemblies.FileName).xml&quot; /arg:IncludeAllMembersTopic=true /arg:IncludeInheritedOverloadTopics=true" />
+    <Exec Condition="'$(PresentationStyle)' == 'hana'" ContinueOnError="true" IgnoreExitCode="true"
+          Command="&quot;$(ProductionTools)\XslTransform.exe&quot; /xsl:&quot;$(ProductionTransforms)\ApplyVSDocModel.xsl&quot; /xsl:&quot;$(ProductionTransforms)\AddFriendlyFilenames.xsl&quot; &quot;$(TmpPath)\%(Assemblies.FileName).xml&quot; /out:&quot;$(DestPath)\%(Assemblies.FileName).xml&quot; /arg:IncludeAllMembersTopic=false /arg:IncludeInheritedOverloadTopics=true" />
+  </Target>
+</Project>

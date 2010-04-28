@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<schema 
+        xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:maml="http://ddue.schemas.microsoft.com/authoring/2003/5"
+		xmlns:doc="http://ddue.schemas.microsoft.com/authoring/internal"
+        targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5" 
+        blockDefault="#all" 
+        elementFormDefault="qualified" 
+        attributeFormDefault="unqualified"
+        xml:lang="en"
+    >
+
+    <!-- Schema documentation -->
+    <annotation>
+        <documentation>
+            This schema describes MAML, the Microsoft Assistance Markup Language.
+            MAML is intended for software documentation. In particular, it is 
+            intended to accomodate the needs of Microsoft documentation.
+        </documentation>
+        <documentation>
+            The schema is broken into three main areas: end user, developer and
+            IT Pro. These areas adequaltely categorize Microsoft
+            documentation.
+        </documentation>
+        <documentation>
+         The namespace uri for this version of Maml is: http://ddue.schemas.microsoft.com/authoring/2003/5.
+         Each backwards-incompatible revision to Maml will require that the date fields be appropriately
+         incremented in uri of the updated version of the Maml schema.
+        </documentation>
+    </annotation>
+
+    <annotation>
+        <documentation>
+            This portion of the schema was created by alexstoc in April 2003.
+        </documentation>
+    </annotation>
+    <import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="space.xsd"/>
+    <include schemaLocation="baseConditional.xsd"/>
+    <include schemaLocation="inline.xsd"/>
+    <include schemaLocation="block.xsd"/>
+    <include schemaLocation="structure.xsd"/>
+
+    <!-- ***************************************************************** -->
+    <complexType name="singleParagraphSimpleContentType">
+        <sequence>
+            <element ref="maml:para" minOccurs="0"/>
+        </sequence>
+    </complexType>
+    
+    <element name="summary" type="maml:singleParagraphSimpleContentType">
+        <annotation>
+            <documentation>
+            This element contains a summary, introduction, or short description of the current item.
+            This text typically appears in a topic and may also be used as the description of the topic
+            that appears in a jump table when the topic is being linked to.
+            </documentation>
+            <appinfo>
+                <doc:localizable>n/a</doc:localizable>
+				<doc:type>section</doc:type>
+			</appinfo>
+        </annotation>
+    </element>
+    
+    <element name="remarks" type="maml:namedSectionType">
+        <annotation>
+            <documentation>
+            This element contains a detailed discussion of the current item.
+            </documentation>
+            <appinfo>
+                <doc:localizable>n/a</doc:localizable>
+				<doc:type>section</doc:type>
+		    </appinfo>
+        </annotation>
+    </element>
+    
+    <element name="legacy" type="maml:namedSectionType">
+        <annotation>
+            <documentation>
+            This element holds legacy content that has not been subdivided
+            into elements according to the latest standards.
+            </documentation>
+            <appinfo>
+                <doc:localizable>n/a</doc:localizable>
+				<doc:type>section</doc:type>
+			</appinfo>
+        </annotation>
+    </element>
+    
+    <element name="comments" type="maml:namedSectionType">
+        <annotation>
+            <documentation>
+            This element holds a general discussion.
+            </documentation>
+            <appinfo>
+                <doc:localizable>n/a</doc:localizable>
+				<doc:type>section</doc:type>
+			</appinfo>
+        </annotation>
+    </element>
+	<complexType name="codeType">
+		<choice>
+			<element ref="maml:code"/>
+			<element ref="maml:codeReference"/>
+		</choice>
+	</complexType>
+    <group name="codeExampleContentsGroup">
+        <sequence>
+            <element ref="maml:description" minOccurs="0"/>
+            <group   ref="maml:codeGroup" minOccurs="1" maxOccurs="unbounded"/> <!-- This is to allow a single example with equivalent code in multiple languages -->
+            <element ref="maml:comments" minOccurs="0"/>
+	    <element name="input" type="maml:codeType" minOccurs="0"/>
+	    <element name="output" type="maml:codeType" minOccurs="0"/>
+	    <element name="sampleOutput" type="maml:codeType" minOccurs="0"/>
+        </sequence>
+    </group>
+
+    <complexType name="codeExampleType" mixed="false">
+        <choice>
+            <element ref="maml:legacy"/> <!-- TODO: review use of element to hold legacy content -->
+            <group   ref="maml:codeExampleContentsGroup"/>
+        </choice>
+    </complexType>
+
+    <element name="codeExample" type="maml:codeExampleType">
+        <annotation>
+            <documentation>
+            This element holds a discussion of a code example.
+            </documentation>
+            <appinfo>
+                <doc:localizable>n/a</doc:localizable>
+				<doc:type>section</doc:type>
+			</appinfo>
+        </annotation>
+    </element>
+    
+    <complexType name="codeExamplesType" mixed="false">
+        <sequence>
+            <element ref="maml:codeExample" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    
+    <element name="codeExamples" type="maml:codeExamplesType">
+        <annotation>
+            <documentation>
+            This element is a collection of codeExample elements.
+            </documentation>
+            <appinfo>
+                <doc:localizable>n/a</doc:localizable>
+				<doc:type>section</doc:type>
+			</appinfo>
+        </annotation>
+    </element>
+    <element name="buildInstructions" type="maml:namedSectionType">
+        <annotation>
+            <documentation>
+            This element holds instructions for building a code example.
+            </documentation>
+            <appinfo>
+                <doc:localizable>n/a</doc:localizable>
+				<doc:type>section</doc:type>
+			</appinfo>
+        </annotation>
+    	</element>
+	<element name="robustProgramming" type="maml:namedSectionType">
+        <annotation>
+            <documentation>
+            This element holds a discussion of error handling and other
+            issues related to writing solid code.
+            </documentation>
+            <appinfo>
+                <doc:localizable>n/a</doc:localizable>
+				<doc:type>section</doc:type>
+			</appinfo>
+        </annotation>
+    	</element>
+    
+    	<element name="security" type="maml:namedSectionType">
+        <annotation>
+            <documentation>
+            This element holds a discussion of security issues.
+            </documentation>
+            <appinfo>
+                <doc:localizable>n/a</doc:localizable>
+				<doc:type>section</doc:type>
+			</appinfo>
+        </annotation>
+    	</element>
+
+	<complexType name ="legacySyntaxType" mixed="true">
+	    <choice minOccurs="0" maxOccurs="unbounded">
+	        <!--<element name="legacyItalic" type="maml:textType"/>-->
+		<element ref="maml:parameterReference" />
+	        <element name="legacyBold" type="maml:textType"/>
+		<element ref="maml:legacyLink"/>
+		<element ref="maml:legacyUnderline"/>
+	    </choice>
+	    <attribute name="language" type="maml:devLanguagesType"/>
+            <attribute ref="xml:space"/>
+	</complexType>
+	
+	<element name="legacySyntax" type="maml:legacySyntaxType">
+	    <annotation>
+			<documentation>
+		    This element holds syntax obtained from a converted document.
+		    </documentation>
+			<appinfo>
+				<doc:localizable>false</doc:localizable>
+				<doc:type>block</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+	
+	<complexType name="syntaxSectionType" mixed="false">
+	    <sequence>
+	        <element ref="maml:sections" minOccurs="0" maxOccurs="1"/>
+	        <element ref="maml:legacySyntax" minOccurs="1" maxOccurs="unbounded"/>
+	    </sequence>
+	</complexType>
+	
+	<element name="syntaxSection" type="maml:syntaxSectionType">
+	    <annotation>
+			<documentation>
+		    This element holds syntax obtained from a converted document.
+		    </documentation>
+			<appinfo>
+				<doc:localizable>n/a</doc:localizable>
+				<doc:type>section</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+
+	<complexType name="schemaHierarchyType" mixed="false">
+		<sequence>
+			<element ref="maml:link" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<element name="schemaHierarchy" type="maml:schemaHierarchyType">
+		<annotation>
+			<documentation>
+		    This element holds syntax obtained from a converted document.
+		    </documentation>
+			<appinfo>
+				<doc:localizable>n/a</doc:localizable>
+				<doc:type>section</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+	<complexType name="attributesType" mixed="true">
+		<choice>
+			<element ref="maml:para"/>
+			<element ref="maml:table"/>
+		</choice>
+	</complexType>
+	<complexType name="attributeType" mixed="true">
+		<sequence>
+			<element name="title" type="maml:textType"/>
+			<element ref="maml:table"/>
+		</sequence>
+	</complexType>
+	<element name="attribute" type="maml:attributeType">
+		<annotation>
+			<documentation>
+		    This element holds syntax obtained from a converted document.
+		    </documentation>
+			<appinfo>
+				<doc:localizable>false</doc:localizable>
+				<doc:type>block</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+	<complexType name="attributesandElementsType" mixed="true">
+		<sequence>
+			<element ref="maml:para"/>
+			<element name="attributes" type="maml:attributesType"/>
+			<element ref="maml:attribute" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="childElement" type="maml:attributesType"/>
+			<element name="parentElement" type="maml:attributesType"/>
+		</sequence>
+	</complexType>
+	<element name="attributesandElements" type="maml:attributesandElementsType">
+		<annotation>
+			<documentation>
+		    This element holds syntax obtained from a converted document.
+		    </documentation>
+			<appinfo>
+				<doc:localizable>false</doc:localizable>
+				<doc:type>block</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+	<complexType name="tableType" mixed="false">
+		<sequence>
+			<element ref="maml:table"/>
+		</sequence>
+	</complexType>
+	<element name="elementInformation" type="maml:tableType">
+		<annotation>
+			<documentation>
+		    This element holds syntax obtained from a converted document.
+		    </documentation>
+			<appinfo>
+				<doc:localizable>n/a</doc:localizable>
+				<doc:type>section</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+
+</schema>

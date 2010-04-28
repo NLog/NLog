@@ -1,0 +1,2614 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SandcastleBuilder.PlugIns</name>
+    </assembly>
+    <members>
+        <member name="T:SandcastleBuilder.PlugIns.CompletionNotificationConfigDlg">
+            <summary>
+            This form is used to configure the settings for the
+            <see cref="T:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.CompletionNotificationConfigDlg.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="currentConfig">The current XML configuration
+            XML fragment</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.CompletionNotificationConfigDlg.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close without saving
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.CompletionNotificationConfigDlg.lnkCodePlexSHFB_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Go to the CodePlex home page of the Sandcastle Help File Builder
+            project.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.CompletionNotificationConfigDlg.chkUseDefaultCredentials_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Enable or disable the user name and password controls based on
+            the Default Credentials check state.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.CompletionNotificationConfigDlg.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Validate the configuration and save it
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="F:SandcastleBuilder.PlugIns.CompletionNotificationConfigDlg.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.CompletionNotificationConfigDlg.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.CompletionNotificationConfigDlg.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.CompletionNotificationConfigDlg.Configuration">
+            <summary>
+            This is used to return the configuration information
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.BindingRedirectSettings">
+            <summary>
+            This represents binding redirection settings for the
+            <see cref="T:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectSettings.#ctor(SandcastleBuilder.Utils.IBasePathProvider)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="provider">The base path provider</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectSettings.ToString">
+            <summary>
+            This returns a string representation of the item
+            </summary>
+            <returns>The item value as a string</returns>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectSettings.FromXPathNavigator(SandcastleBuilder.Utils.IBasePathProvider,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Create a binding redirect settings instance from an XPath navigator
+            containing the settings.
+            </summary>
+            <param name="pathProvider">The base path provider object</param>
+            <param name="navigator">The XPath navigator from which to
+            obtain the settings.</param>
+            <returns>A <see cref="T:SandcastleBuilder.PlugIns.BindingRedirectSettings"/> object containing
+            the settings from the XPath navigator.</returns>
+            <remarks>It should contain an element called <c>dependentAssembly</c>
+            with a configFile attribute or a nested <c>assemblyIdentity</c> and
+            <c>bindingRedirect</c> element that define the settings.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectSettings.ToXml(System.Xml.XmlDocument,System.Xml.XmlNode)">
+            <summary>
+            Store the binding redirect settings as a node in the given XML
+            document.
+            </summary>
+            <param name="config">The XML document</param>
+            <param name="root">The node in which to store the element</param>
+            <returns>Returns the node that was added.</returns>
+            <remarks>The settings are stored in an element called
+            <c>dependentAssembly</c>.</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BindingRedirectSettings.AssemblyName">
+            <summary>
+            This is used to get or set the assembly name (no extension)
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BindingRedirectSettings.PublicKeyToken">
+            <summary>
+            This is used to get or set the public key token for the assembly
+            </summary>
+            <value>If omitted, "null" is assumed</value>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BindingRedirectSettings.Culture">
+            <summary>
+            This is used to get or set the culture for the assembly
+            </summary>
+            <value>If omitted, "neutral" is assumed</value>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BindingRedirectSettings.OldVersion">
+            <summary>
+            This is used to get or set the old version number to redirect to
+            the new version number.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BindingRedirectSettings.OldVersionTo">
+            <summary>
+            This is used to get or set the ending old version number range to
+            redirect to the new version number.
+            </summary>
+            <value>If not set, only <see cref="P:SandcastleBuilder.PlugIns.BindingRedirectSettings.OldVersion"/> will be used to
+            redirect a single version.</value>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BindingRedirectSettings.NewVersion">
+            <summary>
+            This is used to get or set the new version number to which the old
+            versions are redirected.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BindingRedirectSettings.ConfigurationFile">
+            <summary>
+            This is used to get or set the path to the configuration file from
+            which the settings should be imported.
+            </summary>
+            <value>If specified, the properties in the Binding Redirect
+            category are ignored.</value>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn">
+            <summary>
+            This plug-in class is used to add assembly binding redirection support
+            to the MRefBuilder configuration file.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn.ConfigurePlugIn(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            This method is used by the Sandcastle Help File Builder to let the
+            plug-in perform its own configuration.
+            </summary>
+            <param name="project">A reference to the active project</param>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+            <remarks>The configuration data will be stored in the help file
+            builder project.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn.Initialize(SandcastleBuilder.Utils.BuildEngine.BuildProcess,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This method is used to initialize the plug-in at the start of the
+            build process.
+            </summary>
+            <param name="buildProcess">A reference to the current build
+            process.</param>
+            <param name="configuration">The configuration data that the plug-in
+            should use to initialize itself.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn.Execute(SandcastleBuilder.Utils.PlugIn.ExecutionContext)">
+            <summary>
+            This method is used to execute the plug-in during the build process
+            </summary>
+            <param name="context">The current execution context</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn.Finalize">
+            <summary>
+            This handles garbage collection to ensure proper disposal of the
+            plug-in if not done explicity with <see cref="M:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn.Dispose"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn.Dispose">
+            <summary>
+            This implements the Dispose() interface to properly dispose of
+            the plug-in object.
+            </summary>
+            <overloads>There are two overloads for this method.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn.Dispose(System.Boolean)">
+            <summary>
+            This can be overridden by derived classes to add their own
+            disposal code if necessary.
+            </summary>
+            <param name="disposing">Pass true to dispose of the managed
+            and unmanaged resources or false to just dispose of the
+            unmanaged resources.</param>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn.Name">
+            <summary>
+            This read-only property returns a friendly name for the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn.Version">
+            <summary>
+            This read-only property returns the version of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the
+            plug-in.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn.Description">
+            <summary>
+            This read-only property returns a brief description of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn.RunsInPartialBuild">
+            <summary>
+            This plug-in runs in partial builds
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn.ExecutionPoints">
+            <summary>
+            This read-only property returns a collection of execution points
+            that define when the plug-in should be invoked during the build
+            process.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.HierarchicalTocPlugIn">
+            <summary>
+            This plug-in class can be used to rearrange the table of contents such
+            that namespaces are nested within their parent namespaces rather than
+            appearing as a flat list of all namespaces at the root level.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.HierarchicalTocPlugIn.ConfigurePlugIn(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            This method is used by the Sandcastle Help File Builder to let the
+            plug-in perform its own configuration.
+            </summary>
+            <param name="project">A reference to the active project</param>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+            <remarks>The configuration data will be stored in the help file
+            builder project.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.HierarchicalTocPlugIn.Initialize(SandcastleBuilder.Utils.BuildEngine.BuildProcess,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This method is used to initialize the plug-in at the start of the
+            build process.
+            </summary>
+            <param name="buildProcess">A reference to the current build
+            process.</param>
+            <param name="configuration">The configuration data that the plug-in
+            should use to initialize itself.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.HierarchicalTocPlugIn.Execute(SandcastleBuilder.Utils.PlugIn.ExecutionContext)">
+            <summary>
+            This method is used to execute the plug-in during the build process
+            </summary>
+            <param name="context">The current execution context</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.HierarchicalTocPlugIn.Finalize">
+            <summary>
+            This handles garbage collection to ensure proper disposal of the
+            plug-in if not done explicity with <see cref="M:SandcastleBuilder.PlugIns.HierarchicalTocPlugIn.Dispose"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.HierarchicalTocPlugIn.Dispose">
+            <summary>
+            This implements the Dispose() interface to properly dispose of
+            the plug-in object.
+            </summary>
+            <overloads>There are two overloads for this method.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.HierarchicalTocPlugIn.Dispose(System.Boolean)">
+            <summary>
+            This can be overridden by derived classes to add their own
+            disposal code if necessary.
+            </summary>
+            <param name="disposing">Pass true to dispose of the managed
+            and unmanaged resources or false to just dispose of the
+            unmanaged resources.</param>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.HierarchicalTocPlugIn.Name">
+            <summary>
+            This read-only property returns a friendly name for the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.HierarchicalTocPlugIn.Version">
+            <summary>
+            This read-only property returns the version of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.HierarchicalTocPlugIn.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the
+            plug-in.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.HierarchicalTocPlugIn.Description">
+            <summary>
+            This read-only property returns a brief description of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.HierarchicalTocPlugIn.RunsInPartialBuild">
+            <summary>
+            This plug-in does not run in partial builds
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.HierarchicalTocPlugIn.ExecutionPoints">
+            <summary>
+            This read-only property returns a collection of execution points
+            that define when the plug-in should be invoked during the build
+            process.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.DeploymentPlugIn">
+            <summary>
+            This plug-in class is used to copy the resulting help file output to
+            a location other than the output folder (i.e. a file share, an FTP
+            site, a web server, etc.).
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentPlugIn.ConfigurePlugIn(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            This method is used by the Sandcastle Help File Builder to let the
+            plug-in perform its own configuration.
+            </summary>
+            <param name="project">A reference to the active project</param>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+            <remarks>The configuration data will be stored in the help file
+            builder project.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentPlugIn.Initialize(SandcastleBuilder.Utils.BuildEngine.BuildProcess,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This method is used to initialize the plug-in at the start of the
+            build process.
+            </summary>
+            <param name="buildProcess">A reference to the current build
+            process.</param>
+            <param name="configuration">The configuration data that the plug-in
+            should use to initialize itself.</param>
+            <exception cref="T:SandcastleBuilder.Utils.BuilderException">This is thrown if the plug-in
+            configuration is not valid.</exception>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentPlugIn.Execute(SandcastleBuilder.Utils.PlugIn.ExecutionContext)">
+            <summary>
+            This method is used to execute the plug-in during the build process
+            </summary>
+            <param name="context">The current execution context</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentPlugIn.DeployOutput(System.Collections.ObjectModel.Collection{System.String},SandcastleBuilder.PlugIns.DeploymentLocation)">
+            <summary>
+            Deploy the given list of files to the specified location
+            </summary>
+            <param name="files">The list of files to deploy</param>
+            <param name="location">The deployment location</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentPlugIn.Finalize">
+            <summary>
+            This handles garbage collection to ensure proper disposal of the
+            plug-in if not done explicity with <see cref="M:SandcastleBuilder.PlugIns.DeploymentPlugIn.Dispose"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentPlugIn.Dispose">
+            <summary>
+            This implements the Dispose() interface to properly dispose of
+            the plug-in object.
+            </summary>
+            <overloads>There are two overloads for this method.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentPlugIn.Dispose(System.Boolean)">
+            <summary>
+            This can be overridden by derived classes to add their own
+            disposal code if necessary.
+            </summary>
+            <param name="disposing">Pass true to dispose of the managed
+            and unmanaged resources or false to just dispose of the
+            unmanaged resources.</param>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DeploymentPlugIn.Name">
+            <summary>
+            This read-only property returns a friendly name for the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DeploymentPlugIn.Version">
+            <summary>
+            This read-only property returns the version of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DeploymentPlugIn.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the
+            plug-in.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DeploymentPlugIn.Description">
+            <summary>
+            This read-only property returns a brief description of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DeploymentPlugIn.RunsInPartialBuild">
+            <summary>
+            This plug-in does not run in partial builds
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DeploymentPlugIn.ExecutionPoints">
+            <summary>
+            This read-only property returns a collection of execution points
+            that define when the plug-in should be invoked during the build
+            process.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.ReferenceLinkSettingsCollection">
+            <summary>
+            This collection class is used to hold the reference link settings
+            information for the <see cref="T:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ReferenceLinkSettingsCollection.ToXml(System.Xml.XmlDocument,System.Xml.XmlNode)">
+            <summary>
+            This is used to save the reference link settings list to the
+            configuration settings.
+            </summary>
+            <param name="config">The XML configuration document.</param>
+            <param name="root">The root configuration node</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ReferenceLinkSettingsCollection.FromXml(SandcastleBuilder.Utils.IBasePathProvider,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This is used to load the reference link settings list from the
+            configuration settings.
+            </summary>
+            <param name="pathProvider">The base path provider object</param>
+            <param name="navigator">The XPath navigator from which the
+            information is loaded.</param>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.AjaxDocConfigDlg">
+            <summary>
+            This form is used to configure the settings for the
+            <see cref="T:SandcastleBuilder.PlugIns.AjaxDocPlugIn"/>.
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.PlugIns.AjaxDocConfigDlg.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocConfigDlg.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocConfigDlg.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocConfigDlg.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="currentConfig">The current XML configuration
+            XML fragment</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocConfigDlg.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close without saving
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocConfigDlg.codePlex_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Go to the CodePlex home page of the Sandcastle Help File Builder
+            project.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocConfigDlg.chkUseDefaultCredentials_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Enable or disable the user name and password controls based on
+            the Default Credentials check state.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocConfigDlg.chkUseProxyServer_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Enable or disable the proxy server settings based on the Use
+            Proxy Server check state.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocConfigDlg.chkUseProxyDefCreds_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Enable or disable the proxy user credentials based on the Proxy
+            Default Credentials check state.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocConfigDlg.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Validate the configuration and save it
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AjaxDocConfigDlg.Configuration">
+            <summary>
+            This is used to return the configuration information
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.BibliographySupportPlugIn">
+            <summary>
+            This plug-in class is used to add bibliography support to the topics
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BibliographySupportPlugIn.ConfigurePlugIn(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            This method is used by the Sandcastle Help File Builder to let the
+            plug-in perform its own configuration.
+            </summary>
+            <param name="project">A reference to the active project</param>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+            <remarks>The configuration data will be stored in the help file
+            builder project.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BibliographySupportPlugIn.Initialize(SandcastleBuilder.Utils.BuildEngine.BuildProcess,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This method is used to initialize the plug-in at the start of the
+            build process.
+            </summary>
+            <param name="buildProcess">A reference to the current build
+            process.</param>
+            <param name="configuration">The configuration data that the plug-in
+            should use to initialize itself.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BibliographySupportPlugIn.Execute(SandcastleBuilder.Utils.PlugIn.ExecutionContext)">
+            <summary>
+            This method is used to execute the plug-in during the build process
+            </summary>
+            <param name="context">The current execution context</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BibliographySupportPlugIn.AddBibliographyParameter(System.String)">
+            <summary>
+            Add the bibliography file parameter to the TransformComponent
+            configuration.
+            </summary>
+            <param name="configFilename">The BuildAssembler configuration file
+            to modify</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BibliographySupportPlugIn.Finalize">
+            <summary>
+            This handles garbage collection to ensure proper disposal of the
+            plug-in if not done explicity with <see cref="M:SandcastleBuilder.PlugIns.BibliographySupportPlugIn.Dispose"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BibliographySupportPlugIn.Dispose">
+            <summary>
+            This implements the Dispose() interface to properly dispose of
+            the plug-in object.
+            </summary>
+            <overloads>There are two overloads for this method.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BibliographySupportPlugIn.Dispose(System.Boolean)">
+            <summary>
+            This can be overridden by derived classes to add their own
+            disposal code if necessary.
+            </summary>
+            <param name="disposing">Pass true to dispose of the managed
+            and unmanaged resources or false to just dispose of the
+            unmanaged resources.</param>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BibliographySupportPlugIn.Name">
+            <summary>
+            This read-only property returns a friendly name for the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BibliographySupportPlugIn.Version">
+            <summary>
+            This read-only property returns the version of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BibliographySupportPlugIn.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the
+            plug-in.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BibliographySupportPlugIn.Description">
+            <summary>
+            This read-only property returns a brief description of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BibliographySupportPlugIn.RunsInPartialBuild">
+            <summary>
+            This plug-in runs in partial builds
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BibliographySupportPlugIn.ExecutionPoints">
+            <summary>
+            This read-only property returns a collection of execution points
+            that define when the plug-in should be invoked during the build
+            process.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.XPathReflectionFileFilterPlugIn">
+            <summary>
+            This plug-in class is used to filter out unwanted information from the
+            reflection information file using XPath queries.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterPlugIn.ConfigurePlugIn(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            This method is used by the Sandcastle Help File Builder to let the
+            plug-in perform its own configuration.
+            </summary>
+            <param name="project">A reference to the active project</param>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+            <remarks>The configuration data will be stored in the help file
+            builder project.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterPlugIn.Initialize(SandcastleBuilder.Utils.BuildEngine.BuildProcess,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This method is used to initialize the plug-in at the start of the
+            build process.
+            </summary>
+            <param name="buildProcess">A reference to the current build
+            process.</param>
+            <param name="configuration">The configuration data that the plug-in
+            should use to initialize itself.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterPlugIn.Execute(SandcastleBuilder.Utils.PlugIn.ExecutionContext)">
+            <summary>
+            This method is used to execute the plug-in during the build process
+            </summary>
+            <param name="context">The current execution context</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterPlugIn.Finalize">
+            <summary>
+            This handles garbage collection to ensure proper disposal of the
+            plug-in if not done explicity with <see cref="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterPlugIn.Dispose"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterPlugIn.Dispose">
+            <summary>
+            This implements the Dispose() interface to properly dispose of
+            the plug-in object.
+            </summary>
+            <overloads>There are two overloads for this method.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterPlugIn.Dispose(System.Boolean)">
+            <summary>
+            This can be overridden by derived classes to add their own
+            disposal code if necessary.
+            </summary>
+            <param name="disposing">Pass true to dispose of the managed
+            and unmanaged resources or false to just dispose of the
+            unmanaged resources.</param>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.XPathReflectionFileFilterPlugIn.Name">
+            <summary>
+            This read-only property returns a friendly name for the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.XPathReflectionFileFilterPlugIn.Version">
+            <summary>
+            This read-only property returns the version of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.XPathReflectionFileFilterPlugIn.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the
+            plug-in.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.XPathReflectionFileFilterPlugIn.Description">
+            <summary>
+            This read-only property returns a brief description of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.XPathReflectionFileFilterPlugIn.RunsInPartialBuild">
+            <summary>
+            This plug-in runs in partial builds
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.XPathReflectionFileFilterPlugIn.ExecutionPoints">
+            <summary>
+            This read-only property returns a collection of execution points
+            that define when the plug-in should be invoked during the build
+            process.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.VersionSettings">
+            <summary>
+            This represents version settings for the <see cref="T:SandcastleBuilder.PlugIns.VersionBuilderPlugIn"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionSettings.ShouldSerializeVersion">
+            <summary>
+            This is used to see if the <see cref="P:SandcastleBuilder.PlugIns.VersionSettings.Version"/> property
+            should be serialized.
+            </summary>
+            <returns>True to serialize it, false if it matches the default
+            and should not be serialized.  This property cannot be reset
+            as it should always have a value.</returns>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionSettings.ShouldSerializeHelpFileProject">
+            <summary>
+            This is used to see if the <see cref="P:SandcastleBuilder.PlugIns.VersionSettings.HelpFileProject"/> property
+            should be serialized.
+            </summary>
+            <returns>True to serialize it, false if it matches the default
+            and should not be serialized.  This property cannot be reset
+            as it should always have a value.</returns>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionSettings.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionSettings.FromXPathNavigator(SandcastleBuilder.Utils.IBasePathProvider,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Create a version settings instance from an XPath navigator
+            containing the settings.
+            </summary>
+            <param name="pathProvider">The base path provider object</param>
+            <param name="navigator">The XPath navigator from which to
+            obtain the settings.</param>
+            <returns>A <see cref="T:SandcastleBuilder.PlugIns.VersionSettings"/> object containing the
+            settings from the XPath navigator.</returns>
+            <remarks>It should contain an element called <c>version</c>
+            with three attributes (<c>label</c>, <c>version</c> and
+            <c>helpFileProject</c>).</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionSettings.ToXml(System.Xml.XmlDocument,System.Xml.XmlNode)">
+            <summary>
+            Store the version settings as a node in the given XML document
+            </summary>
+            <param name="config">The XML document</param>
+            <param name="root">The node in which to store the element</param>
+            <returns>Returns the node that was added.</returns>
+            <remarks>The version settings are stored in an element called
+            <c>version</c> with three attributes (<c>label</c>, <c>version</c>
+            and <c>helpFileProject</c>).</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionSettings.GetHashCode">
+            <summary>
+            This is overridden to return the hash code of the combined
+            framework and version number.
+            </summary>
+            <returns>The hash code for the version settings.</returns>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.VersionSettings.ReflectionFilename">
+            <summary>
+            This is used to get or set the location of the reflection file
+            at build time.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.VersionSettings.FrameworkLabel">
+            <summary>
+            This is used to get or set the framework label for the related
+            project.
+            </summary>
+            <remarks>This is used to group like versions of projects.</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.VersionSettings.Version">
+            <summary>
+            This is used to get or set the version number description for the
+            related project.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.VersionSettings.HelpFileProject">
+            <summary>
+            This is used to get or set the path to the help file builder
+            project used to generate version information.
+            </summary>
+            <value>The help file builder project makes it simple to manage
+            settings for the prior version's assemblies such as references,
+            API filter settings, etc.</value>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.VersionSettings.ListDescription">
+            <summary>
+            This returns a description of the entry suitable for display in a
+            bound list control.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.AdditionalReferenceLinksConfigDlg">
+            <summary>
+            This form is used to edit the <see cref="T:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn"/>
+            configuration.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksConfigDlg.#ctor(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="currentProject">The current project</param>
+            <param name="currentConfig">The current XML configuration
+            XML fragment</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksConfigDlg.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close without saving
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksConfigDlg.btnAddFile_Click(System.Object,System.EventArgs)">
+            <summary>
+            Add a new help file builder project to the reference link settings.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksConfigDlg.btnDelete_Click(System.Object,System.EventArgs)">
+            <summary>
+            Delete a reference links item
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksConfigDlg.lbReferences_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Update the property grid with the selected item
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksConfigDlg.pgProps_PropertyValueChanged(System.Object,System.Windows.Forms.PropertyValueChangedEventArgs)">
+            <summary>
+            Refresh the list box item when a property changes
+            </summary>
+            <param name="s">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksConfigDlg.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Validate the configuration and save it
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksConfigDlg.lnkCodePlexSHFB_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Launch the URL in the web browser
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="F:SandcastleBuilder.PlugIns.AdditionalReferenceLinksConfigDlg.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksConfigDlg.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksConfigDlg.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AdditionalReferenceLinksConfigDlg.Configuration">
+            <summary>
+            This is used to return the configuration information
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.XPathReflectionFileFilterConfigDlg">
+            <summary>
+            This form is used to edit the <see cref="T:SandcastleBuilder.PlugIns.XPathReflectionFileFilterPlugIn"/>
+            configuration.
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.PlugIns.XPathReflectionFileFilterConfigDlg.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterConfigDlg.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterConfigDlg.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterConfigDlg.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="currentConfig">The current XML configuration
+            XML fragment</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterConfigDlg.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close without saving
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterConfigDlg.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Validate the configuration and save it
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterConfigDlg.btnAdd_Click(System.Object,System.EventArgs)">
+            <summary>
+            Add a new XPath expression
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterConfigDlg.btnDelete_Click(System.Object,System.EventArgs)">
+            <summary>
+            Delete the selected XPath expression
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterConfigDlg.tvExpressions_BeforeSelect(System.Object,System.Windows.Forms.TreeViewCancelEventArgs)">
+            <summary>
+            Validate the expression and store it
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterConfigDlg.tvExpressions_AfterSelect(System.Object,System.Windows.Forms.TreeViewEventArgs)">
+            <summary>
+            Load the selected expression for editing
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.XPathReflectionFileFilterConfigDlg.lnkCodePlexSHFB_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Launch the URL in the web browser
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.XPathReflectionFileFilterConfigDlg.Configuration">
+            <summary>
+            This is used to return the configuration information
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.UserCredentials">
+            <summary>
+            This class is used to specify user credentials.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.UserCredentials.#ctor">
+            <summary>
+            Constructor
+            </summary>
+            <overloads>There are two overloads for the constructor.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.UserCredentials.#ctor(System.Boolean,System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="useDefault">True to use default credentials, false to
+            use the supplied user name and password.</param>
+            <param name="user">The user name to use.</param>
+            <param name="pwd">The password to use.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.UserCredentials.FromXPathNavigator(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Create a user credentials instance from an XPath navigator
+            containing the settings.
+            </summary>
+            <param name="navigator">The XPath navigator from which to
+            obtain the settings.</param>
+            <returns>A <see cref="T:SandcastleBuilder.PlugIns.UserCredentials"/> object containing the
+            settings from the XPath navigator.</returns>
+            <remarks>It should contain an element called <b>userCredentials</b>
+            with three attributes: <b>useDefault</b>, <b>userName</b>, and
+            <b>password</b>.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.UserCredentials.ToXml(System.Xml.XmlDocument,System.Xml.XmlNode)">
+            <summary>
+            Store the credentials as a node in the given XML document
+            </summary>
+            <param name="config">The XML document</param>
+            <param name="root">The node in which to store the element</param>
+            <returns>Returns the node that was added or the one that
+            already existed in the document.</returns>
+            <remarks>The credentials are stored in an element called
+            <b>userCredentials</b> with three attributes:  <b>useDefault</b>,
+            <b>userName</b>, and <b>password</b>.  It is created if it
+            does not already exist.</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.UserCredentials.UseDefaultCredentials">
+            <summary>
+            This is used to set or get the flag indicating whether or not to
+            use default credentials.
+            </summary>
+            <value>By default, this is true and <see cref="P:SandcastleBuilder.PlugIns.UserCredentials.UserName"/> and
+            <see cref="P:SandcastleBuilder.PlugIns.UserCredentials.Password"/> will be ignored.</value>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.UserCredentials.UserName">
+            <summary>
+            Get or set the user name
+            </summary>
+            <value>If <see cref="P:SandcastleBuilder.PlugIns.UserCredentials.UseDefaultCredentials"/> is true, this will
+            be ignored.</value>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.UserCredentials.Password">
+            <summary>
+            Get or set the password
+            </summary>
+            <value>If <see cref="P:SandcastleBuilder.PlugIns.UserCredentials.UseDefaultCredentials"/> is true, this will
+            be ignored.</value>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.HierarchicalTocConfigDlg">
+            <summary>
+            This form is used to configure the settings for the
+            <see cref="T:SandcastleBuilder.PlugIns.HierarchicalTocPlugIn"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.HierarchicalTocConfigDlg.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="currentConfig">The current XML configuration
+            XML fragment</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.HierarchicalTocConfigDlg.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close without saving
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.HierarchicalTocConfigDlg.project_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Launch the URL in the web browser.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.HierarchicalTocConfigDlg.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Validate the configuration and save it
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="F:SandcastleBuilder.PlugIns.HierarchicalTocConfigDlg.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.HierarchicalTocConfigDlg.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.HierarchicalTocConfigDlg.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.HierarchicalTocConfigDlg.Configuration">
+            <summary>
+            This is used to return the configuration information
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.BindingRedirectSettingsCollection">
+            <summary>
+            This collection class is used to hold the binding redirect settings
+            information for the <see cref="T:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectSettingsCollection.ToXml(System.Xml.XmlDocument,System.Xml.XmlNode)">
+            <summary>
+            This is used to save the binding redirect settings list to the
+            configuration settings.
+            </summary>
+            <param name="config">The XML configuration document.</param>
+            <param name="root">The root configuration node</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectSettingsCollection.FromXml(SandcastleBuilder.Utils.IBasePathProvider,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This is used to load the binding redirect settings list from the
+            configuration settings.
+            </summary>
+            <param name="pathProvider">The base path provider object</param>
+            <param name="navigator">The XPath navigator from which the
+            information is loaded.</param>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.AdditionalContentOnlyPlugIn">
+            <summary>
+            This plug-in class can be used to build a help file consisting of
+            nothing but additional content items.  It is also useful for
+            proofreading your additional content without having to build all the
+            API topics.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalContentOnlyPlugIn.ConfigurePlugIn(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            This method is used by the Sandcastle Help File Builder to let the
+            plug-in perform its own configuration.
+            </summary>
+            <param name="project">A reference to the active project</param>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+            <remarks>The configuration data will be stored in the help file
+            builder project.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalContentOnlyPlugIn.Initialize(SandcastleBuilder.Utils.BuildEngine.BuildProcess,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This method is used to initialize the plug-in at the start of the
+            build process.
+            </summary>
+            <param name="buildProcess">A reference to the current build
+            process.</param>
+            <param name="configuration">The configuration data that the plug-in
+            should use to initialize itself.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalContentOnlyPlugIn.Execute(SandcastleBuilder.Utils.PlugIn.ExecutionContext)">
+            <summary>
+            This method is used to execute the plug-in during the build process
+            </summary>
+            <param name="context">The current execution context</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalContentOnlyPlugIn.Finalize">
+            <summary>
+            This handles garbage collection to ensure proper disposal of the
+            plug-in if not done explicity with <see cref="M:SandcastleBuilder.PlugIns.AdditionalContentOnlyPlugIn.Dispose"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalContentOnlyPlugIn.Dispose">
+            <summary>
+            This implements the Dispose() interface to properly dispose of
+            the plug-in object.
+            </summary>
+            <overloads>There are two overloads for this method.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalContentOnlyPlugIn.Dispose(System.Boolean)">
+            <summary>
+            This can be overridden by derived classes to add their own
+            disposal code if necessary.
+            </summary>
+            <param name="disposing">Pass true to dispose of the managed
+            and unmanaged resources or false to just dispose of the
+            unmanaged resources.</param>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AdditionalContentOnlyPlugIn.Name">
+            <summary>
+            This read-only property returns a friendly name for the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AdditionalContentOnlyPlugIn.Version">
+            <summary>
+            This read-only property returns the version of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AdditionalContentOnlyPlugIn.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the
+            plug-in.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AdditionalContentOnlyPlugIn.Description">
+            <summary>
+            This read-only property returns a brief description of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AdditionalContentOnlyPlugIn.RunsInPartialBuild">
+            <summary>
+            This plug-in does not run in partial builds
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AdditionalContentOnlyPlugIn.ExecutionPoints">
+            <summary>
+            This read-only property returns a collection of execution points
+            that define when the plug-in should be invoked during the build
+            process.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.DeploymentLocation">
+            <summary>
+            This represents a deployment location
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentLocation.#ctor">
+            <summary>
+            Constructor
+            </summary>
+            <overloads>There are two overloads for the constructor</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentLocation.#ctor(System.Uri,SandcastleBuilder.PlugIns.UserCredentials,SandcastleBuilder.PlugIns.ProxyCredentials)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="deployTo">The deployment location</param>
+            <param name="user">The user credentials, if any</param>
+            <param name="proxy">The proxy credentials, if any</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentLocation.FromXPathNavigator(System.Xml.XPath.XPathNavigator,System.String)">
+            <summary>
+            Create a deployment location instance from an XPath navigator
+            containing the settings.
+            </summary>
+            <param name="navigator">The XPath navigator from which to
+            obtain the settings.</param>
+            <param name="id">The id of the element to load</param>
+            <returns>A <see cref="T:SandcastleBuilder.PlugIns.DeploymentLocation"/> object containing the
+            settings from the XPath navigator.</returns>
+            <remarks>It should contain an element called <b>deploymentLocation</b>
+            with two attributes (<b>id</b> with the specified ID value and
+            <b>location</b>) and nested <b>userCredentials</b> and
+            <b>proxyCredentials</b> elements.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentLocation.ToXml(System.Xml.XmlDocument,System.Xml.XmlNode,System.String)">
+            <summary>
+            Store the deployment location as a node in the given XML document
+            </summary>
+            <param name="config">The XML document</param>
+            <param name="root">The node in which to store the element</param>
+            <param name="id">The id of the element to create</param>
+            <returns>Returns the node that was added or the one that
+            already existed in the document.</returns>
+            <remarks>The deployment location is stored in an element called
+            <b>deploymentLocation</b> with two attributes (<b>id</b> matching
+            the specified id and <b>location</b>) and nested
+            <b>userCredentials</b> and <b>proxyCredentials</b> elements.  It
+            is created if it does not already exist.</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DeploymentLocation.Location">
+            <summary>
+            The location to which the help file is deployed
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DeploymentLocation.UserCredentials">
+            <summary>
+            The user credentials for the location
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DeploymentLocation.ProxyCredentials">
+            <summary>
+            The proxy credentials for the location
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.TocExcludePlugIn">
+            <summary>
+            This plug-in class can be used to exclude API members from the table
+            of contents via the <c>&lt;tocexclude /&gt;</c> XML comment tag.  The
+            excluded items are still accessible in the help file via other topic
+            links.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.TocExcludePlugIn.ConfigurePlugIn(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            This method is used by the Sandcastle Help File Builder to let the
+            plug-in perform its own configuration.
+            </summary>
+            <param name="project">A reference to the active project</param>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+            <remarks>The configuration data will be stored in the help file
+            builder project.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.TocExcludePlugIn.Initialize(SandcastleBuilder.Utils.BuildEngine.BuildProcess,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This method is used to initialize the plug-in at the start of the
+            build process.
+            </summary>
+            <param name="buildProcess">A reference to the current build
+            process.</param>
+            <param name="configuration">The configuration data that the plug-in
+            should use to initialize itself.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.TocExcludePlugIn.Execute(SandcastleBuilder.Utils.PlugIn.ExecutionContext)">
+            <summary>
+            This method is used to execute the plug-in during the build process
+            </summary>
+            <param name="context">The current execution context</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.TocExcludePlugIn.Finalize">
+            <summary>
+            This handles garbage collection to ensure proper disposal of the
+            plug-in if not done explicity with <see cref="M:SandcastleBuilder.PlugIns.TocExcludePlugIn.Dispose"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.TocExcludePlugIn.Dispose">
+            <summary>
+            This implements the Dispose() interface to properly dispose of
+            the plug-in object.
+            </summary>
+            <overloads>There are two overloads for this method.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.TocExcludePlugIn.Dispose(System.Boolean)">
+            <summary>
+            This can be overridden by derived classes to add their own
+            disposal code if necessary.
+            </summary>
+            <param name="disposing">Pass true to dispose of the managed
+            and unmanaged resources or false to just dispose of the
+            unmanaged resources.</param>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.TocExcludePlugIn.Name">
+            <summary>
+            This read-only property returns a friendly name for the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.TocExcludePlugIn.Version">
+            <summary>
+            This read-only property returns the version of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.TocExcludePlugIn.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the
+            plug-in.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.TocExcludePlugIn.Description">
+            <summary>
+            This read-only property returns a brief description of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.TocExcludePlugIn.RunsInPartialBuild">
+            <summary>
+            This plug-in does not run in partial builds
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.TocExcludePlugIn.ExecutionPoints">
+            <summary>
+            This read-only property returns a collection of execution points
+            that define when the plug-in should be invoked during the build
+            process.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.BindingRedirectResolverConfigDlg">
+            <summary>
+            This form is used to edit the <see cref="T:SandcastleBuilder.PlugIns.BindingRedirectResolverPlugIn"/>
+            configuration.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverConfigDlg.#ctor(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="currentProject">The current project</param>
+            <param name="currentConfig">The current XML configuration
+            XML fragment</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverConfigDlg.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close without saving
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverConfigDlg.btnAddFile_Click(System.Object,System.EventArgs)">
+            <summary>
+            Add a new setting item to the collection
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverConfigDlg.btnDelete_Click(System.Object,System.EventArgs)">
+            <summary>
+            Delete a binding settings item
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverConfigDlg.lbReferences_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Update the property grid with the selected item
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverConfigDlg.pgProps_PropertyValueChanged(System.Object,System.Windows.Forms.PropertyValueChangedEventArgs)">
+            <summary>
+            Refresh the list box item when a property changes
+            </summary>
+            <param name="s">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverConfigDlg.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Validate the configuration and save it
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverConfigDlg.lnkCodePlexSHFB_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Launch the URL in the web browser
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="F:SandcastleBuilder.PlugIns.BindingRedirectResolverConfigDlg.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverConfigDlg.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BindingRedirectResolverConfigDlg.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BindingRedirectResolverConfigDlg.Configuration">
+            <summary>
+            This is used to return the configuration information
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.DeploymentConfigDlg">
+            <summary>
+            This form is used to configure the settings for the
+            <see cref="T:SandcastleBuilder.PlugIns.DeploymentPlugIn"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentConfigDlg.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="currentConfig">The current XML configuration
+            XML fragment</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentConfigDlg.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close without saving
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentConfigDlg.codePlex_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Go to the CodePlex home page of the Sandcastle Help File Builder
+            project.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentConfigDlg.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Validate the configuration and save it
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="F:SandcastleBuilder.PlugIns.DeploymentConfigDlg.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentConfigDlg.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentConfigDlg.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DeploymentConfigDlg.Configuration">
+            <summary>
+            This is used to return the configuration information
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn">
+            <summary>
+            This plug-in class is designed to add additional reference link
+            targets to the <b>Reflection Index Data</b> and <b>Resolve Reference
+            Links</b> build components so that links can be created to other third
+            party help in a Help 2 collection.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.ConfigurePlugIn(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            This method is used by the Sandcastle Help File Builder to let the
+            plug-in perform its own configuration.
+            </summary>
+            <param name="project">A reference to the active project</param>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+            <remarks>The configuration data will be stored in the help file
+            builder project.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.Initialize(SandcastleBuilder.Utils.BuildEngine.BuildProcess,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This method is used to initialize the plug-in at the start of the
+            build process.
+            </summary>
+            <param name="buildProcess">A reference to the current build
+            process.</param>
+            <param name="configuration">The configuration data that the plug-in
+            should use to initialize itself.</param>
+            <exception cref="T:SandcastleBuilder.Utils.BuilderException">This is thrown if the plug-in
+            configuration is not valid.</exception>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.Execute(SandcastleBuilder.Utils.PlugIn.ExecutionContext)">
+            <summary>
+            This method is used to execute the plug-in during the build process
+            </summary>
+            <param name="context">The current execution context</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.MergeReflectionInfo(System.String,System.Boolean)">
+            <summary>
+            This is used to merge the reflection file info into the named
+            configuration file.
+            </summary>
+            <param name="configFilename">The configuration filename</param>
+            <param name="isConceptual">True if it is the conceptual
+            configuration file or false if it is the reference configuration
+            file.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.Finalize">
+            <summary>
+            This handles garbage collection to ensure proper disposal of the
+            plug-in if not done explicity with <see cref="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.Dispose"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.Dispose">
+            <summary>
+            This implements the Dispose() interface to properly dispose of
+            the plug-in object.
+            </summary>
+            <overloads>There are two overloads for this method.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.Dispose(System.Boolean)">
+            <summary>
+            This can be overridden by derived classes to add their own
+            disposal code if necessary.
+            </summary>
+            <param name="disposing">Pass true to dispose of the managed
+            and unmanaged resources or false to just dispose of the
+            unmanaged resources.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.BuildProject(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            This is called to build a project
+            </summary>
+            <param name="project">The project to build</param>
+            <param name="workingPath">The working path for the project</param>
+            <returns>Returns true if successful, false if not</returns>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.buildProcess_BuildStepChanged(System.Object,SandcastleBuilder.Utils.BuildEngine.BuildProgressEventArgs)">
+            <summary>
+            This is called by the build process thread to update the
+            application with the current build step.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.Name">
+            <summary>
+            This read-only property returns a friendly name for the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.Version">
+            <summary>
+            This read-only property returns the version of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the
+            plug-in.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.Description">
+            <summary>
+            This read-only property returns a brief description of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.RunsInPartialBuild">
+            <summary>
+            This plug-in does not run in partial builds
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn.ExecutionPoints">
+            <summary>
+            This read-only property returns a collection of execution points
+            that define when the plug-in should be invoked during the build
+            process.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.VersionBuilderConfigDlg">
+            <summary>
+            This form is used to edit the <see cref="T:SandcastleBuilder.PlugIns.VersionBuilderPlugIn"/>
+            configuration.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderConfigDlg.#ctor(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="currentProject">The current project</param>
+            <param name="currentConfig">The current XML configuration
+            XML fragment</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderConfigDlg.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close without saving
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderConfigDlg.btnAddFile_Click(System.Object,System.EventArgs)">
+            <summary>
+            Add a new help file builder project to the version settings.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderConfigDlg.btnDelete_Click(System.Object,System.EventArgs)">
+            <summary>
+            Delete a version settings item
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderConfigDlg.lbVersionInfo_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Update the property grid with the selected item
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderConfigDlg.pgProps_PropertyValueChanged(System.Object,System.Windows.Forms.PropertyValueChangedEventArgs)">
+            <summary>
+            Refresh the list box item when a property changes
+            </summary>
+            <param name="s">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderConfigDlg.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Validate the configuration and save it
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderConfigDlg.lnkCodePlexSHFB_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Launch the URL in the web browser
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="F:SandcastleBuilder.PlugIns.VersionBuilderConfigDlg.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderConfigDlg.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderConfigDlg.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.VersionBuilderConfigDlg.Configuration">
+            <summary>
+            This is used to return the configuration information
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.DeploymentConfigUserControl">
+            <summary>
+            This user control is used to edit deployment configuration settings
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentConfigUserControl.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentConfigUserControl.LoadFromSettings(SandcastleBuilder.PlugIns.DeploymentLocation)">
+            <summary>
+            Load the control values from the specified deployment location
+            settings object.
+            </summary>
+            <param name="location">The location settings</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentConfigUserControl.CreateDeploymentLocation">
+            <summary>
+            Validate the control values and, if valid, create and return a new
+            deployment location settings object.
+            </summary>
+            <returns>The deployment location settings if they are valud or
+            null if they are not valid.</returns>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentConfigUserControl.chkUseDefaultCredentials_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Enable or disable the user name and password controls based on
+            the Default Credentials check state.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentConfigUserControl.chkUseProxyServer_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Enable or disable the proxy server settings based on the Use
+            Proxy Server check state.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentConfigUserControl.chkUseProxyDefCreds_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Enable or disable the proxy user credentials based on the Proxy
+            Default Credentials check state.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="F:SandcastleBuilder.PlugIns.DeploymentConfigUserControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentConfigUserControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DeploymentConfigUserControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.DbcsFixConfigDlg">
+            <summary>
+            This form is used to configure the settings for the
+            <see cref="T:SandcastleBuilder.PlugIns.DbcsFixPlugIn"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DbcsFixConfigDlg.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="currentConfig">The current XML configuration
+            XML fragment</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DbcsFixConfigDlg.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close without saving
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DbcsFixConfigDlg.project_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Launch the URL in the web browser.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DbcsFixConfigDlg.btnSelectLocation_Click(System.Object,System.EventArgs)">
+            <summary>
+            Select the path to the SBAppLocale tool
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DbcsFixConfigDlg.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Validate the configuration and save it
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="F:SandcastleBuilder.PlugIns.DbcsFixConfigDlg.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DbcsFixConfigDlg.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DbcsFixConfigDlg.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DbcsFixConfigDlg.Configuration">
+            <summary>
+            This is used to return the configuration information
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.VersionSettingsCollection">
+            <summary>
+            This collection class is used to hold the version settings information
+            for the <see cref="T:SandcastleBuilder.PlugIns.VersionBuilderPlugIn"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionSettingsCollection.ToXml(System.Xml.XmlDocument,System.Xml.XmlNode)">
+            <summary>
+            This is used to save the version settings list to the configuration
+            settings.
+            </summary>
+            <param name="config">The XML configuration document.</param>
+            <param name="root">The root configuration node</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionSettingsCollection.FromXml(SandcastleBuilder.Utils.IBasePathProvider,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This is used to load the version settings list from the
+            configuration settings.
+            </summary>
+            <param name="pathProvider">The base path provider object</param>
+            <param name="navigator">The XPath navigator from which the
+            information is loaded.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionSettingsCollection.Sort">
+            <summary>
+            This is used to sort the collection in ascending order by framework
+            label and version.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.VersionBuilderPlugIn">
+            <summary>
+            This plug-in class is designed to generate version information for
+            assemblies in the current project and others related to the same
+            product that can be merged into the current project's help file topics.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.ConfigurePlugIn(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            This method is used by the Sandcastle Help File Builder to let the
+            plug-in perform its own configuration.
+            </summary>
+            <param name="project">A reference to the active project</param>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+            <remarks>The configuration data will be stored in the help file
+            builder project.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.Initialize(SandcastleBuilder.Utils.BuildEngine.BuildProcess,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This method is used to initialize the plug-in at the start of the
+            build process.
+            </summary>
+            <param name="buildProcess">A reference to the current build
+            process.</param>
+            <param name="configuration">The configuration data that the plug-in
+            should use to initialize itself.</param>
+            <exception cref="T:SandcastleBuilder.Utils.BuilderException">This is thrown if the plug-in
+            configuration is not valid.</exception>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.Execute(SandcastleBuilder.Utils.PlugIn.ExecutionContext)">
+            <summary>
+            This method is used to execute the plug-in during the build process
+            </summary>
+            <param name="context">The current execution context</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.Finalize">
+            <summary>
+            This handles garbage collection to ensure proper disposal of the
+            plug-in if not done explicity with <see cref="M:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.Dispose"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.Dispose">
+            <summary>
+            This implements the Dispose() interface to properly dispose of
+            the plug-in object.
+            </summary>
+            <overloads>There are two overloads for this method.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.Dispose(System.Boolean)">
+            <summary>
+            This can be overridden by derived classes to add their own
+            disposal code if necessary.
+            </summary>
+            <param name="disposing">Pass true to dispose of the managed
+            and unmanaged resources or false to just dispose of the
+            unmanaged resources.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.UpdateVersionItems">
+            <summary>
+            Update the version information items in the shared builder content
+            file.
+            </summary>
+            <remarks>
+            Remove the standard version information items from the shared
+            content file as the version builder information will take its
+            place in the topics.  New items are added for each version of
+            the project defined in the configuration settings.
+            </remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.BuildProject(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            This is called to build a project
+            </summary>
+            <param name="project">The project to build</param>
+            <param name="workingPath">The working path for the project</param>
+            <returns>Returns true if successful, false if not</returns>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.buildProcess_BuildStepChanged(System.Object,SandcastleBuilder.Utils.BuildEngine.BuildProgressEventArgs)">
+            <summary>
+            This is called by the build process thread to update the
+            application with the current build step.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.CreateVersionBuilderScript">
+            <summary>
+            This creates the Version Builder configuration and script files
+            </summary>
+            <returns>The name of the script to run</returns>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.Name">
+            <summary>
+            This read-only property returns a friendly name for the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.Version">
+            <summary>
+            This read-only property returns the version of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the
+            plug-in.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.Description">
+            <summary>
+            This read-only property returns a brief description of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.RunsInPartialBuild">
+            <summary>
+            This plug-in runs in partial builds
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.VersionBuilderPlugIn.ExecutionPoints">
+            <summary>
+            This read-only property returns a collection of execution points
+            that define when the plug-in should be invoked during the build
+            process.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.ProxyCredentials">
+            <summary>
+            This class is used to specify credentials for a proxy server.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ProxyCredentials.#ctor">
+            <summary>
+            Constructor
+            </summary>
+            <overloads>There are two overloads for the constructor.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ProxyCredentials.#ctor(System.Boolean,System.Uri,SandcastleBuilder.PlugIns.UserCredentials)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="useProxy">True to use default the proxy server, false
+            to not use it.</param>
+            <param name="server">The server name to use.</param>
+            <param name="proxyUser">The user credentials to use for the proxy
+            server.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ProxyCredentials.FromXPathNavigator(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Create a proxy credentials instance from an XPath navigator
+            containing the settings.
+            </summary>
+            <param name="navigator">The XPath navigator from which to
+            obtain the settings.</param>
+            <returns>A <see cref="T:SandcastleBuilder.PlugIns.ProxyCredentials"/> object containing the
+            settings from the XPath navigator.</returns>
+            <remarks>It should contain an element called <b>proxyCredentials</b>
+            with two attributes (<b>useProxy</b> and <b>proxyServer</b>) and a
+            nested <b>userCredentials</b> element.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ProxyCredentials.ToXml(System.Xml.XmlDocument,System.Xml.XmlNode)">
+            <summary>
+            Store the credentials as a node in the given XML document
+            </summary>
+            <param name="config">The XML document</param>
+            <param name="root">The node in which to store the element</param>
+            <returns>Returns the node that was added or the one that
+            already existed in the document.</returns>
+            <remarks>The credentials are stored in an element called
+            <b>proxyCredentials</b> with two attributes (<b>useProxy</b> and
+            <b>proxyServer</b>) and a nested <b>userCredentials</b> element.
+            It is created if it does not already exist.</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.ProxyCredentials.UseProxyServer">
+            <summary>
+            This is used to set or get the flag indicating whether or not to
+            use the proxy server.
+            </summary>
+            <value>By default, this is false and <see cref="P:SandcastleBuilder.PlugIns.ProxyCredentials.ProxyServer"/> and
+            <see cref="P:SandcastleBuilder.PlugIns.ProxyCredentials.Credentials"/> will be ignored.</value>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.ProxyCredentials.ProxyServer">
+            <summary>
+            Get or set the proxy server name
+            </summary>
+            <value>If <see cref="P:SandcastleBuilder.PlugIns.ProxyCredentials.UseProxyServer"/> is false, this will be
+            ignored.</value>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.ProxyCredentials.Credentials">
+            <summary>
+            Get the user credentials
+            </summary>
+            <value>If <see cref="P:SandcastleBuilder.PlugIns.ProxyCredentials.UseProxyServer"/> is false, this will be
+            ignored.</value>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.DbcsFixPlugIn">
+            <summary>
+            This plug-in class is designed to modify the HTML files and alter the
+            build so as to overcome the encoding issues encountered when building
+            HTML Help 1 (.chm) files for various foreign languages.
+            </summary>
+            <remarks>This uses the <see href="http://www.steelbytes.com/?mid=45">Steel
+            Bytes SBAppLocale</see> tool to run the HTML Help 1 compiler using the
+            correct locale.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DbcsFixPlugIn.ConfigurePlugIn(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            This method is used by the Sandcastle Help File Builder to let the
+            plug-in perform its own configuration.
+            </summary>
+            <param name="project">A reference to the active project</param>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+            <remarks>The configuration data will be stored in the help file
+            builder project.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DbcsFixPlugIn.Initialize(SandcastleBuilder.Utils.BuildEngine.BuildProcess,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This method is used to initialize the plug-in at the start of the
+            build process.
+            </summary>
+            <param name="buildProcess">A reference to the current build
+            process.</param>
+            <param name="configuration">The configuration data that the plug-in
+            should use to initialize itself.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DbcsFixPlugIn.Execute(SandcastleBuilder.Utils.PlugIn.ExecutionContext)">
+            <summary>
+            This method is used to execute the plug-in during the build process
+            </summary>
+            <param name="context">The current execution context</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DbcsFixPlugIn.Finalize">
+            <summary>
+            This handles garbage collection to ensure proper disposal of the
+            plug-in if not done explicity with <see cref="M:SandcastleBuilder.PlugIns.DbcsFixPlugIn.Dispose"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DbcsFixPlugIn.Dispose">
+            <summary>
+            This implements the Dispose() interface to properly dispose of
+            the plug-in object.
+            </summary>
+            <overloads>There are two overloads for this method.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.DbcsFixPlugIn.Dispose(System.Boolean)">
+            <summary>
+            This can be overridden by derived classes to add their own
+            disposal code if necessary.
+            </summary>
+            <param name="disposing">Pass true to dispose of the managed
+            and unmanaged resources or false to just dispose of the
+            unmanaged resources.</param>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DbcsFixPlugIn.Name">
+            <summary>
+            This read-only property returns a friendly name for the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DbcsFixPlugIn.Version">
+            <summary>
+            This read-only property returns the version of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DbcsFixPlugIn.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the
+            plug-in.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DbcsFixPlugIn.Description">
+            <summary>
+            This read-only property returns a brief description of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DbcsFixPlugIn.RunsInPartialBuild">
+            <summary>
+            This plug-in does not run in partial builds
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.DbcsFixPlugIn.ExecutionPoints">
+            <summary>
+            This read-only property returns a collection of execution points
+            that define when the plug-in should be invoked during the build
+            process.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.BibliographySupportConfigDlg">
+            <summary>
+            This form is used to configure the settings for the
+            <see cref="T:SandcastleBuilder.PlugIns.BibliographySupportPlugIn"/>.
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.PlugIns.BibliographySupportConfigDlg.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BibliographySupportConfigDlg.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BibliographySupportConfigDlg.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BibliographySupportConfigDlg.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="currentConfig">The current XML configuration
+            XML fragment</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BibliographySupportConfigDlg.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close without saving
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BibliographySupportConfigDlg.project_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Launch the URL in the web browser.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BibliographySupportConfigDlg.btnSelectLocation_Click(System.Object,System.EventArgs)">
+            <summary>
+            Select the path to the bibliography file
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.BibliographySupportConfigDlg.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Validate the configuration and save it
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.BibliographySupportConfigDlg.Configuration">
+            <summary>
+            This is used to return the configuration information
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.AjaxDocPlugIn">
+            <summary>
+            This plug-in class is designed to generate XML comments and reflection
+            file information for Atlas client script libraries using AjaxDoc.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocPlugIn.ConfigurePlugIn(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            This method is used by the Sandcastle Help File Builder to let the
+            plug-in perform its own configuration.
+            </summary>
+            <param name="project">A reference to the active project</param>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+            <remarks>The configuration data will be stored in the help file
+            builder project.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocPlugIn.Initialize(SandcastleBuilder.Utils.BuildEngine.BuildProcess,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This method is used to initialize the plug-in at the start of the
+            build process.
+            </summary>
+            <param name="buildProcess">A reference to the current build
+            process.</param>
+            <param name="configuration">The configuration data that the plug-in
+            should use to initialize itself.</param>
+            <exception cref="T:SandcastleBuilder.Utils.BuilderException">This is thrown if the plug-in
+            configuration is not valid.</exception>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocPlugIn.Execute(SandcastleBuilder.Utils.PlugIn.ExecutionContext)">
+            <summary>
+            This method is used to execute the plug-in during the build process
+            </summary>
+            <param name="context">The current execution context</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocPlugIn.Finalize">
+            <summary>
+            This handles garbage collection to ensure proper disposal of the
+            plug-in if not done explicity with <see cref="M:SandcastleBuilder.PlugIns.AjaxDocPlugIn.Dispose"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocPlugIn.Dispose">
+            <summary>
+            This implements the Dispose() interface to properly dispose of
+            the plug-in object.
+            </summary>
+            <overloads>There are two overloads for this method.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocPlugIn.Dispose(System.Boolean)">
+            <summary>
+            This can be overridden by derived classes to add their own
+            disposal code if necessary.
+            </summary>
+            <param name="disposing">Pass true to dispose of the managed
+            and unmanaged resources or false to just dispose of the
+            unmanaged resources.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocPlugIn.RunBrowser">
+            <summary>
+            This is the entry point for the thread that runs the browser to
+            invoke AjaxDoc.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocPlugIn.wb_DocumentCompleted(System.Object,System.Windows.Forms.WebBrowserDocumentCompletedEventArgs)">
+            <summary>
+            Hook up the error handler on completion to handle script errors
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocPlugIn.Window_Error(System.Object,System.Windows.Forms.HtmlElementErrorEventArgs)">
+            <summary>
+            If a script error occurs, stop processing
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.AjaxDocPlugIn.wb_Navigated(System.Object,System.Windows.Forms.WebBrowserNavigatedEventArgs)">
+            <summary>
+            This notes when the page completes navigating
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+            <remarks>If ran successfully, the page navigates twice.  The first
+            time is the initial page load.  It immediately submits itself to
+            post the results.  On the second navigation, we can assume it was
+            successful and the page contains the "success" result message.
+            </remarks>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AjaxDocPlugIn.Name">
+            <summary>
+            This read-only property returns a friendly name for the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AjaxDocPlugIn.Version">
+            <summary>
+            This read-only property returns the version of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AjaxDocPlugIn.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the
+            plug-in.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AjaxDocPlugIn.Description">
+            <summary>
+            This read-only property returns a brief description of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AjaxDocPlugIn.RunsInPartialBuild">
+            <summary>
+            This plug-in runs in partial builds
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.AjaxDocPlugIn.ExecutionPoints">
+            <summary>
+            This read-only property returns a collection of execution points
+            that define when the plug-in should be invoked during the build
+            process.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.ScriptSharpPlugIn">
+            <summary>
+            This plug-in class is designed to modify the reflection information
+            file produced after running MRefBuilder on assemblies produced by the
+            Script# compiler so that it is suitable for use in producing a help
+            file.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ScriptSharpPlugIn.ConfigurePlugIn(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            This method is used by the Sandcastle Help File Builder to let the
+            plug-in perform its own configuration.
+            </summary>
+            <param name="project">A reference to the active project</param>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+            <remarks>The configuration data will be stored in the help file
+            builder project.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ScriptSharpPlugIn.Initialize(SandcastleBuilder.Utils.BuildEngine.BuildProcess,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This method is used to initialize the plug-in at the start of the
+            build process.
+            </summary>
+            <param name="buildProcess">A reference to the current build
+            process.</param>
+            <param name="configuration">The configuration data that the plug-in
+            should use to initialize itself.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ScriptSharpPlugIn.Execute(SandcastleBuilder.Utils.PlugIn.ExecutionContext)">
+            <summary>
+            This method is used to execute the plug-in during the build process
+            </summary>
+            <param name="context">The current execution context</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ScriptSharpPlugIn.Finalize">
+            <summary>
+            This handles garbage collection to ensure proper disposal of the
+            plug-in if not done explicity with <see cref="M:SandcastleBuilder.PlugIns.ScriptSharpPlugIn.Dispose"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ScriptSharpPlugIn.Dispose">
+            <summary>
+            This implements the Dispose() interface to properly dispose of
+            the plug-in object.
+            </summary>
+            <overloads>There are two overloads for this method.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ScriptSharpPlugIn.Dispose(System.Boolean)">
+            <summary>
+            This can be overridden by derived classes to add their own
+            disposal code if necessary.
+            </summary>
+            <param name="disposing">Pass true to dispose of the managed
+            and unmanaged resources or false to just dispose of the
+            unmanaged resources.</param>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.ScriptSharpPlugIn.Name">
+            <summary>
+            This read-only property returns a friendly name for the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.ScriptSharpPlugIn.Version">
+            <summary>
+            This read-only property returns the version of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.ScriptSharpPlugIn.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the
+            plug-in.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.ScriptSharpPlugIn.Description">
+            <summary>
+            This read-only property returns a brief description of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.ScriptSharpPlugIn.RunsInPartialBuild">
+            <summary>
+            This plug-in runs in partial builds
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.ScriptSharpPlugIn.ExecutionPoints">
+            <summary>
+            This read-only property returns a collection of execution points
+            that define when the plug-in should be invoked during the build
+            process.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn">
+            <summary>
+            This plug-in class is designed to run after the build completes to
+            send notification of the completion status via e-mail.  The log file
+            can be sent as an attachment.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn.ConfigurePlugIn(SandcastleBuilder.Utils.SandcastleProject,System.String)">
+            <summary>
+            This method is used by the Sandcastle Help File Builder to let the
+            plug-in perform its own configuration.
+            </summary>
+            <param name="project">A reference to the active project</param>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+            <remarks>The configuration data will be stored in the help file
+            builder project.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn.Initialize(SandcastleBuilder.Utils.BuildEngine.BuildProcess,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This method is used to initialize the plug-in at the start of the
+            build process.
+            </summary>
+            <param name="buildProcess">A reference to the current build
+            process.</param>
+            <param name="configuration">The configuration data that the plug-in
+            should use to initialize itself.</param>
+            <exception cref="T:SandcastleBuilder.Utils.BuilderException">This is thrown if the plug-in
+            configuration is not valid.</exception>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn.Execute(SandcastleBuilder.Utils.PlugIn.ExecutionContext)">
+            <summary>
+            This method is used to execute the plug-in during the build process
+            </summary>
+            <param name="context">The current execution context</param>
+            <remarks>Since this runs after completion of the build and the
+            log file is closed, any progress messages reported here will not
+            appear in it, just in the output window on the main form.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn.Finalize">
+            <summary>
+            This handles garbage collection to ensure proper disposal of the
+            plug-in if not done explicity with <see cref="M:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn.Dispose"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn.Dispose">
+            <summary>
+            This implements the Dispose() interface to properly dispose of
+            the plug-in object.
+            </summary>
+            <overloads>There are two overloads for this method.</overloads>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn.Dispose(System.Boolean)">
+            <summary>
+            This can be overridden by derived classes to add their own
+            disposal code if necessary.
+            </summary>
+            <param name="disposing">Pass true to dispose of the managed
+            and unmanaged resources or false to just dispose of the
+            unmanaged resources.</param>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn.TransformLogFile">
+            <summary>
+            This is used to run the log file through an XSL transform so that
+            it is more readable.
+            </summary>
+            <returns>The transformed log filename</returns>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn.Name">
+            <summary>
+            This read-only property returns a friendly name for the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn.Version">
+            <summary>
+            This read-only property returns the version of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn.Copyright">
+            <summary>
+            This read-only property returns the copyright information for the
+            plug-in.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn.Description">
+            <summary>
+            This read-only property returns a brief description of the plug-in
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn.RunsInPartialBuild">
+            <summary>
+            This plug-in does not run in partial builds
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.CompletionNotificationPlugIn.ExecutionPoints">
+            <summary>
+            This read-only property returns a collection of execution points
+            that define when the plug-in should be invoked during the build
+            process.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.PlugIns.ReferenceLinkSettings">
+            <summary>
+            This represents reference link settings for the
+            <see cref="T:SandcastleBuilder.PlugIns.AdditionalReferenceLinksPlugIn"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ReferenceLinkSettings.ShouldSerializeHelpFileProject">
+            <summary>
+            This is used to see if the <see cref="P:SandcastleBuilder.PlugIns.ReferenceLinkSettings.HelpFileProject"/> property
+            should be serialized.
+            </summary>
+            <returns>True to serialize it, false if it matches the default
+            and should not be serialized.  This property cannot be reset
+            as it should always have a value.</returns>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ReferenceLinkSettings.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ReferenceLinkSettings.FromXPathNavigator(SandcastleBuilder.Utils.IBasePathProvider,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Create a reference link settings instance from an XPath navigator
+            containing the settings.
+            </summary>
+            <param name="pathProvider">The base path provider object</param>
+            <param name="navigator">The XPath navigator from which to
+            obtain the settings.</param>
+            <returns>A <see cref="T:SandcastleBuilder.PlugIns.ReferenceLinkSettings"/> object containing the
+            settings from the XPath navigator.</returns>
+            <remarks>It should contain an element called <c>target</c>
+            with two attributes (<c>linkType</c> and <c>helpFileProject</c>).
+            </remarks>
+        </member>
+        <member name="M:SandcastleBuilder.PlugIns.ReferenceLinkSettings.ToXml(System.Xml.XmlDocument,System.Xml.XmlNode)">
+            <summary>
+            Store the reference link settings as a node in the given XML
+            document.
+            </summary>
+            <param name="config">The XML document</param>
+            <param name="root">The node in which to store the element</param>
+            <returns>Returns the node that was added.</returns>
+            <remarks>The reference link settings are stored in an element
+            called <c>target</c> with two attributes (<c>linkType</c> and
+            <c>helpFileProject</c>).</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.ReferenceLinkSettings.ReflectionFilename">
+            <summary>
+            This is used to get or set the location of the reflection file
+            at build time.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.ReferenceLinkSettings.LinkType">
+            <summary>
+            This is used to get or set the link type for the target
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.ReferenceLinkSettings.HelpFileProject">
+            <summary>
+            This is used to get or set the path to the help file builder
+            project used to generate reference link information.
+            </summary>
+            <value>The help file builder project makes it simple to manage
+            settings for the other target's assemblies such as references,
+            API filter settings, etc.</value>
+        </member>
+        <member name="P:SandcastleBuilder.PlugIns.ReferenceLinkSettings.ListDescription">
+            <summary>
+            This returns a description of the entry suitable for display in a
+            bound list control.
+            </summary>
+        </member>
+    </members>
+</doc>

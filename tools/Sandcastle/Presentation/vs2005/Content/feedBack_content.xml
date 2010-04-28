@@ -1,0 +1,32 @@
+<content xml:space="preserve">
+
+  <item id="fb_alias">DevDocs@Microsoft.com</item>
+  <item id="fb_product"></item>
+  <item id="fb_deliverable"></item>
+
+  <item id="fb_subject">Customer%20Feedback</item>
+  <item id="fb_body">%0\dThank%20you%20for%20your%20feedback.%20The%20developer%20writing%20teams%20use%20your%20feedback%20to%20improve%20documentation.%20While%20we%20are%20reviewing%20your%20feedback,%20we%20may%20send%20you%20e-mail%20to%20ask%20for%20clarification%20or%20feedback%20on%20a%20solution.%20We%20do%20not%20use%20your%20e-mail%20address%20for%20any%20other%20purpose%20and%20we%20delete%20it%20after%20we%20finish%20our%20review.%0\AFor%20further%20information%20about%20the%20privacy%20policies%20of%20Microsoft,%20please%20see%20http://privacy.microsoft.com/en-us/default.aspx.%0\A%0\d</item>
+ 
+   <item id="fb_headerFeedBack">Send Feedback</item>
+  
+
+   <!-- feedback values for sandcastle scenario -->
+
+   <item id="feedback_alias"></item>
+   <item id="feedback_product"></item>
+   <item id="feedback_deliverable"></item>
+   <item id="feedback_fileVersion"></item>
+   <item id="feedback_topicVersion"></item>
+   <item id="feedback_body"></item>
+   <item id="feedback_subject"></item>
+
+   <item id="fb_Introduction">We value your feedback. To rate this topic and send feedback about this topic to the documentation team, click a rating, and then click <b>Send Feedback</b>. For assistance with support issues, refer to the technical support information included with the product.</item>
+
+   <item id="fb_Send">Send Feedback</item>
+   <item id="fb_Poor">Poor</item>
+   <item id="fb_Excellent">Outstanding</item>
+   <item id="fb_EnterFeedbackText">To e-mail your feedback, click here:</item>
+   <item id="fb_Title">Documentation Feedback</item>
+   <item id="fb_altIcon">Display feedback instructions at the bottom of the page.</item>
+
+</content>

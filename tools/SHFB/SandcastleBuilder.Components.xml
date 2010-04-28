@@ -1,0 +1,1512 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SandcastleBuilder.Components</name>
+    </assembly>
+    <members>
+        <member name="T:SandcastleBuilder.Components.PostTransformConfigDlg">
+            <summary>
+            This form is used to configure the settings for the
+            <see cref="T:SandcastleBuilder.Components.PostTransformComponent"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformConfigDlg.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="currentConfig">The current XML configuration
+            XML fragment</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformConfigDlg.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close without saving
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformConfigDlg.lnkCodePlexSHFB_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Go to the CodePlex home page of the Sandcastle Help File Builder
+            project.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformConfigDlg.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Validate the configuration and save it
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformConfigDlg.btnSelectFolder_Click(System.Object,System.EventArgs)">
+            <summary>
+            Select the base source folder
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformConfigDlg.SelectFile_Click(System.Object,System.EventArgs)">
+            <summary>
+            Select the syntax or style file
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformConfigDlg.SelectImage_Click(System.Object,System.EventArgs)">
+            <summary>
+            Select the logo or "Copy" image file
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformConfigDlg.txtLogoFile_Leave(System.Object,System.EventArgs)">
+            <summary>
+            Update the image information if it changed
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformConfigDlg.pnlImage_Paint(System.Object,System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Draw the image on the panel using the width and height settings
+            to give an idea of how big it will be.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformConfigDlg.WidthHeight_ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            Redraw the image when the width or height changes
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformConfigDlg.cboPlacement_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Disable alignment unless "Above" is selected for placement
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="F:SandcastleBuilder.Components.PostTransformConfigDlg.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformConfigDlg.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformConfigDlg.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.Components.PostTransformConfigDlg.Configuration">
+            <summary>
+            This is used to return the configuration information
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.Components.IntelliSenseConfigDlg">
+            <summary>
+            This form is used to configure the settings for the
+            <see cref="T:SandcastleBuilder.Components.IntelliSenseComponent"/>.
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.Components.IntelliSenseConfigDlg.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Components.IntelliSenseConfigDlg.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.IntelliSenseConfigDlg.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Components.IntelliSenseConfigDlg.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="currentConfig">The current XML configuration
+            XML fragment</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.IntelliSenseConfigDlg.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close without saving
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.IntelliSenseConfigDlg.lnkCodePlexSHFB_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Go to the CodePlex home page of the Sandcastle Help File Builder
+            project.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.IntelliSenseConfigDlg.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Validate the configuration and save it
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.IntelliSenseConfigDlg.btnSelectFolder_Click(System.Object,System.EventArgs)">
+            <summary>
+            Select the base source folder
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="P:SandcastleBuilder.Components.IntelliSenseConfigDlg.Configuration">
+            <summary>
+            This is used to return the configuration information
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.Components.TargetInfo">
+            <summary>
+            This is a reimplementation of the <c>TargetInfo</c> class used by
+            <see cref="T:SandcastleBuilder.Components.ResolveConceptualLinksComponent"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Components.TargetInfo.#ctor(System.String,System.String,SandcastleBuilder.Components.LinkType)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="targetUrl">The target URL</param>
+            <param name="targetText">The target's link text</param>
+            <param name="typeOfLink">The type of link</param>
+            <exception cref="T:System.ArgumentNullException">This is thrown if the
+            target URL or text is null.</exception>
+        </member>
+        <member name="P:SandcastleBuilder.Components.TargetInfo.Text">
+            <summary>
+            This read-only property is used to get the text
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.Components.TargetInfo.LinkType">
+            <summary>
+            This read-only property is used to get the link type
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.Components.TargetInfo.Url">
+            <summary>
+            This read-only property is used to get the URL
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.Components.VersionInfoComponent">
+            <summary>
+            This build component is used to obtain version information for each
+            topic so that it can be placed in the footer by the
+            <see cref="T:SandcastleBuilder.Components.PostTransformComponent"/>.
+            </summary>
+            <remarks>The <see cref="T:SandcastleBuilder.Components.PostTransformComponent"/> adds the version
+            information to the topic after it has been transformed into HTML.
+            We need to get the version information here though as the reference
+            information is lost once it has been transformed.</remarks>
+            <example>
+            <code lang="xml" title="Example configuration">
+            &lt;!-- Version information component configuration.  This must
+                 appear before the TransformComponent.  See also:
+                 PostTransformComponent --&gt;
+            &lt;component type="SandcastleBuilder.Components.VersionInfoComponent"
+              assembly="C:\SandcastleBuilder\SandcastleBuilder.Components.dll"&gt;
+                &lt;!-- Reflection information file for version info (required) --&gt;
+                &lt;reflectionFile filename="reflection.xml" /&gt;
+            &lt;/component&gt;
+            </code>
+            </example>
+        </member>
+        <member name="M:SandcastleBuilder.Components.VersionInfoComponent.#ctor(Microsoft.Ddue.Tools.BuildAssembler,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="assembler">A reference to the build assembler.</param>
+            <param name="configuration">The configuration information</param>
+            <remarks>See the <see cref="T:SandcastleBuilder.Components.VersionInfoComponent"/> class topic
+            for an example of the configuration</remarks>
+            <exception cref="T:System.Configuration.ConfigurationErrorsException">This is thrown if
+            an error is detected in the configuration.</exception>
+        </member>
+        <member name="M:SandcastleBuilder.Components.VersionInfoComponent.Apply(System.Xml.XmlDocument,System.String)">
+            <summary>
+            This is implemented to set the version information ready for use
+            by the <see cref="T:SandcastleBuilder.Components.PostTransformComponent"/>.
+            </summary>
+            <param name="document">The XML document with which to work.</param>
+            <param name="key">The key (member name) of the item being
+            documented.</param>
+        </member>
+        <member name="P:SandcastleBuilder.Components.VersionInfoComponent.ItemVersions">
+            <summary>
+            This is used by the <see cref="T:SandcastleBuilder.Components.PostTransformComponent"/> to get the
+            assembly versions for the current topic.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.Components.MSHelpAttrComponent">
+            <summary>
+            This build component is used to add additional MS Help 2 attributes
+            to the XML data island in each generated API topic.
+            </summary>
+            <example>
+            <code lang="xml" title="Example configuration">
+            &lt;!-- MS Help 2 attribute configuration.  This must appear after
+                 the TransformComponent. --&gt;
+            &lt;component type="SandcastleBuilder.Components.MSHelpAttrComponent"
+              assembly="C:\SandcastleBuilder\SandcastleBuilder.Components.dll"&gt;
+                &lt;!-- Additional attributes (required) --&gt;
+                &lt;attributes&gt;
+                    &lt;!-- At least one attribute element must be defined.  The
+                         "name" attribute is required.  The "value" attribute is
+                         optional. --&gt;
+                    &lt;attribute name="DocSet" value="NETFramework" / &gt;
+                    &lt;attribute name="DocSet" value="ProjectNamespace" / &gt;
+                    &lt;attribute name="TargetOS" value="Windows" / &gt;
+                &lt;/attributes&gt;
+            &lt;/component&gt;
+            </code>
+            </example>
+        </member>
+        <member name="M:SandcastleBuilder.Components.MSHelpAttrComponent.#ctor(Microsoft.Ddue.Tools.BuildAssembler,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="assembler">A reference to the build assembler.</param>
+            <param name="configuration">The configuration information</param>
+            <remarks>See the <see cref="T:SandcastleBuilder.Components.MSHelpAttrComponent"/> class topic
+            for an example of the configuration</remarks>
+            <exception cref="T:System.Configuration.ConfigurationErrorsException">This is thrown if
+            an error is detected in the configuration.</exception>
+        </member>
+        <member name="M:SandcastleBuilder.Components.MSHelpAttrComponent.Apply(System.Xml.XmlDocument,System.String)">
+            <summary>
+            This is implemented to add the attributes to the XML data island.
+            </summary>
+            <param name="document">The XML document with which to work.</param>
+            <param name="key">The key (member name) of the item being
+            documented.</param>
+        </member>
+        <member name="T:SandcastleBuilder.Components.CodeBlockComponent">
+             <summary>
+             This build component is used to search for &lt;code&gt; XML comment
+             tags and colorize the code within them.  It can also include code
+             from an external file or a region within the file.
+             </summary>
+             <remarks>Note that this component must be paired with the
+             <see cref="T:SandcastleBuilder.Components.PostTransformComponent"/>.</remarks>
+             <example>
+             <code lang="xml" title="Example configuration">
+             &lt;!-- Code block component configuration.  This must appear before
+                  the TransformComponent.  See also: PostTransformComponent. --&gt;
+             &lt;component type="SandcastleBuilder.Components.CodeBlockComponent"
+               assembly="C:\SandcastleBuilder\SandcastleBuilder.Components.dll"&gt;
+                 &lt;!-- Base path for relative filenames in source
+                      attributes (optional). --&gt;
+                 &lt;basePath value="..\SandcastleComponents" /&gt;
+            
+                 &lt;!-- Connect to language filter (optional).  If omitted,
+                      language filtering is enabled by default. --&gt;
+                 &lt;languageFilter value="true" /&gt;
+            
+                 &lt;!-- Allow missing source files (Optional).  If omitted,
+                      it will generate errors if referenced source files
+                      are missing. --&gt;
+                 &lt;allowMissingSource value="false" /&gt;
+             
+                 &lt;!-- Remove region markers from imported code blocks.  If omitted,
+                      region markers in imported code blocks are left alone. --&gt;
+                 &lt;removeRegionMarkers value="false" /&gt;
+            
+                 &lt;!-- Code colorizer options (required).
+                   Attributes:
+                     Language syntax configuration file (required)
+                     XSLT style file (required)
+                     "Copy" image file URL (required)
+                     Default language (optional)
+                     Enable line numbering (optional)
+                     Enable outlining (optional)
+                     Keep XML comment "see" tags within the code (optional)
+                     Tab size for unknown languages (optional, 0 = use default)
+                     Use language name as default title (optional) --&gt;
+                 &lt;colorizer syntaxFile="highlight.xml" styleFile="highlight.xsl"
+                   copyImageUrl="CopyCode.gif" language="cs" numberLines="false"
+                   outlining="false" keepSeeTags="false" tabSize="0"
+                   defaultTitle="true" /&gt;
+             &lt;/component&gt;
+             </code>
+            
+             <code lang="xml" title="Examples as used in XML comments.">
+             &lt;example&gt;
+             A basic code block that uses the configuration defaults:
+             &lt;code&gt;
+             /// Code to colorize
+             &lt;/code&gt;
+            
+             Override options with block-specific options:
+             &lt;code lang="xml" numberLines="true" outlining="false" tabSize="8" &gt;
+                 &amp;lt;XmlTags/&amp;gt;
+             &lt;/code&gt;
+            
+             An entire external file or a delimited region from it can be
+             included.  This allows you to compile your example code externally
+             to ensure that it is still valid and saves you from maintaining it
+             in two places.
+            
+             Retrieve all code from an external file.  Use VB.NET syntax.
+             &lt;code source="..\Examples\WholeDemo.vb" lang="vbnet"/&gt;
+            
+             Retrieve a specific #region from an external file.
+             &lt;code source="..\Examples\SeveralExamples.vb"
+                 region="Example 1" lang="vbnet"/&gt;
+             
+             Keep &lt;see&gt; tags within comments so that they are converted to
+             links to the help topics.
+             &lt;code keepSeeTags="true"&gt;
+             int x = this.&lt;see cref="CountStuff"&gt;CountStuff&lt;/see&gt;(true);
+             
+             string value = this.&lt;see cref="System.Object.ToString"&gt;
+             &lt;code&gt;
+            
+             &lt;example&gt;
+             </code>
+             </example>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CodeBlockComponent.#ctor(Microsoft.Ddue.Tools.BuildAssembler,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="assembler">A reference to the build assembler.</param>
+            <param name="configuration">The configuration information</param>
+            <remarks><b>NOTE:</b>  This component must be paired with the
+            <see cref="T:SandcastleBuilder.Components.PostTransformComponent"/>.  See the
+            <see cref="T:SandcastleBuilder.Components.CodeBlockComponent"/> class topic for an example of the
+            configuration and usage.</remarks>
+            <exception cref="T:System.Configuration.ConfigurationErrorsException">This is thrown if
+            an error is detected in the configuration.</exception>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CodeBlockComponent.Apply(System.Xml.XmlDocument,System.String)">
+            <summary>
+            This is implemented to perform the code colorization.
+            </summary>
+            <param name="document">The XML document with which to work.</param>
+            <param name="key">The key (member name) of the item being
+            documented.</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CodeBlockComponent.LoadNestedCodeBlocks(System.Xml.XPath.XPathNavigator,System.Xml.XPath.XPathExpression)">
+            <summary>
+            This is used to load a set of nested code blocks from external
+            files.
+            </summary>
+            <param name="navCode">The node in which to replace the nested
+            code blocks</param>
+            <param name="nestedCode">The XPath expression used to locate the
+            nested code blocks.</param>
+            <returns>The HTML encoded blocks extracted from the files as a
+            single code block.</returns>
+            <remarks>Only source and region attributes are used.  All other
+            attributes are obtained from the parent code block.  Text nodes
+            are created to replace the nested code tags so that any additional
+            text in the parent code block is also retained.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CodeBlockComponent.LoadCodeBlock(System.Xml.XmlNode)">
+            <summary>
+            This is used to load a code block from an external file.
+            </summary>
+            <param name="code">The node containing the attributes</param>
+            <returns>The HTML encoded block extracted from the file.</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CodeBlockComponent.AddLanguageFilter(System.Xml.XmlNode,System.Xml.XmlNode,System.String,System.Int32)">
+            <summary>
+            This is used to add language filter IDs for the Prototype, VS2005,
+            and Hana styles so that the code block is shown or hidden based
+            on the language filter selection.
+            </summary>
+            <param name="title">The title node if used</param>
+            <param name="code">The code node</param>
+            <param name="language">The language to use as the filter</param>
+            <param name="blockId">A unique ID number for the code block</param>
+            <returns>The span node containing the title and code nodes</returns>
+            <remarks>The <see cref="T:SandcastleBuilder.Components.PostTransformComponent"/> adds the script
+            necessary to register the code blocks and set their initial visible
+            state in the Prototype and Hana styles.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CodeBlockComponent.ConfigureComponent(System.String)">
+            <summary>
+            This static method is used by the Sandcastle Help File Builder to
+            let the component perform its own configuration.
+            </summary>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+        </member>
+        <member name="P:SandcastleBuilder.Components.CodeBlockComponent.ColorizedCodeBlocks">
+            <summary>
+            This is used by the <see cref="T:SandcastleBuilder.Components.PostTransformComponent"/> to insert
+            the colorized code blocks.
+            </summary>
+            <remarks>The colorized code blocks contain HTML which isn't
+            supported by conceptual topics pre-transformation.  As such, we
+            hold onto them here and use a placeholder ID.  The post-transform
+            component will replace the placeholder ID with the actual colorized
+            code block.</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.Components.CodeBlockComponent.CopyImageLocation">
+            <summary>
+            This is used by the <see cref="T:SandcastleBuilder.Components.PostTransformComponent"/> to get
+            the destination location and filename of the "Copy" image.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.Components.CodeBlockComponent.CopyText">
+            <summary>
+            This is used by the <see cref="T:SandcastleBuilder.Components.PostTransformComponent"/> to get
+            the "Copy" text so that it can be replaced with an include item.
+            </summary>
+            <remarks>We can't do it here as the TransformComponent strips the
+            &lt;include&gt; tag as it isn't one it recognizes.</remarks>
+        </member>
+        <member name="T:SandcastleBuilder.Components.LinkType">
+            <summary>
+            This public enumerated type defines the link types
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.Components.LinkType.None">
+            <summary>No links</summary>
+        </member>
+        <member name="F:SandcastleBuilder.Components.LinkType.Local">
+            <summary>Local links</summary>
+        </member>
+        <member name="F:SandcastleBuilder.Components.LinkType.Index">
+            <summary>Index links</summary>
+        </member>
+        <member name="T:SandcastleBuilder.Components.TargetDirectory">
+            <summary>
+            This is a reimplementation of the <c>TargetDirectory</c> class used
+            by <see cref="T:SandcastleBuilder.Components.ResolveConceptualLinksComponent"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Components.TargetDirectory.#ctor(System.String,System.Xml.XPath.XPathExpression,System.Xml.XPath.XPathExpression,System.Xml.XPath.XPathExpression,SandcastleBuilder.Components.LinkType)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="targetDir">The target directory</param>
+            <param name="urlExp">The URL expression</param>
+            <param name="textExp">The text (title) expression</param>
+            <param name="linkTextExp">The alternate link text expression</param>
+            <param name="typeOfLink">The link type</param>
+            <exception cref="T:System.ArgumentNullException">This is thrown if the
+            directory, URL expression, or either text expression is null.</exception>
+        </member>
+        <member name="M:SandcastleBuilder.Components.TargetDirectory.GetTargetInfo(System.String)">
+            <summary>
+            Get target info for the specified file
+            </summary>
+            <param name="file">The file for which to get target info</param>
+            <returns>A <see cref="T:SandcastleBuilder.Components.TargetInfo"/> object if found or null if
+            not found.</returns>
+        </member>
+        <member name="T:SandcastleBuilder.Components.ResolveConceptualLinksComponent">
+             <summary>
+             This contains a reimplementation of <c>ResolveConceptualLinksComponent</c>
+             that allows the use of inner text from the <c>&lt;link&gt;</c> tag,
+             allows the use of anchor references (#anchorName) in the link target,
+             and allows the use of an optional <c>linkText</c> element in the
+             companion file to specify the link text.
+             </summary>
+             <remarks>This version contains the following improvements and fixes:
+             <list type="bullet">
+               <item>Broken links use the <b>None</b> style rather than the
+             <b>Index</b> style so that it is apparant that they do not work.</item>
+               <item>The inner text from the conceptual link is used if specified.</item>
+               <item>On broken links, when the <c>showBrokenLinkText</c> option
+             is true and there is no inner text, the target value is displayed.</item>
+               <item>Conceptual link targets can include an optional anchor name
+             from within the target such as "#Name" (see examples below).</item>
+               <item>Unnecessary whitespace is removed from the link text.</item>
+               <item>If the companion file contains a <c>&lt;linkText&gt;</c>
+             element and no inner text is specified, its value will be used for the
+             link text rather than the title.  This allows for a shorter title or
+             description to use as the default link text.</item>
+             </list></remarks>
+             <example>
+             On links without inner text, if the companion file contains a
+             <c>linkText</c> element, that text will be used.  If not, the title
+             is used.
+            
+             <code lang="xml" title="Example Links">
+             <![CDATA[<!-- Link with inner text -->
+             <link xlink:href="3ab3113f-984b-19ac-7812-990192aca5b0">Click Here</link>
+             <!-- Link with anchor reference -->
+             <link xlink:href="3ab3113f-984b-19ac-7812-990192aca5b1#SubTopic" />
+             <!-- Link with inner text and an anchor reference -->
+             <link xlink:href="3ab3113f-984b-19ac-7812-990192aca5b1#PropA">PropertyA</link>]]>
+             </code>
+             
+             <code lang="xml" title="Example configuration">
+             &lt;!-- Resolve conceptual links --&gt;
+             &lt;component type="SandcastleBuilder.Components.ResolveConceptualLinksComponent"
+               assembly="C:\SandcastleBuilder\SandcastleBuilder.Components.dll"
+               showBrokenLinkText="true"&gt;
+                 &lt;targets base="xmlComp" type="local" /&gt;
+             &lt;/component&gt;
+             </code>
+             </example>
+        </member>
+        <member name="M:SandcastleBuilder.Components.ResolveConceptualLinksComponent.#ctor(Microsoft.Ddue.Tools.BuildAssembler,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="assembler">A reference to the build assembler.</param>
+            <param name="configuration">The configuration information</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.ResolveConceptualLinksComponent.Apply(System.Xml.XmlDocument,System.String)">
+            <summary>
+            This is implemented to resolve the conceptual links
+            </summary>
+            <param name="document">The XML document with which to work.</param>
+            <param name="key">The key (member name) of the item being
+            documented.</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.ResolveConceptualLinksComponent.BrokenLinkDisplayText(System.String,System.String)">
+            <summary>
+            Determine what to display for broken links
+            </summary>
+            <param name="target">The target key</param>
+            <param name="text">The link text</param>
+            <returns>The text to display for the broken link</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Components.ResolveConceptualLinksComponent.CompileXPathExpression(System.String)">
+            <summary>
+            Compile an XPath expression and report an error if it fails
+            </summary>
+            <param name="xpath">The XPath expression to compile.</param>
+            <returns>The compiled XPath expression.</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Components.ResolveConceptualLinksComponent.GetTargetInfoFromCache(System.String)">
+            <summary>
+            Get target info
+            </summary>
+            <param name="target">The target for which to get info</param>
+            <returns>The target info object if found or null if not found</returns>
+        </member>
+        <member name="T:SandcastleBuilder.Components.PostTransformComponent">
+             <summary>
+             This build component is a companion to the
+             <see cref="T:SandcastleBuilder.Components.CodeBlockComponent"/>.  It is used to add the
+             stylesheet and JavaScript links to the rendered HTML if the topic
+             contains colorized code.  In addition, it can insert a logo image at
+             the top of each help topic and, for the Prototype presentation style,
+             hide the language combo box if only one language appears in the Syntax
+             section.   With a modification to the Sandcastle reference content
+             files, it will also add version information to each topic.
+             </summary>
+             <remarks>The colorizer files are only copied once and only if code is
+             actually colorized.  If the files already exist (i.e. additional
+             content has replaced them), they are not copied either.  That way, you
+             can customize the color stylesheet as you see fit without modifying the
+             default stylesheet.
+            
+             <p/>By adding "Version: {2}" to the <b>locationInformation</b> entry
+             and the <b>assemblyNameAndModule</b> entry in the
+             <b>reference_content.xml</b> file in the Prototype, VS2005, and Hana
+             style content files, you can add version information to each topic.
+             The help file builder uses a composite file with this fix already in
+             place.</remarks>
+             <example>
+             <code lang="xml" title="Example configuration">
+             &lt;!-- Post-transform component configuration.  This must
+                  appear after the TransformComponent.  See also:
+                  CodeBlockComponent. --&gt;
+             &lt;component type="SandcastleBuilder.Components.PostTransformComponent"
+               assembly="C:\SandcastleComponents\SandcastleBuilder.Components.dll" &gt;
+                 &lt;!-- Code colorizer files (required).
+                      Attributes:
+                         Stylesheet file (required)
+                         Script file (required)
+                         "Copy" image file (required) --&gt;
+                 &lt;colorizer stylesheet="highlight.css" scriptFile="highlight.js"
+                    copyImage="CopyCode.gif" /&gt;
+            
+                 &lt;!-- Base output path for the files (required).  This should
+                      match the parent folder of the output path of the HTML files
+                      (see SaveComponent). --&gt;
+                 &lt;outputPath value="Output" /&gt;
+            
+                 &lt;!-- Logo image file (optional).  Filename is required.  The
+                      height, width, altText, placement, and alignment attributes
+                      are optional. --&gt;
+                 &lt;logoFile filename="Logo.jpg" height="64" width="64"
+                    altText="Test Logo" placement="left" alignment="left" /&gt;
+             &lt;/component&gt;
+             </code>
+             </example>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformComponent.#ctor(Microsoft.Ddue.Tools.BuildAssembler,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="assembler">A reference to the build assembler.</param>
+            <param name="configuration">The configuration information</param>
+            <exception cref="T:System.Configuration.ConfigurationErrorsException">This is thrown if
+            an error is detected in the configuration.</exception>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformComponent.Apply(System.Xml.XmlDocument,System.String)">
+            <summary>
+            This is implemented to perform the post-transformation tasks.
+            </summary>
+            <param name="document">The XML document with which to work.</param>
+            <param name="key">The key (member name) of the item being
+            documented.</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformComponent.AddVersionInfo(System.Xml.XmlDocument)">
+            <summary>
+            This is used to add version information to the topic
+            </summary>
+            <param name="document">The document to modify</param>
+            <remarks>This requires a modification to the Sandcastle
+            presentation style file reference_content.xml (all styles).
+            The help file builder uses a composite file for them and it
+            includes the fix.  This can go away once version information
+            is supported by Sandcastle itself.  The request has been
+            made.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformComponent.AddLogo(System.Xml.XmlDocument)">
+            <summary>
+            This is called to add the logo to the page header area
+            </summary>
+            <param name="document">The document to which the logo is added.</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.PostTransformComponent.ConfigureComponent(System.String)">
+            <summary>
+            This static method is used by the Sandcastle Help File Builder to
+            let the component perform its own configuration.
+            </summary>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+        </member>
+        <member name="T:SandcastleBuilder.Components.PostTransformComponent.LogoPlacement">
+            <summary>
+            This enumeration defines the logo placement options
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.Components.PostTransformComponent.LogoPlacement.Left">
+            <summary>Place the logo to the left of the header text
+            (the default).</summary>
+        </member>
+        <member name="F:SandcastleBuilder.Components.PostTransformComponent.LogoPlacement.Right">
+            <summary>Place the logo to the right of the header text.</summary>
+        </member>
+        <member name="F:SandcastleBuilder.Components.PostTransformComponent.LogoPlacement.Above">
+            <summary>Place the logo above the header text.</summary>
+        </member>
+        <member name="T:SandcastleBuilder.Components.PostTransformComponent.LogoAlignment">
+            <summary>
+            This enumeration defines the logo alignment options when placement
+            is set to <b>Above</b>.
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.Components.PostTransformComponent.LogoAlignment.Left">
+            <summary>Left-align the logo (the default).</summary>
+        </member>
+        <member name="F:SandcastleBuilder.Components.PostTransformComponent.LogoAlignment.Right">
+            <summary>Right-align the logo.</summary>
+        </member>
+        <member name="F:SandcastleBuilder.Components.PostTransformComponent.LogoAlignment.Center">
+            <summary>Center the logo.</summary>
+        </member>
+        <member name="T:SandcastleBuilder.Components.TargetDirectoryCollection">
+            <summary>
+            This is a reimplementation of the <c>TargetDirectoryCollection</c>
+            class used by <see cref="T:SandcastleBuilder.Components.ResolveConceptualLinksComponent"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Components.TargetDirectoryCollection.Add(SandcastleBuilder.Components.TargetDirectory)">
+            <summary>
+            Add a new target directory to the collection
+            </summary>
+            <param name="targetDirectory">The target directory to add</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.TargetDirectoryCollection.GetTargetInfo(System.String)">
+            <summary>
+            Find the target info for the specified file
+            </summary>
+            <param name="file">The file for which to find target info</param>
+            <returns>A <see cref="T:SandcastleBuilder.Components.TargetInfo"/> object if found or null if
+            not found.</returns>
+        </member>
+        <member name="P:SandcastleBuilder.Components.TargetDirectoryCollection.Count">
+            <summary>
+            This read-only property returns the number of items in the
+            collection.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator">
+            <summary>
+            F# declaration syntax generator
+            </summary>
+            <remarks>This is an exact copy of the the Microsoft
+            FSharpDeclarationSyntaxGenerator (Copyright 2007-2009 Microsoft
+            Corporation) that is included with the July 2009 source code release of
+            Sandcastle.  It is included here temporarily so that we can support it
+            under the May 2008 Sandcastle release which is still the last official
+            release of Sandcastle.</remarks>
+        </member>
+        <member name="F:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator.apiEventArgsExpression">
+            <summary>
+            API event args expression
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator.#ctor(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="configuration">The syntax generator configuration</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator.WriteNamespaceSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out namespace syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator.WriteClassSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out class syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator.WriteStructureSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Structure syntax is unsupported
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator.WriteInterfaceSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out interface syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator.WriteDelegateSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out delegate syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator.WriteEnumerationSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out enumeration syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator.WriteConstructorSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out constructor syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator.WriteNormalMethodSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out normal method syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator.WriteOperatorSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out operator syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator.WriteCastSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Cast syntax is unsupported
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator.WritePropertySyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out property syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator.WriteEventSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out event syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.FSharpDeclarationSyntaxGenerator.WriteFieldSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out field syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="T:SandcastleBuilder.Components.ShowMissingComponent">
+             <summary>
+             This build component is used to add "missing" notes for missing
+             summary, parameter, returns, value, and remarks tags.  It can also
+             add default summary documentation for constructors.
+             </summary>
+             <example>
+             <code lang="xml" title="Example configuration">
+             &lt;!-- Show missing documentation component configuration.  This must
+                  appear before the TransformComponent. --&gt;
+             &lt;component type="SandcastleBuilder.Components.ShowMissingComponent"
+               assembly="C:\SandcastleBuilder\SandcastleBuilder.Components.dll"&gt;
+                 &lt;!-- All elements are optional. --&gt;
+            
+                 &lt;!-- Auto-document constructors (true by default) --&gt;
+                 &lt;AutoDocumentConstructors value="true" /&gt;
+            
+                 &lt;!-- Auto-document dispose methods (true by default) --&gt;
+                 &lt;AutoDocumentDisposeMethods value="true" /&gt;
+            
+                 &lt;!-- Show missing param tags (true by default) --&gt;
+                 &lt;ShowMissingParams value="true" /&gt;
+            
+                 &lt;!-- Show missing typeparam tags (true by default) --&gt;
+                 &lt;ShowMissingTypeParams value="true" /&gt;
+            
+                 &lt;!-- Show missing remarks tags (false by default) --&gt;
+                 &lt;ShowMissingRemarks value="false" /&gt;
+            
+                 &lt;!-- Show missing returns tags (true by default) --&gt;
+                 &lt;ShowMissingReturns value="true" /&gt;
+            
+                 &lt;!-- Show missing summary tags (true by default) --&gt;
+                 &lt;ShowMissingSummaries value="true" /&gt;
+            
+                 &lt;!-- Show missing value tags (false by default) --&gt;
+                 &lt;ShowMissingValues value="false" /&gt;
+            
+                 &lt;!-- Show missing namespace comments (true by default) --&gt;
+                 &lt;ShowMissingNamespaces value="true" /&gt;
+            
+                 &lt;!-- Show missing include target docs (false by default) --&gt;
+                 &lt;ShowMissingIncludeTargets value="false" /&gt;
+            
+                 &lt;!-- Shared content file containing the localized
+                      messages (optional) --&gt;
+                 &lt;contentFile filename="C:\Working\SharedContent.xml" /&gt;
+             &lt;/component&gt;
+             </code>
+             </example>
+        </member>
+        <member name="M:SandcastleBuilder.Components.ShowMissingComponent.#ctor(Microsoft.Ddue.Tools.BuildAssembler,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="assembler">A reference to the build assembler.</param>
+            <param name="configuration">The configuration information</param>
+            <remarks>See the <see cref="T:SandcastleBuilder.Components.ShowMissingComponent"/> class topic
+            for an example of the configuration</remarks>
+            <exception cref="T:System.Configuration.ConfigurationErrorsException">This is thrown if
+            an error is detected in the configuration.</exception>
+        </member>
+        <member name="M:SandcastleBuilder.Components.ShowMissingComponent.Apply(System.Xml.XmlDocument,System.String)">
+            <summary>
+            This is implemented to add the missing documentation tags
+            </summary>
+            <param name="document">The XML document with which to work.</param>
+            <param name="key">The key (member name) of the item being
+            documented.</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.ShowMissingComponent.CheckForMissingText(System.Xml.XmlNode,System.String,System.String)">
+            <summary>
+            Check for missing text in the specified documentation tag and, if
+            it doesn't exist or the text is blank, add a "missing" message as
+            the documentation tag's text.
+            </summary>
+            <param name="comments">The comments node to check.</param>
+            <param name="key">The key (name) for the current item</param>
+            <param name="tagName">The tag type for which to check.</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.ShowMissingComponent.CheckForMissingParameter(System.Xml.XmlNode,System.String,System.String,System.String)">
+            <summary>
+            Check for missing text in the specified &lt;param&gt; or
+            &lt;typeparam&gt; tag and, if it doesn't exist or the text is
+            blank, add a "missing" message as the tag's text.
+            </summary>
+            <param name="comments">The comments node to check.</param>
+            <param name="key">The key (name) for the current item</param>
+            <param name="paramName">The parameter name for which to check.</param>
+            <param name="tagName">The tag type for which to check.</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.ShowMissingComponent.CheckForMissingIncludeTarget(System.Xml.XmlNode,System.String)">
+            <summary>
+            Check for bad <c>include</c> elements and, if any are found, add a
+            "missing" message to the summary tag's text.
+            </summary>
+            <param name="comments">The comments node to check.</param>
+            <param name="key">The key (name) for the current item</param>
+        </member>
+        <member name="T:SandcastleBuilder.Components.CodeBlockConfigDlg">
+            <summary>
+            This form is used to configure the settings for the
+            <see cref="T:SandcastleBuilder.Components.CodeBlockComponent"/>.
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.Components.CodeBlockConfigDlg.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CodeBlockConfigDlg.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CodeBlockConfigDlg.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CodeBlockConfigDlg.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="currentConfig">The current XML configuration
+            XML fragment</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CodeBlockConfigDlg.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close without saving
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CodeBlockConfigDlg.lnkCodePlexSHFB_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Go to the CodePlex home page of the Sandcastle Help File Builder
+            project.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CodeBlockConfigDlg.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Validate the configuration and save it
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CodeBlockConfigDlg.btnSelectFolder_Click(System.Object,System.EventArgs)">
+            <summary>
+            Select the base source folder
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CodeBlockConfigDlg.SelectFile_Click(System.Object,System.EventArgs)">
+            <summary>
+            Select the syntax for style file
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="P:SandcastleBuilder.Components.CodeBlockConfigDlg.Configuration">
+            <summary>
+            This is used to return the configuration information
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.Components.CachedCopyFromIndexComponent">
+             <summary>
+             This is a derived <b>CopyFromIndexComponent</b> class that loads the
+             index document cache from a serialized binary file rather than loading
+             it from the XML reflection data files.  This can significantly decrease
+             the amount of time needed to instantiate the component.
+             </summary>
+             <example>
+             <code lang="xml" title="Cached Reflection Index Data Example">
+             &lt;!-- Cached Reflection Index Data component.  This should replace
+                  the first instance of the CopyFromIndexComponent. --&gt;
+             &lt;component id="Cached Reflection Index Data"
+               type="SandcastleBuilder.Components.CachedCopyFromIndexComponent"
+               assembly="C:\SandcastleBuilder\SandcastleBuilder.Components.dll"&gt;
+                 &lt;index name="reflection" value="/reflection/apis/api"
+                    key="@id" cache="10"&gt;
+                     &lt;cache base="C:\Program Files\Sandcastle\Data\Reflection"
+                         recurse="true" files="*.xml"
+                         cacheFile="C:\SandcastleBuilder\Cache\Reflection.cache"/&gt;
+                     &lt;data files="reflection.xml" /&gt;
+                 &lt;/index&gt;
+                 &lt;copy name="reflection" source="*" target="/document/reference" /&gt;
+             &lt;/component&gt;
+             </code>
+            
+             <code lang="xml" title="Cached Framework Comments Index Data Example">
+             &lt;!-- Cached Framework Comments Index Data component.  This should
+                  replace the third instance of the CopyFromIndexComponent. --&gt;
+             &lt;component id="Cached Framework Comments Index Data"
+               type="SandcastleBuilder.Components.CachedCopyFromIndexComponent"
+               assembly="C:\SandcastleBuilder\SandcastleBuilder.Components.dll"&gt;
+                 &lt;index name="comments" value="/doc/members/member"
+                   key="@name" cache="100"&gt;
+                   &lt;cache files="%SystemRoot%\Microsoft.NET\Framework\v2.0.50727\en\*.xml"
+                     cacheFile="C:\SandcastleBuilder\Cache\en_2.0.50727.cache" /&gt;
+                   &lt;data files="ExtraComments.xml" /&gt;
+                   &lt;data files="TestDoc.xml" /&gt;
+                   &lt;data files="_InheritedDocs_.xml" /&gt;
+                 &lt;/index&gt;
+                 &lt;copy name="comments" source="*" target="/document/comments" /&gt;
+             &lt;/component&gt;
+             </code>
+             </example>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CachedCopyFromIndexComponent.#ctor(Microsoft.Ddue.Tools.BuildAssembler,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="assembler">A reference to the build assembler.</param>
+            <param name="configuration">The configuration information</param>
+            <exception cref="T:System.Configuration.ConfigurationErrorsException">This is thrown if
+            an error is detected in the configuration.</exception>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CachedCopyFromIndexComponent.LoadCache(System.Xml.XPath.XPathNavigator,System.String,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Load a cached index
+            </summary>
+            <param name="index">The parent index node</param>
+            <param name="name">The name of the index</param>
+            <param name="cache">The cache settings</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CachedCopyFromIndexComponent.Dispose">
+            <summary>
+            This is used in the debug build to get an idea of how many files
+            were kept loaded in the cache.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator">
+             <summary>
+             This is a JavaScript declaration syntax generator that is used to add a
+             JavaScript Syntax section to each generated API topic.
+             </summary>
+             <remarks>This version differs from the
+             <c>ScriptSharpDeclarationSyntaxGenerator</c> in that it looks for a
+             <c>&lt;scriptSharp /&gt;</c> element in the <c>&lt;api&gt;</c> node
+             and, if found, only then will it apply the casing rules to the member
+             name.  If not present, no casing rules are applied to the member names
+             thus it is suitable for use with regular JavaScript such as that used
+             in AjaxDoc projects.</remarks>
+             <example>
+             In order to use this script generator, you should modify the
+             Sandcastle transformation file <b>FixScriptSharp.xsl</b> by adding
+             the following template as the second one in the file.  The help file
+             builder uses a modified version of the transformation so that you
+             do not need to apply the change when using it.
+            
+             <code lang="xml" title="FixScriptSharp.xsl Patch">
+             <![CDATA[
+             <!-- Add a "scriptSharp" element to each API node so that the
+                  JavaScript syntax generator will apply the casing rules to the
+                  member name. -->
+             <xsl:template match="api">
+               <xsl:copy>
+                 <xsl:apply-templates select="node() | @*" />
+                 <scriptSharp />
+               </xsl:copy>
+             </xsl:template>]]>
+             </code>
+             </example>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.HasAttribute(System.Xml.XPath.XPathNavigator,System.String)">
+            <summary>
+            Check to see if the given attribute exists on the entry
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="attributeName">The attribute for which to search</param>
+            <returns>True if found or false if not found</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.IsUnsupported(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Check to see if the element is unsupported
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The writer to which the "unsupported"
+            message is written.</param>
+            <returns>True if unsupported or false if it is supported</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.CreateCamelCaseName(System.String)">
+            <summary>
+            Convert the given name to camel case
+            </summary>
+            <param name="name ">The name to modify</param>
+            <returns>The name converted to camel case</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.ReadContainingTypeName(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Read the containing type name from the entry
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <returns>The containing type name if found or null if not found</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.ReadFullContainingTypeName(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Read the full containing type name from the entry
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <returns>The full containing type name prefixed with its namespace
+            or null if not found</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.ReadFullTypeName(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Read the full type name from the entry
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <returns>The full type name prefixed with its namespace or null if
+            not found</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.ReadMemberName(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Read the member name from the entry
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <returns>The member name</returns>
+            <remarks>If a <c>&lt;scriptSharp /&gt;</c> element exists in the
+            entry, the casing rule is applied to the member name.  If not
+            present, it is returned as-is.  The casing rule will convert the
+            name to camel case unless the member is marked with
+            <c>System.PreserveCaseAttribute</c>.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.ReadNamespaceName(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Read the namespace name from the entry
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <returns>The namespace name</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.ReadTypeName(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Read the type name from the entry
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <returns>The type name</returns>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteIndentedNewLine(Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write an indented new line
+            </summary>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteNormalTypeReference(System.String,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out a normal type reference
+            </summary>
+            <param name="api">The API name</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteParameter(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out a parameter
+            </summary>
+            <param name="parameter">The parameter information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteParameterList(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out a parameter list
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteRecordConstructorSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out the record constructor syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteRecordSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out the record syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteTypeReference(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out the type reference
+            </summary>
+            <param name="reference">The reference information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.#ctor(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="configuration">The syntax generator configuration</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteAttachedEventSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Not used by this syntax generator
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteAttachedPropertySyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out attached property syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteClassSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out class syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteConstructorSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out constructor syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteDelegateSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out delegate syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteEnumerationSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out enumeration syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteEventSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out event syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteFieldSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out field syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteInterfaceSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out interface syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteNamespaceSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out namespace syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteNormalMethodSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out normal method syntax
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteOperatorSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Operator syntax is unsupported
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteCastSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Cast syntax is unsupported
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WritePropertySyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Write out property syntax if supported
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.JavaScriptDeclarationSyntaxGenerator.WriteStructureSyntax(System.Xml.XPath.XPathNavigator,Microsoft.Ddue.Tools.SyntaxWriter)">
+            <summary>
+            Structure syntax is unsupported
+            </summary>
+            <param name="reflection">The reflection information</param>
+            <param name="writer">The syntax writer to which it is written</param>
+        </member>
+        <member name="T:SandcastleBuilder.Components.ConceptualLinkInfo">
+            <summary>
+            This is a reimplementation of the <c>ConceptualLinkInfo</c> class used
+            by <see cref="T:SandcastleBuilder.Components.ResolveConceptualLinksComponent"/>.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Components.ConceptualLinkInfo.#ctor">
+            <summary>
+            Private constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Components.ConceptualLinkInfo.Create(System.Xml.XPath.XPathNavigator)">
+            <summary>
+            This is used to create a conceptual link based on the information
+            in the supplied XPath navigator.
+            </summary>
+            <param name="node">The XPath navigator node from which to load the
+            link settings.</param>
+            <returns>A conceptual link info object</returns>
+            <exception cref="T:System.ArgumentNullException">This is thrown if the
+            node parameters is null.</exception>
+        </member>
+        <member name="P:SandcastleBuilder.Components.ConceptualLinkInfo.Target">
+            <summary>
+            The target of the link
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.Components.ConceptualLinkInfo.Anchor">
+            <summary>
+            The optional anchor name within the target
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.Components.ConceptualLinkInfo.Text">
+            <summary>
+            The text to show for the link
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.Components.IntelliSenseComponent">
+            <summary>
+            This build component is used to generate IntelliSense files based on
+            the documented APIs.
+            </summary>
+            <remarks>Only the basic set of tags needed for IntelliSense are
+            exported and only for documented API members.  This is based on the
+            Microsoft IntelliSense build component.  That version only works with
+            Microsoft-specific XML comments files and does not work with general
+            XML comments files created by the compilers.</remarks>
+            <example>
+            <code lang="xml" title="Example configuration">
+            &lt;!-- IntelliSense component configuration.  This must appear
+                 before the TransformComponent. --&gt;
+            &lt;component type="SandcastleBuilder.Components.IntelliSenseComponent"
+              assembly="C:\SandcastleBuilder\SandcastleBuilder.Components.dll"&gt;
+             &lt;!-- Output options (optional)
+                  Attributes:
+                     Include Namespaces (false by default)
+                     Namespaces filename ("Namespaces" if not specified or empty)
+                     Directory (current folder if not specified or empty) --&gt;
+             &lt;output includeNamespaces="false" namespacesFile="Namespaces"
+                 folder="C:\ProjectDocs\" /&gt;
+            &lt;/component&gt;
+            </code>
+            </example>
+        </member>
+        <member name="M:SandcastleBuilder.Components.IntelliSenseComponent.#ctor(Microsoft.Ddue.Tools.BuildAssembler,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="assembler">A reference to the build assembler.</param>
+            <param name="configuration">The configuration information</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.IntelliSenseComponent.Apply(System.Xml.XmlDocument,System.String)">
+            <summary>
+            This is implemented to extract the IntelliSense comments.
+            </summary>
+            <param name="document">The XML document with which to work.</param>
+            <param name="key">The key (member name) of the item being
+            documented.</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.IntelliSenseComponent.WriteComments(System.String,System.String,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Write the comments to the assembly's XML comments file
+            </summary>
+            <param name="key">The key (member name) of the item being
+            documented.</param>
+            <param name="filename">The assembly filename</param>
+            <param name="navComments">The comments XPath navigator</param>
+        </member>
+        <member name="M:SandcastleBuilder.Components.IntelliSenseComponent.Dispose">
+            <summary>
+            Write out closing tags and close all open XML writers when disposed.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.Components.IntelliSenseComponent.ConfigureComponent(System.String)">
+            <summary>
+            This static method is used by the Sandcastle Help File Builder to
+            let the component perform its own configuration.
+            </summary>
+            <param name="currentConfig">The current configuration XML fragment</param>
+            <returns>A string containing the new configuration XML fragment</returns>
+        </member>
+        <member name="T:SandcastleBuilder.Components.CachedResolveReferenceLinksComponent">
+            <summary>
+            This is a derived <b>ResolveReferenceLinksComponent2</b> class that
+            loads cached MSDN URLs from a serialized binary file rather than
+            letting the base component invoke the web service to look them up.
+            This can significantly decrease the amount of time needed to perform
+            a build.
+            </summary>
+            <remarks>The cache is built cumulatively over time rather than having
+            all 170,000+ resolved entries loaded, most of which would never be
+            used.  If new URLs are added to the cache during a build, the cache is
+            saved during disposal so that the new entries are used on subsequent
+            builds.</remarks>
+            <example>
+            <code lang="xml" title="Example configuration">
+            &lt;!-- Cached MSDN URL references component.  This should replace
+                 the standard ResolveReferenceLinksComponent2 build component. --&gt;
+            &lt;component type="SandcastleBuilder.Components.CachedResolveReferenceLinksComponent"
+              assembly="C:\SandcastleBuilder\SandcastleBuilder.Components.dll"
+              locale="en-us" linkTarget="_blank"&gt;
+                &lt;cache filename="C:\SandcastleBuilder\Cache\MsdnUrl.cache" /&gt;
+                &lt;targets base="C:\Program Files\Sandcastle\Data\Reflection"
+                    recurse="true" files="*.xml" type="MSDN" /&gt;
+                &lt;targets files="reflection.xml" type="Local" /&gt;
+            &lt;/component&gt;
+            </code>
+            </example>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CachedResolveReferenceLinksComponent.#ctor(Microsoft.Ddue.Tools.BuildAssembler,System.Xml.XPath.XPathNavigator)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="assembler">A reference to the build assembler.</param>
+            <param name="configuration">The configuration information</param>
+            <exception cref="T:System.Configuration.ConfigurationErrorsException">This is thrown if
+            an error is detected in the configuration.</exception>
+        </member>
+        <member name="M:SandcastleBuilder.Components.CachedResolveReferenceLinksComponent.Dispose">
+            <summary>
+            This is overriden to save the updated cache when disposed
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="2aca5da4-6f94-43a0-9817-5f413d16f540" revisionNumber="9">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>How to: Authenticate Using Multiple Membership Providers</title>
+  <introduction>
+    <para>This topic shows an example of how to use non-default membership providers with the login service. To authenticate through a non-default membership provider, you create an event handler for the <codeEntityReference autoUpgrade="true">E:System.Web.Security.LoginService.Authenticating</codeEntityReference> event. In the event handler, you call the <codeEntityReference autoUpgrade="true">M:System.Web.Security.MembershipProvider.ValidateUser</codeEntityReference> method of the membership provider you wish to use. You set the <codeEntityReference autoUpgrade="true">P:System.Web.Security.AuthenticatingEventArgs.Authenticated</codeEntityReference> property to the return value of the <codeEntityReference autoUpgrade="true">M:System.Web.Security.MembershipProvider.ValidateUser</codeEntityReference> method. Finally, you set the <codeEntityReference autoUpgrade="true">P:System.Web.Security.AuthenticatingEventArgs.AuthenticationIsComplete</codeEntityReference> property to <languageKeyword>true</languageKeyword> to prevent the <codeEntityReference autoUpgrade="true">T:System.Web.Security.LoginService</codeEntityReference> from performing its authentication steps.</para>
+  </introduction>
+  <procedure>
+    <title>To authenticate using non-default membership providers</title>
+    <steps class="ordered">
+      <step>
+        <content>
+          <para>Create and configure the membership providers you want to use. </para>
+          <para>For more information, see <link xlink:href="d8658b8e-c962-4f64-95e1-4acce35e4582">Implementing a Membership Provider</link> and <link xlink:href="283c397e-3a2d-458f-84e3-df94460ab052">Configuring an ASP.NET Application to Use Membership</link>.</para>
+        </content>
+      </step>
+      <step>
+        <content>
+          <para>In the Global.asax file, create an event handler for the <codeEntityReference autoUpgrade="true">E:System.Web.Security.LoginService.Authenticating</codeEntityReference> event and add code that authenticates user credentials by calling the membership providers you need.</para>
+          <para>The following code example illustrates an <codeEntityReference autoUpgrade="true">E:System.Web.Security.LoginService.Authenticating</codeEntityReference> event handler that authenticates using the providers named <codeInline><codeFeaturedElement>ContosoSqlProvider</codeFeaturedElement></codeInline>, <codeInline><codeFeaturedElement>FabrikamSqlProvider</codeFeaturedElement></codeInline> or the default membership provider<codeInline><codeFeaturedElement>.</codeFeaturedElement></codeInline></para>
+          <codeReference>System.Web.Security.LoginService_NonDefaultProvider#2</codeReference>
+        </content>
+      </step>
+      <step>
+        <content>
+          <para>In the <languageKeyword>Application_Start</languageKeyword> method of the Global.asax file, register the event handler.</para>
+          <para>The following code example illustrates how to register the <languageKeyword>Authenticating</languageKeyword> event.</para>
+          <codeReference>System.Web.Security.LoginService_NonDefaultProvider#1</codeReference>
+        </content>
+      </step>
+      <step>
+        <content>
+          <para>In the Web application, call the <languageKeyword>Login</languageKeyword> method.</para>
+          <code>
+            <codeFeaturedElement>// This code example</codeFeaturedElement>
+            <codeFeaturedElement> will need to be added</codeFeaturedElement>
+<codeFeaturedElement>// when client-side component is ready.</codeFeaturedElement>
+<codeFeaturedElement>// Login(username, password, userType, true);</codeFeaturedElement></code>
+        </content>
+      </step>
+    </steps>
+  </procedure>
+  <security>
+    <content>
+      <para>Always access the login service over https when passing sensitive user data.</para>
+    </content>
+  </security>
+  <relatedTopics>
+    <link xlink:href="6e121a28-89e8-4974-88a8-70aaa6a7d52b">Login Service Overview</link>
+    <codeEntityReference autoUpgrade="true">T:System.Web.Security.LoginService</codeEntityReference>
+    <codeEntityReference autoUpgrade="true">T:System.Web.Security.AuthenticatingEventArgs</codeEntityReference>
+    <codeEntityReference autoUpgrade="true">T:System.Web.Security.AuthenticatingEventHandler</codeEntityReference>
+    <link xlink:href="824c3a24-f0af-427c-a652-0d2d1e9397cd">Managing Users By Using Membership</link>
+  </relatedTopics>
+</developerHowToDocument>
+</topic>

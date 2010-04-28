@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Chm">
+    <PropertyGroup>
+        <Name>Test</Name>
+        <TopicStyle>vs2005</TopicStyle>
+        <LanguageId>1033</LanguageId>
+    </PropertyGroup>
+    <ItemGroup>
+        <Dlls Include="$(DXROOT)\Examples\sandcastle\test.dll" />
+        <Comments Include="$(DXROOT)\Examples\sandcastle\comments.xml" />
+    </ItemGroup>
+    <Import Project="$(DXROOT)\Examples\Generic\generic.targets" />
+</Project>

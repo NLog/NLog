@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:maml="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:doc="http://ddue.schemas.microsoft.com/authoring/internal" targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- Schema documentation -->
+	<annotation>
+		<documentation>
+			This schema defines common inline elements.
+		</documentation>
+	</annotation>
+	<!-- include and import declarations -->
+	<include schemaLocation="base.xsd" />
+	<!-- element declarations -->
+	<!-- linking elements -->
+	<element name="link" type="maml:inlineLinkType">
+		<annotation>
+			<documentation>
+				The link element can contain text but this text
+				is discarded at build time in favor of the actual title of
+				the link target, so the text in this element is not localizable.
+			</documentation>
+			<appinfo>
+				<doc:localizable>false</doc:localizable>
+				<doc:type>character</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+	<element name="legacyLink" type="maml:inlineLinkType">
+		<annotation>
+			<documentation>
+				The legacyLink element allows custom text to be used for the link, so
+				the text is localizable. The link element is to be preferred over the
+				legacyLink element for all new content. 
+			</documentation>
+			<appinfo>
+				<doc:localizable>true</doc:localizable>
+				<doc:type>character</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+	<!-- media links -->
+	<element name="mediaLinkInline" type="maml:mediaLinkInlineType">
+		<annotation>
+			<documentation>
+				The mediaLinkInline element
+			</documentation>
+			<appinfo>
+				<doc:localizable>n/a</doc:localizable>
+				<doc:type>character</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+	
+	<complexType name="mediaLinkType">
+		<annotation>
+			<documentation>This complexType is intended as the content model for media referencing elements in the schema.</documentation>
+		</annotation>
+		<sequence>
+			<element name="caption" type="token" minOccurs="0">
+				<annotation>
+					<documentation>The caption element describes a summary of an associated object, such as an image.</documentation>
+					<documentation>This text is intended for the alternate text in web representations.</documentation>
+					<appinfo>
+						<doc:localizable>true</doc:localizable>
+						<doc:type>character</doc:type>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="image">
+				<complexType>
+					<annotation>
+						<documentation>A source link targeting the platform object type:  image.</documentation>
+						<documentation>The structure required to define a link to an image object.</documentation>
+						<documentation>The mediaLinkInline element represents a reference to an image object</documentation>
+						<documentation>directly (optionally via a presentation object).</documentation>
+						<appinfo>
+							<doc:localizable>false</doc:localizable>
+							<doc:type>structure</doc:type>
+						</appinfo>
+					</annotation>
+					<attributeGroup ref="maml:linkingGroup" />
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="mediaLinkInlineType">
+		<annotation>
+			<documentation>This complexType is intended as the content model for media referencing elements in the schema.</documentation>
+		</annotation>
+		<sequence>
+			<element name="image">
+				<complexType>
+					<annotation>
+						<documentation>A source link targeting the platform object type:  image.</documentation>
+						<documentation>The structure required to define a link to an image object.</documentation>
+						<documentation>The mediaLinkInline element represents a reference to an image object</documentation>
+						<documentation>directly (optionally via a presentation object).</documentation>
+						<appinfo>
+							<doc:localizable>false</doc:localizable>
+							<doc:type>structure</doc:type>
+						</appinfo>
+					</annotation>
+					<attributeGroup ref="maml:linkingGroup" />
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<!-- Code links -->
+	<simpleType name="codeEntityReferenceStringType">
+		<restriction base="token">
+			<!--<pattern value='[NTFPME]:[^)(]+([(][^)(]*[)])?'/>-->
+			<pattern value='.*' />
+		</restriction>
+	</simpleType>
+	<complexType name="codeEntityReferenceType" mixed="false">
+		<simpleContent>
+			<extension base="maml:codeEntityReferenceStringType">
+				<attribute name="qualifyHint" type="boolean" />
+				<attribute name="autoUpgrade" type="boolean" />
+			</extension>
+		</simpleContent>
+	</complexType>
+	<element name="codeEntityReference" type="maml:codeEntityReferenceType">
+		<annotation>
+			<documentation>
+	        This element holds a reference to a code entity.
+	        </documentation>
+			<appinfo>
+				<doc:localizable>false</doc:localizable>
+				<doc:type>character</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+	<element name="parameterReference" type="maml:textType">
+		<annotation>
+			<documentation>
+	        This element holds a reference to a parameter.
+	        </documentation>
+			<appinfo>
+				<doc:localizable>false</doc:localizable>
+				<doc:type>character</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+	<group name="codeLinkingGroup">
+		<annotation>
+			<documentation>
+				This type describes the set of inline elements that are
+				used for referring to code elements and parameters.
+			</documentation>
+		</annotation>
+		<choice>
+			<element ref="maml:codeEntityReference" />
+			<element ref="maml:parameterReference" />
+		</choice>
+	</group>
+	<!-- external resource links -->
+	<complexType name="inlineLinkType" mixed="true">
+		<simpleContent>
+			<extension base="maml:textType">
+				<attributeGroup ref="maml:linkingGroup" />
+			</extension>
+		</simpleContent>
+	</complexType>
+	<complexType name="sharedContentParameterType" mixed="true">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<group ref="maml:inlineGroup" />
+		</choice>
+		<attribute name="name" type="token" />
+	</complexType>
+	<element name="sharedContentParameter" type="maml:sharedContentParameterType">
+		<annotation>
+			<documentation></documentation>
+			<appinfo>
+				<doc:localizable>true</doc:localizable>
+				<doc:type>character</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+	<complexType name="sharedContentType">
+		<sequence>
+			<element ref="maml:sharedContentParameter" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+		<attributeGroup ref="maml:contentIdentificationSharingAndConditionGroup" />
+		<attributeGroup ref="maml:linkingGroup" />
+	</complexType>
+	<element name="sharedContent" type="maml:sharedContentType">
+		<annotation>
+			<documentation></documentation>
+			<appinfo>
+				<doc:localizable>n/a</doc:localizable>
+				<doc:type>character</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+	<!-- External redir web link -->
+	<element name="externalLink">
+		<annotation>
+			<documentation>
+				The externalLink element describes links that are external to Microsoft
+				and must be managed through a redirection scheme.
+			</documentation>
+			<appinfo>
+				<doc:localizable>n/a</doc:localizable>
+				<doc:type>character</doc:type>
+			</appinfo>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element name="linkText" type="maml:textType">
+					<annotation>
+						<documentation>
+							The linkText element describes the text of a link.
+						</documentation>
+						<appinfo>
+							<doc:localizable>true</doc:localizable>
+							<doc:type>character</doc:type>
+						</appinfo>
+					</annotation>
+				</element>
+				<element name="linkAlternateText" type="maml:textType" minOccurs="0">
+					<annotation>
+						<documentation>
+							The linkAlternateText element describes the alternate
+							text of the link, used for "alt text" on the Web.
+						</documentation>
+						<appinfo>
+							<doc:localizable>true</doc:localizable>
+							<doc:type>character</doc:type>
+						</appinfo>
+					</annotation>
+				</element>
+				<element name="linkUri" type="maml:textType">
+					<annotation>
+						<documentation>
+							The linkUri element describes the URI of the link.
+						</documentation>
+						<appinfo>
+							<doc:localizable>true</doc:localizable>
+							<doc:type>character</doc:type>
+						</appinfo>
+					</annotation>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	<!-- group declarations -->
+	<group name="inlineLinkingGroup">
+		<annotation>
+			<documentation>
+				This type describes the set of inline elements that are likely to be
+				needed for block elements' content models.
+			</documentation>
+		</annotation>
+		<choice>
+			<group ref="maml:codeLinkingGroup" />
+			<element ref="maml:link" />
+			<element ref="maml:legacyLink" />
+			<element ref="maml:mediaLinkInline" />
+			<element ref="maml:externalLink" />
+		</choice>
+	</group>
+</schema>

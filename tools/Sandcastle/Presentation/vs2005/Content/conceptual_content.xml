@@ -1,0 +1,61 @@
+<content xml:space="preserve">
+
+	<!-- control window stuff -->
+	<item id="productTitle">.NET Framework Developer's Guide</item>
+
+	<!-- main window stuff -->
+
+	<!-- body -->
+
+	<!-- section titles -->
+	<item id="inThisSectionTitle">In This Section</item>
+	<item id="buildInstructionsTitle">Compiling the Code</item>
+	<item id="nextStepsTitle">Next Steps</item>
+	<item id="requirementsTitle">Requirements</item>
+	<item id="relatedSectionsTitle">Related Sections</item>
+	<item id="relatedTopicsTitle">See Also</item>
+	<item id="syntaxTitle">Syntax</item>
+	<item id="parametersTitle">Parameters</item>
+	<item id="returnValueTitle">Return Value</item>
+  <item id="attributesAndElements">Attributes and Elements</item>
+	<item id="attributes">Attributes</item>
+	<item id="childElement">Child Elements</item>
+	<item id="parentElement">Parent Elements</item>
+	<item id="elementInformation">Element Information</item>
+  <item id="textValue">Text Value</item>
+  <item id="dotNetFrameworkEquivalent">.NET Framework Equivalent</item>
+  <item id="prerequisites">Prerequisites</item>
+  <item id="robustProgramming">Robust Programming</item>
+	<item id="securitySection">Security</item>
+	<item id="externalResources">External Resources</item>
+	<item id="demonstrates">Demonstrates</item>
+  <item id="appliesTo">Applies To</item>
+	<item id="conclusion">Conclusion</item>
+  <item id="background">Background</item>
+	<item id="whatsNew">What's New</item>
+  <item id="reference">Reference</item>
+  <item id="errorMessage">Error Message</item>
+  
+  <item id="collapseAll">Collapse All</item>
+  <item id="expandAll">Expand All</item>
+  <item id="Example">Example</item>
+
+  <!-- Sample Topics -->
+  <item id="downloadSample">Download</item>
+  <item id="sampleFiles">Sample Files:</item>
+  <item id="viewSampleSource">View Source</item>
+
+  <!-- autoOutline boilerplate -->
+  <item id="autoOutlineTopLevelIntro">
+		<p>This topic contains the following sections.</p>
+	</item>
+	<item id="autoOutlineSubsectionIntro">
+		<p>This section contains the following subsections.</p>
+	</item>
+	<item id="RelatedTopicsLinkText">Related Topics</item>
+  <!-- resolve the autoOutline token -->
+  <item id="autoOutline">
+    <autoOutline/>
+  </item>
+
+</content>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<schema 
+        xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:maml="http://ddue.schemas.microsoft.com/authoring/2003/5"
+		xmlns:doc="http://ddue.schemas.microsoft.com/authoring/internal"
+        targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5" 
+        blockDefault="#all" 
+        elementFormDefault="qualified" 
+        attributeFormDefault="unqualified"
+        xml:lang="en"
+    >
+
+    <!-- Schema documentation -->
+    <annotation>
+        <documentation>
+            This schema describes MAML, the Microsoft Assistance Markup Language.
+            MAML is intended for software documentation. In particular, it is 
+            intended to accomodate the needs of Microsoft documentation.
+        </documentation>
+        <documentation>
+            The schema is broken into three main areas: end user, developer and
+            IT Pro. These areas adequaltely categorize Microsoft
+            documentation.
+        </documentation>
+        <documentation>
+            The namespace uri for this version of Maml is: http://ddue.schemas.microsoft.com/authoring/2003/5.
+            Each backwards-incompatible revision to Maml will require that the date fields be appropriately
+            incremented in uri of the updated version of the Maml schema.
+        </documentation>
+    </annotation>
+    
+    <include schemaLocation="baseConditional.xsd"/>
+    
+    <!-- *************************************************************************** -->
+    
+    <!--
+    In a single condition set, values from the same axis are combined with OR
+    and values from different axes are combined with AND. Nesting condition sets
+    is equivalent to combining them with AND.
+    -->
+    <complexType name="conditionsType" mixed="false">
+        <choice minOccurs="1" maxOccurs="unbounded">
+            <element ref="maml:programmingLanguage"/>
+            <element ref="maml:legacyPlatform"/>
+            <element ref="maml:legacyMedium"/>
+            <element ref="maml:legacyUserDefined"/>
+        </choice>
+    </complexType>
+    
+    
+    <element name="conditions" type="maml:conditionsType">
+        <annotation>
+            <documentation>
+            This element is used to hold a set of conditions.
+            </documentation>
+            <appinfo>
+                <doc:localizable>n/a</doc:localizable>
+				<doc:type>section</doc:type>
+			</appinfo>
+        </annotation>
+    </element>
+
+</schema>

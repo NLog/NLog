@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="00000000-0000-0000-0000-000000000000" revisionNumber="1">
+  <codeEntityDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <!-- NOTE: This is similar to the API reference documentation which is
+         produced by the reference build.  You should probably just use that
+         instead of this. -->
+    <assembly>
+      <assemblyName>Assembly name</assemblyName>
+    </assembly>
+    <codeEntities>
+      <codeEntity>
+        <codeEntityReference>API member ID</codeEntityReference>
+      </codeEntity>
+    </codeEntities>
+  </codeEntityDocument>
+</topic>

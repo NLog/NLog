@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>test</name>
+    </assembly>
+    <members>
+        <member name="T:TestNamespace.StoredNumber">
+            <summary> 
+            Tests whether sandcastle can handle all c# tags as defined at http://msdn2.microsoft.com/en-us/library/5ast78ax.aspx.
+            Comments of method "Increment (int step)" include almost all tags.
+            Method "Swap" is used to test generics tags, such as "typeparam".
+            <threadsafety static="true" instance="false"/>
+            </summary>
+        </member>
+        <member name="M:TestNamespace.StoredNumber.#ctor(System.Int32)">
+            <summary>Initializes the stored number class with a starting value.</summary>
+        </member>
+        <member name="M:TestNamespace.StoredNumber.PreliminaryTest">
+            <preliminary>
+            <para>This method is just for testing right now. It might be removed in the near future</para>
+            </preliminary>
+        </member>
+        <member name="M:TestNamespace.StoredNumber.Dec">
+            <overloads>
+            <summary>test overlads tag</summary>
+            </overloads>
+        </member>
+        <member name="M:TestNamespace.StoredNumber.Dec(System.Int32)">
+            <summary>
+            dec by a specified step
+            </summary>
+            <param name="step"></param>
+        </member>
+        <member name="M:TestNamespace.StoredNumber.Increment">
+             <summary><c>Increment</c> method incriments the stored number by one. 
+             <note type="caution">
+             note description here
+            </note>
+             <preliminary/>
+             </summary>        
+        </member>
+        <member name="M:TestNamespace.StoredNumber.Increment(System.Int32)">
+             <summary><c>Increment</c> method incriments the stored number by a specified <paramref name="step"/>. 
+             <list type="number">
+             <item>
+             <description>Item 1.</description>
+             </item>
+             <item>
+             <description>Item 2.</description>
+             </item>
+             </list>
+             <para>see <see cref="T:System.Int32"/></para>
+             <para>seealso <seealso cref="T:System.Int64"/></para>
+             </summary>		
+             <remarks>
+             You may have some additional information about this class.
+             </remarks>
+             <example> This sample shows how to call the GetZero method.
+             <code>
+             class TestClass 
+             {
+                 static int Main() 
+                 {
+                     return GetZero();
+                 }
+             }
+             </code>
+             </example>
+            
+             <exception cref="T:System.Exception">Thrown when...</exception>
+             <param name="step"> specified step</param>
+             <permission cref="T:System.Security.PermissionSet">Everyone can access this method.</permission>
+             <returns>Returns nothing</returns>
+             <value>The Name property gets/sets the _name data member.</value>
+        </member>
+        <member name="M:TestNamespace.StoredNumber.Swap``1(``0@,``0@)">
+            <summary>
+            Swap data of type <typeparamref name="T"/>
+            </summary>
+            <param name="lhs">left <typeparamref name="T"/> to swap</param>
+            <param name="rhs">right <typeparamref name="T"/> to swap</param>
+            <typeparam name="T">The element type to swap</typeparam>
+        </member>
+        <member name="P:TestNamespace.StoredNumber.Value">
+            <summary>Gets the stored number.</summary>
+        </member>
+        <member name="P:TestNamespace.StoredNumber.MyProp">
+            <summary>
+            see <see langword="null"/> as reference
+            </summary>
+        </member>
+    </members>
+</doc>

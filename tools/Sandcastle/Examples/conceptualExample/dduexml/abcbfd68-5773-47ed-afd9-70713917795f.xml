@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="abcbfd68-5773-47ed-afd9-70713917795f" revisionNumber="8">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>How to: Customize User Login When Using Login Service</title>
+  <introduction>
+    <para>This topic shows an example of how to add customized credentials when authenticating users through the Login service. Typically, you will require only a user name and password to authenticate users in your application. However, in some cases, you might need to verify a user's identity using additional credentials such as an identification number.</para>
+  </introduction>
+  <procedure>
+    <title>To add customized credentials for authentication</title>
+    <steps class="ordered">
+      <step>
+        <content>
+          <para>Create an event handler for the <codeEntityReference autoUpgrade="true">E:System.Web.Security.LoginService.Authenticating</codeEntityReference> event in the Global.asax file.</para>
+          <code language="c#">void LoginService_Authenticating
+     (object sender, AuthenticatingEventArgs e)
+{
+}
+
+Sub LoginService_Authenticating _
+     (ByVal sender As Object, _
+      ByVal e As AuthenticatingEventArgs)
+End Sub</code>
+        </content>
+      </step>
+      <step>
+        <content>
+          <para>In the handler, read the contents of the <codeEntityReference autoUpgrade="true">P:System.Web.Security.AuthenticatingEventArgs.CustomCredential</codeEntityReference> property of the handler's <languageKeyword>AuthenticatingEventArgs</languageKeyword> parameter, and then perform custom authentication on the values.</para>
+          <para>The following example shows how to read two authentication values from the <codeEntityReference autoUpgrade="true">P:System.Web.Security.AuthenticatingEventArgs.CustomCredential</codeEntityReference> property and pass them to a custom authentication class named <codeInline>StudentAuthentication</codeInline>.</para>
+          <codeReference>System.Web.Security.LoginService_MultipleCredentials#2</codeReference>
+        </content>
+      </step>
+      <step>
+        <content>
+          <para>Register event handler in the <languageKeyword>Application_Start</languageKeyword> method of the Global.asax file.</para>
+          <codeReference>System.Web.Security.LoginService_MultipleCredentials#1</codeReference>
+        </content>
+      </step>
+      <step>
+        <content>
+          <para>Call the Login service from the application, passing the extra values to be authenticated.</para>
+          <para>The following example shows code that calls the Login service passing a student ID and birthdate as custom authentication credentials.</para>
+          <code>String customCredential = studentid + "," + birthdate;
+Login(username, password, customCredential, true);</code>
+        </content>
+      </step>
+    </steps>
+  </procedure>
+  <buildInstructions>
+    <content>
+      <list class="bullet">
+        <listItem>
+          <para>You must set up the Login service on a Web server for the above examples to work. For more information on setting up the Login service, see <link xlink:href="f7913259-762e-4a73-a771-ac9e42903f44">How to: Set Up the Login Service</link>.</para>
+        </listItem>
+      </list>
+    </content>
+  </buildInstructions>
+  <robustProgramming>
+    <content>
+      <para>The above code examples show a custom authentication class which throws the <codeEntityReference autoUpgrade="true">T:System.ArgumentNullException</codeEntityReference> when any of the parameters are <languageKeyword>null</languageKeyword>. Your code should handle any exceptions raised during validation.</para>
+    </content>
+  </robustProgramming>
+  <security>
+    <content>
+      <para>Always access the Login service using the Secure Sockets Layer (SSL, using HTTPS protocol) when passing sensitive user data.</para>
+    </content>
+  </security>
+  <relatedTopics>
+    <link xlink:href="6e121a28-89e8-4974-88a8-70aaa6a7d52b">Login Service Overview</link>
+    <codeEntityReference autoUpgrade="true">T:System.Web.Security.LoginService</codeEntityReference>
+    <codeEntityReference autoUpgrade="true">T:System.Web.Security.AuthenticatingEventArgs</codeEntityReference>
+    <codeEntityReference autoUpgrade="true">T:System.Web.Security.AuthenticatingEventHandler</codeEntityReference>
+  </relatedTopics>
+</developerHowToDocument>
+</topic>
