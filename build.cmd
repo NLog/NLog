@@ -147,6 +147,13 @@ if (%1)==(archive) (
 	goto next
 )
 
+if (%1)==(label) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildLabel=%2
+	shift
+	shift
+	goto next
+)
+
 if (%1)==(all) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:All
 	set POST_BUILD_COMMAND="%~dp0src\LastTestRunSummary.cmd"
@@ -156,6 +163,12 @@ if (%1)==(all) (
 
 if (%1)==(nightlybuild) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:NightlyBuild
+	shift
+	goto next
+)
+
+if (%1)==(installer) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Installer
 	shift
 	goto next
 )
@@ -191,6 +204,8 @@ echo  checkinsuite       Cleans, builds and runs all tests
 echo  doc                Builds documentation
 echo  all                Full build
 echo  nightlybuild       Nightly build
+echo  installer          Installer
+echo  label {suffix}     Define build label (defaults to '(Custom Build)')
 exit /b 1
 
 :build

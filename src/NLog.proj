@@ -4,7 +4,10 @@
     <Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
     <BaseOutputDirectory>$(MSBuildProjectDirectory)\..\build\</BaseOutputDirectory>
     <ProjectTarget Condition="'$(ProjectTarget)'==''">Build</ProjectTarget>
-    <FrameworksPath>$(MSBuildProjectDirectory)\Frameworks</FrameworksPath>
+    <FrameworksPath>$(MSBuildProjectDirectory)\Frameworks</FrameworksPath>    
+    <BuildLabel>(Custom Build)</BuildLabel>
+    <BuildLabel Condition=" '$(CCNetLabel)'!='' ">$(CCNetLabel)</BuildLabel>
+    <BuildVersion>0.0.0.0</BuildVersion>
     <BuildAllFrameworks>true</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildMono2)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildSL2)' == 'true'">false</BuildAllFrameworks>
@@ -140,8 +143,11 @@
   </Target>
 
   <Target Name="NightlyBuild">
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="DeepClean;Clean;Build;BuildTests;RunTests;Documentation" Properties="Configuration=Release" />
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Clean;Build;BuildTests;RunTests" Properties="Configuration=Debug" />
+     <PropertyGroup>
+       <CommonProperties>BuildLabel=$(BuildLabel);BuildVersion=$(BuildVersion)</CommonProperties>
+     </PropertyGroup>
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="DeepClean;Clean;Build;Documentation;Installer;BuildTests;RunTests" Properties="Configuration=Release;$(CommonProperties)" />
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Clean;Build;Documentation;Installer;BuildTests;RunTests" Properties="Configuration=Debug;$(CommonProperties)" />
   </Target>
 
   <Target Name="Rebuild" DependsOnTargets="Clean;Build">
@@ -260,7 +266,7 @@
   </Target>
 
   <Target Name="BuildDocumentation">
-    <Exec Command='"$(WinDir)\Microsoft.NET\Framework\v3.5\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="%(TargetFramework.Identity)" /p:Configuration=$(Configuration)' ContinueOnError="$(BuildAllFrameworks)" />
+    <Exec Command='"$(WinDir)\Microsoft.NET\Framework\v3.5\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="%(TargetFramework.Identity)" /p:Configuration=$(Configuration) /p:BuildLabel="$(BuildLabel)" /p:BuildVersion="$(BuildVersion)"' ContinueOnError="$(BuildAllFrameworks)" />
   </Target>
 
   <Target Name="PostProcessDocumentation">
@@ -277,6 +283,16 @@
   </Target>
 
   <Target Name="Documentation" DependsOnTargets="BuildDocumentation;PostProcessDocumentation">
+  </Target>
+
+  <Target Name="Installer">
+     <PropertyGroup>
+       <CommonInstallerProperties>Configuration=$(Configuration);BuildLabel=$(BuildLabel);BuildVersion=$(BuildVersion)</CommonInstallerProperties>
+     </PropertyGroup>
+     <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=NetFx;$(CommonInstallerProperties)" />
+     <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=SL;$(CommonInstallerProperties)" />
+     <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=NetCf;$(CommonInstallerProperties)" />
+     <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=All;$(CommonInstallerProperties)" />
   </Target>
 
   <Target Name="DeployNetCf20ToEmulator">

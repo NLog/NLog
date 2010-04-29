@@ -10,6 +10,7 @@
     <Framework>.NET Framework 3.5</Framework>
     <NLogPath>$(MSBuildProjectDirectory)\..\..\</NLogPath>
     <WorkingPath>Working\</WorkingPath>
+    <BuildLabel Condition="'$(BuildLabel)'==''">CustomBuild</BuildLabel>
     <SHFBSchemaVersion>1.8.0.3</SHFBSchemaVersion>
     <SHFBROOT>$(MSBuildProjectDirectory)\..\..\Tools\SHFB</SHFBROOT>
     <SandcastlePath>$(MSBuildProjectDirectory)\..\..\Tools\Sandcastle</SandcastlePath>
@@ -32,7 +33,7 @@
       <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.Extended.dll" xmlns="" />
       <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.Extended.xml" xmlns="" />
     </DocumentationSources>
-    <HelpTitle>NLog - Advanced .NET Logging ($(Framework))</HelpTitle>
+    <HelpTitle>NLog - Advanced .NET Logging ($(Framework)) $(BuildLabel)</HelpTitle>
     <CopyrightText>Copyright %28c%29 2004-2010 by Jaroslaw Kowalski</CopyrightText>
     <FeedbackEMailAddress>feedback%40nlog-project.org</FeedbackEMailAddress>
     <CopyrightHref>http://nlog-project.org/</CopyrightHref>

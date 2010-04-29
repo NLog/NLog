@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+          xmlns:xse="http://schemas.microsoft.com/wix/2005/XmlSchemaExtension"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+    targetNamespace="http://schemas.microsoft.com/wix/2006/localization"
+              xmlns="http://schemas.microsoft.com/wix/2006/localization">
+    <xs:annotation>
+        <xs:documentation>
+            Copyright (c) Microsoft Corporation.  All rights reserved.
+            
+            The use and distribution terms for this software are covered by the
+            Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
+            which can be found in the file CPL.TXT at the root of this distribution.
+            By using this software in any fashion, you are agreeing to be bound by
+            the terms of this license.
+            
+            You must not remove this notice, or any other, from this software.
+
+            Schema for describing Windows Installer Xml Localization files (.wxl).
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:element name="WixLocalization">
+        <xs:annotation>
+            <xs:appinfo>
+                <xse:remarks>
+                    <html:p>You can specify any valid Windows code by integer like 1252, or by web name like Windows-1252 or iso-8859-1. See <a href="/html/codepage.htm">Code Pages</a> for more information.</html:p>
+                </xse:remarks>
+                <xse:howtoRef href="build_a_localized_version.htm">How To: Build a localized version of your installer</xse:howtoRef>
+                <xse:howtoRef href="make_installer_localizable.htm">How To: Make your installer localizable</xse:howtoRef>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="String" />
+            </xs:sequence>
+            <xs:attribute name="Codepage" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The code page integer value or web name for the resulting database. You can also specify -1 which will not reset the database code page. See remarks for more information.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Culture" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Culture of the localization strings.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="String">
+        <xs:annotation>
+            <xs:appinfo>
+                <xse:howtoRef href="build_a_localized_version.htm">How To: Build a localized version of your installer</xse:howtoRef>
+                <xse:howtoRef href="make_installer_localizable.htm">How To: Make your installer localizable</xse:howtoRef>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:attribute name="Id" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Identity of the resource.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Overridable" type="LocalizationYesNoType">
+                <xs:annotation>
+                    <xs:documentation>Determines if the localized string may be overridden.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Localizable" type="LocalizationYesNoType">
+                <xs:annotation>
+                    <xs:documentation>Indicates whether the string is localizable text or a non-localizable string that must be unique per locale. No WiX tools are affected by the value of this attribute; it used as documentation for localizers to ignore things like GUIDs or identifiers that look like text.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="LocalizationYesNoType">
+        <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="no" />
+            <xs:enumeration value="yes" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

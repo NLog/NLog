@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+          xmlns:xse="http://schemas.microsoft.com/wix/2005/XmlSchemaExtension"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+    targetNamespace="http://schemas.microsoft.com/wix/FirewallExtension"
+              xmlns="http://schemas.microsoft.com/wix/FirewallExtension">
+    <xs:annotation>
+        <xs:documentation>
+            Copyright (c) Microsoft Corporation.  All rights reserved.
+            
+            The use and distribution terms for this software are covered by the
+            Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
+            which can be found in the file CPL.TXT at the root of this distribution.
+            By using this software in any fashion, you are agreeing to be bound by
+            the terms of this license.
+            
+            You must not remove this notice, or any other, from this software.
+
+            The source code schema for the Windows Installer XML Toolset Firewall Extension.
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:import namespace="http://schemas.microsoft.com/wix/2006/wi" />
+
+    <xs:element name="FirewallException">
+        <xs:annotation>
+            <xs:documentation>
+                Registers an exception for a program or a specific port and protocol in the Windows Firewall
+                on Windows XP SP2, Windows Server 2003 SP1, and later. For more information about the Windows
+                Firewall, see <html:a href="http://msdn2.microsoft.com/en-us/library/aa364679.aspx">
+                About Windows Firewall API</html:a>.
+            </xs:documentation>
+            <xs:appinfo>
+                <xse:parent namespace="http://schemas.microsoft.com/wix/2006/wi" ref="Component" />
+                <xse:parent namespace="http://schemas.microsoft.com/wix/2006/wi" ref="File" />
+            </xs:appinfo>
+        </xs:annotation>
+
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Explicitly-listed remote addresses that this exception allows through the 
+                        firewall.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:element ref="RemoteAddress" />
+            </xs:choice>
+
+            <xs:attribute name="Id" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        Unique ID of this firewall exception.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+
+            <xs:attribute name="Name" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        Name of this firewall exception, visible to the user in the firewall 
+                        control panel.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+
+            <xs:attribute name="Scope">
+                <xs:annotation>
+                    <xs:documentation>
+                        The scope of this firewall exception, which indicates whether incoming
+                        connections can come from any computer including those on the Internet
+                        or only those on the local network subnet. To more precisely specify
+                        allowed remote address, specify a custom scope using RemoteAddress 
+                        child elements.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:NMTOKEN">
+                        <xs:enumeration value="any" />
+                        <xs:enumeration value="localSubnet" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+
+            <xs:attribute name="Port" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Port to allow through the firewall for this exception. If you use Port, you 
+                        cannot also use File or Program.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+
+            <xs:attribute name="Protocol">
+                <xs:annotation>
+                    <xs:documentation>
+                        IP protocol used for this firewall exception. If not specified, "tcp" is 
+                        assumed. If you use Protocol, you must also specify Port and you cannot 
+                        also use File or Program.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:NMTOKEN">
+                        <xs:enumeration value="tcp" />
+                        <xs:enumeration value="udp" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+
+            <xs:attribute name="File" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identifier of a file to be granted access to all incoming ports and 
+                        protocols. If you use File, you cannot also use Program, Port, or Protocol.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+
+            <xs:attribute name="Program" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Path to a target program to be granted access to all incoming ports and 
+                        protocols. Note that this is a formatted field, so you can use [#fileId] 
+                        syntax to refer to a file being installed. If you use Program, you cannot 
+                        also use File, Port, or Protocol.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+
+            <xs:attribute name="IgnoreFailure" type="YesNoType">
+                <xs:annotation>
+                    <xs:documentation>
+                        If "yes," failures to register this firewall exception will be silently 
+                        ignored. If "no" (the default), failures will cause rollback.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+
+            <xs:attribute name="Profile">
+              <xs:annotation>
+                <xs:documentation>
+                  Profile type for this firewall exception. Default is "all".
+                </xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:NMTOKEN">
+                  <xs:enumeration value="domain" />
+                  <xs:enumeration value="private" />
+                  <xs:enumeration value="public" />
+                  <xs:enumeration value="all" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RemoteAddress">
+        <xs:annotation>
+            <xs:documentation>
+                A remote address to which the port or program can listen. Address formats vary 
+                based on the version of Windows and Windows Firewall the program is being installed
+                on. For Windows XP SP2 and Windows Server 2003 SP1, see
+                <html:a href="http://msdn2.microsoft.com/en-us/library/aa365270.aspx">
+                    RemoteAddresses Property</html:a>.
+                For Windows Vista and Windows Server 2008, see
+                <html:a href="http://msdn2.microsoft.com/en-us/library/aa365366.aspx">
+                    RemoteAddresses Property</html:a>.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>
+                            A remote address.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="YesNoType">
+        <xs:annotation>
+            <xs:documentation>Values of this type will either be "yes" or "no".</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base='xs:NMTOKEN'>
+            <xs:enumeration value="no"/>
+            <xs:enumeration value="yes"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

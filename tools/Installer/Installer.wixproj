@@ -1,22 +1,61 @@
-﻿<Project DefaultTargets="Rebuild" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Rebuild" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>3.0</ProductVersion>
     <ProjectGuid>{4667dc1d-0462-4ccc-a210-0490331e09b4}</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>NLogSetup</OutputName>
     <OutputType>Package</OutputType>
-    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.0\Wix.targets</WixTargetsPath>
-    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.0\Wix.targets</WixTargetsPath>
-    <DefineConstants>NLogBuildPath=$(NLogBuildPath)</DefineConstants>
-    <OutputPath>$(NLogBuildPath)\</OutputPath>
+    <BuildVersion Condition="'$(BuildVersion)'==''">0.0.0.0</BuildVersion>
+    <BuildLabel Condition="'$(BuildLabel)'==''">CustomBuild</BuildLabel>
+    <NLogBuildPath Condition="'$(NLogBuildPath)'==''">$(MSBuildProjectDirectory)\..\..\build\bin\$(Configuration)</NLogBuildPath>
+    <BaseOutputName>NLog2</BaseOutputName>
+    <WixBasePath>..\Wix</WixBasePath>
+    <WixToolPath>$(WixBasePath)</WixToolPath>
+    <WixTargetsPath>$(WixBasePath)\Wix.targets</WixTargetsPath>
+    <WixTasksPath>$(WixBasePath)\WixTasks.dll</WixTasksPath>
+    <CommonConstants>NLogBuildPath=$(NLogBuildPath);NLogSourcePath=$(MSBuildProjectDirectory)\..\..;BuildVersion=$(BuildVersion);BuildLabel=$(BuildLabel)</CommonConstants>
+    <DefineSolutionProperties>false</DefineSolutionProperties>
+    <OutputPath>$(NLogBuildPath)\Setup\$(Flavor)\</OutputPath>
   </PropertyGroup>
+  <ItemGroup>
+     <NetFxInclude Include="Include_NetFx20" />
+     <NetFxInclude Include="Include_NetFx35" />
+     <NetFxInclude Include="Include_NetFx40" />
+  </ItemGroup>
+  <ItemGroup>
+     <SLInclude Include="Include_SL2" />
+     <SLInclude Include="Include_SL3" />
+     <SLInclude Include="Include_SL4" />
+  </ItemGroup>
+  <ItemGroup>
+     <NetCFInclude Include="Include_NetCf20" />
+     <NetCFInclude Include="Include_NetCf35" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Flavor)' == 'NetFx'">
+    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0193;ProductName=NLog 2.0 for .NET Framework;@(NetFxInclude)</DefineConstants>
+    <OutputName>$(BaseOutputName)-NetFX</OutputName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Flavor)' == 'SL'">
+    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0194;ProductName=NLog 2.0 for Silverlight;@(SLInclude)</DefineConstants>
+    <OutputName>$(BaseOutputName)-SL</OutputName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Flavor)' == 'NetCf'">
+    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0195;ProductName=NLog 2.0 for Compact Framework;@(NetCFInclude)</DefineConstants>
+    <OutputName>$(BaseOutputName)-NetCF</OutputName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Flavor)' == 'All'">
+    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0196;ProductName=NLog 2.0;@(NetFxInclude);@(SLInclude);@(NetCFInclude)</DefineConstants>
+    <OutputName>$(BaseOutputName)-All</OutputName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+     <OutputName>$(OutputName)-Debug</OutputName>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="NLog.wxs" />
@@ -30,4 +69,8 @@
     <Warning Text="WIX 3.0 is not installed. Cannot generate installer." />
   </Target>
   <Import Project="$(WixTargetsPath)" Condition="Exists('$(WixTargetsPath)')"/>
+  <Target Name="AfterRebuild">
+    <Copy SourceFiles="$(OutputPath)\$(OutputName).msi" DestinationFolder="$(NLogBuildPath)\Setup\" />
+    <RemoveDir Directories="$(OutputPath)" />
+  </Target>
 </Project>
