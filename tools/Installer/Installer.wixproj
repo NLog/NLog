@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <OutputType>Package</OutputType>
     <BuildVersion Condition="'$(BuildVersion)'==''">0.0.0.0</BuildVersion>
-    <BuildLabel Condition="'$(BuildLabel)'==''">CustomBuild</BuildLabel>
+    <BuildLabel Condition="'$(BuildLabel)'==''">(Custom Build)</BuildLabel>
     <NLogBuildPath Condition="'$(NLogBuildPath)'==''">$(MSBuildProjectDirectory)\..\..\build\bin\$(Configuration)</NLogBuildPath>
     <BaseOutputName>NLog2</BaseOutputName>
     <WixBasePath>..\Wix</WixBasePath>
@@ -17,6 +17,7 @@
     <CommonConstants>NLogBuildPath=$(NLogBuildPath);NLogSourcePath=$(MSBuildProjectDirectory)\..\..;BuildVersion=$(BuildVersion);BuildLabel=$(BuildLabel)</CommonConstants>
     <DefineSolutionProperties>false</DefineSolutionProperties>
     <OutputPath>$(NLogBuildPath)\Setup\$(Flavor)\</OutputPath>
+    <SuppressIces>ICE57</SuppressIces>
   </PropertyGroup>
   <ItemGroup>
      <NetFxInclude Include="Include_NetFx20" />
@@ -63,6 +64,9 @@
   <ItemGroup>
     <WixExtension Include="WixUIExtension">
       <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+    </WixExtension>
+    <WixExtension Include="WixVSExtension">
+      <HintPath>$(WixExtDir)\WixVSExtension.dll</HintPath>
     </WixExtension>
   </ItemGroup>
   <Target Name="Rebuild">
