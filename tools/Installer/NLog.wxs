@@ -46,7 +46,7 @@
     <!-- common stuff -->
 
     <DirectoryRef Id="TARGETDIR">
-      <Component Id="Shared_Component" Guid="203ED250-FA92-4553-A590-723318DC7946">
+      <Component Id="License_File" Guid="203ED250-FA92-4553-A590-723318DC7946">
         <File Id="LICENSE.txt" Name="LICENSE.txt" Source="$(var.NLogSourcePath)\LICENSE.txt" Vital="yes" KeyPath="yes" DiskId="1" />
       </Component>
     </DirectoryRef>
@@ -60,39 +60,59 @@
     </DirectoryRef>
     
     <ComponentGroup Id="Shared_Components">
-      <ComponentRef Id="Shared_Component"/>
-      <ComponentRef Id="ApplicationProgramsFolder"/>
+      <ComponentRef Id="License_File" />
+      <ComponentRef Id="ApplicationProgramsFolder" />
     </ComponentGroup>
 
     <!-- Mono 2.x support -->
 
     <?ifdef Include_Mono2 ?>
     <DirectoryRef Id="MONO2_DIR">
-      <Component Id="Mono2_Component" Guid="3E3A11A1-BC7D-484F-AA0E-733C02C70E5D">
+      <Component Id="Mono2_Binaries" Guid="3E3A11A1-BC7D-484F-AA0E-733C02C70E5D">
         <File Id="Mono2_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\Mono 2.x\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="Mono2_NLog.dll.mdb" Name="NLog.dll.mdb" Source="$(var.NLogBuildPath)\Mono 2.x\NLog.dll.mdb" KeyPath="no" DiskId="1" />
-        <File Id="Mono2_NLog.chm" Name="NLog.chm" Source="$(var.NLogBuildPath)\Mono 2.x\NLog.chm" KeyPath="no" DiskId="1" />
+      </Component>
+
+      <Component Id="Mono2_DebugInfo" Guid="{8E8BB88A-C6DB-4FC4-919A-EADAEFC57FE3}">
+        <File Id="Mono2_NLog.dll.mdb" Name="NLog.dll.mdb" Source="$(var.NLogBuildPath)\Mono 2.x\NLog.dll.mdb" KeyPath="yes" DiskId="1" />
+      </Component>
+
+      <Component Id="Mono2_Help" Guid="{07428701-12C5-440C-991E-4FB51C7AB304}">
+        <File Id="Mono2_NLog.chm" Name="NLog.chm" Source="$(var.NLogBuildPath)\Mono 2.x\NLog.chm" KeyPath="yes" DiskId="1" />
+        <Shortcut Id="Mono2_Help_Shortcut"
+                  Directory="ApplicationProgramsFolder"
+                  Name="NLog for Mono 2.x"
+                  Description="Documentation for NLog for Mono 2.x $(var.BuildLabel)"
+                  Icon="Help.ico"
+                  Advertise="yes">
+        </Shortcut>
       </Component>
     </DirectoryRef>
 
     <Feature Id="Mono2_Feature" Title="Mono 2.x Support" Level="1">
       <ComponentGroupRef Id="Shared_Components" />
-      <ComponentRef Id="Mono2_Component" />
+      <ComponentRef Id="Mono2_Binaries" />
+      <Feature Id="Mono2_DebugInfo" Title="Debug Symbols" Level="100">
+        <ComponentRef Id="Mono2_DebugInfo" />
+      </Feature>
+      <ComponentRef Id="Mono2_Help" />
     </Feature>
     <?endif ?>
 
     <?ifdef Include_NetFx20 ?>
 
     <DirectoryRef Id="NETFX20_DIR">
-      <Component Id="NetFx20_Component" Guid="AB08E412-75C2-46BA-8EF3-C3C179000579">
+      <Component Id="NetFx20_Binaries" Guid="AB08E412-75C2-46BA-8EF3-C3C179000579">
         <File Id="NetFx20_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\.NET Framework 2.0\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="NetFx20_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\.NET Framework 2.0\NLog.pdb" KeyPath="no" DiskId="1" />
         <File Id="NetFx20_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\.NET Framework 2.0\NLog.xml" KeyPath="no" DiskId="1" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETFramework\v2.0.50727\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETFX20_DIR]"></RegistryValue>
         </RegistryKey>
       </Component>
 
+      <Component Id="NetFx20_DebugInfo" Guid="{114FD2A6-7E1E-4251-BBAB-253AA077E871}">
+        <File Id="NetFx20_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\.NET Framework 2.0\NLog.pdb" KeyPath="no" DiskId="1" />
+      </Component>
+      
       <Component Id="NetFx20_Help" Guid="{211700F1-90A7-4DAA-82AA-441528CF92A2}">
         <File Id="NetFx20_NLog.chm" Name="NLog.chm" Source="$(var.NLogBuildPath)\.NET Framework 2.0\NLog.chm" KeyPath="yes" DiskId="1" />
         <Shortcut Id="NetFx20_Help_Shortcut"
@@ -107,24 +127,30 @@
 
     <Feature Id="NetFx20_Feature" Title=".NET Framework 2.0 Support" Level="1">
       <ComponentGroupRef Id="Shared_Components" />
-      <ComponentRef Id="NetFx20_Component" />
+      <ComponentRef Id="NetFx20_Binaries" />
       <ComponentRef Id="NetFx20_Help" />
+      <Feature Id="NetFx20_DebugInfo" Title="Debug Symbols" Level="100">
+        <ComponentRef Id="NetFx20_DebugInfo" />
+      </Feature>
     </Feature>
 
     <?endif?>
 
     <?ifdef Include_NetFx35 ?>
     <DirectoryRef Id="NETFX35_DIR">
-      <Component Id="NetFx35_Component" Guid="8FB44D9C-3991-4DC4-843F-C7570EA2FEC2">
+      <Component Id="NetFx35_Binaries" Guid="8FB44D9C-3991-4DC4-843F-C7570EA2FEC2">
         <File Id="NetFx35_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="NetFx35_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.pdb" KeyPath="no" DiskId="1" />
         <File Id="NetFx35_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.xml" KeyPath="no" DiskId="1" />
         <File Id="NetFx35_NLog.Extended.dll" Name="NLog.Extended.dll" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.Extended.dll" Vital="yes" KeyPath="no" DiskId="1" />
-        <File Id="NetFx35_NLog.Extended.pdb" Name="NLog.Extended.pdb" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.Extended.pdb" KeyPath="no" DiskId="1" />
         <File Id="NetFx35_NLog.Extended.xml" Name="NLog.Extended.xml" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.Extended.xml" KeyPath="no" DiskId="1" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETFramework\v3.5\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETFX35_DIR]"></RegistryValue>
         </RegistryKey>
+      </Component>
+
+      <Component Id="NetFx35_DebugInfo" Guid="{CDFCA8A3-E430-4E7B-8DB6-CBCF5988BFF8}">
+        <File Id="NetFx35_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.pdb" KeyPath="yes" DiskId="1" />
+        <File Id="NetFx35_NLog.Extended.pdb" Name="NLog.Extended.pdb" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.Extended.pdb" KeyPath="no" DiskId="1" />
       </Component>
 
       <Component Id="NetFx35_Help" Guid="{BB7B2337-EBD7-4B46-868E-A419517350AC}">
@@ -141,23 +167,29 @@
 
     <Feature Id="NetFx35_Feature" Title=".NET Framework 3.5 Support" Level="1">
       <ComponentGroupRef Id="Shared_Components" />
-      <ComponentRef Id="NetFx35_Component" />
+      <ComponentRef Id="NetFx35_Binaries" />
+      <Feature Id="NetFx35_DebugInfo" Title="Debug Symbols" Level="100">
+        <ComponentRef Id="NetFx35_DebugInfo" />
+      </Feature>
       <ComponentRef Id="NetFx35_Help" />
     </Feature>
     <?endif?>
 
     <?ifdef Include_NetFx40 ?>
     <DirectoryRef Id="NETFX40_DIR">
-      <Component Id="NetFx40_Component" Guid="522783DB-D211-48CF-B8C3-BA26B353FC86">
+      <Component Id="NetFx40_Binaries" Guid="522783DB-D211-48CF-B8C3-BA26B353FC86">
         <File Id="NetFx40_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="NetFx40_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.pdb" KeyPath="no" DiskId="1" />
         <File Id="NetFx40_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.xml" KeyPath="no" DiskId="1" />
         <File Id="NetFx40_NLog.Extended.dll" Name="NLog.Extended.dll" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.Extended.dll" Vital="yes" KeyPath="no" DiskId="1" />
-        <File Id="NetFx40_NLog.Extended.pdb" Name="NLog.Extended.pdb" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.Extended.pdb" KeyPath="no" DiskId="1" />
         <File Id="NetFx40_NLog.Extended.xml" Name="NLog.Extended.xml" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.Extended.xml" KeyPath="no" DiskId="1" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETFramework\v4.0.30319\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETFX40_DIR]"></RegistryValue>
         </RegistryKey>
+      </Component>
+
+      <Component Id="NetFx40_DebugInfo" Guid="{69182FB6-1C3E-4B7A-823A-6B06B6DF1D06}">
+        <File Id="NetFx40_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.pdb" KeyPath="yes" DiskId="1" />
+        <File Id="NetFx40_NLog.Extended.pdb" Name="NLog.Extended.pdb" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.Extended.pdb" KeyPath="no" DiskId="1" />
       </Component>
 
       <Component Id="NetFx40_Help" Guid="{78649823-75AB-4101-8B3A-1A12375A37AD}">
@@ -173,16 +205,18 @@
     </DirectoryRef>
     <Feature Id="NetFx40_Feature" Title=".NET Framework 4.0 Support" Level="1">
       <ComponentGroupRef Id="Shared_Components" />
-      <ComponentRef Id="NetFx40_Component" />
+      <ComponentRef Id="NetFx40_Binaries" />
       <ComponentRef Id="NetFx40_Help" />
+      <Feature Id="NetFx40_DebugInfo" Title="Debug Symbols" Level="100">
+        <ComponentRef Id="NetFx40_DebugInfo" />
+      </Feature>
     </Feature>
     <?endif?>
 
     <?ifdef Include_NetCf20 ?>
     <DirectoryRef Id="NETCF20_DIR">
-      <Component Id="NetCf20_Component" Guid="1CD34AC2-CDEA-481C-9984-01763C2DD7E1">
+      <Component Id="NetCf20_Binaries" Guid="1CD34AC2-CDEA-481C-9984-01763C2DD7E1">
         <File Id="NetCf20_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\.NET Compact Framework 2.0\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="NetCf20_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\.NET Compact Framework 2.0\NLog.pdb" KeyPath="no" DiskId="1" />
         <File Id="NetCf20_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\.NET Compact Framework 2.0\NLog.xml" KeyPath="no" DiskId="1" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\PocketPC\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETCF20_DIR]"></RegistryValue>
@@ -193,6 +227,10 @@
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\WindowsCE\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETCF20_DIR]"></RegistryValue>
         </RegistryKey>
+      </Component>
+
+      <Component Id="NetCf20_DebugInfo" Guid="{40D42F2E-BF7B-4BE7-AB0F-15EB864CE5FF}">
+        <File Id="NetCf20_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\.NET Compact Framework 2.0\NLog.pdb" KeyPath="no" DiskId="1" />
       </Component>
 
       <Component Id="NetCf20_Help" Guid="E60D8396-2BB9-4561-A1C9-E25CF04EE218">
@@ -209,16 +247,18 @@
 
     <Feature Id="NetCf20_Feature" Title=".NET Compact Framework 2.0 Support" Level="1" AllowAdvertise="yes">
       <ComponentGroupRef Id="Shared_Components" />
-      <ComponentRef Id="NetCf20_Component" />
+      <ComponentRef Id="NetCf20_Binaries" />
+      <Feature Id="NetCf20_DebugInfo" Title="Debug Symbols" Level="100">
+        <ComponentRef Id="NetCf20_DebugInfo" />
+      </Feature>
       <ComponentRef Id="NetCf20_Help" />
     </Feature>
     <?endif?>
 
     <?ifdef Include_NetCf35 ?>
     <DirectoryRef Id="NETCF35_DIR">
-      <Component Id="NetCf35_Component" Guid="57723278-AE19-4EA8-A11F-62F08EB66DB8">
+      <Component Id="NetCf35_Binaries" Guid="57723278-AE19-4EA8-A11F-62F08EB66DB8">
         <File Id="NetCf35_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\.NET Compact Framework 3.5\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="NetCf35_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\.NET Compact Framework 3.5\NLog.pdb" KeyPath="no" DiskId="1" />
         <File Id="NetCf35_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\.NET Compact Framework 3.5\NLog.xml" KeyPath="no" DiskId="1" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\PocketPC\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETCF35_DIR]"></RegistryValue>
@@ -229,6 +269,10 @@
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\WindowsCE\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETCF35_DIR]"></RegistryValue>
         </RegistryKey>
+      </Component>
+
+      <Component Id="NetCf35_DebugInfo" Guid="{F29D4E0F-DDED-4856-93EE-9D1947DAF4EE}">
+        <File Id="NetCf35_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\.NET Compact Framework 3.5\NLog.pdb" KeyPath="no" DiskId="1" />
       </Component>
 
       <Component Id="NetCf35_Help" Guid="{6C34E269-D67E-40FD-A859-4D508C43B9D2}">
@@ -245,20 +289,26 @@
     
     <Feature Id="NetCf35_Feature" Title=".NET Compact Framework 3.5 Support" Level="1">
       <ComponentGroupRef Id="Shared_Components" />
-      <ComponentRef Id="NetCf35_Component" />
+      <ComponentRef Id="NetCf35_Binaries" />
+      <Feature Id="NetCf35_DebugInfo" Title="Debug Symbols" Level="100">
+        <ComponentRef Id="NetCf35_DebugInfo" />
+      </Feature>
       <ComponentRef Id="NetCf35_Help" />
     </Feature>
     <?endif?>
 
     <?ifdef Include_SL2 ?>
     <DirectoryRef Id="SL2_DIR">
-      <Component Id="SL2_Component" Guid="FA826C8E-6D46-446C-9FB6-0FBD475F1A1C">
+      <Component Id="SL2_Binaries" Guid="FA826C8E-6D46-446C-9FB6-0FBD475F1A1C">
         <File Id="SL2_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\Silverlight 2.0\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="SL2_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\Silverlight 2.0\NLog.pdb" KeyPath="no" DiskId="1" />
         <File Id="SL2_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\Silverlight 2.0\NLog.xml" KeyPath="no" DiskId="1" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v2.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[SL2_DIR]"></RegistryValue>
         </RegistryKey>
+      </Component>
+
+      <Component Id="SL2_DebugInfo" Guid="{DCF61F60-76CB-4CF1-8682-F3880C33F3FD}">
+        <File Id="SL2_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\Silverlight 2.0\NLog.pdb" KeyPath="no" DiskId="1" />
       </Component>
 
       <Component Id="SL2_Help" Guid="{D14A7453-BACE-45B6-9242-F2C9DBDCD799}">
@@ -274,20 +324,26 @@
     </DirectoryRef>
     <Feature Id="SL2_Feature" Title="Silverlight 2.0 Support" Level="1">
       <ComponentGroupRef Id="Shared_Components" />
-      <ComponentRef Id="SL2_Component" />
+      <ComponentRef Id="SL2_Binaries" />
       <ComponentRef Id="SL2_Help" />
+      <Feature Id="SL2_DebugInfo" Title="Debug Symbols" Level="100">
+        <ComponentRef Id="SL2_DebugInfo" />
+      </Feature>
     </Feature>
     <?endif?>
 
     <?ifdef Include_SL3 ?>
     <DirectoryRef Id="SL3_DIR">
-      <Component Id="SL3_Component" Guid="0CA70C8B-A4E7-4AD7-A8A8-CAA37BAEB05D">
+      <Component Id="SL3_Binaries" Guid="0CA70C8B-A4E7-4AD7-A8A8-CAA37BAEB05D">
         <File Id="SL3_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\Silverlight 3.0\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="SL3_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\Silverlight 3.0\NLog.pdb" KeyPath="no" DiskId="1" />
         <File Id="SL3_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\Silverlight 3.0\NLog.xml" KeyPath="no" DiskId="1" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v3.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[SL3_DIR]"></RegistryValue>
         </RegistryKey>
+      </Component>
+
+      <Component Id="SL3_DebugInfo" Guid="{62982EC0-9F80-43D5-BA0D-30F6A2285D10}">
+        <File Id="SL3_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\Silverlight 3.0\NLog.pdb" KeyPath="no" DiskId="1" />
       </Component>
 
       <Component Id="SL3_Help" Guid="{00CC00C4-E44C-44E5-A49A-2519773361CC}">
@@ -303,22 +359,28 @@
     </DirectoryRef>
     <Feature Id="SL3_Feature" Title="Silverlight 3.0 Support" Level="1">
       <ComponentGroupRef Id="Shared_Components" />
-      <ComponentRef Id="SL3_Component" />
+      <ComponentRef Id="SL3_Binaries" />
+      <Feature Id="SL3_DebugInfo" Title="Debug Symbols" Level="100">
+        <ComponentRef Id="SL3_DebugInfo" />
+      </Feature>
       <ComponentRef Id="SL3_Help" />
     </Feature>
     <?endif?>
 
     <?ifdef Include_SL4 ?>
     <DirectoryRef Id="SL4_DIR">
-      <Component Id="SL4_Component" Guid="11D490B6-8C02-4A1E-B193-BDE793BD2C0B">
+      <Component Id="SL4_Binaries" Guid="11D490B6-8C02-4A1E-B193-BDE793BD2C0B">
         <File Id="SL4_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\Silverlight 4.0\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="SL4_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\Silverlight 4.0\NLog.pdb" KeyPath="no" DiskId="1" />
         <File Id="SL4_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\Silverlight 4.0\NLog.xml" KeyPath="no" DiskId="1" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v4.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[SL4_DIR]"></RegistryValue>
         </RegistryKey>
       </Component>
 
+      <Component Id="SL4_DebugInfo" Guid="{886D1EE9-9307-4E13-899E-739C786BFCE9}">
+        <File Id="SL4_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\Silverlight 4.0\NLog.pdb" KeyPath="no" DiskId="1" />
+      </Component>
+      
       <Component Id="SL4_Help" Guid="{00B3FF42-05AA-4C3E-8A0F-B84C3B68A010}">
         <File Id="SL4_NLog.chm" Name="NLog.chm" Source="$(var.NLogBuildPath)\Silverlight 4.0\NLog.chm" KeyPath="yes" DiskId="1" />
         <Shortcut Id="SL4_Help_Shortcut"
@@ -332,11 +394,14 @@
     </DirectoryRef>
     <Feature Id="SL4_Feature" Title="Silverlight 4.0 Support" Level="1">
       <ComponentGroupRef Id="Shared_Components" />
-      <ComponentRef Id="SL4_Component" />
+      <ComponentRef Id="SL4_Binaries" />
+      <Feature Id="SL4_DebugInfo" Title="Debug Symbols" Level="100">
+        <ComponentRef Id="SL4_DebugInfo" />
+      </Feature>
       <ComponentRef Id="SL4_Help" />
     </Feature>
     <?endif?>
 
-    <UIRef Id="WixUI_Advanced"/>
+    <UIRef Id="WixUI_Mondo" />
   </Product>
 </Wix>

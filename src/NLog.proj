@@ -293,6 +293,7 @@
      <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=SL;$(CommonInstallerProperties)" />
      <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=NetCf;$(CommonInstallerProperties)" />
      <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=All;$(CommonInstallerProperties)" />
+     <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=Mono;$(CommonInstallerProperties)" />
   </Target>
 
   <Target Name="DeployNetCf20ToEmulator">

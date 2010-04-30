@@ -15,6 +15,7 @@
     <WixTargetsPath>$(WixBasePath)\Wix.targets</WixTargetsPath>
     <WixTasksPath>$(WixBasePath)\WixTasks.dll</WixTasksPath>
     <CommonConstants>NLogBuildPath=$(NLogBuildPath);NLogSourcePath=$(MSBuildProjectDirectory)\..\..;BuildVersion=$(BuildVersion);BuildLabel=$(BuildLabel)</CommonConstants>
+    <CommonConstants Condition=" '$(Configuration)'=='Debug' ">$(CommonConstants);IncludeDebugInfo</CommonConstants>
     <DefineSolutionProperties>false</DefineSolutionProperties>
     <OutputPath>$(NLogBuildPath)\Setup\$(Flavor)\</OutputPath>
     <SuppressIces>ICE57</SuppressIces>
@@ -33,11 +34,18 @@
      <NetCFInclude Include="Include_NetCf20" />
      <NetCFInclude Include="Include_NetCf35" />
   </ItemGroup>
+  <ItemGroup>
+     <MonoInclude Include="Include_Mono2" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Flavor)' == 'Mono'">
+    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0192;ProductName=NLog 2.0 for Mono;@(MonoInclude)</DefineConstants>
+    <OutputName>$(BaseOutputName)-Mono</OutputName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Flavor)' == 'NetFx'">
     <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0193;ProductName=NLog 2.0 for .NET Framework;@(NetFxInclude)</DefineConstants>
@@ -52,7 +60,7 @@
     <OutputName>$(BaseOutputName)-NetCF</OutputName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Flavor)' == 'All'">
-    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0196;ProductName=NLog 2.0;@(NetFxInclude);@(SLInclude);@(NetCFInclude)</DefineConstants>
+    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0196;ProductName=NLog 2.0;@(NetFxInclude);@(SLInclude);@(NetCFInclude);@(MonoInclude)</DefineConstants>
     <OutputName>$(BaseOutputName)-All</OutputName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
