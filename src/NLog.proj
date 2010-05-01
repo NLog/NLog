@@ -5,7 +5,7 @@
     <BaseOutputDirectory>$(MSBuildProjectDirectory)\..\build\</BaseOutputDirectory>
     <ProjectTarget Condition="'$(ProjectTarget)'==''">Build</ProjectTarget>
     <FrameworksPath>$(MSBuildProjectDirectory)\Frameworks</FrameworksPath>    
-    <BuildLabel>LocalBuild</BuildLabel>
+    <BuildLabel>PrivateBuild</BuildLabel>
     <BuildLabel Condition=" '$(CCNetLabel)'!='' ">$(CCNetLabel)</BuildLabel>
     <BuildVersion>0.0.0.0</BuildVersion>
     <BuildAllFrameworks>true</BuildAllFrameworks>
@@ -26,8 +26,8 @@
     <InfoZip>$(MSBuildProjectDirectory)\..\tools\zip.exe</InfoZip>
     <Tar>$(MSBuildProjectDirectory)\..\tools\tar.exe</Tar>
     <BZip2>$(MSBuildProjectDirectory)\..\tools\bzip2.exe</BZip2>
-    <Svn>svn.exe</Svn>
-    <ArchiveOutputPath>$(BaseOutputDirectory)Archive</ArchiveOutputPath>
+    <Git Condition=" '$(Git)' == '' ">git</Git>
+    <ArchiveOutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Packages</ArchiveOutputPath>
     <ConfigurationSuffix Condition="'$(Configuration)' == 'Debug'">-debug</ConfigurationSuffix>
   </PropertyGroup>
 
@@ -146,8 +146,8 @@
      <PropertyGroup>
        <CommonProperties>BuildLabel=$(BuildLabel);BuildVersion=$(BuildVersion)</CommonProperties>
      </PropertyGroup>
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="DeepClean;Clean;Build;Documentation;Installer;BuildTests;RunTests" Properties="Configuration=Release;$(CommonProperties)" />
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Clean;Build;Documentation;Installer;BuildTests;RunTests" Properties="Configuration=Debug;$(CommonProperties)" />
+     <MSBuild Projects="$(MSBuildProjectFile)" Targets="DeepClean;Clean;Build;Documentation;Archive;Installer;BuildTests;RunTests" Properties="Configuration=Release;$(CommonProperties)" />
+     <CallTarget Targets="SourceArchive" />
   </Target>
 
   <Target Name="Rebuild" DependsOnTargets="Clean;Build">
@@ -329,14 +329,21 @@
      <RemoveDir Directories="@(TargetFramework -> '$(BaseOutputDirectory)obj\$(Configuration)\%(Identity)')" />
   </Target>
 
-  <Target Name="Archive">
+  <Target Name="BeforeArchive">
+    <PropertyGroup>
+      <ArchiveSuffix></ArchiveSuffix>
+      <ArchiveSuffix Condition=" '$(BuildLabel)' != '' ">-$(BuildLabel)</ArchiveSuffix>
+    </PropertyGroup>
     <MakeDir Directories="$(ArchiveOutputPath)" />
-    <Exec Command='"$(InfoZip)" "$(ArchiveOutputPath)\NLog2%(TargetFramework.ProjectFileSuffix)$(ArchiveSuffix)$(ConfigurationSuffix).zip" NLog.*' 
+  </Target>
+
+  <Target Name="Archive" DependsOnTargets="BeforeArchive">
+    <Exec Command='"$(InfoZip)" "$(ArchiveOutputPath)\NLog2%(TargetFramework.ProjectFileSuffix)$(ArchiveSuffix)$(ConfigurationSuffix).zip" NLog.* -x *Test*' 
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)" />
-    <RemoveDir Directories="$(ArchiveOutputPath)\sources" />
-    <Exec Command='$(Svn) export . "$(ArchiveOutputPath)\sources"' WorkingDirectory=".." />
-    <Exec Command='"$(InfoZip)" -r "..\NLog2-sources$(ArchiveSuffix).zip" *.*' 
-          WorkingDirectory="$(ArchiveOutputPath)\sources" />
+  </Target>
+
+  <Target Name="SourceArchive" DependsOnTargets="BeforeArchive">
+    <Exec Command='"$(Git)" archive --format=zip --worktree-attributes -9 head -o build/bin/Release/Packages/NLog2.source$(ArchiveSuffix).zip' WorkingDirectory=".." />
   </Target>
 
   <ItemGroup>

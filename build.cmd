@@ -141,8 +141,13 @@ if (%1)==(checkinsuite) (
 )
 
 if (%1)==(archive) (
-	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Archive /p:ArchiveSuffix=%2
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Archive
 	shift
+	goto next
+)
+
+if (%1)==(sourcearchive) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:SourceArchive
 	shift
 	goto next
 )
@@ -196,7 +201,8 @@ echo Targets can be:
 echo.
 echo  clean              Removes output files
 echo  deepclean          Removes temporary and intermediate files
-echo  archive {suffix}   Produce ZIP files for each framework
+echo  archive            Produce ZIP files for each framework
+echo  sourcearchive      Produce ZIP file of the source code
 echo  build              Compiles assemblies
 echo  buildtests         Compiles tests
 echo  runtests           Runs unit tests
@@ -205,7 +211,7 @@ echo  doc                Builds documentation
 echo  all                Full build
 echo  nightlybuild       Nightly build
 echo  installer          Installer
-echo  label {suffix}     Define build label (defaults to '(Custom Build)')
+echo  label {suffix}     Define build label (defaults to 'PrivateBuild')
 exit /b 1
 
 :build
