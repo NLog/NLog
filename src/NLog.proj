@@ -5,7 +5,7 @@
     <BaseOutputDirectory>$(MSBuildProjectDirectory)\..\build\</BaseOutputDirectory>
     <ProjectTarget Condition="'$(ProjectTarget)'==''">Build</ProjectTarget>
     <FrameworksPath>$(MSBuildProjectDirectory)\Frameworks</FrameworksPath>    
-    <BuildLabel>(Custom Build)</BuildLabel>
+    <BuildLabel>LocalBuild</BuildLabel>
     <BuildLabel Condition=" '$(CCNetLabel)'!='' ">$(CCNetLabel)</BuildLabel>
     <BuildVersion>0.0.0.0</BuildVersion>
     <BuildAllFrameworks>true</BuildAllFrameworks>

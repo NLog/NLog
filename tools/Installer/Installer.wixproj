@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <OutputType>Package</OutputType>
     <BuildVersion Condition="'$(BuildVersion)'==''">0.0.0.0</BuildVersion>
-    <BuildLabel Condition="'$(BuildLabel)'==''">(Custom Build)</BuildLabel>
+    <BuildLabel Condition="'$(BuildLabel)'==''">LocalBuild</BuildLabel>
     <NLogBuildPath Condition="'$(NLogBuildPath)'==''">$(MSBuildProjectDirectory)\..\..\build\bin\$(Configuration)</NLogBuildPath>
     <BaseOutputName>NLog2</BaseOutputName>
     <WixBasePath>..\Wix</WixBasePath>
@@ -63,8 +63,9 @@
     <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0196;ProductName=NLog 2.0;@(NetFxInclude);@(SLInclude);@(NetCFInclude);@(MonoInclude)</DefineConstants>
     <OutputName>$(BaseOutputName)-All</OutputName>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-     <OutputName>$(OutputName)-Debug</OutputName>
+  <PropertyGroup>
+     <OutputName Condition=" '$(BuildLabel)' != '' ">$(OutputName)-$(BuildLabel)</OutputName>
+     <OutputName Condition=" '$(Configuration)' == 'Debug' ">$(OutputName)-Debug</OutputName>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="NLog.wxs" />
@@ -82,7 +83,7 @@
   </Target>
   <Import Project="$(WixTargetsPath)" Condition="Exists('$(WixTargetsPath)')"/>
   <Target Name="AfterRebuild">
-    <Copy SourceFiles="$(OutputPath)\$(OutputName).msi" DestinationFolder="$(NLogBuildPath)\Setup\" />
+    <Copy SourceFiles="$(OutputPath)\$(OutputName).msi" DestinationFolder="$(NLogBuildPath)\Packages\" />
     <RemoveDir Directories="$(OutputPath)" />
   </Target>
 </Project>
