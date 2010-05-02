@@ -63,7 +63,9 @@
                     return 1;
                 }
 
-                Console.WriteLine("Generating '{0}'...", Path.GetFullPath(outputFile));
+                outputFile = Path.GetFullPath(outputFile);
+                Console.WriteLine("Generating '{0}'...", outputFile);
+                Directory.CreateDirectory(Path.GetDirectoryName(outputFile));
                 builder.Build(outputFile);
                 return 0;
             }

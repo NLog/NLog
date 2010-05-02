@@ -320,7 +320,7 @@
   </Target>
 
   <Target Name="DumpApi" DependsOnTargets="BuildApiDumpTool">
-    <Exec Command='"$(DumpApiXml)" -assembly NLog.dll -assembly NLog.Extended.dll -output NLog.api %(TargetFramework.DocReferences)'
+    <Exec Command='"$(DumpApiXml)" -assembly NLog.dll -assembly NLog.Extended.dll -output API\NLog.api %(TargetFramework.DocReferences)'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)"
           ContinueOnError="$(BuildAllFrameworks)" />
   </Target>
