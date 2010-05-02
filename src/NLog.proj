@@ -146,7 +146,7 @@
      <PropertyGroup>
        <CommonProperties>BuildLabel=$(BuildLabel);BuildVersion=$(BuildVersion)</CommonProperties>
      </PropertyGroup>
-     <MSBuild Projects="$(MSBuildProjectFile)" Targets="DeepClean;Clean;Build;Documentation;Archive;Installer;BuildTests;RunTests" Properties="Configuration=Release;$(CommonProperties)" />
+     <MSBuild Projects="$(MSBuildProjectFile)" Targets="DeepClean;Clean;Build;DumpApi;Documentation;Archive;Installer;BuildTests;RunTests" Properties="Configuration=Release;$(CommonProperties)" />
      <MSBuild Projects="$(MSBuildProjectFile)" Targets="Clean;Build;BuildTests" Properties="Configuration=Debug;$(CommonProperties)" />
      <CallTarget Targets="SourceArchive" />
   </Target>
@@ -249,6 +249,7 @@
   <Target Name="CheckinSuite">
     <CallTarget Targets="DeepClean" />
     <CallTarget Targets="Rebuild" />
+    <CallTarget Targets="DumpApi" />
     <CallTarget Targets="BuildTests" />
     <CallTarget Targets="RunTests" />
     <CallTarget Targets="PrepareTestResultSummary" />
@@ -317,6 +318,13 @@
 
   <Target Name="BuildApiDumpTool">
     <MSBuild Projects="..\tools\DumpApiXml\DumpApiXml.csproj" Targets="Rebuild" />
+  </Target>
+
+  <Target Name="BuildDocPagesTool">
+    <MSBuild Projects="..\tools\BuildDocPages\BuildDocPages.csproj" Targets="Rebuild" />
+  </Target>
+
+  <Target Name="BuildDocPages" DependsOnTargets="BuildDocPagesTool">
   </Target>
 
   <Target Name="DumpApi" DependsOnTargets="BuildApiDumpTool">

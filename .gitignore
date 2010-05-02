@@ -5,3 +5,4 @@ LastTestRunSummary.cmd
 src/Docs/Working/
 *.chw
 log.txt
+*.suo

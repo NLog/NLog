@@ -96,6 +96,12 @@ if (%1)==(dumpapi) (
 	goto next
 )
 
+if (%1)==(builddocpages) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:BuildDocPages
+	shift
+	goto next
+)
+
 if (%1)==(clean) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Clean
 	shift
