@@ -35,8 +35,16 @@
     <PropertyRef Id="VS2010_IDE_VB_PROJECTSYSTEM_INSTALLED"/>
 
     <CustomActionRef Id="VS2005InstallVSTemplates" />
+    <CustomActionRef Id="VCSHARP2005InstallVSTemplates" />
+    <CustomActionRef Id="VB2005InstallVSTemplates" />
+
     <CustomActionRef Id="VS90InstallVSTemplates" />
+    <CustomActionRef Id="VCSHARP90InstallVSTemplates" />
+    <CustomActionRef Id="VB90InstallVSTemplates" />
+
     <CustomActionRef Id="VS2010InstallVSTemplates" />
+    <CustomActionRef Id="VCSHARP2010InstallVSTemplates" />
+    <CustomActionRef Id="VB2010InstallVSTemplates" />
 
     <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
     <WixVariable Id="WixUIBannerBmp" Value="TopBanner.bmp" />
@@ -50,14 +58,30 @@
     <InstallExecuteSequence>
       <!-- install/remove VS templates if the state of the feature changes -->
       <Custom Action="VS2005InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VS2005 = -1)</Custom>
+      <Custom Action="VCSHARP2005InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VCSHARP2005 = -1)</Custom>
+      <Custom Action="VB2005InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VB2005 = -1)</Custom>
+
       <Custom Action="VS90InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VS2008 = -1)</Custom>
+      <Custom Action="VCSHARP90InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VCSHARP2008 = -1)</Custom>
+      <Custom Action="VB90InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VB2008 = -1)</Custom>
+
       <Custom Action="VS2010InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VS2010 = -1)</Custom>
+      <Custom Action="VCSHARP2010InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VCSHARP2010 = -1)</Custom>
+      <Custom Action="VB2010InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VB2010 = -1)</Custom>
     </InstallExecuteSequence>
 
     <UI>
       <ProgressText Action="VS2005InstallVSTemplates" Template="[1]">Registering Visual Studio 2005 Templates</ProgressText>
+      <ProgressText Action="VCSHARP2005InstallVSTemplates" Template="[1]">Registering Visual C# 2005 Express Templates</ProgressText>
+      <ProgressText Action="VB2005InstallVSTemplates" Template="[1]">Registering Visual Basic 2005 Express Templates</ProgressText>
+      
       <ProgressText Action="VS90InstallVSTemplates" Template="[1]">Registering Visual Studio 2008 Templates</ProgressText>
+      <ProgressText Action="VCSHARP90InstallVSTemplates" Template="[1]">Registering Visual C# 2008 Express Templates</ProgressText>
+      <ProgressText Action="VB90InstallVSTemplates" Template="[1]">Registering Visual Basic 2008 Express Templates</ProgressText>
+
       <ProgressText Action="VS2010InstallVSTemplates" Template="[1]">Registering Visual Studio 2010 Templates</ProgressText>
+      <ProgressText Action="VCSHARP2010InstallVSTemplates" Template="[1]">Registering Visual C# 2010 Express Templates</ProgressText>
+      <ProgressText Action="VB2010InstallVSTemplates" Template="[1]">Registering Visual Basic 2010 Express Templates</ProgressText>
     </UI>
 
     <!-- directories -->
@@ -85,9 +109,15 @@
 
         <!-- Visual Studio 2005 directories -->
 
-        <Directory Id="VS2005_ROOT_FOLDER" Name="Visual Studio 8.0">
+        <Directory Id="VS2005_ROOT_FOLDER" Name="Visual Studio 8">
           <Directory Id="VS2005_Common7" Name="Common7">
             <Directory Id="VS2005_IDE" Name="IDE">
+              <Directory Id="VS2005_VCSExpress" Name="VCSExpress">
+                <Directory Id="VS2005_CSharpExpressItemTemplates" Name="ItemTemplates" />
+              </Directory>
+              <Directory Id="VS2005_VBExpress" Name="VBExpress">
+                <Directory Id="VS2005_VBExpressItemTemplates" Name="ItemTemplates" />
+              </Directory>
               <Directory Id="VS2005_ITEMTEMPLATES_DIR" Name="ItemTemplates">
                 <Directory Id="VS2005_CSharpItemTemplates" Name="CSharp" />
                 <Directory Id="VS2005_VBItemTemplates" Name="VisualBasic" />
@@ -121,6 +151,12 @@
         <Directory Id="VS90_ROOT_FOLDER" Name="Visual Studio 9.0">
           <Directory Id="VS2008_Common7" Name="Common7">
             <Directory Id="VS2008_IDE" Name="IDE">
+              <Directory Id="VS2008_VCSExpress" Name="VCSExpress">
+                <Directory Id="VS2008_CSharpExpressItemTemplates" Name="ItemTemplates" />
+              </Directory>
+              <Directory Id="VS2008_VBExpress" Name="VBExpress">
+                <Directory Id="VS2008_VBExpressItemTemplates" Name="ItemTemplates" />
+              </Directory>
               <Directory Id="VS90_ITEMTEMPLATES_DIR" Name="ItemTemplates">
                 <Directory Id="VS2008_CSharpItemTemplates" Name="CSharp" />
                 <Directory Id="VS2008_VBItemTemplates" Name="VisualBasic" />
@@ -151,6 +187,12 @@
         <Directory Id="VS2010_ROOT_FOLDER" Name="Visual Studio 10.0">
           <Directory Id="VS2010_Common7" Name="Common7">
             <Directory Id="VS2010_IDE" Name="IDE">
+              <Directory Id="VS2010_VCSExpress" Name="VCSExpress">
+                <Directory Id="VS2010_CSharpExpressItemTemplates" Name="ItemTemplates" />
+              </Directory>
+              <Directory Id="VS2010_VBExpress" Name="VBExpress">
+                <Directory Id="VS2010_VBExpressItemTemplates" Name="ItemTemplates" />
+              </Directory>
               <Directory Id="VS2010_ITEMTEMPLATES_DIR" Name="ItemTemplates">
                 <Directory Id="VS2010_CSharpItemTemplates" Name="CSharp" />
                 <Directory Id="VS2010_VBItemTemplates" Name="VisualBasic" />
@@ -473,9 +515,9 @@
     <DirectoryRef Id="VS2005_CSharpItemTemplates">
       <Directory Id="VS2005_CSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS2005_CSharpItemTemplates" Guid="{F7EF3869-62E8-4AB2-83B7-BB43AFD4B251}">
-          <File Id="VS2005_CSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="CSNLog1.zip" KeyPath="yes" />
-          <File Id="VS2005_CSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="CSNLog2.zip" />
-          <File Id="VS2005_CSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="CSNLog3.zip" />
+          <File Id="VS2005_CSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
+          <File Id="VS2005_CSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
+          <File Id="VS2005_CSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -486,6 +528,26 @@
           <File Id="VS2005_VBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2005_VBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
           <File Id="VS2005_VBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2005_CSharpExpressItemTemplates">
+      <Directory Id="VS2005_CSharpExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2005_CSharpExpressItemTemplates" Guid="{4F96FB4C-BCEC-4450-9A50-9971613093AE}">
+          <File Id="VS2005_CSharpExpressConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
+          <File Id="VS2005_CSharpExpressEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
+          <File Id="VS2005_CSharpExpressTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2005_VBExpressItemTemplates">
+      <Directory Id="VS2005_VBExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2005_VBExpressItemTemplates" Guid="{D9D17AE7-BD76-4B19-B2DB-F7C21F7E9DD1}">
+          <File Id="VS2005_VBExpressConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
+          <File Id="VS2005_VBExpressEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="NLog2.zip" />
+          <File Id="VS2005_VBExpressTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="NLog3.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -513,9 +575,9 @@
     <DirectoryRef Id="VS2008_CSharpItemTemplates">
       <Directory Id="VS2008_CSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS2008_CSharpItemTemplates" Guid="{8605F838-454A-486E-92C2-3016A0A4B7F0}">
-          <File Id="VS2008_CSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="CSNLog1.zip" KeyPath="yes" />
-          <File Id="VS2008_CSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="CSNLog2.zip" />
-          <File Id="VS2008_CSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="CSNLog3.zip" />
+          <File Id="VS2008_CSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
+          <File Id="VS2008_CSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
+          <File Id="VS2008_CSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -526,6 +588,26 @@
           <File Id="VS2008_VBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2008_VBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
           <File Id="VS2008_VBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2008_CSharpExpressItemTemplates">
+      <Directory Id="VS2008_CSharpExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2008_CSharpExpressItemTemplates" Guid="{F5BF99C6-AB9A-4C8B-8C2E-FAD0C9D9C7DA}">
+          <File Id="VS2008_CSharpExpressConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
+          <File Id="VS2008_CSharpExpressEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
+          <File Id="VS2008_CSharpExpressTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2008_VBExpressItemTemplates">
+      <Directory Id="VS2008_VBExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2008_VBExpressItemTemplates" Guid="{1A71F9B8-3A51-4CB6-B473-3C55AB6932C3}">
+          <File Id="VS2008_VBExpressConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
+          <File Id="VS2008_VBExpressEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="NLog2.zip" />
+          <File Id="VS2008_VBExpressTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="NLog3.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -553,9 +635,9 @@
     <DirectoryRef Id="VS2010_CSharpItemTemplates">
       <Directory Id="VS2010_CSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS2010_CSharpItemTemplates" Guid="{E2759ABE-93E3-4B28-870B-DB58346C38B5}">
-          <File Id="VS2010_CSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="CSNLog1.zip" KeyPath="yes" />
-          <File Id="VS2010_CSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="CSNLog2.zip" />
-          <File Id="VS2010_CSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="CSNLog3.zip" />
+          <File Id="VS2010_CSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
+          <File Id="VS2010_CSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
+          <File Id="VS2010_CSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -566,6 +648,26 @@
           <File Id="VS2010_VBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2010_VBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
           <File Id="VS2010_VBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2010_CSharpExpressItemTemplates">
+      <Directory Id="VS2010_CSharpExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2010_CSharpExpressItemTemplates" Guid="{680AE43F-27ED-4F92-9B03-39963D28D7BB}">
+          <File Id="VS2010_CSharpExpressConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
+          <File Id="VS2010_CSharpExpressEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
+          <File Id="VS2010_CSharpExpressTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2010_VBExpressItemTemplates">
+      <Directory Id="VS2010_VBExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2010_VBExpressItemTemplates" Guid="{40EF8875-A7C8-445D-A7EC-00FDBCAFB41C}">
+          <File Id="VS2010_VBExpressConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
+          <File Id="VS2010_VBExpressEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="NLog2.zip" />
+          <File Id="VS2010_VBExpressTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="NLog3.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -739,8 +841,10 @@
     </Feature>
 
     <Feature Id="Feature_IDE" Title="IDE Integration" Level="1">
+      <!-- Visual Studio 2005 -->
+     
       <Feature Id="Feature_VS2005" Title="Visual Studio 2005" Level="0">
-        <Condition Level="1">VS2005_ROOT_FOLDER</Condition>
+        <Condition Level="1">VS2005_ROOT_FOLDER AND (VS2005_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED OR VS2005_IDE_VB_PROJECTSYSTEM_INSTALLED)</Condition>
         <ComponentRef Id="VS2005_XmlSchemas"/>
         <Feature Id="Feature_VS2005_CSharp" Title="C# Support" Level="0">
           <Condition Level="1">VS2005_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED</Condition>
@@ -753,8 +857,25 @@
           <ComponentRef Id="VS2005_VBItemTemplates" />
         </Feature>
       </Feature>
+      
+      <Feature Id="Feature_VCSHARP2005" Title="Visual C# 2005 Express" Level="0">
+        <Condition Level="1">VCSHARP2005EXPRESS_IDE</Condition>
+        <ComponentRef Id="VS2005_XmlSchemas"/>
+        <ComponentRef Id="VS2005_CSharpCodeSnippets" />
+        <ComponentRef Id="VS2005_CSharpExpressItemTemplates" />
+      </Feature>
+      
+      <Feature Id="Feature_VB2005" Title="Visual Basic 2005 Express" Level="0">
+        <Condition Level="1">VB2005EXPRESS_IDE</Condition>
+        <ComponentRef Id="VS2005_XmlSchemas"/>
+        <ComponentRef Id="VS2005_VBCodeSnippets" />
+        <ComponentRef Id="VS2005_VBExpressItemTemplates" />
+      </Feature>
+
+      <!-- Visual Studio 2008 -->
+
       <Feature Id="Feature_VS2008" Title="Visual Studio 2008" Level="0">
-        <Condition Level="1">VS90_ROOT_FOLDER</Condition>
+        <Condition Level="1">VS90_ROOT_FOLDER AND (VS90_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED OR VS90_IDE_VB_PROJECTSYSTEM_INSTALLED)</Condition>
         <ComponentRef Id="VS2008_XmlSchemas"/>
         <Feature Id="Feature_VS2008_CSharp" Title="C# Support" Level="0">
           <Condition Level="1">VS90_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED</Condition>
@@ -767,8 +888,24 @@
           <ComponentRef Id="VS2008_VBItemTemplates" />
         </Feature>
       </Feature>
+      
+      <Feature Id="Feature_VCSHARP2008" Title="Visual C# 2008 Express" Level="0">
+        <Condition Level="1">VCSHARP90EXPRESS_IDE</Condition>
+        <ComponentRef Id="VS2008_XmlSchemas"/>
+        <ComponentRef Id="VS2008_CSharpCodeSnippets" />
+        <ComponentRef Id="VS2008_CSharpExpressItemTemplates" />
+      </Feature>
+      <Feature Id="Feature_VB2008" Title="Visual Basic 2008 Express" Level="0">
+        <Condition Level="1">VB90EXPRESS_IDE</Condition>
+        <ComponentRef Id="VS2008_XmlSchemas"/>
+        <ComponentRef Id="VS2008_VBCodeSnippets" />
+        <ComponentRef Id="VS2008_VBExpressItemTemplates" />
+      </Feature>
+
+      <!-- Visual Studio 2010 -->
+
       <Feature Id="Feature_VS2010" Title="Visual Studio 2010" Level="0">
-        <Condition Level="1">VS2010_ROOT_FOLDER</Condition>
+        <Condition Level="1">VS2010_ROOT_FOLDER AND (VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED OR VS2010_IDE_VB_PROJECTSYSTEM_INSTALLED)</Condition>
         <ComponentRef Id="VS2010_XmlSchemas"/>
         <Feature Id="Feature_VS2010_CSharp" Title="C# Support" Level="0">
           <Condition Level="1">VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED</Condition>
@@ -780,6 +917,18 @@
           <ComponentRef Id="VS2010_VBCodeSnippets" />
           <ComponentRef Id="VS2010_VBItemTemplates" />
         </Feature>
+      </Feature>
+      <Feature Id="Feature_VCSHARP2010" Title="Visual C# 2010 Express" Level="0">
+        <Condition Level="1">VCSHARP2010EXPRESS_IDE</Condition>
+        <ComponentRef Id="VS2010_XmlSchemas"/>
+        <ComponentRef Id="VS2010_CSharpCodeSnippets" />
+        <ComponentRef Id="VS2010_CSharpExpressItemTemplates" />
+      </Feature>
+      <Feature Id="Feature_VB2010" Title="Visual Basic 2010 Express" Level="0">
+        <Condition Level="1">VB2010EXPRESS_IDE</Condition>
+        <ComponentRef Id="VS2010_XmlSchemas"/>
+        <ComponentRef Id="VS2010_VBCodeSnippets" />
+        <ComponentRef Id="VS2010_VBExpressItemTemplates" />
       </Feature>
     </Feature>
 
