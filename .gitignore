@@ -6,3 +6,5 @@ src/Docs/Working/
 *.chw
 log.txt
 *.suo
+_ReSharper.*
+*.ReSharper.user
