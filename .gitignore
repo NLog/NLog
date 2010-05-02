@@ -3,3 +3,5 @@ bin/
 msbuild.log
 LastTestRunSummary.cmd
 src/Docs/Working/
+*.chw
+log.txt

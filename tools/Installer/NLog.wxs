@@ -6,11 +6,37 @@
            Version="$(var.BuildVersion)"
            Manufacturer="NLog Project"
            UpgradeCode="ecae2a6d-d653-40b8-9025-e0b9e68d0ea9">
+
     <Package InstallerVersion="200" Compressed="yes" />
 
     <Property Id="ApplicationFolderName" Value="NLog" />
     <Property Id="WixAppFolder" Value="WixPerMachineFolder" />
     <Property Id="WebSiteUrl" Value="http://nlog-project.org" />
+
+    <!-- import properties from Wix VS extensions-->
+    <!-- http://wix.sourceforge.net/manual-wix3/wixvsextension.htm -->
+    
+    <PropertyRef Id="VS2005_ROOT_FOLDER" />
+    <PropertyRef Id="VS2005_ITEMTEMPLATES_DIR" />
+    <PropertyRef Id="VS2005_SCHEMAS_DIR" />
+    <PropertyRef Id="VS2005_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED"/>
+    <PropertyRef Id="VS2005_IDE_VB_PROJECTSYSTEM_INSTALLED"/>
+
+    <PropertyRef Id="VS90_ROOT_FOLDER" />
+    <PropertyRef Id="VS90_ITEMTEMPLATES_DIR" />
+    <PropertyRef Id="VS90_SCHEMAS_DIR" />
+    <PropertyRef Id="VS90_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED"/>
+    <PropertyRef Id="VS90_IDE_VB_PROJECTSYSTEM_INSTALLED"/>
+
+    <PropertyRef Id="VS2010_ROOT_FOLDER" />
+    <PropertyRef Id="VS2010_ITEMTEMPLATES_DIR" />
+    <PropertyRef Id="VS2010_SCHEMAS_DIR" />
+    <PropertyRef Id="VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED"/>
+    <PropertyRef Id="VS2010_IDE_VB_PROJECTSYSTEM_INSTALLED"/>
+
+    <CustomActionRef Id="VS2005InstallVSTemplates" />
+    <CustomActionRef Id="VS90InstallVSTemplates" />
+    <CustomActionRef Id="VS2010InstallVSTemplates" />
 
     <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
     <WixVariable Id="WixUIBannerBmp" Value="TopBanner.bmp" />
@@ -21,14 +47,30 @@
     <Icon Id="NLog.ico" SourceFile="NLog.ico" />
     <Icon Id="Help.ico" SourceFile="Help.ico" />
 
+    <InstallExecuteSequence>
+      <!-- install/remove VS templates if the state of the feature changes -->
+      <Custom Action="VS2005InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VS2005 = -1)</Custom>
+      <Custom Action="VS90InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VS2008 = -1)</Custom>
+      <Custom Action="VS2010InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VS2010 = -1)</Custom>
+    </InstallExecuteSequence>
+
+    <UI>
+      <ProgressText Action="VS2005InstallVSTemplates" Template="[1]">Registering Visual Studio 2005 Templates</ProgressText>
+      <ProgressText Action="VS90InstallVSTemplates" Template="[1]">Registering Visual Studio 2008 Templates</ProgressText>
+      <ProgressText Action="VS2010InstallVSTemplates" Template="[1]">Registering Visual Studio 2010 Templates</ProgressText>
+    </UI>
+
     <!-- directories -->
 
     <Directory Id="TARGETDIR" Name="SourceDir">
+
       <Directory Id="ProgramMenuFolder">
         <Directory Id="ApplicationProgramsFolder" Name="NLog $(var.BuildLabel)" />
       </Directory>
 
       <Directory Id="ProgramFilesFolder">
+        <!-- application install directory -->
+
         <Directory Id="APPLICATIONFOLDER" Name="NLog">
           <Directory Id="MONO2_DIR" Name="Mono 2.x" />
           <Directory Id="NETFX20_DIR" Name=".NET Framework 2.0" />
@@ -40,16 +82,114 @@
           <Directory Id="SL3_DIR" Name="Silverlight 3.0" />
           <Directory Id="SL4_DIR" Name="Silverlight 4.0" />
         </Directory>
+
+        <!-- Visual Studio 2005 directories -->
+
+        <Directory Id="VS2005_ROOT_FOLDER" Name="Visual Studio 8.0">
+          <Directory Id="VS2005_Common7" Name="Common7">
+            <Directory Id="VS2005_IDE" Name="IDE">
+              <Directory Id="VS2005_ITEMTEMPLATES_DIR" Name="ItemTemplates">
+                <Directory Id="VS2005_CSharpItemTemplates" Name="CSharp" />
+                <Directory Id="VS2005_VBItemTemplates" Name="VisualBasic" />
+              </Directory>
+            </Directory>
+          </Directory>
+
+          <Directory Id="VS2005_Xml" Name="Xml">
+            <Directory Id="VS2005_SCHEMAS_DIR" Name="Schemas" />
+          </Directory>
+
+          <Directory Id="VS2005_VCS" Name="VC#">
+            <Directory Id="VS2005_VCS_Snippets" Name="Snippets">
+              <Directory Id="VS2005_VCS_Snippets_1033" Name="1033">
+                <Directory Id="VS2005_VisualCSharpSnippets" Name="Visual C#" />
+              </Directory>
+            </Directory>
+          </Directory>
+
+          <Directory Id="VS2005_VB" Name="VB">
+            <Directory Id="VS2005_VB_Snippets" Name="Snippets">
+              <Directory Id="VS2005_VB_Snippets_1033" Name="1033">
+                <Directory Id="VS2005_VisualBasicSnippets" Name="application" />
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+        
+        <!-- Visual Studio 2008 directories -->
+
+        <Directory Id="VS90_ROOT_FOLDER" Name="Visual Studio 9.0">
+          <Directory Id="VS2008_Common7" Name="Common7">
+            <Directory Id="VS2008_IDE" Name="IDE">
+              <Directory Id="VS90_ITEMTEMPLATES_DIR" Name="ItemTemplates">
+                <Directory Id="VS2008_CSharpItemTemplates" Name="CSharp" />
+                <Directory Id="VS2008_VBItemTemplates" Name="VisualBasic" />
+              </Directory>
+            </Directory>
+          </Directory>
+          <Directory Id="VS2008_Xml" Name="Xml">
+            <Directory Id="VS90_SCHEMAS_DIR" Name="Schemas" />
+          </Directory>
+          <Directory Id="VS2008_VCS" Name="VC#">
+            <Directory Id="VS2008_VCS_Snippets" Name="Snippets">
+              <Directory Id="VS2008_VCS_Snippets_1033" Name="1033">
+                <Directory Id="VS2008_VisualCSharpSnippets" Name="Visual C#" />
+              </Directory>
+            </Directory>
+          </Directory>
+          <Directory Id="VS2008_VB" Name="VB">
+            <Directory Id="VS2008_VB_Snippets" Name="Snippets">
+              <Directory Id="VS2008_VB_Snippets_1033" Name="1033">
+                <Directory Id="VS2008_VisualBasicSnippets" Name="application" />
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+        
+        <!-- Visual Studio 2010 directories -->
+
+        <Directory Id="VS2010_ROOT_FOLDER" Name="Visual Studio 10.0">
+          <Directory Id="VS2010_Common7" Name="Common7">
+            <Directory Id="VS2010_IDE" Name="IDE">
+              <Directory Id="VS2010_ITEMTEMPLATES_DIR" Name="ItemTemplates">
+                <Directory Id="VS2010_CSharpItemTemplates" Name="CSharp" />
+                <Directory Id="VS2010_VBItemTemplates" Name="VisualBasic" />
+              </Directory>
+            </Directory>
+          </Directory>
+          
+          <Directory Id="VS2010_Xml" Name="Xml">
+            <Directory Id="VS2010_SCHEMAS_DIR" Name="Schemas" />
+          </Directory>
+          
+          <Directory Id="VS2010_VCS" Name="VC#">
+            <Directory Id="VS2010_VCS_Snippets" Name="Snippets">
+              <Directory Id="VS2010_VCS_Snippets_1033" Name="1033">
+                <Directory Id="VS2010_VisualCSharpSnippets" Name="Visual C#" />
+              </Directory>
+            </Directory>
+          </Directory>
+          
+          <Directory Id="VS2010_VB" Name="VB">
+            <Directory Id="VS2010_VB_Snippets" Name="Snippets">
+              <Directory Id="VS2010_VB_Snippets_1033" Name="1033">
+                <Directory Id="VS2010_VisualBasicSnippets" Name="application" />
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
       </Directory>
     </Directory>
 
-    <!-- common stuff -->
-
-    <DirectoryRef Id="TARGETDIR">
+    <!-- common stuff in the target directory -->
+    
+    <DirectoryRef Id="APPLICATIONFOLDER" FileSource="$(var.NLogSourcePath)">
       <Component Id="License_File" Guid="203ED250-FA92-4553-A590-723318DC7946">
-        <File Id="LICENSE.txt" Name="LICENSE.txt" Source="$(var.NLogSourcePath)\LICENSE.txt" Vital="yes" KeyPath="yes" DiskId="1" />
+        <File Id="LICENSE.txt" Name="LICENSE.txt" Vital="yes" KeyPath="yes" />
       </Component>
     </DirectoryRef>
+    
+    <!-- Common menu shortcuts -->
 
     <DirectoryRef Id="ApplicationProgramsFolder">
       <Component Id="ApplicationProgramsFolder" Guid="ADA1D20F-C6C7-4826-89FF-CA0FAB65A74D">
@@ -67,17 +207,17 @@
     <!-- Mono 2.x support -->
 
     <?ifdef Include_Mono2 ?>
-    <DirectoryRef Id="MONO2_DIR">
+    <DirectoryRef Id="MONO2_DIR" FileSource="$(var.NLogBuildPath)\Mono 2.x">
       <Component Id="Mono2_Binaries" Guid="3E3A11A1-BC7D-484F-AA0E-733C02C70E5D">
-        <File Id="Mono2_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\Mono 2.x\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
+        <File Id="Mono2_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
       </Component>
 
       <Component Id="Mono2_DebugInfo" Guid="{8E8BB88A-C6DB-4FC4-919A-EADAEFC57FE3}">
-        <File Id="Mono2_NLog.dll.mdb" Name="NLog.dll.mdb" Source="$(var.NLogBuildPath)\Mono 2.x\NLog.dll.mdb" KeyPath="yes" DiskId="1" />
+        <File Id="Mono2_NLog.dll.mdb" Name="NLog.dll.mdb" KeyPath="yes" />
       </Component>
 
       <Component Id="Mono2_Help" Guid="{07428701-12C5-440C-991E-4FB51C7AB304}">
-        <File Id="Mono2_NLog.chm" Name="NLog.chm" Source="$(var.NLogBuildPath)\Mono 2.x\NLog.chm" KeyPath="yes" DiskId="1" />
+        <File Id="Mono2_NLog.chm" Name="NLog.chm" KeyPath="yes" />
         <Shortcut Id="Mono2_Help_Shortcut"
                   Directory="ApplicationProgramsFolder"
                   Name="NLog for Mono 2.x"
@@ -91,21 +231,21 @@
 
     <?ifdef Include_NetFx20 ?>
 
-    <DirectoryRef Id="NETFX20_DIR">
+    <DirectoryRef Id="NETFX20_DIR" FileSource="$(var.NLogBuildPath)\.NET Framework 2.0">
       <Component Id="NetFx20_Binaries" Guid="AB08E412-75C2-46BA-8EF3-C3C179000579">
-        <File Id="NetFx20_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\.NET Framework 2.0\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="NetFx20_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\.NET Framework 2.0\NLog.xml" KeyPath="no" DiskId="1" />
+        <File Id="NetFx20_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
+        <File Id="NetFx20_NLog.xml" Name="NLog.xml" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETFramework\v2.0.50727\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETFX20_DIR]"></RegistryValue>
         </RegistryKey>
       </Component>
 
       <Component Id="NetFx20_DebugInfo" Guid="{114FD2A6-7E1E-4251-BBAB-253AA077E871}">
-        <File Id="NetFx20_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\.NET Framework 2.0\NLog.pdb" KeyPath="no" DiskId="1" />
+        <File Id="NetFx20_NLog.pdb" Name="NLog.pdb" />
       </Component>
       
       <Component Id="NetFx20_Help" Guid="{211700F1-90A7-4DAA-82AA-441528CF92A2}">
-        <File Id="NetFx20_NLog.chm" Name="NLog.chm" Source="$(var.NLogBuildPath)\.NET Framework 2.0\NLog.chm" KeyPath="yes" DiskId="1" />
+        <File Id="NetFx20_NLog.chm" Name="NLog.chm" KeyPath="yes" />
         <Shortcut Id="NetFx20_Help_Shortcut"
                   Directory="ApplicationProgramsFolder"
                   Name="NLog for .NET Framework 2.0"
@@ -119,24 +259,24 @@
     <?endif?>
 
     <?ifdef Include_NetFx35 ?>
-    <DirectoryRef Id="NETFX35_DIR">
+    <DirectoryRef Id="NETFX35_DIR" FileSource="$(var.NLogBuildPath)\.NET Framework 3.5">
       <Component Id="NetFx35_Binaries" Guid="8FB44D9C-3991-4DC4-843F-C7570EA2FEC2">
-        <File Id="NetFx35_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="NetFx35_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.xml" KeyPath="no" DiskId="1" />
-        <File Id="NetFx35_NLog.Extended.dll" Name="NLog.Extended.dll" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.Extended.dll" Vital="yes" KeyPath="no" DiskId="1" />
-        <File Id="NetFx35_NLog.Extended.xml" Name="NLog.Extended.xml" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.Extended.xml" KeyPath="no" DiskId="1" />
+        <File Id="NetFx35_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
+        <File Id="NetFx35_NLog.xml" Name="NLog.xml" />
+        <File Id="NetFx35_NLog.Extended.dll" Name="NLog.Extended.dll" Vital="yes" />
+        <File Id="NetFx35_NLog.Extended.xml" Name="NLog.Extended.xml" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETFramework\v3.5\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETFX35_DIR]"></RegistryValue>
         </RegistryKey>
       </Component>
 
       <Component Id="NetFx35_DebugInfo" Guid="{CDFCA8A3-E430-4E7B-8DB6-CBCF5988BFF8}">
-        <File Id="NetFx35_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.pdb" KeyPath="yes" DiskId="1" />
-        <File Id="NetFx35_NLog.Extended.pdb" Name="NLog.Extended.pdb" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.Extended.pdb" KeyPath="no" DiskId="1" />
+        <File Id="NetFx35_NLog.pdb" Name="NLog.pdb" KeyPath="yes" />
+        <File Id="NetFx35_NLog.Extended.pdb" Name="NLog.Extended.pdb" />
       </Component>
 
       <Component Id="NetFx35_Help" Guid="{BB7B2337-EBD7-4B46-868E-A419517350AC}">
-        <File Id="NetFx35_NLog.chm" Name="NLog.chm" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.chm" KeyPath="yes" DiskId="1" />
+        <File Id="NetFx35_NLog.chm" Name="NLog.chm" KeyPath="yes" />
         <Shortcut Id="NetFx35_Help_Shortcut"
                   Directory="ApplicationProgramsFolder"
                   Name="NLog for .NET Framework 3.5"
@@ -150,24 +290,24 @@
     <?endif?>
 
     <?ifdef Include_NetFx40 ?>
-    <DirectoryRef Id="NETFX40_DIR">
+    <DirectoryRef Id="NETFX40_DIR" FileSource="$(var.NLogBuildPath)\.NET Framework 4.0">
       <Component Id="NetFx40_Binaries" Guid="522783DB-D211-48CF-B8C3-BA26B353FC86">
-        <File Id="NetFx40_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="NetFx40_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.xml" KeyPath="no" DiskId="1" />
-        <File Id="NetFx40_NLog.Extended.dll" Name="NLog.Extended.dll" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.Extended.dll" Vital="yes" KeyPath="no" DiskId="1" />
-        <File Id="NetFx40_NLog.Extended.xml" Name="NLog.Extended.xml" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.Extended.xml" KeyPath="no" DiskId="1" />
+        <File Id="NetFx40_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
+        <File Id="NetFx40_NLog.xml" Name="NLog.xml" />
+        <File Id="NetFx40_NLog.Extended.dll" Name="NLog.Extended.dll" Vital="yes" />
+        <File Id="NetFx40_NLog.Extended.xml" Name="NLog.Extended.xml" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETFramework\v4.0.30319\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETFX40_DIR]"></RegistryValue>
         </RegistryKey>
       </Component>
 
       <Component Id="NetFx40_DebugInfo" Guid="{69182FB6-1C3E-4B7A-823A-6B06B6DF1D06}">
-        <File Id="NetFx40_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.pdb" KeyPath="yes" DiskId="1" />
-        <File Id="NetFx40_NLog.Extended.pdb" Name="NLog.Extended.pdb" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.Extended.pdb" KeyPath="no" DiskId="1" />
+        <File Id="NetFx40_NLog.pdb" Name="NLog.pdb" KeyPath="yes" />
+        <File Id="NetFx40_NLog.Extended.pdb" Name="NLog.Extended.pdb" />
       </Component>
 
       <Component Id="NetFx40_Help" Guid="{78649823-75AB-4101-8B3A-1A12375A37AD}">
-        <File Id="NetFx40_NLog.chm" Name="NLog.chm" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.chm" KeyPath="yes" DiskId="1" />
+        <File Id="NetFx40_NLog.chm" Name="NLog.chm" KeyPath="yes" />
         <Shortcut Id="NetFx40_Help_Shortcut"
                   Directory="ApplicationProgramsFolder"
                   Name="NLog for .NET Framework 4.0"
@@ -180,10 +320,10 @@
     <?endif?>
 
     <?ifdef Include_NetCf20 ?>
-    <DirectoryRef Id="NETCF20_DIR">
+    <DirectoryRef Id="NETCF20_DIR" FileSource="$(var.NLogBuildPath)\.NET Compact Framework 2.0">
       <Component Id="NetCf20_Binaries" Guid="1CD34AC2-CDEA-481C-9984-01763C2DD7E1">
-        <File Id="NetCf20_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\.NET Compact Framework 2.0\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="NetCf20_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\.NET Compact Framework 2.0\NLog.xml" KeyPath="no" DiskId="1" />
+        <File Id="NetCf20_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
+        <File Id="NetCf20_NLog.xml" Name="NLog.xml" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\PocketPC\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETCF20_DIR]"></RegistryValue>
         </RegistryKey>
@@ -196,11 +336,11 @@
       </Component>
 
       <Component Id="NetCf20_DebugInfo" Guid="{40D42F2E-BF7B-4BE7-AB0F-15EB864CE5FF}">
-        <File Id="NetCf20_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\.NET Compact Framework 2.0\NLog.pdb" KeyPath="no" DiskId="1" />
+        <File Id="NetCf20_NLog.pdb" Name="NLog.pdb" />
       </Component>
 
       <Component Id="NetCf20_Help" Guid="E60D8396-2BB9-4561-A1C9-E25CF04EE218">
-        <File Id="NetCf20_NLog.chm" Name="NLog.chm" Source="$(var.NLogBuildPath)\.NET Compact Framework 2.0\NLog.chm" KeyPath="yes" DiskId="1" />
+        <File Id="NetCf20_NLog.chm" Name="NLog.chm" KeyPath="yes" />
         <Shortcut Id="NetCf20_Help_Shortcut"
                   Directory="ApplicationProgramsFolder"
                   Name="NLog for .NET Compact Framework 2.0"
@@ -214,10 +354,10 @@
     <?endif?>
 
     <?ifdef Include_NetCf35 ?>
-    <DirectoryRef Id="NETCF35_DIR">
+    <DirectoryRef Id="NETCF35_DIR" FileSource="$(var.NLogBuildPath)\.NET Compact Framework 3.5">
       <Component Id="NetCf35_Binaries" Guid="57723278-AE19-4EA8-A11F-62F08EB66DB8">
-        <File Id="NetCf35_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\.NET Compact Framework 3.5\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="NetCf35_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\.NET Compact Framework 3.5\NLog.xml" KeyPath="no" DiskId="1" />
+        <File Id="NetCf35_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
+        <File Id="NetCf35_NLog.xml" Name="NLog.xml" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\PocketPC\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETCF35_DIR]"></RegistryValue>
         </RegistryKey>
@@ -230,11 +370,11 @@
       </Component>
 
       <Component Id="NetCf35_DebugInfo" Guid="{F29D4E0F-DDED-4856-93EE-9D1947DAF4EE}">
-        <File Id="NetCf35_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\.NET Compact Framework 3.5\NLog.pdb" KeyPath="no" DiskId="1" />
+        <File Id="NetCf35_NLog.pdb" Name="NLog.pdb" />
       </Component>
 
       <Component Id="NetCf35_Help" Guid="{6C34E269-D67E-40FD-A859-4D508C43B9D2}">
-        <File Id="NetCf35_NLog.chm" Name="NLog.chm" Source="$(var.NLogBuildPath)\.NET Compact Framework 3.5\NLog.chm" KeyPath="yes" DiskId="1" />
+        <File Id="NetCf35_NLog.chm" Name="NLog.chm" KeyPath="yes" />
         <Shortcut Id="NetCf35_Help_Shortcut"
                   Directory="ApplicationProgramsFolder"
                   Name="NLog for .NET Compact Framework 3.5"
@@ -248,21 +388,21 @@
     <?endif?>
 
     <?ifdef Include_SL2 ?>
-    <DirectoryRef Id="SL2_DIR">
+    <DirectoryRef Id="SL2_DIR" FileSource="$(var.NLogBuildPath)\Silverlight 2.0">
       <Component Id="SL2_Binaries" Guid="FA826C8E-6D46-446C-9FB6-0FBD475F1A1C">
-        <File Id="SL2_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\Silverlight 2.0\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="SL2_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\Silverlight 2.0\NLog.xml" KeyPath="no" DiskId="1" />
+        <File Id="SL2_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
+        <File Id="SL2_NLog.xml" Name="NLog.xml" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v2.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[SL2_DIR]"></RegistryValue>
         </RegistryKey>
       </Component>
 
       <Component Id="SL2_DebugInfo" Guid="{DCF61F60-76CB-4CF1-8682-F3880C33F3FD}">
-        <File Id="SL2_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\Silverlight 2.0\NLog.pdb" KeyPath="no" DiskId="1" />
+        <File Id="SL2_NLog.pdb" Name="NLog.pdb" />
       </Component>
 
       <Component Id="SL2_Help" Guid="{D14A7453-BACE-45B6-9242-F2C9DBDCD799}">
-        <File Id="SL2_NLog.chm" Name="NLog.chm" Source="$(var.NLogBuildPath)\Silverlight 2.0\NLog.chm" KeyPath="yes" DiskId="1" />
+        <File Id="SL2_NLog.chm" Name="NLog.chm" KeyPath="yes" />
         <Shortcut Id="SL2_Help_Shortcut"
                   Directory="ApplicationProgramsFolder"
                   Name="NLog for Silverlight 2.0"
@@ -275,21 +415,21 @@
     <?endif?>
 
     <?ifdef Include_SL3 ?>
-    <DirectoryRef Id="SL3_DIR">
+    <DirectoryRef Id="SL3_DIR" FileSource="$(var.NLogBuildPath)\Silverlight 3.0">
       <Component Id="SL3_Binaries" Guid="0CA70C8B-A4E7-4AD7-A8A8-CAA37BAEB05D">
-        <File Id="SL3_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\Silverlight 3.0\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="SL3_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\Silverlight 3.0\NLog.xml" KeyPath="no" DiskId="1" />
+        <File Id="SL3_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
+        <File Id="SL3_NLog.xml" Name="NLog.xml" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v3.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[SL3_DIR]"></RegistryValue>
         </RegistryKey>
       </Component>
 
       <Component Id="SL3_DebugInfo" Guid="{62982EC0-9F80-43D5-BA0D-30F6A2285D10}">
-        <File Id="SL3_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\Silverlight 3.0\NLog.pdb" KeyPath="no" DiskId="1" />
+        <File Id="SL3_NLog.pdb" Name="NLog.pdb" />
       </Component>
 
       <Component Id="SL3_Help" Guid="{00CC00C4-E44C-44E5-A49A-2519773361CC}">
-        <File Id="SL3_NLog.chm" Name="NLog.chm" Source="$(var.NLogBuildPath)\Silverlight 3.0\NLog.chm" KeyPath="yes" DiskId="1" />
+        <File Id="SL3_NLog.chm" Name="NLog.chm" KeyPath="yes" />
         <Shortcut Id="SL3_Help_Shortcut"
                   Directory="ApplicationProgramsFolder"
                   Name="NLog for Silverlight 3.0"
@@ -302,21 +442,21 @@
     <?endif?>
 
     <?ifdef Include_SL4 ?>
-    <DirectoryRef Id="SL4_DIR">
+    <DirectoryRef Id="SL4_DIR" FileSource="$(var.NLogBuildPath)\Silverlight 4.0">
       <Component Id="SL4_Binaries" Guid="11D490B6-8C02-4A1E-B193-BDE793BD2C0B">
-        <File Id="SL4_NLog.dll" Name="NLog.dll" Source="$(var.NLogBuildPath)\Silverlight 4.0\NLog.dll" Vital="yes" KeyPath="yes" DiskId="1" />
-        <File Id="SL4_NLog.xml" Name="NLog.xml" Source="$(var.NLogBuildPath)\Silverlight 4.0\NLog.xml" KeyPath="no" DiskId="1" />
+        <File Id="SL4_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
+        <File Id="SL4_NLog.xml" Name="NLog.xml" />
         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v4.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[SL4_DIR]"></RegistryValue>
         </RegistryKey>
       </Component>
 
       <Component Id="SL4_DebugInfo" Guid="{886D1EE9-9307-4E13-899E-739C786BFCE9}">
-        <File Id="SL4_NLog.pdb" Name="NLog.pdb" Source="$(var.NLogBuildPath)\Silverlight 4.0\NLog.pdb" KeyPath="no" DiskId="1" />
+        <File Id="SL4_NLog.pdb" Name="NLog.pdb" />
       </Component>
       
       <Component Id="SL4_Help" Guid="{00B3FF42-05AA-4C3E-8A0F-B84C3B68A010}">
-        <File Id="SL4_NLog.chm" Name="NLog.chm" Source="$(var.NLogBuildPath)\Silverlight 4.0\NLog.chm" KeyPath="yes" DiskId="1" />
+        <File Id="SL4_NLog.chm" Name="NLog.chm" KeyPath="yes" />
         <Shortcut Id="SL4_Help_Shortcut"
                   Directory="ApplicationProgramsFolder"
                   Name="NLog for Silverlight 4.0"
@@ -327,6 +467,128 @@
       </Component>
     </DirectoryRef>
     <?endif?>
+
+    <!-- Visual Studio 2005 -->
+
+    <DirectoryRef Id="VS2005_CSharpItemTemplates">
+      <Directory Id="VS2005_CSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2005_CSharpItemTemplates" Guid="{F7EF3869-62E8-4AB2-83B7-BB43AFD4B251}">
+          <File Id="VS2005_CSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="CSNLog1.zip" KeyPath="yes" />
+          <File Id="VS2005_CSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="CSNLog2.zip" />
+          <File Id="VS2005_CSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="CSNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2005_VBItemTemplates">
+      <Directory Id="VS2005_VBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2005_VBItemTemplates" Guid="{E31FD283-1482-468B-BF97-759F56833379}">
+          <File Id="VS2005_VBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS2005_VBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS2005_VBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2005_VisualCSharpSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
+      <Component Id="VS2005_CSharpCodeSnippets" Guid="{E89F7615-862C-4928-B2C6-AB7C1DD93C73}">
+        <File Id="VS2005_CSharpLogger.snippet" Name="CSharpLogger.snippet" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2005_VisualBasicSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
+      <Component Id="VS2005_VBCodeSnippets" Guid="{3FF97750-6BFC-42FB-BFDE-909EBA1CAE62}">
+        <File Id="VS2005_VBLogger.snippet" Name="VBLogger.snippet" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2005_SCHEMAS_DIR" FileSource="$(var.NLogSourcePath)\src">
+      <Component Id="VS2005_XmlSchemas">
+        <File Id="VS2005_NLog.xsd" Name="NLog.xsd" />
+      </Component>
+    </DirectoryRef>
+
+    <!-- Visual Studio 2008 -->
+
+    <DirectoryRef Id="VS2008_CSharpItemTemplates">
+      <Directory Id="VS2008_CSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2008_CSharpItemTemplates" Guid="{8605F838-454A-486E-92C2-3016A0A4B7F0}">
+          <File Id="VS2008_CSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="CSNLog1.zip" KeyPath="yes" />
+          <File Id="VS2008_CSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="CSNLog2.zip" />
+          <File Id="VS2008_CSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="CSNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2008_VBItemTemplates">
+      <Directory Id="VS2008_VBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2008_VBItemTemplates" Guid="{FD7A0DA8-D76B-45E5-BA34-5BEA4821C9E8}">
+          <File Id="VS2008_VBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS2008_VBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS2008_VBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2008_VisualCSharpSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
+      <Component Id="VS2008_CSharpCodeSnippets" Guid="{5542506C-3B4B-45F9-9FE6-A1E1346BB489}">
+        <File Id="VS2008_CSharpLogger.snippet" Name="CSharpLogger.snippet" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2008_VisualBasicSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
+      <Component Id="VS2008_VBCodeSnippets" Guid="{F67566B3-8542-421B-9A4A-5F838B502FED}">
+        <File Id="VS2008_VBLogger.snippet" Name="VBLogger.snippet" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS90_SCHEMAS_DIR" FileSource="$(var.NLogSourcePath)\src">
+      <Component Id="VS2008_XmlSchemas">
+        <File Id="VS2008_NLog.xsd" Name="NLog.xsd" />
+      </Component>
+    </DirectoryRef>
+
+    <!-- Visual Studio 2010 -->
+
+    <DirectoryRef Id="VS2010_CSharpItemTemplates">
+      <Directory Id="VS2010_CSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2010_CSharpItemTemplates" Guid="{E2759ABE-93E3-4B28-870B-DB58346C38B5}">
+          <File Id="VS2010_CSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="CSNLog1.zip" KeyPath="yes" />
+          <File Id="VS2010_CSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="CSNLog2.zip" />
+          <File Id="VS2010_CSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="CSNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2010_VBItemTemplates">
+      <Directory Id="VS2010_VBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2010_VBItemTemplates" Guid="{411B59A6-FE4A-44EC-96AD-CFD4ED2EE028}">
+          <File Id="VS2010_VBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS2010_VBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS2010_VBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2010_VisualCSharpSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
+      <Component Id="VS2010_CSharpCodeSnippets" Guid="{5A838123-A9C7-41B9-A8EF-A33CF8EDCDF2}">
+        <File Id="VS2010_CSharpLogger.snippet" Name="CSharpLogger.snippet" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2010_VisualBasicSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
+      <Component Id="VS2010_VBCodeSnippets" Guid="{06E6DD1B-C312-47A5-9EC3-2A2363516711}">
+        <File Id="VS2010_VBLogger.snippet" Name="VBLogger.snippet" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="VS2010_SCHEMAS_DIR" FileSource="$(var.NLogSourcePath)\src">
+      <Component Id="VS2010_XmlSchemas">
+        <File Id="VS2010_NLog.xsd" Name="NLog.xsd" />
+      </Component>
+    </DirectoryRef>
+
+    <!-- Features -->
 
     <Feature Id="Shared_Feature" Title="NLog Shared Components" Level="1" Absent="disallow">
       <ComponentGroupRef Id="Shared_Components" />
@@ -476,23 +738,48 @@
       <?endif?>
     </Feature>
 
-    <Feature Id="Feature_IDE" Title="IDE Integration (TBD)" Level="1000">
-      <Feature Id="Feature_CodeSnippets" Title="Code Snippets" Level="1">
-        <Feature Id="Feature_VS2005_CodeSnippets" Title="VS 2005" Level="1" />
-        <Feature Id="Feature_VS2008_CodeSnippets" Title="VS 2008" Level="1" />
-        <Feature Id="Feature_VS2010_CodeSnippets" Title="VS 2010" Level="1" />
+    <Feature Id="Feature_IDE" Title="IDE Integration" Level="1">
+      <Feature Id="Feature_VS2005" Title="Visual Studio 2005" Level="0">
+        <Condition Level="1">VS2005_ROOT_FOLDER</Condition>
+        <ComponentRef Id="VS2005_XmlSchemas"/>
+        <Feature Id="Feature_VS2005_CSharp" Title="C# Support" Level="0">
+          <Condition Level="1">VS2005_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED</Condition>
+          <ComponentRef Id="VS2005_CSharpCodeSnippets" />
+          <ComponentRef Id="VS2005_CSharpItemTemplates" />
+        </Feature>
+        <Feature Id="Feature_VS2005_VB" Title="Visual Basic Support" Level="0">
+          <Condition Level="1">VS2005_IDE_VB_PROJECTSYSTEM_INSTALLED</Condition>
+          <ComponentRef Id="VS2005_VBCodeSnippets" />
+          <ComponentRef Id="VS2005_VBItemTemplates" />
+        </Feature>
       </Feature>
-
-      <Feature Id="Feature_ItemTemplates" Title="Code ItemTemplates" Level="1">
-        <Feature Id="Feature_VS2005_ItemTemplates" Title="VS 2005" Level="1" />
-        <Feature Id="Feature_VS2008_ItemTemplates" Title="VS 2008" Level="1" />
-        <Feature Id="Feature_VS2010_ItemTemplates" Title="VS 2010" Level="1" />
+      <Feature Id="Feature_VS2008" Title="Visual Studio 2008" Level="0">
+        <Condition Level="1">VS90_ROOT_FOLDER</Condition>
+        <ComponentRef Id="VS2008_XmlSchemas"/>
+        <Feature Id="Feature_VS2008_CSharp" Title="C# Support" Level="0">
+          <Condition Level="1">VS90_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED</Condition>
+          <ComponentRef Id="VS2008_CSharpCodeSnippets" />
+          <ComponentRef Id="VS2008_CSharpItemTemplates" />
+        </Feature>
+        <Feature Id="Feature_VS2008_VB" Title="Visual Basic Support" Level="0">
+          <Condition Level="1">VS90_IDE_VB_PROJECTSYSTEM_INSTALLED</Condition>
+          <ComponentRef Id="VS2008_VBCodeSnippets" />
+          <ComponentRef Id="VS2008_VBItemTemplates" />
+        </Feature>
       </Feature>
-
-      <Feature Id="Feature_Intellisense" Title="Intellisense Support" Level="1">
-        <Feature Id="Feature_VS2005_XSD" Title="VS 2005" Level="1" />
-        <Feature Id="Feature_VS2008_XSD" Title="VS 2008" Level="1" />
-        <Feature Id="Feature_VS2010_XSD" Title="VS 2010" Level="1" />
+      <Feature Id="Feature_VS2010" Title="Visual Studio 2010" Level="0">
+        <Condition Level="1">VS2010_ROOT_FOLDER</Condition>
+        <ComponentRef Id="VS2010_XmlSchemas"/>
+        <Feature Id="Feature_VS2010_CSharp" Title="C# Support" Level="0">
+          <Condition Level="1">VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED</Condition>
+          <ComponentRef Id="VS2010_CSharpCodeSnippets" />
+          <ComponentRef Id="VS2010_CSharpItemTemplates" />
+        </Feature>
+        <Feature Id="Feature_VS2010_VB" Title="Visual Basic Support" Level="0">
+          <Condition Level="1">VS2010_IDE_VB_PROJECTSYSTEM_INSTALLED</Condition>
+          <ComponentRef Id="VS2010_VBCodeSnippets" />
+          <ComponentRef Id="VS2010_VBItemTemplates" />
+        </Feature>
       </Feature>
     </Feature>
 

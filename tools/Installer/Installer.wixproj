@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <OutputType>Package</OutputType>
     <BuildVersion Condition="'$(BuildVersion)'==''">0.0.0.0</BuildVersion>
-    <BuildLabel Condition="'$(BuildLabel)'==''">LocalBuild</BuildLabel>
+    <BuildLabel Condition="'$(BuildLabel)'==''">PrivateBuild</BuildLabel>
     <NLogBuildPath Condition="'$(NLogBuildPath)'==''">$(MSBuildProjectDirectory)\..\..\build\bin\$(Configuration)</NLogBuildPath>
     <BaseOutputName>NLog2</BaseOutputName>
     <WixBasePath>..\Wix</WixBasePath>
