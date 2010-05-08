@@ -147,6 +147,7 @@ foreach (var vs in visualStudioVersions) {
     <CustomActionRef Id="VS<#= vs.WixPrefix #>InstallVSTemplates" />
     <CustomActionRef Id="VCSHARP<#= vs.WixPrefix #>InstallVSTemplates" />
     <CustomActionRef Id="VB<#= vs.WixPrefix #>InstallVSTemplates" />
+    <CustomActionRef Id="VWD<#= vs.WixPrefix #>InstallVSTemplates" />
 
 <#
 }
@@ -166,6 +167,7 @@ foreach (var vs in visualStudioVersions) {
       <Custom Action="VS<#= vs.WixPrefix #>InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VS<#= vs.ReleaseName #> = -1)</Custom>
       <Custom Action="VCSHARP<#= vs.WixPrefix #>InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VCSHARP<#= vs.ReleaseName #> = -1)</Custom>
       <Custom Action="VB<#= vs.WixPrefix #>InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VB<#= vs.ReleaseName #> = -1)</Custom>
+      <Custom Action="VWD<#= vs.WixPrefix #>InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VWD<#= vs.ReleaseName #> = -1)</Custom>
 <# } #> 
     </InstallExecuteSequence>
 
@@ -174,6 +176,7 @@ foreach (var vs in visualStudioVersions) {
       <ProgressText Action="VS<#= vs.WixPrefix #>InstallVSTemplates" Template="[1]">Registering Visual Studio <#= vs.ReleaseName #> Templates</ProgressText>
       <ProgressText Action="VCSHARP<#= vs.WixPrefix #>InstallVSTemplates" Template="[1]">Registering Visual C# <#= vs.ReleaseName #> Express Templates</ProgressText>
       <ProgressText Action="VB<#= vs.WixPrefix #>InstallVSTemplates" Template="[1]">Registering Visual Basic <#= vs.ReleaseName #> Express Templates</ProgressText>
+      <ProgressText Action="VWD<#= vs.WixPrefix #>InstallVSTemplates" Template="[1]">Registering Visual Web Developer <#= vs.ReleaseName #> Express Templates</ProgressText>
 <# } #>      
     </UI>
 
@@ -206,9 +209,23 @@ foreach (var vs in visualStudioVersions) {
               <Directory Id="VS<#= vs.ReleaseName #>_VBExpress" Name="VBExpress">
                 <Directory Id="VS<#= vs.ReleaseName #>_VBExpressItemTemplates" Name="ItemTemplates" />
               </Directory>
+              <Directory Id="VS<#= vs.ReleaseName #>_VWDExpress" Name="VWDExpress">
+                <Directory Id="VS<#= vs.ReleaseName #>_VWDExpressItemTemplates" Name="ItemTemplates">
+                  <Directory Id="VS<#= vs.ReleaseName #>_VWDCSharpItemTemplates" Name="CSharp" />
+                  <Directory Id="VS<#= vs.ReleaseName #>_VWDVBItemTemplates" Name="VisualBasic" />
+                  <Directory Id="VS<#= vs.ReleaseName #>_VWDWebItemTemplates" Name="Web">
+                    <Directory Id="VS<#= vs.ReleaseName #>_VWDWebCSharpItemTemplates" Name="CSharp" />
+                    <Directory Id="VS<#= vs.ReleaseName #>_VWDWebVBItemTemplates" Name="VisualBasic" />
+                  </Directory>
+                </Directory>
+              </Directory>
               <Directory Id="VS<#= vs.WixPrefix #>_ITEMTEMPLATES_DIR" Name="ItemTemplates">
                 <Directory Id="VS<#= vs.ReleaseName #>_CSharpItemTemplates" Name="CSharp" />
                 <Directory Id="VS<#= vs.ReleaseName #>_VBItemTemplates" Name="VisualBasic" />
+                <Directory Id="VS<#= vs.ReleaseName #>_WebItemTemplates" Name="Web">
+                  <Directory Id="VS<#= vs.ReleaseName #>_WebCSharpItemTemplates" Name="CSharp" />
+                  <Directory Id="VS<#= vs.ReleaseName #>_WebVBItemTemplates" Name="VisualBasic" />
+                </Directory>
               </Directory>
             </Directory>
           </Directory>
@@ -307,6 +324,8 @@ foreach (var vs in visualStudioVersions) {
 
 <# foreach (var vs in visualStudioVersions) { #>
     <!-- Visual Studio <#= vs.ReleaseName #> -->
+    
+    <!-- C# -->
 
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_CSharpItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_CSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
@@ -318,6 +337,8 @@ foreach (var vs in visualStudioVersions) {
       </Directory>
     </DirectoryRef>
 
+    <!-- VB -->
+
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_VBItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_VBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS<#= vs.ReleaseName #>_VBItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VBItemTemplates") #>">
@@ -327,6 +348,32 @@ foreach (var vs in visualStudioVersions) {
         </Component>
       </Directory>
     </DirectoryRef>
+
+    <!-- C# in web projects -->
+
+    <DirectoryRef Id="VS<#= vs.ReleaseName #>_WebCSharpItemTemplates">
+      <Directory Id="VS<#= vs.ReleaseName #>_WebCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS<#= vs.ReleaseName #>_WebCSharpItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "WebCSharpItemTemplates") #>">
+          <File Id="VS<#= vs.ReleaseName #>_WebCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
+          <File Id="VS<#= vs.ReleaseName #>_WebCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
+          <File Id="VS<#= vs.ReleaseName #>_WebCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VB in web projects -->
+
+    <DirectoryRef Id="VS<#= vs.ReleaseName #>_WebVBItemTemplates">
+      <Directory Id="VS<#= vs.ReleaseName #>_WebVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS<#= vs.ReleaseName #>_WebVBItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "WebVBItemTemplates") #>">
+          <File Id="VS<#= vs.ReleaseName #>_WebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS<#= vs.ReleaseName #>_WebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS<#= vs.ReleaseName #>_WebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- C# express -->
 
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_CSharpExpressItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_CSharpExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
@@ -338,6 +385,8 @@ foreach (var vs in visualStudioVersions) {
       </Directory>
     </DirectoryRef>
 
+    <!-- VB express -->
+
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_VBExpressItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_VBExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS<#= vs.ReleaseName #>_VBExpressItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VBExpressItemTemplates") #>">
@@ -347,12 +396,65 @@ foreach (var vs in visualStudioVersions) {
         </Component>
       </Directory>
     </DirectoryRef>
+    
+    
+    <!-- VWD C# -->
+
+    <DirectoryRef Id="VS<#= vs.ReleaseName #>_VWDCSharpItemTemplates">
+      <Directory Id="VS<#= vs.ReleaseName #>_VWDCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS<#= vs.ReleaseName #>_VWDCSharpItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VWDCSharpItemTemplates") #>">
+          <File Id="VS<#= vs.ReleaseName #>_VWDCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
+          <File Id="VS<#= vs.ReleaseName #>_VWDCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
+          <File Id="VS<#= vs.ReleaseName #>_VWDCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VWD VB -->
+
+    <DirectoryRef Id="VS<#= vs.ReleaseName #>_VWDVBItemTemplates">
+      <Directory Id="VS<#= vs.ReleaseName #>_VWDVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS<#= vs.ReleaseName #>_VWDVBItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VWDVBItemTemplates") #>">
+          <File Id="VS<#= vs.ReleaseName #>_VWDVBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS<#= vs.ReleaseName #>_VWDVBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS<#= vs.ReleaseName #>_VWDVBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VWD C# in web projects -->
+
+    <DirectoryRef Id="VS<#= vs.ReleaseName #>_VWDWebCSharpItemTemplates">
+      <Directory Id="VS<#= vs.ReleaseName #>_VWDWebCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS<#= vs.ReleaseName #>_VWDWebCSharpItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VWDWebCSharpItemTemplates") #>">
+          <File Id="VS<#= vs.ReleaseName #>_VWDWebCSharpConsoleNLogConfig.zip" Name="WebCSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
+          <File Id="VS<#= vs.ReleaseName #>_VWDWebCSharpEmptyNLogConfig.zip" Name="WebCSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
+          <File Id="VS<#= vs.ReleaseName #>_VWDWebCSharpTypicalNLogConfig.zip" Name="WebCSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VWD VB in web projects -->
+
+    <DirectoryRef Id="VS<#= vs.ReleaseName #>_VWDWebVBItemTemplates">
+      <Directory Id="VS<#= vs.ReleaseName #>_VWDWebVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS<#= vs.ReleaseName #>_VWDWebVBItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VWDWebVBItemTemplates") #>">
+          <File Id="VS<#= vs.ReleaseName #>_VWDWebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS<#= vs.ReleaseName #>_VWDWebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS<#= vs.ReleaseName #>_VWDWebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+    
+    <!-- C# code snippets -->
 
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_VisualCSharpSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
       <Component Id="VS<#= vs.ReleaseName #>_CSharpCodeSnippets" Guid="<#= GetGuid(vs.ReleaseName, "CSharpSnippets") #>">
         <File Id="VS<#= vs.ReleaseName #>_CSharpLogger.snippet" Name="CSharpLogger.snippet" />
       </Component>
     </DirectoryRef>
+
+    <!-- VB code snippets -->
 
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_VisualBasicSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
       <Component Id="VS<#= vs.ReleaseName #>_VBCodeSnippets" Guid="<#= GetGuid(vs.ReleaseName, "VBSnippets") #>">
@@ -420,11 +522,13 @@ foreach (var vs in visualStudioVersions) {
           <Condition Level="1">VS<#= vs.WixPrefix #>_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED</Condition>
           <ComponentRef Id="VS<#= vs.ReleaseName #>_CSharpCodeSnippets" />
           <ComponentRef Id="VS<#= vs.ReleaseName #>_CSharpItemTemplates" />
+          <ComponentRef Id="VS<#= vs.ReleaseName #>_WebCSharpItemTemplates" />
         </Feature>
         <Feature Id="Feature_VS<#= vs.ReleaseName #>_VB" Title="VB Support" Level="0">
           <Condition Level="1">VS<#= vs.WixPrefix #>_IDE_VB_PROJECTSYSTEM_INSTALLED</Condition>
           <ComponentRef Id="VS<#= vs.ReleaseName #>_VBCodeSnippets" />
           <ComponentRef Id="VS<#= vs.ReleaseName #>_VBItemTemplates" />
+          <ComponentRef Id="VS<#= vs.ReleaseName #>_WebVBItemTemplates" />
         </Feature>
       </Feature>
       
@@ -434,6 +538,18 @@ foreach (var vs in visualStudioVersions) {
         <ComponentRef Id="VS<#= vs.ReleaseName #>_CSharpCodeSnippets" />
         <ComponentRef Id="VS<#= vs.ReleaseName #>_CSharpExpressItemTemplates" />
       </Feature>
+      
+      <Feature Id="Feature_VWD<#= vs.ReleaseName #>" Title="Visual Web Developer <#= vs.ReleaseName #> Express" Level="0">
+        <Condition Level="1">VWD<#= vs.WixPrefix #>EXPRESS_IDE</Condition>
+        <ComponentRef Id="VS<#= vs.ReleaseName #>_XmlSchemas"/>
+        <ComponentRef Id="VS<#= vs.ReleaseName #>_CSharpCodeSnippets" />
+        <ComponentRef Id="VS<#= vs.ReleaseName #>_VBCodeSnippets" />
+        <ComponentRef Id="VS<#= vs.ReleaseName #>_VWDCSharpItemTemplates" />
+        <ComponentRef Id="VS<#= vs.ReleaseName #>_VWDVBItemTemplates" />
+        <ComponentRef Id="VS<#= vs.ReleaseName #>_VWDWebCSharpItemTemplates" />
+        <ComponentRef Id="VS<#= vs.ReleaseName #>_VWDWebVBItemTemplates" />
+      </Feature>
+      
       <Feature Id="Feature_VB<#= vs.ReleaseName #>" Title="Visual Basic <#= vs.ReleaseName #> Express" Level="0">
         <Condition Level="1">VB<#= vs.WixPrefix #>EXPRESS_IDE</Condition>
         <ComponentRef Id="VS<#= vs.ReleaseName #>_XmlSchemas"/>

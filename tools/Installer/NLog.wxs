@@ -40,14 +40,17 @@
     <CustomActionRef Id="VS2005InstallVSTemplates" />
     <CustomActionRef Id="VCSHARP2005InstallVSTemplates" />
     <CustomActionRef Id="VB2005InstallVSTemplates" />
+    <CustomActionRef Id="VWD2005InstallVSTemplates" />
 
     <CustomActionRef Id="VS90InstallVSTemplates" />
     <CustomActionRef Id="VCSHARP90InstallVSTemplates" />
     <CustomActionRef Id="VB90InstallVSTemplates" />
+    <CustomActionRef Id="VWD90InstallVSTemplates" />
 
     <CustomActionRef Id="VS2010InstallVSTemplates" />
     <CustomActionRef Id="VCSHARP2010InstallVSTemplates" />
     <CustomActionRef Id="VB2010InstallVSTemplates" />
+    <CustomActionRef Id="VWD2010InstallVSTemplates" />
 
     <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
     <WixVariable Id="WixUIBannerBmp" Value="TopBanner.bmp" />
@@ -63,12 +66,15 @@
       <Custom Action="VS2005InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VS2005 = -1)</Custom>
       <Custom Action="VCSHARP2005InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VCSHARP2005 = -1)</Custom>
       <Custom Action="VB2005InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VB2005 = -1)</Custom>
+      <Custom Action="VWD2005InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VWD2005 = -1)</Custom>
       <Custom Action="VS90InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VS2008 = -1)</Custom>
       <Custom Action="VCSHARP90InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VCSHARP2008 = -1)</Custom>
       <Custom Action="VB90InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VB2008 = -1)</Custom>
+      <Custom Action="VWD90InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VWD2008 = -1)</Custom>
       <Custom Action="VS2010InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VS2010 = -1)</Custom>
       <Custom Action="VCSHARP2010InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VCSHARP2010 = -1)</Custom>
       <Custom Action="VB2010InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VB2010 = -1)</Custom>
+      <Custom Action="VWD2010InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VWD2010 = -1)</Custom>
  
     </InstallExecuteSequence>
 
@@ -76,12 +82,15 @@
       <ProgressText Action="VS2005InstallVSTemplates" Template="[1]">Registering Visual Studio 2005 Templates</ProgressText>
       <ProgressText Action="VCSHARP2005InstallVSTemplates" Template="[1]">Registering Visual C# 2005 Express Templates</ProgressText>
       <ProgressText Action="VB2005InstallVSTemplates" Template="[1]">Registering Visual Basic 2005 Express Templates</ProgressText>
+      <ProgressText Action="VWD2005InstallVSTemplates" Template="[1]">Registering Visual Web Developer 2005 Express Templates</ProgressText>
       <ProgressText Action="VS90InstallVSTemplates" Template="[1]">Registering Visual Studio 2008 Templates</ProgressText>
       <ProgressText Action="VCSHARP90InstallVSTemplates" Template="[1]">Registering Visual C# 2008 Express Templates</ProgressText>
       <ProgressText Action="VB90InstallVSTemplates" Template="[1]">Registering Visual Basic 2008 Express Templates</ProgressText>
+      <ProgressText Action="VWD90InstallVSTemplates" Template="[1]">Registering Visual Web Developer 2008 Express Templates</ProgressText>
       <ProgressText Action="VS2010InstallVSTemplates" Template="[1]">Registering Visual Studio 2010 Templates</ProgressText>
       <ProgressText Action="VCSHARP2010InstallVSTemplates" Template="[1]">Registering Visual C# 2010 Express Templates</ProgressText>
       <ProgressText Action="VB2010InstallVSTemplates" Template="[1]">Registering Visual Basic 2010 Express Templates</ProgressText>
+      <ProgressText Action="VWD2010InstallVSTemplates" Template="[1]">Registering Visual Web Developer 2010 Express Templates</ProgressText>
       
     </UI>
 
@@ -120,9 +129,23 @@
               <Directory Id="VS2005_VBExpress" Name="VBExpress">
                 <Directory Id="VS2005_VBExpressItemTemplates" Name="ItemTemplates" />
               </Directory>
+              <Directory Id="VS2005_VWDExpress" Name="VWDExpress">
+                <Directory Id="VS2005_VWDExpressItemTemplates" Name="ItemTemplates">
+                  <Directory Id="VS2005_VWDCSharpItemTemplates" Name="CSharp" />
+                  <Directory Id="VS2005_VWDVBItemTemplates" Name="VisualBasic" />
+                  <Directory Id="VS2005_VWDWebItemTemplates" Name="Web">
+                    <Directory Id="VS2005_VWDWebCSharpItemTemplates" Name="CSharp" />
+                    <Directory Id="VS2005_VWDWebVBItemTemplates" Name="VisualBasic" />
+                  </Directory>
+                </Directory>
+              </Directory>
               <Directory Id="VS2005_ITEMTEMPLATES_DIR" Name="ItemTemplates">
                 <Directory Id="VS2005_CSharpItemTemplates" Name="CSharp" />
                 <Directory Id="VS2005_VBItemTemplates" Name="VisualBasic" />
+                <Directory Id="VS2005_WebItemTemplates" Name="Web">
+                  <Directory Id="VS2005_WebCSharpItemTemplates" Name="CSharp" />
+                  <Directory Id="VS2005_WebVBItemTemplates" Name="VisualBasic" />
+                </Directory>
               </Directory>
             </Directory>
           </Directory>
@@ -158,9 +181,23 @@
               <Directory Id="VS2008_VBExpress" Name="VBExpress">
                 <Directory Id="VS2008_VBExpressItemTemplates" Name="ItemTemplates" />
               </Directory>
+              <Directory Id="VS2008_VWDExpress" Name="VWDExpress">
+                <Directory Id="VS2008_VWDExpressItemTemplates" Name="ItemTemplates">
+                  <Directory Id="VS2008_VWDCSharpItemTemplates" Name="CSharp" />
+                  <Directory Id="VS2008_VWDVBItemTemplates" Name="VisualBasic" />
+                  <Directory Id="VS2008_VWDWebItemTemplates" Name="Web">
+                    <Directory Id="VS2008_VWDWebCSharpItemTemplates" Name="CSharp" />
+                    <Directory Id="VS2008_VWDWebVBItemTemplates" Name="VisualBasic" />
+                  </Directory>
+                </Directory>
+              </Directory>
               <Directory Id="VS90_ITEMTEMPLATES_DIR" Name="ItemTemplates">
                 <Directory Id="VS2008_CSharpItemTemplates" Name="CSharp" />
                 <Directory Id="VS2008_VBItemTemplates" Name="VisualBasic" />
+                <Directory Id="VS2008_WebItemTemplates" Name="Web">
+                  <Directory Id="VS2008_WebCSharpItemTemplates" Name="CSharp" />
+                  <Directory Id="VS2008_WebVBItemTemplates" Name="VisualBasic" />
+                </Directory>
               </Directory>
             </Directory>
           </Directory>
@@ -196,9 +233,23 @@
               <Directory Id="VS2010_VBExpress" Name="VBExpress">
                 <Directory Id="VS2010_VBExpressItemTemplates" Name="ItemTemplates" />
               </Directory>
+              <Directory Id="VS2010_VWDExpress" Name="VWDExpress">
+                <Directory Id="VS2010_VWDExpressItemTemplates" Name="ItemTemplates">
+                  <Directory Id="VS2010_VWDCSharpItemTemplates" Name="CSharp" />
+                  <Directory Id="VS2010_VWDVBItemTemplates" Name="VisualBasic" />
+                  <Directory Id="VS2010_VWDWebItemTemplates" Name="Web">
+                    <Directory Id="VS2010_VWDWebCSharpItemTemplates" Name="CSharp" />
+                    <Directory Id="VS2010_VWDWebVBItemTemplates" Name="VisualBasic" />
+                  </Directory>
+                </Directory>
+              </Directory>
               <Directory Id="VS2010_ITEMTEMPLATES_DIR" Name="ItemTemplates">
                 <Directory Id="VS2010_CSharpItemTemplates" Name="CSharp" />
                 <Directory Id="VS2010_VBItemTemplates" Name="VisualBasic" />
+                <Directory Id="VS2010_WebItemTemplates" Name="Web">
+                  <Directory Id="VS2010_WebCSharpItemTemplates" Name="CSharp" />
+                  <Directory Id="VS2010_WebVBItemTemplates" Name="VisualBasic" />
+                </Directory>
               </Directory>
             </Directory>
           </Directory>
@@ -561,6 +612,8 @@
 
 
     <!-- Visual Studio 2005 -->
+    
+    <!-- C# -->
 
     <DirectoryRef Id="VS2005_CSharpItemTemplates">
       <Directory Id="VS2005_CSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
@@ -572,6 +625,8 @@
       </Directory>
     </DirectoryRef>
 
+    <!-- VB -->
+
     <DirectoryRef Id="VS2005_VBItemTemplates">
       <Directory Id="VS2005_VBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS2005_VBItemTemplates" Guid="4ba4d24e-b7e7-3c39-82cf-b91261266665">
@@ -581,6 +636,32 @@
         </Component>
       </Directory>
     </DirectoryRef>
+
+    <!-- C# in web projects -->
+
+    <DirectoryRef Id="VS2005_WebCSharpItemTemplates">
+      <Directory Id="VS2005_WebCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2005_WebCSharpItemTemplates" Guid="bd7eb0d9-352c-3a14-5114-a9b09a5c630a">
+          <File Id="VS2005_WebCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
+          <File Id="VS2005_WebCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
+          <File Id="VS2005_WebCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VB in web projects -->
+
+    <DirectoryRef Id="VS2005_WebVBItemTemplates">
+      <Directory Id="VS2005_WebVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2005_WebVBItemTemplates" Guid="bce3a5d0-8289-3521-444e-1561db6e7632">
+          <File Id="VS2005_WebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS2005_WebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS2005_WebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- C# express -->
 
     <DirectoryRef Id="VS2005_CSharpExpressItemTemplates">
       <Directory Id="VS2005_CSharpExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
@@ -592,6 +673,8 @@
       </Directory>
     </DirectoryRef>
 
+    <!-- VB express -->
+
     <DirectoryRef Id="VS2005_VBExpressItemTemplates">
       <Directory Id="VS2005_VBExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS2005_VBExpressItemTemplates" Guid="616566a3-41bf-3146-c577-9ef2d971be3f">
@@ -601,12 +684,65 @@
         </Component>
       </Directory>
     </DirectoryRef>
+    
+    
+    <!-- VWD C# -->
+
+    <DirectoryRef Id="VS2005_VWDCSharpItemTemplates">
+      <Directory Id="VS2005_VWDCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2005_VWDCSharpItemTemplates" Guid="9c231e77-7f4c-3cd7-fd67-9685e7221b1d">
+          <File Id="VS2005_VWDCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
+          <File Id="VS2005_VWDCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
+          <File Id="VS2005_VWDCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VWD VB -->
+
+    <DirectoryRef Id="VS2005_VWDVBItemTemplates">
+      <Directory Id="VS2005_VWDVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2005_VWDVBItemTemplates" Guid="73379237-052f-3021-2f74-6e13e286c1f3">
+          <File Id="VS2005_VWDVBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS2005_VWDVBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS2005_VWDVBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VWD C# in web projects -->
+
+    <DirectoryRef Id="VS2005_VWDWebCSharpItemTemplates">
+      <Directory Id="VS2005_VWDWebCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2005_VWDWebCSharpItemTemplates" Guid="44879518-8128-3870-ec90-8d729a2f0267">
+          <File Id="VS2005_VWDWebCSharpConsoleNLogConfig.zip" Name="WebCSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
+          <File Id="VS2005_VWDWebCSharpEmptyNLogConfig.zip" Name="WebCSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
+          <File Id="VS2005_VWDWebCSharpTypicalNLogConfig.zip" Name="WebCSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VWD VB in web projects -->
+
+    <DirectoryRef Id="VS2005_VWDWebVBItemTemplates">
+      <Directory Id="VS2005_VWDWebVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2005_VWDWebVBItemTemplates" Guid="ee7127b9-b7b5-31e7-3d93-8286711ee07f">
+          <File Id="VS2005_VWDWebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS2005_VWDWebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS2005_VWDWebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+    
+    <!-- C# code snippets -->
 
     <DirectoryRef Id="VS2005_VisualCSharpSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
       <Component Id="VS2005_CSharpCodeSnippets" Guid="1708fc31-93c0-317a-c3a2-fe423b57ca6f">
         <File Id="VS2005_CSharpLogger.snippet" Name="CSharpLogger.snippet" />
       </Component>
     </DirectoryRef>
+
+    <!-- VB code snippets -->
 
     <DirectoryRef Id="VS2005_VisualBasicSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
       <Component Id="VS2005_VBCodeSnippets" Guid="3120df10-6c18-3446-f5f5-bd4de6370082">
@@ -621,6 +757,8 @@
     </DirectoryRef>
 
     <!-- Visual Studio 2008 -->
+    
+    <!-- C# -->
 
     <DirectoryRef Id="VS2008_CSharpItemTemplates">
       <Directory Id="VS2008_CSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
@@ -632,6 +770,8 @@
       </Directory>
     </DirectoryRef>
 
+    <!-- VB -->
+
     <DirectoryRef Id="VS2008_VBItemTemplates">
       <Directory Id="VS2008_VBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS2008_VBItemTemplates" Guid="5475ef1e-d8b5-385d-4977-0d25d2a3a49b">
@@ -641,6 +781,32 @@
         </Component>
       </Directory>
     </DirectoryRef>
+
+    <!-- C# in web projects -->
+
+    <DirectoryRef Id="VS2008_WebCSharpItemTemplates">
+      <Directory Id="VS2008_WebCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2008_WebCSharpItemTemplates" Guid="7e28b39b-37d8-357f-eee3-934ff5457c8b">
+          <File Id="VS2008_WebCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
+          <File Id="VS2008_WebCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
+          <File Id="VS2008_WebCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VB in web projects -->
+
+    <DirectoryRef Id="VS2008_WebVBItemTemplates">
+      <Directory Id="VS2008_WebVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2008_WebVBItemTemplates" Guid="e01d37e8-778e-3498-7204-f03f494d343e">
+          <File Id="VS2008_WebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS2008_WebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS2008_WebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- C# express -->
 
     <DirectoryRef Id="VS2008_CSharpExpressItemTemplates">
       <Directory Id="VS2008_CSharpExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
@@ -652,6 +818,8 @@
       </Directory>
     </DirectoryRef>
 
+    <!-- VB express -->
+
     <DirectoryRef Id="VS2008_VBExpressItemTemplates">
       <Directory Id="VS2008_VBExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS2008_VBExpressItemTemplates" Guid="403fdc7d-344c-315d-0013-8e1098bce94b">
@@ -661,12 +829,65 @@
         </Component>
       </Directory>
     </DirectoryRef>
+    
+    
+    <!-- VWD C# -->
+
+    <DirectoryRef Id="VS2008_VWDCSharpItemTemplates">
+      <Directory Id="VS2008_VWDCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2008_VWDCSharpItemTemplates" Guid="34594a86-7202-3c5a-667d-81511345b855">
+          <File Id="VS2008_VWDCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
+          <File Id="VS2008_VWDCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
+          <File Id="VS2008_VWDCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VWD VB -->
+
+    <DirectoryRef Id="VS2008_VWDVBItemTemplates">
+      <Directory Id="VS2008_VWDVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2008_VWDVBItemTemplates" Guid="d3138234-2f93-3acf-e956-0370947ba131">
+          <File Id="VS2008_VWDVBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS2008_VWDVBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS2008_VWDVBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VWD C# in web projects -->
+
+    <DirectoryRef Id="VS2008_VWDWebCSharpItemTemplates">
+      <Directory Id="VS2008_VWDWebCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2008_VWDWebCSharpItemTemplates" Guid="20f7e565-6ce7-3088-6943-b8d3a528d878">
+          <File Id="VS2008_VWDWebCSharpConsoleNLogConfig.zip" Name="WebCSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
+          <File Id="VS2008_VWDWebCSharpEmptyNLogConfig.zip" Name="WebCSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
+          <File Id="VS2008_VWDWebCSharpTypicalNLogConfig.zip" Name="WebCSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VWD VB in web projects -->
+
+    <DirectoryRef Id="VS2008_VWDWebVBItemTemplates">
+      <Directory Id="VS2008_VWDWebVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2008_VWDWebVBItemTemplates" Guid="cce8be35-02ab-38b8-5196-28889584443e">
+          <File Id="VS2008_VWDWebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS2008_VWDWebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS2008_VWDWebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+    
+    <!-- C# code snippets -->
 
     <DirectoryRef Id="VS2008_VisualCSharpSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
       <Component Id="VS2008_CSharpCodeSnippets" Guid="441f0857-b93d-3d76-1960-aec6c1dbbe63">
         <File Id="VS2008_CSharpLogger.snippet" Name="CSharpLogger.snippet" />
       </Component>
     </DirectoryRef>
+
+    <!-- VB code snippets -->
 
     <DirectoryRef Id="VS2008_VisualBasicSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
       <Component Id="VS2008_VBCodeSnippets" Guid="1d4b4fef-e706-30f8-e8d3-b6ed319d2452">
@@ -681,6 +902,8 @@
     </DirectoryRef>
 
     <!-- Visual Studio 2010 -->
+    
+    <!-- C# -->
 
     <DirectoryRef Id="VS2010_CSharpItemTemplates">
       <Directory Id="VS2010_CSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
@@ -692,6 +915,8 @@
       </Directory>
     </DirectoryRef>
 
+    <!-- VB -->
+
     <DirectoryRef Id="VS2010_VBItemTemplates">
       <Directory Id="VS2010_VBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS2010_VBItemTemplates" Guid="538dd73c-e055-3550-0b96-98a9ac663993">
@@ -701,6 +926,32 @@
         </Component>
       </Directory>
     </DirectoryRef>
+
+    <!-- C# in web projects -->
+
+    <DirectoryRef Id="VS2010_WebCSharpItemTemplates">
+      <Directory Id="VS2010_WebCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2010_WebCSharpItemTemplates" Guid="ea1abf0f-a324-3888-a854-41dccf43cd18">
+          <File Id="VS2010_WebCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
+          <File Id="VS2010_WebCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
+          <File Id="VS2010_WebCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VB in web projects -->
+
+    <DirectoryRef Id="VS2010_WebVBItemTemplates">
+      <Directory Id="VS2010_WebVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2010_WebVBItemTemplates" Guid="c59449fc-2dc3-3cbc-1a62-f4cf5b38d61d">
+          <File Id="VS2010_WebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS2010_WebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS2010_WebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- C# express -->
 
     <DirectoryRef Id="VS2010_CSharpExpressItemTemplates">
       <Directory Id="VS2010_CSharpExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
@@ -712,6 +963,8 @@
       </Directory>
     </DirectoryRef>
 
+    <!-- VB express -->
+
     <DirectoryRef Id="VS2010_VBExpressItemTemplates">
       <Directory Id="VS2010_VBExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS2010_VBExpressItemTemplates" Guid="64316816-82f4-3f6b-1db2-1f8cce29f0b3">
@@ -721,12 +974,65 @@
         </Component>
       </Directory>
     </DirectoryRef>
+    
+    
+    <!-- VWD C# -->
+
+    <DirectoryRef Id="VS2010_VWDCSharpItemTemplates">
+      <Directory Id="VS2010_VWDCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2010_VWDCSharpItemTemplates" Guid="1e3e334a-2174-3ccc-a149-2270f21efd59">
+          <File Id="VS2010_VWDCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
+          <File Id="VS2010_VWDCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
+          <File Id="VS2010_VWDCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VWD VB -->
+
+    <DirectoryRef Id="VS2010_VWDVBItemTemplates">
+      <Directory Id="VS2010_VWDVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2010_VWDVBItemTemplates" Guid="f389e076-8c52-3db7-a3f8-b56fc69cffc0">
+          <File Id="VS2010_VWDVBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS2010_VWDVBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS2010_VWDVBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VWD C# in web projects -->
+
+    <DirectoryRef Id="VS2010_VWDWebCSharpItemTemplates">
+      <Directory Id="VS2010_VWDWebCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2010_VWDWebCSharpItemTemplates" Guid="88592ed0-7409-30eb-de4e-325c320bb5ae">
+          <File Id="VS2010_VWDWebCSharpConsoleNLogConfig.zip" Name="WebCSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
+          <File Id="VS2010_VWDWebCSharpEmptyNLogConfig.zip" Name="WebCSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
+          <File Id="VS2010_VWDWebCSharpTypicalNLogConfig.zip" Name="WebCSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VWD VB in web projects -->
+
+    <DirectoryRef Id="VS2010_VWDWebVBItemTemplates">
+      <Directory Id="VS2010_VWDWebVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2010_VWDWebVBItemTemplates" Guid="b7da3196-df4c-3824-dee3-8842021f2e07">
+          <File Id="VS2010_VWDWebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS2010_VWDWebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS2010_VWDWebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+    
+    <!-- C# code snippets -->
 
     <DirectoryRef Id="VS2010_VisualCSharpSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
       <Component Id="VS2010_CSharpCodeSnippets" Guid="96ee1e7b-eee4-3396-491f-ced8b8aa8c74">
         <File Id="VS2010_CSharpLogger.snippet" Name="CSharpLogger.snippet" />
       </Component>
     </DirectoryRef>
+
+    <!-- VB code snippets -->
 
     <DirectoryRef Id="VS2010_VisualBasicSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
       <Component Id="VS2010_VBCodeSnippets" Guid="43a8fbde-119e-3f8c-dd54-1bc3eef19988">
@@ -933,11 +1239,13 @@
           <Condition Level="1">VS2005_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED</Condition>
           <ComponentRef Id="VS2005_CSharpCodeSnippets" />
           <ComponentRef Id="VS2005_CSharpItemTemplates" />
+          <ComponentRef Id="VS2005_WebCSharpItemTemplates" />
         </Feature>
         <Feature Id="Feature_VS2005_VB" Title="VB Support" Level="0">
           <Condition Level="1">VS2005_IDE_VB_PROJECTSYSTEM_INSTALLED</Condition>
           <ComponentRef Id="VS2005_VBCodeSnippets" />
           <ComponentRef Id="VS2005_VBItemTemplates" />
+          <ComponentRef Id="VS2005_WebVBItemTemplates" />
         </Feature>
       </Feature>
       
@@ -947,6 +1255,18 @@
         <ComponentRef Id="VS2005_CSharpCodeSnippets" />
         <ComponentRef Id="VS2005_CSharpExpressItemTemplates" />
       </Feature>
+      
+      <Feature Id="Feature_VWD2005" Title="Visual Web Developer 2005 Express" Level="0">
+        <Condition Level="1">VWD2005EXPRESS_IDE</Condition>
+        <ComponentRef Id="VS2005_XmlSchemas"/>
+        <ComponentRef Id="VS2005_CSharpCodeSnippets" />
+        <ComponentRef Id="VS2005_VBCodeSnippets" />
+        <ComponentRef Id="VS2005_VWDCSharpItemTemplates" />
+        <ComponentRef Id="VS2005_VWDVBItemTemplates" />
+        <ComponentRef Id="VS2005_VWDWebCSharpItemTemplates" />
+        <ComponentRef Id="VS2005_VWDWebVBItemTemplates" />
+      </Feature>
+      
       <Feature Id="Feature_VB2005" Title="Visual Basic 2005 Express" Level="0">
         <Condition Level="1">VB2005EXPRESS_IDE</Condition>
         <ComponentRef Id="VS2005_XmlSchemas"/>
@@ -963,11 +1283,13 @@
           <Condition Level="1">VS90_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED</Condition>
           <ComponentRef Id="VS2008_CSharpCodeSnippets" />
           <ComponentRef Id="VS2008_CSharpItemTemplates" />
+          <ComponentRef Id="VS2008_WebCSharpItemTemplates" />
         </Feature>
         <Feature Id="Feature_VS2008_VB" Title="VB Support" Level="0">
           <Condition Level="1">VS90_IDE_VB_PROJECTSYSTEM_INSTALLED</Condition>
           <ComponentRef Id="VS2008_VBCodeSnippets" />
           <ComponentRef Id="VS2008_VBItemTemplates" />
+          <ComponentRef Id="VS2008_WebVBItemTemplates" />
         </Feature>
       </Feature>
       
@@ -977,6 +1299,18 @@
         <ComponentRef Id="VS2008_CSharpCodeSnippets" />
         <ComponentRef Id="VS2008_CSharpExpressItemTemplates" />
       </Feature>
+      
+      <Feature Id="Feature_VWD2008" Title="Visual Web Developer 2008 Express" Level="0">
+        <Condition Level="1">VWD90EXPRESS_IDE</Condition>
+        <ComponentRef Id="VS2008_XmlSchemas"/>
+        <ComponentRef Id="VS2008_CSharpCodeSnippets" />
+        <ComponentRef Id="VS2008_VBCodeSnippets" />
+        <ComponentRef Id="VS2008_VWDCSharpItemTemplates" />
+        <ComponentRef Id="VS2008_VWDVBItemTemplates" />
+        <ComponentRef Id="VS2008_VWDWebCSharpItemTemplates" />
+        <ComponentRef Id="VS2008_VWDWebVBItemTemplates" />
+      </Feature>
+      
       <Feature Id="Feature_VB2008" Title="Visual Basic 2008 Express" Level="0">
         <Condition Level="1">VB90EXPRESS_IDE</Condition>
         <ComponentRef Id="VS2008_XmlSchemas"/>
@@ -993,11 +1327,13 @@
           <Condition Level="1">VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED</Condition>
           <ComponentRef Id="VS2010_CSharpCodeSnippets" />
           <ComponentRef Id="VS2010_CSharpItemTemplates" />
+          <ComponentRef Id="VS2010_WebCSharpItemTemplates" />
         </Feature>
         <Feature Id="Feature_VS2010_VB" Title="VB Support" Level="0">
           <Condition Level="1">VS2010_IDE_VB_PROJECTSYSTEM_INSTALLED</Condition>
           <ComponentRef Id="VS2010_VBCodeSnippets" />
           <ComponentRef Id="VS2010_VBItemTemplates" />
+          <ComponentRef Id="VS2010_WebVBItemTemplates" />
         </Feature>
       </Feature>
       
@@ -1007,6 +1343,18 @@
         <ComponentRef Id="VS2010_CSharpCodeSnippets" />
         <ComponentRef Id="VS2010_CSharpExpressItemTemplates" />
       </Feature>
+      
+      <Feature Id="Feature_VWD2010" Title="Visual Web Developer 2010 Express" Level="0">
+        <Condition Level="1">VWD2010EXPRESS_IDE</Condition>
+        <ComponentRef Id="VS2010_XmlSchemas"/>
+        <ComponentRef Id="VS2010_CSharpCodeSnippets" />
+        <ComponentRef Id="VS2010_VBCodeSnippets" />
+        <ComponentRef Id="VS2010_VWDCSharpItemTemplates" />
+        <ComponentRef Id="VS2010_VWDVBItemTemplates" />
+        <ComponentRef Id="VS2010_VWDWebCSharpItemTemplates" />
+        <ComponentRef Id="VS2010_VWDWebVBItemTemplates" />
+      </Feature>
+      
       <Feature Id="Feature_VB2010" Title="Visual Basic 2010 Express" Level="0">
         <Condition Level="1">VB2010EXPRESS_IDE</Condition>
         <ComponentRef Id="VS2010_XmlSchemas"/>
