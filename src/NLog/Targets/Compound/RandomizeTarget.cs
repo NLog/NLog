@@ -34,6 +34,7 @@
 namespace NLog.Targets.Compound
 {
     using System;
+    using NLog.Internal;
 
     /// <summary>
     /// A compound target writes to a randomly-chosen target among the sub-targets.
@@ -56,7 +57,7 @@ namespace NLog.Targets.Compound
     [Target("RandomizeGroup", IsCompound = true)]
     public class RandomizeTarget : CompoundTargetBase
     {
-        private static Random random = new Random();
+        private Random random = new Random();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomizeTarget" /> class.
@@ -75,14 +76,21 @@ namespace NLog.Targets.Compound
         }
 
         /// <summary>
-        /// Forwards the log event to one of the sub-targets. 
+        /// Forwards the log event to one of the sub-targets.
         /// The sub-target is randomly chosen.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        protected override void Write(LogEventInfo logEvent)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            int pos = random.Next(this.Targets.Count);
-            this.Targets[pos].WriteLogEvent(logEvent);
+            int selectedTarget;
+
+            lock (random)
+            {
+                selectedTarget = random.Next(this.Targets.Count);
+            }
+
+            this.Targets[selectedTarget].WriteLogEvent(logEvent, asyncContinuation);
         }
     }
 }

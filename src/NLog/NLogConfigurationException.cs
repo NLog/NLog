@@ -31,50 +31,60 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Targets.Wrappers
+namespace NLog
 {
     using System;
-    using NLog.Config;
-    using NLog.Internal;
 
     /// <summary>
-    /// Base class for targets wrap other (single) targets.
+    /// Exception thrown during NLog configuration.
     /// </summary>
-    public abstract class WrapperTargetBase : Target
+#if !NET_CF && !SILVERLIGHT
+    [Serializable]
+#endif
+    public class NLogConfigurationException : Exception
     {
         /// <summary>
-        /// Gets or sets the target that is wrapped by this target.
+        /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
         /// </summary>
-        /// <docgen category='General Options' order='11' />
-        [RequiredParameter]
-        public Target WrappedTarget { get; set; }
-
-        /// <summary>
-        /// Writes logging event to the log target. Must be overridden in inheriting
-        /// classes.
-        /// </summary>
-        /// <param name="logEvent">Logging event to be written out.</param>
-        protected override void Write(LogEventInfo logEvent)
+        public NLogConfigurationException()
         {
-            throw new NotSupportedException("This target must not be invoked in a synchronous way.");
         }
 
         /// <summary>
-        /// Returns the text representation of the object. Used for diagnostics.
+        /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
         /// </summary>
-        /// <returns>A string that describes the target.</returns>
-        public override string ToString()
+        /// <param name="message">The message.</param>
+        public NLogConfigurationException(string message)
+            : base(message)
         {
-            return base.ToString() + "(" + this.WrappedTarget + ")";
         }
 
         /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
+        /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
         /// </summary>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected override void FlushAsync(AsyncContinuation asyncContinuation)
+        /// <param name="message">The message.</param>
+        /// <param name="innerException">The inner exception.</param>
+        public NLogConfigurationException(string message, Exception innerException)
+            : base(message, innerException)
         {
-            this.WrappedTarget.Flush(asyncContinuation);
         }
+
+#if !NET_CF && !SILVERLIGHT
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
+        /// </summary>
+        /// <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+        /// <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// The <paramref name="info"/> parameter is null.
+        /// </exception>
+        /// <exception cref="T:System.Runtime.Serialization.SerializationException">
+        /// The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0).
+        /// </exception>
+        protected NLogConfigurationException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
+            : base(info, context)
+        {
+        }
+#endif
     }
 }

@@ -33,6 +33,10 @@
 
 namespace NLog.Targets.Compound
 {
+    using System;
+    using System.Threading;
+    using NLog.Internal;
+
     /// <summary>
     /// A compound target that writes logging events to all attached
     /// sub-targets.
@@ -74,12 +78,10 @@ namespace NLog.Targets.Compound
         /// Forwards the specified log event to all sub-targets.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        protected override void Write(LogEventInfo logEvent)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            for (int i = 0; i < this.Targets.Count; ++i)
-            {
-                this.Targets[i].WriteLogEvent(logEvent);
-            }
+            AsyncHelpers.ForEachItemSequentially(this.Targets, asyncContinuation, (cont, t) => t.WriteLogEvent(logEvent, cont));
         }
     }
 }

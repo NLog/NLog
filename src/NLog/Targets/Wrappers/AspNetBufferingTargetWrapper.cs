@@ -181,7 +181,6 @@ namespace NLog.Targets.Wrappers
         {
             NLogHttpModule.BeginRequest -= this.OnBeginRequest;
             NLogHttpModule.EndRequest -= this.OnEndRequest;
-            Flush(TimeSpan.FromSeconds(3));
             base.Close();
         }
 
@@ -225,7 +224,7 @@ namespace NLog.Targets.Wrappers
                 LogEventInfo[] events = buffer.GetEventsAndClear();
                 if (events.Length > 0)
                 {
-                    WrappedTarget.WriteLogEvents(events);
+                    WrappedTarget.WriteLogEvents(events, AsyncHelpers.LogException);
                 }
             }
         }

@@ -442,6 +442,9 @@ namespace NLog.UnitTests.Targets
         [TestMethod]
         public void AsyncMultiFileWrite()
         {
+            //InternalLogger.LogToConsole = true;
+            //InternalLogger.LogLevel = LogLevel.Trace;
+
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             try
             {
@@ -470,7 +473,7 @@ namespace NLog.UnitTests.Targets
                     logger.Error("ddd");
                     logger.Fatal("eee");
                 }
-
+                LogManager.Flush();
                 LogManager.Configuration = null;
 
                 Assert.IsFalse(File.Exists(Path.Combine(tempPath, "Trace.txt")));

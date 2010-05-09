@@ -240,6 +240,11 @@ namespace NLog.UnitTests
                 return true;
             }
 
+            if (baseName == "ExtensionAttribute.cs")
+            {
+                return true;
+            }
+
             return false;
         }
 

@@ -31,44 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Targets.Compound
+#if NET2_0 || NETCF2_0
+
+namespace System.Runtime.CompilerServices
 {
     using System;
-    using System.Collections.Generic;
-    using NLog.Layouts;
 
-    /// <summary>
-    /// A base class for targets which wrap other (multiple) targets
-    /// and provide various forms of target routing.
-    /// </summary>
-    public abstract class CompoundTargetBase : Target
+    [AttributeUsage(AttributeTargets.Method)]
+    public class ExtensionAttribute : Attribute
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CompoundTargetBase" /> class.
-        /// </summary>
-        /// <param name="targets">The targets.</param>
-        protected CompoundTargetBase(params Target[] targets)
-        {
-            this.Targets = new List<Target>();
-            foreach (Target t in targets)
-            {
-                this.Targets.Add(t);
-            }
-        }
-
-        /// <summary>
-        /// Gets the collection of targets managed by this compound target.
-        /// </summary>
-        public IList<Target> Targets { get; private set; }
-
-        /// <summary>
-        /// Writes logging event to the log target. Must be overridden in inheriting
-        /// classes.
-        /// </summary>
-        /// <param name="logEvent">Logging event to be written out.</param>
-        protected override void Write(LogEventInfo logEvent)
-        {
-            throw new NotSupportedException("This target must not be invoked in a synchronous way.");
-        }
     }
 }
+
+#endif

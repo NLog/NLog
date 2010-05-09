@@ -40,6 +40,7 @@ namespace NLog.Targets
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
+    using System.Threading;
 
     /// <summary>
     /// Represents logging target.
@@ -54,52 +55,69 @@ namespace NLog.Targets
         /// <docgen category='General Options' order='10' />
         public string Name { get; set; }
 
-        /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
-        /// </summary>
-        public void Flush()
-        {
-            this.Flush(TimeSpan.MaxValue);
-        }
+/// <summary>
+/// Flush any pending log messages (in case of asynchronous targets).
+/// </summary>
+/// <param name="asyncContinuation">The asynchronous continuation.</param>
+public void Flush(AsyncContinuation asyncContinuation)
+{
+    asyncContinuation = asyncContinuation.OneTimeOnly();
 
-        /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
-        /// </summary>
-        /// <param name="timeout">
-        /// Maximum time to allow for the flush. Any messages after that time will be discarded.
-        /// </param>
-        public virtual void Flush(TimeSpan timeout)
-        {
-            // do nothing
-        }
+    try
+    {
+        this.FlushAsync(asyncContinuation);
+    }
+    catch (Exception ex)
+    {
+        asyncContinuation(ex);
+    }
+}
 
-        /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
-        /// </summary>
-        /// <param name="timeoutMilliseconds">
-        /// Maximum time to allow for the flush. Any messages after that time will be discarded.
-        /// </param>
-        public void Flush(int timeoutMilliseconds)
-        {
-            this.Flush(TimeSpan.FromMilliseconds(timeoutMilliseconds));
-        }
+/// <summary>
+/// Flush any pending log messages asynchronously (in case of asynchronous targets).
+/// </summary>
+/// <param name="asyncContinuation">The asynchronous continuation.</param>
+protected virtual void FlushAsync(AsyncContinuation asyncContinuation)
+{
+    asyncContinuation(null);
+}
 
         /// <summary>
         /// Writes the log to the target.
         /// </summary>
         /// <param name="logEvent">Log event to write.</param>
-        public void WriteLogEvent(LogEventInfo logEvent)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        public void WriteLogEvent(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            this.Write(logEvent);
+            asyncContinuation = asyncContinuation.OneTimeOnly();
+
+            try
+            {
+                this.Write(logEvent, asyncContinuation);
+            }
+            catch (Exception ex)
+            {
+                asyncContinuation(ex);
+            }
         }
 
         /// <summary>
         /// Writes the array of log events.
         /// </summary>
         /// <param name="logEvents">The log events.</param>
-        public void WriteLogEvents(LogEventInfo[] logEvents)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        public void WriteLogEvents(LogEventInfo[] logEvents, AsyncContinuation asyncContinuation)
         {
-            this.Write(logEvents);
+            asyncContinuation = asyncContinuation.OneTimeOnly();
+
+            try
+            {
+                this.Write(logEvents, asyncContinuation);
+            }
+            catch (Exception ex)
+            {
+                asyncContinuation(ex);
+            }
         }
 
         /// <summary>
@@ -183,6 +201,45 @@ namespace NLog.Targets
         /// Logging event to be written out.
         /// </param>
         protected abstract void Write(LogEventInfo logEvent);
+
+        /// <summary>
+        /// Writes log event to the log target. Must be overridden in inheriting
+        /// classes.
+        /// </summary>
+        /// <param name="logEvent">Log event to be written out.</param>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected virtual void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        {
+            try
+            {
+                this.Write(logEvent);
+                asyncContinuation(null);
+            }
+            catch (Exception ex)
+            {
+                asyncContinuation(ex);
+            }
+        }
+
+        /// <summary>
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Write" method. Inheriting classes can use this method to
+        /// optimize batch writes.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected virtual void Write(LogEventInfo[] logEvents, AsyncContinuation asyncContinuation)
+        {
+            try
+            {
+                this.Write(logEvents);
+                asyncContinuation(null);
+            }
+            catch (Exception ex)
+            {
+                asyncContinuation(ex);
+            }
+        }
 
         /// <summary>
         /// Writes an array of logging events to the log target. By default it iterates on all

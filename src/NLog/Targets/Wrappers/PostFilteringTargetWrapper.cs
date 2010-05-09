@@ -33,10 +33,12 @@
 
 namespace NLog.Targets.Wrappers
 {
+    using System;
     using System.Collections.Generic;
     using NLog.Common;
     using NLog.Conditions;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// A target wrapper that filters buffered log entries based on a set of conditions
@@ -68,6 +70,8 @@ namespace NLog.Targets.Wrappers
     [Target("PostFilteringWrapper", IsWrapper = true)]
     public class PostFilteringTargetWrapper : WrapperTargetBase
     {
+        private static object boxedTrue = true;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="PostFilteringTargetWrapper" /> class.
         /// </summary>
@@ -98,7 +102,8 @@ namespace NLog.Targets.Wrappers
         /// is applied to the array of log events.
         /// </summary>
         /// <param name="logEvents">Array of log events to be post-filtered.</param>
-        protected override void Write(LogEventInfo[] logEvents)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void Write(LogEventInfo[] logEvents, AsyncContinuation asyncContinuation)
         {
             ConditionExpression resultFilter = null;
 
@@ -114,7 +119,7 @@ namespace NLog.Targets.Wrappers
                 {
                     object v = rule.Exists.Evaluate(logEvents[i]);
 
-                    if (v is bool && (bool)v)
+                    if (boxedTrue.Equals(v))
                     {
                         if (InternalLogger.IsTraceEnabled)
                         {
@@ -139,7 +144,7 @@ namespace NLog.Targets.Wrappers
 
             if (resultFilter == null)
             {
-                this.WrappedTarget.WriteLogEvents(logEvents);
+                this.WrappedTarget.WriteLogEvents(logEvents, asyncContinuation);
             }
             else
             {
@@ -154,7 +159,7 @@ namespace NLog.Targets.Wrappers
                 for (int i = 0; i < logEvents.Length; ++i)
                 {
                     object v = resultFilter.Evaluate(logEvents[i]);
-                    if (v is bool && (bool)v)
+                    if (boxedTrue.Equals(v))
                     {
                         resultBuffer.Add(logEvents[i]);
                     }
@@ -167,7 +172,11 @@ namespace NLog.Targets.Wrappers
 
                 if (resultBuffer.Count > 0)
                 {
-                    this.WrappedTarget.WriteLogEvents(resultBuffer.ToArray());
+                    this.WrappedTarget.WriteLogEvents(resultBuffer.ToArray(), asyncContinuation);
+                }
+                else
+                {
+                    asyncContinuation(null);
                 }
             }
         }

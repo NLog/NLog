@@ -491,21 +491,30 @@ namespace NLog.Targets
         /// <summary>
         /// Flushes all pending file operations.
         /// </summary>
-        /// <param name="timeout">The timeout.</param>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
         /// <remarks>
         /// The timeout parameter is ignored, because file APIs don't provide
         /// the needed functionality.
         /// </remarks>
-        public override void Flush(TimeSpan timeout)
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            for (int i = 0; i < this.recentAppenders.Length; ++i)
+            try
             {
-                if (this.recentAppenders[i] == null)
+                for (int i = 0; i < this.recentAppenders.Length; ++i)
                 {
-                    break;
+                    if (this.recentAppenders[i] == null)
+                    {
+                        break;
+                    }
+
+                    this.recentAppenders[i].Flush();
                 }
 
-                this.recentAppenders[i].Flush();
+                asyncContinuation(null);
+            }
+            catch (Exception ex)
+            {
+                asyncContinuation(ex);
             }
         }
 

@@ -248,6 +248,7 @@
   </Target>
 
   <Target Name="CheckinSuite">
+    <CallTarget Targets="SyncProjectItems" />
     <CallTarget Targets="DeepClean" />
     <CallTarget Targets="Rebuild" />
     <CallTarget Targets="DumpApi" />

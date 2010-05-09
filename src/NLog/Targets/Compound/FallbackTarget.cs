@@ -35,6 +35,7 @@ namespace NLog.Targets.Compound
 {
     using System;
     using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// A compound target that provides fallback-on-error functionality.
@@ -57,6 +58,7 @@ namespace NLog.Targets.Compound
     public class FallbackTarget : CompoundTargetBase
     {
         private int currentTarget;
+        private object lockObject = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FallbackTarget"/> class.
@@ -84,42 +86,73 @@ namespace NLog.Targets.Compound
         /// Forwards the log event to the sub-targets until one of them succeeds.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
         /// <remarks>
-        /// The method remembers the last-known-successful target 
+        /// The method remembers the last-known-successful target
         /// and starts the iteration from it.
         /// If <see cref="ReturnToFirstOnSuccess"/> is set, the method
-        /// resets the target to the first target 
+        /// resets the target to the first target
         /// stored in <see cref="Targets"/>.
         /// </remarks>
-        protected override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            lock (this)
-            {
-                for (int i = 0; i < this.Targets.Count; ++i)
+            AsyncContinuation continuation = null;
+            int tryCounter = 0;
+            int targetToInvoke;
+
+            continuation = ex =>
                 {
-                    try
+                    if (ex == null)
                     {
-                        this.Targets[this.currentTarget].WriteLogEvent(logEvent);
-                        if (this.currentTarget != 0)
+                        // success
+                        lock (this.lockObject)
                         {
-                            if (this.ReturnToFirstOnSuccess)
+                            if (this.currentTarget != 0)
                             {
-                                InternalLogger.Debug("Fallback: target '{0}' succeeded. Returning to the first one.", this.Targets[this.currentTarget]);
-                                this.currentTarget = 0;
+                                if (this.ReturnToFirstOnSuccess)
+                                {
+                                    InternalLogger.Debug("Fallback: target '{0}' succeeded. Returning to the first one.", this.Targets[this.currentTarget]);
+                                    this.currentTarget = 0;
+                                }
                             }
                         }
 
+                        asyncContinuation(null);
                         return;
                     }
-                    catch (Exception ex)
+
+                    // failure
+                    lock (this.lockObject)
                     {
                         InternalLogger.Warn("Fallback: target '{0}' failed. Proceeding to the next one. Error was: {1}", this.Targets[this.currentTarget], ex);
 
-                        // error while writing, try another one
+                        // error while writing, go to the next one
                         this.currentTarget = (this.currentTarget + 1) % this.Targets.Count;
+
+                        tryCounter++;
+                        targetToInvoke = this.currentTarget;
+                        if (tryCounter >= this.Targets.Count)
+                        {
+                            targetToInvoke = -1;
+                        }
                     }
-                }
+
+                    if (targetToInvoke >= 0)
+                    {
+                        this.Targets[targetToInvoke].WriteLogEvent(logEvent, continuation);
+                    }
+                    else
+                    {
+                        asyncContinuation(ex);
+                    }
+                };
+
+            lock (this.lockObject)
+            {
+                targetToInvoke = this.currentTarget;
             }
+
+            this.Targets[targetToInvoke].WriteLogEvent(logEvent, continuation);
         }
     }
 }

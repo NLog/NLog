@@ -33,6 +33,9 @@
 
 namespace NLog.Targets.Wrappers
 {
+    using System;
+    using NLog.Internal;
+
     /// <summary>
     /// A target wrapper that causes a flush after each write on a wrapped target.
     /// </summary>
@@ -73,13 +76,13 @@ namespace NLog.Targets.Wrappers
 
         /// <summary>
         /// Forwards the call to the <see cref="WrapperTargetBase.WrappedTarget"/>.Write()
-        /// and calls <see cref="Target.Flush()"/> on it.
+        /// and calls <see cref="Target.Flush(AsyncContinuation)"/> on it.
         /// </summary>
         /// <param name="logEvent">Logging event to be written out.</param>
-        protected override void Write(LogEventInfo logEvent)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            this.WrappedTarget.WriteLogEvent(logEvent);
-            this.WrappedTarget.Flush();
+            this.WrappedTarget.WriteLogEvent(logEvent, asyncContinuation.PrecededBy(this.WrappedTarget.Flush));
         }
     }
 }

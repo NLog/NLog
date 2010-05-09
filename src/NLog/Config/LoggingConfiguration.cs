@@ -40,6 +40,7 @@ namespace NLog.Config
     using NLog.Common;
     using NLog.Internal;
     using NLog.Targets;
+    using System.Threading;
 
     /// <summary>
     /// Keeps logging configuration and provides simple API
@@ -193,22 +194,22 @@ namespace NLog.Config
         /// <summary>
         /// Flushes any pending log messages on all appenders.
         /// </summary>
-        /// <param name="timeout">
-        /// The timeout.
-        /// </param>
-        internal void FlushAllTargets(TimeSpan timeout)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        internal void FlushAllTargets(AsyncContinuation asyncContinuation)
         {
-            foreach (Target target in this.targets.Values)
+            List<Target> targets = new List<Target>();
+            foreach (var rule in this.LoggingRules)
             {
-                try
+                foreach (var t in rule.Targets)
                 {
-                    target.Flush(timeout);
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error("Error while flushing target: {0} {1}", target.Name, ex);
+                    if (!targets.Contains(t))
+                    {
+                        targets.Add(t);
+                    }
                 }
             }
+                
+            AsyncHelpers.RunInParallel(targets, asyncContinuation, (cont, target) => target.Flush(cont));
         }
 
         internal void InitializeAll()

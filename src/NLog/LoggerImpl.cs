@@ -34,9 +34,10 @@
 namespace NLog
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Reflection;
-
+    using System.Threading;
     using NLog.Common;
     using NLog.Config;
     using NLog.Filters;
@@ -61,104 +62,144 @@ namespace NLog
 #if !NET_CF
             StackTraceUsage stu = targets.GetStackTraceUsage();
 
-            StackTrace stackTrace;
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
-                int firstUserFrame = 0;
+                StackTrace stackTrace;
 #if !SILVERLIGHT
                 stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
 #else
                 stackTrace = new StackTrace();
 #endif
 
-                for (int i = 0; i < stackTrace.FrameCount; ++i)
-                {
-                    var frame = stackTrace.GetFrame(i);
-                    MethodBase mb = frame.GetMethod();
-                    Assembly methodAssembly = null;
-
-                    if (mb.DeclaringType != null)
-                    {
-                        methodAssembly = mb.DeclaringType.Assembly;
-                    }
-
-                    if (methodAssembly == nlogAssembly || mb.DeclaringType == loggerType)
-                    {
-                        firstUserFrame = i + 1;
-                    }
-                    else
-                    {
-                        if (firstUserFrame != 0)
-                        {
-                            break;
-                        }
-                    }
-                }
+                int firstUserFrame = FindCallingMethodOnStackTrace(stackTrace, loggerType);
 
                 logEvent.SetStackTrace(stackTrace, firstUserFrame);
             }
 #endif
-            for (TargetWithFilterChain awf = targets; awf != null; awf = awf.NextInChain)
+
+            int originalThreadId = Thread.CurrentThread.ManagedThreadId;
+
+            WriteToTargetWithFilterChain(targets, logEvent, ex =>
+                {
+                    if (factory.ThrowExceptions && Thread.CurrentThread.ManagedThreadId == originalThreadId)
+                    {
+                        throw new NLogRuntimeException("Exception occured in NLog", ex);
+                    }
+                });
+        }
+
+#if !NET_CF
+        private static int FindCallingMethodOnStackTrace(StackTrace stackTrace, Type loggerType)
+        {
+            int firstUserFrame = 0;
+            for (int i = 0; i < stackTrace.FrameCount; ++i)
             {
-                Target app = awf.Target;
-                FilterResult result = FilterResult.Neutral;
+                var frame = stackTrace.GetFrame(i);
+                MethodBase mb = frame.GetMethod();
+                Assembly methodAssembly = null;
 
-                try
+                if (mb.DeclaringType != null)
                 {
-                    foreach (Filter f in awf.FilterChain)
-                    {
-                        result = f.GetFilterResult(logEvent);
-                        if (result != FilterResult.Neutral)
-                        {
-                            break;
-                        }
-                    }
-
-                    if ((result == FilterResult.Ignore) || (result == FilterResult.IgnoreFinal))
-                    {
-                        if (InternalLogger.IsDebugEnabled)
-                        {
-                            InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", logEvent.LoggerName, logEvent.Level);
-                        }
-
-                        if (result == FilterResult.IgnoreFinal)
-                        {
-                            return;
-                        }
-
-                        continue;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error("FilterChain exception: {0}", ex);
-                    if (factory.ThrowExceptions)
-                    {
-                        throw;
-                    }
-
-                    continue;
+                    methodAssembly = mb.DeclaringType.Assembly;
                 }
 
-                try
+                if (methodAssembly == nlogAssembly || mb.DeclaringType == loggerType)
                 {
-                    app.WriteLogEvent(logEvent);
+                    firstUserFrame = i + 1;
                 }
-                catch (Exception ex)
+                else
                 {
-                    InternalLogger.Error("Target exception: {0}", ex);
-                    if (factory.ThrowExceptions)
+                    if (firstUserFrame != 0)
                     {
-                        throw;
+                        break;
                     }
+                }
+            }
 
-                    continue;
+            return firstUserFrame;
+        }
+#endif
+
+        private static void WriteToTargetWithFilterChain(TargetWithFilterChain targetListHead, LogEventInfo logEvent, AsyncContinuation onException)
+        {
+            if (targetListHead == null)
+            {
+                return;
+            }
+
+            Target target = targetListHead.Target;
+            FilterResult result = GetFilterResult(targetListHead.FilterChain, logEvent);
+
+            if ((result == FilterResult.Ignore) || (result == FilterResult.IgnoreFinal))
+            {
+                if (InternalLogger.IsDebugEnabled)
+                {
+                    InternalLogger.Debug("{0}.{1} Rejecting message because of a filter.", logEvent.LoggerName, logEvent.Level);
                 }
 
-                if (result == FilterResult.LogFinal)
+                if (result == FilterResult.IgnoreFinal)
                 {
                     return;
                 }
+
+                // move to next target
+                WriteToTargetWithFilterChain(targetListHead.NextInChain, logEvent, onException);
+                return;
+            }
+
+            target.WriteLogEvent(logEvent,
+                AsyncHelpers.OneTimeOnly(
+                ex =>
+                    {
+                        if (ex == null)
+                        {
+                            // success
+                            if (result == FilterResult.LogFinal)
+                            {
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            // intentionally not returning here
+                            // onException will throw or not, depending on ThrowExceptions setting
+                            // and/or whether we are still on the original thread
+                            // if it does not throw, we just proceed to the next target
+                            InternalLogger.Error("Target exception: {0}", ex);
+                            onException(ex);
+                        }
+
+                        // write to the next target
+                        WriteToTargetWithFilterChain(targetListHead.NextInChain, logEvent, onException);
+                    }));
+        }
+
+        /// <summary>
+        /// Gets the filter result.
+        /// </summary>
+        /// <param name="filterChain">The filter chain.</param>
+        /// <param name="logEvent">The log event.</param>
+        /// <returns></returns>
+        private static FilterResult GetFilterResult(ICollection<Filter> filterChain, LogEventInfo logEvent)
+        {
+            var result = FilterResult.Neutral;
+
+            try
+            {
+                foreach (Filter f in filterChain)
+                {
+                    result = f.GetFilterResult(logEvent);
+                    if (result != FilterResult.Neutral)
+                    {
+                        break;
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return FilterResult.Ignore;
             }
         }
     }

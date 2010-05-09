@@ -52,6 +52,8 @@ namespace NLog
     /// </summary>
     public class LogFactory
     {
+        private static TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
+
 #if !NET_CF && !SILVERLIGHT
         private readonly MultiFileWatcher watcher;
         private const int ReconfigAfterFileChangedTimeout = 1000;
@@ -182,6 +184,9 @@ namespace NLog
                     if (oldConfig != null)
                     {
                         InternalLogger.Info("Closing old configuration.");
+#if !SILVERLIGHT
+                        this.Flush();
+#endif
                         oldConfig.Close();
                     }
 
@@ -324,7 +329,7 @@ namespace NLog
         /// </summary>
         public void Flush()
         {
-            this.Configuration.FlushAllTargets(TimeSpan.MaxValue);
+            this.Flush(DefaultFlushTimeout);
         }
 
         /// <summary>
@@ -333,7 +338,7 @@ namespace NLog
         /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public void Flush(TimeSpan timeout)
         {
-            this.Configuration.FlushAllTargets(timeout);
+            AsyncHelpers.RunSynchronously(cb => this.Flush(cb, timeout));
         }
 
         /// <summary>
@@ -342,7 +347,37 @@ namespace NLog
         /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public void Flush(int timeoutMilliseconds)
         {
-            this.Configuration.FlushAllTargets(TimeSpan.FromMilliseconds(timeoutMilliseconds));
+            this.Flush(TimeSpan.FromMilliseconds(timeoutMilliseconds));
+        }
+
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        public void Flush(AsyncContinuation asyncContinuation)
+        {
+            this.Flush(asyncContinuation, TimeSpan.MaxValue);
+        }
+
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public void Flush(AsyncContinuation asyncContinuation, int timeoutMilliseconds)
+        {
+            this.Flush(asyncContinuation, TimeSpan.FromMilliseconds(timeoutMilliseconds));
+        }
+
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
+        {
+            InternalLogger.Trace("LogFactory.Flush({0})", timeout);
+            this.Configuration.FlushAllTargets(asyncContinuation.WithTimeout(timeout));
         }
 
         /// <summary>Decreases the log enable counter and if it reaches -1 

@@ -38,6 +38,7 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Text;
     using NLog.Common;
+    using NLog.Internal;
     using NLog.Internal.NetworkSenders;
     using NLog.Layouts;
 
@@ -162,17 +163,21 @@ namespace NLog.Targets
         public Encoding Encoding { get; set; }
 
         /// <summary>
-        /// Flushes any buffers.
+        /// Flush any pending log messages asynchronously (in case of asynchronous targets).
         /// </summary>
-        /// <param name="timeout">Flush timeout.</param>
-        public override void Flush(TimeSpan timeout)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            lock (this)
+            try
             {
                 if (this.sender != null)
                 {
                     this.sender.Flush();
                 }
+            }
+            catch (Exception ex)
+            {
+                asyncContinuation(ex);
             }
         }
 

@@ -38,6 +38,7 @@ namespace NLog.Targets.Wrappers
     using System.ComponentModel;
     using System.Threading;
     using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// A target wrapper that provides asynchronous, buffered execution of target writes.
@@ -76,18 +77,16 @@ namespace NLog.Targets.Wrappers
     [Target("AsyncWrapper", IsWrapper = true)]
     public class AsyncTargetWrapper : WrapperTargetBase
     {
-        private readonly object inLazyWriterMonitor = new object();
-        private bool flushAll;
+        private readonly object lockObject = new object();
         private Timer lazyWriterTimer;
+        private AsyncContinuation flushAllContinuation;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
         /// </summary>
         public AsyncTargetWrapper()
+            : this(null)
         {
-            this.RequestQueue = new AsyncRequestQueue<LogEventInfo>(10000, AsyncTargetWrapperOverflowAction.Discard);
-            this.TimeToSleepBetweenBatches = 50;
-            this.BatchSize = 100;
         }
 
         /// <summary>
@@ -164,26 +163,10 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Waits for the lazy writer thread to finish writing messages.
         /// </summary>
-        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-        public override void Flush(TimeSpan timeout)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            this.lazyWriterTimer.Change(Timeout.Infinite, Timeout.Infinite);
-            lock (this.inLazyWriterMonitor)
-            {
-                this.flushAll = true;
-                this.LazyWriterTimerCallback(null);
-            }
-
-            this.lazyWriterTimer.Change(this.TimeToSleepBetweenBatches, this.TimeToSleepBetweenBatches);
-        }
-
-        /// <summary>
-        /// Closes the target by stopping the lazy writer thread.
-        /// </summary>
-        protected override void Close()
-        {
-            this.StopLazyWriterThread();
-            base.Close();
+            this.flushAllContinuation = asyncContinuation;
         }
 
         /// <summary>
@@ -192,6 +175,8 @@ namespace NLog.Targets.Wrappers
         protected override void Initialize()
         {
             base.Initialize();
+            this.RequestQueue.Clear();
+            this.lazyWriterTimer = new Timer(this.ProcessPendingEvents, null, Timeout.Infinite, Timeout.Infinite);
             this.StartLazyWriterTimer();
         }
 
@@ -201,9 +186,10 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected virtual void StartLazyWriterTimer()
         {
-            this.RequestQueue.Clear();
-            InternalLogger.Debug("Starting lazy writer timer...");
-            this.lazyWriterTimer = new Timer(this.LazyWriterTimerCallback, null, 0, this.TimeToSleepBetweenBatches);
+            lock (this.lockObject)
+            {
+                this.lazyWriterTimer.Change(this.TimeToSleepBetweenBatches, Timeout.Infinite);
+            }
         }
 
         /// <summary>
@@ -211,17 +197,10 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected virtual void StopLazyWriterThread()
         {
-            if (this.lazyWriterTimer == null)
+            lock (this.lockObject)
             {
-                return;
+                this.lazyWriterTimer.Change(Timeout.Infinite, Timeout.Infinite);
             }
-
-            this.Flush();
-            this.lazyWriterTimer.Change(0, 0);
-            this.lazyWriterTimer.Dispose();
-            this.lazyWriterTimer = null;
-
-            this.RequestQueue.Clear();
         }
 
         /// <summary>
@@ -239,36 +218,48 @@ namespace NLog.Targets.Wrappers
             this.RequestQueue.Enqueue(logEvent);
         }
 
-        private void LazyWriterTimerCallback(object state)
+        private void ProcessPendingEvents(object state)
         {
-            lock (this.inLazyWriterMonitor)
+            try
             {
+                int count = this.BatchSize;
+                var continuation = this.flushAllContinuation;
+                this.flushAllContinuation = null;
+                if (continuation != null)
+                {
+                    count = this.RequestQueue.RequestCount;
+                }
+
+                List<LogEventInfo> pendingRequests = this.RequestQueue.DequeueBatch(count);
+
                 try
                 {
-                    do
-                    {
-                        List<LogEventInfo> pendingRequests = this.RequestQueue.DequeueBatch(this.BatchSize);
+                    // process all events
+                    this.WrappedTarget.WriteLogEvents(
+                        pendingRequests.ToArray(), 
+                            ex =>
+                                {
+                                    if (ex != null)
+                                    {
+                                        // log the exception first
+                                        AsyncHelpers.LogException(ex);
+                                    }
 
-                        try
-                        {
-                            if (pendingRequests.Count == 0)
-                            {
-                                break;
-                            }
-
-                            this.WrappedTarget.WriteLogEvents(pendingRequests.ToArray());
-                        }
-                        finally
-                        {
-                            this.RequestQueue.BatchProcessed(pendingRequests);
-                        }
-                    }
-                    while (this.flushAll);
+                                    this.StartLazyWriterTimer();
+                                    if (continuation != null)
+                                    {
+                                        continuation(ex);
+                                    }
+                                });
                 }
-                catch (Exception ex)
+                finally
                 {
-                    InternalLogger.Error("Error in lazy writer timer procedure: {0}", ex);
+                    this.RequestQueue.BatchProcessed(pendingRequests);
                 }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error("Error in lazy writer timer procedure: {0}", ex);
             }
         }
     }

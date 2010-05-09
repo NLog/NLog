@@ -36,6 +36,7 @@ namespace NLog.Targets.Wrappers
     using System;
     using System.ComponentModel;
     using System.Threading;
+    using NLog.Common;
     using NLog.Internal;
 
     /// <summary>
@@ -83,10 +84,8 @@ namespace NLog.Targets.Wrappers
         /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="bufferSize">Size of the buffer.</param>
         public BufferingTargetWrapper(Target wrappedTarget, int bufferSize)
+            : this(wrappedTarget, bufferSize, -1)
         {
-            this.FlushTimeout = -1;
-            this.WrappedTarget = wrappedTarget;
-            this.BufferSize = bufferSize;
         }
 
         /// <summary>
@@ -120,17 +119,19 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Flushes pending events in the buffer (if any).
         /// </summary>
-        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-        public override void Flush(TimeSpan timeout)
+        /// <param name="asyncContinuation"></param>
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            base.Flush(timeout);
-
             lock (this)
             {
                 var events = this.buffer.GetEventsAndClear();
                 if (events.Length > 0)
                 {
-                    WrappedTarget.WriteLogEvents(events);
+                    this.WrappedTarget.WriteLogEvents(events, asyncContinuation);
+                }
+                else
+                {
+                    asyncContinuation(null);
                 }
             }
         }
@@ -150,7 +151,6 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void Close()
         {
-            this.Flush(TimeSpan.FromSeconds(3));
             base.Close();
             this.flushTimer.Dispose();
             this.flushTimer = null;
@@ -161,16 +161,18 @@ namespace NLog.Targets.Wrappers
         /// the buffer in case the buffer gets full.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        protected override void Write(LogEventInfo logEvent)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
             lock (this)
             {
                 this.WrappedTarget.PrecalculateVolatileLayouts(logEvent);
+
                 int count = this.buffer.Append(logEvent);
                 if (count >= this.BufferSize)
                 {
                     var events = this.buffer.GetEventsAndClear();
-                    WrappedTarget.WriteLogEvents(events);
+                    WrappedTarget.WriteLogEvents(events, asyncContinuation);
                 }
                 else
                 {
@@ -189,7 +191,17 @@ namespace NLog.Targets.Wrappers
                 LogEventInfo[] events = this.buffer.GetEventsAndClear();
                 if (events.Length > 0)
                 {
-                    WrappedTarget.WriteLogEvents(events);
+                    WrappedTarget.WriteLogEvents(events,
+                            ex =>
+                            {
+                                if (ex != null)
+                                {
+                                    // on error, we cannot really raise the error here
+                                    // since we are executing on a random thread and nobody will catch it
+                                    // so we just log the error to internal log
+                                    InternalLogger.Error("Error when sending log events to a wrapped target: {0}", ex);
+                                }
+                            });
                 }
             }
         }

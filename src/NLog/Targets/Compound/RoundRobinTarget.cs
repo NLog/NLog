@@ -33,7 +33,9 @@
 
 namespace NLog.Targets.Compound
 {
+    using System;
     using System.Threading;
+    using NLog.Internal;
 
     /// <summary>
     /// A compound target that forwards writes to the sub-targets in a
@@ -76,10 +78,11 @@ namespace NLog.Targets.Compound
         }
 
         /// <summary>
-        /// Forwards the write to one of the targets from 
+        /// Forwards the write to one of the targets from
         /// the <see cref="Targets"/> collection.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
         /// <remarks>
         /// The writes are routed in a round-robin fashion.
         /// The first log event goes to the first target, the second
@@ -87,10 +90,10 @@ namespace NLog.Targets.Compound
         /// first target when there are no more targets available.
         /// In general request N goes to Targets[N % Targets.Count].
         /// </remarks>
-        protected override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            int currentTarget = Interlocked.Increment(ref this.currentTarget);
-            this.Targets[currentTarget % this.Targets.Count].WriteLogEvent(logEvent);
+            int selectedTarget = Interlocked.Increment(ref this.currentTarget);
+            this.Targets[selectedTarget % this.Targets.Count].WriteLogEvent(logEvent, asyncContinuation);
         }
     }
 }

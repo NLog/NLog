@@ -35,7 +35,9 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.ComponentModel;
+    using System.Threading;
     using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// A target wrapper that causes retries on wrapped target errors.
@@ -97,31 +99,38 @@ namespace NLog.Targets.Wrappers
         /// Writes the specified log event to the wrapped target, retrying and pausing in case of an error.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        protected override void Write(LogEventInfo logEvent)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            for (int i = 0; i < this.RetryCount; ++i)
-            {
-                try
+            AsyncContinuation continuation = null;
+            int counter = 0;
+
+            continuation = ex =>
                 {
-                    if (i > 0)
+                    if (ex == null)
                     {
-                        InternalLogger.Warn("Retry #{0}", i);
+                        asyncContinuation(null);
+                        return;
                     }
 
-                    WrappedTarget.WriteLogEvent(logEvent);
-                    return;
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Warn("Error while writing to '{0}': {1}", WrappedTarget, ex);
-                    if (i == this.RetryCount - 1)
+                    InternalLogger.Warn("Error while writing to '{0}': {1}", this.WrappedTarget, ex);
+                    int retryNumber = Interlocked.Increment(ref counter);
+
+                    // exceeded retry count
+                    if (retryNumber == this.RetryCount)
                     {
-                        throw;
+                        asyncContinuation(ex);
+                        return;
                     }
 
-                    System.Threading.Thread.Sleep(this.RetryDelayMilliseconds);
-                }
-            }
+                    // sleep and try again
+                    Thread.Sleep(this.RetryDelayMilliseconds);
+                    InternalLogger.Warn("Retry #{0}", retryNumber);
+
+                    this.WrappedTarget.WriteLogEvent(logEvent, continuation);
+                };
+
+            this.WrappedTarget.WriteLogEvent(logEvent, continuation);
         }
     }
 }

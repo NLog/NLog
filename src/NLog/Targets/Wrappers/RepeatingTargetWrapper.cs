@@ -33,7 +33,10 @@
 
 namespace NLog.Targets.Wrappers
 {
+    using System;
     using System.ComponentModel;
+    using System.Threading;
+    using NLog.Internal;
 
     /// <summary>
     /// A target wrapper that repeats each log event the specified number of times.
@@ -84,32 +87,10 @@ namespace NLog.Targets.Wrappers
         /// Forwards the log message to the <see cref="WrapperTargetBase.WrappedTarget"/> by calling the <see cref="Target.Write(LogEventInfo)"/> method <see cref="RepeatCount"/> times.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        protected override void Write(LogEventInfo logEvent)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            for (int i = 0; i < this.RepeatCount; ++i)
-            {
-                WrappedTarget.WriteLogEvent(logEvent);
-            }
-        }
-
-        /// <summary>
-        /// Forwards the array of log events to the <see cref="WrapperTargetBase.WrappedTarget"/> by calling the <see cref="Target.Write(LogEventInfo[])"/> method <see cref="RepeatCount"/> times.
-        /// </summary>
-        /// <param name="logEvents">The array of log events.</param>
-        protected override void Write(LogEventInfo[] logEvents)
-        {
-            LogEventInfo[] newEvents = new LogEventInfo[logEvents.Length * this.RepeatCount];
-            int pos = 0;
-
-            for (int i = 0; i < logEvents.Length; ++i)
-            {
-                for (int j = 0; j < this.RepeatCount; ++j)
-                {
-                    newEvents[pos++] = logEvents[i];
-                }
-            }
-
-            WrappedTarget.WriteLogEvents(newEvents);
+            AsyncHelpers.Repeat(this.RepeatCount, asyncContinuation, cont => this.WrappedTarget.WriteLogEvent(logEvent, cont));
         }
     }
 }

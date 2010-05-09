@@ -38,8 +38,9 @@ namespace NLog
     using System.Runtime.CompilerServices;
     using NLog.Common;
     using NLog.Config;
+    using NLog.Internal;
 
-        /// <summary>
+    /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
     /// </summary>
     public sealed class LogManager
@@ -195,31 +196,62 @@ namespace NLog
             globalFactory.ReconfigExistingLoggers();
         }
 
-        /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
-        /// </summary>
-        public static void Flush()
-        {
-            globalFactory.Flush();
-        }
+#if !SILVERLIGHT
+/// <summary>
+/// Flush any pending log messages (in case of asynchronous targets).
+/// </summary>
+public static void Flush()
+{
+    globalFactory.Flush();
+}
 
-        /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
-        /// </summary>
-        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-        public static void Flush(TimeSpan timeout)
-        {
-            globalFactory.Flush(timeout);
-        }
+/// <summary>
+/// Flush any pending log messages (in case of asynchronous targets).
+/// </summary>
+/// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+public static void Flush(TimeSpan timeout)
+{
+    globalFactory.Flush(timeout);
+}
 
-        /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
-        /// </summary>
-        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-        public static void Flush(int timeoutMilliseconds)
-        {
-            globalFactory.Flush(timeoutMilliseconds);
-        }
+/// <summary>
+/// Flush any pending log messages (in case of asynchronous targets).
+/// </summary>
+/// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+public static void Flush(int timeoutMilliseconds)
+{
+    globalFactory.Flush(timeoutMilliseconds);
+}
+#endif
+
+/// <summary>
+/// Flush any pending log messages (in case of asynchronous targets).
+/// </summary>
+/// <param name="asyncContinuation">The asynchronous continuation.</param>
+public static void Flush(AsyncContinuation asyncContinuation)
+{
+    globalFactory.Flush(asyncContinuation);
+}
+
+/// <summary>
+/// Flush any pending log messages (in case of asynchronous targets).
+/// </summary>
+/// <param name="asyncContinuation">The asynchronous continuation.</param>
+/// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+public static void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
+{
+    globalFactory.Flush(asyncContinuation, timeout);
+}
+
+/// <summary>
+/// Flush any pending log messages (in case of asynchronous targets).
+/// </summary>
+/// <param name="asyncContinuation">The asynchronous continuation.</param>
+/// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+public static void Flush(AsyncContinuation asyncContinuation, int timeoutMilliseconds)
+{
+    globalFactory.Flush(asyncContinuation, timeoutMilliseconds);
+}
 
         /// <summary>Decreases the log enable counter and if it reaches -1 
         /// the logs are disabled.</summary>

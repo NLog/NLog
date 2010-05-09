@@ -137,7 +137,7 @@ namespace NLog.Targets.Wrappers
         /// <returns>List of dequeued items.</returns>
         public List<T> DequeueBatch(int count)
         {
-            List<T> target = new List<T>(count);
+            var target = new List<T>(count);
             lock (this)
             {
                 for (int i = 0; i < count; ++i)

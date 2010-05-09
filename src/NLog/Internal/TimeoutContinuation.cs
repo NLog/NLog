@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,44 +31,60 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Targets.Compound
+namespace NLog.Internal
 {
     using System;
-    using System.Collections.Generic;
-    using NLog.Layouts;
+    using System.Threading;
+    using NLog.Common;
 
-    /// <summary>
-    /// A base class for targets which wrap other (multiple) targets
-    /// and provide various forms of target routing.
-    /// </summary>
-    public abstract class CompoundTargetBase : Target
+    internal class TimeoutContinuation
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CompoundTargetBase" /> class.
-        /// </summary>
-        /// <param name="targets">The targets.</param>
-        protected CompoundTargetBase(params Target[] targets)
+        private readonly AsyncContinuation asyncContinuation;
+        private Timer timeoutTimer;
+        private int counter;
+
+        public TimeoutContinuation(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
-            this.Targets = new List<Target>();
-            foreach (Target t in targets)
+            this.asyncContinuation = asyncContinuation;
+            this.timeoutTimer = new Timer(TimerElapsed, null, timeout, TimeSpan.FromMilliseconds(-1));
+        }
+
+        public void Function(Exception exception)
+        {
+            try
             {
-                this.Targets.Add(t);
+                this.StopTimer();
+                if (Interlocked.Increment(ref counter) == 1)
+                {
+                    this.asyncContinuation(exception);
+                }
+            }
+            catch (Exception ex)
+            {
+                ReportExceptionInHandler(ex);
             }
         }
 
-        /// <summary>
-        /// Gets the collection of targets managed by this compound target.
-        /// </summary>
-        public IList<Target> Targets { get; private set; }
-
-        /// <summary>
-        /// Writes logging event to the log target. Must be overridden in inheriting
-        /// classes.
-        /// </summary>
-        /// <param name="logEvent">Logging event to be written out.</param>
-        protected override void Write(LogEventInfo logEvent)
+        private void StopTimer()
         {
-            throw new NotSupportedException("This target must not be invoked in a synchronous way.");
+            lock (this)
+            {
+                if (this.timeoutTimer != null)
+                {
+                    this.timeoutTimer.Dispose();
+                    this.timeoutTimer = null;
+                }
+            }
+        }
+
+        private void TimerElapsed(object state)
+        {
+            this.Function(new TimeoutException("Timeout."));
+        }
+
+        private static void ReportExceptionInHandler(Exception exception)
+        {
+            InternalLogger.Error("Exception in asynchronous handler {0}", exception);
         }
     }
 }

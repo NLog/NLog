@@ -33,8 +33,10 @@
 
 namespace NLog.Targets.Wrappers
 {
+    using System;
     using NLog.Conditions;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// A target wrapper that filters log entries based on a condition.
@@ -89,12 +91,17 @@ namespace NLog.Targets.Wrappers
         /// the wrapped target.
         /// </summary>
         /// <param name="logEvent">Log event.</param>
-        protected override void Write(LogEventInfo logEvent)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
             object v = this.Condition.Evaluate(logEvent);
             if (boxedBooleanTrue.Equals(v))
             {
-                WrappedTarget.WriteLogEvent(logEvent);
+                this.WrappedTarget.WriteLogEvent(logEvent, asyncContinuation);
+            }
+            else
+            {
+                asyncContinuation(null);
             }
         }
     }

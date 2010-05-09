@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AsyncHelperTests.cs" />
     <Compile Include="CaseSensitivityTests.cs" />
     <Compile Include="Filters\APITests.cs" />
     <Compile Include="Filters\WhenContainsTests.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Targets\EventLogTests.cs" />
     <Compile Include="Targets\FileTargetTests.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTargetTests.cs" />
+    <Compile Include="Targets\Wrappers\AutoFlushTargetWrapperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NLogTests.snk" />

@@ -98,7 +98,6 @@
     <Compile Include="Config\LoggingRule.cs" />
     <Compile Include="Config\MethodFactory.cs" />
     <Compile Include="Config\NameBaseAttribute.cs" />
-    <Compile Include="Config\NLogConfigurationException.cs" />
     <Compile Include="Config\NLogFactories.cs" />
     <Compile Include="Config\RequiredParameterAttribute.cs" />
     <Compile Include="Config\RuntimeOS.cs" />
@@ -125,11 +124,15 @@
     <Compile Include="Internal\AspHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Internal\AsyncContinuation.cs" />
+    <Compile Include="Internal\AsyncHelpers.cs" />
+    <Compile Include="Internal\AsynchronousAction.cs" />
     <Compile Include="Internal\CompactFrameworkHelper.cs" />
     <Compile Include="Internal\CurrentTimeGetter.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EnumerableHelpers.cs" />
     <Compile Include="Internal\EnvironmentHelper.cs" />
+    <Compile Include="Internal\ExtensionAttribute.cs" />
     <Compile Include="Internal\FactoryHelper.cs" />
     <Compile Include="Internal\FileAppenders\BaseFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs" />
@@ -158,9 +161,12 @@
     <Compile Include="Internal\PortableFileInfoHelper.cs" />
     <Compile Include="Internal\PortableThreadIDHelper.cs" />
     <Compile Include="Internal\PropertyHelper.cs" />
+    <Compile Include="Internal\SingleCallContinuation.cs" />
     <Compile Include="Internal\StackTraceUsageUtils.cs" />
+    <Compile Include="Internal\SynchronousAction.cs" />
     <Compile Include="Internal\TargetWithFilterChain.cs" />
     <Compile Include="Internal\ThreadIDHelper.cs" />
+    <Compile Include="Internal\TimeoutContinuation.cs" />
     <Compile Include="Internal\UrlHelper.cs" />
     <Compile Include="Internal\Win32FileInfoHelper.cs" />
     <Compile Include="Internal\Win32FileNativeMethods.cs" />
@@ -255,6 +261,8 @@
     <Compile Include="LogReceiverService\NLogEvents.cs" />
     <Compile Include="LogReceiverService\SoapLogReceiverClient.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverClient.cs" />
+    <Compile Include="NLogConfigurationException.cs" />
+    <Compile Include="NLogRuntimeException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Targets\ArchiveNumberingMode.cs" />
     <Compile Include="Targets\AspNetTraceTarget.cs" />

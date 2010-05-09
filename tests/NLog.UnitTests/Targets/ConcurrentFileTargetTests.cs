@@ -42,6 +42,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog.Config;
 using NLog.Targets;
 using NLog.Targets.Wrappers;
+using NLog.Common;
 
 namespace NLog.UnitTests.Targets
 {
@@ -88,6 +89,8 @@ namespace NLog.UnitTests.Targets
             }
 
             ConfigureSharedFile(mode);
+            InternalLogger.LogLevel = LogLevel.Trace;
+            InternalLogger.LogToConsole = true;
             int numLogs = Convert.ToInt32(numLogsString);
             for (int i = 0; i < numLogs; ++i)
             {
@@ -129,18 +132,18 @@ namespace NLog.UnitTests.Targets
                 {
                     string[] tokens = line.Split(' ');
                     Assert.AreEqual(2, tokens.Length, "invalid output line: '" + line + "' expected two numbers.");
-		    try
-		    {
+                    try
+                    {
                         int thread = Convert.ToInt32(tokens[0]);
                         int number = Convert.ToInt32(tokens[1]);
 
                         Assert.AreEqual(maxNumber[thread], number);
                         maxNumber[thread]++;
-		    }
-		    catch (Exception ex)
-		    {
-		    	throw new InvalidOperationException("Error when parsing line '" + line + "'", ex);
-		    }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new InvalidOperationException("Error when parsing line '" + line + "'", ex);
+                    }
                 }
             }
         }
