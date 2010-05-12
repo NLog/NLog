@@ -139,6 +139,12 @@ if (%1)==(rebuild) (
 	goto next
 )
 
+if (%1)==(syncprojectitems) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:SyncProjectItems
+	shift
+	goto next
+)
+
 if (%1)==(checkinsuite) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:CheckinSuite
 	set POST_BUILD_COMMAND="%~dp0src\LastTestRunSummary.cmd"

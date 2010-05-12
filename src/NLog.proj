@@ -22,6 +22,7 @@
     <DumpTestResultSummary>$(MSBuildProjectDirectory)\..\tools\DumpTestResultSummary\bin\$(Configuration)\DumpTestResultSummary.exe</DumpTestResultSummary>
     <DeployNetCF>..\tools\DeployNetCF.exe</DeployNetCF>
     <DumpApiXml>$(MSBuildProjectDirectory)\..\tools\DumpApiXml\bin\$(Configuration)\DumpApiXml.exe</DumpApiXml>
+    <SyncProjectItems>$(MSBuildProjectDirectory)\..\tools\SyncProjectItems\bin\$(Configuration)\SyncProjectItems.exe</SyncProjectItems>
     <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
     <InfoZip>$(MSBuildProjectDirectory)\..\tools\zip.exe</InfoZip>
     <Tar>$(MSBuildProjectDirectory)\..\tools\tar.exe</Tar>
@@ -314,6 +315,15 @@
 
   <Target Name="BuildTestResultSummaryTool">
     <MSBuild Projects="..\tools\DumpTestResultSummary\DumpTestResultSummary.csproj" Targets="Rebuild" />
+  </Target>
+
+  <Target Name="BuildSyncProjectItemsTool">
+    <MSBuild Projects="..\tools\SyncProjectItems\SyncProjectItems.csproj" Targets="Rebuild" />
+  </Target>
+
+  <Target Name="SyncProjectItems" DependsOnTargets="BuildSyncProjectItemsTool">
+    <Exec Command='"$(SyncProjectItems)" ProjectFileInfo.xml' WorkingDirectory="NLog" />
+    <Exec Command='"$(SyncProjectItems)" ProjectFileInfo.xml' WorkingDirectory="..\Tests\NLog.UnitTests" />
   </Target>
 
   <Target Name="BuildApiDumpTool">

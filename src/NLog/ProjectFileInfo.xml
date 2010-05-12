@@ -1,0 +1,115 @@
+<ProjectFiles>
+   <!--
+     this file contains information necessary to regenerate <Compile /> items in all NLog project files 
+     based on contents of this directory
+
+     The file is processed by SyncProjectItems.exe in tools directory.
+   -->
+
+   <FileSet Name="AllFilesToCompile">
+     <Include File="*.cs" />
+   </FileSet>
+
+   <FileSet Name="ExtendedProfileOnly">
+    <Include File="LayoutRenderers\AspNetApplicationValueLayoutRenderer.cs" />
+    <Include File="LayoutRenderers\AspNetRequestValueLayoutRenderer.cs" />
+    <Include File="LayoutRenderers\AspNetSessionIDLayoutRenderer.cs" />
+    <Include File="LayoutRenderers\AspNetSessionValueLayoutRenderer.cs" />
+    <Include File="LayoutRenderers\AspNetUserAuthTypeLayoutRenderer.cs" />
+    <Include File="LayoutRenderers\AspNetUserIdentityLayoutRenderer.cs" />
+    <Include File="Targets\AspNetTraceTarget.cs" />
+    <Include File="Targets\MessageQueueTarget.cs" />
+    <Include File="Targets\Wrappers\AspNetBufferingTargetWrapper.cs" />
+    <Include File="Web\NLogHttpModule.cs" />
+   </FileSet>
+
+   <FileSet Name="CommonFiles">
+    <Include File="AssemblyBuildInfo.cs" />
+    <Include File="GlobalSuppressions.cs" />
+    <Include File="Properties\AssemblyInfo.cs" />
+    <Include File="Internal\LogEventInfoBuffer.cs" />
+   </FileSet>
+
+   <FileSet Name="ExcludedFromStyleCop">
+    <Include File="ComInterop\ILogManager.cs" />
+    <Include File="ComInterop\ILogger.cs" />
+    <Include File="Internal\AspHelper.cs" />
+    <Include File="Internal\NativeMethods.cs" />
+    <Include File="Internal\Win32NativeMethods.cs" />
+    <Include File="Logger-V1Compat.cs" />
+   </FileSet>
+
+   <Customize FileSet="ExcludedFromStyleCop" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+   </Customize>
+ 
+   <Project File="NLog.sl2.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+   </Project>
+
+   <Project File="NLog.sl3.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+   </Project>
+
+   <Project File="NLog.sl4.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+   </Project>
+
+   <Project File="NLog.mono2.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+   </Project>
+
+   <Project File="NLog.netfx20.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+   </Project>
+
+   <Project File="NLog.netcf20.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+   </Project>
+
+   <Project File="NLog.netcf35.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+   </Project>
+
+   <Project File="NLog.netfx35.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+        <FileSet Exclude="ExtendedProfileOnly" />
+     </ItemGroup>
+   </Project>
+
+   <Project File="NLog.netfx40.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+        <FileSet Exclude="ExtendedProfileOnly" />
+     </ItemGroup>
+   </Project>
+
+   <Project File="NLog.Extended.netfx35.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="ExtendedProfileOnly" />
+        <FileSet Include="CommonFiles" />
+     </ItemGroup>
+   </Project>
+
+   <Project File="NLog.Extended.netfx40.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="ExtendedProfileOnly" />
+        <FileSet Include="CommonFiles" />
+     </ItemGroup>
+   </Project>
+</ProjectFiles>

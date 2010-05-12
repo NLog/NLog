@@ -8,3 +8,6 @@ log.txt
 *.suo
 _ReSharper.*
 *.ReSharper.user
+*.bak
+*.csproj.user
+TestResults/

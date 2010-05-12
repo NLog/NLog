@@ -64,93 +64,41 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="CaseSensitivityTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Filters\APITests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Filters\WhenContainsTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Filters\WhenEqualTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Filters\WhenNotContainsTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Filters\WhenNotEqualTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GetLoggerTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="CaseSensitivityTests.cs" />
+    <Compile Include="Filters\APITests.cs" />
+    <Compile Include="Filters\WhenContainsTests.cs" />
+    <Compile Include="Filters\WhenEqualTests.cs" />
+    <Compile Include="Filters\WhenNotContainsTests.cs" />
+    <Compile Include="Filters\WhenNotEqualTests.cs" />
+    <Compile Include="GetLoggerTests.cs" />
     <Compile Include="LayoutConfigurationTests.cs" />
-    <Compile Include="LayoutRenderers\BaseDirTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\CallSiteTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\Log4JXmlTests.cs" />
-    <Compile Include="LayoutRenderers\CounterTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\DateTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\EnvironmentTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="LayoutRenderers\BaseDirTests.cs" />
+    <Compile Include="LayoutRenderers\CallSiteTests.cs" />
+    <Compile Include="LayoutRenderers\CounterTests.cs" />
+    <Compile Include="LayoutRenderers\DateTests.cs" />
+    <Compile Include="LayoutRenderers\EnvironmentTests.cs" />
     <Compile Include="LayoutRenderers\EventContextTests.cs" />
     <Compile Include="LayoutRenderers\ExceptionTests.cs" />
     <Compile Include="LayoutRenderers\GDCTests.cs" />
-    <Compile Include="LayoutRenderers\LiteralTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\LogLevelTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\LoggerNameTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\LongDateTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\MDCTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\MessageTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\NDCTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="LayoutRenderers\LiteralTests.cs" />
+    <Compile Include="LayoutRenderers\Log4JXmlTests.cs" />
+    <Compile Include="LayoutRenderers\LoggerNameTests.cs" />
+    <Compile Include="LayoutRenderers\LogLevelTests.cs" />
+    <Compile Include="LayoutRenderers\LongDateTests.cs" />
+    <Compile Include="LayoutRenderers\MDCTests.cs" />
+    <Compile Include="LayoutRenderers\MessageTests.cs" />
+    <Compile Include="LayoutRenderers\NDCTests.cs" />
     <Compile Include="LayoutRenderers\Rot13Tests.cs" />
-    <Compile Include="LayoutRenderers\ShortDateTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LayoutRenderers\ThreadNameTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LogLevelTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="LayoutRenderers\ShortDateTests.cs" />
+    <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
+    <Compile Include="LoggerTests.cs" />
+    <Compile Include="LogLevelTests.cs" />
     <Compile Include="LogManagerTests.cs" />
-    <Compile Include="LoggerTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="NLogTestBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="NLogTestBase.cs" />
     <Compile Include="ProcessRunner.cs" />
     <Compile Include="RegressionTests.cs" />
-    <Compile Include="RoutingTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="RoutingTests.cs" />
     <Compile Include="SourceCodeTests.cs" />
     <Compile Include="TargetConfigurationTests.cs" />
     <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
