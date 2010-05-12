@@ -186,6 +186,11 @@ namespace SyncProjectItems
             foreach (var dir in Directory.GetDirectories(directory))
             {
                 string baseName = Path.GetFileName(dir);
+                if (baseName == "bin" || baseName == "obj")
+                {
+                    continue;
+                }
+
                 FindMatchingFiles(fileList, fileName, dir, prefix + baseName + "\\", add);
             }
         }
