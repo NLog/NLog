@@ -324,6 +324,7 @@ namespace NLog
             this.ReconfigExistingLoggers(this.Configuration);
         }
 
+#if !SILVERLIGHT
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>
@@ -349,6 +350,7 @@ namespace NLog
         {
             this.Flush(TimeSpan.FromMilliseconds(timeoutMilliseconds));
         }
+#endif
 
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).

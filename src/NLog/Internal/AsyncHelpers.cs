@@ -223,12 +223,17 @@ namespace NLog.Internal
 
             var sb = new StringBuilder();
             string separator = string.Empty;
+#if !SILVERLIGHT && !NET_CF
+            string newline = Environment.NewLine;
+#else
+            string newline = "\r\n";
+#endif
             foreach (var ex in exceptions)
             {
                 sb.Append(separator);
                 sb.Append(ex.ToString());
-                sb.AppendLine();
-                separator = Environment.NewLine;
+                sb.Append(newline);
+                separator = newline;
             }
 
             return new NLogRuntimeException("Got multiple exceptions:\r\n" + sb);
