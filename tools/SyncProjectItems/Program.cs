@@ -57,15 +57,12 @@ namespace SyncProjectItems
 
         private static void ProcessProjectDescriptor(XElement projectDescriptor, string baseDirectory)
         {
-            Console.WriteLine("{0}:", baseDirectory);
+            Console.WriteLine("Processing project files in '{0}':", baseDirectory);
             var filesets = LoadFileSets(projectDescriptor, baseDirectory);
+            Console.WriteLine("File sets:");
             foreach (var fs in filesets)
             {
                 Console.WriteLine("  {0}: {1} files", fs.Key, fs.Value.Count);
-                foreach (var f in fs.Value)
-                {
-                    Console.WriteLine("    {0}", f);
-                }
             }
 
             foreach (var project in projectDescriptor.Elements("Project"))
@@ -75,6 +72,7 @@ namespace SyncProjectItems
                 var projectContents = XElement.Load(projectFileName);
 
                 Console.WriteLine("Updating file: {0}", file);
+                string contentBefore = projectContents.ToString();
 
                 foreach (var itemGroup in project.Elements("ItemGroup"))
                 {
@@ -96,7 +94,7 @@ namespace SyncProjectItems
                         }
                     }
 
-                    Console.WriteLine("Item group: {0} {1} elements", itemGroupName, contents.Count);
+                    Console.WriteLine("  <{0}/>: {1} items", itemGroupName, contents.Count);
 
                     var existingItemGroup = projectContents.Elements(MSBuildNamespace + "ItemGroup").Where(c => c.Elements(MSBuildNamespace + itemGroupName).Any()).First();
                     existingItemGroup.Elements().Remove();
@@ -123,7 +121,17 @@ namespace SyncProjectItems
                         existingItemGroup.Add(item);
                     }
 
+                }
+
+                string contentAfter = projectContents.ToString();
+                if (contentBefore != contentAfter)
+                {
+                    Console.WriteLine("  Project updated. Saving.");
                     projectContents.Save(projectFileName);
+                }
+                else
+                {
+                    Console.WriteLine("  Project file is up-to-date.");
                 }
             }
         }
