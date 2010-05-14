@@ -379,8 +379,8 @@ namespace NLog.UnitTests
 
             AsyncContinuation finalContinuation = ex =>
             {
-                finalContinuationInvoked.Set();
                 lastException = ex;
+                finalContinuationInvoked.Set();
             };
 
             int sum = 0;
@@ -389,7 +389,11 @@ namespace NLog.UnitTests
             AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
                 (cont, i) =>
                 {
-                    Interlocked.Add(ref sum, i);
+                    lock (input)
+                    {
+                        sum += i;
+                    }
+
                     cont(null);
                     cont(null);
                 });
@@ -410,8 +414,8 @@ namespace NLog.UnitTests
 
             AsyncContinuation finalContinuation = ex =>
             {
-                finalContinuationInvoked.Set();
                 lastException = ex;
+                finalContinuationInvoked.Set();
             };
 
             int sum = 0;
@@ -421,7 +425,11 @@ namespace NLog.UnitTests
                 (cont, i) =>
                 {
                     Console.WriteLine("Callback on {0}", Thread.CurrentThread.ManagedThreadId);
-                    Interlocked.Add(ref sum, i);
+                    lock (input)
+                    {
+                        sum += i;
+                    }
+
                     if (i == 7)
                     {
                         throw new InvalidOperationException("Some failure.");
@@ -445,8 +453,8 @@ namespace NLog.UnitTests
 
             AsyncContinuation finalContinuation = ex =>
             {
-                finalContinuationInvoked.Set();
                 lastException = ex;
+                finalContinuationInvoked.Set();
             };
 
             int sum = 0;
@@ -455,7 +463,11 @@ namespace NLog.UnitTests
             AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
                 (cont, i) =>
                 {
-                    Interlocked.Add(ref sum, i);
+                    lock (input)
+                    {
+                        sum += i;
+                    }
+
                     throw new InvalidOperationException("Some failure.");
                 });
 
