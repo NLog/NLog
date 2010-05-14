@@ -37,6 +37,7 @@ namespace NLog.UnitTests
     using System.Collections.Generic;
     using System.Threading;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NLog.Common;
     using NLog.Internal;
 
     [TestClass]
@@ -350,6 +351,119 @@ namespace NLog.UnitTests
             Assert.IsTrue(finalContinuationInvoked);
             Assert.AreSame(sampleException, lastException);
             Assert.AreEqual(1, sum);
+        }
+
+        [TestMethod]
+        public void ForEachItemInParallelEmptyTest()
+        {
+            int[] items = new int[0];
+            Exception lastException = null;
+            bool finalContinuationInvoked = false;
+
+            AsyncContinuation continuation = ex =>
+                {
+                    lastException = ex;
+                    finalContinuationInvoked = true;
+                };
+
+            AsyncHelpers.ForEachItemInParallel(items, continuation, (cont, i) => { Assert.Fail("Will not be reached"); });
+            Assert.IsTrue(finalContinuationInvoked);
+            Assert.IsNull(lastException);
+        }
+
+        [TestMethod]
+        public void ForEachItemInParallelTest()
+        {
+            var finalContinuationInvoked = new ManualResetEvent(false);
+            Exception lastException = null;
+
+            AsyncContinuation finalContinuation = ex =>
+            {
+                finalContinuationInvoked.Set();
+                lastException = ex;
+            };
+
+            int sum = 0;
+            var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
+
+            AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
+                (cont, i) =>
+                {
+                    Interlocked.Add(ref sum, i);
+                    cont(null);
+                    cont(null);
+                });
+
+            finalContinuationInvoked.WaitOne();
+            Assert.IsNull(lastException);
+            Assert.AreEqual(55, sum);
+        }
+
+        [TestMethod]
+        public void ForEachItemInParallelSingleFailureTest()
+        {
+            InternalLogger.LogLevel = LogLevel.Trace;
+            InternalLogger.LogToConsole = true;
+
+            var finalContinuationInvoked = new ManualResetEvent(false);
+            Exception lastException = null;
+
+            AsyncContinuation finalContinuation = ex =>
+            {
+                finalContinuationInvoked.Set();
+                lastException = ex;
+            };
+
+            int sum = 0;
+            var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
+
+            AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
+                (cont, i) =>
+                {
+                    Console.WriteLine("Callback on {0}", Thread.CurrentThread.ManagedThreadId);
+                    Interlocked.Add(ref sum, i);
+                    if (i == 7)
+                    {
+                        throw new InvalidOperationException("Some failure.");
+                    }
+
+                    cont(null);
+                });
+
+            finalContinuationInvoked.WaitOne();
+            Assert.AreEqual(55, sum);
+            Assert.IsNotNull(lastException);
+            Assert.IsInstanceOfType(lastException, typeof(InvalidOperationException));
+            Assert.AreEqual("Some failure.", lastException.Message);
+        }
+
+        [TestMethod]
+        public void ForEachItemInParallelMultipleFailuresTest()
+        {
+            var finalContinuationInvoked = new ManualResetEvent(false);
+            Exception lastException = null;
+
+            AsyncContinuation finalContinuation = ex =>
+            {
+                finalContinuationInvoked.Set();
+                lastException = ex;
+            };
+
+            int sum = 0;
+            var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
+
+            AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
+                (cont, i) =>
+                {
+                    Interlocked.Add(ref sum, i);
+                    throw new InvalidOperationException("Some failure.");
+                });
+
+            finalContinuationInvoked.WaitOne();
+            Assert.AreEqual(55, sum);
+            Assert.IsNotNull(lastException);
+            Assert.IsInstanceOfType(lastException, typeof(NLogRuntimeException));
+            Assert.IsTrue(lastException.Message.StartsWith("Got multiple exceptions:\r\n"));
         }
 
         [TestMethod]

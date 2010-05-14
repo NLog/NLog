@@ -35,6 +35,7 @@ namespace NLog.Internal
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     using System.Threading;
     using NLog.Common;
 
@@ -157,17 +158,12 @@ namespace NLog.Internal
             return continuation;
         }
 
-        public static AsyncContinuation PrecededByRegardlessOfResult(this AsyncContinuation asyncContinuation, SynchronousAction action)
-        {
-            throw new NotImplementedException();
-        }
-
         public static AsyncContinuation WithTimeout(this AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
             return new TimeoutContinuation(asyncContinuation, timeout).Function;
         }
 
-        public static void RunInParallel<T>(IEnumerable<T> values, AsyncContinuation asyncContinuation, AsynchronousAction<T> action)
+        public static void ForEachItemInParallel<T>(IEnumerable<T> values, AsyncContinuation asyncContinuation, AsynchronousAction<T> action)
         {
             action = ExceptionGuard(action);
 
@@ -175,7 +171,7 @@ namespace NLog.Internal
             int remaining = items.Count;
             var exceptions = new List<Exception>();
 
-            InternalLogger.Trace("RunInParallel() {0} items", items.Count);
+            InternalLogger.Trace("ForEachItemInParallel() {0} items", items.Count);
 
             if (remaining == 0)
             {
@@ -186,44 +182,56 @@ namespace NLog.Internal
             AsyncContinuation continuation =
                 ex =>
                     {
+                        InternalLogger.Trace("Continuation invoked: {0}", ex);
                         int r;
 
-                        if (ex == null)
+                        if (ex != null)
                         {
-                            r = Interlocked.Decrement(ref remaining);
-                            InternalLogger.Trace("Parallel task completed. {0} items remaining", r);
-                            if (r == 0)
+                            lock (exceptions)
                             {
-                                if (exceptions.Count == 0)
-                                {
-                                    asyncContinuation(null);
-                                }
-                                else
-                                {
-                                    asyncContinuation(new NLogRuntimeException("TODO - combine all exceptions into one."));
-                                }
+                                exceptions.Add(ex);
                             }
-
-                            return;
-                        }
-
-                        lock (exceptions)
-                        {
-                            exceptions.Add(ex);
                         }
 
                         r = Interlocked.Decrement(ref remaining);
-                        InternalLogger.Trace("Parallel task failed {0}. {1} items remaining", ex, r);
+                        InternalLogger.Trace("Parallel task completed. {0} items remaining", r);
                         if (r == 0)
                         {
-                            asyncContinuation(new NLogRuntimeException("TODO - combine all exceptions into one."));
+                            asyncContinuation(GetCombinedException(exceptions));
                         }
                     };
 
-            foreach (var v in items)
+            foreach (T item in items)
             {
-                action(OneTimeOnly(continuation), v);
+                T itemCopy = item;
+
+                ThreadPool.QueueUserWorkItem(s => action(OneTimeOnly(continuation), itemCopy));
             }
+        }
+
+        private static Exception GetCombinedException(List<Exception> exceptions)
+        {
+            if (exceptions.Count == 0)
+            {
+                return null;
+            }
+
+            if (exceptions.Count == 1)
+            {
+                return exceptions[0];
+            }
+
+            var sb = new StringBuilder();
+            string separator = string.Empty;
+            foreach (var ex in exceptions)
+            {
+                sb.Append(separator);
+                sb.Append(ex.ToString());
+                sb.AppendLine();
+                separator = Environment.NewLine;
+            }
+
+            return new NLogRuntimeException("Got multiple exceptions:\r\n" + sb);
         }
 
         public static void RunSynchronously(AsynchronousAction action)
@@ -235,7 +243,7 @@ namespace NLog.Internal
             ev.WaitOne();
             if (lastException != null)
             {
-                throw new NLogRuntimeException("Asynchronous exception has occured.");
+                throw new NLogRuntimeException("Asynchronous exception has occured.", lastException);
             }
         }
 
