@@ -481,7 +481,6 @@ namespace NLog.UnitTests
         [TestMethod]
         public void PrecededByTest1()
         {
-            Exception firstException = null;
             int invokedCount1 = 0;
             int invokedCount2 = 0;
             int sequence = 7;
@@ -492,7 +491,6 @@ namespace NLog.UnitTests
             {
                 invokedCount1++;
                 invokedCount1Sequence = sequence++;
-                firstException = ex;
             };
 
             AsynchronousAction doSomethingElse = c =>
@@ -517,7 +515,6 @@ namespace NLog.UnitTests
         [TestMethod]
         public void PrecededByTest2()
         {
-            Exception firstException = null;
             int invokedCount1 = 0;
             int invokedCount2 = 0;
             int sequence = 7;
@@ -528,7 +525,6 @@ namespace NLog.UnitTests
             {
                 invokedCount1++;
                 invokedCount1Sequence = sequence++;
-                firstException = ex;
             };
 
             AsynchronousAction doSomethingElse = c =>

@@ -40,17 +40,19 @@ namespace NLog.UnitTests.Targets.Wrappers
     using NLog.Targets.Wrappers;
 
     using NLog.Internal;
+    using NLog.Conditions;
 
     [TestClass]
-    public class AutoFlushTargetWrapperTests : NLogTestBase
+    public class FilteringTargetWrapperTests : NLogTestBase
 	{
         [TestMethod]
-        public void AutoFlushTargetWrapperSyncTest1()
+        public void FilteringTargetWrapperSyncTest1()
         {
             var myTarget = new MyTarget();
-            var autoFlushTargetWrapper = new AutoFlushTargetWrapper
+            var wrapper = new FilteringTargetWrapper
             {
                 WrappedTarget = myTarget,
+                Condition = "true",
             };
 
             var logEvent = new LogEventInfo();
@@ -63,26 +65,24 @@ namespace NLog.UnitTests.Targets.Wrappers
                         continuationHit = true;
                     };
 
-            autoFlushTargetWrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteLogEvent(logEvent, continuation);
 
             Assert.IsTrue(continuationHit);
             Assert.IsNull(lastException);
-            Assert.AreEqual(1, myTarget.FlushCount);
             Assert.AreEqual(1, myTarget.WriteCount);
 
             continuationHit = false;
-            autoFlushTargetWrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteLogEvent(logEvent, continuation);
             Assert.IsTrue(continuationHit);
             Assert.IsNull(lastException);
             Assert.AreEqual(2, myTarget.WriteCount);
-            Assert.AreEqual(2, myTarget.FlushCount);
         }
 
         [TestMethod]
-        public void AutoFlushTargetWrapperAsyncTest1()
+        public void FilteringTargetWrapperAsyncTest1()
         {
             var myTarget = new MyAsyncTarget();
-            var autoFlushTargetWrapper = new AutoFlushTargetWrapper(myTarget);
+            var wrapper = new FilteringTargetWrapper(myTarget, "true");
             var logEvent = new LogEventInfo();
             Exception lastException = null;
             var continuationHit = new ManualResetEvent(false);
@@ -93,31 +93,28 @@ namespace NLog.UnitTests.Targets.Wrappers
                     continuationHit.Set();
                 };
 
-            autoFlushTargetWrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteLogEvent(logEvent, continuation);
 
             continuationHit.WaitOne();
             Assert.IsNull(lastException);
-            Assert.AreEqual(1, myTarget.FlushCount);
             Assert.AreEqual(1, myTarget.WriteCount);
 
             continuationHit.Reset();
-            autoFlushTargetWrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteLogEvent(logEvent, continuation);
             continuationHit.WaitOne();
             Assert.IsNull(lastException);
             Assert.AreEqual(2, myTarget.WriteCount);
-            Assert.AreEqual(2, myTarget.FlushCount);
         }
 
-
         [TestMethod]
-        public void AutoFlushTargetWrapperAsyncWithExceptionTest1()
+        public void FilteringTargetWrapperAsyncWithExceptionTest1()
         {
             var myTarget = new MyAsyncTarget
             {
                 ThrowExceptions = true,
             };
 
-            var autoFlushTargetWrapper = new AutoFlushTargetWrapper(myTarget);
+            var wrapper = new FilteringTargetWrapper(myTarget, "true");
             var logEvent = new LogEventInfo();
             Exception lastException = null;
             var continuationHit = new ManualResetEvent(false);
@@ -128,29 +125,26 @@ namespace NLog.UnitTests.Targets.Wrappers
                     continuationHit.Set();
                 };
 
-            autoFlushTargetWrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteLogEvent(logEvent, continuation);
 
             continuationHit.WaitOne();
             Assert.IsNotNull(lastException);
             Assert.IsInstanceOfType(lastException, typeof(InvalidOperationException));
 
             // no flush on exception
-            Assert.AreEqual(0, myTarget.FlushCount);
             Assert.AreEqual(1, myTarget.WriteCount);
 
             continuationHit.Reset();
             lastException = null;
-            autoFlushTargetWrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteLogEvent(logEvent, continuation);
             continuationHit.WaitOne();
             Assert.IsNotNull(lastException);
             Assert.IsInstanceOfType(lastException, typeof(InvalidOperationException));
-            Assert.AreEqual(0, myTarget.FlushCount);
             Assert.AreEqual(2, myTarget.WriteCount);
         }
 
         class MyAsyncTarget : Target
         {
-            public int FlushCount { get; private set; }
             public int WriteCount { get; private set; }
 
             protected override void Write(LogEventInfo logEvent)
@@ -160,7 +154,6 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
             {
-                Assert.IsTrue(this.FlushCount <= this.WriteCount);
                 this.WriteCount++;
                 ThreadPool.QueueUserWorkItem(
                     s =>
@@ -178,31 +171,16 @@ namespace NLog.UnitTests.Targets.Wrappers
                         });
             }
 
-            protected override void FlushAsync(AsyncContinuation asyncContinuation)
-            {
-                this.FlushCount++;
-                ThreadPool.QueueUserWorkItem(
-                    s => asyncContinuation(null));
-            }
-
             public bool ThrowExceptions { get; set; }
         }
 
         class MyTarget : Target
         {
-            public int FlushCount { get; set; }
             public int WriteCount { get; set; }
 
             protected override void Write(LogEventInfo logEvent)
             {
-                Assert.IsTrue(this.FlushCount <= this.WriteCount);
                 this.WriteCount++;
-            }
-
-            protected override void FlushAsync(AsyncContinuation asyncContinuation)
-            {
-                this.FlushCount++;
-                asyncContinuation(null);
             }
         }
     }
