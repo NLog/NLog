@@ -125,6 +125,7 @@
     <Compile Include="Targets\FileTargetTests.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTargetTests.cs" />
     <Compile Include="Targets\Wrappers\AutoFlushTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\FilteringTargetWrapperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
