@@ -199,6 +199,7 @@ namespace NLog
             }
             catch (Exception ex)
             {
+                InternalLogger.Warn("Exception during filter evaluation: {0}", ex);
                 return FilterResult.Ignore;
             }
         }

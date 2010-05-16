@@ -126,7 +126,9 @@ namespace NLog.Targets.Wrappers
         /// and adds returns the list containing them.
         /// </summary>
         /// <param name="count">Maximum number of items to be dequeued.</param>
-        /// <returns>List of dequeued items.</returns>
+        /// <param name="logEventInfos">The array of log events.</param>
+        /// <param name="asyncContinuations">The array of asynchronous continuations.</param>
+        /// <returns>Number of dequeued items.</returns>
         public int DequeueBatch(int count, out LogEventInfo[] logEventInfos, out AsyncContinuation[] asyncContinuations)
         {
             var resultEvents = new List<LogEventInfo>();

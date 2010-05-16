@@ -102,7 +102,7 @@ namespace NLog.Targets.Wrappers
         /// is applied to the array of log events.
         /// </summary>
         /// <param name="logEvents">Array of log events to be post-filtered.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <param name="asyncContinuations">The asynchronous continuations.</param>
         protected override void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
         {
             ConditionExpression resultFilter = null;

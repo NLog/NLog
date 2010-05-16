@@ -48,10 +48,10 @@ namespace NLog.UnitTests
         {
             var exceptions = new List<Exception>();
             AsyncContinuation cont = exceptions.Add;
-            cont = cont.OneTimeOnly();
+            cont = AsyncHelpers.OneTimeOnly(cont);
 
             // OneTimeOnly(OneTimeOnly(x)) == OneTimeOnly(x)
-            var cont2 = cont.OneTimeOnly();
+            var cont2 = AsyncHelpers.OneTimeOnly(cont);
 #if NETCF2_0
             Assert.AreNotSame(cont, cont2);
 #else
@@ -74,7 +74,7 @@ namespace NLog.UnitTests
         {
             var exceptions = new List<Exception>();
             AsyncContinuation cont = exceptions.Add;
-            cont = cont.OneTimeOnly();
+            cont = AsyncHelpers.OneTimeOnly(cont);
 
             var sampleException = new InvalidOperationException("some message");
 
@@ -93,7 +93,7 @@ namespace NLog.UnitTests
             var exceptions = new List<Exception>();
             var sampleException = new InvalidOperationException("some message");
             AsyncContinuation cont = ex => { exceptions.Add(ex); throw sampleException; };
-            cont = cont.OneTimeOnly();
+            cont = AsyncHelpers.OneTimeOnly(cont);
 
             cont(null);
             cont(null);
@@ -134,7 +134,7 @@ namespace NLog.UnitTests
             var exceptions = new List<Exception>();
 
             // set up a timer to strike in 1 second
-            var cont = AsyncHelpers.OneTimeOnly(exceptions.Add).WithTimeout(TimeSpan.FromSeconds(1));
+            var cont = AsyncHelpers.WithTimeout(AsyncHelpers.OneTimeOnly(exceptions.Add), TimeSpan.FromSeconds(1));
 
             // call success quickly, hopefully before the timer comes
             cont(null);
@@ -162,7 +162,7 @@ namespace NLog.UnitTests
             var exceptions = new List<Exception>();
 
             // set up a timer to strike in 3 second
-            var cont = AsyncHelpers.OneTimeOnly(exceptions.Add).WithTimeout(TimeSpan.FromSeconds(1));
+            var cont = AsyncHelpers.WithTimeout(AsyncHelpers.OneTimeOnly(exceptions.Add), TimeSpan.FromSeconds(1));
 
             var exception = new InvalidOperationException("Foo");
             // call success quickly, hopefully before the timer comes
@@ -501,7 +501,7 @@ namespace NLog.UnitTests
                 c(null);
             };
 
-            AsyncContinuation cont = originalContinuation.PrecededBy(doSomethingElse);
+            AsyncContinuation cont = AsyncHelpers.PrecededBy(originalContinuation, doSomethingElse);
             cont(null);
 
             // make sure doSomethingElse was invoked first
@@ -535,7 +535,7 @@ namespace NLog.UnitTests
                 c(null);
             };
 
-            AsyncContinuation cont = originalContinuation.PrecededBy(doSomethingElse);
+            AsyncContinuation cont = AsyncHelpers.PrecededBy(originalContinuation, doSomethingElse);
             var sampleException = new InvalidOperationException("Some message.");
             cont(sampleException);
 

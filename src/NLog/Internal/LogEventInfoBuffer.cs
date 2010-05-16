@@ -77,8 +77,9 @@ namespace NLog.Internal
         /// Adds the specified log event to the buffer.
         /// </summary>
         /// <param name="eventInfo">Log event.</param>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
         /// <returns>The number of items in the buffer.</returns>
-        public int Append(LogEventInfo eventInfo, AsyncContinuation continuation)
+        public int Append(LogEventInfo eventInfo, AsyncContinuation asyncContinuation)
         {
             lock (this)
             {
@@ -113,7 +114,7 @@ namespace NLog.Internal
                 // put the item
                 this.putPointer = this.putPointer % this.buffer.Length;
                 this.buffer[this.putPointer] = eventInfo;
-                this.continuations[this.putPointer] = continuation;
+                this.continuations[this.putPointer] = asyncContinuation;
                 this.putPointer = this.putPointer + 1;
                 this.count++;
                 if (this.count >= this.buffer.Length)

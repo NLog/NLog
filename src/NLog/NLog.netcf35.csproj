@@ -143,7 +143,6 @@
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EnumerableHelpers.cs" />
     <Compile Include="Internal\EnvironmentHelper.cs" />
-    <Compile Include="Internal\ExtensionAttribute.cs" />
     <Compile Include="Internal\FactoryHelper.cs" />
     <Compile Include="Internal\FileAppenders\BaseFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs" />
@@ -174,7 +173,6 @@
     <Compile Include="Internal\PropertyHelper.cs" />
     <Compile Include="Internal\SingleCallContinuation.cs" />
     <Compile Include="Internal\StackTraceUsageUtils.cs" />
-    <Compile Include="Internal\SynchronousAction.cs" />
     <Compile Include="Internal\TargetWithFilterChain.cs" />
     <Compile Include="Internal\ThreadIDHelper.cs" />
     <Compile Include="Internal\TimeoutContinuation.cs" />

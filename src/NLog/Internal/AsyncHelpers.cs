@@ -44,11 +44,15 @@ namespace NLog.Internal
     /// </summary>
     public static class AsyncHelpers
     {
-        public static void LogException(Exception ex)
-        {
-            InternalLogger.Error("EXCEPTION: {0}", ex);
-        }
-
+        /// <summary>
+        /// Iterates over all items in the given collection and runs the specified action
+        /// in sequence (each action executes only after the preceding one has completed without an error).
+        /// </summary>
+        /// <typeparam name="T">Type of each item</typeparam>
+        /// <param name="items">The items to iterate.</param>
+        /// <param name="asyncContinuation">The asynchronous continuation to invoke once all items
+        /// have been iterated.</param>
+        /// <param name="action">The action to invoke for each item.</param>
         public static void ForEachItemSequentially<T>(IEnumerable<T> items, AsyncContinuation asyncContinuation, AsynchronousAction<T> action)
         {
             action = ExceptionGuard(action);
@@ -69,12 +73,18 @@ namespace NLog.Internal
                     return;
                 }
 
-                action(invokeNext.OneTimeOnly(), enumerator.Current);
+                action(OneTimeOnly(invokeNext), enumerator.Current);
             };
 
             invokeNext(null);
         }
 
+        /// <summary>
+        /// Repeats the specified asynchronous action multiple times and invokes asynchronous continuation at the end.
+        /// </summary>
+        /// <param name="repeatCount">The repeat count.</param>
+        /// <param name="asyncContinuation">The asynchronous continuation to invoke at the end.</param>
+        /// <param name="action">The action to invoke.</param>
         public static void Repeat(int repeatCount, AsyncContinuation asyncContinuation, AsynchronousAction action)
         {
             action = ExceptionGuard(action);
@@ -95,40 +105,10 @@ namespace NLog.Internal
                         return;
                     }
 
-                    action(invokeNext.OneTimeOnly());
+                    action(OneTimeOnly(invokeNext));
                 };
 
             invokeNext(null);
-        }
-
-        private static AsynchronousAction ExceptionGuard(AsynchronousAction action)
-        {
-            return cont =>
-                {
-                    try
-                    {
-                        action(cont);
-                    }
-                    catch (Exception ex)
-                    {
-                        cont(ex);
-                    }
-                };
-        }
-
-        private static AsynchronousAction<T> ExceptionGuard<T>(AsynchronousAction<T> action)
-        {
-            return (AsyncContinuation cont, T argument) =>
-            {
-                try
-                {
-                    action(cont, argument);
-                }
-                catch (Exception ex)
-                {
-                    cont(ex);
-                }
-            };
         }
 
         /// <summary>
@@ -137,7 +117,7 @@ namespace NLog.Internal
         /// <param name="asyncContinuation">The async continuation.</param>
         /// <param name="action">The action to pre-pend.</param>
         /// <returns>Continuation which will execute the given action before forwarding to the actual continuation.</returns>
-        public static AsyncContinuation PrecededBy(this AsyncContinuation asyncContinuation, AsynchronousAction action)
+        public static AsyncContinuation PrecededBy(AsyncContinuation asyncContinuation, AsynchronousAction action)
         {
             action = ExceptionGuard(action);
 
@@ -152,17 +132,33 @@ namespace NLog.Internal
                     }
 
                     // call the action and continue
-                    action(asyncContinuation.OneTimeOnly());
+                    action(OneTimeOnly(asyncContinuation));
                 };
 
             return continuation;
         }
 
-        public static AsyncContinuation WithTimeout(this AsyncContinuation asyncContinuation, TimeSpan timeout)
+        /// <summary>
+        /// Attaches a timeout to a continuation which will invoke the continuation when the specified
+        /// timeout has elapsed.
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <param name="timeout">The timeout.</param>
+        /// <returns>Wrapped continuation.</returns>
+        public static AsyncContinuation WithTimeout(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
             return new TimeoutContinuation(asyncContinuation, timeout).Function;
         }
 
+        /// <summary>
+        /// Iterates over all items in the given collection and runs the specified action
+        /// in parallel (each action executes on a thread from thread pool).
+        /// </summary>
+        /// <typeparam name="T">Type of each item</typeparam>
+        /// <param name="values">The items to iterate.</param>
+        /// <param name="asyncContinuation">The asynchronous continuation to invoke once all items
+        /// have been iterated.</param>
+        /// <param name="action">The action to invoke for each item.</param>
         public static void ForEachItemInParallel<T>(IEnumerable<T> values, AsyncContinuation asyncContinuation, AsynchronousAction<T> action)
         {
             action = ExceptionGuard(action);
@@ -209,6 +205,76 @@ namespace NLog.Internal
             }
         }
 
+        /// <summary>
+        /// Runs the specified asynchronous action synchronously (blocks until the continuation has
+        /// been invoked).
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <remarks>
+        /// Using this method is not recommended because it will block the calling thread.
+        /// </remarks>
+        public static void RunSynchronously(AsynchronousAction action)
+        {
+            var ev = new ManualResetEvent(false);
+            Exception lastException = null;
+
+            action(OneTimeOnly(ex => { lastException = ex; ev.Set(); }));
+            ev.WaitOne();
+            if (lastException != null)
+            {
+                throw new NLogRuntimeException("Asynchronous exception has occured.", lastException);
+            }
+        }
+
+        /// <summary>
+        /// Wraps the continuation with a guard which will only make sure that the continuation function
+        /// is invoked only once.
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <returns>Wrapped asynchronous continuation.</returns>
+        public static AsyncContinuation OneTimeOnly(AsyncContinuation asyncContinuation)
+        {
+#if !NETCF2_0
+            // target is not available on .NET CF 2.0
+            if (asyncContinuation.Target is SingleCallContinuation)
+            {
+                return asyncContinuation;
+            }
+#endif
+
+            return new SingleCallContinuation(asyncContinuation).Function;
+        }
+
+        private static AsynchronousAction ExceptionGuard(AsynchronousAction action)
+        {
+            return cont =>
+            {
+                try
+                {
+                    action(cont);
+                }
+                catch (Exception ex)
+                {
+                    cont(ex);
+                }
+            };
+        }
+
+        private static AsynchronousAction<T> ExceptionGuard<T>(AsynchronousAction<T> action)
+        {
+            return (AsyncContinuation cont, T argument) =>
+            {
+                try
+                {
+                    action(cont, argument);
+                }
+                catch (Exception ex)
+                {
+                    cont(ex);
+                }
+            };
+        }
+
         private static Exception GetCombinedException(List<Exception> exceptions)
         {
             if (exceptions.Count == 0)
@@ -237,32 +303,6 @@ namespace NLog.Internal
             }
 
             return new NLogRuntimeException("Got multiple exceptions:\r\n" + sb);
-        }
-
-        public static void RunSynchronously(AsynchronousAction action)
-        {
-            var ev = new ManualResetEvent(false);
-            Exception lastException = null;
-
-            action(OneTimeOnly(ex => { lastException = ex; ev.Set(); }));
-            ev.WaitOne();
-            if (lastException != null)
-            {
-                throw new NLogRuntimeException("Asynchronous exception has occured.", lastException);
-            }
-        }
-
-        public static AsyncContinuation OneTimeOnly(this AsyncContinuation asyncContinuation)
-        {
-#if !NETCF2_0
-            // target is not available on .NET CF 2.0
-            if (asyncContinuation.Target is SingleCallContinuation)
-            {
-                return asyncContinuation;
-            }
-#endif
-
-            return new SingleCallContinuation(asyncContinuation).Function;
         }
     }
 }

@@ -40,7 +40,6 @@ namespace NLog.Targets
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
-    using System.Threading;
 
     /// <summary>
     /// Represents logging target.
@@ -55,32 +54,32 @@ namespace NLog.Targets
         /// <docgen category='General Options' order='10' />
         public string Name { get; set; }
 
-/// <summary>
-/// Flush any pending log messages (in case of asynchronous targets).
-/// </summary>
-/// <param name="asyncContinuation">The asynchronous continuation.</param>
-public void Flush(AsyncContinuation asyncContinuation)
-{
-    asyncContinuation = asyncContinuation.OneTimeOnly();
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        public void Flush(AsyncContinuation asyncContinuation)
+        {
+            asyncContinuation = AsyncHelpers.OneTimeOnly(asyncContinuation);
 
-    try
-    {
-        this.FlushAsync(asyncContinuation);
-    }
-    catch (Exception ex)
-    {
-        asyncContinuation(ex);
-    }
-}
+            try
+            {
+                this.FlushAsync(asyncContinuation);
+            }
+            catch (Exception ex)
+            {
+                asyncContinuation(ex);
+            }
+        }
 
-/// <summary>
-/// Flush any pending log messages asynchronously (in case of asynchronous targets).
-/// </summary>
-/// <param name="asyncContinuation">The asynchronous continuation.</param>
-protected virtual void FlushAsync(AsyncContinuation asyncContinuation)
-{
-    asyncContinuation(null);
-}
+        /// <summary>
+        /// Flush any pending log messages asynchronously (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected virtual void FlushAsync(AsyncContinuation asyncContinuation)
+        {
+            asyncContinuation(null);
+        }
 
         /// <summary>
         /// Writes the log to the target.
@@ -89,7 +88,7 @@ protected virtual void FlushAsync(AsyncContinuation asyncContinuation)
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public void WriteLogEvent(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            asyncContinuation = asyncContinuation.OneTimeOnly();
+            asyncContinuation = AsyncHelpers.OneTimeOnly(asyncContinuation);
 
             try
             {
@@ -111,7 +110,7 @@ protected virtual void FlushAsync(AsyncContinuation asyncContinuation)
             var continuations = new AsyncContinuation[asyncContinuations.Length];
             for (int i = 0; i < continuations.Length; ++i)
             {
-                continuations[i] = asyncContinuations[i].OneTimeOnly();
+                continuations[i] = AsyncHelpers.OneTimeOnly(asyncContinuations[i]);
             }
 
             try
