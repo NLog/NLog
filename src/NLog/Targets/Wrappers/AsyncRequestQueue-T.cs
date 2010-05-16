@@ -35,17 +35,15 @@ namespace NLog.Targets.Wrappers
 {
     using System.Collections.Generic;
     using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Asynchronous request queue.
     /// </summary>
-    /// <typeparam name="T">
-    /// Item type.
-    /// </typeparam>
-    public class AsyncRequestQueue<T>
+    public class AsyncRequestQueue
     {
-        private Queue<T> queue = new Queue<T>();
-        private int batchedItems = 0;
+        private Queue<LogEventInfo> logEventInfoQueue = new Queue<LogEventInfo>();
+        private Queue<AsyncContinuation> asyncContinuationsQueue = new Queue<AsyncContinuation>();
 
         /// <summary>
         /// Initializes a new instance of the AsyncRequestQueue class.
@@ -74,27 +72,20 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         public int RequestCount
         {
-            get { return this.queue.Count; }
-        }
-
-        /// <summary>
-        /// Gets the number of requests currently being processed (in the queue + batched).
-        /// </summary>
-        public int UnprocessedRequestCount
-        {
-            get { return this.queue.Count + this.batchedItems; }
+            get { return this.logEventInfoQueue.Count; }
         }
 
         /// <summary>
         /// Enqueues another item. If the queue is overflown the appropriate
         /// action is taken as specified by <see cref="OnOverflow"/>.
         /// </summary>
-        /// <param name="o">The item to be queued.</param>
-        public void Enqueue(T o)
+        /// <param name="logEventInfo">The log event info.</param>
+        /// <param name="asyncContinuation">The asynchronou continuation.</param>
+        public void Enqueue(LogEventInfo logEventInfo, AsyncContinuation asyncContinuation)
         {
             lock (this)
             {
-                if (this.queue.Count >= this.RequestLimit)
+                if (this.logEventInfoQueue.Count >= this.RequestLimit)
                 {
                     switch (this.OnOverflow)
                     {
@@ -106,7 +97,7 @@ namespace NLog.Targets.Wrappers
 
 #if !NET_CF
                         case AsyncTargetWrapperOverflowAction.Block:
-                            while (this.queue.Count >= this.RequestLimit)
+                            while (this.logEventInfoQueue.Count >= this.RequestLimit)
                             {
                                 InternalLogger.Debug("Blocking...");
                                 if (System.Threading.Monitor.Wait(this))
@@ -125,7 +116,8 @@ namespace NLog.Targets.Wrappers
                     }
                 }
 
-                this.queue.Enqueue(o);
+                this.logEventInfoQueue.Enqueue(logEventInfo);
+                this.asyncContinuationsQueue.Enqueue(asyncContinuation);
             }
         }
 
@@ -135,21 +127,22 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="count">Maximum number of items to be dequeued.</param>
         /// <returns>List of dequeued items.</returns>
-        public List<T> DequeueBatch(int count)
+        public int DequeueBatch(int count, out LogEventInfo[] logEventInfos, out AsyncContinuation[] asyncContinuations)
         {
-            var target = new List<T>(count);
+            var resultEvents = new List<LogEventInfo>();
+            var resultContinutions = new List<AsyncContinuation>();
+
             lock (this)
             {
                 for (int i = 0; i < count; ++i)
                 {
-                    if (this.queue.Count <= 0)
+                    if (this.logEventInfoQueue.Count <= 0)
                     {
                         break;
                     }
 
-                    T o = this.queue.Dequeue();
-
-                    target.Add(o);
+                    resultEvents.Add(this.logEventInfoQueue.Dequeue());
+                    resultContinutions.Add(this.asyncContinuationsQueue.Dequeue());
                 }
 #if !NET_CF
                 if (this.OnOverflow == AsyncTargetWrapperOverflowAction.Block)
@@ -159,17 +152,10 @@ namespace NLog.Targets.Wrappers
 #endif
             }
 
-            this.batchedItems = target.Count;
-            return target;
-        }
+            logEventInfos = resultEvents.ToArray();
+            asyncContinuations = resultContinutions.ToArray();
 
-        /// <summary>
-        /// Notifies the queue that the request batch has been processed.
-        /// </summary>
-        /// <param name="batch">The batch.</param>
-        public void BatchProcessed(ICollection<T> batch)
-        {
-            this.batchedItems = 0;
+            return logEventInfos.Length;
         }
 
         /// <summary>
@@ -179,7 +165,8 @@ namespace NLog.Targets.Wrappers
         {
             lock (this)
             {
-                this.queue.Clear();
+                this.logEventInfoQueue.Clear();
+                this.asyncContinuationsQueue.Clear();
             }
         }
     }

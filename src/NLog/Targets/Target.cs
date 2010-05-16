@@ -105,18 +105,26 @@ protected virtual void FlushAsync(AsyncContinuation asyncContinuation)
         /// Writes the array of log events.
         /// </summary>
         /// <param name="logEvents">The log events.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        public void WriteLogEvents(LogEventInfo[] logEvents, AsyncContinuation asyncContinuation)
+        /// <param name="asyncContinuations">The asynchronous continuations.</param>
+        public void WriteLogEvents(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
         {
-            asyncContinuation = asyncContinuation.OneTimeOnly();
+            var continuations = new AsyncContinuation[asyncContinuations.Length];
+            for (int i = 0; i < continuations.Length; ++i)
+            {
+                continuations[i] = asyncContinuations[i].OneTimeOnly();
+            }
 
             try
             {
-                this.Write(logEvents, asyncContinuation);
+                this.Write(logEvents, continuations);
             }
             catch (Exception ex)
             {
-                asyncContinuation(ex);
+                // in case of synchronous failure, assume that nothing is running asynchronously
+                foreach (var cont in continuations)
+                {
+                    cont(ex);
+                }
             }
         }
 
@@ -227,17 +235,23 @@ protected virtual void FlushAsync(AsyncContinuation asyncContinuation)
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected virtual void Write(LogEventInfo[] logEvents, AsyncContinuation asyncContinuation)
+        /// <param name="asyncContinuations">The asynchronous continuations.</param>
+        protected virtual void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
         {
             try
             {
                 this.Write(logEvents);
-                asyncContinuation(null);
+                foreach (var continuation in asyncContinuations)
+                {
+                    continuation(null);
+                }
             }
             catch (Exception ex)
             {
-                asyncContinuation(ex);
+                foreach (var continuation in asyncContinuations)
+                {
+                    continuation(ex);
+                }
             }
         }
 

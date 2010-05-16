@@ -54,7 +54,7 @@ namespace NLog.Targets.Wrappers
         /// classes.
         /// </summary>
         /// <param name="logEvent">Logging event to be written out.</param>
-        protected override void Write(LogEventInfo logEvent)
+        protected override sealed void Write(LogEventInfo logEvent)
         {
             throw new NotSupportedException("This target must not be invoked in a synchronous way.");
         }

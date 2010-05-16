@@ -95,7 +95,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="wrappedTarget">The wrapped target.</param>
         public AsyncTargetWrapper(Target wrappedTarget)
         {
-            this.RequestQueue = new AsyncRequestQueue<LogEventInfo>(10000, AsyncTargetWrapperOverflowAction.Discard);
+            this.RequestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
             this.TimeToSleepBetweenBatches = 50;
             this.BatchSize = 100;
             this.WrappedTarget = wrappedTarget;
@@ -109,7 +109,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="overflowAction">The action to be taken when the queue overflows.</param>
         public AsyncTargetWrapper(Target wrappedTarget, int queueLimit, AsyncTargetWrapperOverflowAction overflowAction)
         {
-            this.RequestQueue = new AsyncRequestQueue<LogEventInfo>(10000, AsyncTargetWrapperOverflowAction.Discard);
+            this.RequestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
             this.TimeToSleepBetweenBatches = 50;
             this.BatchSize = 100;
             this.WrappedTarget = wrappedTarget;
@@ -158,7 +158,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets the queue of lazy writer thread requests.
         /// </summary>
-        protected AsyncRequestQueue<LogEventInfo> RequestQueue { get; private set; }
+        protected AsyncRequestQueue RequestQueue { get; private set; }
 
         /// <summary>
         /// Waits for the lazy writer thread to finish writing messages.
@@ -204,18 +204,19 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Adds the log event to asynchronous queue to be processed by 
+        /// Adds the log event to asynchronous queue to be processed by
         /// the lazy writer thread.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
         /// <remarks>
         /// The <see cref="Target.PrecalculateVolatileLayouts"/> is called
         /// to ensure that the log event can be processed in another thread.
         /// </remarks>
-        protected override void Write(LogEventInfo logEvent)
+        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
             this.PrecalculateVolatileLayouts(logEvent);
-            this.RequestQueue.Enqueue(logEvent);
+            this.RequestQueue.Enqueue(logEvent, asyncContinuation);
         }
 
         private void ProcessPendingEvents(object state)
@@ -230,31 +231,15 @@ namespace NLog.Targets.Wrappers
                     count = this.RequestQueue.RequestCount;
                 }
 
-                List<LogEventInfo> pendingRequests = this.RequestQueue.DequeueBatch(count);
+                LogEventInfo[] logEventInfos;
+                AsyncContinuation[] asyncContinuations;
 
-                try
+                this.RequestQueue.DequeueBatch(count, out logEventInfos, out asyncContinuations);
+                this.WrappedTarget.WriteLogEvents(logEventInfos, asyncContinuations);
+                this.StartLazyWriterTimer();
+                if (continuation != null)
                 {
-                    // process all events
-                    this.WrappedTarget.WriteLogEvents(
-                        pendingRequests.ToArray(), 
-                            ex =>
-                                {
-                                    if (ex != null)
-                                    {
-                                        // log the exception first
-                                        AsyncHelpers.LogException(ex);
-                                    }
-
-                                    this.StartLazyWriterTimer();
-                                    if (continuation != null)
-                                    {
-                                        continuation(ex);
-                                    }
-                                });
-                }
-                finally
-                {
-                    this.RequestQueue.BatchProcessed(pendingRequests);
+                    continuation(null);
                 }
             }
             catch (Exception ex)

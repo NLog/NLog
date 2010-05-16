@@ -124,14 +124,36 @@ namespace NLog.Targets.Wrappers
         {
             lock (this)
             {
-                var events = this.buffer.GetEventsAndClear();
-                if (events.Length > 0)
+                LogEventInfo[] events;
+                AsyncContinuation[] asyncContinuations;
+                AsyncContinuation[] wrappedContinuations;
+
+                this.buffer.GetEventsAndClear(out events, out asyncContinuations);
+
+                wrappedContinuations = new AsyncContinuation[asyncContinuations.Length];
+                int remaining = events.Length;
+                for (int i = 0; i < asyncContinuations.Length; ++i)
                 {
-                    this.WrappedTarget.WriteLogEvents(events, asyncContinuation);
+                    AsyncContinuation originalContinuation = asyncContinuations[i];
+                    AsyncContinuation wrappedContinuation = ex =>
+                    {
+                        originalContinuation(ex);
+                        if (0 == Interlocked.Decrement(ref remaining))
+                        {
+                            asyncContinuation(null);
+                        }
+                    };
+
+                    wrappedContinuations[i] = wrappedContinuation;
+                }
+
+                if (events.Length == 0)
+                {
+                    asyncContinuation(null);
                 }
                 else
                 {
-                    asyncContinuation(null);
+                    this.WrappedTarget.WriteLogEvents(events, wrappedContinuations);
                 }
             }
         }
@@ -168,11 +190,14 @@ namespace NLog.Targets.Wrappers
             {
                 this.WrappedTarget.PrecalculateVolatileLayouts(logEvent);
 
-                int count = this.buffer.Append(logEvent);
+                int count = this.buffer.Append(logEvent, asyncContinuation);
                 if (count >= this.BufferSize)
                 {
-                    var events = this.buffer.GetEventsAndClear();
-                    WrappedTarget.WriteLogEvents(events, asyncContinuation);
+                    LogEventInfo[] events;
+                    AsyncContinuation[] asyncContinuations;
+
+                    this.buffer.GetEventsAndClear(out events, out asyncContinuations);
+                    this.WrappedTarget.WriteLogEvents(events, asyncContinuations);
                 }
                 else
                 {
@@ -188,20 +213,13 @@ namespace NLog.Targets.Wrappers
         {
             lock (this)
             {
-                LogEventInfo[] events = this.buffer.GetEventsAndClear();
+                LogEventInfo[] events;
+                AsyncContinuation[] continuations;
+
+                this.buffer.GetEventsAndClear(out events, out continuations);
                 if (events.Length > 0)
                 {
-                    WrappedTarget.WriteLogEvents(events,
-                            ex =>
-                            {
-                                if (ex != null)
-                                {
-                                    // on error, we cannot really raise the error here
-                                    // since we are executing on a random thread and nobody will catch it
-                                    // so we just log the error to internal log
-                                    InternalLogger.Error("Error when sending log events to a wrapped target: {0}", ex);
-                                }
-                            });
+                    this.WrappedTarget.WriteLogEvents(events, continuations);
                 }
             }
         }

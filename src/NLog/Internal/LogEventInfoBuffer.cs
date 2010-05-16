@@ -44,6 +44,7 @@ namespace NLog.Internal
         private readonly int growLimit;
 
         private LogEventInfo[] buffer;
+        private AsyncContinuation[] continuations;
         private int getPointer;
         private int putPointer;
         private int count;
@@ -58,6 +59,7 @@ namespace NLog.Internal
         {
             this.growAsNeeded = growAsNeeded;
             this.buffer = new LogEventInfo[size];
+            this.continuations = new AsyncContinuation[size];
             this.growLimit = growLimit;
             this.getPointer = 0;
             this.putPointer = 0;
@@ -76,7 +78,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="eventInfo">Log event.</param>
         /// <returns>The number of items in the buffer.</returns>
-        public int Append(LogEventInfo eventInfo)
+        public int Append(LogEventInfo eventInfo, AsyncContinuation continuation)
         {
             lock (this)
             {
@@ -96,6 +98,10 @@ namespace NLog.Internal
                         LogEventInfo[] newBuffer = new LogEventInfo[newLength];
                         Array.Copy(this.buffer, 0, newBuffer, 0, this.buffer.Length);
                         this.buffer = newBuffer;
+
+                        AsyncContinuation[] newBuffer2 = new AsyncContinuation[newLength];
+                        Array.Copy(this.continuations, 0, newBuffer2, 0, this.continuations.Length);
+                        this.continuations = newBuffer2;
                     }
                     else
                     {
@@ -107,6 +113,7 @@ namespace NLog.Internal
                 // put the item
                 this.putPointer = this.putPointer % this.buffer.Length;
                 this.buffer[this.putPointer] = eventInfo;
+                this.continuations[this.putPointer] = continuation;
                 this.putPointer = this.putPointer + 1;
                 this.count++;
                 if (this.count >= this.buffer.Length)
@@ -125,26 +132,30 @@ namespace NLog.Internal
         /// <remarks>
         /// In case there are no items in the buffer, the function returns an empty array.
         /// </remarks>
-        public LogEventInfo[] GetEventsAndClear()
+        public void GetEventsAndClear(out LogEventInfo[] returnValue, out AsyncContinuation[] asyncContinuations)
         {
             lock (this)
             {
                 int cnt = this.count;
-                LogEventInfo[] returnValue = new LogEventInfo[cnt];
+                returnValue = new LogEventInfo[cnt];
+                asyncContinuations = new AsyncContinuation[cnt];
 
                 // InternalLogger.Trace("GetEventsAndClear({0},{1},{2})", this.getPointer, this.putPointer, this.count);
                 for (int i = 0; i < cnt; ++i)
                 {
                     int p = (this.getPointer + i) % this.buffer.Length;
-                    LogEventInfo e = this.buffer[p];
+                    var e = this.buffer[p];
                     this.buffer[p] = null; // we don't want memory leaks
                     returnValue[i] = e;
+
+                    var c = this.continuations[p];
+                    this.continuations[p] = null;
+                    asyncContinuations[i] = c;
                 }
 
                 this.count = 0;
                 this.getPointer = 0;
                 this.putPointer = 0;
-                return returnValue;
             }
         }
     }

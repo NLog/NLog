@@ -103,7 +103,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="logEvents">Array of log events to be post-filtered.</param>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected override void Write(LogEventInfo[] logEvents, AsyncContinuation asyncContinuation)
+        protected override void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
         {
             ConditionExpression resultFilter = null;
 
@@ -144,7 +144,7 @@ namespace NLog.Targets.Wrappers
 
             if (resultFilter == null)
             {
-                this.WrappedTarget.WriteLogEvents(logEvents, asyncContinuation);
+                this.WrappedTarget.WriteLogEvents(logEvents, asyncContinuations);
             }
             else
             {
@@ -155,6 +155,7 @@ namespace NLog.Targets.Wrappers
 
                 // apply the condition to the buffer
                 var resultBuffer = new List<LogEventInfo>();
+                var resultContinuations = new List<AsyncContinuation>();
 
                 for (int i = 0; i < logEvents.Length; ++i)
                 {
@@ -162,6 +163,12 @@ namespace NLog.Targets.Wrappers
                     if (boxedTrue.Equals(v))
                     {
                         resultBuffer.Add(logEvents[i]);
+                        resultContinuations.Add(asyncContinuations[i]);
+                    }
+                    else
+                    {
+                        // anything not passed down will be notified about successful completion
+                        asyncContinuations[i](null);
                     }
                 }
 
@@ -170,14 +177,7 @@ namespace NLog.Targets.Wrappers
                     InternalLogger.Trace("After filtering: {0} events", resultBuffer.Count);
                 }
 
-                if (resultBuffer.Count > 0)
-                {
-                    this.WrappedTarget.WriteLogEvents(resultBuffer.ToArray(), asyncContinuation);
-                }
-                else
-                {
-                    asyncContinuation(null);
-                }
+                this.WrappedTarget.WriteLogEvents(resultBuffer.ToArray(), resultContinuations.ToArray());
             }
         }
 
@@ -186,9 +186,10 @@ namespace NLog.Targets.Wrappers
         /// wrapper.
         /// </summary>
         /// <param name="logEvent">Log event.</param>
-        protected override void Write(LogEventInfo logEvent)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            this.Write(new LogEventInfo[] { logEvent });
+            this.Write(new[] { logEvent }, new[] { asyncContinuation });
         }
     }
 }

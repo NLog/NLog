@@ -174,7 +174,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="logEvents">Log events.</param>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected override void Write(LogEventInfo[] logEvents, AsyncContinuation asyncContinuation)
+        protected override void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuation)
         {
             using (this.DoImpersonate())
             {
