@@ -667,16 +667,17 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Writes the specified array of logging events to a file specified in the FileName 
+        /// Writes the specified array of logging events to a file specified in the FileName
         /// parameter.
         /// </summary>
         /// <param name="logEvents">An array of <see cref="LogEventInfo "/> objects.</param>
+        /// <param name="asyncContinuations">The asynchronous continuations.</param>
         /// <remarks>
-        /// This function makes use of the fact that the events are batched by sorting 
+        /// This function makes use of the fact that the events are batched by sorting
         /// the requests by filename. This optimizes the number of open/close calls
         /// and can help improve performance.
         /// </remarks>
-        protected override void Write(LogEventInfo[] logEvents)
+        protected override void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
         {
             Array.Sort(logEvents, 0, logEvents.Length, this.logEventComparer);
 
@@ -685,6 +686,7 @@ namespace NLog.Targets
                 string currentFileName = null;
                 var ms = new MemoryStream();
                 LogEventInfo firstLogEvent = null;
+                List<AsyncContinuation> pendingContinuations = new List<AsyncContinuation>();
 
                 for (int i = 0; i < logEvents.Length; ++i)
                 {
@@ -692,17 +694,7 @@ namespace NLog.Targets
                     string logEventFileName = this.FileName.GetFormattedMessage(logEvent);
                     if (logEventFileName != currentFileName)
                     {
-                        if (currentFileName != null)
-                        {
-                            if (this.ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
-                            {
-                                this.WriteFooterAndUninitialize(currentFileName);
-                                this.InvalidateCacheItem(currentFileName);
-                                this.DoAutoArchive(currentFileName, firstLogEvent);
-                            }
-
-                            this.WriteToFile(currentFileName, ms.ToArray(), false);
-                        }
+                        this.FlushCurrentFileWrites(currentFileName, firstLogEvent, ms, pendingContinuations);
 
                         currentFileName = logEventFileName;
                         firstLogEvent = logEvent;
@@ -712,8 +704,19 @@ namespace NLog.Targets
 
                     byte[] bytes = this.GetBytesToWrite(logEvent);
                     ms.Write(bytes, 0, bytes.Length);
+                    pendingContinuations.Add(asyncContinuations[i]);
                 }
 
+                this.FlushCurrentFileWrites(currentFileName, firstLogEvent, ms, pendingContinuations);
+            }
+        }
+
+        private void FlushCurrentFileWrites(string currentFileName, LogEventInfo firstLogEvent, MemoryStream ms, List<AsyncContinuation> pendingContinuations)
+        {
+            Exception lastException = null;
+
+            try
+            {
                 if (currentFileName != null)
                 {
                     if (this.ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
@@ -726,6 +729,17 @@ namespace NLog.Targets
                     this.WriteToFile(currentFileName, ms.ToArray(), false);
                 }
             }
+            catch (Exception ex)
+            {
+                lastException = ex;
+            }
+
+            foreach (var cont in pendingContinuations)
+            {
+                cont(lastException);
+            }
+
+            pendingContinuations.Clear();
         }
 
         /// <summary>

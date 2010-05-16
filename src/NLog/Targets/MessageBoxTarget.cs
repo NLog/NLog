@@ -40,7 +40,7 @@ using System.Windows.Browser;
 #else
     using System.Windows.Forms;
 #endif
-
+    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -104,7 +104,8 @@ using System.Windows.Browser;
         /// parameter.
         /// </summary>
         /// <param name="logEvents">The array of logging events.</param>
-        protected override void Write(LogEventInfo[] logEvents)
+        /// <param name="asyncContinuations">The asynchronous continuations.</param>
+        protected override void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
         {
             if (logEvents.Length == 0)
             {
@@ -124,6 +125,11 @@ using System.Windows.Browser;
 #else
             MessageBox.Show(sb.ToString(), this.Caption.GetFormattedMessage(lastLogEvent));
 #endif
+
+            for (int i = 0; i < asyncContinuations.Length; ++i)
+            {
+                asyncContinuations[i](null);
+            }
         }
     }
 }

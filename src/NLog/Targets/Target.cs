@@ -243,22 +243,6 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Writes an array of logging events to the log target. By default it iterates on all
-        /// events and passes them to "Write" method. Inheriting classes can use this method to
-        /// optimize batch writes.
-        /// </summary>
-        /// <param name="logEvents">
-        /// Logging events to be written out.
-        /// </param>
-        protected virtual void Write(LogEventInfo[] logEvents)
-        {
-            for (int i = 0; i < logEvents.Length; ++i)
-            {
-                this.Write(logEvents[i]);
-            }
-        }
-
         private void GetAllLayouts()
         {
             this.allLayouts = new List<Layout>(ObjectGraphScanner.FindReachableObjects<Layout>(this));

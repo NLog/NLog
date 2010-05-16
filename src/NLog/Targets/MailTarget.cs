@@ -40,6 +40,7 @@ namespace NLog.Targets
     using System.Net.Mail;
     using System.Text;
     using NLog.Common;
+    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -195,19 +196,31 @@ namespace NLog.Targets
         public int SmtpPort { get; set; }
 
         /// <summary>
+        /// Writes logging event to the log target. Must be overridden in inheriting
+        /// classes.
+        /// </summary>
+        /// <param name="logEvent">Logging event to be written out.</param>
+        protected override void Write(LogEventInfo logEvent)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
         /// Renders the logging event message and adds it to the internal ArrayList of log messages.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        protected override void Write(LogEventInfo logEvent)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            this.Write(new LogEventInfo[1] { logEvent });
+            this.Write(new [] { logEvent }, new[] { asyncContinuation });
         }
 
         /// <summary>
         /// Renders an array logging events.
         /// </summary>
         /// <param name="events">Array of logging events.</param>
-        protected override void Write(LogEventInfo[] events)
+        /// <param name="asyncContinuations">The async continuations.</param>
+        protected override void Write(LogEventInfo[] events, AsyncContinuation[] asyncContinuations)
         {
             if (events == null)
             {
@@ -274,6 +287,11 @@ namespace NLog.Targets
             client.EnableSsl = this.EnableSsl;
             InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, this.SmtpServer);
             client.Send(msg);
+
+            foreach (var cont in asyncContinuations)
+            {
+                cont(null);
+            }
         }
 
         private void SetupMailMessage(MailMessage msg, LogEventInfo logEvent)

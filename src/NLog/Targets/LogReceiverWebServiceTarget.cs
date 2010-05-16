@@ -33,12 +33,14 @@
 
 namespace NLog.Targets
 {
+    using System;
     using System.Collections.Generic;
 #if WCF_SUPPORTED
     using System.ServiceModel;
 #endif
 
     using NLog.Config;
+    using NLog.Internal;
     using NLog.LogReceiverService;
 
     /// <summary>
@@ -94,7 +96,18 @@ namespace NLog.Targets
         /// <param name="logEvent">Logging event to be written out.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            this.Write(new[] { logEvent });
+            throw new NotSupportedException("This target must be invoked asynchronously.");
+        }
+
+        /// <summary>
+        /// Writes logging event to the log target. Must be overridden in inheriting
+        /// classes.
+        /// </summary>
+        /// <param name="logEvent">Logging event to be written out.</param>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        {
+            this.Write(new[] { logEvent }, new[] { asyncContinuation });
         }
 
         /// <summary>
@@ -103,11 +116,12 @@ namespace NLog.Targets
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
-        protected override void Write(LogEventInfo[] logEvents)
+        /// <param name="asyncContinuations">The asynchronous continuations.</param>
+        protected override void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
         {
             var networkLogEvents = this.TranslateLogEvents(logEvents);
 
-            this.Send(networkLogEvents);
+            this.Send(networkLogEvents, asyncContinuations);
         }
 
         private NLogEvents TranslateLogEvents(LogEventInfo[] logEvents)
@@ -134,7 +148,7 @@ namespace NLog.Targets
             return networkLogEvents;
         }
 
-        private void Send(NLogEvents events)
+        private void Send(NLogEvents events, AsyncContinuation[] asyncContinuations)
         {
 #if WCF_SUPPORTED
             WcfLogReceiverClient client;
@@ -149,6 +163,15 @@ namespace NLog.Targets
             {
                 client = new WcfLogReceiverClient(this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
             }
+
+            client.ProcessLogMessagesCompleted += (sender, e) =>
+                {
+                    // report error to the callers
+                    foreach (var cont in asyncContinuations)
+                    {
+                        cont(e.Error);
+                    }
+                };
 
             client.ProcessLogMessagesAsync(events);
 #endif
