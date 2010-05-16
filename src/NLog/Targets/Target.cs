@@ -237,20 +237,9 @@ namespace NLog.Targets
         /// <param name="asyncContinuations">The asynchronous continuations.</param>
         protected virtual void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
         {
-            try
+            for (int i = 0; i < logEvents.Length; ++i)
             {
-                this.Write(logEvents);
-                foreach (var continuation in asyncContinuations)
-                {
-                    continuation(null);
-                }
-            }
-            catch (Exception ex)
-            {
-                foreach (var continuation in asyncContinuations)
-                {
-                    continuation(ex);
-                }
+                this.Write(logEvents[i], asyncContinuations[i]);
             }
         }
 
