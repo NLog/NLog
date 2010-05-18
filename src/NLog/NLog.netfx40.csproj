@@ -15,6 +15,7 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -170,7 +171,9 @@
     <Compile Include="Internal\TimeoutContinuation.cs" />
     <Compile Include="Internal\UrlHelper.cs" />
     <Compile Include="Internal\Win32FileInfoHelper.cs" />
-    <Compile Include="Internal\Win32FileNativeMethods.cs" />
+    <Compile Include="Internal\Win32FileNativeMethods.cs">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Internal\Win32ThreadIDHelper.cs" />
     <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
     <Compile Include="LayoutRenderers\AspApplicationValueLayoutRenderer.cs" />

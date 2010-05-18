@@ -52,14 +52,15 @@ namespace NLog
     /// </summary>
     public class LogFactory
     {
-        private static TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
-
 #if !NET_CF && !SILVERLIGHT
         private readonly MultiFileWatcher watcher;
         private const int ReconfigAfterFileChangedTimeout = 1000;
 #endif
 
         private readonly Dictionary<LoggerCacheKey, Logger> loggerCache = new Dictionary<LoggerCacheKey, Logger>();
+
+        private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
+
 #if !NET_CF && !SILVERLIGHT
         private Timer reloadTimer;
 #endif
@@ -330,7 +331,7 @@ namespace NLog
         /// </summary>
         public void Flush()
         {
-            this.Flush(DefaultFlushTimeout);
+            this.Flush(defaultFlushTimeout);
         }
 
         /// <summary>

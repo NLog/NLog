@@ -35,7 +35,6 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -53,6 +52,31 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='General Options' order='10' />
         public string Name { get; set; }
+
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
+        void ISupportsInitialize.Initialize()
+        {
+            this.Initialize();
+        }
+
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
+        void ISupportsInitialize.Close()
+        {
+            this.Close();
+        }
+
+        /// <summary>
+        /// Closes the target.
+        /// </summary>
+        void IDisposable.Dispose()
+        {
+            this.Close();
+            GC.SuppressFinalize(true);
+        }
 
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
@@ -73,12 +97,35 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Flush any pending log messages asynchronously (in case of asynchronous targets).
+        /// Calls the <see cref="Layout.Precalculate"/> on each volatile layout
+        /// used by this target.
         /// </summary>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected virtual void FlushAsync(AsyncContinuation asyncContinuation)
+        /// <param name="logEvent">
+        /// The log event.
+        /// </param>
+        public void PrecalculateVolatileLayouts(LogEventInfo logEvent)
         {
-            asyncContinuation(null);
+            foreach (Layout l in this.allLayouts)
+            {
+                l.Precalculate(logEvent);
+            }
+        }
+
+        /// <summary>
+        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String"/> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            var targetAttribute = (TargetAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(TargetAttribute));
+            if (targetAttribute != null)
+            {
+                return targetAttribute.Name + " Target[" + (this.Name ?? "(unnamed)") + "]";
+            }
+
+            return this.GetType().Name;
         }
 
         /// <summary>
@@ -120,7 +167,7 @@ namespace NLog.Targets
             catch (Exception ex)
             {
                 // in case of synchronous failure, assume that nothing is running asynchronously
-                foreach (var cont in continuations)
+                foreach (AsyncContinuation cont in continuations)
                 {
                     cont(ex);
                 }
@@ -128,67 +175,19 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Calls the <see cref="Layout.Precalculate"/> on each volatile layout
-        /// used by this target.
-        /// </summary>
-        /// <param name="logEvent">
-        /// The log event.
-        /// </param>
-        public void PrecalculateVolatileLayouts(LogEventInfo logEvent)
-        {
-            foreach (Layout l in this.allLayouts)
-            {
-                l.Precalculate(logEvent);
-            }
-        }
-
-        /// <summary>
-        /// Returns a <see cref="System.String"/> that represents this instance.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String"/> that represents this instance.
-        /// </returns>
-        public override string ToString()
-        {
-            var targetAttribute = (TargetAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(TargetAttribute));
-            if (targetAttribute != null)
-            {
-                return targetAttribute.Name + " Target[" + (this.Name ?? "(unnamed)") + "]";
-            }
-
-            return this.GetType().Name;
-        }
-
-        /// <summary>
-        /// Closes the target.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Close();
-            GC.SuppressFinalize(true);
-        }
-
-        /// <summary>
-        /// Initializes this instance.
-        /// </summary>
-        void ISupportsInitialize.Initialize()
-        {
-            this.Initialize();
-        }
-
-        /// <summary>
-        /// Closes this instance.
-        /// </summary>
-        void ISupportsInitialize.Close()
-        {
-            this.Close();
-        }
-
-        /// <summary>
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
         protected virtual void Close()
         {
+        }
+
+        /// <summary>
+        /// Flush any pending log messages asynchronously (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected virtual void FlushAsync(AsyncContinuation asyncContinuation)
+        {
+            asyncContinuation(null);
         }
 
         /// <summary>

@@ -40,7 +40,7 @@ namespace NLog.Conditions
     /// Condition relational (<b>==</b>, <b>!=</b>, <b>&lt;</b>, <b>&lt;=</b>,
     /// <b>&gt;</b> or <b>&gt;=</b>) expression.
     /// </summary>
-    internal sealed class ConditionRelationalExpression : ConditionExpression 
+    internal sealed class ConditionRelationalExpression : ConditionExpression
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionRelationalExpression" /> class.
@@ -48,7 +48,7 @@ namespace NLog.Conditions
         /// <param name="leftExpression">The left expression.</param>
         /// <param name="rightExpression">The right expression.</param>
         /// <param name="relationalOperator">The relational operator.</param>
-        public ConditionRelationalExpression(ConditionExpression leftExpression, ConditionExpression rightExpression, ConditionRelationalOperator relationalOperator) 
+        public ConditionRelationalExpression(ConditionExpression leftExpression, ConditionExpression rightExpression, ConditionRelationalOperator relationalOperator)
         {
             this.LeftExpression = leftExpression;
             this.RightExpression = rightExpression;
@@ -74,6 +74,17 @@ namespace NLog.Conditions
         public ConditionRelationalOperator RelationalOperator { get; private set; }
 
         /// <summary>
+        /// Returns a string representation of the expression.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"/> that represents the condition expression.
+        /// </returns>
+        public override string ToString()
+        {
+            return "(" + this.LeftExpression + " " + this.GetOperatorString() + " " + this.RightExpression + ")";
+        }
+
+        /// <summary>
         /// Evaluates the expression.
         /// </summary>
         /// <param name="context">Evaluation context.</param>
@@ -84,17 +95,6 @@ namespace NLog.Conditions
             object v2 = this.RightExpression.Evaluate(context);
 
             return Compare(v1, v2, this.RelationalOperator);
-        }
-
-        /// <summary>
-        /// Returns a string representation of the expression.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String"/> that represents the condition expression.
-        /// </returns>
-        public override string ToString()
-        {
-            return "(" + this.LeftExpression + " " + this.GetOperatorString() + " " + this.RightExpression + ")";
         }
 
         /// <summary>

@@ -72,6 +72,11 @@ namespace NLog.Layouts
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimpleLayout"/> class.
+        /// </summary>
+        /// <param name="txt">The layout string to parse.</param>
+        /// <param name="nlogFactories">The NLog factories to use when creating references to layout renderers.</param>
         public SimpleLayout(string txt, NLogFactories nlogFactories)
         {
             this.nlogFactories = nlogFactories;

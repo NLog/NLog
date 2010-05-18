@@ -45,7 +45,7 @@ namespace NLog.Conditions
         /// Initializes a new instance of the <see cref="ConditionLiteralExpression" /> class.
         /// </summary>
         /// <param name="literalValue">Literal value.</param>
-        public ConditionLiteralExpression(object literalValue) 
+        public ConditionLiteralExpression(object literalValue)
         {
             this.LiteralValue = literalValue;
         }
@@ -55,16 +55,6 @@ namespace NLog.Conditions
         /// </summary>
         /// <value>The literal value.</value>
         public object LiteralValue { get; private set; }
-
-        /// <summary>
-        /// Evaluates the expression.
-        /// </summary>
-        /// <param name="context">Evaluation context.</param>
-        /// <returns>The literal value as passed in the constructor.</returns>
-        protected override object EvaluateNode(LogEventInfo context)
-        {
-            return this.LiteralValue;
-        }
 
         /// <summary>
         /// Returns a string representation of the expression.
@@ -78,6 +68,16 @@ namespace NLog.Conditions
             }
 
             return Convert.ToString(this.LiteralValue, CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// Evaluates the expression.
+        /// </summary>
+        /// <param name="context">Evaluation context.</param>
+        /// <returns>The literal value as passed in the constructor.</returns>
+        protected override object EvaluateNode(LogEventInfo context)
+        {
+            return this.LiteralValue;
         }
     }
 }

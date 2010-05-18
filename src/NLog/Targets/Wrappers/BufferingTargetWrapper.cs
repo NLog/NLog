@@ -119,7 +119,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Flushes pending events in the buffer (if any).
         /// </summary>
-        /// <param name="asyncContinuation"></param>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
             lock (this)

@@ -134,8 +134,8 @@ namespace NLog.Targets
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
         private IFileAppenderFactory appenderFactory;
         private BaseFileAppender[] recentAppenders;
-        private Timer autoClosingTimer = null;
-        private int initializedFilesCounter = 0;
+        private Timer autoClosingTimer;
+        private int initializedFilesCounter;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
@@ -253,9 +253,9 @@ namespace NLog.Targets
         [Advanced]
         public LineEndingMode LineEnding
         {
-            get
+            get 
             {
-                return this.lineEndingMode;
+                return this.lineEndingMode; 
             }
 
             set
@@ -470,9 +470,9 @@ namespace NLog.Targets
         public void CleanupInitializedFiles(DateTime cleanupThreshold)
         {
             // clean up files that are two days old
-            List<string> filesToUninitialize = new List<string>();
+            var filesToUninitialize = new List<string>();
 
-            foreach (KeyValuePair<string, DateTime> de in this.initializedFiles)
+            foreach (var de in this.initializedFiles)
             {
                 string fileName = de.Key;
                 DateTime lastWriteTime = de.Value;
@@ -543,9 +543,9 @@ namespace NLog.Targets
 #if NET_CF || SILVERLIGHT
                         this.appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
-                        //
-                        // mono on Windows uses mutexes, on Unix - special appender
-                        //
+    //
+    // mono on Windows uses mutexes, on Unix - special appender
+    //
                         if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Unix))
                         {
                             this.appenderFactory = UnixMultiProcessFileAppender.TheFactory;
@@ -574,9 +574,9 @@ namespace NLog.Targets
 #if NET_CF || SILVERLIGHT
                         this.appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
-                        //
-                        // mono on Windows uses mutexes, on Unix - special appender
-                        //
+    //
+    // mono on Windows uses mutexes, on Unix - special appender
+    //
                         if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Unix))
                         {
                             this.appenderFactory = UnixMultiProcessFileAppender.TheFactory;
@@ -601,7 +601,7 @@ namespace NLog.Targets
             if ((this.OpenFileCacheSize > 0 || this.EnableFileDelete) && this.OpenFileCacheTimeout > 0)
             {
                 this.autoClosingTimer = new Timer(
-                    new TimerCallback(this.AutoClosingTimerCallback),
+                    this.AutoClosingTimerCallback,
                     null,
                     this.OpenFileCacheTimeout * 1000,
                     this.OpenFileCacheTimeout * 1000);
@@ -686,7 +686,7 @@ namespace NLog.Targets
                 string currentFileName = null;
                 var ms = new MemoryStream();
                 LogEventInfo firstLogEvent = null;
-                List<AsyncContinuation> pendingContinuations = new List<AsyncContinuation>();
+                var pendingContinuations = new List<AsyncContinuation>();
 
                 for (int i = 0; i < logEvents.Length; ++i)
                 {
@@ -709,37 +709,6 @@ namespace NLog.Targets
 
                 this.FlushCurrentFileWrites(currentFileName, firstLogEvent, ms, pendingContinuations);
             }
-        }
-
-        private void FlushCurrentFileWrites(string currentFileName, LogEventInfo firstLogEvent, MemoryStream ms, List<AsyncContinuation> pendingContinuations)
-        {
-            Exception lastException = null;
-
-            try
-            {
-                if (currentFileName != null)
-                {
-                    if (this.ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
-                    {
-                        this.WriteFooterAndUninitialize(currentFileName);
-                        this.InvalidateCacheItem(currentFileName);
-                        this.DoAutoArchive(currentFileName, firstLogEvent);
-                    }
-
-                    this.WriteToFile(currentFileName, ms.ToArray(), false);
-                }
-            }
-            catch (Exception ex)
-            {
-                lastException = ex;
-            }
-
-            foreach (var cont in pendingContinuations)
-            {
-                cont(lastException);
-            }
-
-            pendingContinuations.Clear();
         }
 
         /// <summary>
@@ -771,6 +740,37 @@ namespace NLog.Targets
         protected virtual byte[] TransformBytes(byte[] bytes)
         {
             return bytes;
+        }
+
+        private void FlushCurrentFileWrites(string currentFileName, LogEventInfo firstLogEvent, MemoryStream ms, List<AsyncContinuation> pendingContinuations)
+        {
+            Exception lastException = null;
+
+            try
+            {
+                if (currentFileName != null)
+                {
+                    if (this.ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
+                    {
+                        this.WriteFooterAndUninitialize(currentFileName);
+                        this.InvalidateCacheItem(currentFileName);
+                        this.DoAutoArchive(currentFileName, firstLogEvent);
+                    }
+
+                    this.WriteToFile(currentFileName, ms.ToArray(), false);
+                }
+            }
+            catch (Exception ex)
+            {
+                lastException = ex;
+            }
+
+            foreach (AsyncContinuation cont in pendingContinuations)
+            {
+                cont(lastException);
+            }
+
+            pendingContinuations.Clear();
         }
 
         private void RecursiveRollingRename(string fileName, string pattern, int archiveNumber)
@@ -897,7 +897,7 @@ namespace NLog.Targets
 
         private void DoAutoArchive(string fileName, LogEventInfo ev)
         {
-            FileInfo fi = new FileInfo(fileName);
+            var fi = new FileInfo(fileName);
             if (!fi.Exists)
             {
                 return;
@@ -1156,23 +1156,23 @@ namespace NLog.Targets
 
         private byte[] GetHeaderBytes()
         {
-            if (Header == null)
+            if (this.Header == null)
             {
                 return null;
             }
 
-            string renderedText = Header.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
+            string renderedText = this.Header.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
             return this.TransformBytes(this.Encoding.GetBytes(renderedText));
         }
 
         private byte[] GetFooterBytes()
         {
-            if (Footer == null)
+            if (this.Footer == null)
             {
                 return null;
             }
 
-            string renderedText = Footer.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
+            string renderedText = this.Footer.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
             return this.TransformBytes(this.Encoding.GetBytes(renderedText));
         }
 
@@ -1206,7 +1206,7 @@ namespace NLog.Targets
                 }
             }
 
-            FileInfo fi = new FileInfo(fileName);
+            var fi = new FileInfo(fileName);
             if (fi.Exists)
             {
                 fileLength = fi.Length;
@@ -1250,7 +1250,7 @@ namespace NLog.Targets
         /// </summary>
         private class LogEventComparer : IComparer
         {
-            private FileTarget fileTarget;
+            private readonly FileTarget fileTarget;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="LogEventComparer" /> class.
@@ -1283,8 +1283,8 @@ namespace NLog.Targets
             /// </exception>
             public int Compare(object x, object y)
             {
-                LogEventInfo le1 = (LogEventInfo)x;
-                LogEventInfo le2 = (LogEventInfo)y;
+                var le1 = (LogEventInfo)x;
+                var le2 = (LogEventInfo)y;
 
                 string filename1 = this.fileTarget.FileName.GetFormattedMessage(le1);
                 string filename2 = this.fileTarget.FileName.GetFormattedMessage(le2);
@@ -1294,7 +1294,7 @@ namespace NLog.Targets
                 {
                     return val;
                 }
-                
+
                 if (le1.SequenceID < le2.SequenceID)
                 {
                     return -1;

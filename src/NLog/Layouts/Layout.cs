@@ -65,6 +65,7 @@ namespace NLog.Layouts
         /// Implicitly converts the specified string to a <see cref="SimpleLayout"/>.
         /// </summary>
         /// <param name="layoutString">The layout string.</param>
+        /// <param name="nlogFactories">The NLog factories to use when resolving layout renderers.</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
         public static Layout FromString(string layoutString, NLogFactories nlogFactories)
         {

@@ -50,16 +50,6 @@ namespace NLog.Targets.Wrappers
         public Target WrappedTarget { get; set; }
 
         /// <summary>
-        /// Writes logging event to the log target. Must be overridden in inheriting
-        /// classes.
-        /// </summary>
-        /// <param name="logEvent">Logging event to be written out.</param>
-        protected override sealed void Write(LogEventInfo logEvent)
-        {
-            throw new NotSupportedException("This target must not be invoked in a synchronous way.");
-        }
-
-        /// <summary>
         /// Returns the text representation of the object. Used for diagnostics.
         /// </summary>
         /// <returns>A string that describes the target.</returns>
@@ -75,6 +65,16 @@ namespace NLog.Targets.Wrappers
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
             this.WrappedTarget.Flush(asyncContinuation);
+        }
+
+        /// <summary>
+        /// Writes logging event to the log target. Must be overridden in inheriting
+        /// classes.
+        /// </summary>
+        /// <param name="logEvent">Logging event to be written out.</param>
+        protected override sealed void Write(LogEventInfo logEvent)
+        {
+            throw new NotSupportedException("This target must not be invoked in a synchronous way.");
         }
     }
 }

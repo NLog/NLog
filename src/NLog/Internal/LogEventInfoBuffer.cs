@@ -129,7 +129,8 @@ namespace NLog.Internal
         /// <summary>
         /// Gets the array of events accumulated in the buffer and clears the buffer as one atomic operation.
         /// </summary>
-        /// <returns>An array of <see cref="LogEventInfo"/> objects that have been accumulated in the buffer.</returns>
+        /// <param name="returnValue">The return value.</param>
+        /// <param name="asyncContinuations">The asynchronous continuations.</param>
         /// <remarks>
         /// In case there are no items in the buffer, the function returns an empty array.
         /// </remarks>

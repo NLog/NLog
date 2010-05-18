@@ -57,7 +57,7 @@ namespace NLog.Targets.Compound
     [Target("RandomizeGroup", IsCompound = true)]
     public class RandomizeTarget : CompoundTargetBase
     {
-        private Random random = new Random();
+        private readonly Random random = new Random();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomizeTarget" /> class.
@@ -85,9 +85,9 @@ namespace NLog.Targets.Compound
         {
             int selectedTarget;
 
-            lock (random)
+            lock (this.random)
             {
-                selectedTarget = random.Next(this.Targets.Count);
+                selectedTarget = this.random.Next(this.Targets.Count);
             }
 
             this.Targets[selectedTarget].WriteLogEvent(logEvent, asyncContinuation);

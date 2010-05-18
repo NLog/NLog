@@ -37,23 +37,34 @@ namespace NLog.Internal
     using System.Threading;
     using NLog.Common;
 
+    /// <summary>
+    /// Implements a single-call guard around given continuation function.
+    /// </summary>
     internal class SingleCallContinuation
     {
-        private readonly AsyncContinuation asyncContinuation;
-        private int counter;
+        private AsyncContinuation asyncContinuation;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SingleCallContinuation"/> class.
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public SingleCallContinuation(AsyncContinuation asyncContinuation)
         {
             this.asyncContinuation = asyncContinuation;
         }
 
+        /// <summary>
+        /// Continuation function which implements the single-call guard.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
         public void Function(Exception exception)
         {
             try
             {
-                if (Interlocked.Increment(ref counter) == 1)
+                var cont = Interlocked.Exchange(ref this.asyncContinuation, null);
+                if (cont != null)
                 {
-                    this.asyncContinuation(exception);
+                    cont(exception);
                 }
             }
             catch (Exception ex)

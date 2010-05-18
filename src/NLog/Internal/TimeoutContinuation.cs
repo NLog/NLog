@@ -37,32 +37,50 @@ namespace NLog.Internal
     using System.Threading;
     using NLog.Common;
 
+    /// <summary>
+    /// Wraps <see cref="AsyncContinuation"/> with a timeout.
+    /// </summary>
     internal class TimeoutContinuation
     {
-        private readonly AsyncContinuation asyncContinuation;
+        private AsyncContinuation asyncContinuation;
         private Timer timeoutTimer;
-        private int counter;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TimeoutContinuation"/> class.
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <param name="timeout">The timeout.</param>
         public TimeoutContinuation(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
             this.asyncContinuation = asyncContinuation;
-            this.timeoutTimer = new Timer(TimerElapsed, null, timeout, TimeSpan.FromMilliseconds(-1));
+            this.timeoutTimer = new Timer(this.TimerElapsed, null, timeout, TimeSpan.FromMilliseconds(-1));
         }
 
+        /// <summary>
+        /// Continuation function which implements the timeout logic.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
         public void Function(Exception exception)
         {
             try
             {
                 this.StopTimer();
-                if (Interlocked.Increment(ref counter) == 1)
+
+                var cont = Interlocked.Exchange(ref this.asyncContinuation, null);
+                if (cont != null)
                 {
-                    this.asyncContinuation(exception);
+                    cont(exception);
                 }
             }
             catch (Exception ex)
             {
                 ReportExceptionInHandler(ex);
             }
+        }
+
+        private static void ReportExceptionInHandler(Exception exception)
+        {
+            InternalLogger.Error("Exception in asynchronous handler {0}", exception);
         }
 
         private void StopTimer()
@@ -80,11 +98,6 @@ namespace NLog.Internal
         private void TimerElapsed(object state)
         {
             this.Function(new TimeoutException("Timeout."));
-        }
-
-        private static void ReportExceptionInHandler(Exception exception)
-        {
-            InternalLogger.Error("Exception in asynchronous handler {0}", exception);
         }
     }
 }

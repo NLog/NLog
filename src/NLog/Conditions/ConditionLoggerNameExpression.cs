@@ -39,6 +39,15 @@ namespace NLog.Conditions
     internal sealed class ConditionLoggerNameExpression : ConditionExpression
     {
         /// <summary>
+        /// Returns a string representation of this expression.
+        /// </summary>
+        /// <returns>A <b>logger</b> string.</returns>
+        public override string ToString()
+        {
+            return "logger";
+        }
+
+        /// <summary>
         /// Evaluates to the logger name.
         /// </summary>
         /// <param name="context">Evaluation context.</param>
@@ -46,15 +55,6 @@ namespace NLog.Conditions
         protected override object EvaluateNode(LogEventInfo context)
         {
             return context.LoggerName;
-        }
-
-        /// <summary>
-        /// Returns a string representation of this expression.
-        /// </summary>
-        /// <returns>A <b>logger</b> string.</returns>
-        public override string ToString()
-        {
-            return "logger";
         }
     }
 }

@@ -35,7 +35,7 @@
     <Include File="ComInterop\ILogger.cs" />
     <Include File="Internal\AspHelper.cs" />
     <Include File="Internal\NativeMethods.cs" />
-    <Include File="Internal\Win32NativeMethods.cs" />
+    <Include File="Internal\Win32FileNativeMethods.cs" />
     <Include File="Logger-V1Compat.cs" />
    </FileSet>
 

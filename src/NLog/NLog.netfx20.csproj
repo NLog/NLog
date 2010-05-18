@@ -167,7 +167,9 @@
     <Compile Include="Internal\TimeoutContinuation.cs" />
     <Compile Include="Internal\UrlHelper.cs" />
     <Compile Include="Internal\Win32FileInfoHelper.cs" />
-    <Compile Include="Internal\Win32FileNativeMethods.cs" />
+    <Compile Include="Internal\Win32FileNativeMethods.cs">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Internal\Win32ThreadIDHelper.cs" />
     <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
     <Compile Include="LayoutRenderers\AspApplicationValueLayoutRenderer.cs" />

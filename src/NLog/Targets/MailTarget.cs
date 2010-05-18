@@ -212,7 +212,7 @@ namespace NLog.Targets
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            this.Write(new [] { logEvent }, new[] { asyncContinuation });
+            this.Write(new[] { logEvent }, new[] { asyncContinuation });
         }
 
         /// <summary>

@@ -58,8 +58,9 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NLogFactories" /> class.
+        /// Initializes a new instance of the <see cref="NLogFactories"/> class.
         /// </summary>
+        /// <param name="assemblies">The assemblies to scan for named items.</param>
         public NLogFactories(params Assembly[] assemblies)
         {
             this.allFactories = new List<object>();

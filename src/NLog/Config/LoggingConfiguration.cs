@@ -40,7 +40,6 @@ namespace NLog.Config
     using NLog.Common;
     using NLog.Internal;
     using NLog.Targets;
-    using System.Threading;
 
     /// <summary>
     /// Keeps logging configuration and provides simple API

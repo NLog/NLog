@@ -11,3 +11,4 @@ _ReSharper.*
 *.bak
 *.csproj.user
 TestResults/
+StyleCop.Cache

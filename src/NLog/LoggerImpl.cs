@@ -50,7 +50,7 @@ namespace NLog
     internal static class LoggerImpl
     {
         private const int StackTraceSkipMethods = 0;
-        private static Assembly nlogAssembly = typeof(LoggerImpl).Assembly;
+        private static readonly Assembly nlogAssembly = typeof(LoggerImpl).Assembly;
 
         internal static void Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
         {
@@ -78,14 +78,21 @@ namespace NLog
 #endif
 
             int originalThreadId = Thread.CurrentThread.ManagedThreadId;
-
-            WriteToTargetWithFilterChain(targets, logEvent, ex =>
+            AsyncContinuation exceptionHandler = ex =>
                 {
                     if (factory.ThrowExceptions && Thread.CurrentThread.ManagedThreadId == originalThreadId)
                     {
                         throw new NLogRuntimeException("Exception occured in NLog", ex);
                     }
-                });
+                };
+
+            for (var t = targets; t != null; t = t.NextInChain)
+            {
+                if (!WriteToTargetWithFilterChain(t, logEvent, exceptionHandler))
+                {
+                    break;
+                }
+            }
         }
 
 #if !NET_CF
@@ -94,7 +101,7 @@ namespace NLog
             int firstUserFrame = 0;
             for (int i = 0; i < stackTrace.FrameCount; ++i)
             {
-                var frame = stackTrace.GetFrame(i);
+                StackFrame frame = stackTrace.GetFrame(i);
                 MethodBase mb = frame.GetMethod();
                 Assembly methodAssembly = null;
 
@@ -120,13 +127,8 @@ namespace NLog
         }
 #endif
 
-        private static void WriteToTargetWithFilterChain(TargetWithFilterChain targetListHead, LogEventInfo logEvent, AsyncContinuation onException)
+        private static bool WriteToTargetWithFilterChain(TargetWithFilterChain targetListHead, LogEventInfo logEvent, AsyncContinuation onException)
         {
-            if (targetListHead == null)
-            {
-                return;
-            }
-
             Target target = targetListHead.Target;
             FilterResult result = GetFilterResult(targetListHead.FilterChain, logEvent);
 
@@ -139,39 +141,19 @@ namespace NLog
 
                 if (result == FilterResult.IgnoreFinal)
                 {
-                    return;
+                    return false;
                 }
 
-                // move to next target
-                WriteToTargetWithFilterChain(targetListHead.NextInChain, logEvent, onException);
-                return;
+                return true;
             }
 
-            target.WriteLogEvent(logEvent,
-                AsyncHelpers.OneTimeOnly(
-                ex =>
-                    {
-                        if (ex == null)
-                        {
-                            // success
-                            if (result == FilterResult.LogFinal)
-                            {
-                                return;
-                            }
-                        }
-                        else
-                        {
-                            // intentionally not returning here
-                            // onException will throw or not, depending on ThrowExceptions setting
-                            // and/or whether we are still on the original thread
-                            // if it does not throw, we just proceed to the next target
-                            InternalLogger.Error("Target exception: {0}", ex);
-                            onException(ex);
-                        }
+            target.WriteLogEvent(logEvent, onException);
+            if (result == FilterResult.LogFinal)
+            {
+                return false;
+            }
 
-                        // write to the next target
-                        WriteToTargetWithFilterChain(targetListHead.NextInChain, logEvent, onException);
-                    }));
+            return true;
         }
 
         /// <summary>
@@ -179,10 +161,10 @@ namespace NLog
         /// </summary>
         /// <param name="filterChain">The filter chain.</param>
         /// <param name="logEvent">The log event.</param>
-        /// <returns></returns>
-        private static FilterResult GetFilterResult(ICollection<Filter> filterChain, LogEventInfo logEvent)
+        /// <returns>The result of the filter.</returns>
+        private static FilterResult GetFilterResult(IEnumerable<Filter> filterChain, LogEventInfo logEvent)
         {
-            var result = FilterResult.Neutral;
+            FilterResult result = FilterResult.Neutral;
 
             try
             {

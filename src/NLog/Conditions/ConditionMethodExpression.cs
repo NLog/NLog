@@ -45,8 +45,8 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionMethodExpression : ConditionExpression
     {
-        private readonly string conditionMethodName;
         private readonly bool acceptsLogEvent;
+        private readonly string conditionMethodName;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionMethodExpression" /> class.
@@ -98,38 +98,6 @@ namespace NLog.Conditions
         public IList<ConditionExpression> MethodParameters { get; private set; }
 
         /// <summary>
-        /// Evaluates the expression.
-        /// </summary>
-        /// <param name="context">Evaluation context.</param>
-        /// <returns>Expression result.</returns>
-        protected override object EvaluateNode(LogEventInfo context)
-        {
-            int parameterOffset = this.acceptsLogEvent ? 1 : 0;
-
-            object[] callParameters = new object[this.MethodParameters.Count + parameterOffset];
-            int i = 0;
-            foreach (ConditionExpression ce in this.MethodParameters)
-            {
-                callParameters[i++ + parameterOffset] = ce.Evaluate(context);
-            }
-
-            if (this.acceptsLogEvent)
-            {
-                callParameters[0] = context;
-            }
-
-            try
-            {
-                return this.MethodInfo.Invoke(null, callParameters);
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Error("Error: {0}", ex);
-                return string.Empty;
-            }
-        }
-
-        /// <summary>
         /// Returns a string representation of the expression.
         /// </summary>
         /// <returns>
@@ -151,6 +119,30 @@ namespace NLog.Conditions
 
             sb.Append(")");
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Evaluates the expression.
+        /// </summary>
+        /// <param name="context">Evaluation context.</param>
+        /// <returns>Expression result.</returns>
+        protected override object EvaluateNode(LogEventInfo context)
+        {
+            int parameterOffset = this.acceptsLogEvent ? 1 : 0;
+
+            var callParameters = new object[this.MethodParameters.Count + parameterOffset];
+            int i = 0;
+            foreach (ConditionExpression ce in this.MethodParameters)
+            {
+                callParameters[i++ + parameterOffset] = ce.Evaluate(context);
+            }
+
+            if (this.acceptsLogEvent)
+            {
+                callParameters[0] = context;
+            }
+
+            return this.MethodInfo.Invoke(null, callParameters);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace NLog.Internal
         /// Iterates over all items in the given collection and runs the specified action
         /// in sequence (each action executes only after the preceding one has completed without an error).
         /// </summary>
-        /// <typeparam name="T">Type of each item</typeparam>
+        /// <typeparam name="T">Type of each item.</typeparam>
         /// <param name="items">The items to iterate.</param>
         /// <param name="asyncContinuation">The asynchronous continuation to invoke once all items
         /// have been iterated.</param>
@@ -154,7 +154,7 @@ namespace NLog.Internal
         /// Iterates over all items in the given collection and runs the specified action
         /// in parallel (each action executes on a thread from thread pool).
         /// </summary>
-        /// <typeparam name="T">Type of each item</typeparam>
+        /// <typeparam name="T">Type of each item.</typeparam>
         /// <param name="values">The items to iterate.</param>
         /// <param name="asyncContinuation">The asynchronous continuation to invoke once all items
         /// have been iterated.</param>

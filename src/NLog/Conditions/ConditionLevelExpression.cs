@@ -39,6 +39,15 @@ namespace NLog.Conditions
     internal sealed class ConditionLevelExpression : ConditionExpression
     {
         /// <summary>
+        /// Returns a string representation of the expression.
+        /// </summary>
+        /// <returns>The '<b>level</b>' string.</returns>
+        public override string ToString()
+        {
+            return "level";
+        }
+
+        /// <summary>
         /// Evaluates to the current log level.
         /// </summary>
         /// <param name="context">Evaluation context. Ignored.</param>
@@ -46,15 +55,6 @@ namespace NLog.Conditions
         protected override object EvaluateNode(LogEventInfo context)
         {
             return context.Level;
-        }
-
-        /// <summary>
-        /// Returns a string representation of the expression.
-        /// </summary>
-        /// <returns>The '<b>level</b>' string.</returns>
-        public override string ToString()
-        {
-            return "level";
         }
     }
 }

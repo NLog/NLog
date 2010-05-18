@@ -36,7 +36,7 @@ namespace NLog.Conditions
     /// <summary>
     /// Condition <b>or</b> expression.
     /// </summary>
-    internal sealed class ConditionOrExpression : ConditionExpression 
+    internal sealed class ConditionOrExpression : ConditionExpression
     {
         private static readonly object boxedFalse = false;
         private static readonly object boxedTrue = true;
@@ -65,28 +65,6 @@ namespace NLog.Conditions
         public ConditionExpression RightExpression { get; private set; }
 
         /// <summary>
-        /// Evaluates the expression by evaluating <see cref="LeftExpression"/> and <see cref="RightExpression"/> recursively.
-        /// </summary>
-        /// <param name="context">Evaluation context.</param>
-        /// <returns>The value of the alternative operator.</returns>
-        protected override object EvaluateNode(LogEventInfo context)
-        {
-            bool bval1 = (bool)this.LeftExpression.Evaluate(context);
-            if (bval1)
-            {
-                return boxedTrue;
-            }
-
-            bool bval2 = (bool)this.RightExpression.Evaluate(context);
-            if (bval2)
-            {
-                return boxedTrue;
-            }
-
-            return boxedFalse;
-        }
-
-        /// <summary>
         /// Returns a string representation of the expression.
         /// </summary>
         /// <returns>
@@ -95,6 +73,28 @@ namespace NLog.Conditions
         public override string ToString()
         {
             return "(" + this.LeftExpression + " or " + this.RightExpression + ")";
+        }
+
+        /// <summary>
+        /// Evaluates the expression by evaluating <see cref="LeftExpression"/> and <see cref="RightExpression"/> recursively.
+        /// </summary>
+        /// <param name="context">Evaluation context.</param>
+        /// <returns>The value of the alternative operator.</returns>
+        protected override object EvaluateNode(LogEventInfo context)
+        {
+            var bval1 = (bool)this.LeftExpression.Evaluate(context);
+            if (bval1)
+            {
+                return boxedTrue;
+            }
+
+            var bval2 = (bool)this.RightExpression.Evaluate(context);
+            if (bval2)
+            {
+                return boxedTrue;
+            }
+
+            return boxedFalse;
         }
     }
 }

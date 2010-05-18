@@ -45,7 +45,7 @@ namespace NLog.Conditions
         /// Initializes a new instance of the <see cref="ConditionLayoutExpression" /> class.
         /// </summary>
         /// <param name="layout">The layout.</param>
-        public ConditionLayoutExpression(Layout layout) 
+        public ConditionLayoutExpression(Layout layout)
         {
             this.Layout = layout;
         }
@@ -57,6 +57,15 @@ namespace NLog.Conditions
         public Layout Layout { get; private set; }
 
         /// <summary>
+        /// Returns a string representation of this expression.
+        /// </summary>
+        /// <returns>String literal in single quotes.</returns>
+        public override string ToString()
+        {
+            return this.Layout.ToString();
+        }
+
+        /// <summary>
         /// Evaluates the expression by calculating the value
         /// of the layout in the specified evaluation context.
         /// </summary>
@@ -65,15 +74,6 @@ namespace NLog.Conditions
         protected override object EvaluateNode(LogEventInfo context)
         {
             return this.Layout.GetFormattedMessage(context);
-        }
-
-        /// <summary>
-        /// Returns a string representation of this expression.
-        /// </summary>
-        /// <returns>String literal in single quotes.</returns>
-        public override string ToString()
-        {
-            return this.Layout.ToString();
         }
     }
 }
