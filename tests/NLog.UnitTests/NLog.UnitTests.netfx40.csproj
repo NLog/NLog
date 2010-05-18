@@ -78,7 +78,6 @@
     <Compile Include="Filters\WhenNotContainsTests.cs" />
     <Compile Include="Filters\WhenNotEqualTests.cs" />
     <Compile Include="GetLoggerTests.cs" />
-    <Compile Include="LayoutConfigurationTests.cs" />
     <Compile Include="LayoutRenderers\BaseDirTests.cs" />
     <Compile Include="LayoutRenderers\CallSiteTests.cs" />
     <Compile Include="LayoutRenderers\CounterTests.cs" />
@@ -98,6 +97,7 @@
     <Compile Include="LayoutRenderers\Rot13Tests.cs" />
     <Compile Include="LayoutRenderers\ShortDateTests.cs" />
     <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
+    <Compile Include="Layouts\SimpleLayoutParserTests.cs" />
     <Compile Include="LoggerTests.cs" />
     <Compile Include="LogLevelTests.cs" />
     <Compile Include="LogManagerTests.cs" />
@@ -128,6 +128,7 @@
       <Name>NLog.netfx40</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(StyleCopTargetsFile)" Condition="'$(StyleCopTargetsFile)' != ''" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

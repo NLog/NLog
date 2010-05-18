@@ -31,14 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NLog.LayoutRenderers;
-using NLog.Layouts;
-
-namespace NLog.UnitTests
+namespace NLog.UnitTests.Layouts
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NLog.LayoutRenderers;
     using NLog.LayoutRenderers.Wrappers;
+    using NLog.Layouts;
 
     [TestClass]
     public class LayoutConfigurationTests : NLogTestBase
