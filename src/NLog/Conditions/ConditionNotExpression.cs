@@ -71,7 +71,7 @@ namespace NLog.Conditions
         /// </returns>
         public override string ToString()
         {
-            return "not(" + this.Expression + ")";
+            return "(not " + this.Expression + ")";
         }
     }
 }

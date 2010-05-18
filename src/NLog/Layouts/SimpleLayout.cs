@@ -53,13 +53,14 @@ namespace NLog.Layouts
 
         private string fixedText;
         private string layoutText;
+        private NLogFactories nlogFactories;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleLayout" /> class.
         /// </summary>
         public SimpleLayout()
+            : this(string.Empty)
         {
-            this.Text = String.Empty;
         }
 
         /// <summary>
@@ -67,12 +68,19 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="txt">The layout string to parse.</param>
         public SimpleLayout(string txt)
+            : this(txt, NLogFactories.Default)
         {
+        }
+
+        public SimpleLayout(string txt, NLogFactories nlogFactories)
+        {
+            this.nlogFactories = nlogFactories;
             this.Text = txt;
         }
 
-        internal SimpleLayout(LayoutRenderer[] renderers, string text)
+        internal SimpleLayout(LayoutRenderer[] renderers, string text, NLogFactories nlogFactories)
         {
+            this.nlogFactories = nlogFactories;
             this.SetRenderers(renderers, text);
         }
 
@@ -93,6 +101,7 @@ namespace NLog.Layouts
                 string txt;
 
                 renderers = LayoutParser.CompileLayout(
+                    this.nlogFactories,
                     new LayoutParser.Tokenizer(value),
                     false,
                     out txt);
@@ -219,7 +228,7 @@ namespace NLog.Layouts
         /// </returns>
         public override string ToString()
         {
-            return "Simple Layout: '" + this.Text + "'";
+            return "'" + this.Text + "'";
         }
 
         internal void SetRenderers(LayoutRenderer[] renderers, string text)

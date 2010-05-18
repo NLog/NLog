@@ -58,7 +58,17 @@ namespace NLog.Layouts
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
         public static Layout FromString(string layoutString)
         {
-            return new SimpleLayout(layoutString);
+            return FromString(layoutString, NLogFactories.Default);
+        }
+
+        /// <summary>
+        /// Implicitly converts the specified string to a <see cref="SimpleLayout"/>.
+        /// </summary>
+        /// <param name="layoutString">The layout string.</param>
+        /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
+        public static Layout FromString(string layoutString, NLogFactories nlogFactories)
+        {
+            return new SimpleLayout(layoutString, nlogFactories);
         }
 
         /// <summary>

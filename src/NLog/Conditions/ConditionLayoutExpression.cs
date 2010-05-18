@@ -73,7 +73,7 @@ namespace NLog.Conditions
         /// <returns>String literal in single quotes.</returns>
         public override string ToString()
         {
-            return "'" + this.Layout + "'";
+            return this.Layout.ToString();
         }
     }
 }

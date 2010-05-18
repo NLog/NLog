@@ -54,32 +54,34 @@ namespace NLog.Conditions
 
         LessThan,
 
-        GreaterTo,
-        
+        GreaterThan,
+
         LessThanOrEqualTo,
-        
+
         GreaterThanOrEqualTo,
-        
+
         EqualTo,
-        
+
         NotEqual,
 
         LeftParen,
-        
+
         RightParen,
-        
+
         Dot,
-        
+
         Comma,
-        
+
         Not,
-        
+
         And,
-        
+
         Or,
 
+        Minus,
+
         LastPunct,
-        
+
         Invalid,
     }
 }

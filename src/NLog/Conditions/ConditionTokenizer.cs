@@ -45,13 +45,14 @@ namespace NLog.Conditions
         private static readonly CharToTokenType[] charToTokenType =
         {
             new CharToTokenType('<', ConditionTokenType.LessThan),
-            new CharToTokenType('>', ConditionTokenType.GreaterTo),
+            new CharToTokenType('>', ConditionTokenType.GreaterThan),
             new CharToTokenType('=', ConditionTokenType.EqualTo),
             new CharToTokenType('(', ConditionTokenType.LeftParen),
             new CharToTokenType(')', ConditionTokenType.RightParen),
             new CharToTokenType('.', ConditionTokenType.Dot),
             new CharToTokenType(',', ConditionTokenType.Comma),
             new CharToTokenType('!', ConditionTokenType.Not),
+            new CharToTokenType('-', ConditionTokenType.Minus),
         };
 
         private string inputString;
@@ -476,6 +477,11 @@ namespace NLog.Conditions
                         break;
                     }
                 }
+            }
+
+            if (i == -1)
+            {
+                throw new ConditionParseException("String literal is missing a closing quote character.");
             }
 
             this.TokenValue = sb.ToString();

@@ -94,7 +94,7 @@ namespace NLog.Conditions
         /// </returns>
         public override string ToString()
         {
-            return "(" + this.LeftExpression + ") or (" + this.RightExpression + ")";
+            return "(" + this.LeftExpression + " or " + this.RightExpression + ")";
         }
     }
 }

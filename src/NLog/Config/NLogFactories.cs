@@ -54,13 +54,13 @@ namespace NLog.Config
         /// </summary>
         static NLogFactories()
         {
-            Default = new NLogFactories();
+            Default = new NLogFactories(typeof(Logger).Assembly);
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NLogFactories" /> class.
         /// </summary>
-        public NLogFactories()
+        public NLogFactories(params Assembly[] assemblies)
         {
             this.allFactories = new List<object>();
 
@@ -71,7 +71,10 @@ namespace NLog.Config
             this.allFactories.Add(this.ConditionMethodFactory = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>());
             this.allFactories.Add(this.AmbientPropertyFactory = new Factory<LayoutRenderer, AmbientPropertyAttribute>());
 
-            this.RegisterItemsFromAssembly(typeof(Logger).Assembly);
+            foreach (var asm in assemblies)
+            {
+                this.RegisterItemsFromAssembly(asm);
+            }
         }
 
         /// <summary>

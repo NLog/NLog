@@ -138,7 +138,7 @@ namespace NLog.Config
                 return result;
             }
 
-            throw new ArgumentException("Unknown function: '" + name + "'");
+            throw new NLogConfigurationException("Unknown function: '" + name + "'");
         }
 
         /// <summary>

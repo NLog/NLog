@@ -72,6 +72,11 @@ namespace NLog.Conditions
         /// <returns>The literal value.</returns>
         public override string ToString()
         {
+            if (this.LiteralValue == null)
+            {
+                return "null";
+            }
+
             return Convert.ToString(this.LiteralValue, CultureInfo.InvariantCulture);
         }
     }

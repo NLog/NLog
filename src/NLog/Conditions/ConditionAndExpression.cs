@@ -90,7 +90,7 @@ namespace NLog.Conditions
         /// <returns>A concatenated '(Left) and (Right)' string.</returns>
         public override string ToString()
         {
-            return "(" + this.Left + ") and (" + this.Right + ")";
+            return "(" + this.Left + " and " + this.Right + ")";
         }
     }
 }

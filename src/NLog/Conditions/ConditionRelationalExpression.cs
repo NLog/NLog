@@ -94,7 +94,7 @@ namespace NLog.Conditions
         /// </returns>
         public override string ToString()
         {
-            return this.LeftExpression + " " + this.GetOperatorString() + " " + this.RightExpression;
+            return "(" + this.LeftExpression + " " + this.GetOperatorString() + " " + this.RightExpression + ")";
         }
 
         /// <summary>
@@ -106,11 +106,6 @@ namespace NLog.Conditions
         /// <returns>Result of the given relational operator.</returns>
         private static object Compare(object leftValue, object rightValue, ConditionRelationalOperator relationalOperator)
         {
-            if (leftValue == null || rightValue == null)
-            {
-                return null;
-            }
-
             StringComparer comparer = StringComparer.InvariantCulture;
             PromoteTypes(ref leftValue, ref rightValue);
             switch (relationalOperator)
@@ -140,6 +135,11 @@ namespace NLog.Conditions
 
         private static void PromoteTypes(ref object val1, ref object val2)
         {
+            if (val1 == null || val2 == null)
+            {
+                return;
+            }
+
             if (val1.GetType() == val2.GetType())
             {
                 return;

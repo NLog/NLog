@@ -47,7 +47,6 @@ namespace NLog.Conditions
     {
         private readonly string conditionMethodName;
         private readonly bool acceptsLogEvent;
-        private readonly MethodInfo methodInfo;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionMethodExpression" /> class.
@@ -57,11 +56,11 @@ namespace NLog.Conditions
         /// <param name="methodParameters">The method parameters.</param>
         public ConditionMethodExpression(string conditionMethodName, MethodInfo methodInfo, IEnumerable<ConditionExpression> methodParameters)
         {
-            this.methodInfo = methodInfo;
+            this.MethodInfo = methodInfo;
             this.conditionMethodName = conditionMethodName;
             this.MethodParameters = new List<ConditionExpression>(methodParameters).AsReadOnly();
 
-            ParameterInfo[] formalParameters = this.methodInfo.GetParameters();
+            ParameterInfo[] formalParameters = this.MethodInfo.GetParameters();
             if (formalParameters.Length >= 0 && formalParameters[0].ParameterType == typeof(LogEventInfo))
             {
                 this.acceptsLogEvent = true;
@@ -88,10 +87,15 @@ namespace NLog.Conditions
         }
 
         /// <summary>
+        /// Gets the method info.
+        /// </summary>
+        public MethodInfo MethodInfo { get; private set; }
+
+        /// <summary>
         /// Gets the method parameters.
         /// </summary>
         /// <value>The method parameters.</value>
-        public ICollection<ConditionExpression> MethodParameters { get; private set; }
+        public IList<ConditionExpression> MethodParameters { get; private set; }
 
         /// <summary>
         /// Evaluates the expression.
@@ -116,7 +120,7 @@ namespace NLog.Conditions
 
             try
             {
-                return this.methodInfo.Invoke(null, callParameters);
+                return this.MethodInfo.Invoke(null, callParameters);
             }
             catch (Exception ex)
             {
@@ -142,7 +146,7 @@ namespace NLog.Conditions
             {
                 sb.Append(separator);
                 sb.Append(expr);
-                separator = ",";
+                separator = ", ";
             }
 
             sb.Append(")");
