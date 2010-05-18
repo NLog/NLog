@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#pragma warning disable 0618
+
 namespace NLog.UnitTests.Contexts
 {
     using System;

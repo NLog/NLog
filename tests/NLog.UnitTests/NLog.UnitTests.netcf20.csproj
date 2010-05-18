@@ -73,6 +73,9 @@
     <Compile Include="CaseSensitivityTests.cs" />
     <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
     <Compile Include="Conditions\ConditionParserTests.cs" />
+    <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
+    <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
+    <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
     <Compile Include="Filters\APITests.cs" />
     <Compile Include="Filters\WhenContainsTests.cs" />
     <Compile Include="Filters\WhenEqualTests.cs" />
