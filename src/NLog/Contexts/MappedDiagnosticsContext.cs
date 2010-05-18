@@ -50,13 +50,6 @@ namespace NLog.Contexts
         private static IDictionary<string, string> threadDictionary;
 #endif
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MappedDiagnosticsContext" /> class.
-        /// </summary>
-        internal MappedDiagnosticsContext()
-        {
-        }
-
 #if SILVERLIGHT
         internal static IDictionary<string, string> ThreadDictionary
         {

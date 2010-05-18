@@ -50,10 +50,6 @@ namespace NLog.Contexts
         private static Stack<string> threadStack;
 #endif
 
-        internal NestedDiagnosticsContext()
-        {
-        }
-
 #if SILVERLIGHT
         private static Stack<string> ThreadStack
         {

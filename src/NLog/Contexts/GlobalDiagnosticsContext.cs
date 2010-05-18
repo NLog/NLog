@@ -44,13 +44,6 @@ namespace NLog.Contexts
         private static Dictionary<string, string> dict = new Dictionary<string, string>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GlobalDiagnosticsContext"/> class.
-        /// </summary>
-        internal GlobalDiagnosticsContext()
-        {
-        }
-
-        /// <summary>
         /// Sets the Global Diagnostics Context item to the specified value.
         /// </summary>
         /// <param name="item">Item name.</param>
