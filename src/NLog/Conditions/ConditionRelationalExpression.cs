@@ -227,7 +227,7 @@ namespace NLog.Conditions
                     return "<=";
 
                 default:
-                    return string.Empty;
+                    throw new NotSupportedException("Relational operator " + this.RelationalOperator + " is not supported.");
             }
         }
     }

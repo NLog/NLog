@@ -81,6 +81,38 @@ namespace NLog.UnitTests.Conditions
         }
 
         [TestMethod]
+        public void ConditionMethodNegativeTest1()
+        {
+            try
+            {
+                AssertEvaluationResult(true, "starts-with('foobar')");
+                Assert.Fail("Expected exception");
+            }
+            catch (ConditionParseException ex)
+            {
+                Assert.AreEqual("Cannot resolve function 'starts-with'", ex.Message);
+                Assert.IsNotNull(ex.InnerException);
+                Assert.AreEqual("Condition method 'starts-with' expects 2 parameters, but passed 1.", ex.InnerException.Message);
+            }
+        }
+
+        [TestMethod]
+        public void ConditionMethodNegativeTest2()
+        {
+            try
+            {
+                AssertEvaluationResult(true, "starts-with('foobar','baz','qux','zzz')");
+                Assert.Fail("Expected exception");
+            }
+            catch (ConditionParseException ex)
+            {
+                Assert.AreEqual("Cannot resolve function 'starts-with'", ex.Message);
+                Assert.IsNotNull(ex.InnerException);
+                Assert.AreEqual("Condition method 'starts-with' expects 2 parameters, but passed 4.", ex.InnerException.Message);
+            }
+        }
+
+        [TestMethod]
         public void LiteralTest()
         {
             AssertEvaluationResult(null, "null");
@@ -150,9 +182,24 @@ namespace NLog.UnitTests.Conditions
         }
 
         [TestMethod]
+        [ExpectedException(typeof(NotSupportedException))]
+        public void UnsupportedRelationalOperatorTest2()
+        {
+            var cond = new ConditionRelationalExpression("true", "true", (ConditionRelationalOperator)(-1));
+            cond.ToString();
+        }
+
+        [TestMethod]
+        public void MethodWithLogEventInfoTest()
+        {
+            var factories = SetupConditionMethods();
+            Assert.AreEqual(true, ConditionParser.ParseExpression("IsValid()", factories).Evaluate(CreateWellKnownContext()));
+        }
+
+        [TestMethod]
         public void TypePromotionTest()
         {
-            var factories = SetupConversionMethods();
+            var factories = SetupConditionMethods();
 
             Assert.AreEqual(true, ConditionParser.ParseExpression("ToDateTime('2010/01/01') == '2010/01/01'", factories).Evaluate(CreateWellKnownContext()));
             Assert.AreEqual(true, ConditionParser.ParseExpression("ToInt64(1) == ToInt32(1)", factories).Evaluate(CreateWellKnownContext()));
@@ -189,7 +236,7 @@ namespace NLog.UnitTests.Conditions
         [ExpectedException(typeof(ConditionEvaluationException))]
         public void TypePromotionNegativeTest1()
         {
-            var factories = SetupConversionMethods();
+            var factories = SetupConditionMethods();
 
             Assert.AreEqual(true, ConditionParser.ParseExpression("ToDateTime('2010/01/01') == '20xx/01/01'", factories).Evaluate(CreateWellKnownContext()));
         }
@@ -198,7 +245,7 @@ namespace NLog.UnitTests.Conditions
         [ExpectedException(typeof(ConditionEvaluationException))]
         public void TypePromotionNegativeTest2()
         {
-            var factories = SetupConversionMethods();
+            var factories = SetupConditionMethods();
 
             Assert.AreEqual(true, ConditionParser.ParseExpression("GetGuid() == ToInt16(1)", factories).Evaluate(CreateWellKnownContext()));
         }
@@ -283,17 +330,18 @@ namespace NLog.UnitTests.Conditions
         }
 #endif
 
-        private static NLogFactories SetupConversionMethods()
+        private static NLogFactories SetupConditionMethods()
         {
             var factories = new NLogFactories();
-            factories.ConditionMethodFactory.RegisterDefinition("GetGuid", typeof(MyConversionMethods).GetMethod("GetGuid"));
-            factories.ConditionMethodFactory.RegisterDefinition("ToInt16", typeof(MyConversionMethods).GetMethod("ToInt16"));
-            factories.ConditionMethodFactory.RegisterDefinition("ToInt32", typeof(MyConversionMethods).GetMethod("ToInt32"));
-            factories.ConditionMethodFactory.RegisterDefinition("ToInt64", typeof(MyConversionMethods).GetMethod("ToInt64"));
-            factories.ConditionMethodFactory.RegisterDefinition("ToDouble", typeof(MyConversionMethods).GetMethod("ToDouble"));
-            factories.ConditionMethodFactory.RegisterDefinition("ToSingle", typeof(MyConversionMethods).GetMethod("ToSingle"));
-            factories.ConditionMethodFactory.RegisterDefinition("ToDateTime", typeof(MyConversionMethods).GetMethod("ToDateTime"));
-            factories.ConditionMethodFactory.RegisterDefinition("ToDecimal", typeof(MyConversionMethods).GetMethod("ToDecimal"));
+            factories.ConditionMethodFactory.RegisterDefinition("GetGuid", typeof(MyConditionMethods).GetMethod("GetGuid"));
+            factories.ConditionMethodFactory.RegisterDefinition("ToInt16", typeof(MyConditionMethods).GetMethod("ToInt16"));
+            factories.ConditionMethodFactory.RegisterDefinition("ToInt32", typeof(MyConditionMethods).GetMethod("ToInt32"));
+            factories.ConditionMethodFactory.RegisterDefinition("ToInt64", typeof(MyConditionMethods).GetMethod("ToInt64"));
+            factories.ConditionMethodFactory.RegisterDefinition("ToDouble", typeof(MyConditionMethods).GetMethod("ToDouble"));
+            factories.ConditionMethodFactory.RegisterDefinition("ToSingle", typeof(MyConditionMethods).GetMethod("ToSingle"));
+            factories.ConditionMethodFactory.RegisterDefinition("ToDateTime", typeof(MyConditionMethods).GetMethod("ToDateTime"));
+            factories.ConditionMethodFactory.RegisterDefinition("ToDecimal", typeof(MyConditionMethods).GetMethod("ToDecimal"));
+            factories.ConditionMethodFactory.RegisterDefinition("IsValid", typeof(MyConditionMethods).GetMethod("IsValid"));
             return factories;
         }
 
@@ -320,7 +368,7 @@ namespace NLog.UnitTests.Conditions
         /// <summary>
         /// Conversion methods helpful in covering type promotion logic
         /// </summary>
-        public class MyConversionMethods
+        public class MyConditionMethods
         {
             public static Guid GetGuid()
             {
@@ -360,6 +408,11 @@ namespace NLog.UnitTests.Conditions
             public static DateTime ToDateTime(object v)
             {
                 return Convert.ToDateTime(v, CultureInfo.InvariantCulture);
+            }
+
+            public static bool IsValid(LogEventInfo context)
+            {
+                return true;
             }
         }
     }

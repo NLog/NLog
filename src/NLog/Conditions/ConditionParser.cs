@@ -113,7 +113,7 @@ namespace NLog.Conditions
             }
             catch (Exception ex)
             {
-                throw new ConditionParseException("Cannot find function: '" + functionName + "'", ex);
+                throw new ConditionParseException("Cannot resolve function '" + functionName + "'", ex);
             }
         }
 
