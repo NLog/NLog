@@ -69,7 +69,7 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="context">Evaluation context.</param>
         /// <returns>The value of the alternative operator.</returns>
-        public override object Evaluate(LogEventInfo context)
+        protected override object EvaluateNode(LogEventInfo context)
         {
             bool bval1 = (bool)this.LeftExpression.Evaluate(context);
             if (bval1)

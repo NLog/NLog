@@ -80,14 +80,7 @@ namespace NLog.Conditions
         /// </summary>
         public ConditionTokenizer()
         {
-            this.IgnoreWhiteSpace = true;
         }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to ignore white space.
-        /// </summary>
-        /// <value>A value of <c>true</c> if white space should be ignored; otherwise, <c>false</c>.</value>
-        public bool IgnoreWhiteSpace { get; set; }
 
         /// <summary>
         /// Gets the token position.
@@ -150,26 +143,6 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Asserts that current token is a specific keyword and advances to the next token.
-        /// </summary>
-        /// <param name="expectedKeyword">The expected keyword.</param>
-        /// <remarks>If token is not the expected keyword, an exception is thrown.</remarks>
-        public void ExpectKeyword(string expectedKeyword)
-        {
-            if (this.TokenType != ConditionTokenType.Keyword)
-            {
-                throw new ConditionParseException("Expected keyword: " + expectedKeyword + ", got " + this.TokenType + ".");
-            }
-
-            if (!this.TokenValue.Equals(expectedKeyword, StringComparison.OrdinalIgnoreCase))
-            {
-                throw new ConditionParseException("Expected keyword: " + expectedKeyword + ", got " + this.TokenValue + ".");
-            }
-
-            this.GetNextToken();
-        }
-
-        /// <summary>
         /// Asserts that current token is a keyword and returns its value and advances to the next token.
         /// </summary>
         /// <returns>Keyword value.</returns>
@@ -200,22 +173,6 @@ namespace NLog.Conditions
             }
 
             if (!this.TokenValue.Equals(keyword, StringComparison.OrdinalIgnoreCase))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether current token is a keyword.
-        /// </summary>
-        /// <returns>
-        /// A value of <c>true</c> if current token is a keyword; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsKeyword()
-        {
-            if (this.TokenType != ConditionTokenType.Keyword)
             {
                 return false;
             }
@@ -263,45 +220,6 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the current token is equal to one of the specified values (keyword names or token types).
-        /// </summary>
-        /// <param name="tokens">Possible token values.</param>
-        /// <returns>A value of <c>true</c> if the specified token is equal to one of the specified values; otherwise, <c>false</c>.</returns>
-        public bool IsToken(object[] tokens)
-        {
-            for (int i = 0; i < tokens.Length; ++i)
-            {
-                if (tokens[i] is string)
-                {
-                    if (this.IsKeyword((string)tokens[i]))
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-                    if (this.TokenType == (ConditionTokenType)tokens[i])
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether current token is a punctuation.
-        /// </summary>
-        /// <returns>
-        /// A value of <c>true</c> if this instance is punctuation; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsPunctuation()
-        {
-            return this.TokenType >= ConditionTokenType.FirstPunct && this.TokenType < ConditionTokenType.LastPunct;
-        }
-
-        /// <summary>
         /// Gets the next token and sets <see cref="TokenType"/> and <see cref="TokenValue"/> properties.
         /// </summary>
         public void GetNextToken()
@@ -311,10 +229,7 @@ namespace NLog.Conditions
                 throw new ConditionParseException("Cannot read past end of stream.");
             }
 
-            if (this.IgnoreWhiteSpace)
-            {
-                this.SkipWhitespace();
-            }
+            this.SkipWhitespace();
 
             this.TokenPosition = this.position;
 
@@ -326,12 +241,6 @@ namespace NLog.Conditions
             }
 
             char ch = (char)i;
-
-            if (!this.IgnoreWhiteSpace && Char.IsWhiteSpace(ch))
-            {
-                this.ParseWhitespace();
-                return;
-            }
 
             if (Char.IsDigit(ch))
             {
@@ -427,26 +336,6 @@ namespace NLog.Conditions
             }
 
             throw new ConditionParseException("Invalid token: " + ch);
-        }
-
-        private void ParseWhitespace()
-        {
-            StringBuilder sb = new StringBuilder();
-            int ch2;
-
-            while ((ch2 = this.PeekChar()) != -1)
-            {
-                if (!Char.IsWhiteSpace((char)ch2))
-                {
-                    break;
-                }
-
-                sb.Append((char)ch2);
-                this.ReadChar();
-            }
-
-            this.TokenType = ConditionTokenType.Whitespace;
-            this.TokenValue = sb.ToString();
         }
 
         private void ParseSingleQuotedString(char ch)

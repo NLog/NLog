@@ -78,7 +78,7 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="context">Evaluation context.</param>
         /// <returns>Expression result.</returns>
-        public override object Evaluate(LogEventInfo context)
+        protected override object EvaluateNode(LogEventInfo context)
         {
             object v1 = this.LeftExpression.Evaluate(context);
             object v2 = this.RightExpression.Evaluate(context);

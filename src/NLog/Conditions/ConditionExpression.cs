@@ -33,6 +33,7 @@
 
 namespace NLog.Conditions
 {
+    using System;
     using NLog.Config;
 
     /// <summary>
@@ -55,7 +56,18 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="context">Evaluation context.</param>
         /// <returns>Expression result.</returns>
-        public abstract object Evaluate(LogEventInfo context);
+        public object Evaluate(LogEventInfo context)
+        {
+            try
+            {
+                return this.EvaluateNode(context);
+            }
+            catch (Exception ex)
+            {
+                throw new ConditionEvaluationException("Exception occured when evaluating condition", ex);
+               
+            }
+        }
 
         /// <summary>
         /// Returns a string representation of the expression.
@@ -64,5 +76,12 @@ namespace NLog.Conditions
         /// A <see cref="T:System.String"/> that represents the condition expression.
         /// </returns>
         public abstract override string ToString();
+
+        /// <summary>
+        /// Evaluates the expression.
+        /// </summary>
+        /// <param name="context">Evaluation context.</param>
+        /// <returns>Expression result.</returns>
+        protected abstract object EvaluateNode(LogEventInfo context);
     }
 }

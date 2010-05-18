@@ -61,7 +61,7 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="context">Evaluation context.</param>
         /// <returns>The literal value as passed in the constructor.</returns>
-        public override object Evaluate(LogEventInfo context)
+        protected override object EvaluateNode(LogEventInfo context)
         {
             return this.LiteralValue;
         }

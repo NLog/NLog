@@ -31,23 +31,43 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NLog.Conditions;
-using NLog.Config;
-using NLog.LayoutRenderers;
-using NLog.Layouts;
-
 namespace NLog.UnitTests.Conditions
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NLog.Conditions;
+    using NLog.Config;
+    using NLog.LayoutRenderers;
+    using NLog.Layouts;
+
     [TestClass]
     public class ConditionParserTests : NLogTestBase
     {
+        [TestMethod]
+        [ExpectedException(typeof(ConditionParseException))]
+        public void ParseNullText()
+        {
+            ConditionParser.ParseExpression(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ConditionParseException))]
+        public void ParseEmptyText()
+        {
+            ConditionParser.ParseExpression("");
+        }
+
         [TestMethod]
         public void ImplicitOperatorTest()
         {
             ConditionExpression cond = "true and true";
 
             Assert.IsInstanceOfType(cond, typeof(ConditionAndExpression));
+        }
+
+        [TestMethod]
+        public void NullLiteralTest()
+        {
+            Assert.AreEqual("null", ConditionParser.ParseExpression("null").ToString());
         }
 
         [TestMethod]
@@ -193,6 +213,16 @@ namespace NLog.UnitTests.Conditions
         }
 
         [TestMethod]
+        public void MethodNameWithUnderscores()
+        {
+            var nlogFactories = new NLogFactories();
+            nlogFactories.LayoutRendererFactory.RegisterDefinition("foo", typeof(FooLayoutRenderer));
+            nlogFactories.ConditionMethodFactory.RegisterDefinition("__check__", typeof(MyConditionMethods).GetMethod("CheckIt"));
+
+            var result = ConditionParser.ParseExpression("__check__('${foo}')", nlogFactories);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ConditionParseException))]
         public void UnbalancedParenthesis1Test()
         {
@@ -211,6 +241,13 @@ namespace NLog.UnitTests.Conditions
         public void UnbalancedParenthesis3Test()
         {
             ConditionParser.ParseExpression("(1))");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ConditionParseException))]
+        public void LogLevelWithoutAName()
+        {
+            ConditionParser.ParseExpression("LogLevel.'somestring'");
         }
 
         [TestMethod]
@@ -239,6 +276,27 @@ namespace NLog.UnitTests.Conditions
         public void UnrecognizedToken()
         {
             ConditionParser.ParseExpression("somecompletelyunrecognizedtoken");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ConditionParseException))]
+        public void UnrecognizedPunctuation()
+        {
+            ConditionParser.ParseExpression("#");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ConditionParseException))]
+        public void UnrecognizedUnicodeChar()
+        {
+            ConditionParser.ParseExpression("\u0090");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ConditionParseException))]
+        public void UnrecognizedUnicodeChar2()
+        {
+            ConditionParser.ParseExpression("\u0015");
         }
 
         [TestMethod]

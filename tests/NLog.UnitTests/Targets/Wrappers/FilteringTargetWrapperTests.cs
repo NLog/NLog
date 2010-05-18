@@ -309,7 +309,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 this.result = result;
             }
 
-            public override object Evaluate(LogEventInfo context)
+            protected override object EvaluateNode(LogEventInfo context)
             {
                 this.CallCount++;
                 return this.result;

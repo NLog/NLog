@@ -43,7 +43,7 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="context">Evaluation context.</param>
         /// <returns>The logger message.</returns>
-        public override object Evaluate(LogEventInfo context)
+        protected override object EvaluateNode(LogEventInfo context)
         {
             return context.FormattedMessage;
         }

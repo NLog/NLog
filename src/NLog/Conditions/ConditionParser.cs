@@ -56,7 +56,7 @@ namespace NLog.Conditions
         private ConditionParser(string expressionText, NLogFactories nlogFactories)
         {
             this.nlogFactories = nlogFactories;
-            this.tokenizer.InitTokenizer(expressionText);
+            this.tokenizer.InitTokenizer(expressionText ?? string.Empty);
         }
 
         /// <summary>

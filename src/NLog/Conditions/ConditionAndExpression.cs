@@ -67,7 +67,7 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="context">Evaluation context.</param>
         /// <returns>The value of the conjunction operator.</returns>
-        public override object Evaluate(LogEventInfo context)
+        protected override object EvaluateNode(LogEventInfo context)
         {
             bool bval1 = (bool)this.Left.Evaluate(context);
             if (!bval1)
