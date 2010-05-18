@@ -48,11 +48,13 @@ namespace NLog.UnitTests.Targets.Wrappers
         public void AutoFlushTargetWrapperSyncTest1()
         {
             var myTarget = new MyTarget();
-            var autoFlushTargetWrapper = new AutoFlushTargetWrapper
+            var wrapper = new AutoFlushTargetWrapper
             {
                 WrappedTarget = myTarget,
             };
 
+            ((ISupportsInitialize)myTarget).Initialize();
+            ((ISupportsInitialize)wrapper).Initialize();
             var logEvent = new LogEventInfo();
             Exception lastException = null;
             bool continuationHit = false;
@@ -63,7 +65,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                         continuationHit = true;
                     };
 
-            autoFlushTargetWrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteLogEvent(logEvent, continuation);
 
             Assert.IsTrue(continuationHit);
             Assert.IsNull(lastException);
@@ -71,7 +73,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(1, myTarget.WriteCount);
 
             continuationHit = false;
-            autoFlushTargetWrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteLogEvent(logEvent, continuation);
             Assert.IsTrue(continuationHit);
             Assert.IsNull(lastException);
             Assert.AreEqual(2, myTarget.WriteCount);
@@ -82,7 +84,9 @@ namespace NLog.UnitTests.Targets.Wrappers
         public void AutoFlushTargetWrapperAsyncTest1()
         {
             var myTarget = new MyAsyncTarget();
-            var autoFlushTargetWrapper = new AutoFlushTargetWrapper(myTarget);
+            var wrapper = new AutoFlushTargetWrapper(myTarget);
+            ((ISupportsInitialize)myTarget).Initialize();
+            ((ISupportsInitialize)wrapper).Initialize();
             var logEvent = new LogEventInfo();
             Exception lastException = null;
             var continuationHit = new ManualResetEvent(false);
@@ -93,7 +97,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     continuationHit.Set();
                 };
 
-            autoFlushTargetWrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteLogEvent(logEvent, continuation);
 
             continuationHit.WaitOne();
             Assert.IsNull(lastException);
@@ -101,7 +105,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(1, myTarget.WriteCount);
 
             continuationHit.Reset();
-            autoFlushTargetWrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteLogEvent(logEvent, continuation);
             continuationHit.WaitOne();
             Assert.IsNull(lastException);
             Assert.AreEqual(2, myTarget.WriteCount);
@@ -117,7 +121,9 @@ namespace NLog.UnitTests.Targets.Wrappers
                 ThrowExceptions = true,
             };
 
-            var autoFlushTargetWrapper = new AutoFlushTargetWrapper(myTarget);
+            var wrapper = new AutoFlushTargetWrapper(myTarget);
+            ((ISupportsInitialize)myTarget).Initialize();
+            ((ISupportsInitialize)wrapper).Initialize();
             var logEvent = new LogEventInfo();
             Exception lastException = null;
             var continuationHit = new ManualResetEvent(false);
@@ -128,7 +134,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     continuationHit.Set();
                 };
 
-            autoFlushTargetWrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteLogEvent(logEvent, continuation);
 
             continuationHit.WaitOne();
             Assert.IsNotNull(lastException);
@@ -140,7 +146,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             continuationHit.Reset();
             lastException = null;
-            autoFlushTargetWrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteLogEvent(logEvent, continuation);
             continuationHit.WaitOne();
             Assert.IsNotNull(lastException);
             Assert.IsInstanceOfType(lastException, typeof(InvalidOperationException));

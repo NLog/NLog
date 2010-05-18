@@ -46,6 +46,7 @@ namespace NLog.Targets
     public abstract class Target : ISupportsInitialize, INLogConfigurationItem, IDisposable
     {
         private List<Layout> allLayouts;
+        private bool isInitialized;
 
         /// <summary>
         /// Gets or sets the name of the target.
@@ -58,7 +59,13 @@ namespace NLog.Targets
         /// </summary>
         void ISupportsInitialize.Initialize()
         {
+            if (this.isInitialized)
+            {
+                throw new NLogRuntimeException("Target is already initialized.");
+            }
+
             this.Initialize();
+            this.isInitialized = true;
         }
 
         /// <summary>
@@ -66,7 +73,13 @@ namespace NLog.Targets
         /// </summary>
         void ISupportsInitialize.Close()
         {
+            if (!this.isInitialized)
+            {
+                throw new NLogRuntimeException("Target is not initialized.");
+            }
+
             this.Close();
+            this.isInitialized = false;
         }
 
         /// <summary>
@@ -135,6 +148,11 @@ namespace NLog.Targets
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public void WriteLogEvent(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
+            if (!this.isInitialized)
+            {
+                throw new NLogRuntimeException("Target is not initialized.");
+            }
+
             asyncContinuation = AsyncHelpers.OneTimeOnly(asyncContinuation);
 
             try
