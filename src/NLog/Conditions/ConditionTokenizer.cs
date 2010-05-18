@@ -457,14 +457,7 @@ namespace NLog.Conditions
 
         private int ReadChar()
         {
-            if (this.position < this.inputString.Length)
-            {
-                return (int)this.inputString[this.position++];
-            }
-            else
-            {
-                return -1;
-            }
+            return this.inputString[this.position++];
         }
 
         /// <summary>

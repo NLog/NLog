@@ -61,7 +61,7 @@ namespace NLog.Conditions
             this.MethodParameters = new List<ConditionExpression>(methodParameters).AsReadOnly();
 
             ParameterInfo[] formalParameters = this.MethodInfo.GetParameters();
-            if (formalParameters.Length >= 0 && formalParameters[0].ParameterType == typeof(LogEventInfo))
+            if (formalParameters.Length > 0 && formalParameters[0].ParameterType == typeof(LogEventInfo))
             {
                 this.acceptsLogEvent = true;
             }

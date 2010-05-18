@@ -306,6 +306,15 @@ namespace NLog.UnitTests.Conditions
             ConditionParser.ParseExpression("unrecognized-method()");
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ConditionParseException))]
+        public void TokenizerEOFTest()
+        {
+            var tokenizer = new ConditionTokenizer();
+            tokenizer.InitTokenizer(string.Empty);
+            tokenizer.GetNextToken();
+        }
+
         private void RelationalOperatorTest(string op, string result)
         {
             string operand1 = "3";

@@ -201,7 +201,7 @@ namespace NLog.Conditions
                 return;
             }
 
-            throw new ConditionEvaluationException("Cannot promote types " + val1.GetType().Name + " and " + val2.GetType().Name + " to one type.");
+            throw new ConditionEvaluationException("Cannot find common type for '" + val1.GetType().Name + "' and '" + val2.GetType().Name + "'.");
         }
 
         private string GetOperatorString()
