@@ -71,6 +71,8 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AsyncHelperTests.cs" />
     <Compile Include="CaseSensitivityTests.cs" />
+    <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
+    <Compile Include="Conditions\ConditionParserTests.cs" />
     <Compile Include="Filters\APITests.cs" />
     <Compile Include="Filters\WhenContainsTests.cs" />
     <Compile Include="Filters\WhenEqualTests.cs" />
