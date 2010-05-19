@@ -42,6 +42,7 @@ namespace NLog.Layouts
     using NLog.Internal;
     using NLog.LayoutRenderers;
     using NLog.LayoutRenderers.Wrappers;
+    using System.Diagnostics;
 
     /// <summary>
     /// Parses layout strings.
@@ -203,10 +204,7 @@ namespace NLog.Layouts
         private static LayoutRenderer ParseLayoutRenderer(NLogFactories nlogFactories, Tokenizer sr)
         {
             int ch = sr.Read();
-            if (ch != '{')
-            {
-                throw new NLogConfigurationException("'{' expected in layout specification");
-            }
+            Debug.Assert(ch == '{', "'{' expected in layout specification");
 
             string name = ParseLayoutRendererName(sr);
             LayoutRenderer lr = nlogFactories.LayoutRendererFactory.CreateInstance(name);
@@ -234,7 +232,7 @@ namespace NLog.Layouts
 
                             if (!wrappers.TryGetValue(wrapperType, out wrapperRenderer))
                             {
-                                wrapperRenderer = NLogFactories.Default.AmbientPropertyFactory.CreateInstance(parameterName);
+                                wrapperRenderer = nlogFactories.AmbientPropertyFactory.CreateInstance(parameterName);
                                 wrappers[wrapperType] = wrapperRenderer;
                                 orderedWrappers.Add(wrapperRenderer);
                             }
@@ -299,6 +297,13 @@ namespace NLog.Layouts
                 ch = sr.Read();
             }
 
+            lr = ApplyWrappers(nlogFactories, lr, orderedWrappers);
+
+            return lr;
+        }
+
+        private static LayoutRenderer ApplyWrappers(NLogFactories nlogFactories, LayoutRenderer lr, List<LayoutRenderer> orderedWrappers)
+        {
             for (int i = orderedWrappers.Count - 1; i >= 0; --i)
             {
                 var newRenderer = (WrapperLayoutRendererBase)orderedWrappers[i];
@@ -311,7 +316,6 @@ namespace NLog.Layouts
                 newRenderer.Inner = new SimpleLayout(new[] { lr }, string.Empty, nlogFactories);
                 lr = newRenderer;
             }
-
             return lr;
         }
 

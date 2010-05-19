@@ -83,6 +83,11 @@ namespace NLog.Common
         public static string LogFile { get; set; }
 
         /// <summary>
+        /// Gets or sets the text writer that will receive internal logs.
+        /// </summary>
+        public static TextWriter LogWriter { get; set; }
+
+        /// <summary>
         /// Gets a value indicating whether internal log includes Trace messages.
         /// </summary>
         public static bool IsTraceEnabled
@@ -272,7 +277,7 @@ namespace NLog.Common
                 return;
             }
 
-            if (String.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError)
+            if (String.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError && LogWriter == null)
             {
                 return;
             }
@@ -293,19 +298,33 @@ namespace NLog.Common
                 builder.Append(formattedMessage);
                 string msg = builder.ToString();
 
-                if (!String.IsNullOrEmpty(LogFile))
+                // log to file
+                var logFile = LogFile;
+                if (!string.IsNullOrEmpty(logFile))
                 {
-                    using (TextWriter textWriter = File.AppendText(LogFile))
+                    using (var textWriter = File.AppendText(logFile))
                     {
                         textWriter.WriteLine(msg);
                     }
                 }
 
+                // log to LogWriter
+                var writer = LogWriter;
+                if (writer != null)
+                {
+                    lock (writer)
+                    {
+                        writer.WriteLine(msg);
+                    }
+                }
+
+                // log to console
                 if (LogToConsole)
                 {
                     Console.WriteLine(msg);
                 }
 
+                // log to console error
                 if (LogToConsoleError)
                 {
                     Console.Error.WriteLine(msg);

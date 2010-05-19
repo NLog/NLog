@@ -39,7 +39,7 @@ namespace NLog.UnitTests.Layouts
     using NLog.Layouts;
 
     [TestClass]
-    public class LayoutConfigurationTests : NLogTestBase
+    public class SimpleLayoutParserTests : NLogTestBase
     {
         [TestMethod]
         public void SimpleTest()
@@ -185,6 +185,17 @@ namespace NLog.UnitTests.Layouts
             Assert.IsNotNull(ndcLayoutRenderer);
             Assert.AreEqual(3, ndcLayoutRenderer.TopFrames);
             Assert.AreEqual("x", ndcLayoutRenderer.Separator);
+        }
+
+        [TestMethod]
+        public void AmbientPropertyTest()
+        {
+            SimpleLayout l = "${message:padding=10}";
+            Assert.AreEqual(1, l.Renderers.Count);
+            var pad = l.Renderers[0] as PaddingLayoutRendererWrapper;
+            Assert.IsNotNull(pad);
+            var message = ((SimpleLayout)pad.Inner).Renderers[0] as MessageLayoutRenderer;
+            Assert.IsNotNull(message);
         }
     }
 }
