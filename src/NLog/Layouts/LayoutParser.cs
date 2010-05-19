@@ -35,6 +35,7 @@ namespace NLog.Layouts
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Reflection;
     using System.Text;
     using NLog.Common;
@@ -42,7 +43,6 @@ namespace NLog.Layouts
     using NLog.Internal;
     using NLog.LayoutRenderers;
     using NLog.LayoutRenderers.Wrappers;
-    using System.Diagnostics;
 
     /// <summary>
     /// Parses layout strings.
@@ -316,6 +316,7 @@ namespace NLog.Layouts
                 newRenderer.Inner = new SimpleLayout(new[] { lr }, string.Empty, nlogFactories);
                 lr = newRenderer;
             }
+
             return lr;
         }
 

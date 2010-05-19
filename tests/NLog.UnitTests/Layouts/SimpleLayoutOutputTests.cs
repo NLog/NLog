@@ -75,9 +75,11 @@ namespace NLog.UnitTests.Layouts
         {
             var stringWriter = new StringWriter();
             var oldWriter = InternalLogger.LogWriter;
+            var oldLevel = InternalLogger.LogLevel;
             try
             {
                 InternalLogger.LogWriter = stringWriter;
+                InternalLogger.LogLevel = LogLevel.Warn;
                 NLogFactories nlogFactories = new NLogFactories();
                 nlogFactories.LayoutRendererFactory.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
 
@@ -85,16 +87,17 @@ namespace NLog.UnitTests.Layouts
                 string output = l.GetFormattedMessage(LogEventInfo.CreateNullEvent());
                 Assert.AreEqual("xxyyzz", output);
                 var internalLogOutput = stringWriter.ToString();
-                Assert.IsTrue(internalLogOutput.Contains("msg1"), internalLogOutput);
-                Assert.IsTrue(internalLogOutput.Contains("msg2"), internalLogOutput);
+                Assert.IsTrue(internalLogOutput.IndexOf("msg1") >= 0, internalLogOutput);
+                Assert.IsTrue(internalLogOutput.IndexOf("msg2") >= 0, internalLogOutput);
             }
             finally
             {
                 InternalLogger.LogWriter = oldWriter;
+                InternalLogger.LogLevel = oldLevel;
             }
         }
 
-        private class ThrowsExceptionRenderer : LayoutRenderer
+        public class ThrowsExceptionRenderer : LayoutRenderer
         {
             public ThrowsExceptionRenderer()
             {
