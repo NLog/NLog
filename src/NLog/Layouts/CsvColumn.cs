@@ -44,6 +44,7 @@ namespace NLog.Layouts
         /// Initializes a new instance of the <see cref="CsvColumn" /> class.
         /// </summary>
         public CsvColumn()
+            : this(null, null)
         {
         }
 

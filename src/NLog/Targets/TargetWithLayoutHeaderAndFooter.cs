@@ -49,9 +49,6 @@ namespace NLog.Targets
         /// </remarks>
         protected TargetWithLayoutHeaderAndFooter()
         {
-            Layout originalLayout = base.Layout;
-            this.LHF = new LayoutWithHeaderAndFooter();
-            Layout = originalLayout;
         }
 
         /// <summary>
@@ -59,7 +56,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Layout Options' order='1' />
         [RequiredParameter]
-        public new Layout Layout
+        public override Layout Layout
         {
             get
             {
@@ -71,6 +68,13 @@ namespace NLog.Targets
                 if (value is LayoutWithHeaderAndFooter)
                 {
                     base.Layout = value;
+                }
+                else if (this.LHF == null)
+                {
+                    this.LHF = new LayoutWithHeaderAndFooter()
+                    {
+                        Layout = value
+                    };
                 }
                 else
                 {

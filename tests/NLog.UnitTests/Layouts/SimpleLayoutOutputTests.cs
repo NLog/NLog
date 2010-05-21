@@ -39,6 +39,7 @@ namespace NLog.UnitTests.Layouts
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NLog.Common;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
 
@@ -96,6 +97,53 @@ namespace NLog.UnitTests.Layouts
             }
         }
 
+        [TestMethod]
+        public void LayoutInitTest1()
+        {
+            var lr = new MockLayout();
+            Assert.AreEqual(0, lr.InitCount);
+            Assert.AreEqual(0, lr.CloseCount);
+
+            // make sure render will call Init
+            lr.Render(LogEventInfo.CreateNullEvent());
+            Assert.AreEqual(1, lr.InitCount);
+            Assert.AreEqual(0, lr.CloseCount);
+
+            ((ISupportsInitialize)lr).Close();
+            Assert.AreEqual(1, lr.InitCount);
+            Assert.AreEqual(1, lr.CloseCount);
+
+            // second call to Close() will be ignored
+            ((ISupportsInitialize)lr).Close();
+            Assert.AreEqual(1, lr.InitCount);
+            Assert.AreEqual(1, lr.CloseCount);
+        }
+
+        [TestMethod]
+        public void LayoutInitTest2()
+        {
+            var lr = new MockLayout();
+            Assert.AreEqual(0, lr.InitCount);
+            Assert.AreEqual(0, lr.CloseCount);
+
+            // calls to Close() will be ignored because 
+            ((ISupportsInitialize)lr).Close();
+            Assert.AreEqual(0, lr.InitCount);
+            Assert.AreEqual(0, lr.CloseCount);
+
+            ((ISupportsInitialize)lr).Initialize();
+            Assert.AreEqual(1, lr.InitCount);
+
+            // make sure render will not call another Init
+            lr.Render(LogEventInfo.CreateNullEvent());
+            Assert.AreEqual(1, lr.InitCount);
+            Assert.AreEqual(0, lr.CloseCount);
+
+            ((ISupportsInitialize)lr).Close();
+            Assert.AreEqual(1, lr.InitCount);
+            Assert.AreEqual(1, lr.CloseCount);
+        }
+
         public class ThrowsExceptionRenderer : LayoutRenderer
         {
             public ThrowsExceptionRenderer()
@@ -110,6 +158,30 @@ namespace NLog.UnitTests.Layouts
             protected override void Append(StringBuilder builder, LogEventInfo logEvent)
             {
                 throw new InvalidOperationException(this.Message);
+            }
+        }
+
+        public class MockLayout : Layout
+        {
+            public int InitCount { get; set; }
+
+            public int CloseCount { get; set; }
+
+            protected override void Initialize()
+            {
+                base.Initialize();
+                this.InitCount++;
+            }
+
+            protected override void Close()
+            {
+                base.Close();
+                this.CloseCount++;
+            }
+
+            protected override string GetFormattedMessage(LogEventInfo logEvent)
+            {
+                return "foo";
             }
         }
     }

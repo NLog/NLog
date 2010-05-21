@@ -324,7 +324,7 @@ namespace NLog
         }
 #endif
 
-        internal void AddCachedLayoutValue(Layout layout, string value)
+        internal string AddCachedLayoutValue(Layout layout, string value)
         {
             if (this.layoutCache == null)
             {
@@ -332,6 +332,7 @@ namespace NLog
             }
 
             this.layoutCache[layout] = value;
+            return value;
         }
 
         internal bool TryGetCachedLayoutValue(Layout layout, out string value)

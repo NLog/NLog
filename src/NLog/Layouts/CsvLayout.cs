@@ -46,10 +46,8 @@ namespace NLog.Layouts
     [Layout("CsvLayout")]
     [ThreadAgnostic]
     [AppDomainFixedOutput]
-    public class CsvLayout : Layout
+    public class CsvLayout : LayoutWithHeaderAndFooter
     {
-        private readonly Layout thisHeader;
-
         private string actualColumnDelimiter;
         private string doubleQuoteChar;
         private char[] quotableCharacters;
@@ -64,7 +62,7 @@ namespace NLog.Layouts
             this.Delimiter = CsvColumnDelimiterMode.Auto;
             this.Quoting = CsvQuotingMode.Auto;
             this.QuoteChar = "\"";
-            this.thisHeader = new CsvHeaderLayout(this);
+            this.Layout = this;
         }
 
         /// <summary>
@@ -109,111 +107,6 @@ namespace NLog.Layouts
         public string CustomColumnDelimiter { get; set; }
 
         /// <summary>
-        /// Gets or sets the main layout (can be repeated multiple times).
-        /// </summary>
-        /// <value>
-        /// </value>
-        /// <docgen category='Layout Options' order='10' />
-        public Layout Layout
-        {
-            get { return this; }
-            set { throw new InvalidOperationException("Cannot modify the layout of CsvLayout"); }
-        }
-
-        /// <summary>
-        /// Gets or sets the CSV Header.
-        /// </summary>
-        /// <docgen category='Layout Options' order='10' />
-        public Layout Header
-        {
-            get { return this.WithHeader ? this.thisHeader : null; }
-            set { }
-        }
-
-        /// <summary>
-        /// Gets or sets the CSV Footer.
-        /// </summary>
-        /// <remarks>
-        /// CSV has no footer.
-        /// </remarks>
-        /// <docgen category='Layout Options' order='10' />
-        public Layout Footer
-        {
-            get { return null; }
-            set { }
-        }
-
-        /// <summary>
-        /// Gets the header.
-        /// </summary>
-        /// <param name="logEvent">The log event to be formatted.</param>
-        /// <returns>A string representation of the log event.</returns>
-        public string GetHeader(LogEventInfo logEvent)
-        {
-            var sb = new StringBuilder();
-
-            bool first = true;
-
-            foreach (CsvColumn col in this.Columns)
-            {
-                if (!first)
-                {
-                    sb.Append(this.actualColumnDelimiter);
-                }
-
-                first = false;
-
-                bool useQuoting;
-                string text = col.Name;
-
-                switch (this.Quoting)
-                {
-                    case CsvQuotingMode.Nothing:
-                        useQuoting = false;
-                        break;
-
-                    case CsvQuotingMode.All:
-                        useQuoting = true;
-                        break;
-
-                    default:
-                    case CsvQuotingMode.Auto:
-                        if (text.IndexOfAny(this.quotableCharacters) >= 0)
-                        {
-                            useQuoting = true;
-                        }
-                        else
-                        {
-                            useQuoting = false;
-                        }
-
-                        break;
-                }
-
-                if (useQuoting)
-                {
-                    sb.Append(this.QuoteChar);
-                }
-
-                if (useQuoting)
-                {
-                    sb.Append(text.Replace(this.QuoteChar, this.doubleQuoteChar));
-                }
-                else
-                {
-                    sb.Append(text);
-                }
-
-                if (useQuoting)
-                {
-                    sb.Append(this.QuoteChar);
-                }
-            }
-
-            return sb.ToString();
-        }
-
-        /// <summary>
         /// Initializes the layout.
         /// </summary>
         protected override void Initialize()
@@ -252,6 +145,9 @@ namespace NLog.Layouts
 
             this.quotableCharacters = (this.QuoteChar + "\r\n" + this.actualColumnDelimiter).ToCharArray();
             this.doubleQuoteChar = this.QuoteChar + this.QuoteChar;
+
+            this.Header = new CsvHeaderLayout(this);
+            this.Footer = null;
         }
 
         /// <summary>
@@ -327,7 +223,71 @@ namespace NLog.Layouts
                 }
             }
 
-            logEvent.AddCachedLayoutValue(this, sb.ToString());
+            return logEvent.AddCachedLayoutValue(this, sb.ToString());
+        }
+
+        private string GetHeader()
+        {
+            var sb = new StringBuilder();
+
+            bool first = true;
+
+            foreach (CsvColumn col in this.Columns)
+            {
+                if (!first)
+                {
+                    sb.Append(this.actualColumnDelimiter);
+                }
+
+                first = false;
+
+                bool useQuoting;
+                string text = col.Name;
+
+                switch (this.Quoting)
+                {
+                    case CsvQuotingMode.Nothing:
+                        useQuoting = false;
+                        break;
+
+                    case CsvQuotingMode.All:
+                        useQuoting = true;
+                        break;
+
+                    default:
+                    case CsvQuotingMode.Auto:
+                        if (text.IndexOfAny(this.quotableCharacters) >= 0)
+                        {
+                            useQuoting = true;
+                        }
+                        else
+                        {
+                            useQuoting = false;
+                        }
+
+                        break;
+                }
+
+                if (useQuoting)
+                {
+                    sb.Append(this.QuoteChar);
+                }
+
+                if (useQuoting)
+                {
+                    sb.Append(text.Replace(this.QuoteChar, this.doubleQuoteChar));
+                }
+                else
+                {
+                    sb.Append(text);
+                }
+
+                if (useQuoting)
+                {
+                    sb.Append(this.QuoteChar);
+                }
+            }
+
             return sb.ToString();
         }
 
@@ -354,7 +314,14 @@ namespace NLog.Layouts
             /// <returns>The rendered layout.</returns>
             protected override string GetFormattedMessage(LogEventInfo logEvent)
             {
-                return this.parent.GetHeader(logEvent);
+                string cached;
+
+                if (logEvent.TryGetCachedLayoutValue(this, out cached))
+                {
+                    return cached;
+                }
+
+                return logEvent.AddCachedLayoutValue(this, this.parent.GetHeader());
             }
         }
     }

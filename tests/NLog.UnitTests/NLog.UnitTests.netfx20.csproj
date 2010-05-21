@@ -95,6 +95,7 @@
     <Compile Include="LayoutRenderers\Rot13Tests.cs" />
     <Compile Include="LayoutRenderers\ShortDateTests.cs" />
     <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
+    <Compile Include="Layouts\CsvLayoutTests.cs" />
     <Compile Include="Layouts\SimpleLayoutOutputTests.cs" />
     <Compile Include="Layouts\SimpleLayoutParserTests.cs" />
     <Compile Include="LoggerTests.cs" />

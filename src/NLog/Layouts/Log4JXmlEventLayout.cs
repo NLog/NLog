@@ -66,13 +66,12 @@ namespace NLog.Layouts
         {
             string cachedValue;
 
-            if (!logEvent.TryGetCachedLayoutValue(this, out cachedValue))
+            if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
             {
-                cachedValue = this.Renderer.Render(logEvent);
-                logEvent.AddCachedLayoutValue(this, cachedValue);
+                return cachedValue;
             }
 
-            return cachedValue;
+            return logEvent.AddCachedLayoutValue(this, this.Renderer.Render(logEvent));
         }
     }
 }

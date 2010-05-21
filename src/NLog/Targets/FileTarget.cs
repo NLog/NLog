@@ -445,7 +445,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the characters that are appended after each line.
         /// </summary>
-        protected string NewLineChars { get; private set; }
+        protected internal string NewLineChars { get; private set; }
 
         /// <summary>
         /// Removes records of initialized files that have not been 

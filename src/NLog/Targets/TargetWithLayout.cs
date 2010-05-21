@@ -59,6 +59,6 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='1' />
         [RequiredParameter]
         [DefaultValue("${longdate}|${level:uppercase=true}|${logger}|${message}")]
-        public Layout Layout { get; set; }
+        public virtual Layout Layout { get; set; }
    }
 }

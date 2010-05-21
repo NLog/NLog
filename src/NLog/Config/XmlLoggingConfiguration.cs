@@ -626,8 +626,8 @@ namespace NLog.Config
         {
             InternalLogger.Trace("ParseTargetElement name={0} type={1}", reader.GetAttribute("name"), reader.GetAttribute("type"));
 
-            CompoundTargetBase compound = target as CompoundTargetBase;
-            WrapperTargetBase wrapper = target as WrapperTargetBase;
+            var compound = target as CompoundTargetBase;
+            var wrapper = target as WrapperTargetBase;
 
             this.ConfigureObjectFromAttributes(target, reader, this.variables, true);
 
