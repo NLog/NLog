@@ -59,7 +59,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string msg = this.Inner.GetFormattedMessage(logEvent);
+            string msg = this.Inner.Render(logEvent);
             builder.Append(this.Transform(msg));
         }
 

@@ -107,7 +107,7 @@ namespace NLog.Targets
 
         internal object GetValue(LogEventInfo logEvent)
         {
-            return Convert.ChangeType(this.Layout.GetFormattedMessage(logEvent), this.Type, CultureInfo.InvariantCulture);
+            return Convert.ChangeType(this.Layout.Render(logEvent), this.Type, CultureInfo.InvariantCulture);
         }
     }
 }

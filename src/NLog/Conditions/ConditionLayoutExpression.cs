@@ -73,7 +73,7 @@ namespace NLog.Conditions
         /// <returns>The value of the layout.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {
-            return this.Layout.GetFormattedMessage(context);
+            return this.Layout.Render(context);
         }
     }
 }

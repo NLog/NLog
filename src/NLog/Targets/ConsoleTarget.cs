@@ -74,7 +74,7 @@ namespace NLog.Targets
             base.Initialize();
             if (Header != null)
             {
-                this.Output(Header.GetFormattedMessage(LogEventInfo.CreateNullEvent()));
+                this.Output(Header.Render(LogEventInfo.CreateNullEvent()));
             }
         }
 
@@ -85,7 +85,7 @@ namespace NLog.Targets
         {
             if (Footer != null)
             {
-                this.Output(Footer.GetFormattedMessage(LogEventInfo.CreateNullEvent()));
+                this.Output(Footer.Render(LogEventInfo.CreateNullEvent()));
             }
 
             base.Close();
@@ -101,7 +101,7 @@ namespace NLog.Targets
         /// </remarks>
         protected override void Write(LogEventInfo logEvent)
         {
-            this.Output(this.Layout.GetFormattedMessage(logEvent));
+            this.Output(this.Layout.Render(logEvent));
         }
 
         private void Output(string s)

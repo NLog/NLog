@@ -203,7 +203,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            this.NetworkSend(this.Address.GetFormattedMessage(logEvent), this.GetBytesToWrite(logEvent));
+            this.NetworkSend(this.Address.Render(logEvent), this.GetBytesToWrite(logEvent));
         }
 
         /// <summary>
@@ -270,11 +270,11 @@ namespace NLog.Targets
 
             if (this.NewLine)
             {
-                text = this.Layout.GetFormattedMessage(logEvent) + "\r\n";
+                text = this.Layout.Render(logEvent) + "\r\n";
             }
             else
             {
-                text = this.Layout.GetFormattedMessage(logEvent);
+                text = this.Layout.Render(logEvent);
             }
 
             return this.Encoding.GetBytes(text);

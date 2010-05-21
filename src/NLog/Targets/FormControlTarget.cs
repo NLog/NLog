@@ -101,7 +101,7 @@ namespace NLog.Targets
         /// </param>
         protected override void Write(LogEventInfo logEvent)
         {
-            string logMessage = this.Layout.GetFormattedMessage(logEvent);
+            string logMessage = this.Layout.Render(logEvent);
             
             this.FindControlAndSendTheMessage(logMessage);
         }

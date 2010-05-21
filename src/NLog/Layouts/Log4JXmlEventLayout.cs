@@ -62,7 +62,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         /// <returns>The rendered layout.</returns>
-        public override string GetFormattedMessage(LogEventInfo logEvent)
+        protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
             string cachedValue;
 

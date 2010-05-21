@@ -61,11 +61,11 @@ namespace NLog.Targets
             {
                 if (this.AddComments)
                 {
-                    response.Write("<!-- " + this.Layout.GetFormattedMessage(logEvent) + "-->");
+                    response.Write("<!-- " + this.Layout.Render(logEvent) + "-->");
                 }
                 else
                 {
-                    response.Write(this.Layout.GetFormattedMessage(logEvent));
+                    response.Write(this.Layout.Render(logEvent));
                 }
 
                 Marshal.ReleaseComObject(response);

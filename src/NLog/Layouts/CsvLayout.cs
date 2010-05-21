@@ -144,83 +144,6 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Formats the log event for write.
-        /// </summary>
-        /// <param name="logEvent">The log event to be formatted.</param>
-        /// <returns>A string representation of the log event.</returns>
-        public override string GetFormattedMessage(LogEventInfo logEvent)
-        {
-            string cachedValue;
-
-            if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
-            {
-                return cachedValue;
-            }
-
-            var sb = new StringBuilder();
-            bool first = true;
-
-            foreach (CsvColumn col in this.Columns)
-            {
-                if (!first)
-                {
-                    sb.Append(this.actualColumnDelimiter);
-                }
-
-                first = false;
-
-                bool useQuoting;
-                string text = col.Layout.GetFormattedMessage(logEvent);
-
-                switch (this.Quoting)
-                {
-                    case CsvQuotingMode.Nothing:
-                        useQuoting = false;
-                        break;
-
-                    case CsvQuotingMode.All:
-                        useQuoting = true;
-                        break;
-
-                    default:
-                    case CsvQuotingMode.Auto:
-                        if (text.IndexOfAny(this.quotableCharacters) >= 0)
-                        {
-                            useQuoting = true;
-                        }
-                        else
-                        {
-                            useQuoting = false;
-                        }
-
-                        break;
-                }
-
-                if (useQuoting)
-                {
-                    sb.Append(this.QuoteChar);
-                }
-
-                if (useQuoting)
-                {
-                    sb.Append(text.Replace(this.QuoteChar, this.doubleQuoteChar));
-                }
-                else
-                {
-                    sb.Append(text);
-                }
-
-                if (useQuoting)
-                {
-                    sb.Append(this.QuoteChar);
-                }
-            }
-
-            logEvent.AddCachedLayoutValue(this, sb.ToString());
-            return sb.ToString();
-        }
-
-        /// <summary>
         /// Gets the header.
         /// </summary>
         /// <param name="logEvent">The log event to be formatted.</param>
@@ -332,6 +255,83 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Formats the log event for write.
+        /// </summary>
+        /// <param name="logEvent">The log event to be formatted.</param>
+        /// <returns>A string representation of the log event.</returns>
+        protected override string GetFormattedMessage(LogEventInfo logEvent)
+        {
+            string cachedValue;
+
+            if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
+            {
+                return cachedValue;
+            }
+
+            var sb = new StringBuilder();
+            bool first = true;
+
+            foreach (CsvColumn col in this.Columns)
+            {
+                if (!first)
+                {
+                    sb.Append(this.actualColumnDelimiter);
+                }
+
+                first = false;
+
+                bool useQuoting;
+                string text = col.Layout.Render(logEvent);
+
+                switch (this.Quoting)
+                {
+                    case CsvQuotingMode.Nothing:
+                        useQuoting = false;
+                        break;
+
+                    case CsvQuotingMode.All:
+                        useQuoting = true;
+                        break;
+
+                    default:
+                    case CsvQuotingMode.Auto:
+                        if (text.IndexOfAny(this.quotableCharacters) >= 0)
+                        {
+                            useQuoting = true;
+                        }
+                        else
+                        {
+                            useQuoting = false;
+                        }
+
+                        break;
+                }
+
+                if (useQuoting)
+                {
+                    sb.Append(this.QuoteChar);
+                }
+
+                if (useQuoting)
+                {
+                    sb.Append(text.Replace(this.QuoteChar, this.doubleQuoteChar));
+                }
+                else
+                {
+                    sb.Append(text);
+                }
+
+                if (useQuoting)
+                {
+                    sb.Append(this.QuoteChar);
+                }
+            }
+
+            logEvent.AddCachedLayoutValue(this, sb.ToString());
+            return sb.ToString();
+        }
+
+        /// <summary>
         /// Header for CSV layout.
         /// </summary>
         private class CsvHeaderLayout : Layout
@@ -352,7 +352,7 @@ namespace NLog.Layouts
             /// </summary>
             /// <param name="logEvent">The logging event.</param>
             /// <returns>The rendered layout.</returns>
-            public override string GetFormattedMessage(LogEventInfo logEvent)
+            protected override string GetFormattedMessage(LogEventInfo logEvent)
             {
                 return this.parent.GetHeader(logEvent);
             }

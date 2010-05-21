@@ -38,6 +38,7 @@ namespace NLog.Layouts
     using System.Text;
     using NLog.Common;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.LayoutRenderers;
 
     /// <summary>
@@ -157,7 +158,15 @@ namespace NLog.Layouts
         public static string Evaluate(string text, LogEventInfo logEvent)
         {
             SimpleLayout l = new SimpleLayout(text);
-            return l.GetFormattedMessage(logEvent);
+            ((ISupportsInitialize)l).Initialize();
+            try
+            {
+                return l.Render(logEvent);
+            }
+            finally
+            {
+                ((ISupportsInitialize)l).Close();
+            }
         }
 
         /// <summary>
@@ -173,12 +182,38 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Returns a <see cref="T:System.String"></see> that represents the current object.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"></see> that represents the current object.
+        /// </returns>
+        public override string ToString()
+        {
+            return "'" + this.Text + "'";
+        }
+
+        internal void SetRenderers(LayoutRenderer[] renderers, string text)
+        {
+            this.Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
+            if (this.Renderers.Count == 1 && this.Renderers[0] is LiteralLayoutRenderer)
+            {
+                this.fixedText = ((LiteralLayoutRenderer)this.Renderers[0]).Text;
+            }
+            else
+            {
+                this.fixedText = null;
+            }
+
+            this.layoutText = text;
+        }
+
+        /// <summary>
         /// Renders the layout for the specified logging event by invoking layout renderers
         /// that make up the event.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         /// <returns>The rendered layout.</returns>
-        public override string GetFormattedMessage(LogEventInfo logEvent)
+        protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
             if (this.fixedText != null)
             {
@@ -223,32 +258,6 @@ namespace NLog.Layouts
             string value = builder.ToString();
             logEvent.AddCachedLayoutValue(this, value);
             return value;
-        }
-
-        /// <summary>
-        /// Returns a <see cref="T:System.String"></see> that represents the current object.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String"></see> that represents the current object.
-        /// </returns>
-        public override string ToString()
-        {
-            return "'" + this.Text + "'";
-        }
-
-        internal void SetRenderers(LayoutRenderer[] renderers, string text)
-        {
-            this.Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
-            if (this.Renderers.Count == 1 && this.Renderers[0] is LiteralLayoutRenderer)
-            {
-                this.fixedText = ((LiteralLayoutRenderer)this.Renderers[0]).Text;
-            }
-            else
-            {
-                this.fixedText = null;
-            }
-
-            this.layoutText = text;
         }
     }
 }

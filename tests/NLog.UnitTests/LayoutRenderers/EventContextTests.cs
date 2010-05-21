@@ -54,7 +54,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
 
             // empty
-            Assert.AreEqual("", l.GetFormattedMessage(lei));
+            Assert.AreEqual("", l.Render(lei));
         }
 
         [TestMethod]
@@ -65,7 +65,7 @@ namespace NLog.UnitTests.LayoutRenderers
             lei.Properties["aaa"] = "bbb";
 
             // empty
-            Assert.AreEqual("bbb", l.GetFormattedMessage(lei));
+            Assert.AreEqual("bbb", l.Render(lei));
         }
     }
 }

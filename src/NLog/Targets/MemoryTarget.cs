@@ -80,7 +80,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            string msg = this.Layout.GetFormattedMessage(logEvent);
+            string msg = this.Layout.Render(logEvent);
 
             lock (this.lockObject)
             {

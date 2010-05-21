@@ -244,7 +244,7 @@ namespace NLog.Targets
             StringBuilder bodyBuffer = new StringBuilder();
             if (Header != null)
             {
-                bodyBuffer.Append(Header.GetFormattedMessage(lastEvent));
+                bodyBuffer.Append(Header.Render(lastEvent));
                 if (this.AddNewLines)
                 {
                     bodyBuffer.Append("\n");
@@ -253,7 +253,7 @@ namespace NLog.Targets
 
             for (int i = 0; i < events.Length; ++i)
             {
-                bodyBuffer.Append(this.Layout.GetFormattedMessage(events[i]));
+                bodyBuffer.Append(this.Layout.Render(events[i]));
                 if (this.AddNewLines)
                 {
                     bodyBuffer.Append("\n");
@@ -262,7 +262,7 @@ namespace NLog.Targets
 
             if (Footer != null)
             {
-                bodyBuffer.Append(Footer.GetFormattedMessage(lastEvent));
+                bodyBuffer.Append(Footer.Render(lastEvent));
                 if (this.AddNewLines)
                 {
                     bodyBuffer.Append("\n");
@@ -274,14 +274,14 @@ namespace NLog.Targets
             MailMessage msg = new MailMessage();
             this.SetupMailMessage(msg, lastEvent);
             msg.Body = bodyText;
-            SmtpClient client = new SmtpClient(this.SmtpServer.GetFormattedMessage(lastEvent), this.SmtpPort);
+            SmtpClient client = new SmtpClient(this.SmtpServer.Render(lastEvent), this.SmtpPort);
             if (this.SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
             {
                 client.Credentials = CredentialCache.DefaultNetworkCredentials;
             }
             else if (this.SmtpAuthentication == SmtpAuthenticationMode.Basic)
             {
-                client.Credentials = new NetworkCredential(this.SmtpUsername.GetFormattedMessage(lastEvent), this.SmtpPassword.GetFormattedMessage(lastEvent));
+                client.Credentials = new NetworkCredential(this.SmtpUsername.Render(lastEvent), this.SmtpPassword.Render(lastEvent));
             }
 
             client.EnableSsl = this.EnableSsl;
@@ -296,15 +296,15 @@ namespace NLog.Targets
 
         private void SetupMailMessage(MailMessage msg, LogEventInfo logEvent)
         {
-            msg.From = new MailAddress(this.From.GetFormattedMessage(logEvent));
-            foreach (string mail in this.To.GetFormattedMessage(logEvent).Split(';'))
+            msg.From = new MailAddress(this.From.Render(logEvent));
+            foreach (string mail in this.To.Render(logEvent).Split(';'))
             {
                 msg.To.Add(mail);
             }
 
             if (this.Bcc != null)
             {
-                foreach (string mail in this.Bcc.GetFormattedMessage(logEvent).Split(';'))
+                foreach (string mail in this.Bcc.Render(logEvent).Split(';'))
                 {
                     msg.Bcc.Add(mail);
                 }
@@ -312,13 +312,13 @@ namespace NLog.Targets
 
             if (this.CC != null)
             {
-                foreach (string mail in this.CC.GetFormattedMessage(logEvent).Split(';'))
+                foreach (string mail in this.CC.Render(logEvent).Split(';'))
                 {
                     msg.CC.Add(mail);
                 }
             }
 
-            msg.Subject = this.Subject.GetFormattedMessage(logEvent);
+            msg.Subject = this.Subject.Render(logEvent);
             msg.BodyEncoding = this.Encoding;
             msg.IsBodyHtml = this.Html;
             msg.Priority = MailPriority.Normal;

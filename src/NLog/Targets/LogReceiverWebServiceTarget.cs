@@ -195,7 +195,7 @@ namespace NLog.Targets
             for (int i = 0; i < this.Parameters.Count; ++i)
             {
                 var param = this.Parameters[i];
-                nlogEvent.Values.Add(param.Layout.GetFormattedMessage(eventInfo));
+                nlogEvent.Values.Add(param.Layout.Render(eventInfo));
             }
 
             return nlogEvent;

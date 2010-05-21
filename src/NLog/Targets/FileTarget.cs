@@ -653,7 +653,7 @@ namespace NLog.Targets
         {
             lock (this)
             {
-                string fileName = this.FileName.GetFormattedMessage(logEvent);
+                string fileName = this.FileName.Render(logEvent);
                 byte[] bytes = this.GetBytesToWrite(logEvent);
 
                 if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
@@ -691,7 +691,7 @@ namespace NLog.Targets
                 for (int i = 0; i < logEvents.Length; ++i)
                 {
                     LogEventInfo logEvent = logEvents[i];
-                    string logEventFileName = this.FileName.GetFormattedMessage(logEvent);
+                    string logEventFileName = this.FileName.Render(logEvent);
                     if (logEventFileName != currentFileName)
                     {
                         this.FlushCurrentFileWrites(currentFileName, firstLogEvent, ms, pendingContinuations);
@@ -718,7 +718,7 @@ namespace NLog.Targets
         /// <returns>A string representation of the log event.</returns>
         protected virtual string GetFormattedMessage(LogEventInfo logEvent)
         {
-            return this.Layout.GetFormattedMessage(logEvent);
+            return this.Layout.Render(logEvent);
         }
 
         /// <summary>
@@ -913,7 +913,7 @@ namespace NLog.Targets
             }
             else
             {
-                fileNamePattern = this.ArchiveFileName.GetFormattedMessage(ev);
+                fileNamePattern = this.ArchiveFileName.Render(ev);
             }
 
             switch (this.ArchiveNumbering)
@@ -1161,7 +1161,7 @@ namespace NLog.Targets
                 return null;
             }
 
-            string renderedText = this.Header.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
+            string renderedText = this.Header.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
             return this.TransformBytes(this.Encoding.GetBytes(renderedText));
         }
 
@@ -1172,7 +1172,7 @@ namespace NLog.Targets
                 return null;
             }
 
-            string renderedText = this.Footer.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
+            string renderedText = this.Footer.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
             return this.TransformBytes(this.Encoding.GetBytes(renderedText));
         }
 
@@ -1286,8 +1286,8 @@ namespace NLog.Targets
                 var le1 = (LogEventInfo)x;
                 var le2 = (LogEventInfo)y;
 
-                string filename1 = this.fileTarget.FileName.GetFormattedMessage(le1);
-                string filename2 = this.fileTarget.FileName.GetFormattedMessage(le2);
+                string filename1 = this.fileTarget.FileName.Render(le1);
+                string filename2 = this.fileTarget.FileName.Render(le2);
 
                 int val = String.CompareOrdinal(filename1, filename2);
                 if (val != 0)

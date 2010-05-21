@@ -124,7 +124,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            string message = this.Layout.GetFormattedMessage(logEvent);
+            string message = this.Layout.Render(logEvent);
             if (message.Length > 16384)
             {
                 // limitation of EventLog API
@@ -150,14 +150,14 @@ namespace NLog.Targets
 
             if (this.EventId != null)
             {
-                eventId = Convert.ToInt32(this.EventId.GetFormattedMessage(logEvent), CultureInfo.InvariantCulture);
+                eventId = Convert.ToInt32(this.EventId.Render(logEvent), CultureInfo.InvariantCulture);
             }
 
             short category = 0;
 
             if (this.Category != null)
             {
-                category = Convert.ToInt16(this.Category.GetFormattedMessage(logEvent), CultureInfo.InvariantCulture);
+                category = Convert.ToInt16(this.Category.Render(logEvent), CultureInfo.InvariantCulture);
             }
 
             EventLog.WriteEntry(this.Source, message, entryType, eventId, category);

@@ -33,15 +33,14 @@
 
 namespace NLog.UnitTests.Layouts
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using NLog.LayoutRenderers;
-    using NLog.LayoutRenderers.Wrappers;
-    using NLog.Layouts;
-    using NLog.Config;
     using System;
-    using System.Text;
-    using NLog.Common;
     using System.IO;
+    using System.Text;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.LayoutRenderers;
+    using NLog.Layouts;
 
     [TestClass]
     public class SimpleLayoutOutputTests : NLogTestBase
@@ -52,9 +51,9 @@ namespace NLog.UnitTests.Layouts
             int stringLength = 100000;
 
             SimpleLayout l = new string('x', stringLength) + "${message}";
-            string output = l.GetFormattedMessage(LogEventInfo.CreateNullEvent());
+            string output = l.Render(LogEventInfo.CreateNullEvent());
             Assert.AreEqual(new string('x', stringLength), output);
-            string output2 = l.GetFormattedMessage(LogEventInfo.CreateNullEvent());
+            string output2 = l.Render(LogEventInfo.CreateNullEvent());
             Assert.AreEqual(new string('x', stringLength), output);
             Assert.AreNotSame(output, output2);
         }
@@ -66,7 +65,7 @@ namespace NLog.UnitTests.Layouts
             nlogFactories.LayoutRendererFactory.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
             
             SimpleLayout l = new SimpleLayout("xx${throwsException}yy", nlogFactories);
-            string output = l.GetFormattedMessage(LogEventInfo.CreateNullEvent());
+            string output = l.Render(LogEventInfo.CreateNullEvent());
             Assert.AreEqual("xxyy", output);
         }
 
@@ -84,7 +83,7 @@ namespace NLog.UnitTests.Layouts
                 nlogFactories.LayoutRendererFactory.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
 
                 SimpleLayout l = new SimpleLayout("xx${throwsException:msg1}yy${throwsException:msg2}zz", nlogFactories);
-                string output = l.GetFormattedMessage(LogEventInfo.CreateNullEvent());
+                string output = l.Render(LogEventInfo.CreateNullEvent());
                 Assert.AreEqual("xxyyzz", output);
                 var internalLogOutput = stringWriter.ToString();
                 Assert.IsTrue(internalLogOutput.IndexOf("msg1") >= 0, internalLogOutput);

@@ -64,7 +64,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            NativeMethods.OutputDebugString(this.Layout.GetFormattedMessage(logEvent));
+            NativeMethods.OutputDebugString(this.Layout.Render(logEvent));
         }
     }
 }

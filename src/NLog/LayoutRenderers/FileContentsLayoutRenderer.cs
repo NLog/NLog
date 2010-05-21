@@ -84,7 +84,7 @@ namespace NLog.LayoutRenderers
         {
             lock (this)
             {
-                string fileName = this.FileName.GetFormattedMessage(logEvent);
+                string fileName = this.FileName.Render(logEvent);
 
                 if (fileName != this.lastFileName)
                 {

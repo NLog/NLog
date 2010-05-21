@@ -72,7 +72,7 @@ namespace NLog.Targets
         {
             if (this.FormatMessage)
             {
-                this.Layout.GetFormattedMessage(logEvent);
+                this.Layout.Render(logEvent);
             }
         }
     }

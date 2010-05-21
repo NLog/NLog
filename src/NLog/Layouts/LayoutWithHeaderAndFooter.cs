@@ -62,16 +62,6 @@ namespace NLog.Layouts
         public Layout Footer { get; set; }
 
         /// <summary>
-        /// Renders the layout for the specified logging event by invoking layout renderers.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <returns>The rendered layout.</returns>
-        public override string GetFormattedMessage(LogEventInfo logEvent)
-        {
-            return this.Layout.GetFormattedMessage(logEvent);
-        }
-
-        /// <summary>
         /// Precalculates the layout for the specified log event and stores the result
         /// in per-log event cache.
         /// </summary>
@@ -93,6 +83,16 @@ namespace NLog.Layouts
             {
                 this.Footer.Precalculate(logEvent);
             }
+        }
+
+        /// <summary>
+        /// Renders the layout for the specified logging event by invoking layout renderers.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        /// <returns>The rendered layout.</returns>
+        protected override string GetFormattedMessage(LogEventInfo logEvent)
+        {
+            return this.Layout.Render(logEvent);
         }
     }
 }

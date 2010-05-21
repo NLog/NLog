@@ -73,7 +73,7 @@ namespace NLog.Filters
                                               ? StringComparison.OrdinalIgnoreCase
                                               : StringComparison.Ordinal;
 
-            if (this.Layout.GetFormattedMessage(logEvent).IndexOf(this.Substring, comparisonType) >= 0)
+            if (this.Layout.Render(logEvent).IndexOf(this.Substring, comparisonType) >= 0)
             {
                 return this.Action;
             }

@@ -88,7 +88,7 @@ namespace NLog.Targets
         protected override void Write(LogEventInfo logEvent)
         {
             this.Counter++;
-            this.LastMessage = this.Layout.GetFormattedMessage(logEvent);
+            this.LastMessage = this.Layout.Render(logEvent);
         }
     }
 }

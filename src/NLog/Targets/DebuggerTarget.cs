@@ -66,7 +66,7 @@ namespace NLog.Targets
             base.Initialize();
             if (Header != null)
             {
-                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, Header.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + "\n");
+                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, Header.Render(LogEventInfo.CreateNullEvent()) + "\n");
             }
         }
 
@@ -77,7 +77,7 @@ namespace NLog.Targets
         {
             if (Footer != null)
             {
-                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, Footer.GetFormattedMessage(LogEventInfo.CreateNullEvent()) + "\n");
+                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, Footer.Render(LogEventInfo.CreateNullEvent()) + "\n");
             }
 
             base.Close();
@@ -91,7 +91,7 @@ namespace NLog.Targets
         {
             if (Debugger.IsLogging())
             {
-                Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, this.Layout.GetFormattedMessage(logEvent) + "\n");
+                Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, this.Layout.Render(logEvent) + "\n");
             }
         }
     }

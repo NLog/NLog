@@ -80,7 +80,7 @@ namespace NLog.Filters
                                                   ? StringComparison.OrdinalIgnoreCase
                                                   : StringComparison.Ordinal;
 
-            if (!this.Layout.GetFormattedMessage(logEvent).Equals(this.CompareTo, comparisonType))
+            if (!this.Layout.Render(logEvent).Equals(this.CompareTo, comparisonType))
             {
                 return this.Action;
             }

@@ -44,6 +44,8 @@ using System.Xml;
 
 namespace NLog.UnitTests
 {
+    using NLog.Internal;
+
     public abstract class NLogTestBase
     {
         public void AssertDebugCounter(string targetName, int val)
@@ -100,7 +102,9 @@ namespace NLog.UnitTests
 
         protected void AssertLayoutRendererOutput(Layout l, string expected)
         {
-            string actual = l.GetFormattedMessage(LogEventInfo.Create(LogLevel.Info, "loggername", "message"));
+            ((ISupportsInitialize)l).Initialize();
+            string actual = l.Render(LogEventInfo.Create(LogLevel.Info, "loggername", "message"));
+            ((ISupportsInitialize)l).Close();
             Assert.AreEqual(expected, actual);
         }
 

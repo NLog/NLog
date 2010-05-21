@@ -41,6 +41,8 @@ namespace NLog.Layouts
     /// </summary>
     public abstract class Layout : ISupportsInitialize, INLogConfigurationItem, IRenderable
     {
+        private bool isInitialized;
+
         /// <summary>
         /// Converts a given text to a <see cref="Layout" />.
         /// </summary>
@@ -48,7 +50,7 @@ namespace NLog.Layouts
         /// <returns><see cref="SimpleLayout"/> object represented by the text.</returns>
         public static implicit operator Layout(string text)
         {
-            return new SimpleLayout(text);
+            return FromString(text);
         }
 
         /// <summary>
@@ -73,13 +75,6 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Renders the layout for the specified logging event by invoking layout renderers.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <returns>The rendered layout.</returns>
-        public abstract string GetFormattedMessage(LogEventInfo logEvent);
-
-        /// <summary>
         /// Precalculates the layout for the specified log event and stores the result
         /// in per-log event cache.
         /// </summary>
@@ -91,7 +86,7 @@ namespace NLog.Layouts
         /// </remarks>
         public virtual void Precalculate(LogEventInfo logEvent)
         {
-            this.GetFormattedMessage(logEvent);
+            this.Render(logEvent);
         }
 
         /// <summary>
@@ -101,6 +96,12 @@ namespace NLog.Layouts
         /// <returns>String representing log event.</returns>
         public string Render(LogEventInfo eventInfo)
         {
+            if (!this.isInitialized)
+            {
+                this.isInitialized = true;
+                this.Initialize();
+            }
+
             return this.GetFormattedMessage(eventInfo);
         }
 
@@ -109,7 +110,11 @@ namespace NLog.Layouts
         /// </summary>
         void ISupportsInitialize.Initialize()
         {
-            this.Initialize();
+            if (!this.isInitialized)
+            {
+                this.isInitialized = true;
+                this.Initialize();
+            }
         }
 
         /// <summary>
@@ -117,7 +122,11 @@ namespace NLog.Layouts
         /// </summary>
         void ISupportsInitialize.Close()
         {
-            this.Close();
+            if (this.isInitialized)
+            {
+                this.isInitialized = false;
+                this.Close();
+            }
         }
 
         /// <summary>
@@ -133,5 +142,12 @@ namespace NLog.Layouts
         protected virtual void Close()
         {
         }
+
+        /// <summary>
+        /// Renders the layout for the specified logging event by invoking layout renderers.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        /// <returns>The rendered layout.</returns>
+        protected abstract string GetFormattedMessage(LogEventInfo logEvent);
     }
 }

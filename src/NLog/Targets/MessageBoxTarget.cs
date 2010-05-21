@@ -93,9 +93,9 @@ using System.Windows.Browser;
         protected override void Write(LogEventInfo logEvent)
         {
 #if SILVERLIGHT
-            HtmlPage.Window.Alert(this.Caption.GetFormattedMessage(logEvent) + "\r\n\r\n" + this.Layout.GetFormattedMessage(logEvent));
+            HtmlPage.Window.Alert(this.Caption.Render(logEvent) + "\r\n\r\n" + this.Layout.Render(logEvent));
 #else
-            MessageBox.Show(this.Layout.GetFormattedMessage(logEvent), this.Caption.GetFormattedMessage(logEvent));
+            MessageBox.Show(this.Layout.Render(logEvent), this.Caption.Render(logEvent));
 #endif
         }
 
@@ -116,14 +116,14 @@ using System.Windows.Browser;
             LogEventInfo lastLogEvent = logEvents[logEvents.Length - 1];
             foreach (LogEventInfo ev in logEvents)
             {
-                sb.Append(this.Layout.GetFormattedMessage(ev));
+                sb.Append(this.Layout.Render(ev));
                 sb.Append("\n");
             }
 
 #if SILVERLIGHT
-            HtmlPage.Window.Alert(this.Caption.GetFormattedMessage(lastLogEvent) + "\r\n\r\n" + sb.ToString());
+            HtmlPage.Window.Alert(this.Caption.Render(lastLogEvent) + "\r\n\r\n" + sb.ToString());
 #else
-            MessageBox.Show(sb.ToString(), this.Caption.GetFormattedMessage(lastLogEvent));
+            MessageBox.Show(sb.ToString(), this.Caption.Render(lastLogEvent));
 #endif
 
             for (int i = 0; i < asyncContinuations.Length; ++i)

@@ -91,11 +91,11 @@ namespace NLog.Targets
 
             if (logEvent.Level >= LogLevel.Warn)
             {
-                context.Trace.Warn(logEvent.LoggerName, this.Layout.GetFormattedMessage(logEvent));
+                context.Trace.Warn(logEvent.LoggerName, this.Layout.Render(logEvent));
             }
             else
             {
-                context.Trace.Write(logEvent.LoggerName, this.Layout.GetFormattedMessage(logEvent));
+                context.Trace.Write(logEvent.LoggerName, this.Layout.Render(logEvent));
             }
         }
     }

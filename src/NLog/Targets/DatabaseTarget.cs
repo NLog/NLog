@@ -242,7 +242,7 @@ namespace NLog.Targets
         private void DoWrite(LogEventInfo logEvent)
         {
             IDbCommand command = this.activeConnection.CreateCommand();
-            command.CommandText = this.CommandText.GetFormattedMessage(logEvent);
+            command.CommandText = this.CommandText.Render(logEvent);
             foreach (DatabaseParameterInfo par in this.Parameters)
             {
                 IDbDataParameter p = command.CreateParameter();
@@ -267,7 +267,7 @@ namespace NLog.Targets
                     p.Scale = par.Scale;
                 }
 
-                p.Value = par.Layout.GetFormattedMessage(logEvent);
+                p.Value = par.Layout.Render(logEvent);
                 command.Parameters.Add(p);
             }
 
@@ -296,13 +296,13 @@ namespace NLog.Targets
 
             if (this.ConnectionString != null)
             {
-                return this.ConnectionString.GetFormattedMessage(logEvent);
+                return this.ConnectionString.Render(logEvent);
             }
 
             StringBuilder sb = new StringBuilder();
 
             sb.Append("Server=");
-            sb.Append(this.DbHost.GetFormattedMessage(logEvent));
+            sb.Append(this.DbHost.Render(logEvent));
             sb.Append(";");
             if (this.DbUserName == null)
             {
@@ -311,16 +311,16 @@ namespace NLog.Targets
             else
             {
                 sb.Append("User id=");
-                sb.Append(this.DbUserName.GetFormattedMessage(logEvent));
+                sb.Append(this.DbUserName.Render(logEvent));
                 sb.Append(";Password=");
-                sb.Append(this.DbPassword.GetFormattedMessage(logEvent));
+                sb.Append(this.DbPassword.Render(logEvent));
                 sb.Append(";");
             }
 
             if (this.DbDatabase != null)
             {
                 sb.Append("Database=");
-                sb.Append(this.DbDatabase.GetFormattedMessage(logEvent));
+                sb.Append(this.DbDatabase.Render(logEvent));
             }
 
             this.connectionStringCache = sb.ToString();

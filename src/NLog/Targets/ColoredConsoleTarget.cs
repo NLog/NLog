@@ -193,7 +193,7 @@ namespace NLog.Targets
             if (Header != null)
             {
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();
-                this.Output(lei, Header.GetFormattedMessage(lei));
+                this.Output(lei, Header.Render(lei));
             }
         }
 
@@ -205,7 +205,7 @@ namespace NLog.Targets
             if (Footer != null)
             {
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();
-                this.Output(lei, Footer.GetFormattedMessage(lei));
+                this.Output(lei, Footer.Render(lei));
             }
 
             base.Close();
@@ -218,7 +218,7 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            this.Output(logEvent, this.Layout.GetFormattedMessage(logEvent));
+            this.Output(logEvent, this.Layout.Render(logEvent));
         }
 
         private void Output(LogEventInfo logEvent, string message)

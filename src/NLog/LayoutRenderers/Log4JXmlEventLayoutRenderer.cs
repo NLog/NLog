@@ -238,7 +238,7 @@ namespace NLog.LayoutRenderers
             {
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
                 xtw.WriteAttributeString("name", parameter.Name);
-                xtw.WriteAttributeString("value", parameter.Layout.GetFormattedMessage(logEvent));
+                xtw.WriteAttributeString("value", parameter.Layout.Render(logEvent));
                 xtw.WriteEndElement();
             }
 

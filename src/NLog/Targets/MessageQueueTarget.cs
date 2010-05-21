@@ -140,7 +140,7 @@ namespace NLog.Targets
                 return;
             }
 
-            string queue = this.Queue.GetFormattedMessage(logEvent);
+            string queue = this.Queue.Render(logEvent);
 
             if (!MessageQueue.Exists(queue))
             {
@@ -179,7 +179,7 @@ namespace NLog.Targets
             Message msg = new Message();
             if (this.Label != null)
             {
-                msg.Label = this.Label.GetFormattedMessage(logEvent);
+                msg.Label = this.Label.Render(logEvent);
             }
 
             msg.Recoverable = this.Recoverable;
@@ -187,11 +187,11 @@ namespace NLog.Targets
 
             if (this.UseXmlEncoding)
             {
-                msg.Body = Layout.GetFormattedMessage(logEvent);
+                msg.Body = Layout.Render(logEvent);
             }
             else
             {
-                byte[] dataBytes = this.Encoding.GetBytes(this.Layout.GetFormattedMessage(logEvent));
+                byte[] dataBytes = this.Encoding.GetBytes(this.Layout.Render(logEvent));
 
                 msg.BodyStream.Write(dataBytes, 0, dataBytes.Length);
             }

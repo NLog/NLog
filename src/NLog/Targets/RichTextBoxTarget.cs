@@ -179,7 +179,7 @@ namespace NLog.Targets
                 matchingRule = RichTextBoxRowColoringRule.Default;
             }
             
-            string logMessage = this.Layout.GetFormattedMessage(logEvent);
+            string logMessage = this.Layout.Render(logEvent);
 
             this.FindRichTextBoxAndSendTheMessage(logMessage, matchingRule);
         }
