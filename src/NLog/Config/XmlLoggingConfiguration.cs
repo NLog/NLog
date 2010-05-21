@@ -112,7 +112,7 @@ namespace NLog.Config
                 InternalLogger.Error("Error {0}...", ex);
                 if (!ignoreErrors)
                 {
-                    throw new NLogConfigurationException("Exception occured when loading configuration from '" + fileName + "'", ex);
+                    throw new NLogConfigurationException("Exception occurred when loading configuration from '" + fileName + "'", ex);
                 }
             }
         }
@@ -157,7 +157,7 @@ namespace NLog.Config
                 InternalLogger.Error("Error {0}...", ex);
                 if (!ignoreErrors)
                 {
-                    throw new NLogConfigurationException("Exception occured when loading configuration from XML Element in " + fileName, ex);
+                    throw new NLogConfigurationException("Exception occurred when loading configuration from XML Element in " + fileName, ex);
                 }
             }
         }

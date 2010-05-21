@@ -245,6 +245,7 @@ namespace NLog.Targets.Wrappers
             catch (Exception ex)
             {
                 InternalLogger.Error("Error in lazy writer timer procedure: {0}", ex);
+                this.StartLazyWriterTimer();
             }
         }
     }

@@ -2,6 +2,7 @@
 <Dictionary>
   <Words>
     <Recognize>
+      <Word>NLog</Word>
       <Word>Reconfig</Word>
       <Word>Renderer</Word>
       <Word>Renderers</Word>

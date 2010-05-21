@@ -45,7 +45,7 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes a new instance of the <see cref="MethodCallTargetBase" /> class.
         /// </summary>
-        public MethodCallTargetBase()
+        protected MethodCallTargetBase()
         {
             this.Parameters = new List<MethodCallParameter>();
         }

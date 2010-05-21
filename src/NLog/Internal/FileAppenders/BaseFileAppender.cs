@@ -119,7 +119,7 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Records the last write time for a file to be specific date.
         /// </summary>
-        /// <param name="dateTime">Date and time when the last write occured.</param>
+        /// <param name="dateTime">Date and time when the last write occurred.</param>
         protected void FileTouched(DateTime dateTime)
         {
             this.LastWriteTime = dateTime;

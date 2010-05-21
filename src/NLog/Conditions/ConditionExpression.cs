@@ -64,7 +64,7 @@ namespace NLog.Conditions
             }
             catch (Exception ex)
             {
-                throw new ConditionEvaluationException("Exception occured when evaluating condition", ex);
+                throw new ConditionEvaluationException("Exception occurred when evaluating condition", ex);
             }
         }
 

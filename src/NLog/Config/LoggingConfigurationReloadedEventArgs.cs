@@ -60,7 +60,7 @@ namespace NLog.Config
         public bool Succeeded { get; private set; }
 
         /// <summary>
-        /// Gets the exception which occured during configuration reload.
+        /// Gets the exception which occurred during configuration reload.
         /// </summary>
         /// <value>The exception.</value>
         public Exception Exception { get; private set; }

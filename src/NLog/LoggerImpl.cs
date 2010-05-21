@@ -82,7 +82,7 @@ namespace NLog
                 {
                     if (factory.ThrowExceptions && Thread.CurrentThread.ManagedThreadId == originalThreadId)
                     {
-                        throw new NLogRuntimeException("Exception occured in NLog", ex);
+                        throw new NLogRuntimeException("Exception occurred in NLog", ex);
                     }
                 };
 

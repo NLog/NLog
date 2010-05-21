@@ -222,7 +222,7 @@ namespace NLog.Internal
             ev.WaitOne();
             if (lastException != null)
             {
-                throw new NLogRuntimeException("Asynchronous exception has occured.", lastException);
+                throw new NLogRuntimeException("Asynchronous exception has occurred.", lastException);
             }
         }
 
