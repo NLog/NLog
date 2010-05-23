@@ -197,5 +197,68 @@ namespace NLog.UnitTests.Layouts
             var message = ((SimpleLayout)pad.Inner).Renderers[0] as MessageLayoutRenderer;
             Assert.IsNotNull(message);
         }
+
+        [TestMethod]
+        public void DoubleAmbientPropertyTest()
+        {
+            SimpleLayout l = "${message:uppercase=true:padding=10}";
+            Assert.AreEqual(1, l.Renderers.Count);
+            var upperCase = l.Renderers[0] as UpperCaseLayoutRendererWrapper;
+            Assert.IsNotNull(upperCase);
+            var pad = ((SimpleLayout)upperCase.Inner).Renderers[0] as PaddingLayoutRendererWrapper;
+            Assert.IsNotNull(pad);
+            var message = ((SimpleLayout)pad.Inner).Renderers[0] as MessageLayoutRenderer;
+            Assert.IsNotNull(message);
+        }
+
+        [TestMethod]
+        public void ReverseDoubleAmbientPropertyTest()
+        {
+            SimpleLayout l = "${message:padding=10:uppercase=true}";
+            Assert.AreEqual(1, l.Renderers.Count);
+            var pad = ((SimpleLayout)l).Renderers[0] as PaddingLayoutRendererWrapper;
+            Assert.IsNotNull(pad);
+            var upperCase = ((SimpleLayout)pad.Inner).Renderers[0] as UpperCaseLayoutRendererWrapper;
+            Assert.IsNotNull(upperCase);
+            var message = ((SimpleLayout)upperCase.Inner).Renderers[0] as MessageLayoutRenderer;
+            Assert.IsNotNull(message);
+        }
+
+        [TestMethod]
+        public void EscapeTest()
+        {
+            AssertEscapeRoundTrips(string.Empty);
+            AssertEscapeRoundTrips("hello ${${}} world!");
+            AssertEscapeRoundTrips("hello $");
+            AssertEscapeRoundTrips("hello ${");
+            AssertEscapeRoundTrips("hello $${{");
+            AssertEscapeRoundTrips("hello ${message}");
+            AssertEscapeRoundTrips("hello ${${level}}");
+            AssertEscapeRoundTrips("hello ${${level}${message}}");
+        }
+
+        [TestMethod]
+        public void EvaluateTest()
+        {
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.Level = LogLevel.Warn;
+            Assert.AreEqual("Warn", SimpleLayout.Evaluate("${level}", logEventInfo));
+        }
+
+        [TestMethod]
+        public void EvaluateTest2()
+        {
+            Assert.AreEqual("Off", SimpleLayout.Evaluate("${level}"));
+            Assert.AreEqual(string.Empty, SimpleLayout.Evaluate("${message}"));
+            Assert.AreEqual(string.Empty, SimpleLayout.Evaluate("${logger}"));
+        }
+
+        private static void AssertEscapeRoundTrips(string originalString)
+        {
+            string escapedString = SimpleLayout.Escape(originalString);
+            SimpleLayout l = escapedString;
+            string renderedString = l.Render(LogEventInfo.CreateNullEvent());
+            Assert.AreEqual(originalString, renderedString);
+        }
     }
 }

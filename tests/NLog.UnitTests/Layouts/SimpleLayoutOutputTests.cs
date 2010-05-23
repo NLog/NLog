@@ -71,6 +71,26 @@ namespace NLog.UnitTests.Layouts
         }
 
         [TestMethod]
+        public void SimpleLayoutCachingTest()
+        {
+            var l = new SimpleLayout("xx${level}yy");
+            var ev = LogEventInfo.CreateNullEvent();
+            string output1 = l.Render(ev);
+            string output2 = l.Render(ev);
+            Assert.AreSame(output1, output2);
+        }
+
+        [TestMethod]
+        public void SimpleLayoutToStringTest()
+        {
+            var l = new SimpleLayout("xx${level}yy");
+            Assert.AreEqual("'xx${level}yy'", l.ToString());
+
+            var l2 = new SimpleLayout(new LayoutRenderer[0], "someFakeText", NLogFactories.Default);
+            Assert.AreEqual("'someFakeText'", l2.ToString());
+        }
+
+        [TestMethod]
         public void LayoutRendererThrows2()
         {
             var stringWriter = new StringWriter();

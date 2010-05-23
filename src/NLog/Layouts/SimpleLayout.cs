@@ -157,16 +157,8 @@ namespace NLog.Layouts
         /// values provided by the appropriate layout renderers.</returns>
         public static string Evaluate(string text, LogEventInfo logEvent)
         {
-            SimpleLayout l = new SimpleLayout(text);
-            ((ISupportsInitialize)l).Initialize();
-            try
-            {
-                return l.Render(logEvent);
-            }
-            finally
-            {
-                ((ISupportsInitialize)l).Close();
-            }
+            var l = new SimpleLayout(text);
+            return l.Render(logEvent);
         }
 
         /// <summary>
