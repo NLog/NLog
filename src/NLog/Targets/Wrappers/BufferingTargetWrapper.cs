@@ -33,10 +33,8 @@
 
 namespace NLog.Targets.Wrappers
 {
-    using System;
     using System.ComponentModel;
     using System.Threading;
-    using NLog.Common;
     using NLog.Internal;
 
     /// <summary>
@@ -64,9 +62,8 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="BufferingTargetWrapper" /> class.
         /// </summary>
         public BufferingTargetWrapper()
+            : this(null)
         {
-            this.FlushTimeout = -1;
-            this.BufferSize = 100;
         }
 
         /// <summary>
@@ -126,11 +123,10 @@ namespace NLog.Targets.Wrappers
             {
                 LogEventInfo[] events;
                 AsyncContinuation[] asyncContinuations;
-                AsyncContinuation[] wrappedContinuations;
 
                 this.buffer.GetEventsAndClear(out events, out asyncContinuations);
 
-                wrappedContinuations = new AsyncContinuation[asyncContinuations.Length];
+                var wrappedContinuations = new AsyncContinuation[asyncContinuations.Length];
                 int remaining = events.Length;
                 for (int i = 0; i < asyncContinuations.Length; ++i)
                 {
@@ -174,8 +170,11 @@ namespace NLog.Targets.Wrappers
         protected override void Close()
         {
             base.Close();
-            this.flushTimer.Dispose();
-            this.flushTimer = null;
+            if (this.flushTimer != null)
+            {
+                this.flushTimer.Dispose();
+                this.flushTimer = null;
+            }
         }
 
         /// <summary>
@@ -201,7 +200,7 @@ namespace NLog.Targets.Wrappers
                 }
                 else
                 {
-                    if (this.FlushTimeout > 0 && this.flushTimer != null)
+                    if (this.FlushTimeout > 0)
                     {
                         this.flushTimer.Change(this.FlushTimeout, -1);
                     }

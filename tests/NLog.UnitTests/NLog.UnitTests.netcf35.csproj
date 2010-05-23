@@ -117,6 +117,7 @@
     <Compile Include="Targets\LogReceiverWebServiceTargetTests.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\AutoFlushTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\BufferingTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\FilteringTargetWrapperTests.cs" />
   </ItemGroup>
   <ItemGroup>
