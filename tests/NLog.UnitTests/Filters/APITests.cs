@@ -31,20 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.Reflection;
-using System.IO;
-
-using NLog;
-using NLog.Config;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NLog.Layouts;
-using NLog.Filters;
-
 namespace NLog.UnitTests.Filters
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NLog.Layouts;
+    using NLog.Filters;
+
     [TestClass]
     public class APITests : NLogTestBase
     {

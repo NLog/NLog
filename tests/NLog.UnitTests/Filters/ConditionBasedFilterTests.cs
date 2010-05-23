@@ -31,48 +31,45 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Filters
+namespace NLog.UnitTests.Filters
 {
-    using NLog.Conditions;
+    using System;
+    using System.Xml;
+    using System.Reflection;
+    using System.IO;
+
+    using NLog;
     using NLog.Config;
 
-    /// <summary>
-    /// Matches when the specified condition is met.
-    /// </summary>
-    /// <remarks>
-    /// Conditions are expressed using a simple language 
-    /// described <a href="conditions.html">here</a>.
-    /// </remarks>
-    [Filter("when")]
-    public class ConditionBasedFilter : Filter
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    [TestClass]
+    public class ConditionBasedFilterTests : NLogTestBase
     {
-        private static readonly object boxedTrue = true;
-
-        /// <summary>
-        /// Gets or sets the condition expression.
-        /// </summary>
-        /// <docgen category='Filtering Options' order='10' />
-        [RequiredParameter]
-        public ConditionExpression Condition { get; set; }
-
-        /// <summary>
-        /// Checks whether log event should be logged or not.
-        /// </summary>
-        /// <param name="logEvent">Log event.</param>
-        /// <returns>
-        /// <see cref="FilterResult.Ignore"/> - if the log event should be ignored<br/>
-        /// <see cref="FilterResult.Neutral"/> - if the filter doesn't want to decide<br/>
-        /// <see cref="FilterResult.Log"/> - if the log event should be logged<br/>
-        /// .</returns>
-        protected override FilterResult Check(LogEventInfo logEvent)
+        [TestMethod]
+        public void WhenTest()
         {
-            object val = this.Condition.Evaluate(logEvent);
-            if (boxedTrue.Equals(val))
-            {
-                return this.Action;
-            }
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug'>
+                    <filters>
+                        <when condition=""contains(message,'zzz')"" action='Ignore' />
+                    </filters>
+                    </logger>
+                </rules>
+            </nlog>");
 
-            return FilterResult.Neutral;
+            Logger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            AssertDebugCounter("debug", 1);
+            logger.Debug("zzz");
+            AssertDebugCounter("debug", 1);
+            logger.Debug("ZzzZ");
+            AssertDebugCounter("debug", 1);
+            logger.Debug("Zz");
+            AssertDebugCounter("debug", 2);
         }
     }
 }

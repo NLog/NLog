@@ -71,6 +71,7 @@
     <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
     <Compile Include="Filters\APITests.cs" />
+    <Compile Include="Filters\ConditionBasedFilterTests.cs" />
     <Compile Include="Filters\WhenContainsTests.cs" />
     <Compile Include="Filters\WhenEqualTests.cs" />
     <Compile Include="Filters\WhenNotContainsTests.cs" />
