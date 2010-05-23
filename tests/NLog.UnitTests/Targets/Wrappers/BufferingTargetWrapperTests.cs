@@ -127,6 +127,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(2, myTarget.BufferedWriteCount);
             Assert.AreEqual(19, myTarget.BufferedTotalEvents);
             Assert.AreEqual(19, myTarget.WriteCount);
+            Assert.AreEqual(1, myTarget.FlushCount);
 
             // flushes happen on the same thread
             for (int i = 10; i < hitCount; ++i)
@@ -136,7 +137,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 Assert.IsNull(lastException[i]);
             }
 
-            // flush again - should not do anything
+            // flush again - should just invoke Flush() on the wrapped target
             flushHit.Reset();
             targetWrapper.Flush(
                 ex =>
@@ -150,6 +151,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(2, myTarget.BufferedWriteCount);
             Assert.AreEqual(19, myTarget.BufferedTotalEvents);
             Assert.AreEqual(19, myTarget.WriteCount);
+            Assert.AreEqual(2, myTarget.FlushCount);
 
             ((ISupportsInitialize)targetWrapper).Close();
             ((ISupportsInitialize)myTarget).Close();

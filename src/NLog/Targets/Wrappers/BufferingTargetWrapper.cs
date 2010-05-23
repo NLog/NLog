@@ -136,7 +136,7 @@ namespace NLog.Targets.Wrappers
                         originalContinuation(ex);
                         if (0 == Interlocked.Decrement(ref remaining))
                         {
-                            asyncContinuation(null);
+                            this.WrappedTarget.Flush(asyncContinuation);
                         }
                     };
 
@@ -145,7 +145,7 @@ namespace NLog.Targets.Wrappers
 
                 if (events.Length == 0)
                 {
-                    asyncContinuation(null);
+                    this.WrappedTarget.Flush(asyncContinuation);
                 }
                 else
                 {
