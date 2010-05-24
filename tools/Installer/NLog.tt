@@ -1,11 +1,9 @@
 ﻿<#@ Template debug="true" hostspecific="false" language="C#v3.5" #>
-<#@ Import Namespace="System.Security.Cryptography" #> 
-<#@ Import Namespace="System.Text" #> 
-<#@ Import Namespace="System.IO" #> 
-<#@ Import Namespace="System.Collections.Generic" #> 
-<#@ Output extension=".wxs" #>
-<#
-
+<#@ Import Namespace="System.Security.Cryptography" #>
+<#@ Import Namespace="System.Text" #>
+<#@ Import Namespace="System.IO" #>
+<#@ Import Namespace="System.Collections.Generic" #>
+<#@ Output extension=".wxs" #><#
 var visualStudioVersions = new []
 {
 	new VisualStudioVersion
@@ -115,8 +113,7 @@ var supportedFrameworks = new []
 	},
 };
 
-#>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+#><Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Product Id="$(var.ProductId)"
            Name="$(var.ProductName) $(var.BuildLabel)"
            Language="1033"

@@ -1,8 +1,4 @@
-﻿ 
- 
- 
- 
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+﻿<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Product Id="$(var.ProductId)"
            Name="$(var.ProductName) $(var.BuildLabel)"
            Language="1033"
