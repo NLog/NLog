@@ -180,16 +180,5 @@ namespace NLog.Targets.Wrappers
                 this.WrappedTarget.WriteLogEvents(resultBuffer.ToArray(), resultContinuations.ToArray());
             }
         }
-
-        /// <summary>
-        /// Processes a single log event. Not very useful for this post-filtering
-        /// wrapper.
-        /// </summary>
-        /// <param name="logEvent">Log event.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
-        {
-            this.Write(new[] { logEvent }, new[] { asyncContinuation });
-        }
     }
 }
