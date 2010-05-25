@@ -89,6 +89,51 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(continuations.Length, exceptions.Count, "Some continuations were not invoked.");
         }
 
+        [TestMethod]
+        public void RepeatingTargetWrapperTest2()
+        {
+            var target = new MyTarget();
+            target.ThrowExceptions = true;
+            var wrapper = new RepeatingTargetWrapper()
+            {
+                WrappedTarget = target,
+                RepeatCount = 3,
+            };
+            ((ISupportsInitialize)wrapper).Initialize();
+            ((ISupportsInitialize)target).Initialize();
+
+            var events = new LogEventInfo[]
+            {
+                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello"),
+                new LogEventInfo(LogLevel.Info, "Logger1", "Hello"),
+                new LogEventInfo(LogLevel.Info, "Logger2", "Hello"),
+            };
+
+            var exceptions = new List<Exception>();
+
+            var continuations = new AsyncContinuation[events.Length];
+            for (int i = 0; i < continuations.Length; ++i)
+            {
+                continuations[i] = exceptions.Add;
+            }
+
+            wrapper.WriteLogEvents(events, continuations);
+
+            // make sure all events went through but were registered only once
+            // since repeating target wrapper will not repeat in case of exception.
+            Assert.AreEqual(3, target.Events.Count);
+            Assert.AreSame(events[0], target.Events[0]);
+            Assert.AreSame(events[1], target.Events[1]);
+            Assert.AreSame(events[2], target.Events[2]);
+
+            Assert.AreEqual(continuations.Length, exceptions.Count, "Some continuations were not invoked.");
+            foreach (var exception in exceptions)
+            {
+                Assert.IsNotNull(exception);
+                Assert.AreEqual("Some exception has ocurred.", exception.Message);
+            }
+        }
+
         public class MyTarget : Target
         {
             public MyTarget()
@@ -98,9 +143,16 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             public List<LogEventInfo> Events { get; set; }
 
+            public bool ThrowExceptions { get; set; }
+
             protected override void Write(LogEventInfo logEvent)
             {
                 this.Events.Add(logEvent);
+
+                if (this.ThrowExceptions)
+                {
+                    throw new InvalidOperationException("Some exception has ocurred.");
+                }
             }
         }
     }
