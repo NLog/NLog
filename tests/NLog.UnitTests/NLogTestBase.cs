@@ -45,6 +45,7 @@ using System.Xml;
 namespace NLog.UnitTests
 {
     using NLog.Internal;
+    using NLog.Common;
 
     public abstract class NLogTestBase
     {
@@ -120,5 +121,30 @@ namespace NLog.UnitTests
             return new XmlLoggingConfiguration(doc.DocumentElement, null);
 #endif
         }
+
+        protected string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
+        {
+            var stringWriter = new StringWriter();
+            var oldWriter = InternalLogger.LogWriter;
+            var oldLevel = InternalLogger.LogLevel;
+            var oldIncludeTimestamp = InternalLogger.IncludeTimestamp;
+            try
+            {
+                InternalLogger.LogWriter = stringWriter;
+                InternalLogger.LogLevel = LogLevel.Trace;
+                InternalLogger.IncludeTimestamp = false;
+                action();
+
+                return stringWriter.ToString();
+            }
+            finally
+            {
+                InternalLogger.LogWriter = oldWriter;
+                InternalLogger.LogLevel = oldLevel;
+                InternalLogger.IncludeTimestamp = oldIncludeTimestamp;
+            }
+        }
+
+        public delegate void SyncAction();
     }
 }

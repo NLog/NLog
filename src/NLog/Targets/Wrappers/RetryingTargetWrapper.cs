@@ -113,20 +113,19 @@ namespace NLog.Targets.Wrappers
                         return;
                     }
 
-                    InternalLogger.Warn("Error while writing to '{0}': {1}", this.WrappedTarget, ex);
                     int retryNumber = Interlocked.Increment(ref counter);
+                    InternalLogger.Warn("Error while writing to '{0}': {1}. Try {2}/{3}", this.WrappedTarget, ex, retryNumber, this.RetryCount);
 
                     // exceeded retry count
-                    if (retryNumber == this.RetryCount)
+                    if (retryNumber >= this.RetryCount)
                     {
+                        InternalLogger.Warn("Too many retries. Aborting.");
                         asyncContinuation(ex);
                         return;
                     }
 
                     // sleep and try again
                     Thread.Sleep(this.RetryDelayMilliseconds);
-                    InternalLogger.Warn("Retry #{0}", retryNumber);
-
                     this.WrappedTarget.WriteLogEvent(logEvent, continuation);
                 };
 

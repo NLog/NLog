@@ -59,6 +59,7 @@ namespace NLog.Common
 #else
             LogLevel = LogLevel.Info;
 #endif
+            IncludeTimestamp = true;
         }
 
         /// <summary>
@@ -86,6 +87,11 @@ namespace NLog.Common
         /// Gets or sets the text writer that will receive internal logs.
         /// </summary>
         public static TextWriter LogWriter { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether timestamp should be included in internal log output.
+        /// </summary>
+        public static bool IncludeTimestamp { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether internal log includes Trace messages.
@@ -291,8 +297,12 @@ namespace NLog.Common
                 }
 
                 var builder = new StringBuilder(message.Length + 32);
-                builder.Append(CurrentTimeGetter.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
-                builder.Append(" ");
+                if (IncludeTimestamp)
+                {
+                    builder.Append(CurrentTimeGetter.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
+                    builder.Append(" ");
+                }
+
                 builder.Append(level.ToString());
                 builder.Append(" ");
                 builder.Append(formattedMessage);

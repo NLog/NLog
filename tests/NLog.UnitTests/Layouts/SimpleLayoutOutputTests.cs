@@ -93,28 +93,20 @@ namespace NLog.UnitTests.Layouts
         [TestMethod]
         public void LayoutRendererThrows2()
         {
-            var stringWriter = new StringWriter();
-            var oldWriter = InternalLogger.LogWriter;
-            var oldLevel = InternalLogger.LogLevel;
-            try
-            {
-                InternalLogger.LogWriter = stringWriter;
-                InternalLogger.LogLevel = LogLevel.Warn;
-                NLogFactories nlogFactories = new NLogFactories();
-                nlogFactories.LayoutRendererFactory.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
+            string internalLogOutput = RunAndCaptureInternalLog(
+                () => 
+                    {
+                        NLogFactories nlogFactories = new NLogFactories();
+                        nlogFactories.LayoutRendererFactory.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
 
-                SimpleLayout l = new SimpleLayout("xx${throwsException:msg1}yy${throwsException:msg2}zz", nlogFactories);
-                string output = l.Render(LogEventInfo.CreateNullEvent());
-                Assert.AreEqual("xxyyzz", output);
-                var internalLogOutput = stringWriter.ToString();
-                Assert.IsTrue(internalLogOutput.IndexOf("msg1") >= 0, internalLogOutput);
-                Assert.IsTrue(internalLogOutput.IndexOf("msg2") >= 0, internalLogOutput);
-            }
-            finally
-            {
-                InternalLogger.LogWriter = oldWriter;
-                InternalLogger.LogLevel = oldLevel;
-            }
+                        SimpleLayout l = new SimpleLayout("xx${throwsException:msg1}yy${throwsException:msg2}zz", nlogFactories);
+                        string output = l.Render(LogEventInfo.CreateNullEvent());
+                        Assert.AreEqual("xxyyzz", output);
+                    }, 
+                    LogLevel.Warn);
+
+            Assert.IsTrue(internalLogOutput.IndexOf("msg1") >= 0, internalLogOutput);
+            Assert.IsTrue(internalLogOutput.IndexOf("msg2") >= 0, internalLogOutput);
         }
 
         [TestMethod]

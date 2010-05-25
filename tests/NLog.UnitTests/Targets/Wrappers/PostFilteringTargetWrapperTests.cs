@@ -133,27 +133,13 @@ namespace NLog.UnitTests.Targets.Wrappers
                 continuations[i] = exceptions.Add;
             }
 
-            var stringWriter = new StringWriter();
-            var oldWriter = InternalLogger.LogWriter;
-            var oldLevel = InternalLogger.LogLevel;
-            try
-            {
-                InternalLogger.LogWriter = stringWriter;
-                InternalLogger.LogLevel = LogLevel.Trace;
-                wrapper.WriteLogEvents(events, continuations);
-                var internalLogOutput = stringWriter.ToString();
-
-                Assert.IsTrue(internalLogOutput.IndexOf(" Trace Input: 7 events") >= 0, internalLogOutput);
-                Assert.IsTrue(internalLogOutput.IndexOf(" Trace Rule matched: (level >= Warn)") >= 0, internalLogOutput);
-                Assert.IsTrue(internalLogOutput.IndexOf(" Trace Filter to apply: (level >= Debug)") >= 0, internalLogOutput);
-                Assert.IsTrue(internalLogOutput.IndexOf(" Trace After filtering: 6 events") >= 0, internalLogOutput);
-            }
-            finally
-            {
-                InternalLogger.LogWriter = oldWriter;
-                InternalLogger.LogLevel = oldLevel;
-            }
-
+            string internalLogOutput = RunAndCaptureInternalLog(() => wrapper.WriteLogEvents(events, continuations), LogLevel.Trace);
+            string expectedLogOutput = @"Trace Input: 7 events
+Trace Rule matched: (level >= Warn)
+Trace Filter to apply: (level >= Debug)
+Trace After filtering: 6 events
+";
+            Assert.AreEqual(expectedLogOutput, internalLogOutput);
 
             // make sure all Debug,Info,Warn events went through
             Assert.AreEqual(6, target.Events.Count);
@@ -207,26 +193,14 @@ namespace NLog.UnitTests.Targets.Wrappers
                 continuations[i] = exceptions.Add;
             }
 
-            var stringWriter = new StringWriter();
-            var oldWriter = InternalLogger.LogWriter;
-            var oldLevel = InternalLogger.LogLevel;
-            try
-            {
-                InternalLogger.LogWriter = stringWriter;
-                InternalLogger.LogLevel = LogLevel.Trace;
-                wrapper.WriteLogEvents(events, continuations);
-                var internalLogOutput = stringWriter.ToString();
+            var internalLogOutput = RunAndCaptureInternalLog(() => wrapper.WriteLogEvents(events, continuations), LogLevel.Trace);
+            string expectedLogOutput = @"Trace Input: 7 events
+Trace Rule matched: (level >= Error)
+Trace Filter to apply: True
+Trace After filtering: 7 events
+";
 
-                Assert.IsTrue(internalLogOutput.IndexOf(" Trace Input: 7 events") >= 0, internalLogOutput);
-                Assert.IsTrue(internalLogOutput.IndexOf(" Trace Rule matched: (level >= Error)") >= 0, internalLogOutput);
-                Assert.IsTrue(internalLogOutput.IndexOf(" Trace Filter to apply: True") >= 0, internalLogOutput);
-                Assert.IsTrue(internalLogOutput.IndexOf(" Trace After filtering: 7 events") >= 0, internalLogOutput);
-            }
-            finally
-            {
-                InternalLogger.LogWriter = oldWriter;
-                InternalLogger.LogLevel = oldLevel;
-            }
+            Assert.AreEqual(expectedLogOutput, internalLogOutput);
 
             // make sure all events went through
             Assert.AreEqual(7, target.Events.Count);
