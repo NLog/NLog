@@ -131,7 +131,9 @@ Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some e
 Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 4/4
 Warn Too many retries. Aborting.
 Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 1/4
-Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 2/4";
+Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 2/4
+";
+            Assert.AreEqual(expectedLogOutput, internalLogOutput);
 
             // first event does not get to wrapped target because of too many attempts.
             // second event gets there in 3rd retry
