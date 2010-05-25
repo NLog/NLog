@@ -36,14 +36,39 @@ namespace NLog.UnitTests.Targets.Wrappers
     using System;
     using System.Threading;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
-
-    using NLog.Internal;
 
     [TestClass]
     public class AsyncTargetWrapperTests : NLogTestBase
 	{
+        [TestMethod]
+        public void AsyncTargetWrapperInitTest()
+        {
+            var myTarget = new MyTarget();
+            var targetWrapper = new AsyncTargetWrapper(myTarget, 300, AsyncTargetWrapperOverflowAction.Grow);
+            Assert.AreEqual(AsyncTargetWrapperOverflowAction.Grow, targetWrapper.OverflowAction);
+            Assert.AreEqual(300, targetWrapper.QueueLimit);
+            Assert.AreEqual(50, targetWrapper.TimeToSleepBetweenBatches);
+            Assert.AreEqual(100, targetWrapper.BatchSize);
+        }
+
+        [TestMethod]
+        public void AsyncTargetWrapperInitTest2()
+        {
+            var myTarget = new MyTarget();
+            var targetWrapper = new AsyncTargetWrapper()
+            {
+                WrappedTarget = myTarget,
+            };
+
+            Assert.AreEqual(AsyncTargetWrapperOverflowAction.Discard, targetWrapper.OverflowAction);
+            Assert.AreEqual(10000, targetWrapper.QueueLimit);
+            Assert.AreEqual(50, targetWrapper.TimeToSleepBetweenBatches);
+            Assert.AreEqual(100, targetWrapper.BatchSize);
+        }
+
         [TestMethod]
         public void AsyncTargetWrapperSyncTest1()
         {

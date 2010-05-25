@@ -58,7 +58,11 @@ namespace NLog.UnitTests.Targets.Wrappers
                     new FilteringRule("level >= LogLevel.Warn", "level >= LogLevel.Debug"),
 
                     // when there is an error, emit everything
-                    new FilteringRule("level >= LogLevel.Error", "true"),
+                    new FilteringRule
+                    {
+                        Exists = "level >= LogLevel.Error", 
+                        Filter = "true",
+                    },
                 },
 
                 // by default log info and above

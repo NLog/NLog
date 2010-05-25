@@ -90,7 +90,10 @@ namespace NLog.Targets.Wrappers
                     switch (this.OnOverflow)
                     {
                         case AsyncTargetWrapperOverflowAction.Discard:
-                            return;
+                            // dequeue and discard one element
+                            this.logEventInfoQueue.Dequeue();
+                            this.asyncContinuationsQueue.Dequeue();
+                            break;
 
                         case AsyncTargetWrapperOverflowAction.Grow:
                             break;
@@ -99,18 +102,12 @@ namespace NLog.Targets.Wrappers
                         case AsyncTargetWrapperOverflowAction.Block:
                             while (this.logEventInfoQueue.Count >= this.RequestLimit)
                             {
-                                InternalLogger.Debug("Blocking...");
-                                if (System.Threading.Monitor.Wait(this))
-                                {
-                                    InternalLogger.Debug("Entered critical section.");
-                                }
-                                else
-                                {
-                                    InternalLogger.Debug("Failed to enter critical section.");
-                                }
+                                InternalLogger.Trace("Blocking...");
+                                System.Threading.Monitor.Wait(this);
+                                InternalLogger.Trace("Entered critical section.");
                             }
 
-                            InternalLogger.Debug("Limit ok.");
+                            InternalLogger.Trace("Limit ok.");
                             break;
 #endif
                     }

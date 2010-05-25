@@ -94,11 +94,8 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         public AsyncTargetWrapper(Target wrappedTarget)
+            : this(wrappedTarget, 10000, AsyncTargetWrapperOverflowAction.Discard)
         {
-            this.RequestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
-            this.TimeToSleepBetweenBatches = 50;
-            this.BatchSize = 100;
-            this.WrappedTarget = wrappedTarget;
         }
 
         /// <summary>

@@ -63,9 +63,8 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="RetryingTargetWrapper" /> class.
         /// </summary>
         public RetryingTargetWrapper()
+            : this(null, 3, 100)
         {
-            this.RetryCount = 3;
-            this.RetryDelayMilliseconds = 100;
         }
 
         /// <summary>

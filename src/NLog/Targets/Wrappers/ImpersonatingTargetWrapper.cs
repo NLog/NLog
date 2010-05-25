@@ -55,11 +55,8 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="ImpersonatingTargetWrapper" /> class.
         /// </summary>
         public ImpersonatingTargetWrapper()
+            : this(null)
         {
-            this.Domain = ".";
-            this.LogonType = SecurityLogonType.Interactive;
-            this.LogonProvider = LogonProviderType.Default;
-            this.ImpersonationLevel = SecurityImpersonationLevel.Impersonation;
         }
 
         /// <summary>
@@ -68,6 +65,10 @@ namespace NLog.Targets.Wrappers
         /// <param name="wrappedTarget">The wrapped target.</param>
         public ImpersonatingTargetWrapper(Target wrappedTarget)
         {
+            this.Domain = ".";
+            this.LogonType = SecurityLogonType.Interactive;
+            this.LogonProvider = LogonProviderType.Default;
+            this.ImpersonationLevel = SecurityImpersonationLevel.Impersonation;
             this.WrappedTarget = wrappedTarget;
         }
 
@@ -179,6 +180,18 @@ namespace NLog.Targets.Wrappers
             using (this.DoImpersonate())
             {
                 this.WrappedTarget.WriteLogEvents(logEvents, asyncContinuation);
+            }
+        }
+
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
+        {
+            using (this.DoImpersonate())
+            {
+                this.WrappedTarget.Flush(asyncContinuation);
             }
         }
 

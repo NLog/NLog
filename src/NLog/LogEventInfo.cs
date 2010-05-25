@@ -316,6 +316,15 @@ namespace NLog
             return new LogEventInfo(logLevel, loggerName, null, message, null, exception);
         }
 
+        /// <summary>
+        /// Returns a string representation of this log event.
+        /// </summary>
+        /// <returns>String representation of the log event.</returns>
+        public override string ToString()
+        {
+            return "Log Event: Logger='" + this.LoggerName + "' Level=" + this.Level + " Message='" + this.FormattedMessage + "' SequenceID=" + this.SequenceID;
+        }
+
 #if !NET_CF
         internal void SetStackTrace(StackTrace stackTrace, int userStackFrame)
         {

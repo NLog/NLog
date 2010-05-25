@@ -61,8 +61,8 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="RepeatingTargetWrapper" /> class.
         /// </summary>
         public RepeatingTargetWrapper()
+            : this(null, 3)
         {
-            this.RepeatCount = 3;
         }
 
         /// <summary>
