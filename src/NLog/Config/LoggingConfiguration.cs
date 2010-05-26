@@ -207,8 +207,8 @@ namespace NLog.Config
                     }
                 }
             }
-                
-            AsyncHelpers.ForEachItemInParallel(targets, asyncContinuation, (cont, target) => target.Flush(cont));
+
+            AsyncHelpers.ForEachItemInParallel(targets, asyncContinuation, (target, cont) => target.Flush(cont));
         }
 
         internal void InitializeAll()

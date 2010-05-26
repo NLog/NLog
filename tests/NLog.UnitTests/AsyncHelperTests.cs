@@ -284,7 +284,7 @@ namespace NLog.UnitTests
             var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
 
             AsyncHelpers.ForEachItemSequentially(input, finalContinuation,
-                (cont, i) =>
+                (i, cont) =>
                 {
                     sum += i;
                     cont(null);
@@ -313,7 +313,7 @@ namespace NLog.UnitTests
             var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
 
             AsyncHelpers.ForEachItemSequentially(input, finalContinuation,
-                (cont, i) =>
+                (i, cont) =>
                 {
                     sum += i;
                     cont(sampleException);
@@ -342,7 +342,7 @@ namespace NLog.UnitTests
             var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
 
             AsyncHelpers.ForEachItemSequentially(input, finalContinuation,
-                (cont, i) =>
+                (i, cont) =>
                 {
                     sum += i;
                     throw sampleException;
@@ -366,7 +366,7 @@ namespace NLog.UnitTests
                     finalContinuationInvoked = true;
                 };
 
-            AsyncHelpers.ForEachItemInParallel(items, continuation, (cont, i) => { Assert.Fail("Will not be reached"); });
+            AsyncHelpers.ForEachItemInParallel(items, continuation, (i, cont) => { Assert.Fail("Will not be reached"); });
             Assert.IsTrue(finalContinuationInvoked);
             Assert.IsNull(lastException);
         }
@@ -387,7 +387,7 @@ namespace NLog.UnitTests
             var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
 
             AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
-                (cont, i) =>
+                (i, cont) =>
                 {
                     lock (input)
                     {
@@ -422,7 +422,7 @@ namespace NLog.UnitTests
             var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
 
             AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
-                (cont, i) =>
+                (i, cont) =>
                 {
                     Console.WriteLine("Callback on {0}", Thread.CurrentThread.ManagedThreadId);
                     lock (input)
@@ -461,7 +461,7 @@ namespace NLog.UnitTests
             var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
 
             AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
-                (cont, i) =>
+                (i, cont) =>
                 {
                     lock (input)
                     {

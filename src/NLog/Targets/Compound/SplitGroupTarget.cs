@@ -82,7 +82,7 @@ namespace NLog.Targets.Compound
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            AsyncHelpers.ForEachItemSequentially(this.Targets, asyncContinuation, (cont, t) => t.WriteLogEvent(logEvent, cont));
+            AsyncHelpers.ForEachItemSequentially(this.Targets, asyncContinuation, (t, cont) => t.WriteLogEvent(logEvent, cont));
         }
     }
 }

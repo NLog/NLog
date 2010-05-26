@@ -73,7 +73,7 @@ namespace NLog.Internal
                     return;
                 }
 
-                action(OneTimeOnly(invokeNext), enumerator.Current);
+                action(enumerator.Current, OneTimeOnly(invokeNext));
             };
 
             invokeNext(null);
@@ -201,7 +201,7 @@ namespace NLog.Internal
             {
                 T itemCopy = item;
 
-                ThreadPool.QueueUserWorkItem(s => action(OneTimeOnly(continuation), itemCopy));
+                ThreadPool.QueueUserWorkItem(s => action(itemCopy, OneTimeOnly(continuation)));
             }
         }
 
@@ -290,11 +290,11 @@ namespace NLog.Internal
 
         private static AsynchronousAction<T> ExceptionGuard<T>(AsynchronousAction<T> action)
         {
-            return (AsyncContinuation cont, T argument) =>
+            return (T argument, AsyncContinuation cont) =>
             {
                 try
                 {
-                    action(cont, argument);
+                    action(argument, cont);
                 }
                 catch (Exception ex)
                 {
