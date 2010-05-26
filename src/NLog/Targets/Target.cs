@@ -172,6 +172,11 @@ namespace NLog.Targets
         /// <param name="asyncContinuations">The asynchronous continuations.</param>
         public void WriteLogEvents(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
         {
+            if (!this.isInitialized)
+            {
+                throw new NLogRuntimeException("Target is not initialized.");
+            }
+
             var continuations = new AsyncContinuation[asyncContinuations.Length];
             for (int i = 0; i < continuations.Length; ++i)
             {
@@ -189,6 +194,19 @@ namespace NLog.Targets
                 {
                     cont(ex);
                 }
+            }
+        }
+
+        internal void WriteLogEvents(LogEventInfo[] logEventInfos, AsyncContinuation[] asyncContinuations, AsyncContinuation continuation)
+        {
+            if (logEventInfos.Length == 0)
+            {
+                continuation(null);
+            }
+            else
+            {
+                var wrappedContinuations = AsyncHelpers.AfterAllComplete(asyncContinuations, continuation);
+                this.WriteLogEvents(logEventInfos, wrappedContinuations);
             }
         }
 

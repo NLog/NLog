@@ -140,13 +140,13 @@ namespace NLog.UnitTests
             Assert.IsNotNull(c.FindTargetByName("d3"));
             Assert.IsNotNull(c.FindTargetByName("d4"));
 
-            Assert.IsInstanceOfType(c.FindTargetByName("rr"), typeof(RoundRobinTarget));
+            Assert.IsInstanceOfType(c.FindTargetByName("rr"), typeof(RoundRobinGroupTarget));
             Assert.IsInstanceOfType(c.FindTargetByName("d1"), typeof(DebugTarget));
             Assert.IsInstanceOfType(c.FindTargetByName("d2"), typeof(DebugTarget));
             Assert.IsInstanceOfType(c.FindTargetByName("d3"), typeof(DebugTarget));
             Assert.IsInstanceOfType(c.FindTargetByName("d4"), typeof(DebugTarget));
 
-            RoundRobinTarget rr = c.FindTargetByName("rr") as RoundRobinTarget;
+            RoundRobinGroupTarget rr = c.FindTargetByName("rr") as RoundRobinGroupTarget;
             DebugTarget d1 = c.FindTargetByName("d1") as DebugTarget;
             DebugTarget d2 = c.FindTargetByName("d2") as DebugTarget;
             DebugTarget d3 = c.FindTargetByName("d3") as DebugTarget;

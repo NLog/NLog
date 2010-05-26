@@ -127,6 +127,10 @@
     <Compile Include="RoutingTests.cs" />
     <Compile Include="SourceCodeTests.cs" />
     <Compile Include="TargetConfigurationTests.cs" />
+    <Compile Include="Targets\Compound\FallbackGroupTargetTests.cs" />
+    <Compile Include="Targets\Compound\RandomizeGroupTargetTests.cs" />
+    <Compile Include="Targets\Compound\RoundRobinGroupTargetTests.cs" />
+    <Compile Include="Targets\Compound\SplitGroupTargetTests.cs" />
     <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
     <Compile Include="Targets\EventLogTests.cs" />
     <Compile Include="Targets\FileTargetTests.cs" />

@@ -69,6 +69,9 @@ namespace NLog.UnitTests.Targets.Wrappers
                 DefaultFilter = "level >= LogLevel.Info",
             };
 
+            ((ISupportsInitialize)wrapper).Initialize();
+            ((ISupportsInitialize)target).Initialize();
+
             var events = new LogEventInfo[]
             {
                 new LogEventInfo(LogLevel.Debug, "Logger1", "Hello"),
@@ -117,6 +120,9 @@ namespace NLog.UnitTests.Targets.Wrappers
                 // by default log info and above
                 DefaultFilter = "level >= LogLevel.Info",
             };
+
+            ((ISupportsInitialize)wrapper).Initialize();
+            ((ISupportsInitialize)target).Initialize();
 
             var events = new LogEventInfo[]
             {
@@ -178,6 +184,9 @@ Trace After filtering: 6 events
                 DefaultFilter = "level >= LogLevel.Info",
             };
 
+            ((ISupportsInitialize)wrapper).Initialize();
+            ((ISupportsInitialize)target).Initialize();
+
             var events = new LogEventInfo[]
             {
                 new LogEventInfo(LogLevel.Debug, "Logger1", "Hello"),
@@ -228,6 +237,9 @@ Trace After filtering: 7 events
                 WrappedTarget = target,
             };
 
+            ((ISupportsInitialize)wrapper).Initialize();
+            ((ISupportsInitialize)target).Initialize();
+
             var events = new LogEventInfo[]
             {
                 new LogEventInfo(LogLevel.Debug, "Logger1", "Hello"),
@@ -262,7 +274,7 @@ Trace After filtering: 7 events
             Assert.AreEqual(continuations.Length, exceptions.Count, "Some continuations were not invoked.");
         }
 
-        class MyTarget : Target
+        public class MyTarget : Target
         {
             public MyTarget()
             {

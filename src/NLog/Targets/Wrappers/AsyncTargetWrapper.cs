@@ -167,7 +167,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Initializes the target by starting the lazy writer thread.
+        /// Initializes the target by starting the lazy writer timer.
         /// </summary>
         protected override void Initialize()
         {
@@ -178,6 +178,15 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
+        /// Shuts down the lazy writer timer.
+        /// </summary>
+        protected override void Close()
+        {
+            this.StopLazyWriterThread();
+            base.Close();
+        }
+
+        /// <summary>
         /// Starts the lazy writer thread which periodically writes
         /// queued log messages.
         /// </summary>
@@ -185,7 +194,10 @@ namespace NLog.Targets.Wrappers
         {
             lock (this.lockObject)
             {
-                this.lazyWriterTimer.Change(this.TimeToSleepBetweenBatches, Timeout.Infinite);
+                if (this.lazyWriterTimer != null)
+                {
+                    this.lazyWriterTimer.Change(this.TimeToSleepBetweenBatches, Timeout.Infinite);
+                }
             }
         }
 
@@ -196,7 +208,11 @@ namespace NLog.Targets.Wrappers
         {
             lock (this.lockObject)
             {
-                this.lazyWriterTimer.Change(Timeout.Infinite, Timeout.Infinite);
+                if (this.lazyWriterTimer != null)
+                {
+                    this.lazyWriterTimer.Change(Timeout.Infinite, Timeout.Infinite);
+                    this.lazyWriterTimer = null;
+                }
             }
         }
 
@@ -221,27 +237,35 @@ namespace NLog.Targets.Wrappers
             try
             {
                 int count = this.BatchSize;
-                var continuation = this.flushAllContinuation;
-                this.flushAllContinuation = null;
+                var continuation = Interlocked.Exchange(ref this.flushAllContinuation, null);
                 if (continuation != null)
                 {
                     count = this.RequestQueue.RequestCount;
+                    InternalLogger.Trace("Flushing {0} events.", count);
                 }
 
                 LogEventInfo[] logEventInfos;
                 AsyncContinuation[] asyncContinuations;
 
                 this.RequestQueue.DequeueBatch(count, out logEventInfos, out asyncContinuations);
-                this.WrappedTarget.WriteLogEvents(logEventInfos, asyncContinuations);
-                this.StartLazyWriterTimer();
+
                 if (continuation != null)
                 {
-                    continuation(null);
+                    // write all events, then flush, then call the continuation
+                    this.WrappedTarget.WriteLogEvents(logEventInfos, asyncContinuations, ex => this.WrappedTarget.Flush(continuation));
+                }
+                else
+                {
+                    // just write all events
+                    this.WrappedTarget.WriteLogEvents(logEventInfos, asyncContinuations);
                 }
             }
             catch (Exception ex)
             {
                 InternalLogger.Error("Error in lazy writer timer procedure: {0}", ex);
+            }
+            finally
+            {
                 this.StartLazyWriterTimer();
             }
         }

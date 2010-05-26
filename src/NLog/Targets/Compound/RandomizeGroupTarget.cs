@@ -34,54 +34,70 @@
 namespace NLog.Targets.Compound
 {
     using System;
-    using System.Threading;
     using NLog.Internal;
 
     /// <summary>
-    /// A compound target that writes logging events to all attached
-    /// sub-targets.
+    /// A compound target writes to a randomly-chosen target among the sub-targets.
     /// </summary>
     /// <example>
-    /// <p>This example causes the messages to be written to both file1.txt or file2.txt 
+    /// <p>This example causes the messages to be written to either file1.txt or file2.txt 
+    /// chosen randomly on a per-message basis.
     /// </p>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" source="examples/targets/Configuration File/SplitGroup/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/RandomizeGroup/NLog.config" />
     /// <p>
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/SplitGroup/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/RandomizeGroup/Simple/Example.cs" />
     /// </example>
-    [Target("SplitGroup", IsCompound = true)]
-    public class SplitTarget : CompoundTargetBase
+    [Target("RandomizeGroup", IsCompound = true)]
+    public class RandomizeGroupTarget : CompoundTargetBase
     {
+        private readonly Random random = new Random();
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="SplitTarget" /> class.
+        /// Initializes a new instance of the <see cref="RandomizeGroupTarget" /> class.
         /// </summary>
-        public SplitTarget()
+        public RandomizeGroupTarget()
+            : this(new Target[0])
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SplitTarget" /> class.
+        /// Initializes a new instance of the <see cref="RandomizeGroupTarget" /> class.
         /// </summary>
         /// <param name="targets">The targets.</param>
-        public SplitTarget(params Target[] targets)
+        public RandomizeGroupTarget(params Target[] targets)
             : base(targets)
         {
         }
 
         /// <summary>
-        /// Forwards the specified log event to all sub-targets.
+        /// Forwards the log event to one of the sub-targets.
+        /// The sub-target is randomly chosen.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            AsyncHelpers.ForEachItemSequentially(this.Targets, asyncContinuation, (cont, t) => t.WriteLogEvent(logEvent, cont));
+            if (this.Targets.Count == 0)
+            {
+                asyncContinuation(null);
+                return;
+            }
+
+            int selectedTarget;
+
+            lock (this.random)
+            {
+                selectedTarget = this.random.Next(this.Targets.Count);
+            }
+
+            this.Targets[selectedTarget].WriteLogEvent(logEvent, asyncContinuation);
         }
     }
 }

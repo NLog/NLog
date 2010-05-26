@@ -274,10 +274,10 @@
     <Compile Include="Targets\ChainsawTarget.cs" />
     <Compile Include="Targets\ColoredConsoleTarget.cs" />
     <Compile Include="Targets\Compound\CompoundTargetBase.cs" />
-    <Compile Include="Targets\Compound\FallbackTarget.cs" />
-    <Compile Include="Targets\Compound\RandomizeTarget.cs" />
-    <Compile Include="Targets\Compound\RoundRobinTarget.cs" />
-    <Compile Include="Targets\Compound\SplitTarget.cs" />
+    <Compile Include="Targets\Compound\FallbackGroupTarget.cs" />
+    <Compile Include="Targets\Compound\RandomizeGroupTarget.cs" />
+    <Compile Include="Targets\Compound\RoundRobinGroupTarget.cs" />
+    <Compile Include="Targets\Compound\SplitGroupTarget.cs" />
     <Compile Include="Targets\ConsoleOutputColor.cs" />
     <Compile Include="Targets\ConsoleRowHighlightingRule.cs" />
     <Compile Include="Targets\ConsoleTarget.cs" />

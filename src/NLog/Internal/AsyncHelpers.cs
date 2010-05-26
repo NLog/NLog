@@ -227,6 +227,34 @@ namespace NLog.Internal
         }
 
         /// <summary>
+        /// Wraps each continuation so that the given action is invoked once all asynchronous continuations complete.
+        /// </summary>
+        /// <param name="asyncContinuations">Array of continuations to wrap.</param>
+        /// <param name="action">Action to invoke at the end.</param>
+        /// <returns>Array of wrapped continuations.</returns>
+        public static AsyncContinuation[] AfterAllComplete(AsyncContinuation[] asyncContinuations, AsyncContinuation action)
+        {
+            var wrappedContinuations = new AsyncContinuation[asyncContinuations.Length];
+            int remaining = asyncContinuations.Length;
+            for (int i = 0; i < asyncContinuations.Length; ++i)
+            {
+                AsyncContinuation originalContinuation = asyncContinuations[i];
+                AsyncContinuation wrappedContinuation = ex =>
+                {
+                    originalContinuation(ex);
+                    if (0 == Interlocked.Decrement(ref remaining))
+                    {
+                        action(null);
+                    }
+                };
+
+                wrappedContinuations[i] = wrappedContinuation;
+            }
+
+            return wrappedContinuations;
+        }
+
+        /// <summary>
         /// Wraps the continuation with a guard which will only make sure that the continuation function
         /// is invoked only once.
         /// </summary>

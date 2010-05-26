@@ -55,23 +55,24 @@ namespace NLog.Targets.Compound
     /// <code lang="C#" source="examples/targets/Configuration API/FallbackGroup/Simple/Example.cs" />
     /// </example>
     [Target("FallbackGroup", IsCompound = true)]
-    public class FallbackTarget : CompoundTargetBase
+    public class FallbackGroupTarget : CompoundTargetBase
     {
         private int currentTarget;
         private object lockObject = new object();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FallbackTarget"/> class.
+        /// Initializes a new instance of the <see cref="FallbackGroupTarget"/> class.
         /// </summary>
-        public FallbackTarget()
+        public FallbackGroupTarget()
+            : this(new Target[0])
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FallbackTarget" /> class.
+        /// Initializes a new instance of the <see cref="FallbackGroupTarget" /> class.
         /// </summary>
         /// <param name="targets">The targets.</param>
-        public FallbackTarget(params Target[] targets)
+        public FallbackGroupTarget(params Target[] targets)
             : base(targets)
         {
         }

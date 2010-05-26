@@ -38,62 +38,51 @@ namespace NLog.Targets.Compound
     using NLog.Internal;
 
     /// <summary>
-    /// A compound target that forwards writes to the sub-targets in a
-    /// round-robin fashion.
+    /// A compound target that writes logging events to all attached
+    /// sub-targets.
     /// </summary>
     /// <example>
-    /// <p>This example causes the messages to be written to either file1.txt or file2.txt.
-    /// Each odd message is written to file2.txt, each even message goes to file1.txt.
+    /// <p>This example causes the messages to be written to both file1.txt or file2.txt 
     /// </p>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" source="examples/targets/Configuration File/RoundRobinGroup/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/SplitGroup/NLog.config" />
     /// <p>
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/RoundRobinGroup/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/SplitGroup/Simple/Example.cs" />
     /// </example>
-    [Target("RoundRobinGroup", IsCompound = true)]
-    public class RoundRobinTarget : CompoundTargetBase
+    [Target("SplitGroup", IsCompound = true)]
+    public class SplitGroupTarget : CompoundTargetBase
     {
-        private int currentTarget;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="RoundRobinTarget" /> class.
+        /// Initializes a new instance of the <see cref="SplitGroupTarget" /> class.
         /// </summary>
-        public RoundRobinTarget()
+        public SplitGroupTarget()
+            : this(new Target[0])
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RoundRobinTarget" /> class.
+        /// Initializes a new instance of the <see cref="SplitGroupTarget" /> class.
         /// </summary>
         /// <param name="targets">The targets.</param>
-        public RoundRobinTarget(params Target[] targets)
+        public SplitGroupTarget(params Target[] targets)
             : base(targets)
         {
         }
 
         /// <summary>
-        /// Forwards the write to one of the targets from
-        /// the <see cref="Targets"/> collection.
+        /// Forwards the specified log event to all sub-targets.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        /// <remarks>
-        /// The writes are routed in a round-robin fashion.
-        /// The first log event goes to the first target, the second
-        /// one goes to the second target and so on looping to the
-        /// first target when there are no more targets available.
-        /// In general request N goes to Targets[N % Targets.Count].
-        /// </remarks>
         protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            int selectedTarget = Interlocked.Increment(ref this.currentTarget);
-            this.Targets[selectedTarget % this.Targets.Count].WriteLogEvent(logEvent, asyncContinuation);
+            AsyncHelpers.ForEachItemSequentially(this.Targets, asyncContinuation, (cont, t) => t.WriteLogEvent(logEvent, cont));
         }
     }
 }

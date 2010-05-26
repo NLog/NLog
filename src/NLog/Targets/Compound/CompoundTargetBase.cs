@@ -35,7 +35,7 @@ namespace NLog.Targets.Compound
 {
     using System;
     using System.Collections.Generic;
-    using NLog.Layouts;
+    using NLog.Internal;
 
     /// <summary>
     /// A base class for targets which wrap other (multiple) targets
@@ -49,11 +49,7 @@ namespace NLog.Targets.Compound
         /// <param name="targets">The targets.</param>
         protected CompoundTargetBase(params Target[] targets)
         {
-            this.Targets = new List<Target>();
-            foreach (Target t in targets)
-            {
-                this.Targets.Add(t);
-            }
+            this.Targets = new List<Target>(targets);
         }
 
         /// <summary>
@@ -62,13 +58,21 @@ namespace NLog.Targets.Compound
         public IList<Target> Targets { get; private set; }
 
         /// <summary>
-        /// Writes logging event to the log target. Must be overridden in inheriting
-        /// classes.
+        /// Writes logging event to the log target.
         /// </summary>
         /// <param name="logEvent">Logging event to be written out.</param>
         protected override void Write(LogEventInfo logEvent)
         {
             throw new NotSupportedException("This target must not be invoked in a synchronous way.");
+        }
+
+        /// <summary>
+        /// Flush any pending log messages for all wrapped targets.
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
+        {
+            AsyncHelpers.ForEachItemInParallel(this.Targets, asyncContinuation, (c, t) => t.Flush(c));
         }
     }
 }

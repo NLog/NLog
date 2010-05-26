@@ -126,30 +126,13 @@ namespace NLog.Targets.Wrappers
 
                 this.buffer.GetEventsAndClear(out events, out asyncContinuations);
 
-                var wrappedContinuations = new AsyncContinuation[asyncContinuations.Length];
-                int remaining = events.Length;
-                for (int i = 0; i < asyncContinuations.Length; ++i)
-                {
-                    AsyncContinuation originalContinuation = asyncContinuations[i];
-                    AsyncContinuation wrappedContinuation = ex =>
-                    {
-                        originalContinuation(ex);
-                        if (0 == Interlocked.Decrement(ref remaining))
-                        {
-                            this.WrappedTarget.Flush(asyncContinuation);
-                        }
-                    };
-
-                    wrappedContinuations[i] = wrappedContinuation;
-                }
-
                 if (events.Length == 0)
                 {
                     this.WrappedTarget.Flush(asyncContinuation);
                 }
                 else
                 {
-                    this.WrappedTarget.WriteLogEvents(events, wrappedContinuations);
+                    this.WrappedTarget.WriteLogEvents(events, asyncContinuations, ex => this.WrappedTarget.Flush(asyncContinuation));
                 }
             }
         }

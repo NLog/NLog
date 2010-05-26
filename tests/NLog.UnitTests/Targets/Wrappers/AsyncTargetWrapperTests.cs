@@ -39,6 +39,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using System.Collections.Generic;
 
     [TestClass]
     public class AsyncTargetWrapperTests : NLogTestBase
@@ -78,6 +79,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = myTarget,
             };
             ((ISupportsInitialize)targetWrapper).Initialize();
+            ((ISupportsInitialize)myTarget).Initialize();
 
             var logEvent = new LogEventInfo();
             Exception lastException = null;
@@ -113,6 +115,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var myTarget = new MyAsyncTarget();
             var targetWrapper = new AsyncTargetWrapper(myTarget);
             ((ISupportsInitialize)targetWrapper).Initialize();
+            ((ISupportsInitialize)myTarget).Initialize();
             var logEvent = new LogEventInfo();
             Exception lastException = null;
             var continuationHit = new ManualResetEvent(false);
@@ -136,7 +139,6 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(2, myTarget.WriteCount);
         }
 
-
         [TestMethod]
         public void AsyncTargetWrapperAsyncWithExceptionTest1()
         {
@@ -147,6 +149,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             var targetWrapper = new AsyncTargetWrapper(myTarget);
             ((ISupportsInitialize)targetWrapper).Initialize();
+            ((ISupportsInitialize)myTarget).Initialize();
             var logEvent = new LogEventInfo();
             Exception lastException = null;
             var continuationHit = new ManualResetEvent(false);
@@ -177,10 +180,136 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(2, myTarget.WriteCount);
         }
 
+        [TestMethod]
+        public void AsyncTargetWrapperFlushTest()
+        {
+            var myTarget = new MyAsyncTarget
+            {
+                ThrowExceptions = true,
+               
+            };
+
+            var targetWrapper = new AsyncTargetWrapper(myTarget)
+            {
+                OverflowAction = AsyncTargetWrapperOverflowAction.Grow,
+            };
+
+            ((ISupportsInitialize)targetWrapper).Initialize();
+            ((ISupportsInitialize)myTarget).Initialize();
+
+            List<Exception> exceptions = new List<Exception>();
+
+            int eventCount = 5000;
+
+            for (int i = 0; i < eventCount; ++i)
+            {
+                targetWrapper.WriteLogEvent(LogEventInfo.CreateNullEvent(),
+                    ex =>
+                    {
+                        lock (exceptions)
+                        {
+                            exceptions.Add(ex);
+                        }
+                    });
+            }
+
+            Exception lastException = null;
+            ManualResetEvent mre = new ManualResetEvent(false);
+
+            string internalLog = RunAndCaptureInternalLog(
+                () =>
+                {
+                    targetWrapper.Flush(
+                        cont =>
+                        {
+                            try
+                            {
+                                // by this time all continuations should be completed
+                                Assert.AreEqual(eventCount, exceptions.Count);
+
+                                // with just 1 flush of the target
+                                Assert.AreEqual(1, myTarget.FlushCount);
+
+                                // and all writes should be accounted for
+                                Assert.AreEqual(eventCount, myTarget.WriteCount);
+                            }
+                            catch (Exception ex)
+                            {
+                                lastException = ex;
+                            }
+                            finally
+                            {
+                                mre.Set();
+                            }
+                        });
+                    mre.WaitOne();
+                },
+                LogLevel.Trace);
+
+            if (lastException != null)
+            {
+                Assert.Fail(lastException.ToString() + "\r\n" + internalLog);
+            }
+        }
+
+        [TestMethod]
+        public void AsyncTargetWrapperCloseTest()
+        {
+            var myTarget = new MyAsyncTarget
+            {
+                ThrowExceptions = true,
+
+            };
+
+            var targetWrapper = new AsyncTargetWrapper(myTarget)
+            {
+                OverflowAction = AsyncTargetWrapperOverflowAction.Grow,
+                TimeToSleepBetweenBatches = 1000,
+            };
+
+            ((ISupportsInitialize)targetWrapper).Initialize();
+            ((ISupportsInitialize)myTarget).Initialize();
+
+            bool continuationHit = false;
+
+            targetWrapper.WriteLogEvent(LogEventInfo.CreateNullEvent(), ex => { continuationHit = true; });
+
+            // quickly close the target before the timer elapses
+            ((ISupportsInitialize)targetWrapper).Close();
+
+            // continuation will not be hit because the thread is down.
+            Thread.Sleep(1000);
+            Assert.IsFalse(continuationHit);
+        }
+
+        [TestMethod]
+        public void AsyncTargetWrapperExceptionTest()
+        {
+            var targetWrapper = new AsyncTargetWrapper
+            {
+                OverflowAction = AsyncTargetWrapperOverflowAction.Grow,
+                TimeToSleepBetweenBatches = 500,
+            };
+
+            ((ISupportsInitialize)targetWrapper).Initialize();
+
+            // don't set wrapped taret - will cause exception on the timer thread
+            string internalLog = RunAndCaptureInternalLog(
+                () =>
+                {
+                    targetWrapper.WriteLogEvent(LogEventInfo.CreateNullEvent(), ex => { });
+                    Thread.Sleep(1000);
+                },
+                LogLevel.Trace);
+
+            ((ISupportsInitialize)targetWrapper).Close();
+            Assert.IsTrue(internalLog.StartsWith("Error Error in lazy writer timer procedure: System.NullReferenceException", StringComparison.Ordinal), internalLog);
+        }
+
         class MyAsyncTarget : Target
         {
-            public int FlushCount { get; private set; }
-            public int WriteCount { get; private set; }
+            public int FlushCount;
+            public int WriteCount;
 
             protected override void Write(LogEventInfo logEvent)
             {
@@ -190,7 +319,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
             {
                 Assert.IsTrue(this.FlushCount <= this.WriteCount);
-                this.WriteCount++;
+                Interlocked.Increment(ref this.WriteCount);
                 ThreadPool.QueueUserWorkItem(
                     s =>
                         {
@@ -209,7 +338,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                this.FlushCount++;
+                Interlocked.Increment(ref this.FlushCount);
                 ThreadPool.QueueUserWorkItem(
                     s => asyncContinuation(null));
             }
