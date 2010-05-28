@@ -37,7 +37,7 @@ namespace NLog.Targets.Wrappers
     using NLog.Internal;
 
     /// <summary>
-    /// A target wrapper that causes a flush after each write on a wrapped target.
+    /// Causes a flush after each write on a wrapped target.
     /// </summary>
     /// <example>
     /// <p>

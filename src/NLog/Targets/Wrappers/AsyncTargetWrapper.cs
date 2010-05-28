@@ -41,7 +41,7 @@ namespace NLog.Targets.Wrappers
     using NLog.Internal;
 
     /// <summary>
-    /// A target wrapper that provides asynchronous, buffered execution of target writes.
+    /// Provides asynchronous, buffered execution of target writes.
     /// </summary>
     /// <remarks>
     /// <p>

@@ -37,7 +37,7 @@ namespace NLog.Targets.Compound
     using NLog.Internal;
 
     /// <summary>
-    /// A compound target writes to a randomly-chosen target among the sub-targets.
+    /// Sends log messages to a randomly selected target.
     /// </summary>
     /// <example>
     /// <p>This example causes the messages to be written to either file1.txt or file2.txt 

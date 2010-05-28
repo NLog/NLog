@@ -41,8 +41,7 @@ namespace NLog.Targets.Wrappers
     using NLog.Internal;
 
     /// <summary>
-    /// A target wrapper that filters buffered log entries based on a set of conditions
-    /// that are evaluated on all events.
+    /// Filters buffered log entries based on a set of conditions that are evaluated on a group of events.
     /// </summary>
     /// <remarks>
     /// PostFilteringWrapper must be used with some type of buffering target or wrapper, such as

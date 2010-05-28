@@ -38,8 +38,7 @@ namespace NLog.Targets.Compound
     using NLog.Internal;
 
     /// <summary>
-    /// A compound target that forwards writes to the sub-targets in a
-    /// round-robin fashion.
+    /// Distributes log events to targets in a round-robin fashion.
     /// </summary>
     /// <example>
     /// <p>This example causes the messages to be written to either file1.txt or file2.txt.

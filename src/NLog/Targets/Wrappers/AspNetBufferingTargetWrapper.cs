@@ -42,9 +42,8 @@ namespace NLog.Targets.Wrappers
     using NLog.Web;
 
     /// <summary>
-    /// A target that buffers log events for the duration of 
-    /// the ASP.NET Request and sends them down to the wrapped target
-    /// as soon as the request ends.
+    /// Buffers log events for the duration of ASP.NET request and sends them down 
+    /// to the wrapped target at the end of a request.
     /// </summary>
     /// <remarks>
     /// <p>

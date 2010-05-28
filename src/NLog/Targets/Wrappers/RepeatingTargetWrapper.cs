@@ -39,7 +39,7 @@ namespace NLog.Targets.Wrappers
     using NLog.Internal;
 
     /// <summary>
-    /// A target wrapper that repeats each log event the specified number of times.
+    /// Repeats each log event the specified number of times.
     /// </summary>
     /// <example>
     /// <p>This example causes each log message to be repeated 3 times.</p>

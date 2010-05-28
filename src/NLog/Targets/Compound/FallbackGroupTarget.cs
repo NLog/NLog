@@ -38,7 +38,7 @@ namespace NLog.Targets.Compound
     using NLog.Internal;
 
     /// <summary>
-    /// A compound target that provides fallback-on-error functionality.
+    /// Provides fallback-on-error.
     /// </summary>
     /// <example>
     /// <p>This example causes the messages to be written to server1, 

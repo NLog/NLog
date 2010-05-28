@@ -39,7 +39,7 @@ namespace NLog.Targets.Wrappers
     using NLog.Internal;
 
     /// <summary>
-    /// A target wrapper that filters log entries based on a condition.
+    /// Filters log entries based on a condition.
     /// </summary>
     /// <example>
     /// <p>This example causes the messages not contains the string '1' to be ignored.</p>

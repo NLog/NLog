@@ -38,8 +38,7 @@ namespace NLog.Targets.Compound
     using NLog.Internal;
 
     /// <summary>
-    /// A compound target that writes logging events to all attached
-    /// sub-targets.
+    /// Writes log events to all targets.
     /// </summary>
     /// <example>
     /// <p>This example causes the messages to be written to both file1.txt or file2.txt 

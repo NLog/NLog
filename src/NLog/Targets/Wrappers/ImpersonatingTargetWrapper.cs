@@ -42,7 +42,7 @@ namespace NLog.Targets.Wrappers
     using NLog.Internal;
 
     /// <summary>
-    /// A target wrapper that impersonates another user for the duration of the write.
+    /// Impersonates another user for the duration of the write.
     /// </summary>
     [Target("ImpersonatingWrapper", IsWrapper = true)]
     public class ImpersonatingTargetWrapper : WrapperTargetBase

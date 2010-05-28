@@ -40,7 +40,7 @@ namespace NLog.Targets.Wrappers
     using NLog.Internal;
 
     /// <summary>
-    /// A target wrapper that causes retries on wrapped target errors.
+    /// Retries in case of write error.
     /// </summary>
     /// <example>
     /// <p>This example causes each write attempt to be repeated 3 times, 
