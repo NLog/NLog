@@ -44,7 +44,7 @@ namespace NLog.Targets
     using NLog.Layouts;
 
     /// <summary>
-    /// Sends logging messages by email using SMTP protocol.
+    /// Sends log messages by email using SMTP protocol.
     /// </summary>
     /// <example>
     /// <p>
@@ -62,7 +62,7 @@ namespace NLog.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/Mail/Simple/Example.cs" />
     /// <p>
     /// Mail target works best when used with BufferingWrapper target
-    /// which lets you send multiple logging messages in single mail
+    /// which lets you send multiple log messages in single mail
     /// </p>
     /// <p>
     /// To set up the buffered mail target in the <a href="config.html">configuration file</a>, 

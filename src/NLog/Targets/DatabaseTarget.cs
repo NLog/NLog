@@ -46,7 +46,7 @@ namespace NLog.Targets
     using NLog.Layouts;
 
     /// <summary>
-    /// Writes logging messages to the database using an ADO.NET provider.
+    /// Writes log messages to the database using an ADO.NET provider.
     /// </summary>
     /// <example>
     /// <para>

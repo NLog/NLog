@@ -37,7 +37,7 @@ namespace NLog.Targets
     using System.ComponentModel;
 
     /// <summary>
-    /// Writes logging messages to the console.
+    /// Writes log messages to the console.
     /// </summary>
     /// <example>
     /// <p>
@@ -59,7 +59,7 @@ namespace NLog.Targets
     {
 #if !NET_CF
         /// <summary>
-        /// Gets or sets a value indicating whether to send the logging messages to the standard error instead of the standard output.
+        /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
         /// </summary>
         /// <docgen category='Console Options' order='10' />
         [DefaultValue(false)]

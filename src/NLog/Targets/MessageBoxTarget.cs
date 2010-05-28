@@ -44,7 +44,7 @@ using System.Windows.Browser;
     using NLog.Layouts;
 
     /// <summary>
-    /// Pops up logging messages as message boxes.
+    /// Pops up log messages as message boxes.
     /// </summary>
     /// <example>
     /// <p>

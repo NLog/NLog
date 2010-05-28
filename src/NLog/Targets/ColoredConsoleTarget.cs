@@ -43,7 +43,7 @@ namespace NLog.Targets
     using NLog.Internal;
 
     /// <summary>
-    /// Writes logging messages to the console with customizable coloring.
+    /// Writes log messages to the console with customizable coloring.
     /// </summary>
     /// <example>
     /// <p>

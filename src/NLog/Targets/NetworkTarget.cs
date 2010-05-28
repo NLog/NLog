@@ -43,7 +43,7 @@ namespace NLog.Targets
     using NLog.Layouts;
 
     /// <summary>
-    /// Sends logging messages over the network.
+    /// Sends log messages over the network.
     /// </summary>
     /// <example>
     /// <p>

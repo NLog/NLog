@@ -36,7 +36,7 @@ namespace NLog.Targets
     using System.Collections.Generic;
 
     /// <summary>
-    /// Writes logging messages to an ArrayList in memory for programmatic retrieval.
+    /// Writes log messages to an ArrayList in memory for programmatic retrieval.
     /// </summary>
     /// <example>
     /// <p>

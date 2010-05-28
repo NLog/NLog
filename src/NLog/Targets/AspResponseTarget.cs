@@ -39,7 +39,7 @@ namespace NLog.Targets
     using NLog.Internal;
 
     /// <summary>
-    /// Outputs logging messages through the ASP Response object.
+    /// Outputs log messages through the ASP Response object.
     /// </summary>
     [Target("AspResponse")]
     public sealed class AspResponseTarget : TargetWithLayout

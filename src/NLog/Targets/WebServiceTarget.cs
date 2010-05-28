@@ -44,7 +44,7 @@ namespace NLog.Targets
     using NLog.Internal;
 
     /// <summary>
-    /// Calls the specified web service on each logging message. 
+    /// Calls the specified web service on each log message.
     /// </summary>
     /// <remarks>
     /// The web service must implement a method that accepts a number of string parameters.

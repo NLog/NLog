@@ -50,7 +50,7 @@ namespace NLog.Targets
     using NLog.Layouts;
 
     /// <summary>
-    /// Writes logging messages to one or more files.
+    /// Writes log messages to one or more files.
     /// </summary>
     /// <example>
     /// <p>

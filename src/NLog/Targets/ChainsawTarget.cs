@@ -34,7 +34,7 @@
 namespace NLog.Targets
 {
     /// <summary>
-    /// Sends logging messages to the remote instance of Chainsaw application from log4j. 
+    /// Sends log messages to the remote instance of Chainsaw application from log4j. 
     /// </summary>
     /// <example>
     /// <p>

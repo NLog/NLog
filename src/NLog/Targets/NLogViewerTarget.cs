@@ -40,7 +40,7 @@ namespace NLog.Targets
     using NLog.Layouts;
 
     /// <summary>
-    /// Sends logging messages to the remote instance of NLog Viewer. 
+    /// Sends log messages to the remote instance of NLog Viewer. 
     /// </summary>
     /// <example>
     /// <p>

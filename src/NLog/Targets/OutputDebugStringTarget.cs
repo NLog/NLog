@@ -38,7 +38,7 @@ namespace NLog.Targets
     using NLog.Internal;
 
     /// <summary>
-    /// Outputs logging messages through the <c>OutputDebugString()</c> Win32 API.
+    /// Outputs log messages through the <c>OutputDebugString()</c> Win32 API.
     /// </summary>
     /// <example>
     /// <p>

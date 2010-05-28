@@ -36,7 +36,7 @@ namespace NLog.Targets
     using System.ComponentModel;
 
     /// <summary>
-    /// Discards logging messages optionally forcing the layouts to be calculated. Used mainly for debugging and benchmarking.
+    /// Discards log messages optionally forcing the layouts to be calculated. Used mainly for debugging and benchmarking.
     /// </summary>
     /// <example>
     /// <p>

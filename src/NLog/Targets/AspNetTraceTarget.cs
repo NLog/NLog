@@ -38,7 +38,7 @@ namespace NLog.Targets
     using System.Web;
 
     /// <summary>
-    /// Writes logging messages to the ASP.NET trace.
+    /// Writes log messages to the ASP.NET trace.
     /// </summary>
     /// <example>
     /// <p>To set up the ASP.NET Trace target in the <a href="config.html">configuration file</a>, put
