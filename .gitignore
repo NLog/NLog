@@ -12,3 +12,8 @@ _ReSharper.*
 *.csproj.user
 TestResults/
 StyleCop.Cache
+NLogMerged.api.xml
+_UpgradeReport_Files/
+UpgradeLog*.XML
+
+

@@ -193,6 +193,9 @@
     </p>
     <xsl:if test="$mode = 'merged'">
       <hr />
+      <h3>
+        <xsl:value-of select="@title"/>
+      </h3>
     </xsl:if>
     Supported in <xsl:apply-templates select="supported-in" />
     <h4>Configuration Syntax</h4>
@@ -327,9 +330,9 @@
 
   <xsl:template match="type[@kind='filter']" mode="usage-example">
     <div class="usage-example">
-      &lt;rules&gt;<br/>
-      &#160;&#160;&lt;logger ...&gt;<br/>
-      &#160;&#160;&#160;&#160;&lt;<xsl:value-of select="@name"/>
+      <xsl:text>&lt;rules&gt;</xsl:text><br/>
+      <xsl:text>&#160;&#160;&lt;logger ... &gt;</xsl:text><br/>
+      <xsl:text>&#160;&#160;&#160;&#160;&lt;</xsl:text><xsl:value-of select="@name"/>
       <xsl:for-each select="property[not(@type='Collection') and not(@type='Target')]">
         <span>
           <xsl:if test="@required='1'">
@@ -343,9 +346,9 @@
         </span>
       </xsl:for-each>
 
-      /&gt;
-      <br/>&#160;&#160;&lt;/logger&gt;
-      <br/>&lt;/rules&gt;
+      <xsl:text>/&gt;</xsl:text><br/>
+      <xsl:text>&#160;&#160;&lt;/logger&gt;</xsl:text><br/>
+      <xsl:text>&lt;/rules&gt;</xsl:text>
     </div>
   </xsl:template>
 

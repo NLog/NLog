@@ -56,7 +56,7 @@
         {
             using (XmlWriter writer = XmlWriter.Create(outputFile, new XmlWriterSettings
             {
-                Indent = false
+                Indent = true
             }))
             {
                 Build(writer);

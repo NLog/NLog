@@ -177,6 +177,13 @@ if (%1)==(label) (
 	goto next
 )
 
+if (%1)==(websitedir) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:WebsiteDir=%2
+	shift
+	shift
+	goto next
+)
+
 if (%1)==(all) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:All
 	set POST_BUILD_COMMAND="%~dp0src\LastTestRunSummary.cmd"

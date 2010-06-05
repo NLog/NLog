@@ -32,6 +32,7 @@
     <Git Condition=" '$(Git)' == '' ">git</Git>
     <ArchiveOutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Packages</ArchiveOutputPath>
     <ConfigurationSuffix Condition="'$(Configuration)' == 'Debug'">-debug</ConfigurationSuffix>
+    <WebsiteDir Condition="'$(WebsiteDir)' == ''">$(BaseOutputDirectory)\bin\$(Configuration)\Website</WebsiteDir>
   </PropertyGroup>
 
   <!-- detect location of various SDKs and tools-->
@@ -195,15 +196,15 @@
 
   <Target Name="Web" DependsOnTargets="DumpApi;BuildDocPagesTool"
     Inputs="$(BaseOutputDirectory)\bin\$(Configuration)\NLogMerged.api.xml;$(BuildDocPages);@(WebsiteFiles);@(WebsiteGenFiles)"
-    Outputs="$(BaseOutputDirectory)\bin\$(Configuration)\Website\static.tar.bz2">
+    Outputs="$(WebsiteDir)\static.tar.bz2;$(WebsiteDir)\generated.tar.bz2;">
 
-    <Copy SourceFiles="@(WebsiteFiles)" DestinationFolder="$(BaseOutputDirectory)\bin\$(Configuration)\Website\static" />
-    <Exec Command='"$(BuildDocPages)" "NLogMerged.api.xml" "$(MSBuildProjectDirectory)\..\tools\WebsiteFiles\style.xsl" "Website\generated" "$(MSBuildProjectDirectory)\.." html web'
+    <Copy SourceFiles="@(WebsiteFiles)" DestinationFolder="$(WebsiteDir)\static" />
+    <Exec Command='"$(BuildDocPages)" "NLogMerged.api.xml" "$(MSBuildProjectDirectory)\..\tools\WebsiteFiles\style.xsl" "$(WebsiteDir)\generated" "$(MSBuildProjectDirectory)\.." html web'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)" />
-    <Exec Command='"$(Tar)" -c -f generated.tar generated' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Website" />
-    <Exec Command='"$(BZip2)" -f generated.tar' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Website" />
-    <Exec Command='"$(Tar)" -c -f ..\static.tar *' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Website\static" />
-    <Exec Command='"$(BZip2)" -f static.tar' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Website" />
+    <Exec Command='"$(Tar)" -c -f generated.tar generated' WorkingDirectory="$(WebsiteDir)" />
+    <Exec Command='"$(BZip2)" -f generated.tar' WorkingDirectory="$(WebsiteDir)" />
+    <Exec Command='"$(Tar)" -c -f ..\static.tar *' WorkingDirectory="$(WebsiteDir)\static" />
+    <Exec Command='"$(BZip2)" -f static.tar' WorkingDirectory="$(WebsiteDir)" />
   </Target>
 
   <Target Name="RunTests">

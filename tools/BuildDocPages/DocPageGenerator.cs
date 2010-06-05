@@ -64,8 +64,6 @@ namespace BuildDocPages
         {
             string filename = Path.Combine(this.OutputDirectory, slug + "." + this.FileSuffix);
 
-            Console.WriteLine("Generating {0}", filename);
-
             Dictionary<string, XElement> inputXml = new Dictionary<string, XElement>();
 
             var type = inputDocument.Elements("type").Where(c => c.Attribute("kind").Value == kind && c.Attribute("name").Value == name).Single();
@@ -74,7 +72,7 @@ namespace BuildDocPages
 
             using (var reader = inputDocument.CreateReader())
             {
-                using (XmlWriter writer = XmlWriter.Create(filename, new XmlWriterSettings { OmitXmlDeclaration = true }))
+                using (XmlWriter writer = XmlWriter.Create(filename + ".tmp", new XmlWriterSettings { OmitXmlDeclaration = true }))
                 {
                     XsltArgumentList arguments = new XsltArgumentList();
                     arguments.AddParam("kind", "", kind);
@@ -86,7 +84,22 @@ namespace BuildDocPages
                 }
             }
 
-            PostProcessFile(filename);
+            PostProcessFile(filename + ".tmp");
+            RewriteIfChanged(filename);
+        }
+
+        private void RewriteIfChanged(string filename)
+        {
+            if (File.Exists(filename) && File.ReadAllText(filename + ".tmp") == File.ReadAllText(filename))
+            {
+                File.Delete(filename + ".tmp");
+                Console.WriteLine("{0} is unchanged.", filename);
+                return;
+            }
+
+            Console.WriteLine("{0} has been updated.", filename);
+            File.Delete(filename);
+            File.Move(filename + ".tmp", filename);
         }
 
         private void InsertExamples(XElement type)
@@ -141,7 +154,7 @@ namespace BuildDocPages
         {
             string filename = Path.Combine(this.OutputDirectory, slug + "." + this.FileSuffix);
 
-            using (XmlWriter writer = XmlWriter.Create(filename, new XmlWriterSettings { OmitXmlDeclaration = true }))
+            using (XmlWriter writer = XmlWriter.Create(filename + ".tmp", new XmlWriterSettings { OmitXmlDeclaration = true }))
             {
                 using (var reader = inputDocument.CreateReader())
                 {
@@ -154,8 +167,9 @@ namespace BuildDocPages
                     transform.Transform(reader, arguments, writer);
                 }
             }
-            
-            PostProcessFile(filename);
+
+            PostProcessFile(filename + ".tmp");
+            RewriteIfChanged(filename);
         }
 
         private void PostProcessFile(string filename)
