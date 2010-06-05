@@ -17,6 +17,8 @@ namespace BuildDocPages
 
         public string InputFile { get; set; }
 
+        public string Stylesheet { get; set; }
+
         public string OutputDirectory { get; set; }
 
         public string BaseDirectory { get; set; }
@@ -31,31 +33,36 @@ namespace BuildDocPages
         public void Generate()
         {
             transform = new XslCompiledTransform();
-            transform.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "style.xsl"));
+            transform.Load(this.Stylesheet);
 
             LoadInputFile();
             GenerateKind("target", "Target");
             GenerateKind("layout-renderer", "Layout Renderer");
             GenerateKind("filter", "Filter");
             GenerateKind("layout", "Layout");
+
+            GenerateMergedPage("target", "Target", "targets");
+            GenerateMergedPage("target", "Target", "wrapper-targets");
+            GenerateMergedPage("layout-renderer", "Layout Renderer", "layout-renderers");
+            GenerateMergedPage("wrapper-layout-renderer", "Layout Renderer", "wrapper-layout-renderers");
+            GenerateMergedPage("layout", "Layout", "layouts");
+            GenerateMergedPage("filter", "Filter", "filters");
         }
 
         private void GenerateKind(string kind, string kindName)
         {
             Dictionary<string, string> name2slug = new Dictionary<string, string>();
-            Directory.CreateDirectory(this.OutputDirectory + "/" + kind);
+            Directory.CreateDirectory(this.OutputDirectory);
 
             foreach (var it in inputDocument.Elements("type").Where(c => c.Attribute("kind").Value == kind).Select(c => new { Name = c.Attribute("name").Value, Slug = c.Attribute("slug").Value, Title = c.Attribute("title").Value }))
             {
                 GenerateSinglePage(kind, kindName, it.Name, it.Slug, it.Title);
             }
-
-            GenerateMergedPage(kind, kindName);
         }
 
         private void GenerateSinglePage(string kind, string kindName, string name, string slug, string title)
         {
-            string filename = Path.Combine(this.OutputDirectory, kind + "/" + name + "." + this.FileSuffix);
+            string filename = Path.Combine(this.OutputDirectory, slug + "." + this.FileSuffix);
 
             Console.WriteLine("Generating {0}", filename);
 
@@ -65,7 +72,7 @@ namespace BuildDocPages
 
             InsertExamples(type);
 
-            using (var reader = type.CreateReader())
+            using (var reader = inputDocument.CreateReader())
             {
                 using (XmlWriter writer = XmlWriter.Create(filename, new XmlWriterSettings { OmitXmlDeclaration = true }))
                 {
@@ -79,7 +86,7 @@ namespace BuildDocPages
                 }
             }
 
-            // File.WriteAllText(Path.ChangeExtension(filename, ".title"), title);
+            PostProcessFile(filename);
         }
 
         private void InsertExamples(XElement type)
@@ -130,45 +137,36 @@ namespace BuildDocPages
             return content;
         }
 
-        private void GenerateMergedPage(string kind, string kindName)
+        private void GenerateMergedPage(string kind, string kindName, string slug)
         {
-            string filename = Path.Combine(this.OutputDirectory, kind + "/merged." + this.FileSuffix);
-            string xhtml = "http://www.w3.org/1999/xhtml";
+            string filename = Path.Combine(this.OutputDirectory, slug + "." + this.FileSuffix);
 
             using (XmlWriter writer = XmlWriter.Create(filename, new XmlWriterSettings { OmitXmlDeclaration = true }))
             {
-                writer.WriteStartElement("html", xhtml);
-                writer.WriteStartElement("head", xhtml);
-                writer.WriteStartElement("link", xhtml);
-                writer.WriteAttributeString("type", "text/css");
-                writer.WriteAttributeString("rel", "stylesheet");
-                writer.WriteAttributeString("href", "../../../../style.css");
-                writer.WriteEndElement(); // link
-                writer.WriteEndElement(); // head
-                writer.WriteStartElement("body");
-
-                foreach (var it in inputDocument.Elements("type").Where(c => c.Attribute("kind").Value == kind).Select(c => new { Name = c.Attribute("name").Value, Slug = c.Attribute("slug").Value, Title = c.Attribute("title").Value }))
+                using (var reader = inputDocument.CreateReader())
                 {
-                    var type = inputDocument.Elements("type").Where(c => c.Attribute("kind").Value == kind && c.Attribute("name").Value == it.Name).Single();
-
-                    InsertExamples(type);
-
-                    writer.WriteStartElement("hr");
-                    writer.WriteEndElement();
-                    writer.WriteElementString("h4", it.Slug);
-                    using (var reader = type.CreateReader())
-                    {
-                        XsltArgumentList arguments = new XsltArgumentList();
-                        arguments.AddParam("kind", "", kind);
-                        arguments.AddParam("kindName", "", kindName);
-                        arguments.AddParam("name", "", it.Name);
-                        arguments.AddParam("slug", "", it.Slug);
-                        arguments.AddParam("mode", "", "plain");
-                        transform.Transform(reader, arguments, writer);
-                    }
+                    XsltArgumentList arguments = new XsltArgumentList();
+                    arguments.AddParam("kind", "", kind);
+                    arguments.AddParam("kindName", "", kindName);
+                    arguments.AddParam("name", "", "");
+                    arguments.AddParam("slug", "", slug);
+                    arguments.AddParam("mode", "", this.Mode);
+                    transform.Transform(reader, arguments, writer);
                 }
-                writer.WriteEndElement(); // body
-                writer.WriteEndElement(); // html
+            }
+            
+            PostProcessFile(filename);
+        }
+
+        private void PostProcessFile(string filename)
+        {
+            string prefix = "<div class=\"generated-doc\" xmlns=\"http://www.w3.org/1999/xhtml\">";
+            string suffix = "</div>";
+            string content = File.ReadAllText(filename);
+            if (content.StartsWith(prefix) && content.EndsWith(suffix))
+            {
+                content = content.Substring(prefix.Length, content.Length - prefix.Length - suffix.Length);
+                File.WriteAllText(filename, content);
             }
         }
 

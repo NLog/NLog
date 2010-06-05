@@ -128,7 +128,7 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>
         /// The default rules are:
-        /// <table class="subparamtable">
+        /// <table>
         /// <tr>
         /// <th>Condition</th>
         /// <th>Foreground Color</th>

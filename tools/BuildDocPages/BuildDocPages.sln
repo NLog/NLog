@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildDocPages", "BuildDocPages.csproj", "{5B8E9C8C-725B-492A-9553-493D6990990D}"
 EndProject
 Global

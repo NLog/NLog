@@ -133,7 +133,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets mail message body (repeated for each log message send in one mail).
         /// </summary>
-        /// <remarks>Alias for <see cref="Layout"/> property.</remarks>
+        /// <remarks>Alias for the <c>Layout</c> property.</remarks>
         /// <docgen category='Message Options' order='6' />
         [DefaultValue("${message}")]
         public Layout Body

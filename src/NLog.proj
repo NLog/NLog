@@ -22,6 +22,8 @@
     <DumpTestResultSummary>$(MSBuildProjectDirectory)\..\tools\DumpTestResultSummary\bin\$(Configuration)\DumpTestResultSummary.exe</DumpTestResultSummary>
     <DeployNetCF>..\tools\DeployNetCF.exe</DeployNetCF>
     <DumpApiXml>$(MSBuildProjectDirectory)\..\tools\DumpApiXml\bin\$(Configuration)\DumpApiXml.exe</DumpApiXml>
+    <MergeApiXml>$(MSBuildProjectDirectory)\..\tools\MergeApiXml\bin\$(Configuration)\MergeApiXml.exe</MergeApiXml>
+    <BuildDocPages>$(MSBuildProjectDirectory)\..\tools\BuildDocPages\bin\$(Configuration)\BuildDocPages.exe</BuildDocPages>
     <SyncProjectItems>$(MSBuildProjectDirectory)\..\tools\SyncProjectItems\bin\$(Configuration)\SyncProjectItems.exe</SyncProjectItems>
     <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
     <InfoZip>$(MSBuildProjectDirectory)\..\tools\zip.exe</InfoZip>
@@ -140,6 +142,12 @@
     </TargetFramework>
   </ItemGroup>
 
+  <ItemGroup>
+    <WebsiteFiles Include="..\Tools\WebsiteFiles\*.png" />
+    <WebsiteFiles Include="..\Tools\WebsiteFiles\*.css" />
+    <WebsiteGenFiles Include="..\Tools\WebsiteFiles\*.xsl" />
+  </ItemGroup>
+
   <Target Name="All" DependsOnTargets="DeepClean;Clean;Build;BuildTests;RunTests;Documentation">
   </Target>
 
@@ -183,6 +191,19 @@
              ContinueOnError="$(BuildAllFrameworks)" 
              Condition="Exists('..\tests\NLog.BinaryCompatTests\NLog.BinaryCompatTests%(TargetFramework.ProjectFileSuffix).csproj')" 
              StopOnFirstFailure="false" />
+  </Target>
+
+  <Target Name="Web" DependsOnTargets="DumpApi;BuildDocPagesTool"
+    Inputs="$(BaseOutputDirectory)\bin\$(Configuration)\NLogMerged.api.xml;$(BuildDocPages);@(WebsiteFiles);@(WebsiteGenFiles)"
+    Outputs="$(BaseOutputDirectory)\bin\$(Configuration)\Website\static.tar.bz2">
+
+    <Copy SourceFiles="@(WebsiteFiles)" DestinationFolder="$(BaseOutputDirectory)\bin\$(Configuration)\Website\static" />
+    <Exec Command='"$(BuildDocPages)" "NLogMerged.api.xml" "$(MSBuildProjectDirectory)\..\tools\WebsiteFiles\style.xsl" "Website\generated" "$(MSBuildProjectDirectory)\.." html web'
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)" />
+    <Exec Command='"$(Tar)" -c -f generated.tar generated' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Website" />
+    <Exec Command='"$(BZip2)" -f generated.tar' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Website" />
+    <Exec Command='"$(Tar)" -c -f ..\static.tar *' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Website\static" />
+    <Exec Command='"$(BZip2)" -f static.tar' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Website" />
   </Target>
 
   <Target Name="RunTests">
@@ -311,15 +332,15 @@
   </Target>
 
   <Target Name="BuildSLTestRunner">
-    <MSBuild Projects="..\tests\SilverlightConsoleRunner\SilverlightConsoleRunner.csproj" Targets="Rebuild" />
+    <MSBuild Projects="..\tests\SilverlightConsoleRunner\SilverlightConsoleRunner.csproj" />
   </Target>
 
   <Target Name="BuildTestResultSummaryTool">
-    <MSBuild Projects="..\tools\DumpTestResultSummary\DumpTestResultSummary.csproj" Targets="Rebuild" />
+    <MSBuild Projects="..\tools\DumpTestResultSummary\DumpTestResultSummary.csproj" />
   </Target>
 
   <Target Name="BuildSyncProjectItemsTool">
-    <MSBuild Projects="..\tools\SyncProjectItems\SyncProjectItems.csproj" Targets="Rebuild" />
+    <MSBuild Projects="..\tools\SyncProjectItems\SyncProjectItems.csproj" />
   </Target>
 
   <Target Name="SyncProjectItems" DependsOnTargets="BuildSyncProjectItemsTool">
@@ -328,20 +349,28 @@
   </Target>
 
   <Target Name="BuildApiDumpTool">
-    <MSBuild Projects="..\tools\DumpApiXml\DumpApiXml.csproj" Targets="Rebuild" />
+    <MSBuild Projects="..\tools\DumpApiXml\DumpApiXml.csproj" />
+  </Target>
+
+  <Target Name="BuildApiMergeTool">
+    <MSBuild Projects="..\tools\MergeApiXml\MergeApiXml.csproj" />
   </Target>
 
   <Target Name="BuildDocPagesTool">
-    <MSBuild Projects="..\tools\BuildDocPages\BuildDocPages.csproj" Targets="Rebuild" />
+    <MSBuild Projects="..\tools\BuildDocPages\BuildDocPages.csproj" />
   </Target>
 
   <Target Name="BuildDocPages" DependsOnTargets="BuildDocPagesTool">
   </Target>
 
-  <Target Name="DumpApi" DependsOnTargets="BuildApiDumpTool">
+  <Target Name="DumpApi" DependsOnTargets="BuildApiDumpTool;BuildApiMergeTool"
+    Inputs="@(TargetFramework -> '$(BaseOutputDirectory)\bin\$(Configuration)\%(Identity)\NLog.dll');$(DumpApiXml);$(MergeApiXml)"
+    Outputs="$(BaseOutputDirectory)\bin\$(Configuration)\NLogMerged.api.xml"
+    >
     <Exec Command='"$(DumpApiXml)" -assembly NLog.dll -assembly NLog.Extended.dll -output API\NLog.api %(TargetFramework.DocReferences)'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)"
           ContinueOnError="$(BuildAllFrameworks)" />
+    <Exec Command='"$(MergeApiXml)" "$(BaseOutputDirectory)\bin\$(Configuration)"' />
   </Target>
 
   <Target Name="Clean">

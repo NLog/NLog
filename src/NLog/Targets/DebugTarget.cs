@@ -36,8 +36,7 @@ namespace NLog.Targets
     using System;
 
     /// <summary>
-    /// Counts log messages but does not output them anywhere. Provides 
-    /// the counter of logged messages and remembers the latest one.
+    /// Mock target - useful for testing.
     /// </summary>
     /// <example>
     /// <p>

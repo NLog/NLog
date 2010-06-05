@@ -56,7 +56,7 @@
         {
             using (XmlWriter writer = XmlWriter.Create(outputFile, new XmlWriterSettings
             {
-                Indent = true
+                Indent = false
             }))
             {
                 Build(writer);
@@ -67,15 +67,15 @@
         {
             writer.WriteProcessingInstruction("xml-stylesheet", "type='text/xsl' href='style.xsl'");
             writer.WriteStartElement("types");
-            this.DumpApiDocs(writer, "target", "NLog.Targets.TargetAttribute", "", " Target");
+            this.DumpApiDocs(writer, "target", "NLog.Targets.TargetAttribute", "", " target");
             this.DumpApiDocs(writer, "layout", "NLog.Layouts.LayoutAttribute", "", "");
-            this.DumpApiDocs(writer, "layout-renderer", "NLog.LayoutRenderers.LayoutRendererAttribute", "${", "} Layout Renderer");
-            this.DumpApiDocs(writer, "filter", "NLog.Filters.FilterAttribute", "", " Filter");
+            this.DumpApiDocs(writer, "layout-renderer", "NLog.LayoutRenderers.LayoutRendererAttribute", "${", "}");
+            this.DumpApiDocs(writer, "filter", "NLog.Filters.FilterAttribute", "", " filter");
 
-            this.DumpApiDocs(writer, "target", "NLog.TargetAttribute", "", " Target");
+            this.DumpApiDocs(writer, "target", "NLog.TargetAttribute", "", " target");
             this.DumpApiDocs(writer, "layout", "NLog.LayoutAttribute", "", "");
-            this.DumpApiDocs(writer, "layout-renderer", "NLog.LayoutRendererAttribute", "${", "} Layout Renderer");
-            this.DumpApiDocs(writer, "filter", "NLog.FilterAttribute", "", " Filter");
+            this.DumpApiDocs(writer, "layout-renderer", "NLog.LayoutRendererAttribute", "${", "}");
+            this.DumpApiDocs(writer, "filter", "NLog.FilterAttribute", "", " filter");
             writer.WriteEndElement();
         }
 
@@ -101,7 +101,42 @@
         {
             var commentsDoc = new XmlDocument();
             commentsDoc.Load(commentsFile);
+            FixWhitespace(commentsDoc.DocumentElement);
             this.comments.Add(commentsDoc);
+        }
+
+        private void FixWhitespace(XmlElement xmlElement)
+        {
+            foreach (var node in xmlElement.ChildNodes)
+            {
+                XmlElement el = node as XmlElement;
+                if (el != null)
+                {
+                    FixWhitespace(el);
+                    continue;
+                }
+
+                XmlText txt = node as XmlText;
+                if (txt != null)
+                {
+                    txt.Value = FixWhitespace(txt.Value);
+                }
+            }
+        }
+
+        private string FixWhitespace(string p)
+        {
+            p = p.Replace("\n", " ");
+            p = p.Replace("\r", " ");
+            string oldP = "";
+
+            while (oldP != p)
+            {
+                oldP = p;
+                p = p.Replace("  ", " ");
+            }
+
+            return p;
         }
 
         private static string GetTypeName(Type type)
@@ -544,6 +579,21 @@
 
         private string GetSlug(string name, string kind)
         {
+            switch (kind)
+            {
+                case "target":
+                    return name + "_target";
+
+                case "layout-renderer":
+                    return name + "_layout_renderer";
+
+                case "layout":
+                    return name;
+
+                case "filter":
+                    return name + "_filter";
+            }
+
             string slugBase;
 
             if (name == name.ToUpperInvariant())
@@ -560,9 +610,9 @@
                 {
                     if (Char.IsUpper(name[i]) && i > 0)
                     {
-                        sb.Append("-");
+                        sb.Append("_");
                     }
-                    sb.Append(Char.ToLower(name[i]));
+                    sb.Append(name[i]);
                 }
 
                 slugBase = sb.ToString();

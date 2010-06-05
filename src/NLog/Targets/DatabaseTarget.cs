@@ -187,7 +187,7 @@ namespace NLog.Targets
         /// for SQL server or <c>:parameter</c> for Oracle, other data providers
         /// have their own notation) and not the layout renderers, 
         /// because the latter is prone to SQL injection attacks.
-        /// The layout renderers should be specified as &lt;parameters />&gt; instead.
+        /// The layout renderers should be specified as &lt;parameter /&gt; elements instead.
         /// </remarks>
         /// <docgen category='SQL Statement' order='10' />
         [RequiredParameter]

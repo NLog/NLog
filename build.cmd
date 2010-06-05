@@ -145,6 +145,12 @@ if (%1)==(syncprojectitems) (
 	goto next
 )
 
+if (%1)==(web) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Web
+	shift
+	goto next
+)
+
 if (%1)==(checkinsuite) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:CheckinSuite
 	set POST_BUILD_COMMAND="%~dp0src\LastTestRunSummary.cmd"
@@ -222,6 +228,7 @@ echo  checkinsuite       Cleans, builds and runs all tests
 echo  doc                Builds documentation
 echo  all                Full build
 echo  nightlybuild       Nightly build
+echo  web                Website files
 echo  installer          Installer
 echo  label {suffix}     Define build label (defaults to 'PrivateBuild')
 exit /b 1

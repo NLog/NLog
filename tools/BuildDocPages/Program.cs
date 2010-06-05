@@ -11,7 +11,7 @@ namespace BuildDocPages
         {
             try
             {
-                if (args.Length != 5)
+                if (args.Length != 6)
                 {
                     Usage();
                     return 1;
@@ -19,10 +19,11 @@ namespace BuildDocPages
 
                 DocPageGenerator generator = new DocPageGenerator();
                 generator.InputFile = args[0];
-                generator.OutputDirectory = args[1];
-                generator.BaseDirectory = args[2];
-                generator.FileSuffix = args[3];
-                generator.Mode = args[4];
+                generator.Stylesheet = args[1];
+                generator.OutputDirectory = args[2];
+                generator.BaseDirectory = args[3];
+                generator.FileSuffix = args[4];
+                generator.Mode = args[5];
                 generator.Generate();
                 return 0;
             }

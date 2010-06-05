@@ -38,7 +38,7 @@ namespace NLog.Targets
     using System.Diagnostics;
 
     /// <summary>
-    /// Writes log messages to the attached managed debugger (for example Visual Studio .NET or DbgCLR).
+    /// Writes log messages to the attached managed debugger.
     /// </summary>
     /// <example>
     /// <p>
