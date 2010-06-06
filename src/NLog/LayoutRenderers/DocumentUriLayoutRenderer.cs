@@ -39,7 +39,7 @@ using System.Windows.Browser;
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// The environment variable.
+    /// URI of the HTML page which hosts the current Silverlight application.
     /// </summary>
     [LayoutRenderer("document-uri")]
     public class DocumentUriLayoutRenderer : LayoutRenderer
