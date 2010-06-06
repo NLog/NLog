@@ -40,41 +40,14 @@ namespace NLog.Targets
     /// <summary>
     /// Writes log messages to the ASP.NET trace.
     /// </summary>
-    /// <example>
-    /// <p>To set up the ASP.NET Trace target in the <a href="config.html">configuration file</a>, put
-    /// the following in <c>web.nlog</c> file in your web application directory.
-    /// </p>
-    /// <code lang="XML" source="examples/targets/Configuration File/ASPNetTrace/web.nlog" />
-    /// <p>
-    /// This assumes just one target and a single rule. More configuration
-    /// options are described <a href="config.html">here</a>.
-    /// </p>
-    /// <p>
-    /// To configure the target programmatically, put the following
-    /// piece of code in your <c>Application_OnStart()</c> handler in Global.asax.cs 
-    /// or some other place that gets executed at the very beginning of your code:
-    /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/ASPNetTrace/Global.asax.cs" />
-    /// <p>
-    /// Fully working C# project can be found in the <c>Examples/Targets/Configuration API/ASPNetTrace</c>
-    /// directory along with usage instructions.
-    /// </p>
-    /// Resulting log entries can be viewed by navigating to http://server/path/Trace.axd.
-    /// <br/>
-    /// <b>HTTP Request List:</b><br/>
-    /// <img src="examples/targets/Screenshots/ASPNetTrace/ASPNetTraceOutput1.gif" />
-    /// <p/>
-    /// <b>HTTP Request Details:</b>
-    /// <br/>
-    /// <img src="examples/targets/Screenshots/ASPNetTrace/ASPNetTraceOutput2.gif" />
-    /// <p/>
-    /// </example>
+    /// <remarks>
+    /// Log entries can then be viewed by navigating to http://server/path/Trace.axd.
+    /// </remarks>
     [Target("AspNetTrace")]
     public class AspNetTraceTarget : TargetWithLayout
     {
         /// <summary>
-        /// Writes the specified logging event to the ASP.NET Trace facility. Log entries
-        /// can then be viewed by navigating to http://server/path/Trace.axd
+        /// Writes the specified logging event to the ASP.NET Trace facility. 
         /// If the log level is greater than or equal to <see cref="LogLevel.Warn"/> it uses the
         /// <see cref="System.Web.TraceContext.Warn(string,string)"/> method, otherwise it uses
         /// <see cref="System.Web.TraceContext.Write(string,string)" /> method.
