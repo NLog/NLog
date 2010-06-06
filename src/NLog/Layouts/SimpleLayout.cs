@@ -44,6 +44,10 @@ namespace NLog.Layouts
     /// <summary>
     /// Represents a string with embedded placeholders that can render contextual information.
     /// </summary>
+    /// <remarks>
+    /// This layout is not meant to be used explicitly. Instead you can just use a string containing layout 
+    /// renderers everywhere the layout is required.
+    /// </remarks>
     [Layout("SimpleLayout")]
     [ThreadAgnostic]
     [AppDomainFixedOutput]

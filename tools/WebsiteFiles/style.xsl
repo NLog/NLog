@@ -354,14 +354,14 @@
 
   <xsl:template match="type[@kind='layout']" mode="usage-example">
     <div class="usage-example">
-      &lt;targets&gt;<br/>
-      &#160;&#160;&lt;target&gt;<br/>
-      &#160;&#160;&#160;&#160;&lt;layout xsi:type="<xsl:value-of select="@name"/>"&gt;
+      <xsl:text>&lt;targets&gt;</xsl:text><br/>
+      <xsl:text>&#160;&#160;&lt;target&gt;</xsl:text><br/>
+      <xsl:text>&#160;&#160;&#160;&#160;&lt;layout xsi:type="</xsl:text><xsl:value-of select="@name"/><xsl:text>"&gt;</xsl:text>
       <xsl:for-each select="property[@type!='Collection']">
         <xsl:variable name="lastCategory" select="preceding-sibling::property[1]/@category" />
         <xsl:if test="$lastCategory != @category or position() = 1">
           <br/>
-          &#160;&#160;&#160;&#160;&#160;&#160;&lt;!-- <xsl:value-of select="@category" /> --&gt;<br/>
+          <xsl:text>&#160;&#160;&#160;&#160;&#160;&#160;&lt;!-- </xsl:text><xsl:value-of select="@category" /><xsl:text> --&gt;</xsl:text><br/>
         </xsl:if>
         <span>
           <xsl:if test="@required='1'">
@@ -373,27 +373,28 @@
           </xsl:if>
           <xsl:text>&gt;</xsl:text><span class="typeplaceholder">
             <xsl:value-of select="@type"/>
-          </span>&lt;/<xsl:call-template name="property-link" />&gt;
+          </span><xsl:text>&lt;/</xsl:text><xsl:call-template name="property-link" /><xsl:text>&gt;</xsl:text>
           <br/>
         </span>
       </xsl:for-each>
       
       <xsl:for-each select="property[@type='Collection']">
-        &#160;&#160;&#160;&#160;&#160;&#160;&lt;<xsl:value-of select="elementType/@elementTag"/>
+        <xsl:text>&#160;&#160;&#160;&#160;&#160;&#160;&lt;</xsl:text><xsl:value-of select="elementType/@elementTag"/>
         <xsl:for-each select="elementType/property[not(@type='Collection')]">
           <xsl:text>&#160;</xsl:text>
           <xsl:call-template name="property-link" />="<span class="typeplaceholder">
             <xsl:value-of select="@type"/>
           </span><xsl:text>"</xsl:text>
         </xsl:for-each>
-        /&gt; <span class="comment">&lt;!-- repeated --&gt;</span>
+        <xsl:text>/&gt; </xsl:text><span class="comment"><xsl:text>&lt;!-- repeated --&gt;</xsl:text>
+        </span>
         <br/>
       </xsl:for-each>
 
-      <br/>&#160;&#160;&#160;&#160;&lt;/layout&gt;
-      <br/>&#160;&#160;&lt;/target&gt;
-      <br/>&lt;/targets&gt;
-    </div>
+      <br/>
+      <xsl:text>&#160;&#160;&#160;&#160;&lt;/layout&gt;</xsl:text><br/>
+      <xsl:text>&#160;&#160;&lt;/target&gt;</xsl:text><br/>
+      <xsl:text>&lt;/targets&gt;</xsl:text></div>
   </xsl:template>
 
   <xsl:template name="property-link">
