@@ -197,11 +197,11 @@
         <xsl:value-of select="@title"/>
       </h3>
     </xsl:if>
-    Supported in <xsl:apply-templates select="supported-in" />
+    <xsl:text>Supported in </xsl:text><xsl:apply-templates select="supported-in" />
     <h4>Configuration Syntax</h4>
     <xsl:apply-templates select="." mode="usage-example" />
     <small>
-      Read more about using the <a href="/wiki/Configuration_File">Configuration File.</a>
+      <xsl:text>Read more about using the </xsl:text><a href="Configuration_file">Configuration File.</a>
     </small>
     <xsl:if test="property">
       <h4>Parameters</h4>
@@ -239,7 +239,7 @@
   <xsl:template match="type[@kind='layout-renderer']" mode="usage-example">
     <div class="usage-example">
       <xsl:variable name="spacing" select="substring('&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;',1,string-length(@name)+2)" />
-      ${<xsl:value-of select="@name"/>
+      <xsl:text>${</xsl:text><xsl:value-of select="@name"/>
       <xsl:variable name="lineBreaks" select="count(property) > 3" />
       <xsl:for-each select="property">
         <xsl:if test="$lineBreaks and (position() mod 3) = 1 and position() != 1"><br/>
@@ -250,9 +250,8 @@
         </xsl:if>
         <xsl:text>:</xsl:text><xsl:call-template name="property-link" />=<span class="typeplaceholder"><xsl:value-of select="@type"/></span>
       </span>
-      </xsl:for-each>}
+      </xsl:for-each><xsl:text>}</xsl:text>
     </div>
-    <p></p>
   </xsl:template>
   
   <xsl:template match="type[@kind='target']" mode="usage-example">
@@ -520,6 +519,30 @@
     <table>
       <xsl:apply-templates />
     </table>
+  </xsl:template>
+
+  <xsl:template match="ul">
+    <ul>
+      <xsl:apply-templates />
+    </ul>
+  </xsl:template>
+
+  <xsl:template match="ol">
+    <ol>
+      <xsl:apply-templates />
+    </ol>
+  </xsl:template>
+
+  <xsl:template match="li">
+    <li>
+      <xsl:apply-templates />
+    </li>
+  </xsl:template>
+
+  <xsl:template match="b">
+    <b>
+      <xsl:apply-templates />
+    </b>
   </xsl:template>
 
   <xsl:template match="tr">

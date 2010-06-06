@@ -39,6 +39,7 @@
                         string frameworkName = Path.GetFileName(frameworkDir);
                         Console.WriteLine("Loading {0}", apiFile);
                         XElement apiDoc = XElement.Load(apiFile);
+                        FixWhitespace(apiDoc);
                         MergeApiFile(resultDoc.Root, apiDoc, releaseName, frameworkName);
                     }
                 }
@@ -51,6 +52,40 @@
 
             this.PostProcessSupportedIn(resultDoc.Root);
             this.Result = resultDoc;
+        }
+
+        private void FixWhitespace(XElement xmlElement)
+        {
+            foreach (var node in xmlElement.DescendantNodes())
+            {
+                XElement el = node as XElement;
+                if (el != null)
+                {
+                    FixWhitespace(el);
+                    continue;
+                }
+
+                XText txt = node as XText;
+                if (txt != null)
+                {
+                    txt.Value = FixWhitespace(txt.Value);
+                }
+            }
+        }
+
+        private string FixWhitespace(string p)
+        {
+            p = p.Replace("\n", " ");
+            p = p.Replace("\r", " ");
+            string oldP = "";
+
+            while (oldP != p)
+            {
+                oldP = p;
+                p = p.Replace("  ", " ");
+            }
+
+            return p;
         }
 
         private void PostProcessSupportedIn(XElement rootElement)
