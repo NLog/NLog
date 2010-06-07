@@ -182,6 +182,7 @@ namespace NLog.Targets
             {
                 if (!this.IsInitialized)
                 {
+                    asyncContinuation(null);
                     return;
                 }
 
@@ -209,6 +210,11 @@ namespace NLog.Targets
             {
                 if (!this.IsInitialized)
                 {
+                    foreach (var cont in asyncContinuations)
+                    {
+                        cont(null);
+                    }
+
                     return;
                 }
 
