@@ -544,19 +544,16 @@ namespace NLog.Targets
         {
             base.Close();
 
-            lock (this)
+            foreach (string fileName in new List<string>(this.initializedFiles.Keys))
             {
-                foreach (string fileName in new List<string>(this.initializedFiles.Keys))
-                {
-                    this.WriteFooterAndUninitialize(fileName);
-                }
+                this.WriteFooterAndUninitialize(fileName);
+            }
 
-                if (this.autoClosingTimer != null)
-                {
-                    this.autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
-                    this.autoClosingTimer.Dispose();
-                    this.autoClosingTimer = null;
-                }
+            if (this.autoClosingTimer != null)
+            {
+                this.autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
+                this.autoClosingTimer.Dispose();
+                this.autoClosingTimer = null;
             }
 
             for (int i = 0; i < this.recentAppenders.Length; ++i)
@@ -578,19 +575,16 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            lock (this)
+            string fileName = this.FileName.Render(logEvent);
+            byte[] bytes = this.GetBytesToWrite(logEvent);
+
+            if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
             {
-                string fileName = this.FileName.Render(logEvent);
-                byte[] bytes = this.GetBytesToWrite(logEvent);
-
-                if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
-                {
-                    this.InvalidateCacheItem(fileName);
-                    this.DoAutoArchive(fileName, logEvent);
-                }
-
-                this.WriteToFile(fileName, bytes, false);
+                this.InvalidateCacheItem(fileName);
+                this.DoAutoArchive(fileName, logEvent);
             }
+
+            this.WriteToFile(fileName, bytes, false);
         }
 
         /// <summary>
@@ -608,34 +602,31 @@ namespace NLog.Targets
         {
             Array.Sort(logEvents, 0, logEvents.Length, this.logEventComparer);
 
-            lock (this)
+            string currentFileName = null;
+            var ms = new MemoryStream();
+            LogEventInfo firstLogEvent = null;
+            var pendingContinuations = new List<AsyncContinuation>();
+
+            for (int i = 0; i < logEvents.Length; ++i)
             {
-                string currentFileName = null;
-                var ms = new MemoryStream();
-                LogEventInfo firstLogEvent = null;
-                var pendingContinuations = new List<AsyncContinuation>();
-
-                for (int i = 0; i < logEvents.Length; ++i)
+                LogEventInfo logEvent = logEvents[i];
+                string logEventFileName = this.FileName.Render(logEvent);
+                if (logEventFileName != currentFileName)
                 {
-                    LogEventInfo logEvent = logEvents[i];
-                    string logEventFileName = this.FileName.Render(logEvent);
-                    if (logEventFileName != currentFileName)
-                    {
-                        this.FlushCurrentFileWrites(currentFileName, firstLogEvent, ms, pendingContinuations);
+                    this.FlushCurrentFileWrites(currentFileName, firstLogEvent, ms, pendingContinuations);
 
-                        currentFileName = logEventFileName;
-                        firstLogEvent = logEvent;
-                        ms.SetLength(0);
-                        ms.Position = 0;
-                    }
-
-                    byte[] bytes = this.GetBytesToWrite(logEvent);
-                    ms.Write(bytes, 0, bytes.Length);
-                    pendingContinuations.Add(asyncContinuations[i]);
+                    currentFileName = logEventFileName;
+                    firstLogEvent = logEvent;
+                    ms.SetLength(0);
+                    ms.Position = 0;
                 }
 
-                this.FlushCurrentFileWrites(currentFileName, firstLogEvent, ms, pendingContinuations);
+                byte[] bytes = this.GetBytesToWrite(logEvent);
+                ms.Write(bytes, 0, bytes.Length);
+                pendingContinuations.Add(asyncContinuations[i]);
             }
+
+            this.FlushCurrentFileWrites(currentFileName, firstLogEvent, ms, pendingContinuations);
         }
 
         /// <summary>
@@ -920,8 +911,13 @@ namespace NLog.Targets
 
         private void AutoClosingTimerCallback(object state)
         {
-            lock (this)
+            lock (this.SyncRoot)
             {
+                if (!this.IsInitialized)
+                {
+                    return;
+                }
+
                 try
                 {
                     DateTime timeToKill = DateTime.Now.AddSeconds(-this.OpenFileCacheTimeout);

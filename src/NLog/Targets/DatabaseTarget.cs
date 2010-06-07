@@ -211,15 +211,12 @@ namespace NLog.Targets
         {
             if (this.KeepConnection)
             {
-                lock (this)
-                {
                     if (this.activeConnection == null)
                     {
                         this.activeConnection = this.OpenConnection(logEvent);
                     }
 
                     this.DoWrite(logEvent);
-                }
             }
             else
             {

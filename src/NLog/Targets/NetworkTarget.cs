@@ -187,12 +187,9 @@ namespace NLog.Targets
         protected override void Close()
         {
             base.Close();
-            lock (this)
+            if (this.sender != null)
             {
-                if (this.sender != null)
-                {
-                    this.sender.Close();
-                }
+                this.sender.Close();
             }
         }
 
@@ -213,48 +210,45 @@ namespace NLog.Targets
         /// <param name="bytes">The bytes to be sent.</param>
         protected virtual void NetworkSend(string address, byte[] bytes)
         {
-            lock (this)
+            if (this.KeepConnection)
             {
-                if (this.KeepConnection)
+                if (this.sender != null)
                 {
-                    if (this.sender != null)
+                    if (this.sender.Address != address)
                     {
-                        if (this.sender.Address != address)
-                        {
-                            this.sender.Close();
-                            this.sender = null;
-                        }
-                    }
-
-                    if (this.sender == null)
-                    {
-                        this.sender = NetworkSender.Create(address);
-                    }
-
-                    try
-                    {
-                        this.ChunkedSend(this.sender, bytes);
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Error("Error when sending {0}", ex);
                         this.sender.Close();
                         this.sender = null;
-                        throw;
                     }
                 }
-                else
-                {
-                    NetworkSender sender = NetworkSender.Create(address);
 
-                    try
-                    {
-                        this.ChunkedSend(sender, bytes);
-                    }
-                    finally
-                    {
-                        sender.Close();
-                    }
+                if (this.sender == null)
+                {
+                    this.sender = NetworkSender.Create(address);
+                }
+
+                try
+                {
+                    this.ChunkedSend(this.sender, bytes);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error("Error when sending {0}", ex);
+                    this.sender.Close();
+                    this.sender = null;
+                    throw;
+                }
+            }
+            else
+            {
+                NetworkSender sender = NetworkSender.Create(address);
+
+                try
+                {
+                    this.ChunkedSend(sender, bytes);
+                }
+                finally
+                {
+                    sender.Close();
                 }
             }
         }

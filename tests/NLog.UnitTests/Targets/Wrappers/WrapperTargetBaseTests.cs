@@ -68,6 +68,9 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = wrapped,
             };
 
+            ((ISupportsInitialize)wrapper).Initialize();
+            ((ISupportsInitialize)wrapped).Initialize();
+
             wrapper.Flush(ex => { });
             Assert.AreEqual(1, wrapped.FlushCount);
         }

@@ -295,93 +295,90 @@ namespace NLog.Targets
 
         private void ColorizeEscapeSequences(TextWriter output, IntPtr consoleHandle, string message, ushort startingAttribute, ushort defaultAttribute)
         {
-            lock (this)
+            int colorStackLength = 0;
+            this.colorStack[colorStackLength++] = startingAttribute;
+
+            NativeMethods.SetConsoleTextAttribute(consoleHandle, startingAttribute);
+
+            int p0 = 0;
+
+            while (p0 < message.Length)
             {
-                int colorStackLength = 0;
-                this.colorStack[colorStackLength++] = startingAttribute;
-
-                NativeMethods.SetConsoleTextAttribute(consoleHandle, startingAttribute);
-
-                int p0 = 0;
-
-                while (p0 < message.Length)
+                int p1 = p0;
+                while (p1 < message.Length && message[p1] >= 32)
                 {
-                    int p1 = p0;
-                    while (p1 < message.Length && message[p1] >= 32)
-                    {
-                        p1++;
-                    }
+                    p1++;
+                }
 
-                    // text
-                    if (p1 != p0)
-                    {
-                        output.Write(message.Substring(p0, p1 - p0));
-                    }
+                // text
+                if (p1 != p0)
+                {
+                    output.Write(message.Substring(p0, p1 - p0));
+                }
 
-                    if (p1 >= message.Length)
-                    {
-                        p0 = p1;
-                        break;
-                    }
+                if (p1 >= message.Length)
+                {
+                    p0 = p1;
+                    break;
+                }
 
-                    // control characters
-                    char c1 = message[p1];
-                    char c2 = (char)0;
+                // control characters
+                char c1 = message[p1];
+                char c2 = (char)0;
 
-                    if (p1 + 1 < message.Length)
-                    {
-                        c2 = message[p1 + 1];
-                    }
+                if (p1 + 1 < message.Length)
+                {
+                    c2 = message[p1 + 1];
+                }
 
-                    if (c1 == '\a' && c2 == '\a')
+                if (c1 == '\a' && c2 == '\a')
+                {
+                    output.Write('\a');
+                    p0 = p1 + 2;
+                    continue;
+                }
+
+                if (c1 == '\r' || c1 == '\n')
+                {
+                    NativeMethods.SetConsoleTextAttribute(consoleHandle, defaultAttribute);
+                    output.Write(c1);
+                    NativeMethods.SetConsoleTextAttribute(consoleHandle, this.colorStack[colorStackLength - 1]);
+                    p0 = p1 + 1;
+                    continue;
+                }
+
+                if (c1 == '\a')
+                {
+                    if (c2 == 'X')
                     {
-                        output.Write('\a');
+                        colorStackLength--;
+                        NativeMethods.SetConsoleTextAttribute(consoleHandle, this.colorStack[colorStackLength - 1]);
                         p0 = p1 + 2;
                         continue;
                     }
-
-                    if (c1 == '\r' || c1 == '\n')
+                    else
                     {
-                        NativeMethods.SetConsoleTextAttribute(consoleHandle, defaultAttribute);
-                        output.Write(c1);
-                        NativeMethods.SetConsoleTextAttribute(consoleHandle, this.colorStack[colorStackLength - 1]);
-                        p0 = p1 + 1;
+                        ConsoleOutputColor foreground = (ConsoleOutputColor)(int)(c2 - 'A');
+                        ConsoleOutputColor background = (ConsoleOutputColor)(int)(message[p1 + 2] - 'A');
+                        ushort newColor = this.ColorFromForegroundAndBackground(
+                            this.colorStack[colorStackLength - 1],
+                            foreground,
+                            background);
+
+                        this.colorStack[colorStackLength++] = newColor;
+                        NativeMethods.SetConsoleTextAttribute(consoleHandle, newColor);
+                        p0 = p1 + 3;
                         continue;
                     }
-
-                    if (c1 == '\a')
-                    {
-                        if (c2 == 'X')
-                        {
-                            colorStackLength--;
-                            NativeMethods.SetConsoleTextAttribute(consoleHandle, this.colorStack[colorStackLength - 1]);
-                            p0 = p1 + 2;
-                            continue;
-                        }
-                        else
-                        {
-                            ConsoleOutputColor foreground = (ConsoleOutputColor)(int)(c2 - 'A');
-                            ConsoleOutputColor background = (ConsoleOutputColor)(int)(message[p1 + 2] - 'A');
-                            ushort newColor = this.ColorFromForegroundAndBackground(
-                                this.colorStack[colorStackLength - 1],
-                                foreground,
-                                background);
-
-                            this.colorStack[colorStackLength++] = newColor;
-                            NativeMethods.SetConsoleTextAttribute(consoleHandle, newColor);
-                            p0 = p1 + 3;
-                            continue;
-                        }
-                    }
-
-                    output.Write(c1);
-                    p0 = p1 + 1;
                 }
 
-                if (p0 < message.Length)
-                {
-                    output.Write(message.Substring(p0));
-                }
+                output.Write(c1);
+                p0 = p1 + 1;
+            }
+
+            if (p0 < message.Length)
+            {
+                output.Write(message.Substring(p0));
             }
         }
 

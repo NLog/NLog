@@ -45,8 +45,8 @@ namespace NLog.Targets
     /// </summary>
     public abstract class Target : ISupportsInitialize, INLogConfigurationItem, IDisposable
     {
+        private object lockObject = new object();
         private List<Layout> allLayouts;
-        private bool isInitialized;
 
         /// <summary>
         /// Gets or sets the name of the target.
@@ -55,17 +55,31 @@ namespace NLog.Targets
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets the object which can be used to synchronize asynchronous operations that must rely on the .
+        /// </summary>
+        protected object SyncRoot
+        {
+            get { return this.lockObject; }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the target has been initialized.
+        /// </summary>
+        protected bool IsInitialized { get; private set; }
+
+        /// <summary>
         /// Initializes this instance.
         /// </summary>
         void ISupportsInitialize.Initialize()
         {
-            if (this.isInitialized)
+            lock (this.SyncRoot)
             {
-                throw new NLogRuntimeException("Target is already initialized.");
+                if (!this.IsInitialized)
+                {
+                    this.Initialize();
+                    this.IsInitialized = true;
+                }
             }
-
-            this.Initialize();
-            this.isInitialized = true;
         }
 
         /// <summary>
@@ -73,13 +87,14 @@ namespace NLog.Targets
         /// </summary>
         void ISupportsInitialize.Close()
         {
-            if (!this.isInitialized)
+            lock (this.SyncRoot)
             {
-                throw new NLogRuntimeException("Target is not initialized.");
+                if (this.IsInitialized)
+                {
+                    this.Close();
+                    this.IsInitialized = false;
+                }
             }
-
-            this.Close();
-            this.isInitialized = false;
         }
 
         /// <summary>
@@ -97,15 +112,24 @@ namespace NLog.Targets
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public void Flush(AsyncContinuation asyncContinuation)
         {
-            asyncContinuation = AsyncHelpers.OneTimeOnly(asyncContinuation);
+            lock (this.SyncRoot)
+            {
+                if (!this.IsInitialized)
+                {
+                    asyncContinuation(null);
+                    return;
+                }
 
-            try
-            {
-                this.FlushAsync(asyncContinuation);
-            }
-            catch (Exception ex)
-            {
-                asyncContinuation(ex);
+                asyncContinuation = AsyncHelpers.OneTimeOnly(asyncContinuation);
+
+                try
+                {
+                    this.FlushAsync(asyncContinuation);
+                }
+                catch (Exception ex)
+                {
+                    asyncContinuation(ex);
+                }
             }
         }
 
@@ -118,9 +142,15 @@ namespace NLog.Targets
         /// </param>
         public void PrecalculateVolatileLayouts(LogEventInfo logEvent)
         {
-            foreach (Layout l in this.allLayouts)
+            lock (this.SyncRoot)
             {
-                l.Precalculate(logEvent);
+                if (this.IsInitialized)
+                {
+                    foreach (Layout l in this.allLayouts)
+                    {
+                        l.Precalculate(logEvent);
+                    }
+                }
             }
         }
 
@@ -148,20 +178,23 @@ namespace NLog.Targets
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public void WriteLogEvent(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
-            if (!this.isInitialized)
+            lock (this.SyncRoot)
             {
-                throw new NLogRuntimeException("Target is not initialized.");
-            }
+                if (!this.IsInitialized)
+                {
+                    return;
+                }
 
-            asyncContinuation = AsyncHelpers.OneTimeOnly(asyncContinuation);
+                asyncContinuation = AsyncHelpers.OneTimeOnly(asyncContinuation);
 
-            try
-            {
-                this.Write(logEvent, asyncContinuation);
-            }
-            catch (Exception ex)
-            {
-                asyncContinuation(ex);
+                try
+                {
+                    this.Write(logEvent, asyncContinuation);
+                }
+                catch (Exception ex)
+                {
+                    asyncContinuation(ex);
+                }
             }
         }
 
@@ -172,27 +205,30 @@ namespace NLog.Targets
         /// <param name="asyncContinuations">The asynchronous continuations.</param>
         public void WriteLogEvents(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
         {
-            if (!this.isInitialized)
+            lock (this.SyncRoot)
             {
-                throw new NLogRuntimeException("Target is not initialized.");
-            }
-
-            var continuations = new AsyncContinuation[asyncContinuations.Length];
-            for (int i = 0; i < continuations.Length; ++i)
-            {
-                continuations[i] = AsyncHelpers.OneTimeOnly(asyncContinuations[i]);
-            }
-
-            try
-            {
-                this.Write(logEvents, continuations);
-            }
-            catch (Exception ex)
-            {
-                // in case of synchronous failure, assume that nothing is running asynchronously
-                foreach (AsyncContinuation cont in continuations)
+                if (!this.IsInitialized)
                 {
-                    cont(ex);
+                    return;
+                }
+
+                var continuations = new AsyncContinuation[asyncContinuations.Length];
+                for (int i = 0; i < continuations.Length; ++i)
+                {
+                    continuations[i] = AsyncHelpers.OneTimeOnly(asyncContinuations[i]);
+                }
+
+                try
+                {
+                    this.Write(logEvents, continuations);
+                }
+                catch (Exception ex)
+                {
+                    // in case of synchronous failure, assume that nothing is running asynchronously
+                    foreach (AsyncContinuation cont in continuations)
+                    {
+                        cont(ex);
+                    }
                 }
             }
         }

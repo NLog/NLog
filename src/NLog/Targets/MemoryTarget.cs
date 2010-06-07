@@ -56,8 +56,6 @@ namespace NLog.Targets
     [Target("Memory")]
     public sealed class MemoryTarget : TargetWithLayout
     {
-        private object lockObject = new object();
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MemoryTarget" /> class.
         /// </summary>
@@ -82,10 +80,7 @@ namespace NLog.Targets
         {
             string msg = this.Layout.Render(logEvent);
 
-            lock (this.lockObject)
-            {
-                this.Logs.Add(msg);
-            }
+            this.Logs.Add(msg);
         }
     }
 }
