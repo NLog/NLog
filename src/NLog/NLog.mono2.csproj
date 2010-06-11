@@ -271,11 +271,6 @@
     <Compile Include="Targets\AspResponseTarget.cs" />
     <Compile Include="Targets\ChainsawTarget.cs" />
     <Compile Include="Targets\ColoredConsoleTarget.cs" />
-    <Compile Include="Targets\Compound\CompoundTargetBase.cs" />
-    <Compile Include="Targets\Compound\FallbackGroupTarget.cs" />
-    <Compile Include="Targets\Compound\RandomizeGroupTarget.cs" />
-    <Compile Include="Targets\Compound\RoundRobinGroupTarget.cs" />
-    <Compile Include="Targets\Compound\SplitGroupTarget.cs" />
     <Compile Include="Targets\ConsoleOutputColor.cs" />
     <Compile Include="Targets\ConsoleRowHighlightingRule.cs" />
     <Compile Include="Targets\ConsoleTarget.cs" />
@@ -321,15 +316,20 @@
     <Compile Include="Targets\Wrappers\AsyncTargetWrapperOverflowAction.cs" />
     <Compile Include="Targets\Wrappers\AutoFlushTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\BufferingTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\CompoundTargetBase.cs" />
+    <Compile Include="Targets\Wrappers\FallbackGroupTarget.cs" />
     <Compile Include="Targets\Wrappers\FilteringRule.cs" />
     <Compile Include="Targets\Wrappers\FilteringTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\LogonProviderType.cs" />
     <Compile Include="Targets\Wrappers\PostFilteringTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\RandomizeGroupTarget.cs" />
     <Compile Include="Targets\Wrappers\RepeatingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\RetryingTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\RoundRobinGroupTarget.cs" />
     <Compile Include="Targets\Wrappers\SecurityImpersonationLevel.cs" />
     <Compile Include="Targets\Wrappers\SecurityLogonType.cs" />
+    <Compile Include="Targets\Wrappers\SplitGroupTarget.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBase.cs" />
     <Compile Include="Web\NLogHttpModule.cs" />
   </ItemGroup>

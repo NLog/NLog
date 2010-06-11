@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.UnitTests.Targets.Compound
+namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
     using System.Collections.Generic;
@@ -39,19 +39,19 @@ namespace NLog.UnitTests.Targets.Compound
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NLog.Internal;
     using NLog.Targets;
-    using NLog.Targets.Compound;
+    using NLog.Targets.Wrappers;
 
     [TestClass]
-    public class RandomizeGroupTargetTests : NLogTestBase
+    public class RoundRobinGroupTargetTests : NLogTestBase
 	{
         [TestMethod]
-        public void RandomizeGroupSyncTest1()
+        public void RoundRobinGroupTargetSyncTest1()
         {
             var myTarget1 = new MyTarget();
             var myTarget2 = new MyTarget();
             var myTarget3 = new MyTarget();
 
-            var wrapper = new RandomizeGroupTarget()
+            var wrapper = new RoundRobinGroupTarget()
             {
                 Targets = { myTarget1, myTarget2, myTarget3 },
             };
@@ -75,7 +75,9 @@ namespace NLog.UnitTests.Targets.Compound
                 Assert.IsNull(e);
             }
 
-            Assert.AreEqual(10, myTarget1.WriteCount + myTarget2.WriteCount + myTarget3.WriteCount);
+            Assert.AreEqual(4, myTarget1.WriteCount);
+            Assert.AreEqual(3, myTarget2.WriteCount);
+            Assert.AreEqual(3, myTarget3.WriteCount);
 
             Exception flushException = null;
             var flushHit = new ManualResetEvent(false);
@@ -93,11 +95,11 @@ namespace NLog.UnitTests.Targets.Compound
         }
 
         [TestMethod]
-        public void RandomizeGroupSyncTest2()
+        public void RoundRobinGroupTargetSyncTest2()
         {
-            var wrapper = new RandomizeGroupTarget()
+            var wrapper = new RoundRobinGroupTarget()
             {
-                // no targets
+                // empty target list
             };
 
             ((ISupportsInitialize)wrapper).Initialize();
@@ -116,9 +118,11 @@ namespace NLog.UnitTests.Targets.Compound
                 Assert.IsNull(e);
             }
 
-            Exception flushException = new Exception("Flush not hit synchronously.");
-            wrapper.Flush(ex => flushException = ex);
+            Exception flushException = null;
+            var flushHit = new ManualResetEvent(false);
+            wrapper.Flush(ex => { flushException = ex; flushHit.Set(); });
 
+            flushHit.WaitOne();
             if (flushException != null)
             {
                 Assert.Fail(flushException.ToString());

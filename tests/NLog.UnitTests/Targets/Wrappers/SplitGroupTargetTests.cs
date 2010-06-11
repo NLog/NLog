@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.UnitTests.Targets.Compound
+namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
     using System.Collections.Generic;
@@ -39,7 +39,7 @@ namespace NLog.UnitTests.Targets.Compound
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NLog.Internal;
     using NLog.Targets;
-    using NLog.Targets.Compound;
+    using NLog.Targets.Wrappers;
 
     [TestClass]
     public class SplitGroupTargetTests : NLogTestBase

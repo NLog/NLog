@@ -37,7 +37,6 @@ using NLog.Config;
 using NLog.LayoutRenderers;
 using NLog.Layouts;
 using NLog.Targets;
-using NLog.Targets.Compound;
 using NLog.Targets.Wrappers;
 
 namespace NLog.UnitTests

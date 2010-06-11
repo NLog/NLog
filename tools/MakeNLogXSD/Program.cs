@@ -4,7 +4,6 @@ using System.Text;
 using NLog;
 using NLog.Config;
 using NLog.Targets.Wrappers;
-using NLog.Targets.Compound;
 
 using System.Xml;
 using System.Reflection;

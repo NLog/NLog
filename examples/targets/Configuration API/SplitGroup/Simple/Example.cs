@@ -2,7 +2,7 @@ using System;
 
 using NLog;
 using NLog.Targets;
-using NLog.Targets.Compound;
+using NLog.Targets.Wrapper;
 using System.Diagnostics;
 
 class Example

@@ -31,66 +31,57 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Targets.Compound
+namespace NLog.Targets.Wrappers
 {
     using System;
-    using System.Threading;
     using NLog.Internal;
 
     /// <summary>
-    /// Distributes log events to targets in a round-robin fashion.
+    /// Sends log messages to a randomly selected target.
     /// </summary>
     /// <example>
-    /// <p>This example causes the messages to be written to either file1.txt or file2.txt.
-    /// Each odd message is written to file2.txt, each even message goes to file1.txt.
+    /// <p>This example causes the messages to be written to either file1.txt or file2.txt 
+    /// chosen randomly on a per-message basis.
     /// </p>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 
     /// use the following syntax:
     /// </p>
-    /// <code lang="XML" source="examples/targets/Configuration File/RoundRobinGroup/NLog.config" />
+    /// <code lang="XML" source="examples/targets/Configuration File/RandomizeGroup/NLog.config" />
     /// <p>
     /// The above examples assume just one target and a single rule. See below for
     /// a programmatic configuration that's equivalent to the above config file:
     /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/RoundRobinGroup/Simple/Example.cs" />
+    /// <code lang="C#" source="examples/targets/Configuration API/RandomizeGroup/Simple/Example.cs" />
     /// </example>
-    [Target("RoundRobinGroup", IsCompound = true)]
-    public class RoundRobinGroupTarget : CompoundTargetBase
+    [Target("RandomizeGroup", IsCompound = true)]
+    public class RandomizeGroupTarget : CompoundTargetBase
     {
-        private int currentTarget = 0;
-        private object lockObject = new object();
+        private readonly Random random = new Random();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RoundRobinGroupTarget" /> class.
+        /// Initializes a new instance of the <see cref="RandomizeGroupTarget" /> class.
         /// </summary>
-        public RoundRobinGroupTarget()
+        public RandomizeGroupTarget()
             : this(new Target[0])
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RoundRobinGroupTarget" /> class.
+        /// Initializes a new instance of the <see cref="RandomizeGroupTarget" /> class.
         /// </summary>
         /// <param name="targets">The targets.</param>
-        public RoundRobinGroupTarget(params Target[] targets)
+        public RandomizeGroupTarget(params Target[] targets)
             : base(targets)
         {
         }
 
         /// <summary>
-        /// Forwards the write to one of the targets from
-        /// the <see cref="Targets"/> collection.
+        /// Forwards the log event to one of the sub-targets.
+        /// The sub-target is randomly chosen.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        /// <remarks>
-        /// The writes are routed in a round-robin fashion.
-        /// The first log event goes to the first target, the second
-        /// one goes to the second target and so on looping to the
-        /// first target when there are no more targets available.
-        /// In general request N goes to Targets[N % Targets.Count].
-        /// </remarks>
         protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
         {
             if (this.Targets.Count == 0)
@@ -101,10 +92,9 @@ namespace NLog.Targets.Compound
 
             int selectedTarget;
 
-            lock (this.lockObject)
+            lock (this.random)
             {
-                selectedTarget = this.currentTarget;
-                this.currentTarget = (this.currentTarget + 1) % this.Targets.Count;
+                selectedTarget = this.random.Next(this.Targets.Count);
             }
 
             this.Targets[selectedTarget].WriteLogEvent(logEvent, asyncContinuation);

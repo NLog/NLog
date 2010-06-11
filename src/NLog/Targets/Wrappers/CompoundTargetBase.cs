@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Targets.Compound
+namespace NLog.Targets.Wrappers
 {
     using System;
     using System.Collections.Generic;

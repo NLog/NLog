@@ -111,10 +111,6 @@
     <Compile Include="RoutingTests.cs" />
     <Compile Include="SourceCodeTests.cs" />
     <Compile Include="TargetConfigurationTests.cs" />
-    <Compile Include="Targets\Compound\FallbackGroupTargetTests.cs" />
-    <Compile Include="Targets\Compound\RandomizeGroupTargetTests.cs" />
-    <Compile Include="Targets\Compound\RoundRobinGroupTargetTests.cs" />
-    <Compile Include="Targets\Compound\SplitGroupTargetTests.cs" />
     <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
     <Compile Include="Targets\EventLogTests.cs" />
     <Compile Include="Targets\FileTargetTests.cs" />
@@ -124,10 +120,14 @@
     <Compile Include="Targets\Wrappers\AsyncTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\AutoFlushTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\BufferingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\FallbackGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\FilteringTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\PostFilteringTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\RandomizeGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\RepeatingTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\RetryingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\RoundRobinGroupTargetTests.cs" />
+    <Compile Include="Targets\Wrappers\SplitGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBaseTests.cs" />
   </ItemGroup>
   <ItemGroup>

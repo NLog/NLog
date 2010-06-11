@@ -46,7 +46,6 @@ namespace NLog.Config
     using NLog.Internal;
     using NLog.Layouts;
     using NLog.Targets;
-    using NLog.Targets.Compound;
     using NLog.Targets.Wrappers;
 
     /// <summary>
