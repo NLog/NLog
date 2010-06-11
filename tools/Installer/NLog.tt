@@ -257,6 +257,16 @@ foreach (var vs in visualStudioVersions) {
       <Component Id="License_File" Guid="203ED250-FA92-4553-A590-723318DC7946">
         <File Id="LICENSE.txt" Name="LICENSE.txt" Vital="yes" KeyPath="yes" />
       </Component>
+      <Component Id="Help_File" Guid="374D5BEB-490D-4a9e-8663-8CD31B0F1363">
+        <File Id="NLog.chm" Name="NLog.chm" KeyPath="yes" Source="$(var.NLogBuildPath)\Documentation\NLog.chm" />
+        <Shortcut Id="Help_Shortcut"
+                  Directory="ApplicationProgramsFolder"
+                  Name="NLog Documentation"
+                  Description="Documentation for NLog $(var.BuildLabel)"
+                  Icon="Help.ico"
+                  Advertise="yes">
+        </Shortcut>
+      </Component>
     </DirectoryRef>
     
     <!-- Common menu shortcuts -->
@@ -304,16 +314,6 @@ foreach (var vs in visualStudioVersions) {
         <# } #> 
       </Component>
 
-      <Component Id="<#= framework.ShortName #>_Help" Guid="<#= GetGuid(framework.ShortName, "Help") #>">
-        <File Id="<#= framework.ShortName #>_NLog.chm" Name="NLog.chm" KeyPath="yes" />
-        <Shortcut Id="<#= framework.ShortName #>_Help_Shortcut"
-                  Directory="ApplicationProgramsFolder"
-                  Name="NLog for <#= framework.FullName #>"
-                  Description="Documentation for NLog for <#= framework.FullName #> $(var.BuildLabel)"
-                  Icon="Help.ico"
-                  Advertise="yes">
-        </Shortcut>
-      </Component>
     </DirectoryRef>
     <?endif ?>
 
@@ -485,14 +485,7 @@ foreach (var vs in visualStudioVersions) {
     </Feature>
 
     <Feature Id="Feature_Help" Title="Help" Level="1">
-<# foreach (var framework in supportedFrameworks) { #>
-      
-      <?ifdef Include_<#= framework.ShortName #> ?>
-      <Feature Id="<#= framework.ShortName #>_Help" Title="<#= framework.FullName #>" Level="1">
-        <ComponentRef Id="<#= framework.ShortName #>_Help" />
-      </Feature>
-      <?endif?>
-<# } #>      
+      <ComponentRef Id="Help_File" />
     </Feature>
 
     <Feature Id="Feature_DebugInfo" Title="Debug Symbols" Level="100">

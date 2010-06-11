@@ -279,6 +279,16 @@
       <Component Id="License_File" Guid="203ED250-FA92-4553-A590-723318DC7946">
         <File Id="LICENSE.txt" Name="LICENSE.txt" Vital="yes" KeyPath="yes" />
       </Component>
+      <Component Id="Help_File" Guid="374D5BEB-490D-4a9e-8663-8CD31B0F1363">
+        <File Id="NLog.chm" Name="NLog.chm" KeyPath="yes" Source="$(var.NLogBuildPath)\Documentation\NLog.chm" />
+        <Shortcut Id="Help_Shortcut"
+                  Directory="ApplicationProgramsFolder"
+                  Name="NLog Documentation"
+                  Description="Documentation for NLog $(var.BuildLabel)"
+                  Icon="Help.ico"
+                  Advertise="yes">
+        </Shortcut>
+      </Component>
     </DirectoryRef>
     
     <!-- Common menu shortcuts -->
@@ -311,16 +321,6 @@
          
       </Component>
 
-      <Component Id="Mono2_Help" Guid="b1cc66d3-7f64-3c16-da38-8d1662d9401e">
-        <File Id="Mono2_NLog.chm" Name="NLog.chm" KeyPath="yes" />
-        <Shortcut Id="Mono2_Help_Shortcut"
-                  Directory="ApplicationProgramsFolder"
-                  Name="NLog for Mono 2.x"
-                  Description="Documentation for NLog for Mono 2.x $(var.BuildLabel)"
-                  Icon="Help.ico"
-                  Advertise="yes">
-        </Shortcut>
-      </Component>
     </DirectoryRef>
     <?endif ?>
 
@@ -343,16 +343,6 @@
          
       </Component>
 
-      <Component Id="NetFx20_Help" Guid="c55bb795-81f6-30ce-91e6-279c8cc36a38">
-        <File Id="NetFx20_NLog.chm" Name="NLog.chm" KeyPath="yes" />
-        <Shortcut Id="NetFx20_Help_Shortcut"
-                  Directory="ApplicationProgramsFolder"
-                  Name="NLog for .NET Framework 2.0"
-                  Description="Documentation for NLog for .NET Framework 2.0 $(var.BuildLabel)"
-                  Icon="Help.ico"
-                  Advertise="yes">
-        </Shortcut>
-      </Component>
     </DirectoryRef>
     <?endif ?>
 
@@ -380,16 +370,6 @@
          
       </Component>
 
-      <Component Id="NetFx35_Help" Guid="1eec286c-91f6-3ea2-62b6-539324ca633b">
-        <File Id="NetFx35_NLog.chm" Name="NLog.chm" KeyPath="yes" />
-        <Shortcut Id="NetFx35_Help_Shortcut"
-                  Directory="ApplicationProgramsFolder"
-                  Name="NLog for .NET Framework 3.5"
-                  Description="Documentation for NLog for .NET Framework 3.5 $(var.BuildLabel)"
-                  Icon="Help.ico"
-                  Advertise="yes">
-        </Shortcut>
-      </Component>
     </DirectoryRef>
     <?endif ?>
 
@@ -417,16 +397,6 @@
          
       </Component>
 
-      <Component Id="NetFx40_Help" Guid="63d36c74-fcbe-3b57-9efc-7034088df5be">
-        <File Id="NetFx40_NLog.chm" Name="NLog.chm" KeyPath="yes" />
-        <Shortcut Id="NetFx40_Help_Shortcut"
-                  Directory="ApplicationProgramsFolder"
-                  Name="NLog for .NET Framework 4.0"
-                  Description="Documentation for NLog for .NET Framework 4.0 $(var.BuildLabel)"
-                  Icon="Help.ico"
-                  Advertise="yes">
-        </Shortcut>
-      </Component>
     </DirectoryRef>
     <?endif ?>
 
@@ -457,16 +427,6 @@
          
       </Component>
 
-      <Component Id="NetCf20_Help" Guid="e26fcb0d-51e0-3ff5-49de-0beb44199620">
-        <File Id="NetCf20_NLog.chm" Name="NLog.chm" KeyPath="yes" />
-        <Shortcut Id="NetCf20_Help_Shortcut"
-                  Directory="ApplicationProgramsFolder"
-                  Name="NLog for .NET Compact Framework 2.0"
-                  Description="Documentation for NLog for .NET Compact Framework 2.0 $(var.BuildLabel)"
-                  Icon="Help.ico"
-                  Advertise="yes">
-        </Shortcut>
-      </Component>
     </DirectoryRef>
     <?endif ?>
 
@@ -497,16 +457,6 @@
          
       </Component>
 
-      <Component Id="NetCf35_Help" Guid="3ef94639-4219-372b-9e0f-8ac2132c3595">
-        <File Id="NetCf35_NLog.chm" Name="NLog.chm" KeyPath="yes" />
-        <Shortcut Id="NetCf35_Help_Shortcut"
-                  Directory="ApplicationProgramsFolder"
-                  Name="NLog for .NET Compact Framework 3.5"
-                  Description="Documentation for NLog for .NET Compact Framework 3.5 $(var.BuildLabel)"
-                  Icon="Help.ico"
-                  Advertise="yes">
-        </Shortcut>
-      </Component>
     </DirectoryRef>
     <?endif ?>
 
@@ -529,16 +479,6 @@
          
       </Component>
 
-      <Component Id="SL2_Help" Guid="91b4f5b8-ba69-3b7e-23b9-695723f10677">
-        <File Id="SL2_NLog.chm" Name="NLog.chm" KeyPath="yes" />
-        <Shortcut Id="SL2_Help_Shortcut"
-                  Directory="ApplicationProgramsFolder"
-                  Name="NLog for Silverlight 2.0"
-                  Description="Documentation for NLog for Silverlight 2.0 $(var.BuildLabel)"
-                  Icon="Help.ico"
-                  Advertise="yes">
-        </Shortcut>
-      </Component>
     </DirectoryRef>
     <?endif ?>
 
@@ -561,16 +501,6 @@
          
       </Component>
 
-      <Component Id="SL3_Help" Guid="8bfb10c4-a1e8-322c-26d4-58c6bc0391db">
-        <File Id="SL3_NLog.chm" Name="NLog.chm" KeyPath="yes" />
-        <Shortcut Id="SL3_Help_Shortcut"
-                  Directory="ApplicationProgramsFolder"
-                  Name="NLog for Silverlight 3.0"
-                  Description="Documentation for NLog for Silverlight 3.0 $(var.BuildLabel)"
-                  Icon="Help.ico"
-                  Advertise="yes">
-        </Shortcut>
-      </Component>
     </DirectoryRef>
     <?endif ?>
 
@@ -593,16 +523,6 @@
          
       </Component>
 
-      <Component Id="SL4_Help" Guid="87e2a688-650f-3993-02ff-6ac8cb1ddde5">
-        <File Id="SL4_NLog.chm" Name="NLog.chm" KeyPath="yes" />
-        <Shortcut Id="SL4_Help_Shortcut"
-                  Directory="ApplicationProgramsFolder"
-                  Name="NLog for Silverlight 4.0"
-                  Description="Documentation for NLog for Silverlight 4.0 $(var.BuildLabel)"
-                  Icon="Help.ico"
-                  Advertise="yes">
-        </Shortcut>
-      </Component>
     </DirectoryRef>
     <?endif ?>
 
@@ -1108,61 +1028,7 @@
     </Feature>
 
     <Feature Id="Feature_Help" Title="Help" Level="1">
-      
-      <?ifdef Include_Mono2 ?>
-      <Feature Id="Mono2_Help" Title="Mono 2.x" Level="1">
-        <ComponentRef Id="Mono2_Help" />
-      </Feature>
-      <?endif?>
-      
-      <?ifdef Include_NetFx20 ?>
-      <Feature Id="NetFx20_Help" Title=".NET Framework 2.0" Level="1">
-        <ComponentRef Id="NetFx20_Help" />
-      </Feature>
-      <?endif?>
-      
-      <?ifdef Include_NetFx35 ?>
-      <Feature Id="NetFx35_Help" Title=".NET Framework 3.5" Level="1">
-        <ComponentRef Id="NetFx35_Help" />
-      </Feature>
-      <?endif?>
-      
-      <?ifdef Include_NetFx40 ?>
-      <Feature Id="NetFx40_Help" Title=".NET Framework 4.0" Level="1">
-        <ComponentRef Id="NetFx40_Help" />
-      </Feature>
-      <?endif?>
-      
-      <?ifdef Include_NetCf20 ?>
-      <Feature Id="NetCf20_Help" Title=".NET Compact Framework 2.0" Level="1">
-        <ComponentRef Id="NetCf20_Help" />
-      </Feature>
-      <?endif?>
-      
-      <?ifdef Include_NetCf35 ?>
-      <Feature Id="NetCf35_Help" Title=".NET Compact Framework 3.5" Level="1">
-        <ComponentRef Id="NetCf35_Help" />
-      </Feature>
-      <?endif?>
-      
-      <?ifdef Include_SL2 ?>
-      <Feature Id="SL2_Help" Title="Silverlight 2.0" Level="1">
-        <ComponentRef Id="SL2_Help" />
-      </Feature>
-      <?endif?>
-      
-      <?ifdef Include_SL3 ?>
-      <Feature Id="SL3_Help" Title="Silverlight 3.0" Level="1">
-        <ComponentRef Id="SL3_Help" />
-      </Feature>
-      <?endif?>
-      
-      <?ifdef Include_SL4 ?>
-      <Feature Id="SL4_Help" Title="Silverlight 4.0" Level="1">
-        <ComponentRef Id="SL4_Help" />
-      </Feature>
-      <?endif?>
-      
+      <ComponentRef Id="Help_File" />
     </Feature>
 
     <Feature Id="Feature_DebugInfo" Title="Debug Symbols" Level="100">
