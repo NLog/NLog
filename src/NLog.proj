@@ -403,6 +403,8 @@
   <Target Name="Archive" DependsOnTargets="BeforeArchive">
     <Exec Command='"$(InfoZip)" "$(ArchiveOutputPath)\NLog2%(TargetFramework.ProjectFileSuffix)$(ArchiveSuffix)$(ConfigurationSuffix).zip" NLog.* -x *Test*' 
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)" />
+    <Exec Command='"$(InfoZip)" "$(ArchiveOutputPath)\NLog2.doc$(ArchiveSuffix)$(ConfigurationSuffix).zip" NLog.chm'
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Documentation" />
   </Target>
 
   <Target Name="SourceArchive" DependsOnTargets="BeforeArchive">
