@@ -44,7 +44,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System.Threading;
-    using NLog.Contexts;
     using NLog.Internal;
     using System.Diagnostics;
 

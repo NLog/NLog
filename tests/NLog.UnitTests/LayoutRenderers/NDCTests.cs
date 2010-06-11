@@ -39,7 +39,6 @@ using NLog;
 using NLog.Config;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NLog.Contexts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {

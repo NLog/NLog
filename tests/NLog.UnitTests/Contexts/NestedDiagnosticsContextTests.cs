@@ -39,7 +39,6 @@ namespace NLog.UnitTests.Contexts
     using System.Collections.Generic;
     using System.Threading;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using NLog.Contexts;
 
     [TestClass]
     public class NestedDiagnosticsContextTests

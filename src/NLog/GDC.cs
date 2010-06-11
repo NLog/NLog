@@ -31,15 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Contexts
+namespace NLog
 {
     using System;
 
     /// <summary>
-    /// Mapped Diagnostics Context - used for log4net compatibility.
+    /// Global Diagnostics Context - used for log4net compatibility.
     /// </summary>
-    [Obsolete("Use MappedDiagnosticsContext instead")]
-    public class MDC : MappedDiagnosticsContext
+    [Obsolete("Use GlobalDiagnosticsContext instead")]
+    public class GDC : GlobalDiagnosticsContext
     {
     }
 }

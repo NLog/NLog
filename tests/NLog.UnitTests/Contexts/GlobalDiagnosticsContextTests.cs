@@ -36,7 +36,6 @@
 namespace NLog.UnitTests.Contexts
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using NLog.Contexts;
 
     [TestClass]
     public class GlobalDiagnosticsContextTests

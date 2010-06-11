@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Contexts
+namespace NLog
 {
     using System;
     using System.Collections.Generic;

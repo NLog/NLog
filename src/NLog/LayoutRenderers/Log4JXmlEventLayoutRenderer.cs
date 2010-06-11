@@ -42,7 +42,6 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using System.Xml;
     using NLog.Config;
-    using NLog.Contexts;
     using NLog.Internal;
     using NLog.Targets;
 

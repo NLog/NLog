@@ -40,7 +40,6 @@ using NLog;
 using NLog.Config;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NLog.Contexts;
 using NLog.LayoutRenderers;
 using NLog.Targets;
 using NLog.Layouts;

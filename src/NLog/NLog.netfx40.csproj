@@ -109,12 +109,6 @@
     <Compile Include="Config\StackTraceUsage.cs" />
     <Compile Include="Config\ThreadAgnosticAttribute.cs" />
     <Compile Include="Config\XmlLoggingConfiguration.cs" />
-    <Compile Include="Contexts\GDC.cs" />
-    <Compile Include="Contexts\GlobalDiagnosticsContext.cs" />
-    <Compile Include="Contexts\MappedDiagnosticsContext.cs" />
-    <Compile Include="Contexts\MDC.cs" />
-    <Compile Include="Contexts\NDC.cs" />
-    <Compile Include="Contexts\NestedDiagnosticsContext.cs" />
     <Compile Include="Filters\ConditionBasedFilter.cs" />
     <Compile Include="Filters\Filter.cs" />
     <Compile Include="Filters\FilterAttribute.cs" />
@@ -124,6 +118,8 @@
     <Compile Include="Filters\WhenEqualFilter.cs" />
     <Compile Include="Filters\WhenNotContainsFilter.cs" />
     <Compile Include="Filters\WhenNotEqualFilter.cs" />
+    <Compile Include="GDC.cs" />
+    <Compile Include="GlobalDiagnosticsContext.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Internal\AspHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
@@ -259,6 +255,10 @@
     <Compile Include="LogReceiverService\NLogEvents.cs" />
     <Compile Include="LogReceiverService\SoapLogReceiverClient.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverClient.cs" />
+    <Compile Include="MappedDiagnosticsContext.cs" />
+    <Compile Include="MDC.cs" />
+    <Compile Include="NDC.cs" />
+    <Compile Include="NestedDiagnosticsContext.cs" />
     <Compile Include="NLogConfigurationException.cs" />
     <Compile Include="NLogRuntimeException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

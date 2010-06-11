@@ -35,7 +35,6 @@ namespace NLog.Targets
 {
     using System.Collections.Generic;
     using NLog.Config;
-    using NLog.Contexts;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
 
