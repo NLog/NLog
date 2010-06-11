@@ -66,14 +66,55 @@
     <Preliminary>True</Preliminary>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="NLog" isDocumented="True" xmlns="">
-      NLog namespace contains classes used by instrumented application to output log messages.
+        Contains classes used by instrumented application to output log messages.
+      </NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Internal" isDocumented="True" xmlns="">
+        Components used internally for NLog.
+      </NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Config" isDocumented="True" xmlns="">
+        Provides APIs to configure logging.
+      </NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Targets" isDocumented="True" xmlns="">
+        Contains implementation of log targets.
+      </NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Targets.Wrappers" isDocumented="True" xmlns="">
+        Contains implementation of wrapper targets.
+      </NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Filters" isDocumented="True" xmlns="">
+        Contains implementation of filters.
+      </NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Layouts" isDocumented="True" xmlns="">
+        Contains implementation of layouts.
+      </NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.LayoutRenderers" isDocumented="True" xmlns="">
+        Contains implementation of layout renderers.
+      </NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.LayoutRenderers.Wrappers" isDocumented="True" xmlns="">
+        Contains implementation of wrapper layout renderers.
+      </NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Conditions" isDocumented="True" xmlns="">
+        Contains implementation of conditions used to filter log events.
+      </NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Common" isDocumented="True" xmlns="">
+        Contains common components used when implementing NLog extensions.
+      </NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.ComInterop" isDocumented="True" xmlns="">
+        COM Interop classes.
+      </NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.LogReceiverService" isDocumented="True" xmlns="">
+        WCF proxy classes for implementing clients and servers of log receiver service.
+      </NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Web" isDocumented="True" xmlns="">
+        Integration with ASP.NET.
       </NamespaceSummaryItem>
     </NamespaceSummaries>
     <PlugInConfigurations>
     </PlugInConfigurations>
     <NamingMethod>MemberName</NamingMethod>
-    <ProjectSummary>TODO: Project Summary</ProjectSummary>
+    <ProjectSummary>
+    </ProjectSummary>
     <HelpFileFormat>HtmlHelp1, Website</HelpFileFormat>
+    <SyntaxFilters>CSharp, VisualBasic, VisualBasicUsage</SyntaxFilters>
   </PropertyGroup>
   <!-- There are no properties for these two groups but they need to appear in
        order for Visual Studio to perform the build. -->
@@ -81,31 +122,6 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
   </PropertyGroup>
-  <ItemGroup>
-    <ContentLayout Include="Content Layout.content" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="available-conditions.aml" />
-    <None Include="available-filters.aml" />
-    <None Include="available-layouts.aml" />
-    <None Include="available-layout-renderers.aml" />
-    <None Include="available-targets.aml" />
-    <None Include="visual-studio.aml" />
-    <None Include="include-files.aml" />
-    <None Include="variables.aml" />
-    <None Include="filters.aml" />
-    <None Include="conditions.aml" />
-    <None Include="layouts.aml" />
-    <None Include="layout-renderers.aml" />
-    <None Include="targets.aml" />
-    <None Include="simple-configuration-api.aml" />
-    <None Include="configuration-api.aml" />
-    <None Include="configuration-file.aml" />
-    <None Include="configuration.aml" />
-    <None Include="how-to.aml" />
-    <None Include="introduction.aml" />
-    <None Include="glossary.aml" />
-  </ItemGroup>
   <!-- Import the SHFB build targets -->
   <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
   <Import Project="Frameworks\$(Framework).shfbproj" Condition="Exists('Frameworks\$(Framework).shfbproj')" />

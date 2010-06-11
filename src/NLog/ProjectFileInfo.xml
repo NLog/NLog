@@ -99,6 +99,13 @@
      </ItemGroup>
    </Project>
 
+   <Project File="NLog.doc.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+        <FileSet Exclude="ExtendedProfileOnly" />
+     </ItemGroup>
+   </Project>
+
    <Project File="NLog.Extended.netfx35.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="ExtendedProfileOnly" />
@@ -107,6 +114,13 @@
    </Project>
 
    <Project File="NLog.Extended.netfx40.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="ExtendedProfileOnly" />
+        <FileSet Include="CommonFiles" />
+     </ItemGroup>
+   </Project>
+
+   <Project File="NLog.Extended.doc.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="ExtendedProfileOnly" />
         <FileSet Include="CommonFiles" />

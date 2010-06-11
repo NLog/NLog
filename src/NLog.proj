@@ -291,7 +291,16 @@
     <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='"$(DumpTestResultSummary)" "%(TargetFramework.Identity)" "$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\TestResults.trx"' />
   </Target>
 
-  <Target Name="BuildDocumentation">
+  <Target Name="BuildMergedDocumentation">
+    <MSBuild Projects="NLog\NLog.Extended.doc.csproj" 
+             Targets="Build" 
+             Properties="$(StyleCopProperties);BaseOutputDirectory=$(BaseOutputDirectory)" 
+             ContinueOnError="$(BuildAllFrameworks)" 
+             StopOnFirstFailure="false" />
+    <Exec Command='"$(WinDir)\Microsoft.NET\Framework\v3.5\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="Documentation" /p:Configuration=$(Configuration) /p:BuildLabel="$(BuildLabel)" /p:BuildVersion="$(BuildVersion)"' ContinueOnError="$(BuildAllFrameworks)" />
+  </Target>
+
+  <Target Name="BuildIndividualDocumentation">
     <Exec Command='"$(WinDir)\Microsoft.NET\Framework\v3.5\MSBuild.exe" Docs\NLog.shfbproj /p:Framework="%(TargetFramework.Identity)" /p:Configuration=$(Configuration) /p:BuildLabel="$(BuildLabel)" /p:BuildVersion="$(BuildVersion)"' ContinueOnError="$(BuildAllFrameworks)" />
   </Target>
 
@@ -308,7 +317,11 @@
     <RemoveDir Directories="$(DocBuildDir)\doc" />
   </Target>
 
-  <Target Name="Documentation" DependsOnTargets="BuildDocumentation;PostProcessDocumentation">
+  <Target Name="IndividualDocumentation" DependsOnTargets="BuildIndividualDocumentation;PostProcessDocumentation">
+  </Target>
+
+  <Target Name="Documentation" DependsOnTargets="BuildMergedDocumentation">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="PostProcessSingleDoc" Properties="DocBuildDir=$(BaseOutputDirectory)\bin\$(Configuration)\Documentation" />
   </Target>
 
   <Target Name="Installer">

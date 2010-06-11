@@ -31,13 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if SILVERLIGHT
-
-using System.Text;
-using System.Windows.Browser;
+#if SILVERLIGHT || DOCUMENTATION
 
 namespace NLog.LayoutRenderers
 {
+    using System.Text;
+#if !DOCUMENTATION
+    using System.Windows.Browser;
+#endif
+
     /// <summary>
     /// URI of the HTML page which hosts the current Silverlight application.
     /// </summary>
@@ -51,7 +53,9 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+#if !DOCUMENTATION
             builder.Append(HtmlPage.Document.DocumentUri.ToString());
+#endif
         }
     }
 }
