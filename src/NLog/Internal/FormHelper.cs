@@ -31,11 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !MONO && !SILVERLIGHT
+#if !MONO && !SILVERLIGHT && !NET_CF
 
 namespace NLog.Internal
 {
     using System;
+    using System.Drawing;
     using System.Windows.Forms;
 
     /// <summary>
@@ -43,7 +44,6 @@ namespace NLog.Internal
     /// </summary>
     internal class FormHelper
     {
-#if !NET_CF
         /// <summary>
         /// Creates RichTextBox and docks in parentForm.
         /// </summary>
@@ -60,7 +60,7 @@ namespace NLog.Internal
             parentForm.Controls.Add(rtb);
             return rtb;
         }
-#endif
+
         /// <summary>
         /// Finds control embedded on searchControl.
         /// </summary>
@@ -89,20 +89,27 @@ namespace NLog.Internal
         /// <summary>
         /// Finds control of specified type embended on searchControl.
         /// </summary>
+        /// <typeparam name="TControl">The type of the control.</typeparam>
         /// <param name="name">Name of the control.</param>
         /// <param name="searchControl">Control in which we're searching for control.</param>
-        /// <param name="controlType">Type of control to search for.</param>
-        /// <returns>A value of null if no control has been found.</returns>
-        internal static Control FindControl(string name, Control searchControl, Type controlType)
+        /// <returns>
+        /// A value of null if no control has been found.
+        /// </returns>
+        internal static TControl FindControl<TControl>(string name, Control searchControl)
+            where TControl : Control
         {
-            if ((searchControl.Name == name) && (searchControl.GetType() == controlType))
+            if (searchControl.Name == name)
             {
-                return searchControl;
+                TControl foundControl = searchControl as TControl;
+                if (foundControl != null)
+                {
+                    return foundControl;
+                }
             }
 
             foreach (Control childControl in searchControl.Controls)
             {
-                Control foundControl = FindControl(name, childControl, controlType);
+                TControl foundControl = FindControl<TControl>(name, childControl);
 
                 if (foundControl != null)
                 {
@@ -120,15 +127,21 @@ namespace NLog.Internal
         /// <param name="width">Width of form.</param>
         /// <param name="height">Height of form.</param>
         /// <param name="show">Auto show form.</param>
+        /// <param name="showMinimized">If set to <c>true</c> the form will be minimized.</param>
+        /// <param name="toolWindow">If set to <c>true</c> the form will be created as tool window.</param>
         /// <returns>Created form.</returns>
-        internal static Form CreateForm(string name, int width, int height, bool show)
+        internal static Form CreateForm(string name, int width, int height, bool show, bool showMinimized, bool toolWindow)
         {
             Form f = new Form();
             f.Name = name;
             f.Text = "NLog";
+            f.Icon = GetNLogIcon();
 
 #if !Smartphone
-            f.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            if (toolWindow)
+            {
+                f.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            }
 #endif
             if (width > 0)
             {
@@ -142,10 +155,26 @@ namespace NLog.Internal
 
             if (show)
             {
-                f.Show();
+                if (showMinimized)
+                {
+                    f.WindowState = FormWindowState.Minimized;
+                    f.Show();
+                }
+                else
+                {
+                    f.Show();
+                }
             }
 
             return f;
+        }
+
+        private static Icon GetNLogIcon()
+        {
+            using (var stream = typeof(FormHelper).Assembly.GetManifestResourceStream("NLog.Resources.NLog.ico"))
+            {
+                return new Icon(stream);
+            }
         }
     }
 }

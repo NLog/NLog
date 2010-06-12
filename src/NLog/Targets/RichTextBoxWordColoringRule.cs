@@ -159,8 +159,7 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets or sets the background color. 
-        /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed
-        /// Background color will be set only in .net 2.0.
+        /// Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed.
         /// </summary>
         /// <docgen category='Formatting Options' order='10' />
         [DefaultValue("Empty")]

@@ -20,7 +20,8 @@
     <DeployDirSuffix>NLog</DeployDirSuffix>
     <NativePlatformName>Pocket PC 2003</NativePlatformName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FormFactorID></FormFactorID>
+    <FormFactorID>
+    </FormFactorID>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -266,7 +267,9 @@
     <Compile Include="LogReceiverService\LogReceiverServiceConfig.cs" />
     <Compile Include="LogReceiverService\NLogEvent.cs" />
     <Compile Include="LogReceiverService\NLogEvents.cs" />
-    <Compile Include="LogReceiverService\SoapLogReceiverClient.cs" />
+    <Compile Include="LogReceiverService\SoapLogReceiverClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="LogReceiverService\WcfLogReceiverClient.cs" />
     <Compile Include="MappedDiagnosticsContext.cs" />
     <Compile Include="MDC.cs" />
@@ -344,6 +347,9 @@
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\NLog.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

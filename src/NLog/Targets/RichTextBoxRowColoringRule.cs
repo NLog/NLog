@@ -50,16 +50,15 @@ namespace NLog.Targets
         /// </summary>
         static RichTextBoxRowColoringRule()
         {
-            Default = new RichTextBoxRowColoringRule(null, "Empty", "Empty");
+            Default = new RichTextBoxRowColoringRule();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RichTextBoxRowColoringRule" /> class.
         /// </summary>
         public RichTextBoxRowColoringRule()
+            : this(null, "Empty", "Empty", FontStyle.Regular)
         {
-            this.FontColor = "Empty";
-            this.BackgroundColor = "Empty";
         }
 
         /// <summary>

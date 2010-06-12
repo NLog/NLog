@@ -10,6 +10,10 @@
      <Include File="*.cs" />
    </FileSet>
 
+   <FileSet Name="AllResources">
+     <Include File="*.ico" />
+   </FileSet>
+
    <FileSet Name="ExtendedProfileOnly">
     <Include File="LayoutRenderers\AspNetApplicationValueLayoutRenderer.cs" />
     <Include File="LayoutRenderers\AspNetRequestValueLayoutRenderer.cs" />
@@ -47,11 +51,17 @@
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
      </ItemGroup>
+     <ItemGroup Name="EmbeddedResource">
+        <FileSet Include="AllResources" />
+     </ItemGroup>
    </Project>
 
    <Project File="NLog.sl3.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+     <ItemGroup Name="EmbeddedResource">
+        <FileSet Include="AllResources" />
      </ItemGroup>
    </Project>
 
@@ -59,11 +69,17 @@
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
      </ItemGroup>
+     <ItemGroup Name="EmbeddedResource">
+        <FileSet Include="AllResources" />
+     </ItemGroup>
    </Project>
 
    <Project File="NLog.mono2.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+     <ItemGroup Name="EmbeddedResource">
+        <FileSet Include="AllResources" />
      </ItemGroup>
    </Project>
 
@@ -71,17 +87,26 @@
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
      </ItemGroup>
+     <ItemGroup Name="EmbeddedResource">
+        <FileSet Include="AllResources" />
+     </ItemGroup>
    </Project>
 
    <Project File="NLog.netcf20.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
      </ItemGroup>
+     <ItemGroup Name="EmbeddedResource">
+        <FileSet Include="AllResources" />
+     </ItemGroup>
    </Project>
 
    <Project File="NLog.netcf35.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+     <ItemGroup Name="EmbeddedResource">
+        <FileSet Include="AllResources" />
      </ItemGroup>
    </Project>
 
@@ -90,6 +115,9 @@
         <FileSet Include="AllFilesToCompile" />
         <FileSet Exclude="ExtendedProfileOnly" />
      </ItemGroup>
+     <ItemGroup Name="EmbeddedResource">
+        <FileSet Include="AllResources" />
+     </ItemGroup>
    </Project>
 
    <Project File="NLog.netfx40.csproj">
@@ -97,12 +125,18 @@
         <FileSet Include="AllFilesToCompile" />
         <FileSet Exclude="ExtendedProfileOnly" />
      </ItemGroup>
+     <ItemGroup Name="EmbeddedResource">
+        <FileSet Include="AllResources" />
+     </ItemGroup>
    </Project>
 
    <Project File="NLog.doc.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
         <FileSet Exclude="ExtendedProfileOnly" />
+     </ItemGroup>
+     <ItemGroup Name="EmbeddedResource">
+        <FileSet Include="AllResources" />
      </ItemGroup>
    </Project>
 

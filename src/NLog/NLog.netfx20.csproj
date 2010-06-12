@@ -335,7 +335,7 @@
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Internal\Win32\" />
+    <EmbeddedResource Include="Resources\NLog.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(StyleCopTargetsFile)" Condition="'$(StyleCopTargetsFile)' != ''" />

@@ -334,6 +334,9 @@
     <Compile Include="Web\NLogHttpModule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\NLog.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <Import Project="..\Mono.targets" />

@@ -43,10 +43,9 @@ namespace NLog.UnitTests.Conditions
     public class ConditionParserTests : NLogTestBase
     {
         [TestMethod]
-        [ExpectedException(typeof(ConditionParseException))]
         public void ParseNullText()
         {
-            ConditionParser.ParseExpression(null);
+            Assert.IsNull(ConditionParser.ParseExpression(null));
         }
 
         [TestMethod]

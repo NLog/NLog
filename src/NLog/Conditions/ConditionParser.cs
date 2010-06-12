@@ -79,6 +79,11 @@ namespace NLog.Conditions
         /// <returns>The root of the expression syntax tree which can be used to get the value of the condition in a specified context.</returns>
         public static ConditionExpression ParseExpression(string expressionText, NLogFactories nlogFactories)
         {
+            if (expressionText == null)
+            {
+                return null;
+            }
+
             ConditionParser parser = new ConditionParser(expressionText, nlogFactories);
             ConditionExpression expression = parser.ParseExpression();
             if (!parser.tokenizer.IsEOF())
