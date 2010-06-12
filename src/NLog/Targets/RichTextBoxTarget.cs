@@ -80,6 +80,8 @@ namespace NLog.Targets
     [Target("RichTextBox")]
     public sealed class RichTextBoxTarget : TargetWithLayout
     {
+        private int lineCount;
+
         /// <summary>
         /// Initializes static members of the RichTextBoxTarget class.
         /// </summary>
@@ -165,6 +167,7 @@ namespace NLog.Targets
         /// This parameter is ignored when logging to existing form control.
         /// Tool windows have thin border, and do not show up in the task bar.
         /// </remarks>
+        /// <docgen category='Form Options' order='10' />
         [DefaultValue(true)]
         public bool ToolWindow { get; set; }
 
@@ -174,7 +177,41 @@ namespace NLog.Targets
         /// <remarks>
         /// This parameter is ignored when logging to existing form control.
         /// </remarks>
+        /// <docgen category='Form Options' order='10' />
         public bool ShowMinimized { get; set; }
+
+        /// <summary>
+        /// Gets or sets the initial width of the form with rich text box.
+        /// </summary>
+        /// <remarks>
+        /// This parameter is ignored when logging to existing form control.
+        /// </remarks>
+        /// <docgen category='Form Options' order='10' />
+        public int Width { get; set; }
+
+        /// <summary>
+        /// Gets or sets the initial height of the form with rich text box.
+        /// </summary>
+        /// <remarks>
+        /// This parameter is ignored when logging to existing form control.
+        /// </remarks>
+        /// <docgen category='Form Options' order='10' />
+        public int Height { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether scroll bar will be moved automatically to show most recent log entries.
+        /// </summary>
+        /// <docgen category='Form Options' order='10' />
+        public bool AutoScroll { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum number of lines the rich text box will store (or 0 to disable this feature).
+        /// </summary>
+        /// <remarks>
+        /// After exceeding the maximum number, first line will be deleted. 
+        /// </remarks>
+        /// <docgen category='Form Options' order='10' />
+        public int MaxLines { get; set; }
 
         internal Form Form { get; set; }
 
@@ -205,7 +242,7 @@ namespace NLog.Targets
 
             if (this.Form == null)
             {
-                this.Form = FormHelper.CreateForm(this.FormName, 0, 0, true, this.ShowMinimized, this.ToolWindow);
+                this.Form = FormHelper.CreateForm(this.FormName, this.Width, this.Height, true, this.ShowMinimized, this.ToolWindow);
                 this.RichTextBox = FormHelper.CreateRichTextBox(this.ControlName, this.Form);
                 this.CreatedForm = true;
             }
@@ -296,6 +333,24 @@ namespace NLog.Targets
                     rtbx.SelectionColor = this.GetColorFromString(wordRule.FontColor, rtbx.ForeColor);
                     rtbx.SelectionFont = new Font(rtbx.SelectionFont, rtbx.SelectionFont.Style ^ wordRule.Style);
                 }
+            }
+
+            if (this.MaxLines > 0)
+            {
+                this.lineCount++;
+                if (this.lineCount > this.MaxLines)
+                {
+                    int pos = rtbx.GetFirstCharIndexFromLine(1);
+                    rtbx.Select(0, pos);
+                    rtbx.SelectedText = string.Empty;
+                    this.lineCount--;
+                }
+            }
+
+            if (this.AutoScroll)
+            {
+                rtbx.Select(rtbx.TextLength, 0);
+                rtbx.ScrollToCaret();
             }
         }
 

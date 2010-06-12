@@ -66,8 +66,9 @@ namespace NLog.UnitTests.Targets
                 ControlName = "Control1",
                 UseDefaultRowColoringRules = true,
                 Layout = "${level} ${logger} ${message}",
-                ShowMinimized = true,
                 ToolWindow = false,
+                Width = 300,
+                Height = 200,
             };
 
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
@@ -84,8 +85,10 @@ namespace NLog.UnitTests.Targets
 
             Assert.IsTrue(target.CreatedForm);
             Assert.IsTrue(form.Name.StartsWith("NLog"));
-            Assert.AreEqual(FormWindowState.Minimized, form.WindowState);
+            Assert.AreEqual(FormWindowState.Normal, form.WindowState);
             Assert.AreEqual("NLog", form.Text);
+            Assert.AreEqual(300, form.Width);
+            Assert.AreEqual(200, form.Height);
 
             MemoryStream ms = new MemoryStream();
             target.RichTextBox.SaveFile(ms, RichTextBoxStreamType.RichText);
@@ -219,6 +222,71 @@ Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par
             Assert.AreEqual(0, target.RowColoringRules.Count);
             Assert.IsNull(target.FormName);
             Assert.IsNull(target.ControlName);
+        }
+
+        [TestMethod]
+        public void AutoScrollTest()
+        {
+            try
+            {
+                RichTextBoxTarget target = new RichTextBoxTarget()
+                {
+                    ControlName = "Control1",
+                    Layout = "${level} ${logger} ${message}",
+                    ShowMinimized = true,
+                    ToolWindow = false,
+                    AutoScroll = true,
+                };
+
+                var form = target.Form;
+                SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+                for (int i = 0; i < 100; ++i)
+                {
+                    logger.Info("Test");
+                    Application.DoEvents();
+                    Assert.AreEqual(target.RichTextBox.SelectionStart, target.RichTextBox.TextLength);
+                    Assert.AreEqual(target.RichTextBox.SelectionLength, 0);
+                }
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+            }
+        }
+
+        [TestMethod]
+        public void MaxLinesTest()
+        {
+            try
+            {
+                RichTextBoxTarget target = new RichTextBoxTarget()
+                {
+                    ControlName = "Control1",
+                    Layout = "${message}",
+                    ShowMinimized = true,
+                    ToolWindow = false,
+                    AutoScroll = true,
+                };
+
+                Assert.AreEqual(0, target.MaxLines);
+                target.MaxLines = 7;
+
+                var form = target.Form;
+                SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+                for (int i = 0; i < 100; ++i)
+                {
+                    logger.Info("Test {0}", i);
+                }
+
+                Application.DoEvents();
+                string expectedText = "Test 93\nTest 94\nTest 95\nTest 96\nTest 97\nTest 98\nTest 99\n";
+
+                Assert.AreEqual(expectedText, target.RichTextBox.Text);
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+            }
         }
 
         [TestMethod]
