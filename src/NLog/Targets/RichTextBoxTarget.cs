@@ -129,7 +129,6 @@ namespace NLog.Targets
         /// Gets or sets the Name of RichTextBox to which Nlog will write.
         /// </summary>
         /// <docgen category='Form Options' order='10' />
-        [RequiredParameter]
         public string ControlName { get; set; }
 
         /// <summary>
@@ -213,9 +212,15 @@ namespace NLog.Targets
         /// <docgen category='Form Options' order='10' />
         public int MaxLines { get; set; }
 
-        internal Form Form { get; set; }
+        /// <summary>
+        /// Gets or sets the form to log to.
+        /// </summary>
+        internal Form TargetForm { get; set; }
 
-        internal RichTextBox RichTextBox { get; set; }
+        /// <summary>
+        /// Gets or sets the rich text box to log to.
+        /// </summary>
+        internal RichTextBox TargetRichTextBox { get; set; }
 
         internal bool CreatedForm { get; set; }
 
@@ -230,31 +235,28 @@ namespace NLog.Targets
                 this.FormName = "NLogForm" + Guid.NewGuid().ToString("N");
             }
 
-            if (Form.ActiveForm != null && Form.ActiveForm.Name == this.FormName)
+            var openFormByName = Application.OpenForms[this.FormName];
+            if (openFormByName != null)
             {
-                this.Form = Form.ActiveForm;
-            }
+                this.TargetForm = openFormByName;
+                if (string.IsNullOrEmpty(this.ControlName))
+                {
+                    throw new NLogConfigurationException("Rich text box control name must be specified for " + this.GetType().Name + ".");
+                }
 
-            if (this.Form == null && Application.OpenForms[this.FormName] != null)
-            {
-                this.Form = Application.OpenForms[this.FormName];
-            }
-
-            if (this.Form == null)
-            {
-                this.Form = FormHelper.CreateForm(this.FormName, this.Width, this.Height, true, this.ShowMinimized, this.ToolWindow);
-                this.RichTextBox = FormHelper.CreateRichTextBox(this.ControlName, this.Form);
-                this.CreatedForm = true;
-            }
-            else
-            {
                 this.CreatedForm = false;
-                this.RichTextBox = FormHelper.FindControl<RichTextBox>(this.ControlName, this.Form);
+                this.TargetRichTextBox = FormHelper.FindControl<RichTextBox>(this.ControlName, this.TargetForm);
 
-                if (this.RichTextBox == null)
+                if (this.TargetRichTextBox == null)
                 {
                     throw new NLogConfigurationException("Rich text box control '" + this.ControlName + "' cannot be found on form '" + this.FormName + "'.");
                 }
+            }
+            else
+            {
+                this.TargetForm = FormHelper.CreateForm(this.FormName, this.Width, this.Height, true, this.ShowMinimized, this.ToolWindow);
+                this.TargetRichTextBox = FormHelper.CreateRichTextBox(this.ControlName, this.TargetForm);
+                this.CreatedForm = true;
             }
         }
 
@@ -265,8 +267,8 @@ namespace NLog.Targets
         {
             if (this.CreatedForm)
             {
-                this.Form.Invoke((FormCloseDelegate)this.Form.Close);
-                this.Form = null;
+                this.TargetForm.Invoke((FormCloseDelegate)this.TargetForm.Close);
+                this.TargetForm = null;
             }
         }
 
@@ -306,12 +308,12 @@ namespace NLog.Targets
             
             string logMessage = this.Layout.Render(logEvent);
 
-            this.RichTextBox.Invoke(new DelSendTheMessageToRichTextBox(this.SendTheMessageToRichTextBox), new object[] { logMessage, matchingRule });
+            this.TargetRichTextBox.Invoke(new DelSendTheMessageToRichTextBox(this.SendTheMessageToRichTextBox), new object[] { logMessage, matchingRule });
         }
 
         private void SendTheMessageToRichTextBox(string logMessage, RichTextBoxRowColoringRule rule)
         {
-            RichTextBox rtbx = this.RichTextBox;
+            RichTextBox rtbx = this.TargetRichTextBox;
 
             int startIndex = rtbx.Text.Length;
             rtbx.SelectionStart = startIndex;
@@ -361,13 +363,7 @@ namespace NLog.Targets
                 return defaultColor;
             }
             
-            Color c = Color.FromName(color);
-            if (c == Color.Empty)
-            {
-                return defaultColor;
-            }
-            
-            return c;
+            return Color.FromName(color);
         }
     }
 }

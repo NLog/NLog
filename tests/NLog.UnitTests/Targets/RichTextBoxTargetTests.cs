@@ -52,6 +52,7 @@ namespace NLog.UnitTests.Targets
     using System.Threading;
     using System.Windows.Forms;
     using System.Drawing;
+    using NLog.Internal;
 
     [TestClass]
     public class RichTextBoxTargetTests : NLogTestBase
@@ -81,7 +82,7 @@ namespace NLog.UnitTests.Targets
 
             Application.DoEvents();
 
-            var form = target.Form;
+            var form = target.TargetForm;
 
             Assert.IsTrue(target.CreatedForm);
             Assert.IsTrue(form.Name.StartsWith("NLog"));
@@ -91,7 +92,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(200, form.Height);
 
             MemoryStream ms = new MemoryStream();
-            target.RichTextBox.SaveFile(ms, RichTextBoxStreamType.RichText);
+            target.TargetRichTextBox.SaveFile(ms, RichTextBoxStreamType.RichText);
             string rtfText = Encoding.UTF8.GetString(ms.GetBuffer());
 
             Assert.IsTrue(target.CreatedForm);
@@ -108,7 +109,7 @@ namespace NLog.UnitTests.Targets
             Assert.IsTrue(rtfText.Contains(expectedRtf), "Invalid RTF: " + rtfText);
 
             LogManager.Configuration = null;
-            Assert.IsNull(target.Form);
+            Assert.IsNull(target.TargetForm);
             Application.DoEvents();
             Assert.IsTrue(form.IsDisposed);
         }
@@ -136,10 +137,10 @@ namespace NLog.UnitTests.Targets
 
                 Application.DoEvents();
 
-                var form = target.Form;
+                var form = target.TargetForm;
 
                 MemoryStream ms = new MemoryStream();
-                target.RichTextBox.SaveFile(ms, RichTextBoxStreamType.RichText);
+                target.TargetRichTextBox.SaveFile(ms, RichTextBoxStreamType.RichText);
                 string rtfText = Encoding.UTF8.GetString(ms.GetBuffer());
 
                 Assert.IsTrue(target.CreatedForm);
@@ -188,10 +189,10 @@ Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par
 
                 Application.DoEvents();
 
-                var form = target.Form;
+                var form = target.TargetForm;
 
                 MemoryStream ms = new MemoryStream();
-                target.RichTextBox.SaveFile(ms, RichTextBoxStreamType.RichText);
+                target.TargetRichTextBox.SaveFile(ms, RichTextBoxStreamType.RichText);
                 string rtfText = Encoding.UTF8.GetString(ms.GetBuffer());
 
                 Assert.IsTrue(target.CreatedForm);
@@ -203,6 +204,61 @@ Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par
 \cf1 Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par
 Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par
 \cf3 Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par
+\cf0\highlight0\f1\par
+}";
+                Assert.IsTrue(rtfText.Contains(expectedRtf), "Invalid RTF: " + rtfText);
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+            }
+        }
+
+        [TestMethod]
+        public void CustomWordRowColoringTest()
+        {
+            try
+            {
+                RichTextBoxTarget target = new RichTextBoxTarget()
+                {
+                    ControlName = "Control1",
+                    Layout = "${level} ${logger} ${message}",
+                    ShowMinimized = true,
+                    ToolWindow = false,
+                    WordColoringRules =
+                    {
+                        new RichTextBoxWordColoringRule("zzz", "Red", "Empty"),
+                        new RichTextBoxWordColoringRule("aaa", "Green", "Empty"),
+                    }
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+                logger.Fatal("Test zzz");
+                logger.Error("Foo xxx");
+                logger.Warn("Bar yyy");
+                logger.Info("Test aaa");
+                logger.Debug("Foo zzz");
+                logger.Trace("Bar ccc");
+
+                Application.DoEvents();
+
+                var form = target.TargetForm;
+
+                MemoryStream ms = new MemoryStream();
+                target.TargetRichTextBox.SaveFile(ms, RichTextBoxStreamType.RichText);
+                string rtfText = Encoding.UTF8.GetString(ms.GetBuffer());
+
+                Assert.IsTrue(target.CreatedForm);
+
+                // "zzz" string will be highlighted
+
+                string expectedRtf = @"{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red255\green0\blue0;\red0\green128\blue0;}
+\viewkind4\uc1\pard\cf1\highlight2\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test \cf3\f1 zzz\cf1\f0\par
+Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo xxx\par
+Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar yyy\par
+Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test \cf4\f1 aaa\cf1\f0\par
+Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo \cf3\f1 zzz\cf1\f0\par
+Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par
 \cf0\highlight0\f1\par
 }";
                 Assert.IsTrue(rtfText.Contains(expectedRtf), "Invalid RTF: " + rtfText);
@@ -238,14 +294,14 @@ Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par
                     AutoScroll = true,
                 };
 
-                var form = target.Form;
+                var form = target.TargetForm;
                 SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
                 for (int i = 0; i < 100; ++i)
                 {
                     logger.Info("Test");
                     Application.DoEvents();
-                    Assert.AreEqual(target.RichTextBox.SelectionStart, target.RichTextBox.TextLength);
-                    Assert.AreEqual(target.RichTextBox.SelectionLength, 0);
+                    Assert.AreEqual(target.TargetRichTextBox.SelectionStart, target.TargetRichTextBox.TextLength);
+                    Assert.AreEqual(target.TargetRichTextBox.SelectionLength, 0);
                 }
             }
             finally
@@ -271,7 +327,7 @@ Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par
                 Assert.AreEqual(0, target.MaxLines);
                 target.MaxLines = 7;
 
-                var form = target.Form;
+                var form = target.TargetForm;
                 SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
                 for (int i = 0; i < 100; ++i)
                 {
@@ -281,7 +337,7 @@ Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par
                 Application.DoEvents();
                 string expectedText = "Test 93\nTest 94\nTest 95\nTest 96\nTest 97\nTest 98\nTest 99\n";
 
-                Assert.AreEqual(expectedText, target.RichTextBox.Text);
+                Assert.AreEqual(expectedText, target.TargetRichTextBox.Text);
             }
             finally
             {
@@ -310,6 +366,149 @@ Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par
                 Assert.AreEqual(expectedRules[i].FontColor, actualRules[i].FontColor);
                 Assert.AreEqual(expectedRules[i].Condition.ToString(), actualRules[i].Condition.ToString());
                 Assert.AreEqual(expectedRules[i].Style, actualRules[i].Style);
+            }
+        }
+
+        [TestMethod]
+        public void ActiveFormTest()
+        {
+            RichTextBoxTarget target = new RichTextBoxTarget()
+            {
+                FormName = "MyForm1",
+                ControlName = "Control1",
+                UseDefaultRowColoringRules = true,
+                Layout = "${level} ${logger} ${message}",
+                ToolWindow = false,
+                Width = 300,
+                Height = 200,
+            };
+
+            using (Form form = new Form())
+            {
+                form.Name = "MyForm1";
+                form.WindowState = FormWindowState.Minimized;
+
+                RichTextBox rtb = new RichTextBox();
+                rtb.Dock = DockStyle.Fill;
+                rtb.Name = "Control1";
+                form.Controls.Add(rtb);
+                form.Shown += (sender, e) =>
+                    {
+                        ((ISupportsInitialize)target).Initialize();
+                        form.Activate();
+                        Application.DoEvents();
+                        Assert.AreSame(form, target.TargetForm);
+                        Assert.AreSame(rtb, target.TargetRichTextBox);
+                        form.Close();
+                    };
+
+                form.ShowDialog();
+                Application.DoEvents();
+            }
+        }
+
+        [TestMethod]
+        public void ActiveFormTest2()
+        {
+            RichTextBoxTarget target = new RichTextBoxTarget()
+            {
+                FormName = "MyForm2",
+                ControlName = "Control1",
+                UseDefaultRowColoringRules = true,
+                Layout = "${level} ${logger} ${message}",
+                ToolWindow = false,
+                Width = 300,
+                Height = 200,
+            };
+
+            using (Form form = new Form())
+            {
+                form.Name = "MyForm1";
+                form.WindowState = FormWindowState.Minimized;
+
+                RichTextBox rtb = new RichTextBox();
+                rtb.Dock = DockStyle.Fill;
+                rtb.Name = "Control1";
+                form.Controls.Add(rtb);
+                form.Show();
+                using (Form form1 = new Form())
+                {
+                    form1.Name = "MyForm2";
+                    RichTextBox rtb2 = new RichTextBox();
+                    rtb2.Dock = DockStyle.Fill;
+                    rtb2.Name = "Control1";
+                    form1.Controls.Add(rtb2);
+                    form1.Show();
+                    form1.Activate();
+
+                    ((ISupportsInitialize)target).Initialize();
+                    Assert.AreSame(form1, target.TargetForm);
+                    Assert.AreSame(rtb2, target.TargetRichTextBox);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void ActiveFormNegativeTest1()
+        {
+            RichTextBoxTarget target = new RichTextBoxTarget()
+            {
+                FormName = "MyForm1",
+                ControlName = "Control1",
+                UseDefaultRowColoringRules = true,
+                Layout = "${level} ${logger} ${message}",
+                ToolWindow = false,
+                Width = 300,
+                Height = 200,
+            };
+
+            using (Form form = new Form())
+            {
+                form.Name = "MyForm1";
+                form.WindowState = FormWindowState.Minimized;
+
+                //RichTextBox rtb = new RichTextBox();
+                //rtb.Dock = DockStyle.Fill;
+                //rtb.Name = "Control1";
+                //form.Controls.Add(rtb);
+                form.Show();
+                try
+                {
+                    ((ISupportsInitialize)target).Initialize();
+                    Assert.Fail("Expected exception.");
+                }
+                catch (NLogConfigurationException ex)
+                {
+                    Assert.AreEqual("Rich text box control 'Control1' cannot be found on form 'MyForm1'.", ex.Message);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void ActiveFormNegativeTest2()
+        {
+            RichTextBoxTarget target = new RichTextBoxTarget()
+            {
+                FormName = "MyForm1",
+                UseDefaultRowColoringRules = true,
+                Layout = "${level} ${logger} ${message}",
+            };
+
+            using (Form form = new Form())
+            {
+                form.Name = "MyForm1";
+                form.WindowState = FormWindowState.Minimized;
+                form.Show();
+
+                try
+                {
+                    ((ISupportsInitialize)target).Initialize();
+                    Assert.Fail("Expected exception.");
+                }
+                catch (NLogConfigurationException ex)
+                {
+                    Assert.AreEqual("Rich text box control name must be specified for RichTextBoxTarget.", ex.Message);
+                }
             }
         }
     }
