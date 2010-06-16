@@ -40,6 +40,7 @@ namespace NLog.Targets
     /// <summary>
     /// Writes log messages to the ASP.NET trace.
     /// </summary>
+    /// <seealso href="http://nlog-project.org/wiki/AspNetTrace_target">Documentation on NLog Wiki</seealso>
     /// <remarks>
     /// Log entries can then be viewed by navigating to http://server/path/Trace.axd.
     /// </remarks>

@@ -44,6 +44,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Impersonates another user for the duration of the write.
     /// </summary>
+    /// <seealso href="http://nlog-project.org/wiki/ImpersonatingWrapper_target">Documentation on NLog Wiki</seealso>
     [Target("ImpersonatingWrapper", IsWrapper = true)]
     public class ImpersonatingTargetWrapper : WrapperTargetBase
     {

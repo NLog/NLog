@@ -45,6 +45,7 @@ namespace NLog.Targets
     /// <summary>
     /// Writes log messages to the console with customizable coloring.
     /// </summary>
+    /// <seealso href="http://nlog-project.org/wiki/ColoredConsole_target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 

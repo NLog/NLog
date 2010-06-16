@@ -46,6 +46,7 @@ using System.Windows.Browser;
     /// <summary>
     /// Pops up log messages as message boxes.
     /// </summary>
+    /// <seealso href="http://nlog-project.org/wiki/MessageBox_target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 

@@ -40,6 +40,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// A target that buffers log events and sends them in batches to the wrapped target.
     /// </summary>
+    /// <seealso href="http://nlog-project.org/wiki/BufferingWrapper_target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 

@@ -38,6 +38,7 @@ namespace NLog.Targets
     /// <summary>
     /// Writes log messages to an ArrayList in memory for programmatic retrieval.
     /// </summary>
+    /// <seealso href="http://nlog-project.org/wiki/Memory_target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 

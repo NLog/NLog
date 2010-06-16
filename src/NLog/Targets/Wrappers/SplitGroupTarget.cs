@@ -40,6 +40,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Writes log events to all targets.
     /// </summary>
+    /// <seealso href="http://nlog-project.org/wiki/SplitGroup_target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>This example causes the messages to be written to both file1.txt or file2.txt 
     /// </p>

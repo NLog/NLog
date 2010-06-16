@@ -41,6 +41,7 @@ namespace NLog.Targets
     /// <summary>
     /// Sends log messages to the remote instance of NLog Viewer. 
     /// </summary>
+    /// <seealso href="http://nlog-project.org/wiki/NLogViewer_target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 

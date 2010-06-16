@@ -38,6 +38,7 @@ namespace NLog.Targets
     /// <summary>
     /// Mock target - useful for testing.
     /// </summary>
+    /// <seealso href="http://nlog-project.org/wiki/Debug_target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 
