@@ -56,8 +56,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 RetryDelayMilliseconds = 1,
             };
 
-            ((ISupportsInitialize)wrapper).Initialize();
-            ((ISupportsInitialize)target).Initialize();
+            wrapper.Initialize();
+            target.Initialize();
 
             var events = new LogEventInfo[]
             {
@@ -106,8 +106,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 RetryDelayMilliseconds = 1,
             };
 
-            ((ISupportsInitialize)wrapper).Initialize();
-            ((ISupportsInitialize)target).Initialize();
+            wrapper.Initialize();
+            target.Initialize();
 
             var events = new LogEventInfo[]
             {

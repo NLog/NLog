@@ -450,9 +450,9 @@ namespace NLog.Targets
         /// Initializes file logging by creating data structures that
         /// enable efficient multi-file logging.
         /// </summary>
-        protected override void Initialize()
+        protected override void InitializeTarget()
         {
-            base.Initialize();
+            base.InitializeTarget();
 
             if (!this.KeepFileOpen)
             {
@@ -541,9 +541,9 @@ namespace NLog.Targets
         /// <summary>
         /// Closes the file(s) opened for writing.
         /// </summary>
-        protected override void Close()
+        protected override void CloseTarget()
         {
-            base.Close();
+            base.CloseTarget();
 
             foreach (string fileName in new List<string>(this.initializedFiles.Keys))
             {

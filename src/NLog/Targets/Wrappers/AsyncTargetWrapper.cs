@@ -170,9 +170,9 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes the target by starting the lazy writer timer.
         /// </summary>
-        protected override void Initialize()
+        protected override void InitializeTarget()
         {
-            base.Initialize();
+            base.InitializeTarget();
             this.RequestQueue.Clear();
             this.lazyWriterTimer = new Timer(this.ProcessPendingEvents, null, Timeout.Infinite, Timeout.Infinite);
             this.StartLazyWriterTimer();
@@ -181,10 +181,10 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Shuts down the lazy writer timer.
         /// </summary>
-        protected override void Close()
+        protected override void CloseTarget()
         {
             this.StopLazyWriterThread();
-            base.Close();
+            base.CloseTarget();
         }
 
         /// <summary>

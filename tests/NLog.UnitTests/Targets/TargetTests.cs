@@ -47,7 +47,7 @@ namespace NLog.UnitTests.Targets
         public void InitializeTest()
         {
             var target = new MyTarget();
-            ((ISupportsInitialize)target).Initialize();
+            target.Initialize();
 
             // initialize was called once
             Assert.AreEqual(1, target.InitializeCount);
@@ -58,8 +58,8 @@ namespace NLog.UnitTests.Targets
         public void DoubleInitializeTest()
         {
             var target = new MyTarget();
-            ((ISupportsInitialize)target).Initialize();
-            ((ISupportsInitialize)target).Initialize();
+            target.Initialize();
+            target.Initialize();
 
             // initialize was called once
             Assert.AreEqual(1, target.InitializeCount);
@@ -70,9 +70,9 @@ namespace NLog.UnitTests.Targets
         public void DoubleCloseTest()
         {
             var target = new MyTarget();
-            ((ISupportsInitialize)target).Initialize();
-            ((ISupportsInitialize)target).Close();
-            ((ISupportsInitialize)target).Close();
+            target.Initialize();
+            target.Close();
+            target.Close();
 
             // initialize and close were called once each
             Assert.AreEqual(1, target.InitializeCount);
@@ -84,7 +84,7 @@ namespace NLog.UnitTests.Targets
         public void CloseWithoutInitializeTest()
         {
             var target = new MyTarget();
-            ((ISupportsInitialize)target).Close();
+            target.Close();
 
             // nothing was called
             Assert.AreEqual(0, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
@@ -108,8 +108,8 @@ namespace NLog.UnitTests.Targets
         public void WriteOnClosedTargetTest()
         {
             var target = new MyTarget();
-            ((ISupportsInitialize)target).Initialize();
-            ((ISupportsInitialize)target).Close();
+            target.Initialize();
+            target.Close();
 
             List<Exception> exceptions = new List<Exception>();
             target.WriteLogEvent(LogEventInfo.CreateNullEvent(), exceptions.Add);
@@ -131,7 +131,7 @@ namespace NLog.UnitTests.Targets
         {
             var target = new MyTarget();
             List<Exception> exceptions = new List<Exception>();
-            ((ISupportsInitialize)target).Initialize();
+            target.Initialize();
             target.Flush(exceptions.Add);
 
             // flush was called
@@ -159,8 +159,8 @@ namespace NLog.UnitTests.Targets
         public void FlushOnClosedTargetTest()
         {
             var target = new MyTarget();
-            ((ISupportsInitialize)target).Initialize();
-            ((ISupportsInitialize)target).Close();
+            target.Initialize();
+            target.Close();
             Assert.AreEqual(1, target.InitializeCount);
             Assert.AreEqual(1, target.CloseCount);
 
@@ -178,7 +178,7 @@ namespace NLog.UnitTests.Targets
         public void LockingTest()
         {
             var target = new MyTarget();
-            ((ISupportsInitialize)target).Initialize();
+            target.Initialize();
 
             var mre = new ManualResetEvent(false);
 
@@ -201,14 +201,14 @@ namespace NLog.UnitTests.Targets
             });
 
 
-            ((ISupportsInitialize)target).Initialize();
+            target.Initialize();
             t.Start();
             Thread.Sleep(50);
             List<Exception> exceptions = new List<Exception>();
             target.WriteLogEvent(LogEventInfo.CreateNullEvent(), exceptions.Add);
             target.WriteLogEvents(new[] { LogEventInfo.CreateNullEvent(), LogEventInfo.CreateNullEvent() }, new AsyncContinuation[] { exceptions.Add, exceptions.Add });
             target.Flush(exceptions.Add);
-            ((ISupportsInitialize)target).Close();
+            target.Close();
 
             exceptions.ForEach(Assert.IsNull);
 
@@ -230,18 +230,18 @@ namespace NLog.UnitTests.Targets
             public int WriteCount2 { get; set; }
             public int WriteCount3 { get; set; }
 
-            protected override void Initialize()
+            protected override void InitializeTarget()
             {
                 Assert.AreEqual(0, this.inBlockingOperation);
                 this.InitializeCount++;
-                base.Initialize();
+                base.InitializeTarget();
             }
 
-            protected override void Close()
+            protected override void CloseTarget()
             {
                 Assert.AreEqual(0, this.inBlockingOperation);
                 this.CloseCount++;
-                base.Close();
+                base.CloseTarget();
             }
 
             protected override void FlushAsync(Internal.AsyncContinuation asyncContinuation)

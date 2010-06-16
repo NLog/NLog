@@ -185,9 +185,9 @@ namespace NLog.Targets
         /// <summary>
         /// Closes the target.
         /// </summary>
-        protected override void Close()
+        protected override void CloseTarget()
         {
-            base.Close();
+            base.CloseTarget();
             if (this.sender != null)
             {
                 this.sender.Close();

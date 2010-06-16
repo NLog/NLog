@@ -138,9 +138,9 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes the target.
         /// </summary>
-        protected override void Initialize()
+        protected override void InitializeTarget()
         {
-            base.Initialize();
+            base.InitializeTarget();
             this.buffer = new LogEventInfoBuffer(this.BufferSize, false, 0);
             this.flushTimer = new Timer(this.FlushCallback, null, -1, -1);
         }
@@ -148,9 +148,9 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Closes the target by flushing pending events in the buffer (if any).
         /// </summary>
-        protected override void Close()
+        protected override void CloseTarget()
         {
-            base.Close();
+            base.CloseTarget();
             if (this.flushTimer != null)
             {
                 this.flushTimer.Dispose();

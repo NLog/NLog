@@ -56,10 +56,10 @@ namespace NLog.UnitTests.Targets.Wrappers
                 Targets = { myTarget1, myTarget2, myTarget3 },
             };
 
-            ((ISupportsInitialize)myTarget1).Initialize();
-            ((ISupportsInitialize)myTarget2).Initialize();
-            ((ISupportsInitialize)myTarget3).Initialize();
-            ((ISupportsInitialize)wrapper).Initialize();
+            myTarget1.Initialize();
+            myTarget2.Initialize();
+            myTarget3.Initialize();
+            wrapper.Initialize();
 
             List<Exception> exceptions = new List<Exception>();
 
@@ -102,7 +102,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 // empty target list
             };
 
-            ((ISupportsInitialize)wrapper).Initialize();
+            wrapper.Initialize();
 
             List<Exception> exceptions = new List<Exception>();
 

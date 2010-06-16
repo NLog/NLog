@@ -113,9 +113,9 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes the target.
         /// </summary>
-        protected override void Initialize()
+        protected override void InitializeTarget()
         {
-            base.Initialize();
+            base.InitializeTarget();
             this.CreateEventSourceIfNeeded();
         }
 

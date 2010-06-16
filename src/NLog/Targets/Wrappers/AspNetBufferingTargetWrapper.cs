@@ -166,9 +166,9 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes the target by hooking up the NLogHttpModule BeginRequest and EndRequest events.
         /// </summary>
-        protected override void Initialize()
+        protected override void InitializeTarget()
         {
-            base.Initialize();
+            base.InitializeTarget();
 
             NLogHttpModule.BeginRequest += this.OnBeginRequest;
             NLogHttpModule.EndRequest += this.OnEndRequest;
@@ -177,11 +177,11 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Closes the target by flushing pending events in the buffer (if any).
         /// </summary>
-        protected override void Close()
+        protected override void CloseTarget()
         {
             NLogHttpModule.BeginRequest -= this.OnBeginRequest;
             NLogHttpModule.EndRequest -= this.OnEndRequest;
-            base.Close();
+            base.CloseTarget();
         }
 
         /// <summary>

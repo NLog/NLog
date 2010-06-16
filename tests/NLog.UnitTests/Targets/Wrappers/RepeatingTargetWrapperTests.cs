@@ -52,8 +52,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = target,
                 RepeatCount = 3,
             };
-            ((ISupportsInitialize)wrapper).Initialize();
-            ((ISupportsInitialize)target).Initialize();
+            wrapper.Initialize();
+            target.Initialize();
 
             var events = new LogEventInfo[]
             {
@@ -97,8 +97,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = target,
                 RepeatCount = 3,
             };
-            ((ISupportsInitialize)wrapper).Initialize();
-            ((ISupportsInitialize)target).Initialize();
+            wrapper.Initialize();
+            target.Initialize();
 
             var events = new LogEventInfo[]
             {

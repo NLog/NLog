@@ -120,7 +120,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes the impersonation context.
         /// </summary>
-        protected override void Initialize()
+        protected override void InitializeTarget()
         {
             if (!this.RevertToSelf)
             {
@@ -129,18 +129,18 @@ namespace NLog.Targets.Wrappers
 
             using (this.DoImpersonate())
             {
-                base.Initialize();
+                base.InitializeTarget();
             }
         }
 
         /// <summary>
         /// Closes the impersonation context.
         /// </summary>
-        protected override void Close()
+        protected override void CloseTarget()
         {
             using (this.DoImpersonate())
             {
-                base.Close();
+                base.CloseTarget();
             }
 
             if (this.existingTokenHandle != IntPtr.Zero)

@@ -61,9 +61,9 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes the target.
         /// </summary>
-        protected override void Initialize()
+        protected override void InitializeTarget()
         {
-            base.Initialize();
+            base.InitializeTarget();
             if (Header != null)
             {
                 Debugger.Log(LogLevel.Off.Ordinal, string.Empty, Header.Render(LogEventInfo.CreateNullEvent()) + "\n");
@@ -73,14 +73,14 @@ namespace NLog.Targets
         /// <summary>
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
-        protected override void Close()
+        protected override void CloseTarget()
         {
             if (Footer != null)
             {
                 Debugger.Log(LogLevel.Off.Ordinal, string.Empty, Footer.Render(LogEventInfo.CreateNullEvent()) + "\n");
             }
 
-            base.Close();
+            base.CloseTarget();
         }
 
         /// <summary>

@@ -68,8 +68,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = wrapped,
             };
 
-            ((ISupportsInitialize)wrapper).Initialize();
-            ((ISupportsInitialize)wrapped).Initialize();
+            wrapper.Initialize();
+            wrapped.Initialize();
 
             wrapper.Flush(ex => { });
             Assert.AreEqual(1, wrapped.FlushCount);
@@ -81,7 +81,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Exception lastException = null;
             var wrapper = new MyWrapper();
             wrapper.WrappedTarget = new MyWrappedTarget();
-            ((ISupportsInitialize)wrapper).Initialize();
+            wrapper.Initialize();
             wrapper.WriteLogEvent(LogEventInfo.CreateNullEvent(), ex => lastException = ex);
             Assert.IsNotNull(lastException);
             Assert.IsInstanceOfType(lastException, typeof(NotSupportedException));

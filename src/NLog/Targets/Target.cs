@@ -70,13 +70,13 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        void ISupportsInitialize.Initialize()
+        public void Initialize()
         {
             lock (this.SyncRoot)
             {
                 if (!this.IsInitialized)
                 {
-                    this.Initialize();
+                    this.InitializeTarget();
                     this.IsInitialized = true;
                 }
             }
@@ -85,13 +85,13 @@ namespace NLog.Targets
         /// <summary>
         /// Closes this instance.
         /// </summary>
-        void ISupportsInitialize.Close()
+        public void Close()
         {
             lock (this.SyncRoot)
             {
                 if (this.IsInitialized)
                 {
-                    this.Close();
+                    this.CloseTarget();
                     this.IsInitialized = false;
                 }
             }
@@ -102,7 +102,7 @@ namespace NLog.Targets
         /// </summary>
         void IDisposable.Dispose()
         {
-            this.Close();
+            this.CloseTarget();
             GC.SuppressFinalize(true);
         }
 
@@ -255,7 +255,7 @@ namespace NLog.Targets
         /// <summary>
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
-        protected virtual void Close()
+        protected virtual void CloseTarget()
         {
         }
 
@@ -272,7 +272,7 @@ namespace NLog.Targets
         /// Initializes the target. Can be used by inheriting classes
         /// to initialize logging.
         /// </summary>
-        protected virtual void Initialize()
+        protected virtual void InitializeTarget()
         {
             this.GetAllLayouts();
         }

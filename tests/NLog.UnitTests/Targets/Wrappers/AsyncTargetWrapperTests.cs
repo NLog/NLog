@@ -78,8 +78,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 WrappedTarget = myTarget,
             };
-            ((ISupportsInitialize)targetWrapper).Initialize();
-            ((ISupportsInitialize)myTarget).Initialize();
+            targetWrapper.Initialize();
+            myTarget.Initialize();
 
             var logEvent = new LogEventInfo();
             Exception lastException = null;
@@ -114,8 +114,8 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             var myTarget = new MyAsyncTarget();
             var targetWrapper = new AsyncTargetWrapper(myTarget);
-            ((ISupportsInitialize)targetWrapper).Initialize();
-            ((ISupportsInitialize)myTarget).Initialize();
+            targetWrapper.Initialize();
+            myTarget.Initialize();
             var logEvent = new LogEventInfo();
             Exception lastException = null;
             var continuationHit = new ManualResetEvent(false);
@@ -148,8 +148,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             };
 
             var targetWrapper = new AsyncTargetWrapper(myTarget);
-            ((ISupportsInitialize)targetWrapper).Initialize();
-            ((ISupportsInitialize)myTarget).Initialize();
+            targetWrapper.Initialize();
+            myTarget.Initialize();
             var logEvent = new LogEventInfo();
             Exception lastException = null;
             var continuationHit = new ManualResetEvent(false);
@@ -194,8 +194,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 OverflowAction = AsyncTargetWrapperOverflowAction.Grow,
             };
 
-            ((ISupportsInitialize)targetWrapper).Initialize();
-            ((ISupportsInitialize)myTarget).Initialize();
+            targetWrapper.Initialize();
+            myTarget.Initialize();
 
             List<Exception> exceptions = new List<Exception>();
 
@@ -267,15 +267,15 @@ namespace NLog.UnitTests.Targets.Wrappers
                 TimeToSleepBetweenBatches = 1000,
             };
 
-            ((ISupportsInitialize)targetWrapper).Initialize();
-            ((ISupportsInitialize)myTarget).Initialize();
+            targetWrapper.Initialize();
+            myTarget.Initialize();
 
             bool continuationHit = false;
 
             targetWrapper.WriteLogEvent(LogEventInfo.CreateNullEvent(), ex => { continuationHit = true; });
 
             // quickly close the target before the timer elapses
-            ((ISupportsInitialize)targetWrapper).Close();
+            targetWrapper.Close();
 
             // continuation will not be hit because the thread is down.
             Thread.Sleep(1000);
@@ -291,7 +291,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 TimeToSleepBetweenBatches = 500,
             };
 
-            ((ISupportsInitialize)targetWrapper).Initialize();
+            targetWrapper.Initialize();
 
             // don't set wrapped taret - will cause exception on the timer thread
             string internalLog = RunAndCaptureInternalLog(
@@ -302,7 +302,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 },
                 LogLevel.Trace);
 
-            ((ISupportsInitialize)targetWrapper).Close();
+            targetWrapper.Close();
             Assert.IsTrue(internalLog.StartsWith("Error Error in lazy writer timer procedure: System.NullReferenceException", StringComparison.Ordinal), internalLog);
         }
 

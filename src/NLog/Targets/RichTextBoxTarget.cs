@@ -229,7 +229,7 @@ namespace NLog.Targets
         /// Initializes the target. Can be used by inheriting classes
         /// to initialize logging.
         /// </summary>
-        protected override void Initialize()
+        protected override void InitializeTarget()
         {
             if (this.FormName == null)
             {
@@ -264,7 +264,7 @@ namespace NLog.Targets
         /// <summary>
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
-        protected override void Close()
+        protected override void CloseTarget()
         {
             if (this.CreatedForm)
             {

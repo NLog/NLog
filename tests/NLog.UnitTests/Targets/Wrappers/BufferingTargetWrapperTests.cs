@@ -53,8 +53,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 BufferSize = 10,
             };
 
-            ((ISupportsInitialize)myTarget).Initialize();
-            ((ISupportsInitialize)targetWrapper).Initialize();
+            myTarget.Initialize();
+            targetWrapper.Initialize();
 
             int totalEvents = 100;
 
@@ -153,8 +153,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(19, myTarget.WriteCount);
             Assert.AreEqual(2, myTarget.FlushCount);
 
-            ((ISupportsInitialize)targetWrapper).Close();
-            ((ISupportsInitialize)myTarget).Close();
+            targetWrapper.Close();
+            myTarget.Close();
         }
 
         [TestMethod]
@@ -168,8 +168,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 FlushTimeout = 1000,
             };
 
-            ((ISupportsInitialize)myTarget).Initialize();
-            ((ISupportsInitialize)targetWrapper).Initialize();
+            myTarget.Initialize();
+            targetWrapper.Initialize();
 
             int totalEvents = 100;
 
@@ -240,8 +240,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 BufferSize = 10,
             };
 
-            ((ISupportsInitialize)myTarget).Initialize();
-            ((ISupportsInitialize)targetWrapper).Initialize();
+            myTarget.Initialize();
+            targetWrapper.Initialize();
 
             int totalEvents = 100;
 
@@ -339,8 +339,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(2, myTarget.BufferedWriteCount);
             Assert.AreEqual(19, myTarget.BufferedTotalEvents);
 
-            ((ISupportsInitialize)targetWrapper).Close();
-            ((ISupportsInitialize)myTarget).Close();
+            targetWrapper.Close();
+            myTarget.Close();
         }
 
         class MyAsyncTarget : Target
