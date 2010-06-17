@@ -35,6 +35,8 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
+
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -175,26 +177,25 @@ namespace NLog.Targets
         /// Writes the log to the target.
         /// </summary>
         /// <param name="logEvent">Log event to write.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        public void WriteLogEvent(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        public void WriteAsyncLogEvent(AsyncLogEventInfo logEvent)
         {
             lock (this.SyncRoot)
             {
                 if (!this.IsInitialized)
                 {
-                    asyncContinuation(null);
+                    logEvent.Continuation(null);
                     return;
                 }
 
-                asyncContinuation = AsyncHelpers.OneTimeOnly(asyncContinuation);
+                var wrappedContinuation = AsyncHelpers.OneTimeOnly(logEvent.Continuation);
 
                 try
                 {
-                    this.Write(logEvent, asyncContinuation);
+                    this.Write(logEvent.LogEvent.WithContinuation(wrappedContinuation));
                 }
                 catch (Exception ex)
                 {
-                    asyncContinuation(ex);
+                    wrappedContinuation(ex);
                 }
             }
         }
@@ -203,43 +204,42 @@ namespace NLog.Targets
         /// Writes the array of log events.
         /// </summary>
         /// <param name="logEvents">The log events.</param>
-        /// <param name="asyncContinuations">The asynchronous continuations.</param>
-        public void WriteLogEvents(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
+        public void WriteAsyncLogEvents(params AsyncLogEventInfo[] logEvents)
         {
             lock (this.SyncRoot)
             {
                 if (!this.IsInitialized)
                 {
-                    foreach (var cont in asyncContinuations)
+                    foreach (var ev in logEvents)
                     {
-                        cont(null);
+                        ev.Continuation(null);
                     }
 
                     return;
                 }
 
-                var continuations = new AsyncContinuation[asyncContinuations.Length];
-                for (int i = 0; i < continuations.Length; ++i)
+                var wrappedEvents = new AsyncLogEventInfo[logEvents.Length];
+                for (int i = 0; i < logEvents.Length; ++i)
                 {
-                    continuations[i] = AsyncHelpers.OneTimeOnly(asyncContinuations[i]);
+                    wrappedEvents[i] = logEvents[i].LogEvent.WithContinuation(AsyncHelpers.OneTimeOnly(logEvents[i].Continuation));
                 }
 
                 try
                 {
-                    this.Write(logEvents, continuations);
+                    this.Write(wrappedEvents);
                 }
                 catch (Exception ex)
                 {
                     // in case of synchronous failure, assume that nothing is running asynchronously
-                    foreach (AsyncContinuation cont in continuations)
+                    foreach (var ev in wrappedEvents)
                     {
-                        cont(ex);
+                        ev.Continuation(ex);
                     }
                 }
             }
         }
 
-        internal void WriteLogEvents(LogEventInfo[] logEventInfos, AsyncContinuation[] asyncContinuations, AsyncContinuation continuation)
+        internal void WriteAsyncLogEvents(AsyncLogEventInfo[] logEventInfos, AsyncContinuation continuation)
         {
             if (logEventInfos.Length == 0)
             {
@@ -247,8 +247,24 @@ namespace NLog.Targets
             }
             else
             {
-                var wrappedContinuations = AsyncHelpers.AfterAllComplete(asyncContinuations, continuation);
-                this.WriteLogEvents(logEventInfos, wrappedContinuations);
+                var wrappedLogEventInfos = new AsyncLogEventInfo[logEventInfos.Length];
+                int remaining = logEventInfos.Length;
+                for (int i = 0; i < logEventInfos.Length; ++i)
+                {
+                    AsyncContinuation originalContinuation = logEventInfos[i].Continuation;
+                    AsyncContinuation wrappedContinuation = ex =>
+                                                                {
+                                                                    originalContinuation(ex);
+                                                                    if (0 == Interlocked.Decrement(ref remaining))
+                                                                    {
+                                                                        continuation(null);
+                                                                    }
+                                                                };
+
+                    wrappedLogEventInfos[i] = logEventInfos[i].LogEvent.WithContinuation(wrappedContinuation);
+                }
+
+                this.WriteAsyncLogEvents(wrappedLogEventInfos);
             }
         }
 
@@ -291,17 +307,16 @@ namespace NLog.Targets
         /// classes.
         /// </summary>
         /// <param name="logEvent">Log event to be written out.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected virtual void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        protected virtual void Write(AsyncLogEventInfo logEvent)
         {
             try
             {
-                this.Write(logEvent);
-                asyncContinuation(null);
+                this.Write(logEvent.LogEvent);
+                logEvent.Continuation(null);
             }
             catch (Exception ex)
             {
-                asyncContinuation(ex);
+                logEvent.Continuation(ex);
             }
         }
 
@@ -311,12 +326,11 @@ namespace NLog.Targets
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
-        /// <param name="asyncContinuations">The asynchronous continuations.</param>
-        protected virtual void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
+        protected virtual void Write(AsyncLogEventInfo[] logEvents)
         {
             for (int i = 0; i < logEvents.Length; ++i)
             {
-                this.Write(logEvents[i], asyncContinuations[i]);
+                this.Write(logEvents[i]);
             }
         }
 

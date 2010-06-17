@@ -80,10 +80,9 @@ namespace NLog.Targets.Wrappers
         /// and calls <see cref="Target.Flush(AsyncContinuation)"/> on it.
         /// </summary>
         /// <param name="logEvent">Logging event to be written out.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.WrappedTarget.WriteLogEvent(logEvent, AsyncHelpers.PrecededBy(asyncContinuation, this.WrappedTarget.Flush));
+            this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(AsyncHelpers.PrecededBy(logEvent.Continuation, this.WrappedTarget.Flush)));
         }
     }
 }

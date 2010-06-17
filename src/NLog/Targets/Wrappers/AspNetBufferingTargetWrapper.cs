@@ -188,15 +188,14 @@ namespace NLog.Targets.Wrappers
         /// Adds the specified log event to the buffer.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.WrappedTarget.PrecalculateVolatileLayouts(logEvent);
+            this.WrappedTarget.PrecalculateVolatileLayouts(logEvent.LogEvent);
 
             LogEventInfoBuffer buffer = this.GetRequestBuffer();
             if (buffer != null)
             {
-                buffer.Append(logEvent, asyncContinuation);
+                buffer.Append(logEvent);
             }
         }
 
@@ -222,11 +221,10 @@ namespace NLog.Targets.Wrappers
             LogEventInfoBuffer buffer = this.GetRequestBuffer();
             if (buffer != null)
             {
-                LogEventInfo[] events;
-                AsyncContinuation[] asyncContinuations;
+                AsyncLogEventInfo[] events;
 
-                buffer.GetEventsAndClear(out events, out asyncContinuations);
-                this.WrappedTarget.WriteLogEvents(events, asyncContinuations);
+                buffer.GetEventsAndClear(out events);
+                this.WrappedTarget.WriteAsyncLogEvents(events);
             }
         }
     }

@@ -84,7 +84,6 @@ namespace NLog.Targets.Wrappers
         /// the <see cref="Targets"/> collection.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
         /// <remarks>
         /// The writes are routed in a round-robin fashion.
         /// The first log event goes to the first target, the second
@@ -92,11 +91,11 @@ namespace NLog.Targets.Wrappers
         /// first target when there are no more targets available.
         /// In general request N goes to Targets[N % Targets.Count].
         /// </remarks>
-        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        protected override void Write(AsyncLogEventInfo logEvent)
         {
             if (this.Targets.Count == 0)
             {
-                asyncContinuation(null);
+                logEvent.Continuation(null);
                 return;
             }
 
@@ -108,7 +107,7 @@ namespace NLog.Targets.Wrappers
                 this.currentTarget = (this.currentTarget + 1) % this.Targets.Count;
             }
 
-            this.Targets[selectedTarget].WriteLogEvent(logEvent, asyncContinuation);
+            this.Targets[selectedTarget].WriteAsyncLogEvent(logEvent);
         }
     }
 }

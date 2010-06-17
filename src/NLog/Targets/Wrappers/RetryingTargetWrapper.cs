@@ -99,8 +99,7 @@ namespace NLog.Targets.Wrappers
         /// Writes the specified log event to the wrapped target, retrying and pausing in case of an error.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        protected override void Write(AsyncLogEventInfo logEvent)
         {
             AsyncContinuation continuation = null;
             int counter = 0;
@@ -109,7 +108,7 @@ namespace NLog.Targets.Wrappers
                 {
                     if (ex == null)
                     {
-                        asyncContinuation(null);
+                        logEvent.Continuation(null);
                         return;
                     }
 
@@ -120,16 +119,16 @@ namespace NLog.Targets.Wrappers
                     if (retryNumber >= this.RetryCount)
                     {
                         InternalLogger.Warn("Too many retries. Aborting.");
-                        asyncContinuation(ex);
+                        logEvent.Continuation(ex);
                         return;
                     }
 
                     // sleep and try again
                     Thread.Sleep(this.RetryDelayMilliseconds);
-                    this.WrappedTarget.WriteLogEvent(logEvent, continuation);
+                    this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
                 };
 
-            this.WrappedTarget.WriteLogEvent(logEvent, continuation);
+            this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
         }
     }
 }

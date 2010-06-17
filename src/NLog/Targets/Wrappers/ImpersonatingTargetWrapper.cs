@@ -161,12 +161,11 @@ namespace NLog.Targets.Wrappers
         /// and switches the context back to original.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        protected override void Write(AsyncLogEventInfo logEvent)
         {
             using (this.DoImpersonate())
             {
-                this.WrappedTarget.WriteLogEvent(logEvent, asyncContinuation);
+                this.WrappedTarget.WriteAsyncLogEvent(logEvent);
             }
         }
 
@@ -175,12 +174,11 @@ namespace NLog.Targets.Wrappers
         /// and switches the context back to original.
         /// </summary>
         /// <param name="logEvents">Log events.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected override void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuation)
+        protected override void Write(AsyncLogEventInfo[] logEvents)
         {
             using (this.DoImpersonate())
             {
-                this.WrappedTarget.WriteLogEvents(logEvents, asyncContinuation);
+                this.WrappedTarget.WriteAsyncLogEvents(logEvents);
             }
         }
 

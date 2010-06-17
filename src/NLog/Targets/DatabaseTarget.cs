@@ -39,10 +39,12 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
+    using System.Globalization;
     using System.Reflection;
     using System.Text;
     using NLog.Common;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -69,9 +71,8 @@ namespace NLog.Targets
     {
         private static Assembly systemDataAssembly = typeof(IDbConnection).Assembly;
 
-        private Type connectionType = null;
         private IDbConnection activeConnection = null;
-        private string connectionStringCache = null;
+        private string activeConnectionString;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DatabaseTarget" /> class.
@@ -91,38 +92,7 @@ namespace NLog.Targets
         /// <docgen category='Connection Options' order='10' />
         [RequiredParameter]
         [DefaultValue("sqlserver")]
-        public string DbProvider
-        {
-            get
-            {
-                return this.connectionType.FullName;
-            }
-
-            set
-            {
-                switch (value)
-                {
-                    case "sqlserver":
-                    case "mssql":
-                    case "microsoft":
-                    case "msde":
-                        this.connectionType = systemDataAssembly.GetType("System.Data.SqlClient.SqlConnection");
-                        break;
-
-                    case "oledb":
-                        this.connectionType = systemDataAssembly.GetType("System.Data.OleDb.OleDbConnection");
-                        break;
-
-                    case "odbc":
-                        this.connectionType = systemDataAssembly.GetType("System.Data.Odbc.OdbcConnection");
-                        break;
-
-                    default:
-                        this.connectionType = Type.GetType(value);
-                        break;
-                }
-            }
-        }
+        public string DbProvider { get; set; }
 
         /// <summary>
         /// Gets or sets the connection string. When provided, it overrides the values
@@ -200,7 +170,57 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='SQL Statement' order='11' />
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
-        public ICollection<DatabaseParameterInfo> Parameters { get; private set; }
+        public IList<DatabaseParameterInfo> Parameters { get; private set; }
+
+        internal Type ConnectionType { get; set; }
+
+        internal ConstructorInfo ConnectionConstructorInfo { get; set; }
+
+        /// <summary>
+        /// Initializes the target. Can be used by inheriting classes
+        /// to initialize logging.
+        /// </summary>
+        protected override void InitializeTarget()
+        {
+            base.InitializeTarget();
+            switch (this.DbProvider.ToUpper(CultureInfo.InvariantCulture))
+            {
+                case "sqlserver":
+                case "mssql":
+                case "microsoft":
+                case "msde":
+                    this.ConnectionType = systemDataAssembly.GetType("System.Data.SqlClient.SqlConnection", true);
+                    break;
+
+                case "oledb":
+                    this.ConnectionType = systemDataAssembly.GetType("System.Data.OleDb.OleDbConnection", true);
+                    break;
+
+                case "odbc":
+                    this.ConnectionType = systemDataAssembly.GetType("System.Data.Odbc.OdbcConnection", true);
+                    break;
+
+                default:
+                    this.ConnectionType = Type.GetType(this.DbProvider, true);
+                    break;
+            }
+
+            this.ConnectionConstructorInfo = this.ConnectionType.GetConstructor(new[] { typeof(string) });
+            if (this.ConnectionType == null)
+            {
+                throw new NLogConfigurationException("Constructor with a string parameter not found on '" + this.ConnectionType.FullName + "' type.");
+            }
+        }
+
+        /// <summary>
+        /// Closes the target and releases any unmanaged resources.
+        /// </summary>
+        protected override void CloseTarget()
+        {
+            base.CloseTarget();
+
+            this.CloseConnection();
+        }
 
         /// <summary>
         /// Writes the specified logging event to the database. It creates
@@ -210,37 +230,80 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            if (this.KeepConnection)
+            try
             {
-                    if (this.activeConnection == null)
-                    {
-                        this.activeConnection = this.OpenConnection(logEvent);
-                    }
-
-                    this.DoWrite(logEvent);
+                string connectionString = this.BuildConnectionString(logEvent);
+                this.WriteEventToDatabase(logEvent, connectionString);
             }
-            else
+            catch (Exception ex)
             {
-                try
+                InternalLogger.Error("Error when writing to database {0}", ex);
+                this.CloseConnection();
+                throw;
+            }
+            finally
+            {
+                if (!this.KeepConnection)
                 {
-                    this.activeConnection = this.OpenConnection(logEvent);
-                    this.DoWrite(logEvent);
-                }
-                finally
-                {
-                    if (this.activeConnection != null)
-                    {
-                        this.activeConnection.Close();
-                        this.activeConnection = null;
-                    }
+                    this.CloseConnection();
                 }
             }
         }
 
-        private void DoWrite(LogEventInfo logEvent)
+        /// <summary>
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Write" method. Inheriting classes can use this method to
+        /// optimize batch writes.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        protected override void Write(AsyncLogEventInfo[] logEvents)
         {
+            string[] connectionStrings = new string[logEvents.Length];
+            for (int i = 0; i < logEvents.Length; ++i)
+            {
+                connectionStrings[i] = this.BuildConnectionString(logEvents[i].LogEvent);
+            }
+
+            var buckets = SortHelpers.BucketSort(connectionStrings, logEvents);
+
+            try
+            {
+                foreach (var kvp in buckets)
+                {
+                    string connectionString = kvp.Key;
+                    foreach (AsyncLogEventInfo ev in kvp.Value)
+                    {
+                        try
+                        {
+                            this.WriteEventToDatabase(ev.LogEvent, connectionString);
+                            ev.Continuation(null);
+                        }
+                        catch (Exception ex)
+                        {
+                            // in case of exception, close the connection and report it
+                            InternalLogger.Error("Error when writing to database {0}", ex);
+                            this.CloseConnection();
+                            ev.Continuation(ex);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (!this.KeepConnection)
+                {
+                    this.CloseConnection();
+                }
+            }
+        }
+
+        private void WriteEventToDatabase(LogEventInfo logEvent, string connectionString)
+        {
+            this.EnsureConnectionOpen(this.BuildConnectionString(logEvent));
+
             IDbCommand command = this.activeConnection.CreateCommand();
             command.CommandText = this.CommandText.Render(logEvent);
+
             foreach (DatabaseParameterInfo par in this.Parameters)
             {
                 IDbDataParameter p = command.CreateParameter();
@@ -265,17 +328,18 @@ namespace NLog.Targets
                     p.Scale = par.Scale;
                 }
 
-                p.Value = par.Layout.Render(logEvent);
+                string stringValue = par.Layout.Render(logEvent);
+
+                p.Value = stringValue;
                 command.Parameters.Add(p);
             }
 
             command.ExecuteNonQuery();
         }
 
-        private IDbConnection OpenConnection(LogEventInfo logEvent)
+        private IDbConnection OpenConnection(string connectionString)
         {
-            ConstructorInfo constructor = this.connectionType.GetConstructor(new Type[] { typeof(string) });
-            IDbConnection retVal = (IDbConnection)constructor.Invoke(new object[] { this.BuildConnectionString(logEvent) });
+            var retVal = (IDbConnection)this.ConnectionConstructorInfo.Invoke(new object[] { connectionString });
 
             if (retVal != null)
             {
@@ -287,11 +351,6 @@ namespace NLog.Targets
 
         private string BuildConnectionString(LogEventInfo logEvent)
         {
-            if (this.connectionStringCache != null)
-            {
-                return this.connectionStringCache;
-            }
-
             if (this.ConnectionString != null)
             {
                 return this.ConnectionString.Render(logEvent);
@@ -321,10 +380,36 @@ namespace NLog.Targets
                 sb.Append(this.DbDatabase.Render(logEvent));
             }
 
-            this.connectionStringCache = sb.ToString();
+            return sb.ToString();
+        }
 
-            InternalLogger.Debug("Connection string: {0}", this.connectionStringCache);
-            return this.connectionStringCache;
+        private void EnsureConnectionOpen(string connectionString)
+        {
+            if (this.activeConnection != null)
+            {
+                if (this.activeConnectionString != connectionString)
+                {
+                    this.CloseConnection();
+                }
+            }
+
+            if (this.activeConnection != null)
+            {
+                return;
+            }
+
+            this.activeConnection = this.OpenConnection(connectionString);
+            this.activeConnectionString = connectionString;
+        }
+
+        private void CloseConnection()
+        {
+            if (this.activeConnection != null)
+            {
+                this.activeConnection.Close();
+                this.activeConnection = null;
+                this.activeConnectionString = null;
+            }
         }
     }
 }

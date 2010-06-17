@@ -210,18 +210,16 @@ namespace NLog.Targets
         /// Renders the logging event message and adds it to the internal ArrayList of log messages.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.Write(new[] { logEvent }, new[] { asyncContinuation });
+            this.Write(new[] { logEvent });
         }
 
         /// <summary>
         /// Renders an array logging events.
         /// </summary>
         /// <param name="events">Array of logging events.</param>
-        /// <param name="asyncContinuations">The async continuations.</param>
-        protected override void Write(LogEventInfo[] events, AsyncContinuation[] asyncContinuations)
+        protected override void Write(AsyncLogEventInfo[] events)
         {
             if (events == null)
             {
@@ -238,7 +236,7 @@ namespace NLog.Targets
                 return;
             }
 
-            LogEventInfo lastEvent = events[events.Length - 1];
+            LogEventInfo lastEvent = events[events.Length - 1].LogEvent;
             string bodyText;
 
             // unbuffered case, create a local buffer, append header, body and footer
@@ -254,7 +252,7 @@ namespace NLog.Targets
 
             for (int i = 0; i < events.Length; ++i)
             {
-                bodyBuffer.Append(this.Layout.Render(events[i]));
+                bodyBuffer.Append(this.Layout.Render(events[i].LogEvent));
                 if (this.AddNewLines)
                 {
                     bodyBuffer.Append("\n");
@@ -289,9 +287,9 @@ namespace NLog.Targets
             InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, this.SmtpServer);
             client.Send(msg);
 
-            foreach (var cont in asyncContinuations)
+            foreach (var ev in events)
             {
-                cont(null);
+                ev.Continuation(null);
             }
         }
 

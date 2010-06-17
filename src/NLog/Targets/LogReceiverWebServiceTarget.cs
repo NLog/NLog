@@ -105,10 +105,9 @@ namespace NLog.Targets
         /// classes.
         /// </summary>
         /// <param name="logEvent">Logging event to be written out.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.Write(new[] { logEvent }, new[] { asyncContinuation });
+            this.Write(new[] { logEvent });
         }
 
         /// <summary>
@@ -117,22 +116,21 @@ namespace NLog.Targets
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
-        /// <param name="asyncContinuations">The asynchronous continuations.</param>
-        protected override void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
+        protected override void Write(AsyncLogEventInfo[] logEvents)
         {
             var networkLogEvents = this.TranslateLogEvents(logEvents);
 
-            this.Send(networkLogEvents, asyncContinuations);
+            this.Send(networkLogEvents, logEvents);
         }
 
-        private NLogEvents TranslateLogEvents(LogEventInfo[] logEvents)
+        private NLogEvents TranslateLogEvents(AsyncLogEventInfo[] logEvents)
         {
             var networkLogEvents = new NLogEvents
             {
                 ClientName = this.ClientID,
                 LayoutNames = new ListOfStrings(),
                 LoggerNames = new ListOfStrings(),
-                BaseTimeUtc = logEvents[0].TimeStamp.ToUniversalTime().Ticks
+                BaseTimeUtc = logEvents[0].LogEvent.TimeStamp.ToUniversalTime().Ticks
             };
 
             for (int i = 0; i < this.Parameters.Count; ++i)
@@ -143,13 +141,13 @@ namespace NLog.Targets
             networkLogEvents.Events = new NLogEvent[logEvents.Length];
             for (int i = 0; i < logEvents.Length; ++i)
             {
-                networkLogEvents.Events[i] = this.TranslateEvent(logEvents[i], networkLogEvents);
+                networkLogEvents.Events[i] = this.TranslateEvent(logEvents[i].LogEvent, networkLogEvents);
             }
 
             return networkLogEvents;
         }
 
-        private void Send(NLogEvents events, AsyncContinuation[] asyncContinuations)
+        private void Send(NLogEvents events, AsyncLogEventInfo[] asyncContinuations)
         {
 #if WCF_SUPPORTED
             WcfLogReceiverClient client;
@@ -168,9 +166,9 @@ namespace NLog.Targets
             client.ProcessLogMessagesCompleted += (sender, e) =>
                 {
                     // report error to the callers
-                    foreach (var cont in asyncContinuations)
+                    foreach (var ev in asyncContinuations)
                     {
-                        cont(e.Error);
+                        ev.Continuation(e.Error);
                     }
                 };
 

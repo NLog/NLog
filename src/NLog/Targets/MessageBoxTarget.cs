@@ -105,31 +105,30 @@ using System.Windows.Browser;
         /// parameter.
         /// </summary>
         /// <param name="logEvents">The array of logging events.</param>
-        /// <param name="asyncContinuations">The asynchronous continuations.</param>
-        protected override void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
+        protected override void Write(AsyncLogEventInfo[] logEvents)
         {
             if (logEvents.Length == 0)
             {
                 return;
             }
 
-            StringBuilder sb = new StringBuilder();
-            LogEventInfo lastLogEvent = logEvents[logEvents.Length - 1];
-            foreach (LogEventInfo ev in logEvents)
+            var sb = new StringBuilder();
+            var lastLogEvent = logEvents[logEvents.Length - 1];
+            foreach (var ev in logEvents)
             {
-                sb.Append(this.Layout.Render(ev));
+                sb.Append(this.Layout.Render(ev.LogEvent));
                 sb.Append("\n");
             }
 
 #if SILVERLIGHT
-            HtmlPage.Window.Alert(this.Caption.Render(lastLogEvent) + "\r\n\r\n" + sb.ToString());
+            HtmlPage.Window.Alert(this.Caption.Render(lastLogEvent.LogEvent) + "\r\n\r\n" + sb.ToString());
 #else
-            MessageBox.Show(sb.ToString(), this.Caption.Render(lastLogEvent));
+            MessageBox.Show(sb.ToString(), this.Caption.Render(lastLogEvent.LogEvent));
 #endif
 
-            for (int i = 0; i < asyncContinuations.Length; ++i)
+            for (int i = 0; i < logEvents.Length; ++i)
             {
-                asyncContinuations[i](null);
+                logEvents[i].Continuation(null);
             }
         }
     }

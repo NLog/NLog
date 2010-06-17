@@ -120,10 +120,9 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            LogEventInfo[] events;
-            AsyncContinuation[] asyncContinuations;
+            AsyncLogEventInfo[] events;
 
-            this.buffer.GetEventsAndClear(out events, out asyncContinuations);
+            this.buffer.GetEventsAndClear(out events);
 
             if (events.Length == 0)
             {
@@ -131,7 +130,7 @@ namespace NLog.Targets.Wrappers
             }
             else
             {
-                this.WrappedTarget.WriteLogEvents(events, asyncContinuations, ex => this.WrappedTarget.Flush(asyncContinuation));
+                this.WrappedTarget.WriteAsyncLogEvents(events, ex => this.WrappedTarget.Flush(asyncContinuation));
             }
         }
 
@@ -163,19 +162,17 @@ namespace NLog.Targets.Wrappers
         /// the buffer in case the buffer gets full.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.WrappedTarget.PrecalculateVolatileLayouts(logEvent);
+            this.WrappedTarget.PrecalculateVolatileLayouts(logEvent.LogEvent);
 
-            int count = this.buffer.Append(logEvent, asyncContinuation);
+            int count = this.buffer.Append(logEvent);
             if (count >= this.BufferSize)
             {
-                LogEventInfo[] events;
-                AsyncContinuation[] asyncContinuations;
+                AsyncLogEventInfo[] events;
 
-                this.buffer.GetEventsAndClear(out events, out asyncContinuations);
-                this.WrappedTarget.WriteLogEvents(events, asyncContinuations);
+                this.buffer.GetEventsAndClear(out events);
+                this.WrappedTarget.WriteAsyncLogEvents(events);
             }
             else
             {
@@ -192,13 +189,12 @@ namespace NLog.Targets.Wrappers
             {
                 if (this.IsInitialized)
                 {
-                    LogEventInfo[] events;
-                    AsyncContinuation[] continuations;
-
-                    this.buffer.GetEventsAndClear(out events, out continuations);
+                    AsyncLogEventInfo[] events;
+                    
+                    this.buffer.GetEventsAndClear(out events);
                     if (events.Length > 0)
                     {
-                        this.WrappedTarget.WriteLogEvents(events, continuations);
+                        this.WrappedTarget.WriteAsyncLogEvents(events);
                     }
                 }
             }

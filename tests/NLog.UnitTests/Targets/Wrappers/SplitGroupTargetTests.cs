@@ -75,7 +75,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             // no exceptions
             for (int i = 0; i < inputEvents.Count; ++i)
             {
-                wrapper.WriteLogEvent(inputEvents[i], ex =>
+                wrapper.WriteAsyncLogEvent(inputEvents[i].WithContinuation(ex =>
                     {
                         lock (exceptions)
                         {
@@ -85,7 +85,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                                 allDone.Set();
                             }
                         };
-                    });
+                    }));
             }
 
             allDone.WaitOne();
@@ -137,7 +137,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             // no exceptions
             for (int i = 0; i < 10; ++i)
             {
-                wrapper.WriteLogEvent(LogEventInfo.CreateNullEvent(), exceptions.Add);
+                wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             }
 
             Assert.AreEqual(10, exceptions.Count);
@@ -165,7 +165,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 throw new NotSupportedException();
             }
 
-            protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+            protected override void Write(AsyncLogEventInfo logEvent)
             {
                 Assert.IsTrue(this.FlushCount <= this.WriteCount);
                 this.WriteCount++;
@@ -174,13 +174,13 @@ namespace NLog.UnitTests.Targets.Wrappers
                         {
                             if (this.ThrowExceptions)
                             {
-                                asyncContinuation(new InvalidOperationException("Some problem!"));
-                                asyncContinuation(new InvalidOperationException("Some problem!"));
+                                logEvent.Continuation(new InvalidOperationException("Some problem!"));
+                                logEvent.Continuation(new InvalidOperationException("Some problem!"));
                             }
                             else
                             {
-                                asyncContinuation(null);
-                                asyncContinuation(null);
+                                logEvent.Continuation(null);
+                                logEvent.Continuation(null);
                             }
                         });
             }

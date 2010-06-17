@@ -93,7 +93,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                         continuationHit.Set();
                     };
 
-            targetWrapper.WriteLogEvent(logEvent, continuation);
+            targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
             // continuation was not hit 
             continuationHit.WaitOne();
@@ -102,7 +102,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(1, myTarget.WriteCount);
 
             continuationHit.Reset();
-            targetWrapper.WriteLogEvent(logEvent, continuation);
+            targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
             Assert.AreNotSame(continuationThread, Thread.CurrentThread);
             Assert.IsNull(lastException);
@@ -126,14 +126,14 @@ namespace NLog.UnitTests.Targets.Wrappers
                     continuationHit.Set();
                 };
 
-            targetWrapper.WriteLogEvent(logEvent, continuation);
+            targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
             continuationHit.WaitOne();
             Assert.IsNull(lastException);
             Assert.AreEqual(1, myTarget.WriteCount);
 
             continuationHit.Reset();
-            targetWrapper.WriteLogEvent(logEvent, continuation);
+            targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
             Assert.IsNull(lastException);
             Assert.AreEqual(2, myTarget.WriteCount);
@@ -160,7 +160,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     continuationHit.Set();
                 };
 
-            targetWrapper.WriteLogEvent(logEvent, continuation);
+            targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
             continuationHit.WaitOne();
             Assert.IsNotNull(lastException);
@@ -172,7 +172,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             continuationHit.Reset();
             lastException = null;
-            targetWrapper.WriteLogEvent(logEvent, continuation);
+            targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
             Assert.IsNotNull(lastException);
             Assert.IsInstanceOfType(lastException, typeof(InvalidOperationException));
@@ -203,14 +203,14 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             for (int i = 0; i < eventCount; ++i)
             {
-                targetWrapper.WriteLogEvent(LogEventInfo.CreateNullEvent(),
+                targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(
                     ex =>
                     {
                         lock (exceptions)
                         {
                             exceptions.Add(ex);
                         }
-                    });
+                    }));
             }
 
             Exception lastException = null;
@@ -272,7 +272,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             bool continuationHit = false;
 
-            targetWrapper.WriteLogEvent(LogEventInfo.CreateNullEvent(), ex => { continuationHit = true; });
+            targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { continuationHit = true; }));
 
             // quickly close the target before the timer elapses
             targetWrapper.Close();
@@ -297,7 +297,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             string internalLog = RunAndCaptureInternalLog(
                 () =>
                 {
-                    targetWrapper.WriteLogEvent(LogEventInfo.CreateNullEvent(), ex => { });
+                    targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
                     Thread.Sleep(1000);
                 },
                 LogLevel.Trace);
@@ -316,7 +316,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 throw new NotSupportedException();
             }
 
-            protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+            protected override void Write(AsyncLogEventInfo logEvent)
             {
                 Assert.IsTrue(this.FlushCount <= this.WriteCount);
                 Interlocked.Increment(ref this.WriteCount);
@@ -325,13 +325,13 @@ namespace NLog.UnitTests.Targets.Wrappers
                         {
                             if (this.ThrowExceptions)
                             {
-                                asyncContinuation(new InvalidOperationException("Some problem!"));
-                                asyncContinuation(new InvalidOperationException("Some problem!"));
+                                logEvent.Continuation(new InvalidOperationException("Some problem!"));
+                                logEvent.Continuation(new InvalidOperationException("Some problem!"));
                             }
                             else
                             {
-                                asyncContinuation(null);
-                                asyncContinuation(null);
+                                logEvent.Continuation(null);
+                                logEvent.Continuation(null);
                             }
                         });
             }

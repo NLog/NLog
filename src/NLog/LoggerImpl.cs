@@ -147,7 +147,7 @@ namespace NLog
                 return true;
             }
 
-            target.WriteLogEvent(logEvent, onException);
+            target.WriteAsyncLogEvent(logEvent.WithContinuation(onException));
             if (result == FilterResult.LogFinal)
             {
                 return false;

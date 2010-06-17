@@ -31,57 +31,35 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Targets.Wrappers
+namespace NLog
 {
-    using System;
-    using System.Threading;
     using NLog.Internal;
 
     /// <summary>
-    /// Writes log events to all targets.
+    /// Represents the logging event with asynchronous continuation.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/SplitGroup_target">Documentation on NLog Wiki</seealso>
-    /// <example>
-    /// <p>This example causes the messages to be written to both file1.txt or file2.txt 
-    /// </p>
-    /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
-    /// use the following syntax:
-    /// </p>
-    /// <code lang="XML" source="examples/targets/Configuration File/SplitGroup/NLog.config" />
-    /// <p>
-    /// The above examples assume just one target and a single rule. See below for
-    /// a programmatic configuration that's equivalent to the above config file:
-    /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/SplitGroup/Simple/Example.cs" />
-    /// </example>
-    [Target("SplitGroup", IsCompound = true)]
-    public class SplitGroupTarget : CompoundTargetBase
+    public struct AsyncLogEventInfo
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SplitGroupTarget" /> class.
-        /// </summary>
-        public SplitGroupTarget()
-            : this(new Target[0])
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SplitGroupTarget" /> class.
-        /// </summary>
-        /// <param name="targets">The targets.</param>
-        public SplitGroupTarget(params Target[] targets)
-            : base(targets)
-        {
-        }
-
-        /// <summary>
-        /// Forwards the specified log event to all sub-targets.
+        /// Initializes a new instance of the <see cref="AsyncLogEventInfo"/> struct.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        protected override void Write(AsyncLogEventInfo logEvent)
+        /// <param name="continuation">The continuation.</param>
+        public AsyncLogEventInfo(LogEventInfo logEvent, AsyncContinuation continuation)
+            : this()
         {
-            AsyncHelpers.ForEachItemSequentially(this.Targets, logEvent.Continuation, (t, cont) => t.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont)));
+            this.LogEvent = logEvent;
+            this.Continuation = continuation;
         }
+
+        /// <summary>
+        /// Gets the log event.
+        /// </summary>
+        public LogEventInfo LogEvent { get; private set; }
+
+        /// <summary>
+        /// Gets the continuation.
+        /// </summary>
+        public AsyncContinuation Continuation { get; private set; }
     }
 }

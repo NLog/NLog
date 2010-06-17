@@ -92,17 +92,16 @@ namespace NLog.Targets.Wrappers
         /// the wrapped target.
         /// </summary>
         /// <param name="logEvent">Log event.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        protected override void Write(AsyncLogEventInfo logEvent)
         {
-            object v = this.Condition.Evaluate(logEvent);
+            object v = this.Condition.Evaluate(logEvent.LogEvent);
             if (boxedBooleanTrue.Equals(v))
             {
-                this.WrappedTarget.WriteLogEvent(logEvent, asyncContinuation);
+                this.WrappedTarget.WriteAsyncLogEvent(logEvent);
             }
             else
             {
-                asyncContinuation(null);
+                logEvent.Continuation(null);
             }
         }
     }

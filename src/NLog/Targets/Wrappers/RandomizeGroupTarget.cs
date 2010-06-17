@@ -82,12 +82,11 @@ namespace NLog.Targets.Wrappers
         /// The sub-target is randomly chosen.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        protected override void Write(AsyncLogEventInfo logEvent)
         {
             if (this.Targets.Count == 0)
             {
-                asyncContinuation(null);
+                logEvent.Continuation(null);
                 return;
             }
 
@@ -98,7 +97,7 @@ namespace NLog.Targets.Wrappers
                 selectedTarget = this.random.Next(this.Targets.Count);
             }
 
-            this.Targets[selectedTarget].WriteLogEvent(logEvent, asyncContinuation);
+            this.Targets[selectedTarget].WriteAsyncLogEvent(logEvent);
         }
     }
 }

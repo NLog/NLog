@@ -77,14 +77,14 @@ namespace NLog.UnitTests.Targets.Wrappers
             int eventCounter = 0;
             for (int i = 0; i < 9; ++i)
             {
-                targetWrapper.WriteLogEvent(new LogEventInfo(), createAsyncContinuation(eventCounter++));
+                targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
             }
 
             Assert.AreEqual(0, hitCount);
             Assert.AreEqual(0, myTarget.WriteCount);
 
             // write one more event - everything will be flushed
-            targetWrapper.WriteLogEvent(new LogEventInfo(), createAsyncContinuation(eventCounter++));
+            targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
             Assert.AreEqual(10, hitCount);
             Assert.AreEqual(1, myTarget.BufferedWriteCount);
             Assert.AreEqual(10, myTarget.BufferedTotalEvents);
@@ -98,7 +98,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             // write 9 more events - they will all be buffered and no final continuation will be reached
             for (int i = 0; i < 9; ++i)
             {
-                targetWrapper.WriteLogEvent(new LogEventInfo(), createAsyncContinuation(eventCounter++));
+                targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
             }
 
             // no change
@@ -192,7 +192,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             int eventCounter = 0;
             for (int i = 0; i < 9; ++i)
             {
-                targetWrapper.WriteLogEvent(new LogEventInfo(), createAsyncContinuation(eventCounter++));
+                targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
             }
 
             Assert.AreEqual(0, hitCount);
@@ -214,7 +214,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             // 1 will be pending
             for (int i = 0; i < 11; ++i)
             {
-                targetWrapper.WriteLogEvent(new LogEventInfo(), createAsyncContinuation(eventCounter++));
+                targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
             }
 
             Assert.AreEqual(19, hitCount);
@@ -264,13 +264,13 @@ namespace NLog.UnitTests.Targets.Wrappers
             int eventCounter = 0;
             for (int i = 0; i < 9; ++i)
             {
-                targetWrapper.WriteLogEvent(new LogEventInfo(), createAsyncContinuation(eventCounter++));
+                targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
             }
 
             Assert.AreEqual(0, hitCount);
 
             // write one more event - everything will be flushed
-            targetWrapper.WriteLogEvent(new LogEventInfo(), createAsyncContinuation(eventCounter++));
+            targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
 
             while (hitCount < 10)
             {
@@ -289,7 +289,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             // write 9 more events - they will all be buffered and no final continuation will be reached
             for (int i = 0; i < 9; ++i)
             {
-                targetWrapper.WriteLogEvent(new LogEventInfo(), createAsyncContinuation(eventCounter++));
+                targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
             }
 
             // no change
@@ -353,14 +353,13 @@ namespace NLog.UnitTests.Targets.Wrappers
                 throw new NotSupportedException();
             }
 
-            protected override void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
+            protected override void Write(AsyncLogEventInfo[] logEvents)
             {
                 this.BufferedWriteCount++;
                 this.BufferedTotalEvents += logEvents.Length;
 
                 for (int i = 0; i < logEvents.Length; ++i)
                 {
-                    var asyncContinuation = asyncContinuations[i];
                     var logEvent = logEvents[i];
 
                     ThreadPool.QueueUserWorkItem(
@@ -368,13 +367,13 @@ namespace NLog.UnitTests.Targets.Wrappers
                             {
                                 if (this.ThrowExceptions)
                                 {
-                                    asyncContinuation(new InvalidOperationException("Some problem!"));
-                                    asyncContinuation(new InvalidOperationException("Some problem!"));
+                                    logEvent.Continuation(new InvalidOperationException("Some problem!"));
+                                    logEvent.Continuation(new InvalidOperationException("Some problem!"));
                                 }
                                 else
                                 {
-                                    asyncContinuation(null);
-                                    asyncContinuation(null);
+                                    logEvent.Continuation(null);
+                                    logEvent.Continuation(null);
                                 }
                             });
                 }
@@ -396,11 +395,11 @@ namespace NLog.UnitTests.Targets.Wrappers
             public int BufferedWriteCount { get; set; }
             public int BufferedTotalEvents { get; set; }
 
-            protected override void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
+            protected override void Write(AsyncLogEventInfo[] logEvents)
             {
                 this.BufferedWriteCount++;
                 this.BufferedTotalEvents += logEvents.Length;
-                base.Write(logEvents, asyncContinuations);
+                base.Write(logEvents);
             }
 
             protected override void Write(LogEventInfo logEvent)

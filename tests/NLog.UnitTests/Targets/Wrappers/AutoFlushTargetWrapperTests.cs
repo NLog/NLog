@@ -65,7 +65,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                         continuationHit = true;
                     };
 
-            wrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
             Assert.IsTrue(continuationHit);
             Assert.IsNull(lastException);
@@ -73,7 +73,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(1, myTarget.WriteCount);
 
             continuationHit = false;
-            wrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             Assert.IsTrue(continuationHit);
             Assert.IsNull(lastException);
             Assert.AreEqual(2, myTarget.WriteCount);
@@ -97,7 +97,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     continuationHit.Set();
                 };
 
-            wrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
             continuationHit.WaitOne();
             Assert.IsNull(lastException);
@@ -105,7 +105,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(1, myTarget.WriteCount);
 
             continuationHit.Reset();
-            wrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
             Assert.IsNull(lastException);
             Assert.AreEqual(2, myTarget.WriteCount);
@@ -134,7 +134,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     continuationHit.Set();
                 };
 
-            wrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
             continuationHit.WaitOne();
             Assert.IsNotNull(lastException);
@@ -146,7 +146,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             continuationHit.Reset();
             lastException = null;
-            wrapper.WriteLogEvent(logEvent, continuation);
+            wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
             Assert.IsNotNull(lastException);
             Assert.IsInstanceOfType(lastException, typeof(InvalidOperationException));
@@ -164,7 +164,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 throw new NotSupportedException();
             }
 
-            protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+            protected override void Write(AsyncLogEventInfo logEvent)
             {
                 Assert.IsTrue(this.FlushCount <= this.WriteCount);
                 this.WriteCount++;
@@ -173,13 +173,13 @@ namespace NLog.UnitTests.Targets.Wrappers
                         {
                             if (this.ThrowExceptions)
                             {
-                                asyncContinuation(new InvalidOperationException("Some problem!"));
-                                asyncContinuation(new InvalidOperationException("Some problem!"));
+                                logEvent.Continuation(new InvalidOperationException("Some problem!"));
+                                logEvent.Continuation(new InvalidOperationException("Some problem!"));
                             }
                             else
                             {
-                                asyncContinuation(null);
-                                asyncContinuation(null);
+                                logEvent.Continuation(null);
+                                logEvent.Continuation(null);
                             }
                         });
             }

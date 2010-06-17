@@ -42,8 +42,7 @@ namespace NLog.Targets.Wrappers
     /// </summary>
     public class AsyncRequestQueue
     {
-        private Queue<LogEventInfo> logEventInfoQueue = new Queue<LogEventInfo>();
-        private Queue<AsyncContinuation> asyncContinuationsQueue = new Queue<AsyncContinuation>();
+        private Queue<AsyncLogEventInfo> logEventInfoQueue = new Queue<AsyncLogEventInfo>();
 
         /// <summary>
         /// Initializes a new instance of the AsyncRequestQueue class.
@@ -80,8 +79,7 @@ namespace NLog.Targets.Wrappers
         /// action is taken as specified by <see cref="OnOverflow"/>.
         /// </summary>
         /// <param name="logEventInfo">The log event info.</param>
-        /// <param name="asyncContinuation">The asynchronou continuation.</param>
-        public void Enqueue(LogEventInfo logEventInfo, AsyncContinuation asyncContinuation)
+        public void Enqueue(AsyncLogEventInfo logEventInfo)
         {
             lock (this)
             {
@@ -92,7 +90,6 @@ namespace NLog.Targets.Wrappers
                         case AsyncTargetWrapperOverflowAction.Discard:
                             // dequeue and discard one element
                             this.logEventInfoQueue.Dequeue();
-                            this.asyncContinuationsQueue.Dequeue();
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Grow:
@@ -114,7 +111,6 @@ namespace NLog.Targets.Wrappers
                 }
 
                 this.logEventInfoQueue.Enqueue(logEventInfo);
-                this.asyncContinuationsQueue.Enqueue(asyncContinuation);
             }
         }
 
@@ -124,12 +120,10 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="count">Maximum number of items to be dequeued.</param>
         /// <param name="logEventInfos">The array of log events.</param>
-        /// <param name="asyncContinuations">The array of asynchronous continuations.</param>
         /// <returns>Number of dequeued items.</returns>
-        public int DequeueBatch(int count, out LogEventInfo[] logEventInfos, out AsyncContinuation[] asyncContinuations)
+        public int DequeueBatch(int count, out AsyncLogEventInfo[] logEventInfos)
         {
-            var resultEvents = new List<LogEventInfo>();
-            var resultContinutions = new List<AsyncContinuation>();
+            var resultEvents = new List<AsyncLogEventInfo>();
 
             lock (this)
             {
@@ -141,7 +135,6 @@ namespace NLog.Targets.Wrappers
                     }
 
                     resultEvents.Add(this.logEventInfoQueue.Dequeue());
-                    resultContinutions.Add(this.asyncContinuationsQueue.Dequeue());
                 }
 #if !NET_CF
                 if (this.OnOverflow == AsyncTargetWrapperOverflowAction.Block)
@@ -152,7 +145,6 @@ namespace NLog.Targets.Wrappers
             }
 
             logEventInfos = resultEvents.ToArray();
-            asyncContinuations = resultContinutions.ToArray();
 
             return logEventInfos.Length;
         }
@@ -165,7 +157,6 @@ namespace NLog.Targets.Wrappers
             lock (this)
             {
                 this.logEventInfoQueue.Clear();
-                this.asyncContinuationsQueue.Clear();
             }
         }
     }

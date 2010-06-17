@@ -95,8 +95,13 @@ namespace NLog.UnitTests.Targets
         {
             var target = new MyTarget();
             List<Exception> exceptions = new List<Exception>();
-            target.WriteLogEvent(LogEventInfo.CreateNullEvent(), exceptions.Add);
-            target.WriteLogEvents(new[] { LogEventInfo.CreateNullEvent(), LogEventInfo.CreateNullEvent(), LogEventInfo.CreateNullEvent() }, new AsyncContinuation[] { exceptions.Add, exceptions.Add, exceptions.Add });
+            target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
+            target.WriteAsyncLogEvents(new[] 
+            { 
+                LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+            });
 
             // write was not called
             Assert.AreEqual(0, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
@@ -111,9 +116,12 @@ namespace NLog.UnitTests.Targets
             target.Initialize();
             target.Close();
 
-            List<Exception> exceptions = new List<Exception>();
-            target.WriteLogEvent(LogEventInfo.CreateNullEvent(), exceptions.Add);
-            target.WriteLogEvents(new[] { LogEventInfo.CreateNullEvent(), LogEventInfo.CreateNullEvent(), LogEventInfo.CreateNullEvent() }, new AsyncContinuation[] { exceptions.Add, exceptions.Add, exceptions.Add });
+            var exceptions = new List<Exception>();
+            target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
+            target.WriteAsyncLogEvents(
+                LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
 
             Assert.AreEqual(1, target.InitializeCount);
             Assert.AreEqual(1, target.CloseCount);
@@ -205,8 +213,12 @@ namespace NLog.UnitTests.Targets
             t.Start();
             Thread.Sleep(50);
             List<Exception> exceptions = new List<Exception>();
-            target.WriteLogEvent(LogEventInfo.CreateNullEvent(), exceptions.Add);
-            target.WriteLogEvents(new[] { LogEventInfo.CreateNullEvent(), LogEventInfo.CreateNullEvent() }, new AsyncContinuation[] { exceptions.Add, exceptions.Add });
+            target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
+            target.WriteAsyncLogEvents(new[] 
+            {
+                LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+            });
             target.Flush(exceptions.Add);
             target.Close();
 
@@ -257,18 +269,18 @@ namespace NLog.UnitTests.Targets
                 this.WriteCount++;
             }
 
-            protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+            protected override void Write(AsyncLogEventInfo logEvent)
             {
                 Assert.AreEqual(0, this.inBlockingOperation);
                 this.WriteCount2++;
-                base.Write(logEvent, asyncContinuation);
+                base.Write(logEvent);
             }
 
-            protected override void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
+            protected override void Write(AsyncLogEventInfo[] logEvents)
             {
                 Assert.AreEqual(0, this.inBlockingOperation);
                 this.WriteCount3++;
-                base.Write(logEvents, asyncContinuations);
+                base.Write(logEvents);
             }
 
             public void BlockingOperation(int millisecondsTimeout)

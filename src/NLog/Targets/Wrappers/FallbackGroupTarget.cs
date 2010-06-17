@@ -88,7 +88,6 @@ namespace NLog.Targets.Wrappers
         /// Forwards the log event to the sub-targets until one of them succeeds.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
         /// <remarks>
         /// The method remembers the last-known-successful target
         /// and starts the iteration from it.
@@ -96,7 +95,7 @@ namespace NLog.Targets.Wrappers
         /// resets the target to the first target
         /// stored in <see cref="Targets"/>.
         /// </remarks>
-        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        protected override void Write(AsyncLogEventInfo logEvent)
         {
             AsyncContinuation continuation = null;
             int tryCounter = 0;
@@ -119,7 +118,7 @@ namespace NLog.Targets.Wrappers
                             }
                         }
 
-                        asyncContinuation(null);
+                        logEvent.Continuation(null);
                         return;
                     }
 
@@ -141,11 +140,11 @@ namespace NLog.Targets.Wrappers
 
                     if (targetToInvoke >= 0)
                     {
-                        this.Targets[targetToInvoke].WriteLogEvent(logEvent, continuation);
+                        this.Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
                     }
                     else
                     {
-                        asyncContinuation(ex);
+                        logEvent.Continuation(ex);
                     }
                 };
 
@@ -154,7 +153,7 @@ namespace NLog.Targets.Wrappers
                 targetToInvoke = this.currentTarget;
             }
 
-            this.Targets[targetToInvoke].WriteLogEvent(logEvent, continuation);
+            this.Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
         }
     }
 }

@@ -43,8 +43,7 @@ namespace NLog.Internal
         private readonly bool growAsNeeded;
         private readonly int growLimit;
 
-        private LogEventInfo[] buffer;
-        private AsyncContinuation[] continuations;
+        private AsyncLogEventInfo[] buffer;
         private int getPointer;
         private int putPointer;
         private int count;
@@ -58,8 +57,7 @@ namespace NLog.Internal
         public LogEventInfoBuffer(int size, bool growAsNeeded, int growLimit)
         {
             this.growAsNeeded = growAsNeeded;
-            this.buffer = new LogEventInfo[size];
-            this.continuations = new AsyncContinuation[size];
+            this.buffer = new AsyncLogEventInfo[size];
             this.growLimit = growLimit;
             this.getPointer = 0;
             this.putPointer = 0;
@@ -77,9 +75,8 @@ namespace NLog.Internal
         /// Adds the specified log event to the buffer.
         /// </summary>
         /// <param name="eventInfo">Log event.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
         /// <returns>The number of items in the buffer.</returns>
-        public int Append(LogEventInfo eventInfo, AsyncContinuation asyncContinuation)
+        public int Append(AsyncLogEventInfo eventInfo)
         {
             lock (this)
             {
@@ -96,13 +93,9 @@ namespace NLog.Internal
                         }
 
                         // InternalLogger.Trace("Enlarging LogEventInfoBuffer from {0} to {1}", this.buffer.Length, this.buffer.Length * 2);
-                        LogEventInfo[] newBuffer = new LogEventInfo[newLength];
+                        var newBuffer = new AsyncLogEventInfo[newLength];
                         Array.Copy(this.buffer, 0, newBuffer, 0, this.buffer.Length);
                         this.buffer = newBuffer;
-
-                        AsyncContinuation[] newBuffer2 = new AsyncContinuation[newLength];
-                        Array.Copy(this.continuations, 0, newBuffer2, 0, this.continuations.Length);
-                        this.continuations = newBuffer2;
                     }
                     else
                     {
@@ -114,7 +107,6 @@ namespace NLog.Internal
                 // put the item
                 this.putPointer = this.putPointer % this.buffer.Length;
                 this.buffer[this.putPointer] = eventInfo;
-                this.continuations[this.putPointer] = asyncContinuation;
                 this.putPointer = this.putPointer + 1;
                 this.count++;
                 if (this.count >= this.buffer.Length)
@@ -130,29 +122,23 @@ namespace NLog.Internal
         /// Gets the array of events accumulated in the buffer and clears the buffer as one atomic operation.
         /// </summary>
         /// <param name="returnValue">The return value.</param>
-        /// <param name="asyncContinuations">The asynchronous continuations.</param>
         /// <remarks>
         /// In case there are no items in the buffer, the function returns an empty array.
         /// </remarks>
-        public void GetEventsAndClear(out LogEventInfo[] returnValue, out AsyncContinuation[] asyncContinuations)
+        public void GetEventsAndClear(out AsyncLogEventInfo[] returnValue)
         {
             lock (this)
             {
                 int cnt = this.count;
-                returnValue = new LogEventInfo[cnt];
-                asyncContinuations = new AsyncContinuation[cnt];
+                returnValue = new AsyncLogEventInfo[cnt];
 
                 // InternalLogger.Trace("GetEventsAndClear({0},{1},{2})", this.getPointer, this.putPointer, this.count);
                 for (int i = 0; i < cnt; ++i)
                 {
                     int p = (this.getPointer + i) % this.buffer.Length;
                     var e = this.buffer[p];
-                    this.buffer[p] = null; // we don't want memory leaks
+                    this.buffer[p] = default(AsyncLogEventInfo); // we don't want memory leaks
                     returnValue[i] = e;
-
-                    var c = this.continuations[p];
-                    this.continuations[p] = null;
-                    asyncContinuations[i] = c;
                 }
 
                 this.count = 0;

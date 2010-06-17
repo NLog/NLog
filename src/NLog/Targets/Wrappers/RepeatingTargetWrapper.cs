@@ -88,10 +88,9 @@ namespace NLog.Targets.Wrappers
         /// Forwards the log message to the <see cref="WrapperTargetBase.WrappedTarget"/> by calling the <see cref="Target.Write(LogEventInfo)"/> method <see cref="RepeatCount"/> times.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        protected override void Write(AsyncLogEventInfo logEvent)
         {
-            AsyncHelpers.Repeat(this.RepeatCount, asyncContinuation, cont => this.WrappedTarget.WriteLogEvent(logEvent, cont));
+            AsyncHelpers.Repeat(this.RepeatCount, logEvent.Continuation, cont => this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont)));
         }
     }
 }

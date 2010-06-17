@@ -593,41 +593,46 @@ namespace NLog.Targets
         /// parameter.
         /// </summary>
         /// <param name="logEvents">An array of <see cref="LogEventInfo "/> objects.</param>
-        /// <param name="asyncContinuations">The asynchronous continuations.</param>
         /// <remarks>
         /// This function makes use of the fact that the events are batched by sorting
         /// the requests by filename. This optimizes the number of open/close calls
         /// and can help improve performance.
         /// </remarks>
-        protected override void Write(LogEventInfo[] logEvents, AsyncContinuation[] asyncContinuations)
+        protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            Array.Sort(logEvents, 0, logEvents.Length, this.logEventComparer);
-
-            string currentFileName = null;
-            var ms = new MemoryStream();
-            LogEventInfo firstLogEvent = null;
-            var pendingContinuations = new List<AsyncContinuation>();
-
+            string[] keys = new string[logEvents.Length];
             for (int i = 0; i < logEvents.Length; ++i)
             {
-                LogEventInfo logEvent = logEvents[i];
-                string logEventFileName = this.FileName.Render(logEvent);
-                if (logEventFileName != currentFileName)
-                {
-                    this.FlushCurrentFileWrites(currentFileName, firstLogEvent, ms, pendingContinuations);
-
-                    currentFileName = logEventFileName;
-                    firstLogEvent = logEvent;
-                    ms.SetLength(0);
-                    ms.Position = 0;
-                }
-
-                byte[] bytes = this.GetBytesToWrite(logEvent);
-                ms.Write(bytes, 0, bytes.Length);
-                pendingContinuations.Add(asyncContinuations[i]);
+                keys[i] = this.FileName.Render(logEvents[i].LogEvent);
             }
 
-            this.FlushCurrentFileWrites(currentFileName, firstLogEvent, ms, pendingContinuations);
+            var buckets = SortHelpers.BucketSort(keys, logEvents);
+            var ms = new MemoryStream();
+            var pendingContinuations = new List<AsyncContinuation>();
+
+            foreach (var bucket in buckets)
+            {
+                string fileName = bucket.Key;
+
+                ms.SetLength(0);
+                ms.Position = 0;
+
+                LogEventInfo firstLogEvent = null;
+
+                foreach (AsyncLogEventInfo ev in bucket.Value)
+                {
+                    if (firstLogEvent == null)
+                    {
+                        firstLogEvent = ev.LogEvent;
+                    }
+
+                    byte[] bytes = this.GetBytesToWrite(ev.LogEvent);
+                    ms.Write(bytes, 0, bytes.Length);
+                    pendingContinuations.Add(ev.Continuation);
+                }
+
+                this.FlushCurrentFileWrites(fileName, firstLogEvent, ms, pendingContinuations);
+            }
         }
 
         /// <summary>

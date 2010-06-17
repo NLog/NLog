@@ -45,101 +45,80 @@ namespace NLog.UnitTests.Targets.Wrappers
         [TestMethod]
         public void AsyncRequestQueueWithDiscardBehaviorTest()
         {
-            AsyncContinuation cont1 = ex => { };
-            AsyncContinuation cont2 = ex => { };
-            AsyncContinuation cont3 = ex => { };
-            AsyncContinuation cont4 = ex => { };
-            AsyncContinuation cont5 = ex => { };
-
-            var ev1 = LogEventInfo.CreateNullEvent();
-            var ev2 = LogEventInfo.CreateNullEvent();
-            var ev3 = LogEventInfo.CreateNullEvent();
-            var ev4 = LogEventInfo.CreateNullEvent();
-            var ev5 = LogEventInfo.CreateNullEvent();
+            var ev1 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev2 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev3 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev4 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
 
             var queue = new AsyncRequestQueue(3, AsyncTargetWrapperOverflowAction.Discard);
             Assert.AreEqual(3, queue.RequestLimit);
             Assert.AreEqual(AsyncTargetWrapperOverflowAction.Discard, queue.OnOverflow);
             Assert.AreEqual(0, queue.RequestCount);
-            queue.Enqueue(ev1, cont1);
+            queue.Enqueue(ev1);
             Assert.AreEqual(1, queue.RequestCount);
-            queue.Enqueue(ev2, cont2);
+            queue.Enqueue(ev2);
             Assert.AreEqual(2, queue.RequestCount);
-            queue.Enqueue(ev3, cont3);
+            queue.Enqueue(ev3);
             Assert.AreEqual(3, queue.RequestCount);
-            queue.Enqueue(ev4, cont4);
+            queue.Enqueue(ev4);
             Assert.AreEqual(3, queue.RequestCount);
 
-            LogEventInfo[] logEventInfos;
-            AsyncContinuation[] asyncContinuations;
+            AsyncLogEventInfo[] logEventInfos;
 
-            int result = queue.DequeueBatch(10, out logEventInfos, out asyncContinuations);
+            int result = queue.DequeueBatch(10, out logEventInfos);
             Assert.AreEqual(result, logEventInfos.Length);
-            Assert.AreEqual(result, asyncContinuations.Length);
 
             Assert.AreEqual(3, result);
             Assert.AreEqual(0, queue.RequestCount);
 
             // ev1 is lost
-            Assert.AreSame(logEventInfos[0], ev2);
-            Assert.AreSame(logEventInfos[1], ev3);
-            Assert.AreSame(logEventInfos[2], ev4);
-
-            // cont1 is lost
-            Assert.AreSame(asyncContinuations[0], cont2);
-            Assert.AreSame(asyncContinuations[1], cont3);
-            Assert.AreSame(asyncContinuations[2], cont4);
+            Assert.AreSame(logEventInfos[0].LogEvent, ev2.LogEvent);
+            Assert.AreSame(logEventInfos[1].LogEvent, ev3.LogEvent);
+            Assert.AreSame(logEventInfos[2].LogEvent, ev4.LogEvent);
+            Assert.AreSame(logEventInfos[0].Continuation, ev2.Continuation);
+            Assert.AreSame(logEventInfos[1].Continuation, ev3.Continuation);
+            Assert.AreSame(logEventInfos[2].Continuation, ev4.Continuation);
         }
 
         [TestMethod]
         public void AsyncRequestQueueWithGrowBehaviorTest()
         {
-            AsyncContinuation cont1 = ex => { };
-            AsyncContinuation cont2 = ex => { };
-            AsyncContinuation cont3 = ex => { };
-            AsyncContinuation cont4 = ex => { };
-            AsyncContinuation cont5 = ex => { };
-
-            var ev1 = LogEventInfo.CreateNullEvent();
-            var ev2 = LogEventInfo.CreateNullEvent();
-            var ev3 = LogEventInfo.CreateNullEvent();
-            var ev4 = LogEventInfo.CreateNullEvent();
-            var ev5 = LogEventInfo.CreateNullEvent();
+            var ev1 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev2 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev3 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev4 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev5 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
 
             var queue = new AsyncRequestQueue(3, AsyncTargetWrapperOverflowAction.Grow);
             Assert.AreEqual(3, queue.RequestLimit);
             Assert.AreEqual(AsyncTargetWrapperOverflowAction.Grow, queue.OnOverflow);
             Assert.AreEqual(0, queue.RequestCount);
-            queue.Enqueue(ev1, cont1);
+            queue.Enqueue(ev1);
             Assert.AreEqual(1, queue.RequestCount);
-            queue.Enqueue(ev2, cont2);
+            queue.Enqueue(ev2);
             Assert.AreEqual(2, queue.RequestCount);
-            queue.Enqueue(ev3, cont3);
+            queue.Enqueue(ev3);
             Assert.AreEqual(3, queue.RequestCount);
-            queue.Enqueue(ev4, cont4);
+            queue.Enqueue(ev4);
             Assert.AreEqual(4, queue.RequestCount);
 
-            LogEventInfo[] logEventInfos;
-            AsyncContinuation[] asyncContinuations;
+            AsyncLogEventInfo[] logEventInfos;
 
-            int result = queue.DequeueBatch(10, out logEventInfos, out asyncContinuations);
+            int result = queue.DequeueBatch(10, out logEventInfos);
             Assert.AreEqual(result, logEventInfos.Length);
-            Assert.AreEqual(result, asyncContinuations.Length);
 
             Assert.AreEqual(4, result);
             Assert.AreEqual(0, queue.RequestCount);
 
             // ev1 is lost
-            Assert.AreSame(logEventInfos[0], ev1);
-            Assert.AreSame(logEventInfos[1], ev2);
-            Assert.AreSame(logEventInfos[2], ev3);
-            Assert.AreSame(logEventInfos[3], ev4);
-
-            // cont1 is lost
-            Assert.AreSame(asyncContinuations[0], cont1);
-            Assert.AreSame(asyncContinuations[1], cont2);
-            Assert.AreSame(asyncContinuations[2], cont3);
-            Assert.AreSame(asyncContinuations[3], cont4);
+            Assert.AreSame(logEventInfos[0].LogEvent, ev1.LogEvent);
+            Assert.AreSame(logEventInfos[1].LogEvent, ev2.LogEvent);
+            Assert.AreSame(logEventInfos[2].LogEvent, ev3.LogEvent);
+            Assert.AreSame(logEventInfos[3].LogEvent, ev4.LogEvent);
+            Assert.AreSame(logEventInfos[0].Continuation, ev1.Continuation);
+            Assert.AreSame(logEventInfos[1].Continuation, ev2.Continuation);
+            Assert.AreSame(logEventInfos[2].Continuation, ev3.Continuation);
+            Assert.AreSame(logEventInfos[3].Continuation, ev4.Continuation);
         }
 
 #if !NET_CF
@@ -159,28 +138,27 @@ namespace NLog.UnitTests.Targets.Wrappers
                     // producer thread
                     for (int i = 0; i < 1000; ++i)
                     {
-                        LogEventInfo logEvent = LogEventInfo.CreateNullEvent();
-                        logEvent.Message = "msg" + i;
+                        AsyncLogEventInfo logEvent = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+                        logEvent.LogEvent.Message = "msg" + i;
                         AsyncContinuation cont = ex => { };
 
                         Console.WriteLine("Pushing event {0}", i);
                         pushingEvent = i;
-                        queue.Enqueue(logEvent, cont);
+                        queue.Enqueue(logEvent);
                     }
 
                     producerFinished.Set();
                 });
 
             // consumer thread
-            LogEventInfo[] logEventInfos;
-            AsyncContinuation[] asyncContinuations;
+            AsyncLogEventInfo[] logEventInfos;
             int total = 0;
 
             while (total < 500)
             {
                 int left = 500 - total;
 
-                int got = queue.DequeueBatch(left, out logEventInfos, out asyncContinuations);
+                int got = queue.DequeueBatch(left, out logEventInfos);
                 Assert.IsTrue(got <= queue.RequestLimit);
                 total += got;
             }
@@ -189,7 +167,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             // producer is blocked on trying to push event #510
             Assert.AreEqual(510, pushingEvent);
-            queue.DequeueBatch(1, out logEventInfos, out asyncContinuations);
+            queue.DequeueBatch(1, out logEventInfos);
             total++;
             Thread.Sleep(500);
 
@@ -200,7 +178,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 int left = 1000 - total;
 
-                int got = queue.DequeueBatch(left, out logEventInfos, out asyncContinuations);
+                int got = queue.DequeueBatch(left, out logEventInfos);
                 Assert.IsTrue(got <= queue.RequestLimit);
                 total += got;
             }
@@ -213,39 +191,31 @@ namespace NLog.UnitTests.Targets.Wrappers
         [TestMethod]
         public void AsyncRequestQueueClearTest()
         {
-            AsyncContinuation cont1 = ex => { };
-            AsyncContinuation cont2 = ex => { };
-            AsyncContinuation cont3 = ex => { };
-            AsyncContinuation cont4 = ex => { };
-            AsyncContinuation cont5 = ex => { };
-
-            var ev1 = LogEventInfo.CreateNullEvent();
-            var ev2 = LogEventInfo.CreateNullEvent();
-            var ev3 = LogEventInfo.CreateNullEvent();
-            var ev4 = LogEventInfo.CreateNullEvent();
-            var ev5 = LogEventInfo.CreateNullEvent();
+            var ev1 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev2 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev3 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev4 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev5 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
 
             var queue = new AsyncRequestQueue(3, AsyncTargetWrapperOverflowAction.Grow);
             Assert.AreEqual(3, queue.RequestLimit);
             Assert.AreEqual(AsyncTargetWrapperOverflowAction.Grow, queue.OnOverflow);
             Assert.AreEqual(0, queue.RequestCount);
-            queue.Enqueue(ev1, cont1);
+            queue.Enqueue(ev1);
             Assert.AreEqual(1, queue.RequestCount);
-            queue.Enqueue(ev2, cont2);
+            queue.Enqueue(ev2);
             Assert.AreEqual(2, queue.RequestCount);
-            queue.Enqueue(ev3, cont3);
+            queue.Enqueue(ev3);
             Assert.AreEqual(3, queue.RequestCount);
-            queue.Enqueue(ev4, cont4);
+            queue.Enqueue(ev4);
             Assert.AreEqual(4, queue.RequestCount);
             queue.Clear();
             Assert.AreEqual(0, queue.RequestCount);
 
-            LogEventInfo[] logEventInfos;
-            AsyncContinuation[] asyncContinuations;
+            AsyncLogEventInfo[] logEventInfos;
 
-            int result = queue.DequeueBatch(10, out logEventInfos, out asyncContinuations);
+            int result = queue.DequeueBatch(10, out logEventInfos);
             Assert.AreEqual(result, logEventInfos.Length);
-            Assert.AreEqual(result, asyncContinuations.Length);
 
             Assert.AreEqual(0, result);
             Assert.AreEqual(0, queue.RequestCount);

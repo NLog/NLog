@@ -59,30 +59,24 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.Initialize();
             target.Initialize();
 
-            var events = new LogEventInfo[]
+            var exceptions = new List<Exception>();
+
+            var events = new []
             {
-                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger2", "Hello"),
+                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger2", "Hello").WithContinuation(exceptions.Add),
             };
 
-            var exceptions = new List<Exception>();
-            
-            var continuations = new AsyncContinuation[events.Length];
-            for (int i = 0; i < continuations.Length; ++i)
-            {
-                continuations[i] = exceptions.Add;
-            }
-
-            wrapper.WriteLogEvents(events, continuations);
+            wrapper.WriteAsyncLogEvents(events);
 
             // make sure all events went through
             Assert.AreEqual(3, target.Events.Count);
-            Assert.AreSame(events[0], target.Events[0]);
-            Assert.AreSame(events[1], target.Events[1]);
-            Assert.AreSame(events[2], target.Events[2]);
+            Assert.AreSame(events[0].LogEvent, target.Events[0]);
+            Assert.AreSame(events[1].LogEvent, target.Events[1]);
+            Assert.AreSame(events[2].LogEvent, target.Events[2]);
 
-            Assert.AreEqual(continuations.Length, exceptions.Count, "Some continuations were not invoked.");
+            Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
 
             // make sure there were no exception
             foreach (var ex in exceptions)
@@ -109,22 +103,16 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.Initialize();
             target.Initialize();
 
-            var events = new LogEventInfo[]
-            {
-                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger2", "Hello"),
-            };
-
             var exceptions = new List<Exception>();
 
-            var continuations = new AsyncContinuation[events.Length];
-            for (int i = 0; i < continuations.Length; ++i)
+            var events = new []
             {
-                continuations[i] = exceptions.Add;
-            }
+                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger2", "Hello").WithContinuation(exceptions.Add),
+            };
 
-            var internalLogOutput = RunAndCaptureInternalLog(() => wrapper.WriteLogEvents(events, continuations), LogLevel.Trace);
+            var internalLogOutput = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
             string expectedLogOutput = @"Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 1/4
 Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 2/4
 Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 3/4
@@ -139,10 +127,10 @@ Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some e
             // second event gets there in 3rd retry
             // and third event gets there immediately
             Assert.AreEqual(2, target.Events.Count);
-            Assert.AreSame(events[1], target.Events[0]);
-            Assert.AreSame(events[2], target.Events[1]);
+            Assert.AreSame(events[1].LogEvent, target.Events[0]);
+            Assert.AreSame(events[2].LogEvent, target.Events[1]);
 
-            Assert.AreEqual(continuations.Length, exceptions.Count, "Some continuations were not invoked.");
+            Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
 
             Assert.IsNotNull(exceptions[0]);
             Assert.AreEqual("Some exception has ocurred.", exceptions[0].Message);
@@ -161,16 +149,16 @@ Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some e
 
             public int ThrowExceptions { get; set; }
 
-            protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+            protected override void Write(AsyncLogEventInfo logEvent)
             {
                 if (this.ThrowExceptions-- > 0)
                 {
-                    asyncContinuation(new InvalidOperationException("Some exception has ocurred."));
+                    logEvent.Continuation(new InvalidOperationException("Some exception has ocurred."));
                     return;
                 }
 
-                this.Events.Add(logEvent);
-                asyncContinuation(null);
+                this.Events.Add(logEvent.LogEvent);
+                logEvent.Continuation(null);
             }
 
             protected override void Write(LogEventInfo logEvent)

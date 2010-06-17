@@ -317,6 +317,16 @@ namespace NLog
         }
 
         /// <summary>
+        /// Creates <see cref="AsyncLogEventInfo"/> from this <see cref="LogEventInfo"/> by attaching the specified asynchronous continuation.
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <returns>Instance of <see cref="AsyncLogEventInfo"/> with attached continuation.</returns>
+        public AsyncLogEventInfo WithContinuation(AsyncContinuation asyncContinuation)
+        {
+            return new AsyncLogEventInfo(this, asyncContinuation);
+        }
+
+        /// <summary>
         /// Returns a string representation of this log event.
         /// </summary>
         /// <returns>String representation of the log event.</returns>

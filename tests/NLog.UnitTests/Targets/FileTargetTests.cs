@@ -50,6 +50,8 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets.Wrappers;
 
     using System.Threading;
+    using NLog.Internal;
+    using System.Collections.Generic;
 
     [TestClass]
     public class FileTargetTests : NLogTestBase
@@ -501,6 +503,34 @@ namespace NLog.UnitTests.Targets
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
+        }
+
+
+        [TestMethod]
+        public void BatchErrorHandlingTest()
+        {
+            var fileTarget = new FileTarget();
+            fileTarget.FileName = "${logger}.txt";
+            fileTarget.Layout = "${message}";
+            fileTarget.Initialize();
+
+            // make sure that when file names get sorted, the asynchronous continuations are sorted with them as well
+            var exceptions = new List<Exception>();
+            var events = new[]
+            {
+                new LogEventInfo(LogLevel.Info, "file99.txt", "msg1").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "d:::::\\aa\\aa\\badfile:name", "msg1").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "e:::::\\aa\\aa\\badfile:name", "msg2").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "f:::::\\aa\\aa\\badfile:name", "msg3").WithContinuation(exceptions.Add),
+            };
+
+            fileTarget.WriteAsyncLogEvents(events);
+
+            Assert.AreEqual(4, exceptions.Count);
+            Assert.IsNull(exceptions[0]);
+            Assert.IsNotNull(exceptions[1]);
+            Assert.IsNotNull(exceptions[2]);
+            Assert.IsNotNull(exceptions[3]);
         }
     }
 }

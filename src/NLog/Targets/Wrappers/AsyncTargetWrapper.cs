@@ -222,15 +222,14 @@ namespace NLog.Targets.Wrappers
         /// the lazy writer thread.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
         /// <remarks>
         /// The <see cref="Target.PrecalculateVolatileLayouts"/> is called
         /// to ensure that the log event can be processed in another thread.
         /// </remarks>
-        protected override void Write(LogEventInfo logEvent, AsyncContinuation asyncContinuation)
+        protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.PrecalculateVolatileLayouts(logEvent);
-            this.RequestQueue.Enqueue(logEvent, asyncContinuation);
+            this.PrecalculateVolatileLayouts(logEvent.LogEvent);
+            this.RequestQueue.Enqueue(logEvent);
         }
 
         private void ProcessPendingEvents(object state)
@@ -245,20 +244,19 @@ namespace NLog.Targets.Wrappers
                     InternalLogger.Trace("Flushing {0} events.", count);
                 }
 
-                LogEventInfo[] logEventInfos;
-                AsyncContinuation[] asyncContinuations;
+                AsyncLogEventInfo[] logEventInfos;
 
-                this.RequestQueue.DequeueBatch(count, out logEventInfos, out asyncContinuations);
+                this.RequestQueue.DequeueBatch(count, out logEventInfos);
 
                 if (continuation != null)
                 {
                     // write all events, then flush, then call the continuation
-                    this.WrappedTarget.WriteLogEvents(logEventInfos, asyncContinuations, ex => this.WrappedTarget.Flush(continuation));
+                    this.WrappedTarget.WriteAsyncLogEvents(logEventInfos, ex => this.WrappedTarget.Flush(continuation));
                 }
                 else
                 {
                     // just write all events
-                    this.WrappedTarget.WriteLogEvents(logEventInfos, asyncContinuations);
+                    this.WrappedTarget.WriteAsyncLogEvents(logEventInfos);
                 }
             }
             catch (Exception ex)

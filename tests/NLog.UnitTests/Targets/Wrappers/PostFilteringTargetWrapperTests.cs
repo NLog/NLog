@@ -72,33 +72,27 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.Initialize();
             target.Initialize();
 
-            var events = new LogEventInfo[]
-            {
-                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger2", "Hello"),
-                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Trace, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger3", "Hello"),
-            };
-
             var exceptions = new List<Exception>();
             
-            var continuations = new AsyncContinuation[events.Length];
-            for (int i = 0; i < continuations.Length; ++i)
+            var events = new []
             {
-                continuations[i] = exceptions.Add;
-            }
+                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger2", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Trace, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger3", "Hello").WithContinuation(exceptions.Add),
+            };
 
-            wrapper.WriteLogEvents(events, continuations);
+            wrapper.WriteAsyncLogEvents(events);
 
             // make sure all Info events went through
             Assert.AreEqual(3, target.Events.Count);
-            Assert.AreSame(events[1], target.Events[0]);
-            Assert.AreSame(events[2], target.Events[1]);
-            Assert.AreSame(events[5], target.Events[2]);
+            Assert.AreSame(events[1].LogEvent, target.Events[0]);
+            Assert.AreSame(events[2].LogEvent, target.Events[1]);
+            Assert.AreSame(events[5].LogEvent, target.Events[2]);
 
-            Assert.AreEqual(continuations.Length, exceptions.Count, "Some continuations were not invoked.");
+            Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
         }
 
         [TestMethod]
@@ -124,26 +118,20 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.Initialize();
             target.Initialize();
 
-            var events = new LogEventInfo[]
-            {
-                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger2", "Hello"),
-                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Trace, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger3", "Hello"),
-                new LogEventInfo(LogLevel.Warn, "Logger1", "Hello"),
-            };
-
             var exceptions = new List<Exception>();
 
-            var continuations = new AsyncContinuation[events.Length];
-            for (int i = 0; i < continuations.Length; ++i)
+            var events = new[]
             {
-                continuations[i] = exceptions.Add;
-            }
+                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger2", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Trace, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger3", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Warn, "Logger1", "Hello").WithContinuation(exceptions.Add),
+            };
 
-            string internalLogOutput = RunAndCaptureInternalLog(() => wrapper.WriteLogEvents(events, continuations), LogLevel.Trace);
+            string internalLogOutput = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
             string expectedLogOutput = @"Trace Input: 7 events
 Trace Rule matched: (level >= Warn)
 Trace Filter to apply: (level >= Debug)
@@ -153,14 +141,14 @@ Trace After filtering: 6 events
 
             // make sure all Debug,Info,Warn events went through
             Assert.AreEqual(6, target.Events.Count);
-            Assert.AreSame(events[0], target.Events[0]);
-            Assert.AreSame(events[1], target.Events[1]);
-            Assert.AreSame(events[2], target.Events[2]);
-            Assert.AreSame(events[3], target.Events[3]);
-            Assert.AreSame(events[5], target.Events[4]);
-            Assert.AreSame(events[6], target.Events[5]);
+            Assert.AreSame(events[0].LogEvent, target.Events[0]);
+            Assert.AreSame(events[1].LogEvent, target.Events[1]);
+            Assert.AreSame(events[2].LogEvent, target.Events[2]);
+            Assert.AreSame(events[3].LogEvent, target.Events[3]);
+            Assert.AreSame(events[5].LogEvent, target.Events[4]);
+            Assert.AreSame(events[6].LogEvent, target.Events[5]);
 
-            Assert.AreEqual(continuations.Length, exceptions.Count, "Some continuations were not invoked.");
+            Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
         }
 
         [TestMethod]
@@ -187,26 +175,20 @@ Trace After filtering: 6 events
             wrapper.Initialize();
             target.Initialize();
 
-            var events = new LogEventInfo[]
-            {
-                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger2", "Hello"),
-                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Trace, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger3", "Hello"),
-                new LogEventInfo(LogLevel.Error, "Logger1", "Hello"),
-            };
-
             var exceptions = new List<Exception>();
 
-            var continuations = new AsyncContinuation[events.Length];
-            for (int i = 0; i < continuations.Length; ++i)
+            var events = new []
             {
-                continuations[i] = exceptions.Add;
-            }
+                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger2", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Trace, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger3", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Error, "Logger1", "Hello").WithContinuation(exceptions.Add),
+            };
 
-            var internalLogOutput = RunAndCaptureInternalLog(() => wrapper.WriteLogEvents(events, continuations), LogLevel.Trace);
+            var internalLogOutput = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
             string expectedLogOutput = @"Trace Input: 7 events
 Trace Rule matched: (level >= Error)
 Trace Filter to apply: True
@@ -217,15 +199,15 @@ Trace After filtering: 7 events
 
             // make sure all events went through
             Assert.AreEqual(7, target.Events.Count);
-            Assert.AreSame(events[0], target.Events[0]);
-            Assert.AreSame(events[1], target.Events[1]);
-            Assert.AreSame(events[2], target.Events[2]);
-            Assert.AreSame(events[3], target.Events[3]);
-            Assert.AreSame(events[4], target.Events[4]);
-            Assert.AreSame(events[5], target.Events[5]);
-            Assert.AreSame(events[6], target.Events[6]);
+            Assert.AreSame(events[0].LogEvent, target.Events[0]);
+            Assert.AreSame(events[1].LogEvent, target.Events[1]);
+            Assert.AreSame(events[2].LogEvent, target.Events[2]);
+            Assert.AreSame(events[3].LogEvent, target.Events[3]);
+            Assert.AreSame(events[4].LogEvent, target.Events[4]);
+            Assert.AreSame(events[5].LogEvent, target.Events[5]);
+            Assert.AreSame(events[6].LogEvent, target.Events[6]);
 
-            Assert.AreEqual(continuations.Length, exceptions.Count, "Some continuations were not invoked.");
+            Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
         }
 
         [TestMethod]
@@ -240,38 +222,32 @@ Trace After filtering: 7 events
             wrapper.Initialize();
             target.Initialize();
 
-            var events = new LogEventInfo[]
-            {
-                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger2", "Hello"),
-                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Trace, "Logger1", "Hello"),
-                new LogEventInfo(LogLevel.Info, "Logger3", "Hello"),
-                new LogEventInfo(LogLevel.Error, "Logger1", "Hello"),
-            };
-
             var exceptions = new List<Exception>();
 
-            var continuations = new AsyncContinuation[events.Length];
-            for (int i = 0; i < continuations.Length; ++i)
+            var events = new[]
             {
-                continuations[i] = exceptions.Add;
-            }
+                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger2", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Trace, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "Logger3", "Hello").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Error, "Logger1", "Hello").WithContinuation(exceptions.Add),
+            };
 
-            wrapper.WriteLogEvents(events, continuations);
+            wrapper.WriteAsyncLogEvents(events);
 
             // make sure all events went through
             Assert.AreEqual(7, target.Events.Count);
-            Assert.AreSame(events[0], target.Events[0]);
-            Assert.AreSame(events[1], target.Events[1]);
-            Assert.AreSame(events[2], target.Events[2]);
-            Assert.AreSame(events[3], target.Events[3]);
-            Assert.AreSame(events[4], target.Events[4]);
-            Assert.AreSame(events[5], target.Events[5]);
-            Assert.AreSame(events[6], target.Events[6]);
+            Assert.AreSame(events[0].LogEvent, target.Events[0]);
+            Assert.AreSame(events[1].LogEvent, target.Events[1]);
+            Assert.AreSame(events[2].LogEvent, target.Events[2]);
+            Assert.AreSame(events[3].LogEvent, target.Events[3]);
+            Assert.AreSame(events[4].LogEvent, target.Events[4]);
+            Assert.AreSame(events[5].LogEvent, target.Events[5]);
+            Assert.AreSame(events[6].LogEvent, target.Events[6]);
 
-            Assert.AreEqual(continuations.Length, exceptions.Count, "Some continuations were not invoked.");
+            Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
         }
 
         public class MyTarget : Target
