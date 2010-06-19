@@ -598,13 +598,7 @@ namespace NLog.Targets
         /// </remarks>
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            string[] keys = new string[logEvents.Length];
-            for (int i = 0; i < logEvents.Length; ++i)
-            {
-                keys[i] = this.FileName.Render(logEvents[i].LogEvent);
-            }
-
-            var buckets = SortHelpers.BucketSort(keys, logEvents);
+            var buckets = SortHelpers.BucketSort(this.FileName.Render, logEvents);
             var ms = new MemoryStream();
             var pendingContinuations = new List<AsyncContinuation>();
 

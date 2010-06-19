@@ -47,15 +47,24 @@ namespace NLog.LayoutRenderers
     [AppDomainFixedOutput]
     public class MachineNameLayoutRenderer : LayoutRenderer
     {
-        /// <summary>
-        /// Initializes static members of the MachineNameLayoutRenderer class.
-        /// </summary>
-        static MachineNameLayoutRenderer()
-        {
-            MachineName = GetMachineName();
-        }
+        internal string MachineName { get; private set; }
 
-        internal static string MachineName { get; private set; }
+        /// <summary>
+        /// Initializes the layout renderer.
+        /// </summary>
+        protected override void Initialize()
+        {
+            base.Initialize();
+            try
+            {
+                this.MachineName = Environment.MachineName;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error("Error getting machine name {0}", ex);
+                this.MachineName = string.Empty;
+            }
+        }
 
         /// <summary>
         /// Renders the machine name and appends it to the specified <see cref="StringBuilder" />.
@@ -64,15 +73,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(MachineName);
-        }
-
-        private static string GetMachineName()
-        {
-            return ExceptionHelpers.ReturnDefaultOnException(
-                () => Environment.MachineName, 
-                "Error getting machine name",
-                string.Empty);
+            builder.Append(this.MachineName);
         }
     }
 }

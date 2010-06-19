@@ -1,4 +1,4 @@
-﻿// 
+// 
 // Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,15 +31,35 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+namespace NLog.Common
 {
-    using System;
+    using NLog.Internal;
 
     /// <summary>
-    /// Asynchronous continuation delegate - function invoked at the end of asynchronous
-    /// processing.
+    /// Represents the logging event with asynchronous continuation.
     /// </summary>
-    /// <param name="exception">Exception during asynchronous processing or null if no exception
-    /// was thrown.</param>
-    public delegate void AsyncContinuation(Exception exception);
+    public struct AsyncLogEventInfo
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AsyncLogEventInfo"/> struct.
+        /// </summary>
+        /// <param name="logEvent">The log event.</param>
+        /// <param name="continuation">The continuation.</param>
+        public AsyncLogEventInfo(LogEventInfo logEvent, AsyncContinuation continuation)
+            : this()
+        {
+            this.LogEvent = logEvent;
+            this.Continuation = continuation;
+        }
+
+        /// <summary>
+        /// Gets the log event.
+        /// </summary>
+        public LogEventInfo LogEvent { get; private set; }
+
+        /// <summary>
+        /// Gets the continuation.
+        /// </summary>
+        public AsyncContinuation Continuation { get; private set; }
+    }
 }

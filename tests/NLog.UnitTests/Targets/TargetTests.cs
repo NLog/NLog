@@ -37,6 +37,7 @@ namespace NLog.UnitTests.Targets
     using System.Collections.Generic;
     using System.Threading;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NLog.Common;
     using NLog.Internal;
     using NLog.Targets;
 
@@ -256,7 +257,7 @@ namespace NLog.UnitTests.Targets
                 base.CloseTarget();
             }
 
-            protected override void FlushAsync(Internal.AsyncContinuation asyncContinuation)
+            protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
                 Assert.AreEqual(0, this.inBlockingOperation);
                 this.FlushCount++;

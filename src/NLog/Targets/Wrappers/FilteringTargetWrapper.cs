@@ -34,6 +34,7 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
+    using NLog.Common;
     using NLog.Conditions;
     using NLog.Config;
     using NLog.Internal;
@@ -58,7 +59,7 @@ namespace NLog.Targets.Wrappers
     [Target("FilteringWrapper", IsWrapper = true)]
     public class FilteringTargetWrapper : WrapperTargetBase
     {
-        private static object boxedBooleanTrue = true;
+        private static readonly object boxedBooleanTrue = true;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FilteringTargetWrapper" /> class.

@@ -35,6 +35,7 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.Collections.Generic;
+    using NLog.Common;
     using NLog.Internal;
 
     /// <summary>

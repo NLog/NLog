@@ -31,19 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+namespace NLog.Common
 {
-    /// <summary>
-    /// Asynchronous action.
-    /// </summary>
-    /// <param name="asyncContinuation">Continuation to be invoked at the end of action.</param>
-    public delegate void AsynchronousAction(AsyncContinuation asyncContinuation);
+    using System;
 
     /// <summary>
-    /// Asynchronous action with one argument.
+    /// Asynchronous continuation delegate - function invoked at the end of asynchronous
+    /// processing.
     /// </summary>
-    /// <typeparam name="T">Type of the argument.</typeparam>
-    /// <param name="argument">Argument to the action.</param>
-    /// <param name="asyncContinuation">Continuation to be invoked at the end of action.</param>
-    public delegate void AsynchronousAction<T>(T argument, AsyncContinuation asyncContinuation);
+    /// <param name="exception">Exception during asynchronous processing or null if no exception
+    /// was thrown.</param>
+    public delegate void AsyncContinuation(Exception exception);
 }

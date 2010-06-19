@@ -55,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyBuildInfo.cs" />
-    <Compile Include="AsyncLogEventInfo.cs" />
     <Compile Include="ComInterop\ILogger.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
@@ -64,7 +63,10 @@
     </Compile>
     <Compile Include="ComInterop\Logger.cs" />
     <Compile Include="ComInterop\LogManager.cs" />
-    <Compile Include="Common\ExceptionHelpers.cs" />
+    <Compile Include="Common\AsyncContinuation.cs" />
+    <Compile Include="Common\AsyncHelpers.cs" />
+    <Compile Include="Common\AsynchronousAction.cs" />
+    <Compile Include="Common\AsyncLogEventInfo.cs" />
     <Compile Include="Common\InternalLogger.cs" />
     <Compile Include="Conditions\ConditionAndExpression.cs" />
     <Compile Include="Conditions\ConditionEvaluationException.cs" />
@@ -123,9 +125,6 @@
     <Compile Include="Internal\AspHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Internal\AsyncContinuation.cs" />
-    <Compile Include="Internal\AsyncHelpers.cs" />
-    <Compile Include="Internal\AsynchronousAction.cs" />
     <Compile Include="Internal\CompactFrameworkHelper.cs" />
     <Compile Include="Internal\CurrentTimeGetter.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />

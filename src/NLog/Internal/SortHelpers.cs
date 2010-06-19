@@ -35,6 +35,7 @@ namespace NLog.Internal
 {
     using System;
     using System.Collections.Generic;
+    using NLog.Common;
 
     /// <summary>
     /// Provides helpers to sort log events and associated continuations.
@@ -42,20 +43,27 @@ namespace NLog.Internal
     internal static class SortHelpers
     {
         /// <summary>
+        /// Key selector delegate.
+        /// </summary>
+        /// <param name="logEventInfo">Log event to extract key information from.</param>
+        /// <returns>Key selected from log event.</returns>
+        internal delegate string KeySelector(LogEventInfo logEventInfo);
+
+        /// <summary>
         /// Performs bucket sort (group by) on three arrays and returns a dictionary for easy traversal of the result set.
         /// </summary>
-        /// <param name="keys">The array of keys.</param>
+        /// <param name="keySelector">The key selector function.</param>
         /// <param name="events">The array of events.</param>
         /// <returns>
-        /// Dictonary where keys are unique input keys, and values are lists of <see cref="AsyncLogEventInfo" />.
+        /// Dictonary where keys are unique input keys, and values are lists of <see cref="AsyncLogEventInfo"/>.
         /// </returns>
-        public static Dictionary<string, List<AsyncLogEventInfo>> BucketSort(string[] keys, AsyncLogEventInfo[] events)
+        public static Dictionary<string, List<AsyncLogEventInfo>> BucketSort(KeySelector keySelector, AsyncLogEventInfo[] events)
         {
             var buckets = new Dictionary<string, List<AsyncLogEventInfo>>();
 
             for (int i = 0; i < events.Length; ++i)
             {
-                var keyValue = keys[i];
+                var keyValue = keySelector(events[i].LogEvent);
                 List<AsyncLogEventInfo> eventsInBucket;
                 if (!buckets.TryGetValue(keyValue, out eventsInBucket))
                 {

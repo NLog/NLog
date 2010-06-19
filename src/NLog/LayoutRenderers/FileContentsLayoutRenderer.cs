@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System;
     using System.IO;
     using System.Text;
     using NLog.Common;
@@ -98,16 +99,18 @@ namespace NLog.LayoutRenderers
 
         private string ReadFileContents(string fileName)
         {
-            return ExceptionHelpers.ReturnDefaultOnException(
-                () =>
-                    {
-                        using (StreamReader reader = new StreamReader(fileName, this.Encoding))
-                        {
-                            return reader.ReadToEnd();
-                        }
-                    },
-                "Cannot read file contents: " + fileName,
-                string.Empty);
+            try
+            {
+                using (StreamReader reader = new StreamReader(fileName, this.Encoding))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error("Cannot read file contents: {0} {1}", fileName, ex);
+                return string.Empty;
+            }
         }
     }
 }

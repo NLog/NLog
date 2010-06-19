@@ -40,6 +40,7 @@ using System.Windows.Browser;
 #else
     using System.Windows.Forms;
 #endif
+    using NLog.Common;
     using NLog.Internal;
     using NLog.Layouts;
 

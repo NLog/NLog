@@ -38,7 +38,7 @@ namespace NLog.Targets
 #if WCF_SUPPORTED
     using System.ServiceModel;
 #endif
-
+    using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
     using NLog.LogReceiverService;

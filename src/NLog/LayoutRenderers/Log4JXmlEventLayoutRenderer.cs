@@ -253,7 +253,7 @@ namespace NLog.LayoutRenderers
 #elif SILVERLIGHT
             xtw.WriteAttributeString("value", "silverlight");
 #else
-            xtw.WriteAttributeString("value", NLog.LayoutRenderers.MachineNameLayoutRenderer.MachineName);
+            xtw.WriteAttributeString("value", Environment.MachineName);
 #endif
             xtw.WriteEndElement();
             xtw.WriteEndElement();

@@ -36,6 +36,7 @@ namespace NLog.Targets.Wrappers
     using System;
     using System.ComponentModel;
     using System.Threading;
+    using NLog.Common;
     using NLog.Internal;
 
     /// <summary>

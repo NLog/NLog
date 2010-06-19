@@ -34,6 +34,7 @@
 namespace NLog.Internal
 {
     using System;
+    using NLog.Common;
 
     /// <summary>
     /// A cyclic buffer of <see cref="LogEventInfo"/> object.

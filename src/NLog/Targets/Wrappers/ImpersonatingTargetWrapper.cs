@@ -39,6 +39,7 @@ namespace NLog.Targets.Wrappers
     using System.ComponentModel;
     using System.Runtime.InteropServices;
     using System.Security.Principal;
+    using NLog.Common;
     using NLog.Internal;
 
     /// <summary>

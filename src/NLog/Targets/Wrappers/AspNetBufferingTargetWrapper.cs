@@ -38,6 +38,7 @@ namespace NLog.Targets.Wrappers
     using System;
     using System.ComponentModel;
     using System.Web;
+    using NLog.Common;
     using NLog.Internal;
     using NLog.Web;
 

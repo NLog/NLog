@@ -258,13 +258,7 @@ namespace NLog.Targets
         /// <param name="logEvents">Logging events to be written out.</param>
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            string[] connectionStrings = new string[logEvents.Length];
-            for (int i = 0; i < logEvents.Length; ++i)
-            {
-                connectionStrings[i] = this.BuildConnectionString(logEvents[i].LogEvent);
-            }
-
-            var buckets = SortHelpers.BucketSort(connectionStrings, logEvents);
+            var buckets = SortHelpers.BucketSort(this.BuildConnectionString, logEvents);
 
             try
             {

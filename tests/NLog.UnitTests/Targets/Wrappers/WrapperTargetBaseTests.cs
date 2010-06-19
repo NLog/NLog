@@ -35,6 +35,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NLog.Common;
     using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
