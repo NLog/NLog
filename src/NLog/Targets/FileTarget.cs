@@ -56,7 +56,6 @@ namespace NLog.Targets
     [Target("File")]
     public class FileTarget : TargetWithLayoutHeaderAndFooter, ICreateFileParameters
     {
-        private readonly LogEventComparer logEventComparer;
         private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
 
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
@@ -97,7 +96,6 @@ namespace NLog.Targets
             this.OpenFileCacheTimeout = -1;
             this.OpenFileCacheSize = 5;
             this.CreateDirs = true;
-            this.logEventComparer = new LogEventComparer(this);
         }
 
         /// <summary>
@@ -1170,71 +1168,6 @@ namespace NLog.Targets
                     this.recentAppenders[this.recentAppenders.Length - 1] = null;
                     break;
                 }
-            }
-        }
-
-        /// <summary>
-        /// Compares two log events do determine their ordering 
-        /// by filename first, then by sequence ID.
-        /// </summary>
-        private class LogEventComparer : IComparer
-        {
-            private readonly FileTarget fileTarget;
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="LogEventComparer" /> class.
-            /// </summary>
-            /// <param name="fileTarget">The file target.</param>
-            public LogEventComparer(FileTarget fileTarget)
-            {
-                this.fileTarget = fileTarget;
-            }
-
-            /// <summary>
-            /// Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.
-            /// </summary>
-            /// <param name="x">The first object to compare.</param>
-            /// <param name="y">The second object to compare.</param>
-            /// <returns>
-            /// Value
-            /// Condition
-            /// Less than zero
-            /// <paramref name="x"/> is less than <paramref name="y"/>.
-            /// Zero
-            /// <paramref name="x"/> equals <paramref name="y"/>.
-            /// Greater than zero
-            /// <paramref name="x"/> is greater than <paramref name="y"/>.
-            /// </returns>
-            /// <exception cref="T:System.ArgumentException">
-            /// Neither <paramref name="x"/> nor <paramref name="y"/> implements the <see cref="T:System.IComparable"/> interface.
-            /// -or-
-            /// <paramref name="x"/> and <paramref name="y"/> are of different types and neither one can handle comparisons with the other.
-            /// </exception>
-            public int Compare(object x, object y)
-            {
-                var le1 = (LogEventInfo)x;
-                var le2 = (LogEventInfo)y;
-
-                string filename1 = this.fileTarget.FileName.Render(le1);
-                string filename2 = this.fileTarget.FileName.Render(le2);
-
-                int val = String.CompareOrdinal(filename1, filename2);
-                if (val != 0)
-                {
-                    return val;
-                }
-
-                if (le1.SequenceID < le2.SequenceID)
-                {
-                    return -1;
-                }
-
-                if (le1.SequenceID > le2.SequenceID)
-                {
-                    return 1;
-                }
-
-                return 0;
             }
         }
     }
