@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -40,17 +38,26 @@ namespace NLog.UnitTests.Targets
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Data;
+    using System.Data.Common;
     using System.Globalization;
-    using System.IO;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using NLog.Internal;
     using NLog.Targets;
 
     [TestClass]
     public class DatabaseTargetTests : NLogTestBase
     {
-        private Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.DatabaseTargetTests");
+#if !NET_CF
+        [AssemblyInitialize]
+        public static void SetupMockProvider(TestContext context)
+        {
+            var data = (DataSet)ConfigurationManager.GetSection("system.data");
+            var providerFactories = data.Tables["DbProviderFactories"];
+            providerFactories.Rows.Add("MockDb Provider", "MockDb Provider", "MockDb", typeof(MockDbFactory).AssemblyQualifiedName);
+            providerFactories.AcceptChanges();
+        }
+#endif
 
         [TestMethod]
         public void SimpleDatabaseTest()
@@ -181,7 +188,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
 
             dt.Initialize();
             Assert.AreSame(typeof(MockDbConnection), dt.ConnectionType);
-            List<Exception> exceptions = new List<Exception>();
+            var exceptions = new List<Exception>();
 
             var events = new[]
             {
@@ -628,6 +635,101 @@ Close()
             Assert.AreEqual(expectedLog, MockDbConnection.Log);
         }
 
+#if !NET_CF
+        [TestMethod]
+        public void ConnectionStringNameInitTest()
+        {
+            var dt = new DatabaseTarget();
+            dt.ConnectionStringName = "MyConnectionString";
+            Assert.AreSame(ConfigurationManager.ConnectionStrings, dt.ConnectionStringsSettings);
+            dt.ConnectionStringsSettings = new ConnectionStringSettingsCollection()
+            {
+                new ConnectionStringSettings("MyConnectionString", "cs1", "MockDb"),
+            };
+
+            dt.Initialize();
+            Assert.AreSame(MockDbFactory.Instance, dt.ProviderFactory);
+            Assert.AreEqual("cs1", dt.ConnectionString.Render(LogEventInfo.CreateNullEvent()));
+        }
+
+        [TestMethod]
+        public void ConnectionStringNameNegativeTest()
+        {
+            var dt = new DatabaseTarget();
+            dt.ConnectionStringName = "MyConnectionString";
+            dt.ConnectionStringsSettings = new ConnectionStringSettingsCollection()
+            {
+            };
+
+            try
+            {
+                dt.Initialize();
+                Assert.Fail("Exception expected.");
+            }
+            catch (NLogConfigurationException configurationException)
+            {
+                Assert.AreEqual("Connection string 'MyConnectionString' is not declared in <connectionStrings /> section.", configurationException.Message);
+            }
+        }
+
+        [TestMethod]
+        public void ProviderFactoryInitTest()
+        {
+            var dt = new DatabaseTarget();
+            dt.DbProvider = "MockDb";
+            dt.Initialize();
+            Assert.AreSame(MockDbFactory.Instance, dt.ProviderFactory);
+            dt.OpenConnection("myConnectionString");
+            Assert.AreEqual(1, MockDbConnection2.OpenCount);
+            Assert.AreEqual("myConnectionString", MockDbConnection2.LastOpenConnectionString);
+        }
+
+        [TestMethod]
+        public void SqlServerShorthandNotationTest()
+        {
+            foreach (string provName in new[] { "microsoft", "msde", "mssql", "sqlserver" })
+            {
+                var dt = new DatabaseTarget()
+                {
+                    Name = "myTarget",
+                    DbProvider = provName,
+                    ConnectionString = "notimportant",
+                };
+
+                dt.Initialize();
+                Assert.AreEqual(typeof(System.Data.SqlClient.SqlConnection), dt.ConnectionType);
+            }
+        }
+
+        [TestMethod]
+        public void OleDbShorthandNotationTest()
+        {
+            var dt = new DatabaseTarget()
+            {
+                Name = "myTarget",
+                DbProvider = "oledb",
+                ConnectionString = "notimportant",
+            };
+
+            dt.Initialize();
+            Assert.AreEqual(typeof(System.Data.OleDb.OleDbConnection), dt.ConnectionType);
+        }
+
+        [TestMethod]
+        public void OdbcShorthandNotationTest()
+        {
+            var dt = new DatabaseTarget()
+            {
+                Name = "myTarget",
+                DbProvider = "odbc",
+                ConnectionString = "notimportant",
+            };
+
+            dt.Initialize();
+            Assert.AreEqual(typeof(System.Data.Odbc.OdbcConnection), dt.ConnectionType);
+        }
+#endif
+
         private string GetConnectionString(DatabaseTarget dt)
         {
             MockDbConnection.ClearLog();
@@ -997,6 +1099,73 @@ Close()
                 set { throw new NotImplementedException(); }
             }
         }
+
+#if !NET_CF
+        public class MockDbFactory : DbProviderFactory
+        {
+            public static readonly MockDbFactory Instance = new MockDbFactory();
+
+            public override DbConnection CreateConnection()
+            {
+                return new MockDbConnection2();
+            }
+        }
+
+        public class MockDbConnection2 : DbConnection
+        {
+            public static int OpenCount { get; private set; }
+
+            public static string LastOpenConnectionString { get; private set; }
+
+            protected override DbTransaction BeginDbTransaction(IsolationLevel isolationLevel)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override void ChangeDatabase(string databaseName)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override void Close()
+            {
+                throw new NotImplementedException();
+            }
+
+            public override string ConnectionString { get; set; }
+
+            protected override DbCommand CreateDbCommand()
+            {
+                throw new NotImplementedException();
+            }
+
+            public override string DataSource
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public override string Database
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public override void Open()
+            {
+                LastOpenConnectionString = this.ConnectionString;
+                OpenCount++;
+            }
+
+            public override string ServerVersion
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public override ConnectionState State
+            {
+                get { throw new NotImplementedException(); }
+            }
+        }
+#endif
     }
 }
 

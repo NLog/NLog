@@ -38,7 +38,9 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Configuration;
     using System.Data;
+    using System.Data.Common;
     using System.Globalization;
     using System.Reflection;
     using System.Text;
@@ -82,17 +84,50 @@ namespace NLog.Targets
             this.Parameters = new List<DatabaseParameterInfo>();
             this.DbProvider = "sqlserver";
             this.DbHost = ".";
+#if !NET_CF
+            this.ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
+#endif
         }
 
         /// <summary>
-        /// Gets or sets the name of the database provider. It can be:
-        /// <c>sqlserver, mssql, microsoft, msde</c> (all for MSSQL database), <c>oledb, odbc</c> or other name in which case
-        /// it's treated as a fully qualified type name of the data provider *Connection class.
+        /// Gets or sets the name of the database provider.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// The parameter name should be a provider invariant name as registered in machine.config or app.config. Common values are:
+        /// </para>
+        /// <ul>
+        /// <li><c>System.Data.SqlClient</c> - <see href="http://msdn.microsoft.com/en-us/library/system.data.sqlclient.aspx">SQL Sever Client</see></li>
+        /// <li><c>System.Data.SqlServerCe.3.5</c> - <see href="http://www.microsoft.com/sqlserver/2005/en/us/compact.aspx">SQL Sever Compact 3.5</see></li>
+        /// <li><c>System.Data.OracleClient</c> - <see href="http://msdn.microsoft.com/en-us/library/system.data.oracleclient.aspx">Oracle Client from Microsoft</see> (deprecated in .NET Framework 4)</li>
+        /// <li><c>Oracle.DataAccess.Client</c> - <see href="http://www.oracle.com/technology/tech/windows/odpnet/index.html">ODP.NET provider from Oracle</see></li>
+        /// <li><c>System.Data.SQLite</c> - <see href="http://sqlite.phxsoftware.com/">System.Data.SQLite driver for SQLite</see></li>
+        /// <li><c>Npgsql</c> - <see href="http://npgsql.projects.postgresql.org/">Npgsql driver for PostgreSQL</see></li>
+        /// <li><c>MySql.Data.MySqlClient</c> - <see href="http://www.mysql.com/downloads/connector/net/">MySQL Connector/Net</see></li>
+        /// </ul>
+        /// <para>(Note that provider invariant names are not supported on .NET Compact Framework).</para>
+        /// <para>
+        /// Alternatively the parameter value can be be a fully qualified name of the provider 
+        /// connection type (class implementing <see cref="IDbConnection" />) or one of the following tokens:
+        /// </para>
+        /// <ul>
+        /// <li><c>sqlserver</c>, <c>mssql</c>, <c>microsoft</c> or <c>msde</c> - SQL Server Data Provider</li>
+        /// <li><c>oledb</c> - OLEDB Data Provider</li>
+        /// <li><c>odbc</c> - ODBC Data Provider</li>
+        /// </ul>
+        /// </remarks>
         /// <docgen category='Connection Options' order='10' />
         [RequiredParameter]
         [DefaultValue("sqlserver")]
         public string DbProvider { get; set; }
+
+#if !NET_CF
+        /// <summary>
+        /// Gets or sets the name of the connection string (as specified in <see href="http://msdn.microsoft.com/en-us/library/bf7sd233.aspx">&lt;connectionStrings&gt; configuration section</see>.
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        public string ConnectionStringName { get; set; }
+#endif
 
         /// <summary>
         /// Gets or sets the connection string. When provided, it overrides the values
@@ -172,9 +207,34 @@ namespace NLog.Targets
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
         public IList<DatabaseParameterInfo> Parameters { get; private set; }
 
+#if !NET_CF
+        internal DbProviderFactory ProviderFactory { get; set; }
+
+        // this is so we can mock the connection string without creating sub-processes
+        internal ConnectionStringSettingsCollection ConnectionStringsSettings { get; set;  }
+#endif
+
         internal Type ConnectionType { get; set; }
 
-        internal ConstructorInfo ConnectionConstructorInfo { get; set; }
+        internal IDbConnection OpenConnection(string connectionString)
+        {
+            IDbConnection connection;
+
+#if !NET_CF
+            if (this.ProviderFactory != null)
+            {
+                connection = this.ProviderFactory.CreateConnection();
+            }
+            else
+#endif
+            {
+                connection = (IDbConnection)Activator.CreateInstance(this.ConnectionType);
+            }
+
+            connection.ConnectionString = connectionString;
+            connection.Open();
+            return connection;
+        }
 
         /// <summary>
         /// Initializes the target. Can be used by inheriting classes
@@ -183,32 +243,60 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
-            switch (this.DbProvider.ToUpper(CultureInfo.InvariantCulture))
+
+            bool foundProvider = false;
+
+#if !NET_CF
+            if (!string.IsNullOrEmpty(this.ConnectionStringName))
             {
-                case "sqlserver":
-                case "mssql":
-                case "microsoft":
-                case "msde":
-                    this.ConnectionType = systemDataAssembly.GetType("System.Data.SqlClient.SqlConnection", true);
-                    break;
+                // read connection string and provider factory from the configuration file
+                var cs = this.ConnectionStringsSettings[this.ConnectionStringName];
+                if (cs == null)
+                {
+                    throw new NLogConfigurationException("Connection string '" + this.ConnectionStringName + "' is not declared in <connectionStrings /> section.");
+                }
 
-                case "oledb":
-                    this.ConnectionType = systemDataAssembly.GetType("System.Data.OleDb.OleDbConnection", true);
-                    break;
-
-                case "odbc":
-                    this.ConnectionType = systemDataAssembly.GetType("System.Data.Odbc.OdbcConnection", true);
-                    break;
-
-                default:
-                    this.ConnectionType = Type.GetType(this.DbProvider, true);
-                    break;
+                this.ConnectionString = SimpleLayout.Escape(cs.ConnectionString);
+                this.ProviderFactory = DbProviderFactories.GetFactory(cs.ProviderName);
+                foundProvider = true;
             }
 
-            this.ConnectionConstructorInfo = this.ConnectionType.GetConstructor(new[] { typeof(string) });
-            if (this.ConnectionType == null)
+            if (!foundProvider)
             {
-                throw new NLogConfigurationException("Constructor with a string parameter not found on '" + this.ConnectionType.FullName + "' type.");
+                foreach (DataRow row in DbProviderFactories.GetFactoryClasses().Rows)
+                {
+                    if ((string)row["InvariantName"] == this.DbProvider)
+                    {
+                        this.ProviderFactory = DbProviderFactories.GetFactory(this.DbProvider);
+                        foundProvider = true;
+                    }
+                }
+            }
+#endif
+
+            if (!foundProvider)
+            {
+                switch (this.DbProvider.ToUpper(CultureInfo.InvariantCulture))
+                {
+                    case "SQLSERVER":
+                    case "MSSQL":
+                    case "MICROSOFT":
+                    case "MSDE":
+                        this.ConnectionType = systemDataAssembly.GetType("System.Data.SqlClient.SqlConnection", true);
+                        break;
+
+                    case "OLEDB":
+                        this.ConnectionType = systemDataAssembly.GetType("System.Data.OleDb.OleDbConnection", true);
+                        break;
+
+                    case "ODBC":
+                        this.ConnectionType = systemDataAssembly.GetType("System.Data.Odbc.OdbcConnection", true);
+                        break;
+
+                    default:
+                        this.ConnectionType = Type.GetType(this.DbProvider, true);
+                        break;
+                }
             }
         }
 
@@ -331,18 +419,6 @@ namespace NLog.Targets
             command.ExecuteNonQuery();
         }
 
-        private IDbConnection OpenConnection(string connectionString)
-        {
-            var retVal = (IDbConnection)this.ConnectionConstructorInfo.Invoke(new object[] { connectionString });
-
-            if (retVal != null)
-            {
-                retVal.Open();
-            }
-
-            return retVal;
-        }
-
         private string BuildConnectionString(LogEventInfo logEvent)
         {
             if (this.ConnectionString != null)
@@ -350,7 +426,7 @@ namespace NLog.Targets
                 return this.ConnectionString.Render(logEvent);
             }
 
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             sb.Append("Server=");
             sb.Append(this.DbHost.Render(logEvent));
