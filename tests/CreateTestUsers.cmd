@@ -1,2 +1,2 @@
 @echo off
-net user NLogTestUser BC57C01CCBC4 /add
+net user NLogTestUser BC@57acasd123 /add

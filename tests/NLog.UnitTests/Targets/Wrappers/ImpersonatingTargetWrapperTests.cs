@@ -48,7 +48,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     public class ImpersonatingTargetWrapperTests : NLogTestBase
 	{
         private const string NLogTestUser = "NLogTestUser";
-        private const string NLogTestUserPassword = "BC57C01CCBC4";
+        private const string NLogTestUserPassword = "BC@57acasd123";
 
         [TestMethod]
         public void ImpersonatingWrapperTest()
