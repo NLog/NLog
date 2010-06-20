@@ -50,7 +50,6 @@ namespace NLog.Targets.Wrappers
     public class ImpersonatingTargetWrapper : WrapperTargetBase
     {
         private WindowsIdentity newIdentity;
-        private IntPtr existingTokenHandle = IntPtr.Zero;
         private IntPtr duplicateTokenHandle = IntPtr.Zero;
 
         /// <summary>
@@ -125,7 +124,7 @@ namespace NLog.Targets.Wrappers
         {
             if (!this.RevertToSelf)
             {
-                this.newIdentity = this.CreateWindowsIdentity();
+                this.newIdentity = this.CreateWindowsIdentity(out this.duplicateTokenHandle);
             }
 
             using (this.DoImpersonate())
@@ -144,16 +143,16 @@ namespace NLog.Targets.Wrappers
                 base.CloseTarget();
             }
 
-            if (this.existingTokenHandle != IntPtr.Zero)
-            {
-                NativeMethods.CloseHandle(this.existingTokenHandle);
-                this.existingTokenHandle = IntPtr.Zero;
-            }
-
             if (this.duplicateTokenHandle != IntPtr.Zero)
             {
                 NativeMethods.CloseHandle(this.duplicateTokenHandle);
                 this.duplicateTokenHandle = IntPtr.Zero;
+            }
+
+            if (this.newIdentity != null)
+            {
+                this.newIdentity.Dispose();
+                this.newIdentity = null;
             }
         }
 
@@ -202,23 +201,17 @@ namespace NLog.Targets.Wrappers
                 return new ContextReverter(WindowsIdentity.Impersonate(IntPtr.Zero));
             }
 
-            if (this.newIdentity != null)
-            {
-                return new ContextReverter(this.newIdentity.Impersonate());
-            }
-
-            return null;
+            return new ContextReverter(this.newIdentity.Impersonate());
         }
 
         //
         // adapted from:
         // http://www.codeproject.com/csharp/cpimpersonation1.asp
         //
-        private WindowsIdentity CreateWindowsIdentity()
+        private WindowsIdentity CreateWindowsIdentity(out IntPtr handle)
         {
             // initialize tokens
-            this.existingTokenHandle = IntPtr.Zero;
-            this.duplicateTokenHandle = IntPtr.Zero;
+            IntPtr logonHandle;
 
             if (!NativeMethods.LogonUser(
                 this.UserName,
@@ -226,20 +219,21 @@ namespace NLog.Targets.Wrappers
                 this.Password,
                 (int)this.LogonType,
                 (int)this.LogonProvider,
-                out this.existingTokenHandle))
+                out logonHandle))
             {
-                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+                throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
             }
 
-            if (!NativeMethods.DuplicateToken(this.existingTokenHandle, (int)this.ImpersonationLevel, out this.duplicateTokenHandle))
+            if (!NativeMethods.DuplicateToken(logonHandle, (int)this.ImpersonationLevel, out handle))
             {
-                NativeMethods.CloseHandle(this.existingTokenHandle);
-                this.existingTokenHandle = IntPtr.Zero;
-                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+                NativeMethods.CloseHandle(logonHandle);
+                throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
             }
 
-            // create new identity using new primary token
-            return new WindowsIdentity(this.duplicateTokenHandle);
+            NativeMethods.CloseHandle(logonHandle);
+
+            // create new identity using new primary token)
+            return new WindowsIdentity(handle);
         }
 
         /// <summary>

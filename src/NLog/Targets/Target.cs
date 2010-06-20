@@ -79,8 +79,16 @@ namespace NLog.Targets
                 if (!this.IsInitialized)
                 {
                     PropertyHelper.CheckRequiredParameters(this);
-                    this.InitializeTarget();
-                    this.IsInitialized = true;
+                    try
+                    {
+                        this.InitializeTarget();
+                        this.IsInitialized = true;
+                    }
+                    catch (Exception exception)
+                    {
+                        InternalLogger.Error("Error initializing target {0} {1}.", this, exception);
+                        throw;
+                    }
                 }
             }
         }
@@ -94,8 +102,16 @@ namespace NLog.Targets
             {
                 if (this.IsInitialized)
                 {
-                    this.CloseTarget();
-                    this.IsInitialized = false;
+                    try
+                    {
+                        this.CloseTarget();
+                        this.IsInitialized = false;
+                    }
+                    catch (Exception exception)
+                    {
+                        InternalLogger.Error("Error closing target {0} {1}.", this, exception);
+                        throw;
+                    }
                 }
             }
         }
