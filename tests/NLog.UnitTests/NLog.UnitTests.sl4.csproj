@@ -129,6 +129,7 @@
     <Compile Include="SourceCodeTests.cs" />
     <Compile Include="TargetConfigurationTests.cs" />
     <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
+    <Compile Include="Targets\ConsoleTargetTests.cs" />
     <Compile Include="Targets\DatabaseTargetTests.cs" />
     <Compile Include="Targets\EventLogTests.cs" />
     <Compile Include="Targets\FileTargetTests.cs" />
