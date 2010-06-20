@@ -236,6 +236,51 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual("log message 2\n", msg2.Body);
         }
 
+        [TestMethod]
+        public void ErrorHandlingTest()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                To = "bar@foo.com",
+                SmtpServer = "${logger}",
+                Body = "${message}",
+                AddNewLines = true,
+            };
+
+            mmt.Initialize();
+
+            var exceptions = new List<Exception>();
+            var exceptions2 = new List<Exception>();
+
+            mmt.WriteAsyncLogEvents(
+                new LogEventInfo(LogLevel.Info, "MyLogger1", "log message 1").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Debug, "ERROR", "log message 2").WithContinuation(exceptions2.Add),
+                new LogEventInfo(LogLevel.Error, "MyLogger1", "log message 3").WithContinuation(exceptions.Add));
+            Assert.IsNull(exceptions[0], Convert.ToString(exceptions[0]));
+            Assert.IsNull(exceptions[1], Convert.ToString(exceptions[1]));
+
+            Assert.IsNotNull(exceptions2[0]);
+            Assert.AreEqual("Some SMTP error.", exceptions2[0].Message);
+
+            // 2 messages are sent, one using MyLogger1.mydomain.com, another using MyLogger2.mydomain.com
+            Assert.AreEqual(2, mmt.CreatedMocks.Count);
+
+            var mock1 = mmt.CreatedMocks[0];
+            Assert.AreEqual("MyLogger1", mock1.Host);
+            Assert.AreEqual(1, mock1.MessagesSent.Count);
+
+            var msg1 = mock1.MessagesSent[0];
+            Assert.AreEqual("log message 1\nlog message 3\n", msg1.Body);
+
+            var mock2 = mmt.CreatedMocks[1];
+            Assert.AreEqual("ERROR", mock2.Host);
+            Assert.AreEqual(1, mock2.MessagesSent.Count);
+
+            var msg2 = mock2.MessagesSent[0];
+            Assert.AreEqual("log message 2\n", msg2.Body);
+        }
+
         /// <summary>
         /// Tests that it is possible to user different email address for each log message,
         /// for example by using ${logger}, ${event-context} or any other layout renderer.
@@ -335,6 +380,10 @@ namespace NLog.UnitTests.Targets
             public void Send(MailMessage msg)
             {
                 this.MessagesSent.Add(msg);
+                if (Host == "ERROR")
+                {
+                    throw new InvalidOperationException("Some SMTP error.");
+                }
             }
         }
 

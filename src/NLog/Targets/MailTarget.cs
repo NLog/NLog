@@ -35,6 +35,8 @@
 
 namespace NLog.Targets
 {
+    using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Net;
     using System.Net.Mail;
@@ -234,8 +236,16 @@ namespace NLog.Targets
             foreach (var bucket in SortHelpers.BucketSort(this.GetSmtpSettingsKey, events))
             {
                 var eventInfos = bucket.Value;
-                LogEventInfo firstEvent = eventInfos[0].LogEvent;
-                LogEventInfo lastEvent = eventInfos[eventInfos.Count - 1].LogEvent;
+                this.ProcessSingleMailMessage(eventInfos);
+            }
+        }
+
+        private void ProcessSingleMailMessage(List<AsyncLogEventInfo> events)
+        {
+            try
+            {
+                LogEventInfo firstEvent = events[0].LogEvent;
+                LogEventInfo lastEvent = events[events.Count - 1].LogEvent;
 
                 // unbuffered case, create a local buffer, append header, body and footer
                 var bodyBuffer = new StringBuilder();
@@ -248,18 +258,18 @@ namespace NLog.Targets
                     }
                 }
 
-                for (int i = 0; i < eventInfos.Count; ++i)
+                for (int i = 0; i < events.Count; ++i)
                 {
-                    bodyBuffer.Append(this.Layout.Render(eventInfos[i].LogEvent));
+                    bodyBuffer.Append(this.Layout.Render(events[i].LogEvent));
                     if (this.AddNewLines)
                     {
                         bodyBuffer.Append("\n");
                     }
                 }
 
-                if (Footer != null)
+                if (this.Footer != null)
                 {
-                    bodyBuffer.Append(Footer.Render(lastEvent));
+                    bodyBuffer.Append(this.Footer.Render(lastEvent));
                     if (this.AddNewLines)
                     {
                         bodyBuffer.Append("\n");
@@ -286,9 +296,16 @@ namespace NLog.Targets
                 InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, this.SmtpServer);
                 client.Send(msg);
 
-                foreach (var ev in eventInfos)
+                foreach (var ev in events)
                 {
                     ev.Continuation(null);
+                }
+            }
+            catch (Exception exception)
+            {
+                foreach (var ev in events)
+                {
+                    ev.Continuation(exception);
                 }
             }
         }
