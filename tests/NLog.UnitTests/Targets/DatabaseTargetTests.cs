@@ -639,8 +639,12 @@ Close()
         [TestMethod]
         public void ConnectionStringNameInitTest()
         {
-            var dt = new DatabaseTarget();
-            dt.ConnectionStringName = "MyConnectionString";
+            var dt = new DatabaseTarget
+            {
+                ConnectionStringName = "MyConnectionString",
+                CommandText = "notimportant",
+            };
+
             Assert.AreSame(ConfigurationManager.ConnectionStrings, dt.ConnectionStringsSettings);
             dt.ConnectionStringsSettings = new ConnectionStringSettingsCollection()
             {
@@ -655,10 +659,11 @@ Close()
         [TestMethod]
         public void ConnectionStringNameNegativeTest()
         {
-            var dt = new DatabaseTarget();
-            dt.ConnectionStringName = "MyConnectionString";
-            dt.ConnectionStringsSettings = new ConnectionStringSettingsCollection()
+            var dt = new DatabaseTarget
             {
+                ConnectionStringName = "MyConnectionString",
+                CommandText = "notimportant",
+                ConnectionStringsSettings = new ConnectionStringSettingsCollection(),
             };
 
             try
@@ -677,6 +682,7 @@ Close()
         {
             var dt = new DatabaseTarget();
             dt.DbProvider = "MockDb";
+            dt.CommandText = "Notimportant";
             dt.Initialize();
             Assert.AreSame(MockDbFactory.Instance, dt.ProviderFactory);
             dt.OpenConnection("myConnectionString");
@@ -694,6 +700,7 @@ Close()
                     Name = "myTarget",
                     DbProvider = provName,
                     ConnectionString = "notimportant",
+                    CommandText = "notimportant",
                 };
 
                 dt.Initialize();
@@ -709,6 +716,7 @@ Close()
                 Name = "myTarget",
                 DbProvider = "oledb",
                 ConnectionString = "notimportant",
+                CommandText = "notimportant",
             };
 
             dt.Initialize();
@@ -723,6 +731,7 @@ Close()
                 Name = "myTarget",
                 DbProvider = "odbc",
                 ConnectionString = "notimportant",
+                CommandText = "notimportant",
             };
 
             dt.Initialize();

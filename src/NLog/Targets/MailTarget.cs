@@ -40,6 +40,7 @@ namespace NLog.Targets
     using System.Net.Mail;
     using System.Text;
     using NLog.Common;
+    using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
 
@@ -97,12 +98,14 @@ namespace NLog.Targets
         /// Gets or sets sender's email address (e.g. joe@domain.com).
         /// </summary>
         /// <docgen category='Message Options' order='10' />
+        [RequiredParameter]
         public Layout From { get; set; }
 
         /// <summary>
         /// Gets or sets recipients' email addresses separated by semicolons (e.g. john@domain.com;jane@domain.com).
         /// </summary>
         /// <docgen category='Message Options' order='11' />
+        [RequiredParameter]
         public Layout To { get; set; }
 
         /// <summary>
@@ -129,6 +132,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Message Options' order='5' />
         [DefaultValue("Message from NLog on ${machinename}")]
+        [RequiredParameter]
         public Layout Subject { get; set; }
 
         /// <summary>
@@ -161,6 +165,7 @@ namespace NLog.Targets
         /// Gets or sets SMTP Server to be used for sending.
         /// </summary>
         /// <docgen category='SMTP Options' order='10' />
+        [RequiredParameter]
         public Layout SmtpServer { get; set; }
 
         /// <summary>
@@ -196,6 +201,11 @@ namespace NLog.Targets
         [DefaultValue(25)]
         public int SmtpPort { get; set; }
 
+        internal virtual ISmtpClient CreateSmtpClient()
+        {
+            return new MySmtpClient();
+        }
+
         /// <summary>
         /// Writes logging event to the log target. Must be overridden in inheriting
         /// classes.
@@ -221,76 +231,103 @@ namespace NLog.Targets
         /// <param name="events">Array of logging events.</param>
         protected override void Write(AsyncLogEventInfo[] events)
         {
-            if (events == null)
+            foreach (var bucket in SortHelpers.BucketSort(this.GetSmtpSettingsKey, events))
             {
-                return;
-            }
+                var eventInfos = bucket.Value;
+                LogEventInfo firstEvent = eventInfos[0].LogEvent;
+                LogEventInfo lastEvent = eventInfos[eventInfos.Count - 1].LogEvent;
 
-            if (events.Length == 0)
-            {
-                return;
-            }
-
-            if (this.From == null || this.To == null || this.Subject == null)
-            {
-                return;
-            }
-
-            LogEventInfo lastEvent = events[events.Length - 1].LogEvent;
-            string bodyText;
-
-            // unbuffered case, create a local buffer, append header, body and footer
-            StringBuilder bodyBuffer = new StringBuilder();
-            if (Header != null)
-            {
-                bodyBuffer.Append(Header.Render(lastEvent));
-                if (this.AddNewLines)
+                // unbuffered case, create a local buffer, append header, body and footer
+                var bodyBuffer = new StringBuilder();
+                if (this.Header != null)
                 {
-                    bodyBuffer.Append("\n");
+                    bodyBuffer.Append(this.Header.Render(firstEvent));
+                    if (this.AddNewLines)
+                    {
+                        bodyBuffer.Append("\n");
+                    }
+                }
+
+                for (int i = 0; i < eventInfos.Count; ++i)
+                {
+                    bodyBuffer.Append(this.Layout.Render(eventInfos[i].LogEvent));
+                    if (this.AddNewLines)
+                    {
+                        bodyBuffer.Append("\n");
+                    }
+                }
+
+                if (Footer != null)
+                {
+                    bodyBuffer.Append(Footer.Render(lastEvent));
+                    if (this.AddNewLines)
+                    {
+                        bodyBuffer.Append("\n");
+                    }
+                }
+
+                var msg = new MailMessage();
+                this.SetupMailMessage(msg, lastEvent);
+                msg.Body = bodyBuffer.ToString();
+
+                ISmtpClient client = this.CreateSmtpClient();
+                client.Host = this.SmtpServer.Render(lastEvent);
+                client.Port = this.SmtpPort;
+                if (this.SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
+                {
+                    client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                }
+                else if (this.SmtpAuthentication == SmtpAuthenticationMode.Basic)
+                {
+                    client.Credentials = new NetworkCredential(this.SmtpUsername.Render(lastEvent), this.SmtpPassword.Render(lastEvent));
+                }
+
+                client.EnableSsl = this.EnableSsl;
+                InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, this.SmtpServer);
+                client.Send(msg);
+
+                foreach (var ev in eventInfos)
+                {
+                    ev.Continuation(null);
                 }
             }
+        }
 
-            for (int i = 0; i < events.Length; ++i)
+        private string GetSmtpSettingsKey(LogEventInfo logEvent)
+        {
+            var sb = new StringBuilder();
+
+            sb.Append(this.From.Render(logEvent));
+
+            sb.Append("|");
+            sb.Append(this.To.Render(logEvent));
+
+            sb.Append("|");
+            if (this.CC != null)
             {
-                bodyBuffer.Append(this.Layout.Render(events[i].LogEvent));
-                if (this.AddNewLines)
-                {
-                    bodyBuffer.Append("\n");
-                }
+                sb.Append(this.CC.Render(logEvent));
             }
 
-            if (Footer != null)
+            sb.Append("|");
+            if (this.CC != null)
             {
-                bodyBuffer.Append(Footer.Render(lastEvent));
-                if (this.AddNewLines)
-                {
-                    bodyBuffer.Append("\n");
-                }
+                sb.Append(this.Bcc.Render(logEvent));
             }
 
-            bodyText = bodyBuffer.ToString();
-
-            MailMessage msg = new MailMessage();
-            this.SetupMailMessage(msg, lastEvent);
-            msg.Body = bodyText;
-            SmtpClient client = new SmtpClient(this.SmtpServer.Render(lastEvent), this.SmtpPort);
-            if (this.SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
+            sb.Append("|");
+            sb.Append(this.SmtpServer.Render(logEvent));
+            if (this.SmtpPassword != null)
             {
-                client.Credentials = CredentialCache.DefaultNetworkCredentials;
-            }
-            else if (this.SmtpAuthentication == SmtpAuthenticationMode.Basic)
-            {
-                client.Credentials = new NetworkCredential(this.SmtpUsername.Render(lastEvent), this.SmtpPassword.Render(lastEvent));
+                sb.Append(this.SmtpPassword.Render(logEvent));
             }
 
-            client.EnableSsl = this.EnableSsl;
-            InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, this.SmtpServer);
-            client.Send(msg);
-
-            foreach (var ev in events)
+            sb.Append("|");
+            if (this.SmtpUsername != null)
             {
-                ev.Continuation(null);
+                sb.Append(this.SmtpUsername.Render(logEvent));
             }
+
+            return sb.ToString();
         }
 
         private void SetupMailMessage(MailMessage msg, LogEventInfo logEvent)

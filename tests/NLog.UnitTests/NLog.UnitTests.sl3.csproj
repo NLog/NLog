@@ -132,6 +132,7 @@
     <Compile Include="Targets\EventLogTests.cs" />
     <Compile Include="Targets\FileTargetTests.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTargetTests.cs" />
+    <Compile Include="Targets\MailTargetTests.cs" />
     <Compile Include="Targets\RichTextBoxTargetTests.cs" />
     <Compile Include="Targets\TargetTests.cs" />
     <Compile Include="Targets\Wrappers\AsyncRequestQueueTests.cs" />

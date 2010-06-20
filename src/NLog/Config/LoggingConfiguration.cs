@@ -232,7 +232,7 @@ namespace NLog.Config
 
             foreach (INLogConfigurationItem o in this.configItems)
             {
-                CheckRequiredParameters(o);
+                PropertyHelper.CheckRequiredParameters(o);
             }
 
             foreach (ISupportsInitialize initialize in EnumerableHelpers.Reverse(EnumerableHelpers.OfType<ISupportsInitialize>(this.configItems)))
@@ -245,22 +245,6 @@ namespace NLog.Config
                 catch (Exception ex)
                 {
                     throw new NLogConfigurationException("Error during initialization of " + initialize, ex);
-                }
-            }
-        }
-
-        private static void CheckRequiredParameters(object o)
-        {
-            foreach (PropertyInfo propInfo in PropertyHelper.GetAllReadableProperties(o.GetType()))
-            {
-                if (propInfo.IsDefined(typeof(RequiredParameterAttribute), false))
-                {
-                    object value = propInfo.GetValue(o, null);
-                    if (value == null)
-                    {
-                        throw new NLogConfigurationException(
-                            "Required parameter '" + propInfo.Name + "' on '" + o + "' was not specified.");
-                    }
                 }
             }
         }

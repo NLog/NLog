@@ -214,6 +214,22 @@ namespace NLog.Internal
 #endif
         }
 
+        internal static void CheckRequiredParameters(object o)
+        {
+            foreach (PropertyInfo propInfo in PropertyHelper.GetAllReadableProperties(o.GetType()))
+            {
+                if (propInfo.IsDefined(typeof(RequiredParameterAttribute), false))
+                {
+                    object value = propInfo.GetValue(o, null);
+                    if (value == null)
+                    {
+                        throw new NLogConfigurationException(
+                            "Required parameter '" + propInfo.Name + "' on '" + o + "' was not specified.");
+                    }
+                }
+            }
+        }
+
         private static bool TryImplicitConversion(Type resultType, string value, out object result)
         {
             MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { typeof(string) }, null);

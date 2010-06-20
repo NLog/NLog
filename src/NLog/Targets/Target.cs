@@ -78,6 +78,7 @@ namespace NLog.Targets
             {
                 if (!this.IsInitialized)
                 {
+                    PropertyHelper.CheckRequiredParameters(this);
                     this.InitializeTarget();
                     this.IsInitialized = true;
                 }

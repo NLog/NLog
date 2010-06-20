@@ -140,11 +140,13 @@
     <Compile Include="Internal\FileInfoHelper.cs" />
     <Compile Include="Internal\FormHelper.cs" />
     <Compile Include="Internal\IRenderable.cs" />
+    <Compile Include="Internal\ISmtpClient.cs" />
     <Compile Include="Internal\ISupportsInitialize.cs" />
     <Compile Include="Internal\IUsesStackTrace.cs" />
     <Compile Include="Internal\LogEventInfoBuffer.cs" />
     <Compile Include="Internal\LoggerConfiguration.cs" />
     <Compile Include="Internal\MultiFileWatcher.cs" />
+    <Compile Include="Internal\MySmtpClient.cs" />
     <Compile Include="Internal\NativeMethods.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>

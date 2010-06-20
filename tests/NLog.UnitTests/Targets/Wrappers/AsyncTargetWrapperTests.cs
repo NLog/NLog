@@ -290,11 +290,14 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 OverflowAction = AsyncTargetWrapperOverflowAction.Grow,
                 TimeToSleepBetweenBatches = 500,
+                WrappedTarget = new DebugTarget(),
             };
 
             targetWrapper.Initialize();
 
-            // don't set wrapped taret - will cause exception on the timer thread
+            // null out wrapped target - will cause exception on the timer thread
+            targetWrapper.WrappedTarget = null;
+
             string internalLog = RunAndCaptureInternalLog(
                 () =>
                 {

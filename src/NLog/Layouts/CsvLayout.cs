@@ -63,6 +63,8 @@ namespace NLog.Layouts
             this.Quoting = CsvQuotingMode.Auto;
             this.QuoteChar = "\"";
             this.Layout = this;
+            this.Header = new CsvHeaderLayout(this);
+            this.Footer = null;
         }
 
         /// <summary>
@@ -145,9 +147,6 @@ namespace NLog.Layouts
 
             this.quotableCharacters = (this.QuoteChar + "\r\n" + this.actualColumnDelimiter).ToCharArray();
             this.doubleQuoteChar = this.QuoteChar + this.QuoteChar;
-
-            this.Header = new CsvHeaderLayout(this);
-            this.Footer = null;
         }
 
         /// <summary>
