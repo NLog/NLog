@@ -101,7 +101,7 @@ namespace NLog.LayoutRenderers
         {
             try
             {
-                using (StreamReader reader = new StreamReader(fileName, this.Encoding))
+                using (var reader = new StreamReader(fileName, this.Encoding))
                 {
                     return reader.ReadToEnd();
                 }
