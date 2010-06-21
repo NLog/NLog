@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -146,3 +148,5 @@ Logger1 message6
 #endif
     }
 }
+
+#endif
