@@ -31,12 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Xml;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NLog.Config;
-
-namespace NLog.UnitTests
+namespace NLog.UnitTests.Config
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class CaseSensitivityTests : NLogTestBase
     {

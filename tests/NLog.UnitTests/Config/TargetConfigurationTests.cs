@@ -31,16 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Xml;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NLog.Config;
-using NLog.LayoutRenderers;
-using NLog.Layouts;
-using NLog.Targets;
-using NLog.Targets.Wrappers;
-
-namespace NLog.UnitTests
+namespace NLog.UnitTests.Config
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NLog.Config;
+    using NLog.LayoutRenderers;
+    using NLog.Layouts;
+    using NLog.Targets;
+    using NLog.Targets.Wrappers;
+
     [TestClass]
     public class TargetConfigurationTests : NLogTestBase
     {
@@ -93,11 +92,11 @@ namespace NLog.UnitTests
             LoggingConfiguration c = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
-                    <target name='b' type='BufferingWrapper' bufferSize='19'>
-                        <target name='a' type='AsyncWrapper'>
+                    <wrapper-target name='b' type='BufferingWrapper' bufferSize='19'>
+                        <wrapper name='a' type='AsyncWrapper'>
                             <target name='c' type='Debug' layout='${message}' />
-                        </target>
-                    </target>
+                        </wrapper>
+                    </wrapper-target>
                 </targets>
             </nlog>");
 
@@ -124,12 +123,12 @@ namespace NLog.UnitTests
             LoggingConfiguration c = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
-                    <target name='rr' type='RoundRobinGroup'>
+                    <compound-target name='rr' type='RoundRobinGroup'>
                         <target name='d1' type='Debug' layout='${message}1' />
                         <target name='d2' type='Debug' layout='${message}2' />
                         <target name='d3' type='Debug' layout='${message}3' />
                         <target name='d4' type='Debug' layout='${message}4' />
-                    </target>
+                    </compound-target>
                 </targets>
             </nlog>");
 

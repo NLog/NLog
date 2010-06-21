@@ -545,7 +545,10 @@ namespace NLog.Config
         private void ParseTargetsElement(XmlReader reader)
         {
             InternalLogger.Trace("ParseTargetsElement");
-            Debug.Assert(this.CaseInsensitiveEquals(reader.LocalName, "targets") || this.CaseInsensitiveEquals(reader.LocalName, "appenders"), "Expected <targets> or <appenders/> element.");
+            Debug.Assert(
+                this.CaseInsensitiveEquals(reader.LocalName, "targets") || 
+                this.CaseInsensitiveEquals(reader.LocalName, "appenders"), 
+                "Expected <targets> or <appenders/> element.");
 
             bool asyncWrap = this.CaseInsensitiveEquals(this.GetCaseInsensitiveAttribute(reader, "async", "false"), "true");
             string defaultWrapperElementXml = null;
@@ -638,7 +641,7 @@ namespace NLog.Config
 
                     if (compound != null)
                     {
-                        if (name == "target" || name == "wrapper" || name == "wrapper-target" || name == "compound-target")
+                        if (this.IsTargetElement(name))
                         {
                             string type;
 
@@ -666,7 +669,7 @@ namespace NLog.Config
 
                     if (wrapper != null)
                     {
-                        if (name == "target" || name == "wrapper" || name == "wrapper-target" || name == "compound-target")
+                        if (this.IsTargetElement(name))
                         {
                             string type;
 
@@ -700,6 +703,11 @@ namespace NLog.Config
                     this.SetPropertyFromElement(target, reader);
                 }
             }
+        }
+
+        private bool IsTargetElement(string name)
+        {
+            return name == "target" || name == "wrapper" || name == "wrapper-target" || name == "compound-target";
         }
 
         private void ParseExtensionsElement(XmlReader reader, string baseDirectory)

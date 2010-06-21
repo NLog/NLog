@@ -83,9 +83,11 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AsyncHelperTests.cs" />
-    <Compile Include="CaseSensitivityTests.cs" />
     <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
     <Compile Include="Conditions\ConditionParserTests.cs" />
+    <Compile Include="Config\CaseSensitivityTests.cs" />
+    <Compile Include="Config\IncludeTests.cs" />
+    <Compile Include="Config\TargetConfigurationTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
@@ -128,7 +130,6 @@
     <Compile Include="RegressionTests.cs" />
     <Compile Include="RoutingTests.cs" />
     <Compile Include="SourceCodeTests.cs" />
-    <Compile Include="TargetConfigurationTests.cs" />
     <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
     <Compile Include="Targets\ConsoleTargetTests.cs" />
     <Compile Include="Targets\DatabaseTargetTests.cs" />
