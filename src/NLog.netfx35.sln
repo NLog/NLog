@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Test", "..\tests\NLog.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.BinaryCompatTests.netfx35", "..\tests\NLog.BinaryCompatTests\NLog.BinaryCompatTests.netfx35.csproj", "{157588EF-6665-468C-B860-B90B71A5E7FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExtensions.netfx35", "..\tests\SampleExtensions\SampleExtensions.netfx35.csproj", "{A8CA32F1-BD4C-4A99-B307-99A93DB64B9F}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = NLog.netfx35.vsmdi
@@ -45,6 +47,10 @@ Global
 		{157588EF-6665-468C-B860-B90B71A5E7FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{157588EF-6665-468C-B860-B90B71A5E7FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{157588EF-6665-468C-B860-B90B71A5E7FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8CA32F1-BD4C-4A99-B307-99A93DB64B9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8CA32F1-BD4C-4A99-B307-99A93DB64B9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8CA32F1-BD4C-4A99-B307-99A93DB64B9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8CA32F1-BD4C-4A99-B307-99A93DB64B9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

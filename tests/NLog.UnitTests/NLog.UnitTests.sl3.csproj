@@ -16,7 +16,8 @@
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures></SupportedCultures>
+    <SupportedCultures>
+    </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
@@ -30,7 +31,8 @@
     <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
     <UsePlatformExtensions>false</UsePlatformExtensions>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <LinkedServerProject></LinkedServerProject>
+    <LinkedServerProject>
+    </LinkedServerProject>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
@@ -86,8 +88,10 @@
     <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
     <Compile Include="Conditions\ConditionParserTests.cs" />
     <Compile Include="Config\CaseSensitivityTests.cs" />
+    <Compile Include="Config\ExtensionTests.cs" />
     <Compile Include="Config\IncludeTests.cs" />
     <Compile Include="Config\TargetConfigurationTests.cs" />
+    <Compile Include="Config\VariableTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
@@ -178,6 +182,10 @@
     <ProjectReference Include="..\..\src\NLog\NLog.sl3.csproj">
       <Project>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</Project>
       <Name>NLog.sl3</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SampleExtensions\SampleExtensions.sl3.csproj">
+      <Project>{C48047FF-7E14-443D-906D-7E021AB5307A}</Project>
+      <Name>SampleExtensions.sl3</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

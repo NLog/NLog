@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ApplicationIcon></ApplicationIcon>
+    <AssemblyKeyContainerName></AssemblyKeyContainerName>
+    <AssemblyName>SampleExtensions</AssemblyName>
+    <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SampleExtensions</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <SignAssembly>true</SignAssembly>
+    <NoWarn>1591</NoWarn>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <BaseAddress>285212672</BaseAddress>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <BaseAddress>285212672</BaseAddress>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>true</Optimize>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>pdbonly</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkName>.NET Framework 4.0</TargetFrameworkName>
+    <DefineConstants>NET4_0;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
+    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FooLayout.cs" />
+    <Compile Include="FooLayoutRenderer.cs" />
+    <Compile Include="MyConditionMethods.cs" />
+    <Compile Include="MyTarget.cs" />
+    <Compile Include="WhenFooFilter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NLogTests.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NLog\NLog.netfx40.csproj">
+      <Project>{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}</Project>
+      <Name>NLog.netfx40</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(StyleCopTargetsFile)" Condition="'$(StyleCopTargetsFile)' != ''" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

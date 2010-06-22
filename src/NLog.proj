@@ -360,6 +360,7 @@
   <Target Name="SyncProjectItems" DependsOnTargets="BuildSyncProjectItemsTool">
     <Exec Command='"$(SyncProjectItems)" ProjectFileInfo.xml' WorkingDirectory="NLog" />
     <Exec Command='"$(SyncProjectItems)" ProjectFileInfo.xml' WorkingDirectory="..\Tests\NLog.UnitTests" />
+    <Exec Command='"$(SyncProjectItems)" ProjectFileInfo.xml' WorkingDirectory="..\Tests\SampleExtensions" />
   </Target>
 
   <Target Name="BuildApiDumpTool">

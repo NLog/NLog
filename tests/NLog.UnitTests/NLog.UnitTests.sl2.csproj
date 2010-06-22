@@ -13,7 +13,8 @@
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures></SupportedCultures>
+    <SupportedCultures>
+    </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <SilverlightVersion Condition="'$(SilverlightVersion)' == ''">v2.0</SilverlightVersion>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
@@ -27,12 +28,15 @@
     <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
     <UsePlatformExtensions>false</UsePlatformExtensions>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <LinkedServerProject></LinkedServerProject>
+    <LinkedServerProject>
+    </LinkedServerProject>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
-    <FileUpgradeFlags></FileUpgradeFlags>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation></UpgradeBackupLocation>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -100,8 +104,10 @@
     <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
     <Compile Include="Conditions\ConditionParserTests.cs" />
     <Compile Include="Config\CaseSensitivityTests.cs" />
+    <Compile Include="Config\ExtensionTests.cs" />
     <Compile Include="Config\IncludeTests.cs" />
     <Compile Include="Config\TargetConfigurationTests.cs" />
+    <Compile Include="Config\VariableTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
@@ -191,38 +197,10 @@
       <Project>{7D970521-54A6-4C21-9764-1219481A54C3}</Project>
       <Name>NLog.sl2</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 3.1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
+    <ProjectReference Include="..\SampleExtensions\SampleExtensions.sl2.csproj">
+      <Project>{D172C49A-55C9-47B3-B3F7-40D5AB64E8E8}</Project>
+      <Name>SampleExtensions.sl2</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\v2.0\Microsoft.Silverlight.CSharp.targets" Condition="" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

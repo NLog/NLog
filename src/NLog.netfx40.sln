@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.netfx40", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.netfx40", "NLog\NLog.Extended.netfx40.csproj", "{A961A1F9-1024-4446-BF9E-A923137340B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExtensions.netfx40", "..\tests\SampleExtensions\SampleExtensions.netfx40.csproj", "{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = NLog.netfx40.vsmdi
@@ -33,6 +35,10 @@ Global
 		{A961A1F9-1024-4446-BF9E-A923137340B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A961A1F9-1024-4446-BF9E-A923137340B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A961A1F9-1024-4446-BF9E-A923137340B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

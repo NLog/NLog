@@ -44,6 +44,7 @@ using System.Xml;
 
 namespace NLog.UnitTests
 {
+    using System;
     using NLog.Internal;
     using NLog.Common;
 
@@ -118,7 +119,13 @@ namespace NLog.UnitTests
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(configXml);
 
-            return new XmlLoggingConfiguration(doc.DocumentElement, null);
+#if NET_CF
+            Console.WriteLine(CompactFrameworkHelper.GetExeBaseDir());
+            return new XmlLoggingConfiguration(doc.DocumentElement, ".");
+#else
+            return new XmlLoggingConfiguration(doc.DocumentElement, Environment.CurrentDirectory);
+#endif
+
 #endif
         }
 

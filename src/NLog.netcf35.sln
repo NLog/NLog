@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.netcf35", "NLog\NLog.n
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.netcf35", "..\tests\NLog.UnitTests\NLog.UnitTests.netcf35.csproj", "{2A1AFF0C-0C26-4B2E-95C5-BCFBBE347031}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExtensions.netcf35", "..\tests\SampleExtensions\SampleExtensions.netcf35.csproj", "{2A1AFF0C-0C26-4B2E-95C5-BCFBBE343031}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = NLog.netcf35.vsmdi
@@ -27,6 +29,10 @@ Global
 		{2A1AFF0C-0C26-4B2E-95C5-BCFBBE347031}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A1AFF0C-0C26-4B2E-95C5-BCFBBE347031}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A1AFF0C-0C26-4B2E-95C5-BCFBBE347031}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A1AFF0C-0C26-4B2E-95C5-BCFBBE343031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A1AFF0C-0C26-4B2E-95C5-BCFBBE343031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A1AFF0C-0C26-4B2E-95C5-BCFBBE343031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A1AFF0C-0C26-4B2E-95C5-BCFBBE343031}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

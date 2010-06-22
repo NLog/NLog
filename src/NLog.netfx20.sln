@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.netfx20", "NLog\NLog.n
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.netfx20", "..\tests\NLog.UnitTests\NLog.UnitTests.netfx20.csproj", "{1653EE05-2720-4A85-BF14-74C4493787B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExtensions.netfx20", "..\tests\SampleExtensions\SampleExtensions.netfx20.csproj", "{1653EE05-2720-4A85-BF14-74C4593787B1}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = NLog.netfx20.vsmdi
@@ -27,6 +29,10 @@ Global
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1653EE05-2720-4A85-BF14-74C4493787B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1653EE05-2720-4A85-BF14-74C4593787B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1653EE05-2720-4A85-BF14-74C4593787B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1653EE05-2720-4A85-BF14-74C4593787B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1653EE05-2720-4A85-BF14-74C4593787B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

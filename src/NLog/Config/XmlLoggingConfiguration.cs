@@ -40,6 +40,7 @@ namespace NLog.Config
     using System.Globalization;
     using System.IO;
     using System.Reflection;
+    using System.Windows;
     using System.Xml;
     using NLog.Common;
     using NLog.Filters;
@@ -477,7 +478,10 @@ namespace NLog.Config
 
         private void ParseVariableElement(XmlReader reader)
         {
-            reader.Skip();
+            string name = reader.GetAttribute("name");
+            string value = reader.GetAttribute("value");
+
+            this.variables[name] = value;
         }
 
         private string GetCaseInsensitiveAttribute(XmlReader reader, string attributeName, string defaultValue)
@@ -735,10 +739,17 @@ namespace NLog.Config
                         {
                             try
                             {
+#if SILVERLIGHT
+                                var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
+                                var assemblyPart = new AssemblyPart();
+                                Assembly asm = assemblyPart.Load(si.Stream);
+#else
+
                                 string fullFileName = Path.Combine(baseDirectory, assemblyFile);
                                 InternalLogger.Info("Loading assemblyFile: {0}", fullFileName);
-                                Assembly asm = Assembly.LoadFrom(fullFileName);
 
+                                Assembly asm = Assembly.LoadFrom(fullFileName);
+#endif
                                 this.nlogFactories.RegisterItemsFromAssembly(asm, prefix);
                             }
                             catch (Exception ex)
@@ -759,7 +770,13 @@ namespace NLog.Config
                             try
                             {
                                 InternalLogger.Info("Loading assemblyName: {0}", assemblyName);
+#if SILVERLIGHT
+                                var si = Application.GetResourceStream(new Uri(assemblyName + ".dll", UriKind.Relative));
+                                var assemblyPart = new AssemblyPart();
+                                Assembly asm = assemblyPart.Load(si.Stream);
+#else
                                 Assembly asm = Assembly.Load(assemblyName);
+#endif
 
                                 this.nlogFactories.RegisterItemsFromAssembly(asm, prefix);
                             }

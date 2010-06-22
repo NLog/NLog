@@ -12,7 +12,8 @@
     <PlatformFamilyName>PocketPC</PlatformFamilyName>
     <OSVersion>4.20</OSVersion>
     <DeployDirSuffix>TestProject1</DeployDirSuffix>
-    <FormFactorID></FormFactorID>
+    <FormFactorID>
+    </FormFactorID>
     <WarningLevel>4</WarningLevel>
     <ProjectTypeGuids>{73A5A715-AF05-47af-9C33-47A864AF9AE7};{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <NativePlatformName>Pocket PC 2003</NativePlatformName>
@@ -73,8 +74,10 @@
     <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
     <Compile Include="Conditions\ConditionParserTests.cs" />
     <Compile Include="Config\CaseSensitivityTests.cs" />
+    <Compile Include="Config\ExtensionTests.cs" />
     <Compile Include="Config\IncludeTests.cs" />
     <Compile Include="Config\TargetConfigurationTests.cs" />
+    <Compile Include="Config\VariableTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
@@ -148,6 +151,10 @@
     <ProjectReference Include="..\..\src\NLog\NLog.netcf20.csproj">
       <Project>{63381160-DCF9-4011-9EE6-98AEFA6462C8}</Project>
       <Name>NLog.netcf20</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SampleExtensions\SampleExtensions.netcf20.csproj">
+      <Project>{C6558721-BA0E-488A-AE61-87D46BEF1E16}</Project>
+      <Name>SampleExtensions.netcf20</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

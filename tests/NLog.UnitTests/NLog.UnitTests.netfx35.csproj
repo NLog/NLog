@@ -8,8 +8,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v3.5</TargetFrameworkVersion>
-    <ApplicationIcon></ApplicationIcon>
-    <AssemblyKeyContainerName></AssemblyKeyContainerName>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -72,8 +74,10 @@
     <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
     <Compile Include="Conditions\ConditionParserTests.cs" />
     <Compile Include="Config\CaseSensitivityTests.cs" />
+    <Compile Include="Config\ExtensionTests.cs" />
     <Compile Include="Config\IncludeTests.cs" />
     <Compile Include="Config\TargetConfigurationTests.cs" />
+    <Compile Include="Config\VariableTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
@@ -151,6 +155,10 @@
     <ProjectReference Include="..\..\src\NLog\NLog.netfx35.csproj">
       <Project>{C124B63D-1658-4311-9BA8-9C3CFAF9B32E}</Project>
       <Name>NLog.netfx35</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SampleExtensions\SampleExtensions.netfx35.csproj">
+      <Project>{A8CA32F1-BD4C-4A99-B307-99A93DB64B9F}</Project>
+      <Name>SampleExtensions.netfx35</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(StyleCopTargetsFile)" Condition="'$(StyleCopTargetsFile)' != ''" />
