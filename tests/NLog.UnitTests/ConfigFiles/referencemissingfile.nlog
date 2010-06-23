@@ -1,0 +1,7 @@
+﻿<nlog>
+  <include file='nosuchfile.nlog' />
+  
+  <rules>
+      <logger name='*' minlevel='Debug' writeTo='debug' />
+  </rules>
+</nlog>

@@ -219,6 +219,8 @@
     <Compile Include="LayoutRenderers\QpcLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\RegistryLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\ShortDateLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\SilverlightApplicationInfoLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\SilverlightApplicationInfoOption.cs" />
     <Compile Include="LayoutRenderers\SpecialFolderLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\StackTraceFormat.cs" />
     <Compile Include="LayoutRenderers\StackTraceLayoutRenderer.cs" />

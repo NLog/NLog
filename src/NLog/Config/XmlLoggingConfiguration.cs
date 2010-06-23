@@ -141,7 +141,11 @@ namespace NLog.Config
                 if (fileName != null)
                 {
                     InternalLogger.Info("Configuring from an XML element in {0}...", fileName);
+#if SILVERLIGHT
+                    string key = fileName;
+#else
                     string key = Path.GetFullPath(fileName);
+#endif
                     this.visitedFile[key] = true;
 
                     this.originalFileName = fileName;
@@ -214,7 +218,12 @@ namespace NLog.Config
 
         private void ConfigureFromFile(string fileName)
         {
+#if SILVERLIGHT
+            // file names are relative to XAP
+            string key = fileName;
+#else
             string key = Path.GetFullPath(fileName);
+#endif
             if (this.visitedFile.ContainsKey(key))
             {
                 return;
@@ -807,9 +816,18 @@ namespace NLog.Config
 
             try
             {
-                newFileName = Path.Combine(baseDirectory, SimpleLayout.Evaluate(newFileName));
+                newFileName = SimpleLayout.Evaluate(newFileName);
+                if (baseDirectory != null)
+                {
+                    newFileName = Path.Combine(baseDirectory, newFileName);
+                }
 
+#if SILVERLIGHT
+                newFileName = newFileName.Replace("\\", "/");
+                if (Application.GetResourceStream(new Uri(newFileName, UriKind.Relative)) != null)
+#else
                 if (File.Exists(newFileName))
+#endif
                 {
                     InternalLogger.Debug("Including file '{0}'", newFileName);
                     this.ConfigureFromFile(newFileName);

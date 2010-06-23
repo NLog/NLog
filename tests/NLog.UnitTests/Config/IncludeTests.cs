@@ -41,40 +41,50 @@ namespace NLog.UnitTests.Config
     [TestClass]
     public class IncludeTests : NLogTestBase
     {
-#if !SILVERLIGHT
         [TestMethod]
         public void IncludeTest()
         {
+#if SILVERLIGHT
+            // file is pre-packaged in the XAP
+            string fileToLoad = "ConfigFiles/main.nlog";
+#else
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
+
+            using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "included.nlog")))
+            {
+                fs.Write(@"<nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+            </nlog>");
+            }
+
+            using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "main.nlog")))
+            {
+                fs.Write(@"<nlog>
+                <include file='included.nlog' />
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+            }
+
+            string fileToLoad = Path.Combine(tempPath, "main.nlog");
+#endif
             try
             {
-                using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "included.nlog")))
-                {
-                    fs.Write(@"<nlog>
-                        <targets><target name='debug' type='Debug' layout='${message}' /></targets>
-                </nlog>");
-                }
+                // load main.nlog from the XAP
+                LogManager.Configuration = new XmlLoggingConfiguration(fileToLoad);
 
-                using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "main.nlog")))
-                {
-                    fs.Write(@"<nlog>
-                    <include file='included.nlog' />
-                    <rules>
-                        <logger name='*' minlevel='Debug' writeTo='debug' />
-                    </rules>
-                </nlog>");
-                }
-
-                LogManager.Configuration = new XmlLoggingConfiguration(Path.Combine(tempPath, "main.nlog"));
                 LogManager.GetLogger("A").Debug("aaa");
                 AssertDebugLastMessage("debug", "aaa");
             }
             finally
             {
                 LogManager.Configuration = null;
+#if !SILVERLIGHT
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
+#endif
             }
         }
 
@@ -82,59 +92,71 @@ namespace NLog.UnitTests.Config
         [ExpectedException(typeof(NLogConfigurationException))]
         public void IncludeNotExistingTest()
         {
+#if SILVERLIGHT
+            string fileToLoad = "ConfigFiles/referencemissingfile.nlog";
+#else
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
 
+            using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "main.nlog")))
+            {
+                fs.Write(@"<nlog>
+                <include file='included.nlog' />
+            </nlog>");
+            }
+
+            string fileToLoad = Path.Combine(tempPath, "main.nlog");
+
+#endif
             try
             {
-                using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "main.nlog")))
-                {
-                    fs.Write(@"<nlog>
-                    <include file='included.nlog' />
-                </nlog>");
-                }
-
-                LogManager.Configuration = new XmlLoggingConfiguration(Path.Combine(tempPath, "main.nlog"));
+                new XmlLoggingConfiguration(fileToLoad);
             }
             finally
             {
-                LogManager.Configuration = null;
+#if !SILVERLIGHT
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
+#endif
             }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NLogConfigurationException))]
         public void IncludeNotExistingIgnoredTest()
         {
+#if SILVERLIGHT
+            string fileToLoad = "ConfigFiles/referencemissingfileignored.nlog";
+#else
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
 
+            using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "main.nlog")))
+            {
+                fs.Write(@"<nlog>
+                <include file='included-notpresent.nlog' ignoreErrors='true' />
+                <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+            }
+
+            string fileToLoad = Path.Combine(tempPath, "main.nlog");
+#endif
             try
             {
-                using (StreamWriter fs = File.CreateText(Path.Combine(tempPath, "main.nlog")))
-                {
-                    fs.Write(@"<nlog>
-                    <include file='included-notpresent.nlog' />
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
-                    <rules>
-                        <logger name='*' minlevel='Debug' writeTo='debug' />
-                    </rules>
-                </nlog>");
-                }
-
-                LogManager.Configuration = new XmlLoggingConfiguration(Path.Combine(tempPath, "main.nlog"));
+                LogManager.Configuration = new XmlLoggingConfiguration(fileToLoad);
                 LogManager.GetLogger("A").Debug("aaa");
                 AssertDebugLastMessage("debug", "aaa");
             }
             finally
             {
                 LogManager.Configuration = null;
+#if !SILVERLIGHT
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
+#endif
             }
         }
-#endif
     }
 }

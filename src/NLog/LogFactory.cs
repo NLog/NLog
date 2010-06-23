@@ -42,6 +42,7 @@ namespace NLog
     using System.Runtime.CompilerServices;
     using System.Text;
     using System.Threading;
+    using System.Windows;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -136,19 +137,26 @@ namespace NLog
                     }
 #endif
 
-#if !SILVERLIGHT
                     if (this.config == null)
                     {
                         foreach (string configFile in GetCandidateFileNames())
                         {
+#if !SILVERLIGHT
                             if (File.Exists(configFile))
                             {
                                 InternalLogger.Debug("Attempting to load config from {0}", configFile);
                                 this.config = new XmlLoggingConfiguration(configFile);
                             }
+#else
+                            Uri configFileUri = new Uri(configFile, UriKind.Relative);
+                            if (Application.GetResourceStream(configFileUri) != null)
+                            {
+                                InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                                this.config = new XmlLoggingConfiguration(configFile);
+                            }
+#endif
                         }
                     }
-#endif
 
 #if !NET_CF && !SILVERLIGHT
                     if (this.config != null)
@@ -575,7 +583,7 @@ namespace NLog
             yield return Path.Combine(Path.GetDirectoryName(CompactFrameworkHelper.GetExeFileName()), "NLog.config");
             yield return typeof(LogFactory).Assembly.GetName().CodeBase + ".nlog";
 #elif SILVERLIGHT
-            yield break;
+            yield return "NLog.config";
 #else
             // NLog.config from application directory
             yield return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NLog.config");

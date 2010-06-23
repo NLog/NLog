@@ -1,5 +1,6 @@
 obj/
 bin/
+Bin/
 msbuild.log
 LastTestRunSummary.cmd
 src/Docs/Working/
@@ -15,5 +16,4 @@ StyleCop.Cache
 NLogMerged.api.xml
 _UpgradeReport_Files/
 UpgradeLog*.XML
-
-
+*.xap

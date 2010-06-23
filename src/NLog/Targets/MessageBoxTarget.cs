@@ -33,10 +33,12 @@
 
 namespace NLog.Targets
 {
+    using System;
     using System.Collections.Generic;
     using System.Text;
 #if SILVERLIGHT
-using System.Windows.Browser;
+    using System.Windows;
+    using System.Windows.Browser;
 #else
     using System.Windows.Forms;
 #endif
@@ -122,7 +124,16 @@ using System.Windows.Browser;
             }
 
 #if SILVERLIGHT
-            HtmlPage.Window.Alert(this.Caption.Render(lastLogEvent.LogEvent) + "\r\n\r\n" + sb.ToString());
+            Action action = () => HtmlPage.Window.Alert(this.Caption.Render(lastLogEvent.LogEvent) + "\r\n\r\n" + sb.ToString());
+
+            if (!Deployment.Current.Dispatcher.CheckAccess())
+            {
+                Deployment.Current.Dispatcher.BeginInvoke(action);
+            }
+            else
+            {
+                action();
+            }
 #else
             MessageBox.Show(sb.ToString(), this.Caption.Render(lastLogEvent.LogEvent));
 #endif

@@ -78,6 +78,9 @@ namespace NLog.UnitTests
         {
             UnitTestSettings settings = UnitTestSystem.CreateDefaultSettings();
             settings.LogProviders.Add(new MyLogProvider());
+
+            // uncomment this to reduce the number of test cases
+            // settings.TestClassesToRun.Add("IncludeTests");
             vsProvider.TestRunId = Guid.NewGuid().ToString();
             settings.LogProviders.Add(vsProvider);
             settings.TestHarness.TestHarnessCompleted += new EventHandler<TestHarnessCompletedEventArgs>(TestHarness_TestHarnessCompleted);

@@ -1,0 +1,9 @@
+﻿<nlog>
+  <include file='included-notpresent.nlog' ignoreErrors='true' />
+  <targets>
+    <target name='debug' type='Debug' layout='${message}' />
+  </targets>
+  <rules>
+    <logger name='*' minlevel='Debug' writeTo='debug' />
+  </rules>
+</nlog>

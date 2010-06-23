@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.sl4", "..\te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExtensions.sl4", "..\tests\SampleExtensions\SampleExtensions.sl4.csproj", "{C480452F-7E14-443D-906D-7E021AB5707A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightApp.sl4", "..\tests\SilverlightApp\SilverlightApp.sl4.csproj", "{6BDB11AF-E5F0-43D2-B823-371E5B79087C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{C480452F-7E14-443D-906D-7E021AB5707A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C480452F-7E14-443D-906D-7E021AB5707A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C480452F-7E14-443D-906D-7E021AB5707A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BDB11AF-E5F0-43D2-B823-371E5B79087C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BDB11AF-E5F0-43D2-B823-371E5B79087C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BDB11AF-E5F0-43D2-B823-371E5B79087C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BDB11AF-E5F0-43D2-B823-371E5B79087C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

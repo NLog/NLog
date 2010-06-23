@@ -8,10 +8,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v2.0</TargetFrameworkVersion>
-    <ApplicationIcon>
-    </ApplicationIcon>
-    <AssemblyKeyContainerName>
-    </AssemblyKeyContainerName>
+    <ApplicationIcon></ApplicationIcon>
+    <AssemblyKeyContainerName></AssemblyKeyContainerName>
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -138,6 +136,12 @@
     <Compile Include="Targets\Wrappers\RoundRobinGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\SplitGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBaseTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ConfigFiles\included.nlog" />
+    <Content Include="ConfigFiles\main.nlog" />
+    <Content Include="ConfigFiles\referencemissingfile.nlog" />
+    <Content Include="ConfigFiles\referencemissingfileignored.nlog" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NLogTests.snk" />
