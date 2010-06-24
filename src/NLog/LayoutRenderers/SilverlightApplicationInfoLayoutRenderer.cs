@@ -41,9 +41,9 @@ namespace NLog.LayoutRenderers
 #if !DOCUMENTATION
     using System.Windows;
     using System.Windows.Browser;
-    using NLog.Config;
-
 #endif
+
+    using NLog.Config;
 
     /// <summary>
     /// Information about Silverlight application.
