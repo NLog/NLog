@@ -37,10 +37,12 @@ namespace NLog.Targets
     using System.Collections.Generic;
 #if WCF_SUPPORTED
     using System.ServiceModel;
+    using System.ServiceModel.Channels;
 #endif
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Layouts;
     using NLog.LogReceiverService;
 
     /// <summary>
@@ -50,6 +52,9 @@ namespace NLog.Targets
     [Target("LogReceiverService")]
     public sealed class LogReceiverWebServiceTarget : Target
     {
+        private LogEventInfoBuffer buffer = new LogEventInfoBuffer(10000, false, 10000);
+        private bool inCall;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LogReceiverWebServiceTarget"/> class.
         /// </summary>
@@ -73,6 +78,14 @@ namespace NLog.Targets
         /// <value>The name of the endpoint configuration.</value>
         /// <docgen category='Connection Options' order='10' />
         public string EndpointConfigurationName { get; set; }
+
+#if !SILVERLIGHT2
+        /// <summary>
+        /// Gets or sets a value indicating whether to use binary message encoding.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool UseBinaryEncoding { get; set; }
+#endif
 #endif
 
         /// <summary>
@@ -80,7 +93,7 @@ namespace NLog.Targets
         /// </summary>
         /// <value>The client ID.</value>
         /// <docgen category='Payload Options' order='10' />
-        public string ClientID { get; set; }
+        public Layout ClientID { get; set; }
 
         /// <summary>
         /// Gets the list of parameters.
@@ -118,20 +131,39 @@ namespace NLog.Targets
         /// <param name="logEvents">Logging events to be written out.</param>
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            var networkLogEvents = this.TranslateLogEvents(logEvents);
+            // if web service call is being processed, buffer new events and return
+            // lock is being held here
+            if (this.inCall)
+            {
+                foreach (var ev in logEvents)
+                {
+                    this.buffer.Append(ev);
+                }
 
+                return;
+            }
+
+            var networkLogEvents = this.TranslateLogEvents(logEvents);
             this.Send(networkLogEvents, logEvents);
         }
 
         private NLogEvents TranslateLogEvents(AsyncLogEventInfo[] logEvents)
         {
+            string clientID = string.Empty;
+            if (this.ClientID != null)
+            {
+                clientID = this.ClientID.Render(logEvents[0].LogEvent);
+            }
+
             var networkLogEvents = new NLogEvents
             {
-                ClientName = this.ClientID,
+                ClientName = clientID,
                 LayoutNames = new ListOfStrings(),
-                LoggerNames = new ListOfStrings(),
+                Strings = new ListOfStrings(),
                 BaseTimeUtc = logEvents[0].LogEvent.TimeStamp.ToUniversalTime().Ticks
             };
+
+            var stringTable = new Dictionary<string, int>();
 
             for (int i = 0; i < this.Parameters.Count; ++i)
             {
@@ -141,7 +173,7 @@ namespace NLog.Targets
             networkLogEvents.Events = new NLogEvent[logEvents.Length];
             for (int i = 0; i < logEvents.Length; ++i)
             {
-                networkLogEvents.Events[i] = this.TranslateEvent(logEvents[i].LogEvent, networkLogEvents);
+                networkLogEvents.Events[i] = this.TranslateEvent(logEvents[i].LogEvent, networkLogEvents, stringTable);
             }
 
             return networkLogEvents;
@@ -155,7 +187,19 @@ namespace NLog.Targets
             if (string.IsNullOrEmpty(this.EndpointConfigurationName))
             {
                 // endpoint not specified - use BasicHttpBinding
-                var binding = new BasicHttpBinding();
+                Binding binding;
+
+#if !SILVERLIGHT2
+                if (this.UseBinaryEncoding)
+                {
+                    binding = new CustomBinding(new BinaryMessageEncodingBindingElement(), new HttpTransportBindingElement());
+                }
+                else
+#endif
+                {
+                    binding = new BasicHttpBinding();
+                 }
+
                 client = new WcfLogReceiverClient(binding, new EndpointAddress(this.EndpointAddress));
             }
             else
@@ -170,34 +214,99 @@ namespace NLog.Targets
                     {
                         ev.Continuation(e.Error);
                     }
+
+                    // send any buffered events
+                    this.SendBufferedEvents();
                 };
 
+            this.inCall = true;
             client.ProcessLogMessagesAsync(events);
+#else
+            var client = new SoapLogReceiverClient(this.EndpointAddress);
+            this.inCall = true;
+            client.BeginProcessLogMessages(
+                events,
+                result =>
+                    {
+                        Exception exception = null;
+
+                        try
+                        {
+                            client.EndProcessLogMessages(result);
+                        }
+                        catch (Exception ex)
+                        {
+                            exception = ex;
+                        }
+
+                        // report error to the callers
+                        foreach (var ev in asyncContinuations)
+                        {
+                            ev.Continuation(exception);
+                        }
+
+                        // send any buffered events
+                        this.SendBufferedEvents();
+                    },
+                null);
 #endif
         }
 
-        private NLogEvent TranslateEvent(LogEventInfo eventInfo, NLogEvents context)
+        private void SendBufferedEvents()
+        {
+            lock (this.SyncRoot)
+            {
+                // clear inCall flag
+                AsyncLogEventInfo[] bufferedEvents;
+
+                this.buffer.GetEventsAndClear(out bufferedEvents);
+                if (bufferedEvents.Length > 0)
+                {
+                    var networkLogEvents = this.TranslateLogEvents(bufferedEvents);
+                    this.Send(networkLogEvents, bufferedEvents);
+                }
+                else
+                {
+                    // nothing in the buffer, clear in-call flag
+                    this.inCall = false;
+                }
+            }
+        }
+
+        private NLogEvent TranslateEvent(LogEventInfo eventInfo, NLogEvents context, Dictionary<string, int> stringTable)
         {
             var nlogEvent = new NLogEvent();
             nlogEvent.Id = eventInfo.SequenceID;
-            nlogEvent.Values = new ListOfStrings();
+            nlogEvent.MessageOrdinal = this.GetStringOrdinal(context, stringTable, eventInfo.FormattedMessage);
             nlogEvent.LevelOrdinal = eventInfo.Level.Ordinal;
-            int loggerOrdinal = context.LoggerNames.IndexOf(eventInfo.LoggerName);
-            if (loggerOrdinal < 0)
-            {
-                loggerOrdinal = context.LoggerNames.Count;
-                context.LoggerNames.Add(eventInfo.LoggerName);
-            }
-
-            nlogEvent.LoggerOrdinal = loggerOrdinal;
+            nlogEvent.LoggerOrdinal = this.GetStringOrdinal(context, stringTable, eventInfo.LoggerName);
             nlogEvent.TimeDelta = eventInfo.TimeStamp.ToUniversalTime().Ticks - context.BaseTimeUtc;
+            nlogEvent.ValueIndexes = new List<int>();   
+
             for (int i = 0; i < this.Parameters.Count; ++i)
             {
                 var param = this.Parameters[i];
-                nlogEvent.Values.Add(param.Layout.Render(eventInfo));
+                var value = param.Layout.Render(eventInfo);
+                int stringIndex = this.GetStringOrdinal(context, stringTable, value);
+
+                nlogEvent.ValueIndexes.Add(stringIndex);
             }
 
             return nlogEvent;
+        }
+
+        private int GetStringOrdinal(NLogEvents context, Dictionary<string, int> stringTable, string value)
+        {
+            int stringIndex;
+
+            if (!stringTable.TryGetValue(value, out stringIndex))
+            {
+                stringIndex = context.Strings.Count;
+                stringTable.Add(value, stringIndex);
+                context.Strings.Add(value);
+            }
+
+            return stringIndex;
         }
     }
 }

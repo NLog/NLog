@@ -77,7 +77,7 @@ namespace NLog.UnitTests.Targets
                 BaseTimeUtc = DateTime.UtcNow.Ticks,
                 ClientName = "foo",
                 LayoutNames = new ListOfStrings { "foo", "bar", "baz" },
-                LoggerNames = new ListOfStrings { "logger1", "logger2", "logger3" },
+                Strings = new ListOfStrings { "logger1", "logger2", "logger3" },
                 Events =
                     new[]
                     {
@@ -87,7 +87,7 @@ namespace NLog.UnitTests.Targets
                             LevelOrdinal = 2,
                             LoggerOrdinal = 0,
                             TimeDelta = 34,
-                            Values = new ListOfStrings() { "value1", "value2", "value3", }
+                            Values = "1|2|3"
                         },
                         new NLogEvent
                         {
@@ -95,7 +95,7 @@ namespace NLog.UnitTests.Targets
                             LevelOrdinal = 3,
                             LoggerOrdinal = 2,
                             TimeDelta = 345,
-                            Values = new ListOfStrings() { "xvalue1", "xvalue2", "xvalue3", }
+                            Values = "1|2|3",
                         }
                     }
             };

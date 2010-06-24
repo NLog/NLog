@@ -91,11 +91,11 @@ namespace NLog.LogReceiverService
         /// </summary>
         /// <value>The logger names.</value>
 #if WCF_SUPPORTED
-        [DataMember(Name = "lg", Order = 200)]
+        [DataMember(Name = "str", Order = 200)]
 #endif
-        [XmlArray("lg", Order = 200)]
+        [XmlArray("str", Order = 200)]
         [XmlArrayItem("l")]
-        public ListOfStrings LoggerNames { get; set; }
+        public ListOfStrings Strings { get; set; }
 
         /// <summary>
         /// Gets or sets the list of events.

@@ -33,14 +33,15 @@
 
 namespace NLog.LogReceiverService
 {
+    using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
-#if !WCF_SUPPORTED
-    using System.Xml.Serialization;
-#else
+    using System.Globalization;
+#if WCF_SUPPORTED
     using System.Runtime.Serialization;
-    using System.Xml.Serialization;
-
 #endif
+    using System.Text;
+    using System.Xml.Serialization;
 
     /// <summary>
     /// Wire format for NLog Event.
@@ -73,7 +74,7 @@ namespace NLog.LogReceiverService
         public int LevelOrdinal { get; set; }
 
         /// <summary>
-        /// Gets or sets the logger ordinal (index into <see cref="NLogEvents.LoggerNames"/>.
+        /// Gets or sets the logger ordinal (index into <see cref="NLogEvents.Strings"/>.
         /// </summary>
         /// <value>The logger ordinal.</value>
 #if WCF_SUPPORTED
@@ -92,14 +93,61 @@ namespace NLog.LogReceiverService
         public long TimeDelta { get; set; }
 
         /// <summary>
+        /// Gets or sets the message string index.
+        /// </summary>
+#if WCF_SUPPORTED
+        [DataMember(Name = "m", Order = 4)]
+#endif
+        [XmlElement("m", Order = 4)]
+        public int MessageOrdinal { get; set; }
+
+        /// <summary>
         /// Gets or sets the collection of layout values.
         /// </summary>
 #if WCF_SUPPORTED
         [DataMember(Name = "val", Order = 100)]
 #endif
-        [XmlArray("val", Order = 100)]
-        [XmlArrayItem("l")]
-        public ListOfStrings Values { get; set; }
+        [XmlElement("val", Order = 100)]
+        public string Values
+        {
+            get
+            {
+                var sb = new StringBuilder();
+                var indexes = this.ValueIndexes ?? new int[0];
+                string separator = string.Empty;
+
+                for (int i = 0; i < indexes.Count; ++i)
+                {
+                    sb.Append(separator);
+                    sb.Append(indexes[i]);
+                    separator = "|";
+                }
+
+                return sb.ToString();
+            }
+
+            set
+            {
+                string[] chunks = (value ?? string.Empty).Split('|');
+                var indexes = new int[chunks.Length];
+
+                for (int i = 0; i < indexes.Length; ++i)
+                {
+                    indexes[i] = Convert.ToInt32(chunks[i], CultureInfo.InvariantCulture);
+                }
+
+                this.ValueIndexes = indexes;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the indexes into <see cref="NLogEvents.Strings"/> array for each layout value.
+        /// </summary>
+#if WCF_SUPPORTED
+        [IgnoreDataMember]
+#endif
+        [XmlIgnore]
+        public IList<int> ValueIndexes { get; set; }
 
         internal string LevelName
         {
