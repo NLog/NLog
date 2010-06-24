@@ -149,9 +149,25 @@ namespace NLog.LogReceiverService
         [XmlIgnore]
         public IList<int> ValueIndexes { get; set; }
 
-        internal string LevelName
+        /// <summary>
+        /// Converts the <see cref="NLogEvent"/> to <see cref="LogEventInfo"/>.
+        /// </summary>
+        /// <param name="context">The <see cref="NLogEvent"/> object this <see cref="NLogEvent" /> is part of..</param>
+        /// <param name="loggerNamePrefix">The logger name prefix to prepend in front of the logger name.</param>
+        /// <returns>Converted <see cref="LogEventInfo"/>.</returns>
+        internal LogEventInfo ToEventInfo(NLogEvents context, string loggerNamePrefix)
         {
-            get { return LogLevel.FromOrdinal(this.LevelOrdinal).Name; }
+            var result = new LogEventInfo(LogLevel.FromOrdinal(this.LevelOrdinal), loggerNamePrefix + context.Strings[this.LoggerOrdinal], context.Strings[this.MessageOrdinal]);
+            result.TimeStamp = new DateTime(context.BaseTimeUtc + this.TimeDelta, DateTimeKind.Utc).ToLocalTime();
+            for (int i = 0; i < context.LayoutNames.Count; ++i)
+            {
+                string layoutName = context.LayoutNames[i];
+                string layoutValue = context.Strings[this.ValueIndexes[i]];
+
+                result.Properties[layoutName] = layoutValue;
+            }
+
+            return result;
         }
     }
 }

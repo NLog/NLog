@@ -52,14 +52,5 @@ namespace NLog.LogReceiverService
         public ListOfStrings()
         {
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ListOfStrings"/> class.
-        /// </summary>
-        /// <param name="capacity">The capacity.</param>
-        public ListOfStrings(int capacity)
-            : base(capacity)
-        {
-        }
     }
 }

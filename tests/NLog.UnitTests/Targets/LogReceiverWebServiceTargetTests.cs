@@ -31,24 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-
-#if !NET_CF && !SILVERLIGHT
-using System.Runtime.Serialization;
-using System.Xml.Serialization;
-#endif
-
-using System.Xml;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using NLog.Config;
-using NLog.LogReceiverService;
-using NLog.Targets;
-
 namespace NLog.UnitTests.Targets
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using NLog.Config;
+    using NLog.Targets;
+
     [TestClass]
     public class LogReceiverWebServiceTargetTests : NLogTestBase
     {
@@ -67,61 +56,5 @@ namespace NLog.UnitTests.Targets
             SimpleConfigurator.ConfigureForTargetLogging(target);
             logger.Info("aa");
         }
-
-#if !SILVERLIGHT && !NET_CF && !NET2_0
-        [TestMethod]
-        public void CompareSerializationFormats()
-        {
-            var events = new NLogEvents
-            {
-                BaseTimeUtc = DateTime.UtcNow.Ticks,
-                ClientName = "foo",
-                LayoutNames = new ListOfStrings { "foo", "bar", "baz" },
-                Strings = new ListOfStrings { "logger1", "logger2", "logger3" },
-                Events =
-                    new[]
-                    {
-                        new NLogEvent
-                        {
-                            Id = 1,
-                            LevelOrdinal = 2,
-                            LoggerOrdinal = 0,
-                            TimeDelta = 34,
-                            Values = "1|2|3"
-                        },
-                        new NLogEvent
-                        {
-                            Id = 2,
-                            LevelOrdinal = 3,
-                            LoggerOrdinal = 2,
-                            TimeDelta = 345,
-                            Values = "1|2|3",
-                        }
-                    }
-            };
-
-            var serializer1 = new XmlSerializer(typeof(NLogEvents));
-            var sw1 = new StringWriter();
-            using (var writer1 = XmlWriter.Create(sw1, new XmlWriterSettings { Indent = true }))
-            {
-                var namespaces = new XmlSerializerNamespaces();
-                namespaces.Add("i", "http://www.w3.org/2001/XMLSchema-instance");
-
-                serializer1.Serialize(writer1, events, namespaces);
-            }
-
-            var serializer2 = new DataContractSerializer(typeof(NLogEvents));
-            var sw2 = new StringWriter();
-            using (var writer2 = XmlWriter.Create(sw2, new XmlWriterSettings { Indent = true }))
-            {
-                serializer2.WriteObject(writer2, events);
-            }
-
-            var xml1 = sw1.ToString();
-            var xml2 = sw2.ToString();
-
-            Assert.AreEqual(xml1, xml2);
-        }
-#endif
     }
 }

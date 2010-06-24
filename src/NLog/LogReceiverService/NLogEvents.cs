@@ -34,6 +34,7 @@
 namespace NLog.LogReceiverService
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
 
 #if WCF_SUPPORTED
@@ -107,5 +108,35 @@ namespace NLog.LogReceiverService
         [XmlArray("ev", Order = 1000)]
         [XmlArrayItem("e")]
         public NLogEvent[] Events { get; set; }
+
+        /// <summary>
+        /// Converts the events to sequence of <see cref="LogEventInfo"/> objects suitable for routing through NLog.
+        /// </summary>
+        /// <param name="loggerNamePrefix">The logger name prefix to prepend in front of each logger name.</param>
+        /// <returns>
+        /// Sequence of <see cref="LogEventInfo"/> objects.
+        /// </returns>
+        public IList<LogEventInfo> ToEventInfo(string loggerNamePrefix)
+        {
+            var result = new LogEventInfo[this.Events.Length];
+
+            for (int i = 0; i < result.Length; ++i)
+            {
+                result[i] = this.Events[i].ToEventInfo(this, loggerNamePrefix);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Converts the events to sequence of <see cref="LogEventInfo"/> objects suitable for routing through NLog.
+        /// </summary>
+        /// <returns>
+        /// Sequence of <see cref="LogEventInfo"/> objects.
+        /// </returns>
+        public IList<LogEventInfo> ToEventInfo()
+        {
+            return this.ToEventInfo(string.Empty);
+        }
     }
 }
