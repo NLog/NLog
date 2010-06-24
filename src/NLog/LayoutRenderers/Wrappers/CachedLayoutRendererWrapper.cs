@@ -33,34 +33,48 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using System.Text;
-    using NLog.Config;
-    using NLog.Layouts;
-
     /// <summary>
-    /// Decodes text "encrypted" with ROT-13.
+    /// Applies caching to another layout output.
     /// </summary>
     /// <remarks>
-    /// See <a href="http://en.wikipedia.org/wiki/ROT13">http://en.wikipedia.org/wiki/ROT13</a>.
+    /// The value of the inner layout will be rendered only once and reused subsequently.
     /// </remarks>
-    public abstract class WrapperLayoutRendererBase : LayoutRenderer
+    [LayoutRenderer("cached")]
+    [AmbientProperty("Cached")]
+    public sealed class CachedLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        /// <summary>
-        /// Gets or sets the wrapped layout.
-        /// </summary>
-        /// <docgen category='Transformation Options' order='10' />
-        [DefaultParameter]
-        public Layout Inner { get; set; }
+        private string cachedValue;
 
         /// <summary>
-        /// Renders the inner message, processes it and appends it to the specified <see cref="StringBuilder" />.
+        /// Initializes a new instance of the <see cref="CachedLayoutRendererWrapper"/> class.
         /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        public CachedLayoutRendererWrapper()
         {
-            string msg = this.RenderInner(logEvent);
-            builder.Append(this.Transform(msg));
+            this.Cached = true;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="CachedLayoutRendererWrapper"/> is enabled.
+        /// </summary>
+        /// <docgen category='Caching Options' order='10' />
+        public bool Cached { get; set; }
+
+        /// <summary>
+        /// Initializes the layout renderer.
+        /// </summary>
+        protected override void Initialize()
+        {
+            base.Initialize();
+            this.cachedValue = null;
+        }
+
+        /// <summary>
+        /// Closes the layout renderer.
+        /// </summary>
+        protected override void Close()
+        {
+            base.Close();
+            this.cachedValue = null;
         }
 
         /// <summary>
@@ -68,16 +82,31 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <param name="text">Output to be transform.</param>
         /// <returns>Transformed text.</returns>
-        protected abstract string Transform(string text);
+        protected override string Transform(string text)
+        {
+            return text;
+        }
 
         /// <summary>
         /// Renders the inner layout contents.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         /// <returns>Contents of inner layout.</returns>
-        protected virtual string RenderInner(LogEventInfo logEvent)
+        protected override string RenderInner(LogEventInfo logEvent)
         {
-            return this.Inner.Render(logEvent);
+            if (this.Cached)
+            {
+                if (this.cachedValue == null)
+                {
+                    this.cachedValue = base.RenderInner(logEvent);
+                }
+
+                return this.cachedValue;
+            }
+            else
+            {
+                return base.RenderInner(logEvent);
+            }
         }
     }
 }
