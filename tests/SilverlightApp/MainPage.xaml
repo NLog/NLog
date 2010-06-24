@@ -9,5 +9,7 @@
     <Grid x:Name="LayoutRoot" Background="White">
         <RichTextBox HorizontalAlignment="Left" Margin="327,0,0,0" Name="richTextBox1" Width="411" Height="311" VerticalAlignment="Top" />
         <Button Content="Button" Height="23" HorizontalAlignment="Left" Margin="28,30,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
+        <Button Content="Button" Height="23" HorizontalAlignment="Left" Margin="28,59,0,0" Name="button2" VerticalAlignment="Top" Width="75" />
+        <Button Content="Button" Height="23" HorizontalAlignment="Left" Margin="28,88,0,0" Name="button3" VerticalAlignment="Top" Width="75" />
     </Grid>
 </UserControl>
