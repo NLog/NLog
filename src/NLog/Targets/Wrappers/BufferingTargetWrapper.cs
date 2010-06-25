@@ -112,6 +112,7 @@ namespace NLog.Targets.Wrappers
         /// the inactivity timer is reset after each write, if it is disabled - inactivity timer will 
         /// count from the first event written to the buffer. 
         /// </remarks>
+        /// <docgen category='Buffering Options' order='100' />
         [DefaultValue(true)]
         public bool SlidingTimeout { get; set; }
 
