@@ -34,9 +34,7 @@
 namespace NLogReceiverService
 {
     using System;
-    using System.IO;
-    using System.Runtime.Serialization;
-    using System.Xml;
+    using NLog;
     using NLog.LogReceiverService;
 
     /// <summary>
@@ -44,36 +42,16 @@ namespace NLogReceiverService
     /// </summary>
     public class LogReceiverServer : ILogReceiverServer
     {
-        public void ProcessLogMessages(NLogEvents events)
+        public void ProcessLogMessages(NLogEvents nevents)
         {
-            Console.WriteLine("ProcessLogMessage:");
-            Console.WriteLine("Client: {0}", events.ClientName);
-            foreach (var e in events.Events)
+            var events = nevents.ToEventInfo("Client.");
+            Console.WriteLine("in: {0} {1}", nevents.Events.Length, events.Count);
+
+            foreach (var ev in events)
             {
-                var time = new DateTime(events.BaseTimeUtc + e.TimeDelta, DateTimeKind.Utc);
-                Console.WriteLine("#{0} {1} logger: {2} level: {3} msg: {4}", e.Id, time.ToLocalTime(), events.Strings[e.LoggerOrdinal], e.LevelOrdinal, events.Strings[e.MessageOrdinal]);
-                for (int i = 0; i < events.LayoutNames.Count; ++i)
-                {
-                    string stringValue = events.Strings[e.ValueIndexes[i]];
-                    Console.WriteLine("  {0} = {1}", events.LayoutNames[i], stringValue);
-                }
+                var logger = LogManager.GetLogger(ev.LoggerName);
+                logger.Log(ev);
             }
-
-            string xmlPayload;
-
-            var serializer = new DataContractSerializer(typeof(NLogEvents));
-            using (var stringWriter = new StringWriter())
-            {
-                using (XmlWriter writer = XmlWriter.Create(stringWriter))
-                {
-                    serializer.WriteObject(writer, events);
-                }
-
-                xmlPayload = stringWriter.ToString();
-            }
-
-            Console.WriteLine("XML payload: {0} characters {1} events ({2} cpe)", xmlPayload.Length, events.Events.Length, xmlPayload.Length / events.Events.Length);
-            Console.WriteLine("{0}", xmlPayload);
         }
     }
 }
