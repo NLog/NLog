@@ -39,6 +39,11 @@ namespace NLog.Targets
     using System.ServiceModel;
     using System.ServiceModel.Channels;
 #endif
+    using System.Threading;
+#if SILVERLIGHT
+    using System.Windows;
+    using System.Windows.Threading;
+#endif
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -220,7 +225,18 @@ namespace NLog.Targets
                 };
 
             this.inCall = true;
+#if SILVERLIGHT
+            if (!Deployment.Current.Dispatcher.CheckAccess())
+            {
+                Deployment.Current.Dispatcher.BeginInvoke(() => client.ProcessLogMessagesAsync(events));
+            }
+            else
+            {
+                client.ProcessLogMessagesAsync(events);
+            }
+#else
             client.ProcessLogMessagesAsync(events);
+#endif
 #else
             var client = new SoapLogReceiverClient(this.EndpointAddress);
             this.inCall = true;
