@@ -42,18 +42,6 @@ namespace NLog.Targets.Wrappers
     /// A target that buffers log events and sends them in batches to the wrapped target.
     /// </summary>
     /// <seealso href="http://nlog-project.org/wiki/BufferingWrapper_target">Documentation on NLog Wiki</seealso>
-    /// <example>
-    /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
-    /// use the following syntax:
-    /// </p>
-    /// <code lang="XML" source="examples/targets/Configuration File/BufferingWrapper/NLog.config" />
-    /// <p>
-    /// The above examples assume just one target and a single rule. See below for
-    /// a programmatic configuration that's equivalent to the above config file:
-    /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/BufferingWrapper/Simple/Example.cs" />
-    /// </example>
     [Target("BufferingWrapper", IsWrapper = true)]
     public class BufferingTargetWrapper : WrapperTargetBase
     {
@@ -98,6 +86,7 @@ namespace NLog.Targets.Wrappers
             this.WrappedTarget = wrappedTarget;
             this.BufferSize = bufferSize;
             this.FlushTimeout = flushTimeout;
+            this.SlidingTimeout = true;
         }
 
         /// <summary>
@@ -114,6 +103,17 @@ namespace NLog.Targets.Wrappers
         /// <docgen category='Buffering Options' order='100' />
         [DefaultValue(-1)]
         public int FlushTimeout { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to use sliding timeout.
+        /// </summary>
+        /// <remarks>
+        /// This value determines how the inactivity period is determined. If sliding timeout is enabled,
+        /// the inactivity timer is reset after each write, if it is disabled - inactivity timer will 
+        /// count from the first event written to the buffer. 
+        /// </remarks>
+        [DefaultValue(true)]
+        public bool SlidingTimeout { get; set; }
 
         /// <summary>
         /// Flushes pending events in the buffer (if any).
@@ -179,7 +179,11 @@ namespace NLog.Targets.Wrappers
             {
                 if (this.FlushTimeout > 0)
                 {
-                    this.flushTimer.Change(this.FlushTimeout, -1);
+                    // reset the timer on first item added to the buffer or whenever SlidingTimeout is set to true
+                    if (this.SlidingTimeout || count == 1)
+                    {
+                        this.flushTimer.Change(this.FlushTimeout, -1);
+                    }
                 }
             }
         }

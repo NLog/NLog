@@ -344,6 +344,101 @@ namespace NLog.UnitTests.Targets.Wrappers
             myTarget.Close();
         }
 
+        [TestMethod]
+        public void BufferingTargetWrapperSyncWithTimedFlushNonSlidingTest()
+        {
+            var myTarget = new MyTarget();
+            var targetWrapper = new BufferingTargetWrapper
+            {
+                WrappedTarget = myTarget,
+                BufferSize = 10,
+                FlushTimeout = 400,
+                SlidingTimeout = false,
+            };
+
+            myTarget.Initialize();
+            targetWrapper.Initialize();
+
+            int totalEvents = 100;
+
+            var continuationHit = new bool[totalEvents];
+            var lastException = new Exception[totalEvents];
+            var continuationThread = new Thread[totalEvents];
+            int hitCount = 0;
+
+            CreateContinuationFunc createAsyncContinuation =
+                eventNumber =>
+                    ex =>
+                    {
+                        lastException[eventNumber] = ex;
+                        continuationThread[eventNumber] = Thread.CurrentThread;
+                        continuationHit[eventNumber] = true;
+                        Interlocked.Increment(ref hitCount);
+                    };
+
+            int eventCounter = 0;
+            targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
+            Thread.Sleep(300);
+
+            Assert.AreEqual(0, hitCount);
+            Assert.AreEqual(0, myTarget.WriteCount);
+
+            targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
+            Thread.Sleep(300);
+
+            Assert.AreEqual(2, hitCount);
+            Assert.AreEqual(2, myTarget.WriteCount);
+        }
+
+        [TestMethod]
+        public void BufferingTargetWrapperSyncWithTimedFlushSlidingTest()
+        {
+            var myTarget = new MyTarget();
+            var targetWrapper = new BufferingTargetWrapper
+            {
+                WrappedTarget = myTarget,
+                BufferSize = 10,
+                FlushTimeout = 400,
+            };
+
+            myTarget.Initialize();
+            targetWrapper.Initialize();
+
+            int totalEvents = 100;
+
+            var continuationHit = new bool[totalEvents];
+            var lastException = new Exception[totalEvents];
+            var continuationThread = new Thread[totalEvents];
+            int hitCount = 0;
+
+            CreateContinuationFunc createAsyncContinuation =
+                eventNumber =>
+                    ex =>
+                    {
+                        lastException[eventNumber] = ex;
+                        continuationThread[eventNumber] = Thread.CurrentThread;
+                        continuationHit[eventNumber] = true;
+                        Interlocked.Increment(ref hitCount);
+                    };
+
+            int eventCounter = 0;
+            targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
+            Thread.Sleep(300);
+
+            Assert.AreEqual(0, hitCount);
+            Assert.AreEqual(0, myTarget.WriteCount);
+
+            targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
+            Thread.Sleep(300);
+
+            Assert.AreEqual(0, hitCount);
+            Assert.AreEqual(0, myTarget.WriteCount);
+
+            Thread.Sleep(200);
+            Assert.AreEqual(2, hitCount);
+            Assert.AreEqual(2, myTarget.WriteCount);
+        }
+
         class MyAsyncTarget : Target
         {
             public int BufferedWriteCount { get; set; }
