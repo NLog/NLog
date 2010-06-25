@@ -34,11 +34,9 @@
 namespace NLog.Targets
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text;
     using NLog.Common;
-    using NLog.Internal;
     using NLog.Internal.NetworkSenders;
     using NLog.Layouts;
 
@@ -82,7 +80,7 @@ namespace NLog.Targets
     [Target("Network")]
     public class NetworkTarget : TargetWithLayout
     {
-        private NetworkSender sender;
+        private NetworkSender currentSender;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTarget" /> class.
@@ -92,31 +90,10 @@ namespace NLog.Targets
         /// </remarks>
         public NetworkTarget()
         {
-            this.Encoding = System.Text.Encoding.UTF8;
-            this.OnOverflow = OverflowAction.Split;
+            this.Encoding = Encoding.UTF8;
+            this.OnNetworkTargetOverflow = NetworkTargetOverflowAction.Split;
             this.KeepConnection = true;
             this.MaxMessageSize = 65000;
-        }
-
-        /// <summary>
-        /// Action that should be taken if the message overflows.
-        /// </summary>
-        public enum OverflowAction
-        {
-            /// <summary>
-            /// Report an error.
-            /// </summary>
-            Error,
-
-            /// <summary>
-            /// Split the message into smaller pieces.
-            /// </summary>
-            Split,
-
-            /// <summary>
-            /// Discard the entire message.
-            /// </summary>
-            Discard
         }
 
         /// <summary>
@@ -154,7 +131,7 @@ namespace NLog.Targets
         /// maxMessageSize.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public OverflowAction OnOverflow { get; set; }
+        public NetworkTargetOverflowAction OnNetworkTargetOverflow { get; set; }
 
         /// <summary>
         /// Gets or sets the encoding to be used.
@@ -171,10 +148,12 @@ namespace NLog.Targets
         {
             try
             {
-                if (this.sender != null)
+                if (this.currentSender != null)
                 {
-                    this.sender.Flush();
+                    this.currentSender.Flush();
                 }
+
+                asyncContinuation(null);
             }
             catch (Exception ex)
             {
@@ -188,9 +167,9 @@ namespace NLog.Targets
         protected override void CloseTarget()
         {
             base.CloseTarget();
-            if (this.sender != null)
+            if (this.currentSender != null)
             {
-                this.sender.Close();
+                this.currentSender.Close();
             }
         }
 
@@ -213,29 +192,29 @@ namespace NLog.Targets
         {
             if (this.KeepConnection)
             {
-                if (this.sender != null)
+                if (this.currentSender != null)
                 {
-                    if (this.sender.Address != address)
+                    if (this.currentSender.Address != address)
                     {
-                        this.sender.Close();
-                        this.sender = null;
+                        this.currentSender.Close();
+                        this.currentSender = null;
                     }
                 }
 
-                if (this.sender == null)
+                if (this.currentSender == null)
                 {
-                    this.sender = NetworkSender.Create(address);
+                    this.currentSender = NetworkSender.Create(address);
                 }
 
                 try
                 {
-                    this.ChunkedSend(this.sender, bytes);
+                    this.ChunkedSend(this.currentSender, bytes);
                 }
                 catch (Exception ex)
                 {
                     InternalLogger.Error("Error when sending {0}", ex);
-                    this.sender.Close();
-                    this.sender = null;
+                    this.currentSender.Close();
+                    this.currentSender = null;
                     throw;
                 }
             }
@@ -285,14 +264,14 @@ namespace NLog.Targets
                 int chunksize = tosend;
                 if (chunksize > this.MaxMessageSize)
                 {
-                    if (this.OnOverflow == OverflowAction.Discard)
+                    if (this.OnNetworkTargetOverflow == NetworkTargetOverflowAction.Discard)
                     {
                         return;
                     }
 
-                    if (this.OnOverflow == OverflowAction.Error)
+                    if (this.OnNetworkTargetOverflow == NetworkTargetOverflowAction.Error)
                     {
-                        throw new OverflowException("Attempted to send a message larger than this.MaxMessageSize(" + this.MaxMessageSize + "). Actual size was: " + buffer.Length + ". Adjust OnOverflow and this.MaxMessageSize parameters accordingly.");
+                        throw new OverflowException("Attempted to send a message larger than MaxMessageSize(" + this.MaxMessageSize + "). Actual size was: " + buffer.Length + ". Adjust OnOverflow and MaxMessageSize parameters accordingly.");
                     }
 
                     chunksize = this.MaxMessageSize;

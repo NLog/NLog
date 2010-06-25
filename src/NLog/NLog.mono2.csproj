@@ -299,6 +299,7 @@
     <Compile Include="Targets\MethodCallTarget.cs" />
     <Compile Include="Targets\MethodCallTargetBase.cs" />
     <Compile Include="Targets\NetworkTarget.cs" />
+    <Compile Include="Targets\NetworkTargetOverflowAction.cs" />
     <Compile Include="Targets\NLogViewerParameterInfo.cs" />
     <Compile Include="Targets\NLogViewerTarget.cs" />
     <Compile Include="Targets\NullTarget.cs" />
