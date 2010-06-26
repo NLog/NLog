@@ -51,6 +51,7 @@
     <Compile Include="ICrossDomainPolicyServer.cs" />
     <Compile Include="LogReceiverServer.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="SocketPolicyServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\NLog\NLog.netfx40.csproj">
@@ -64,8 +65,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="clientaccesspolicy.xml" />
     <EmbeddedResource Include="crossdomain.xml" />
+    <EmbeddedResource Include="clientaccesspolicy.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

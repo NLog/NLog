@@ -44,7 +44,7 @@ namespace NLogReceiverService
             WebOperationContext.Current.OutgoingResponse.ContentType = "application/xml";
             Console.WriteLine("Serving Silverlight policy.");
 
-            return this.GetType().Assembly.GetManifestResourceStream(this.GetType(), "crossdomain.xml");
+            return this.GetType().Assembly.GetManifestResourceStream(this.GetType(), "clientaccesspolicy.xml");
         }
 
         public Stream GetFlashPolicy()
@@ -52,7 +52,7 @@ namespace NLogReceiverService
             WebOperationContext.Current.OutgoingResponse.ContentType = "application/xml";
             Console.WriteLine("Serving Flash policy.");
 
-            return this.GetType().Assembly.GetManifestResourceStream(this.GetType(), "clientaccesspolicy.xml");
+            return this.GetType().Assembly.GetManifestResourceStream(this.GetType(), "crossdomain.xml");
         }
     }
 }
