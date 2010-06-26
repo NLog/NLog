@@ -38,7 +38,6 @@ namespace NLog.UnitTests.Internal.NetworkSenders
     using System.IO;
     using System.Net;
     using System.Net.Sockets;
-    using System.Reflection;
     using System.Text;
     using System.Threading;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -278,8 +277,7 @@ close
 
             private bool InvokeCallback(SocketAsyncEventArgs args)
             {
-                FieldInfo fieldInfo = args.GetType().GetField("m_Completed", BindingFlags.NonPublic | BindingFlags.Instance);
-                var handler = (EventHandler<SocketAsyncEventArgs>)fieldInfo.GetValue(args);
+                var args2 = args as TcpNetworkSender.MySocketAsyncEventArgs;
 
                 if (this.sender.Async)
                 {
@@ -288,7 +286,7 @@ close
                             Thread.Sleep(10);
                             this.log.WriteLine("async op completed");
 
-                            handler(this, args);
+                            args2.RaiseCompleted();
                         });
 
                     return true;
@@ -296,7 +294,7 @@ close
                 else
                 {
                     this.log.WriteLine("async op completed");
-                    handler(this, args);
+                    args2.RaiseCompleted();
                     return false;
                 }
             }

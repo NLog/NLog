@@ -81,7 +81,7 @@ namespace NLog.Internal.NetworkSenders
         /// </summary>
         protected override void DoInitialize()
         {
-            var args = new SocketAsyncEventArgs();
+            var args = new MySocketAsyncEventArgs();
             args.RemoteEndPoint = this.ParseEndpointAddress(new Uri(this.Address), this.AddressFamily);
             args.Completed += this.SocketOperationCompleted;
             args.UserToken = null;
@@ -143,7 +143,7 @@ namespace NLog.Internal.NetworkSenders
         /// <remarks>To be overridden in inheriting classes.</remarks>
         protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
-            var args = new SocketAsyncEventArgs();
+            var args = new MySocketAsyncEventArgs();
             args.SetBuffer(bytes, offset, length);
             args.UserToken = asyncContinuation;
             args.Completed += this.SocketOperationCompleted;
@@ -244,6 +244,20 @@ namespace NLog.Internal.NetworkSenders
                 {
                     this.SocketOperationCompleted(this.socket, args);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Facilitates mocking of <see cref="SocketAsyncEventArgs"/> class.
+        /// </summary>
+        internal class MySocketAsyncEventArgs : SocketAsyncEventArgs
+        {
+            /// <summary>
+            /// Raises the Completed event.
+            /// </summary>
+            public void RaiseCompleted()
+            {
+                this.OnCompleted(this);
             }
         }
     }

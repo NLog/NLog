@@ -68,11 +68,7 @@ namespace NLog.Internal.NetworkSenders
                 this.SocketError = SocketError.SocketError;
             }
 
-            var cb = this.Completed;
-            if (cb != null)
-            {
-                cb(socket, this);
-            }
+            this.OnCompleted(this);
         }
 
         public void EndSend(IAsyncResult result)
@@ -89,11 +85,7 @@ namespace NLog.Internal.NetworkSenders
                 this.SocketError = SocketError.SocketError;
             }
 
-            var cb = this.Completed;
-            if (cb != null)
-            {
-                cb(socket, this);
-            }
+            this.OnCompleted(this);
         }
 
 
@@ -111,11 +103,7 @@ namespace NLog.Internal.NetworkSenders
                 this.SocketError = SocketError.SocketError;
             }
 
-            var cb = this.Completed;
-            if (cb != null)
-            {
-                cb(socket, this);
-            }
+            this.OnCompleted(this);
         }
 
         internal void SetBuffer(byte[] bytes, int offset, int length)
@@ -123,6 +111,15 @@ namespace NLog.Internal.NetworkSenders
             this.Buffer = bytes;
             this.Offset = offset;
             this.Count = length;
+        }
+
+        internal void OnCompleted(SocketAsyncEventArgs args)
+        {
+            var cb = this.Completed;
+            if (cb != null)
+            {
+                cb(this, this);
+            }
         }
     }
 }
