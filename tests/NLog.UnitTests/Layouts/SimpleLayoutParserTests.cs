@@ -52,7 +52,7 @@ namespace NLog.UnitTests.Layouts
         [TestMethod]
         public void UnclosedTest()
         {
-            Layout l = "${message";
+            new SimpleLayout("${message");
         }
 
         [TestMethod]

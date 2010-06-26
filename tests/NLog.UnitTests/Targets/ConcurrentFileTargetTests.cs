@@ -105,8 +105,6 @@ namespace NLog.UnitTests.Targets
             if (File.Exists(logFile))
                 File.Delete(logFile);
 
-            StringBuilder expectedOutput = new StringBuilder();
-
             Process[] processes = new Process[numProcesses];
 
             for (int i = 0; i < numProcesses; ++i)

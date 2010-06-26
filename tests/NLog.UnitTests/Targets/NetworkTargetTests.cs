@@ -91,7 +91,7 @@ namespace NLog.UnitTests.Targets
             var sender = senderFactory.Senders[0];
             target.Close();
 
-            Assert.AreEqual(18, sender.MemoryStream.Length);
+            Assert.AreEqual(18L, sender.MemoryStream.Length);
             Assert.AreEqual("msg1\r\nmsg2\r\nmsg3\r\n", target.Encoding.GetString(sender.MemoryStream.GetBuffer(), 0, (int)sender.MemoryStream.Length));
 
             // we invoke the sender 3 times, each time sending 4 bytes

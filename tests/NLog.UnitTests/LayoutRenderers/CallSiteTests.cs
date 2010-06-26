@@ -67,7 +67,7 @@ namespace NLog.UnitTests.LayoutRenderers
             string lastMessage = GetDebugLastMessage("debug");
             // There's a difference in handling line numbers between .NET and Mono
             // We're just interested in checking if it's above 100000
-            Assert.IsTrue(lastMessage.ToLower(CultureInfo.InvariantCulture).IndexOf("callsitetests.cs:10000") >= 0, "Invalid line number. Expected prefix of 10000, got: " + lastMessage);
+            Assert.IsTrue(lastMessage.IndexOf("callsitetests.cs:10000", StringComparison.OrdinalIgnoreCase) >= 0, "Invalid line number. Expected prefix of 10000, got: " + lastMessage);
 #line default
         }
 #endif
@@ -136,7 +136,6 @@ namespace NLog.UnitTests.LayoutRenderers
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
-            MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", "MethodNameWithPa msg");
         }
     }

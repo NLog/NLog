@@ -52,11 +52,12 @@ namespace NLog.UnitTests.Config
 #endif
         
         // this is to force NLog.UnitTests.dll to have a reference to SampleExtensions.dll
-        private Type type = typeof(FooLayout);
 
         [TestMethod]
         public void ExtensionTest1()
         {
+            Assert.IsNotNull(typeof(FooLayout));
+
             var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
     <extensions>

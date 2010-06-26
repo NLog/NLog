@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
 
   <PropertyGroup>
@@ -210,6 +211,7 @@
   <Target Name="RunTests">
     <CallTarget Targets="DeleteTrxFiles" />
     <CallTarget Targets="PrepareTestResultSummary" />
+    <CallTarget Targets="Mono2Test" Condition="'$(BuildMono2)'=='true'"/>
     <CallTarget Targets="NetFx20Test" Condition="'$(BuildNetFX20)'=='true'"/>
     <CallTarget Targets="NetFx35Test" Condition="'$(BuildNetFX35)'=='true'"/>
     <CallTarget Targets="NetFx40Test" Condition="'$(BuildNetFX40)'=='true'"/>
@@ -268,6 +270,22 @@
     <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap SL4'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 4.0" />
   </Target>
+
+  <Target Name="Mono2Test">
+    <PropertyGroup>
+      <WorkingDir>$(BaseOutputDirectory)\bin\$(Configuration)\Mono 2.x\Test</WorkingDir>
+    </PropertyGroup>
+    <RemoveDir Directories="$(WorkingDir)" />
+    <MSBuild Projects="..\tools\RunUnitTests\RunUnitTests.mono2.csproj" Targets="Build" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration)" />
+    <MakeDir Directories="$(WorkingDir)" />
+    <ItemGroup>
+      <TestFiles Include="$(BaseOutputDirectory)\bin\$(Configuration)\Mono 2.x\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(TestFiles)" DestinationFolder="$(WorkingDir)" />
+    <Exec Command='"$(MonoInstallLocation)\bin\mono.exe" RunUnitTests.exe'
+          WorkingDirectory="$(WorkingDir)" />
+    <Copy SourceFiles="$(WorkingDir)\TestResults.trx" DestinationFolder="$(BaseOutputDirectory)\bin\$(Configuration)\Mono 2.x" />
+  </Target>                
 
   <Target Name="CheckinSuite">
     <CallTarget Targets="SyncProjectItems" />

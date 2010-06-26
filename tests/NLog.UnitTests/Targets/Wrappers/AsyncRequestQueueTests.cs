@@ -88,8 +88,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var ev2 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
             var ev3 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
             var ev4 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
-            var ev5 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
-
+            
             var queue = new AsyncRequestQueue(3, AsyncTargetWrapperOverflowAction.Grow);
             Assert.AreEqual(3, queue.RequestLimit);
             Assert.AreEqual(AsyncTargetWrapperOverflowAction.Grow, queue.OnOverflow);
@@ -128,7 +127,6 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             var queue = new AsyncRequestQueue(10, AsyncTargetWrapperOverflowAction.Block);
 
-            ManualResetEvent consumerFinished = new ManualResetEvent(false);
             ManualResetEvent producerFinished = new ManualResetEvent(false);
 
             int pushingEvent = 0;
@@ -141,9 +139,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                     {
                         AsyncLogEventInfo logEvent = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
                         logEvent.LogEvent.Message = "msg" + i;
-                        AsyncContinuation cont = ex => { };
-
-                        Console.WriteLine("Pushing event {0}", i);
+                        
+                        // Console.WriteLine("Pushing event {0}", i);
                         pushingEvent = i;
                         queue.Enqueue(logEvent);
                     }
@@ -196,7 +193,6 @@ namespace NLog.UnitTests.Targets.Wrappers
             var ev2 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
             var ev3 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
             var ev4 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
-            var ev5 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
 
             var queue = new AsyncRequestQueue(3, AsyncTargetWrapperOverflowAction.Grow);
             Assert.AreEqual(3, queue.RequestLimit);

@@ -110,7 +110,7 @@ namespace NLog.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void FromStringFailingTest()
         {
-            LogLevel l = LogLevel.FromString("zzz");
+            LogLevel.FromString("zzz");
         }
 
         [TestMethod]

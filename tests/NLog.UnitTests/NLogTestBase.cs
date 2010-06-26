@@ -81,7 +81,7 @@ namespace NLog.UnitTests
                 Assert.Fail("File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
-            Assert.AreEqual(encodedBuf.Length, fi.Length, "File length is incorrect.");
+            Assert.AreEqual((long)encodedBuf.Length, fi.Length, "File length is incorrect.");
             byte[] buf = new byte[(int)fi.Length];
             using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
             {
