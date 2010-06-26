@@ -311,13 +311,16 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Writes logging event to the log target. Must be overridden in inheriting
+        /// Writes logging event to the log target.
         /// classes.
         /// </summary>
         /// <param name="logEvent">
         /// Logging event to be written out.
         /// </param>
-        protected abstract void Write(LogEventInfo logEvent);
+        protected virtual void Write(LogEventInfo logEvent)
+        {
+            // do nothing
+        }
 
         /// <summary>
         /// Writes log event to the log target. Must be overridden in inheriting

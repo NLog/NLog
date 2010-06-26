@@ -154,7 +154,13 @@
     <Compile Include="Internal\NativeMethods.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Internal\NetworkSenders\INetworkSenderFactory.cs" />
+    <Compile Include="Internal\NetworkSenders\ISocket.cs" />
     <Compile Include="Internal\NetworkSenders\NetworkSender.cs" />
+    <Compile Include="Internal\NetworkSenders\NetworkSenderFactory.cs" />
+    <Compile Include="Internal\NetworkSenders\SocketAsyncEventArgs.cs" />
+    <Compile Include="Internal\NetworkSenders\SocketError.cs" />
+    <Compile Include="Internal\NetworkSenders\SocketProxy.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSender.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSender.cs" />
     <Compile Include="Internal\ObjectGraphScanner.cs" />

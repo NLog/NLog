@@ -34,8 +34,10 @@
 namespace NLog.Targets
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text;
+    using System.Threading;
     using NLog.Common;
     using NLog.Internal.NetworkSenders;
     using NLog.Layouts;
@@ -80,7 +82,8 @@ namespace NLog.Targets
     [Target("Network")]
     public class NetworkTarget : TargetWithLayout
     {
-        private NetworkSender currentSender;
+        private Dictionary<string, NetworkSender> currentSenderCache = new Dictionary<string, NetworkSender>();
+        private List<NetworkSender> openNetworkSenders = new List<NetworkSender>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTarget" /> class.
@@ -90,17 +93,28 @@ namespace NLog.Targets
         /// </remarks>
         public NetworkTarget()
         {
+            this.SenderFactory = NetworkSenderFactory.Default;
             this.Encoding = Encoding.UTF8;
-            this.OnNetworkTargetOverflow = NetworkTargetOverflowAction.Split;
+            this.OnOverflow = NetworkTargetOverflowAction.Split;
             this.KeepConnection = true;
             this.MaxMessageSize = 65000;
+            this.ConnectionCacheSize = 5;
         }
 
         /// <summary>
-        /// Gets or sets the network address. Can be tcp://host:port or udp://host:port.
+        /// Gets or sets the network address.
         /// </summary>
         /// <remarks>
-        /// For HTTP Support use the WebService target.
+        /// The network address can be:
+        /// <ul>
+        /// <li>tcp://host:port - TCP (auto select IPv4/IPv6)</li>
+        /// <li>tcp4://host:port - force TCP/IPv4</li>
+        /// <li>tcp6://host:port - force TCP/IPv6</li>
+        /// <li>udp://host:port - UDP (auto select IPv4/IPv6, not supported on Silverlight)</li>
+        /// <li>udp4://host:port - force UDP/IPv4 (not supported on Silverlight)</li>
+        /// <li>udp6://host:port - force UDP/IPv6  (not supported on Silverlight)</li>
+        /// </ul>
+        /// For HTTP Support use WebService target.
         /// </remarks>
         /// <docgen category='Connection Options' order='10' />
         public Layout Address { get; set; }
@@ -127,11 +141,18 @@ namespace NLog.Targets
         public int MaxMessageSize { get; set; }
 
         /// <summary>
+        /// Gets or sets the size of the connection cache (number of connections which are kept alive).
+        /// </summary>
+        /// <docgen category="Connection Options" order="10"/>
+        [DefaultValue(5)]
+        public int ConnectionCacheSize { get; set; }
+
+        /// <summary>
         /// Gets or sets the action that should be taken if the message is larger than
         /// maxMessageSize.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        public NetworkTargetOverflowAction OnNetworkTargetOverflow { get; set; }
+        public NetworkTargetOverflowAction OnOverflow { get; set; }
 
         /// <summary>
         /// Gets or sets the encoding to be used.
@@ -140,24 +161,43 @@ namespace NLog.Targets
         [DefaultValue("utf-8")]
         public Encoding Encoding { get; set; }
 
+        internal INetworkSenderFactory SenderFactory { get; set; }
+
         /// <summary>
         /// Flush any pending log messages asynchronously (in case of asynchronous targets).
         /// </summary>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            try
-            {
-                if (this.currentSender != null)
-                {
-                    this.currentSender.Flush();
-                }
+            int remainingCount = 0;
 
-                asyncContinuation(null);
-            }
-            catch (Exception ex)
+            AsyncContinuation continuation =
+                ex =>
+                    {
+                        // ignore exception
+                        if (Interlocked.Decrement(ref remainingCount) == 0)
+                        {
+                            asyncContinuation(null);
+                        }
+                    };
+
+            lock (this.openNetworkSenders)
             {
-                asyncContinuation(ex);
+                remainingCount = this.openNetworkSenders.Count;
+                if (remainingCount == 0)
+                {
+                    // nothing to flush
+                    asyncContinuation(null);
+                }
+                else
+                {
+                    // otherwise call FlushAsync() on all senders
+                    // and invoke continuation at the very end
+                    foreach (var openSender in this.openNetworkSenders)
+                    {
+                        openSender.FlushAsync(continuation);
+                    }
+                }
             }
         }
 
@@ -167,9 +207,17 @@ namespace NLog.Targets
         protected override void CloseTarget()
         {
             base.CloseTarget();
-            if (this.currentSender != null)
+            
+            lock (this.openNetworkSenders)
             {
-                this.currentSender.Close();
+                // otherwise call FlushAsync() on all senders
+                // and invoke continuation at the very end
+                foreach (var openSender in this.openNetworkSenders)
+                {
+                    openSender.Close(ex => { });
+                }
+
+                this.openNetworkSenders.Clear();
             }
         }
 
@@ -178,57 +226,55 @@ namespace NLog.Targets
         /// rendered logging event over the network optionally concatenating it with a newline character.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        protected override void Write(LogEventInfo logEvent)
+        protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.NetworkSend(this.Address.Render(logEvent), this.GetBytesToWrite(logEvent));
-        }
+            string address = this.Address.Render(logEvent.LogEvent);
+            byte[] bytes = this.GetBytesToWrite(logEvent.LogEvent);
 
-        /// <summary>
-        /// Sends the provided text to the specified address.
-        /// </summary>
-        /// <param name="address">The address. Can be tcp://host:port, udp://host:port, http://host:port.</param>
-        /// <param name="bytes">The bytes to be sent.</param>
-        protected virtual void NetworkSend(string address, byte[] bytes)
-        {
             if (this.KeepConnection)
             {
-                if (this.currentSender != null)
-                {
-                    if (this.currentSender.Address != address)
-                    {
-                        this.currentSender.Close();
-                        this.currentSender = null;
-                    }
-                }
+                NetworkSender sender = this.GetCachedNetworkSender(address);
 
-                if (this.currentSender == null)
-                {
-                    this.currentSender = NetworkSender.Create(address);
-                }
+                this.ChunkedSend(
+                    sender, 
+                    bytes,
+                    ex =>
+                        {
+                            if (ex != null)
+                            {
+                                InternalLogger.Error("Error when sending {0}", ex);
+                                this.ReleaseCachedConnection(sender);
+                            }
 
-                try
-                {
-                    this.ChunkedSend(this.currentSender, bytes);
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error("Error when sending {0}", ex);
-                    this.currentSender.Close();
-                    this.currentSender = null;
-                    throw;
-                }
+                            logEvent.Continuation(ex);
+                        });
             }
             else
             {
-                NetworkSender sender = NetworkSender.Create(address);
+                var sender = this.SenderFactory.Create(address);
+                sender.Initialize();
 
-                try
+                lock (this.openNetworkSenders)
                 {
-                    this.ChunkedSend(sender, bytes);
-                }
-                finally
-                {
-                    sender.Close();
+                    this.openNetworkSenders.Add(sender);
+                    this.ChunkedSend(
+                        sender,
+                        bytes,
+                        ex =>
+                            {
+                                lock (this.openNetworkSenders)
+                                {
+                                    this.openNetworkSenders.Remove(sender);
+                                }
+
+                                if (ex != null)
+                                {
+                                    InternalLogger.Error("Error when sending {0}", ex);
+                                }
+
+                                sender.Close(ex2 => { });
+                                logEvent.Continuation(ex);
+                            });
                 }
             }
         }
@@ -254,33 +300,122 @@ namespace NLog.Targets
             return this.Encoding.GetBytes(text);
         }
 
-        private void ChunkedSend(NetworkSender sender, byte[] buffer)
+        private NetworkSender GetCachedNetworkSender(string address)
+        {
+            lock (this.currentSenderCache)
+            {
+                NetworkSender sender;
+
+                // already have address
+                if (this.currentSenderCache.TryGetValue(address, out sender))
+                {
+                    return sender;
+                }
+
+                if (this.currentSenderCache.Count >= this.ConnectionCacheSize)
+                {
+                    // make room in the cache by closing the least recently used connection
+                    int minAccessTime = int.MaxValue;
+                    NetworkSender leastRecentlyUsed = null;
+
+                    foreach (var kvp in this.currentSenderCache)
+                    {
+                        if (kvp.Value.LastSendTime < minAccessTime)
+                        {
+                            minAccessTime = kvp.Value.LastSendTime;
+                            leastRecentlyUsed = kvp.Value;
+                        }
+                    }
+
+                    if (leastRecentlyUsed != null)
+                    {
+                        this.ReleaseCachedConnection(leastRecentlyUsed);
+                    }
+                }
+
+                sender = this.SenderFactory.Create(address);
+                sender.Initialize();
+                lock (this.openNetworkSenders)
+                {
+                    this.openNetworkSenders.Add(sender);
+                }
+
+                this.currentSenderCache.Add(address, sender);
+                return sender;
+            }
+        }
+
+        private void ReleaseCachedConnection(NetworkSender sender)
+        {
+            lock (this.openNetworkSenders)
+            {
+                this.openNetworkSenders.Remove(sender);
+            }
+
+            lock (this.currentSenderCache)
+            {
+                NetworkSender sender2;
+
+                // make sure the current sender for this address is the one we want to remove
+                if (this.currentSenderCache.TryGetValue(sender.Address, out sender2))
+                {
+                    if (ReferenceEquals(sender, sender2))
+                    {
+                        this.currentSenderCache.Remove(sender.Address);
+                    }
+                }
+
+                sender.Close(ex => { });
+            }
+        }
+
+        private void ChunkedSend(NetworkSender sender, byte[] buffer, AsyncContinuation continuation)
         {
             int tosend = buffer.Length;
             int pos = 0;
 
-            while (tosend > 0)
-            {
-                int chunksize = tosend;
-                if (chunksize > this.MaxMessageSize)
+            AsyncContinuation sendNextChunk = null;
+
+            sendNextChunk = ex =>
                 {
-                    if (this.OnNetworkTargetOverflow == NetworkTargetOverflowAction.Discard)
+                    if (ex != null)
                     {
+                        continuation(ex);
                         return;
                     }
 
-                    if (this.OnNetworkTargetOverflow == NetworkTargetOverflowAction.Error)
+                    if (tosend <= 0)
                     {
-                        throw new OverflowException("Attempted to send a message larger than MaxMessageSize(" + this.MaxMessageSize + "). Actual size was: " + buffer.Length + ". Adjust OnOverflow and MaxMessageSize parameters accordingly.");
+                        continuation(null);
+                        return;
                     }
 
-                    chunksize = this.MaxMessageSize;
-                }
+                    int chunksize = tosend;
+                    if (chunksize > this.MaxMessageSize)
+                    {
+                        if (this.OnOverflow == NetworkTargetOverflowAction.Discard)
+                        {
+                            continuation(null);
+                            return;
+                        }
 
-                sender.Send(buffer, pos, chunksize);
-                tosend -= chunksize;
-                pos += chunksize;
-            }
+                        if (this.OnOverflow == NetworkTargetOverflowAction.Error)
+                        {
+                            continuation(new OverflowException("Attempted to send a message larger than MaxMessageSize (" + this.MaxMessageSize + "). Actual size was: " + buffer.Length + ". Adjust OnOverflow and MaxMessageSize parameters accordingly."));
+                            return;
+                        }
+
+                        chunksize = this.MaxMessageSize;
+                    }
+
+                    int pos0 = pos;
+                    tosend -= chunksize;
+                    pos += chunksize;
+
+                    sender.Send(buffer, pos0, chunksize, sendNextChunk);
+                };
+
+            sendNextChunk(null);
         }
     }
 }

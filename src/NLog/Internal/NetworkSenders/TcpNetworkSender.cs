@@ -34,70 +34,102 @@
 namespace NLog.Internal.NetworkSenders
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
-    using System.Net;
     using System.Net.Sockets;
-
-#if SILVERLIGHT
-using System.Threading;
-#endif
+    using NLog.Common;
 
     /// <summary>
     /// Sends messages over a TCP network connection.
     /// </summary>
     internal class TcpNetworkSender : NetworkSender
     {
-        private Socket socket;
-#if SILVERLIGHT
-        private AutoResetEvent syncHandle = new AutoResetEvent(false);
-        private SocketError lastError;
-#endif
+        private ISocket socket;
+        private Exception pendingError;
+        private bool asyncOperationInProgress;
+        private Queue<SocketAsyncEventArgs> pendingRequests = new Queue<SocketAsyncEventArgs>();
+        private AsyncContinuation closeContinuation;
+        private AsyncContinuation flushContinuation;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TcpNetworkSender" /> class.
+        /// Initializes a new instance of the <see cref="TcpNetworkSender"/> class.
         /// </summary>
         /// <param name="url">URL. Must start with tcp://.</param>
-        public TcpNetworkSender(string url)
+        /// <param name="addressFamily">The address family.</param>
+        public TcpNetworkSender(string url, AddressFamily addressFamily)
             : base(url)
         {
-            // tcp://hostname:port
-            Uri parsedUri = new Uri(url);
-#if SILVERLIGHT
-            SocketAsyncEventArgs sea = new SocketAsyncEventArgs();
-            sea.RemoteEndPoint = new DnsEndPoint(parsedUri.Host, parsedUri.Port);
-            sea.Completed += this.AsyncCompleted;
-            this.socket.ConnectAsync(sea);
-            this.syncHandle.WaitOne();
-            if (this.lastError != SocketError.Success)
-            {
-                throw new IOException("Cannot connect to host " + url);
-            }
-#else
-            IPHostEntry host = Dns.GetHostEntry(parsedUri.Host);
-            int port = parsedUri.Port;
+            this.AddressFamily = addressFamily;
+        }
 
-            this.socket = new Socket(host.AddressList[0].AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-            this.socket.Connect(new IPEndPoint(host.AddressList[0], port));
-#endif
+        internal AddressFamily AddressFamily { get; set; }
+
+        /// <summary>
+        /// Creates the socket with given parameters. 
+        /// </summary>
+        /// <param name="addressFamily">The address family.</param>
+        /// <param name="socketType">Type of the socket.</param>
+        /// <param name="protocolType">Type of the protocol.</param>
+        /// <returns>Instance of <see cref="ISocket" /> which represents the socket.</returns>
+        protected internal virtual ISocket CreateSocket(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
+        {
+            return new SocketProxy(addressFamily, socketType, protocolType);
+        }
+
+        /// <summary>
+        /// Performs sender-specific initialization.
+        /// </summary>
+        protected override void DoInitialize()
+        {
+            var args = new SocketAsyncEventArgs();
+            args.RemoteEndPoint = this.ParseEndpointAddress(new Uri(this.Address), this.AddressFamily);
+            args.Completed += this.SocketOperationCompleted;
+            args.UserToken = null;
+
+            this.socket = this.CreateSocket(args.RemoteEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            this.asyncOperationInProgress = true;
+
+            if (!this.socket.ConnectAsync(args))
+            {
+                this.SocketOperationCompleted(this.socket, args);
+            }
         }
 
         /// <summary>
         /// Closes the socket.
         /// </summary>
-        public override void Close()
+        /// <param name="continuation">The continuation.</param>
+        protected override void DoClose(AsyncContinuation continuation)
         {
             lock (this)
             {
-                try
+                if (this.asyncOperationInProgress)
                 {
-                    this.socket.Close();
+                    this.closeContinuation = continuation;
                 }
-                catch (Exception)
+                else
                 {
-                    // ignore errors
+                    this.CloseSocket(continuation);
                 }
+            }
+        }
 
-                this.socket = null;
+        /// <summary>
+        /// Performs sender-specific flush.
+        /// </summary>
+        /// <param name="continuation">The continuation.</param>
+        protected override void DoFlush(AsyncContinuation continuation)
+        {
+            lock (this)
+            {
+                if (!this.asyncOperationInProgress && this.pendingRequests.Count == 0)
+                {
+                    continuation(null);
+                }
+                else
+                {
+                    this.flushContinuation = continuation;
+                }
             }
         }
 
@@ -107,33 +139,112 @@ using System.Threading;
         /// <param name="bytes">The bytes to be sent.</param>
         /// <param name="offset">Offset in buffer.</param>
         /// <param name="length">Number of bytes to send.</param>
+        /// <param name="asyncContinuation">The async continuation to be invoked after the buffer has been sent.</param>
         /// <remarks>To be overridden in inheriting classes.</remarks>
-        protected override void DoSend(byte[] bytes, int offset, int length)
+        protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
+            var args = new SocketAsyncEventArgs();
+            args.SetBuffer(bytes, offset, length);
+            args.UserToken = asyncContinuation;
+            args.Completed += this.SocketOperationCompleted;
+
             lock (this)
             {
-#if SILVERLIGHT
-                SocketAsyncEventArgs sea = new SocketAsyncEventArgs();
-                sea.SetBuffer(bytes, offset, length);
-                sea.Completed += this.AsyncCompleted;
-                this.socket.SendAsync(sea);
-                this.syncHandle.WaitOne();
-                if (this.lastError != SocketError.Success)
+                this.pendingRequests.Enqueue(args);
+            }
+
+            this.ProcessNextQueuedItem();
+        }
+
+        private void CloseSocket(AsyncContinuation continuation)
+        {
+            try
+            {
+                var sock = this.socket;
+                this.socket = null;
+
+                if (sock != null)
                 {
-                    throw new IOException("Network send error");
+                    sock.Close();
                 }
-#else
-                this.socket.Send(bytes, offset, length, SocketFlags.None);
-#endif
+
+                continuation(null);
+            }
+            catch (Exception exception)
+            {
+                continuation(exception);
             }
         }
 
-#if SILVERLIGHT
-        private void AsyncCompleted(object sender, SocketAsyncEventArgs e)
+        private void SocketOperationCompleted(object sender, SocketAsyncEventArgs e)
         {
-            this.syncHandle.Set();
-            this.lastError = e.SocketError;
+            lock (this)
+            {
+                this.asyncOperationInProgress = false;
+                var asyncContinuation = e.UserToken as AsyncContinuation;
+
+                if (e.SocketError != SocketError.Success)
+                {
+                    this.pendingError = new IOException("Error: " + e.SocketError);
+                }
+
+                if (asyncContinuation != null)
+                {
+                    asyncContinuation(this.pendingError);
+                }
+            }
+
+            this.ProcessNextQueuedItem();
         }
-#endif
+
+        private void ProcessNextQueuedItem()
+        {
+            SocketAsyncEventArgs args;
+
+            lock (this)
+            {
+                if (this.asyncOperationInProgress)
+                {
+                    return;
+                }
+
+                if (this.pendingError != null)
+                {
+                    while (this.pendingRequests.Count != 0)
+                    {
+                        args = this.pendingRequests.Dequeue();
+                        var asyncContinuation = (AsyncContinuation)args.UserToken;
+                        asyncContinuation(this.pendingError);
+                    }
+                }
+
+                if (this.pendingRequests.Count == 0)
+                {
+                    var fc = this.flushContinuation;
+                    if (fc != null)
+                    {
+                        this.flushContinuation = null;
+                        fc(this.pendingError);
+                    }
+
+                    var cc = this.closeContinuation;
+                    if (cc != null)
+                    {
+                        this.closeContinuation = null;
+                        this.CloseSocket(cc);
+                    }
+
+                    return;
+                }
+
+                args = this.pendingRequests.Dequeue();
+
+                this.asyncOperationInProgress = true;
+                if (!this.socket.SendAsync(args))
+                {
+                    this.SocketOperationCompleted(this.socket, args);
+                }
+            }
+        }
     }
 }

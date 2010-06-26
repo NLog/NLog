@@ -34,6 +34,11 @@
 namespace NLog.Internal.NetworkSenders
 {
     using System;
+    using System.IO;
+    using System.Net;
+    using System.Net.Sockets;
+    using System.Threading;
+    using NLog.Common;
 
     /// <summary>
     /// A base class for all network senders. Supports one-way sending of messages
@@ -41,6 +46,8 @@ namespace NLog.Internal.NetworkSenders
     /// </summary>
     internal abstract class NetworkSender : IDisposable
     {
+        private static int currentSendTime;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkSender" /> class.
         /// </summary>
@@ -48,6 +55,7 @@ namespace NLog.Internal.NetworkSenders
         protected NetworkSender(string url)
         {
             this.Address = url;
+            this.LastSendTime = Interlocked.Increment(ref currentSendTime);
         }
 
         /// <summary>
@@ -64,41 +72,34 @@ namespace NLog.Internal.NetworkSenders
         public string Address { get; private set; }
 
         /// <summary>
-        /// Creates a new instance of the network sender based on a network URL:.
+        /// Gets the last send time.
         /// </summary>
-        /// <param name="url">
-        /// URL that determines the network sender to be created.
-        /// </param>
-        /// <returns>
-        /// A newly created network sender.
-        /// </returns>
-        public static NetworkSender Create(string url)
+        public int LastSendTime { get; private set; }
+
+        /// <summary>
+        /// Initializes this network sender.
+        /// </summary>
+        public void Initialize()
         {
-            if (url.StartsWith("tcp://", StringComparison.OrdinalIgnoreCase))
-            {
-                return new TcpNetworkSender(url);
-            }
-#if !SILVERLIGHT
-            if (url.StartsWith("udp://", StringComparison.OrdinalIgnoreCase))
-            {
-                return new UdpNetworkSender(url);
-            }
-#endif
-            throw new ArgumentException("Unrecognized network address", "url");
+            this.DoInitialize();
         }
 
         /// <summary>
         /// Closes the sender and releases any unmanaged resources.
         /// </summary>
-        public virtual void Close()
+        /// <param name="continuation">The continuation.</param>
+        public void Close(AsyncContinuation continuation)
         {
+            this.DoClose(continuation);
         }
 
         /// <summary>
-        /// Flushes any buffers.
+        /// Flushes any pending messages and invokes a continuation.
         /// </summary>
-        public virtual void Flush()
+        /// <param name="continuation">The continuation.</param>
+        public void FlushAsync(AsyncContinuation continuation)
         {
+            this.DoFlush(continuation);
         }
 
         /// <summary>
@@ -107,9 +108,11 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="bytes">Bytes to be sent.</param>
         /// <param name="offset">Offset in buffer.</param>
         /// <param name="length">Number of bytes to send.</param>
-        public void Send(byte[] bytes, int offset, int length)
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        public void Send(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
-            this.DoSend(bytes, offset, length);
+            this.LastSendTime = Interlocked.Increment(ref currentSendTime);
+            this.DoSend(bytes, offset, length, asyncContinuation);
         }
 
         /// <summary>
@@ -122,19 +125,79 @@ namespace NLog.Internal.NetworkSenders
         }
 
         /// <summary>
+        /// Performs sender-specific initialization.
+        /// </summary>
+        protected virtual void DoInitialize()
+        {
+        }
+
+        /// <summary>
+        /// Performs sender-specific close operation.
+        /// </summary>
+        /// <param name="continuation">The continuation.</param>
+        protected virtual void DoClose(AsyncContinuation continuation)
+        {
+            continuation(null);
+        }
+
+        /// <summary>
+        /// Performs sender-specific flush.
+        /// </summary>
+        /// <param name="continuation">The continuation.</param>
+        protected virtual void DoFlush(AsyncContinuation continuation)
+        {
+            continuation(null);
+        }
+
+        /// <summary>
         /// Actually sends the given text over the specified protocol.
         /// </summary>
         /// <param name="bytes">The bytes to be sent.</param>
         /// <param name="offset">Offset in buffer.</param>
         /// <param name="length">Number of bytes to send.</param>
+        /// <param name="asyncContinuation">The async continuation to be invoked after the buffer has been sent.</param>
         /// <remarks>To be overridden in inheriting classes.</remarks>
-        protected abstract void DoSend(byte[] bytes, int offset, int length);
+        protected abstract void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation);
+
+        /// <summary>
+        /// Parses the URI into an endpoint address.
+        /// </summary>
+        /// <param name="uri">The URI to parse.</param>
+        /// <param name="addressFamily">The address family.</param>
+        /// <returns>Parsed endpoint.</returns>
+        protected virtual EndPoint ParseEndpointAddress(Uri uri, AddressFamily addressFamily)
+        {
+#if SILVERLIGHT
+            return new DnsEndPoint(uri.Host, uri.Port, addressFamily);
+#else
+            switch (uri.HostNameType)
+            {
+                case UriHostNameType.IPv4:
+                case UriHostNameType.IPv6:
+                    return new IPEndPoint(IPAddress.Parse(uri.Host), uri.Port);
+
+                default:
+                    {
+                        var addresses = Dns.GetHostEntry(uri.Host).AddressList;
+                        foreach (var addr in addresses)
+                        {
+                            if (addr.AddressFamily == addressFamily || addressFamily == AddressFamily.Unspecified)
+                            {
+                                return new IPEndPoint(addr, uri.Port);
+                            }
+                        }
+
+                        throw new IOException("Cannot resolve '" + uri.Host + "' to an address in '" + addressFamily + "'");
+                    }
+            }
+#endif
+        }
 
         private void Dispose(bool disposing)
         {
             if (disposing)
             {
-                this.Close();
+                this.Close(ex => { });
             }
         }
     }

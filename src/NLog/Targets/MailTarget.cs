@@ -209,16 +209,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Writes logging event to the log target. Must be overridden in inheriting
-        /// classes.
-        /// </summary>
-        /// <param name="logEvent">Logging event to be written out.</param>
-        protected override void Write(LogEventInfo logEvent)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>
         /// Renders the logging event message and adds it to the internal ArrayList of log messages.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
