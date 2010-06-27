@@ -106,6 +106,7 @@ namespace RunUnitTests
             var results = new XElement(xmlns + "Results");
 
             string finalOutcome = (this.FailCount > 0) ? "Failed" : "Passed";
+            string testListId = Guid.NewGuid().ToString().ToLowerInvariant();
 
             var testRun = new XElement(xmlns + "TestRun",
                 new XAttribute("id", Guid.NewGuid().ToString().ToLowerInvariant()),
@@ -122,10 +123,12 @@ namespace RunUnitTests
                         new XAttribute("passed", this.PassCount),
                         new XAttribute("failed", this.FailCount))),
                 testDefinitions,
+                new XElement(xmlns + "TestLists",
+                    new XElement(xmlns + "TestList",
+                        new XAttribute("name", "All results"),
+                        new XAttribute("id", testListId))),
                 testEntries,
                 results);
-
-            string testListId = Guid.NewGuid().ToString().ToLowerInvariant();
 
             foreach (var testMethod in this.FailedTests)
             {
