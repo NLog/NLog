@@ -466,12 +466,55 @@
         <br/>
         <xsl:apply-templates select="doc/example" />
       </xsl:if>
+
+      <xsl:call-template name="showFrameworkDifferences">
+         <xsl:with-param name="parent" select="../supported-in" />
+         <xsl:with-param name="this" select="supported-in" />
+      </xsl:call-template>
+
     </li>
+  </xsl:template>
+
+  <xsl:template name="showFrameworkDifferences">
+    <xsl:param name="parent" />
+    <xsl:param name="this" />
+
+    <xsl:variable name="parentSupported">
+      <xsl:for-each select="$parent/release"> 
+        <xsl:value-of select="@name" /><xsl:text>/</xsl:text><xsl:value-of select="@framework" />
+       </xsl:for-each>
+    </xsl:variable>
+
+    <xsl:variable name="thisSupported">
+      <xsl:for-each select="$this/release"> 
+        <xsl:value-of select="@name" /><xsl:text>/</xsl:text><xsl:value-of select="@framework" />
+       </xsl:for-each>
+    </xsl:variable>
+    
+    <xsl:if test="$thisSupported != $parentSupported">
+        <div class='notsupportedin'>
+        <h5>This parameter is not supported in:</h5>
+        <ul>
+        <xsl:for-each select="$parent/release">
+            <xsl:variable name="rname" select="@name" />
+            <xsl:variable name="rframework" select="@framework" />
+
+            <xsl:if test="count($this/release[@name=$rname and @framework=$rframework])=0">
+                <li>NLog v<xsl:value-of select="$rname" /> for <xsl:value-of select="@framework" /></li>
+            </xsl:if>
+        </xsl:for-each>
+       </ul>
+       </div>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="enum">
     <li>
       <b><xsl:value-of select="@name" /></b> - <xsl:apply-templates select="doc/summary" />
+      <xsl:call-template name="showFrameworkDifferences">
+         <xsl:with-param name="parent" select="../supported-in" />
+         <xsl:with-param name="this" select="supported-in" />
+      </xsl:call-template>
     </li>
   </xsl:template>
 
