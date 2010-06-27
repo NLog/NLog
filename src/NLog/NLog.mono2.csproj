@@ -33,7 +33,7 @@
   <PropertyGroup>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
-    <DefineConstants>MONO;MONO_2_0;$(DefineConstants)</DefineConstants>
+    <DefineConstants>MONO;WCF_SUPPORTED;MONO_2_0;$(DefineConstants)</DefineConstants>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 2.x</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
     <DocumentationFile>$(OutputPath)\NLog.xml</DocumentationFile>
@@ -46,6 +46,8 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
