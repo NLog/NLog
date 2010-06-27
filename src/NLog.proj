@@ -282,7 +282,7 @@
       <TestFiles Include="$(BaseOutputDirectory)\bin\$(Configuration)\Mono 2.x\*.*" />
     </ItemGroup>
     <Copy SourceFiles="@(TestFiles)" DestinationFolder="$(WorkingDir)" />
-    <Exec Command='"$(MonoInstallLocation)\bin\mono.exe" RunUnitTests.exe'
+    <Exec Command='"$(MonoInstallLocation)\bin\mono.exe" --debug RunUnitTests.exe'
           WorkingDirectory="$(WorkingDir)" />
     <Copy SourceFiles="$(WorkingDir)\TestResults.trx" DestinationFolder="$(BaseOutputDirectory)\bin\$(Configuration)\Mono 2.x" />
   </Target>                
