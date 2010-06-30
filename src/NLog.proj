@@ -158,7 +158,7 @@
      <PropertyGroup>
        <CommonProperties>BuildLabel=$(BuildLabel);BuildVersion=$(BuildVersion)</CommonProperties>
      </PropertyGroup>
-     <MSBuild Projects="$(MSBuildProjectFile)" Targets="DeepClean;Clean;Build;DumpApi;Documentation;Archive;Installer;BuildTests;RunTests" Properties="Configuration=Release;$(CommonProperties)" />
+     <MSBuild Projects="$(MSBuildProjectFile)" Targets="DeepClean;Clean;Build;DumpApi;XSD;Documentation;Archive;Installer;BuildTests;RunTests" Properties="Configuration=Release;$(CommonProperties)" />
      <MSBuild Projects="$(MSBuildProjectFile)" Targets="Clean;Build;BuildTests" Properties="Configuration=Debug;$(CommonProperties)" />
      <CallTarget Targets="SourceArchive" />
   </Target>

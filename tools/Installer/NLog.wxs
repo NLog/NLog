@@ -666,7 +666,7 @@
       </Component>
     </DirectoryRef>
 
-    <DirectoryRef Id="VS2005_SCHEMAS_DIR" FileSource="$(var.NLogSourcePath)\src">
+    <DirectoryRef Id="VS2005_SCHEMAS_DIR" FileSource="$(var.NLogBuildPath)">
       <Component Id="VS2005_XmlSchemas" Guid="a4634982-42d1-34b3-93a0-41874eac87d3">
         <File Id="VS2005_NLog.xsd" Name="NLog.xsd" />
       </Component>
@@ -811,7 +811,7 @@
       </Component>
     </DirectoryRef>
 
-    <DirectoryRef Id="VS90_SCHEMAS_DIR" FileSource="$(var.NLogSourcePath)\src">
+    <DirectoryRef Id="VS90_SCHEMAS_DIR" FileSource="$(var.NLogBuildPath)">
       <Component Id="VS2008_XmlSchemas" Guid="70989cc0-0383-31cb-5e9c-5839063ab1db">
         <File Id="VS2008_NLog.xsd" Name="NLog.xsd" />
       </Component>
@@ -956,7 +956,7 @@
       </Component>
     </DirectoryRef>
 
-    <DirectoryRef Id="VS2010_SCHEMAS_DIR" FileSource="$(var.NLogSourcePath)\src">
+    <DirectoryRef Id="VS2010_SCHEMAS_DIR" FileSource="$(var.NLogBuildPath)">
       <Component Id="VS2010_XmlSchemas" Guid="d350a610-b3b7-381c-d284-bb19054560b2">
         <File Id="VS2010_NLog.xsd" Name="NLog.xsd" />
       </Component>

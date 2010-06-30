@@ -459,7 +459,7 @@ foreach (var vs in visualStudioVersions) {
       </Component>
     </DirectoryRef>
 
-    <DirectoryRef Id="VS<#= vs.WixPrefix #>_SCHEMAS_DIR" FileSource="$(var.NLogSourcePath)\src">
+    <DirectoryRef Id="VS<#= vs.WixPrefix #>_SCHEMAS_DIR" FileSource="$(var.NLogBuildPath)">
       <Component Id="VS<#= vs.ReleaseName #>_XmlSchemas" Guid="<#= GetGuid(vs.ReleaseName, "XmlSchemas") #>">
         <File Id="VS<#= vs.ReleaseName #>_NLog.xsd" Name="NLog.xsd" />
       </Component>
