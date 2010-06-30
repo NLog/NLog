@@ -158,6 +158,12 @@ if (%1)==(checkinsuite) (
 	goto next
 )
 
+if (%1)==(xsd) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:XSD
+	shift
+	goto next
+)
+
 if (%1)==(archive) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Archive
 	shift
@@ -236,6 +242,7 @@ echo  doc                Builds documentation
 echo  all                Full build
 echo  nightlybuild       Nightly build
 echo  web                Website files
+echo  xsd                NLog.xsd Intellisense files
 echo  installer          Installer
 echo  label {suffix}     Define build label (defaults to 'PrivateBuild')
 exit /b 1

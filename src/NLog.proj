@@ -24,6 +24,7 @@
     <DeployNetCF>..\tools\DeployNetCF.exe</DeployNetCF>
     <DumpApiXml>$(MSBuildProjectDirectory)\..\tools\DumpApiXml\bin\$(Configuration)\DumpApiXml.exe</DumpApiXml>
     <MergeApiXml>$(MSBuildProjectDirectory)\..\tools\MergeApiXml\bin\$(Configuration)\MergeApiXml.exe</MergeApiXml>
+    <MakeNLogXSD>$(MSBuildProjectDirectory)\..\tools\MakeNLogXSD\bin\$(Configuration)\MakeNLogXSD.exe</MakeNLogXSD>
     <BuildDocPages>$(MSBuildProjectDirectory)\..\tools\BuildDocPages\bin\$(Configuration)\BuildDocPages.exe</BuildDocPages>
     <SyncProjectItems>$(MSBuildProjectDirectory)\..\tools\SyncProjectItems\bin\$(Configuration)\SyncProjectItems.exe</SyncProjectItems>
     <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
@@ -404,6 +405,23 @@
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)"
           ContinueOnError="$(BuildAllFrameworks)" />
     <Exec Command='"$(MergeApiXml)" "$(BaseOutputDirectory)\bin\$(Configuration)"' />
+  </Target>
+
+  <Target Name="BuildMakeNLogXSDTool">
+    <MSBuild Projects="..\tools\MakeNLogXSD\MakeNLogXSD.csproj" />
+  </Target>
+
+  <Target Name="XSD" DependsOnTargets="BuildMakeNLogXSDTool;DumpApi"
+    Inputs="@(TargetFramework -> '$(BaseOutputDirectory)\bin\$(Configuration)\%(Identity)\API\NLog.api');
+         $(BaseOutputDirectory)\bin\$(Configuration)\NLogMerged.api.xml"
+    Outputs="@(TargetFramework -> '$(BaseOutputDirectory)\bin\$(Configuration)\%(Identity)\NLog%(ProjectFileSuffix).xsd');
+            $(BaseOutputDirectory)\bin\$(Configuration)\NLog.xsd">
+    <Exec Command='"$(MakeNLogXSD)" -api API\NLog.api -out NLog%(ProjectFileSuffix).xsd -xmlns http://nlog-project.org/schemas/NLog%(ProjectFileSuffix).xsd'
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)"
+          ContinueOnError="$(BuildAllFrameworks)" />
+    <Exec Command='"$(MakeNLogXSD)" -api NLogMerged.api.xml -out NLog.xsd'
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)"
+          ContinueOnError="$(BuildAllFrameworks)" />
   </Target>
 
   <Target Name="Clean">
