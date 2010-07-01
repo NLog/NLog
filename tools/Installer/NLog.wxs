@@ -332,7 +332,7 @@
         <File Id="NetFx20_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="NetFx20_NLog.xml" Name="NLog.xml" />
                       
-        <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETFramework\v2.0.50727\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\.NETFramework\v2.0.50727\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETFX20_DIR]"></RegistryValue>
         </RegistryKey>
                 
@@ -357,7 +357,7 @@
         <File Id="NetFx35_NLog.Extended.dll" Name="NLog.Extended.dll" Vital="yes" />
         <File Id="NetFx35_NLog.Extended.xml" Name="NLog.Extended.xml" />
                       
-        <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETFramework\v3.5\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\.NETFramework\v3.5\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETFX35_DIR]"></RegistryValue>
         </RegistryKey>
                 
@@ -384,7 +384,7 @@
         <File Id="NetFx40_NLog.Extended.dll" Name="NLog.Extended.dll" Vital="yes" />
         <File Id="NetFx40_NLog.Extended.xml" Name="NLog.Extended.xml" />
                       
-        <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETFramework\v4.0.30319\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\.NETFramework\v4.0.30319\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETFX40_DIR]"></RegistryValue>
         </RegistryKey>
                 
@@ -408,15 +408,15 @@
         <File Id="NetCf20_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="NetCf20_NLog.xml" Name="NLog.xml" />
                       
-        <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\PocketPC\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\PocketPC\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETCF20_DIR]"></RegistryValue>
         </RegistryKey>
               
-        <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\Smartphone\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\Smartphone\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETCF20_DIR]"></RegistryValue>
         </RegistryKey>
               
-        <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\WindowsCE\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\WindowsCE\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETCF20_DIR]"></RegistryValue>
         </RegistryKey>
                 
@@ -438,15 +438,15 @@
         <File Id="NetCf35_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="NetCf35_NLog.xml" Name="NLog.xml" />
                       
-        <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\PocketPC\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\PocketPC\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETCF35_DIR]"></RegistryValue>
         </RegistryKey>
               
-        <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\Smartphone\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\Smartphone\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETCF35_DIR]"></RegistryValue>
         </RegistryKey>
               
-        <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\WindowsCE\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\WindowsCE\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETCF35_DIR]"></RegistryValue>
         </RegistryKey>
                 
@@ -468,7 +468,7 @@
         <File Id="SL2_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="SL2_NLog.xml" Name="NLog.xml" />
                       
-        <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v2.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v2.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[SL2_DIR]"></RegistryValue>
         </RegistryKey>
                 
@@ -490,7 +490,7 @@
         <File Id="SL3_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="SL3_NLog.xml" Name="NLog.xml" />
                       
-        <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v3.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v3.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[SL3_DIR]"></RegistryValue>
         </RegistryKey>
                 
@@ -512,7 +512,7 @@
         <File Id="SL4_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="SL4_NLog.xml" Name="NLog.xml" />
                       
-        <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v4.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v4.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[SL4_DIR]"></RegistryValue>
         </RegistryKey>
                 
@@ -669,6 +669,34 @@
     <DirectoryRef Id="VS2005_SCHEMAS_DIR" FileSource="$(var.NLogBuildPath)">
       <Component Id="VS2005_XmlSchemas" Guid="a4634982-42d1-34b3-93a0-41874eac87d3">
         <File Id="VS2005_NLog.xsd" Name="NLog.xsd" />
+      <?ifdef Include_Mono2 ?>
+        <File Id="VS2005_NLog.Mono2.xsd" Name="NLog.Mono2.xsd" Source="$(var.NLogBuildPath)\Mono 2.x\NLog.Mono2.xsd" />
+      <?endif ?>
+      <?ifdef Include_NetFx20 ?>
+        <File Id="VS2005_NLog.NetFx20.xsd" Name="NLog.NetFx20.xsd" Source="$(var.NLogBuildPath)\.NET Framework 2.0\NLog.NetFx20.xsd" />
+      <?endif ?>
+      <?ifdef Include_NetFx35 ?>
+        <File Id="VS2005_NLog.NetFx35.xsd" Name="NLog.NetFx35.xsd" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.NetFx35.xsd" />
+      <?endif ?>
+      <?ifdef Include_NetFx40 ?>
+        <File Id="VS2005_NLog.NetFx40.xsd" Name="NLog.NetFx40.xsd" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.NetFx40.xsd" />
+      <?endif ?>
+      <?ifdef Include_NetCf20 ?>
+        <File Id="VS2005_NLog.NetCf20.xsd" Name="NLog.NetCf20.xsd" Source="$(var.NLogBuildPath)\.NET Compact Framework 2.0\NLog.NetCf20.xsd" />
+      <?endif ?>
+      <?ifdef Include_NetCf35 ?>
+        <File Id="VS2005_NLog.NetCf35.xsd" Name="NLog.NetCf35.xsd" Source="$(var.NLogBuildPath)\.NET Compact Framework 3.5\NLog.NetCf35.xsd" />
+      <?endif ?>
+      <?ifdef Include_SL2 ?>
+        <File Id="VS2005_NLog.SL2.xsd" Name="NLog.SL2.xsd" Source="$(var.NLogBuildPath)\Silverlight 2.0\NLog.SL2.xsd" />
+      <?endif ?>
+      <?ifdef Include_SL3 ?>
+        <File Id="VS2005_NLog.SL3.xsd" Name="NLog.SL3.xsd" Source="$(var.NLogBuildPath)\Silverlight 3.0\NLog.SL3.xsd" />
+      <?endif ?>
+      <?ifdef Include_SL4 ?>
+        <File Id="VS2005_NLog.SL4.xsd" Name="NLog.SL4.xsd" Source="$(var.NLogBuildPath)\Silverlight 4.0\NLog.SL4.xsd" />
+      <?endif ?>
+ 
       </Component>
     </DirectoryRef>
 
@@ -814,6 +842,34 @@
     <DirectoryRef Id="VS90_SCHEMAS_DIR" FileSource="$(var.NLogBuildPath)">
       <Component Id="VS2008_XmlSchemas" Guid="70989cc0-0383-31cb-5e9c-5839063ab1db">
         <File Id="VS2008_NLog.xsd" Name="NLog.xsd" />
+      <?ifdef Include_Mono2 ?>
+        <File Id="VS2008_NLog.Mono2.xsd" Name="NLog.Mono2.xsd" Source="$(var.NLogBuildPath)\Mono 2.x\NLog.Mono2.xsd" />
+      <?endif ?>
+      <?ifdef Include_NetFx20 ?>
+        <File Id="VS2008_NLog.NetFx20.xsd" Name="NLog.NetFx20.xsd" Source="$(var.NLogBuildPath)\.NET Framework 2.0\NLog.NetFx20.xsd" />
+      <?endif ?>
+      <?ifdef Include_NetFx35 ?>
+        <File Id="VS2008_NLog.NetFx35.xsd" Name="NLog.NetFx35.xsd" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.NetFx35.xsd" />
+      <?endif ?>
+      <?ifdef Include_NetFx40 ?>
+        <File Id="VS2008_NLog.NetFx40.xsd" Name="NLog.NetFx40.xsd" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.NetFx40.xsd" />
+      <?endif ?>
+      <?ifdef Include_NetCf20 ?>
+        <File Id="VS2008_NLog.NetCf20.xsd" Name="NLog.NetCf20.xsd" Source="$(var.NLogBuildPath)\.NET Compact Framework 2.0\NLog.NetCf20.xsd" />
+      <?endif ?>
+      <?ifdef Include_NetCf35 ?>
+        <File Id="VS2008_NLog.NetCf35.xsd" Name="NLog.NetCf35.xsd" Source="$(var.NLogBuildPath)\.NET Compact Framework 3.5\NLog.NetCf35.xsd" />
+      <?endif ?>
+      <?ifdef Include_SL2 ?>
+        <File Id="VS2008_NLog.SL2.xsd" Name="NLog.SL2.xsd" Source="$(var.NLogBuildPath)\Silverlight 2.0\NLog.SL2.xsd" />
+      <?endif ?>
+      <?ifdef Include_SL3 ?>
+        <File Id="VS2008_NLog.SL3.xsd" Name="NLog.SL3.xsd" Source="$(var.NLogBuildPath)\Silverlight 3.0\NLog.SL3.xsd" />
+      <?endif ?>
+      <?ifdef Include_SL4 ?>
+        <File Id="VS2008_NLog.SL4.xsd" Name="NLog.SL4.xsd" Source="$(var.NLogBuildPath)\Silverlight 4.0\NLog.SL4.xsd" />
+      <?endif ?>
+ 
       </Component>
     </DirectoryRef>
 
@@ -959,6 +1015,34 @@
     <DirectoryRef Id="VS2010_SCHEMAS_DIR" FileSource="$(var.NLogBuildPath)">
       <Component Id="VS2010_XmlSchemas" Guid="d350a610-b3b7-381c-d284-bb19054560b2">
         <File Id="VS2010_NLog.xsd" Name="NLog.xsd" />
+      <?ifdef Include_Mono2 ?>
+        <File Id="VS2010_NLog.Mono2.xsd" Name="NLog.Mono2.xsd" Source="$(var.NLogBuildPath)\Mono 2.x\NLog.Mono2.xsd" />
+      <?endif ?>
+      <?ifdef Include_NetFx20 ?>
+        <File Id="VS2010_NLog.NetFx20.xsd" Name="NLog.NetFx20.xsd" Source="$(var.NLogBuildPath)\.NET Framework 2.0\NLog.NetFx20.xsd" />
+      <?endif ?>
+      <?ifdef Include_NetFx35 ?>
+        <File Id="VS2010_NLog.NetFx35.xsd" Name="NLog.NetFx35.xsd" Source="$(var.NLogBuildPath)\.NET Framework 3.5\NLog.NetFx35.xsd" />
+      <?endif ?>
+      <?ifdef Include_NetFx40 ?>
+        <File Id="VS2010_NLog.NetFx40.xsd" Name="NLog.NetFx40.xsd" Source="$(var.NLogBuildPath)\.NET Framework 4.0\NLog.NetFx40.xsd" />
+      <?endif ?>
+      <?ifdef Include_NetCf20 ?>
+        <File Id="VS2010_NLog.NetCf20.xsd" Name="NLog.NetCf20.xsd" Source="$(var.NLogBuildPath)\.NET Compact Framework 2.0\NLog.NetCf20.xsd" />
+      <?endif ?>
+      <?ifdef Include_NetCf35 ?>
+        <File Id="VS2010_NLog.NetCf35.xsd" Name="NLog.NetCf35.xsd" Source="$(var.NLogBuildPath)\.NET Compact Framework 3.5\NLog.NetCf35.xsd" />
+      <?endif ?>
+      <?ifdef Include_SL2 ?>
+        <File Id="VS2010_NLog.SL2.xsd" Name="NLog.SL2.xsd" Source="$(var.NLogBuildPath)\Silverlight 2.0\NLog.SL2.xsd" />
+      <?endif ?>
+      <?ifdef Include_SL3 ?>
+        <File Id="VS2010_NLog.SL3.xsd" Name="NLog.SL3.xsd" Source="$(var.NLogBuildPath)\Silverlight 3.0\NLog.SL3.xsd" />
+      <?endif ?>
+      <?ifdef Include_SL4 ?>
+        <File Id="VS2010_NLog.SL4.xsd" Name="NLog.SL4.xsd" Source="$(var.NLogBuildPath)\Silverlight 4.0\NLog.SL4.xsd" />
+      <?endif ?>
+ 
       </Component>
     </DirectoryRef>
 

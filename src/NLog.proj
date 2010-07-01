@@ -416,7 +416,7 @@
          $(BaseOutputDirectory)\bin\$(Configuration)\NLogMerged.api.xml"
     Outputs="@(TargetFramework -> '$(BaseOutputDirectory)\bin\$(Configuration)\%(Identity)\NLog%(ProjectFileSuffix).xsd');
             $(BaseOutputDirectory)\bin\$(Configuration)\NLog.xsd">
-    <Exec Command='"$(MakeNLogXSD)" -api API\NLog.api -out NLog%(ProjectFileSuffix).xsd -xmlns http://nlog-project.org/schemas/NLog%(ProjectFileSuffix).xsd'
+    <Exec Command='"$(MakeNLogXSD)" -api API\NLog.api -out NLog%(ProjectFileSuffix).xsd -xmlns http://www.nlog-project.org/schemas/NLog%(ProjectFileSuffix).xsd'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)"
           ContinueOnError="$(BuildAllFrameworks)" />
     <Exec Command='"$(MakeNLogXSD)" -api NLogMerged.api.xml -out NLog.xsd'

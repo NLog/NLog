@@ -299,7 +299,7 @@ foreach (var vs in visualStudioVersions) {
         <# } #>
         <# foreach (string assemblyInfoPath in framework.AssemblyInfoRegistryKeys) { 
 #>      
-        <RegistryKey Root="HKMU" Key="<#= assemblyInfoPath #>" Action="createAndRemoveOnUninstall">
+        <RegistryKey Root="HKLM" Key="<#= assemblyInfoPath #>" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[<#= (framework.ShortName + "_Dir").ToUpperInvariant() #>]"></RegistryValue>
         </RegistryKey>
         <# } #>
@@ -462,6 +462,11 @@ foreach (var vs in visualStudioVersions) {
     <DirectoryRef Id="VS<#= vs.WixPrefix #>_SCHEMAS_DIR" FileSource="$(var.NLogBuildPath)">
       <Component Id="VS<#= vs.ReleaseName #>_XmlSchemas" Guid="<#= GetGuid(vs.ReleaseName, "XmlSchemas") #>">
         <File Id="VS<#= vs.ReleaseName #>_NLog.xsd" Name="NLog.xsd" />
+<# foreach (var framework in supportedFrameworks) { #>
+      <?ifdef Include_<#= framework.ShortName #> ?>
+        <File Id="VS<#= vs.ReleaseName #>_NLog.<#= framework.ShortName #>.xsd" Name="NLog.<#= framework.ShortName #>.xsd" Source="$(var.NLogBuildPath)\\<#= framework.FullName #>\NLog.<#= framework.ShortName #>.xsd" />
+      <?endif ?>
+<# } #> 
       </Component>
     </DirectoryRef>
 

@@ -44,7 +44,7 @@ namespace MakeNLogXSD
             {
                 var apiFiles = new List<string>();
                 string outputFile = "NLog.xsd";
-                string targetNamespace = "http://nlog-project.org/schemas/NLog.xsd";
+                string targetNamespace = "http://www.nlog-project.org/schemas/NLog.xsd";
 
                 for (int i = 0; i < args.Length; ++i)
                 {
