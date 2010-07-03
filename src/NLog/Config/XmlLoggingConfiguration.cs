@@ -585,8 +585,13 @@ namespace NLog.Config
                     prefix = prefix + ".";
                 }
 
-                string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
+                string type = addElement.GetOptionalAttribute("type", null);
+                if (type != null)
+                {
+                    this.nlogFactories.RegisterType(Type.GetType(type, true), prefix);
+                }
 
+                string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
                 if (assemblyFile != null)
                 {
                     try
@@ -689,19 +694,22 @@ namespace NLog.Config
             }
         }
 
-        private bool SetPropertyFromElement(object o, NLogXmlElement element)
+        private void SetPropertyFromElement(object o, NLogXmlElement element)
         {
             if (this.AddArrayItemFromElement(o, element))
             {
-                return true;
+                return;
             }
 
             if (this.SetLayoutFromElement(o, element))
             {
-                return true;
+                return;
             }
 
-            return PropertyHelper.SetPropertyFromString(o, element.LocalName, this.ExpandVariables(element.Value));
+            if (!PropertyHelper.SetPropertyFromString(o, element.LocalName, this.ExpandVariables(element.Value)))
+            {
+                throw new NLogConfigurationException("Parameter '" + element.LocalName + "' not found on " + o + ".");
+            }
         }
 
         private string CleanWhitespace(string s)
