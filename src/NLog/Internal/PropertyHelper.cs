@@ -50,10 +50,8 @@ namespace NLog.Internal
     {
         private static Dictionary<Type, Dictionary<string, PropertyInfo>> parameterInfoCache = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
 
-        internal static bool SetPropertyFromString(object o, string name, string value0, IDictionary<string, string> variables)
+        internal static bool SetPropertyFromString(object o, string name, string value)
         {
-            string value = ExpandVariables(value0, variables);
-
             InternalLogger.Debug("Setting '{0}.{1}' to '{2}'", o.GetType().Name, name, value);
 
             try
@@ -93,25 +91,6 @@ namespace NLog.Internal
             }
         }
 
-        internal static string ExpandVariables(string input, IDictionary<string, string> variables)
-        {
-            if (variables == null || variables.Count == 0)
-            {
-                return input;
-            }
-
-            string output = input;
-
-            // TODO - make this case-insensitive, will probably require a different
-            // approach
-            foreach (string s in variables.Keys)
-            {
-                output = output.Replace("${" + s + "}", variables[s]);
-            }
-
-            return output;
-        }
-
         internal static bool IsArrayProperty(Type t, string name)
         {
             PropertyInfo propInfo;
@@ -121,38 +100,9 @@ namespace NLog.Internal
                 throw new NotSupportedException("Parameter " + name + " not supported on " + t.Name);
             }
 
-            if (!propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return propInfo.IsDefined(typeof(ArrayParameterAttribute), false);
         }
 
-        internal static bool IsLayoutProperty(Type t, string name)
-        {
-            PropertyInfo propInfo;
-
-            if (!TryGetPropertyInfo(t, name, out propInfo))
-            {
-                throw new NotSupportedException("Parameter " + name + " not supported on " + t.Name);
-            }
-
-            if (typeof(Layout).IsAssignableFrom(propInfo.PropertyType))
-            {
-                return true;
-            }
-
-            if (0 == String.Compare(name, "layout", StringComparison.OrdinalIgnoreCase) && typeof(TargetWithLayout).IsAssignableFrom(propInfo.DeclaringType))
-            {
-                return true;
-            }
-
-            return false;
-        }
-        
         internal static bool TryGetPropertyInfo(object o, string propertyName, out PropertyInfo result)
         {
             PropertyInfo propInfo = o.GetType().GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
@@ -179,16 +129,13 @@ namespace NLog.Internal
 
         internal static Type GetArrayItemType(PropertyInfo propInfo)
         {
-            if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
+            var arrayParameterAttribute = (ArrayParameterAttribute)Attribute.GetCustomAttribute(propInfo, typeof(ArrayParameterAttribute));
+            if (arrayParameterAttribute != null)
             {
-                ArrayParameterAttribute[] attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
+                return arrayParameterAttribute.ItemType;
+            }
 
-                return attributes[0].ItemType;
-            }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
         internal static IEnumerable<PropertyInfo> GetAllReadableProperties(Type type)
@@ -274,16 +221,14 @@ namespace NLog.Internal
 
         private static bool TrySpecialConversion(Type type, string value, out object newValue)
         {
-            if (type == typeof(Encoding) && value is string)
+            if (type == typeof(Encoding))
             {
                 newValue = Encoding.GetEncoding(value);
                 return true;
             }
-            else
-            {
-                newValue = null;
-                return false;
-            }
+            
+            newValue = null;
+            return false;
         }
 
         private static bool TryGetPropertyInfo(Type targetType, string propertyName, out PropertyInfo result)
@@ -317,11 +262,11 @@ namespace NLog.Internal
             var retVal = new Dictionary<string, PropertyInfo>(StringComparer.OrdinalIgnoreCase);
             foreach (PropertyInfo propInfo in GetAllReadableProperties(t))
             {
-                if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
-                {
-                    var attributes = (ArrayParameterAttribute[])propInfo.GetCustomAttributes(typeof(ArrayParameterAttribute), false);
+                var arrayParameterAttribute = (ArrayParameterAttribute)Attribute.GetCustomAttribute(propInfo, typeof(ArrayParameterAttribute));
 
-                    retVal[attributes[0].ElementName] = propInfo;
+                if (arrayParameterAttribute != null)
+                {
+                    retVal[arrayParameterAttribute.ElementName] = propInfo;
                 }
                 else
                 {
@@ -330,6 +275,7 @@ namespace NLog.Internal
 
                 if (propInfo.IsDefined(typeof(DefaultParameterAttribute), false))
                 {
+                    // define a property with empty name
                     retVal[string.Empty] = propInfo;
                 }
             }

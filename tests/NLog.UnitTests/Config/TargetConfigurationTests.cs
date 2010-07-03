@@ -64,6 +64,29 @@ namespace NLog.UnitTests.Config
         }
 
         [TestMethod]
+        public void SimpleElementSyntaxTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target type='Debug'>
+                        <name>d</name>
+                        <layout>${message}</layout>
+                    </target>
+                </targets>
+            </nlog>");
+
+            DebugTarget t = c.FindTargetByName("d") as DebugTarget;
+            Assert.IsNotNull(t);
+            Assert.AreEqual(t.Name, "d");
+            SimpleLayout l = t.Layout as SimpleLayout;
+            Assert.AreEqual("${message}", l.Text);
+            Assert.IsNotNull(t.Layout);
+            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.IsInstanceOfType(l.Renderers[0], typeof(MessageLayoutRenderer));
+        }
+
+        [TestMethod]
         public void SimpleTest2()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"

@@ -45,6 +45,7 @@ namespace NLog.LayoutRenderers
     {
         private const int MaxInitialRenderBufferLength = 16384;
         private int maxRenderedLength;
+        private bool isInitialized;
 
         /// <summary>
         /// Returns a <see cref="System.String"/> that represents this instance.
@@ -92,7 +93,11 @@ namespace NLog.LayoutRenderers
         /// </summary>
         void ISupportsInitialize.Initialize()
         {
-            this.Initialize();
+            if (!this.isInitialized)
+            {
+                this.isInitialized = true;
+                this.Initialize();
+            }
         }
 
         /// <summary>
@@ -100,11 +105,21 @@ namespace NLog.LayoutRenderers
         /// </summary>
         void ISupportsInitialize.Close()
         {
-            this.Close();
+            if (this.isInitialized)
+            {
+                this.isInitialized = false;
+                this.Close();
+            }
         }
 
         internal void Render(StringBuilder builder, LogEventInfo logEvent)
         {
+            if (!this.isInitialized)
+            {
+                this.isInitialized = true;
+                this.Initialize();
+            }
+
             this.Append(builder, logEvent);
         }
 

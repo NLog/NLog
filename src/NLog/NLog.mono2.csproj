@@ -105,6 +105,7 @@
     <Compile Include="Config\MethodFactory.cs" />
     <Compile Include="Config\NameBaseAttribute.cs" />
     <Compile Include="Config\NLogFactories.cs" />
+    <Compile Include="Config\NLogXmlElement.cs" />
     <Compile Include="Config\RequiredParameterAttribute.cs" />
     <Compile Include="Config\RuntimeOS.cs" />
     <Compile Include="Config\SimpleConfigurator.cs" />

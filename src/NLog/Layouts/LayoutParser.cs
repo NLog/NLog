@@ -266,7 +266,7 @@ namespace NLog.Layouts
                         else
                         {
                             string value = ParseParameterValue(sr);
-                            PropertyHelper.SetPropertyFromString(parameterTarget, parameterName, value, null);
+                            PropertyHelper.SetPropertyFromString(parameterTarget, parameterName, value);
                         }
                     }
                 }
@@ -285,7 +285,7 @@ namespace NLog.Layouts
                         else
                         {
                             string value = parameterName;
-                            PropertyHelper.SetPropertyFromString(lr, pi.Name, value, null);
+                            PropertyHelper.SetPropertyFromString(lr, pi.Name, value);
                         }
                     }
                     else
