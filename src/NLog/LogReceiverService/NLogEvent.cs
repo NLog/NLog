@@ -128,15 +128,22 @@ namespace NLog.LogReceiverService
 
             set
             {
-                string[] chunks = (value ?? string.Empty).Split('|');
-                var indexes = new int[chunks.Length];
-
-                for (int i = 0; i < indexes.Length; ++i)
+                if (string.IsNullOrEmpty(value))
                 {
-                    indexes[i] = Convert.ToInt32(chunks[i], CultureInfo.InvariantCulture);
+                    this.ValueIndexes = new int[0];
                 }
+                else
+                {
+                    string[] chunks = value.Split('|');
+                    var indexes = new int[chunks.Length];
 
-                this.ValueIndexes = indexes;
+                    for (int i = 0; i < indexes.Length; ++i)
+                    {
+                        indexes[i] = Convert.ToInt32(chunks[i], CultureInfo.InvariantCulture);
+                    }
+
+                    this.ValueIndexes = indexes;
+                }
             }
         }
 
