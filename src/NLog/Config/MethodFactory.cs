@@ -120,7 +120,7 @@ namespace NLog.Config
         /// <param name="methodInfo">The method info.</param>
         public void RegisterDefinition(string name, MethodInfo methodInfo)
         {
-            this.nameToMethodInfo.Add(name, methodInfo);
+            this.nameToMethodInfo[name] = methodInfo;
         }
 
         /// <summary>

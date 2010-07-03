@@ -113,7 +113,7 @@ namespace NLog.Config
         /// <param name="type">The type of the item.</param>
         public void RegisterDefinition(string name, Type type)
         {
-            this.items.Add(name, type);
+            this.items[name] = type;
         }
 
         /// <summary>
