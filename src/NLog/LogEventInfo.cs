@@ -336,7 +336,12 @@ namespace NLog
         }
 
 #if !NET_CF
-        internal void SetStackTrace(StackTrace stackTrace, int userStackFrame)
+        /// <summary>
+        /// Sets the stack trace for the event info.
+        /// </summary>
+        /// <param name="stackTrace">The stack trace.</param>
+        /// <param name="userStackFrame">Index of the first user stack frame within the stack trace.</param>
+        public void SetStackTrace(StackTrace stackTrace, int userStackFrame)
         {
             this.StackTrace = stackTrace;
             this.UserStackFrameNumber = userStackFrame;
