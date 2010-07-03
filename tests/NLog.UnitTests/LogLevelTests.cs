@@ -114,6 +114,22 @@ namespace NLog.UnitTests
         }
 
         [TestMethod]
+        public void LogLevelNullComparison()
+        {
+            LogLevel level = LogLevel.Info;
+            Assert.IsFalse(level == null);
+            Assert.IsTrue(level != null);
+            Assert.IsFalse(null == level);
+            Assert.IsTrue(null != level);
+
+            level = null;
+            Assert.IsTrue(level == null);
+            Assert.IsFalse(level != null);
+            Assert.IsTrue(null == level);
+            Assert.IsFalse(null != level);
+        }
+
+        [TestMethod]
         public void ToStringTest()
         {
             Assert.AreEqual(LogLevel.Trace.ToString(), "Trace");

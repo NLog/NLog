@@ -125,6 +125,16 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal == level2.Ordinal</c>.</returns>
         public static bool operator ==(LogLevel level1, LogLevel level2)
         {
+            if (ReferenceEquals(level1, null))
+            {
+                return ReferenceEquals(level2, null);
+            }
+
+            if (ReferenceEquals(level2, null))
+            {
+                return false;
+            }
+
             return level1.Ordinal == level2.Ordinal;
         }
 
@@ -138,6 +148,16 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal != level2.Ordinal</c>.</returns>
         public static bool operator !=(LogLevel level1, LogLevel level2)
         {
+            if (ReferenceEquals(level1, null))
+            {
+                return !ReferenceEquals(level2, null);
+            }
+
+            if (ReferenceEquals(level2, null))
+            {
+                return true;
+            }
+
             return level1.Ordinal != level2.Ordinal;
         }
 
