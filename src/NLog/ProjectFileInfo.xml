@@ -35,8 +35,8 @@
    </FileSet>
 
    <FileSet Name="ExcludedFromStyleCop">
-    <Include File="ComInterop\ILogManager.cs" />
-    <Include File="ComInterop\ILogger.cs" />
+    <Include File="ComInterop\IComLogManager.cs" />
+    <Include File="ComInterop\IComLogger.cs" />
     <Include File="Internal\AspHelper.cs" />
     <Include File="Internal\NativeMethods.cs" />
     <Include File="Internal\Win32FileNativeMethods.cs" />

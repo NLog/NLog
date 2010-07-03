@@ -44,7 +44,7 @@ namespace NLog.ComInterop
     [Guid("757fd55a-cc93-4b53-a7a0-18e85620704a")]
     [InterfaceType(ComInterfaceType.InterfaceIsDual)]
     [ComVisible(true)]
-    public interface ILogger
+    public interface IComLogger
     {
         /// <summary>
         /// Writes the diagnostic message at the specified level.

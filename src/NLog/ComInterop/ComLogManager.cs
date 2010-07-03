@@ -46,7 +46,7 @@ namespace NLog.ComInterop
     [ProgId("NLog.LogManager")]
     [Guid("9a7e8d84-72e4-478a-9a05-23c7ef0cfca8")]
     [ClassInterface(ClassInterfaceType.None)]
-    public class LogManager : ILogManager
+    public class ComLogManager : IComLogManager
     {
         /// <summary>
         /// Gets or sets a value indicating whether to log internal messages to the console.
@@ -85,11 +85,13 @@ namespace NLog.ComInterop
         /// </summary>
         /// <param name="loggerName">The name of the logger.</param>
         /// <returns>The new logger instance.</returns>
-        public ILogger GetLogger(string loggerName)
+        public IComLogger GetLogger(string loggerName)
         {
-            ILogger logger = new Logger();
+            IComLogger logger = new ComLogger
+            {
+                LoggerName = loggerName
+            };
 
-            logger.LoggerName = loggerName;
             return logger;
         }
 
@@ -99,7 +101,7 @@ namespace NLog.ComInterop
         /// <param name="fileName">The name of the file to load NLog configuration from.</param>
         public void LoadConfigFromFile(string fileName)
         {
-            NLog.LogManager.Configuration = new XmlLoggingConfiguration(fileName);
+            LogManager.Configuration = new XmlLoggingConfiguration(fileName);
         }
     }
 }

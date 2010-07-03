@@ -44,7 +44,7 @@ namespace NLog.ComInterop
     [Guid("7ee3af3b-ba37-45b6-8f5d-cc23bb46c698")]
     [InterfaceType(ComInterfaceType.InterfaceIsDual)]
     [ComVisible(true)]
-    public interface ILogManager
+    public interface IComLogManager
     {
         /// <summary>
         /// Loads NLog configuration from the specified file.
@@ -74,7 +74,7 @@ namespace NLog.ComInterop
         /// </summary>
         /// <param name="name">Logger name.</param>
         /// <returns>The new logger instance.</returns>
-        ILogger GetLogger(string name);
+        IComLogger GetLogger(string name);
     }
 }
 

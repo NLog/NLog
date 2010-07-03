@@ -47,10 +47,11 @@ namespace NLog.ComInterop
     [ProgId("NLog.Logger")]
     [Guid("181f39a8-41a8-4e35-91b6-5f8d96f5e61c")]
     [ClassInterface(ClassInterfaceType.None)]
-    public class Logger : ILogger
+    public class ComLogger : IComLogger
     {
-        private static readonly NLog.Logger defaultLogger = NLog.LogManager.CreateNullLogger();
-        private NLog.Logger logger = defaultLogger;
+        private static readonly Logger DefaultLogger = LogManager.CreateNullLogger();
+
+        private Logger logger = DefaultLogger;
         private string loggerName = String.Empty;
 
         /// <summary>
@@ -121,7 +122,7 @@ namespace NLog.ComInterop
             set
             {
                 this.loggerName = value;
-                this.logger = NLog.LogManager.GetLogger(value);
+                this.logger = LogManager.GetLogger(value);
             }
         }
 
