@@ -76,22 +76,32 @@ namespace NLog.Config
                 InternalLogger.Debug("ScanAssembly('{0}','{1}','{2}')", theAssembly.FullName, typeof(TClassAttributeType), typeof(TMethodAttributeType));
                 foreach (Type t in theAssembly.GetTypes())
                 {
-                    if (t.IsDefined(typeof(TClassAttributeType), false))
-                    {
-                        foreach (MethodInfo mi in t.GetMethods())
-                        {
-                            var methodAttributes = (TMethodAttributeType[])mi.GetCustomAttributes(typeof(TMethodAttributeType), false);
-                            foreach (TMethodAttributeType attr in methodAttributes)
-                            {
-                                this.RegisterDefinition(prefix + attr.Name, mi);
-                            }
-                        }
-                    }
+                    this.RegisterType(t, prefix);
                 }
             }
             catch (Exception ex)
             {
                 InternalLogger.Error("Failed to add targets from '" + theAssembly.FullName + "': {0}", ex);
+            }
+        }
+
+        /// <summary>
+        /// Registers the type.
+        /// </summary>
+        /// <param name="type">The type to register.</param>
+        /// <param name="itemNamePrefix">The item name prefix.</param>
+        public void RegisterType(Type type, string itemNamePrefix)
+        {
+            if (type.IsDefined(typeof(TClassAttributeType), false))
+            {
+                foreach (MethodInfo mi in type.GetMethods())
+                {
+                    var methodAttributes = (TMethodAttributeType[])mi.GetCustomAttributes(typeof(TMethodAttributeType), false);
+                    foreach (TMethodAttributeType attr in methodAttributes)
+                    {
+                        this.RegisterDefinition(itemNamePrefix + attr.Name, mi);
+                    }
+                }
             }
         }
 

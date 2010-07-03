@@ -72,19 +72,29 @@ namespace NLog.Config
                 InternalLogger.Debug("ScanAssembly('{0}','{1}','{2}')", theAssembly.FullName, typeof(TAttributeType), typeof(TBaseType));
                 foreach (Type t in theAssembly.GetTypes())
                 {
-                    TAttributeType[] attributes = (TAttributeType[])t.GetCustomAttributes(typeof(TAttributeType), false);
-                    if (attributes != null)
-                    {
-                        foreach (TAttributeType attr in attributes)
-                        {
-                            this.RegisterDefinition(prefix + attr.Name, t);
-                        }
-                    }
+                    this.RegisterType(t, prefix);
                 }
             }
             catch (Exception ex)
             {
                 InternalLogger.Error("Failed to add targets from '" + theAssembly.FullName + "': {0}", ex);
+            }
+        }
+
+        /// <summary>
+        /// Registers the type.
+        /// </summary>
+        /// <param name="type">The type to register.</param>
+        /// <param name="itemNamePrefix">The item name prefix.</param>
+        public void RegisterType(Type type, string itemNamePrefix)
+        {
+            TAttributeType[] attributes = (TAttributeType[])type.GetCustomAttributes(typeof(TAttributeType), false);
+            if (attributes != null)
+            {
+                foreach (TAttributeType attr in attributes)
+                {
+                    this.RegisterDefinition(itemNamePrefix + attr.Name, type);
+                }
             }
         }
 

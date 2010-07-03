@@ -151,5 +151,18 @@ namespace NLog.Config
                 f.Clear();
             }
         }
+
+        /// <summary>
+        /// Registers the type.
+        /// </summary>
+        /// <param name="type">The type to register.</param>
+        /// <param name="itemNamePrefix">The item name prefix.</param>
+        public void RegisterType(Type type, string itemNamePrefix)
+        {
+            foreach (IFactory f in this.allFactories)
+            {
+                f.RegisterType(type, itemNamePrefix);
+            }
+        }
     }
 }

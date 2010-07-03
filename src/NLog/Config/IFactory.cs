@@ -33,6 +33,7 @@
 
 namespace NLog.Config
 {
+    using System;
     using System.Reflection;
 
     /// <summary>
@@ -43,5 +44,7 @@ namespace NLog.Config
         void Clear();
 
         void ScanAssembly(Assembly theAssembly, string prefix);
+
+        void RegisterType(Type type, string itemNamePrefix);
     }
 }
