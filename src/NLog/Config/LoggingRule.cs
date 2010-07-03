@@ -191,13 +191,13 @@ namespace NLog.Config
         /// Gets or sets the collection of log levels enabled by this rule.
         /// </summary>
         /// <value>The log levels.</value>
-        public ICollection<LogLevel> Levels
+        public IList<LogLevel> Levels
         {
             get
             {
-                List<LogLevel> levels = new List<LogLevel>();
+                var levels = new List<LogLevel>();
 
-                for (int i = 0; i < LogLevel.MaxLevel.Ordinal; ++i)
+                for (int i = LogLevel.MinLevel.Ordinal; i <= LogLevel.MaxLevel.Ordinal; ++i)
                 {
                     if (this.logLevels[i])
                     {
@@ -210,7 +210,7 @@ namespace NLog.Config
 
             set
             {
-                for (int i = 0; i < this.logLevels.Length; ++i)
+                for (int i = 0; i <= this.logLevels.Length; ++i)
                 {
                     this.logLevels[i] = false;
                 }
