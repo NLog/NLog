@@ -80,9 +80,12 @@ namespace NLog
             int originalThreadId = Thread.CurrentThread.ManagedThreadId;
             AsyncContinuation exceptionHandler = ex =>
                 {
-                    if (factory.ThrowExceptions && Thread.CurrentThread.ManagedThreadId == originalThreadId)
+                    if (ex != null)
                     {
-                        throw new NLogRuntimeException("Exception occurred in NLog", ex);
+                        if (factory.ThrowExceptions && Thread.CurrentThread.ManagedThreadId == originalThreadId)
+                        {
+                            throw new NLogRuntimeException("Exception occurred in NLog", ex);
+                        }
                     }
                 };
 

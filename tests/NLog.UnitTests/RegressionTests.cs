@@ -37,6 +37,7 @@ using NLog.Config;
 
 namespace NLog.UnitTests
 {
+    using System;
     using NLog.Targets;
 
     [TestClass]
@@ -59,6 +60,31 @@ namespace NLog.UnitTests
 
             var target = config.LoggingRules[0].Targets[0] as NLogViewerTarget;
             Assert.IsNotNull(target);
+        }
+
+        [TestMethod]
+        public void Bug4655UnableToReconfigureExistingLoggers()
+        {
+            var debugTarget1 = new DebugTarget();
+            var debugTarget2 = new DebugTarget();
+
+            SimpleConfigurator.ConfigureForTargetLogging(debugTarget1, LogLevel.Debug);
+
+            Logger logger = LogManager.GetLogger(Guid.NewGuid().ToString("N"));
+
+            logger.Info("foo");
+
+            Assert.AreEqual(1, debugTarget1.Counter);
+            Assert.AreEqual(0, debugTarget2.Counter);
+
+            LogManager.Configuration.AddTarget("DesktopConsole", debugTarget2);
+            LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, debugTarget2));
+            LogManager.ReconfigExistingLoggers();
+
+            logger.Info("foo");
+
+            Assert.AreEqual(2, debugTarget1.Counter);
+            Assert.AreEqual(1, debugTarget2.Counter);
         }
     }
 }

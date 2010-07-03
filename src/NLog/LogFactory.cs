@@ -490,6 +490,11 @@ namespace NLog
 
         internal void ReconfigExistingLoggers(LoggingConfiguration configuration)
         {
+            if (configuration != null)
+            {
+                configuration.EnsureInitialized();
+            }
+
             foreach (Logger logger in this.loggerCache.Values)
             {
                 logger.SetConfiguration(this.GetConfigurationForLogger(logger.Name, configuration));
