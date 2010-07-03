@@ -33,7 +33,11 @@
 
 namespace NLog.UnitTests.Config
 {
+    using System;
+    using System.Globalization;
+    using System.Text;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NLog.Conditions;
     using NLog.Config;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
@@ -84,6 +88,76 @@ namespace NLog.UnitTests.Config
             Assert.IsNotNull(t.Layout);
             Assert.AreEqual(1, l.Renderers.Count);
             Assert.IsInstanceOfType(l.Renderers[0], typeof(MessageLayoutRenderer));
+        }
+
+        [TestMethod]
+        public void ArrayParameterTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target type='MethodCall' name='mct'>
+                        <parameter name='p1' layout='${message}' />
+                        <parameter name='p2' layout='${level}' />
+                        <parameter name='p3' layout='${logger}' />
+                    </target>
+                </targets>
+            </nlog>");
+
+            var t = c.FindTargetByName("mct") as MethodCallTarget;
+            Assert.IsNotNull(t);
+            Assert.AreEqual(3, t.Parameters.Count);
+            Assert.AreEqual("p1", t.Parameters[0].Name);
+            Assert.AreEqual("'${message}'", t.Parameters[0].Layout.ToString());
+
+            Assert.AreEqual("p2", t.Parameters[1].Name);
+            Assert.AreEqual("'${level}'", t.Parameters[1].Layout.ToString());
+            
+            Assert.AreEqual("p3", t.Parameters[2].Name);
+            Assert.AreEqual("'${logger}'", t.Parameters[2].Layout.ToString());
+        }
+
+        [TestMethod]
+        public void ArrayElementParameterTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target type='MethodCall' name='mct'>
+                        <parameter>
+                            <name>p1</name>
+                            <layout>${message}</layout>
+                        </parameter>
+                        <parameter>
+                            <name>p2</name>
+                            <layout type='CsvLayout'>
+                                <column name='x' layout='${message}' />
+                                <column name='y' layout='${level}' />
+                            </layout>
+                        </parameter>
+                        <parameter>
+                            <name>p3</name>
+                            <layout>${logger}</layout>
+                        </parameter>
+                    </target>
+                </targets>
+            </nlog>");
+
+            var t = c.FindTargetByName("mct") as MethodCallTarget;
+            Assert.IsNotNull(t);
+            Assert.AreEqual(3, t.Parameters.Count);
+            Assert.AreEqual("p1", t.Parameters[0].Name);
+            Assert.AreEqual("'${message}'", t.Parameters[0].Layout.ToString());
+
+            Assert.AreEqual("p2", t.Parameters[1].Name);
+            CsvLayout csvLayout = t.Parameters[1].Layout as CsvLayout;
+            Assert.IsNotNull(csvLayout);
+            Assert.AreEqual(2, csvLayout.Columns.Count);
+            Assert.AreEqual("x", csvLayout.Columns[0].Name);
+            Assert.AreEqual("y", csvLayout.Columns[1].Name);
+
+            Assert.AreEqual("p3", t.Parameters[2].Name);
+            Assert.AreEqual("'${logger}'", t.Parameters[2].Layout.ToString());
         }
 
         [TestMethod]
@@ -183,6 +257,268 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual(((SimpleLayout)d2.Layout).Text, "${message}2");
             Assert.AreEqual(((SimpleLayout)d3.Layout).Text, "${message}3");
             Assert.AreEqual(((SimpleLayout)d4.Layout).Text, "${message}4");
+        }
+
+        [TestMethod]
+        public void AsyncWrappersTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets async='true'>
+                    <target type='Debug' name='d' />
+                    <target type='Debug' name='d2' />
+                </targets>
+            </nlog>");
+
+            var t = c.FindTargetByName("d") as AsyncTargetWrapper;
+            Assert.IsNotNull(t);
+            Assert.AreEqual(t.Name, "d");
+
+            var wrappedTarget = t.WrappedTarget as DebugTarget;
+            Assert.IsNotNull(wrappedTarget);
+            Assert.AreEqual("d_wrapped", wrappedTarget.Name);
+
+            t = c.FindTargetByName("d2") as AsyncTargetWrapper;
+            Assert.IsNotNull(t);
+            Assert.AreEqual(t.Name, "d2");
+
+            wrappedTarget = t.WrappedTarget as DebugTarget;
+            Assert.IsNotNull(wrappedTarget);
+            Assert.AreEqual("d2_wrapped", wrappedTarget.Name);
+        }
+
+        [TestMethod]
+        public void DefaultTargetParametersTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <default-target-parameters type='Debug' layout='x${message}x' />
+                    <target type='Debug' name='d' />
+                    <target type='Debug' name='d2' />
+                </targets>
+            </nlog>");
+
+            var t = c.FindTargetByName("d") as DebugTarget;
+            Assert.IsNotNull(t);
+            Assert.AreEqual("'x${message}x'", t.Layout.ToString());
+
+            t = c.FindTargetByName("d2") as DebugTarget;
+            Assert.IsNotNull(t);
+            Assert.AreEqual("'x${message}x'", t.Layout.ToString());
+        }
+
+        [TestMethod]
+        public void DefaultWrapperTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <default-wrapper type='BufferingWrapper'>
+                        <wrapper type='RetryingWrapper' />
+                    </default-wrapper>
+                    <target type='Debug' name='d' layout='${level}' />
+                    <target type='Debug' name='d2' layout='${level}' />
+                </targets>
+            </nlog>");
+
+            var bufferingTargetWrapper = c.FindTargetByName("d") as BufferingTargetWrapper;
+            Assert.IsNotNull(bufferingTargetWrapper);
+
+            var retryingTargetWrapper = bufferingTargetWrapper.WrappedTarget as RetryingTargetWrapper;
+            Assert.IsNotNull(retryingTargetWrapper);
+            Assert.IsNull(retryingTargetWrapper.Name);
+
+            var debugTarget = retryingTargetWrapper.WrappedTarget as DebugTarget;
+            Assert.IsNotNull(debugTarget);
+            Assert.AreEqual("d_wrapped", debugTarget.Name);
+            Assert.AreEqual("'${level}'", debugTarget.Layout.ToString());
+        }
+
+        [TestMethod]
+        public void DataTypesTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <extensions>
+                    <add type='" + typeof(MyTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+
+                <targets>
+                    <target type='MyTarget' name='myTarget'
+                        byteProperty='42' 
+                        int16Property='42' 
+                        int32Property='42' 
+                        int64Property='42000000000' 
+                        stringProperty='foobar'
+                        boolProperty='true'
+                        doubleProperty='3.14159'
+                        floatProperty='3.14159'
+                        enumProperty='Value3'
+                        flagsEnumProperty='Value1,Value3'
+                        encodingProperty='utf-8'
+                        cultureProperty='en-US'
+                        typeProperty='System.Int32'
+                        layoutProperty='${level}'
+                        conditionProperty=""starts-with(message, 'x')""
+                        />
+                </targets>
+            </nlog>");
+
+            var myTarget = c.FindTargetByName("myTarget") as MyTarget;
+            Assert.IsNotNull(myTarget);
+            Assert.AreEqual((byte)42, myTarget.ByteProperty);
+            Assert.AreEqual((short)42, myTarget.Int16Property);
+            Assert.AreEqual(42, myTarget.Int32Property);
+            Assert.AreEqual(42000000000L, myTarget.Int64Property);
+            Assert.AreEqual("foobar", myTarget.StringProperty);
+            Assert.AreEqual(true, myTarget.BoolProperty);
+            Assert.AreEqual(3.14159, myTarget.DoubleProperty);
+            Assert.AreEqual(3.14159f, myTarget.FloatProperty);
+            Assert.AreEqual(MyEnum.Value3, myTarget.EnumProperty);
+            Assert.AreEqual(MyFlagsEnum.Value1 | MyFlagsEnum.Value3, myTarget.FlagsEnumProperty);
+            Assert.AreEqual(Encoding.UTF8, myTarget.EncodingProperty);
+            Assert.AreEqual("en-US", myTarget.CultureProperty.Name);
+            Assert.AreEqual(typeof(int), myTarget.TypeProperty);
+            Assert.AreEqual("'${level}'", myTarget.LayoutProperty.ToString());
+            Assert.AreEqual("starts-with(message, 'x')", myTarget.ConditionProperty.ToString());
+        }
+
+        [TestMethod]
+        public void NullableDataTypesTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <extensions>
+                    <add type='" + typeof(MyNullableTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+
+                <targets>
+                    <target type='MyNullableTarget' name='myTarget'
+                        byteProperty='42' 
+                        int16Property='42' 
+                        int32Property='42' 
+                        int64Property='42000000000' 
+                        stringProperty='foobar'
+                        boolProperty='true'
+                        doubleProperty='3.14159'
+                        floatProperty='3.14159'
+                        enumProperty='Value3'
+                        flagsEnumProperty='Value1,Value3'
+                        encodingProperty='utf-8'
+                        cultureProperty='en-US'
+                        typeProperty='System.Int32'
+                        layoutProperty='${level}'
+                        conditionProperty=""starts-with(message, 'x')""
+                        />
+                </targets>
+            </nlog>");
+
+            var myTarget = c.FindTargetByName("myTarget") as MyNullableTarget;
+            Assert.IsNotNull(myTarget);
+            Assert.AreEqual((byte)42, myTarget.ByteProperty);
+            Assert.AreEqual((short)42, myTarget.Int16Property);
+            Assert.AreEqual(42, myTarget.Int32Property);
+            Assert.AreEqual(42000000000L, myTarget.Int64Property);
+            Assert.AreEqual("foobar", myTarget.StringProperty);
+            Assert.AreEqual(true, myTarget.BoolProperty);
+            Assert.AreEqual(3.14159, myTarget.DoubleProperty);
+            Assert.AreEqual(3.14159f, myTarget.FloatProperty);
+            Assert.AreEqual(MyEnum.Value3, myTarget.EnumProperty);
+            Assert.AreEqual(MyFlagsEnum.Value1 | MyFlagsEnum.Value3, myTarget.FlagsEnumProperty);
+            Assert.AreEqual(Encoding.UTF8, myTarget.EncodingProperty);
+            Assert.AreEqual("en-US", myTarget.CultureProperty.Name);
+            Assert.AreEqual(typeof(int), myTarget.TypeProperty);
+            Assert.AreEqual("'${level}'", myTarget.LayoutProperty.ToString());
+            Assert.AreEqual("starts-with(message, 'x')", myTarget.ConditionProperty.ToString());
+        }
+
+        [Target("MyTarget")]
+        public class MyTarget : Target
+        {
+            public byte ByteProperty { get; set; }
+
+            public short Int16Property { get; set; }
+
+            public int Int32Property { get; set; }
+
+            public long Int64Property { get; set; }
+
+            public string StringProperty { get; set; }
+
+            public bool BoolProperty { get; set; }
+
+            public double DoubleProperty { get; set; }
+
+            public float FloatProperty { get; set; }
+
+            public MyEnum EnumProperty { get; set; }
+
+            public MyFlagsEnum FlagsEnumProperty { get; set; }
+
+            public Encoding EncodingProperty { get; set; }
+
+            public CultureInfo CultureProperty { get; set; }
+
+            public Type TypeProperty { get; set; }
+
+            public Layout LayoutProperty { get; set; }
+
+            public ConditionExpression ConditionProperty { get; set; }
+        }
+
+
+        [Target("MyNullableTarget")]
+        public class MyNullableTarget : Target
+        {
+            public byte? ByteProperty { get; set; }
+
+            public short? Int16Property { get; set; }
+
+            public int? Int32Property { get; set; }
+
+            public long? Int64Property { get; set; }
+
+            public string StringProperty { get; set; }
+
+            public bool? BoolProperty { get; set; }
+
+            public double? DoubleProperty { get; set; }
+
+            public float? FloatProperty { get; set; }
+
+            public MyEnum? EnumProperty { get; set; }
+
+            public MyFlagsEnum? FlagsEnumProperty { get; set; }
+
+            public Encoding EncodingProperty { get; set; }
+
+            public CultureInfo CultureProperty { get; set; }
+
+            public Type TypeProperty { get; set; }
+
+            public Layout LayoutProperty { get; set; }
+
+            public ConditionExpression ConditionProperty { get; set; }
+        }
+
+        public enum MyEnum
+        {
+            Value1,
+
+            Value2,
+
+            Value3,
+        }
+
+        [Flags]
+        public enum MyFlagsEnum
+        {
+            Value1 = 1,
+
+            Value2 = 2,
+
+            Value3 = 4,
         }
     }
 }
