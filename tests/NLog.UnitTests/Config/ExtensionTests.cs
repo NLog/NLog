@@ -120,7 +120,7 @@ namespace NLog.UnitTests.Config
       <logger name='*' writeTo='t'>
         <filters>
            <whenFoo x='44' action='Ignore' />
-           <when condition='myrandom(10)==3' action='Accept' />
+           <when condition='myrandom(10)==3' action='Log' />
         </filters>
       </logger>
     </rules>

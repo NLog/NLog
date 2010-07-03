@@ -50,19 +50,19 @@ namespace NLog.Internal
     {
         private static Dictionary<Type, Dictionary<string, PropertyInfo>> parameterInfoCache = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
 
-        internal static bool SetPropertyFromString(object o, string name, string value)
+        internal static void SetPropertyFromString(object o, string name, string value)
         {
             InternalLogger.Debug("Setting '{0}.{1}' to '{2}'", o.GetType().Name, name, value);
 
+            PropertyInfo propInfo;
+
+            if (!TryGetPropertyInfo(o, name, out propInfo))
+            {
+                throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
+            }
+
             try
             {
-                PropertyInfo propInfo;
-
-                if (!TryGetPropertyInfo(o, name, out propInfo))
-                {
-                    throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
-                }
-
                 if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
                 {
                     throw new NotSupportedException("Parameter " + name + " of " + o.GetType().Name + " is an array and cannot be assigned a scalar value.");
@@ -86,12 +86,14 @@ namespace NLog.Internal
                 }
 
                 propInfo.SetValue(o, newValue, null);
-                return true;
+            }
+            catch (TargetInvocationException ex)
+            {
+                throw new NLogConfigurationException("Error when setting property '" + propInfo.Name + "' on " + o, ex.InnerException);
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(ex.ToString());
-                return false;
+                throw new NLogConfigurationException("Error when setting property '" + propInfo.Name + "' on " + o, ex);
             }
         }
 
@@ -209,6 +211,11 @@ namespace NLog.Internal
                 foreach (string v in value.Split(','))
                 {
                     FieldInfo enumField = resultType.GetField(v.Trim(), BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
+                    if (enumField == null)
+                    {
+                        throw new NLogConfigurationException("Invalid enumeration value '" + value + "'.");
+                    }
+
                     union |= Convert.ToUInt64(enumField.GetValue(null), CultureInfo.InvariantCulture);
                 }
 
@@ -220,6 +227,11 @@ namespace NLog.Internal
             else
             {
                 FieldInfo enumField = resultType.GetField(value, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
+                if (enumField == null)
+                {
+                    throw new NLogConfigurationException("Invalid enumeration value '" + value + "'.");
+                }
+
                 result = enumField.GetValue(null);
                 return true;
             }

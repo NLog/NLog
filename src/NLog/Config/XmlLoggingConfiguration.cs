@@ -706,10 +706,7 @@ namespace NLog.Config
                 return;
             }
 
-            if (!PropertyHelper.SetPropertyFromString(o, element.LocalName, this.ExpandVariables(element.Value)))
-            {
-                throw new NLogConfigurationException("Parameter '" + element.LocalName + "' not found on " + o + ".");
-            }
+            PropertyHelper.SetPropertyFromString(o, element.LocalName, this.ExpandVariables(element.Value));
         }
 
         private string CleanWhitespace(string s)

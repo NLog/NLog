@@ -35,6 +35,7 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.Text;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
 
@@ -120,7 +121,14 @@ namespace NLog.LayoutRenderers
                 this.Initialize();
             }
 
-            this.Append(builder, logEvent);
+            try
+            {
+                this.Append(builder, logEvent);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn("Exception in layout renderer: {0}", ex);
+            }
         }
 
         /// <summary>

@@ -33,6 +33,7 @@
 
 namespace NLog.UnitTests.Layouts
 {
+    using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NLog.LayoutRenderers;
     using NLog.LayoutRenderers.Wrappers;
@@ -196,6 +197,14 @@ namespace NLog.UnitTests.Layouts
             Assert.IsNotNull(pad);
             var message = ((SimpleLayout)pad.Inner).Renderers[0] as MessageLayoutRenderer;
             Assert.IsNotNull(message);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NLogConfigurationException))]
+        public void MissingLayoutRendererTest()
+        {
+            SimpleLayout l = "${rot13:${foobar}}";
+            Assert.IsNull(l);
         }
 
         [TestMethod]
