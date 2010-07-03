@@ -70,13 +70,17 @@ namespace NLog.Internal
 
                 object newValue;
 
-                if (!TryGetEnumValue(propInfo.PropertyType, value, out newValue))
+                Type propertyType = propInfo.PropertyType;
+
+                propertyType = Nullable.GetUnderlyingType(propertyType) ?? propertyType;
+
+                if (!TryGetEnumValue(propertyType, value, out newValue))
                 {
-                    if (!TryImplicitConversion(propInfo.PropertyType, value, out newValue))
+                    if (!TryImplicitConversion(propertyType, value, out newValue))
                     {
-                        if (!TrySpecialConversion(propInfo.PropertyType, value, out newValue))
+                        if (!TrySpecialConversion(propertyType, value, out newValue))
                         {
-                            newValue = Convert.ChangeType(value, propInfo.PropertyType, CultureInfo.InvariantCulture);
+                            newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
                         }
                     }
                 }
@@ -209,6 +213,8 @@ namespace NLog.Internal
                 }
 
                 result = Convert.ChangeType(union, Enum.GetUnderlyingType(resultType), CultureInfo.InvariantCulture);
+                result = Enum.ToObject(resultType, result);
+
                 return true;
             }
             else
@@ -226,7 +232,19 @@ namespace NLog.Internal
                 newValue = Encoding.GetEncoding(value);
                 return true;
             }
-            
+
+            if (type == typeof(CultureInfo))
+            {
+                newValue = new CultureInfo(value);
+                return true;
+            }
+
+            if (type == typeof(Type))
+            {
+                newValue = Type.GetType(value, true);
+                return true;
+            }
+
             newValue = null;
             return false;
         }
