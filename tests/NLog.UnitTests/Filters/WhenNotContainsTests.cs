@@ -51,7 +51,7 @@ namespace NLog.UnitTests.Filters
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
                     <filters>
@@ -75,7 +75,7 @@ namespace NLog.UnitTests.Filters
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${basedir} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
                     <filters>
