@@ -51,7 +51,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="target">The target.</param>
         /// <param name="filterChain">The filter chain.</param>
-        public TargetWithFilterChain(Target target, ICollection<Filter> filterChain)
+        public TargetWithFilterChain(Target target, IList<Filter> filterChain)
         {
             this.Target = target;
             this.FilterChain = filterChain;
@@ -68,7 +68,7 @@ namespace NLog.Internal
         /// Gets the filter chain.
         /// </summary>
         /// <value>The filter chain.</value>
-        public ICollection<Filter> FilterChain { get; private set; }
+        public IList<Filter> FilterChain { get; private set; }
 
         /// <summary>
         /// Gets or sets the next <see cref="TargetWithFilterChain"/> item in the chain.

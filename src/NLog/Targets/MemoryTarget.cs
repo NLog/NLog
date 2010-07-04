@@ -71,7 +71,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the list of logs gathered in the <see cref="MemoryTarget"/>.
         /// </summary>
-        public ICollection<string> Logs { get; private set; }
+        public IList<string> Logs { get; private set; }
 
         /// <summary>
         /// Renders the logging event message and adds it to the internal ArrayList of log messages.

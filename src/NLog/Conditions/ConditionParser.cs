@@ -96,7 +96,7 @@ namespace NLog.Conditions
 
         private ConditionMethodExpression ParsePredicate(string functionName)
         {
-            ICollection<ConditionExpression> par = new List<ConditionExpression>();
+            var par = new List<ConditionExpression>();
 
             while (!this.tokenizer.IsEOF() && this.tokenizer.TokenType != ConditionTokenType.RightParen)
             {

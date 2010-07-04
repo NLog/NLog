@@ -501,7 +501,7 @@ namespace NLog
             }
         }
 
-        internal void GetTargetsByLevelForLogger(string name, ICollection<LoggingRule> rules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel)
+        internal void GetTargetsByLevelForLogger(string name, IList<LoggingRule> rules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel)
         {
             foreach (LoggingRule rule in rules)
             {

@@ -47,7 +47,7 @@ namespace NLog.Config
     /// </summary>
     public class NLogFactories
     {
-        private readonly ICollection<object> allFactories;
+        private readonly IList<object> allFactories;
 
         /// <summary>
         /// Initializes static members of the NLogFactories class.

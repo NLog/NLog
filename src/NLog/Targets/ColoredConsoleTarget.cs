@@ -92,7 +92,7 @@ namespace NLog.Targets
     [Target("ColoredConsole")]
     public sealed class ColoredConsoleTarget : TargetWithLayoutHeaderAndFooter
     {
-        private static readonly ICollection<ConsoleRowHighlightingRule> defaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
+        private static readonly IList<ConsoleRowHighlightingRule> defaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
         {
             new ConsoleRowHighlightingRule("level == LogLevel.Fatal", ConsoleOutputColor.Red, ConsoleOutputColor.NoChange),
             new ConsoleRowHighlightingRule("level == LogLevel.Error", ConsoleOutputColor.Yellow, ConsoleOutputColor.NoChange),
@@ -176,14 +176,14 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
         [ArrayParameter(typeof(ConsoleRowHighlightingRule), "highlight-row")]
-        public ICollection<ConsoleRowHighlightingRule> RowHighlightingRules { get; private set; }
+        public IList<ConsoleRowHighlightingRule> RowHighlightingRules { get; private set; }
 
         /// <summary>
         /// Gets the word highlighting rules.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='11' />
         [ArrayParameter(typeof(ConsoleWordHighlightingRule), "highlight-word")]
-        public ICollection<ConsoleWordHighlightingRule> WordHighlightingRules { get; private set; }
+        public IList<ConsoleWordHighlightingRule> WordHighlightingRules { get; private set; }
 
         /// <summary>
         /// Initializes the target.

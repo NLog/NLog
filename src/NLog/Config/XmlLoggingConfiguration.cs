@@ -307,7 +307,7 @@ namespace NLog.Config
             }
         }
 
-        private void ParseRulesElement(NLogXmlElement rulesElement, ICollection<LoggingRule> rulesCollection)
+        private void ParseRulesElement(NLogXmlElement rulesElement, IList<LoggingRule> rulesCollection)
         {
             InternalLogger.Trace("ParseRulesElement");
             rulesElement.AssertName("rules");
@@ -318,7 +318,7 @@ namespace NLog.Config
             }
         }
 
-        private void ParseLoggerElement(NLogXmlElement loggerElement, ICollection<LoggingRule> rulesCollection)
+        private void ParseLoggerElement(NLogXmlElement loggerElement, IList<LoggingRule> rulesCollection)
         {
             loggerElement.AssertName("logger");
 

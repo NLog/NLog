@@ -61,7 +61,7 @@ namespace NLog.UnitTests
                 "tests/NLog.UnitTests"
             };
 
-        private static ICollection<string> fileNamesToIgnore = new List<string>()
+        private static IList<string> fileNamesToIgnore = new List<string>()
         {
             "AssemblyInfo.cs",
             "AssemblyBuildInfo.cs",

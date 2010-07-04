@@ -93,7 +93,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <docgen category='Filtering Rules' order='10' />
         [ArrayParameter(typeof(FilteringRule), "when")]
-        public ICollection<FilteringRule> Rules { get; private set; }
+        public IList<FilteringRule> Rules { get; private set; }
 
         /// <summary>
         /// Evaluates all filtering rules to find the first one that matches.
