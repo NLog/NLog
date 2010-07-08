@@ -17,3 +17,7 @@ NLogMerged.api.xml
 _UpgradeReport_Files/
 UpgradeLog*.XML
 *.xap
+ipch/
+*.sdf
+*.opensdf
+

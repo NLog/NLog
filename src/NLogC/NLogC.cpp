@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,8 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#include "stdafx.h"
+#define NLOGC_EXPORTS
+
 #include <stdio.h>
+
 #include "NLogC.h"
 #include <string.h>
 #include <stdarg.h>

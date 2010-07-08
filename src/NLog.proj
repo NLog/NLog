@@ -180,6 +180,19 @@
              ContinueOnError="$(BuildAllFrameworks)" 
              StopOnFirstFailure="false"
              Condition="Exists('NLog\NLog.Extended%(TargetFramework.ProjectFileSuffix).csproj')" />
+
+    <CallTarget Targets="BuildNLogC" />
+  </Target>
+
+  <Target Name="BuildNLogC">
+    <MSBuild Projects="NLogC\NLogC.netfx40.vcxproj" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration);Platform=Win32" />
+    <MSBuild Projects="NLogC\NLogC.netfx40.vcxproj" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration);Platform=x64" />
+    <Copy SourceFiles="NLogC\NLogC.h;NLogC\NLogger.h" DestinationFolder="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLogC\include" />
+  </Target>
+
+  <Target Name="BuildNLogCTests" DependsOnTargets="BuildNLogC">
+    <MSBuild Projects="..\tests\NLogC.UnitTests\NLogC.UnitTests.netfx40.vcxproj" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration);Platform=Win32" />
+    <MSBuild Projects="..\tests\NLogC.UnitTests\NLogC.UnitTests.netfx40.vcxproj" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration);Platform=x64" />
   </Target>
 
   <Target Name="BuildTests" DependsOnTargets="Build">
@@ -194,6 +207,8 @@
              ContinueOnError="$(BuildAllFrameworks)" 
              Condition="Exists('..\tests\NLog.BinaryCompatTests\NLog.BinaryCompatTests%(TargetFramework.ProjectFileSuffix).csproj')" 
              StopOnFirstFailure="false" />
+
+    <CallTarget Targets="BuildNLogCTests" />
   </Target>
 
   <Target Name="Web" DependsOnTargets="DumpApi;BuildDocPagesTool"
@@ -236,6 +251,10 @@
   </Target>
 
   <Target Name="NetFx40Test">
+    <!-- run both 32 and 64 bit versions of NLogC unit tests -->
+
+    <Exec Command='NLogC.UnitTests.exe' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLogC\amd64" />
+    <Exec Command='NLogC.UnitTests.exe' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLogC\x86" />
     <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0" 
           Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />

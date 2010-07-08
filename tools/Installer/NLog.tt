@@ -6,111 +6,112 @@
 <#@ Output extension=".wxs" #><#
 var visualStudioVersions = new []
 {
-	new VisualStudioVersion
-	{
-		ReleaseName = "2005",
-		WixPrefix = "2005",
-		DirectoryName = "Visual Studio 8",
-	},
-	new VisualStudioVersion
-	{
-		ReleaseName = "2008",
-		WixPrefix = "90",
-		DirectoryName = "Visual Studio 9.0",
-	},
-	new VisualStudioVersion
-	{
-		ReleaseName = "2010",
-		WixPrefix = "2010",
-		DirectoryName = "Visual Studio 10.0",
-	},
+    new VisualStudioVersion
+    {
+        ReleaseName = "2005",
+        WixPrefix = "2005",
+        DirectoryName = "Visual Studio 8",
+    },
+    new VisualStudioVersion
+    {
+        ReleaseName = "2008",
+        WixPrefix = "90",
+        DirectoryName = "Visual Studio 9.0",
+    },
+    new VisualStudioVersion
+    {
+        ReleaseName = "2010",
+        WixPrefix = "2010",
+        DirectoryName = "Visual Studio 10.0",
+    },
 };
 
 var supportedFrameworks = new []
 {
-	new FrameworkInfo
-	{
-		ShortName = "Mono2",
-		FullName = "Mono 2.x",
-	},
-	new FrameworkInfo
-	{
-		ShortName = "NetFx20",
-		FullName = ".NET Framework 2.0",
-		AssemblyInfoRegistryKeys = 
-		{
-			@"SOFTWARE\Microsoft\.NETFramework\v2.0.50727\AssemblyFoldersEx\NLog2",
-		},
-	},
-	new FrameworkInfo
-	{
-		ShortName = "NetFx35",
-		FullName = ".NET Framework 3.5",
-		HasExtendedProfile = true,
-		AssemblyInfoRegistryKeys = 
-		{
-			@"SOFTWARE\Microsoft\.NETFramework\v3.5\AssemblyFoldersEx\NLog2",
-		},
-	},
-	new FrameworkInfo
-	{
-		ShortName = "NetFx40",
-		FullName = ".NET Framework 4.0",
-		HasExtendedProfile = true,
-		AssemblyInfoRegistryKeys = 
-		{
-			@"SOFTWARE\Microsoft\.NETFramework\v4.0.30319\AssemblyFoldersEx\NLog2",
-		},
-	},
-	new FrameworkInfo
-	{
-		ShortName = "NetCf20",
-		FullName = ".NET Compact Framework 2.0",
-		AssemblyInfoRegistryKeys = 
-		{
-			@"SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\PocketPC\AssemblyFoldersEx\NLog2",
-			@"SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\Smartphone\AssemblyFoldersEx\NLog2",
-			@"SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\WindowsCE\AssemblyFoldersEx\NLog2",
-		},
-	},
-	new FrameworkInfo
-	{
-		ShortName = "NetCf35",
-		FullName = ".NET Compact Framework 3.5",
-		AssemblyInfoRegistryKeys = 
-		{
-			@"SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\PocketPC\AssemblyFoldersEx\NLog2",
-			@"SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\Smartphone\AssemblyFoldersEx\NLog2",
-			@"SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\WindowsCE\AssemblyFoldersEx\NLog2",
-		},
-	},
-	new FrameworkInfo
-	{
-		ShortName = "SL2",
-		FullName = "Silverlight 2.0",
-		AssemblyInfoRegistryKeys =
-		{
-			@"SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v2.0\AssemblyFoldersEx\NLog2",
-		}
-	},
-	new FrameworkInfo
-	{
-		ShortName = "SL3",
-		FullName = "Silverlight 3.0",
-		AssemblyInfoRegistryKeys =
-		{
-			@"SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v3.0\AssemblyFoldersEx\NLog2",
-		}
-	},
-	new FrameworkInfo
-	{
-		ShortName = "SL4",
-		FullName = "Silverlight 4.0",
-		AssemblyInfoRegistryKeys =
-		{
-			@"SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v4.0\AssemblyFoldersEx\NLog2",
-		}
-	},
+    new FrameworkInfo
+    {
+        ShortName = "Mono2",
+        FullName = "Mono 2.x",
+    },
+    new FrameworkInfo
+    {
+        ShortName = "NetFx20",
+        FullName = ".NET Framework 2.0",
+        AssemblyInfoRegistryKeys = 
+        {
+            @"SOFTWARE\Microsoft\.NETFramework\v2.0.50727\AssemblyFoldersEx\NLog2",
+        },
+    },
+    new FrameworkInfo
+    {
+        ShortName = "NetFx35",
+        FullName = ".NET Framework 3.5",
+        HasExtendedProfile = true,
+        AssemblyInfoRegistryKeys = 
+        {
+            @"SOFTWARE\Microsoft\.NETFramework\v3.5\AssemblyFoldersEx\NLog2",
+        },
+    },
+    new FrameworkInfo
+    {
+        ShortName = "NetFx40",
+        FullName = ".NET Framework 4.0",
+        HasExtendedProfile = true,
+        HasNLogC = true,
+        AssemblyInfoRegistryKeys = 
+        {
+            @"SOFTWARE\Microsoft\.NETFramework\v4.0.30319\AssemblyFoldersEx\NLog2",
+        },
+    },
+    new FrameworkInfo
+    {
+        ShortName = "NetCf20",
+        FullName = ".NET Compact Framework 2.0",
+        AssemblyInfoRegistryKeys = 
+        {
+            @"SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\PocketPC\AssemblyFoldersEx\NLog2",
+            @"SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\Smartphone\AssemblyFoldersEx\NLog2",
+            @"SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\WindowsCE\AssemblyFoldersEx\NLog2",
+        },
+    },
+    new FrameworkInfo
+    {
+        ShortName = "NetCf35",
+        FullName = ".NET Compact Framework 3.5",
+        AssemblyInfoRegistryKeys = 
+        {
+            @"SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\PocketPC\AssemblyFoldersEx\NLog2",
+            @"SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\Smartphone\AssemblyFoldersEx\NLog2",
+            @"SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\WindowsCE\AssemblyFoldersEx\NLog2",
+        },
+    },
+    new FrameworkInfo
+    {
+        ShortName = "SL2",
+        FullName = "Silverlight 2.0",
+        AssemblyInfoRegistryKeys =
+        {
+            @"SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v2.0\AssemblyFoldersEx\NLog2",
+        }
+    },
+    new FrameworkInfo
+    {
+        ShortName = "SL3",
+        FullName = "Silverlight 3.0",
+        AssemblyInfoRegistryKeys =
+        {
+            @"SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v3.0\AssemblyFoldersEx\NLog2",
+        }
+    },
+    new FrameworkInfo
+    {
+        ShortName = "SL4",
+        FullName = "Silverlight 4.0",
+        AssemblyInfoRegistryKeys =
+        {
+            @"SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v4.0\AssemblyFoldersEx\NLog2",
+        }
+    },
 };
 
 #><Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
@@ -289,6 +290,32 @@ foreach (var vs in visualStudioVersions) {
 
     <?ifdef Include_<#= framework.ShortName #> ?>
     <DirectoryRef Id="<#= (framework.ShortName + "_Dir").ToUpperInvariant() #>" FileSource="$(var.NLogBuildPath)\\<#= framework.FullName #>">
+<# if (framework.HasNLogC) { #>    
+      <Directory Id="<#= (framework.ShortName + "_NLogC_Dir").ToUpperInvariant() #>" Name="NLogC" FileSource="$(var.NLogBuildPath)\\<#= framework.FullName #>\NLogC">
+         <Directory Id="<#= (framework.ShortName + "_NLogC_x86_Dir") #>" Name="x86" FileSource="$(var.NLogBuildPath)\\<#= framework.FullName #>\NLogC\x86">
+            <Component Id="<#= framework.ShortName #>_NLogC_x86" Guid="<#= GetGuid(framework.ShortName, "NLogC_x86") #>">
+              <File Id="<#= framework.ShortName #>_NLogC_x86.dll" Name="NLogC.dll" Vital="yes" KeyPath="yes" />
+              <File Id="<#= framework.ShortName #>_NLogC_x86.pdb" Name="NLogC.pdb" />
+              <File Id="<#= framework.ShortName #>_NLogC_x86.lib" Name="NLogC.lib" />
+              <File Id="<#= framework.ShortName #>_NLogC_x86.exp" Name="NLogC.exp" />
+            </Component>
+         </Directory>
+         <Directory Id="<#= (framework.ShortName + "_NLogC_x64_Dir") #>" Name="x64" FileSource="$(var.NLogBuildPath)\\<#= framework.FullName #>\NLogC\amd64">
+            <Component Id="<#= framework.ShortName #>_NLogC_x64" Guid="<#= GetGuid(framework.ShortName, "NLogC_x64") #>">
+              <File Id="<#= framework.ShortName #>_NLogC_x64.dll" Name="NLogC.dll" Vital="yes" KeyPath="yes" />
+              <File Id="<#= framework.ShortName #>_NLogC_x64.pdb" Name="NLogC.pdb" />
+              <File Id="<#= framework.ShortName #>_NLogC_x64.lib" Name="NLogC.lib" />
+              <File Id="<#= framework.ShortName #>_NLogC_x64.exp" Name="NLogC.exp" />
+            </Component>
+         </Directory>
+         <Directory Id="<#= (framework.ShortName + "_NLogC_Include_Dir") #>" Name="include">
+            <Component Id="<#= framework.ShortName #>_NLogC_Include" Guid="<#= GetGuid(framework.ShortName, "NLogC_Include") #>">
+              <File Id="<#= framework.ShortName #>_NLogC.h" Name="NLogC.h" Vital="yes" KeyPath="yes" />
+              <File Id="<#= framework.ShortName #>_NLogger.h" Name="NLogger.h" />
+            </Component>
+         </Directory>
+      </Directory>
+<# } #>    
       <Component Id="<#= framework.ShortName #>_Binaries" Guid="<#= GetGuid(framework.ShortName, "Binaries") #>">
         <File Id="<#= framework.ShortName #>_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="<#= framework.ShortName #>_NLog.xml" Name="NLog.xml" />
@@ -504,6 +531,21 @@ foreach (var vs in visualStudioVersions) {
 <# } #>      
     </Feature>
 
+    <Feature Id="Feature_NLogC" Title="NLogC" Level="1">
+<# foreach (var framework in supportedFrameworks) {
+    if (!framework.HasNLogC) continue;
+ #>
+      
+      <?ifdef Include_<#= framework.ShortName #> ?>
+      <Feature Id="<#= framework.ShortName #>_NLogC" Title="<#= framework.FullName #>" Level="1">
+        <ComponentRef Id="<#= framework.ShortName #>_NLogC_x86" />
+        <ComponentRef Id="<#= framework.ShortName #>_NLogC_x64" />
+        <ComponentRef Id="<#= framework.ShortName #>_NLogC_Include" />
+      </Feature>
+      <?endif?>
+<# } #>      
+    </Feature>
+
     <Feature Id="Feature_IDE" Title="IDE Support" Level="1">
 
 <# foreach (var vs in visualStudioVersions) { #>
@@ -563,41 +605,42 @@ string GuidNamespace = "{417548C6-D8AB-4f95-9BAE-B0D60D9C8529}";
 
 string GetGuid(string p1, string p2)
 {
-	byte[] bytes = Encoding.ASCII.GetBytes(GuidNamespace + p1 + "." + p2);
-	bytes = MD5.Create().ComputeHash(bytes);
-	bytes[7] &= 0x0F;
-	bytes[7] |= 0x30;
-	return new Guid(bytes).ToString();
+    byte[] bytes = Encoding.ASCII.GetBytes(GuidNamespace + p1 + "." + p2);
+    bytes = MD5.Create().ComputeHash(bytes);
+    bytes[7] &= 0x0F;
+    bytes[7] |= 0x30;
+    return new Guid(bytes).ToString();
 }
 
 public class VisualStudioVersion
 {
-	public string ReleaseName { get; set; }
-	public string WixPrefix { get; set; }
-	public string DirectoryName { get; set; }
+    public string ReleaseName { get; set; }
+    public string WixPrefix { get; set; }
+    public string DirectoryName { get; set; }
 };
 
 public class FrameworkInfo
 {
     public FrameworkInfo()
     {
-		AssemblyInfoRegistryKeys = new List<string>();
+        AssemblyInfoRegistryKeys = new List<string>();
     }
     
-	public string GetDebugInfo(string dllName)
-	{
-		if (this.ShortName.StartsWith("Mono"))
-		{
-			return dllName + ".mdb";
-		}
-		
-		return Path.ChangeExtension(dllName, ".pdb");
-	}
-	
-	public string ShortName { get; set; }
-	public string FullName { get; set; }
-	public bool HasExtendedProfile { get; set; }
-	public string DebugInfoExtension { get; set; }
-	public List<string> AssemblyInfoRegistryKeys { get; private set; }
+    public string GetDebugInfo(string dllName)
+    {
+        if (this.ShortName.StartsWith("Mono"))
+        {
+            return dllName + ".mdb";
+        }
+        
+        return Path.ChangeExtension(dllName, ".pdb");
+    }
+    
+    public string ShortName { get; set; }
+    public string FullName { get; set; }
+    public bool HasExtendedProfile { get; set; }
+    public bool HasNLogC { get; set; }
+    public string DebugInfoExtension { get; set; }
+    public List<string> AssemblyInfoRegistryKeys { get; private set; }
 }
 #>

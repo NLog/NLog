@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2006 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -31,15 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using namespace ::System;
 using namespace ::System::Runtime::InteropServices;
 using namespace ::System::Runtime::CompilerServices;
+using namespace ::System::Security;
+using namespace ::System::Security::Permissions;
 using namespace ::System::Reflection;
 
 [assembly: AssemblyTitle("NLog for Unmanaged C/C++")];
 [assembly: AssemblyDescription("NLog")];
 [assembly: AssemblyConfiguration("")];
 [assembly: AssemblyCompany("NLog")];
-[assembly: AssemblyProduct("NLog - .NET Logging Library")];
-[assembly: AssemblyCopyright("Copyright (c) 2004-2006 by Jaroslaw Kowalski")];
+[assembly: AssemblyProduct("NLog - Advanced .NET Logging")];
+[assembly: AssemblyCopyright("Copyright (c) 2004-2010 by Jaroslaw Kowalski")];
 [assembly: AssemblyCulture("")];
-[assembly: AssemblyVersion("1.0.0.0")];
+[assembly: AssemblyVersion("2.0.0.0")];
+[assembly: ComVisible(false)];
+[assembly: CLSCompliantAttribute(true)];
+[assembly: SecurityPermission(SecurityAction::RequestMinimum, UnmanagedCode = true)];
