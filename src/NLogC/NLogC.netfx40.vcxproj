@@ -28,7 +28,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup>
-    <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(ProjectDir)</BaseOutputDirectory>
+    <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
     <OutDir>$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLogC\$(PlatformShortName)\</OutDir>
     <IntDir>$(BaseOutputDirectory)\obj\$(Configuration)\.NET Framework 4.0\NLogC\$(PlatformShortName)\</IntDir>
   </PropertyGroup>

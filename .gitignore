@@ -11,6 +11,7 @@ _ReSharper.*
 *.ReSharper.user
 *.bak
 *.csproj.user
+*.vcxproj.user
 TestResults/
 StyleCop.Cache
 NLogMerged.api.xml
