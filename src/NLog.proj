@@ -19,14 +19,15 @@
     <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF35)' == 'true'">false</BuildAllFrameworks>
-    <SLTestRunner>$(MSBuildProjectDirectory)\..\tests\SilverlightConsoleRunner\bin\$(Configuration)\SilverlightConsoleRunner.exe</SLTestRunner>
-    <DumpTestResultSummary>$(MSBuildProjectDirectory)\..\tools\DumpTestResultSummary\bin\$(Configuration)\DumpTestResultSummary.exe</DumpTestResultSummary>
+    <ToolsDir>$(MSBuildProjectDirectory)\..\build\bin\Tools</ToolsDir>
+    <SLTestRunner>$(MSBuildProjectDirectory)\..\build\bin\Tools\SilverlightConsoleRunner.exe</SLTestRunner>
+    <DumpTestResultSummary>$(ToolsDir)\DumpTestResultSummary.exe</DumpTestResultSummary>
     <DeployNetCF>..\tools\DeployNetCF.exe</DeployNetCF>
-    <DumpApiXml>$(MSBuildProjectDirectory)\..\tools\DumpApiXml\bin\$(Configuration)\DumpApiXml.exe</DumpApiXml>
-    <MergeApiXml>$(MSBuildProjectDirectory)\..\tools\MergeApiXml\bin\$(Configuration)\MergeApiXml.exe</MergeApiXml>
-    <MakeNLogXSD>$(MSBuildProjectDirectory)\..\tools\MakeNLogXSD\bin\$(Configuration)\MakeNLogXSD.exe</MakeNLogXSD>
-    <BuildDocPages>$(MSBuildProjectDirectory)\..\tools\BuildDocPages\bin\$(Configuration)\BuildDocPages.exe</BuildDocPages>
-    <SyncProjectItems>$(MSBuildProjectDirectory)\..\tools\SyncProjectItems\bin\$(Configuration)\SyncProjectItems.exe</SyncProjectItems>
+    <DumpApiXml>$(ToolsDir)\DumpApiXml.exe</DumpApiXml>
+    <MergeApiXml>$(ToolsDir)\MergeApiXml.exe</MergeApiXml>
+    <MakeNLogXSD>$(ToolsDir)\MakeNLogXSD.exe</MakeNLogXSD>
+    <BuildDocPages>$(ToolsDir)\BuildDocPages.exe</BuildDocPages>
+    <SyncProjectItems>$(ToolsDir)\SyncProjectItems.exe</SyncProjectItems>
     <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
     <InfoZip>$(MSBuildProjectDirectory)\..\tools\zip.exe</InfoZip>
     <Tar>$(MSBuildProjectDirectory)\..\tools\tar.exe</Tar>
@@ -414,6 +415,9 @@
   </Target>
 
   <Target Name="BuildDocPages" DependsOnTargets="BuildDocPagesTool">
+  </Target>
+
+  <Target Name="Tools" DependsOnTargets="BuildApiDumpTool;BuildDocPagesTool;BuildApiMergeTool;BuildSyncProjectItemsTool;BuildSLTestRunner;BuildTestResultSummaryTool;BuildMakeNLogXSDTool">
   </Target>
 
   <Target Name="DumpApi" DependsOnTargets="BuildApiDumpTool;BuildApiMergeTool"

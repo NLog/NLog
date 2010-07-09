@@ -139,6 +139,12 @@ if (%1)==(rebuild) (
 	goto next
 )
 
+if (%1)==(tools) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:Tools
+	shift
+	goto next
+)
+
 if (%1)==(syncprojectitems) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:SyncProjectItems
 	shift
@@ -244,6 +250,7 @@ echo  nightlybuild       Nightly build
 echo  web                Website files
 echo  xsd                NLog.xsd Intellisense files
 echo  installer          Installer
+echo  tools              Tools
 echo  label {suffix}     Define build label (defaults to 'PrivateBuild')
 exit /b 1
 
