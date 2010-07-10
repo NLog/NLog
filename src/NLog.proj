@@ -210,6 +210,12 @@
              StopOnFirstFailure="false" />
 
     <CallTarget Targets="BuildNLogCTests" />
+    <CallTarget Targets="BuildComApiTests" />
+  </Target>
+ 
+  <Target Name="BuildComApiTests">
+    <Exec Command='"..\tests\NLog.ComInteropTests\Deploy%(TargetFramework.ProjectFileSuffix).cmd" "$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)"'
+          Condition="Exists('..\tests\NLog.ComInteropTests\Deploy%(TargetFramework.ProjectFileSuffix).cmd')" />
   </Target>
 
   <Target Name="Web" DependsOnTargets="DumpApi;BuildDocPagesTool"
@@ -237,6 +243,13 @@
     <CallTarget Targets="SL2Test" Condition="'$(BuildSL2)'=='true'"/>
     <CallTarget Targets="SL3Test" Condition="'$(BuildSL3)'=='true'"/>
     <CallTarget Targets="SL4Test" Condition="'$(BuildSL4)'=='true'"/>
+    <CallTarget Targets="RunComApiTests" />
+  </Target>
+
+  <Target Name="RunComApiTests">
+    <Exec Command="NLog.ComInteropTest.cmd"
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)"
+          Condition="Exists('$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.ComInteropTest.cmd')" />
   </Target>
 
   <Target Name="NetFx20Test">
